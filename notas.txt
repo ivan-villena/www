@@ -1,0 +1,11 @@
+
+Sistema WEB
+
+1. Estructura del Archivo 
+
+  "_" / Carpeta de recursos: imagenes - fondos
+
+  "_app" / ...páginas 
+
+  "codigo" / ...estructuras
+

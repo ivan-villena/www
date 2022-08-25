@@ -1,0 +1,46 @@
+
+/*//////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/* Libros //////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+body[cab="lib"] > main section {
+  padding: 0 2rem;
+}
+
+body[cab="lib"][art="asc"] > main section > figure {
+  margin: 1em 0;
+}
+
+/*//////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/* Tableros ////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+#win article[ide="est"] div[var="est"]{
+  height: 25rem;
+}
+
+/* 
+Oráculo
+*/
+:is(div,table)[tab] .pos.sec_par {
+  border-radius: 50%;
+}
+:is(div,table)[tab] [tab="uni_par"], 
+:is(div,table)[tab] [tab="uni_par"] > li[pos]{
+  width: 100%; 
+  height: 100%;
+}
+
+/* 
+Seleccion 
+*/
+
+/* Parejas */
+:is(div,table)[tab] ._val-par_ana { border: 2px solid var(--col_roj) !important; }
+:is(div,table)[tab] ._val-par_gui { border: 2px solid var(--col_bla) !important; }
+:is(div,table)[tab] ._val-par_ant { border: 2px solid var(--col_azu) !important; }
+:is(div,table)[tab] ._val-par_ocu { border: 2px solid var(--col_ama) !important; }
+/* Extensiones */
+:is(div,table)[tab] ._val-par_ana-ext { border: 1px solid var(--col_roj) !important; }
+:is(div,table)[tab] ._val-par_gui-ext { border: 1px solid var(--col_bla) !important; }
+:is(div,table)[tab] ._val-par_ant-ext { border: 1px solid var(--col_azu) !important; }
+:is(div,table)[tab] ._val-par_ocu-ext { border: 1px solid var(--col_ama) !important; } 
+
