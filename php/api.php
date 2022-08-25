@@ -2998,7 +2998,20 @@
       while( $_ < $min ){ $_ += $max; } 
       
       return $_;
-    }  
+    }
+    // sumatorias
+    static function sum( int | float | string | array $val ) : int | float {
+
+      if( !is_array($val) ) $val = explode(',', is_string($val) ? $val : strval($val) );
+
+      return array_reduce( $val,
+      
+        function( $acu, $ite ){
+          
+          return $acu += _num::val($ite); 
+        }
+      );
+    }
 
   }
 

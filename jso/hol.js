@@ -4,8 +4,6 @@
 // sincronario
 class _hol {
 
-  // base de datos
-  _dat = {};
   // valor seleccioando
   _val = {};
   // valores acumulados
@@ -41,29 +39,30 @@ class _hol {
     }
   }  
   // getter
-  static _( $ide, $dat ){
-    let $_=[], $={};
-    $ide = $ide.replace(/_ide$/,'');
-    if( $_hol._dat[$ide] === undefined ){
+  static _( $ide, $val ){
+    let $_=[], $est = `_${$ide}`;
+    
+    if( $_hol[$est] === undefined ){
       // pido datos
       // .. vuelvo a llamar esta funcion
     }
-    if( !!($dat) ){
+    if( !!($val) ){
+      $_ = $val;
       switch( $ide ){
       case 'fec':
         break;
       default:
-        if( typeof($dat)=='object' ){
-          $_ = $dat;
-        }else{
-          $.cod = parseInt($dat)-1;
-          $_ = $_hol._dat[$ide] && !!($_hol._dat[$ide][$.cod]) ? $_hol._dat[$ide][$.cod] : {};
+        if( typeof($val) != 'object' ){
+
+          if( Number($val) ) $val = parseInt($val)-1;
+
+          $_ = $_hol[$est] && !!($_hol[$est][$val]) ? $_hol[$est][$val] : {};
         }
         break;
       }
     }
     else{
-      $_ = $_hol._dat[$ide] ? $_hol._dat[$ide] : [];
+      $_ = $_hol[$est] ? $_hol[$est] : [];
     }
     return $_;
   }

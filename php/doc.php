@@ -2084,9 +2084,11 @@
           $_ide .= " _$esq.$est";
         }
       }
-      if( !isset($ope['dat']) ){
-        $ope['dat'] = is_array($dat) ? : _dat::var($esq,$est);
-      }
+      // aseguro valores
+      if( !isset($ope['dat']) ) $ope['dat'] = is_array($dat) ? : _dat::var($esq,$est);
+      // aseguro estructura
+      if( isset($esq) && !isset($ope['est']) ) $ope['est'] = [ $esq => [ $est ] ];      
+
       // genero operadores
       if( empty($tip) ){
         $ope_ver = '';
@@ -2119,9 +2121,6 @@
           foreach( [ 'lis','cue','tit_ite','tit_val','dat_ite','dat_val','det_ite','det_val','val'] as $i ){ if( !isset($ele[$i]) ) $ele[$i]=[]; }
           // identificadores de la base        
           if( isset($esq) ){
-
-            if( !isset($ope['est']) ){ $ope['est'] = [ $esq => [ $est ] ]; }
-
             $ele['lis']['data-esq'] = $esq;
             $ele['lis']['data-est'] = $est;
           }

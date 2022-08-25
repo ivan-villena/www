@@ -3,54 +3,49 @@
   // holon del sincronario
   class _hol {
 
-    public array $_dat = [];
-    
+    // valor seleccionado
     public array $_val = [];
+    // valores acumulados
+    public array $_val_acu = [];
+    
 
     public function __construct(){
     }
 
     // estructuras por posicion
     static function _( string $ide, mixed $val = NULL ) : string | array | object {
-      global $_hol;
       $_ = [];
-      // aseguro carga
-      if( !isset($_hol->_dat[$ide]) ){
+      global $_hol;
+      $est = "_$ide";
 
-        $_hol->_dat[$ide] = _dat::ini('hol',$ide);
-      }
-      $_dat = $_hol->_dat[$ide];
+      // aseguro carga
+      if( !isset($_hol->$est) ) $_hol->$est = _dat::ini('hol',$ide);
+
       // busco dato
       if( !empty($val) ){
+        
         $_ = $val;
+        
         if( !is_object($val) ){
           switch( $ide ){
           case 'fec':
             $fec = _api::_('fec',$val);
-            if( isset($fec->dia)  ){
-              $_ = _dat::var( $_hol->_('psi'), [ 'ver'=>[ ['fec_dia','==',$fec->dia], ['fec_mes','==',$fec->mes] ], 'opc'=>['uni'] ]);
-            }
-            break;      
-          case 'kin':
-            $val = _num::ran( is_Array($val) ? array_reduce( $val, function($acu,$v){ return $acu += intval($v); }) : intval($val), 260 ) - 1;
-            $_kin = $_hol->_('kin');
-            if( isset( $_kin[$val] ) ){ 
-              $_ = $_kin[$val];
-            }else{
-              $_ = "<p class='let err'>{-_-} valor incorrecto '".( strval($val) )."'</p>"; 
-            }
+            if( isset($fec->dia)  ) $_ = _dat::var( _hol::_('psi'), [ 'ver'=>[ ['fec_dia','==',$fec->dia], ['fec_mes','==',$fec->mes] ], 'opc'=>['uni'] ]);
             break;
+            
+          case 'kin':
+            $_ = $_hol->$est[ _num::ran( _num::sum($val), 260 ) - 1 ];
+            break;
+
           default:
-            if( isset($_hol->_dat[$ide][ $val = intval($val) - 1 ]) ){ 
-              $_ = $_hol->_dat[$ide][$val]; 
-            }
+            if( isset($_hol->$est[ $val = intval($val) - 1 ]) ) $_ = $_hol->$est[$val]; 
             break;
           }
         }
       }
       // devuelvo toda la lista
-      elseif( !empty($_hol->_dat[$ide]) ){
-        $_ = $_hol->_dat[$ide];
+      else{
+        $_ = $_hol->$est;
       }
       return $_;    
     }
@@ -161,7 +156,7 @@
 
       if( isset($val[3]) ){
         // mes y día
-        $_psi = _dat::var( $_hol->_('psi'), [ 'ver'=>[ ['lun','==',$val[2]], ['lun_dia','==',$val[3]] ], 'opc'=>['uni'] ]);
+        $_psi = _dat::var( _hol::_('psi'), [ 'ver'=>[ ['lun','==',$val[2]], ['lun_dia','==',$val[3]] ], 'opc'=>['uni'] ]);
     
         if( isset($_psi->fec_mes) && isset($_psi->fec_dia) ){
 
@@ -283,7 +278,7 @@
 
           $_ []= _api::dat([
             'api'=>[ 'fec'=>_api::_('fec',$fec) ],
-            'hol'=>[ 'kin'=>_hol::_('kin',$_dat['kin']), 'psi'=>$_hol->_('psi',$_dat['psi']) ]
+            'hol'=>[ 'kin'=>_hol::_('kin',$_dat['kin']), 'psi'=>_hol::_('psi',$_dat['psi']) ]
           ]);
 
           $fec = _fec::ope($fec, $inc, $ope);
@@ -328,12 +323,12 @@
         $_['fec'] = $fec->val;
         $_fec = _hol::dec($fec);    
         // giro lunar => mes + día
-        $_psi = $_hol->_('fec',$_['fec']);
+        $_psi = _hol::_('fec',$_['fec']);
         if( !!$_psi ){
           $_['psi'] = $_psi->ide;
           $_['sin'] = "NS.{$_fec->sir}.{$_fec->ani}.{$_psi->lun}.{$_psi->lun_dia}";
           // giro galáctico => kin
-          $_kin = $_hol->_('kin',[ $_fec->fam_2, $_psi->fec_cod, $_fec->dia ]);
+          $_kin = _hol::_('kin',[ $_fec->fam_2, $_psi->fec_cod, $_fec->dia ]);
           if( is_object($_kin) ){
             $_['kin'] = $_kin->ide;
           }else{
@@ -366,7 +361,9 @@
     
     // seccion principal
     static function sec( object $_uri, object &$_doc, object $_dir, array $ele = [] ) : array {
-      global $_hol; $esq = 'hol';    
+      global 
+        $_hol; 
+      $esq = 'hol';    
       $_bib = SYS_NAV."hol/bib/";
 
       // cabecera inicial: ficha del día
@@ -417,10 +414,10 @@
         $ide = "{$esq}.{$est}";
     
         // fecha => muestro listado por ciclos  
-        if( isset($_hol->_val['fec']) ){
+        if( isset($_api_hohol_val['fec']) ){
           
           // acumulo posiciones
-          _hol::acu($est,$_hol->_val);
+          _hol::acu($est,$_api_hohol_val);
         }
       }
 
@@ -496,7 +493,7 @@
         $tab_ope = isset($_art['tab']['ope']) ? $_art['tab']['ope'] : [];
     
         // fecha => muestro listado por ciclos    
-        if( isset($_hol->_val['fec']) ){        
+        if( isset($_api_hohol_val['fec']) ){        
     
           if( in_array($est,['kin','psi']) ){
 
@@ -1369,6 +1366,15 @@
 
       </article>";
       return $_;
+    }
+    static function bib(){
+
+    }
+    static function tab(){
+
+    }
+    static function inf(){
+
     }
   }
 
@@ -4452,4 +4458,4 @@
         {$htm}
       </{$pos_eti}>";
     }  
-  }                                    
+  }
