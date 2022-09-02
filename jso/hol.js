@@ -6,6 +6,7 @@ class _hol {
 
   // valor seleccioando
   _val = {};
+
   // valores acumulados
   _val_acu = {
 
@@ -37,7 +38,8 @@ class _hol {
         this[$atr] = $dat[$atr];
       }
     }
-  }  
+  }
+  
   // getter
   static _( $ide, $val ){
     let $_=[], $est = `_${$ide}`;
@@ -50,6 +52,7 @@ class _hol {
       $_ = $val;
       switch( $ide ){
       case 'fec':
+        
         break;
       default:
         if( typeof($val) != 'object' ){
@@ -66,93 +69,14 @@ class _hol {
     }
     return $_;
   }
-
 }
 
-// listados
-class _hol_lis {
+// articulo : valores + tablero
+class _hol_art {
 
-  static val( $tip, $dat, $ope ){
-
-    let $ = _doc.var($dat);
-
-    if( $$.for ) $.lis = $$.for.nextElementSibling;
-
-    $._tip = $tip.split('_');
-
-    switch( $._tip[0] ){
-    case 'kin': 
-      // libro del kin
-      if( !$._tip[1] ){
-
-        if( $.val = _num.val( $$.for.querySelector('[name="ide"]').value ) ){
-          
-          $.val_kin = `kin-${_num.val($.val,3)}`;
-
-          if( !$ope ){          
-
-            $.res = $$.for.querySelector('output.hol-kin');
-      
-            $.res.innerHTML = '';
-      
-            if( $.val && ( $.kin = $.lis.querySelector(`#${$.val_kin} > .hol-kin`) ) ){
-              
-              $.res.innerHTML = $.kin.innerHTML;
-            }        
-          }// enlace al kin
-          else if( $ope == 'nav' ){
-            
-            _arc.url_sec( $.val_kin );
-          }
-        }
-      }
-      else{
-        switch( $._tip[1] ){
-
-        }
-      }    
-      break;
-    }
-  }  
-
-  static kin( $dat, $tip, $ope ){
-
-    let $ = _doc.var($dat);
-
-    if( $$.for ) $.lis = $$.for.nextElementSibling;
-
-    // libro del kin
-    if( !$tip ){
-
-      $.val = _num.val( $$.for.querySelector('[name="ide"]').value );
-
-      if( !$ope ){
-
-        $.res = $$.for.querySelector('.hol-kin');
-  
-        $.res.innerHTML = '';
-  
-        if( $.val && ( $.kin = $.lis.querySelector(`#kin-${_num.val($.val,3)} > .hol-kin`) ) ){
-          
-          $$.for.replaceChild($.kin,$.res);
-        }        
-
-      }
-    }
-    else{
-      switch( $tip ){
-
-      }
-    }
-  }
-}
-
-// valores
-class _hol_val {
-
-  // operador : fecha + sincronario
-  static ver( $dat ){
-
+  // valores  
+  static val( $dat ){
+    // operador : fecha + sincronario
     let $ = _doc.var($dat);
 
     if( !$_api._uri.cab || !['dat','inf'].includes($_api._uri.cab) ){
@@ -196,10 +120,11 @@ class _hol_val {
       else{
         alert('La fecha del sincronario es inválida...')
       }
-    }     
+    }
+    
   }
   // actualizo acumulados por seleccion de clase
-  static acu( $dat, ...$ide ){
+  static val_acu( $dat, ...$ide ){
 
     let $ope = $ide.join('_');
 
@@ -207,7 +132,7 @@ class _hol_val {
 
   }
   // calculo totales por tipos de operador : portales + parejas + pulsares
-  static tot( $dat, $ope ){
+  static val_tot( $dat, $ope ){
 
     let $ = _doc.var($dat);
 
@@ -223,7 +148,7 @@ class _hol_val {
     $.lis.forEach( $ide => $_hol._val_acu[$ope].push(...$_hol._val_acu[$ide]));    
   }
   // actualizo cuentas y porcentajes sobre totales 
-  static cue( $dat, ...$ide ){
+  static val_cue( $dat, ...$ide ){
 
     let $ = {
       ide : `${$ide[0]}_${$ide[1]}`,
@@ -237,33 +162,27 @@ class _hol_val {
     }
 
     // actualizo acumulado total
-    _hol_val.tot($ide[0]);
+    _hol_art.val_tot($ide[0]);
 
   }
-}
 
-// tableros
-class _hol_tab {
-
-  // inicializo operadores
-  static act(){
-
+  // tablero
+  static tab(){    
     $$.tab.cla = ( $$.tab.dat_dep = $$.tab.dat.querySelector('.pos > [tab="uni_par"]') ) ? '.pos > [tab="uni_par"] > [pos]' : '.pos';      
 
     ['opc'].forEach( $ope => {
 
       if( $$.tab[$ope] ){
 
-        $$.tab[$ope].querySelectorAll(`form[ide] [name][onchange*="_hol_tab."]`).forEach( $inp => 
+        $$.tab[$ope].querySelectorAll(`form[ide] [name][onchange*="_hol_art.tab_"]`).forEach( $inp => 
 
-          _hol_tab[$ope](`${_ele.ver($inp,{'eti':`form`}).getAttribute('ide')}`, $inp )
+          _hol_art[`tab_${$ope}`](`${_ele.ver($inp,{'eti':`form`}).getAttribute('ide')}`, $inp )
         );
       }
-    });    
+    });   
   }
-  // por posicion principal: parejas + pulsares  
-  static pos( $tip, $dat, $ope, ...$opc ){
-    
+  static tab_pos( $tip, $dat, $ope, ...$opc ){    
+
     let $=_doc.var($dat);
 
     $.kin = $_hol._val.kin;
@@ -283,7 +202,7 @@ class _hol_tab {
 
         $._par_lis.forEach( $ide => {
 
-          _hol_tab.pos(`${$tip}`, $$.for.querySelector(`[name="${$ide}"]`) );
+          _hol_art.tab_pos(`${$tip}`, $$.for.querySelector(`[name="${$ide}"]`) );
         });
       }// por pareja
       else{        
@@ -296,7 +215,7 @@ class _hol_tab {
             _ele.val('cla_agr',$.ele,$.cla);          
           }
           // evaluo extensiones
-          _hol_tab.pos(`${$tip}`, $$.for.querySelector(`[name="ext"]`) );
+          _hol_art.tab_pos(`${$tip}`, $$.for.querySelector(`[name="ext"]`) );
           
         }// extiendo oráculo      
         else if( $.var_ide=='ext' ){
@@ -378,16 +297,14 @@ class _hol_tab {
         }
       }
       // acumulados
-      _hol_val.acu($$.tab.dat,'pul',$.var_ide);      
+      _hol_art.val_acu($$.tab.dat,'pul',$.var_ide);      
       // totales por valor
-      _hol_val.cue($dat,'pul',$.var_ide);
+      _hol_art.val_cue($dat,'pul',$.var_ide);
 
       break;
-    }
-  }  
-  // opciones: secciones + posiciones + ...operadores
-  static opc( $tip, $dat, $ope, ...$opc ){
-    
+    }    
+  }
+  static tab_opc( $tip, $dat, $ope, ...$opc ){    
     let $=_doc.var($dat);
 
     $.kin = $_hol._val.kin;
@@ -510,7 +427,35 @@ class _hol_tab {
       switch( $.var_ide ){
       }
       break;
-    }
-  }  
+    }    
+  }
+  
+}
 
+// listado
+class _hol_lis {
+
+  static kin( $atr, $dat, $ope ){
+
+    let $ = _doc.var($dat);
+
+    if( $$.for ) $.lis = $$.for.nextElementSibling;
+
+    switch( $atr ){
+    // libro del kin
+    case 'enc': 
+      if( !$ope ){
+
+        $.val = _num.val( $$.for.querySelector('[name="ide"]').value );
+
+        $.res = $$.for.querySelector('.hol-kin');
+
+        $.res.innerHTML = ( $.val && ( $.kin = $.lis.querySelector(`#kin-${_num.val($.val,3)} > .hol-kin`) ) ) ? $.kin.innerHTML : '';
+      }
+      else{
+
+      }    
+      break;
+    }
+  }
 }

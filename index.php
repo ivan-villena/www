@@ -1,3 +1,3 @@
 <?php
 
-  include("app/api.php");
+  include("php/doc/api.php");

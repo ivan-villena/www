@@ -1,30 +1,35 @@
 <?php
 
-  session_start();
+  $sis_ini = time();
 
-  if( empty($_SESSION['ubi']) ){
+  session_start();
+  
+  if( empty($_SESSION['ser']) ){
     $_SESSION['ubi'] = "America/Argentina/Buenos_Aires";
     $_SESSION['ser'] = $_SERVER['SERVER_NAME'];
-    $_SESSION['usu'] = "admin";
+    $_SESSION['usu'] = "admin";    
     $_SESSION['pas'] = "admin";
     $_SESSION['esq'] = "_api";
   }
-
-  date_default_timezone_set( $_SESSION['ubi'] );
-
-  $sis_ini = time();  
-
+  
   // require de clases
   require_once("_/autoload.php");
 
   require_once("php/doc.php");
 
   $_api = new _api();
-
+  
   $_hol = new _hol();
 
-  $_usu = new _usu( $_SESSION['usu'] );
+  // datos del usuario
+  if( !isset($_SESSION['usu_ide']) ) $_SESSION['usu_ide'] = 1;
 
+  $_usu = new _usu( $_SESSION['usu_ide'] );
+
+  $_usu_ide = $_usu->dat('ide');
+
+  date_default_timezone_set( !empty($_usu_ubi = $_usu->dat('ubi')) ? $_usu_ubi : $_SESSION['ubi'] );
+   
   // peticion AJAX
   if( isset($_REQUEST['_']) ){  
 
@@ -36,24 +41,18 @@
       $_ = "  
       <h2>hola desde php<c>!</c></h2>
       ";
-      
-      foreach ( $_hol->_('kin_cro_ele') as $_ele ) {
-        $_.=" 
-          UPDATE _hol.kin_cro_ele SET `ele` = "._num::ran($_ele->ide+1,4)." WHERE `ide` = $_ele->ide; <br>
-        ";
-      }      
 
       return $_;
     }    
     
-    echo _dat::cod( !_obj::tip( $eje = _eje::val($_REQUEST['_']) ) ? [ '_' => $eje ] : $eje );  
+    echo _obj::cod( !_obj::tip( $eje = _eje::val($_REQUEST['_']) ) ? [ '_' => $eje ] : $eje );  
 
     die();
   }
   // cargo página
   else{
 
-    $_api_atr = [ '_uri', '_ses', '_ico', '_tex_let', '_var_tip', '_dat_val', '_fec_mes', '_fec_sem', '_fec_dia' ];
+    $_api_atr = [ '_uri', '_ses', '_ico', '_let', '_var_tip', '_dat_val', '_fec_mes', '_fec_sem', '_fec_dia' ];
 
     // peticion url ( por defecto: holon )
     $_uri = $_api->uri('hol');
@@ -68,7 +67,7 @@
     $_doc = $_api->doc();
     
     // contenido
-    if( file_exists( $rec = "app/{$_uri->esq}.php" ) ){
+    if( file_exists( $rec = "php/doc/{$_uri->esq}.php" ) ){
       
       $_doc->ele = ['doc'=>$_uri->esq, 'cab'=> !!$_uri->cab ? $_uri->cab : NULL, 'art'=> !!$_uri->art ? $_uri->art : NULL];
 
@@ -118,10 +117,10 @@
         echo _doc::ico('ses',[ 'eti'=>"a", 'href'=>SYS_NAV."/{$_uri->esq}", 'title'=>"Inicio..." ]);
 
         // consola
-        if( $_usu->ide == 1 ) echo _doc_nav::ver([ 'win'=>[ 'api_adm'=>[ 'ico'=>"eje", 'nom'=>"Administrador del Sistema" ] ]]);
+        if( $_usu_ide == 1 ) echo _doc_nav::ver([ 'win'=>[ 'api_adm'=>[ 'ico'=>"eje", 'nom'=>"Administrador del Sistema" ] ]]);
         
         // usuario
-        if( $_usu->ide > 0 ){
+        if( $_usu_ide > 0 ){
 
           echo _doc_nav::ver([ 'win'=>[ 'usu_dat'=>[ 'ico'=>"ses_adm", 'nom'=>"Cuenta de Usuario"] ]]);
         }
@@ -181,7 +180,7 @@
     <div id='win' class='dis-ocu'>
       <?php 
         // imprimo consola del administrador
-        if( $_usu->ide == 1 ){ 
+        if( $_usu_ide == 1 ){ 
 
           $_doc->jso []= "api/adm";
 
@@ -189,7 +188,7 @@
         }
 
         // cuenta de usuario
-        ( $_usu->ide > 0 ) ? _usu_dat::val() : include("app/api/log.php");
+        ( $_usu_ide > 0 ) ? _usu_dat::val() : include("php/doc/api/log.php");
         
         // pantallas
         if( isset($_doc->win) ){ 
@@ -216,7 +215,7 @@
     ?>
     <script>
 
-      var $_api = new _api(<?= _dat::cod( $_api_dat ) ?>);
+      var $_api = new _api(<?= _obj::cod( $_api_dat ) ?>);
 
       var $_doc = new _doc();
 

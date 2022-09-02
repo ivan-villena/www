@@ -1,127 +1,128 @@
 <?php
-$_ide = "api-adm";
-$_eje = "_adm";
 
-// Ventana
-$win = [
-  'ico'=>"eje",
-  'nom'=>"Administrador del Sistema",
-  'art'=> [ 'style'=>"max-width: 75rem;" ],
-  'htm'=>"",
-];
+  $_ide = "api-adm";
+  $_eje = "_adm";
 
-ob_start();
-?>
+  // Ventana
+  $win = [
+    'ico'=>"eje",
+    'nom'=>"Administrador del Sistema",
+    'art'=> [ 'style'=>"max-width: 75rem;" ],
+    'htm'=>"",
+  ];
 
-<?= _doc_nav::val('bar',[
-  'aja' => [ 'nom'=>"Ajax",   'ele'=>['onclick'=>"_adm('aja',this);"] ],
-  'ico' => [ 'nom'=>"Íconos", 'ele'=>['onclick'=>"_adm('ico',this);"] ],
-  'php' => [ 'nom'=>"PHP",    'ele'=>[ 'class'=>FON_SEL ]  ],
-  'sql' => [ 'nom'=>"SQL" ],
-  'jso' => [ 'nom'=>"JS"  ],
-  'htm' => [ 'nom'=>"DOM" ]
-]) ?>
+  ob_start();
+  ?>
 
-<div>
+  <?= _doc_nav::val('bar',[
+    'aja' => [ 'nom'=>"Ajax",   'ele'=>['onclick'=>"_adm('aja',this);"] ],
+    'ico' => [ 'nom'=>"Íconos", 'ele'=>['onclick'=>"_adm('ico',this);"] ],
+    'php' => [ 'nom'=>"PHP",    'ele'=>[ 'class'=>FON_SEL ]  ],
+    'sql' => [ 'nom'=>"SQL" ],
+    'jso' => [ 'nom'=>"JS"  ],
+    'htm' => [ 'nom'=>"DOM" ]
+  ]) ?>
 
-  <form ide='aja' class='dis-ocu'>
+  <div>
 
-    <nav class='lis'></nav>
+    <form ide='aja' class='dis-ocu'>
 
-  </form>
+      <nav class='lis'></nav>
 
-  <form ide='ico' class='dis-ocu'>
+    </form>
 
-    <?=_doc::var('val','ver',['nom'=>"Filtrar",'ope'=>[ '_tip'=>"tex_ora", 'id'=>"_adm-ico-ver", 'oninput'=>"_adm('ico',this,'ver')" ]])?>
+    <form ide='ico' class='dis-ocu'>
 
-    <ul class='lis ite mar-2'></ul>
+      <?=_doc::var('val','ver',['nom'=>"Filtrar",'ope'=>[ '_tip'=>"tex_ora", 'id'=>"_adm-ico-ver", 'oninput'=>"_adm('ico',this,'ver')" ]])?>
 
-  </form>
+      <ul class='lis ite mar-2'></ul>
 
-  <form ide='jso' class='dis-ocu'>
+    </form>
 
-    <fieldset class='inf pad-3'>
-      <legend>Ejecutar JavaScript</legend>      
+    <form ide='jso' class='dis-ocu'>
 
-      <?=_doc::var('val','cod',[ 
-        'ite'=>[ 'class'=>"tam-cre" ], 
-        'ope'=>[ '_tip'=>"tex_par", 'rows'=>"10", 'class'=>"anc-100", 'oninput'=>"_adm('jso',this)" ] 
-      ])?>
+      <fieldset class='inf pad-3'>
+        <legend>Ejecutar JavaScript</legend>      
 
-    </fieldset>
+        <?=_doc::var('val','cod',[ 
+          'ite'=>[ 'class'=>"tam-cre" ], 
+          'ope'=>[ '_tip'=>"tex_par", 'rows'=>"10", 'class'=>"anc-100", 'oninput'=>"_adm('jso',this)" ] 
+        ])?>
 
-    <div class='ope_res mar-1'></div>
+      </fieldset>
 
-  </form>          
+      <div class='ope_res mar-1'></div>
 
-  <form ide='php' class=''>
+    </form>          
 
-    <fieldset class='inf ite pad-3'>
-      <legend>Ejecutar PHP</legend>
+    <form ide='php' class=''>
 
-      <?=_doc::var('val','ide',[ 'ope'=>[ '_tip'=>"tex_ora" ] ])?>
-      
-      <?=_doc::var('val','par',[ 
-        'ite'=>['class'=>"tam-cre"], 
-        'ope'=>['_tip'=>"tex_ora", 'class'=>"anc-100 mar_hor-1"], 
-        'htm_ini'=>"<c>(</c>", 'htm_fin'=>"<c>)</c>"
-      ])?>
+      <fieldset class='inf ite pad-3'>
+        <legend>Ejecutar PHP</legend>
 
-      <?=_doc::var('val','htm',[
-        'nom'=>"¿HTML?",
-        'ope'=>[ '_tip'=>"opc_bin", 'val'=>1, 'id'=>"_adm-php-htm" ]
-      ])?>
-      
-      <?=_doc::ico('eje_val',['eti'=>"button", 'type'=>"submit", 'onclick'=>"_adm('php',this)"])?>
+        <?=_doc::var('val','ide',[ 'ope'=>[ '_tip'=>"tex_ora" ] ])?>
+        
+        <?=_doc::var('val','par',[ 
+          'ite'=>['class'=>"tam-cre"], 
+          'ope'=>['_tip'=>"tex_ora", 'class'=>"anc-100 mar_hor-1"], 
+          'htm_ini'=>"<c>(</c>", 'htm_fin'=>"<c>)</c>"
+        ])?>
 
-    </fieldset>
+        <?=_doc::var('val','htm',[
+          'nom'=>"¿HTML?",
+          'ope'=>[ '_tip'=>"opc_bin", 'val'=>1, 'id'=>"_adm-php-htm" ]
+        ])?>
+        
+        <?=_doc::ico('eje_val',['eti'=>"button", 'type'=>"submit", 'onclick'=>"_adm('php',this)"])?>
 
-    <div class='ope_res mar-1'></div>
+      </fieldset>
 
-    <pre class='ope_res'></pre>
+      <div class='ope_res mar-1'></div>
 
-  </form>  
+      <pre class='ope_res'></pre>
 
-  <form ide='sql' class='dis-ocu'>
+    </form>  
 
-    <fieldset class='inf ite pad-3'>
-      <legend>Ejecutar SQL</legend>
+    <form ide='sql' class='dis-ocu'>
 
-      <?=_doc::var('val','cod',[ 
-        'ite'=>['class'=>"tam-cre"], 'ope'=>['_tip'=>"tex_par", 'row'=>5, 'class'=>"anc-100 mar_der-1"],
-        'htm_fin'=>_doc::ico('eje_val',[ 'eti'=>"button", 'type'=>"submit", 'onclick'=>"_adm('sql',this,'cod')" ])
-      ])?>
+      <fieldset class='inf ite pad-3'>
+        <legend>Ejecutar SQL</legend>
 
-    </fieldset>
+        <?=_doc::var('val','cod',[ 
+          'ite'=>['class'=>"tam-cre"], 'ope'=>['_tip'=>"tex_par", 'row'=>5, 'class'=>"anc-100 mar_der-1"],
+          'htm_fin'=>_doc::ico('eje_val',[ 'eti'=>"button", 'type'=>"submit", 'onclick'=>"_adm('sql',this,'cod')" ])
+        ])?>
 
-    <div class='ope_res mar-1'></div>
+      </fieldset>
 
-  </form>              
+      <div class='ope_res mar-1'></div>
 
-  <form ide='htm' class='dis-ocu'>
+    </form>              
 
-    <fieldset class='inf ite pad-3'>
-      <legend>Ejecutar Selector</legend>
+    <form ide='htm' class='dis-ocu'>
 
-      <?=_doc::var('val','cod',[ 
-        'ite'=>['class'=>"tam-cre"], 
-        'ope'=>['_tip'=>"tex_ora", 'class'=>"anc-100 mar_der-1"],
-        'htm_fin'=>_doc::ico('eje_val',['eti'=>"button", 'type'=>"submit", 'onclick'=>"_adm('htm',this,'cod')"])
-      ])?>
+      <fieldset class='inf ite pad-3'>
+        <legend>Ejecutar Selector</legend>
 
-    </fieldset>
+        <?=_doc::var('val','cod',[ 
+          'ite'=>['class'=>"tam-cre"], 
+          'ope'=>['_tip'=>"tex_ora", 'class'=>"anc-100 mar_der-1"],
+          'htm_fin'=>_doc::ico('eje_val',['eti'=>"button", 'type'=>"submit", 'onclick'=>"_adm('htm',this,'cod')"])
+        ])?>
 
-    <div class='ele'></div>
+      </fieldset>
 
-    <div class='nod mar-1'></div>
+      <div class='ele'></div>
 
-  </form>
+      <div class='nod mar-1'></div>
 
-</div>
+    </form>
 
-<?php
+  </div>
 
-$win['htm'] = ob_get_clean();
+  <?php
 
-// articulo en ventana emergente
-echo _doc_art::win('api_adm',$win);
+  $win['htm'] = ob_get_clean();
+
+  // articulo en ventana emergente
+  echo _doc_art::win('api_adm',$win);

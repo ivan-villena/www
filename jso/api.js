@@ -1,13 +1,14 @@
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// WINDOW //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// WINDOW
 'use strict';
 
 const SYS_NAV = "http://localhost/";
 const SYS_REC = "http://localhost/_/";
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Interface ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+var $$ = {};
+var $_log = { 'php':[], 'jso':[] };
+
+// Interface
 class _api {
 
   constructor( $dat ){
@@ -75,8 +76,7 @@ class _api {
   }
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// html ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Código HTML
 class _htm {
 
   static val( ...$ele ){
@@ -121,7 +121,7 @@ class _htm {
           $.htm = !!$ele['htm'] ? $ele['htm'] : ''; 
           if( typeof($.htm)!='string' ){
             $._htm = '';
-            _var.ite($.htm).forEach( $e => 
+            _lis.ite($.htm).forEach( $e => 
               $._htm = typeof($e) == 'string' ? $e : _htm.val($e) 
             );
           }
@@ -143,11 +143,11 @@ class _htm {
       $_.innerHTML = $dat;
       // devuelvo nodos: todos o el 1°
       if( $_.children[0] ){
-        $_ = $opc.includes('nod') ? _var.lis($_.children) : $_.children[0];
+        $_ = $opc.includes('nod') ? _lis.val($_.children) : $_.children[0];
       }
     }// desde 1 objeto : {}
     else if( $.tip == 'object' && !$dat.nodeName ){
-      $.ele = _dat.dec($dat);
+      $.ele = _obj.dec($dat);
       // creo etiqueta
       $.eti = 'span';
       if( $.ele.eti ){
@@ -162,7 +162,7 @@ class _htm {
           $.ele_doc.innerHTML = $.ele.htm; 
           $.ele.htm = $.ele_doc.children;
         }
-        _var.lis($.ele.htm).forEach( 
+        _lis.val($.ele.htm).forEach( 
           $htm => $_.appendChild($htm)
         );
         delete($.ele.htm);
@@ -212,7 +212,7 @@ class _htm {
     $.htm = !!$dat['htm'] ? $dat['htm'] : ''; 
     if( typeof($.htm)!='string' ){
       $._htm = '';
-      _var.ite($.htm).forEach( $e => 
+      _lis.ite($.htm).forEach( $e => 
         $._htm = typeof($e) == 'string' ? $e : _htm.val($e) 
       );
     }
@@ -224,88 +224,12 @@ class _htm {
   }  
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Datos ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// Dato : esq.est[ide].atr
 class _dat {
-
-  // convierto : {}-[] => "..."
-  static cod( $dat ){
   
-    let $_ = $dat;
-  
-    if( typeof($dat) == 'object' ){ 
-  
-      $_ = JSON.stringify($dat); 
-    }
-  
-    return $_;
-  }
-  // convierto : "..." => {}-[]
-  static dec( $dat, $ope ){
-  
-    let $_ = $dat;
-  
-    if( typeof($dat) == 'string' ){
-  
-      if( !!$ope && /\(\)\(\$\).+\(\)/.test($dat) ){
-        $dat = _obj.val($ope,$dat);
-      }
-      // json : {} + []
-      if( /^({|\[).*(}|\])$/.test($dat) ){ 
-  
-        $_ = JSON.parse($dat);
-      }
-      // valores textuales : ('v_1','v_2','v_3')
-      else if( /^\('*.*'*\)$/.test($dat) ){ 
-  
-        $_ = /','/.test($dat) ? $dat.substr(1,$dat.length-1).split("','") : [ $dat.trim().substr(1,$dat.length-1) ] ;      
-      }
-      // elemento del documento : "a_1(=)v_1(,,)a_2(=)v_2"
-      else if( /\(,,\)/.test($dat) && /\(=\)/.test($dat) ){
-        $dat.split('(,,)').forEach( $v => { 
-          $eti = $v.split('(=)'); 
-          $_[$eti[0]] = $eti[1]; 
-        });
-      }
-    }
-    return $_;
-  }
-  // identificador por relaciones : esq.est[_atr]
-  static ide( $esq, $est, $atr ){
-
-    let $_ = '';
-    
-    if( $atr == 'ide' ){
-      $_ = $est;
-    }
-    else if( !empty( _dat.var($esq,`${$est}_${$atr}`) ) ){ 
-      $_ = `${$est}_${$atr}`;
-    }
-    else{ 
-      $_ = $atr;
-    }
-    return $_;
-  }
-  // valores : nombre, descripcion, titulo, imagen, color...
-  static val( $esq, $est, $atr, $dat ) {
-    let $={}, $_ = false;         
-    $._val = $_api._dat_val[$esq][$est];
-    if( !($atr) ){
-
-      $_ = $._val;
-    }
-    else if( !!($._val[$atr]) ){
-
-      $_ = $._val[$atr];
-
-      // valores variables ()($)...()
-      if( !!($dat) ){
-
-        $_ = _obj.val( _dat.var($esq,$est,$dat), $._val[$atr] );
-      }
-    }
-    return $_;
-  }
   // busco dato: [ {}, {}, {} ]
   static var( $dat, $ope, $val='' ){
     let $_=[], $={};
@@ -333,13 +257,60 @@ class _dat {
       $_ = _est.ope('ver',$dat,$ope);
     }
     return $_;
-  }  
-}
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// valores-variables ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-class _var {
+  }
+  // identificador: esq.est[...atr]
+  static ide( $dat='', $val={} ){
+    
+    $val.ide = $dat.split('.');
+    $val.esq = $val.ide[0];
+    $val.est = $val.ide[1] ? $val.ide[1] : false;
+    $val.atr = $val.ide[2] ? $val.ide[2] : false;
 
-  // tipo de variable
+    return $val;
+  }
+  // valores : nombre, descripcion, titulo, imagen, color...
+  static val( $esq, $est, $atr, $dat ) {
+    let $={}, $_ = false;         
+    $._val = $_api._dat_val[$esq][$est];
+    if( !($atr) ){
+
+      $_ = $._val;
+    }
+    else if( !!($._val[$atr]) ){
+
+      $_ = $._val[$atr];
+
+      // valores variables ()($)...()
+      if( !!($dat) ){
+
+        $_ = _obj.val( _dat.var($esq,$est,$dat), $._val[$atr] );
+      }
+    }
+    return $_;
+  }
+  // ver valores : imagen, color...
+  static ver( $tip, $esq, $est, $atr, $dat ){
+    
+    // dato
+    let $={}, $_ = { 'esq': $esq, 'est': $est };
+    // armo identificador
+    if( !!($atr) ) $_['est'] = $atr == 'ide' ? $est : `${$est}_${$atr}`;
+    // valido dato
+    if( !!( $.dat_Val = _dat.val($_['esq'],$_['est'],$tip,$dat) ) ){
+      $_['ide'] = `${$_['esq']}.${$_['est']}`;
+      $_['val'] = $.dat_Val;
+    }
+    else{
+      $_ = [];
+    }
+    return $_;    
+  }
+}
+
+// Valor : tip + ver
+class _val {
+
+  // tipo
   static tip( $val ){
     let $_ = false, 
       $ide = typeof($val), 
@@ -426,17 +397,7 @@ class _var {
     }
     return $_;
   }
-  // identificador: esq.est[...atr]
-  static ide( $dat='', $val={} ){
-    
-    $val.ide = $dat.split('.');
-    $val.esq = $val.ide[0];
-    $val.est = $val.ide[1] ? $val.ide[1] : false;
-    $val.atr = $val.ide[2] ? $val.ide[2] : false;
-
-    return $val;
-  }
-  // comparaciones de valores
+  // Comparaciones
   static ver( $dat, $ide, $val, $opc=['g','i'] ){
     let $_ = false;
     switch($ide){
@@ -459,54 +420,41 @@ class _var {
     }
     return $_;
   }
-  // valores por dato : imagen, color...
-  static val( $tip, $esq, $est, $atr, $dat ){
-    
-    // dato
-    let $={}, $_ = { 'esq': $esq, 'est': $est };
-    // armo identificador
-    if( !!($atr) ) $_['est'] = $atr == 'ide' ? $est : `${$est}_${$atr}`;
-    // valido dato
-    if( !!( $.dat_Val = _dat.val($_['esq'],$_['est'],$tip,$dat) ) ){
-      $_['ide'] = `${$_['esq']}.${$_['est']}`;
-      $_['val'] = $.dat_Val;
-    }
-    else{
-      $_ = [];
-    }
-    return $_;    
-  }
+}
+
+// listado : []
+class _lis {
+
   // aseguro iteracion : []
   static ite( $dat = [] ){
 
     return _obj.tip($dat) == 'pos' ? $dat : [ $dat ] ;
   }
   // convierto a listado : []
-  static lis( $dat, $tip ){
+  static val( $dat ){
   
     let $_ = $dat;
   
-    if( $tip === undefined ){
+    // elemento : armo listado o convierto a iterable
+    if( $dat.constructor && /(NodeList|^HTML[a-zA-Z]*(Element|Collection)$)/.test($dat.constructor.name) ){
 
-      // elemento : armo listado o convierto a iterable
-      if( $dat.constructor && /(NodeList|^HTML[a-zA-Z]*(Element|Collection)$)/.test($dat.constructor.name) ){
-  
-        $_ = ( /^HTML[a-zA-Z]*Element/.test($dat.constructor.name) ) ? _var.ite($dat) : Array.from( $dat ) ;
-      }
-      // convierto : {} => []
-      else if( typeof($dat) == 'object' ){
-        $_=[]; 
-        for( const $i in $dat ){ $_.push( $dat[$i] ); }
-      }
+      $_ = ( /^HTML[a-zA-Z]*Element/.test($dat.constructor.name) ) ? _lis.ite($dat) : Array.from( $dat ) ;
     }
-    else{
-      
+    // convierto : {} => []
+    else if( typeof($dat) == 'object' ){
+
+      $_=[]; 
+
+      for( const $i in $dat ){ 
+        
+        $_.push( $dat[$i] ); 
+      }
     }
     return $_;
   }
 }
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Estructuras /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// Estructura : [ ...{} ] 
 class _est {
 
   static ope( $dat, $ope, $tip='' ){
@@ -574,8 +522,7 @@ class _est {
 
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// ejecucion ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Ejecucion : ( ...par ) => { ...cod } : val 
 class _eje {
 
   static val( $dat, $val ){
@@ -651,7 +598,7 @@ class _eje {
       $.fun = eval(`( ${$.par} ) =>{ ${$.val} return ${$.ini} }`);
       if( $.fun ){// defino un array para desestructurar e invocar
         $_ = !!($.inv) ? $.fun( ...eval(`[${$.inv}]`) ) : $.fun() ;
-        $.tip = _var.tip($_);// evaluo e imprimo resultado 
+        $.tip = _val.tip($_);// evaluo e imprimo resultado 
         // $.pad.querySelector(`[ini]`).innerHTML = ( `${$.tip.dat}_${$.tip.val}`, { 'val':$_ } );
       }else{ 
         $.pad.querySelector(`[ini]`).innerHTML = `<span class="let err">${$.fun._err}</span>`;
@@ -750,17 +697,17 @@ class _eje {
   }
 
 }
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// elemento ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// Elemento : <eti ...atr="val"> ...htm + ...tex </eti>
 class _ele {
 
   static val( $tip, $ele, $dat, $val ){
     let $_, $={};
     if( typeof($tip)=='object' ){
-      $_ = _dat.dec($tip,$dat);
+      $_ = _obj.dec($tip,$dat);
       // recorro 2° elemento
-      _var.ite($ele).forEach( $ele => {    
-        for( const $atr in _dat.dec($ele,$dat) ){ const $val = $ele[$atr];
+      _lis.ite($ele).forEach( $ele => {    
+        for( const $atr in _obj.dec($ele,$dat) ){ const $val = $ele[$atr];
           if( !($_[$atr]) ){ 
             $_[$atr] = $val;
           }else{
@@ -786,7 +733,7 @@ class _ele {
       $_ = []; 
       $.tip = $tip.split('_');
       if( typeof($ele)=='string' ){ $ele = document.querySelectorAll($ele); }
-      $.lis = _var.lis($ele);  
+      $.lis = _lis.val($ele);  
       switch( $.tip[0] ){
       case 'nod':
         if( !$.tip[1] ){             
@@ -1036,11 +983,11 @@ class _ele {
     }
     // ejecuto operaciones
     $.res=[];
-    _var.ite($ope).forEach( $v => 
+    _lis.ite($ope).forEach( $v => 
       $.res = [ ...$.res, _ele.val( $ope, $val, ...$opc ) ] 
     );
     // resultados: [<>] => <> // si hay 1 solo, devuelvo único elemento
-    $_ = _var.lis($.res);
+    $_ = _lis.val($.res);
     if( !$_.length ){ 
       $_ = false; 
     }else if( $_.length == 1 ){ 
@@ -1073,7 +1020,7 @@ class _ele {
     $.opc_mul = $opc.includes('mul');
     // por nodos descendentes
     if( $opc.includes('nod') ){
-      _var.lis($ele.children).forEach( $_nod => {
+      _lis.val($ele.children).forEach( $_nod => {
         if( $.ver($_nod,$ope) ){ 
           $.val.push($_nod); 
           if( !$.opc_mul ){ return; }
@@ -1104,7 +1051,7 @@ class _ele {
     let $_=[],$={};
     // recibo 1 o muchos
     $.val_uni = !Array.isArray($val);
-    _var.ite($val).forEach( $ele => {
+    _lis.ite($val).forEach( $ele => {
       $.ite = $ele;
       if( typeof($ele) == 'string' ){
         $ele = _htm.dat($ele);
@@ -1160,16 +1107,20 @@ class _ele {
       $nod = $pad.querySelectorAll($nod);
     }
     if( $nod ){
-      _var.lis($nod).forEach( $ele => $_.push( $pad.removeChild($ele) ) ); 
+      _lis.val($nod).forEach( $ele => $_.push( $pad.removeChild($ele) ) ); 
     }
     return $_;
   }  
 
 }
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// objeto //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// Objeto : [ ...val ], [ ...nom => val ], { ...atr : val }
 class _obj {
 
+  // valores por atributo : ()($)atr()
   static val( $dat, $val='' ){
     let $_={},$={};
     $_ = [];
@@ -1186,8 +1137,50 @@ class _obj {
     });
     $_ = $_.join(' ');
     return $_;
+  }  
+  // convierto : {}-[] => "..."
+  static cod( $dat ){
+  
+    let $_ = $dat;
+  
+    if( typeof($dat) == 'object' ){ 
+  
+      $_ = JSON.stringify($dat); 
+    }
+  
+    return $_;
   }
-
+  // convierto : "..." => {}-[]
+  static dec( $dat, $ope ){
+  
+    let $_ = $dat;
+  
+    if( typeof($dat) == 'string' ){
+  
+      if( !!$ope && /\(\)\(\$\).+\(\)/.test($dat) ){
+        $dat = _obj.val($ope,$dat);
+      }
+      // json : {} + []
+      if( /^({|\[).*(}|\])$/.test($dat) ){ 
+  
+        $_ = JSON.parse($dat);
+      }
+      // valores textuales : ('v_1','v_2','v_3')
+      else if( /^\('*.*'*\)$/.test($dat) ){ 
+  
+        $_ = /','/.test($dat) ? $dat.substr(1,$dat.length-1).split("','") : [ $dat.trim().substr(1,$dat.length-1) ] ;      
+      }
+      // elemento del documento : "a_1(=)v_1(,,)a_2(=)v_2"
+      else if( /\(,,\)/.test($dat) && /\(=\)/.test($dat) ){
+        $dat.split('(,,)').forEach( $v => { 
+          $eti = $v.split('(=)'); 
+          $_[$eti[0]] = $eti[1]; 
+        });
+      }
+    }
+    return $_;
+  }
+  // valido tipos : pos | nom | atr
   static tip( $dat ){
   
     let $_ = false;
@@ -1201,21 +1194,9 @@ class _obj {
     }
     return $_;
   }
-
-  static nom( $dat, $tip ){
-    let $_ = $dat;
-  
-    if( !$tip ){
-  
-    }else{
-  
-    }
-    return $_;
-  }  
-
 }
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Archivo /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// Archivo : fichero + texto + imagen + audio + video + app + ...tipos
 class _arc {  
 
   static val( $val ){ 
@@ -1277,7 +1258,7 @@ class _arc {
     let $={
       'lis':[]
     };  
-    _var.ite($arc).forEach( $_arc => {
+    _lis.ite($arc).forEach( $_arc => {
       if( typeof($_arc)=='object' ){
         $.ima = document.createElement('img');
         $.ima.src = URL.createObjectURL($_arc);
@@ -1292,8 +1273,8 @@ class _arc {
   }
 
 }
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// calendario //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// Fecha : aaaa-mm-dia hh:mm:ss utc
 class _fec {
 
   static dec( $dat ){ 
@@ -1534,8 +1515,8 @@ class _fec {
   }  
 
 }
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// textos //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// Texto : caracter + letra + oracion + parrafo
 class _tex {  
 
   static cod( $dat ){
@@ -1560,8 +1541,8 @@ class _tex {
   }  
 
 }
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// numeros /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// Numero : separador + operador + entero + decimal + rango
 class _num {  
 
   static val( $dat, $tot ){
@@ -1618,10 +1599,3 @@ class _num {
     return $_;
   }  
 }
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-var $$ = {};
-
-var $_log = { 'php':[], 'jso':[] };

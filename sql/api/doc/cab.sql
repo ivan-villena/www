@@ -9,7 +9,7 @@
 					{ "eti":"h1", "htm":"" }
 				]
 			}'),
-			('hol','dat', 3, 'Tableros', 1,	'{
+			('hol','tab', 3, 'Tableros', 1,	'{
 
 				"htm_ini":[
 					{ "eti":"h1", "htm":"" }

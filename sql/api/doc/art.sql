@@ -3,9 +3,8 @@
 	-- bibliografía 
 	DELETE FROM `_api`.`doc_art` WHERE `esq`='hol' AND `cab`='bib';
 	INSERT INTO `_api`.`doc_art` VALUES
-
-		('hol','bib','dat', 1, 		'Códigos y Cuentas', 										'', 'hol/bib/dat', NULL ),
-		('hol','bib','tut',	2, 		'Tutorial del Sincronario de 13 Lunas',	'', 'hol/bib/tut', NULL ),
+		
+		('hol','bib','tut',	1, 		'Tutorial del Sincronario de 13 Lunas',	'', 'hol/bib/tut', NULL ),
 		('hol','bib','asc',	1984, '1984 - La Tierra en Ascenso', 			  	'', 'hol/bib/asc', NULL ),
 		('hol','bib','fac',	1987, '1987 - El Factor Maya',               	'', 'hol/bib/fac', NULL ), 
 		('hol','bib','enc',	1990, '1990 - El Encantamiento del Sueño',   	'', 'hol/bib/enc', NULL ),
@@ -20,10 +19,10 @@
 		('hol','bib','cro',	2009, '2009 - El Sincronotrón', 						  '', 'hol/bib/cro', NULL )
 	;
 	-- Cuentas :  tablero + listado + informe 
-	DELETE FROM `_api`.`doc_art` WHERE `esq`='hol' AND `cab`='dat';
+	DELETE FROM `_api`.`doc_art` WHERE `esq`='hol' AND `cab`='tab';
 	INSERT INTO `_api`.`doc_art` VALUES
 
-		('hol','dat','kin', 		1, 'Módulo Armónico del Tzolkin', 			'', 'hol/dat/kin', 			'{
+		('hol','tab','kin-tzo', 1, 'Módulo Armónico del Tzolkin', 			'', 'hol/tab/kin-tzo', '{
 
 			"tex":[
 
@@ -43,7 +42,7 @@
 				}
 			} 
 		}'),
-		('hol','dat','kin_nav', 2, 'Castillos de la Nave del Tiempo', 	'', 'hol/dat/kin_nav', 	'{
+		('hol','tab','kin-nav', 2, 'Castillos de la Nave del Tiempo', 	'', 'hol/tab/kin-nav', '{
 			
 			"tab":{
 
@@ -57,7 +56,7 @@
 				}			
 			}
 		}'),	
-		('hol','dat','kin_arm', 3, 'Trayectorias del Giro Galáctico', 	'', 'hol/dat/kin_arm', 	'{
+		('hol','tab','kin-arm', 3, 'Trayectorias del Giro Galáctico', 	'', 'hol/tab/kin-arm', '{
 			
 			"tab":{
 
@@ -71,7 +70,7 @@
 				}			
 			}
 		}'),
-		('hol','dat','kin_cro', 4, 'Estaciones del Giro Espectral', 		'', 'hol/dat/kin_cro', 	'{
+		('hol','tab','kin-cro', 4, 'Estaciones del Giro Espectral', 		'', 'hol/tab/kin-cro', '{
 					
 			"tab":{
 
@@ -85,7 +84,7 @@
 				}
 			}
 		}'),
-		('hol','dat','psi', 		5, 'Lunas del Anillo Solar', 						'', 'hol/dat/psi', 			'{
+		('hol','tab','psi-ban', 5, 'Lunas del Anillo Solar', 						'', 'hol/tab/psi-ban', '{
 			
 			"tab":{
 
@@ -99,7 +98,7 @@
 				}		
 			}
 		}'),			
-		('hol','dat','psi_est', 6, 'Estaciones del Anillo Solar', 			'', 'hol/dat/psi_est', 	'{
+		('hol','tab','psi-est', 6, 'Estaciones del Anillo Solar', 			'', 'hol/tab/psi-est', '{
 			
 			"tab":{
 
@@ -113,7 +112,7 @@
 				}
 			}
 		}'),
-		('hol','dat','psi_lun', 7, 'Días del Giro Lunar', 							'', 'hol/dat/psi_lun', 	'{
+		('hol','tab','psi-lun', 7, 'Días del Giro Lunar', 							'', 'hol/tab/psi-lun', '{
 			
 			"tab":{
 
@@ -139,7 +138,7 @@
 	DELETE FROM `_api`.`doc_art` WHERE `esq`='hol' AND `cab`='inf';
 	INSERT INTO `_api`.`doc_art` VALUES
 
-		('hol','inf','gal', 1, 'Giro Galáctico Diario', 								'', 'hol/inf/gal', NULL ),	
-		('hol','inf','sol', 2, 'Giro Solar Diario', 										'', 'hol/inf/sol', NULL ),
-		('hol','inf','hum', 3, 'Ficha del kin Planetario', 							'', 'hol/inf/hum', NULL )
+		('hol','inf','dat', 1, 'Códigos y Cuentas',	'', 'hol/inf/dat', NULL ),
+		('hol','inf','cic', 2, 'Ciclos del Tiempo',	'', 'hol/inf/val', NULL ),
+		('hol','inf','hum', 3, 'Firma Galáctica', 	'', 'hol/inf/hum', NULL )
 	;

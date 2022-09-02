@@ -17,7 +17,7 @@ function _adm( $tip, $dat, $val, ...$opc ){
   
   switch( $tip ){
   // peticiones
-  case 'dat':
+  case 'aja':
     $.lis = $$.for.querySelector(`nav.lis`);
     _ele.eli($.lis);
     $_log.php.forEach( $log => {
@@ -53,14 +53,14 @@ function _adm( $tip, $dat, $val, ...$opc ){
     }
     else{
       if( !$dat.value ){
-        _var.lis($.lis.children).forEach( $e => 
+        _lis.val($.lis.children).forEach( $e => 
           $e.classList.contains(DIS_OCU) && $e.classList.remove(DIS_OCU) 
         );
       }
       else{
-        _var.lis($.lis.children).forEach( $e => {
+        _lis.val($.lis.children).forEach( $e => {
 
-          if( _var.ver( $e.querySelector('.ide').innerHTML, '^^', $dat.value ) ){
+          if( _val.ver( $e.querySelector('.ide').innerHTML, '^^', $dat.value ) ){
             $e.classList.contains(DIS_OCU) && $e.classList.remove(DIS_OCU);
           }
           else if( !$e.classList.contains(DIS_OCU) ){
@@ -78,7 +78,7 @@ function _adm( $tip, $dat, $val, ...$opc ){
         // pido tabla
         if( Array.isArray($res) ){
 
-          $.res.appendChild( _doc_est.ope('lis',$res) );
+          $.res.appendChild( _doc_est.lis($res) );
         }// errores: html
         else if( typeof($res)=='object' ){
 
@@ -117,7 +117,7 @@ function _adm( $tip, $dat, $val, ...$opc ){
 
       $.val = eval($.cod.value);
 
-      $.var_tip = _var.tip($.val);
+      $.var_tip = _val.tip($.val);
 
       if( $.var_tip.dat == 'obj' ){
 

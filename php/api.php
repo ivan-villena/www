@@ -3,9 +3,8 @@
   define('SYS_DIR', "C:\\xampp\\htdocs" );
   define('SYS_NAV', "http://localhost/" );
   define('SYS_REC', "http://localhost/_/" );
-
-  ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  // Interfaces del sistema //////////////////////////////////////////////////////////////////////////////////
+  
+  // Interfaces del sistema 
   class _api {
 
     public object 
@@ -95,7 +94,6 @@
 
       return $this->_uri;
     }
-
     // directorio : accesos por aplicacion
     function dir( object $uri = NULL ) : object {  
 
@@ -122,7 +120,6 @@
 
       return $_;
     }
-
     // sesion : datos por esquemas
     function ses( string $esq ) : array {      
 
@@ -138,7 +135,6 @@
 
       return $this->_ses->$esq;      
     }
-
     // página : esquema / cabecera / articulo / valor=dato 
     function doc() : object {
       
@@ -219,6 +215,7 @@
     
     /////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////
+    
     // get : estructura-objetos
     static function _( string $ide, $val = NULL ) : string | array | object {
       global $_api;
@@ -251,31 +248,6 @@
       }
       return $_;
     }
-    // datos de un proceso : absoluto o con dependencias ( _api.dat->est ) 
-    static function dat( string | array $ope, mixed $dat = NULL ){
-      global $_api;
-      $_ = [];
-      if( is_array($ope) ){      
-        // cargo temporal
-        foreach( $ope as $esq => $est_lis ){
-          // recorro estructuras del esquema
-          foreach( $est_lis as $est => $dat ){
-            // recorro dependencias
-            $dat_est = _api::dat_est($esq,$est,'est');
-            
-            foreach( ( !empty($dat_est) ? $dat_est : [ $esq => $est ] ) as $ide => $ref ){
-              // acumulo valores
-              if( isset($dat->$ide) ){
-                
-                $_["{$esq}-{$ref}"] = $dat->$ide;
-              }
-            }                            
-          }
-        }
-        $_api->_dat []= $_;
-      }
-      return $_;
-    }     
     // estructuras
     static function dat_est( string $esq, string $ide = NULL, string $ope = NULL ) : array | object {      
       global $_api;
@@ -388,6 +360,32 @@
       return $_;
     }  
 
+    // cargo valores de un proceso : absoluto o con dependencias ( _api.dat->est ) 
+    static function val( string | array $ope, mixed $dat = NULL ){
+      global $_api;
+      $_ = [];
+      if( is_array($ope) ){      
+        // cargo temporal
+        foreach( $ope as $esq => $est_lis ){
+          // recorro estructuras del esquema
+          foreach( $est_lis as $est => $dat ){
+            // recorro dependencias
+            $dat_est = _api::dat_est($esq,$est,'est');
+            
+            foreach( ( !empty($dat_est) ? $dat_est : [ $esq => $est ] ) as $ide => $ref ){
+              // acumulo valores
+              if( isset($dat->$ide) ){
+                
+                $_["{$esq}-{$ref}"] = $dat->$ide;
+              }
+            }                            
+          }
+        }
+        $_api->_dat []= $_;
+      }
+      return $_;
+    }
+
     // tablero de la aplicacion
     static function tab( string $esq, string $est, array $ele = [] ) : array {
       global $_api;
@@ -422,7 +420,7 @@
 
         // reemplazo atributos por defecto
         if( isset($ope['atr']) ){
-          $_est->atr = _var::ite($ope['atr']);
+          $_est->atr = _lis::ite($ope['atr']);
           // descarto columnas ocultas
           if( isset($_est->atr_ocu) ) unset($_est->atr_ocu);
         }
@@ -430,7 +428,7 @@
           $_est->atr = !empty($_atr) ? array_keys($_atr) : [];
         }
         if( isset($ope['atr_ocu']) ){
-          $_est->atr_ocu = _var::ite($ope['atr_ocu']);
+          $_est->atr_ocu = _lis::ite($ope['atr_ocu']);
         }
 
         // calculo totales
@@ -446,7 +444,7 @@
           foreach( $v as $e ){
             if( isset($ope["{$i}_{$e}"]) ){
             
-              $_est->{"{$i}_{$e}"} = _var::ite($ope["{$i}_{$e}"]);
+              $_est->{"{$i}_{$e}"} = _lis::ite($ope["{$i}_{$e}"]);
             }
             elseif( ( !$_val[$i] || !in_array($e,$ope[$i]) ) && isset($_est->{"{$i}_{$e}"}) ){
               unset($_est->{"{$i}_{$e}"});
@@ -477,50 +475,6 @@
       }
 
       return $_api->_est[$esq][$est];
-    }
-    // cuento columnas totales
-    static function est_atr( string | array $dat, array $ope=[] ) : int {
-      global $_api;
-      $_ = 0;
-      if( isset($ope['atr']) ){
-        
-        $_ = count($ope['atr']);
-      }
-      // 1 estructura de la base
-      elseif( !( $obj_tip = _obj::tip($dat) ) ){
-
-        $ide = _var::ide($dat);
-
-        $dat_est = _api::est($ide['esq'],$ide['est']);
-
-        $_ = isset($dat_est->atr) ? count($dat_est->atr) : 0;
-
-      }
-      // n estructuras de la base
-      elseif( $obj_tip == 'nom' ){
-
-        foreach( $dat as $esq => $est_lis ){
-  
-          foreach( $est_lis as $est ){
-
-            $dat_est = _api::est($esq,$est);
-
-            $_ += count($dat_est->atr);
-          }
-        }
-      }
-      // por listado                    
-      elseif( $obj_tip == 'pos' ){
-
-        foreach( $dat as $ite ){
-
-          foreach( $ite as $val ){ 
-            $_ ++; 
-          }
-          break;
-        }
-      }
-      return $_;
     }
 
     // controladores de valores variables
@@ -580,22 +534,20 @@
               
         if( !isset($_api->_var_ope_opc[$tip][$dat[0]][$dat[1]]) ){
 
-          $ope['dat'] = _dat::var( _api::_('var_ope'), [ 'ver'=>[ ['tip','==',$dat[0]], ['dat','==',$dat[1]] ]] );
+          $_dat = _dat::var( _api::_('var_ope'), [ 'ver'=>[ ['tip','==',$dat[0]], ['dat','==',$dat[1]] ]] );
     
-          $_api->_var_ope_opc[$tip][$dat[0]][$dat[1]] = _doc_opc::ope('val', '', $ope, ...$opc);
+          $_api->_var_ope_opc[$tip][$dat[0]][$dat[1]] = _doc_lis::opc( $_dat, $ope, ...$opc);
         }
     
-        return $_api->_var_ope_opc[$tip][$dat[0]][$dat[1]];
+        $_ = $_api->_var_ope_opc[$tip][$dat[0]][$dat[1]];
         
         break;
       }
       return $_;
-    } 
-    
+    }
   }
-
-  ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  // código sql //////////////////////////////////////////////////////////////////////////////////////////////
+  
+  // Código sql 
   class _sql {
 
     // ejecuto codigo sql 
@@ -678,7 +630,7 @@
       if( $tip=='agr' ){     
         $_['atr'] = [];
         $_['val'] = [];    
-        foreach( _var::ite($ope['val']) as $pos=>$ite ){
+        foreach( _lis::ite($ope['val']) as $pos=>$ite ){
           $_['ite'] = [];
           foreach( $ite as $i=>$v  ){
             if( $pos==0 )
@@ -977,7 +929,7 @@
             }
           }
           elseif( $var_dat == 'opc' ){
-            $var['dat'] = $var_cue = _dat::dec($var_cue);
+            $var['dat'] = $var_cue = _obj::dec($var_cue);
           }
           // valores
           if( !is_null($atr->Default) ){
@@ -1062,8 +1014,7 @@
     }
 
   }
-  ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  // código html /////////////////////////////////////////////////////////////////////////////////////////////
+  // Código html 
   class _htm {
 
     // contenido: htm + htm_ini + htm_med + htm_fin
@@ -1092,7 +1043,7 @@
           $_ .= $ele;
         }
         else{
-          $ele = _dat::dec($ele,[],'nom');
+          $ele = _obj::dec($ele,[],'nom');
           // operador
           if( isset($ele['_let']) ){
             $htm = $ele['_let'];
@@ -1188,7 +1139,7 @@
         }
         if( !is_string($htm) ){
           $_htm = "";
-          foreach( _var::ite($htm) as $ele ){
+          foreach( _lis::ite($htm) as $ele ){
             $_htm .= is_string($ele) ? $ele : _htm::val($ele);
           }
           $htm = $_htm;
@@ -1207,8 +1158,7 @@
 
   }
 
-  ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  // datos ///////////////////////////////////////////////////////////////////////////////////////////////////
+  // Dato : esq.est[ide].atr
   class _dat {
     
     // listado : devuelvo estructura - objeto
@@ -1277,6 +1227,50 @@
       }
       return $_;
     }
+
+    // proceso abm : alta , modificacion y baja de registro-objeto
+    static function abm( string $esq, string $est, string $tip, object $dat ) : string {
+      $_="";
+      $_sql = [];
+      if( $esq=='usu' ){
+        $_usu = new _usu();
+        $_sql = $_usu->dat($est,$tip,$dat);
+      }
+      // ejecuto transacciones    
+      $var_eve = [];
+      foreach( $_sql as $est=>$ope ){ 
+        $eje []= _val_dat( $tip, $est, $ope) ; 
+      }
+      if( !empty($eje) ){
+        $_ = _sql::dec( ...$eje );
+      }
+      return $_;
+    }
+
+    // identificadores
+    static function ide( $dat, array $ope=[] ) : array {
+
+      if( is_string($dat) ) 
+        $dat = explode('.',$dat);
+
+      $_ = array_merge($ope,[ 
+        'esq'=>$dat[0], 
+        'est'=>FALSE, 
+        'atr'=>FALSE 
+      ]);
+
+      if( isset( $dat[1] ) ){
+        
+        $_['est'] = $dat[1];
+
+        if( isset($dat[2]) ){
+
+          $_['atr'] = $dat[2];
+        }
+      }
+      return $_;
+    }
+
     // inicio estructura: busco datos por vista o tabla
     static function ini( string $esq, string $est, array $ope = [] ) : string | array {
       $_ = [];
@@ -1296,82 +1290,7 @@
 
       return $_;
     }
-    // {}/[] => ""
-    static function cod( object | array | string $dat ) : string {
-      $_ = [];
-      // convierto : {} => ""
-      if( is_array($dat) || is_object($dat) ){
-        // https://www.php.net/manual/es/function.json-encode.php
-        // https://www.php.net/manual/es/json.constants.php
-        $_ = json_encode( $dat, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_LINE_TERMINATORS | JSON_PRETTY_PRINT );
-      }
-      return $_;
-    }
-    // "" => {}/[]
-    static function dec( object | array | string $dat, array | object $ope = NULL, ...$opc ){
-      $_ = $dat;
-      // convierto : "" => {}
-      if( is_string($dat) ){  
-        // busco : ()($)atributo-valor()
-        if( !empty($ope) && preg_match("/\(\)\(\$\).+\(\)/",$dat) ){
-          $dat = _obj::val($ope,$dat);
-        }
-        // json : { "atr": val, ... } || [ val, val, ... ]
-        if( preg_match("/^({|\[).*(}|\])$/",$dat) ){ 
-          // https://www.php.net/manual/es/function.json-decode
-          // https://www.php.net/manual/es/json.constants.php
-          $_ = json_decode($dat, in_array('nom',$opc) ? TRUE : FALSE, JSON_FORCE_OBJECT | JSON_NUMERIC_CHECK );
-    
-        }
-        // valores textuales : ('v_1','v_2','v_3')
-        elseif( preg_match("/^\('*.*'*\)$/",$dat) ){
-          
-          $_ = preg_match("/','/",$dat) ? explode("','",substr($dat,1,-1 )) : [ trim(substr($dat,1,-1 )) ] ;
-    
-        }
-        // elemento del documento : "a_1(=)v_1(,,)a_2(=)v_2"
-        elseif( preg_match("/\(,,\)/",$dat) && preg_match("/\(=\)/",$dat) ){
-    
-          foreach( explode('(,,)',$dat) as $v ){ 
-    
-            $eti = explode('(=)',$v);
-    
-            $_[$eti[0]] = $eti[1];
-          }
-        }
-        // esquema.estructura : tabla de la base
-        elseif( preg_match("/[A-Za-z0-9_]+\.[A-Za-z0-9_]+$/",$dat) ){
-    
-          $_ = _dat::var($dat,$ope);
-          
-        }
-      }// convierto : {} => []
-      elseif( in_array('nom',$opc) && is_object($dat) && get_class($dat)=='stdClass' ){    
-        $_ = _obj::nom($dat);
-      }
-      return $_;
-    }
-    // identificador por relaciones : esq.est_atr | _api.dat_atr[ide].dat
-    static function ide( string $esq, string $est, string $atr ) : string {
-      $_ = '';      
-      // busco relacion en atributo
-      $_atr = _dat::atr($esq,$est,$atr);
-      
-      if( !empty($_atr->var['dat']) ){
-        $_ = explode('.',$_atr->var['dat'])[1];
-      }
-      // armo identificador por nombre de estructura + atributo
-      elseif( $atr == 'ide' ){
-        $_ = $est;
-      }
-      elseif( !!_sql::est("_{$esq}",'val',"{$est}_{$atr}") ){ 
-        $_ = "{$est}_{$atr}";
-      }
-      else{
-        $_ = $atr;
-      }
-      return $_;
-    }
+
     // estructura : datos + operadores
     static function est( string $esq, string $ide = NULL, mixed $tip = NULL, mixed $ope = NULL ) : mixed {
       $_ = [];
@@ -1392,7 +1311,62 @@
         }
       }
       return $_;
+    }// operadores de la estructura : relaciones + ficha + filrtos + colores + imagenes + numeros + textos
+    static function est_ope( string $esq, string $est, string $atr = NULL ) : mixed {
+      $_ = FALSE;
+      $_val = _api::dat_est($esq,$est)->ope;
+      if( empty($atr) ){
+        $_ = $_val;
+      }
+      elseif( isset($_val->$atr) ){
+        $_ = $_val->$atr;
+      }
+      return $_;
+    }// cuento columnas totales
+    static function est_atr( string | array $dat, array $ope=[] ) : int {
+      global $_api;
+      $_ = 0;
+      if( isset($ope['atr']) ){
+        
+        $_ = count($ope['atr']);
+      }
+      // 1 estructura de la base
+      elseif( !( $obj_tip = _obj::tip($dat) ) ){
+
+        $ide = _dat::ide($dat);
+
+        $dat_est = _api::est($ide['esq'],$ide['est']);
+
+        $_ = isset($dat_est->atr) ? count($dat_est->atr) : 0;
+
+      }
+      // n estructuras de la base
+      elseif( $obj_tip == 'nom' ){
+
+        foreach( $dat as $esq => $est_lis ){
+  
+          foreach( $est_lis as $est ){
+
+            $dat_est = _api::est($esq,$est);
+
+            $_ += count($dat_est->atr);
+          }
+        }
+      }
+      // por listado                    
+      elseif( $obj_tip == 'pos' ){
+
+        foreach( $dat as $ite ){
+
+          foreach( $ite as $val ){ 
+            $_ ++; 
+          }
+          break;
+        }
+      }
+      return $_;
     }
+
     // atributo : datos + tipo + variable
     static function atr( string $esq, string $est, mixed $ide = NULL, string $tip = NULL, mixed $ope = NULL ) : mixed {
       $_ = [];
@@ -1418,7 +1392,28 @@
         }
       }
       return $_;
+    }// identificador por relaciones : esq.est_atr | _api.dat_atr[ide].dat
+    static function atr_est( string $esq, string $est, string $atr ) : string {
+      $_ = '';      
+      // busco relacion en atributo
+      $_atr = _dat::atr($esq,$est,$atr);
+      
+      if( !empty($_atr->var['dat']) ){
+        $_ = explode('.',$_atr->var['dat'])[1];
+      }
+      // armo identificador por nombre de estructura + atributo
+      elseif( $atr == 'ide' ){
+        $_ = $est;
+      }
+      elseif( !!_sql::est("_{$esq}",'val',"{$est}_{$atr}") ){ 
+        $_ = "{$est}_{$atr}";
+      }
+      else{
+        $_ = $atr;
+      }
+      return $_;
     }
+
     // valores : nombre, descripcion, titulo, imagen, color...
     static function val( string $esq, string $est, string $atr = NULL, mixed $dat = NULL ) : mixed {
       $_ = FALSE; 
@@ -1440,26 +1435,11 @@
         }
       }
       return $_;
-    }
-    // operadores de la estructura : relaciones + ficha + filrtos + colores + imagenes + numeros + textos
-    static function ope( string $esq, string $est, string $atr = NULL ) : mixed {
-      $_ = FALSE;
-      $_val = _api::dat_est($esq,$est)->ope;
-      if( empty($atr) ){
-        $_ = $_val;
-      }
-      elseif( isset($_val->$atr) ){
-        $_ = $_val->$atr;
-      }
-      return $_;
-    }
-    // ver valores : imagen, color...
-    static function ver( string $tip, string $esq, string $est, string $atr = NULL, mixed $dat = NULL ) : array {
+    }// ver valores : imagen, color...
+    static function val_ver( string $tip, string $esq, string $est, string $atr = NULL, mixed $dat = NULL ) : array {
       // dato
-      $_ = [
-        'esq' => $esq,
-        'est' => $est
-      ];
+      $_ = [ 'esq' => $esq, 'est' => $est ];
+
       // armo identificador
       if( !empty($atr) ){        
         $_['est'] = $atr == 'ide' ? $est : "{$est}_{$atr}";  
@@ -1483,28 +1463,9 @@
       }
       return $_;
     }
-    // proceso abm : alta , modificacion y baja de registro-objeto
-    static function abm( string $esq, string $est, string $tip, object $dat ) : string {
-      $_="";
-      $_sql = [];
-      if( $esq=='usu' ){
-        $_usu = new _usu();
-        $_sql = $_usu->dat($est,$tip,$dat);
-      }
-      // ejecuto transacciones    
-      $var_eve = [];
-      foreach( $_sql as $est=>$ope ){ 
-        $eje []= _val_dat( $tip, $est, $ope) ; 
-      }
-      if( !empty($eje) ){
-        $_ = _sql::dec( ...$eje );
-      }
-      return $_;
-    }
   }
-  ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  // valores-variables ///////////////////////////////////////////////////////////////////////////////////////
-  class _var {
+  // Valor : tip + ver
+  class _val {
 
     // objeto por tipo de variable['dat','val']
     static function tip( mixed $val ) : bool | object {
@@ -1594,29 +1555,6 @@
       }
       return $_;
     }
-    // identificadores
-    static function ide( $dat, array $ope=[] ) : array {
-    
-      if( is_string($dat) ) 
-        $dat = explode('.',$dat);
-
-      $_ = array_merge($ope,[ 
-        'esq'=>$dat[0], 
-        'est'=>FALSE, 
-        'atr'=>FALSE 
-      ]);
-
-      if( isset( $dat[1] ) ){
-        
-        $_['est'] = $dat[1];
-
-        if( isset($dat[2]) ){
-
-          $_['atr'] = $dat[2];
-        }
-      }
-      return $_;
-    }
     // comparaciones de valores
     static function ver( $dat, string $ide, $val ) : bool {
       $_ = FALSE;
@@ -1642,6 +1580,11 @@
       }
       return $_;
     }
+  }
+  
+  // listado : []
+  class _lis {
+
     // aseguro iteraciones 
     static function ite( mixed $dat, mixed $ope = NULL ) : array {
 
@@ -1662,28 +1605,23 @@
       return $_;
     }
     // convierto a listado : [ ...$$ ]
-    static function lis( mixed $dat, string $tip = '', array $ope = [] ) : array {
+    static function val( array | object $dat ) : array {
 
       $_ = $dat;
-      if( empty($tip) ){
 
-        if( _obj::tip($dat) ){
-          $_ = [];
-          foreach( $dat as $v ){
-            $_[] = $v;
-          }
-        }
-      }
-      else{
-        switch( $tip ){
+      if( _obj::tip($dat) ){
+
+        $_ = [];
+
+        foreach( $dat as $v ){
+
+          $_[] = $v;
         }
       }
       return $_;
     }
-
   }
-  ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  // estructuras de datos : [ {}, {} ] ///////////////////////////////////////////////////////////////////////
+  // Estructura : [ ...{} ] 
   class _est {
 
     // proceso estructura
@@ -1725,7 +1663,7 @@
       // devuelvo unico objeto
       if( isset($ope['opc']) ){
 
-        $ope['opc'] = _var::ite($ope['opc']);
+        $ope['opc'] = _lis::ite($ope['opc']);
 
         if( in_array('uni',$ope['opc']) ) _est::uni($dat, ...$opc );
       }
@@ -1735,7 +1673,7 @@
     // decodifica : "" => {} , []
     static function dec( array &$dat, string | array $atr, ...$opc ) : array {
 
-      $atr = _var::ite($atr);
+      $atr = _lis::ite($atr);
 
       foreach( $dat as &$ite ){
 
@@ -1745,7 +1683,7 @@
 
             if( isset($ite->$ide) ){
 
-              $ite->$ide = _dat::dec( preg_replace("/\n/", '', $ite->$ide) , $ite, ...$opc);            
+              $ite->$ide = _obj::dec( preg_replace("/\n/", '', $ite->$ide) , $ite, ...$opc);            
             }
           }
         }
@@ -1759,7 +1697,7 @@
       if( empty($ope) ){
         // de la base
         if( is_string($dat) ){        
-          $ide = _var::ide($dat);
+          $ide = _dat::ide($dat);
           $_ = _dat::atr($ide['esq'],$ide['est']);
         }
         // del entorno 
@@ -1771,7 +1709,7 @@
               $atr = new stdClass;
               $atr->ide = $ide;
               $atr->nom = $ide;
-              $atr->var = _var::tip($val);
+              $atr->var = _val::tip($val);
               // cargo atributo
               $_ [$ide] = $atr;
             }
@@ -1919,7 +1857,7 @@
           foreach( $ope as $ver ){ 
 
             if( $atr == $ver[0] ) 
-              $val_ite []= _var::ver( $val, $ver[1], $ver[2] );
+              $val_ite []= _val::ver( $val, $ver[1], $ver[2] );
           }
         }
         // evaluo resultados
@@ -1967,7 +1905,7 @@
       
       foreach( $dat as $i => $v ){
 
-        if( !_var::ver( $opc_ide ? $i : $v, $ope, $val ) ) 
+        if( !_val::ver( $opc_ide ? $i : $v, $ope, $val ) ) 
         
           $_[ $lis_tip ? $pos : $i ] = $v;
 
@@ -1978,9 +1916,7 @@
     }
     
   }
-
-  ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  // ejecuciones : ( ...par ) => { ...cod } : $val ///////////////////////////////////////////////////////////
+  // Ejecucion : ( ...par ) => { ...cod } : val 
   class _eje {
 
     // ejecucion del entorno : funcion() |o| [namespace/]clase(...par).objeto->método(...par)
@@ -1990,7 +1926,7 @@
 
         if( preg_match("/^\[.+\]$/",$ide) ){
           // FALSE : convierto en objetos stdClass
-          $var_eve = _dat::dec($ide);
+          $var_eve = _obj::dec($ide);
           $ide = $var_eve[0];
           if( isset($var_eve[1]) ) $par = $var_eve[1];
         }
@@ -2007,7 +1943,7 @@
       }
       // funcion del entorno
       else{
-        $_ = _eje::fun( $ide, ..._var::ite($par) );      
+        $_ = _eje::fun( $ide, ..._lis::ite($par) );      
       }
       return $_;
     }
@@ -2071,7 +2007,7 @@
 
             try{
 
-              $_ = empty($par) ? $cla::$met() : $cla::$met( ..._var::ite($par) ) ;
+              $_ = empty($par) ? $cla::$met() : $cla::$met( ..._lis::ite($par) ) ;
             }
             catch( Exception $e ){
 
@@ -2099,7 +2035,7 @@
 
             try{
 
-              $_ = empty($par) ? $obj->$met() : $obj->$met( ..._var::ite($par) ) ;
+              $_ = empty($par) ? $obj->$met() : $obj->$met( ..._lis::ite($par) ) ;
             }
             catch( Exception $e ){
 
@@ -2116,8 +2052,7 @@
       return $_;
     }
   }
-  ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  // elementos html : <>...</> ///////////////////////////////////////////////////////////////////////////////
+  // Elemento : <eti ...atr="val"> ...htm + ...tex </eti>
   class _ele {
 
     // devuelvo elemento : [ atr => "val" ]
@@ -2127,7 +2062,7 @@
       
       // convierto "" => []
       if( is_string($ele) ){
-        $_ = _dat::dec($ele,$dat,'nom');
+        $_ = _obj::dec($ele,$dat,'nom');
       }
       // convierto {} => []
       elseif( is_object($ele) ){
@@ -2156,7 +2091,7 @@
       $opc_css = isset($opc['css']) ? $opc['css'] : [];
 
       // recorro elementos
-      foreach( _var::ite($ope) as $ele ){
+      foreach( _lis::ite($ope) as $ele ){
         
         // recorro atributos
         foreach( _ele::val($ele,$dat) as $atr => $val ){
@@ -2182,7 +2117,12 @@
     static function eje( array &$dat, string $ide, string $val = NULL, ...$opc ) : array {
       $_ = $dat;
       $_eve = [ 
-        'cli'=>"onclick", 'cam'=>"onchange", 'inp'=>"oninput" 
+        'cli'=>"onclick",
+        'cam'=>"onchange",
+        'inp'=>"oninput",
+        'foc'=>"onfocus",
+        'hov'=>"onhover",
+        'tec'=>"onkeypress"
       ];
       if( isset($_eve[$ide]) ){
 
@@ -2230,7 +2170,7 @@
 
         $_ = [];
     
-        $ele = _dat::dec($dat,[],'nom');
+        $ele = _obj::dec($dat,[],'nom');
     
         if( isset($ele['class']) ){
     
@@ -2244,7 +2184,7 @@
         
         if( in_array('eli',$opc) ){
 
-          foreach( _var::ite($val) as $v ){
+          foreach( _lis::ite($val) as $v ){
             
           }    
         }
@@ -2357,9 +2297,9 @@
       return "background: {$ope['rep']} {$ope['ali']}/{$ope['tam']} url('{$val}.{$ope['tip']}');";
     }
     
-  }  
-  ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  // objetos : {} ////////////////////////////////////////////////////////////////////////////////////////////
+  }
+
+  // Objeto : [ ...val ], [ ...nom => val ], { ...atr : val }
   class _obj {
 
     // valor : ()($)atr_ide()
@@ -2385,7 +2325,61 @@
       $_ = implode(' ',$_);
       return $_;
     }
-
+    // convierto a string: {} => ""
+    static function cod( object | array | string $dat ) : string {
+      $_ = [];
+      
+      if( is_array($dat) || is_object($dat) ){
+        // https://www.php.net/manual/es/function.json-encode.php
+        // https://www.php.net/manual/es/json.constants.php
+        $_ = json_encode( $dat, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_LINE_TERMINATORS | JSON_PRETTY_PRINT );
+      }
+      return $_;
+    }
+    // convierto a objeto : "" => {}/[]
+    static function dec( object | array | string $dat, array | object $ope = NULL, ...$opc ){
+      $_ = $dat;
+      // convierto : "" => {}
+      if( is_string($dat) ){  
+        // busco : ()($)atributo-valor()
+        if( !empty($ope) && preg_match("/\(\)\(\$\).+\(\)/",$dat) ){
+          $dat = _obj::val($ope,$dat);
+        }
+        // json : { "atr": val, ... } || [ val, val, ... ]
+        if( preg_match("/^({|\[).*(}|\])$/",$dat) ){ 
+          // https://www.php.net/manual/es/function.json-decode
+          // https://www.php.net/manual/es/json.constants.php
+          $_ = json_decode($dat, in_array('nom',$opc) ? TRUE : FALSE, JSON_FORCE_OBJECT | JSON_NUMERIC_CHECK );
+    
+        }
+        // valores textuales : ('v_1','v_2','v_3')
+        elseif( preg_match("/^\('*.*'*\)$/",$dat) ){
+          
+          $_ = preg_match("/','/",$dat) ? explode("','",substr($dat,1,-1 )) : [ trim(substr($dat,1,-1 )) ] ;
+    
+        }
+        // elemento del documento : "a_1(=)v_1(,,)a_2(=)v_2"
+        elseif( preg_match("/\(,,\)/",$dat) && preg_match("/\(=\)/",$dat) ){
+    
+          foreach( explode('(,,)',$dat) as $v ){ 
+    
+            $eti = explode('(=)',$v);
+    
+            $_[$eti[0]] = $eti[1];
+          }
+        }
+        // esquema.estructura : tabla de la base
+        elseif( preg_match("/[A-Za-z0-9_]+\.[A-Za-z0-9_]+$/",$dat) ){
+    
+          $_ = _dat::var($dat,$ope);
+          
+        }
+      }// convierto : {} => []
+      elseif( in_array('nom',$opc) && is_object($dat) && get_class($dat)=='stdClass' ){    
+        $_ = _obj::nom($dat);
+      }
+      return $_;
+    }
     // combino
     static function jun( array | object $dat, array | object $ope ) : array | object {
             
@@ -2409,25 +2403,26 @@
       }
       return $_;
     }
-
     // tipos : pos | nom | atr
     static function tip( mixed $dat ) : bool | string {
       
       $_ = FALSE;
 
       if( _obj::pos($dat) ){
+
         $_ = 'pos';
       }
       elseif( is_array($dat) ){
+
         $_ = 'nom';
       }
-      elseif( is_object($dat) ){ // && get_class($dat) == 'stdClass'
-        $_ = 'atr';
+      elseif( is_object($dat) ){
+
+        $_ = get_class($dat) == 'stdClass' ? 'atr' : 'atr';
       }
 
       return $_;
     }
-
     // posicion : [ # => $$ ]
     static function pos( mixed $dat, string $tip = NULL, mixed $val = NULL ) : bool | array {
       $_ = [];
@@ -2441,7 +2436,6 @@
       }
       return $_;
     }    
-
     // nombre : [ ..."" => $$ ]
     static function nom( array | object $dat, string $tip = NULL, array $ope=[] ) : array | object {
       $_ = $dat;
@@ -2456,7 +2450,7 @@
         switch( $tip ){
         case 'ver':
           $_ = [];
-          $ope = _var::ite($ope);
+          $ope = _lis::ite($ope);
           $ope_val = empty($ope);
           foreach( $dat as $atr => $val ){
             if( $ope_val || in_array($atr,$ope) ){
@@ -2468,7 +2462,6 @@
       }
       return $_;
     }
-
     // objeto : { ..."" : $$ }
     static function atr( array | object $dat, string $tip = NULL, array $ope=[] ) : array | object {
       $_ = $dat;
@@ -2495,7 +2488,7 @@
         switch( $tip ){
         case 'ver':
           $_ = new stdClass();
-          $ope = _var::ite($ope);
+          $ope = _lis::ite($ope);
           $ope_val = empty($ope);   
           foreach( $dat as $atr => $val ){
             if( $ope_val || in_array($atr,$ope) ){
@@ -2508,8 +2501,7 @@
       return $_;
     }
   }
-  ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  // archivos del directorio /////////////////////////////////////////////////////////////////////////////////
+  // Archivo : fichero + texto + imagen + audio + video + app + ...tipos
   class _arc {  
 
     static function val( mixed $dat ) : mixed {
@@ -2559,214 +2551,230 @@
       return $_;
     }
   }
-  ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  // fecha + calendario //////////////////////////////////////////////////////////////////////////////////////
+  // Fecha : aaaa-mm-dia hh:mm:ss utc
   class _fec {  
 
-    static function dec( $dat ){
+    // codifico fecha : [ año, mes, dia ]
+    static function cod( string $val, string $sep = NULL ) : array {
+      $_ = [];
+
+      $val = explode(' ',str_replace('T','',$val))[0];
+
+      if( empty($sep) ){
+        $sep = preg_match("/-/",$val) ? '-' : ( preg_match("/\//",$val) ? '/' : '.' );
+      }
+
+      $dat = array_map( function($v){ return intval($v); }, explode($sep,$val) );
+
+      if( strlen( strval($dat[0]) ) == 4 || $dat[0] > 31 ){
+
+        $_ = [ $dat[0], $dat[1], $dat[2] ];
+      }
+      else{        
+        $_ = [ $dat[2], $dat[1], $dat[0] ];
+      }
+      return $_;
+    }
+    // objeto: DateTime
+    static function dec( int | string | object | array $dat = NULL ) : DateTime | string {
       $_ = $dat;
       if( empty($dat) ){
         $_ = new DateTime('NOW');
       }
       else{
-        if( is_numeric($dat) && preg_match("/^\d+$/",$dat) ){
+        if( is_numeric($dat) && preg_match("/^\d+$/",strval($dat)) ){
           try{ 
             $_ = new DateTime( intval($dat) );
           }
           catch( Throwable $_err ){ 
             $_ = "<p class='err'>{$_err}</p>"; 
           }
-        }elseif( is_string($dat) ){ 
+        }
+        elseif( is_string($dat) ){ 
           try{ 
-            $_ = _fec::dat($dat); 
-            $_ = !! $_ ? new DateTime( "{$_->año}-{$_->mes}-{$_->dia}" ) : new DateTime('NOW') ;
+            $_ = _fec::dat($dat);
+            $_ = !! $_ ? new DateTime( "{$_->año}-{$_->mes}-{$_->dia}" ) : new DateTime('NOW');
           }
           catch( Throwable $_err ){ 
             $_ = "<p class='err'>{$_err}</p>"; 
           }
-        }elseif( is_object($dat) ){
+        }
+        elseif( is_object($dat) ){
+
           if( get_class($dat)=='stdClass' ){
             $_ = new DateTime( "{$dat->año}-{$dat->mes}-{$dat->dia}" );
-          }else{
+          }
+          else{
             $_ = $dat;
           }
-        }elseif( is_array($dat) ){
-          $_ = new DateTime( "{$dat['año']}-{$dat['mes']}-{$dat['dia']}" );
+        }
+        elseif( is_array($dat) ){
+          $_ = new DateTime( "{$dat[0]}-{$dat[1]}-{$dat[2]}" );
         }
       }
       return $_;
     }
-
-    static function cod( string $val, string $sep='' ){
-      $_ = [];
-      $val = explode(' ',str_replace('T','',$val))[0];
-      if( empty($sep) ){
-        $sep = preg_match("/-/",$val) ? '-' : ( preg_match("/\//",$val) ? '/' : '.' );
-      }
-      $dat = array_map( function($v){ return intval($v); }, explode($sep,$val) );
-      if( strlen(strval($dat[0])) == 4 || $dat[0] > 31 ){
-        $_ = [ $dat[0], $dat[1], $dat[2] ];
-      }else{
-        $_ = [ $dat[2], $dat[1], $dat[0] ];
-      }
-      return $_;
-    }
-
-    static function dat( $val, string $sep='/' ){
-      $_ = new stdClass();
-    
-      if( !is_string($val) ){ 
-        $val = _fec::val($val);
-        if( !$val ){
-          return $val;
-        }
-      }
-    
-      $tie = explode(' ',str_replace('T',' ',$val));  
-      $fec = explode('-',str_replace($sep,'-',$tie[0]));
-      $hor = isset($tie[1]) ? $tie[1] : FALSE;
-      
-      $_->mes = intval($fec[1]);
-      if( strlen($fec[0]) > 2 ){
-        $_->año = intval($fec[0]);    
-        $_->dia = intval($fec[2]);    
-      }else{
-        $_->año = intval($fec[2]);    
-        $_->dia = intval($fec[0]);
-      }  
-    
-      if( $hor ){
-        $_->tie = $hor;
-        $hor = explode(':',$hor);
-        if( isset($hor[2]) ){
-          $_->seg = intval($hor[2]);
-        }
-        if( isset($hor[1]) ){
-          $_->min = intval($hor[1]);
-        }
-        $_->hor = intval($hor[0]);
-      }
-    
-      if( _fec::val( $_->val = implode($sep,[$_->dia,$_->mes,$_->año]) ) ){    
-        $_->sem = _fec::tip($_,'sem');
-      }else{
-        $_ = FALSE;
-      }
-    
-      return $_;
-    }
-
-    static function tip( $dat, $tip='' ){
+    // devuelvo por tipo
+    static function tip( mixed $dat, $tip = NULL ) : bool | string {
       $_ = FALSE;
+
       if( empty($tip) ){
         $_ = $dat;
-        if( !is_object($dat) ){ 
-          $_ = _fec::dat($dat);
-        }
+        if( is_string($dat) ) $_ = _fec::dat($dat);
       }
       else{
-        if( !is_object($dat) || get_class($dat)=='stdClass' ){
-          $dat = _fec::dec($dat); 
-        }
+        $_fec = $dat;
+        // aseguro objeto nativo
+        if( !is_object($dat) || get_class($dat)=='stdClass' ) $_fec = _fec::dec($dat); 
+        // busco tipo
         switch( $tip ){
-        case 'dyh':    
-          $_ = $dat->format('Y/m/d H:i:s');
-          break;
-        case 'hor':    
-          $_ = $dat->format('H:i:s');
-          break;
-        case 'sem':    
-          $_ = $dat->format('w');
-          break;
-        case 'dia':    
-          $_ = $dat->format('Y/m/d');
-          break;
+        case 'dyh': $_ = $_fec->format('Y/m/d H:i:s');  break;
+        case 'hor': $_ = $_fec->format('H:i:s');        break;
+        case 'sem': $_ = $_fec->format('w');            break;
+        case 'dia': $_ = $_fec->format('Y/m/d');        break;
         }
       }
       return $_;
     }
+    // objeto fecha: { val, año, mes, dia, sem, hor, min, seg, ubi }
+    static function dat( string $val, ...$opc ) : object {
 
-    static function val( $dat, ...$opc ){
-      $_ = $dat;
-    
-      if( is_string( $dat ) ){
-        $dat = explode(' ',$dat)[0];
-        $dat = preg_match("/-/",$dat) ? explode('-',$dat) : explode('/',$dat);
-      }
-    
-      if( ( $obj_tip = _obj::tip($dat) ) || _obj::pos($dat) ){
-    
-        if( $obj_tip == 'nom' ){
-          $año = !empty($dat['año']) ? $dat['año'] : 1900;
-          $mes = !empty($dat['mes']) ? $dat['mes'] : 1;
-          $dia = !empty($dat['dia']) ? $dat['dia'] : 1;
-        }
-        elseif( $obj_tip == 'atr' ){
-          $año = !empty($dat->año) ? $dat->año : 1900;
-          $mes = !empty($dat->mes) ? $dat->mes : 1;
-          $dia = !empty($dat->dia) ? $dat->dia : 1;
-        }
-        else{
-          $mes = $dat[1];
-          if( strlen($dat[0]) == 4 ){ 
-            $año = $dat[0]; 
-            $dia = $dat[2];
-          }else{ 
-            $año = $dat[2]; 
-            $dia = $dat[0];
+      $_ = new stdClass();
+      $_->val = "";
+      $_->dia = 0;
+      $_->mes = 0;
+      $_->año = 0;
+      $_->tie = "";
+      $_->hor = 0;
+      $_->min = 0;
+      $_->seg = 0;
+      $_->ubi = "";
+
+      // separo valores
+      $val = explode( preg_match("/T/i",$val) ? 'T' : ' ', $val );
+
+      if( isset($val[0]) ){
+
+        $fec = explode( preg_match("/-/",$val[0]) ? '-' : '/', $val[0] );
+
+        if( isset($fec[2]) ){
+          // mes
+          $_->mes = intval($fec[1]);
+          // año
+          if( strlen($fec[0]) > 2 ){
+            $_->año = intval($fec[0]);    
+            $_->dia = intval($fec[2]);    
+          }else{
+            $_->año = intval($fec[2]);    
+            $_->dia = intval($fec[0]);
+          }  
+          // valido fecha resultante
+          if( $_->val = _fec::val($_,...$opc) ){
+            // busco valor semanal
+            $_->sem = _fec::tip($_,'sem');
+            // proceso horario
+            if( isset($val[1]) ){
+              $hor = explode(':', $_->tie = $tie[1]);
+              // segundos
+              if( isset($hor[2]) ) $_->seg = intval($hor[2]);
+              // minutos
+              if( isset($hor[1]) ) $_->min = intval($hor[1]);
+              // horas
+              $_->hor = intval($hor[0]);
+            }        
           }
         }
-    
-        if( checkdate($mes, $dia, $año) ){
-          $_ = !in_array('año',$opc) ? _num::val($dia,2).'/'._num::val($mes,2).'/'._num::val($año,4) : _num::val($año,4).'/'._num::val($mes,2).'/'._num::val($dia,2);
-        }else{
-          $_ = FALSE;
-        }    
-      }  
+      }    
       return $_;
     }
+    // validor de fecha : "año/mes/dia" | "dia/mes/año"
+    static function val( object $dat, ...$opc ) : bool | string {
+      $_ = FALSE;
+    
+      $año = !empty($dat->año) ? $dat->año : 1900;
+      $mes = !empty($dat->mes) ? $dat->mes : 1;
+      $dia = !empty($dat->dia) ? $dat->dia : 1;
+  
+      if( checkdate($mes, $dia, $año) ){
+        
+        $_ = !in_array('año',$opc) ? _num::val($dia,2).'/'._num::val($mes,2).'/'._num::val($año,4) : _num::val($año,4).'/'._num::val($mes,2).'/'._num::val($dia,2);
+      }
 
-    static function ope( $dat, $val=0, string $ope='+', string $tip='dia' ){
+      return $_;
+    }
+    // formateo para input : "aaa-mm-ddThh:mm:ss"
+    static function var( string $val = NULL, string $tip = '' ) : string {
+      $_ = "";
+  
+      if( !empty($val) ){
+
+        if( ( $tip=='dia' || $tip=='dyh' ) ){
+
+          $_fec = _fec::dat($val,'año');
+
+          $val = $_fec->val;
+        }
+
+        $_ = str_replace(' ','T',str_replace('/','-',$val));
+      }
+      
+      return $_;
+    }
+    // operaciones numericas por tipos
+    static function ope( string | object $dat, int $val = 0, string $ope = '+', string $tip = 'dia' ){
       $_ = $dat;
+      
       if( is_object($dat) ){
-        $_ = "{$dat->año}/{$dat->mes}/{$dat->dia}";
-      }elseif( is_string($dat) ){
+
+        $_ = "{$dat->año}-{$dat->mes}-{$dat->dia}";
+      }
+      elseif( is_string($dat) ){
+
         $_ = str_replace('/','-',$dat);
       }
+
       if( !!$_ ){
-        $tie='';
+        $tie = '';
         switch( $tip ){
-        case 'seg': $tie='second'; break;
-        case 'min': $tie='minute'; break;
-        case 'hor': $tie='hour';   break;
-        case 'dia': $tie='day';    break;
-        case 'sem': $tie='week';   break;
-        case 'mes': $tie='month';  break;
-        case 'año': $tie='year';   break;
-        }
-        if( $val > 1 ) $tie.="s";
-        $val = strval($val);// strtotime devuelve un timestamp
-        $_ = date( 'd-m-Y', strtotime( "{$ope}{$val} {$tie}", strtotime($_) ) );
+        case 'seg': $tie = 'second'; break;
+        case 'min': $tie = 'minute'; break;
+        case 'hor': $tie = 'hour';   break;
+        case 'dia': $tie = 'day';    break;
+        case 'sem': $tie = 'week';   break;
+        case 'mes': $tie = 'month';  break;
+        case 'año': $tie = 'year';   break;
+        } 
+        if( $val > 1 ) $tie .= "s";
+        // strtotime devuelve un timestamp        
+        $_ = date( 'd-m-Y', strtotime( $ope.strval($val)." $tie", strtotime($_) ) );
       }
       return $_;
     }
+    // cuento dias pos periodo : mes | año
+    static function cue( string $tip, string | object $val ) : mixed {
 
-    static function cue( $tip, $val ){
-      $_= _fec::dat($val);
+      $_ = is_string($val) ? _fec::dat($val) : $val;
+
       switch( $tip ){
       case 'mes':
-        if( !!$_ ){ 
+        if( !!$_ ){
           $_ = cal_days_in_month( CAL_GREGORIAN, $_->mes, $_->año );
         }
         break;
-      case 'año':    
-        $lis=[]; $tot=0; $num=0; $mes=0;
-        for( $i=1; $i<=12; $i++ ){ 
-          $lis[$i] = _fec::cue('mes',"{$_->año}/$i/1"); $tot += $lis[$i]; 
+      case 'año':
+        $lis = [];
+        $tot = 0; 
+        $num = 0; 
+        $mes = 0;
+        for( $i = 1; $i <= 12; $i++ ){
+
+          $lis[$i] = _fec::cue('mes',"{$_->año}/$i/1");
+          $tot += $lis[$i]; 
         }
         if( $_->mes == 1 ){ 
           $num = $_->dia;
-        }else{
+        }
+        else{
           $mes++;
           while( $mes < $_->mes ){ 
             $num += $lis[$mes]; 
@@ -2780,24 +2788,45 @@
           'cue'=>$tot
         ];
         break;    
-      }
-    }
-
-    static function ran( $ini, $fin ){
-      $_ = "";
-      if( $ini < 0 && $fin < 0  ){
-        $_ = _num::int( $ini * - 1 )." - "._num::int( $fin * - 1). " A.C.";
-      }elseif( $ini > 0 && $fin > 0 ){
-        $_ = _num::int( $ini )." - "._num::int( $fin ). " D.C.";
-      }else{
-        $_ = _num::int( $ini * - 1 )." A.C. - "._num::int( $fin ). " D.C.";
+      case 'eda':
+        $ano_dif = date("Y") - $_->año;
+        $mes_dif = date("m") - $_->mes;
+        $dia_dif = date("d") - $_->dia;
+        if( $dia_dif < 0 || $mes_dif < 0 ) $ano_dif--;
+        $_ = $ano_dif;
+        break;
       }
       return $_;
     }
+    // defino valor por rangos : AC - DC
+    static function ran( $ini, $fin ){
 
-  }  
-  ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  // textos + escritura //////////////////////////////////////////////////////////////////////////////////////
+      $_ = "";
+
+      if( $ini < 0 && $fin < 0  ){
+
+        $_ = _num::int( $ini * - 1 )." - "._num::int( $fin * - 1). " A.C.";
+      }
+      elseif( $ini > 0 && $fin > 0 ){
+
+        $_ = _num::int( $ini )." - "._num::int( $fin ). " D.C.";
+      }
+      else{
+        $_ = _num::int( $ini * - 1 )." A.C. - "._num::int( $fin ). " D.C.";
+      }
+
+      return $_;
+    }
+    // año bisciesto ?
+    static function año_bis( string | object $fec ) : bool {
+
+      if( is_string($fec) ) $fec = _fec::dat($fec);
+
+      return date('L', strtotime("$fec->año-01-01"));
+    }
+
+  }    
+  // Texto : caracter + letra + oracion + parrafo
   class _tex {
     
     // salvo caracteres con "\"
@@ -2911,9 +2940,8 @@
       }
       return $_;
     }
-  }  
-  ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  // numeros + cálculos //////////////////////////////////////////////////////////////////////////////////////
+  }
+  // Numero : separador + operador + entero + decimal + rango
   class _num {
 
     // datos del objeto
@@ -2935,7 +2963,9 @@
       $_ = $dat;
       if( !empty($tot) ){
 
-        $_ = _tex::agr($_,$tot,"0");
+        $_ = _tex::agr( abs( $dat = _num::val($dat) ), $tot, "0");
+
+        if( $dat < 0 ) $_ = "-".$_;
       }
       // parse-int o parse-float
       elseif( is_string($dat) ){
@@ -3012,6 +3042,10 @@
         }
       );
     }
+    // redondeos
+    static function red( mixed $val, int $dec = 0, string $tip = 'min' ) : mixed {
+      // https://www.php.net/manual/es/function.round.php
+      return round($val, $dec, $tip == 'min' ? PHP_ROUND_HALF_DOWN : PHP_ROUND_HALF_UP );
+    }
 
   }
-

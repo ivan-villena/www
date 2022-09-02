@@ -13,7 +13,7 @@ $_doc->art_nav = _doc_nav::ver($art,'pan');
 // imprimo paneles    
 foreach( $art['pan'] as $ide => $pan ){
 
-  if(isset($pan['htm'])) $_doc->art_ini .= $pan['htm'];
+  if( isset($pan['htm']) ) $_doc->art_ini .= $pan['htm'];
 }
 
 // botones de modales : indice + pantallas ( fecha + est + tab )
@@ -31,18 +31,17 @@ $_doc->jso []= 'hol';
 
 // cargo datos en articulos de dato
 $_doc->cod .= "
-  var \$_hol = new _hol(".( $_uri->cab == 'dat' ? _dat::cod($_hol) : "" ).");
+  var \$_hol = new _hol(".( $_uri->cab == 'tab' ? _obj::cod($_hol) : "" ).");
 ";
 
-if( $_uri->cab == 'dat' ){
-  // inicializo tablero
-  $_doc->cod .= "  
+// inicializo tablero
+if( $_uri->cab == 'tab' ){ $_doc->cod .= "  
 
-  _doc_tab.act('dat');
+  _doc_tab.ini();
 
-  _doc_est.act('dat');
+  _doc_est.ini();
 
-  _hol_tab.act('dat');
+  _hol_art.tab();
   ";
 }
 

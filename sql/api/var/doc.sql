@@ -80,7 +80,8 @@ DELETE FROM `_api`.`var` WHERE `esq`='doc';
         "nom":"Dato",
         "tit":"Indicar la estructura de datos y su valor...",
         "opc":"ver"
-      }'),-- estructura
+      }'),
+      -- estructura
       ('doc','val','ver', 12, 'est', '{
         "ide":"est",
         "nom":"Estructura",
