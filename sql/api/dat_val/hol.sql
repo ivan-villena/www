@@ -379,7 +379,7 @@
       ( 'hol', 'psi_hep',     '{
           "nom": "Heptada #()($)ide() de 52.",
           "des": "()($)ton_des() del cuadrante ()($)arm_col() en el ()($)arm_dir().",
-          "ima": "background: center/contain no-repeat url(http://localhost/_/hol/ima/cod/()($)ton().png), center/contain no-repeat url(http://localhost/_/hol/ima/rad.png), center/contain no-repeat url(http://localhost/_/hol/ima/arm/()($)ond().png);",
+          "ima": "background: center/contain no-repeat url(http://localhost/_/hol/ima/sel/cod/()($)ton().png), center/contain no-repeat url(http://localhost/_/hol/ima/rad.png), center/contain no-repeat url(http://localhost/_/hol/ima/arm/()($)ond().png);",
           "col": 4
       }' ),
       ( 'hol', 'psi_vin',     '{

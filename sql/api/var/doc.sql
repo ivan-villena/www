@@ -69,51 +69,100 @@ DELETE FROM `_api`.`var` WHERE `esq`='doc';
     --
     -- filtros: valores ( todos ) + datos ( estructura > valor ) + listados ( posicion + fecha )
 
-      -- por valores
+      -- por Valores
       ('doc','val','ver', 1, 'tod', '{
         "nom":"¿Todos?",
         "tit":"Mostrar todos...",
         "ope":{ "_tip":"opc_bin" }
       }'),
-      -- por datos
-      ('doc','val','ver', 11, 'dat', '{
-        "nom":"Dato",
-        "tit":"Indicar la estructura de datos y su valor...",
-        "opc":"ver"
+      ('doc','val','ver', 2, 'nad', '{
+        "nom":"¿Nada?",
+        "tit":"Ocultar todos...",
+        "ope":{ "_tip":"opc_bin" }
       }'),
-      -- estructura
-      ('doc','val','ver', 12, 'est', '{
-        "ide":"est",
+      ('doc','val','ver', 3, 'uni', '{
+        "nom":"¿Único?",
+        "tit":"Mostrar un único valor...",
+        "ope":{ "_tip":"opc_bin" }
+      }'),
+      ('doc','val','ver', 4, 'inc', '{
+        "nom":"¿Cada?",
+        "tit":"Indica un valor de salto o incremento entre las posiciones...",
+        "ope":{ "_tip":"num_int", "val":1, "min":1, "max":999 }
+      }'),
+      ('doc','val','ver', 5, 'cue', '{
+        "nom":"¿Cuántos?",
+        "tit":"Indicar la cantidad máxima del resultado...",
+        "ope":{ "_tip":"num_int", "min":1, "max":999 }
+      }'),
+      -- por tipo de datos
+      ('doc','val','ver', 11, 'opc', '{
+        "nom":"¿Opciones?",
+        "tit":"Mostrar valores por opción...",
+        "ope":{ "_tip":"opc_bin", "val":1 }
+      }'),
+      ('doc','val','ver', 12, 'num', '{
+        "nom":"¿Números?",
+        "tit":"Mostrar valores numéricos...",
+        "ope":{ "_tip":"opc_bin", "val":1 }
+      }'),
+      ('doc','val','ver', 13, 'tex', '{
+        "nom":"¿Textos?",
+        "tit":"Mostrar valores textuales...",
+        "ope":{ "_tip":"opc_bin", "val":1 }
+      }'),
+      ('doc','val','ver', 14, 'fec', '{
+        "nom":"¿Fechas?",
+        "tit":"Mostrar valores de fechas...",
+        "ope":{ "_tip":"opc_bin", "val":1 }
+      }'),
+      ('doc','val','ver', 15, 'obj', '{
+        "nom":"¿Objetos?",
+        "tit":"Mostrar objetos...",
+        "ope":{ "_tip":"opc_bin", "val":1 }
+      }'),
+      ('doc','val','ver', 16, 'arc', '{
+        "nom":"¿Archivos?",
+        "tit":"Mostrar archivos...",        
+        "ope":{ "_tip":"opc_bin", "val":1 }
+      }'),
+      -- por Estructuras de Datos
+      ('doc','val','ver', 21, 'dat', '{
+        "ico":"dat_ver",
+        "tit":"Seleccionar la Estructura e indicar el Valor Buscado..."
+      }'),
+      ('doc','val','ver', 22, 'esq', '{
+        "nom":"Esquema",
+        "tit":"Indicar el Esquema de datos..."
+      }'),
+      ('doc','val','ver', 23, 'est', '{
         "nom":"Estructura",
-        "tit":"Indicar la estructura de datos...",
-        "opc":"ver"
+        "tit":"Indicar la Estructura de datos..."
+      }'),
+      ('doc','val','ver', 24, 'atr', '{
+        "nom":"Atributo",
+        "tit":"Indicar el Atributo de la Estructura..."
+      }'),
+      ('doc','val','ver', 25, 'val', '{
+        "nom":"Valor",
+        "tit":"Indicar el Registro de la Estructura..."
       }'),
       -- por rango de valores : posicion / fecha
-      ('doc','val','ver', 21, 'pos', '{
+      ('doc','val','ver', 31, 'pos', '{
         "nom":"Posición",
         "tit":"Indicar el valor de la posición buscada...",
         "ope":{ "_tip":"num_int", "min":1, "max":999 }
       }'),
-      ('doc','val','ver', 22, 'ini', '{
+      ('doc','val','ver', 32, 'ini', '{
         "nom":"Desde",
         "tit":"Indicar el Valor inicial...",
         "ope":{ "_tip":"" }
       }'),
-      ('doc','val','ver', 23, 'fin', '{
+      ('doc','val','ver', 33, 'fin', '{
         "nom":"Hasta",
         "tit":"Indicar el Valor final...",
         "ope":{ "_tip":"" }
-      }'),
-      -- por incremento y límite
-      ('doc','val','ver', 24, 'inc', '{
-        "nom":"Cada",
-        "ope":{ "_tip":"num_int", "val":1, "min":1, "max":999 }
-      }'),
-      ('doc','val','ver', 25, 'cue', '{
-        "nom":"¿Cuántos?",
-        "tit":"Indicar la cantidad máxima del resultado...",
-        "ope":{ "_tip":"num_int", "min":1, "max":999 }
-      }')
+      }')      
     --
   ;
   -- estructuras

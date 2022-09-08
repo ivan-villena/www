@@ -10,7 +10,8 @@
     public object 
       $_uri,
       $_doc,
-      $_ses
+      $_ses,
+      $_usu
     ;
 
     public array
@@ -58,8 +59,10 @@
       $this->_ses = new stdClass;
 
       $this->_doc = new stdClass;
-      
+
       $this->ses('api');
+
+      $this->usu( $_SESSION['usu'] );          
       
       // documento : iconos + letras
       $this->_ico = _dat::var('_api.ico', [ 'niv'=>['ide'] ]);
@@ -77,7 +80,7 @@
     }
 
     // peticion : hhtp://esq/cab/art/...val
-    function uri( string $esq = 'api' ) : object {      
+    function uri( string $esq = '' ) : object {      
 
       // peticion
       $this->_uri->url = !empty($_REQUEST['uri']) ? $_REQUEST['uri'] : '';
@@ -87,10 +90,10 @@
       
       // por separaciones
       $dat = explode('/',$this->_uri->url);
-      $this->_uri->esq = isset($dat[0]) ? $dat[0] : $esq;
-      $this->_uri->cab = isset($dat[1]) ? $dat[1] : FALSE;
-      $this->_uri->art = isset($dat[2]) ? $dat[2] : FALSE;
-      $this->_uri->val = isset($dat[3]) ? $dat[3] : FALSE;
+      $this->_uri->esq = !empty($dat[0]) ? $dat[0] : $esq;
+      $this->_uri->cab = !empty($dat[1]) ? $dat[1] : FALSE;
+      $this->_uri->art = !empty($dat[2]) ? $dat[2] : FALSE;
+      $this->_uri->val = !empty($dat[3]) ? $dat[3] : FALSE;
 
       return $this->_uri;
     }
@@ -118,7 +121,7 @@
         $_->ima .= "{$uri->art}/";
       }
 
-      return $_;
+      return $this->_dir = $_;
     }
     // sesion : datos por esquemas
     function ses( string $esq ) : array {      
@@ -135,82 +138,152 @@
 
       return $this->_ses->$esq;      
     }
+    // usuario
+    function usu( int $ide = NULL ) : object {
+
+      if( !isset($ide) ){
+
+        $_ = $this->_usu;
+      }
+      else{
+        $_ = new stdClass;
+
+        if( empty($ide) ){
+          $_->ide = 0;
+          $_->pas = "";
+          $_->nom = "Usuario";
+          $_->ape = "Público";
+          $_->eda = "";
+          $_->fec = "";
+          $_->sin = "";
+          $_->kin = "";
+          $_->psi = "";
+          $_->mai = "";
+          $_->tel = "";
+          $_->ubi = "";  
+        }
+        // cargo datos
+        else{
+          foreach( _dat::var("_api.usu", [ 'ver'=>"`ide`='{$ide}'", 'opc'=>['uni'] ]) as $atr => $val ){
+  
+            $_->$atr = $val;
+          }
+          // calculo edad actual
+          $_->eda = _fec::cue('eda',$_->fec);          
+        }
+  
+        $this->_usu = $_; 
+      }      
+
+      return $_;
+    }
     // página : esquema / cabecera / articulo / valor=dato 
     function doc() : object {
-      
-      // objeto página
-      $this->_doc->css = ['api'];
-      $this->_doc->htm = "";
-      $this->_doc->jso = ['api','doc'];
-      $this->_doc->cod = "";
-      
-      // cabecera
-      $this->_doc->cab_ini = "";// inicio
-      $this->_doc->cab_nav = "";// menu : pantallas, secciones
-      $this->_doc->cab_fin = "";// fin
-            
-      // articulo      
-      $this->_doc->art_ini = "";// panel izquierdo
-      $this->_doc->art_nav = "";// menu : paneles
-      $this->_doc->art_fin = "";// panel derecho
 
-      // modales
-      $this->_doc->win = "";
-
-      // petición    
+      // petición
       $esq = $this->_uri->esq;
       $cab = $this->_uri->cab;
       $art = $this->_uri->art;
       $val = $this->_uri->val;
 
-      // esquema
-      $this->_doc->esq = _dat::var("_api.doc_esq",[
-        'ver'=>"`ide`='{$esq}'",
-        'opc'=>'uni'
-      ]);
-      // menú
+      // cargo objeto
+      $_doc = &$this->_doc;
+      
+      // objeto página
+      $_doc->css = ['api'];
+      $_doc->jso = ['api','doc'];
+      $_doc->cod = "";
+
+      // elementos
+      $_doc->ele = [
+        'body'=>[          
+          'doc'=>$esq,
+          'cab'=> !!$cab ? $cab : NULL, 
+          'art'=> !!$art ? $art : NULL
+        ]
+      ];
+
+      // cargo datos : esquema - cabecera - articulo - valor
+      $_doc->_esq = _dat::var("_api.doc_esq",[ 'ver'=>"`ide`='{$esq}'", 'opc'=>'uni' ]);
+
       if( !empty($cab) ){
-        $this->_doc->cab = _dat::var("_api.doc_cab",[
-          'ver'=>"`esq`='{$esq}' AND `ide`='{$cab}'",
-          'ele'=>'ope',
-          'opc'=>'uni'
-        ]);
-        // artículo
+        // cargo datos del menu
+        $_doc->_cab = _dat::var("_api.doc_cab",[ 'ver'=>"`esq`='{$esq}' AND `ide`='{$cab}'", 'ele'=>'ope', 'opc'=>'uni' ]);        
+                
         if( !empty($art) ){
-          $this->_doc->art = _dat::var("_api.doc_art",[
-            'ver'=>"`esq`='{$esq}' AND `cab`='{$cab}' AND `ide`='{$art}'",
-            'ele'=>'ope',
-            'opc'=>'uni'
-          ]);
-          // seccion/valor
+          // cargo datos del artículo
+          $_doc->_art = _dat::var("_api.doc_art",[ 'ver'=>"`esq`='{$esq}' AND `cab`='{$cab}' AND `ide`='{$art}'", 'ele'=>'ope', 'opc'=>'uni' ]);          
+          
           if( !empty($val) ){
-
-            $this->_doc->val = [];
-
+            // proceso seccion/valor
+            $_doc->_val = [];
             foreach( explode(';',$val) as $_val ){
-
               $_val = explode('=',$_val);
-
-              $this->_doc->val[$_val[0]] = isset($_val[1]) ? $_val[1] : NULL;
+              $_doc->_val[$_val[0]] = isset($_val[1]) ? $_val[1] : NULL;
             }
-
           }
         }
       }
-      // titulo      
-      if( !empty($this->_doc->art->nom) ){
-        $this->_doc->nom = $this->_doc->art->nom;
+
+      // titulo
+      if( !empty($_doc->_art->nom) ){
+        $_doc->nom = $_doc->_art->nom;
       }
-      elseif( !empty($this->_doc->cab->nom) ){
-        $this->_doc->nom = $this->_doc->cab->nom;
+      elseif( !empty($_doc->_cab->nom) ){
+        $_doc->nom = $_doc->_cab->nom;
       }
-      elseif( !empty($this->_doc->esq->nom) ){
-        $this->_doc->nom = $this->_doc->esq->nom; 
+      elseif( !empty($_doc->_esq->nom) ){
+        $_doc->nom = $_doc->_esq->nom; 
       }
       else{
-        $this->_doc->nom = "{-_-}";
-      }
-      return $this->_doc;
+        $_doc->nom = "{-_-}";
+      }      
+
+      // botones
+      $_doc->ope = [
+        'ini'=>"", 'nav'=>"", 'sec'=>"", 'win'=>""
+      ];
+
+      // menú
+      $_doc->nav = "";
+      // main
+      $_doc->sec = "";
+      // modales
+      $_doc->win = "";
+      // paneles
+      $_doc->pan = "";
+      // pie
+      $_doc->pie = "";
+
+      // proceso contenido
+      if( class_exists($cla = "_{$esq}_doc") && method_exists($cla,"art") ){
+  
+        // datos + articulo + paneles + ventanas      
+        if( !empty( $art = $cla::art($this->_uri,$this->_doc,$this->_dir) ) ){
+  
+          // articulo
+          $_doc->sec = _doc_art::sec($art['htm']);
+  
+          // botones de paneles
+          $_doc->ope['nav'] = _doc_art::ope($art,'nav');
+  
+          // imprimo paneles    
+          foreach( $art['nav'] as $ide => $pan ){
+  
+            if( isset($pan['htm']) ) $_doc->nav .= $pan['htm'];
+          }
+  
+          // botones de modales : indice + pantallas ( fecha + est + tab )
+          $_doc->ope['win'] = _doc_art::ope($art,'win');
+  
+          // imprimo modales
+          foreach( $art['win'] as $ide => $win ){ 
+            
+            $_doc->win .= _doc_art::win($ide,$win);
+          }        
+        }
+      }      
+      return $_doc;
     }
     
     /////////////////////////////////////////////////////////////////////////////////////////////
@@ -289,7 +362,7 @@
       return $_;
     }
     // atributos 
-    static function dat_atr( string $esq, string $est, string | array $ide = NULL ) : array | object | bool {      
+    static function dat_atr( string $esq, string $est, string | array $ide = NULL ) : bool | array | object {      
       global $_api;
 
       if( !isset($_api->_dat_atr[$esq]) ) $_api->_dat_atr[$esq] = [];
@@ -324,7 +397,7 @@
       return $_;
     }
     // valores
-    static function dat_val( string $esq, string $est = NULL, string $ide = NULL ) : array | object | bool {      
+    static function dat_val( string $esq, string $est = NULL, string $ide = NULL ) : bool | array | object {      
       global $_api;
       
       if( !isset($_api->_dat_val[$esq]) ) $_api->_dat_val[$esq] = [];
@@ -361,7 +434,7 @@
     }  
 
     // cargo valores de un proceso : absoluto o con dependencias ( _api.dat->est ) 
-    static function val( string | array $ope, mixed $dat = NULL ){
+    static function val( string | array $ope, mixed $dat = NULL ) : array {
       global $_api;
       $_ = [];
       if( is_array($ope) ){      
@@ -387,22 +460,26 @@
     }
 
     // tablero de la aplicacion
-    static function tab( string $esq, string $est, array $ele = [] ) : array {
+    static function tab( string $esq, string $est, array $ele = NULL ) : array | object {
       global $_api;
 
       if( !isset($_api->_tab[$esq][$est]) ){
-        $_api->_tab[$esq][$est] = _dat::var("_api.tab",[ 
-          'ver'=>"`esq`='{$esq}' AND `est`='{$est}'", 'opc'=>'uni', 'ele'=>['ope'], 'red'=>'ope'
-        ]);
+        $_api->_tab[$esq][$est] = _dat::var("_api.tab",[ 'ver'=>"`esq`='{$esq}' AND `est`='{$est}'", 'opc'=>'uni', 'ele'=>['ele','ope','opc'] ]);
       }
+      // devuelvo tablero : ele + ope + opc
+      $_ = $_api->_tab[$esq][$est];
 
-      $_ = $ele;
-      if( !empty($_api->_tab[$esq][$est]) ){
-        foreach( $_api->_tab[$esq][$est] as $eti => $atr ){
-          $_[$eti] = isset($_[$eti]) ? _ele::jun( $atr, $_[$eti] ) : $atr;
+      // combino elementos
+      if( isset($ele) ){
+        $_ = $ele;
+        if( !empty($_api->_tab[$esq][$est]->ele) ){
+
+          foreach( $_api->_tab[$esq][$est]->ele as $eti => $atr ){
+            
+            $_[$eti] = isset($_[$eti]) ? _ele::jun( $atr, $_[$eti] ) : $atr;
+          }
         }
       }
-
       return $_;
     }
 
@@ -546,7 +623,6 @@
       return $_;
     }
   }
-  
   // Código sql 
   class _sql {
 
@@ -556,7 +632,9 @@
       $err=[];
       $eje=[];
       
-      $_sql = new mysqli( $_SESSION['ser'], $_SESSION['usu'], $_SESSION['pas'], $_SESSION['esq'] );
+      $_ses = $_SESSION['sql'];
+
+      $_sql = new mysqli( $_ses['ser'], $_ses['usu'], $_ses['pas'], $_ses['esq'] );
     
       $_sql->set_charset("utf8");
     
@@ -1158,6 +1236,65 @@
 
   }
 
+  // usuario : sesion + tránsitos
+  class _usu {
+
+    // administro sesion
+    public function ses(){      
+    }
+
+    // genero transitos
+    public function cic( string $tip = NULL, mixed $val = NULL ) : string {
+      $_usu = _api::_('usu');
+      $_ = "";
+      if( empty($tip) ){
+      }
+      else{
+        switch( $tip ){
+        // genero tránsitos anuales > lunares
+        case 'ani':          
+          // elimino previos
+          $_ .= "DELETE FROM `_api`.`usu_cic_ani` WHERE usu = $_usu->ide;<br>";
+          $_ .= "DELETE FROM `_api`.`usu_cic_lun` WHERE usu = $_usu->ide;<br>";
+
+          // pido tránsitos
+          foreach( _hol::dat_ani( $_usu->sin, 1, 52, 'not-lun') as $_cic_ani ){
+
+            $_ .= "INSERT INTO `_usu`.`cic_ani` VALUES( 
+              $_usu->ide, 
+              $_cic_ani->ide, 
+              $_cic_ani->eda, 
+              $_cic_ani->arm, 
+              $_cic_ani->ond, 
+              $_cic_ani->ton, 
+              '"._fec::var($_cic_ani->fec,'dia')."', '$_cic_ani->sin', $_cic_ani->kin 
+            );<br>";
+
+            if( empty($_cic_ani->lun) ) continue;
+
+            foreach( $_cic_ani->lun as $_cic_lun ){
+
+              $_ .= "INSERT INTO `_usu`.`cic_lun` VALUES( 
+                $_usu->ide, 
+                $_cic_lun->ani, 
+                $_cic_lun->ide, 
+                '"._fec::var($_cic_lun->fec,'dia')."', 
+                '$_cic_lun->sin', $_cic_lun->kin 
+              );<br>";
+            }
+          }
+
+          break;
+        // genero transito diario por ciclo lunar
+        case 'dia':
+          
+          break;
+        }
+      }
+      return $_;
+    }
+  }
+
   // Dato : esq.est[ide].atr
   class _dat {
     
@@ -1581,7 +1718,6 @@
       return $_;
     }
   }
-  
   // listado : []
   class _lis {
 

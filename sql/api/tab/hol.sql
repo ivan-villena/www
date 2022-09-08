@@ -1,17 +1,13 @@
 -- Active: 1623270923336@@127.0.0.1@3306@_api
-
-DELETE FROM `_api`.`tab` WHERE `esq`='hol';
 --
+  DELETE FROM `_api`.`tab` WHERE `esq`='hol';
   -- x1 : unidades
   DELETE FROM `_api`.`tab` WHERE `esq`='hol' AND `est` LIKE 'uni%';
   INSERT INTO `_api`.`tab` VALUES
 
     ( 'hol','uni_sol', '{
 
-      "sec":{ 
-        "tab":"uni_sol",
-        "style":"grid: repeat(9,1fr)/repeat(9,1fr); width: 37rem; height: 38rem;" 
-      },
+      "sec":{ "tab":"uni_sol", "style":"grid: repeat(9,1fr)/repeat(9,1fr); width: 37rem; height: 38rem;" },
 
       "fon":{ "style":"grid-column: 1/sp; grid-row: 1/sp; width: 100%; height: 100%;" },
       "fon-map":{ "fon":"map", "style":"background: center/contain no-repeat url(http://localhost/_/hol/tab/sol/map.png);" },
@@ -57,7 +53,7 @@ DELETE FROM `_api`.`tab` WHERE `esq`='hol';
 
       "sel-fic":{ "style":"width: 75%; height: 75%;" } 
       
-    }'),
+    }', NULL, NULL),
 
     ( 'hol','uni_pla', '{ 
       
@@ -102,7 +98,7 @@ DELETE FROM `_api`.`tab` WHERE `esq`='hol';
 
       "sel-fic":{ "style":"width: 30%;" }  
 
-    }'),
+    }', NULL, NULL),
 
     ( 'hol','uni_hum', '{
 
@@ -167,22 +163,22 @@ DELETE FROM `_api`.`tab` WHERE `esq`='hol';
       "sel-18":{ "sel":"18", "style":"grid-column:10; grid-row:19; top:35%; left:15%;" },
       "sel-19":{ "sel":"19", "style":"grid-column:10; grid-row:19; bottom:50%;" }  
 
-    }'),
+    }', NULL, NULL),
 
     ( 'hol','uni_par', '{
-    }'),
+    }', NULL, NULL),
     
     ( 'hol','uni_ond', '{
-    }'),
+    }', NULL, NULL),
 
     ( 'hol','uni_gal', '{
-    }')
+    }', NULL, NULL)
 
   ;
   -- x4 : armónica
   DELETE FROM `_api`.`tab` WHERE `esq`='hol' AND `est` LIKE 'arm%';
   INSERT INTO `_api`.`tab` VALUES
-
+    -- cuadrado-cubo
     ( 'hol','arm', '{
       
       "sec":{ "tab":"arm", 
@@ -195,18 +191,15 @@ DELETE FROM `_api`.`tab` WHERE `esq`='hol';
       "pos-3":{ "pos":"3", "style":"grid-column:1/4; grid-row:4/8;" },
       "pos-4":{ "pos":"4", "style":"grid-column:4/7; grid-row:4/8;" }   
 
-    }')  
+    }', NULL, NULL)
   ;
   -- x5 : cromática
   DELETE FROM `_api`.`tab` WHERE `esq`='hol' AND `est` LIKE 'cro%';
   INSERT INTO `_api`.`tab` VALUES
-
+    -- cruz-atomo
     ( 'hol','cro', '{
 
-      "sec":{ 
-        "tab":"cro",
-        "style":"grid: repeat(3,1fr)/repeat(3,1fr); border-radius: 50%;" 
-      },
+      "sec":{ "tab":"cro", "style":"grid: repeat(3,1fr) / repeat(3,1fr); border-radius: 50%;" },
 
       "pos-0":{ "pos":"0", "style":"grid-column:2; grid-row:2;" },
       "pos-1":{ "pos":"1", "style":"grid-column:3; grid-row:2;" },
@@ -215,31 +208,26 @@ DELETE FROM `_api`.`tab` WHERE `esq`='hol';
       "pos-4":{ "pos":"4", "style":"grid-column:2; grid-row:3;" },
       "pos-5":{ "pos":"5", "style":"grid-column:2; grid-row:2;" }   
 
-    }'),
-
+    }', NULL, NULL),
+    -- pentagono tipo petalos
     ( 'hol','cro_cir', '{
 
-      "sec":{ 
-        "tab":"cro_cir", 
-        "style":"grid: repeat(3,1fr)/repeat(3,1fr); border-radius: 50%; align-self: initial; padding: 2%; margin: auto;" 
-      },
+      "sec":{ "tab":"cro_cir", "style":"grid: repeat(3,1fr) / repeat(3,1fr); border-radius: 50%;" },
 
-      "pos":{ 
-        "style":"position: relative;" 
-      },
-      "pos-0":{ "pos":"0", "style":"grid-column:2/3; grid-row:2/3; align-self: center; justify-self: center; justify-content: center; align-items: center; width: 150%; height: 150%; padding:0;" },
+      "pos":{ "style":"position: relative;" },
+      "pos-0":{ "pos":"0", "style":"grid-column:2/3; grid-row:2/3; align-self: center; justify-self: center; justify-content: center; align-items: center; width: 150%; height: 150%;" },
       "pos-1":{ "pos":"1", "style":"grid-column:1/2; grid-row:1/2; top: 3%;    left: 28%; transform: rotate(145deg);" },
       "pos-2":{ "pos":"2", "style":"grid-column:1/2; grid-row:2/3; top: 38%;   left:-13%; transform: rotate(070deg);" },
       "pos-3":{ "pos":"3", "style":"grid-column:2/3; grid-row:3/4; top: 20%;" },
       "pos-4":{ "pos":"4", "style":"grid-column:3/4; grid-row:2/3; top: 35.5%; left: 12%; transform: rotate(287deg);" },
       "pos-5":{ "pos":"5", "style":"grid-column:3/4; grid-row:1/2; top: 3%;    left:-30%; transform: rotate(217deg);" }      
 
-    }')  
+    }', NULL, NULL)
   ;
   -- x7 : plasma
   DELETE FROM `_api`.`tab` WHERE `esq`='hol' AND `est` LIKE 'rad%';
   INSERT INTO `_api`.`tab` VALUES
-
+    -- heptágono
     ( 'hol','rad', '{ 
 
       "sec":{ "tab": "rad", 
@@ -255,13 +243,10 @@ DELETE FROM `_api`.`tab` WHERE `esq`='hol';
       "pos-6":{ "pos":"6", "style":"grid-column:4; grid-row:2; bottom:  20%; right: 35%;" },
       "pos-7":{ "pos":"7", "style":"grid-column:2; grid-row:2; top:     50%; left:  50%;" } 
       
-    }'),
-
+    }', NULL, NULL),
+    -- atomo por quantum
     ( 'hol','rad_ato', '{
-    }'),
-
-    ( 'hol','rad_hum', '{
-    }')
+    }', NULL, NULL)
   ;
   -- x13 : tono galáctico
   DELETE FROM `_api`.`tab` WHERE `esq`='hol' AND `est` LIKE 'ton%';
@@ -294,10 +279,7 @@ DELETE FROM `_api`.`tab` WHERE `esq`='hol';
       "pos-12":{ "pos":"12", "style":"grid-column:5/6; grid-row:2/3;" },
       "pos-13":{ "pos":"13", "style":"grid-column:4/5; grid-row:2/3;" }   
       
-    }'),
-    
-    ( 'hol','ton_hum', '{
-    }')
+    }', NULL, NULL)
   ;
   -- x20 : sello solar
   DELETE FROM `_api`.`tab` WHERE `esq`='hol' AND `est` LIKE 'sel%';
@@ -314,8 +296,8 @@ DELETE FROM `_api`.`tab` WHERE `esq`='hol';
         "style":"width: 1.9rem; height: 1.9rem;"
       }    
 
-    }'),
-    
+    }', NULL, NULL),
+    -- parejas del oráculo
     ( 'hol','sel_par', '{ 
 
       "sec":{ 
@@ -328,8 +310,8 @@ DELETE FROM `_api`.`tab` WHERE `esq`='hol';
         "style":"width: 1.9rem; height: 1.9rem;" 
       } 
       
-    }'),
-
+    }', NULL, NULL),
+    -- colocacion armónica
     ( 'hol','sel_arm', '{ 
 
       "sec":{ 
@@ -350,8 +332,7 @@ DELETE FROM `_api`.`tab` WHERE `esq`='hol';
 
       "pos":{ "style":"width: 8rem; height: 8rem;" }      
       
-    }'),
-
+    }', NULL, NULL),
     ( 'hol','sel_arm_tra', '{ 
 
       "sec":{
@@ -362,8 +343,8 @@ DELETE FROM `_api`.`tab` WHERE `esq`='hol';
         "style":"width: 7.8rem; height: 7.8rem;" 
       }    
       
-    }'),
-    
+    }', NULL, NULL),
+    -- colocacion cromática
     ( 'hol','sel_cro', '{ 
 
       "sec":{ 
@@ -386,12 +367,12 @@ DELETE FROM `_api`.`tab` WHERE `esq`='hol';
         "style":"width: 7rem; height: 7rem;" 
       }  
       
-    }')
+    }', NULL, NULL)
   ;
   -- x28 : giro lunar
   DELETE FROM `_api`.`tab` WHERE `esq`='hol' AND `est` LIKE 'lun%';
   INSERT INTO `_api`.`tab` VALUES
-
+    -- forma de almanque
     ( 'hol','lun', '{ 
 
       "sec":{ 
@@ -401,15 +382,12 @@ DELETE FROM `_api`.`tab` WHERE `esq`='hol';
       "pos":{ 
         "style":"width: 3rem; height: 3rem;"
       }     
-    }'),
-
-    ( 'hol','lun_tel', '{ 
-    }')
+    }', NULL, NULL)
   ;
   -- x52 : castillo
   DELETE FROM `_api`.`tab` WHERE `esq`='hol' AND `est` LIKE 'cas%';
   INSERT INTO `_api`.`tab` VALUES
-
+    -- fractal en cruz
     ( 'hol','cas', '{ 
 
       "sec":{ 
@@ -434,7 +412,7 @@ DELETE FROM `_api`.`tab` WHERE `esq`='hol';
 
       "ond":{ 
         "sec":"ond",
-        "style":"z-index: 5; width: 100%; height: 100%;"
+        "style":"z-index: 3; width: 100%; height: 100%;"
         },
         "ond-1":{ "ond":"1", "style":"grid-column:7/12; grid-row:2/7 ; transform: rotate(270deg);" },
         "ond-2":{ "ond":"2", "style":"grid-column:2/7 ; grid-row:1/6 ; transform: rotate(180deg);" },
@@ -442,7 +420,7 @@ DELETE FROM `_api`.`tab` WHERE `esq`='hol';
         "ond-4":{ "ond":"4", "style":"grid-column:6/11; grid-row:7/12;" },
 
       "pos":{ 
-        "style":"z-index: 10;" 
+        "style":"z-index: 4;" 
         },  
         "pos-00":{ "pos":"00", "style":"grid-column:06; grid-row:06; width:80%; height:80%; border-radius:50%;" },
         "pos-01":{ "pos":"01", "style":"grid-column:07; grid-row:06;" },
@@ -498,8 +476,8 @@ DELETE FROM `_api`.`tab` WHERE `esq`='hol';
         "pos-51":{ "pos":"51", "style":"grid-column:10; grid-row:08;" },
         "pos-52":{ "pos":"52", "style":"grid-column:09; grid-row:08;" } 
 
-    }'),
-    
+    }', NULL, NULL),
+    -- circular
     ( 'hol','cas_cir', '{ 
 
       "sec":{ 
@@ -509,7 +487,7 @@ DELETE FROM `_api`.`tab` WHERE `esq`='hol';
 
       "orb":{ 
         "sec":"orb",
-        "style":"width: 100%; height: 100%; border-radius: 50%;"
+        "style":"z-index: 1; width: 100%; height: 100%; border-radius: 50%;"
         },
         "orb-1":{ "orb":"1", "style":"grid-column:9/11; grid-row:9/11;" },
         "orb-2":{ "orb":"2", "style":"grid-column:8/12; grid-row:8/12;" },
@@ -522,7 +500,7 @@ DELETE FROM `_api`.`tab` WHERE `esq`='hol';
 
       "ond":{ 
         "sec":"ond", 
-        "style":"z-index: 1; width: 100%; height: 100%; " 
+        "style":"z-index: 2; width: 100%; height: 100%; " 
         },
         "ond-1":{ "ond":"1", "style":"grid-column:10/19; grid-row:01/10; border-radius: 0 100% 0 0; border-bottom: 1.5px solid green;" },
         "ond-2":{ "ond":"2", "style":"grid-column:01/10; grid-row:01/10; border-radius: 100% 0 0 0; border-right:  1.5px solid green;" },
@@ -530,7 +508,7 @@ DELETE FROM `_api`.`tab` WHERE `esq`='hol';
         "ond-4":{ "ond":"4", "style":"grid-column:10/19; grid-row:10/19; border-radius: 0 0 100% 0; border-left:   1.5px solid green;" },
 
       "pos":{ 
-        "style":"z-index: 10; position: relative;" 
+        "style":"z-index: 3; position: relative;" 
         },
         "pos-00":{ "pos":"00", "style":"grid-column:09/11; grid-row:09/11; width: 25%; height: 25%;" },
         "pos-01":{ "pos":"01", "style":"grid-column:18; grid-row:09; left:  10%;" },
@@ -586,18 +564,15 @@ DELETE FROM `_api`.`tab` WHERE `esq`='hol';
         "pos-51":{ "pos":"51", "style":"grid-column:18; grid-row:11; right: 10%;" },
         "pos-52":{ "pos":"52", "style":"grid-column:18; grid-row:10;" }      
       
-    }')
+    }', NULL, NULL)
   ;
   -- x260 : kin
   DELETE FROM `_api`.`tab` WHERE `esq`='hol' AND `est` LIKE 'kin%';
   INSERT INTO `_api`.`tab` VALUES
+    -- tzolkin
+    ( 'hol','kin_tzo', '{ 
 
-    ( 'hol','kin', '{ 
-
-      "sec":{ 
-        "tab":"kin",
-        "style":"grid: repeat(20,1fr) / repeat(13,1fr); grid-auto-flow: column;" 
-      },
+      "sec":{ "tab":"kin", "style":"grid: repeat(20,1fr) / repeat(13,1fr); grid-auto-flow: column;" },
       
       "ton-01":{ "style":"grid-column: 2; grid-row: 1;" },
       "ton-02":{ "style":"grid-column: 3; grid-row: 1;" },
@@ -634,222 +609,162 @@ DELETE FROM `_api`.`tab` WHERE `esq`='hol';
       "sel-19":{ "style":"grid-column: 1; grid-row: 20;" },
       "sel-20":{ "style":"grid-column: 1; grid-row: 21;" },
 
-      "pos":{  
-        "style":"width: 1.9rem; height: 1.9rem;" 
-      },
+      "pos":{  "style":"width: 1.9rem; height: 1.9rem;" },
       "pos-0":{ "style":"grid-column: 1; grid-row: 1;" }     
       
-    }'),
+    }', '{      
+			"sec":{ "ima": "", "sel": 1 },
 
+			"pos":{ "ima": "hol.ton.ide", "col": "hol.kin.pag", "num": "hol.kin.ide" }
+    }','[ "par" ]'),
     -- parejas del oráculo
     ( 'hol','kin_par', '{ 
 
-      "sec":{ 
-        "tab":"uni_par", 
-        "class": "kin", 
-        "style":"border: 1px solid var(--col_ver); border-radius: 50%;"
-      }  
-    }'),
+      "sec":{ "tab":"uni_par", "class": "kin", "style":"border: 1px solid var(--col_ver); border-radius: 50%;" }
 
-    -- estacion galáctica
-    ( 'hol','kin_cro', '{ 
-
-      "sec":{ 
-        "tab": "kin_cro",
-        "style":"grid-gap: .3rem;" 
-      },
-
-      "pos":{ 
-        "style":"width: 1rem; height: 1rem;" 
-      }
-    }'),
-    ( 'hol','kin_cro_est', '{
-
-      "est":{ 
-        "tab": "kin_cro_est", 
-        "style":"margin: 0 1rem; grid-gap: .2rem"
-      },
-
-      "pos":{ 
-        "style":"width: 2.8rem; height: 2.8rem;" 
-      }  
-    }'),
-    ( 'hol','kin_cro_ele', '{ 
-
-      "ele":{ 
-        "tab": "kin_cro_ele"          
-      },
-
-      "pos":{ 
-        "style":"width: 13rem; height: 13rem;" 
-      },
-      "pos-0":{ "style":"width: 150%; height: 150%; color: black;" },
-
-      "rot-ond":[ 
-        "147", "070", "074", "071", "074", "330", "352", "335", "350", "230", "270", "240", "160", "140", "070", "074", "071", "074", "330", "352", "335", "350", "230", "270", "240", "160", "140", "070", "074", "071", "074", "330", "352", "335", "350", "230", "270", "240", "160", "140", "070", "074", "071", "074", "330", "352", "335", "350", "230", "270", "240", "160" 
-      ],
-      "rot-cas":[ 
-        "025", "000", "340", "345", "340", "250", "255", "250", "255", "155", "170", "160", "065", "290", "290", "290", "290", "220", "170", "160", "165", "160", "070", "075", "070", "335", "180", "150", "170", "160", "165", "070", "075", "070", "073", "330", "350", "340", "245", "095", "070", "075", "073", "073", "330", "350", "340", "345", "250", "255", "250", "160" 
-      ]      
-    }'),
-
-    -- trayectoria armónica
-    ( 'hol','kin_arm', '{ 
-
-      "sec":{ 
-        "tab": "kin_arm", 
-        "style":"grid-gap: .3rem;" 
-      }, 
-
-      "pos":{ 
-        "style":"width: 1.2rem; height: 1.2rem;" 
-      }
-
-    }'),
-    ( 'hol','kin_arm_tra','{ 
-
-      "tra":{
-        "tab": "kin_arm_tra", 
-        "style":"border-radius: 50%;" 
-      },      
-
-      "pos":{ 
-        "style":"width: 7.8rem; height: 7.8rem;" 
-      } 
-      
-    }'),
-    ( 'hol','kin_arm_cel','{
-
-      "cel":{ 
-        "tab": "kin_arm_cel", 
-        "style":"grid-gap: .05rem;" 
-      },
-
-      "pos":{ 
-        "style":"width: 18rem; height: 18rem;" 
-      } 
-      
-    }'),
-
+    }', NULL, NULL),
     -- nave del tiempo
     ( 'hol','kin_nav', '{ 
 
-      "sec":{ 
-        "tab": "kin_nav", 
-        "style":"grid-gap: .15rem;" 
-      }, 
+      "sec":{ "tab": "kin_nav", "style":"grid-gap: .15rem;" }, 
 
-      "pos":{ 
-        "style":"width: 1.1rem; height: 1.1rem;" 
-      },
-      "pos-00":{ 
-        "style":"font-size:.5rem" 
-      }
+      "pos":{ "style":"width: 1.1rem; height: 1.1rem;" },
       
-    }'),
+      "pos-00":{ "style":"font-size:.5rem" }
+      
+    }', '{
+      "sec":{ "ima": "", "bor": 0, "col": 1, "cas":1 },
+      "pos":{ "ima": "hol.kin.ide", "col": "", "num": "" }
+    }', '[ "par", "pul" ]'
+    ),
     ( 'hol','kin_nav_cas', '{ 
 
-      "cas":{ 
-        "tab": "kin_nav_cas",
-        "style":"padding: .2rem;"
-      },
+      "cas":{ "tab": "kin_nav_cas", "style":"padding: .2rem;" },
 
-      "pos":{ 
-        "style":"width: 4rem; height: 4rem;" 
-      }
+      "pos":{ "style":"width: 4rem; height: 4rem;" }
       
-    }'),
+    }', NULL, NULL),
     ( 'hol','kin_nav_ond', '{ 
 
-      "ond":{ 
-        "tab": "kin_nav_ond", 
-        "style":"grid-gap: .2rem;" 
-      }, 
+      "ond":{ "tab": "kin_nav_ond", "style":"grid-gap: .2rem;" }, 
       
-      "pos":{ 
-        "style":"width: 9rem; height: 9rem;" 
-      } 
+      "pos":{ "style":"width: 9rem; height: 9rem;" } 
       
-    }')
+    }', NULL, NULL),
+    -- estacion galáctica
+    ( 'hol','kin_cro', '{ 
+
+      "sec":{ "tab": "kin_cro", "style":"grid-gap: .3rem;" },
+
+      "pos":{ "style":"width: 1rem; height: 1rem;" }
+
+    }', '{
+      "sec":{ "ima": "", "bor": 0, "cas": 1, "orb": 1, "ond": 1, "cro": 1, "ond-col":1 },				
+      "pos":{ "ima": "hol.sel.ide", "col": "", "num": "" }
+    }', '[ "par", "pul" ]'
+    ),
+    ( 'hol','kin_cro_est', '{
+
+      "est":{ "tab": "kin_cro_est", "style":"margin: 0 1rem; grid-gap: .2rem" },
+
+      "pos":{ "style":"width: 2.8rem; height: 2.8rem;" }
+
+    }', NULL, NULL),
+    ( 'hol','kin_cro_ele', '{ 
+
+      "ele":{ "tab": "kin_cro_ele" },
+
+      "pos":{ "style":"width: 13rem; height: 13rem;" },
+      "pos-0":{ "style":"width: 150%; height: 150%; color: black;" },
+
+      "rot-ond":[ "147", "070", "074", "071", "074", "330", "352", "335", "350", "230", "270", "240", "160", "140", "070", "074", "071", "074", "330", "352", "335", "350", "230", "270", "240", "160", "140", "070", "074", "071", "074", "330", "352", "335", "350", "230", "270", "240", "160", "140", "070", "074", "071", "074", "330", "352", "335", "350", "230", "270", "240", "160" ],
+
+      "rot-cas":[ "025", "000", "340", "345", "340", "250", "255", "250", "255", "155", "170", "160", "065", "290", "290", "290", "290", "220", "170", "160", "165", "160", "070", "075", "070", "335", "180", "150", "170", "160", "165", "070", "075", "070", "073", "330", "350", "340", "245", "095", "070", "075", "073", "073", "330", "350", "340", "345", "250", "255", "250", "160" ]
+    }', NULL, NULL),
+    -- trayectoria armónica
+    ( 'hol','kin_arm', '{ 
+
+      "sec":{ "tab": "kin_arm", "style":"grid-gap: .3rem;" }, 
+
+      "pos":{ "style":"width: 1.2rem; height: 1.2rem;" }
+
+    }', '{
+      "sec":{ "ima": "", "bor": 0, "arm": 1 },
+      "pos":{ "ima": "hol.sel.ide", "col": "", "num": "" }
+    }', '[ "par", "pul" ]'),
+    ( 'hol','kin_arm_tra','{ 
+
+      "tra":{ "tab": "kin_arm_tra", "style":"border-radius: 50%;" },
+
+      "pos":{ "style":"width: 7.8rem; height: 7.8rem;" }
+      
+    }', NULL, NULL),
+    ( 'hol','kin_arm_cel','{
+
+      "cel":{ "tab": "kin_arm_cel", "style":"grid-gap: .05rem;" },
+
+      "pos":{ "style":"width: 18rem; height: 18rem;" } 
+      
+    }', NULL, NULL)
   ;
   -- x365 : giro solar
   DELETE FROM `_api`.`tab` WHERE `esq`='hol' AND `est` LIKE 'psi%';
   INSERT INTO `_api`.`tab` VALUES
+    -- anillo solar
+    ( 'hol','psi_ban', '{
 
-    ( 'hol','psi', '{
+      "sec":{ "tab": "psi", "style": "grid-gap: .5rem;" },
 
-      "sec":{ 
-        "tab": "psi",
-        "style": "grid-gap: .5rem;"
-      },
+      "pos":{ "style": "width: 1.2rem; height: 1.2rem;" }   
 
-      "pos":{
-        "style": "width: 1.2rem; height: 1.2rem;"
-      }   
-
-    }'),
-    
-    ( 'hol','psi_ani', '{
-
-      "sec":{ 
-        "tab": "psi_ani"
-      } 
-      
-    }'),
-    
-    ( 'hol','psi_lun', '{
-
-      "lun":{ 
-        "tab": "psi_lun"
-      },
-
-      "pos":{
-        "style": "width: 5rem; height: 5rem; max-height: 5rem;"
-      }
-      
-    }'),
-    
+    }', '{
+      "sec":{ "ima": "", "bor": 0 },      
+      "pos":{ "ima": "hol.kin.ide", "col": "", "num": "" }
+    }', '[ "par", "pul" ]'),
+    -- 4 estaciones
     ( 'hol','psi_est', '{ 
 
-      "sec":{ 
-        "tab": "psi_est"
-      },
+      "sec":{ "tab": "psi_est" },
 
-      "pos":{
-        "style": "width: .855rem; height: .855rem;"
-      }
+      "pos":{ "style": "width: .855rem; height: .855rem;" }
 
-    }'),
+    }', '{
+      "sec":{ "ima": "", "bor": 0 },
+      "pos":{ "ima": "hol.rad.ide", "col": "", "num": "" }
+    }', '[ "par", "pul" ]'),
+    -- 13 lunas
+    ( 'hol','psi_lun', '{
 
+      "lun":{ "tab": "psi_lun" },
+
+      "pos":{ "style": "width: 5rem; height: 5rem; max-height: 5rem;" }
+      
+    }', '{
+      "sec":{ "ima": "", "bor": 0, "lun": 1, "hep": 1, "rad": 1 },
+      "pos":{ "ima": "hol.kin.ide", "col": "", "num": "" }      
+    }', '[ "par" ]'),    
+    -- 7 días
     ( 'hol','psi_hep', '{ 
 
-      "sec":{ 
-        "tab": "psi_hep"
-      }
+      "sec":{ "tab": "psi_hep" }
       
-    }'),
-
+    }', NULL, NULL),
+    -- banco-psi
     ( 'hol','psi_tzo', '{
 
-      "sec":{ 
-        "tab": "psi_tzo", 
-        "style": "grid-template-columns: repeat(4,1fr);" 
-      },
+      "sec":{ "tab": "psi_tzo", "style": "grid-template-columns: repeat(4,1fr);" },
 
-      "tzo-1":{ "tzo":"1" },
-      "tzo-2":{ "tzo":"2" },
-      "tzo-3":{ "tzo":"3" },
-      "tzo-4":{ "tzo":"4" },
-      "tzo-5":{ "tzo":"5", "style":"transform: rotate(180deg);" },
-      "tzo-6":{ "tzo":"6", "style":"transform: rotate(180deg);" },
-      "tzo-7":{ "tzo":"7", "style":"transform: rotate(180deg);" },
-      "tzo-8":{ "tzo":"8", "style":"transform: rotate(180deg);" },
+      "tzo-5":{ "style":"transform: rotate(180deg);" },
+      "tzo-6":{ "style":"transform: rotate(180deg);" },
+      "tzo-7":{ "style":"transform: rotate(180deg);" },
+      "tzo-8":{ "style":"transform: rotate(180deg);" },
 
-      "pos":{ 
-        "style":"width: 1rem; height: 1rem;" 
-      }
+      "pos":{ "style":"width: .95rem; height: .95rem;" }
       
-    }')
+    }', '{
+      "sec":{ "ima": "", "bor": 0 },
+      "pos":{ "ima": "hol.kin.ide", "col": "hol.kin.pag" }
+    }', '[ "par" ]')
   ;
   -- x441 : sincronotron
   DELETE FROM `_api`.`tab` WHERE `esq`='hol' AND `est` LIKE 'umb%'

@@ -1,6 +1,8 @@
 
-html {
-  font-family: var(--tex);
+@import url('https://fonts.googleapis.com/css2?family=Lora');
+
+html {  
+  font-family: 'Lora', 'Book Antiqua', Georgia;  
 }
 
 /* 
@@ -8,112 +10,111 @@ html {
 */
 body {
   width: 100vw;
-  min-height: 100vh;
-  margin: 0;
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: min-content min-content auto;
   background: center/cover no-repeat url('../_/fon/_1.jpg');  
-  font-size: 12px;
+  margin: 0;  
+  font-size: 13px;
   color: var(--let_tex);
 }
 
 /* 
-Cabecera 
+  Menú
 */
-body > header {
-  width: 100%;
-  height: 7vh;  
-  z-index: 100;
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: stretch;
-  background-color: var(--fon_cab);
-}
-
-/* 
-Pantalla Principal
-*/
-body > main {
-  width: 100%;
+body > aside {
+  grid-row: 1;
   height: 100vh;
-  overflow: scroll;
   display: flex;
-  flex-flow: row nowrap;
-  background-color: var(--fon_art);
-}
-body > header + main {
-  height: 93vh;
+  flex-direction: column;
+  justify-content: space-between;    
+  background-color: var(--fon_sec);  
 }
 
-/* 
-Paneles 
-*/
-body > main > aside {  
-  position: sticky;  
-  top: 0;
-  display: flex;
-  flex-flow: row nowrap;
-  min-width: fit-content;
-  background-color: var(--fon_art);
+/* botonera : inicio + paneles + pantallas */
+body > aside.ope {
+  grid-column: 1;
+  padding: 0 .5rem;
 }
-/* operadores: índices, tablero */
-body > main > aside > [ide] {
+
+/* nagegadores */
+body > aside.nav {
+  grid-column: 2;
   overflow: auto;
-  width: 25rem;
-  height: 90vh;
-  padding: .5rem;
+  padding: .25rem;
 }
-body > main > aside > [ide] h2 {
+body > aside.nav > nav {
+  width: 400px;
+}
+body > aside.nav h2 {
   text-align: center;
 }
 
 /* 
-Contenido 
+  Principal
 */
+body > main {
+  grid-row: 1;
+  grid-column: 3;
+  overflow: auto;
+  padding: .5rem;
+}
+
+/* contenido por articulos */
 body > main > article {
   max-width: 55rem;
   height: max-content;
-  padding: 0 2rem 2rem;  
-  margin: 0 auto;
+  padding: 0 2rem 2rem;
+  margin: auto;
   text-align: center;
-  font-size: 1.01rem;
-  background-color: var(--fon_cab);
-}
-/* tableros */
-body > main > article [tab] {
-  font-size: .7rem;
+  border-radius: 1rem;
+  border: 1px solid var(--bor_sel);  
+  background-color: var(--fon_sec);
 }
 
-/*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-/*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-/*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-/*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/* 
+sidebar 
+*/
+body > aside.pan {
+  grid-row: 1;
+  grid-column: 4;
+  overflow: auto;
+}
+
+/* 
+pie de página
+*/
+body > footer {
+  grid-row: 2;
+  grid-column: 1 / sp;
+  padding: .5rem;
+}
 
 /*
-Sistema
+  Pantallas
 */
-[id="win"] {  
-  width: 100vw;
-  height: 100vh;
-  position: absolute;
-  top: 0;
+[id="win"] {
   z-index: 9999;
+  grid-row: 1 / sp;
+  grid-column: 1 / sp;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: rgba(0,0,0,.8);
 }
-#win > article {
+
+#win > article {  
+  height: 80vh;
   width: 100%;
   max-width: 50rem;
-  height: 95vh;
-  display: flex;
-  flex-direction: column;
-  background-color: var(--fon_cab);
+  overflow: hidden;
+  background-color: var(--fon_sec);
   border: 1px solid var(--col_azu);
   border-radius: .5rem;
 }
-#win > article > header {  
-  width: 100%;
+#win > article > header {    
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-between;
@@ -128,23 +129,25 @@ Sistema
   padding: 0 1rem;
 }
 
-#win > article > header + * :is( fieldset, nav.pes > a, nav.pes + * ){
-  background-color: transparent;
-}
-
-/* /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
-/* /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 /* /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 /* /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 
 @media ( max-width: 1000px ){
 
-  main > aside > *[ide] {
-    position: absolute;
-    left: 2rem;
-    background-color: var(--fon_cab);    
+  body {
+    grid-template-columns: min-content auto;
   }
 
+  body > main {
+    grid-column: 2;
+  }
+
+  body > aside.nav {
+    position: absolute;
+    left: 2rem;
+    top: 0;
+    background-color: var(--fon_sec);
+  }
 }
 
 /* /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
@@ -848,11 +851,6 @@ Fondos : imagen + color + icono ////////////////////////////////////////////////
 .fon-neg { background-color: var(--col_neg) !important; }
 .fon-gri { background-color: var(--col_gri) !important; }
 
-/* documento */
-.fon-doc_cab{ background-color: var(--fon_cab) !important; }
-.fon-doc_art{ background-color: var(--fon_art) !important; }
-.fon-doc_val{ background-color: var(--fon_foc) !important; }
-
 /* color por agrupamiento */
 [class*='fon_col-'],
 [class*='fon_col-']:not([class*='fon_col-1-']) > n{
@@ -930,13 +928,19 @@ Letra
   text-decoration: underline !important;
 }
 .let-tit {
-  font-weight: bold !important;
+  /* font-weight: bold !important; */
   font-style: italic !important;
   text-decoration: underline !important;
 }
 .let-luz {
   text-shadow: 0 0 5px;
 }
+
+.let_col-ide { color: var(--let_ide); }
+.let_col-val { color: var(--let_val); }
+.let_col-err { color: var(--let_err); }
+.let_col-tex { color: var(--let_tex); }
+.let_col-num { color: var(--let_num); }
 
 .let-1 {
   font-size: .5rem !important;

@@ -7,14 +7,14 @@
   $win = [
     'ico'=>"eje",
     'nom'=>"Administrador del Sistema",
-    'art'=> [ 'style'=>"max-width: 75rem;" ],
+    'art'=> [ 'style'=>"max-width: 55rem;" ],
     'htm'=>"",
   ];
 
   ob_start();
   ?>
 
-  <?= _doc_nav::val('bar',[
+  <?= _doc::nav('bar',[
     'aja' => [ 'nom'=>"Ajax",   'ele'=>['onclick'=>"_adm('aja',this);"] ],
     'ico' => [ 'nom'=>"Íconos", 'ele'=>['onclick'=>"_adm('ico',this);"] ],
     'php' => [ 'nom'=>"PHP",    'ele'=>[ 'class'=>FON_SEL ]  ],

@@ -10,6 +10,9 @@
   // documento 
   class _doc {  
 
+    static string $IDE = "_doc-";
+    static string $EJE = "_doc.";
+
     // icono
     static function ico( string $ide, array $ele=[] ) : string {
       $_="";
@@ -170,6 +173,10 @@
       if( empty($ele['ope']['id'])  && !empty($ele['ide']) ){
         $ele['ope']['id'] = $ele['ide'];
       }
+      // aseguro valor
+      if( isset($ele['val']) && !isset($ele['ope']['val']) ){
+        $ele['ope']['val'] = $ele['val'];
+      }
       // nombre en formulario
       if( empty($ele['ope']['name']) ){
         $ele['ope']['name'] = $atr;
@@ -232,7 +239,88 @@
         ".( !empty($agr['htm_fin']) ? $agr['htm_fin'] : '' )."      
       </div>
       ";   
-    }  
+    }
+    // pestañas con secciones : nav + * > ...[nav="ide"]
+    static function nav( string $tip, array $dat, array $ele = [], ...$opc ) : string {
+      foreach( ['nav','val'] as $i ){ if( !isset($ele[$i]) ) $ele[$i] = []; }
+      $_ide = self::$IDE."nav";
+      $_eje = self::$EJE."nav";
+      $_ = "";
+      
+      _ele::cla($ele['nav'], $tip, 'ini');
+
+      $_ .= "
+      <nav"._htm::atr($ele['nav']).">";
+    
+      foreach( $dat as $ide => $val ){
+
+        if( is_object($val) ) $val = _obj::nom($val);
+
+        if( isset($val['ide']) ) $ide = $val['ide'];
+
+        $ele = isset($val['ele']) ? _obj::dec($val['ele'],[],'nom') : [];
+
+        $ele['eti'] = 'a';
+
+        if( !isset($val['ico']) && empty($ele['htm']) && !empty($val['nom']) ) $ele['htm'] = $val['nom'];
+
+        _ele::eje($ele,'cli',"{$_eje}(this,'$ide'".( !empty($opc) ? ", '".implode("', '",$opc)."'" : '' ).");",'ini');
+    
+        $_ .= _htm::val($ele);
+      }$_.="
+      </nav>";
+      
+      return $_;
+    }
+    // toogles : div.val( .ico + htm_ini + htm[click] + htm_fin ) + *( ... )
+    static function tog( string | array $dat = NULL, array $ope = [] ) : string {
+      $_ide = self::$IDE."tog";
+      $_eje = self::$EJE."tog";
+      foreach( ['val','ico'] as $ele ){ if( !isset($ope[$ele]) ) $ope[$ele]=[]; }
+      
+      // contenido textual
+      if( is_string($dat) ) $dat = [ 'eti'=>"p", 'class'=>"let-tit", 'htm'=>_doc::let($dat) ];
+
+      // contenedor : icono + ...elementos          
+      _ele::eje( $dat,'cli',"$_eje(this);");
+
+      return "
+      <div"._htm::atr( _ele::cla( $ope['val'],"val nav",'ini') ).">
+      
+        "._doc::tog_ico( isset($ope['ico']) ? $ope['ico'] : NULL )."
+
+        ".( isset($ope['htm_ini']) ? _htm::val($ope['htm_ini']) : '' )."
+        
+        "._htm::val( $dat )."
+
+        ".( isset($ope['htm_fin']) ? _htm::val($ope['htm_fin']) : '' )."
+
+      </div>";
+    }// icono
+    static function tog_ico( array $ope = [] ) : string {
+      $_ = "";
+      $_ide = self::$IDE."tog";
+      $_eje = self::$EJE."tog";
+
+      return _doc::ico('ope_tog', [
+        'onclick' => "$_eje(this);".( !empty($ope['eje']) ? $ope['eje'] : '' ), 
+        'style' => !empty($ope['ocu']) ? "transform: ".ROT_OCU : ""
+      ]);
+    }// operador
+    static function tog_ver( array $ope = [] ) : string {
+      $_ide = self::$IDE."tog";
+      $_eje = self::$EJE."tog";
+      $_eje_val = !empty($ope['eje']) ? $ope['eje'] : "$_eje(this,";
+
+      $ico_tod = [ 'eti'=>"button", 'class'=>"tam-2", 'title'=>"Expandir todos...", 'onclick'=>$_eje_val."'tod');" ];
+      $ico_nad = [ 'eti'=>"button", 'class'=>"tam-2", 'title'=>"Contraer todos...", 'onclick'=>$_eje_val."'nad');" ];
+      
+      return "
+      <fieldset class='ope'>
+        "._doc::ico('ope_tod', isset($ope['ico']) ? _ele::jun($ico_tod,$ope['ico']) : $ico_tod )."
+        "._doc::ico('ope_nad', isset($ope['ico']) ? _ele::jun($ico_nad,$ope['ico']) : $ico_nad )."        
+      </fieldset>";
+    }
   }
 
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -245,205 +333,13 @@
 
     static string $EJE = "_doc_art.";
 
-    // pantalla : #sis > article > header + section
-    static function win( string $ide, array $ope = [] ) : string {
-      foreach( ['art','cab','sec'] as $e ){ if( !isset($ope[$e]) ){ $ope[$e]=[]; } }            
-      $_ide = self::$IDE."win";
-      $_eje = self::$EJE."win";
-      $_ = "";
-            
-      // identificador
-      $ope['art']['ide'] = $ide;
-      _ele::cla($ope['art'],'dis-ocu');
-
-      $cab_ico = "";
-      if( !empty($ope['ico']) ) $cab_ico = _doc::ico($ope['ico'],['class'=>"mar_hor-1"]);
-
-      $cab_tit = "";
-      if( !empty($ope['nom']) ) $cab_tit = "<h2 style='text-decoration: none; margin:0;'>".( !empty($ope['nom']) ? $ope['nom'] : '' )."</h2>";
-
-      $_ = "
-      <article"._htm::atr($ope['art']).">
-
-        <header> 
-          {$cab_ico} 
-          {$cab_tit} 
-          "._doc::ico('eje_fin',[ 'title'=>'Cerrar', 'onclick'=>"$_eje();" ])."
-        </header>
-
-        <section"._htm::atr($ope['sec']).">
-
-          ".( !empty($ope['htm'] && is_string($ope['htm']) ) ? $ope['htm'] : '' )."
-
-        </section>
-
-      </article>";
-      
-      return $_;
-    }  
-
-    // genero articulo por seccion principal : main > aside + article
-    static function sec( string | array $dat, array $ope = [], array $ele = [] ) : string {
-      $_ = "";
-
-      // contenido directo
-      if( is_string($dat) ){
-    
-        $_ .= $dat;
-      }
-      // listado de articulos
-      else{
-        foreach( $dat as $ide => $art ){
-          
-          if( isset($art['htm'])){ $art['ide'] = $ide; $_ .= "
-            <article"._htm::atr($art).">
-              {$art['htm']}
-            </article>";
-          }
-        }
-      }          
-
-      return $_;
-    }
-
-    // genero articulo por menu de cabecera
-    static function val( array $nav, string $esq, string $cab ) : string {
-      $_ = "";      
-
-      $agr = _htm::dat($nav->ope);
-
-      $_art = _dat::var("_api.doc_art",[ 'ver'=>"`esq`='{$esq}' AND `cab`='{$cab}'", 'ord'=>"`pos` ASC", 'ele'=>"ope" ]);
-
-      $_ = "
-      <article class='inf'>";
-        // introduccion
-        if( !empty($agr['htm_ini']) ){
-          $_ .= $agr['htm_ini'];
-        }
-        else{ $_ .= "
-          <h1>{$nav->nom}</h1>";
-        }
-        // listado de contenidos
-        if( !empty($_art) ){ $_ .= "
-  
-          <nav class='lis'>";
-            foreach( $_art as $art ){
-              $art_url = "<a href='".SYS_NAV."/{$art->esq}/{$art->cab}/{$art->ide}'>"._doc::let($art->nom)."</a>";
-              if( !empty($art->ope['tex']) ){
-                $_ .= "            
-                <div class='val nav'>
-                  "._doc_ope::tog_ico()."
-                  {$art_url}
-                </div>
-                <div class='dat'>
-                  "._htm::val($art->ope['tex'])."
-                </div>
-                ";
-              }else{
-                $_ .= $art_url;
-              }
-              
-            }$_.="
-          </nav>";
-        }
-        // pie de pagina
-        if( !empty($agr['htm_fin']) ){
-          $_ .= $agr['htm_fin'];
-        }
-        $_ .= "
-      </article>";          
-
-      return $_;
-    }        
-
-    // genero secciones del artículo por indices
-    static function nav( string $ide ) : string {
-
-      $_ = "";
-
-      $_ide = explode('.',$ide);
-
-      $_nav = _dat::var("_api.doc_nav",[ 'ver'=>"`esq`='{$_ide[0]}' AND `cab`='{$_ide[1]}' AND `ide`='{$_ide[2]}'", 'nav'=>'pos' ]);
-
-      if( isset($_nav[1]) ){
-
-        foreach( $_nav[1] as $nv1 => $_nv1 ){ $_ .= "
-          
-          <?=_doc_ope::tog(['eti'=>'h2','id'=>'_{$nv1}-','htm'=>'"._doc::let($_nv1->nom)."'])?>
-          <section>";
-            if( isset($_nav[2][$nv1]) ){
-              foreach( $_nav[2][$nv1] as $nv2 => $_nv2 ){$_ .= "
-  
-            <?=_doc_ope::tog(['eti'=>'h3','id'=>'_{$nv1}-{$nv2}-','htm'=>'"._doc::let($_nv2->nom)."'])?>
-            <section>";
-              if( isset($_nav[3][$nv1][$nv2]) ){
-                foreach( $_nav[3][$nv1][$nv2] as $nv3 => $_nv3 ){$_ .= "
-  
-              <?=_doc_ope::tog(['eti'=>'h4','id'=>'_{$nv1}-{$nv2}-{$nv3}-','htm'=>'"._doc::let($_nv3->nom)."'])?>
-              <section>";
-                if( isset($_nav[4][$nv1][$nv2][$nv3]) ){
-                  foreach( $_nav[4][$nv1][$nv2][$nv3] as $nv4 => $_nv4 ){ $_ .= "
-  
-                <?=_doc_ope::tog(['eti'=>'h5','id'=>'_{$nv1}-{$nv2}-{$nv3}-{$nv4}-','htm'=>'"._doc::let($_nv4->nom)."'])?>
-                <section>";
-                  if( isset($_nav[5][$nv1][$nv2][$nv3][$nv4]) ){
-                    foreach( $_nav[5][$nv1][$nv2][$nv3][$nv4] as $nv5 => $_nv5 ){ $_ .= "
-  
-                  <?=_doc_ope::tog(['eti'=>'h6','id'=>'_{$nv1}-{$nv2}-{$nv3}-{$nv4}-{$nv5}-','htm'=>'"._doc::let($_nv5->nom)."'])?>
-                  <section>                      
-  
-                  </section>";
-                    }
-                  }$_ .= "                  
-                </section>";
-                  }
-                }$_ .= "                
-              </section>";
-                }
-              }$_ .= "              
-            </section>";
-              }
-            }$_ .= "              
-          </section>";
-        }
-      }      
-
-      return $_;
-    }
-
-    // genero glosarios por esquema
-    static function ide( string $ide, array $ele = [] ) : string {
-      
-      $_ = [];
-      $_ide = explode('.',$ide);      
-      
-      if( is_array( $tex = _dat::var('_api.doc_ide',['ver'=>"`esq`='{$_ide[0]}' AND `ide`='{$_ide[1]}'"]) ) ){
-
-        foreach( $tex as $pal ){
-          $_[ $pal->nom ] = $pal->des;
-        }
-      }
-
-      // operadores : toggle + filtro
-      if( !isset($ele['opc']) ) $ele['opc'] = [];
-
-      return _doc_lis::ite($_,$ele);
-    }
-  }
-  // Navegador : ver + cab + art + val( .bar, .pes, .ope )
-  class _doc_nav {
-
-    static string $IDE = "_doc_nav-";
-
-    static string $EJE = "_doc_nav.";
-
     // enlaces : win + pan + sec
-    static function ver( $dat, ...$opc ) : string {
-      $_ide = self::$IDE."ver";
-      $_eje = self::$EJE."ver";      
+    static function ope( $dat, ...$opc ) : string {
+      $_ide = self::$IDE."ope";
+      $_eje = self::$EJE."ope";      
       $_ = "";
 
-      foreach( ( !empty($opc) ? $opc : [ 'pan', 'sec', 'win', 'cab' ] ) as $tip ){
+      foreach( ( !empty($opc) ? $opc : [ 'nav', 'sec', 'pan', 'win' ] ) as $tip ){
 
         if( isset($dat[$tip]) ){
 
@@ -477,55 +373,45 @@
       return $_;
     }
 
-    // listado : titulo + descripcion + listado > item = [icono] + enlace
-    static function cab( array $dat, array $ope = [] ) : string {
-      foreach( ['nav','lis','ite','val'] as $i ){ if( !isset($ope[$i]) ) $ope[$i] = []; }      
-      $_ide = self::$IDE."lis";
-      $_eje = self::$EJE."lis";
+    // pantalla : #sis > article > header + section
+    static function win( string $ide, array $ope = [] ) : string {
+      foreach( ['art','cab','sec'] as $e ){ if( !isset($ope[$e]) ){ $ope[$e]=[]; } }            
       $_ = "";
-      
-      _ele::cla($ope['nav'],"lis val",'ini');
-      _ele::cla($ope['lis'],"lis ite",'ini');
-      _ele::cla($ope['ite'],"ite",'ini');
+      // identificador
+      $ope['art']['ide'] = $ide;
+      _ele::cla($ope['art'],'dis-ocu');
 
-      $_.="
-      <nav"._htm::atr($ope['nav']).">";
-        if( isset($ope['nom']) ){
-          $_.="<h2>"._doc::let($ope['nom'])."</h2>";
-        }
-        if( isset($ope['des']) ){
-          $_.="<p class='des let-4 tex_ali-cen'>"._doc::let($ope['des'])."</p>";
-        }
-        $_.="
-        <ul"._htm::atr($ope['lis']).">";
-          $ite_ico = isset($ope['ico']) ? _doc::ico( $ope['ico'], [ 'class'=>"mar_der-1" ] ) : "";
-          foreach( $dat as $pos => $ite ){
-            $ope_val = _ele::val($ope['val'],$ite);// proceso variables del item            
-            if( !isset($ope_val['htm']) ) $ope_val['htm'] = isset($ite->nom) ? $ite->nom : $pos;
-            if( !empty($ite->des) && empty($ope_val['title']) ) $ope_val['title'] = $ite->des;
-            if( empty($ope_val['href'])){
-              if( isset($ite->nav) ){
-                $ope_val['href'] = SYS_NAV."/$ite->nav";
-              }elseif( isset($ite->ide) ){
-                $ope_val['href'] = SYS_NAV."/"._tex::mod($ite->nav,'_','/');
-              } 
-            } $_ .= "
-            <li"._htm::atr($ope['ite']).">
-              {$ite_ico}
-              <a"._htm::atr($ope_val).">"._doc::let($ope_val['htm'])."</a>
-            </li>";
-          }$_.="
-        </ul>";
-        $_.="
-      </nav>";      
+      $cab_ico = "";
+      if( !empty($ope['ico']) ) $cab_ico = _doc::ico($ope['ico'],['class'=>"mar_hor-1"]);
+
+      $cab_tit = "";
+      if( !empty($ope['nom']) ) $cab_tit = "<h2 style='text-decoration: none; margin:0;'>".( !empty($ope['nom']) ? $ope['nom'] : '' )."</h2>";
+
+      $_ = "
+      <article"._htm::atr($ope['art']).">
+
+        <header"._htm::atr($ope['cab']).">
+        
+          {$cab_ico} {$cab_tit} "._doc::ico('eje_fin',[ 'title'=>'Cerrar', 'onclick'=>"_doc_art.ope('win');" ])."
+
+        </header>
+
+        <section"._htm::atr($ope['sec']).">
+
+          ".( !empty($ope['htm'] && is_string($ope['htm']) ) ? $ope['htm'] : '' )."
+
+        </section>
+
+      </article>";
+      
       return $_;
     }
 
-    // articulo : nav + article > ...section[id]
-    static function art( array $dat, array $ele = [], ...$opc ) : string {
+    // indices : nav + article > ...section[id]
+    static function nav( array $dat, array $ele = [], ...$opc ) : string {
       foreach( ['ope','nav','lis'] as $i ){ if( !isset($ele[$i]) ) $ele[$i] = []; }
-      $_ide = self::$IDE."art";
-      $_eje = self::$EJE."art";
+      $_ide = self::$IDE."nav";
+      $_eje = self::$EJE."nav";
       $_ = "";
 
       _ele::cla( $ele['nav'], "lis art", 'ini' );
@@ -534,14 +420,14 @@
 
       $opc_ide = in_array('ide',$opc);
       $nav_ite = " onclick=\"{$_eje}_val(this);\"";
-      $win_tog = _doc_ope::tog_ico([ 'ocu'=>1 ]);
+      $win_tog = _doc::tog_ico([ 'ocu'=>1 ]);
 
       $_ .= "
       <nav"._htm::atr($ele['nav']).">
 
         <form"._htm::atr($ele['ope']).">
 
-          "._doc_ope::tog_ver()."
+          "._doc::tog_ver()."
 
           "._doc_val::ver('tex',[ 'cue'=>0, 'ele_val'=>['class'=>"anc-100"], 'eje'=>"{$_eje}_ver(this);" ])."
 
@@ -620,39 +506,193 @@
         $_.="
       </nav>";           
       return $_;
-    }
-
-    // horizontales por contenido : nav( .bar, .pes, .ope ) + * > ...[nav="ide"]
-    static function val( string $tip, array $dat, array $ele = [], ...$opc ) : string {
-      foreach( ['nav','val'] as $i ){ if( !isset($ele[$i]) ) $ele[$i] = []; }
-      $_ide = self::$IDE."val";
-      $_eje = self::$EJE."val";
+    }// listado de enlaces : titulo + descripcion + listado > item = [icono] + enlace
+    static function nav_cab( array $dat, array $ope = [] ) : string {
+      foreach( ['nav','lis','ite','val'] as $i ){ if( !isset($ope[$i]) ) $ope[$i] = []; }      
+      $_ide = self::$IDE."lis";
+      $_eje = self::$EJE."lis";
       $_ = "";
       
-      _ele::cla($ele['nav'], $tip, 'ini');
+      _ele::cla($ope['nav'],"lis val",'ini');
+      _ele::cla($ope['lis'],"lis ite",'ini');
+      _ele::cla($ope['ite'],"ite",'ini');
 
-      $_ .= "
-      <nav"._htm::atr($ele['nav']).">";
-    
-      foreach( $dat as $ide => $val ){
-
-        if( is_object($val) ) $val = _obj::nom($val);
-
-        if( isset($val['ide']) ) $ide = $val['ide'];
-
-        $ele = isset($val['ele']) ? _obj::dec($val['ele'],[],'nom') : [];
-
-        $ele['eti'] = 'a';
-
-        if( !isset($val['ico']) && empty($ele['htm']) && !empty($val['nom']) ) $ele['htm'] = $val['nom'];
-
-        _ele::eje($ele,'cli',"{$_eje}_ite(this,'$ide'".( !empty($opc) ? ", '".implode("', '",$opc)."'" : '' ).");",'ini');
-    
-        $_ .= _htm::val($ele);
-      }$_.="
+      $_.="
+      <nav"._htm::atr($ope['nav']).">";
+        if( isset($ope['nom']) ){
+          $_.="<h2>"._doc::let($ope['nom'])."</h2>";
+        }
+        if( isset($ope['des']) ){
+          $_.="<p class='des let-4 tex_ali-cen'>"._doc::let($ope['des'])."</p>";
+        }
+        $_.="
+        <ul"._htm::atr($ope['lis']).">";
+          $ite_ico = isset($ope['ico']) ? _doc::ico( $ope['ico'], [ 'class'=>"mar_der-1" ] ) : "";
+          foreach( $dat as $pos => $ite ){
+            $ope_val = _ele::val($ope['val'],$ite);// proceso variables del item            
+            if( !isset($ope_val['htm']) ) $ope_val['htm'] = isset($ite->nom) ? $ite->nom : $pos;
+            if( !empty($ite->des) && empty($ope_val['title']) ) $ope_val['title'] = $ite->des;
+            if( empty($ope_val['href'])){
+              if( isset($ite->nav) ){
+                $ope_val['href'] = SYS_NAV."/$ite->nav";
+              }elseif( isset($ite->ide) ){
+                $ope_val['href'] = SYS_NAV."/"._tex::mod($ite->nav,'_','/');
+              } 
+            } $_ .= "
+            <li"._htm::atr($ope['ite']).">
+              {$ite_ico}
+              <a"._htm::atr($ope_val).">"._doc::let($ope_val['htm'])."</a>
+            </li>";
+          }$_.="
+        </ul>";
+        $_.="
       </nav>";      
       return $_;
-    }    
+    }
+
+    // genero articulo por seccion principal : main > aside + article
+    static function sec( string | array $dat, array $ope = [], array $ele = [] ) : string {
+      $_ = "";
+
+      // contenido directo
+      if( is_string($dat) ){
+    
+        $_ .= $dat;
+      }
+      // listado de articulos
+      else{
+        foreach( $dat as $ide => $art ){
+          
+          if( isset($art['htm'])){ $art['ide'] = $ide; $_ .= "
+            <article"._htm::atr($art).">
+              {$art['htm']}
+            </article>";
+          }
+        }
+      }          
+
+      return $_;
+    }// genero articulo por menu de cabecera
+    static function sec_ver( array $nav, string $esq, string $cab ) : string {
+      $_ = "";      
+
+      $agr = _htm::dat($nav->ope);
+
+      $_art = _dat::var("_api.doc_art",[ 'ver'=>"`esq`='{$esq}' AND `cab`='{$cab}'", 'ord'=>"`pos` ASC", 'ele'=>"ope" ]);
+
+      $_ = "
+      <article class='inf'>";
+        // introduccion
+        if( !empty($agr['htm_ini']) ){
+          $_ .= $agr['htm_ini'];
+        }
+        else{ $_ .= "
+          <h1>{$nav->nom}</h1>";
+        }
+        // listado de contenidos
+        if( !empty($_art) ){ $_ .= "
+  
+          <nav class='lis'>";
+            foreach( $_art as $art ){
+              $art_url = "<a href='".SYS_NAV."/{$art->esq}/{$art->cab}/{$art->ide}'>"._doc::let($art->nom)."</a>";
+              if( !empty($art->ope['tex']) ){
+                $_ .= "            
+                <div class='val nav'>
+                  "._doc::tog_ico()."
+                  {$art_url}
+                </div>
+                <div class='dat'>
+                  "._htm::val($art->ope['tex'])."
+                </div>
+                ";
+              }else{
+                $_ .= $art_url;
+              }
+              
+            }$_.="
+          </nav>";
+        }
+        // pie de pagina
+        if( !empty($agr['htm_fin']) ){
+          $_ .= $agr['htm_fin'];
+        }
+        $_ .= "
+      </article>";          
+
+      return $_;
+    }// genero secciones del artículo por indices
+    static function sec_nav( string $ide ) : string {
+
+      $_ = "";
+
+      $_ide = explode('.',$ide);
+
+      $_nav = _dat::var("_api.doc_nav",[ 'ver'=>"`esq`='{$_ide[0]}' AND `cab`='{$_ide[1]}' AND `ide`='{$_ide[2]}'", 'nav'=>'pos' ]);
+
+      if( isset($_nav[1]) ){
+
+        foreach( $_nav[1] as $nv1 => $_nv1 ){ $_ .= "
+          
+          <?=_doc::tog(['eti'=>'h2','id'=>'_{$nv1}-','htm'=>'"._doc::let($_nv1->nom)."'])?>
+          <section>";
+            if( isset($_nav[2][$nv1]) ){
+              foreach( $_nav[2][$nv1] as $nv2 => $_nv2 ){$_ .= "
+  
+            <?=_doc::tog(['eti'=>'h3','id'=>'_{$nv1}-{$nv2}-','htm'=>'"._doc::let($_nv2->nom)."'])?>
+            <section>";
+              if( isset($_nav[3][$nv1][$nv2]) ){
+                foreach( $_nav[3][$nv1][$nv2] as $nv3 => $_nv3 ){$_ .= "
+  
+              <?=_doc::tog(['eti'=>'h4','id'=>'_{$nv1}-{$nv2}-{$nv3}-','htm'=>'"._doc::let($_nv3->nom)."'])?>
+              <section>";
+                if( isset($_nav[4][$nv1][$nv2][$nv3]) ){
+                  foreach( $_nav[4][$nv1][$nv2][$nv3] as $nv4 => $_nv4 ){ $_ .= "
+  
+                <?=_doc::tog(['eti'=>'h5','id'=>'_{$nv1}-{$nv2}-{$nv3}-{$nv4}-','htm'=>'"._doc::let($_nv4->nom)."'])?>
+                <section>";
+                  if( isset($_nav[5][$nv1][$nv2][$nv3][$nv4]) ){
+                    foreach( $_nav[5][$nv1][$nv2][$nv3][$nv4] as $nv5 => $_nv5 ){ $_ .= "
+  
+                  <?=_doc::tog(['eti'=>'h6','id'=>'_{$nv1}-{$nv2}-{$nv3}-{$nv4}-{$nv5}-','htm'=>'"._doc::let($_nv5->nom)."'])?>
+                  <section>                      
+  
+                  </section>";
+                    }
+                  }$_ .= "                  
+                </section>";
+                  }
+                }$_ .= "                
+              </section>";
+                }
+              }$_ .= "              
+            </section>";
+              }
+            }$_ .= "              
+          </section>";
+        }
+      }      
+
+      return $_;
+    }
+
+    // genero glosarios por esquema
+    static function ide( string $ide, array $ele = [] ) : string {
+      
+      $_ = [];
+      $_ide = explode('.',$ide);      
+      
+      if( is_array( $tex = _dat::var('_api.doc_ide',['ver'=>"`esq`='{$_ide[0]}' AND `ide`='{$_ide[1]}'"]) ) ){
+
+        foreach( $tex as $pal ){
+          $_[ $pal->nom ] = $pal->des;
+        }
+      }
+
+      // operadores : toggle + filtro
+      if( !isset($ele['opc']) ) $ele['opc'] = [];
+
+      return _doc_lis::ite($_,$ele);
+    }
 
   }
   // listado : ite + val + bar + atr + ope
@@ -672,7 +712,7 @@
       
       if( $tod || in_array('tog',$opc) ){        
         
-        $_ .= _doc_ope::tog_ver( $tip == 'ite' ? ['eje'=>"{$_eje}_tog(this,"] : [] );
+        $_ .= _doc::tog_ver( $tip == 'ite' ? ['eje'=>"{$_eje}_tog(this,"] : [] );
       }
       if( $tod || in_array('ver',$opc) ){
         $_ .= _doc::var('val','ver',[ 
@@ -689,7 +729,6 @@
       return $_;
     }
 
-
     // por opciones : <option value="" ...dat>
     static function opc( mixed $dat = NULL, array $ope = [], ...$opc ) : string {
       $_ = "";
@@ -698,8 +737,8 @@
 
       $ope_eti = !empty($ope['eti']) ? _obj::dec($ope['eti'],[],'nom') : [];
 
-      if( isset($ope_eti['opc']) ){
-        $opc = array_merge($opc,is_array($ope_eti['opc']) ? $ope_eti['opc'] : explode(',',$ope_eti['opc']) );
+      if( isset($ope_eti['data-opc']) ){
+        $opc = array_merge($opc,is_array($ope_eti['data-opc']) ? $ope_eti['data-opc'] : explode(',',$ope_eti['data-opc']) );
       }
 
       // etiqueta del contenedor
@@ -723,7 +762,7 @@
         }
         // items
         $ope_ite = isset($ope['ite']) ? $ope['ite'] : [];
-        if( isset($ope['gru']) ){
+        if( !empty($ope['gru']) ){
 
           foreach( $ope['gru'] as $ide => $nom ){ 
 
@@ -742,57 +781,59 @@
 
       return $_;
     }
-    static function opc_ite( mixed $dat = NULL, mixed $val = NULL, array $ope = [], ...$opc ) : string {
+    static function opc_ite( mixed $dat = [], mixed $val = NULL, array $ope = [], ...$opc) : string {
       $_ = "";
       
       $val_ite = !empty($val);
       $val_arr = $val_ite && is_array($val);
       $opc_ide = in_array('ide',$opc);
 
+      $obj_tip = FALSE;
+      foreach( $dat as $i => $v){ 
+        $obj_tip = _obj::tip($v);
+        break;
+      }
+
       foreach( $dat as $i => $v){ 
         $atr=''; 
         $htm=''; 
         $e = $ope;
-        // listado de objetos: [ {i:v},{i:v},{i:v} ]
-        if( !_obj::pos($v) && !( $obj_tip = _obj::tip($v) ) ){  
+
+        // literal
+        if( !$obj_tip ){  
           $e['value'] = $i;
           $htm = !!$opc_ide ? "{$i}: ".strval($v) : strval($v) ;
           $atr = _htm::atr($e);
         }
-        else{
-          if( $obj_tip == 'atr' ){
-            $_ide = isset($v->ide) ? $v->ide : FALSE ;
-            $_htm = isset($v->nom) ? $v->nom : FALSE ;
-            $_des = isset($v->des) ? $v->des : FALSE ;
-            $_tit = isset($v->tit) ? $v->tit : FALSE ;
-          }
-          elseif( $obj_tip == 'nom' ){
-            $_ide = isset($v['ide']) ? $v['ide'] : FALSE ;
-            $_htm = isset($v['nom']) ? $v['nom'] : FALSE ;
-            $_des = isset($v['des']) ? $v['des'] : FALSE ;
-            $_tit = isset($v['tit']) ? $v['tit'] : FALSE ;
-          }
-          else{
-            $_ide = FALSE ;
-            $_htm = "( \"".implode( '", "', $v )."\" )" ;
-            $_des = FALSE ;
-            $_tit = FALSE ;
-          }
-          
+        // elemento
+        elseif( $obj_tip == 'nom' ){
+          $e = _ele::jun($e,$v);
+          if( !isset($e['value']) ) $e['value'] = $i;
+          $htm = isset($e['htm']) ? $e['htm'] : $i;
+          $atr = _htm::atr($e);
+        }
+        // objeto ( ide + nom + des + tit )
+        elseif( $obj_tip == 'atr' ){
+          $_ide = isset($v->ide) ? $v->ide : FALSE ;
+          $_htm = isset($v->nom) ? $v->nom : FALSE ;
+          // valor
           if( isset($e['value']) ){ 
             $e['value'] = _obj::val($v,$e['value']); 
-          }else{
+          }else{ 
             $e['value'] = $i;
             if( $_ide ){ $e['value'] = $_ide; }elseif( $_htm ){ $e['value'] = $_htm; }
           }
-  
+          // titulo con descripcion
           if( !isset($e['title']) ){ 
-            if( $_des ){ $e['title'] = $_des; }elseif( $_tit ){ $e['title'] = $_tit; }
+            if( isset($v->des) ){ 
+              $e['title'] = $v->des; 
+            }elseif( isset($v->tit) ){ 
+              $e['title'] = $v->tit; 
+            }
           }
-  
-          if( isset($e['htm']) ){            
-            $htm = _obj::val($v,$e['htm']);            
-            unset($e['htm']);
+          // contenido
+          if( isset($e['htm']) ){
+            $htm = _obj::val($v,$e['htm']);
           }else{
             if( !!$opc_ide && $_ide && $_htm ){
               $htm = "{$_ide}: {$_htm}";
@@ -802,15 +843,20 @@
               $htm = $_ide; 
             }
           }
-          $atr = _htm::atr($e,$v);
+          $atr = _htm::atr($e,$v);            
+        }// por posiciones
+        else{
+          $htm = "( \"".implode( '", "', $v )."\" )" ;
+          $atr = _htm::atr($e);
         }
         // agrego atributo si está en la lista
         if( $val_ite ){ 
           if( $val_arr ){
-            if( in_array($e['value'],$val) ) 
-              $atr.=" selected='1'";
-          }elseif( $val == $e['value'] ){
-            $atr.=" selected='1'";
+            if( in_array($e['value'],$val) ) $atr .= " selected";
+          }
+          elseif( $val == $e['value'] ){
+
+            $atr .= " selected";
           }
         }
         $_ .= "<option{$atr}>{$htm}</option>";
@@ -818,7 +864,7 @@
       return $_;
     }    
 
-    // por items : dl, ul, ol
+    // por posicion : dl, ul, ol
     static function ite( array $dat, array $ope = [] ) : string {
       foreach( ['lis','ite','val'] as $i ){ if( !isset($ope[$i]) ) $ope[$i]=[]; }
       $_ide = self::$IDE."ite";
@@ -827,8 +873,8 @@
 
       // operador
       if( isset($ope['opc']) ){
-        $_ .= _doc_lis::ope('ite', _lis::ite($ope['opc']), $ope);
-      }      
+        $_ .= _doc_lis::ope('ite', $ope['opc'] = _lis::ite($ope['opc']), $ope);
+      }
 
       // por punteo o numerado
       if( _obj::pos($dat) ){
@@ -876,6 +922,11 @@
           $niv++;
           $_.="
           <$eti data-niv='$niv'>";
+          if( isset($ope['opc']) ){
+            $opc = [];
+            if( in_array('tog_dep',$ope['opc']) ) $opc []= "tog";
+            $_ .= "<li>"._doc_lis::ope('ite',$opc,$ope)."</li>";
+          }
           foreach( $val as $ide => $val ){
             $_ .= _doc_lis::ite_pos( $niv, $ide, $val, $ope, $eti );
           }$_.="
@@ -886,7 +937,7 @@
       return $_;
     }
 
-    // por valores : ul > ...li > .ico + .val[tex-tit]
+    // por valores : ul > ...li > .val(.ico + tex-tit) + lis/htm
     static function val( array $dat, array $ope = [] ) : string {
       foreach( ['lis','ite','val','dep','ope'] as $e ){ if( !isset($ope[$e]) ){ $ope[$e]=[]; } }
       $_ide = self::$IDE."val";
@@ -897,7 +948,8 @@
       _ele::cla($ope['lis'],"lis",'ini');
       _ele::cla($ope['ite'],"ite",'ini');
       _ele::cla($ope['dep'],"lis",'ini');
-      _ele::cla($ope['ope'],"ite",'ini');      
+      _ele::cla($ope['ope'],"ite",'ini');
+      
       // operadores
       if( isset($ope['opc']) ){
         $_ .= _doc_lis::ope('val', _lis::ite($ope['opc']), $ope);
@@ -918,25 +970,35 @@
       return $_;
     }    
     static function val_pos( int $niv, int | string $ide, string | array $val, array $ope ) : string {
+      $val_lis = is_array($val);
+      $ope_ite = $ope['ite'];
+      if( !$val_lis ) _ele::cla($ope_ite,"sep");
       $_ = "
-      <li"._htm::atr( isset($ope["ite-$niv"]) ? _ele::jun($ope['ite'],$ope["ite-$niv"]) : $ope['ite'] ).">
+      <li"._htm::atr( isset($ope["ite-$niv"]) ? _ele::jun($ope_ite  ,$ope["ite-$niv"]) : $ope_ite  ).">
 
-        ".( $val_lis = is_array($val) ? _doc_ope::tog( isset($val['ite']) ? $val['ite'] : $ide, $ope ) : $val );
+        ".( $val_lis ? _doc::tog( isset($val['ite']) ? $val['ite'] : $ide, $ope ) : $val );
         
         if( $val_lis ){
           // sublista
           if( isset($val['lis']) ){
-
             $ope['dep']['data-niv'] = $niv;
             $_ .= "
             <ul"._htm::atr( isset($ope["lis-$niv"]) ? _ele::jun($ope['dep'],$ope["lis-$niv"]) : $ope['dep'] ).">";
+
             if( is_array($val['lis'])  ){
-
-              foreach( $val['lis'] as $ide => $val ){
-
-                $_ .= _doc_lis::val_pos( $niv+1, $ide, $val, $ope );
+              // operador por dependencias : 1° item de la lista
+              if( isset($ope['opc'])){
+                $opc = [];
+                foreach( $val['lis'] as $i => $v ){ $lis_dep = is_array($v); break; }                
+                if( in_array('tog_dep',$ope['opc']) && $lis_dep ) $opc []= "tog";
+                if( !empty($opc) ) $_ .= "
+                <li>"._doc_lis::ope('val',$opc,$ope)."</li>";
               }
-            }
+              foreach( $val['lis'] as $i => $v ){
+
+                $_ .= _doc_lis::val_pos( $niv+1, $i, $v, $ope );
+              }
+            }// listado textual
             elseif( is_string($val['lis']) ){
 
               $_ .= $val['lis'];
@@ -1002,65 +1064,7 @@
       </form>";
       return $_;
     }
-
   }
-  // operadores : toggles + valores
-  class _doc_ope {
-
-    static string $IDE = "_doc_ope-";
-    static string $EJE = "_doc_ope.";
-
-    // toogles : div.val( .ico + htm_ini + htm[click] + htm_fin ) + *( ... )
-    static function tog( string | array $dat = NULL, array $ope = [] ) : string {
-      $_ide = self::$IDE."tog";
-      $_eje = self::$EJE."tog";
-      foreach( ['val','ico'] as $ele ){ if( !isset($ope[$ele]) ) $ope[$ele]=[]; }
-      
-      // contenido textual
-      if( is_string($dat) ) $dat = [ 'eti'=>"p", 'class'=>"let-tit", 'htm'=>_doc::let($dat) ];
-
-      // contenedor : icono + ...elementos          
-      _ele::eje( $dat,'cli',"$_eje(this);");
-
-      return "
-      <div"._htm::atr( _ele::cla( $ope['val'],"val nav",'ini') ).">
-      
-        "._doc_ope::tog_ico( isset($ope['ico']) ? $ope['ico'] : NULL )."
-
-        ".( isset($ope['htm_ini']) ? _htm::val($ope['htm_ini']) : '' )."
-        
-        "._htm::val( $dat )."
-
-        ".( isset($ope['htm_fin']) ? _htm::val($ope['htm_fin']) : '' )."
-
-      </div>";
-    }// icono
-    static function tog_ico( array $ope = [] ) : string {
-      $_ = "";
-      $_ide = self::$IDE."tog";
-      $_eje = self::$EJE."tog";
-
-      return _doc::ico('ope_tog', [
-        'onclick' => "$_eje(this);".( !empty($ope['eje']) ? $ope['eje'] : '' ), 
-        'style' => !empty($ope['ocu']) ? "transform: ".ROT_OCU : ""
-      ]);
-    }// operador
-    static function tog_ver( array $ope = [] ) : string {
-      $_ide = self::$IDE."tog";
-      $_eje = self::$EJE."tog";
-      $_eje_val = !empty($ope['eje']) ? $ope['eje'] : "$_eje(this,";
-
-      $ico_tod = [ 'eti'=>"button", 'class'=>"tam-2", 'title'=>"Expandir todos...", 'onclick'=>$_eje_val."'tod');" ];
-      $ico_nad = [ 'eti'=>"button", 'class'=>"tam-2", 'title'=>"Contraer todos...", 'onclick'=>$_eje_val."'nad');" ];
-      
-      return "
-      <fieldset class='ope'>
-        "._doc::ico('ope_tod', isset($ope['ico']) ? _ele::jun($ico_tod,$ope['ico']) : $ico_tod )."
-        "._doc::ico('ope_nad', isset($ope['ico']) ? _ele::jun($ico_nad,$ope['ico']) : $ico_nad )."        
-      </fieldset>";
-    }
-  }
-
   // datos : valores( nom + des + ima ) + seleccion( col + ima + tex + num + fec ) + opciones( esq + est + atr + val ) + imagen( ide + fic )
   class _doc_dat {
 
@@ -1109,8 +1113,9 @@
       }    
 
       return $_;
-    }// valor por seleccion ( esq.est.atr ) : texto, variable, icono, ficha, colores, html
-    static function val_ver( string $tip, string $ide, mixed $dat, array $ele = [] ) : string {
+    }
+    // valor por seleccion ( esq.est.atr ) : texto, variable, icono, ficha, colores, html
+    static function ver( string $tip, string $ide, mixed $dat, array $ele = [] ) : string {
       $_ = "";
       // proceso estructura
       extract( _dat::ide($ide) );
@@ -1196,164 +1201,157 @@
 
       return $_;
     }
-
-    // selectores de estructuras / valores
-    static function opc( string $tip, string $ide, mixed $ope = [], ...$opc ) : string {
+    // selector por operador : ide = atributo ? filtro + color + imagen + texto + numeros + fechas
+    static function opc( string $ide, mixed $dat, array $ope = [], ...$opc ) : string {
       $_ = "";
-      $_ide = self::$IDE;
-      $_eje = self::$EJE;            
-
-      extract( _dat::ide($ide) );
-
-      switch( $tip ){
-      // esquema
-      case 'esq': break;
-      // estructura
-      case 'est': break;
-      // atributo
-      case 'atr': break;
-      // valor
-      case 'val': break;
-      // operador por variable
-      case 'ope':
-        $ele_ope = isset($ope['ope']) ? $ope['ope'] : [];
-        
-        if( !empty( _api::var('doc',$esq,$est,$atr) ) ){
-
-          // esquemas => estructuras
-          $dat = [];
-          if( isset( $ele_ope['dat'] ) ){
-            $dat = $ele_ope['dat'];
-            unset($ele_ope['dat']);
-            if( is_string($dat) || _obj::pos($dat) ){
-              $ide = is_string($dat) ? explode('.',$dat) : $dat;
-              $dat = [ $ide[0] => [ $ide[1] ] ];
-            }
-          }
-          // atributos por estructuras : filtro + color + imagen + texto + numeros + fechas
-          $dat_atr = isset($ele['dat_atr']) ? $ele['dat_atr'] : $atr;
-          
-          // aseguro seleccion
-          $val = "";
-          if( isset($ele['val']) ){
-            $val = $ele['val'];
-          }
-          elseif( isset($ele_ope['val']) ){
-            $val = $ele_ope['val'];
-            unset($ele_ope['val']);
-          }
-
-          $_opc = function( $esq, $est, $ide, $val, ...$opc ) : string {// genero opciones y agrupo por titulo de estructura
-            $_ = "";
-            // atributos parametrizados
-            if( ( $dat_opc_ide = _dat::est_ope($esq,$est,$ide) ) && is_array($dat_opc_ide) ){
-    
-              // recorro atributos + si tiene el operador = agrego la opcion      
-              foreach( $dat_opc_ide as $atr ){
-    
-                if( !empty( $_atr = _dat::atr($esq,$est,$atr) ) ){
-    
-                  $eti = [ 'value' => "{$esq}.{$est}.{$atr}", 'dat'=>"{$esq}." ];
-    
-                  if( !empty($_atr->var['dat']) ){
-                    $eti['dat'] = $_atr->var['dat']; 
-                  }else{ 
-                    $eti['dat'] .= _dat::atr_est($esq,$est,$atr);
-                  }
-    
-                  if( $val == $eti['value'] ) $eti['selected'] = "1";
-    
-                  $_ .= "
-                  <option"._htm::atr($eti).">{$_atr->nom}</option>";
-                }
-              }
-              if( in_array('gru',$opc) && !empty($_) ){
-                $_est = _dat::est($esq,$est); $_ = "
-                <optgroup ide='{$_est->ide}' label='".(isset($_est->nom) ? $_est->nom : $est)."'>
-                  {$_}
-                </optgroup>";
-              }      
-            }
-            return $_;
-          };
-
-          $htm_est = "";
-          $htm_atr = "";
-          $htm_val = "";
-          // selector de estructura
-          if( in_array('est',$opc) ){
-
-            foreach( $dat as $esq_ide => $est_lis ){
-              // recorro estructura/s por esquema
-              foreach( $est_lis as $est_ide ){
-
-                $dat_opc_est = _dat::est_ope($esq_ide,$est_ide,'est');
-
-                foreach( $dat_opc_est as $dep_ide ){ 
-
-                  $htm_atr .= $_opc( $esq_ide, $dep_ide, $dat_atr, $val ); 
-                }
-              }
-            }
-          }// selector de atributo con/sin agrupaciones
-          else{
-            foreach( $dat as $esq_ide => $est_lis ){
-              // recorro estructura/s por esquema
-              foreach( $est_lis as $est_ide ){
-                // agrupo por estructura dependiente
-                if( $dat_opc_est = _dat::est_ope($esq_ide,$est_ide,'est') ){
-
-                  foreach( $dat_opc_est as $dep_ide ){ 
-                    $htm_atr .= $_opc( $esq_ide, $dep_ide, $dat_atr, $val, 'gru' ); 
-                  }
-                }// atributos por dependencia relacional de una estructura
-                else{
-                  $htm_atr .= $_opc( $esq_ide, $est_ide, $dat_atr, $val );
-                }
-              }
-            }          
-          }
-
-          $ele['htm'] = "";          
-          // selector de atributo
-          if( !empty($htm_est) ){
-            $ele_ope['name'] = $est;
-            $ele['htm'] .= "
-            <select"._htm::atr($ele_ope).">
-              <option value=''>{-_-}</option>
-              {$htm_est}
-            </select>";
-          }
-          // selector de atributo
-          if( !empty($htm_atr) ){
-            $ele_ope['name'] = $atr;
-            $ele['htm'] .= "
-            <select"._htm::atr($ele_ope).">
-              <option value=''>{-_-}</option>
-              {$htm_atr}
-            </select>";            
-          }
-          // selector de valor por relacion
-          if( in_array('val',$opc) ){
-            $ele['htm'] .= "
-            <div class='".DIS_OCU."'>
-              <select data-opc='nad'></select>
-              <span class='ico'></span>
-            </div>";
-          }
-          // pido variable
-          $_ = _doc::var('doc', "$esq.$est.$atr", $ele);
-
+      $_ide = self::$IDE."opc(";
+      $_eje = self::$EJE."opc(";
+      // opciones
+      $opc_esq = in_array('esq',$opc);
+      $opc_est = in_array('est',$opc);
+      $opc_val = in_array('val',$opc);
+      $opc_ope_tam = in_array('ope_tam',$opc) ? "max-width: 6rem;" : NULL;
+      // capturo elemento select
+      if( !isset($ope['ope']) ) $ope['ope'] = [];
+      if( empty($ope['ope']['name']) ) $ope['ope']['name'] = $ide;
+      if( empty($ope['ope']['title']) ) $ope['ope']['title'] = "Seleccionar el Atributo de la Estructura...";
+      // valor seleccionado
+      if( isset($ope['val']) ) $_val = explode('-',$ope['val']);
+      // cargo selector de estructura
+      $ele_eje = isset($ope['ope']['onchange']) ? $ope['ope']['onchange'] : FALSE;
+      $ele_val = [ 
+        'eti'=>[ 'name'=>"val", 'title'=>"Seleccionar el valor buscado...", 'style'=>$opc_ope_tam, 'onchange'=>$_eje."'val',this);" ] 
+      ];
+      if( $opc_esq || $opc_est ){
+        // operador por esquemas
+        if( $opc_esq ){
+          $dat_esq = [];
+          $ele_esq = [ 
+            'eti'=>[ 'name'=>"esq", 'title'=>"Seleccionar el Esquema de Datos...", 'style'=>$opc_ope_tam, 'onchange'=>$_eje.",'esq');" ] 
+          ];
+        }// operador por estructuras
+        $ele_est = [ 
+          'eti'=>[ 'name'=>"est", 'title'=>"Seleccionar la Estructura de datos...", 'style'=>$opc_ope_tam, 'onchange'=>$_eje."'est',this);" ] 
+        ];
+        // operador por relaciones de atributo
+        $ope['ope'] = _ele::eje($ope['ope'],'cam',$_eje."'atr',this);",'ini');
+        if( !empty($opc_ope_tam) ) $ope['ope'] = _ele::css($ope['ope'],$opc_ope_tam);
+        // oculto items
+        $cla = DIS_OCU;
+        // copio eventos
+        if( $ele_eje ) $ele_est['eti'] = _ele::eje($ele_est['eti'],'cam',$ele_eje);
+        // aseguro valores seleccionado
+        if( $opc_esq ){          
+          if( isset($_val[0]) ) $ele_esq['eti']['val'] = $_val[0];
+          if( isset($_val[1]) ) $ele_est['eti']['val'] = $_val[1];
+          if( isset($_val[2]) ) $ope['ope']['val'] = $_val[2];
+          if( isset($_val[3]) ){ $ele_val['eti']['val'] = $_val[3]; $dat_val = []; }
+        }else{
+          if( isset($_val[0]) ) $ele_est['eti']['val'] = $_val[0];
+          if( isset($_val[1]) ) $ope['ope']['val'] = $_val[1];
+          if( isset($_val[2]) ){ $ele_val['eti']['val'] = $_val[2]; $dat_val = []; }
         }
-        else{
-          $ele['nom'] = "desconocido: _{$esq}-{$est}-{$atr}".( isset($ele_ope['dat']) ? " -> {$ele_ope['dat']}" : '' );
-        }            
-        break;            
+      }else{
+        if( isset($_val[0]) ) $ope['ope']['val'] = $_val[0];
+        if( isset($_val[1]) ){ $ele_val['eti']['val'] = $_val[1]; $dat_val = []; }
+      }
+      // de donde tomo los datos? esquemas => estructuras
+      $_ = "";
+      // atributos por relacion
+      $dat_ope = [];
+      // estructuras
+      $dat_est = [];
+      // agrupador
+      $ele_ope['gru'] = [];
+      $ele_ope['eti'] = $ope['ope'];
+      // proceso identificador de dato
+      if( is_string($dat) || _obj::pos($dat) ){
+        $_ide = is_string($dat) ? explode('.',$dat) : $dat;
+        $dat = [ $_ide[0] => [ $_ide[1] ] ];
+      }
+      // opciones por operador de estructura
+      $_opc_ite = function( string $esq, string $est, string $ide, string $cla = NULL ) : array {
+        $_ = [];
+        // atributos parametrizados
+        if( ( $dat_opc_ide = _dat::est_ope($esq,$est,$ide) ) && is_array($dat_opc_ide) ){  
+          // recorro atributos + si tiene el operador, agrego la opcion      
+          foreach( $dat_opc_ide as $atr ){
+            // cargo atributo
+            $_atr = _dat::atr($esq,$est,$atr);
+            // identificador
+            $dat = "{$esq}.";
+            if( !empty($_atr->var['dat']) ){ $dat = $_atr->var['dat']; }else{ $dat .= _dat::atr_est($esq,$est,$atr); }  
+            $_ []= [                 
+              'data-esq'=>$esq, 'data-est'=>$est, 'data-ide'=>$dat, 'value'=>"{$esq}.{$est}.{$atr}", 'class'=>$cla, 'htm'=>$_atr->nom 
+            ];
+          }
+        }
+        return $_;
+      };
+      $val_cla = isset($cla);
+      $val_est = isset($ele_est['eti']['val']) ? $ele_est['eti']['val'] : FALSE;
+      foreach( $dat as $esq_ide => $est_lis ){
+        // cargo esquema [opcional]
+        if( $opc_esq ){
+          $dat_esq []= $esq_ide;
+        }// recorro estructura/s por esquema
+        foreach( $est_lis as $est_ide ){
+          // busco estructuras dependientes
+          if( $dat_opc_est = _dat::est_ope($esq_ide,$est_ide,'est') ){
+            // recorro dependencias de la estructura
+            foreach( $dat_opc_est as $dep_ide ){                
+              // datos de la estructura relacional
+              $_est = _dat::est($esq_ide,$dep_ide);
+              $ite_val = "{$esq_ide}.{$dep_ide}";
+              // pido opciones por estructura y oculto en caso de haber valor seleccionado por estructura
+              if( !empty( $_opc_val = $_opc_ite($esq_ide, $dep_ide, $ide, $val_cla && ( !$val_est || $val_est != $ite_val ) ? $cla : "") ) ){
+                // con selector de estructura
+                if( $opc_est ){
+                  // cargo opcion de la estructura
+                  $dat_est[] = [ 'value'=>$ite_val, 'htm'=>isset($_est->nom) ? $_est->nom : $est ];
+                  // cargo todos los atributos a un listado general
+                  array_push($dat_ope, ...$_opc_val);
+
+                }// por agrupador
+                else{
+                  // agrupo por estructura
+                  $ele_ope['gru'][$_est->ide] = isset($_est->nom) ? $_est->nom : $est;
+                  // cargo atributos por estructura
+                  $dat_ope[$_est->ide] = $_opc_val;
+                }                    
+              }
+            }
+          }// estructura sin dependencias
+          else{
+            $dat_ope[] = $_opc_ite($esq_ide, $dep_ide, $ide);
+          }
+        }
+      }
+      // selector de esquema [opcional]
+      if( $opc_esq ){
+        $_ .= _doc_lis::opc($dat_esq,$ele_esq,'nad')."<c class='sep'>.</c>";
+      }
+      // selector de estructura [opcional]
+      if( $opc_esq || $opc_est ){
+        $_ .= _doc_lis::opc($dat_est,$ele_est,'nad')."<c class='sep'>.</c>";
+      }
+      // selector de atributo con nombre de variable por operador
+      $_ .= _doc_lis::opc($dat_ope,$ele_ope,'nad');
+      
+      // selector de valor por relacion
+      if( $opc_val ){
+        // copio eventos
+        if( $ele_eje ) $ele_val['eti'] = _ele::eje($ele_val['eti'],'cam',$ele_eje);
+        $_ .= "
+        <div class='val'>
+          <c class='sep'>:</c>
+          "._doc_lis::opc( isset($dat_val) ? $dat_val : [], $ele_val, 'nad')."
+          <span class='ico'></span>
+        </div>";
       }
 
       return $_;
     }
-
     // conteos : por valores de estructura relacionada por atributo
     static function cue( string $tip, string | array $dat, array $ope = [], ...$opc ) : string | array {
       $_ = "";
@@ -1411,12 +1409,10 @@
         <form class='val'>
 
           "._doc::var('val','ver',[ 
-            'nom'=>"Filtrar", 'id'=>"{$_ide}-ver {$esq}-{$ide}", 'htm'=>
-              _doc_val::ver('tex', [ 
-                'ide'=>"{$_ide}-ver {$esq}-{$ide}", 'eje'=>"$_eje('ver',this);"
-              ])
-            ]
-          )."
+            'nom'=>"Filtrar", 
+            'id'=>"{$_ide}-ver {$esq}-{$ide}",
+            'htm'=>_doc_val::ver('tex', [ 'ide'=>"{$_ide}-ver {$esq}-{$ide}", 'eje'=>"$_eje('ver',this);" ])
+          ])."
         </form>
   
         <!-- valores -->
@@ -1449,7 +1445,6 @@
 
       return $_;
     }
-
     // ficha : imagenes por valor + relaciones por estructura
     static function fic( string $ide, mixed $ele = [], ...$opc ) : string {
       $_ = "";
@@ -1491,7 +1486,6 @@
 
       return $_;
     }
-
     // listado de ...atributo: valor
     static function atr( mixed $dat, array $ope = [], ...$opc ) : string {
       $_ide = self::$IDE."atr";
@@ -1537,7 +1531,6 @@
 
       return $_;
     }
-
     // listado : imagen + nombre > ...atributos
     static function lis( string $esq, string $est, string | array $atr, array $ele = [], ...$opc ) : string {
       
@@ -1645,7 +1638,6 @@
 
       return $_;
     }
-
     // filtros : dato + atributo + posicion + texto
     static function ver( string $tip, string | array $dat = [], array $ele = [], ...$opc ) : string {
       $_ = "";
@@ -1663,22 +1655,18 @@
 
         return $ele;
       };
-
       switch( $tip ){
       // datos : estructura => valores 
       case 'dat':
-
-        // pedir estructuras por filtro        
-        $_ .= _doc_dat::opc('ope', "val.ver.dat", [
-          'ope'=>[ 'id'=>"{$_ide}-dat", 'val'=>"", 'dat'=>[], 'onchange'=>"" ]
-        ],'est','val');
-
-        // agregar opciones: incremento
-        $_ .= _doc_val::ver('lim',$dat,isset($ele['ope']) ? $ele['ope'] : []);
-
+        // selector de estructura.relaciones para filtros
+        array_push($opc,'est','val');
+        $_ .= _doc::var('doc',"val.ver.dat",[ 
+          'ite'=>[ 'class'=>"tam-mov" ], 
+          'htm'=>_doc_dat::opc('ver',$dat,$ele,...$opc)
+        ]);
         break;
       // atributo : nombre : valor por tipo ( bool, numero, texto, fecha, lista, archivo, figura )
-      case 'atr': 
+      case 'atr':
         break;
       // listados : desde + hasta
       case 'lis': 
@@ -1700,7 +1688,7 @@
         }
         // cuántos
         if( isset($dat['cue']) ){
-          $_eje = "_doc_ope.val('mar', this, 'bor-sel');".( isset($ele['ope']['onchange']) ? " {$ele['ope']['onchange']}" : "" );
+          $_eje = "_doc.var('mar', this, 'bor-sel');".( isset($ele['ope']['onchange']) ? " {$ele['ope']['onchange']}" : "" );
           $ele['htm_fin'] = "
           <fieldset class='ope'>
             "._doc::ico('nav_ini',[ 'eti'=>"button", 'title'=>"Los primeros...", 'class'=>"bor-sel", 'onclick'=>$_eje ])."
@@ -1735,8 +1723,7 @@
       }
 
       return $_;
-    }
-    
+    }    
     // acumulado : posicion + marcas + seleccion
     static function acu( array $dat, array $ope = [], array $opc = [] ) : string {
       $_ = "";
@@ -1762,7 +1749,6 @@
       }
       return $_;
     }
-
     // sumatorias
     static function sum(  string | array $dat, array $ope = [] ) : string {
 
@@ -1820,7 +1806,7 @@
         $ele['sec']['class'] = "mar_izq-2";
         foreach( $_ope as $ide => $_dat ){
           $_lis []= [
-            'ite'=>[ 'eti'=>"h3", 'htm'=>$_dat['nom'] ],
+            'ite'=>[ 'eti'=>"h3", 'class'=>"mar-0", 'htm'=>$_dat['nom'] ],
             'htm'=>_doc_tab::ope($ide,$dat,$ope,$ele,...$opc)
           ];
         }
@@ -1871,9 +1857,8 @@
             <fieldset class='inf ren'>
               <legend>por Datos</legend>
 
-              "._doc_val::ver('dat', [ 'inc'=>[], 'cue'=>[] ], [ 
-                'ope'=>[ 'id'=>"{$_ide}", 'dat'=>$ope['est'], 'onchange'=>"$_eje('dat',this);" ] 
-              ])."
+              "._doc_val::ver('dat', $ope['est'], [ 'ope'=>[ 'onchange'=>"$_eje('dat',this);" ] ], 'ope_tam')."
+
             </fieldset>
           </form>
 
@@ -1907,7 +1892,7 @@
           <section"._htm::atr($ele['sec']).">";
             // secciones
             $tip = 'sec';
-            $ele_tip = "{$_ide}-{$tip}";
+            $ele_ide = "{$_ide}-{$tip}";
             $ele_eve = "{$_eje}_{$tip}(this);";
             if( !empty($ope[$tip]) ){
               $ele['ope']['ide'] = $tip; $_ .= "
@@ -1920,7 +1905,8 @@
                     foreach( _api::var('doc','tab',$tip) as $ide => $ite ){
                       if( isset($ope[$tip][$ide]) ){ 
                         $_ .= _doc::var('doc', "tab.$tip.$ide", [ 
-                          'ope'=>[ 'id'=>"{$ele_tip}-{$ide}", 'val'=>$ope[$tip][$ide], 'onchange'=>$ele_eve ] 
+                          'val'=>$ope[$tip][$ide], 
+                          'ope'=>[ 'id'=>"{$ele_ide}-{$ide}", 'onchange'=>$ele_eve ] 
                         ]); 
                       }
                     }$_ .= "
@@ -1934,7 +1920,7 @@
             }
             // posiciones
             $tip = 'pos';
-            $ele_tip = "{$_ide}-{$tip}";
+            $ele_ide = "{$_ide}-{$tip}";
             $ele_eve = "{$_eje}_{$tip}(this);";
             if( !empty($ope[$tip]) ){ 
               $ele['ope']['ide'] = $tip; $_ .= "
@@ -1944,33 +1930,39 @@
                   // bordes            
                   $ide = 'bor';
                   $_ .= _doc::var('doc', "tab.$tip.$ide",[
-                    'ope'=>[ 'id'=>"{$ele_tip}-bor", 'onchange'=>$ele_eve, 'val'=>isset($ope[$tip][$ide]) ? $ope[$tip][$ide] : 0 ] 
+                    'val'=>isset($ope[$tip][$ide]) ? $ope[$tip][$ide] : 0,
+                    'ope'=>[ 'id'=>"{$ele_ide}-bor", 'onchange'=>$ele_eve ] 
                   ]);                
                   // color de fondo - numero - texto - fecha
                   foreach( ['col','num','tex','fec'] as $ide ){                  
                     if( isset($ope[$tip][$ide]) ){
-                      $_ .= _doc_dat::opc('ope', "tab.{$tip}.{$ide}", [
-                        'ope'=>[ 'id'=>"{$ele_tip}-{$ide}", 'val'=>$ope[$tip][$ide], 'dat'=>$ope['est'], 'onchange'=>$ele_eve ]
-                      ]);
+                      $_ .= _doc::var('doc', "tab.{$tip}.{$ide}", [
+                        'id'=>"{$ele_ide}-{$ide}",
+                        'htm'=>_doc_dat::opc($ide, $ope['est'], [
+                          'val'=>$ope[$tip][$ide], 
+                          'ope'=>[ 'id'=>"{$ele_ide}-{$ide}", 'onchange'=>$ele_eve ]
+                        ])
+                      ]);                      
                     }
                   }
                   // imagen de fondo - ( ficha )
                   if( isset($ope[$tip][$ide = 'ima']) ){ $_ .= "
                     <div class='ren'>";
                       if( isset($ope[$tip][$ide]) ){
-                        $_ .= _doc_dat::opc('ope', "tab.{$tip}.{$ide}", [
-                          'ope'=>[ 'id'=>"{$ele_tip}-{$ide}", 'val'=>$ope[$tip][$ide], 'dat'=>$ope['est'], 'onchange'=>$ele_eve ]
+                        $_ .= _doc::var('doc',"tab.{$tip}.{$ide}",[
+                          'id'=>"{$ele_ide}-{$ide}",
+                          'htm'=>_doc_dat::opc($ide, $ope['est'], [ 
+                            'val'=>$ope[$tip][$ide], 
+                            'ope'=>[ 'id'=>"{$ele_ide}-{$ide}", 'onchange'=>$ele_eve ]
+                          ])
                         ]);
                       }
                       if( isset($ope['val']) ){ $_ .= "
                         <div class='val' ide='acu'>";
-                          foreach( array_keys($ope['val']) as $ite ){
-        
-                            $_ .= _doc::var('doc', "tab.$tip.{$ide}_$ite", [                        
-                              'ope'=>[ 
-                                'id'=>"{$ele_tip}-{$ide}_{$ite}", 'onchange'=>$ele_eve,
-                                'val'=>isset($ope[$tip]["{$ide}_{$ite}"]) ? $ope[$tip]["{$ide}_{$ite}"] : FALSE
-                              ]
+                          foreach( array_keys($ope['val']) as $ite ){        
+                            $_ .= _doc::var('doc', "tab.$tip.{$ide}_{$ite}", [
+                              'val'=>isset($ope[$tip]["{$ide}_{$ite}"]) ? $ope[$tip]["{$ide}_{$ite}"] : FALSE,
+                              'ope'=>[ 'id'=>"{$ele_ide}-{$ide}_{$ite}", 'onchange'=>$ele_eve ]
                             ]);
                           }$_.="
                         </div>";
@@ -2011,7 +2003,7 @@
       // proceso estructura de la base
       extract( _dat::ide($dat) );
       $_ide .= " _$esq.$est";        
-      $_eje = "_{$esq}_art.tab_opc";
+      $_eje = "_{$esq}_doc.tab_opc";
 
       // solo muestro las declaradas en el operador
       $atr = array_keys($ope);
@@ -2020,7 +2012,7 @@
 
         if( in_array($ide,$atr) ){
 
-          $_ .= _doc::var($esq, ['tab',$tip,$ide], [
+          $_ .= _doc::var($esq, "tab.$tip.$ide", [
             'ope'=>[
               'id'=>"{$_ide}-{$ide}", 
               'val'=>!empty($ope[$ide]) ? !empty($ope[$ide]) : NULL, 
@@ -2040,7 +2032,7 @@
 
       extract( _dat::ide($dat) );
       $_ide .= " _$esq.$est";
-      $_eje = "_{$esq}_art.tab_pos";
+      $_eje = "_{$esq}_doc.tab_pos";
 
       foreach( $opc as $atr ){
         $htm = "";
@@ -2054,7 +2046,7 @@
           if( isset($ope[$atr][$ide]) ){
             $var['var']['val'] = $ope[$atr][$ide];
           }
-          $htm .= _doc::var($esq, ['pos',$atr,$ide], $var);
+          $htm .= _doc::var($esq, "pos.$atr.$ide", $var);
         }        
         // busco datos del operador 
         if( !empty($htm) && !empty($_ope = _api::var($esq,'val','pos',$atr)) ){
@@ -2146,7 +2138,7 @@
   
         "._doc_est::ope('val',$dat,$ope,$ele)."
   
-        "._doc_nav::val('pes', _obj::nom($_ope,'ver',$ope_lis = ['ver','col','des','cue']), ['nav'=>['class'=>"mar_arr-2"]], 'tog')."
+        "._doc::nav('pes', _obj::nom($_ope,'ver',$ope_lis = ['ver','col','des','cue']), ['nav'=>['class'=>"mar_arr-2"]], 'tog')."
   
         <div>";
           foreach( $ope_lis as $tip ){
@@ -2275,10 +2267,10 @@
           $_ .= "
           <form ide='dat'>
             <fieldset class='inf ren'>
-              <legend>por Datos</legend>      
-              "._doc_val::ver('dat', [ 'inc'=>[], 'cue'=>[] ], [
-                'ope'=>[ 'id'=>"{$_ide}-dat", 'max'=>$dat_tot, 'dat'=>$ope['est'], 'onchange'=>"$_eje('dat',this);" ]
-              ])."
+              <legend>por Datos</legend>
+              
+              "._doc_val::ver('dat', $ope['est'], [ 'ope'=>[ 'max'=>$dat_tot, 'onchange'=>"$_eje('dat',this);" ] ])."
+
             </fieldset>
           </form>
 
@@ -2310,8 +2302,7 @@
                 $htm .= _doc::var('val',$atr,[
                   'nom'=>"¿"._dat::atr($esq,$est,$atr)->nom."?",
                   'val'=>!isset($_est->atr_ocu) || !in_array($atr,$_est->atr_ocu),
-                  'ope'=>[ '_tip'=>'opc_bin', 
-                    'id'=>"{$_ide} _{$esq}-{$est}-{$atr}", 'data-esq'=>$esq, 'data-est'=>$est, 'data-val'=>"atr", 'onchange'=>"{$_eje}_tog(this);"
+                  'ope'=>[ '_tip'=>'opc_bin', 'id'=>"{$_ide} _{$esq}-{$est}-{$atr}", 'data-esq'=>$esq, 'data-est'=>$est, 'data-val'=>"atr", 'onchange'=>"{$_eje}_tog(this);"
                   ] 
                 ]);
               } $htm.="
@@ -2812,7 +2803,7 @@
             }
           }$_ .= "
           <td"._htm::atr( ( $atr_ocu && in_array($atr,$atr_ocu) ) ? _ele::cla($ele_dat,'dis-ocu') : $ele_dat ).">      
-            "._doc_dat::val_ver($ide,"{$esq}.{$est}.{$atr}",$dat,$ele_val)."
+            "._doc_dat::ver($ide,"{$esq}.{$est}.{$atr}",$dat,$ele_val)."
           </td>";
         }
       }

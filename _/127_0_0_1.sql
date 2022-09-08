@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-08-2022 a las 05:20:35
+-- Tiempo de generación: 05-09-2022 a las 21:55:18
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -281,7 +281,7 @@ INSERT INTO `dat_val` (`esq`, `est`, `ope`) VALUES
 ('hol', 'kin', '{\r\n          \"nom\": \"Kin #()($)ide() de 260: ()($)nom().\",\r\n          \"des\": \"()($)des().\",\r\n          \"ima\": \"background: top/50% no-repeat url(http://localhost/_/hol/ima/ton/()($)nav_ond_dia().png), bottom/60% no-repeat url(http://localhost/_/hol/ima/sel/()($)arm_tra_dia().png);\"\r\n      }'),
 ('hol', 'kin_arm_cel', '{ \r\n          \"nom\": \"Célula del Tiempo #()($)ide() de 65: ()($)nom().\", \r\n          \"des\": \"()($)des().\",\r\n          \"ima\": \"background: top/75% no-repeat url(http://localhost/_/hol/ima/ton/()($)ton().png), center/contain no-repeat url(http://localhost/_/hol/ima/sel/arm_cel/()($)cel().png);\",\r\n          \"col\": 5\r\n      }'),
 ('hol', 'kin_arm_tra', '{ \r\n          \"nom\": \"Trayectoria Armónica #()($)ide() de 13: ()($)nom().\",\r\n          \"des\": \"()($)ton_des() del Giro Galáctico.\",\r\n          \"ima\": \"background: top/75% no-repeat url(http://localhost/_/hol/ima/ton/()($)ide().png), center/contain no-repeat url(http://localhost/_/hol/ima/sel.png);\",\r\n          \"col\": 7\r\n      }'),
-('hol', 'kin_cro_ele', '{ \r\n          \"nom\": \"Elemento Cromático #()($)ide() de 52: ()($)nom().\",\r\n          \"des\": \"()($)des(): ()($)cas_des().\",\r\n          \"ima\": \"background: bottom/75% no-repeat url(http://localhost/_/hol/ima/ton/()($)ton().png), center/contain no-repeat url(http://localhost/_/hol/ima/sel/cro_ele/()($)arm().png);\",\r\n          \"col\": 4\r\n      }'),
+('hol', 'kin_cro_ele', '{ \r\n          \"nom\": \"Elemento Cromático #()($)ide() de 52: ()($)nom().\",\r\n          \"des\": \"()($)des(): ()($)cas_des().\",\r\n          \"ima\": \"background: bottom/75% no-repeat url(http://localhost/_/hol/ima/ton/()($)ton().png), center/contain no-repeat url(http://localhost/_/hol/ima/sel/cro_ele/()($)ele().png);\",\r\n          \"col\": 4\r\n      }'),
 ('hol', 'kin_cro_est', '{\r\n          \"nom\": \"Espectro Galáctico #()($)ide() de 4: ()($)col() del ()($)dir().\",\r\n          \"des\": \"Guardían ()($)may(): ()($)cer(), ()($)cer_des()\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/_/hol/ima/cas/arm/()($)ide().png);\",\r\n          \"col\": 4\r\n      }'),
 ('hol', 'kin_ene', '{ \r\n          \"nom\": \"Grupo #()($)ide() de ()($)nom() ( ()($)gru() x ()($)gru_uni() = ()($)uni() unidades )\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/_/hol/ima/kin/ene/()($)ide().png);\",\r\n          \"col\": 4\r\n      }'),
 ('hol', 'kin_ene_cam', '{ \r\n          \"nom\": \"Campo #()($)ide() de ()($)nom() unidades\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/_/hol/ima/kin/ene_cam/()($)ide().png);\"\r\n      }'),
@@ -295,7 +295,7 @@ INSERT INTO `dat_val` (`esq`, `est`, `ope`) VALUES
 ('hol', 'psi', '{\r\n          \"nom\": \"PSI #()($)ide() de 365, correspondiente al ()($)fec().\",\r\n          \"des\": \"Psi-Cronos: ()($)tzo(). Estación Solar #()($)est() de 4, día ()($)est_dia(). Giro Lunar #()($)lun() de 13, día ()($)lun_dia() de 28. Héptada #()($)hep() de 52, día ()($)hep_dia() de 7.\",\r\n          \"ima\": \"background: top/50% no-repeat url(http://localhost/_/hol/ima/ton/()($)kin_ton().png), bottom/60% no-repeat url(http://localhost/_/hol/ima/sel/()($)kin_sel().png);\"\r\n      }'),
 ('hol', 'psi_cro', '{\r\n          \"nom\": \"Cromática Entonada #()($)ide() de 75.\",\r\n          \"des\": \"\"\r\n      }'),
 ('hol', 'psi_est', '{\r\n          \"nom\": \"Estación Solar #()($)ide() de 4: ()($)nom().\",\r\n          \"des\": \"()($)des() ( ()($)pol_sur() al sur, ()($)pol_nor() al norte )\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/_/hol/ima/cas/arm/()($)ide().png);\",\r\n          \"col\": 4\r\n      }'),
-('hol', 'psi_hep', '{\r\n          \"nom\": \"Heptada #()($)ide() de 52.\",\r\n          \"des\": \"()($)ton_des() del cuadrante ()($)arm_col() en el ()($)arm_dir().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/_/hol/ima/cod/()($)ton().png), center/contain no-repeat url(http://localhost/_/hol/ima/rad.png), center/contain no-repeat url(http://localhost/_/hol/ima/arm/()($)ond().png);\",\r\n          \"col\": 4\r\n      }'),
+('hol', 'psi_hep', '{\r\n          \"nom\": \"Heptada #()($)ide() de 52.\",\r\n          \"des\": \"()($)ton_des() del cuadrante ()($)arm_col() en el ()($)arm_dir().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/_/hol/ima/sel/cod/()($)ton().png), center/contain no-repeat url(http://localhost/_/hol/ima/rad.png), center/contain no-repeat url(http://localhost/_/hol/ima/arm/()($)ond().png);\",\r\n          \"col\": 4\r\n      }'),
 ('hol', 'psi_lun', '{\r\n          \"nom\": \"Luna #()($)ide() de 13: tono ()($)ton_nom().\",\r\n          \"des\": \"()($)des() del Giro Solar Anual; Totem ()($)tot(): ()($)tot_pro().\",\r\n          \"ima\": \"background: url(http://localhost/_/hol/ima/psi/lun/()($)ide().png) center/contain no-repeat;\",\r\n          \"col\": 7\r\n      }'),
 ('hol', 'psi_vin', '{\r\n          \"nom\": \"Vinal #()($)ide() de 19: ()($)nom().\",\r\n          \"des\": \"()($)des().\"\r\n      }'),
 ('hol', 'rad', '{ \r\n        \"nom\": \"Plasma #()($)ide() de 7: ()($)nom().\",\r\n        \"des\": \"()($)pla_pod() ()($)pla_fue().\\n\\\"()($)pla_lec()\\\"\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/_/hol/ima/rad/()($)ide().png);\",\r\n        \"col\": 7\r\n    }'),
@@ -351,41 +351,40 @@ CREATE TABLE `doc_art` (
   `pos` smallint(5) UNSIGNED NOT NULL COMMENT 'Orden',
   `nom` varchar(50) NOT NULL COMMENT 'Nombre',
   `des` tinytext NOT NULL COMMENT 'Descripción',
-  `nav` varchar(200) NOT NULL COMMENT 'Enlace',
-  `ope` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL COMMENT 'Operador' CHECK (json_valid(`ope`))
+  `nav` varchar(200) NOT NULL COMMENT 'Enlace'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Artículo';
 
 --
 -- Volcado de datos para la tabla `doc_art`
 --
 
-INSERT INTO `doc_art` (`esq`, `cab`, `ide`, `pos`, `nom`, `des`, `nav`, `ope`) VALUES
-('hol', 'bib', 'arc', 1992, '1992 - La Sonda de Arcturus', '', 'hol/bib/arc', NULL),
-('hol', 'bib', 'asc', 1984, '1984 - La Tierra en Ascenso', '', 'hol/bib/asc', NULL),
-('hol', 'bib', 'ato', 1999, '1999 - El Átomo del Tiempo', '', 'hol/bib/ato', NULL),
-('hol', 'bib', 'cro', 2009, '2009 - El Sincronotrón', '', 'hol/bib/cro', NULL),
-('hol', 'bib', 'dat', 1, 'Códigos y Cuentas', '', 'hol/bib/dat', NULL),
-('hol', 'bib', 'din', 1996, '1996 - Dinámicas del Tiempo', '', 'hol/bib/din', NULL),
-('hol', 'bib', 'enc', 1990, '1990 - El Encantamiento del Sueño', '', 'hol/bib/enc', NULL),
-('hol', 'bib', 'fac', 1987, '1987 - El Factor Maya', '', 'hol/bib/fac', NULL),
-('hol', 'bib', 'lun', 1991, '1991 - Las 13 lunas en Movimiento', '', 'hol/bib/lun', NULL),
-('hol', 'bib', 'rin', 1995, '1995 - El Proyecto Rinri', '', 'hol/bib/rin', NULL),
-('hol', 'bib', 'tab', 1997, '1997 - Las Tablas del Tiempo', '', 'hol/bib/tab', NULL),
-('hol', 'bib', 'tel', 1994, '1994 - El Telektonon', '', 'hol/bib/tel', NULL),
-('hol', 'bib', 'tie', 1993, '1993 - Un Tratado del Tiempo', '', 'hol/bib/tie', NULL),
-('hol', 'bib', 'tut', 2, 'Tutorial del Sincronario de 13 Lunas', '', 'hol/bib/tut', NULL),
-('hol', 'dat', 'kin', 1, 'Módulo Armónico del Tzolkin', '', 'hol/dat/kin', '{\r\n\r\n		\"tex\":[\r\n\r\n			{ \"_tip\":\"tex\", \"val\":\"Módulo Armónico calibrado en 260 días\" }\r\n		],\r\n		\r\n		\"tab\":{\r\n\r\n			\"opc\":[ \"par\" ],\r\n\r\n      \"ope\":{				\r\n\r\n				\"sec\":{ \"ima\": \"\", \"sel\": 1 },\r\n\r\n				\"pos\":{ \"ima\": \"hol.ton.ide\", \"col\": \"hol.kin.pag\", \"num\": \"hol.kin.ide\", \"pag_kin\":1 }\r\n\r\n			}\r\n		} \r\n	}'),
-('hol', 'dat', 'kin_arm', 3, 'Trayectorias del Giro Galáctico', '', 'hol/dat/kin_arm', '{\r\n		\r\n		\"tab\":{\r\n\r\n			\"opc\":[ \"par\", \"pul\" ],\r\n			\r\n      \"ope\":{											\r\n\r\n				\"sec\":{ \"ima\": \"\", \"bor\": 0, \"arm\": 1 },\r\n\r\n				\"pos\":{ \"ima\": \"hol.sel.ide\", \"col\": \"\", \"num\": \"\" }\r\n			}			\r\n		}\r\n	}'),
-('hol', 'dat', 'kin_cro', 4, 'Estaciones del Giro Espectral', '', 'hol/dat/kin_cro', '{\r\n				\r\n		\"tab\":{\r\n\r\n			\"opc\":[ \"par\", \"pul\" ],\r\n			\r\n      \"ope\":{				\r\n				\r\n				\"sec\":{ \"ima\": \"\", \"bor\": 0, \"cas\": 1, \"orb\": 1, \"ond\": 1, \"cro\": 1 },\r\n				\r\n				\"pos\":{ \"ima\": \"hol.sel.ide\", \"col\": \"\", \"num\": \"\" }\r\n			}\r\n		}\r\n	}'),
-('hol', 'dat', 'kin_nav', 2, 'Castillos de la Nave del Tiempo', '', 'hol/dat/kin_nav', '{\r\n		\r\n		\"tab\":{\r\n\r\n			\"opc\":[ \"par\", \"pul\" ],\r\n\r\n      \"ope\":{\r\n				\r\n				\"sec\":{ \"ima\": \"\", \"bor\": 0, \"col\": 1, \"cas\":1 }, 	\r\n\r\n				\"pos\":{ \"ima\": \"hol.kin.ide\", \"col\": \"\", \"num\": \"\" }\r\n			}			\r\n		}\r\n	}'),
-('hol', 'dat', 'psi', 5, 'Lunas del Anillo Solar', '', 'hol/dat/psi', '{\r\n		\r\n		\"tab\":{\r\n\r\n			\"opc\":[ \"par\", \"pul\" ],\r\n			\r\n      \"ope\":{				\r\n\r\n				\"sec\":{ \"ima\": \"\", \"bor\": 0 },\r\n				\r\n				\"pos\":{ \"ima\": \"hol.kin.ide\", \"col\": \"\", \"num\": \"\" }\r\n			}		\r\n		}\r\n	}'),
-('hol', 'dat', 'psi_est', 6, 'Estaciones del Anillo Solar', '', 'hol/dat/psi_est', '{\r\n		\r\n		\"tab\":{\r\n\r\n			\"opc\":[ \"par\", \"pul\" ],			\r\n\r\n			\"ope\":{\r\n\r\n				\"sec\":{ \"ima\": \"\", \"bor\": 0 },\r\n\r\n				\"pos\":{ \"ima\": \"hol.rad.ide\", \"col\": \"\", \"num\": \"\" }\r\n			}\r\n		}\r\n	}'),
-('hol', 'dat', 'psi_lun', 7, 'Días del Giro Lunar', '', 'hol/dat/psi_lun', '{\r\n		\r\n		\"tab\":{\r\n\r\n			\"opc\":[ \"par\" ],			\r\n\r\n      \"ope\":{			\r\n\r\n				\"sec\":{ \"ima\": \"\", \"bor\": 0, \"lun\": 1, \"hep\": 1, \"rad\": 1 },\r\n\r\n				\"pos\":{ \"ima\": \"hol.kin.ide\", \"col\": \"\", \"num\": \"\" }\r\n			}, \r\n\r\n			\"ele\":{\r\n\r\n				\"lun\":{\r\n					\"style\": \"border-collapse: separate;\"\r\n				}\r\n			}			\r\n		}\r\n	}'),
-('hol', 'inf', 'gal', 1, 'Giro Galáctico Diario', '', 'hol/inf/gal', '{}'),
-('hol', 'inf', 'hum', 3, 'Ficha del kin Planetario', '', 'hol/inf/hum', '{}'),
-('hol', 'inf', 'sol', 2, 'Giro Solar Diario', '', 'hol/inf/sol', '{}'),
-('hol', 'tut', 'dat', 2, 'Códigos y Cuentas', '', 'hol/tut/dat', '{}'),
-('hol', 'tut', 'sin', 1, 'Sincronario de 13 Lunas', '', 'hol/tut/sin', '{}');
+INSERT INTO `doc_art` (`esq`, `cab`, `ide`, `pos`, `nom`, `des`, `nav`) VALUES
+('hol', 'bib', 'arc', 1992, '1992 - La Sonda de Arcturus', '', 'hol/bib/arc'),
+('hol', 'bib', 'asc', 1984, '1984 - La Tierra en Ascenso', '', 'hol/bib/asc'),
+('hol', 'bib', 'ato', 1999, '1999 - El Átomo del Tiempo', '', 'hol/bib/ato'),
+('hol', 'bib', 'cro', 2009, '2009 - El Sincronotrón', '', 'hol/bib/cro'),
+('hol', 'bib', 'din', 1996, '1996 - Dinámicas del Tiempo', '', 'hol/bib/din'),
+('hol', 'bib', 'enc', 1990, '1990 - El Encantamiento del Sueño', '', 'hol/bib/enc'),
+('hol', 'bib', 'fac', 1987, '1987 - El Factor Maya', '', 'hol/bib/fac'),
+('hol', 'bib', 'lun', 1991, '1991 - Las 13 lunas en Movimiento', '', 'hol/bib/lun'),
+('hol', 'bib', 'rin', 1995, '1995 - El Proyecto Rinri', '', 'hol/bib/rin'),
+('hol', 'bib', 'tab', 1997, '1997 - Las Tablas del Tiempo', '', 'hol/bib/tab'),
+('hol', 'bib', 'tel', 1994, '1994 - El Telektonon', '', 'hol/bib/tel'),
+('hol', 'bib', 'tie', 1993, '1993 - Un Tratado del Tiempo', '', 'hol/bib/tie'),
+('hol', 'bib', 'tut', 1, 'Tutorial del Sincronario de 13 Lunas', '', 'hol/bib/tut'),
+('hol', 'inf', 'dat', 1, 'Códigos y Cuentas', '', 'hol/inf/dat'),
+('hol', 'inf', 'hum', 3, 'Firma Galáctica', '', 'hol/inf/hum'),
+('hol', 'inf', 'val', 2, 'Ciclos del Tiempo', '', 'hol/inf/val'),
+('hol', 'tab', 'kin-arm', 3, 'Las 13 Trayectorias del Giro Galáctico', '', 'hol/tab/kin-arm'),
+('hol', 'tab', 'kin-cro', 4, 'Las 4 Estaciones del Giro Espectral', '', 'hol/tab/kin-cro'),
+('hol', 'tab', 'kin-nav', 2, 'Los 5 Castillos de la Nave del Tiempo', '', 'hol/tab/kin-nav'),
+('hol', 'tab', 'kin-tzo', 1, 'Los 260 kin del Tzolkin', '', 'hol/tab/kin-tzo'),
+('hol', 'tab', 'psi-ban', 5, 'Los 365 días del Giro Solar', '', 'hol/tab/psi-ban'),
+('hol', 'tab', 'psi-est', 6, 'Las 4 Estaciones del Anillo Solar', '', 'hol/tab/psi-est'),
+('hol', 'tab', 'psi-lun', 7, 'Los 28 Días del Giro Lunar', '', 'hol/tab/psi-lun'),
+('hol', 'tab', 'psi-tzo', 8, 'Las 2.080 unidades del Banco-Psi', '', 'hol/tab/psi-tzo'),
+('hol', 'tut', 'dat', 2, 'Códigos y Cuentas', '', 'hol/tut/dat'),
+('hol', 'tut', 'sin', 1, 'Sincronario de 13 Lunas', '', 'hol/tut/sin');
 
 -- --------------------------------------------------------
 
@@ -407,9 +406,9 @@ CREATE TABLE `doc_cab` (
 --
 
 INSERT INTO `doc_cab` (`esq`, `ide`, `pos`, `nom`, `nav`, `ope`) VALUES
-('hol', 'bib', 1, 'Bibliografía', 1, '{\r\n		\r\n		\"htm_ini\":[\r\n			{ \"eti\":\"h1\", \"htm\":\"\" }\r\n		]\r\n	}'),
-('hol', 'dat', 3, 'Tableros', 1, '{\r\n\r\n		\"htm_ini\":[\r\n			{ \"eti\":\"h1\", \"htm\":\"\" }\r\n		]\r\n	}'),
-('hol', 'inf', 4, 'Informes', 1, '{\r\n		\r\n		\"htm_ini\":[\r\n			{ \"eti\":\"h1\", \"htm\":\"\" }\r\n		]\r\n	}');
+('hol', 'bib', 1, 'Bibliografía', 1, '{\r\n				\r\n				\"htm_ini\":[\r\n					{ \"eti\":\"h1\", \"htm\":\"\" }\r\n				]\r\n			}'),
+('hol', 'inf', 4, 'Informes', 1, '{\r\n				\r\n				\"htm_ini\":[\r\n					{ \"eti\":\"h1\", \"htm\":\"\" }\r\n				]\r\n			}'),
+('hol', 'tab', 3, 'Tableros', 1, '{\r\n\r\n				\"htm_ini\":[\r\n					{ \"eti\":\"h1\", \"htm\":\"\" }\r\n				]\r\n			}');
 
 -- --------------------------------------------------------
 
@@ -952,71 +951,6 @@ INSERT INTO `doc_nav` (`esq`, `cab`, `ide`, `pos`, `nom`) VALUES
 ('hol', 'bib', 'cro', '04-09', 'I Ching Perpetuo de 28 Dias  '),
 ('hol', 'bib', 'cro', '04-10', 'Programa 128 codones noosfera  '),
 ('hol', 'bib', 'cro', '04-11', 'Las 48 Runas Ur Armónicas de La Segunda Creación y otros elementos del Arbol De La Vida Telepático Parlan'),
-('hol', 'bib', 'dat', '01', 'Los 7 plasmas radiales'),
-('hol', 'bib', 'dat', '01-01', 'Sellos de la profecía'),
-('hol', 'bib', 'dat', '01-02', 'Componentes Electrónicos'),
-('hol', 'bib', 'dat', '01-03', 'El heptágono de la Mente'),
-('hol', 'bib', 'dat', '02', 'Los 13 tonos galácticos'),
-('hol', 'bib', 'dat', '02-01', 'Rayos de Pulsación'),
-('hol', 'bib', 'dat', '02-02', 'Los 7 pares especulares'),
-('hol', 'bib', 'dat', '02-03', 'Principios de la Creación'),
-('hol', 'bib', 'dat', '02-04', 'La onda encantada de la aventura'),
-('hol', 'bib', 'dat', '02-05', 'Los 4 pulsares dimensionales'),
-('hol', 'bib', 'dat', '02-06', 'Los 5 pulsares matices'),
-('hol', 'bib', 'dat', '03', 'Los 20 sellos solares'),
-('hol', 'bib', 'dat', '03-01', 'Símbolos posicionales'),
-('hol', 'bib', 'dat', '03-01-01', 'Las 3 etapas en el Desarrollo del Ser'),
-('hol', 'bib', 'dat', '03-01-02', 'Las 4 etapas evolutivas de la mente'),
-('hol', 'bib', 'dat', '03-01-03', 'Las 5 Familias Cíclicas de la Luz'),
-('hol', 'bib', 'dat', '03-02', 'Colocación Cromática'),
-('hol', 'bib', 'dat', '03-02-01', 'Las 5 familias terrestres'),
-('hol', 'bib', 'dat', '03-02-02', 'Los 4 clanes galácticos'),
-('hol', 'bib', 'dat', '03-03', 'Colocación Armónica'),
-('hol', 'bib', 'dat', '03-03-01', 'Las 4 razas raíz cósmicas'),
-('hol', 'bib', 'dat', '03-03-02', 'Las 5 células del tiempo'),
-('hol', 'bib', 'dat', '03-04', 'Parejas del Oráculo'),
-('hol', 'bib', 'dat', '03-04-01', 'Análogos'),
-('hol', 'bib', 'dat', '03-04-02', 'Antípodas'),
-('hol', 'bib', 'dat', '03-04-03', 'Ocultos'),
-('hol', 'bib', 'dat', '03-05', 'Holon Solar'),
-('hol', 'bib', 'dat', '03-05-01', 'Las 10 Órbitas planetarias'),
-('hol', 'bib', 'dat', '03-05-02', 'Las 5 Células Solares'),
-('hol', 'bib', 'dat', '03-05-03', 'Los 5 Circuitos de telepatía'),
-('hol', 'bib', 'dat', '03-06', 'Holon Planetario'),
-('hol', 'bib', 'dat', '03-06-01', 'Los 5 Centros de la Fuerza-G'),
-('hol', 'bib', 'dat', '03-06-02', 'Los 2 Flujos Polares'),
-('hol', 'bib', 'dat', '03-07', 'Holon humano'),
-('hol', 'bib', 'dat', '03-07-01', 'Los 5 Centros Galácticos'),
-('hol', 'bib', 'dat', '03-07-02', 'Las 4 Extremidades Cromáticas'),
-('hol', 'bib', 'dat', '03-07-03', 'Las 5 Dedos de las manos y pies'),
-('hol', 'bib', 'dat', '03-07-04', 'Los 2 Lados de la Respiración S-G'),
-('hol', 'bib', 'dat', '04', 'Las 28 días del giro lunar'),
-('hol', 'bib', 'dat', '04-01', 'Las 4 héptadas'),
-('hol', 'bib', 'dat', '05', 'Las 52 posiciones del castillo'),
-('hol', 'bib', 'dat', '05-01', 'Los 4 Cuadrantes'),
-('hol', 'bib', 'dat', '05-02', 'las 13 Armonías'),
-('hol', 'bib', 'dat', '06', 'Los 64 hexagramas del i-ching'),
-('hol', 'bib', 'dat', '06-01', 'Monogramas'),
-('hol', 'bib', 'dat', '06-02', 'Bigramas'),
-('hol', 'bib', 'dat', '06-03', 'Trigramas'),
-('hol', 'bib', 'dat', '07', 'Los 260 Kines'),
-('hol', 'bib', 'dat', '07-01', 'Módulo Armónico'),
-('hol', 'bib', 'dat', '07-01-01', 'Los 52 portales de Activación Galáctica'),
-('hol', 'bib', 'dat', '07-01-02', 'Los 13+1 campos de Energía'),
-('hol', 'bib', 'dat', '07-02', 'Giro Espectral'),
-('hol', 'bib', 'dat', '07-02-01', 'Estación Galáctica'),
-('hol', 'bib', 'dat', '07-02-02', 'Elemento Cromático'),
-('hol', 'bib', 'dat', '07-03', 'Giro Galáctico'),
-('hol', 'bib', 'dat', '07-03-01', 'Trayectoria Armónica'),
-('hol', 'bib', 'dat', '07-03-02', 'Célula del Tiempo'),
-('hol', 'bib', 'dat', '07-04', 'Nave del Tiempo'),
-('hol', 'bib', 'dat', '07-04-01', 'Castillo Direccional'),
-('hol', 'bib', 'dat', '07-04-02', 'Aventura de la Onda Encantada'),
-('hol', 'bib', 'dat', '08', 'Los 364 psi-cronos'),
-('hol', 'bib', 'dat', '08-01', 'Las 4 estaciones solares'),
-('hol', 'bib', 'dat', '08-02', 'Las 13 lunas del servicio planetario'),
-('hol', 'bib', 'dat', '08-03', 'Los 19 vinales del haab'),
-('hol', 'bib', 'dat', '08-04', 'Las 52 heptadas semanales'),
 ('hol', 'bib', 'din', '01', 'I.	ESTABLECIENDO LA NORMA'),
 ('hol', 'bib', 'din', '01-01', '0. Postulados que Gobiernan la Dinámica del Tiempo en Relación a la Dinámica del Espacio'),
 ('hol', 'bib', 'din', '01-02', '1. Postulados del Tiempo que Gobiernan el Propósito y Niveles de Consciencia de los Cuerpos en Evolución'),
@@ -1383,8 +1317,7 @@ INSERT INTO `doc_nav` (`esq`, `cab`, `ide`, `pos`, `nom`) VALUES
 ('hol', 'bib', 'tab', '02-03-01-02', 'Tabla Dos de la Profecía. El Tiempo de la Profecía: Los 26 Años de la Convergencia Armónica'),
 ('hol', 'bib', 'tab', '02-03-01-03', 'Tabla Tres de la Profecía. El Portal del Tiempo: El Cubo de la Ley Interdimensional'),
 ('hol', 'bib', 'tab', '02-03-01-04', 'Tabla Cuatro de la Profecía. Las 64 Runas de UR y los 64 Codones: Invocación del Manitú Planetario'),
-('hol', 'bib', 'tab', '02-03-02', 'Las Dieciséis Tablas de la Ley del Tiempo: Cubo de la Ley del Telektonon de Dieciséis Años, Génesis Galáctico Uso del Cronógrafo, Lectura de la Partitura');
-INSERT INTO `doc_nav` (`esq`, `cab`, `ide`, `pos`, `nom`) VALUES
+('hol', 'bib', 'tab', '02-03-02', 'Las Dieciséis Tablas de la Ley del Tiempo: Cubo de la Ley del Telektonon de Dieciséis Años, Génesis Galáctico Uso del Cronógrafo, Lectura de la Partitura'),
 ('hol', 'bib', 'tab', '02-03-02-01', 'Cuadrante Estelar Este, Plano de la Mente, Tablas 1-4'),
 ('hol', 'bib', 'tab', '02-03-02-01-01', 'Primera Tabla, 1997-98: Cuarto Rojo del Este, Cuadrante Estelar Este'),
 ('hol', 'bib', 'tab', '02-03-02-01-02', 'Segunda Tabla, 1998-99: Cuarto Blanco del Norte, Cuadrante Estelar Este'),
@@ -1419,7 +1352,8 @@ INSERT INTO `doc_nav` (`esq`, `cab`, `ide`, `pos`, `nom`) VALUES
 ('hol', 'bib', 'tab', '03-02', 'NAVEGANDO LA NAVE DEL TIEMPO TIERRA 2013: Cómo Leer y Usar las 20 Tablas de la Ley del Tiempo'),
 ('hol', 'bib', 'tab', '03-03', 'LA LEY DEL TIEMPO: T(E) = Arte'),
 ('hol', 'bib', 'tab', '04', 'LAS CUATRO TABLAS DE LA PROFECÍA'),
-('hol', 'bib', 'tab', '04-01', 'Primera Tabla de la Profecía: El Enigma de la Piedra, de Pacal Votan, Telektonon de Dieciséis Años'),
+('hol', 'bib', 'tab', '04-01', 'Primera Tabla de la Profecía: El Enigma de la Piedra, de Pacal Votan, Telektonon de Dieciséis Años');
+INSERT INTO `doc_nav` (`esq`, `cab`, `ide`, `pos`, `nom`) VALUES
 ('hol', 'bib', 'tab', '04-02', 'Segunda Tabla de la Profecía: El Tiempo de la Profecía, Los 26 Años de la Convergencia Armónica - Ley del Tiempo T(E) = Arte: Cambio de la Mente del Evento Inevitable'),
 ('hol', 'bib', 'tab', '04-03', 'Tercera Tabla de la Profecía: El Portal del Tiempo, El Cubo de la Ley Interdimensional y la Hoja de Ruta y Guía del Mago de la Tierra para el Cubo de la Ley de Dieciséis Años:'),
 ('hol', 'bib', 'tab', '04-03-01', 'Primera Etapa de la Hoja de Ruta: Tiempo de los Siete Videntes y el Reino de los Nueve Señores del Destino'),
@@ -1580,47 +1514,114 @@ INSERT INTO `doc_nav` (`esq`, `cab`, `ide`, `pos`, `nom`) VALUES
 ('hol', 'bib', 'tut', '04-03', 'Los Oráculos'),
 ('hol', 'bib', 'tut', '04-04', 'El Oráculo de Quinta Fuerza y ​​el Tiempo Net '),
 ('hol', 'bib', 'tut', '05', 'La Firma Galáctica'),
-('hol', 'inf', 'gal', '01', 'El Kin'),
-('hol', 'inf', 'gal', '01-01', 'Encantamiento del Kin'),
-('hol', 'inf', 'gal', '01-02', 'Parejas del Oráculo'),
-('hol', 'inf', 'gal', '01-02-01', 'Descripciones'),
-('hol', 'inf', 'gal', '01-02-02', 'Lecturas'),
-('hol', 'inf', 'gal', '01-02-03', 'Posiciones'),
-('hol', 'inf', 'gal', '01-02-04', 'Sincronometría'),
-('hol', 'inf', 'gal', '01-03', 'Nave del Tiempo'),
-('hol', 'inf', 'gal', '01-03-01', 'Castillo Direccional'),
-('hol', 'inf', 'gal', '01-03-02', 'Aventura de la Onda Encantada'),
-('hol', 'inf', 'gal', '01-04', 'Giro Galáctico'),
-('hol', 'inf', 'gal', '01-04-01', 'Trayectoria Armónica'),
-('hol', 'inf', 'gal', '01-04-02', 'Célula del Tiempo'),
-('hol', 'inf', 'gal', '01-05', 'Giro Espectral'),
-('hol', 'inf', 'gal', '01-05-01', 'Estación Galáctica'),
-('hol', 'inf', 'gal', '01-05-02', 'Elemento Cromático'),
-('hol', 'inf', 'gal', '01-06', 'Módulo Armónico'),
-('hol', 'inf', 'gal', '01-06-01', 'Portales de Activación'),
-('hol', 'inf', 'gal', '01-06-02', 'Modelo Energético'),
-('hol', 'inf', 'gal', '02', 'El tono galáctico'),
-('hol', 'inf', 'gal', '02-01', 'Onda Encantada'),
-('hol', 'inf', 'gal', '02-02', 'Simetría Especular'),
-('hol', 'inf', 'gal', '02-03', 'Pulsares'),
-('hol', 'inf', 'gal', '02-03-01', 'Dimensional'),
-('hol', 'inf', 'gal', '02-03-02', 'Matiz'),
-('hol', 'inf', 'gal', '03', 'El sello solar'),
-('hol', 'inf', 'gal', '03-01', 'Colocación Cromática'),
-('hol', 'inf', 'gal', '03-01-01', 'Familia Terrestre'),
-('hol', 'inf', 'gal', '03-01-02', 'Clan Cromático'),
-('hol', 'inf', 'gal', '03-02', 'Colocación Armónica'),
-('hol', 'inf', 'gal', '03-02-01', 'Raza Raiz Cósmica'),
-('hol', 'inf', 'gal', '03-02-02', 'Célula del Tiempo'),
-('hol', 'inf', 'gal', '03-03', 'Holones'),
-('hol', 'inf', 'gal', '03-03-01', 'Solar-interplanetario'),
-('hol', 'inf', 'gal', '03-03-02', 'Terrestre-planetario'),
-('hol', 'inf', 'gal', '03-03-03', 'Humano'),
+('hol', 'inf', 'dat', '01', 'Los 7 plasmas radiales'),
+('hol', 'inf', 'dat', '01-01', 'Sellos de la profecía'),
+('hol', 'inf', 'dat', '01-02', 'Componentes Electrónicos'),
+('hol', 'inf', 'dat', '01-03', 'El heptágono de la Mente'),
+('hol', 'inf', 'dat', '02', 'Los 13 tonos galácticos'),
+('hol', 'inf', 'dat', '02-01', 'Rayos de Pulsación'),
+('hol', 'inf', 'dat', '02-02', 'Los 7 pares especulares'),
+('hol', 'inf', 'dat', '02-03', 'Principios de la Creación'),
+('hol', 'inf', 'dat', '02-04', 'La onda encantada de la aventura'),
+('hol', 'inf', 'dat', '02-05', 'Los 4 pulsares dimensionales'),
+('hol', 'inf', 'dat', '02-06', 'Los 5 pulsares matices'),
+('hol', 'inf', 'dat', '03', 'Los 20 sellos solares'),
+('hol', 'inf', 'dat', '03-01', 'Símbolos posicionales'),
+('hol', 'inf', 'dat', '03-01-01', 'Las 3 etapas en el Desarrollo del Ser'),
+('hol', 'inf', 'dat', '03-01-02', 'Las 4 etapas evolutivas de la mente'),
+('hol', 'inf', 'dat', '03-01-03', 'Las 5 Familias Cíclicas de la Luz'),
+('hol', 'inf', 'dat', '03-02', 'Colocación Cromática'),
+('hol', 'inf', 'dat', '03-02-01', 'Las 5 familias terrestres'),
+('hol', 'inf', 'dat', '03-02-02', 'Los 4 clanes galácticos'),
+('hol', 'inf', 'dat', '03-03', 'Colocación Armónica'),
+('hol', 'inf', 'dat', '03-03-01', 'Las 4 razas raíz cósmicas'),
+('hol', 'inf', 'dat', '03-03-02', 'Las 5 células del tiempo'),
+('hol', 'inf', 'dat', '03-04', 'Parejas del Oráculo'),
+('hol', 'inf', 'dat', '03-04-01', 'Análogos'),
+('hol', 'inf', 'dat', '03-04-02', 'Antípodas'),
+('hol', 'inf', 'dat', '03-04-03', 'Ocultos'),
+('hol', 'inf', 'dat', '03-05', 'Holon Solar'),
+('hol', 'inf', 'dat', '03-05-01', 'Las 10 Órbitas planetarias'),
+('hol', 'inf', 'dat', '03-05-02', 'Las 5 Células Solares'),
+('hol', 'inf', 'dat', '03-05-03', 'Los 5 Circuitos de telepatía'),
+('hol', 'inf', 'dat', '03-06', 'Holon Planetario'),
+('hol', 'inf', 'dat', '03-06-01', 'Los 5 Centros de la Fuerza-G'),
+('hol', 'inf', 'dat', '03-06-02', 'Los 2 Flujos Polares'),
+('hol', 'inf', 'dat', '03-07', 'Holon humano'),
+('hol', 'inf', 'dat', '03-07-01', 'Los 5 Centros Galácticos'),
+('hol', 'inf', 'dat', '03-07-02', 'Las 4 Extremidades Cromáticas'),
+('hol', 'inf', 'dat', '03-07-03', 'Las 5 Dedos de las manos y pies'),
+('hol', 'inf', 'dat', '03-07-04', 'Los 2 Lados de la Respiración S-G'),
+('hol', 'inf', 'dat', '04', 'Las 28 días del giro lunar'),
+('hol', 'inf', 'dat', '04-01', 'Las 4 héptadas'),
+('hol', 'inf', 'dat', '05', 'Las 52 posiciones del castillo'),
+('hol', 'inf', 'dat', '05-01', 'Los 4 Cuadrantes'),
+('hol', 'inf', 'dat', '05-02', 'las 13 Armonías'),
+('hol', 'inf', 'dat', '06', 'Los 64 hexagramas del i-ching'),
+('hol', 'inf', 'dat', '06-01', 'Monogramas'),
+('hol', 'inf', 'dat', '06-02', 'Bigramas'),
+('hol', 'inf', 'dat', '06-03', 'Trigramas'),
+('hol', 'inf', 'dat', '07', 'Los 260 Kines'),
+('hol', 'inf', 'dat', '07-01', 'Módulo Armónico'),
+('hol', 'inf', 'dat', '07-01-01', 'Los 52 portales de Activación Galáctica'),
+('hol', 'inf', 'dat', '07-01-02', 'Los 13+1 campos de Energía'),
+('hol', 'inf', 'dat', '07-02', 'Giro Espectral'),
+('hol', 'inf', 'dat', '07-02-01', 'Estación Galáctica'),
+('hol', 'inf', 'dat', '07-02-02', 'Elemento Cromático'),
+('hol', 'inf', 'dat', '07-03', 'Giro Galáctico'),
+('hol', 'inf', 'dat', '07-03-01', 'Trayectoria Armónica'),
+('hol', 'inf', 'dat', '07-03-02', 'Célula del Tiempo'),
+('hol', 'inf', 'dat', '07-04', 'Nave del Tiempo'),
+('hol', 'inf', 'dat', '07-04-01', 'Castillo Direccional'),
+('hol', 'inf', 'dat', '07-04-02', 'Aventura de la Onda Encantada'),
+('hol', 'inf', 'dat', '08', 'Los 364 psi-cronos'),
+('hol', 'inf', 'dat', '08-01', 'Las 4 estaciones solares'),
+('hol', 'inf', 'dat', '08-02', 'Las 13 lunas del servicio planetario'),
+('hol', 'inf', 'dat', '08-03', 'Los 19 vinales del haab'),
+('hol', 'inf', 'dat', '08-04', 'Las 52 heptadas semanales'),
 ('hol', 'inf', 'hum', '01', ''),
-('hol', 'inf', 'sol', '01', 'Estación Solar'),
-('hol', 'inf', 'sol', '02', 'Giro Lunar'),
-('hol', 'inf', 'sol', '03', 'Heptada'),
-('hol', 'inf', 'sol', '04', 'Banco-Psi');
+('hol', 'inf', 'val', '01', 'Informe del Ciclo Galáctico'),
+('hol', 'inf', 'val', '01-01', 'El Kin'),
+('hol', 'inf', 'val', '01-01-01', 'Encantamiento del Kin'),
+('hol', 'inf', 'val', '01-01-02', 'Parejas del Oráculo'),
+('hol', 'inf', 'val', '01-01-02-01', 'Descripciones'),
+('hol', 'inf', 'val', '01-01-02-02', 'Lecturas'),
+('hol', 'inf', 'val', '01-01-02-03', 'Posiciones'),
+('hol', 'inf', 'val', '01-01-02-04', 'Sincronometría'),
+('hol', 'inf', 'val', '01-01-03', 'Nave del Tiempo'),
+('hol', 'inf', 'val', '01-01-03-01', 'Castillo Direccional'),
+('hol', 'inf', 'val', '01-01-03-02', 'Aventura de la Onda Encantada'),
+('hol', 'inf', 'val', '01-01-04', 'Giro Galáctico'),
+('hol', 'inf', 'val', '01-01-04-01', 'Trayectoria Armónica'),
+('hol', 'inf', 'val', '01-01-04-02', 'Célula del Tiempo'),
+('hol', 'inf', 'val', '01-01-05', 'Giro Espectral'),
+('hol', 'inf', 'val', '01-01-05-01', 'Estación Galáctica'),
+('hol', 'inf', 'val', '01-01-05-02', 'Elemento Cromático'),
+('hol', 'inf', 'val', '01-01-06', 'Módulo Armónico'),
+('hol', 'inf', 'val', '01-01-06-01', 'Portales de Activación'),
+('hol', 'inf', 'val', '01-01-06-02', 'Modelo Energético'),
+('hol', 'inf', 'val', '01-02', 'El tono galáctico'),
+('hol', 'inf', 'val', '01-02-01', 'Onda Encantada'),
+('hol', 'inf', 'val', '01-02-02', 'Simetría Especular'),
+('hol', 'inf', 'val', '01-02-03', 'Pulsares'),
+('hol', 'inf', 'val', '01-02-03-01', 'Dimensional'),
+('hol', 'inf', 'val', '01-02-03-02', 'Matiz'),
+('hol', 'inf', 'val', '01-03', 'El sello solar'),
+('hol', 'inf', 'val', '01-03-01', 'Colocación Cromática'),
+('hol', 'inf', 'val', '01-03-01-01', 'Familia Terrestre'),
+('hol', 'inf', 'val', '01-03-01-02', 'Clan Cromático'),
+('hol', 'inf', 'val', '01-03-02', 'Colocación Armónica'),
+('hol', 'inf', 'val', '01-03-02-01', 'Raza Raiz Cósmica'),
+('hol', 'inf', 'val', '01-03-02-02', 'Célula del Tiempo'),
+('hol', 'inf', 'val', '01-03-03', 'Holones'),
+('hol', 'inf', 'val', '01-03-03-01', 'Solar-interplanetario'),
+('hol', 'inf', 'val', '01-03-03-02', 'Terrestre-planetario'),
+('hol', 'inf', 'val', '01-03-03-03', 'Humano'),
+('hol', 'inf', 'val', '02', 'Informe del Ciclo Solar'),
+('hol', 'inf', 'val', '02-01', 'Estación Solar'),
+('hol', 'inf', 'val', '02-02', 'Giro Lunar'),
+('hol', 'inf', 'val', '02-03', 'Heptada'),
+('hol', 'inf', 'val', '02-04', 'Banco-Psi');
 
 -- --------------------------------------------------------
 
@@ -2148,6 +2149,61 @@ INSERT INTO `ico` (`ide`, `val`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `let`
+--
+
+CREATE TABLE `let` (
+  `pos` int(11) NOT NULL COMMENT 'Posición',
+  `ide` char(1) NOT NULL COMMENT 'Caracter',
+  `tip` varchar(7) DEFAULT NULL COMMENT 'Tipo',
+  `var` varchar(13) DEFAULT NULL COMMENT 'Variable'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Caracter';
+
+--
+-- Volcado de datos para la tabla `let`
+--
+
+INSERT INTO `let` (`pos`, `ide`, `tip`, `var`) VALUES
+(165, '.', 'ope', 'cod'),
+(166, ',', 'ope', 'cod'),
+(167, ':', 'ope', 'cod'),
+(168, ';', 'ope', 'cod'),
+(169, '\\', 'ope', 'cod'),
+(170, '~', 'ope', 'val'),
+(171, '°', 'ope', 'val'),
+(172, 'º', 'ope', 'val'),
+(173, '#', 'ope', 'val'),
+(174, '$', 'ope', 'val'),
+(175, '@', 'ope', 'val'),
+(176, '=', 'ope', 'num'),
+(177, '+', 'ope', 'num'),
+(178, '-', 'ope', 'num'),
+(179, '*', 'ope', 'num'),
+(180, '/', 'ope', 'num'),
+(181, '%', 'ope', 'num'),
+(182, '<', 'ope', 'num'),
+(183, '>', 'ope', 'num'),
+(184, '–', 'ope', 'tex'),
+(185, '\'', 'ope', 'tex'),
+(186, '’', 'ope', 'tex'),
+(187, '`', 'ope', 'tex'),
+(188, '\"', 'ope', 'tex'),
+(189, '“', 'ope', 'tex'),
+(190, '”', 'ope', 'tex'),
+(191, '¡', 'ope', 'tex'),
+(192, '!', 'ope', 'tex'),
+(193, '¿', 'ope', 'tex'),
+(194, '?', 'ope', 'tex'),
+(195, '(', 'ope', 'lis'),
+(196, ')', 'ope', 'lis'),
+(197, '[', 'ope', 'pos'),
+(198, ']', 'ope', 'pos'),
+(199, '{', 'ope', 'atr'),
+(200, '}', 'ope', 'atr');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `num_int`
 --
 
@@ -2203,109 +2259,52 @@ INSERT INTO `num_int` (`ide`, `nom`, `pos`, `pas`) VALUES
 CREATE TABLE `tab` (
   `esq` varchar(25) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Esquema',
   `est` varchar(25) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Estructura',
-  `ope` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL COMMENT 'Operadores' CHECK (json_valid(`ope`))
+  `ele` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL COMMENT 'Elementos',
+  `ope` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL COMMENT 'Operadores' CHECK (json_valid(`ope`)),
+  `opc` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL COMMENT 'Opciones' CHECK (json_valid(`opc`))
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Tablero';
 
 --
 -- Volcado de datos para la tabla `tab`
 --
 
-INSERT INTO `tab` (`esq`, `est`, `ope`) VALUES
-('hol', 'arm', '{\"sec\": {\"tab\": \"arm\", \"style\": \"grid: repeat(2,1fr)/repeat(2,1fr); border-radius: 15%;\"}, \"pos-0\": {\"pos\": \"0\", \"style\": \"grid-column:3/5; grid-row:3/5; border-radius: 50%; padding: .1rem;\"}, \"pos-1\": {\"pos\": \"1\", \"style\": \"grid-column:4/7; grid-row:1/4;\"}, \"pos-2\": {\"pos\": \"2\", \"style\": \"grid-column:1/4; grid-row:1/4;\"}, \"pos-3\": {\"pos\": \"3\", \"style\": \"grid-column:1/4; grid-row:4/8;\"}, \"pos-4\": {\"pos\": \"4\", \"style\": \"grid-column:4/7; grid-row:4/8;\"}}'),
-('hol', 'cas', '{\"fon\": {\"sec\": \"ond\", \"style\": \"z-index: 1; width:95%; height:91%; border-radius:50%; box-shadow: inset 2rem 5rem 2rem rgba(4,192,41,.4);\"}, \"ond\": {\"sec\": \"ond\", \"style\": \"z-index: 5; width: 100%; height: 100%;\"}, \"orb\": {\"sec\": \"orb\", \"style\": \"z-index: 2; border-radius: 50%; border: 1px solid green;\"}, \"pos\": {\"style\": \"z-index: 10;\"}, \"sec\": {\"tab\": \"cas\", \"style\": \"grid: repeat(11,1fr)/repeat(11,1fr); align-items: center; justify-items: center; border-radius: 10%;\"}, \"ond-1\": {\"ond\": \"1\", \"style\": \"grid-column:7/12; grid-row:2/7 ; transform: rotate(270deg);\"}, \"ond-2\": {\"ond\": \"2\", \"style\": \"grid-column:2/7 ; grid-row:1/6 ; transform: rotate(180deg);\"}, \"ond-3\": {\"ond\": \"3\", \"style\": \"grid-column:1/6 ; grid-row:6/11; transform: rotate(090deg);\"}, \"ond-4\": {\"ond\": \"4\", \"style\": \"grid-column:6/11; grid-row:7/12;\"}, \"orb-1\": {\"orb\": \"1\", \"style\": \"grid-column:5/8;  grid-row:5/8;  width: 70%; height: 70%;\"}, \"orb-2\": {\"orb\": \"2\", \"style\": \"grid-column:4/9;  grid-row:4/9;  width: 82%; height: 82%;\"}, \"orb-3\": {\"orb\": \"3\", \"style\": \"grid-column:3/10; grid-row:3/10; width: 86%; height: 86%;\"}, \"orb-4\": {\"orb\": \"4\", \"style\": \"grid-column:2/11; grid-row:2/11; width: 89%; height: 89%;\"}, \"orb-5\": {\"orb\": \"5\", \"style\": \"grid-column:1/12; grid-row:1/12; width: 91%; height: 91%;\"}, \"pos-00\": {\"pos\": \"00\", \"style\": \"grid-column:06; grid-row:06; width:80%; height:80%; border-radius:50%;\"}, \"pos-01\": {\"pos\": \"01\", \"style\": \"grid-column:07; grid-row:06;\"}, \"pos-02\": {\"pos\": \"02\", \"style\": \"grid-column:08; grid-row:06;\"}, \"pos-03\": {\"pos\": \"03\", \"style\": \"grid-column:09; grid-row:06;\"}, \"pos-04\": {\"pos\": \"04\", \"style\": \"grid-column:10; grid-row:06;\"}, \"pos-05\": {\"pos\": \"05\", \"style\": \"grid-column:11; grid-row:06;\"}, \"pos-06\": {\"pos\": \"06\", \"style\": \"grid-column:11; grid-row:05;\"}, \"pos-07\": {\"pos\": \"07\", \"style\": \"grid-column:11; grid-row:04;\"}, \"pos-08\": {\"pos\": \"08\", \"style\": \"grid-column:11; grid-row:03;\"}, \"pos-09\": {\"pos\": \"09\", \"style\": \"grid-column:11; grid-row:02;\"}, \"pos-10\": {\"pos\": \"10\", \"style\": \"grid-column:10; grid-row:02;\"}, \"pos-11\": {\"pos\": \"11\", \"style\": \"grid-column:09; grid-row:02;\"}, \"pos-12\": {\"pos\": \"12\", \"style\": \"grid-column:08; grid-row:02;\"}, \"pos-13\": {\"pos\": \"13\", \"style\": \"grid-column:08; grid-row:03;\"}, \"pos-14\": {\"pos\": \"14\", \"style\": \"grid-column:06; grid-row:05;\"}, \"pos-15\": {\"pos\": \"15\", \"style\": \"grid-column:06; grid-row:04;\"}, \"pos-16\": {\"pos\": \"16\", \"style\": \"grid-column:06; grid-row:03;\"}, \"pos-17\": {\"pos\": \"17\", \"style\": \"grid-column:06; grid-row:02;\"}, \"pos-18\": {\"pos\": \"18\", \"style\": \"grid-column:06; grid-row:01;\"}, \"pos-19\": {\"pos\": \"19\", \"style\": \"grid-column:05; grid-row:01;\"}, \"pos-20\": {\"pos\": \"20\", \"style\": \"grid-column:04; grid-row:01;\"}, \"pos-21\": {\"pos\": \"21\", \"style\": \"grid-column:03; grid-row:01;\"}, \"pos-22\": {\"pos\": \"22\", \"style\": \"grid-column:02; grid-row:01;\"}, \"pos-23\": {\"pos\": \"23\", \"style\": \"grid-column:02; grid-row:02;\"}, \"pos-24\": {\"pos\": \"24\", \"style\": \"grid-column:02; grid-row:03;\"}, \"pos-25\": {\"pos\": \"25\", \"style\": \"grid-column:02; grid-row:04;\"}, \"pos-26\": {\"pos\": \"26\", \"style\": \"grid-column:03; grid-row:04;\"}, \"pos-27\": {\"pos\": \"27\", \"style\": \"grid-column:05; grid-row:06;\"}, \"pos-28\": {\"pos\": \"28\", \"style\": \"grid-column:04; grid-row:06;\"}, \"pos-29\": {\"pos\": \"29\", \"style\": \"grid-column:03; grid-row:06;\"}, \"pos-30\": {\"pos\": \"30\", \"style\": \"grid-column:02; grid-row:06;\"}, \"pos-31\": {\"pos\": \"31\", \"style\": \"grid-column:01; grid-row:06;\"}, \"pos-32\": {\"pos\": \"32\", \"style\": \"grid-column:01; grid-row:07;\"}, \"pos-33\": {\"pos\": \"33\", \"style\": \"grid-column:01; grid-row:08;\"}, \"pos-34\": {\"pos\": \"34\", \"style\": \"grid-column:01; grid-row:09;\"}, \"pos-35\": {\"pos\": \"35\", \"style\": \"grid-column:01; grid-row:10;\"}, \"pos-36\": {\"pos\": \"36\", \"style\": \"grid-column:02; grid-row:10;\"}, \"pos-37\": {\"pos\": \"37\", \"style\": \"grid-column:03; grid-row:10;\"}, \"pos-38\": {\"pos\": \"38\", \"style\": \"grid-column:04; grid-row:10;\"}, \"pos-39\": {\"pos\": \"39\", \"style\": \"grid-column:04; grid-row:09;\"}, \"pos-40\": {\"pos\": \"40\", \"style\": \"grid-column:06; grid-row:07;\"}, \"pos-41\": {\"pos\": \"41\", \"style\": \"grid-column:06; grid-row:08;\"}, \"pos-42\": {\"pos\": \"42\", \"style\": \"grid-column:06; grid-row:09;\"}, \"pos-43\": {\"pos\": \"43\", \"style\": \"grid-column:06; grid-row:10;\"}, \"pos-44\": {\"pos\": \"44\", \"style\": \"grid-column:06; grid-row:11;\"}, \"pos-45\": {\"pos\": \"45\", \"style\": \"grid-column:07; grid-row:11;\"}, \"pos-46\": {\"pos\": \"46\", \"style\": \"grid-column:08; grid-row:11;\"}, \"pos-47\": {\"pos\": \"47\", \"style\": \"grid-column:09; grid-row:11;\"}, \"pos-48\": {\"pos\": \"48\", \"style\": \"grid-column:10; grid-row:11;\"}, \"pos-49\": {\"pos\": \"49\", \"style\": \"grid-column:10; grid-row:10;\"}, \"pos-50\": {\"pos\": \"50\", \"style\": \"grid-column:10; grid-row:09;\"}, \"pos-51\": {\"pos\": \"51\", \"style\": \"grid-column:10; grid-row:08;\"}, \"pos-52\": {\"pos\": \"52\", \"style\": \"grid-column:09; grid-row:08;\"}}'),
-('hol', 'cas_cir', '{\"ond\": {\"sec\": \"ond\", \"style\": \"z-index: 1; width: 100%; height: 100%; \"}, \"orb\": {\"sec\": \"orb\", \"style\": \"width: 100%; height: 100%; border-radius: 50%;\"}, \"pos\": {\"style\": \"z-index: 10; position: relative;\"}, \"sec\": {\"tab\": \"cas_cir\", \"style\": \"grid: repeat(18,1fr)/repeat(18,1fr); border-radius: 50%;\"}, \"ond-1\": {\"ond\": \"1\", \"style\": \"grid-column:10/19; grid-row:01/10; border-radius: 0 100% 0 0; border-bottom: 1.5px solid green;\"}, \"ond-2\": {\"ond\": \"2\", \"style\": \"grid-column:01/10; grid-row:01/10; border-radius: 100% 0 0 0; border-right:  1.5px solid green;\"}, \"ond-3\": {\"ond\": \"3\", \"style\": \"grid-column:01/10; grid-row:10/19; border-radius: 0 0 0 100%; border-top:    1.5px solid green;\"}, \"ond-4\": {\"ond\": \"4\", \"style\": \"grid-column:10/19; grid-row:10/19; border-radius: 0 0 100% 0; border-left:   1.5px solid green;\"}, \"orb-1\": {\"orb\": \"1\", \"style\": \"grid-column:9/11; grid-row:9/11;\"}, \"orb-2\": {\"orb\": \"2\", \"style\": \"grid-column:8/12; grid-row:8/12;\"}, \"orb-3\": {\"orb\": \"3\", \"style\": \"grid-column:7/13; grid-row:7/13;\"}, \"orb-4\": {\"orb\": \"4\", \"style\": \"grid-column:6/14; grid-row:6/14;\"}, \"orb-5\": {\"orb\": \"5\", \"style\": \"grid-column:5/15; grid-row:5/15;\"}, \"orb-6\": {\"orb\": \"6\", \"style\": \"grid-column:4/16; grid-row:4/16;\"}, \"orb-7\": {\"orb\": \"7\", \"style\": \"grid-column:3/17; grid-row:3/17;\"}, \"orb-8\": {\"orb\": \"8\", \"style\": \"grid-column:2/18; grid-row:2/18;\"}, \"pos-00\": {\"pos\": \"00\", \"style\": \"grid-column:09/11; grid-row:09/11; width: 25%; height: 25%;\"}, \"pos-01\": {\"pos\": \"01\", \"style\": \"grid-column:18; grid-row:09; left:  10%;\"}, \"pos-02\": {\"pos\": \"02\", \"style\": \"grid-column:18; grid-row:08; left:  05%;\"}, \"pos-03\": {\"pos\": \"03\", \"style\": \"grid-column:18; grid-row:07; right: 25%;\"}, \"pos-04\": {\"pos\": \"04\", \"style\": \"grid-column:17; grid-row:06; left: 35%;\"}, \"pos-05\": {\"pos\": \"05\", \"style\": \"grid-column:17; grid-row:05; right: 20%;  top: 05%;\"}, \"pos-06\": {\"pos\": \"06\", \"style\": \"grid-column:16; grid-row:04; left: 15%;   top: 15%;\"}, \"pos-07\": {\"pos\": \"07\", \"style\": \"grid-column:16; grid-row:03; right: 47%;  top: 30%;\"}, \"pos-08\": {\"pos\": \"08\", \"style\": \"grid-column:15; grid-row:03; right: 20%;  bottom: 30%;\"}, \"pos-09\": {\"pos\": \"09\", \"style\": \"grid-column:14; grid-row:02;              top: 22%;\"}, \"pos-10\": {\"pos\": \"10\", \"style\": \"grid-column:13; grid-row:02; left: 15%;   bottom: 30%;\"}, \"pos-11\": {\"pos\": \"11\", \"style\": \"grid-column:12; grid-row:01; left: 15%;   top: 35%;\"}, \"pos-12\": {\"pos\": \"12\", \"style\": \"grid-column:11; grid-row:01; left: 15%;   top: 10%;\"}, \"pos-13\": {\"pos\": \"13\", \"style\": \"grid-column:10; grid-row:01; left: 10%;   bottom: 10%;\"}, \"pos-14\": {\"pos\": \"14\", \"style\": \"grid-column:09; grid-row:01; bottom: 10%;\"}, \"pos-15\": {\"pos\": \"15\", \"style\": \"grid-column:08; grid-row:01;\"}, \"pos-16\": {\"pos\": \"16\", \"style\": \"grid-column:07; grid-row:01; top: 30%;\"}, \"pos-17\": {\"pos\": \"17\", \"style\": \"grid-column:06; grid-row:02; bottom: 40%;\"}, \"pos-18\": {\"pos\": \"18\", \"style\": \"grid-column:05; grid-row:02; top: 15%;\"}, \"pos-19\": {\"pos\": \"19\", \"style\": \"grid-column:04; grid-row:03; bottom: 20%; left: 10%;\"}, \"pos-20\": {\"pos\": \"20\", \"style\": \"grid-column:03; grid-row:03; top:40%; left: 35%;\"}, \"pos-21\": {\"pos\": \"21\", \"style\": \"grid-column:03; grid-row:04; top:15%; right: 30%;\"}, \"pos-22\": {\"pos\": \"22\", \"style\": \"grid-column:02; grid-row:05; left: 15%;\"}, \"pos-23\": {\"pos\": \"23\", \"style\": \"grid-column:02; grid-row:06; right: 40%;\"}, \"pos-24\": {\"pos\": \"24\", \"style\": \"grid-column:01; grid-row:07; left: 30%;\"}, \"pos-25\": {\"pos\": \"25\", \"style\": \"grid-column:01; grid-row:08; left: 10%;\"}, \"pos-26\": {\"pos\": \"26\", \"style\": \"grid-column:01; grid-row:09;\"}, \"pos-27\": {\"pos\": \"27\", \"style\": \"grid-column:01; grid-row:10;\"}, \"pos-28\": {\"pos\": \"28\", \"style\": \"grid-column:01; grid-row:11; left: 10%;\"}, \"pos-29\": {\"pos\": \"29\", \"style\": \"grid-column:01; grid-row:12; left: 40%;\"}, \"pos-30\": {\"pos\": \"30\", \"style\": \"grid-column:02; grid-row:13; right: 20%;\"}, \"pos-31\": {\"pos\": \"31\", \"style\": \"grid-column:02; grid-row:14; left: 30%;\"}, \"pos-32\": {\"pos\": \"32\", \"style\": \"grid-column:03; grid-row:15; bottom: 15%; right: 5%;\"}, \"pos-33\": {\"pos\": \"33\", \"style\": \"grid-column:03; grid-row:16; bottom: 50%; left: 60%;\"}, \"pos-34\": {\"pos\": \"34\", \"style\": \"grid-column:04; grid-row:16; top: 15%; left: 30%;\"}, \"pos-35\": {\"pos\": \"35\", \"style\": \"grid-column:05; grid-row:17; bottom: 30%; left: 5%;\"}, \"pos-36\": {\"pos\": \"36\", \"style\": \"grid-column:06; grid-row:17; top: 20%;\"}, \"pos-37\": {\"pos\": \"37\", \"style\": \"grid-column:07; grid-row:18; bottom: 45%;\"}, \"pos-38\": {\"pos\": \"38\", \"style\": \"grid-column:08; grid-row:18; bottom: 20%;\"}, \"pos-39\": {\"pos\": \"39\", \"style\": \"grid-column:09; grid-row:18; bottom: 5%;\"}, \"pos-40\": {\"pos\": \"40\", \"style\": \"grid-column:10; grid-row:18; bottom: 5%;\"}, \"pos-41\": {\"pos\": \"41\", \"style\": \"grid-column:11; grid-row:18; bottom: 20%;\"}, \"pos-42\": {\"pos\": \"42\", \"style\": \"grid-column:12; grid-row:18; bottom: 45%;\"}, \"pos-43\": {\"pos\": \"43\", \"style\": \"grid-column:13; grid-row:17; top: 20%;\"}, \"pos-44\": {\"pos\": \"44\", \"style\": \"grid-column:14; grid-row:17; bottom: 30%; right: 5%;\"}, \"pos-45\": {\"pos\": \"45\", \"style\": \"grid-column:15; grid-row:16; top: 15%; right: 30%;\"}, \"pos-46\": {\"pos\": \"46\", \"style\": \"grid-column:16; grid-row:16; bottom: 50%; right: 60%;\"}, \"pos-47\": {\"pos\": \"47\", \"style\": \"grid-column:16; grid-row:15; bottom: 15%; left: 5%;\"}, \"pos-48\": {\"pos\": \"48\", \"style\": \"grid-column:17; grid-row:14; right: 30%;\"}, \"pos-49\": {\"pos\": \"49\", \"style\": \"grid-column:17; grid-row:13; left: 20%;\"}, \"pos-50\": {\"pos\": \"50\", \"style\": \"grid-column:18; grid-row:12; right: 40%;\"}, \"pos-51\": {\"pos\": \"51\", \"style\": \"grid-column:18; grid-row:11; right: 10%;\"}, \"pos-52\": {\"pos\": \"52\", \"style\": \"grid-column:18; grid-row:10;\"}}'),
-('hol', 'cro', '{\"sec\": {\"tab\": \"cro\", \"style\": \"grid: repeat(3,1fr)/repeat(3,1fr); border-radius: 50%;\"}, \"pos-0\": {\"pos\": \"0\", \"style\": \"grid-column:2; grid-row:2;\"}, \"pos-1\": {\"pos\": \"1\", \"style\": \"grid-column:3; grid-row:2;\"}, \"pos-2\": {\"pos\": \"2\", \"style\": \"grid-column:2; grid-row:1;\"}, \"pos-3\": {\"pos\": \"3\", \"style\": \"grid-column:1; grid-row:2;\"}, \"pos-4\": {\"pos\": \"4\", \"style\": \"grid-column:2; grid-row:3;\"}, \"pos-5\": {\"pos\": \"5\", \"style\": \"grid-column:2; grid-row:2;\"}}'),
-('hol', 'cro_cir', '{\"pos\": {\"style\": \"position: relative;\"}, \"sec\": {\"tab\": \"cro_cir\", \"style\": \"grid: repeat(3,1fr)/repeat(3,1fr); border-radius: 50%; align-self: initial; padding: 2%; margin: auto;\"}, \"pos-0\": {\"pos\": \"0\", \"style\": \"grid-column:2/3; grid-row:2/3; align-self: center; justify-self: center; justify-content: center; align-items: center; width: 150%; height: 150%; padding:0;\"}, \"pos-1\": {\"pos\": \"1\", \"style\": \"grid-column:1/2; grid-row:1/2; top: 3%;    left: 28%; transform: rotate(145deg);\"}, \"pos-2\": {\"pos\": \"2\", \"style\": \"grid-column:1/2; grid-row:2/3; top: 38%;   left:-13%; transform: rotate(070deg);\"}, \"pos-3\": {\"pos\": \"3\", \"style\": \"grid-column:2/3; grid-row:3/4; top: 20%;\"}, \"pos-4\": {\"pos\": \"4\", \"style\": \"grid-column:3/4; grid-row:2/3; top: 35.5%; left: 12%; transform: rotate(287deg);\"}, \"pos-5\": {\"pos\": \"5\", \"style\": \"grid-column:3/4; grid-row:1/2; top: 3%;    left:-30%; transform: rotate(217deg);\"}}'),
-('hol', 'kin', '{\"pos\": {\"style\": \"width: 1.9rem; height: 1.9rem;\"}, \"sec\": {\"tab\": \"kin\", \"style\": \"grid: repeat(20,1fr) / repeat(13,1fr); grid-auto-flow: column;\"}, \"pos-0\": {\"style\": \"grid-column: 1; grid-row: 1;\"}, \"sel-01\": {\"style\": \"grid-column: 1; grid-row: 02;\"}, \"sel-02\": {\"style\": \"grid-column: 1; grid-row: 03;\"}, \"sel-03\": {\"style\": \"grid-column: 1; grid-row: 04;\"}, \"sel-04\": {\"style\": \"grid-column: 1; grid-row: 05;\"}, \"sel-05\": {\"style\": \"grid-column: 1; grid-row: 06;\"}, \"sel-06\": {\"style\": \"grid-column: 1; grid-row: 07;\"}, \"sel-07\": {\"style\": \"grid-column: 1; grid-row: 08;\"}, \"sel-08\": {\"style\": \"grid-column: 1; grid-row: 09;\"}, \"sel-09\": {\"style\": \"grid-column: 1; grid-row: 10;\"}, \"sel-10\": {\"style\": \"grid-column: 1; grid-row: 11;\"}, \"sel-11\": {\"style\": \"grid-column: 1; grid-row: 12;\"}, \"sel-12\": {\"style\": \"grid-column: 1; grid-row: 13;\"}, \"sel-13\": {\"style\": \"grid-column: 1; grid-row: 14;\"}, \"sel-14\": {\"style\": \"grid-column: 1; grid-row: 15;\"}, \"sel-15\": {\"style\": \"grid-column: 1; grid-row: 16;\"}, \"sel-16\": {\"style\": \"grid-column: 1; grid-row: 17;\"}, \"sel-17\": {\"style\": \"grid-column: 1; grid-row: 18;\"}, \"sel-18\": {\"style\": \"grid-column: 1; grid-row: 19;\"}, \"sel-19\": {\"style\": \"grid-column: 1; grid-row: 20;\"}, \"sel-20\": {\"style\": \"grid-column: 1; grid-row: 21;\"}, \"ton-01\": {\"style\": \"grid-column: 2; grid-row: 1;\"}, \"ton-02\": {\"style\": \"grid-column: 3; grid-row: 1;\"}, \"ton-03\": {\"style\": \"grid-column: 4; grid-row: 1;\"}, \"ton-04\": {\"style\": \"grid-column: 5; grid-row: 1;\"}, \"ton-05\": {\"style\": \"grid-column: 6; grid-row: 1;\"}, \"ton-06\": {\"style\": \"grid-column: 7; grid-row: 1;\"}, \"ton-07\": {\"style\": \"grid-column: 8; grid-row: 1;\"}, \"ton-08\": {\"style\": \"grid-column: 9; grid-row: 1;\"}, \"ton-09\": {\"style\": \"grid-column: 10; grid-row: 1;\"}, \"ton-10\": {\"style\": \"grid-column: 11; grid-row: 1;\"}, \"ton-11\": {\"style\": \"grid-column: 12; grid-row: 1;\"}, \"ton-12\": {\"style\": \"grid-column: 13; grid-row: 1;\"}, \"ton-13\": {\"style\": \"grid-column: 14; grid-row: 1;\"}}'),
-('hol', 'kin_arm', '{\"pos\": {\"style\": \"width: 1.2rem; height: 1.2rem;\"}, \"sec\": {\"tab\": \"kin_arm\", \"style\": \"grid-gap: .3rem;\"}}'),
-('hol', 'kin_arm_cel', '{\"cel\": {\"tab\": \"kin_arm_cel\", \"style\": \"grid-gap: .05rem;\"}, \"pos\": {\"style\": \"width: 18rem; height: 18rem;\"}}'),
-('hol', 'kin_arm_tra', '{\"pos\": {\"style\": \"width: 7.8rem; height: 7.8rem;\"}, \"tra\": {\"tab\": \"kin_arm_tra\", \"style\": \"border-radius: 50%;\"}}'),
-('hol', 'kin_cro', '{\"pos\": {\"style\": \"width: 1rem; height: 1rem;\"}, \"sec\": {\"tab\": \"kin_cro\", \"style\": \"grid-gap: .3rem;\"}}'),
-('hol', 'kin_cro_ele', '{\"ele\": {\"tab\": \"kin_cro_ele\"}, \"pos\": {\"style\": \"width: 13rem; height: 13rem;\"}, \"pos-0\": {\"style\": \"width: 150%; height: 150%; color: black;\"}, \"rot-cas\": [\"025\", \"000\", \"340\", \"345\", \"340\", \"250\", \"255\", \"250\", \"255\", \"155\", \"170\", \"160\", \"065\", \"290\", \"290\", \"290\", \"290\", \"220\", \"170\", \"160\", \"165\", \"160\", \"070\", \"075\", \"070\", \"335\", \"180\", \"150\", \"170\", \"160\", \"165\", \"070\", \"075\", \"070\", \"073\", \"330\", \"350\", \"340\", \"245\", \"095\", \"070\", \"075\", \"073\", \"073\", \"330\", \"350\", \"340\", \"345\", \"250\", \"255\", \"250\", \"160\"], \"rot-ond\": [\"147\", \"070\", \"074\", \"071\", \"074\", \"330\", \"352\", \"335\", \"350\", \"230\", \"270\", \"240\", \"160\", \"140\", \"070\", \"074\", \"071\", \"074\", \"330\", \"352\", \"335\", \"350\", \"230\", \"270\", \"240\", \"160\", \"140\", \"070\", \"074\", \"071\", \"074\", \"330\", \"352\", \"335\", \"350\", \"230\", \"270\", \"240\", \"160\", \"140\", \"070\", \"074\", \"071\", \"074\", \"330\", \"352\", \"335\", \"350\", \"230\", \"270\", \"240\", \"160\"]}'),
-('hol', 'kin_cro_est', '{\"est\": {\"tab\": \"kin_cro_est\", \"style\": \"margin: 0 1rem; grid-gap: .2rem\"}, \"pos\": {\"style\": \"width: 2.8rem; height: 2.8rem;\"}}'),
-('hol', 'kin_nav', '{\"pos\": {\"style\": \"width: 1.1rem; height: 1.1rem;\"}, \"sec\": {\"tab\": \"kin_nav\", \"style\": \"grid-gap: .15rem;\"}, \"pos-00\": {\"style\": \"font-size:.5rem\"}}'),
-('hol', 'kin_nav_cas', '{\"cas\": {\"tab\": \"kin_nav_cas\", \"style\": \"padding: .2rem;\"}, \"pos\": {\"style\": \"width: 4rem; height: 4rem;\"}}'),
-('hol', 'kin_nav_ond', '{\"ond\": {\"tab\": \"kin_nav_ond\", \"style\": \"grid-gap: .2rem;\"}, \"pos\": {\"style\": \"width: 9rem; height: 9rem;\"}}'),
-('hol', 'kin_par', '{\"sec\": {\"tab\": \"uni_par\", \"class\": \"kin\", \"style\": \"border: 1px solid var(--col_ver); border-radius: 50%;\"}}'),
-('hol', 'lun', '{\"pos\": {\"style\": \"width: 3rem; height: 3rem;\"}, \"sec\": {\"tab\": \"lun\"}}'),
-('hol', 'lun_tel', '{}'),
-('hol', 'psi', '{\"pos\": {\"style\": \"width: 1.2rem; height: 1.2rem;\"}, \"sec\": {\"tab\": \"psi\", \"style\": \"grid-gap: .5rem;\"}}'),
-('hol', 'psi_ani', '{\"sec\": {\"tab\": \"psi_ani\"}}'),
-('hol', 'psi_est', '{\"pos\": {\"style\": \"width: .855rem; height: .855rem;\"}, \"sec\": {\"tab\": \"psi_est\"}}'),
-('hol', 'psi_hep', '{\"sec\": {\"tab\": \"psi_hep\"}}'),
-('hol', 'psi_lun', '{\"lun\": {\"tab\": \"psi_lun\"}, \"pos\": {\"style\": \"width: 5rem; height: 5rem; max-height: 5rem;\"}}'),
-('hol', 'psi_tzo', '{\"pos\": {\"style\": \"width: 1rem; height: 1rem;\"}, \"sec\": {\"tab\": \"psi_tzo\", \"style\": \"grid-template-columns: repeat(4,1fr);\"}, \"tzo-1\": {\"tzo\": \"1\"}, \"tzo-2\": {\"tzo\": \"2\"}, \"tzo-3\": {\"tzo\": \"3\"}, \"tzo-4\": {\"tzo\": \"4\"}, \"tzo-5\": {\"tzo\": \"5\", \"style\": \"transform: rotate(180deg);\"}, \"tzo-6\": {\"tzo\": \"6\", \"style\": \"transform: rotate(180deg);\"}, \"tzo-7\": {\"tzo\": \"7\", \"style\": \"transform: rotate(180deg);\"}, \"tzo-8\": {\"tzo\": \"8\", \"style\": \"transform: rotate(180deg);\"}}'),
-('hol', 'rad', '{ \r\n\r\n      \"sec\":{ \"tab\": \"rad\", \r\n        \"style\":\"grid: repeat(4,1fr)/repeat(4,1fr); background: center/contain no-repeat url(http://localhost/_/hol/ima/rad.png);\" \r\n      },\r\n\r\n      \"pos\":{ \"style\":\"position: relative;\" },\r\n      \"pos-1\":{ \"pos\":\"1\", \"style\":\"grid-column:2; grid-row:1; top:     15%; left:  50%;\" },\r\n      \"pos-2\":{ \"pos\":\"2\", \"style\":\"grid-column:2; grid-row:4; bottom:  15%; left:  53%; \" },\r\n      \"pos-3\":{ \"pos\":\"3\", \"style\":\"grid-column:1; grid-row:2; bottom:  20%; left:  25%;\" },\r\n      \"pos-4\":{ \"pos\":\"4\", \"style\":\"grid-column:4; grid-row:3; top:     20%; right: 25%;\" },\r\n      \"pos-5\":{ \"pos\":\"5\", \"style\":\"grid-column:1; grid-row:3; top:     20%; left:  30%;\" },\r\n      \"pos-6\":{ \"pos\":\"6\", \"style\":\"grid-column:4; grid-row:2; bottom:  20%; right: 35%;\" },\r\n      \"pos-7\":{ \"pos\":\"7\", \"style\":\"grid-column:2; grid-row:2; top:     50%; left:  50%;\" } \r\n      \r\n    }'),
-('hol', 'rad_ato', '{\r\n    }'),
-('hol', 'rad_hum', '{\r\n    }'),
-('hol', 'sel', '{\"pos\": {\"style\": \"width: 1.9rem; height: 1.9rem;\"}, \"sec\": {\"tab\": \"sel\", \"style\": \"display: grid; grid: repeat(4,1fr)/repeat(5,1fr); grid-gap: .5rem;\"}}'),
-('hol', 'sel_arm', '{\"pos\": {\"style\": \"width: 8rem; height: 8rem;\"}, \"sec\": {\"tab\": \"sel_arm\", \"style\": \"grid: repeat(5,1fr)/repeat(6,1fr); grid-auto-flow: column; border-radius: 20%;\"}, \"cel-1\": {\"cel\": \"1\", \"style\": \"grid-column:2/3; grid-row:1/2;\"}, \"cel-2\": {\"cel\": \"2\", \"style\": \"grid-column:3/4; grid-row:1/2;\"}, \"cel-3\": {\"cel\": \"3\", \"style\": \"grid-column:4/5; grid-row:1/2;\"}, \"cel-4\": {\"cel\": \"4\", \"style\": \"grid-column:5/6; grid-row:1/2;\"}, \"cel-5\": {\"cel\": \"5\", \"style\": \"grid-column:6/7; grid-row:1/2;\"}, \"raz-1\": {\"raz\": \"1\", \"style\": \"grid-column:1/2; grid-row:2/3;\"}, \"raz-2\": {\"raz\": \"2\", \"style\": \"grid-column:1/2; grid-row:3/4;\"}, \"raz-3\": {\"raz\": \"3\", \"style\": \"grid-column:1/2; grid-row:4/5;\"}, \"raz-4\": {\"raz\": \"4\", \"style\": \"grid-column:1/2; grid-row:5/6;\"}}'),
-('hol', 'sel_arm_tra', '{\"pos\": {\"style\": \"width: 7.8rem; height: 7.8rem;\"}, \"sec\": {\"tab\": \"sel_arm_tra\"}}'),
-('hol', 'sel_cro', '{\"pos\": {\"style\": \"width: 7rem; height: 7rem;\"}, \"sec\": {\"tab\": \"sel_cro\", \"style\": \"grid-auto-flow: column; border-radius: 20%;\"}, \"ele-1\": {\"ele\": \"1\", \"style\": \"grid-column:3/4; grid-row:1/2;\"}, \"ele-2\": {\"ele\": \"2\", \"style\": \"grid-column:4/5; grid-row:1/2;\"}, \"ele-3\": {\"ele\": \"3\", \"style\": \"grid-column:5/6; grid-row:1/2;\"}, \"ele-4\": {\"ele\": \"4\", \"style\": \"grid-column:2/3; grid-row:1/2;\"}, \"fam-1\": {\"fam\": \"1\", \"style\": \"grid-column:1/2; grid-row:3/4;\"}, \"fam-2\": {\"fam\": \"2\", \"style\": \"grid-column:1/2; grid-row:4/5;\"}, \"fam-3\": {\"fam\": \"3\", \"style\": \"grid-column:1/2; grid-row:5/6;\"}, \"fam-4\": {\"fam\": \"4\", \"style\": \"grid-column:1/2; grid-row:6/7;\"}, \"fam-5\": {\"fam\": \"5\", \"style\": \"grid-column:1/2; grid-row:2/3;\"}}'),
-('hol', 'sel_par', '{\"pos\": {\"style\": \"width: 1.9rem; height: 1.9rem;\"}, \"sec\": {\"tab\": \"uni_par\", \"class\": \"sel\", \"style\": \"border: 1px solid var(--col_ver); border-radius: 50%;\"}}'),
-('hol', 'ton', '{     \r\n\r\n      \"sec\":{ \"tab\":\"ton\", \r\n        \"style\":\"grid: repeat(5,1fr)/repeat(5,1fr); justify-items: start;\" \r\n      },\r\n\r\n      \"ond\":{ \"sec\":\"ond\",\r\n        \"style\":\"grid-column:1/sp; grid-row:1/sp; width: 100%; height: 100%;\"\r\n      },\r\n\r\n      \"pos\":{ \r\n        \"style\":\"z-index:10;\" \r\n      },\r\n      \"pos-01\":{ \"pos\":\"01\", \"style\":\"grid-column:1/2; grid-row:1/2;\" },\r\n      \"pos-02\":{ \"pos\":\"02\", \"style\":\"grid-column:1/2; grid-row:2/3;\" },\r\n      \"pos-03\":{ \"pos\":\"03\", \"style\":\"grid-column:1/2; grid-row:3/4;\" },\r\n      \"pos-04\":{ \"pos\":\"04\", \"style\":\"grid-column:1/2; grid-row:4/5;\" },\r\n      \"pos-05\":{ \"pos\":\"05\", \"style\":\"grid-column:1/2; grid-row:5/6;\" },\r\n      \"pos-06\":{ \"pos\":\"06\", \"style\":\"grid-column:2/3; grid-row:5/6;\" },\r\n      \"pos-07\":{ \"pos\":\"07\", \"style\":\"grid-column:3/4; grid-row:5/6;\" },\r\n      \"pos-08\":{ \"pos\":\"08\", \"style\":\"grid-column:4/5; grid-row:5/6;\" },\r\n      \"pos-09\":{ \"pos\":\"09\", \"style\":\"grid-column:5/6; grid-row:5/6;\" },\r\n      \"pos-10\":{ \"pos\":\"10\", \"style\":\"grid-column:5/6; grid-row:4/5;\" },\r\n      \"pos-11\":{ \"pos\":\"11\", \"style\":\"grid-column:5/6; grid-row:3/4;\" },\r\n      \"pos-12\":{ \"pos\":\"12\", \"style\":\"grid-column:5/6; grid-row:2/3;\" },\r\n      \"pos-13\":{ \"pos\":\"13\", \"style\":\"grid-column:4/5; grid-row:2/3;\" }   \r\n      \r\n    }'),
-('hol', 'ton_hum', '{\r\n    }'),
-('hol', 'uni_gal', '{\r\n    }'),
-('hol', 'uni_hum', '{\r\n\r\n      \"sec\":{ \"tab\":\"uni_hum\",\r\n        \"style\":\"grid: repeat(20,1fr)/repeat(13,1fr); width: 19rem; height: 35rem;\"\r\n      },\r\n\r\n      \"fon\":{ \"style\":\"grid-column: 1/sp; grid-row: 1/sp; width: 100%; height: 100%;\" },\r\n      \"fon-map\":{ \"fon\":\"map\", \"style\":\"background: center/contain no-repeat url(http://localhost/_/hol/tab/hum/map.png);\" },\r\n      \"fon-res\":{ \"fon\":\"res\", \"style\":\"background: center/contain no-repeat url(http://localhost/_/hol/tab/hum/res.png);\" },\r\n      \"fon-cir\":{ \"fon\":\"cir\", \"style\":\"background: center/contain no-repeat url(http://localhost/_/hol/tab/hum/cir.png);\" },\r\n      \"fon-cen\":{ \"fon\":\"cen\", \"style\":\"background: center/contain no-repeat url(http://localhost/_/hol/tab/hum/cen.png);\" },\r\n      \"fon-ext\":{ \"fon\":\"ext\", \"style\":\"background: center/contain no-repeat url(http://localhost/_/hol/tab/hum/ext.png);\" },\r\n\r\n      \"raz\":{ \"style\":\"position: relative;\" },\r\n      \"raz-4\":{ \"raz\":\"4\", \"style\":\"grid-column:2/5; grid-row:10/12; left:5%; top:5%;\" },\r\n      \"raz-1\":{ \"raz\":\"1\", \"style\":\"grid-column:5/7; grid-row:18/20; left: 30%; top:5%; z-index: -1;\" },\r\n      \"raz-2\":{ \"raz\":\"2\", \"style\":\"grid-column:11/13; grid-row:10/12; right:35%; top:5%;\" },\r\n      \"raz-3\":{ \"raz\":\"3\", \"style\":\"grid-column:8/10; grid-row:18/20; right:20%; top:5%; z-index: -1;\" },\r\n\r\n      \"fam\":{ \"style\":\"\" },\r\n      \"fam-5\":{ \"fam\":\"5\", \"style\":\"grid-column:6/9; grid-row:1/3;\" },\r\n      \"fam-1\":{ \"fam\":\"1\", \"style\":\"grid-column:6/9; grid-row:3/6; z-index:1;\" },\r\n      \"fam-2\":{ \"fam\":\"2\", \"style\":\"grid-column:6/9; grid-row:5/8;\" },\r\n      \"fam-3\":{ \"fam\":\"3\", \"style\":\"grid-column:6/9; grid-row:7/10;\" },\r\n      \"fam-4\":{ \"fam\":\"4\", \"style\":\"grid-column:6/9; grid-row:10/12;\" },\r\n\r\n      \"ton\":{ \"style\":\"position:relative; width:20px; height:20px; border-radius: 20%;\" },\r\n      \"ton-01\":{ \"ton\":\"01\", \"style\":\"grid-column:05; grid-row:18; bottom: 30%;\" },\r\n      \"ton-02\":{ \"ton\":\"02\", \"style\":\"grid-column:05; grid-row:15; right: 15%;\" },\r\n      \"ton-03\":{ \"ton\":\"03\", \"style\":\"grid-column:05; grid-row:11; right: 20%;\" },\r\n      \"ton-04\":{ \"ton\":\"04\", \"style\":\"grid-column:03; grid-row:10; bottom: 40%;\" },\r\n      \"ton-05\":{ \"ton\":\"05\", \"style\":\"grid-column:04; grid-row:08; bottom: 35%; right: 40%;\" },\r\n      \"ton-06\":{ \"ton\":\"06\", \"style\":\"grid-column:04; grid-row:05;\" },\r\n      \"ton-07\":{ \"ton\":\"07\", \"style\":\"grid-column:07; grid-row:04; bottom: 35%;\" },\r\n      \"ton-08\":{ \"ton\":\"08\", \"style\":\"grid-column:10; grid-row:05;\" },\r\n      \"ton-09\":{ \"ton\":\"09\", \"style\":\"grid-column:10; grid-row:08; bottom: 35%; left: 40%;\" },\r\n      \"ton-10\":{ \"ton\":\"10\", \"style\":\"grid-column:11; grid-row:10; bottom: 40%;\" },\r\n      \"ton-11\":{ \"ton\":\"11\", \"style\":\"grid-column:09; grid-row:11; left: 20%;\" },\r\n      \"ton-12\":{ \"ton\":\"12\", \"style\":\"grid-column:09; grid-row:15; left: 35%;\" },\r\n      \"ton-13\":{ \"ton\":\"13\", \"style\":\"grid-column:09; grid-row:18; bottom: 30%; left: 30%;\" },\r\n\r\n      \"sel\":{ \"style\":\"width:15px; height:15px; position:relative; \" },\r\n      \"sel-20\":{ \"sel\":\"20\", \"style\":\"grid-column:1;  grid-row:10; top:40%; right:25%;\" },\r\n      \"sel-01\":{ \"sel\":\"01\", \"style\":\"grid-column:1;  grid-row:11; top:30%; right:17%;\" },\r\n      \"sel-02\":{ \"sel\":\"02\", \"style\":\"grid-column:1;  grid-row:12; top:20%; left: 25%;\" },\r\n      \"sel-03\":{ \"sel\":\"03\", \"style\":\"grid-column:2;  grid-row:12; top:40%; left: 28%;\" },\r\n      \"sel-04\":{ \"sel\":\"04\", \"style\":\"grid-column:3;  grid-row:12; top:25%; left: 30%;\" },\r\n      \"sel-10\":{ \"sel\":\"10\", \"style\":\"grid-column:13; grid-row:10; top:35%; left:20%;\" },\r\n      \"sel-11\":{ \"sel\":\"11\", \"style\":\"grid-column:13; grid-row:11; top:30%; left:15%;\" },\r\n      \"sel-12\":{ \"sel\":\"12\", \"style\":\"grid-column:13; grid-row:12; top:20%; right:25%;\" },\r\n      \"sel-13\":{ \"sel\":\"13\", \"style\":\"grid-column:12; grid-row:12; top:43%; right:25%;\" },\r\n      \"sel-14\":{ \"sel\":\"14\", \"style\":\"grid-column:11; grid-row:12; top:30%; right:25%;\" },\r\n      \"sel-05\":{ \"sel\":\"05\", \"style\":\"grid-column:6;  grid-row:20; top:15%; left:25%;\" },\r\n      \"sel-06\":{ \"sel\":\"06\", \"style\":\"grid-column:5;  grid-row:20; top:35%; left:20%;\" },\r\n      \"sel-07\":{ \"sel\":\"07\", \"style\":\"grid-column:4;  grid-row:20; top:25%; left:20%;\" },\r\n      \"sel-08\":{ \"sel\":\"08\", \"style\":\"grid-column:4;  grid-row:19; top:35%; left:5%;\" },\r\n      \"sel-09\":{ \"sel\":\"09\", \"style\":\"grid-column:4;  grid-row:19; bottom:50%; left:20%;\" },\r\n      \"sel-15\":{ \"sel\":\"15\", \"style\":\"grid-column:8;  grid-row:20; top:20%;\" },\r\n      \"sel-16\":{ \"sel\":\"16\", \"style\":\"grid-column:9;  grid-row:20; top:35%;\" },\r\n      \"sel-17\":{ \"sel\":\"17\", \"style\":\"grid-column:10; grid-row:20; top:25%;\" },\r\n      \"sel-18\":{ \"sel\":\"18\", \"style\":\"grid-column:10; grid-row:19; top:35%; left:15%;\" },\r\n      \"sel-19\":{ \"sel\":\"19\", \"style\":\"grid-column:10; grid-row:19; bottom:50%;\" }  \r\n\r\n    }'),
-('hol', 'uni_ond', '{\r\n    }'),
-('hol', 'uni_par', '{\r\n    }'),
-('hol', 'uni_pla', '{ \r\n      \r\n      \"sec\":{ \"tab\":\"uni_pla\",\r\n        \"style\":\"grid: repeat(5,1fr)/repeat(9,1fr); width: 40rem; height: 28rem;\" \r\n      },\r\n\r\n      \"fon\":{ \"style\":\"grid-column:2/10; grid-row:1/6; width: 100%; height: 100%;\" },\r\n      \"fon-map\":{ \"fon\":\"map\", \"style\":\"background: center/contain no-repeat url(http://localhost/_/hol/tab/pla/map.png);\" },\r\n      \"fon-sel\":{ \"fon\":\"sel\", \"style\":\"background: center/contain no-repeat url(http://localhost/_/hol/tab/pla/sel.png);\" },\r\n      \"fon-res\":{ \"fon\":\"res\", \"style\":\"background: center/contain no-repeat url(http://localhost/_/hol/tab/pla/res.png);\" },\r\n      \"fon-flu\":{ \"fon\":\"flu\", \"style\":\"background: center/contain no-repeat url(http://localhost/_/hol/tab/pla/flu.png);\" },\r\n\r\n      \"fam\":{ \"style\":\"height: 80%; width: 80%;\" },\r\n      \"fam-1\":{ \"fam\":\"1\", \"style\":\"grid-column:1/2; grid-row:2;\" },\r\n      \"fam-2\":{ \"fam\":\"2\", \"style\":\"grid-column:1/2; grid-row:3;\" },\r\n      \"fam-3\":{ \"fam\":\"3\", \"style\":\"grid-column:1/2; grid-row:4;\" },\r\n      \"fam-4\":{ \"fam\":\"4\", \"style\":\"grid-column:1/2; grid-row:5;\" },\r\n      \"fam-5\":{ \"fam\":\"5\", \"style\":\"grid-column:1/2; grid-row:1;\" },\r\n\r\n      \"sel\":{ \"style\":\"position: relative; width: 150%; height: 115%; border-radius: 50%;\" },\r\n      \"sel-20\":{ \"sel\":\"20\", \"style\":\"grid-column:6; grid-row:1; top: 25%;\" },\r\n      \"sel-05\":{ \"sel\":\"05\", \"style\":\"grid-column:8; grid-row:1; top: 25%;\" },\r\n      \"sel-10\":{ \"sel\":\"10\", \"style\":\"grid-column:2; grid-row:1; top: 25%; left: 20%;\" },\r\n      \"sel-15\":{ \"sel\":\"15\", \"style\":\"grid-column:4; grid-row:1; top: 25%;\" },\r\n      \"sel-01\":{ \"sel\":\"01\", \"style\":\"grid-column:7; grid-row:2; top: 20%;\" },\r\n      \"sel-06\":{ \"sel\":\"06\", \"style\":\"grid-column:9; grid-row:2; top: 20%;\" },\r\n      \"sel-11\":{ \"sel\":\"11\", \"style\":\"grid-column:3; grid-row:2; top: 20%; left: 15%;\" },\r\n      \"sel-16\":{ \"sel\":\"16\", \"style\":\"grid-column:5; grid-row:2; top: 20%; left: 10%;\" },\r\n      \"sel-02\":{ \"sel\":\"02\", \"style\":\"grid-column:8; grid-row:3; bottom: 10%;\" },\r\n      \"sel-07\":{ \"sel\":\"07\", \"style\":\"grid-column:2; grid-row:3; bottom: 10%; left: 25%;\" },\r\n      \"sel-12\":{ \"sel\":\"12\", \"style\":\"grid-column:4; grid-row:3; bottom: 10%; left: 15%;\" },\r\n      \"sel-17\":{ \"sel\":\"17\", \"style\":\"grid-column:6; grid-row:3; bottom: 10%;\" },\r\n      \"sel-03\":{ \"sel\":\"03\", \"style\":\"grid-column:9; grid-row:4; bottom: 20%;\" },\r\n      \"sel-08\":{ \"sel\":\"08\", \"style\":\"grid-column:3; grid-row:4; bottom: 20%; left: 15%;\" },\r\n      \"sel-13\":{ \"sel\":\"13\", \"style\":\"grid-column:5; grid-row:4; bottom: 20%; left: 15%;\" },\r\n      \"sel-18\":{ \"sel\":\"18\", \"style\":\"grid-column:7; grid-row:4; bottom: 20%;\" },\r\n      \"sel-04\":{ \"sel\":\"04\", \"style\":\"grid-column:2; grid-row:5; bottom: 45%; left: 30%;\" },\r\n      \"sel-09\":{ \"sel\":\"09\", \"style\":\"grid-column:4; grid-row:5; bottom: 45%; left: 20%;\" },\r\n      \"sel-14\":{ \"sel\":\"14\", \"style\":\"grid-column:6; grid-row:5; bottom: 45%; left: 8%;\" },\r\n      \"sel-19\":{ \"sel\":\"19\", \"style\":\"grid-column:8; grid-row:5; bottom: 45%; left: 5%;\" },\r\n\r\n      \"sel-fic\":{ \"style\":\"width: 30%;\" }  \r\n\r\n    }'),
-('hol', 'uni_sol', '{\r\n\r\n      \"sec\":{ \r\n        \"tab\":\"uni_sol\",\r\n        \"style\":\"grid: repeat(9,1fr)/repeat(9,1fr); width: 37rem; height: 38rem;\" \r\n      },\r\n\r\n      \"fon\":{ \"style\":\"grid-column: 1/sp; grid-row: 1/sp; width: 100%; height: 100%;\" },\r\n      \"fon-map\":{ \"fon\":\"map\", \"style\":\"background: center/contain no-repeat url(http://localhost/_/hol/tab/sol/map.png);\" },\r\n      \"fon-ato\":{ \"fon\":\"ato\", \"style\":\"background: center/contain no-repeat url(http://localhost/_/hol/tab/sol/ato.png);\" },\r\n      \"fon-res\":{ \"fon\":\"res\", \"style\":\"background: center/contain no-repeat url(http://localhost/_/hol/tab/sol/res.png);\" },\r\n      \"fon-cel\":{ \"fon\":\"cel\", \"style\":\"background: center/contain no-repeat url(http://localhost/_/hol/tab/sol/cel.png);\" },\r\n      \"fon-cir\":{ \"fon\":\"cir\", \"style\":\"background: center/contain no-repeat url(http://localhost/_/hol/tab/sol/cir.png);\" },\r\n      \"fon-pla\":{ \"fon\":\"pla\", \"style\":\"background: center/contain no-repeat url(http://localhost/_/hol/tab/sol/pla.png);\" },\r\n\r\n      \"pla\":{ \"style\":\"position: relative; width: 110%; height: 100%;\" },\r\n      \"pla-10\":{ \"pla\":\"10\", \"style\":\"grid-column:3/5; grid-row:2; transform: rotate( 053deg); top: 25%; left: 15%;\" },\r\n      \"pla-09\":{ \"pla\":\"09\", \"style\":\"grid-column:2/4; grid-row:3; transform: rotate( 053deg); left: 17%;\" },\r\n      \"pla-08\":{ \"pla\":\"08\", \"style\":\"grid-column:2/4; grid-row:5; transform: rotate( 340deg); top: 25%; right: 20%;\" },\r\n      \"pla-07\":{ \"pla\":\"07\", \"style\":\"grid-column:2/4; grid-row:6; transform: rotate( 340deg); top: 45%;\" },\r\n      \"pla-06\":{ \"pla\":\"06\", \"style\":\"grid-column:4/6; grid-row:8; transform: rotate( 270deg); bottom: 20%; right: 5%;\" },\r\n      \"pla-05\":{ \"pla\":\"05\", \"style\":\"grid-column:5/7; grid-row:8; transform: rotate( 270deg); bottom: 20%; left: 7%;\" },\r\n      \"pla-04\":{ \"pla\":\"04\", \"style\":\"grid-column:7/9; grid-row:6; transform: rotate( 018deg); top: 35%; left: 3%;\" },\r\n      \"pla-03\":{ \"pla\":\"03\", \"style\":\"grid-column:7/9; grid-row:5; transform: rotate( 018deg); top: 15%; left: 20%;\" },\r\n      \"pla-02\":{ \"pla\":\"02\", \"style\":\"grid-column:6/8; grid-row:3; transform: rotate( 305deg); bottom: 5%; left: 32%;\" },\r\n      \"pla-01\":{ \"pla\":\"01\", \"style\":\"grid-column:6/8; grid-row:2; transform: rotate( 305deg); top: 30%; right: 18%;\" },\r\n\r\n      \"sel\":{ \"style\":\"position: relative; width: 110%; height: 110%; border-radius: 5%;\" },      \r\n      \"sel-20\":{ \"sel\":\"20\", \"style\":\"grid-column:3; grid-row:2; transform: rotate( 053deg); bottom: 22%; left: 45%;\" },\r\n      \"sel-01\":{ \"sel\":\"01\", \"style\":\"grid-column:2; grid-row:3; transform: rotate( 054deg); bottom: 49%; left: 47%;\" },\r\n      \"sel-02\":{ \"sel\":\"02\", \"style\":\"grid-column:1; grid-row:6; transform: rotate( 340deg); bottom: 54%; left: 55%;\" },\r\n      \"sel-03\":{ \"sel\":\"03\", \"style\":\"grid-column:2; grid-row:7; transform: rotate( 340deg); bottom: 39%; right: 5%;\" },\r\n      \"sel-04\":{ \"sel\":\"04\", \"style\":\"grid-column:4; grid-row:8; transform: rotate( 270deg); top: 35%; left: 41%;\" },\r\n      \"sel-05\":{ \"sel\":\"05\", \"style\":\"grid-column:6; grid-row:8; transform: rotate( 270deg); top: 35%; right: 37%;\" },\r\n      \"sel-06\":{ \"sel\":\"06\", \"style\":\"grid-column:8; grid-row:6; transform: rotate( 196deg); top: 50%; left: 13%;\" },\r\n      \"sel-07\":{ \"sel\":\"07\", \"style\":\"grid-column:8; grid-row:5; transform: rotate( 196deg); top: 32%; left: 47%;\" },\r\n      \"sel-08\":{ \"sel\":\"08\", \"style\":\"grid-column:7; grid-row:2; transform: rotate( 125deg); top: 44%; left: 48%;\" },\r\n      \"sel-09\":{ \"sel\":\"09\", \"style\":\"grid-column:6; grid-row:2; transform: rotate( 125deg); bottom: 26%; left: 50%;\" },\r\n      \"sel-10\":{ \"sel\":\"10\", \"style\":\"grid-column:6; grid-row:3; transform: rotate( 306deg); bottom: 28%; right: 20%;\" },\r\n      \"sel-11\":{ \"sel\":\"11\", \"style\":\"grid-column:7; grid-row:3; transform: rotate( 306deg); top: 40%; right: 20%;\" },\r\n      \"sel-12\":{ \"sel\":\"12\", \"style\":\"grid-column:7; grid-row:5; transform: rotate( 017deg); bottom: 2%; left: 32%;\" },\r\n      \"sel-13\":{ \"sel\":\"13\", \"style\":\"grid-column:7; grid-row:6; transform: rotate( 017deg); top: 14%; right: 3%;\" },\r\n      \"sel-14\":{ \"sel\":\"14\", \"style\":\"grid-column:6; grid-row:7; transform: rotate( 090deg); top: 15%; right: 35%;\" },\r\n      \"sel-15\":{ \"sel\":\"15\", \"style\":\"grid-column:4; grid-row:7; transform: rotate( 090deg); top: 15%; left: 40%;\" },\r\n      \"sel-16\":{ \"sel\":\"16\", \"style\":\"grid-column:3; grid-row:6; transform: rotate( 160deg); top: 20%; left: 10%;\" },\r\n      \"sel-17\":{ \"sel\":\"17\", \"style\":\"grid-column:3; grid-row:5; transform: rotate( 160deg); top: 5%; right: 30%;\" },\r\n      \"sel-18\":{ \"sel\":\"18\", \"style\":\"grid-column:3; grid-row:4; transform: rotate( 234deg); bottom: 52%; left: 18%;\" },\r\n      \"sel-19\":{ \"sel\":\"19\", \"style\":\"grid-column:4; grid-row:3; transform: rotate( 234deg); bottom: 25%; left: 15%;\" },\r\n\r\n      \"sel-fic\":{ \"style\":\"width: 75%; height: 75%;\" } \r\n      \r\n    }');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `tex_let`
---
-
-CREATE TABLE `tex_let` (
-  `pos` int(11) NOT NULL COMMENT 'Posición',
-  `ide` char(1) NOT NULL COMMENT 'Caracter',
-  `tip` varchar(7) DEFAULT NULL COMMENT 'Tipo',
-  `var` varchar(13) DEFAULT NULL COMMENT 'Variable'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Caracter';
-
---
--- Volcado de datos para la tabla `tex_let`
---
-
-INSERT INTO `tex_let` (`pos`, `ide`, `tip`, `var`) VALUES
-(165, '.', 'ope', 'cod'),
-(166, ',', 'ope', 'cod'),
-(167, ':', 'ope', 'cod'),
-(168, ';', 'ope', 'cod'),
-(169, '\\', 'ope', 'cod'),
-(170, '~', 'ope', 'val'),
-(171, '°', 'ope', 'val'),
-(172, 'º', 'ope', 'val'),
-(173, '#', 'ope', 'val'),
-(174, '$', 'ope', 'val'),
-(175, '@', 'ope', 'val'),
-(176, '=', 'ope', 'num'),
-(177, '+', 'ope', 'num'),
-(178, '-', 'ope', 'num'),
-(179, '*', 'ope', 'num'),
-(180, '/', 'ope', 'num'),
-(181, '%', 'ope', 'num'),
-(182, '<', 'ope', 'num'),
-(183, '>', 'ope', 'num'),
-(184, '–', 'ope', 'tex'),
-(185, '\'', 'ope', 'tex'),
-(186, '’', 'ope', 'tex'),
-(187, '`', 'ope', 'tex'),
-(188, '\"', 'ope', 'tex'),
-(189, '“', 'ope', 'tex'),
-(190, '”', 'ope', 'tex'),
-(191, '¡', 'ope', 'tex'),
-(192, '!', 'ope', 'tex'),
-(193, '¿', 'ope', 'tex'),
-(194, '?', 'ope', 'tex'),
-(195, '(', 'ope', 'lis'),
-(196, ')', 'ope', 'lis'),
-(197, '[', 'ope', 'pos'),
-(198, ']', 'ope', 'pos'),
-(199, '{', 'ope', 'atr'),
-(200, '}', 'ope', 'atr');
+INSERT INTO `tab` (`esq`, `est`, `ele`, `ope`, `opc`) VALUES
+('hol', 'arm', '{\r\n      \r\n      \"sec\":{ \"tab\":\"arm\", \r\n        \"style\":\"grid: repeat(2,1fr)/repeat(2,1fr); border-radius: 15%;\" \r\n      },\r\n\r\n      \"pos-0\":{ \"pos\":\"0\", \"style\":\"grid-column:3/5; grid-row:3/5; border-radius: 50%; padding: .1rem;\" },\r\n      \"pos-1\":{ \"pos\":\"1\", \"style\":\"grid-column:4/7; grid-row:1/4;\" },\r\n      \"pos-2\":{ \"pos\":\"2\", \"style\":\"grid-column:1/4; grid-row:1/4;\" },\r\n      \"pos-3\":{ \"pos\":\"3\", \"style\":\"grid-column:1/4; grid-row:4/8;\" },\r\n      \"pos-4\":{ \"pos\":\"4\", \"style\":\"grid-column:4/7; grid-row:4/8;\" }   \r\n\r\n    }', NULL, NULL),
+('hol', 'cas', '{ \r\n\r\n      \"sec\":{ \r\n        \"tab\":\"cas\",\r\n        \"style\":\"grid: repeat(11,1fr)/repeat(11,1fr); align-items: center; justify-items: center; border-radius: 10%;\" \r\n      },\r\n\r\n      \"fon\":{ \r\n        \"sec\":\"ond\",\r\n        \"style\":\"z-index: 1; width:95%; height:91%; border-radius:50%; box-shadow: inset 2rem 5rem 2rem rgba(4,192,41,.4);\" \r\n      },\r\n\r\n      \"orb\":{ \r\n        \"sec\":\"orb\",\r\n        \"style\":\"z-index: 2; border-radius: 50%; border: 1px solid green;\" \r\n        },\r\n        \"orb-1\":{ \"orb\":\"1\", \"style\":\"grid-column:5/8;  grid-row:5/8;  width: 70%; height: 70%;\" },\r\n        \"orb-2\":{ \"orb\":\"2\", \"style\":\"grid-column:4/9;  grid-row:4/9;  width: 82%; height: 82%;\" },\r\n        \"orb-3\":{ \"orb\":\"3\", \"style\":\"grid-column:3/10; grid-row:3/10; width: 86%; height: 86%;\" },\r\n        \"orb-4\":{ \"orb\":\"4\", \"style\":\"grid-column:2/11; grid-row:2/11; width: 89%; height: 89%;\" },\r\n        \"orb-5\":{ \"orb\":\"5\", \"style\":\"grid-column:1/12; grid-row:1/12; width: 91%; height: 91%;\" },\r\n\r\n      \"ond\":{ \r\n        \"sec\":\"ond\",\r\n        \"style\":\"z-index: 3; width: 100%; height: 100%;\"\r\n        },\r\n        \"ond-1\":{ \"ond\":\"1\", \"style\":\"grid-column:7/12; grid-row:2/7 ; transform: rotate(270deg);\" },\r\n        \"ond-2\":{ \"ond\":\"2\", \"style\":\"grid-column:2/7 ; grid-row:1/6 ; transform: rotate(180deg);\" },\r\n        \"ond-3\":{ \"ond\":\"3\", \"style\":\"grid-column:1/6 ; grid-row:6/11; transform: rotate(090deg);\" },\r\n        \"ond-4\":{ \"ond\":\"4\", \"style\":\"grid-column:6/11; grid-row:7/12;\" },\r\n\r\n      \"pos\":{ \r\n        \"style\":\"z-index: 4;\" \r\n        },  \r\n        \"pos-00\":{ \"pos\":\"00\", \"style\":\"grid-column:06; grid-row:06; width:80%; height:80%; border-radius:50%;\" },\r\n        \"pos-01\":{ \"pos\":\"01\", \"style\":\"grid-column:07; grid-row:06;\" },\r\n        \"pos-02\":{ \"pos\":\"02\", \"style\":\"grid-column:08; grid-row:06;\" },\r\n        \"pos-03\":{ \"pos\":\"03\", \"style\":\"grid-column:09; grid-row:06;\" },\r\n        \"pos-04\":{ \"pos\":\"04\", \"style\":\"grid-column:10; grid-row:06;\" },\r\n        \"pos-05\":{ \"pos\":\"05\", \"style\":\"grid-column:11; grid-row:06;\" },\r\n        \"pos-06\":{ \"pos\":\"06\", \"style\":\"grid-column:11; grid-row:05;\" },\r\n        \"pos-07\":{ \"pos\":\"07\", \"style\":\"grid-column:11; grid-row:04;\" },\r\n        \"pos-08\":{ \"pos\":\"08\", \"style\":\"grid-column:11; grid-row:03;\" },\r\n        \"pos-09\":{ \"pos\":\"09\", \"style\":\"grid-column:11; grid-row:02;\" },\r\n        \"pos-10\":{ \"pos\":\"10\", \"style\":\"grid-column:10; grid-row:02;\" },\r\n        \"pos-11\":{ \"pos\":\"11\", \"style\":\"grid-column:09; grid-row:02;\" },\r\n        \"pos-12\":{ \"pos\":\"12\", \"style\":\"grid-column:08; grid-row:02;\" },\r\n        \"pos-13\":{ \"pos\":\"13\", \"style\":\"grid-column:08; grid-row:03;\" },\r\n        \"pos-14\":{ \"pos\":\"14\", \"style\":\"grid-column:06; grid-row:05;\" },\r\n        \"pos-15\":{ \"pos\":\"15\", \"style\":\"grid-column:06; grid-row:04;\" },\r\n        \"pos-16\":{ \"pos\":\"16\", \"style\":\"grid-column:06; grid-row:03;\" },\r\n        \"pos-17\":{ \"pos\":\"17\", \"style\":\"grid-column:06; grid-row:02;\" },\r\n        \"pos-18\":{ \"pos\":\"18\", \"style\":\"grid-column:06; grid-row:01;\" },\r\n        \"pos-19\":{ \"pos\":\"19\", \"style\":\"grid-column:05; grid-row:01;\" },\r\n        \"pos-20\":{ \"pos\":\"20\", \"style\":\"grid-column:04; grid-row:01;\" },\r\n        \"pos-21\":{ \"pos\":\"21\", \"style\":\"grid-column:03; grid-row:01;\" },\r\n        \"pos-22\":{ \"pos\":\"22\", \"style\":\"grid-column:02; grid-row:01;\" },\r\n        \"pos-23\":{ \"pos\":\"23\", \"style\":\"grid-column:02; grid-row:02;\" },\r\n        \"pos-24\":{ \"pos\":\"24\", \"style\":\"grid-column:02; grid-row:03;\" },\r\n        \"pos-25\":{ \"pos\":\"25\", \"style\":\"grid-column:02; grid-row:04;\" },\r\n        \"pos-26\":{ \"pos\":\"26\", \"style\":\"grid-column:03; grid-row:04;\" },\r\n        \"pos-27\":{ \"pos\":\"27\", \"style\":\"grid-column:05; grid-row:06;\" },\r\n        \"pos-28\":{ \"pos\":\"28\", \"style\":\"grid-column:04; grid-row:06;\" },\r\n        \"pos-29\":{ \"pos\":\"29\", \"style\":\"grid-column:03; grid-row:06;\" },\r\n        \"pos-30\":{ \"pos\":\"30\", \"style\":\"grid-column:02; grid-row:06;\" },\r\n        \"pos-31\":{ \"pos\":\"31\", \"style\":\"grid-column:01; grid-row:06;\" },\r\n        \"pos-32\":{ \"pos\":\"32\", \"style\":\"grid-column:01; grid-row:07;\" },\r\n        \"pos-33\":{ \"pos\":\"33\", \"style\":\"grid-column:01; grid-row:08;\" },\r\n        \"pos-34\":{ \"pos\":\"34\", \"style\":\"grid-column:01; grid-row:09;\" },\r\n        \"pos-35\":{ \"pos\":\"35\", \"style\":\"grid-column:01; grid-row:10;\" },\r\n        \"pos-36\":{ \"pos\":\"36\", \"style\":\"grid-column:02; grid-row:10;\" },\r\n        \"pos-37\":{ \"pos\":\"37\", \"style\":\"grid-column:03; grid-row:10;\" },\r\n        \"pos-38\":{ \"pos\":\"38\", \"style\":\"grid-column:04; grid-row:10;\" },\r\n        \"pos-39\":{ \"pos\":\"39\", \"style\":\"grid-column:04; grid-row:09;\" },\r\n        \"pos-40\":{ \"pos\":\"40\", \"style\":\"grid-column:06; grid-row:07;\" },\r\n        \"pos-41\":{ \"pos\":\"41\", \"style\":\"grid-column:06; grid-row:08;\" },\r\n        \"pos-42\":{ \"pos\":\"42\", \"style\":\"grid-column:06; grid-row:09;\" },\r\n        \"pos-43\":{ \"pos\":\"43\", \"style\":\"grid-column:06; grid-row:10;\" },\r\n        \"pos-44\":{ \"pos\":\"44\", \"style\":\"grid-column:06; grid-row:11;\" },\r\n        \"pos-45\":{ \"pos\":\"45\", \"style\":\"grid-column:07; grid-row:11;\" },\r\n        \"pos-46\":{ \"pos\":\"46\", \"style\":\"grid-column:08; grid-row:11;\" },\r\n        \"pos-47\":{ \"pos\":\"47\", \"style\":\"grid-column:09; grid-row:11;\" },\r\n        \"pos-48\":{ \"pos\":\"48\", \"style\":\"grid-column:10; grid-row:11;\" },\r\n        \"pos-49\":{ \"pos\":\"49\", \"style\":\"grid-column:10; grid-row:10;\" },\r\n        \"pos-50\":{ \"pos\":\"50\", \"style\":\"grid-column:10; grid-row:09;\" },\r\n        \"pos-51\":{ \"pos\":\"51\", \"style\":\"grid-column:10; grid-row:08;\" },\r\n        \"pos-52\":{ \"pos\":\"52\", \"style\":\"grid-column:09; grid-row:08;\" } \r\n\r\n    }', NULL, NULL),
+('hol', 'cas_cir', '{ \r\n\r\n      \"sec\":{ \r\n        \"tab\":\"cas_cir\", \r\n        \"style\":\"grid: repeat(18,1fr)/repeat(18,1fr); border-radius: 50%;\" \r\n      },      \r\n\r\n      \"orb\":{ \r\n        \"sec\":\"orb\",\r\n        \"style\":\"z-index: 1; width: 100%; height: 100%; border-radius: 50%;\"\r\n        },\r\n        \"orb-1\":{ \"orb\":\"1\", \"style\":\"grid-column:9/11; grid-row:9/11;\" },\r\n        \"orb-2\":{ \"orb\":\"2\", \"style\":\"grid-column:8/12; grid-row:8/12;\" },\r\n        \"orb-3\":{ \"orb\":\"3\", \"style\":\"grid-column:7/13; grid-row:7/13;\" },\r\n        \"orb-4\":{ \"orb\":\"4\", \"style\":\"grid-column:6/14; grid-row:6/14;\" },\r\n        \"orb-5\":{ \"orb\":\"5\", \"style\":\"grid-column:5/15; grid-row:5/15;\" },\r\n        \"orb-6\":{ \"orb\":\"6\", \"style\":\"grid-column:4/16; grid-row:4/16;\" },\r\n        \"orb-7\":{ \"orb\":\"7\", \"style\":\"grid-column:3/17; grid-row:3/17;\" },\r\n        \"orb-8\":{ \"orb\":\"8\", \"style\":\"grid-column:2/18; grid-row:2/18;\" },\r\n\r\n      \"ond\":{ \r\n        \"sec\":\"ond\", \r\n        \"style\":\"z-index: 2; width: 100%; height: 100%; \" \r\n        },\r\n        \"ond-1\":{ \"ond\":\"1\", \"style\":\"grid-column:10/19; grid-row:01/10; border-radius: 0 100% 0 0; border-bottom: 1.5px solid green;\" },\r\n        \"ond-2\":{ \"ond\":\"2\", \"style\":\"grid-column:01/10; grid-row:01/10; border-radius: 100% 0 0 0; border-right:  1.5px solid green;\" },\r\n        \"ond-3\":{ \"ond\":\"3\", \"style\":\"grid-column:01/10; grid-row:10/19; border-radius: 0 0 0 100%; border-top:    1.5px solid green;\" },\r\n        \"ond-4\":{ \"ond\":\"4\", \"style\":\"grid-column:10/19; grid-row:10/19; border-radius: 0 0 100% 0; border-left:   1.5px solid green;\" },\r\n\r\n      \"pos\":{ \r\n        \"style\":\"z-index: 3; position: relative;\" \r\n        },\r\n        \"pos-00\":{ \"pos\":\"00\", \"style\":\"grid-column:09/11; grid-row:09/11; width: 25%; height: 25%;\" },\r\n        \"pos-01\":{ \"pos\":\"01\", \"style\":\"grid-column:18; grid-row:09; left:  10%;\" },\r\n        \"pos-02\":{ \"pos\":\"02\", \"style\":\"grid-column:18; grid-row:08; left:  05%;\" },\r\n        \"pos-03\":{ \"pos\":\"03\", \"style\":\"grid-column:18; grid-row:07; right: 25%;\" },\r\n        \"pos-04\":{ \"pos\":\"04\", \"style\":\"grid-column:17; grid-row:06; left: 35%;\" },\r\n        \"pos-05\":{ \"pos\":\"05\", \"style\":\"grid-column:17; grid-row:05; right: 20%;  top: 05%;\" },\r\n        \"pos-06\":{ \"pos\":\"06\", \"style\":\"grid-column:16; grid-row:04; left: 15%;   top: 15%;\" },\r\n        \"pos-07\":{ \"pos\":\"07\", \"style\":\"grid-column:16; grid-row:03; right: 47%;  top: 30%;\" },\r\n        \"pos-08\":{ \"pos\":\"08\", \"style\":\"grid-column:15; grid-row:03; right: 20%;  bottom: 30%;\" },\r\n        \"pos-09\":{ \"pos\":\"09\", \"style\":\"grid-column:14; grid-row:02;              top: 22%;\" },\r\n        \"pos-10\":{ \"pos\":\"10\", \"style\":\"grid-column:13; grid-row:02; left: 15%;   bottom: 30%;\" },\r\n        \"pos-11\":{ \"pos\":\"11\", \"style\":\"grid-column:12; grid-row:01; left: 15%;   top: 35%;\" },\r\n        \"pos-12\":{ \"pos\":\"12\", \"style\":\"grid-column:11; grid-row:01; left: 15%;   top: 10%;\" },\r\n        \"pos-13\":{ \"pos\":\"13\", \"style\":\"grid-column:10; grid-row:01; left: 10%;   bottom: 10%;\" },\r\n        \"pos-14\":{ \"pos\":\"14\", \"style\":\"grid-column:09; grid-row:01; bottom: 10%;\" },\r\n        \"pos-15\":{ \"pos\":\"15\", \"style\":\"grid-column:08; grid-row:01;\" },\r\n        \"pos-16\":{ \"pos\":\"16\", \"style\":\"grid-column:07; grid-row:01; top: 30%;\" },\r\n        \"pos-17\":{ \"pos\":\"17\", \"style\":\"grid-column:06; grid-row:02; bottom: 40%;\" },\r\n        \"pos-18\":{ \"pos\":\"18\", \"style\":\"grid-column:05; grid-row:02; top: 15%;\" },\r\n        \"pos-19\":{ \"pos\":\"19\", \"style\":\"grid-column:04; grid-row:03; bottom: 20%; left: 10%;\" },\r\n        \"pos-20\":{ \"pos\":\"20\", \"style\":\"grid-column:03; grid-row:03; top:40%; left: 35%;\" },\r\n        \"pos-21\":{ \"pos\":\"21\", \"style\":\"grid-column:03; grid-row:04; top:15%; right: 30%;\" },\r\n        \"pos-22\":{ \"pos\":\"22\", \"style\":\"grid-column:02; grid-row:05; left: 15%;\" },\r\n        \"pos-23\":{ \"pos\":\"23\", \"style\":\"grid-column:02; grid-row:06; right: 40%;\" },\r\n        \"pos-24\":{ \"pos\":\"24\", \"style\":\"grid-column:01; grid-row:07; left: 30%;\" },\r\n        \"pos-25\":{ \"pos\":\"25\", \"style\":\"grid-column:01; grid-row:08; left: 10%;\" },\r\n        \"pos-26\":{ \"pos\":\"26\", \"style\":\"grid-column:01; grid-row:09;\" },\r\n        \"pos-27\":{ \"pos\":\"27\", \"style\":\"grid-column:01; grid-row:10;\" },\r\n        \"pos-28\":{ \"pos\":\"28\", \"style\":\"grid-column:01; grid-row:11; left: 10%;\" },\r\n        \"pos-29\":{ \"pos\":\"29\", \"style\":\"grid-column:01; grid-row:12; left: 40%;\" },\r\n        \"pos-30\":{ \"pos\":\"30\", \"style\":\"grid-column:02; grid-row:13; right: 20%;\" },\r\n        \"pos-31\":{ \"pos\":\"31\", \"style\":\"grid-column:02; grid-row:14; left: 30%;\" },\r\n        \"pos-32\":{ \"pos\":\"32\", \"style\":\"grid-column:03; grid-row:15; bottom: 15%; right: 5%;\" },\r\n        \"pos-33\":{ \"pos\":\"33\", \"style\":\"grid-column:03; grid-row:16; bottom: 50%; left: 60%;\" },\r\n        \"pos-34\":{ \"pos\":\"34\", \"style\":\"grid-column:04; grid-row:16; top: 15%; left: 30%;\" },\r\n        \"pos-35\":{ \"pos\":\"35\", \"style\":\"grid-column:05; grid-row:17; bottom: 30%; left: 5%;\" },\r\n        \"pos-36\":{ \"pos\":\"36\", \"style\":\"grid-column:06; grid-row:17; top: 20%;\" },\r\n        \"pos-37\":{ \"pos\":\"37\", \"style\":\"grid-column:07; grid-row:18; bottom: 45%;\" },\r\n        \"pos-38\":{ \"pos\":\"38\", \"style\":\"grid-column:08; grid-row:18; bottom: 20%;\" },\r\n        \"pos-39\":{ \"pos\":\"39\", \"style\":\"grid-column:09; grid-row:18; bottom: 5%;\" },\r\n        \"pos-40\":{ \"pos\":\"40\", \"style\":\"grid-column:10; grid-row:18; bottom: 5%;\" },\r\n        \"pos-41\":{ \"pos\":\"41\", \"style\":\"grid-column:11; grid-row:18; bottom: 20%;\" },\r\n        \"pos-42\":{ \"pos\":\"42\", \"style\":\"grid-column:12; grid-row:18; bottom: 45%;\" },\r\n        \"pos-43\":{ \"pos\":\"43\", \"style\":\"grid-column:13; grid-row:17; top: 20%;\" },\r\n        \"pos-44\":{ \"pos\":\"44\", \"style\":\"grid-column:14; grid-row:17; bottom: 30%; right: 5%;\" },\r\n        \"pos-45\":{ \"pos\":\"45\", \"style\":\"grid-column:15; grid-row:16; top: 15%; right: 30%;\" },\r\n        \"pos-46\":{ \"pos\":\"46\", \"style\":\"grid-column:16; grid-row:16; bottom: 50%; right: 60%;\" },\r\n        \"pos-47\":{ \"pos\":\"47\", \"style\":\"grid-column:16; grid-row:15; bottom: 15%; left: 5%;\" },\r\n        \"pos-48\":{ \"pos\":\"48\", \"style\":\"grid-column:17; grid-row:14; right: 30%;\" },\r\n        \"pos-49\":{ \"pos\":\"49\", \"style\":\"grid-column:17; grid-row:13; left: 20%;\" },\r\n        \"pos-50\":{ \"pos\":\"50\", \"style\":\"grid-column:18; grid-row:12; right: 40%;\" },\r\n        \"pos-51\":{ \"pos\":\"51\", \"style\":\"grid-column:18; grid-row:11; right: 10%;\" },\r\n        \"pos-52\":{ \"pos\":\"52\", \"style\":\"grid-column:18; grid-row:10;\" }      \r\n      \r\n    }', NULL, NULL),
+('hol', 'cro', '{\r\n\r\n      \"sec\":{ \"tab\":\"cro\", \"style\":\"grid: repeat(3,1fr) / repeat(3,1fr); border-radius: 50%;\" },\r\n\r\n      \"pos-0\":{ \"pos\":\"0\", \"style\":\"grid-column:2; grid-row:2;\" },\r\n      \"pos-1\":{ \"pos\":\"1\", \"style\":\"grid-column:3; grid-row:2;\" },\r\n      \"pos-2\":{ \"pos\":\"2\", \"style\":\"grid-column:2; grid-row:1;\" },\r\n      \"pos-3\":{ \"pos\":\"3\", \"style\":\"grid-column:1; grid-row:2;\" },\r\n      \"pos-4\":{ \"pos\":\"4\", \"style\":\"grid-column:2; grid-row:3;\" },\r\n      \"pos-5\":{ \"pos\":\"5\", \"style\":\"grid-column:2; grid-row:2;\" }   \r\n\r\n    }', NULL, NULL),
+('hol', 'cro_cir', '{\r\n\r\n      \"sec\":{ \"tab\":\"cro_cir\", \"style\":\"grid: repeat(3,1fr) / repeat(3,1fr); border-radius: 50%;\" },\r\n\r\n      \"pos\":{ \"style\":\"position: relative;\" },\r\n      \"pos-0\":{ \"pos\":\"0\", \"style\":\"grid-column:2/3; grid-row:2/3; align-self: center; justify-self: center; justify-content: center; align-items: center; width: 150%; height: 150%;\" },\r\n      \"pos-1\":{ \"pos\":\"1\", \"style\":\"grid-column:1/2; grid-row:1/2; top: 3%;    left: 28%; transform: rotate(145deg);\" },\r\n      \"pos-2\":{ \"pos\":\"2\", \"style\":\"grid-column:1/2; grid-row:2/3; top: 38%;   left:-13%; transform: rotate(070deg);\" },\r\n      \"pos-3\":{ \"pos\":\"3\", \"style\":\"grid-column:2/3; grid-row:3/4; top: 20%;\" },\r\n      \"pos-4\":{ \"pos\":\"4\", \"style\":\"grid-column:3/4; grid-row:2/3; top: 35.5%; left: 12%; transform: rotate(287deg);\" },\r\n      \"pos-5\":{ \"pos\":\"5\", \"style\":\"grid-column:3/4; grid-row:1/2; top: 3%;    left:-30%; transform: rotate(217deg);\" }      \r\n\r\n    }', NULL, NULL),
+('hol', 'kin_arm', '{ \r\n\r\n      \"sec\":{ \"tab\": \"kin_arm\", \"style\":\"grid-gap: .3rem;\" }, \r\n\r\n      \"pos\":{ \"style\":\"width: 1.2rem; height: 1.2rem;\" }\r\n\r\n    }', '{\r\n      \"sec\":{ \"ima\": \"\", \"bor\": 0, \"arm\": 1 },\r\n      \"pos\":{ \"ima\": \"hol.sel.ide\", \"col\": \"\", \"num\": \"\" }\r\n    }', '[ \"par\", \"pul\" ]'),
+('hol', 'kin_arm_cel', '{\r\n\r\n      \"cel\":{ \"tab\": \"kin_arm_cel\", \"style\":\"grid-gap: .05rem;\" },\r\n\r\n      \"pos\":{ \"style\":\"width: 18rem; height: 18rem;\" } \r\n      \r\n    }', NULL, NULL),
+('hol', 'kin_arm_tra', '{ \r\n\r\n      \"tra\":{ \"tab\": \"kin_arm_tra\", \"style\":\"border-radius: 50%;\" },\r\n\r\n      \"pos\":{ \"style\":\"width: 7.8rem; height: 7.8rem;\" }\r\n      \r\n    }', NULL, NULL),
+('hol', 'kin_cro', '{ \r\n\r\n      \"sec\":{ \"tab\": \"kin_cro\", \"style\":\"grid-gap: .3rem;\" },\r\n\r\n      \"pos\":{ \"style\":\"width: 1rem; height: 1rem;\" }\r\n\r\n    }', '{\r\n      \"sec\":{ \"ima\": \"\", \"bor\": 0, \"cas\": 1, \"orb\": 1, \"ond\": 1, \"cro\": 1, \"ond-col\":1 },				\r\n      \"pos\":{ \"ima\": \"hol.sel.ide\", \"col\": \"\", \"num\": \"\" }\r\n    }', '[ \"par\", \"pul\" ]'),
+('hol', 'kin_cro_ele', '{ \r\n\r\n      \"ele\":{ \"tab\": \"kin_cro_ele\" },\r\n\r\n      \"pos\":{ \"style\":\"width: 13rem; height: 13rem;\" },\r\n      \"pos-0\":{ \"style\":\"width: 150%; height: 150%; color: black;\" },\r\n\r\n      \"rot-ond\":[ \"147\", \"070\", \"074\", \"071\", \"074\", \"330\", \"352\", \"335\", \"350\", \"230\", \"270\", \"240\", \"160\", \"140\", \"070\", \"074\", \"071\", \"074\", \"330\", \"352\", \"335\", \"350\", \"230\", \"270\", \"240\", \"160\", \"140\", \"070\", \"074\", \"071\", \"074\", \"330\", \"352\", \"335\", \"350\", \"230\", \"270\", \"240\", \"160\", \"140\", \"070\", \"074\", \"071\", \"074\", \"330\", \"352\", \"335\", \"350\", \"230\", \"270\", \"240\", \"160\" ],\r\n\r\n      \"rot-cas\":[ \"025\", \"000\", \"340\", \"345\", \"340\", \"250\", \"255\", \"250\", \"255\", \"155\", \"170\", \"160\", \"065\", \"290\", \"290\", \"290\", \"290\", \"220\", \"170\", \"160\", \"165\", \"160\", \"070\", \"075\", \"070\", \"335\", \"180\", \"150\", \"170\", \"160\", \"165\", \"070\", \"075\", \"070\", \"073\", \"330\", \"350\", \"340\", \"245\", \"095\", \"070\", \"075\", \"073\", \"073\", \"330\", \"350\", \"340\", \"345\", \"250\", \"255\", \"250\", \"160\" ]\r\n    }', NULL, NULL),
+('hol', 'kin_cro_est', '{\r\n\r\n      \"est\":{ \"tab\": \"kin_cro_est\", \"style\":\"margin: 0 1rem; grid-gap: .2rem\" },\r\n\r\n      \"pos\":{ \"style\":\"width: 2.8rem; height: 2.8rem;\" }\r\n\r\n    }', NULL, NULL),
+('hol', 'kin_nav', '{ \r\n\r\n      \"sec\":{ \"tab\": \"kin_nav\", \"style\":\"grid-gap: .15rem;\" }, \r\n\r\n      \"pos\":{ \"style\":\"width: 1.1rem; height: 1.1rem;\" },\r\n      \r\n      \"pos-00\":{ \"style\":\"font-size:.5rem\" }\r\n      \r\n    }', '{\r\n      \"sec\":{ \"ima\": \"\", \"bor\": 0, \"col\": 1, \"cas\":1 },\r\n      \"pos\":{ \"ima\": \"hol.kin.ide\", \"col\": \"\", \"num\": \"\" }\r\n    }', '[ \"par\", \"pul\" ]'),
+('hol', 'kin_nav_cas', '{ \r\n\r\n      \"cas\":{ \"tab\": \"kin_nav_cas\", \"style\":\"padding: .2rem;\" },\r\n\r\n      \"pos\":{ \"style\":\"width: 4rem; height: 4rem;\" }\r\n      \r\n    }', NULL, NULL),
+('hol', 'kin_nav_ond', '{ \r\n\r\n      \"ond\":{ \"tab\": \"kin_nav_ond\", \"style\":\"grid-gap: .2rem;\" }, \r\n      \r\n      \"pos\":{ \"style\":\"width: 9rem; height: 9rem;\" } \r\n      \r\n    }', NULL, NULL),
+('hol', 'kin_par', '{ \r\n\r\n      \"sec\":{ \"tab\":\"uni_par\", \"class\": \"kin\", \"style\":\"border: 1px solid var(--col_ver); border-radius: 50%;\" }\r\n\r\n    }', NULL, NULL),
+('hol', 'kin_tzo', '{ \r\n\r\n      \"sec\":{ \"tab\":\"kin\", \"style\":\"grid: repeat(20,1fr) / repeat(13,1fr); grid-auto-flow: column;\" },\r\n      \r\n      \"ton-01\":{ \"style\":\"grid-column: 2; grid-row: 1;\" },\r\n      \"ton-02\":{ \"style\":\"grid-column: 3; grid-row: 1;\" },\r\n      \"ton-03\":{ \"style\":\"grid-column: 4; grid-row: 1;\" },\r\n      \"ton-04\":{ \"style\":\"grid-column: 5; grid-row: 1;\" },\r\n      \"ton-05\":{ \"style\":\"grid-column: 6; grid-row: 1;\" },\r\n      \"ton-06\":{ \"style\":\"grid-column: 7; grid-row: 1;\" },\r\n      \"ton-07\":{ \"style\":\"grid-column: 8; grid-row: 1;\" },\r\n      \"ton-08\":{ \"style\":\"grid-column: 9; grid-row: 1;\" },\r\n      \"ton-09\":{ \"style\":\"grid-column: 10; grid-row: 1;\" },\r\n      \"ton-10\":{ \"style\":\"grid-column: 11; grid-row: 1;\" },\r\n      \"ton-11\":{ \"style\":\"grid-column: 12; grid-row: 1;\" },\r\n      \"ton-12\":{ \"style\":\"grid-column: 13; grid-row: 1;\" },\r\n      \"ton-13\":{ \"style\":\"grid-column: 14; grid-row: 1;\" },\r\n\r\n      \"sel-01\":{ \"style\":\"grid-column: 1; grid-row: 02;\" },\r\n      \"sel-02\":{ \"style\":\"grid-column: 1; grid-row: 03;\" },\r\n      \"sel-03\":{ \"style\":\"grid-column: 1; grid-row: 04;\" },\r\n      \"sel-04\":{ \"style\":\"grid-column: 1; grid-row: 05;\" },\r\n      \"sel-05\":{ \"style\":\"grid-column: 1; grid-row: 06;\" },\r\n      \"sel-06\":{ \"style\":\"grid-column: 1; grid-row: 07;\" },\r\n      \"sel-07\":{ \"style\":\"grid-column: 1; grid-row: 08;\" },\r\n      \"sel-08\":{ \"style\":\"grid-column: 1; grid-row: 09;\" },\r\n      \"sel-09\":{ \"style\":\"grid-column: 1; grid-row: 10;\" },\r\n      \"sel-10\":{ \"style\":\"grid-column: 1; grid-row: 11;\" },\r\n      \"sel-11\":{ \"style\":\"grid-column: 1; grid-row: 12;\" },\r\n      \"sel-12\":{ \"style\":\"grid-column: 1; grid-row: 13;\" },\r\n      \"sel-13\":{ \"style\":\"grid-column: 1; grid-row: 14;\" },\r\n      \"sel-14\":{ \"style\":\"grid-column: 1; grid-row: 15;\" },\r\n      \"sel-15\":{ \"style\":\"grid-column: 1; grid-row: 16;\" },\r\n      \"sel-16\":{ \"style\":\"grid-column: 1; grid-row: 17;\" },\r\n      \"sel-17\":{ \"style\":\"grid-column: 1; grid-row: 18;\" },\r\n      \"sel-18\":{ \"style\":\"grid-column: 1; grid-row: 19;\" },\r\n      \"sel-19\":{ \"style\":\"grid-column: 1; grid-row: 20;\" },\r\n      \"sel-20\":{ \"style\":\"grid-column: 1; grid-row: 21;\" },\r\n\r\n      \"pos\":{  \"style\":\"width: 1.9rem; height: 1.9rem;\" },\r\n      \"pos-0\":{ \"style\":\"grid-column: 1; grid-row: 1;\" }     \r\n      \r\n    }', '{      \r\n			\"sec\":{ \"ima\": \"\", \"sel\": 1 },\r\n\r\n			\"pos\":{ \"ima\": \"hol.ton.ide\", \"col\": \"hol.kin.pag\", \"num\": \"hol.kin.ide\" }\r\n    }', '[ \"par\" ]'),
+('hol', 'lun', '{ \r\n\r\n      \"sec\":{ \r\n        \"tab\":\"lun\"\r\n      },\r\n\r\n      \"pos\":{ \r\n        \"style\":\"width: 3rem; height: 3rem;\"\r\n      }     \r\n    }', NULL, NULL),
+('hol', 'psi_ban', '{\r\n\r\n      \"sec\":{ \"tab\": \"psi\", \"style\": \"grid-gap: .5rem;\" },\r\n\r\n      \"pos\":{ \"style\": \"width: 1.2rem; height: 1.2rem;\" }   \r\n\r\n    }', '{\r\n      \"sec\":{ \"ima\": \"\", \"bor\": 0 },      \r\n      \"pos\":{ \"ima\": \"hol.kin.ide\", \"col\": \"\", \"num\": \"\" }\r\n    }', '[ \"par\", \"pul\" ]'),
+('hol', 'psi_est', '{ \r\n\r\n      \"sec\":{ \"tab\": \"psi_est\" },\r\n\r\n      \"pos\":{ \"style\": \"width: .855rem; height: .855rem;\" }\r\n\r\n    }', '{\r\n      \"sec\":{ \"ima\": \"\", \"bor\": 0 },\r\n      \"pos\":{ \"ima\": \"hol.rad.ide\", \"col\": \"\", \"num\": \"\" }\r\n    }', '[ \"par\", \"pul\" ]'),
+('hol', 'psi_hep', '{ \r\n\r\n      \"sec\":{ \"tab\": \"psi_hep\" }\r\n      \r\n    }', NULL, NULL),
+('hol', 'psi_lun', '{\r\n\r\n      \"lun\":{ \"tab\": \"psi_lun\" },\r\n\r\n      \"pos\":{ \"style\": \"width: 5rem; height: 5rem; max-height: 5rem;\" }\r\n      \r\n    }', '{\r\n      \"sec\":{ \"ima\": \"\", \"bor\": 0, \"lun\": 1, \"hep\": 1, \"rad\": 1 },\r\n      \"pos\":{ \"ima\": \"hol.kin.ide\", \"col\": \"\", \"num\": \"\" }      \r\n    }', '[ \"par\" ]'),
+('hol', 'psi_tzo', '{\r\n\r\n      \"sec\":{ \"tab\": \"psi_tzo\", \"style\": \"grid-template-columns: repeat(4,1fr);\" },\r\n\r\n      \"tzo-5\":{ \"style\":\"transform: rotate(180deg);\" },\r\n      \"tzo-6\":{ \"style\":\"transform: rotate(180deg);\" },\r\n      \"tzo-7\":{ \"style\":\"transform: rotate(180deg);\" },\r\n      \"tzo-8\":{ \"style\":\"transform: rotate(180deg);\" },\r\n\r\n      \"pos\":{ \"style\":\"width: .95rem; height: .95rem;\" }\r\n      \r\n    }', '{\r\n      \"sec\":{ \"ima\": \"\", \"bor\": 0 },\r\n      \"pos\":{ \"ima\": \"hol.kin.ide\", \"col\": \"hol.kin.pag\" }\r\n    }', '[ \"par\" ]'),
+('hol', 'rad', '{ \r\n\r\n      \"sec\":{ \"tab\": \"rad\", \r\n        \"style\":\"grid: repeat(4,1fr)/repeat(4,1fr); background: center/contain no-repeat url(http://localhost/_/hol/ima/rad.png);\" \r\n      },\r\n\r\n      \"pos\":{ \"style\":\"position: relative;\" },\r\n      \"pos-1\":{ \"pos\":\"1\", \"style\":\"grid-column:2; grid-row:1; top:     15%; left:  50%;\" },\r\n      \"pos-2\":{ \"pos\":\"2\", \"style\":\"grid-column:2; grid-row:4; bottom:  15%; left:  53%; \" },\r\n      \"pos-3\":{ \"pos\":\"3\", \"style\":\"grid-column:1; grid-row:2; bottom:  20%; left:  25%;\" },\r\n      \"pos-4\":{ \"pos\":\"4\", \"style\":\"grid-column:4; grid-row:3; top:     20%; right: 25%;\" },\r\n      \"pos-5\":{ \"pos\":\"5\", \"style\":\"grid-column:1; grid-row:3; top:     20%; left:  30%;\" },\r\n      \"pos-6\":{ \"pos\":\"6\", \"style\":\"grid-column:4; grid-row:2; bottom:  20%; right: 35%;\" },\r\n      \"pos-7\":{ \"pos\":\"7\", \"style\":\"grid-column:2; grid-row:2; top:     50%; left:  50%;\" } \r\n      \r\n    }', NULL, NULL),
+('hol', 'rad_ato', '{\r\n    }', NULL, NULL),
+('hol', 'sel', '{ \r\n\r\n      \"sec\":{ \r\n        \"tab\":\"sel\", \r\n        \"style\":\"display: grid; grid: repeat(4,1fr)/repeat(5,1fr); grid-gap: .5rem;\" \r\n      },\r\n\r\n      \"pos\":{ \r\n        \"style\":\"width: 1.9rem; height: 1.9rem;\"\r\n      }    \r\n\r\n    }', NULL, NULL),
+('hol', 'sel_arm', '{ \r\n\r\n      \"sec\":{ \r\n        \"tab\":\"sel_arm\", \r\n        \"style\":\"grid: repeat(5,1fr)/repeat(6,1fr); grid-auto-flow: column; border-radius: 20%;\" \r\n      },\r\n      \r\n      \"raz-1\":{ \"raz\":\"1\", \"style\":\"grid-column:1/2; grid-row:2/3;\" },\r\n      \"raz-2\":{ \"raz\":\"2\", \"style\":\"grid-column:1/2; grid-row:3/4;\" },\r\n      \"raz-3\":{ \"raz\":\"3\", \"style\":\"grid-column:1/2; grid-row:4/5;\" },\r\n      \"raz-4\":{ \"raz\":\"4\", \"style\":\"grid-column:1/2; grid-row:5/6;\" },\r\n\r\n      \"cel-1\":{ \"cel\":\"1\", \"style\":\"grid-column:2/3; grid-row:1/2;\" },\r\n      \"cel-2\":{ \"cel\":\"2\", \"style\":\"grid-column:3/4; grid-row:1/2;\" },\r\n      \"cel-3\":{ \"cel\":\"3\", \"style\":\"grid-column:4/5; grid-row:1/2;\" },\r\n      \"cel-4\":{ \"cel\":\"4\", \"style\":\"grid-column:5/6; grid-row:1/2;\" },\r\n      \"cel-5\":{ \"cel\":\"5\", \"style\":\"grid-column:6/7; grid-row:1/2;\" },\r\n\r\n      \"pos\":{ \"style\":\"width: 8rem; height: 8rem;\" }      \r\n      \r\n    }', NULL, NULL),
+('hol', 'sel_arm_tra', '{ \r\n\r\n      \"sec\":{\r\n        \"tab\":\"sel_arm_tra\"\r\n      },\r\n\r\n      \"pos\":{ \r\n        \"style\":\"width: 7.8rem; height: 7.8rem;\" \r\n      }    \r\n      \r\n    }', NULL, NULL),
+('hol', 'sel_cro', '{ \r\n\r\n      \"sec\":{ \r\n        \"tab\":\"sel_cro\",\r\n        \"style\":\"grid-auto-flow: column; border-radius: 20%;\" \r\n      },      \r\n\r\n      \"fam-5\":{ \"fam\":\"5\", \"style\":\"grid-column:1/2; grid-row:2/3;\" },\r\n      \"fam-1\":{ \"fam\":\"1\", \"style\":\"grid-column:1/2; grid-row:3/4;\" }, \r\n      \"fam-2\":{ \"fam\":\"2\", \"style\":\"grid-column:1/2; grid-row:4/5;\" }, \r\n      \"fam-3\":{ \"fam\":\"3\", \"style\":\"grid-column:1/2; grid-row:5/6;\" }, \r\n      \"fam-4\":{ \"fam\":\"4\", \"style\":\"grid-column:1/2; grid-row:6/7;\" },\r\n\r\n      \"ele-4\":{ \"ele\":\"4\", \"style\":\"grid-column:2/3; grid-row:1/2;\" },\r\n      \"ele-1\":{ \"ele\":\"1\", \"style\":\"grid-column:3/4; grid-row:1/2;\" }, \r\n      \"ele-2\":{ \"ele\":\"2\", \"style\":\"grid-column:4/5; grid-row:1/2;\" }, \r\n      \"ele-3\":{ \"ele\":\"3\", \"style\":\"grid-column:5/6; grid-row:1/2;\" },\r\n\r\n      \"pos\":{ \r\n        \"style\":\"width: 7rem; height: 7rem;\" \r\n      }  \r\n      \r\n    }', NULL, NULL),
+('hol', 'sel_par', '{ \r\n\r\n      \"sec\":{ \r\n        \"tab\":\"uni_par\", \r\n        \"class\":\"sel\", \r\n        \"style\":\"border: 1px solid var(--col_ver); border-radius: 50%;\"      \r\n      },\r\n\r\n      \"pos\":{ \r\n        \"style\":\"width: 1.9rem; height: 1.9rem;\" \r\n      } \r\n      \r\n    }', NULL, NULL),
+('hol', 'ton', '{     \r\n\r\n      \"sec\":{ \"tab\":\"ton\", \r\n        \"style\":\"grid: repeat(5,1fr)/repeat(5,1fr); justify-items: start;\" \r\n      },\r\n\r\n      \"ond\":{ \"sec\":\"ond\",\r\n        \"style\":\"grid-column:1/sp; grid-row:1/sp; width: 100%; height: 100%;\"\r\n      },\r\n\r\n      \"pos\":{ \r\n        \"style\":\"z-index:10;\" \r\n      },\r\n      \"pos-01\":{ \"pos\":\"01\", \"style\":\"grid-column:1/2; grid-row:1/2;\" },\r\n      \"pos-02\":{ \"pos\":\"02\", \"style\":\"grid-column:1/2; grid-row:2/3;\" },\r\n      \"pos-03\":{ \"pos\":\"03\", \"style\":\"grid-column:1/2; grid-row:3/4;\" },\r\n      \"pos-04\":{ \"pos\":\"04\", \"style\":\"grid-column:1/2; grid-row:4/5;\" },\r\n      \"pos-05\":{ \"pos\":\"05\", \"style\":\"grid-column:1/2; grid-row:5/6;\" },\r\n      \"pos-06\":{ \"pos\":\"06\", \"style\":\"grid-column:2/3; grid-row:5/6;\" },\r\n      \"pos-07\":{ \"pos\":\"07\", \"style\":\"grid-column:3/4; grid-row:5/6;\" },\r\n      \"pos-08\":{ \"pos\":\"08\", \"style\":\"grid-column:4/5; grid-row:5/6;\" },\r\n      \"pos-09\":{ \"pos\":\"09\", \"style\":\"grid-column:5/6; grid-row:5/6;\" },\r\n      \"pos-10\":{ \"pos\":\"10\", \"style\":\"grid-column:5/6; grid-row:4/5;\" },\r\n      \"pos-11\":{ \"pos\":\"11\", \"style\":\"grid-column:5/6; grid-row:3/4;\" },\r\n      \"pos-12\":{ \"pos\":\"12\", \"style\":\"grid-column:5/6; grid-row:2/3;\" },\r\n      \"pos-13\":{ \"pos\":\"13\", \"style\":\"grid-column:4/5; grid-row:2/3;\" }   \r\n      \r\n    }', NULL, NULL),
+('hol', 'uni_gal', '{\r\n    }', NULL, NULL),
+('hol', 'uni_hum', '{\r\n\r\n      \"sec\":{ \"tab\":\"uni_hum\",\r\n        \"style\":\"grid: repeat(20,1fr)/repeat(13,1fr); width: 19rem; height: 35rem;\"\r\n      },\r\n\r\n      \"fon\":{ \"style\":\"grid-column: 1/sp; grid-row: 1/sp; width: 100%; height: 100%;\" },\r\n      \"fon-map\":{ \"fon\":\"map\", \"style\":\"background: center/contain no-repeat url(http://localhost/_/hol/tab/hum/map.png);\" },\r\n      \"fon-res\":{ \"fon\":\"res\", \"style\":\"background: center/contain no-repeat url(http://localhost/_/hol/tab/hum/res.png);\" },\r\n      \"fon-cir\":{ \"fon\":\"cir\", \"style\":\"background: center/contain no-repeat url(http://localhost/_/hol/tab/hum/cir.png);\" },\r\n      \"fon-cen\":{ \"fon\":\"cen\", \"style\":\"background: center/contain no-repeat url(http://localhost/_/hol/tab/hum/cen.png);\" },\r\n      \"fon-ext\":{ \"fon\":\"ext\", \"style\":\"background: center/contain no-repeat url(http://localhost/_/hol/tab/hum/ext.png);\" },\r\n\r\n      \"raz\":{ \"style\":\"position: relative;\" },\r\n      \"raz-4\":{ \"raz\":\"4\", \"style\":\"grid-column:2/5; grid-row:10/12; left:5%; top:5%;\" },\r\n      \"raz-1\":{ \"raz\":\"1\", \"style\":\"grid-column:5/7; grid-row:18/20; left: 30%; top:5%; z-index: -1;\" },\r\n      \"raz-2\":{ \"raz\":\"2\", \"style\":\"grid-column:11/13; grid-row:10/12; right:35%; top:5%;\" },\r\n      \"raz-3\":{ \"raz\":\"3\", \"style\":\"grid-column:8/10; grid-row:18/20; right:20%; top:5%; z-index: -1;\" },\r\n\r\n      \"fam\":{ \"style\":\"\" },\r\n      \"fam-5\":{ \"fam\":\"5\", \"style\":\"grid-column:6/9; grid-row:1/3;\" },\r\n      \"fam-1\":{ \"fam\":\"1\", \"style\":\"grid-column:6/9; grid-row:3/6; z-index:1;\" },\r\n      \"fam-2\":{ \"fam\":\"2\", \"style\":\"grid-column:6/9; grid-row:5/8;\" },\r\n      \"fam-3\":{ \"fam\":\"3\", \"style\":\"grid-column:6/9; grid-row:7/10;\" },\r\n      \"fam-4\":{ \"fam\":\"4\", \"style\":\"grid-column:6/9; grid-row:10/12;\" },\r\n\r\n      \"ton\":{ \"style\":\"position:relative; width:20px; height:20px; border-radius: 20%;\" },\r\n      \"ton-01\":{ \"ton\":\"01\", \"style\":\"grid-column:05; grid-row:18; bottom: 30%;\" },\r\n      \"ton-02\":{ \"ton\":\"02\", \"style\":\"grid-column:05; grid-row:15; right: 15%;\" },\r\n      \"ton-03\":{ \"ton\":\"03\", \"style\":\"grid-column:05; grid-row:11; right: 20%;\" },\r\n      \"ton-04\":{ \"ton\":\"04\", \"style\":\"grid-column:03; grid-row:10; bottom: 40%;\" },\r\n      \"ton-05\":{ \"ton\":\"05\", \"style\":\"grid-column:04; grid-row:08; bottom: 35%; right: 40%;\" },\r\n      \"ton-06\":{ \"ton\":\"06\", \"style\":\"grid-column:04; grid-row:05;\" },\r\n      \"ton-07\":{ \"ton\":\"07\", \"style\":\"grid-column:07; grid-row:04; bottom: 35%;\" },\r\n      \"ton-08\":{ \"ton\":\"08\", \"style\":\"grid-column:10; grid-row:05;\" },\r\n      \"ton-09\":{ \"ton\":\"09\", \"style\":\"grid-column:10; grid-row:08; bottom: 35%; left: 40%;\" },\r\n      \"ton-10\":{ \"ton\":\"10\", \"style\":\"grid-column:11; grid-row:10; bottom: 40%;\" },\r\n      \"ton-11\":{ \"ton\":\"11\", \"style\":\"grid-column:09; grid-row:11; left: 20%;\" },\r\n      \"ton-12\":{ \"ton\":\"12\", \"style\":\"grid-column:09; grid-row:15; left: 35%;\" },\r\n      \"ton-13\":{ \"ton\":\"13\", \"style\":\"grid-column:09; grid-row:18; bottom: 30%; left: 30%;\" },\r\n\r\n      \"sel\":{ \"style\":\"width:15px; height:15px; position:relative; \" },\r\n      \"sel-20\":{ \"sel\":\"20\", \"style\":\"grid-column:1;  grid-row:10; top:40%; right:25%;\" },\r\n      \"sel-01\":{ \"sel\":\"01\", \"style\":\"grid-column:1;  grid-row:11; top:30%; right:17%;\" },\r\n      \"sel-02\":{ \"sel\":\"02\", \"style\":\"grid-column:1;  grid-row:12; top:20%; left: 25%;\" },\r\n      \"sel-03\":{ \"sel\":\"03\", \"style\":\"grid-column:2;  grid-row:12; top:40%; left: 28%;\" },\r\n      \"sel-04\":{ \"sel\":\"04\", \"style\":\"grid-column:3;  grid-row:12; top:25%; left: 30%;\" },\r\n      \"sel-10\":{ \"sel\":\"10\", \"style\":\"grid-column:13; grid-row:10; top:35%; left:20%;\" },\r\n      \"sel-11\":{ \"sel\":\"11\", \"style\":\"grid-column:13; grid-row:11; top:30%; left:15%;\" },\r\n      \"sel-12\":{ \"sel\":\"12\", \"style\":\"grid-column:13; grid-row:12; top:20%; right:25%;\" },\r\n      \"sel-13\":{ \"sel\":\"13\", \"style\":\"grid-column:12; grid-row:12; top:43%; right:25%;\" },\r\n      \"sel-14\":{ \"sel\":\"14\", \"style\":\"grid-column:11; grid-row:12; top:30%; right:25%;\" },\r\n      \"sel-05\":{ \"sel\":\"05\", \"style\":\"grid-column:6;  grid-row:20; top:15%; left:25%;\" },\r\n      \"sel-06\":{ \"sel\":\"06\", \"style\":\"grid-column:5;  grid-row:20; top:35%; left:20%;\" },\r\n      \"sel-07\":{ \"sel\":\"07\", \"style\":\"grid-column:4;  grid-row:20; top:25%; left:20%;\" },\r\n      \"sel-08\":{ \"sel\":\"08\", \"style\":\"grid-column:4;  grid-row:19; top:35%; left:5%;\" },\r\n      \"sel-09\":{ \"sel\":\"09\", \"style\":\"grid-column:4;  grid-row:19; bottom:50%; left:20%;\" },\r\n      \"sel-15\":{ \"sel\":\"15\", \"style\":\"grid-column:8;  grid-row:20; top:20%;\" },\r\n      \"sel-16\":{ \"sel\":\"16\", \"style\":\"grid-column:9;  grid-row:20; top:35%;\" },\r\n      \"sel-17\":{ \"sel\":\"17\", \"style\":\"grid-column:10; grid-row:20; top:25%;\" },\r\n      \"sel-18\":{ \"sel\":\"18\", \"style\":\"grid-column:10; grid-row:19; top:35%; left:15%;\" },\r\n      \"sel-19\":{ \"sel\":\"19\", \"style\":\"grid-column:10; grid-row:19; bottom:50%;\" }  \r\n\r\n    }', NULL, NULL),
+('hol', 'uni_ond', '{\r\n    }', NULL, NULL),
+('hol', 'uni_par', '{\r\n    }', NULL, NULL),
+('hol', 'uni_pla', '{ \r\n      \r\n      \"sec\":{ \"tab\":\"uni_pla\",\r\n        \"style\":\"grid: repeat(5,1fr)/repeat(9,1fr); width: 40rem; height: 28rem;\" \r\n      },\r\n\r\n      \"fon\":{ \"style\":\"grid-column:2/10; grid-row:1/6; width: 100%; height: 100%;\" },\r\n      \"fon-map\":{ \"fon\":\"map\", \"style\":\"background: center/contain no-repeat url(http://localhost/_/hol/tab/pla/map.png);\" },\r\n      \"fon-sel\":{ \"fon\":\"sel\", \"style\":\"background: center/contain no-repeat url(http://localhost/_/hol/tab/pla/sel.png);\" },\r\n      \"fon-res\":{ \"fon\":\"res\", \"style\":\"background: center/contain no-repeat url(http://localhost/_/hol/tab/pla/res.png);\" },\r\n      \"fon-flu\":{ \"fon\":\"flu\", \"style\":\"background: center/contain no-repeat url(http://localhost/_/hol/tab/pla/flu.png);\" },\r\n\r\n      \"fam\":{ \"style\":\"height: 80%; width: 80%;\" },\r\n      \"fam-1\":{ \"fam\":\"1\", \"style\":\"grid-column:1/2; grid-row:2;\" },\r\n      \"fam-2\":{ \"fam\":\"2\", \"style\":\"grid-column:1/2; grid-row:3;\" },\r\n      \"fam-3\":{ \"fam\":\"3\", \"style\":\"grid-column:1/2; grid-row:4;\" },\r\n      \"fam-4\":{ \"fam\":\"4\", \"style\":\"grid-column:1/2; grid-row:5;\" },\r\n      \"fam-5\":{ \"fam\":\"5\", \"style\":\"grid-column:1/2; grid-row:1;\" },\r\n\r\n      \"sel\":{ \"style\":\"position: relative; width: 150%; height: 115%; border-radius: 50%;\" },\r\n      \"sel-20\":{ \"sel\":\"20\", \"style\":\"grid-column:6; grid-row:1; top: 25%;\" },\r\n      \"sel-05\":{ \"sel\":\"05\", \"style\":\"grid-column:8; grid-row:1; top: 25%;\" },\r\n      \"sel-10\":{ \"sel\":\"10\", \"style\":\"grid-column:2; grid-row:1; top: 25%; left: 20%;\" },\r\n      \"sel-15\":{ \"sel\":\"15\", \"style\":\"grid-column:4; grid-row:1; top: 25%;\" },\r\n      \"sel-01\":{ \"sel\":\"01\", \"style\":\"grid-column:7; grid-row:2; top: 20%;\" },\r\n      \"sel-06\":{ \"sel\":\"06\", \"style\":\"grid-column:9; grid-row:2; top: 20%;\" },\r\n      \"sel-11\":{ \"sel\":\"11\", \"style\":\"grid-column:3; grid-row:2; top: 20%; left: 15%;\" },\r\n      \"sel-16\":{ \"sel\":\"16\", \"style\":\"grid-column:5; grid-row:2; top: 20%; left: 10%;\" },\r\n      \"sel-02\":{ \"sel\":\"02\", \"style\":\"grid-column:8; grid-row:3; bottom: 10%;\" },\r\n      \"sel-07\":{ \"sel\":\"07\", \"style\":\"grid-column:2; grid-row:3; bottom: 10%; left: 25%;\" },\r\n      \"sel-12\":{ \"sel\":\"12\", \"style\":\"grid-column:4; grid-row:3; bottom: 10%; left: 15%;\" },\r\n      \"sel-17\":{ \"sel\":\"17\", \"style\":\"grid-column:6; grid-row:3; bottom: 10%;\" },\r\n      \"sel-03\":{ \"sel\":\"03\", \"style\":\"grid-column:9; grid-row:4; bottom: 20%;\" },\r\n      \"sel-08\":{ \"sel\":\"08\", \"style\":\"grid-column:3; grid-row:4; bottom: 20%; left: 15%;\" },\r\n      \"sel-13\":{ \"sel\":\"13\", \"style\":\"grid-column:5; grid-row:4; bottom: 20%; left: 15%;\" },\r\n      \"sel-18\":{ \"sel\":\"18\", \"style\":\"grid-column:7; grid-row:4; bottom: 20%;\" },\r\n      \"sel-04\":{ \"sel\":\"04\", \"style\":\"grid-column:2; grid-row:5; bottom: 45%; left: 30%;\" },\r\n      \"sel-09\":{ \"sel\":\"09\", \"style\":\"grid-column:4; grid-row:5; bottom: 45%; left: 20%;\" },\r\n      \"sel-14\":{ \"sel\":\"14\", \"style\":\"grid-column:6; grid-row:5; bottom: 45%; left: 8%;\" },\r\n      \"sel-19\":{ \"sel\":\"19\", \"style\":\"grid-column:8; grid-row:5; bottom: 45%; left: 5%;\" },\r\n\r\n      \"sel-fic\":{ \"style\":\"width: 30%;\" }  \r\n\r\n    }', NULL, NULL),
+('hol', 'uni_sol', '{\r\n\r\n      \"sec\":{ \"tab\":\"uni_sol\", \"style\":\"grid: repeat(9,1fr)/repeat(9,1fr); width: 37rem; height: 38rem;\" },\r\n\r\n      \"fon\":{ \"style\":\"grid-column: 1/sp; grid-row: 1/sp; width: 100%; height: 100%;\" },\r\n      \"fon-map\":{ \"fon\":\"map\", \"style\":\"background: center/contain no-repeat url(http://localhost/_/hol/tab/sol/map.png);\" },\r\n      \"fon-ato\":{ \"fon\":\"ato\", \"style\":\"background: center/contain no-repeat url(http://localhost/_/hol/tab/sol/ato.png);\" },\r\n      \"fon-res\":{ \"fon\":\"res\", \"style\":\"background: center/contain no-repeat url(http://localhost/_/hol/tab/sol/res.png);\" },\r\n      \"fon-cel\":{ \"fon\":\"cel\", \"style\":\"background: center/contain no-repeat url(http://localhost/_/hol/tab/sol/cel.png);\" },\r\n      \"fon-cir\":{ \"fon\":\"cir\", \"style\":\"background: center/contain no-repeat url(http://localhost/_/hol/tab/sol/cir.png);\" },\r\n      \"fon-pla\":{ \"fon\":\"pla\", \"style\":\"background: center/contain no-repeat url(http://localhost/_/hol/tab/sol/pla.png);\" },\r\n\r\n      \"pla\":{ \"style\":\"position: relative; width: 110%; height: 100%;\" },\r\n      \"pla-10\":{ \"pla\":\"10\", \"style\":\"grid-column:3/5; grid-row:2; transform: rotate( 053deg); top: 25%; left: 15%;\" },\r\n      \"pla-09\":{ \"pla\":\"09\", \"style\":\"grid-column:2/4; grid-row:3; transform: rotate( 053deg); left: 17%;\" },\r\n      \"pla-08\":{ \"pla\":\"08\", \"style\":\"grid-column:2/4; grid-row:5; transform: rotate( 340deg); top: 25%; right: 20%;\" },\r\n      \"pla-07\":{ \"pla\":\"07\", \"style\":\"grid-column:2/4; grid-row:6; transform: rotate( 340deg); top: 45%;\" },\r\n      \"pla-06\":{ \"pla\":\"06\", \"style\":\"grid-column:4/6; grid-row:8; transform: rotate( 270deg); bottom: 20%; right: 5%;\" },\r\n      \"pla-05\":{ \"pla\":\"05\", \"style\":\"grid-column:5/7; grid-row:8; transform: rotate( 270deg); bottom: 20%; left: 7%;\" },\r\n      \"pla-04\":{ \"pla\":\"04\", \"style\":\"grid-column:7/9; grid-row:6; transform: rotate( 018deg); top: 35%; left: 3%;\" },\r\n      \"pla-03\":{ \"pla\":\"03\", \"style\":\"grid-column:7/9; grid-row:5; transform: rotate( 018deg); top: 15%; left: 20%;\" },\r\n      \"pla-02\":{ \"pla\":\"02\", \"style\":\"grid-column:6/8; grid-row:3; transform: rotate( 305deg); bottom: 5%; left: 32%;\" },\r\n      \"pla-01\":{ \"pla\":\"01\", \"style\":\"grid-column:6/8; grid-row:2; transform: rotate( 305deg); top: 30%; right: 18%;\" },\r\n\r\n      \"sel\":{ \"style\":\"position: relative; width: 110%; height: 110%; border-radius: 5%;\" },      \r\n      \"sel-20\":{ \"sel\":\"20\", \"style\":\"grid-column:3; grid-row:2; transform: rotate( 053deg); bottom: 22%; left: 45%;\" },\r\n      \"sel-01\":{ \"sel\":\"01\", \"style\":\"grid-column:2; grid-row:3; transform: rotate( 054deg); bottom: 49%; left: 47%;\" },\r\n      \"sel-02\":{ \"sel\":\"02\", \"style\":\"grid-column:1; grid-row:6; transform: rotate( 340deg); bottom: 54%; left: 55%;\" },\r\n      \"sel-03\":{ \"sel\":\"03\", \"style\":\"grid-column:2; grid-row:7; transform: rotate( 340deg); bottom: 39%; right: 5%;\" },\r\n      \"sel-04\":{ \"sel\":\"04\", \"style\":\"grid-column:4; grid-row:8; transform: rotate( 270deg); top: 35%; left: 41%;\" },\r\n      \"sel-05\":{ \"sel\":\"05\", \"style\":\"grid-column:6; grid-row:8; transform: rotate( 270deg); top: 35%; right: 37%;\" },\r\n      \"sel-06\":{ \"sel\":\"06\", \"style\":\"grid-column:8; grid-row:6; transform: rotate( 196deg); top: 50%; left: 13%;\" },\r\n      \"sel-07\":{ \"sel\":\"07\", \"style\":\"grid-column:8; grid-row:5; transform: rotate( 196deg); top: 32%; left: 47%;\" },\r\n      \"sel-08\":{ \"sel\":\"08\", \"style\":\"grid-column:7; grid-row:2; transform: rotate( 125deg); top: 44%; left: 48%;\" },\r\n      \"sel-09\":{ \"sel\":\"09\", \"style\":\"grid-column:6; grid-row:2; transform: rotate( 125deg); bottom: 26%; left: 50%;\" },\r\n      \"sel-10\":{ \"sel\":\"10\", \"style\":\"grid-column:6; grid-row:3; transform: rotate( 306deg); bottom: 28%; right: 20%;\" },\r\n      \"sel-11\":{ \"sel\":\"11\", \"style\":\"grid-column:7; grid-row:3; transform: rotate( 306deg); top: 40%; right: 20%;\" },\r\n      \"sel-12\":{ \"sel\":\"12\", \"style\":\"grid-column:7; grid-row:5; transform: rotate( 017deg); bottom: 2%; left: 32%;\" },\r\n      \"sel-13\":{ \"sel\":\"13\", \"style\":\"grid-column:7; grid-row:6; transform: rotate( 017deg); top: 14%; right: 3%;\" },\r\n      \"sel-14\":{ \"sel\":\"14\", \"style\":\"grid-column:6; grid-row:7; transform: rotate( 090deg); top: 15%; right: 35%;\" },\r\n      \"sel-15\":{ \"sel\":\"15\", \"style\":\"grid-column:4; grid-row:7; transform: rotate( 090deg); top: 15%; left: 40%;\" },\r\n      \"sel-16\":{ \"sel\":\"16\", \"style\":\"grid-column:3; grid-row:6; transform: rotate( 160deg); top: 20%; left: 10%;\" },\r\n      \"sel-17\":{ \"sel\":\"17\", \"style\":\"grid-column:3; grid-row:5; transform: rotate( 160deg); top: 5%; right: 30%;\" },\r\n      \"sel-18\":{ \"sel\":\"18\", \"style\":\"grid-column:3; grid-row:4; transform: rotate( 234deg); bottom: 52%; left: 18%;\" },\r\n      \"sel-19\":{ \"sel\":\"19\", \"style\":\"grid-column:4; grid-row:3; transform: rotate( 234deg); bottom: 25%; left: 15%;\" },\r\n\r\n      \"sel-fic\":{ \"style\":\"width: 75%; height: 75%;\" } \r\n      \r\n    }', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -2363,34 +2362,44 @@ INSERT INTO `var` (`esq`, `dat`, `val`, `pos`, `ide`, `atr`) VALUES
 ('doc', 'nav', 'val', 2, 'fin', '{    \r\n    \"nom\":\"\",\r\n    \"tit\":\"\"\r\n  }'),
 ('doc', 'nav', 'val', 3, 'pre', '{    \r\n    \"nom\":\"\",\r\n    \"tit\":\"\"\r\n  }'),
 ('doc', 'nav', 'val', 4, 'pos', '{    \r\n    \"nom\":\"\",\r\n    \"tit\":\"\"\r\n  }'),
-('doc', 'tab', 'pos', 1, 'bor', '{\r\n      \"nom\":\"¿Bordes?\",\r\n      \"tit\":\"Marca y Desmarca los Bordes de las Posiciones en el Tablero...\",\r\n      \"ope\":{ \"_tip\":\"opc_bin\" }    \r\n    }'),
-('doc', 'tab', 'pos', 20, 'col', '{\r\n      \"ico\":\"fig_col\",\r\n      \"nom\":\"Color\",\r\n      \"tit\":\"Seleccionar Colores de Fondo para las Posiciones...\",    \r\n      \"ide\":\"col\"\r\n    }'),
-('doc', 'tab', 'pos', 30, 'num', '{\r\n      \"ico\":\"num_cod\",\r\n      \"nom\":\"Número\",\r\n      \"tit\":\"Seleccionar por valor numérico para las Posiciones...\",    \r\n      \"ide\":\"num\"\r\n    }'),
-('doc', 'tab', 'pos', 40, 'tex', '{\r\n      \"ico\":\"tex_cod\",\r\n      \"nom\":\"Texto\",\r\n      \"tit\":\"Seleccionar por valor textual para las Posiciones...\",    \r\n      \"ide\":\"tex\"\r\n    }'),
-('doc', 'tab', 'pos', 50, 'ima', '{\r\n      \"ico\":\"arc_ima\",\r\n      \"nom\":\"Ficha\",\r\n      \"tit\":\"Seleccionar Ficha de las Posiciones...\",    \r\n      \"ide\":\"ima\"\r\n    }'),
-('doc', 'tab', 'pos', 51, 'ima_pos', '{\r\n      \"nom\":\"¿Posición?\",\r\n      \"tit\":\"Mostrar la posición principal...\",\r\n      \"ope\":{ \"_tip\":\"opc_bin\" }\r\n    }'),
-('doc', 'tab', 'pos', 52, 'ima_mar', '{\r\n      \"nom\":\"¿Marcas?\",\r\n      \"tit\":\"Mostrar las posiciones marcadas...\",\r\n      \"ope\":{ \"_tip\":\"opc_bin\" }\r\n    }'),
-('doc', 'tab', 'pos', 53, 'ima_sel', '{\r\n      \"nom\":\"¿Selección?\",\r\n      \"tit\":\"Mostrar las posiciones seleccionadas...\",\r\n      \"ope\":{ \"_tip\":\"opc_bin\" }\r\n    }'),
-('doc', 'tab', 'sec', 1, 'ima', '{ \r\n      \"nom\":\"¿Imagen?\",\r\n      \"tit\":\"Seleccionar una imagen de fondo...\",    \r\n      \"ope\":{ \"_tip\":\"arc_ima\", \"class\":\"dis-ocu\" }\r\n    }'),
-('doc', 'tab', 'sec', 2, 'col', '{\r\n      \"nom\":\"¿Color?\",\r\n      \"tit\":\"Pintar los Colores de Fondos del Tablero...\",\r\n      \"ope\":{ \"_tip\":\"opc_bin\" }\r\n    }'),
-('doc', 'tab', 'sec', 3, 'bor', '{\r\n      \"nom\":\"¿Bordes?\",\r\n      \"tit\":\"Marcar los Bordes de las Posiciones...\",\r\n      \"ope\":{ \"_tip\":\"opc_bin\" }\r\n    }'),
-('doc', 'val', 'acu', 1, 'pos', '{\r\n      \"nom\":\"¿Posición?\",\r\n      \"tit\":\"Activar la Posición Principal...\",\r\n      \"ope\":{ \"_tip\":\"opc_bin\" }\r\n    }'),
-('doc', 'val', 'acu', 2, 'mar', '{\r\n      \"nom\":\"¿Marcas?\",\r\n      \"tit\":\"Activar las Posiciones Marcadas...\",\r\n      \"ope\":{ \"_tip\":\"opc_bin\" }\r\n    }'),
-('doc', 'val', 'acu', 3, 'ver', '{\r\n      \"nom\":\"¿Selección?\",\r\n      \"tit\":\"Activar las Posiciones Seleccionadas...\",\r\n      \"ope\":{ \"_tip\":\"opc_bin\" }\r\n    }'),
-('doc', 'val', 'dat', 1, 'cue', '{\r\n      \"nom\":\"Cantidad\",\r\n      \"tit\":\"\",\r\n      \"ope\":{ \"_tip\":\"num\", \"val\":\"0\" }\r\n    }'),
-('doc', 'val', 'dat', 2, 'ver', '{\r\n      \"ico\":\"dat_ver\",\r\n      \"tit\":\"Buscar...\"\r\n    }'),
-('doc', 'val', 'dat', 3, 'agr', '{    \r\n      \"ico\":\"dat_agr\",\r\n      \"tit\":\"Agregar...\"\r\n    }'),
-('doc', 'val', 'dat', 4, 'mod', '{\r\n      \"ico\":\"dat_mod\",\r\n      \"tit\":\"Modificar...\"\r\n    }'),
-('doc', 'val', 'dat', 5, 'eli', '{\r\n      \"ico\":\"dat_eli\",\r\n      \"tit\":\"Eliminar...\"\r\n    }'),
-('doc', 'val', 'ver', 1, 'tod', '{\r\n      \"nom\":\"¿Todos?\",\r\n      \"tit\":\"Mostrar todos...\",\r\n      \"ope\":{ \"_tip\":\"opc_bin\" }\r\n    }'),
-('doc', 'val', 'ver', 11, 'dat', '{\r\n      \"nom\":\"Estructura\",\r\n      \"tit\":\"Indicar la estructura de datos y su valor...\",\r\n      \"dat_atr\":\"ver\",\r\n      \"dat_dep\":1\r\n    }'),
-('doc', 'val', 'ver', 21, 'val', '{\r\n      \"nom\":\"Valor\",\r\n      \"tit\":\"Indicar el valor buscado...\",\r\n      \"ope\":{ \"_tip\":\"\" }\r\n    }'),
-('doc', 'val', 'ver', 22, 'ini', '{\r\n      \"nom\":\"Desde\",\r\n      \"tit\":\"Indicar el Valor inicial...\",\r\n      \"ope\":{ \"_tip\":\"\" }\r\n    }'),
-('doc', 'val', 'ver', 23, 'fin', '{\r\n      \"nom\":\"Hasta\",\r\n      \"tit\":\"Indicar el Valor final...\",\r\n      \"ope\":{ \"_tip\":\"\" }\r\n    }'),
-('doc', 'val', 'ver', 24, 'inc', '{\r\n      \"nom\":\"Cada\",\r\n      \"ope\":{ \"_tip\":\"num_int\", \"tam\":3, \"min\":1, \"max\":\"999\" }\r\n    }'),
-('doc', 'val', 'ver', 25, 'cue', '{    \r\n      \"nom\":\"¿Cuántos?\",\r\n      \"tit\":\"Indicar la cantidad máxima del resultado...\",\r\n      \"ope\":{ \"_tip\":\"num_int\", \"tam\":\"3\", \"min\":1, \"max\":\"999\" }\r\n    }'),
-('doc', 'val', 'ver', 26, 'cue_ini', '{\r\n      \"tit\":\"Los primeros...\",\r\n      \"ope\":{ \"ico\":\"nav_ini\", \"eti\":\"button\", \"_eje\":\"click(=>)_ope-val_mar(,)bor-sel\", \"class\":\"bor-sel\" }\r\n    }'),
-('doc', 'val', 'ver', 27, 'cue_fin', '{    \r\n      \"tit\":\"Los últimos...\",\r\n      \"ope\":{ \"ico\":\"nav_fin\", \"eti\":\"button\", \"_eje\":\"click(=>)_ope-val_mar(,)bor-sel\" }\r\n    }'),
+('doc', 'tab', 'pos', 1, 'bor', '{\r\n        \"nom\":\"¿Bordes?\",\r\n        \"tit\":\"Marca y Desmarca los Bordes de las Posiciones en el Tablero...\",\r\n        \"ope\":{ \"_tip\":\"opc_bin\" }    \r\n      }'),
+('doc', 'tab', 'pos', 20, 'col', '{\r\n        \"ide\":\"col\",\r\n        \"ico\":\"fig_col\",\r\n        \"nom\":\"Color\",\r\n        \"tit\":\"Seleccionar Colores de Fondo para las Posiciones...\"        \r\n      }'),
+('doc', 'tab', 'pos', 30, 'num', '{        \r\n        \"ide\":\"num\",\r\n        \"ico\":\"num_cod\",\r\n        \"nom\":\"Número\",\r\n        \"tit\":\"Seleccionar por valor numérico para las Posiciones...\"        \r\n      }'),
+('doc', 'tab', 'pos', 40, 'tex', '{\r\n        \"ide\":\"tex\",\r\n        \"ico\":\"tex_cod\",\r\n        \"nom\":\"Texto\",\r\n        \"tit\":\"Seleccionar por valor textual para las Posiciones...\"        \r\n      }'),
+('doc', 'tab', 'pos', 50, 'ima', '{\r\n        \"ide\":\"ima\",\r\n        \"ico\":\"arc_ima\",\r\n        \"nom\":\"Ficha\",\r\n        \"tit\":\"Seleccionar Ficha de las Posiciones...\"        \r\n      }'),
+('doc', 'tab', 'pos', 51, 'ima_pos', '{\r\n        \"nom\":\"¿Posición?\",\r\n        \"tit\":\"Mostrar la posición principal...\",\r\n        \"ope\":{ \"_tip\":\"opc_bin\" }\r\n      }'),
+('doc', 'tab', 'pos', 52, 'ima_mar', '{\r\n        \"nom\":\"¿Marcas?\",\r\n        \"tit\":\"Mostrar las posiciones marcadas...\",\r\n        \"ope\":{ \"_tip\":\"opc_bin\" }\r\n      }'),
+('doc', 'tab', 'pos', 53, 'ima_sel', '{\r\n        \"nom\":\"¿Selección?\",\r\n        \"tit\":\"Mostrar las posiciones seleccionadas...\",\r\n        \"ope\":{ \"_tip\":\"opc_bin\" }\r\n      }'),
+('doc', 'tab', 'sec', 1, 'ima', '{ \r\n        \"nom\":\"¿Imagen?\",\r\n        \"tit\":\"Seleccionar una imagen de fondo...\",    \r\n        \"ope\":{ \"_tip\":\"arc_ima\", \"class\":\"dis-ocu\" }\r\n      }'),
+('doc', 'tab', 'sec', 2, 'col', '{\r\n        \"nom\":\"¿Color?\",\r\n        \"tit\":\"Pintar los Colores de Fondos del Tablero...\",\r\n        \"ope\":{ \"_tip\":\"opc_bin\" }\r\n      }'),
+('doc', 'tab', 'sec', 3, 'bor', '{\r\n        \"nom\":\"¿Bordes?\",\r\n        \"tit\":\"Marcar los Bordes de las Posiciones...\",\r\n        \"ope\":{ \"_tip\":\"opc_bin\" }\r\n      }'),
+('doc', 'val', 'acu', 1, 'pos', '{\r\n        \"nom\":\"¿Posición?\",\r\n        \"tit\":\"Activar la Posición Principal...\",\r\n        \"ope\":{ \"_tip\":\"opc_bin\" }\r\n      }'),
+('doc', 'val', 'acu', 2, 'mar', '{\r\n        \"nom\":\"¿Marcas?\",\r\n        \"tit\":\"Activar las Posiciones Marcadas...\",\r\n        \"ope\":{ \"_tip\":\"opc_bin\" }\r\n      }'),
+('doc', 'val', 'acu', 3, 'ver', '{\r\n        \"nom\":\"¿Selección?\",\r\n        \"tit\":\"Activar las Posiciones Seleccionadas...\",\r\n        \"ope\":{ \"_tip\":\"opc_bin\" }\r\n      }'),
+('doc', 'val', 'dat', 1, 'cue', '{\r\n        \"nom\":\"Cantidad\",\r\n        \"tit\":\"\",\r\n        \"ope\":{ \"_tip\":\"num\", \"val\":\"0\" }\r\n      }'),
+('doc', 'val', 'dat', 2, 'ver', '{\r\n        \"ico\":\"dat_ver\",\r\n        \"tit\":\"Buscar...\"\r\n      }'),
+('doc', 'val', 'dat', 3, 'agr', '{    \r\n        \"ico\":\"dat_agr\",\r\n        \"tit\":\"Agregar...\"\r\n      }'),
+('doc', 'val', 'dat', 4, 'mod', '{\r\n        \"ico\":\"dat_mod\",\r\n        \"tit\":\"Modificar...\"\r\n      }'),
+('doc', 'val', 'dat', 5, 'eli', '{\r\n        \"ico\":\"dat_eli\",\r\n        \"tit\":\"Eliminar...\"\r\n      }'),
+('doc', 'val', 'ver', 1, 'tod', '{\r\n        \"nom\":\"¿Todos?\",\r\n        \"tit\":\"Mostrar todos...\",\r\n        \"ope\":{ \"_tip\":\"opc_bin\" }\r\n      }'),
+('doc', 'val', 'ver', 2, 'nad', '{\r\n        \"nom\":\"¿Nada?\",\r\n        \"tit\":\"Ocultar todos...\",\r\n        \"ope\":{ \"_tip\":\"opc_bin\" }\r\n      }'),
+('doc', 'val', 'ver', 3, 'uni', '{\r\n        \"nom\":\"¿Único?\",\r\n        \"tit\":\"Mostrar un único valor...\",\r\n        \"ope\":{ \"_tip\":\"opc_bin\" }\r\n      }'),
+('doc', 'val', 'ver', 4, 'inc', '{\r\n        \"nom\":\"¿Cada?\",\r\n        \"tit\":\"Indica un valor de salto o incremento entre las posiciones...\",\r\n        \"ope\":{ \"_tip\":\"num_int\", \"val\":1, \"min\":1, \"max\":999 }\r\n      }'),
+('doc', 'val', 'ver', 5, 'cue', '{\r\n        \"nom\":\"¿Cuántos?\",\r\n        \"tit\":\"Indicar la cantidad máxima del resultado...\",\r\n        \"ope\":{ \"_tip\":\"num_int\", \"min\":1, \"max\":999 }\r\n      }'),
+('doc', 'val', 'ver', 11, 'opc', '{\r\n        \"nom\":\"¿Opciones?\",\r\n        \"tit\":\"Mostrar valores por opción...\",\r\n        \"ope\":{ \"_tip\":\"opc_bin\", \"val\":1 }\r\n      }'),
+('doc', 'val', 'ver', 12, 'num', '{\r\n        \"nom\":\"¿Números?\",\r\n        \"tit\":\"Mostrar valores numéricos...\",\r\n        \"ope\":{ \"_tip\":\"opc_bin\", \"val\":1 }\r\n      }'),
+('doc', 'val', 'ver', 13, 'tex', '{\r\n        \"nom\":\"¿Textos?\",\r\n        \"tit\":\"Mostrar valores textuales...\",\r\n        \"ope\":{ \"_tip\":\"opc_bin\", \"val\":1 }\r\n      }'),
+('doc', 'val', 'ver', 14, 'fec', '{\r\n        \"nom\":\"¿Fechas?\",\r\n        \"tit\":\"Mostrar valores de fechas...\",\r\n        \"ope\":{ \"_tip\":\"opc_bin\", \"val\":1 }\r\n      }'),
+('doc', 'val', 'ver', 15, 'obj', '{\r\n        \"nom\":\"¿Objetos?\",\r\n        \"tit\":\"Mostrar objetos...\",\r\n        \"ope\":{ \"_tip\":\"opc_bin\", \"val\":1 }\r\n      }'),
+('doc', 'val', 'ver', 16, 'arc', '{\r\n        \"nom\":\"¿Archivos?\",\r\n        \"tit\":\"Mostrar archivos...\",        \r\n        \"ope\":{ \"_tip\":\"opc_bin\", \"val\":1 }\r\n      }'),
+('doc', 'val', 'ver', 21, 'dat', '{\r\n        \"ico\":\"dat_ver\",\r\n        \"tit\":\"Seleccionar la Estructura e indicar el Valor Buscado...\"\r\n      }'),
+('doc', 'val', 'ver', 22, 'esq', '{\r\n        \"nom\":\"Esquema\",\r\n        \"tit\":\"Indicar el Esquema de datos...\"\r\n      }'),
+('doc', 'val', 'ver', 23, 'est', '{\r\n        \"nom\":\"Estructura\",\r\n        \"tit\":\"Indicar la Estructura de datos...\"\r\n      }'),
+('doc', 'val', 'ver', 24, 'atr', '{\r\n        \"nom\":\"Atributo\",\r\n        \"tit\":\"Indicar el Atributo de la Estructura...\"\r\n      }'),
+('doc', 'val', 'ver', 25, 'val', '{\r\n        \"nom\":\"Valor\",\r\n        \"tit\":\"Indicar el Registro de la Estructura...\"\r\n      }'),
+('doc', 'val', 'ver', 31, 'pos', '{\r\n        \"nom\":\"Posición\",\r\n        \"tit\":\"Indicar el valor de la posición buscada...\",\r\n        \"ope\":{ \"_tip\":\"num_int\", \"min\":1, \"max\":999 }\r\n      }'),
+('doc', 'val', 'ver', 32, 'ini', '{\r\n        \"nom\":\"Desde\",\r\n        \"tit\":\"Indicar el Valor inicial...\",\r\n        \"ope\":{ \"_tip\":\"\" }\r\n      }'),
+('doc', 'val', 'ver', 33, 'fin', '{\r\n        \"nom\":\"Hasta\",\r\n        \"tit\":\"Indicar el Valor final...\",\r\n        \"ope\":{ \"_tip\":\"\" }\r\n      }'),
 ('hol', 'pos', 'par', 1, 'cue', '{\"nom\": \"Total\", \"ope\": {\"val\": 0, \"_tip\": \"num\"}, \"tit\": \"Cantidad total seleccionada...\"}'),
 ('hol', 'pos', 'par', 2, 'ana', '{\"nom\": \"¿Análogo?\", \"ope\": {\"_tip\": \"opc_bin\"}, \"tit\": \"Activa la Pareja Análoga que Refuerza al Destino...\", \"htm_fin\": {\"eti\": \"span\", \"htm\": [{\"_let\": \"(\"}, {\"val\": \"0\", \"_tip\": \"num\"}, {\"_let\": \")\"}]}}'),
 ('hol', 'pos', 'par', 3, 'gui', '{\"nom\": \"¿Guía?\", \"ope\": {\"_tip\": \"opc_bin\"}, \"tit\": \"Activa la Pareja Guía que Orienta al Destino...\", \"htm_fin\": {\"eti\": \"span\", \"htm\": [{\"_let\": \"(\"}, {\"val\": \"0\", \"_tip\": \"num\"}, {\"_let\": \")\"}]}}'),
@@ -2459,7 +2468,7 @@ CREATE TABLE `var_ope` (
   `pos` int(11) DEFAULT NULL COMMENT 'Posición',
   `nom` varchar(25) NOT NULL COMMENT 'Nombre',
   `des` varchar(100) NOT NULL COMMENT 'Descripción'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Operador de Valor';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Operador de Variables';
 
 --
 -- Volcado de datos para la tabla `var_ope`
@@ -2472,14 +2481,14 @@ INSERT INTO `var_ope` (`tip`, `dat`, `ide`, `pos`, `nom`, `des`) VALUES
 ('ver', 'num', '<=', 13, '<=', 'Tiene que ser Menor o igual que...'),
 ('ver', 'num', '>=', 15, '>=', 'Tiene que ser Mayor o igual que...'),
 ('ver', 'num', '>>', 14, '>>', 'Tiene que ser Mayor que...'),
+('ver', 'opc', '!=', 2, '!=', 'Tiene que ser distinto que...'),
+('ver', 'opc', '==', 1, '==', 'Tiene que ser igual que...'),
 ('ver', 'tex', '!$', 25, '!$', 'No debe terminar en...'),
 ('ver', 'tex', '!*', 21, '!*', 'No debe contener...'),
 ('ver', 'tex', '!^', 23, '!^', 'No debe empezar con...'),
 ('ver', 'tex', '$$', 24, '$$', 'Debe terminar en...'),
 ('ver', 'tex', '**', 22, '**', 'Debe contener...'),
-('ver', 'tex', '^^', 20, '^^', 'Debe empezar con...'),
-('ver', 'val', '!=', 2, '!=', 'Tiene que ser distinto que...'),
-('ver', 'val', '==', 1, '==', 'Tiene que ser igual que...');
+('ver', 'tex', '^^', 20, '^^', 'Debe empezar con...');
 
 -- --------------------------------------------------------
 
@@ -2740,6 +2749,12 @@ ALTER TABLE `ico`
   ADD PRIMARY KEY (`ide`);
 
 --
+-- Indices de la tabla `let`
+--
+ALTER TABLE `let`
+  ADD PRIMARY KEY (`pos`);
+
+--
 -- Indices de la tabla `num_int`
 --
 ALTER TABLE `num_int`
@@ -2750,12 +2765,6 @@ ALTER TABLE `num_int`
 --
 ALTER TABLE `tab`
   ADD PRIMARY KEY (`esq`,`est`);
-
---
--- Indices de la tabla `tex_let`
---
-ALTER TABLE `tex_let`
-  ADD PRIMARY KEY (`pos`);
 
 --
 -- Indices de la tabla `usu`
@@ -2804,9 +2813,9 @@ ALTER TABLE `var_val`
 --
 
 --
--- AUTO_INCREMENT de la tabla `tex_let`
+-- AUTO_INCREMENT de la tabla `let`
 --
-ALTER TABLE `tex_let`
+ALTER TABLE `let`
   MODIFY `pos` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Posición', AUTO_INCREMENT=201;
 
 --
@@ -3696,66 +3705,67 @@ INSERT INTO `kin_arm_tra` (`ide`, `nom`, `ton`, `lec`, `año`, `ran`, `may`) VAL
 CREATE TABLE `kin_cro_ele` (
   `ide` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Cromática',
   `nom` varchar(35) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Código Encantado',
-  `des` tinytext COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Descripción'
+  `des` tinytext COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Descripción',
+  `ele` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Clan'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Elemento Cromático';
 
 --
 -- Volcado de datos para la tabla `kin_cro_ele`
 --
 
-INSERT INTO `kin_cro_ele` (`ide`, `nom`, `des`) VALUES
-(01, 'la Sangre Magnética Roja', 'Unificar el Propósito del Espectro Galáctico Rojo'),
-(02, 'la Verdad Lunar Blanca', 'Polarizar el Desafío del Espectro Galáctico Rojo'),
-(03, 'el Cielo Eléctrico Azul', 'Activar el Servicio del Espectro Galáctico Rojo'),
-(04, 'el Fuego Autoexistente Amarillo', 'Definir la Forma del Espectro Galáctico Rojo'),
-(05, 'la Sangre Entonada Roja', 'Empoderar la Radiancia del Espectro Galáctico Rojo'),
-(06, 'la Verda Rítmica Blanca', 'Organizar la Igualdad del Espectro Galáctico Rojo'),
-(07, 'el Cielo Resonante Azul', 'Canalizar la Entonación del Espectro Galáctico Rojo'),
-(08, 'el Fuego Galáctico Amarillo', 'Sintonizar la Integridad del Espectro Galáctico Rojo'),
-(09, 'la Sangre Solar Roja', 'Pulsar la Intención del Espectro Galáctico Rojo'),
-(10, 'la Verdad Planetaria Blanca', 'Perfeccionar la Manifestación del Espectro Galáctico Rojo'),
-(11, 'el Cielo Espectral Azul', 'Disolver la Liberación del Espectro Galáctico Rojo'),
-(12, 'el Fuego Cristal Amarillo', 'Dedicar la Cooperación del Espectro Galáctico Rojo'),
-(13, 'la Sangre Cósmica Roja', 'Perdurar la Presencia del Espectro Galáctico Rojo'),
-(14, 'la Verdad Magnética Blanca', 'Unificar el Propósito del Espectro Galáctico Blanco'),
-(15, 'el Cielo Lunar Azul', 'Polarizar el Desafío del Espectro Galáctico Blanco'),
-(16, 'el Fuego Eléctrico Amarillo', 'Activar el Servicio del Espectro Galáctico Blanco'),
-(17, 'la Sangre Autoexistente Roja', 'Definir la Forma del Espectro Galáctico Blanco'),
-(18, 'la Verdad Entonada Blanca', 'Empoderar la Radiancia del Espectro Galáctico Blanco'),
-(19, 'el Cielo Rítmico Azul', 'Organizar la Igualdad del Espectro Galáctico Blanco'),
-(20, 'el Fuego Resonante Amarillo', 'Canalizar la Entonación del Espectro Galáctico Blanco'),
-(21, 'la Sangre Galáctica Roja', 'Sintonizar la Integridad del Espectro Galáctico Blanco'),
-(22, 'la Verdad Solar Blanca', 'Pulsar la Intención del Espectro Galáctico Blanco'),
-(23, 'el Cielo Planetario  Azul', 'Perfeccionar la Manifestación del Espectro Galáctico Blanco'),
-(24, 'el Fuego Espectral Amarillo', 'Disolver la Liberación del Espectro Galáctico Blanco'),
-(25, 'la Sangre Cristal Roja', 'Dedicar la Cooperación del Espectro Galáctico Blanco'),
-(26, 'la Verdad Cósmica Blanca', 'Perdurar la Presencia del Espectro Galáctico Blanco'),
-(27, 'el Cielo Magnético Azul', 'Unificar el Propósito del Espectro Galáctico Azul'),
-(28, 'el Fuego Lunar Amarillo', 'Polarizar el Desafío del Espectro Galáctico Azul'),
-(29, 'la Sangre Eléctrica   Roja', 'Activar el Servicio del Espectro Galáctico Azul'),
-(30, 'la Verdad Autoexistente Blanca', 'Definir la Forma del Espectro Galáctico Azul'),
-(31, 'el Cielo Entonado Azul', 'Empoderar la Radiancia del Espectro Galáctico Azul'),
-(32, 'el Fuego Rítmico Amarillo', 'Organizar la Igualdad del Espectro Galáctico Azul'),
-(33, 'la Sangre Resonante Roja', 'Canalizar la Entonación del Espectro Galáctico Azul'),
-(34, 'la Verdad Galáctico Blanca', 'Sintonizar la Integridad del Espectro Galáctico Azul'),
-(35, 'el Cielo Solar Azul', 'Pulsar la Intención del Espectro Galáctico Azul'),
-(36, 'el Fuego Planetario Amarillo', 'Perfeccionar la Manifestación del Espectro Galáctico Azul'),
-(37, 'la Sangre Espectral Roja', 'Disolver la Liberación del Espectro Galáctico Azul'),
-(38, 'la Verdad Cristal Blanca', 'Dedicar la Cooperación del Espectro Galáctico Azul'),
-(39, 'el Cielo Cósmico Azul', 'Perdurar la Presencia del Espectro Galáctico Azul'),
-(40, 'el Fuego Magnético Amarillo', 'Unificar el Propósito del Espectro Galáctico Amarillo'),
-(41, 'la Sangre Lunar Roja', 'Polarizar el Desafío del Espectro Galáctico Amarillo'),
-(42, 'la Verdad Eléctrica Blanca', 'Activar el Servicio del Espectro Galáctico Amarillo'),
-(43, 'el Cielo Autoexistente Azul', 'Definir la Forma del Espectro Galáctico Amarillo'),
-(44, 'el Fuego Entonado Amarillo', 'Empoderar la Radiancia del Espectro Galáctico Amarillo'),
-(45, 'la Sangre Rítmica Roja', 'Organizar la Igualdad del Espectro Galáctico Amarillo'),
-(46, 'la Verdad Resonante Blanca', 'Canalizar la Entonación del Espectro Galáctico Amarillo'),
-(47, 'el Cielo Galáctico Azul', 'Sintonizar la Integridad del Espectro Galáctico Amarillo'),
-(48, 'el Fuego Solar Amarillo', 'Pulsar la Intención del Espectro Galáctico Amarillo'),
-(49, 'la Sangre Planetaria Roja', 'Perfeccionar la Manifestación del Espectro Galáctico Amarillo'),
-(50, 'la Verdad Espectral Blanca', 'Disolver la Liberación del Espectro Galáctico Amarillo'),
-(51, 'el Cielo Cristal Azul', 'Dedicar la Cooperación del Espectro Galáctico Amarillo'),
-(52, 'el Fuego Cósmico Amarillo', 'Perdurar la Presencia del Espectro Galáctico Amarillo');
+INSERT INTO `kin_cro_ele` (`ide`, `nom`, `des`, `ele`) VALUES
+(01, 'la Sangre Magnética Roja', 'Unificar el Propósito del Espectro Galáctico Rojo', 2),
+(02, 'la Verdad Lunar Blanca', 'Polarizar el Desafío del Espectro Galáctico Rojo', 3),
+(03, 'el Cielo Eléctrico Azul', 'Activar el Servicio del Espectro Galáctico Rojo', 4),
+(04, 'el Fuego Autoexistente Amarillo', 'Definir la Forma del Espectro Galáctico Rojo', 1),
+(05, 'la Sangre Entonada Roja', 'Empoderar la Radiancia del Espectro Galáctico Rojo', 2),
+(06, 'la Verda Rítmica Blanca', 'Organizar la Igualdad del Espectro Galáctico Rojo', 3),
+(07, 'el Cielo Resonante Azul', 'Canalizar la Entonación del Espectro Galáctico Rojo', 4),
+(08, 'el Fuego Galáctico Amarillo', 'Sintonizar la Integridad del Espectro Galáctico Rojo', 1),
+(09, 'la Sangre Solar Roja', 'Pulsar la Intención del Espectro Galáctico Rojo', 2),
+(10, 'la Verdad Planetaria Blanca', 'Perfeccionar la Manifestación del Espectro Galáctico Rojo', 3),
+(11, 'el Cielo Espectral Azul', 'Disolver la Liberación del Espectro Galáctico Rojo', 4),
+(12, 'el Fuego Cristal Amarillo', 'Dedicar la Cooperación del Espectro Galáctico Rojo', 1),
+(13, 'la Sangre Cósmica Roja', 'Perdurar la Presencia del Espectro Galáctico Rojo', 2),
+(14, 'la Verdad Magnética Blanca', 'Unificar el Propósito del Espectro Galáctico Blanco', 3),
+(15, 'el Cielo Lunar Azul', 'Polarizar el Desafío del Espectro Galáctico Blanco', 4),
+(16, 'el Fuego Eléctrico Amarillo', 'Activar el Servicio del Espectro Galáctico Blanco', 1),
+(17, 'la Sangre Autoexistente Roja', 'Definir la Forma del Espectro Galáctico Blanco', 2),
+(18, 'la Verdad Entonada Blanca', 'Empoderar la Radiancia del Espectro Galáctico Blanco', 3),
+(19, 'el Cielo Rítmico Azul', 'Organizar la Igualdad del Espectro Galáctico Blanco', 4),
+(20, 'el Fuego Resonante Amarillo', 'Canalizar la Entonación del Espectro Galáctico Blanco', 1),
+(21, 'la Sangre Galáctica Roja', 'Sintonizar la Integridad del Espectro Galáctico Blanco', 2),
+(22, 'la Verdad Solar Blanca', 'Pulsar la Intención del Espectro Galáctico Blanco', 3),
+(23, 'el Cielo Planetario  Azul', 'Perfeccionar la Manifestación del Espectro Galáctico Blanco', 4),
+(24, 'el Fuego Espectral Amarillo', 'Disolver la Liberación del Espectro Galáctico Blanco', 1),
+(25, 'la Sangre Cristal Roja', 'Dedicar la Cooperación del Espectro Galáctico Blanco', 2),
+(26, 'la Verdad Cósmica Blanca', 'Perdurar la Presencia del Espectro Galáctico Blanco', 3),
+(27, 'el Cielo Magnético Azul', 'Unificar el Propósito del Espectro Galáctico Azul', 4),
+(28, 'el Fuego Lunar Amarillo', 'Polarizar el Desafío del Espectro Galáctico Azul', 1),
+(29, 'la Sangre Eléctrica   Roja', 'Activar el Servicio del Espectro Galáctico Azul', 2),
+(30, 'la Verdad Autoexistente Blanca', 'Definir la Forma del Espectro Galáctico Azul', 3),
+(31, 'el Cielo Entonado Azul', 'Empoderar la Radiancia del Espectro Galáctico Azul', 4),
+(32, 'el Fuego Rítmico Amarillo', 'Organizar la Igualdad del Espectro Galáctico Azul', 1),
+(33, 'la Sangre Resonante Roja', 'Canalizar la Entonación del Espectro Galáctico Azul', 2),
+(34, 'la Verdad Galáctico Blanca', 'Sintonizar la Integridad del Espectro Galáctico Azul', 3),
+(35, 'el Cielo Solar Azul', 'Pulsar la Intención del Espectro Galáctico Azul', 4),
+(36, 'el Fuego Planetario Amarillo', 'Perfeccionar la Manifestación del Espectro Galáctico Azul', 1),
+(37, 'la Sangre Espectral Roja', 'Disolver la Liberación del Espectro Galáctico Azul', 2),
+(38, 'la Verdad Cristal Blanca', 'Dedicar la Cooperación del Espectro Galáctico Azul', 3),
+(39, 'el Cielo Cósmico Azul', 'Perdurar la Presencia del Espectro Galáctico Azul', 4),
+(40, 'el Fuego Magnético Amarillo', 'Unificar el Propósito del Espectro Galáctico Amarillo', 1),
+(41, 'la Sangre Lunar Roja', 'Polarizar el Desafío del Espectro Galáctico Amarillo', 2),
+(42, 'la Verdad Eléctrica Blanca', 'Activar el Servicio del Espectro Galáctico Amarillo', 3),
+(43, 'el Cielo Autoexistente Azul', 'Definir la Forma del Espectro Galáctico Amarillo', 4),
+(44, 'el Fuego Entonado Amarillo', 'Empoderar la Radiancia del Espectro Galáctico Amarillo', 1),
+(45, 'la Sangre Rítmica Roja', 'Organizar la Igualdad del Espectro Galáctico Amarillo', 2),
+(46, 'la Verdad Resonante Blanca', 'Canalizar la Entonación del Espectro Galáctico Amarillo', 3),
+(47, 'el Cielo Galáctico Azul', 'Sintonizar la Integridad del Espectro Galáctico Amarillo', 4),
+(48, 'el Fuego Solar Amarillo', 'Pulsar la Intención del Espectro Galáctico Amarillo', 1),
+(49, 'la Sangre Planetaria Roja', 'Perfeccionar la Manifestación del Espectro Galáctico Amarillo', 2),
+(50, 'la Verdad Espectral Blanca', 'Disolver la Liberación del Espectro Galáctico Amarillo', 3),
+(51, 'el Cielo Cristal Azul', 'Dedicar la Cooperación del Espectro Galáctico Amarillo', 4),
+(52, 'el Fuego Cósmico Amarillo', 'Perdurar la Presencia del Espectro Galáctico Amarillo', 1);
 
 -- --------------------------------------------------------
 
@@ -3947,6 +3957,7 @@ INSERT INTO `kin_nav_cas` (`ide`, `nom`, `des`, `dir`, `col`, `cor`, `pod`, `acc
 CREATE TABLE `kin_nav_ond` (
   `ide` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Onda Encantada',
   `nom` varchar(35) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
+  `kin` smallint(3) UNSIGNED ZEROFILL NOT NULL COMMENT 'Kin Inicial',
   `sel` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Sello Solar',
   `gen_enc` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Génesis',
   `gen_cel` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Célula',
@@ -3964,27 +3975,27 @@ CREATE TABLE `kin_nav_ond` (
 -- Volcado de datos para la tabla `kin_nav_ond`
 --
 
-INSERT INTO `kin_nav_ond` (`ide`, `nom`, `sel`, `gen_enc`, `gen_cel`, `nav_cas`, `cas_arm`, `enc_fec`, `enc_des`, `fac_ini`, `fac_fin`, `fac_ran`, `fac_des`) VALUES
-(01, 'del Dragón Rojo', 01, 1, 1, 1, 1, -23987, 'a -23.987 años la tribu del Dragón rojo inicia el giro a través del  poder del nacimiento; recordada la verdad de Neptuno galáctico.', -3113, -2857, '3.113 - 2.857 A.C.', 'La Semilla es Alimentada'),
-(02, 'del Mago Blanco', 14, 1, 1, 1, 2, -22687, 'a -22.687 años la tribu del Mago blanco refina el giro a través de la atemporalidad; recordada la verdad de Maldek solar.', -2857, -2601, '2.857 - 2.601 A.C.', 'Protegida por los Magos'),
-(03, 'de la Mano Azul', 07, 1, 2, 1, 3, -21387, 'a -21.387 años la tribu de la Mano azul transforma el giro a través del poder de la realización, recordada la verdad de la Tierra galáctica.', -2601, -2344, '2.601 - 2.344 A.C.', 'Entregada a los constructores'),
-(04, 'del Sol Amarillo', 20, 1, 2, 1, 4, -20087, 'a -20.087 años la tribu del Sol amarillo madura el giro a través del poder del fuego universal; recordada la verdad de Plutón galáctico.', -2344, -2087, '2.344 - 2.087 A.C.', 'Ofrecida al Sol'),
-(05, 'del Caminante del Cielo Rojo', 13, 1, 3, 2, 1, -18787, 'a -18.787 años la tribu del Caminante del cielo rojo inicia el cruzar a través del poder del espacio; recordada la verdad de Marte solar.', -2087, -1830, '2.087 - 1.830 A.C.', 'Custodiada por los Caminantes Celestes'),
-(06, 'del Enlazador de Mundos Blanc', 06, 1, 3, 2, 2, -17487, 'a -17.487 años la tribu del Enlazador de mundos refina el cruzar a través del poder de la muerte; recordada la verdad de Marte galáctico.', -1830, -1574, '1.830 - 1.574 A.C.', 'Escondida en la Muerte'),
-(07, 'de la Tormenta Azul', 19, 1, 4, 2, 3, -16187, 'a -16.187 años la tribu de la Tormenta azul transforma el cruzar a través del poder de la auto-generación; recordada la verdad de Plutón solar.', -1574, -1318, '1.574 - 1.318 A.C.', 'Madurada por la Tormenta'),
-(08, 'del Humano Amarillo', 12, 1, 4, 2, 4, -14887, 'a -14.887 años la tribu del Humano amarillo madura el cruzar a través del poder de la libre voluntad; recordada la verdad de la Tierra solar.', -1318, -1062, '1.318 - 1.062 A.C.', 'La que Penetra en lo Humano'),
-(09, 'de la Serpiente Roja', 05, 2, 5, 3, 1, -13587, 'a -13.587 años la tribu de la Serpiente roja inicia el quemar a través del poder de la fuerza vital; recordada la verdad de Maldek galáctico.', -1062, -806, '1.062 - 806 A.C.', 'Comida por la Serpiente'),
-(10, 'del Espejo Blanco', 18, 2, 5, 3, 2, -12287, 'a -12.287 años la tribu del Espejo blanco refina el quemar a través del poder del sin fin; recordada la verdad de Neptuno solar.', -806, -550, '806 - 550 A.C.', 'Ritualizada por la Espada'),
-(11, 'del Mono Azul', 11, 2, 1, 3, 3, -10987, 'a -10.987 años la tribu del Mono azul transforma el quemar a través del poder de la magia; recordada la verdad de Venus solar.', -550, -294, '550 - 294 A.C.', 'Dominada por el Engañador'),
-(12, 'de la Semilla Amarilla', 04, 2, 1, 3, 4, -9687, 'a -9.687 años la tribu de la Semilla amarilla madura el quemar a través del poder del florecimiento; recordada la verdad de Júpiter galáctico.', -294, -38, '294 - 38 A.C.', 'Para ser Sembrada Nuevamente como Semilla'),
-(13, 'de la Tierra Roja', 17, 2, 2, 4, 1, -8387, 'a -8.387 años, la tribu de la Tierra roja inicia el dar a través del poder de la navegación; recordada la verdad de Urano solar.', -38, 219, '38 A.C. - 219 D.C.', 'De la Fuerza de la Tierra'),
-(14, 'del Perro Blanco', 10, 2, 2, 4, 2, -7087, 'a -7.087 años la tribu del Perro blanco refina el dar a través del poder del corazón; recordada la verdad de Mercurio solar.', 219, 465, '219 - 465 D.C.', 'Guiada por la Lealtad'),
-(15, 'de la Noche Azul', 03, 2, 3, 4, 3, -5787, 'a -5.787 años la tribu de la Noche azul transforma el dar a través del poder de la abundancia, recordada la verdad de Saturno galáctico.', 465, 731, '465 - 731 D.C.', 'A Través de la Casa de la Noche'),
-(16, 'del Guerrero Amarillo', 16, 2, 3, 4, 4, -4487, 'a -4.487 años la tribu del Guerrero amarillo madura el dar a través del poder de la inteligencia; recordada la verdad de Saturno solar.', 731, 987, '731 - 987 D.C.', 'Iluminada por la Fuerza Cósmica'),
-(17, 'de la Luna Roja', 09, 3, 4, 5, 1, -3187, 'a -3.187 años, La tribu de la Luna roja inicia el Encantar a través del poder del agua universal; recordada la verdad de Mercurio solar.', 987, 1243, '987 - 1.243 D.C.', 'Para Regresar por la Puerta Cósmica'),
-(18, 'del Viento Blanco', 02, 3, 4, 5, 2, -1887, 'a -1.887 años, La tribu del Viento blanco refina el Encantar a través del poder del espíritu; recordada la verdad de Urano galáctico.', 1243, 1499, '1.243 - 1.499 D.C.', 'Como Espíritu Puro'),
-(19, 'del Águila Azul', 15, 3, 5, 5, 3, -587, 'a -587 años la tribu del Águila azul transforma el Encantar a través del poder de la visión; recordada la verdad de Júpiter solar.', 1499, 1755, '1.499  - 1.755 D.C.', 'Para reunir íntegra la Mente de la Tierra'),
-(20, 'de la Estrella Amarill', 08, 3, 5, 5, 4, 713, 'a 713 años la tribu de la Estrella amarilla madura el Encantar a través del poder de la elegancia; recordada la verdad de Venus galáctico.', 1755, 2012, '1.755 - 2.012 D.C.', 'Y Sellarla con la Semilla Estelar de la Armonía');
+INSERT INTO `kin_nav_ond` (`ide`, `nom`, `kin`, `sel`, `gen_enc`, `gen_cel`, `nav_cas`, `cas_arm`, `enc_fec`, `enc_des`, `fac_ini`, `fac_fin`, `fac_ran`, `fac_des`) VALUES
+(01, 'del Dragón Rojo', 001, 01, 1, 1, 1, 1, -23987, 'a -23.987 años la tribu del Dragón rojo inicia el giro a través del  poder del nacimiento; recordada la verdad de Neptuno galáctico.', -3113, -2857, '3.113 - 2.857 A.C.', 'La Semilla es Alimentada'),
+(02, 'del Mago Blanco', 014, 14, 1, 1, 1, 2, -22687, 'a -22.687 años la tribu del Mago blanco refina el giro a través de la atemporalidad; recordada la verdad de Maldek solar.', -2857, -2601, '2.857 - 2.601 A.C.', 'Protegida por los Magos'),
+(03, 'de la Mano Azul', 027, 07, 1, 2, 1, 3, -21387, 'a -21.387 años la tribu de la Mano azul transforma el giro a través del poder de la realización, recordada la verdad de la Tierra galáctica.', -2601, -2344, '2.601 - 2.344 A.C.', 'Entregada a los constructores'),
+(04, 'del Sol Amarillo', 040, 20, 1, 2, 1, 4, -20087, 'a -20.087 años la tribu del Sol amarillo madura el giro a través del poder del fuego universal; recordada la verdad de Plutón galáctico.', -2344, -2087, '2.344 - 2.087 A.C.', 'Ofrecida al Sol'),
+(05, 'del Caminante del Cielo Rojo', 053, 13, 1, 3, 2, 1, -18787, 'a -18.787 años la tribu del Caminante del cielo rojo inicia el cruzar a través del poder del espacio; recordada la verdad de Marte solar.', -2087, -1830, '2.087 - 1.830 A.C.', 'Custodiada por los Caminantes Celestes'),
+(06, 'del Enlazador de Mundos Blanc', 066, 06, 1, 3, 2, 2, -17487, 'a -17.487 años la tribu del Enlazador de mundos refina el cruzar a través del poder de la muerte; recordada la verdad de Marte galáctico.', -1830, -1574, '1.830 - 1.574 A.C.', 'Escondida en la Muerte'),
+(07, 'de la Tormenta Azul', 079, 19, 1, 4, 2, 3, -16187, 'a -16.187 años la tribu de la Tormenta azul transforma el cruzar a través del poder de la auto-generación; recordada la verdad de Plutón solar.', -1574, -1318, '1.574 - 1.318 A.C.', 'Madurada por la Tormenta'),
+(08, 'del Humano Amarillo', 092, 12, 1, 4, 2, 4, -14887, 'a -14.887 años la tribu del Humano amarillo madura el cruzar a través del poder de la libre voluntad; recordada la verdad de la Tierra solar.', -1318, -1062, '1.318 - 1.062 A.C.', 'La que Penetra en lo Humano'),
+(09, 'de la Serpiente Roja', 105, 05, 2, 5, 3, 1, -13587, 'a -13.587 años la tribu de la Serpiente roja inicia el quemar a través del poder de la fuerza vital; recordada la verdad de Maldek galáctico.', -1062, -806, '1.062 - 806 A.C.', 'Comida por la Serpiente'),
+(10, 'del Espejo Blanco', 118, 18, 2, 5, 3, 2, -12287, 'a -12.287 años la tribu del Espejo blanco refina el quemar a través del poder del sin fin; recordada la verdad de Neptuno solar.', -806, -550, '806 - 550 A.C.', 'Ritualizada por la Espada'),
+(11, 'del Mono Azul', 131, 11, 2, 1, 3, 3, -10987, 'a -10.987 años la tribu del Mono azul transforma el quemar a través del poder de la magia; recordada la verdad de Venus solar.', -550, -294, '550 - 294 A.C.', 'Dominada por el Engañador'),
+(12, 'de la Semilla Amarilla', 144, 04, 2, 1, 3, 4, -9687, 'a -9.687 años la tribu de la Semilla amarilla madura el quemar a través del poder del florecimiento; recordada la verdad de Júpiter galáctico.', -294, -38, '294 - 38 A.C.', 'Para ser Sembrada Nuevamente como Semilla'),
+(13, 'de la Tierra Roja', 157, 17, 2, 2, 4, 1, -8387, 'a -8.387 años, la tribu de la Tierra roja inicia el dar a través del poder de la navegación; recordada la verdad de Urano solar.', -38, 219, '38 A.C. - 219 D.C.', 'De la Fuerza de la Tierra'),
+(14, 'del Perro Blanco', 170, 10, 2, 2, 4, 2, -7087, 'a -7.087 años la tribu del Perro blanco refina el dar a través del poder del corazón; recordada la verdad de Mercurio solar.', 219, 465, '219 - 465 D.C.', 'Guiada por la Lealtad'),
+(15, 'de la Noche Azul', 183, 03, 2, 3, 4, 3, -5787, 'a -5.787 años la tribu de la Noche azul transforma el dar a través del poder de la abundancia, recordada la verdad de Saturno galáctico.', 465, 731, '465 - 731 D.C.', 'A Través de la Casa de la Noche'),
+(16, 'del Guerrero Amarillo', 196, 16, 2, 3, 4, 4, -4487, 'a -4.487 años la tribu del Guerrero amarillo madura el dar a través del poder de la inteligencia; recordada la verdad de Saturno solar.', 731, 987, '731 - 987 D.C.', 'Iluminada por la Fuerza Cósmica'),
+(17, 'de la Luna Roja', 209, 09, 3, 4, 5, 1, -3187, 'a -3.187 años, La tribu de la Luna roja inicia el Encantar a través del poder del agua universal; recordada la verdad de Mercurio solar.', 987, 1243, '987 - 1.243 D.C.', 'Para Regresar por la Puerta Cósmica'),
+(18, 'del Viento Blanco', 222, 02, 3, 4, 5, 2, -1887, 'a -1.887 años, La tribu del Viento blanco refina el Encantar a través del poder del espíritu; recordada la verdad de Urano galáctico.', 1243, 1499, '1.243 - 1.499 D.C.', 'Como Espíritu Puro'),
+(19, 'del Águila Azul', 235, 15, 3, 5, 5, 3, -587, 'a -587 años la tribu del Águila azul transforma el Encantar a través del poder de la visión; recordada la verdad de Júpiter solar.', 1499, 1755, '1.499  - 1.755 D.C.', 'Para reunir íntegra la Mente de la Tierra'),
+(20, 'de la Estrella Amarill', 248, 08, 3, 5, 5, 4, 713, 'a 713 años la tribu de la Estrella amarilla madura el Encantar a través del poder de la elegancia; recordada la verdad de Venus galáctico.', 1755, 2012, '1.755 - 2.012 D.C.', 'Y Sellarla con la Semilla Estelar de la Armonía');
 
 -- --------------------------------------------------------
 
@@ -6450,6 +6461,7 @@ CREATE TABLE `_kin_cro_ele` (
 `ide` smallint(2) unsigned zerofill
 ,`nom` varchar(35)
 ,`des` tinytext
+,`ele` smallint(1) unsigned zerofill
 ,`cas_des` text
 ,`arm` smallint(1) unsigned zerofill
 ,`ond` smallint(1) unsigned
@@ -6834,7 +6846,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`admin`@`%` SQL SECURITY DEFINER VIEW `_kin_a
 --
 DROP TABLE IF EXISTS `_kin_cro_ele`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`admin`@`%` SQL SECURITY DEFINER VIEW `_kin_cro_ele`  AS SELECT `_ele`.`ide` AS `ide`, `_ele`.`nom` AS `nom`, `_ele`.`des` AS `des`, `_cas`.`des` AS `cas_des`, `_cas`.`arm` AS `arm`, `_cas`.`ond` AS `ond`, `_cas`.`ton` AS `ton`, `_ton`.`des` AS `ton_des` FROM ((`kin_cro_ele` `_ele` join `cas` `_cas` on(`_ele`.`ide` = `_cas`.`ide`)) join `ton` `_ton` on(`_cas`.`ton` = `_ton`.`ide`))  ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`admin`@`%` SQL SECURITY DEFINER VIEW `_kin_cro_ele`  AS SELECT `_ele`.`ide` AS `ide`, `_ele`.`nom` AS `nom`, `_ele`.`des` AS `des`, `_ele`.`ele` AS `ele`, `_cas`.`des` AS `cas_des`, `_cas`.`arm` AS `arm`, `_cas`.`ond` AS `ond`, `_cas`.`ton` AS `ton`, `_ton`.`des` AS `ton_des` FROM ((`kin_cro_ele` `_ele` join `cas` `_cas` on(`_ele`.`ide` = `_cas`.`ide`)) join `ton` `_ton` on(`_cas`.`ton` = `_ton`.`ide`))  ;
 
 -- --------------------------------------------------------
 
@@ -7525,6 +7537,989 @@ ALTER TABLE `ton_ond`
 --
 ALTER TABLE `ton_sim`
   ADD PRIMARY KEY (`ide`);
+--
+-- Base de datos: `_usu`
+--
+CREATE DATABASE IF NOT EXISTS `_usu` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `_usu`;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `age_cic`
+--
+
+CREATE TABLE `age_cic` (
+  `ide` int(10) UNSIGNED NOT NULL COMMENT 'Id',
+  `usu` int(10) UNSIGNED NOT NULL COMMENT 'Usuario',
+  `tip` smallint(5) UNSIGNED NOT NULL COMMENT 'Tipo',
+  `nom` varchar(100) NOT NULL COMMENT 'Nombre',
+  `des` text DEFAULT NULL COMMENT 'Descripción',
+  `ini_año` smallint(4) UNSIGNED ZEROFILL NOT NULL COMMENT 'Año Inicial',
+  `ini_mes` smallint(2) UNSIGNED ZEROFILL DEFAULT NULL COMMENT 'Mes Inicial',
+  `ini_dia` smallint(2) UNSIGNED ZEROFILL DEFAULT NULL COMMENT 'Día Inicial',
+  `fin_año` smallint(4) UNSIGNED ZEROFILL DEFAULT NULL COMMENT 'Año Final',
+  `fin_mes` smallint(2) UNSIGNED ZEROFILL DEFAULT NULL COMMENT 'Mes Final',
+  `fin_dia` smallint(2) UNSIGNED ZEROFILL DEFAULT NULL COMMENT 'Día Final'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Ciclo de Tiempo';
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `age_dia`
+--
+
+CREATE TABLE `age_dia` (
+  `ide` int(10) UNSIGNED NOT NULL COMMENT 'Id',
+  `usu` int(10) UNSIGNED NOT NULL COMMENT 'Usuario',
+  `fec` datetime NOT NULL COMMENT 'Fecha',
+  `tip` smallint(5) UNSIGNED NOT NULL COMMENT 'Tipo',
+  `des` text DEFAULT NULL COMMENT 'Descripción'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Diario';
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `cic_ani`
+--
+
+CREATE TABLE `cic_ani` (
+  `usu` int(11) NOT NULL COMMENT 'Usuario',
+  `ide` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Ciclo Anual',
+  `eda` tinyint(3) UNSIGNED NOT NULL COMMENT 'Edad',
+  `arm` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Cuadrante',
+  `ond` int(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Aventura',
+  `ton` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Tono',
+  `fec` date NOT NULL COMMENT 'Fecha',
+  `sin` varchar(13) NOT NULL COMMENT 'Sincronario',
+  `kin` smallint(3) NOT NULL COMMENT 'Kin Anual'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Tránsito Anual';
+
+--
+-- Volcado de datos para la tabla `cic_ani`
+--
+
+INSERT INTO `cic_ani` (`usu`, `ide`, `eda`, `arm`, `ond`, `ton`, `fec`, `sin`, `kin`) VALUES
+(1, 01, 0, 1, 1, 01, '1987-10-05', '1.00.03.16', 105),
+(1, 02, 1, 1, 1, 02, '1988-10-05', '1.01.03.16', 210),
+(1, 03, 2, 1, 1, 03, '1989-10-05', '1.02.03.16', 55),
+(1, 04, 3, 1, 1, 04, '1990-10-05', '1.03.03.16', 160),
+(1, 05, 4, 1, 2, 05, '1991-10-05', '1.04.03.16', 5),
+(1, 06, 5, 1, 2, 06, '1992-10-05', '1.05.03.16', 110),
+(1, 07, 6, 1, 2, 07, '1993-10-05', '1.06.03.16', 215),
+(1, 08, 7, 1, 2, 08, '1994-10-05', '1.07.03.16', 60),
+(1, 09, 8, 1, 3, 09, '1995-10-05', '1.08.03.16', 165),
+(1, 10, 9, 1, 3, 10, '1996-10-05', '1.09.03.16', 10),
+(1, 11, 10, 1, 3, 11, '1997-10-05', '1.10.03.16', 115),
+(1, 12, 11, 1, 3, 12, '1998-10-05', '1.11.03.16', 220),
+(1, 13, 12, 1, 4, 13, '1999-10-05', '1.12.03.16', 65),
+(1, 14, 13, 2, 1, 01, '2000-10-05', '1.13.03.16', 170),
+(1, 15, 14, 2, 1, 02, '2001-10-05', '1.14.03.16', 15),
+(1, 16, 15, 2, 1, 03, '2002-10-05', '1.15.03.16', 120),
+(1, 17, 16, 2, 1, 04, '2003-10-05', '1.16.03.16', 225),
+(1, 18, 17, 2, 2, 05, '2004-10-05', '1.17.03.16', 70),
+(1, 19, 18, 2, 2, 06, '2005-10-05', '1.18.03.16', 175),
+(1, 20, 19, 2, 2, 07, '2006-10-05', '1.19.03.16', 20),
+(1, 21, 20, 2, 2, 08, '2007-10-05', '1.20.03.16', 125),
+(1, 22, 21, 2, 3, 09, '2008-10-05', '1.21.03.16', 230),
+(1, 23, 22, 2, 3, 10, '2009-10-05', '1.22.03.16', 75),
+(1, 24, 23, 2, 3, 11, '2010-10-05', '1.23.03.16', 180),
+(1, 25, 24, 2, 3, 12, '2011-10-05', '1.24.03.16', 25),
+(1, 26, 25, 2, 4, 13, '2012-10-05', '1.25.03.16', 130),
+(1, 27, 26, 3, 1, 01, '2013-10-05', '1.26.03.16', 235),
+(1, 28, 27, 3, 1, 02, '2014-10-05', '1.27.03.16', 80),
+(1, 29, 28, 3, 1, 03, '2015-10-05', '1.28.03.16', 185),
+(1, 30, 29, 3, 1, 04, '2016-10-05', '1.29.03.16', 30),
+(1, 31, 30, 3, 2, 05, '2017-10-05', '1.30.03.16', 135),
+(1, 32, 31, 3, 2, 06, '2018-10-05', '1.31.03.16', 240),
+(1, 33, 32, 3, 2, 07, '2019-10-05', '1.32.03.16', 85),
+(1, 34, 33, 3, 2, 08, '2020-10-05', '1.33.03.16', 190),
+(1, 35, 34, 3, 3, 09, '2021-10-05', '1.34.03.16', 35),
+(1, 36, 35, 3, 3, 10, '2022-10-05', '1.35.03.16', 140),
+(1, 37, 36, 3, 3, 11, '2023-10-05', '1.36.03.16', 245),
+(1, 38, 37, 3, 3, 12, '2024-10-05', '1.37.03.16', 90),
+(1, 39, 38, 3, 4, 13, '2025-10-05', '1.38.03.16', 195),
+(1, 40, 39, 4, 1, 01, '2026-10-05', '1.39.03.16', 40),
+(1, 41, 40, 4, 1, 02, '2027-10-05', '1.40.03.16', 145),
+(1, 42, 41, 4, 1, 03, '2028-10-05', '1.41.03.16', 250),
+(1, 43, 42, 4, 1, 04, '2029-10-05', '1.42.03.16', 95),
+(1, 44, 43, 4, 2, 05, '2030-10-05', '1.43.03.16', 200),
+(1, 45, 44, 4, 2, 06, '2031-10-05', '1.44.03.16', 45),
+(1, 46, 45, 4, 2, 07, '2032-10-05', '1.45.03.16', 150),
+(1, 47, 46, 4, 2, 08, '2033-10-05', '1.46.03.16', 255),
+(1, 48, 47, 4, 3, 09, '2034-10-05', '1.47.03.16', 100),
+(1, 49, 48, 4, 3, 10, '2035-10-05', '1.48.03.16', 205),
+(1, 50, 49, 4, 3, 11, '2036-10-05', '1.49.03.16', 50),
+(1, 51, 50, 4, 3, 12, '2037-10-05', '1.50.03.16', 155),
+(1, 52, 51, 4, 4, 13, '2038-10-05', '1.51.03.16', 260);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `cic_arm`
+--
+
+CREATE TABLE `cic_arm` (
+  `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Cuadrante',
+  `nom` varchar(150) NOT NULL COMMENT 'Titulo',
+  `des` tinytext NOT NULL COMMENT 'Descripción'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Cuadrante del Tránsito';
+
+--
+-- Volcado de datos para la tabla `cic_arm`
+--
+
+INSERT INTO `cic_arm` (`ide`, `nom`, `des`) VALUES
+(1, 'de 0 a 12 años', ''),
+(2, 'de 13 a 25 años', ''),
+(3, 'de 26 a 38 años', ''),
+(4, 'de 39 a 51 años', '');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `cic_dia`
+--
+
+CREATE TABLE `cic_dia` (
+  `usu` int(11) NOT NULL COMMENT 'Usuario',
+  `ani` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Ciclo Anual',
+  `lun` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Ciclo Lunar',
+  `ide` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Día',
+  `fec` date NOT NULL COMMENT 'Fecha',
+  `sin` varchar(13) NOT NULL COMMENT 'Sincronario',
+  `kin` smallint(3) UNSIGNED ZEROFILL NOT NULL COMMENT 'Kin Diario',
+  `kin_dia` int(3) UNSIGNED ZEROFILL NOT NULL COMMENT 'Tránsito'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Tránsito Diario';
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `cic_lun`
+--
+
+CREATE TABLE `cic_lun` (
+  `usu` int(11) NOT NULL COMMENT 'Usuario',
+  `ani` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Ciclo Anual',
+  `ide` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Ciclo Lunar',
+  `fec` date NOT NULL COMMENT 'Fecha',
+  `sin` varchar(13) NOT NULL COMMENT 'Sincronario',
+  `kin` smallint(3) UNSIGNED ZEROFILL NOT NULL COMMENT 'Kin Lunar'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Tránsito Lunar';
+
+--
+-- Volcado de datos para la tabla `cic_lun`
+--
+
+INSERT INTO `cic_lun` (`usu`, `ani`, `ide`, `fec`, `sin`, `kin`) VALUES
+(1, 01, 01, '1987-10-05', '1.00.03.16', 105),
+(1, 01, 02, '1987-11-02', '1.00.04.16', 133),
+(1, 01, 03, '1987-11-30', '1.00.05.16', 161),
+(1, 01, 04, '1987-12-28', '1.00.06.16', 189),
+(1, 01, 05, '1988-01-25', '1.00.07.16', 217),
+(1, 01, 06, '1988-02-22', '1.00.08.16', 245),
+(1, 01, 07, '1988-03-22', '1.00.09.16', 013),
+(1, 01, 08, '1988-04-19', '1.00.10.16', 041),
+(1, 01, 09, '1988-05-17', '1.00.11.16', 069),
+(1, 01, 10, '1988-06-14', '1.00.12.16', 097),
+(1, 01, 11, '1988-07-12', '1.00.13.16', 125),
+(1, 01, 12, '1988-08-10', '1.01.01.16', 154),
+(1, 01, 13, '1988-09-07', '1.01.02.16', 182),
+(1, 02, 01, '1988-10-05', '1.01.03.16', 210),
+(1, 02, 02, '1988-11-02', '1.01.04.16', 238),
+(1, 02, 03, '1988-11-30', '1.01.05.16', 006),
+(1, 02, 04, '1988-12-28', '1.01.06.16', 034),
+(1, 02, 05, '1989-01-25', '1.01.07.16', 062),
+(1, 02, 06, '1989-02-22', '1.01.08.16', 090),
+(1, 02, 07, '1989-03-22', '1.01.09.16', 118),
+(1, 02, 08, '1989-04-19', '1.01.10.16', 146),
+(1, 02, 09, '1989-05-17', '1.01.11.16', 174),
+(1, 02, 10, '1989-06-14', '1.01.12.16', 202),
+(1, 02, 11, '1989-07-12', '1.01.13.16', 230),
+(1, 02, 12, '1989-08-10', '1.02.01.16', 259),
+(1, 02, 13, '1989-09-07', '1.02.02.16', 027),
+(1, 03, 01, '1989-10-05', '1.02.03.16', 055),
+(1, 03, 02, '1989-11-02', '1.02.04.16', 083),
+(1, 03, 03, '1989-11-30', '1.02.05.16', 111),
+(1, 03, 04, '1989-12-28', '1.02.06.16', 139),
+(1, 03, 05, '1990-01-25', '1.02.07.16', 167),
+(1, 03, 06, '1990-02-22', '1.02.08.16', 195),
+(1, 03, 07, '1990-03-22', '1.02.09.16', 223),
+(1, 03, 08, '1990-04-19', '1.02.10.16', 251),
+(1, 03, 09, '1990-05-17', '1.02.11.16', 019),
+(1, 03, 10, '1990-06-14', '1.02.12.16', 047),
+(1, 03, 11, '1990-07-12', '1.02.13.16', 075),
+(1, 03, 12, '1990-08-10', '1.03.01.16', 104),
+(1, 03, 13, '1990-09-07', '1.03.02.16', 132),
+(1, 04, 01, '1990-10-05', '1.03.03.16', 160),
+(1, 04, 02, '1990-11-02', '1.03.04.16', 188),
+(1, 04, 03, '1990-11-30', '1.03.05.16', 216),
+(1, 04, 04, '1990-12-28', '1.03.06.16', 244),
+(1, 04, 05, '1991-01-25', '1.03.07.16', 012),
+(1, 04, 06, '1991-02-22', '1.03.08.16', 040),
+(1, 04, 07, '1991-03-22', '1.03.09.16', 068),
+(1, 04, 08, '1991-04-19', '1.03.10.16', 096),
+(1, 04, 09, '1991-05-17', '1.03.11.16', 124),
+(1, 04, 10, '1991-06-14', '1.03.12.16', 152),
+(1, 04, 11, '1991-07-12', '1.03.13.16', 180),
+(1, 04, 12, '1991-08-10', '1.04.01.16', 209),
+(1, 04, 13, '1991-09-07', '1.04.02.16', 237),
+(1, 05, 01, '1991-10-05', '1.04.03.16', 005),
+(1, 05, 02, '1991-11-02', '1.04.04.16', 033),
+(1, 05, 03, '1991-11-30', '1.04.05.16', 061),
+(1, 05, 04, '1991-12-28', '1.04.06.16', 089),
+(1, 05, 05, '1992-01-25', '1.04.07.16', 117),
+(1, 05, 06, '1992-02-22', '1.04.08.16', 145),
+(1, 05, 07, '1992-03-22', '1.04.09.16', 173),
+(1, 05, 08, '1992-04-19', '1.04.10.16', 201),
+(1, 05, 09, '1992-05-17', '1.04.11.16', 229),
+(1, 05, 10, '1992-06-14', '1.04.12.16', 257),
+(1, 05, 11, '1992-07-12', '1.04.13.16', 025),
+(1, 05, 12, '1992-08-10', '1.05.01.16', 054),
+(1, 05, 13, '1992-09-07', '1.05.02.16', 082),
+(1, 06, 01, '1992-10-05', '1.05.03.16', 110),
+(1, 06, 02, '1992-11-02', '1.05.04.16', 138),
+(1, 06, 03, '1992-11-30', '1.05.05.16', 166),
+(1, 06, 04, '1992-12-28', '1.05.06.16', 194),
+(1, 06, 05, '1993-01-25', '1.05.07.16', 222),
+(1, 06, 06, '1993-02-22', '1.05.08.16', 250),
+(1, 06, 07, '1993-03-22', '1.05.09.16', 018),
+(1, 06, 08, '1993-04-19', '1.05.10.16', 046),
+(1, 06, 09, '1993-05-17', '1.05.11.16', 074),
+(1, 06, 10, '1993-06-14', '1.05.12.16', 102),
+(1, 06, 11, '1993-07-12', '1.05.13.16', 130),
+(1, 06, 12, '1993-08-10', '1.06.01.16', 159),
+(1, 06, 13, '1993-09-07', '1.06.02.16', 187),
+(1, 07, 01, '1993-10-05', '1.06.03.16', 215),
+(1, 07, 02, '1993-11-02', '1.06.04.16', 243),
+(1, 07, 03, '1993-11-30', '1.06.05.16', 011),
+(1, 07, 04, '1993-12-28', '1.06.06.16', 039),
+(1, 07, 05, '1994-01-25', '1.06.07.16', 067),
+(1, 07, 06, '1994-02-22', '1.06.08.16', 095),
+(1, 07, 07, '1994-03-22', '1.06.09.16', 123),
+(1, 07, 08, '1994-04-19', '1.06.10.16', 151),
+(1, 07, 09, '1994-05-17', '1.06.11.16', 179),
+(1, 07, 10, '1994-06-14', '1.06.12.16', 207),
+(1, 07, 11, '1994-07-12', '1.06.13.16', 235),
+(1, 07, 12, '1994-08-10', '1.07.01.16', 004),
+(1, 07, 13, '1994-09-07', '1.07.02.16', 032),
+(1, 08, 01, '1994-10-05', '1.07.03.16', 060),
+(1, 08, 02, '1994-11-02', '1.07.04.16', 088),
+(1, 08, 03, '1994-11-30', '1.07.05.16', 116),
+(1, 08, 04, '1994-12-28', '1.07.06.16', 144),
+(1, 08, 05, '1995-01-25', '1.07.07.16', 172),
+(1, 08, 06, '1995-02-22', '1.07.08.16', 200),
+(1, 08, 07, '1995-03-22', '1.07.09.16', 228),
+(1, 08, 08, '1995-04-19', '1.07.10.16', 256),
+(1, 08, 09, '1995-05-17', '1.07.11.16', 024),
+(1, 08, 10, '1995-06-14', '1.07.12.16', 052),
+(1, 08, 11, '1995-07-12', '1.07.13.16', 080),
+(1, 08, 12, '1995-08-10', '1.08.01.16', 109),
+(1, 08, 13, '1995-09-07', '1.08.02.16', 137),
+(1, 09, 01, '1995-10-05', '1.08.03.16', 165),
+(1, 09, 02, '1995-11-02', '1.08.04.16', 193),
+(1, 09, 03, '1995-11-30', '1.08.05.16', 221),
+(1, 09, 04, '1995-12-28', '1.08.06.16', 249),
+(1, 09, 05, '1996-01-25', '1.08.07.16', 017),
+(1, 09, 06, '1996-02-22', '1.08.08.16', 045),
+(1, 09, 07, '1996-03-22', '1.08.09.16', 073),
+(1, 09, 08, '1996-04-19', '1.08.10.16', 101),
+(1, 09, 09, '1996-05-17', '1.08.11.16', 129),
+(1, 09, 10, '1996-06-14', '1.08.12.16', 157),
+(1, 09, 11, '1996-07-12', '1.08.13.16', 185),
+(1, 09, 12, '1996-08-10', '1.09.01.16', 214),
+(1, 09, 13, '1996-09-07', '1.09.02.16', 242),
+(1, 10, 01, '1996-10-05', '1.09.03.16', 010),
+(1, 10, 02, '1996-11-02', '1.09.04.16', 038),
+(1, 10, 03, '1996-11-30', '1.09.05.16', 066),
+(1, 10, 04, '1996-12-28', '1.09.06.16', 094),
+(1, 10, 05, '1997-01-25', '1.09.07.16', 122),
+(1, 10, 06, '1997-02-22', '1.09.08.16', 150),
+(1, 10, 07, '1997-03-22', '1.09.09.16', 178),
+(1, 10, 08, '1997-04-19', '1.09.10.16', 206),
+(1, 10, 09, '1997-05-17', '1.09.11.16', 234),
+(1, 10, 10, '1997-06-14', '1.09.12.16', 002),
+(1, 10, 11, '1997-07-12', '1.09.13.16', 030),
+(1, 10, 12, '1997-08-10', '1.10.01.16', 059),
+(1, 10, 13, '1997-09-07', '1.10.02.16', 087),
+(1, 11, 01, '1997-10-05', '1.10.03.16', 115),
+(1, 11, 02, '1997-11-02', '1.10.04.16', 143),
+(1, 11, 03, '1997-11-30', '1.10.05.16', 171),
+(1, 11, 04, '1997-12-28', '1.10.06.16', 199),
+(1, 11, 05, '1998-01-25', '1.10.07.16', 227),
+(1, 11, 06, '1998-02-22', '1.10.08.16', 255),
+(1, 11, 07, '1998-03-22', '1.10.09.16', 023),
+(1, 11, 08, '1998-04-19', '1.10.10.16', 051),
+(1, 11, 09, '1998-05-17', '1.10.11.16', 079),
+(1, 11, 10, '1998-06-14', '1.10.12.16', 107),
+(1, 11, 11, '1998-07-12', '1.10.13.16', 135),
+(1, 11, 12, '1998-08-10', '1.11.01.16', 164),
+(1, 11, 13, '1998-09-07', '1.11.02.16', 192),
+(1, 12, 01, '1998-10-05', '1.11.03.16', 220),
+(1, 12, 02, '1998-11-02', '1.11.04.16', 248),
+(1, 12, 03, '1998-11-30', '1.11.05.16', 016),
+(1, 12, 04, '1998-12-28', '1.11.06.16', 044),
+(1, 12, 05, '1999-01-25', '1.11.07.16', 072),
+(1, 12, 06, '1999-02-22', '1.11.08.16', 100),
+(1, 12, 07, '1999-03-22', '1.11.09.16', 128),
+(1, 12, 08, '1999-04-19', '1.11.10.16', 156),
+(1, 12, 09, '1999-05-17', '1.11.11.16', 184),
+(1, 12, 10, '1999-06-14', '1.11.12.16', 212),
+(1, 12, 11, '1999-07-12', '1.11.13.16', 240),
+(1, 12, 12, '1999-08-10', '1.12.01.16', 009),
+(1, 12, 13, '1999-09-07', '1.12.02.16', 037),
+(1, 13, 01, '1999-10-05', '1.12.03.16', 065),
+(1, 13, 02, '1999-11-02', '1.12.04.16', 093),
+(1, 13, 03, '1999-11-30', '1.12.05.16', 121),
+(1, 13, 04, '1999-12-28', '1.12.06.16', 149),
+(1, 13, 05, '2000-01-25', '1.12.07.16', 177),
+(1, 13, 06, '2000-02-22', '1.12.08.16', 205),
+(1, 13, 07, '2000-03-22', '1.12.09.16', 233),
+(1, 13, 08, '2000-04-19', '1.12.10.16', 001),
+(1, 13, 09, '2000-05-17', '1.12.11.16', 029),
+(1, 13, 10, '2000-06-14', '1.12.12.16', 057),
+(1, 13, 11, '2000-07-12', '1.12.13.16', 085),
+(1, 13, 12, '2000-08-10', '1.13.01.16', 114),
+(1, 13, 13, '2000-09-07', '1.13.02.16', 142),
+(1, 14, 01, '2000-10-05', '1.13.03.16', 170),
+(1, 14, 02, '2000-11-02', '1.13.04.16', 198),
+(1, 14, 03, '2000-11-30', '1.13.05.16', 226),
+(1, 14, 04, '2000-12-28', '1.13.06.16', 254),
+(1, 14, 05, '2001-01-25', '1.13.07.16', 022),
+(1, 14, 06, '2001-02-22', '1.13.08.16', 050),
+(1, 14, 07, '2001-03-22', '1.13.09.16', 078),
+(1, 14, 08, '2001-04-19', '1.13.10.16', 106),
+(1, 14, 09, '2001-05-17', '1.13.11.16', 134),
+(1, 14, 10, '2001-06-14', '1.13.12.16', 162),
+(1, 14, 11, '2001-07-12', '1.13.13.16', 190),
+(1, 14, 12, '2001-08-10', '1.14.01.16', 219),
+(1, 14, 13, '2001-09-07', '1.14.02.16', 247),
+(1, 15, 01, '2001-10-05', '1.14.03.16', 015),
+(1, 15, 02, '2001-11-02', '1.14.04.16', 043),
+(1, 15, 03, '2001-11-30', '1.14.05.16', 071),
+(1, 15, 04, '2001-12-28', '1.14.06.16', 099),
+(1, 15, 05, '2002-01-25', '1.14.07.16', 127),
+(1, 15, 06, '2002-02-22', '1.14.08.16', 155),
+(1, 15, 07, '2002-03-22', '1.14.09.16', 183),
+(1, 15, 08, '2002-04-19', '1.14.10.16', 211),
+(1, 15, 09, '2002-05-17', '1.14.11.16', 239),
+(1, 15, 10, '2002-06-14', '1.14.12.16', 007),
+(1, 15, 11, '2002-07-12', '1.14.13.16', 035),
+(1, 15, 12, '2002-08-10', '1.15.01.16', 064),
+(1, 15, 13, '2002-09-07', '1.15.02.16', 092),
+(1, 16, 01, '2002-10-05', '1.15.03.16', 120),
+(1, 16, 02, '2002-11-02', '1.15.04.16', 148),
+(1, 16, 03, '2002-11-30', '1.15.05.16', 176),
+(1, 16, 04, '2002-12-28', '1.15.06.16', 204),
+(1, 16, 05, '2003-01-25', '1.15.07.16', 232),
+(1, 16, 06, '2003-02-22', '1.15.08.16', 260),
+(1, 16, 07, '2003-03-22', '1.15.09.16', 028),
+(1, 16, 08, '2003-04-19', '1.15.10.16', 056),
+(1, 16, 09, '2003-05-17', '1.15.11.16', 084),
+(1, 16, 10, '2003-06-14', '1.15.12.16', 112),
+(1, 16, 11, '2003-07-12', '1.15.13.16', 140),
+(1, 16, 12, '2003-08-10', '1.16.01.16', 169),
+(1, 16, 13, '2003-09-07', '1.16.02.16', 197),
+(1, 17, 01, '2003-10-05', '1.16.03.16', 225),
+(1, 17, 02, '2003-11-02', '1.16.04.16', 253),
+(1, 17, 03, '2003-11-30', '1.16.05.16', 021),
+(1, 17, 04, '2003-12-28', '1.16.06.16', 049),
+(1, 17, 05, '2004-01-25', '1.16.07.16', 077),
+(1, 17, 06, '2004-02-22', '1.16.08.16', 105),
+(1, 17, 07, '2004-03-22', '1.16.09.16', 133),
+(1, 17, 08, '2004-04-19', '1.16.10.16', 161),
+(1, 17, 09, '2004-05-17', '1.16.11.16', 189),
+(1, 17, 10, '2004-06-14', '1.16.12.16', 217),
+(1, 17, 11, '2004-07-12', '1.16.13.16', 245),
+(1, 17, 12, '2004-08-10', '1.17.01.16', 014),
+(1, 17, 13, '2004-09-07', '1.17.02.16', 042),
+(1, 18, 01, '2004-10-05', '1.17.03.16', 070),
+(1, 18, 02, '2004-11-02', '1.17.04.16', 098),
+(1, 18, 03, '2004-11-30', '1.17.05.16', 126),
+(1, 18, 04, '2004-12-28', '1.17.06.16', 154),
+(1, 18, 05, '2005-01-25', '1.17.07.16', 182),
+(1, 18, 06, '2005-02-22', '1.17.08.16', 210),
+(1, 18, 07, '2005-03-22', '1.17.09.16', 238),
+(1, 18, 08, '2005-04-19', '1.17.10.16', 006),
+(1, 18, 09, '2005-05-17', '1.17.11.16', 034),
+(1, 18, 10, '2005-06-14', '1.17.12.16', 062),
+(1, 18, 11, '2005-07-12', '1.17.13.16', 090),
+(1, 18, 12, '2005-08-10', '1.18.01.16', 119),
+(1, 18, 13, '2005-09-07', '1.18.02.16', 147),
+(1, 19, 01, '2005-10-05', '1.18.03.16', 175),
+(1, 19, 02, '2005-11-02', '1.18.04.16', 203),
+(1, 19, 03, '2005-11-30', '1.18.05.16', 231),
+(1, 19, 04, '2005-12-28', '1.18.06.16', 259),
+(1, 19, 05, '2006-01-25', '1.18.07.16', 027),
+(1, 19, 06, '2006-02-22', '1.18.08.16', 055),
+(1, 19, 07, '2006-03-22', '1.18.09.16', 083),
+(1, 19, 08, '2006-04-19', '1.18.10.16', 111),
+(1, 19, 09, '2006-05-17', '1.18.11.16', 139),
+(1, 19, 10, '2006-06-14', '1.18.12.16', 167),
+(1, 19, 11, '2006-07-12', '1.18.13.16', 195),
+(1, 19, 12, '2006-08-10', '1.19.01.16', 224),
+(1, 19, 13, '2006-09-07', '1.19.02.16', 252),
+(1, 20, 01, '2006-10-05', '1.19.03.16', 020),
+(1, 20, 02, '2006-11-02', '1.19.04.16', 048),
+(1, 20, 03, '2006-11-30', '1.19.05.16', 076),
+(1, 20, 04, '2006-12-28', '1.19.06.16', 104),
+(1, 20, 05, '2007-01-25', '1.19.07.16', 132),
+(1, 20, 06, '2007-02-22', '1.19.08.16', 160),
+(1, 20, 07, '2007-03-22', '1.19.09.16', 188),
+(1, 20, 08, '2007-04-19', '1.19.10.16', 216),
+(1, 20, 09, '2007-05-17', '1.19.11.16', 244),
+(1, 20, 10, '2007-06-14', '1.19.12.16', 012),
+(1, 20, 11, '2007-07-12', '1.19.13.16', 040),
+(1, 20, 12, '2007-08-10', '1.20.01.16', 069),
+(1, 20, 13, '2007-09-07', '1.20.02.16', 097),
+(1, 21, 01, '2007-10-05', '1.20.03.16', 125),
+(1, 21, 02, '2007-11-02', '1.20.04.16', 153),
+(1, 21, 03, '2007-11-30', '1.20.05.16', 181),
+(1, 21, 04, '2007-12-28', '1.20.06.16', 209),
+(1, 21, 05, '2008-01-25', '1.20.07.16', 237),
+(1, 21, 06, '2008-02-22', '1.20.08.16', 005),
+(1, 21, 07, '2008-03-22', '1.20.09.16', 033),
+(1, 21, 08, '2008-04-19', '1.20.10.16', 061),
+(1, 21, 09, '2008-05-17', '1.20.11.16', 089),
+(1, 21, 10, '2008-06-14', '1.20.12.16', 117),
+(1, 21, 11, '2008-07-12', '1.20.13.16', 145),
+(1, 21, 12, '2008-08-10', '1.21.01.16', 174),
+(1, 21, 13, '2008-09-07', '1.21.02.16', 202),
+(1, 22, 01, '2008-10-05', '1.21.03.16', 230),
+(1, 22, 02, '2008-11-02', '1.21.04.16', 258),
+(1, 22, 03, '2008-11-30', '1.21.05.16', 026),
+(1, 22, 04, '2008-12-28', '1.21.06.16', 054),
+(1, 22, 05, '2009-01-25', '1.21.07.16', 082),
+(1, 22, 06, '2009-02-22', '1.21.08.16', 110),
+(1, 22, 07, '2009-03-22', '1.21.09.16', 138),
+(1, 22, 08, '2009-04-19', '1.21.10.16', 166),
+(1, 22, 09, '2009-05-17', '1.21.11.16', 194),
+(1, 22, 10, '2009-06-14', '1.21.12.16', 222),
+(1, 22, 11, '2009-07-12', '1.21.13.16', 250),
+(1, 22, 12, '2009-08-10', '1.22.01.16', 019),
+(1, 22, 13, '2009-09-07', '1.22.02.16', 047),
+(1, 23, 01, '2009-10-05', '1.22.03.16', 075),
+(1, 23, 02, '2009-11-02', '1.22.04.16', 103),
+(1, 23, 03, '2009-11-30', '1.22.05.16', 131),
+(1, 23, 04, '2009-12-28', '1.22.06.16', 159),
+(1, 23, 05, '2010-01-25', '1.22.07.16', 187),
+(1, 23, 06, '2010-02-22', '1.22.08.16', 215),
+(1, 23, 07, '2010-03-22', '1.22.09.16', 243),
+(1, 23, 08, '2010-04-19', '1.22.10.16', 011),
+(1, 23, 09, '2010-05-17', '1.22.11.16', 039),
+(1, 23, 10, '2010-06-14', '1.22.12.16', 067),
+(1, 23, 11, '2010-07-12', '1.22.13.16', 095),
+(1, 23, 12, '2010-08-10', '1.23.01.16', 124),
+(1, 23, 13, '2010-09-07', '1.23.02.16', 152),
+(1, 24, 01, '2010-10-05', '1.23.03.16', 180),
+(1, 24, 02, '2010-11-02', '1.23.04.16', 208),
+(1, 24, 03, '2010-11-30', '1.23.05.16', 236),
+(1, 24, 04, '2010-12-28', '1.23.06.16', 004),
+(1, 24, 05, '2011-01-25', '1.23.07.16', 032),
+(1, 24, 06, '2011-02-22', '1.23.08.16', 060),
+(1, 24, 07, '2011-03-22', '1.23.09.16', 088),
+(1, 24, 08, '2011-04-19', '1.23.10.16', 116),
+(1, 24, 09, '2011-05-17', '1.23.11.16', 144),
+(1, 24, 10, '2011-06-14', '1.23.12.16', 172),
+(1, 24, 11, '2011-07-12', '1.23.13.16', 200),
+(1, 24, 12, '2011-08-10', '1.24.01.16', 229),
+(1, 24, 13, '2011-09-07', '1.24.02.16', 257),
+(1, 25, 01, '2011-10-05', '1.24.03.16', 025),
+(1, 25, 02, '2011-11-02', '1.24.04.16', 053),
+(1, 25, 03, '2011-11-30', '1.24.05.16', 081),
+(1, 25, 04, '2011-12-28', '1.24.06.16', 109),
+(1, 25, 05, '2012-01-25', '1.24.07.16', 137),
+(1, 25, 06, '2012-02-22', '1.24.08.16', 165),
+(1, 25, 07, '2012-03-22', '1.24.09.16', 193),
+(1, 25, 08, '2012-04-19', '1.24.10.16', 221),
+(1, 25, 09, '2012-05-17', '1.24.11.16', 249),
+(1, 25, 10, '2012-06-14', '1.24.12.16', 017),
+(1, 25, 11, '2012-07-12', '1.24.13.16', 045),
+(1, 25, 12, '2012-08-10', '1.25.01.16', 074),
+(1, 25, 13, '2012-09-07', '1.25.02.16', 102),
+(1, 26, 01, '2012-10-05', '1.25.03.16', 130),
+(1, 26, 02, '2012-11-02', '1.25.04.16', 158),
+(1, 26, 03, '2012-11-30', '1.25.05.16', 186),
+(1, 26, 04, '2012-12-28', '1.25.06.16', 214),
+(1, 26, 05, '2013-01-25', '1.25.07.16', 242),
+(1, 26, 06, '2013-02-22', '1.25.08.16', 010),
+(1, 26, 07, '2013-03-22', '1.25.09.16', 038),
+(1, 26, 08, '2013-04-19', '1.25.10.16', 066),
+(1, 26, 09, '2013-05-17', '1.25.11.16', 094),
+(1, 26, 10, '2013-06-14', '1.25.12.16', 122),
+(1, 26, 11, '2013-07-12', '1.25.13.16', 150),
+(1, 26, 12, '2013-08-10', '1.26.01.16', 179),
+(1, 26, 13, '2013-09-07', '1.26.02.16', 207),
+(1, 27, 01, '2013-10-05', '1.26.03.16', 235),
+(1, 27, 02, '2013-11-02', '1.26.04.16', 003),
+(1, 27, 03, '2013-11-30', '1.26.05.16', 031),
+(1, 27, 04, '2013-12-28', '1.26.06.16', 059),
+(1, 27, 05, '2014-01-25', '1.26.07.16', 087),
+(1, 27, 06, '2014-02-22', '1.26.08.16', 115),
+(1, 27, 07, '2014-03-22', '1.26.09.16', 143),
+(1, 27, 08, '2014-04-19', '1.26.10.16', 171),
+(1, 27, 09, '2014-05-17', '1.26.11.16', 199),
+(1, 27, 10, '2014-06-14', '1.26.12.16', 227),
+(1, 27, 11, '2014-07-12', '1.26.13.16', 255),
+(1, 27, 12, '2014-08-10', '1.27.01.16', 024),
+(1, 27, 13, '2014-09-07', '1.27.02.16', 052),
+(1, 28, 01, '2014-10-05', '1.27.03.16', 080),
+(1, 28, 02, '2014-11-02', '1.27.04.16', 108),
+(1, 28, 03, '2014-11-30', '1.27.05.16', 136),
+(1, 28, 04, '2014-12-28', '1.27.06.16', 164),
+(1, 28, 05, '2015-01-25', '1.27.07.16', 192),
+(1, 28, 06, '2015-02-22', '1.27.08.16', 220),
+(1, 28, 07, '2015-03-22', '1.27.09.16', 248),
+(1, 28, 08, '2015-04-19', '1.27.10.16', 016),
+(1, 28, 09, '2015-05-17', '1.27.11.16', 044),
+(1, 28, 10, '2015-06-14', '1.27.12.16', 072),
+(1, 28, 11, '2015-07-12', '1.27.13.16', 100),
+(1, 28, 12, '2015-08-10', '1.28.01.16', 129),
+(1, 28, 13, '2015-09-07', '1.28.02.16', 157),
+(1, 29, 01, '2015-10-05', '1.28.03.16', 185),
+(1, 29, 02, '2015-11-02', '1.28.04.16', 213),
+(1, 29, 03, '2015-11-30', '1.28.05.16', 241),
+(1, 29, 04, '2015-12-28', '1.28.06.16', 009),
+(1, 29, 05, '2016-01-25', '1.28.07.16', 037),
+(1, 29, 06, '2016-02-22', '1.28.08.16', 065),
+(1, 29, 07, '2016-03-22', '1.28.09.16', 093),
+(1, 29, 08, '2016-04-19', '1.28.10.16', 121),
+(1, 29, 09, '2016-05-17', '1.28.11.16', 149),
+(1, 29, 10, '2016-06-14', '1.28.12.16', 177),
+(1, 29, 11, '2016-07-12', '1.28.13.16', 205),
+(1, 29, 12, '2016-08-10', '1.29.01.16', 234),
+(1, 29, 13, '2016-09-07', '1.29.02.16', 002),
+(1, 30, 01, '2016-10-05', '1.29.03.16', 030),
+(1, 30, 02, '2016-11-02', '1.29.04.16', 058),
+(1, 30, 03, '2016-11-30', '1.29.05.16', 086),
+(1, 30, 04, '2016-12-28', '1.29.06.16', 114),
+(1, 30, 05, '2017-01-25', '1.29.07.16', 142),
+(1, 30, 06, '2017-02-22', '1.29.08.16', 170),
+(1, 30, 07, '2017-03-22', '1.29.09.16', 198),
+(1, 30, 08, '2017-04-19', '1.29.10.16', 226),
+(1, 30, 09, '2017-05-17', '1.29.11.16', 254),
+(1, 30, 10, '2017-06-14', '1.29.12.16', 022),
+(1, 30, 11, '2017-07-12', '1.29.13.16', 050),
+(1, 30, 12, '2017-08-10', '1.30.01.16', 079),
+(1, 30, 13, '2017-09-07', '1.30.02.16', 107),
+(1, 31, 01, '2017-10-05', '1.30.03.16', 135),
+(1, 31, 02, '2017-11-02', '1.30.04.16', 163),
+(1, 31, 03, '2017-11-30', '1.30.05.16', 191),
+(1, 31, 04, '2017-12-28', '1.30.06.16', 219),
+(1, 31, 05, '2018-01-25', '1.30.07.16', 247),
+(1, 31, 06, '2018-02-22', '1.30.08.16', 015),
+(1, 31, 07, '2018-03-22', '1.30.09.16', 043),
+(1, 31, 08, '2018-04-19', '1.30.10.16', 071),
+(1, 31, 09, '2018-05-17', '1.30.11.16', 099),
+(1, 31, 10, '2018-06-14', '1.30.12.16', 127),
+(1, 31, 11, '2018-07-12', '1.30.13.16', 155),
+(1, 31, 12, '2018-08-10', '1.31.01.16', 184),
+(1, 31, 13, '2018-09-07', '1.31.02.16', 212),
+(1, 32, 01, '2018-10-05', '1.31.03.16', 240),
+(1, 32, 02, '2018-11-02', '1.31.04.16', 008),
+(1, 32, 03, '2018-11-30', '1.31.05.16', 036),
+(1, 32, 04, '2018-12-28', '1.31.06.16', 064),
+(1, 32, 05, '2019-01-25', '1.31.07.16', 092),
+(1, 32, 06, '2019-02-22', '1.31.08.16', 120),
+(1, 32, 07, '2019-03-22', '1.31.09.16', 148),
+(1, 32, 08, '2019-04-19', '1.31.10.16', 176),
+(1, 32, 09, '2019-05-17', '1.31.11.16', 204),
+(1, 32, 10, '2019-06-14', '1.31.12.16', 232),
+(1, 32, 11, '2019-07-12', '1.31.13.16', 260),
+(1, 32, 12, '2019-08-10', '1.32.01.16', 029),
+(1, 32, 13, '2019-09-07', '1.32.02.16', 057),
+(1, 33, 01, '2019-10-05', '1.32.03.16', 085),
+(1, 33, 02, '2019-11-02', '1.32.04.16', 113),
+(1, 33, 03, '2019-11-30', '1.32.05.16', 141),
+(1, 33, 04, '2019-12-28', '1.32.06.16', 169),
+(1, 33, 05, '2020-01-25', '1.32.07.16', 197),
+(1, 33, 06, '2020-02-22', '1.32.08.16', 225),
+(1, 33, 07, '2020-03-22', '1.32.09.16', 253),
+(1, 33, 08, '2020-04-19', '1.32.10.16', 021),
+(1, 33, 09, '2020-05-17', '1.32.11.16', 049),
+(1, 33, 10, '2020-06-14', '1.32.12.16', 077),
+(1, 33, 11, '2020-07-12', '1.32.13.16', 105),
+(1, 33, 12, '2020-08-10', '1.33.01.16', 134),
+(1, 33, 13, '2020-09-07', '1.33.02.16', 162),
+(1, 34, 01, '2020-10-05', '1.33.03.16', 190),
+(1, 34, 02, '2020-11-02', '1.33.04.16', 218),
+(1, 34, 03, '2020-11-30', '1.33.05.16', 246),
+(1, 34, 04, '2020-12-28', '1.33.06.16', 014),
+(1, 34, 05, '2021-01-25', '1.33.07.16', 042),
+(1, 34, 06, '2021-02-22', '1.33.08.16', 070),
+(1, 34, 07, '2021-03-22', '1.33.09.16', 098),
+(1, 34, 08, '2021-04-19', '1.33.10.16', 126),
+(1, 34, 09, '2021-05-17', '1.33.11.16', 154),
+(1, 34, 10, '2021-06-14', '1.33.12.16', 182),
+(1, 34, 11, '2021-07-12', '1.33.13.16', 210),
+(1, 34, 12, '2021-08-10', '1.34.01.16', 239),
+(1, 34, 13, '2021-09-07', '1.34.02.16', 007),
+(1, 35, 01, '2021-10-05', '1.34.03.16', 035),
+(1, 35, 02, '2021-11-02', '1.34.04.16', 063),
+(1, 35, 03, '2021-11-30', '1.34.05.16', 091),
+(1, 35, 04, '2021-12-28', '1.34.06.16', 119),
+(1, 35, 05, '2022-01-25', '1.34.07.16', 147),
+(1, 35, 06, '2022-02-22', '1.34.08.16', 175),
+(1, 35, 07, '2022-03-22', '1.34.09.16', 203),
+(1, 35, 08, '2022-04-19', '1.34.10.16', 231),
+(1, 35, 09, '2022-05-17', '1.34.11.16', 259),
+(1, 35, 10, '2022-06-14', '1.34.12.16', 027),
+(1, 35, 11, '2022-07-12', '1.34.13.16', 055),
+(1, 35, 12, '2022-08-10', '1.35.01.16', 084),
+(1, 35, 13, '2022-09-07', '1.35.02.16', 112),
+(1, 36, 01, '2022-10-05', '1.35.03.16', 140),
+(1, 36, 02, '2022-11-02', '1.35.04.16', 168),
+(1, 36, 03, '2022-11-30', '1.35.05.16', 196),
+(1, 36, 04, '2022-12-28', '1.35.06.16', 224),
+(1, 36, 05, '2023-01-25', '1.35.07.16', 252),
+(1, 36, 06, '2023-02-22', '1.35.08.16', 020),
+(1, 36, 07, '2023-03-22', '1.35.09.16', 048),
+(1, 36, 08, '2023-04-19', '1.35.10.16', 076),
+(1, 36, 09, '2023-05-17', '1.35.11.16', 104),
+(1, 36, 10, '2023-06-14', '1.35.12.16', 132),
+(1, 36, 11, '2023-07-12', '1.35.13.16', 160),
+(1, 36, 12, '2023-08-10', '1.36.01.16', 189),
+(1, 36, 13, '2023-09-07', '1.36.02.16', 217),
+(1, 37, 01, '2023-10-05', '1.36.03.16', 245),
+(1, 37, 02, '2023-11-02', '1.36.04.16', 013),
+(1, 37, 03, '2023-11-30', '1.36.05.16', 041),
+(1, 37, 04, '2023-12-28', '1.36.06.16', 069),
+(1, 37, 05, '2024-01-25', '1.36.07.16', 097),
+(1, 37, 06, '2024-02-22', '1.36.08.16', 125),
+(1, 37, 07, '2024-03-22', '1.36.09.16', 153),
+(1, 37, 08, '2024-04-19', '1.36.10.16', 181),
+(1, 37, 09, '2024-05-17', '1.36.11.16', 209),
+(1, 37, 10, '2024-06-14', '1.36.12.16', 237),
+(1, 37, 11, '2024-07-12', '1.36.13.16', 005),
+(1, 37, 12, '2024-08-10', '1.37.01.16', 034),
+(1, 37, 13, '2024-09-07', '1.37.02.16', 062),
+(1, 38, 01, '2024-10-05', '1.37.03.16', 090),
+(1, 38, 02, '2024-11-02', '1.37.04.16', 118),
+(1, 38, 03, '2024-11-30', '1.37.05.16', 146),
+(1, 38, 04, '2024-12-28', '1.37.06.16', 174),
+(1, 38, 05, '2025-01-25', '1.37.07.16', 202),
+(1, 38, 06, '2025-02-22', '1.37.08.16', 230),
+(1, 38, 07, '2025-03-22', '1.37.09.16', 258),
+(1, 38, 08, '2025-04-19', '1.37.10.16', 026),
+(1, 38, 09, '2025-05-17', '1.37.11.16', 054),
+(1, 38, 10, '2025-06-14', '1.37.12.16', 082),
+(1, 38, 11, '2025-07-12', '1.37.13.16', 110),
+(1, 38, 12, '2025-08-10', '1.38.01.16', 139),
+(1, 38, 13, '2025-09-07', '1.38.02.16', 167),
+(1, 39, 01, '2025-10-05', '1.38.03.16', 195),
+(1, 39, 02, '2025-11-02', '1.38.04.16', 223),
+(1, 39, 03, '2025-11-30', '1.38.05.16', 251),
+(1, 39, 04, '2025-12-28', '1.38.06.16', 019),
+(1, 39, 05, '2026-01-25', '1.38.07.16', 047),
+(1, 39, 06, '2026-02-22', '1.38.08.16', 075),
+(1, 39, 07, '2026-03-22', '1.38.09.16', 103),
+(1, 39, 08, '2026-04-19', '1.38.10.16', 131),
+(1, 39, 09, '2026-05-17', '1.38.11.16', 159),
+(1, 39, 10, '2026-06-14', '1.38.12.16', 187),
+(1, 39, 11, '2026-07-12', '1.38.13.16', 215),
+(1, 39, 12, '2026-08-10', '1.39.01.16', 244),
+(1, 39, 13, '2026-09-07', '1.39.02.16', 012),
+(1, 40, 01, '2026-10-05', '1.39.03.16', 040),
+(1, 40, 02, '2026-11-02', '1.39.04.16', 068),
+(1, 40, 03, '2026-11-30', '1.39.05.16', 096),
+(1, 40, 04, '2026-12-28', '1.39.06.16', 124),
+(1, 40, 05, '2027-01-25', '1.39.07.16', 152),
+(1, 40, 06, '2027-02-22', '1.39.08.16', 180),
+(1, 40, 07, '2027-03-22', '1.39.09.16', 208),
+(1, 40, 08, '2027-04-19', '1.39.10.16', 236),
+(1, 40, 09, '2027-05-17', '1.39.11.16', 004),
+(1, 40, 10, '2027-06-14', '1.39.12.16', 032),
+(1, 40, 11, '2027-07-12', '1.39.13.16', 060),
+(1, 40, 12, '2027-08-10', '1.40.01.16', 089),
+(1, 40, 13, '2027-09-07', '1.40.02.16', 117),
+(1, 41, 01, '2027-10-05', '1.40.03.16', 145),
+(1, 41, 02, '2027-11-02', '1.40.04.16', 173),
+(1, 41, 03, '2027-11-30', '1.40.05.16', 201),
+(1, 41, 04, '2027-12-28', '1.40.06.16', 229),
+(1, 41, 05, '2028-01-25', '1.40.07.16', 257),
+(1, 41, 06, '2028-02-22', '1.40.08.16', 025),
+(1, 41, 07, '2028-03-22', '1.40.09.16', 053),
+(1, 41, 08, '2028-04-19', '1.40.10.16', 081),
+(1, 41, 09, '2028-05-17', '1.40.11.16', 109),
+(1, 41, 10, '2028-06-14', '1.40.12.16', 137),
+(1, 41, 11, '2028-07-12', '1.40.13.16', 165),
+(1, 41, 12, '2028-08-10', '1.41.01.16', 194),
+(1, 41, 13, '2028-09-07', '1.41.02.16', 222),
+(1, 42, 01, '2028-10-05', '1.41.03.16', 250),
+(1, 42, 02, '2028-11-02', '1.41.04.16', 018),
+(1, 42, 03, '2028-11-30', '1.41.05.16', 046),
+(1, 42, 04, '2028-12-28', '1.41.06.16', 074),
+(1, 42, 05, '2029-01-25', '1.41.07.16', 102),
+(1, 42, 06, '2029-02-22', '1.41.08.16', 130),
+(1, 42, 07, '2029-03-22', '1.41.09.16', 158),
+(1, 42, 08, '2029-04-19', '1.41.10.16', 186),
+(1, 42, 09, '2029-05-17', '1.41.11.16', 214),
+(1, 42, 10, '2029-06-14', '1.41.12.16', 242),
+(1, 42, 11, '2029-07-12', '1.41.13.16', 010),
+(1, 42, 12, '2029-08-10', '1.42.01.16', 039),
+(1, 42, 13, '2029-09-07', '1.42.02.16', 067),
+(1, 43, 01, '2029-10-05', '1.42.03.16', 095),
+(1, 43, 02, '2029-11-02', '1.42.04.16', 123),
+(1, 43, 03, '2029-11-30', '1.42.05.16', 151),
+(1, 43, 04, '2029-12-28', '1.42.06.16', 179),
+(1, 43, 05, '2030-01-25', '1.42.07.16', 207),
+(1, 43, 06, '2030-02-22', '1.42.08.16', 235),
+(1, 43, 07, '2030-03-22', '1.42.09.16', 003),
+(1, 43, 08, '2030-04-19', '1.42.10.16', 031),
+(1, 43, 09, '2030-05-17', '1.42.11.16', 059),
+(1, 43, 10, '2030-06-14', '1.42.12.16', 087),
+(1, 43, 11, '2030-07-12', '1.42.13.16', 115),
+(1, 43, 12, '2030-08-10', '1.43.01.16', 144),
+(1, 43, 13, '2030-09-07', '1.43.02.16', 172),
+(1, 44, 01, '2030-10-05', '1.43.03.16', 200),
+(1, 44, 02, '2030-11-02', '1.43.04.16', 228),
+(1, 44, 03, '2030-11-30', '1.43.05.16', 256),
+(1, 44, 04, '2030-12-28', '1.43.06.16', 024),
+(1, 44, 05, '2031-01-25', '1.43.07.16', 052),
+(1, 44, 06, '2031-02-22', '1.43.08.16', 080),
+(1, 44, 07, '2031-03-22', '1.43.09.16', 108),
+(1, 44, 08, '2031-04-19', '1.43.10.16', 136),
+(1, 44, 09, '2031-05-17', '1.43.11.16', 164),
+(1, 44, 10, '2031-06-14', '1.43.12.16', 192),
+(1, 44, 11, '2031-07-12', '1.43.13.16', 220),
+(1, 44, 12, '2031-08-10', '1.44.01.16', 249),
+(1, 44, 13, '2031-09-07', '1.44.02.16', 017),
+(1, 45, 01, '2031-10-05', '1.44.03.16', 045),
+(1, 45, 02, '2031-11-02', '1.44.04.16', 073),
+(1, 45, 03, '2031-11-30', '1.44.05.16', 101),
+(1, 45, 04, '2031-12-28', '1.44.06.16', 129),
+(1, 45, 05, '2032-01-25', '1.44.07.16', 157),
+(1, 45, 06, '2032-02-22', '1.44.08.16', 185),
+(1, 45, 07, '2032-03-22', '1.44.09.16', 213),
+(1, 45, 08, '2032-04-19', '1.44.10.16', 241),
+(1, 45, 09, '2032-05-17', '1.44.11.16', 009),
+(1, 45, 10, '2032-06-14', '1.44.12.16', 037),
+(1, 45, 11, '2032-07-12', '1.44.13.16', 065),
+(1, 45, 12, '2032-08-10', '1.45.01.16', 094),
+(1, 45, 13, '2032-09-07', '1.45.02.16', 122),
+(1, 46, 01, '2032-10-05', '1.45.03.16', 150),
+(1, 46, 02, '2032-11-02', '1.45.04.16', 178),
+(1, 46, 03, '2032-11-30', '1.45.05.16', 206),
+(1, 46, 04, '2032-12-28', '1.45.06.16', 234),
+(1, 46, 05, '2033-01-25', '1.45.07.16', 002),
+(1, 46, 06, '2033-02-22', '1.45.08.16', 030),
+(1, 46, 07, '2033-03-22', '1.45.09.16', 058),
+(1, 46, 08, '2033-04-19', '1.45.10.16', 086),
+(1, 46, 09, '2033-05-17', '1.45.11.16', 114),
+(1, 46, 10, '2033-06-14', '1.45.12.16', 142),
+(1, 46, 11, '2033-07-12', '1.45.13.16', 170),
+(1, 46, 12, '2033-08-10', '1.46.01.16', 199),
+(1, 46, 13, '2033-09-07', '1.46.02.16', 227),
+(1, 47, 01, '2033-10-05', '1.46.03.16', 255),
+(1, 47, 02, '2033-11-02', '1.46.04.16', 023),
+(1, 47, 03, '2033-11-30', '1.46.05.16', 051),
+(1, 47, 04, '2033-12-28', '1.46.06.16', 079),
+(1, 47, 05, '2034-01-25', '1.46.07.16', 107),
+(1, 47, 06, '2034-02-22', '1.46.08.16', 135),
+(1, 47, 07, '2034-03-22', '1.46.09.16', 163),
+(1, 47, 08, '2034-04-19', '1.46.10.16', 191),
+(1, 47, 09, '2034-05-17', '1.46.11.16', 219),
+(1, 47, 10, '2034-06-14', '1.46.12.16', 247),
+(1, 47, 11, '2034-07-12', '1.46.13.16', 015),
+(1, 47, 12, '2034-08-10', '1.47.01.16', 044),
+(1, 47, 13, '2034-09-07', '1.47.02.16', 072),
+(1, 48, 01, '2034-10-05', '1.47.03.16', 100),
+(1, 48, 02, '2034-11-02', '1.47.04.16', 128),
+(1, 48, 03, '2034-11-30', '1.47.05.16', 156),
+(1, 48, 04, '2034-12-28', '1.47.06.16', 184),
+(1, 48, 05, '2035-01-25', '1.47.07.16', 212),
+(1, 48, 06, '2035-02-22', '1.47.08.16', 240),
+(1, 48, 07, '2035-03-22', '1.47.09.16', 008),
+(1, 48, 08, '2035-04-19', '1.47.10.16', 036),
+(1, 48, 09, '2035-05-17', '1.47.11.16', 064),
+(1, 48, 10, '2035-06-14', '1.47.12.16', 092),
+(1, 48, 11, '2035-07-12', '1.47.13.16', 120),
+(1, 48, 12, '2035-08-10', '1.48.01.16', 149),
+(1, 48, 13, '2035-09-07', '1.48.02.16', 177),
+(1, 49, 01, '2035-10-05', '1.48.03.16', 205),
+(1, 49, 02, '2035-11-02', '1.48.04.16', 233),
+(1, 49, 03, '2035-11-30', '1.48.05.16', 001),
+(1, 49, 04, '2035-12-28', '1.48.06.16', 029),
+(1, 49, 05, '2036-01-25', '1.48.07.16', 057),
+(1, 49, 06, '2036-02-22', '1.48.08.16', 085),
+(1, 49, 07, '2036-03-22', '1.48.09.16', 113),
+(1, 49, 08, '2036-04-19', '1.48.10.16', 141),
+(1, 49, 09, '2036-05-17', '1.48.11.16', 169),
+(1, 49, 10, '2036-06-14', '1.48.12.16', 197),
+(1, 49, 11, '2036-07-12', '1.48.13.16', 225),
+(1, 49, 12, '2036-08-10', '1.49.01.16', 254),
+(1, 49, 13, '2036-09-07', '1.49.02.16', 022),
+(1, 50, 01, '2036-10-05', '1.49.03.16', 050),
+(1, 50, 02, '2036-11-02', '1.49.04.16', 078),
+(1, 50, 03, '2036-11-30', '1.49.05.16', 106),
+(1, 50, 04, '2036-12-28', '1.49.06.16', 134),
+(1, 50, 05, '2037-01-25', '1.49.07.16', 162),
+(1, 50, 06, '2037-02-22', '1.49.08.16', 190),
+(1, 50, 07, '2037-03-22', '1.49.09.16', 218),
+(1, 50, 08, '2037-04-19', '1.49.10.16', 246),
+(1, 50, 09, '2037-05-17', '1.49.11.16', 014),
+(1, 50, 10, '2037-06-14', '1.49.12.16', 042),
+(1, 50, 11, '2037-07-12', '1.49.13.16', 070),
+(1, 50, 12, '2037-08-10', '1.50.01.16', 099),
+(1, 50, 13, '2037-09-07', '1.50.02.16', 127),
+(1, 51, 01, '2037-10-05', '1.50.03.16', 155),
+(1, 51, 02, '2037-11-02', '1.50.04.16', 183),
+(1, 51, 03, '2037-11-30', '1.50.05.16', 211),
+(1, 51, 04, '2037-12-28', '1.50.06.16', 239),
+(1, 51, 05, '2038-01-25', '1.50.07.16', 007),
+(1, 51, 06, '2038-02-22', '1.50.08.16', 035),
+(1, 51, 07, '2038-03-22', '1.50.09.16', 063),
+(1, 51, 08, '2038-04-19', '1.50.10.16', 091),
+(1, 51, 09, '2038-05-17', '1.50.11.16', 119),
+(1, 51, 10, '2038-06-14', '1.50.12.16', 147),
+(1, 51, 11, '2038-07-12', '1.50.13.16', 175),
+(1, 51, 12, '2038-08-10', '1.51.01.16', 204),
+(1, 51, 13, '2038-09-07', '1.51.02.16', 232),
+(1, 52, 01, '2038-10-05', '1.51.03.16', 260),
+(1, 52, 02, '2038-11-02', '1.51.04.16', 028),
+(1, 52, 03, '2038-11-30', '1.51.05.16', 056),
+(1, 52, 04, '2038-12-28', '1.51.06.16', 084),
+(1, 52, 05, '2039-01-25', '2.-01.07.16', 112),
+(1, 52, 06, '2039-02-22', '2.-01.08.16', 140),
+(1, 52, 07, '2039-03-22', '2.-01.09.16', 168),
+(1, 52, 08, '2039-04-19', '2.-01.10.16', 196),
+(1, 52, 09, '2039-05-17', '2.-01.11.16', 224),
+(1, 52, 10, '2039-06-14', '2.-01.12.16', 252),
+(1, 52, 11, '2039-07-12', '2.-01.13.16', 020),
+(1, 52, 12, '2040-08-10', '2.01.01.16', 154),
+(1, 52, 13, '2040-09-07', '2.01.02.16', 182);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `dat`
+--
+
+CREATE TABLE `dat` (
+  `ide` int(11) NOT NULL COMMENT 'Identificador',
+  `nom` varchar(30) NOT NULL COMMENT 'Nombre',
+  `ape` varchar(30) NOT NULL COMMENT 'Apellido',
+  `fec` date NOT NULL COMMENT 'Fecha de Nacimiento',
+  `sin` varchar(13) NOT NULL COMMENT 'Sincronario',
+  `kin` smallint(3) UNSIGNED ZEROFILL NOT NULL COMMENT 'Kin Planetario',
+  `psi` smallint(3) UNSIGNED ZEROFILL NOT NULL COMMENT 'Psi-cronos',
+  `mai` varchar(40) NOT NULL COMMENT 'Email',
+  `tel` varchar(20) NOT NULL COMMENT 'Teléfono',
+  `ubi` varchar(50) NOT NULL COMMENT 'Ubicación'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Usuario';
+
+--
+-- Volcado de datos para la tabla `dat`
+--
+
+INSERT INTO `dat` (`ide`, `nom`, `ape`, `fec`, `sin`, `kin`, `psi`, `mai`, `tel`, `ubi`) VALUES
+(1, 'Iván', 'Villena', '1987-10-05', '1.00.03.16', 105, 072, 'ivan.pieszko@gmail.com', '5491131037776', 'america/argentina/buenos_aires');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `dat_tip`
+--
+
+CREATE TABLE `dat_tip` (
+  `ide` smallint(5) UNSIGNED NOT NULL COMMENT 'Identificador',
+  `nom` varchar(80) NOT NULL COMMENT 'Nombre',
+  `des` text DEFAULT NULL COMMENT 'Descripción'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Tipo de Entrada';
+
+--
+-- Volcado de datos para la tabla `dat_tip`
+--
+
+INSERT INTO `dat_tip` (`ide`, `nom`, `des`) VALUES
+(1, 'Familiar', NULL),
+(2, 'Sentimental', NULL),
+(3, 'Social', NULL),
+(4, 'Laboral', NULL),
+(5, 'Estudios', NULL),
+(6, 'Hobbies', NULL),
+(7, 'Mental', NULL),
+(8, 'Físico', NULL),
+(9, 'Espiritual', NULL);
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `age_cic`
+--
+ALTER TABLE `age_cic`
+  ADD PRIMARY KEY (`ide`),
+  ADD KEY `usu` (`usu`),
+  ADD KEY `tip` (`tip`);
+
+--
+-- Indices de la tabla `age_dia`
+--
+ALTER TABLE `age_dia`
+  ADD PRIMARY KEY (`ide`),
+  ADD KEY `usu` (`usu`),
+  ADD KEY `fec` (`fec`),
+  ADD KEY `tip` (`tip`);
+
+--
+-- Indices de la tabla `cic_ani`
+--
+ALTER TABLE `cic_ani`
+  ADD PRIMARY KEY (`usu`,`ide`);
+
+--
+-- Indices de la tabla `cic_arm`
+--
+ALTER TABLE `cic_arm`
+  ADD PRIMARY KEY (`ide`);
+
+--
+-- Indices de la tabla `cic_dia`
+--
+ALTER TABLE `cic_dia`
+  ADD PRIMARY KEY (`usu`,`ani`,`lun`,`ide`);
+
+--
+-- Indices de la tabla `cic_lun`
+--
+ALTER TABLE `cic_lun`
+  ADD PRIMARY KEY (`usu`,`ani`,`ide`);
+
+--
+-- Indices de la tabla `dat`
+--
+ALTER TABLE `dat`
+  ADD PRIMARY KEY (`ide`);
+
+--
+-- Indices de la tabla `dat_tip`
+--
+ALTER TABLE `dat_tip`
+  ADD PRIMARY KEY (`ide`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `age_cic`
+--
+ALTER TABLE `age_cic`
+  MODIFY `ide` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'Id';
+
+--
+-- AUTO_INCREMENT de la tabla `age_dia`
+--
+ALTER TABLE `age_dia`
+  MODIFY `ide` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'Id';
+
+--
+-- AUTO_INCREMENT de la tabla `dat`
+--
+ALTER TABLE `dat`
+  MODIFY `ide` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Identificador', AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

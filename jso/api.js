@@ -5,7 +5,6 @@
 const SYS_NAV = "http://localhost/";
 const SYS_REC = "http://localhost/_/";
 
-var $$ = {};
 var $_log = { 'php':[], 'jso':[] };
 
 // Interface
@@ -73,6 +72,10 @@ class _api {
       }
     }        
     return $_;
+  }
+
+  // sesion del usuario
+  ses(){
   }
 }
 
@@ -247,10 +250,10 @@ class _dat {
         }
       }
     }  
-    // de la base : esquema.estructura
+    // de la documento 
     else if( typeof($dat) == 'string' ){
       
-      $_ = _ele.val('ver',$dat,$ope);
+      $_ = ( $.ver = _ele.ope($dat) ) ? $.ver : [];
     }
     // por estructura : [ {}, [] ]
     else{
@@ -701,91 +704,40 @@ class _eje {
 // Elemento : <eti ...atr="val"> ...htm + ...tex </eti>
 class _ele {
 
-  static val( $tip, $ele, $dat, $val ){
+  // convierto y combino
+  static val( $dat, $ele, $val ){
     let $_, $={};
-    if( typeof($tip)=='object' ){
-      $_ = _obj.dec($tip,$dat);
-      // recorro 2° elemento
-      _lis.ite($ele).forEach( $ele => {    
-        for( const $atr in _obj.dec($ele,$dat) ){ const $val = $ele[$atr];
-          if( !($_[$atr]) ){ 
-            $_[$atr] = $val;
-          }else{
-            switch($atr){
-            case '_eje':// separador: "(;;)"
-              _ele.eje($_,$val); 
-              break;
-            case 'class':
-              _ele.cla($_,$val); 
-              break;// separador: " "
-            case 'style':
-              _ele.css($_,$val); 
-              break;// separador: ";"
-            default: 
-              $_[$atr] = $val;
-              break;
-            }
+    // convierto
+    $_ = _obj.dec($dat,$val);
+    // recorro 2° elemento
+    _lis.ite($ele).forEach( $ele => {    
+      for( const $atr in _obj.dec($ele,$val) ){ const $v = $ele[$atr];
+        if( !($_[$atr]) ){ 
+          $_[$atr] = $v;
+        }else{
+          switch($atr){
+          case '_eje':// separador: "(;;)"
+            _ele.eje($_,$v); 
+            break;
+          case 'class':
+            _ele.cla($_,$v); 
+            break;// separador: " "
+          case 'style':
+            _ele.css($_,$v); 
+            break;// separador: ";"
+          default: 
+            $_[$atr] = $v;
+            break;
           }
         }
-      });
-    }
-    else{ 
-      $_ = []; 
-      $.tip = $tip.split('_');
-      if( typeof($ele)=='string' ){ $ele = document.querySelectorAll($ele); }
-      $.lis = _lis.val($ele);  
-      switch( $.tip[0] ){
-      case 'nod':
-        if( !$.tip[1] ){             
-          $.htm = {
-            'main':'app', 'article':'art', 'form':'for', 'fieldset':'fie', 'div':'div'
-          };
-          $_ = {};
-          $.her = $ele;
-          // armo ascendencia
-          while( $.her.parentElement ){ 
-            $.her = $.her.parentElement; 
-            $.ele.nod = $.her.nodeName.toLowerCase();         
-            if( $.htm[$.ele.nod] ){ 
-              $_[ $.htm[$.ele.nod] ] = $.her; 
-            }
-          }
-        }
-        break;
-      case 'cla':
-        switch( $.tip[1] ){
-        case 'val': $.lis.forEach( $v => $_.push( $v.classList.contains($dat) ) ); break;
-        case 'pos': $.lis.forEach( $v => $_.push( $v.classList.item($dat) ) ); break;
-        case 'tog': $.lis.forEach( $v => $_.push( $v.classList.toggle($dat) ) ); break;
-        case 'agr': $.lis.forEach( $v => $_.push( !$v.classList.contains($dat) && $v.classList.add($dat) ) ); break;
-        case 'mod': $.lis.forEach( $v => $_.push( $v.classList.replace($dat, $val) ) ); break;
-        case 'eli': $.lis.forEach( $v => $_.push( $v.classList.remove($dat) ) ); break;    
-        }
-        break;
-      case 'eje':
-        switch( $.tip[1] ){
-        case 'ver': break;
-        case 'agr': $.lis.forEach( $v => $_.push( $v.addEventListener( $dat, eval($val) ) ) ); break;
-        case 'eli': $.lis.forEach( $v => $_.push( $v.removeEventListener( $dat, $val ) ) ); break;
-        }
-        break;    
-      case 'art':
-        switch( $.tip[1] ){
-        case 'ver': break;
-        case 'agr': break;
-        case 'mod': break;
-        case 'eli': break;
-        }
-        break;
-      }  
-    }
+      }
+    });
     return $_;
   }
-
   static dom( $ele, $rel, $dep, $ope, $val ){    
     let $ = {};
     // selector por documento
-    $.htm = _ele.val('nod',$ele);
+    $.htm = _ele.act('nod',$ele);
     if( !!$rel && $.htm[$rel] && $.htm[$rel].nodeName ){
       $rel = ( $.htm[$rel] && $.htm[$rel].nodeName ) ? $.htm[$rel] : document;
     }
@@ -811,10 +763,9 @@ class _ele {
     }// selector, operador, valor  
     return _ele.ope( $rel.querySelectorAll($dep), $ope, $val );
   }  
-
   static tog( $ele, $eti, $css, $ide, $cla='dis-ocu', $ope='cla_agr' ){  
     let $={};// cambios de clase
-    $.htm = _ele.val('nod',$ele);
+    $.htm = _ele.act('nod',$ele);
     if( $.htm[$eti] && $.htm[$eti].nodeName ){
       $.obj = $.htm[$eti];
     }else{
@@ -828,7 +779,6 @@ class _ele {
     _ele.ope( $.obj.querySelectorAll(`${$css}${$ide}`), 'cla_tog', $cla );
     return $ele;
   }
-
   // propiedades
   static eje( $dat, $ide, $val, ...$opc ){
 
@@ -880,7 +830,6 @@ class _ele {
     }
     return $dat;
   }
-
   static cla( $dat, $val, ...$opc ){
     let $_=$dat,$={};
 
@@ -931,7 +880,6 @@ class _ele {
     }
     return $_;
   }
-
   static css( $dat, $val, ...$opc ){
     let $_=$dat, $={};
 
@@ -965,7 +913,6 @@ class _ele {
     }
     return $_;
   }
-
   static fon( $val, $ope={} ){
     if( !$ope['tip'] ) $ope['tip']='png';
     if( !$ope['ali'] ) $ope['ali']='center';
@@ -973,19 +920,24 @@ class _ele {
     if( !$ope['rep'] ) $ope['rep']='no-repeat';
     return `background: ${$ope['rep']} ${$ope['ali']} / ${$ope['tam']} url('${$val}.${$ope['tip']}');`;
   }
-
-  // operadores
+  // operaciones
   static ope( $val, $ope, ...$opc ){
     let $_=false,$={};
-  
-    if( typeof($val)=='string' ){ 
+    // busco elementos
+    if( typeof($val) == 'string' ){ 
       $val = document.querySelectorAll($val);
     }
+    else if( Array.isArray($val) ){
+      $val[0] = ( !$val[0] || typeof($val[0]) == 'string' ) ? document.querySelector( $val[0] ? $val[0] : 'body' ) : $val[0];
+      $val = $val[0].querySelectorAll($val[1] ? $val[1] : '*');
+    }
     // ejecuto operaciones
-    $.res=[];
-    _lis.ite($ope).forEach( $v => 
-      $.res = [ ...$.res, _ele.val( $ope, $val, ...$opc ) ] 
-    );
+    $.res = $val;
+    if( $ope ){
+      $.res = [];
+      _lis.ite($ope).forEach( $v => $.res.push( _ele.act( $ope, $val, ...$opc ) ) );
+    }
+
     // resultados: [<>] => <> // si hay 1 solo, devuelvo único elemento
     $_ = _lis.val($.res);
     if( !$_.length ){ 
@@ -995,58 +947,119 @@ class _ele {
     }
     return $_;
   }
-
-  static ver( $ele, $ope={} ){
-    let $_=false,$={};
-    let $opc = $ope.opc ? $ope.opc : [];
-    $.ver = ( $eti, $ope ) =>{
-      let $res = true;
-      if( $res && $ope.eti && $ope.eti != $eti.nodeName.toLowerCase() ){ 
-        $res = false;
-      }
-      if( $res && $ope.atr ){
-        $ope.atr.forEach( $v =>{ 
-          if( !$eti.getAttribute($v) ){ return $res = false; }
-        });
-      }
-      if( $res && $ope.cla ){
-        $ope.cla.forEach( $v =>{ 
-          if( !$ele.classList.contains($v) ){ return $res = false; } 
-        });
-      }
-      return $res;
+  static act( $tip, $ele, $val, $ope ){
+    let $_ = [], $={
+      tip : $tip.split('_')
     };
+    if( typeof($ele) == 'string' ){ 
+      $ele = document.querySelectorAll($ele);       
+    }
+    else if( Array.isArray($ele) ){
+      $ele[0] = ( !$ele[0] || typeof($ele[0]) == 'string' ) ? document.querySelector( $ele[0] ? $ele[0] : 'body' ) : $ele[0];
+      $ele = $ele[0].querySelectorAll($ele[1] ? $ele[1] : '*');
+    }
+    $.lis = _lis.val($ele);
+    switch( $.tip[0] ){
+    case 'nod':
+      if( !$.tip[1] ){             
+        $.htm = {
+          'main':'app', 'article':'art', 'form':'for', 'fieldset':'fie', 'div':'div'
+        };
+        $_ = {};
+        $.her = $ele;
+        // armo ascendencia
+        while( $.her.parentElement ){ 
+          $.her = $.her.parentElement; 
+          $.ele.nod = $.her.nodeName.toLowerCase();         
+          if( $.htm[$.ele.nod] ){ 
+            $_[ $.htm[$.ele.nod] ] = $.her; 
+          }
+        }
+      }
+      break;
+    case 'cla':
+      switch( $.tip[1] ){
+      case 'val': $.lis.forEach( $v => $_.push( $v.classList.contains($val) ) ); break;
+      case 'pos': $.lis.forEach( $v => $_.push( $v.classList.item($val) ) ); break;
+      case 'tog': $.lis.forEach( $v => $_.push( $v.classList.toggle($val) ) ); break;
+      case 'agr': $.lis.forEach( $v => $_.push( !$v.classList.contains($val) && $v.classList.add($val) ) ); break;
+      case 'mod': $.lis.forEach( $v => $_.push( $v.classList.replace($val, $ope) ) ); break;
+      case 'eli': $.lis.forEach( $v => $_.push( $v.classList.remove($val) ) ); break;    
+      }
+      break;
+    case 'eje':
+      switch( $.tip[1] ){
+      case 'ver': break;
+      case 'agr': $.lis.forEach( $v => $_.push( $v.addEventListener( $val, eval($ope) ) ) ); break;
+      case 'eli': $.lis.forEach( $v => $_.push( $v.removeEventListener( $val, $ope ) ) ); break;
+      }
+      break;    
+    case 'art':
+      switch( $.tip[1] ){
+      case 'ver': break;
+      case 'agr': break;
+      case 'mod': break;
+      case 'eli': break;
+      }
+      break;
+    }  
+  }
+  static ver( $ele, $ope={} ){
+
+    let $_ = false, $ = {};
+    $.opc = $ope.opc ? $ope.opc : []      
+    // ejecuto valicaciones : etiqueta | clases | atributos
+    $._ele_ver = ( $ele, $ope ) =>{
+      let $_ = true;
+      // etiqueta
+      if( $ope.eti && $ope.eti != $ele.nodeName.toLowerCase() ) $_ = false;
+      // clases
+      if( $_ && $ope.cla ){
+        $ope.cla.forEach( $v =>{ 
+          if( !$ele.classList.contains($v) ) return $_ = false;
+        });
+      }
+      // atributo = valor
+      if( $_ && $ope.atr ){
+        $ope.atr.forEach( ($v,$i) =>{ 
+          if( !($.atr_val = $ele.getAttribute($i)) || ( $v && $.atr_val != $v ) ) return $_ = false;
+        });
+      }
+      return $_;
+
+    };
+    // proceso filtros
     $.val = [];
-    $.opc_mul = $opc.includes('mul');
+    $.opc_mul = $.opc.includes('mul');
+    
     // por nodos descendentes
-    if( $opc.includes('nod') ){
-      _lis.val($ele.children).forEach( $_nod => {
-        if( $.ver($_nod,$ope) ){ 
-          $.val.push($_nod); 
+    if( $.opc.includes('nod') ){
+
+      _lis.val($ele.children).forEach( $ele => {
+
+        if( $._ele_ver($ele,$ope) ){           
+          $.val.push($ele);
           if( !$.opc_mul ){ return; }
         }
       });
     }// por ascendentes
     else{
-      if( $ele.parentElement ){
-        $.her = $ele;
-        while( $.her.parentElement ){
-          $.her = $.her.parentElement;
-          if( $.ver($.her,$ope) ){ 
-            $.val.push($.her); 
-            if( !$.opc_mul ){ break; }
-          }
+      while( $ele.parentElement ){
+
+        $ele = $ele.parentElement;
+
+        if( $._ele_ver($ele,$ope) ){ 
+          $.val.push($ele); 
+          if( !$.opc_mul ){ break; }
         }
       }
-    }// devuelvo 1 o muchos
-    if( $.val.length == 1 ){ 
-      $_ = $.val[0]; 
-    }else if( $.val.length > 0 ){ 
-      $_ = $.val; 
+    }
+    // devuelvo 1 o muchos
+    if( $.val.length > 0 ){
+      $_ = $.val.length == 1 ? $.val[0] : $.val;
     }
     return $_;
   }
-
   static agr( $val, $pad, ...$opc ){
     let $_=[],$={};
     // recibo 1 o muchos
@@ -1075,7 +1088,6 @@ class _ele {
     }
     return ( $.val_uni && $_[0] ) ? $_[0] : $_;
   }
-
   static mod( $val, $pad, $mod, ...$opc ){
     let $_={},$={};
     // aseguro valor
@@ -1097,13 +1109,13 @@ class _ele {
     }
     return $_;
   }
-
-  static eli( $pad={}, $nod ){
+  static eli( $pad, $nod ){
     let $_=[];
-    if( !$nod ){// elimino todos
+    // elimino todos
+    if( !$nod ){
       $nod = $pad.children;
     }// por seleccion
-    else if( typeof($nod)=='string' ){ 
+    else if( typeof($nod)=='string' ){
       $nod = $pad.querySelectorAll($nod);
     }
     if( $nod ){

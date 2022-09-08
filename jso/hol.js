@@ -72,16 +72,16 @@ class _hol {
 }
 
 // articulo : valores + tablero
-class _hol_art {
+class _hol_doc {
 
   // valores  
   static val( $dat ){
     // operador : fecha + sincronario
     let $ = _doc.var($dat);
 
-    if( !$_api._uri.cab || !['dat','inf'].includes($_api._uri.cab) ){
-      $_api._uri.cab = 'dat';
-      $_api._uri.art = 'kin';
+    if( !$_api._uri.cab || !['tab','inf'].includes($_api._uri.cab) ){
+      $_api._uri.cab = 'tab';
+      $_api._uri.art = 'kin-tzo';
     }
     
     $.uri = $_api.uri();
@@ -104,7 +104,7 @@ class _hol_art {
       $.val = true;
       ['gal','ani','lun','dia'].forEach( $v => {
 
-        $.atr[$v] = $$.for.querySelector(`[name="psi_${$v}"]`).value;
+        $.atr[$v] = $$.for.querySelector(`[name="${$v}"]`).value;
 
         if( !$.atr[$v] ){ 
           return $.val = false;          
@@ -115,7 +115,7 @@ class _hol_art {
       });
       if( !!$.val ){
 
-        $_arc.url(`${$.uri}/sin=${$.hol.join('.')}`);
+        _arc.url(`${$.uri}/sin=${$.hol.join('.')}`);
       }
       else{
         alert('La fecha del sincronario es inválida...')
@@ -162,7 +162,7 @@ class _hol_art {
     }
 
     // actualizo acumulado total
-    _hol_art.val_tot($ide[0]);
+    _hol_doc.val_tot($ide[0]);
 
   }
 
@@ -174,9 +174,9 @@ class _hol_art {
 
       if( $$.tab[$ope] ){
 
-        $$.tab[$ope].querySelectorAll(`form[ide] [name][onchange*="_hol_art.tab_"]`).forEach( $inp => 
+        $$.tab[$ope].querySelectorAll(`form[ide] [name][onchange*="_hol_doc.tab_"]`).forEach( $inp => 
 
-          _hol_art[`tab_${$ope}`](`${_ele.ver($inp,{'eti':`form`}).getAttribute('ide')}`, $inp )
+          _hol_doc[`tab_${$ope}`](`${_ele.ver($inp,{'eti':`form`}).getAttribute('ide')}`, $inp )
         );
       }
     });   
@@ -202,20 +202,20 @@ class _hol_art {
 
         $._par_lis.forEach( $ide => {
 
-          _hol_art.tab_pos(`${$tip}`, $$.for.querySelector(`[name="${$ide}"]`) );
+          _hol_doc.tab_pos(`${$tip}`, $$.for.querySelector(`[name="${$ide}"]`) );
         });
       }// por pareja
       else{        
         // marco pareja
         if( $._par_lis.includes($.var_ide) ){
           // desmarco todos los anteriores
-          _ele.val('cla_eli',$$.tab.dat.querySelectorAll(`.${$.cla}`),$.cla);
+          _ele.act('cla_eli',[$$.tab.dat,`.${$.cla}`],$.cla);
           // marco correspondientes
           if( $dat.checked && ( $.ele = $$.tab.dat.querySelector(`${$$.tab.cla}[hol-kin="${_hol._('kin',$.kin)[`par_${$.var_ide}`]}"]`) ) ){
-            _ele.val('cla_agr',$.ele,$.cla);          
+            _ele.act('cla_agr',$.ele,$.cla);          
           }
           // evaluo extensiones
-          _hol_art.tab_pos(`${$tip}`, $$.for.querySelector(`[name="ext"]`) );
+          _hol_doc.tab_pos(`${$tip}`, $$.for.querySelector(`[name="ext"]`) );
           
         }// extiendo oráculo      
         else if( $.var_ide=='ext' ){
@@ -223,7 +223,7 @@ class _hol_art {
           $.val_tot = 0;
           $._par_lis.forEach( $i => {
             $.cla_pos = `_val-par_${$i}-ext`;// elimino marcas previas + marco extensiones por pareja
-            _ele.val('cla_eli',$$.tab.dat.querySelectorAll(`.${$.cla_pos}`),$.cla_pos);
+            _ele.act('cla_eli',$$.tab.dat.querySelectorAll(`.${$.cla_pos}`),$.cla_pos);
             // marco extensiones
             if( $dat.checked && $$.for.querySelector(`[name="${$i}"]`).checked 
               && ( $.ele = $$.tab.dat.querySelector(`${$$.tab.cla}[hol-kin="${_hol._('kin',$.kin)[`par_${$i}`]}"]`) ) 
@@ -232,7 +232,7 @@ class _hol_art {
               $._par_lis.map( $ide => `par_${$ide}` ).forEach( $ide_ext => {
                 if( $.ele_ext = $$.tab.dat.querySelector(`${$$.tab.cla}[hol-kin="${$._kin[$ide_ext]}"]`) ){
                   $.val_tot++;
-                  _ele.val('cla_agr',$.ele_ext,$.cla_pos);
+                  _ele.act('cla_agr',$.ele_ext,$.cla_pos);
                 }
               });
             }
@@ -297,9 +297,9 @@ class _hol_art {
         }
       }
       // acumulados
-      _hol_art.val_acu($$.tab.dat,'pul',$.var_ide);      
+      _hol_doc.val_acu($$.tab.dat,'pul',$.var_ide);      
       // totales por valor
-      _hol_art.val_cue($dat,'pul',$.var_ide);
+      _hol_doc.val_cue($dat,'pul',$.var_ide);
 
       break;
     }    
