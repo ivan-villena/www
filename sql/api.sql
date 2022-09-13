@@ -6,7 +6,13 @@
 -- _tex : tratamiento de textos
 
   -- let_ora : convierte a mayuscia el primer caracter
-  UPDATE esq.est SET atr = CONCAT( UCASE( LEFT(atr, 1) ), LCASE( SUBSTRING(atr, 2) ) );
+  UPDATE 
+    esq.est 
+  SET 
+    atr = CONCAT( UCASE( LEFT(atr, 1) ), LCASE( SUBSTRING(atr, 2) ) )
+  WHERE 
+    atr = atr
+  ;
 
 
 ----------------------------------------------------------------------------------------------------------------
@@ -14,40 +20,66 @@
 
 -- _dat : estructuras de datos
 
+  -- eliminar estructura
+  DROP TABLE IF EXISTS `_hol`.`ani_rin`;
+
   -- crear estructuras
-  DROP TABLE IF EXISTS `_hol`.``;
   CREATE TABLE `_hol`.`ani_rin` (
-
-    `ide` SMALLINT(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Año del Proyecto Rinri',
-    `nom` VARCHAR(20) NOT NULL COMMENT '',
-
+    -- columnas
+    `ide` SMALLINT(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Año',
+    `nom` VARCHAR(20) NOT NULL COMMENT 'Nombre',
+    -- indices
     PRIMARY KEY (`ide`)
   ) 
     ENGINE  = InnoDB
     COMMENT = ''
   ;
-
+  -- insertar registros
   INSERT INTO `_hol`.`psi_ban_pla` VALUES 
-    ( 1, 'Afro-Euroasiática', 'Primavera', 'Otoño' ),
-    ( 2, 'Pacífico', 'Verano', 'Invierno' ),
-    ( 3, 'Americana', 'Otoño', 'Primavera' ),
-    ( 4, 'Atlántica', 'Invierno', 'Sur' )
+    ( 1, '', '', '' )
   ;
 
-  -- copiar estructura y datos
-  CREATE TABLE `_hol`.`psi_ban_pla` LIKE `_hol`.`psi_ban`;
-  -- 
-  INSERT INTO `esq`.`est` SELECT * FROM `esq`.`est_ini`;
+  ----------------------------------------------------------------
+  ----------------------------------------------------------------
+
+  -- vaciar registros
+    TRUNCATE TABLE IF EXISTS `_hol`.`ani_rin`;
+
+  -- copiar estructura 
+    CREATE TABLE `esq_1`.`est_1` LIKE `esq_2`.`est_2`;
+
+  -- copiar datos
+    INSERT INTO `esq_1`.`est_1` SELECT * FROM `esq_2`.`est_2`;
   
   -- cambiar estructuras
-  RENAME TABLE `_hol`.`ani_tie_sub` TO `_hol`.`tel_sub`;
+    RENAME TABLE `esq_1`.`est_1` TO `esq_2`.`est_2`;
 
-  -- atributos
-  ALTER TABLE `_hol`.`lun_cub`
-    CHANGE `nom` `nom` VARCHAR(30) NOT NULL COMMENT "Nombre"
-  ;
-  
-  ALTER TABLE `_hol`.`psi_ban`
+  ----------------------------------------------------------------
+  ----------------------------------------------------------------
+
+  -- agregar columna
+  ALTER TABLE `esq`.`est`
     ADD `nom` VARCHAR(25) NOT NULL COMMENT 'Nombre' AFTER `ide`,  
-    ADD `lun_fin` SMALLINT(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Final' AFTER `lun_ini`
-  ;    
+    ADD `des` SMALLINT(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Descripción' AFTER `nom`
+  ;
+
+  -- cambiar columna
+  ALTER TABLE `esq`.`est`
+    CHANGE `nom` `nom_2` VARCHAR(30) NOT NULL COMMENT 'Nombre'
+  ;
+
+  -- eliminar columna
+  ALTER TABLE `esq`.`est`
+    DROP COLUMN `atr_1`, 
+    DROP COLUMN `atr_2`
+  ;
+
+  -- agregar indices	
+  ALTER TABLE `esq`.`est`
+    ADD PRIMARY KEY         ( `atr_1`, `atr_2` ),
+    ADD UNIQUE    `ind_uni` ( `atr_1`, `atr_2` ),
+    ADD INDEX     `ind_mul` ( `atr_1`, `atr_2` ),
+    ADD FULLTEXT  `ind_tex` ( `atr_1`, `atr_2` )
+  ;
+
+  

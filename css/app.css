@@ -1,0 +1,166 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Lora');
+
+html {
+  font-family: 'Lora', 'Book Antiqua', 'Georgia';
+  
+}
+
+/* 
+{-_-} 
+*/
+body {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: min-content min-content auto;
+  background: center/cover no-repeat url('../_/fon/_1.jpg');  
+  margin: 0;
+  font-size: 12px;
+  color: var(--let_tex);
+}
+
+/* 
+  Menú
+*/
+body > aside {
+  grid-row: 1;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;    
+  background-color: var(--fon_sec);  
+}
+
+/* 
+  botonera : inicio + paneles + pantallas 
+*/
+body > aside.ope {
+  grid-column: 1;
+  padding: 0 .5rem;
+}
+
+/* 
+  nagegadores 
+*/
+body > aside.nav {
+  grid-column: 2;  
+  padding: .25rem;
+}
+body > aside.nav > :is(nav,article)[ide] {
+  overflow: auto;
+  width: 400px;
+}
+body > aside.nav h2 {
+  text-align: center;
+  margin-top: .5rem;
+}
+
+/* 
+  Principal
+*/
+body > main {
+  grid-row: 1;
+  grid-column: 3;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--fon_art);/* por barra de desplazamiento */
+  padding: .5rem;
+}
+
+/* contenido por articulos */
+body > main > article {
+  max-width: 55rem;
+  height: max-content;
+  padding: 0 2rem 2rem;
+  margin: auto;
+  text-align: center;
+  border-radius: 1rem;
+  border: 1px solid var(--bor_sel);  
+  background-color: var(--fon_sec);
+  line-height: 1.5;
+  font-size: 1.01rem;
+}
+
+/* 
+  sidebar 
+*/
+body > aside.pan {
+  grid-row: 1;
+  grid-column: 4;
+  overflow: auto;
+}
+
+/* 
+  pie de página
+*/
+body > footer {
+  grid-row: 2;
+  grid-column: 1 / sp;
+  padding: .5rem;
+}
+
+/*
+  Pantallas
+*/
+[id="win"] {
+  z-index: 9999;
+  grid-row: 1 / sp;
+  grid-column: 1 / sp;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0,0,0,.8);
+}
+
+#win > article {  
+  height: 80vh;
+  width: 100%;
+  max-width: 50rem;
+  overflow: hidden;
+  background-color: var(--fon_sec);
+  border: 1px solid var(--col_azu);
+  border-radius: .5rem;
+  line-height: 1.5;
+}
+#win > article > header {    
+  display: flex;
+  flex-wrap: nowrap;
+  height: 8%;
+  justify-content: space-between;
+  padding: .5rem;
+}
+
+#win > article > header + * {
+  height: 92%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  width: 100%;
+  height: 100%;
+  padding: 1rem 1rem 0;
+}
+
+/* /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+
+@media ( max-width: 1000px ){
+
+  body {
+    grid-template-columns: min-content auto;
+  }
+
+  body > main {
+    grid-column: 2;
+  }
+
+  body > aside.nav {
+    z-index: 9999;
+    position: absolute;
+    left: 2.5rem;
+    top: 0;
+    background-color: var(--fon_sec);
+  }
+}

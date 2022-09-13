@@ -4,83 +4,6 @@
   -- informes
     DELETE FROM `_api`.`doc_nav` WHERE `esq`='hol' AND `cab`='inf';
     
-    -- codigos y cuentas
-    DELETE FROM `_api`.`doc_nav` WHERE `esq`='hol' AND `cab`='inf' AND `ide`='dat';
-    INSERT INTO `_api`.`doc_nav` VALUES 
-
-      ('hol','inf','dat','01','Los 7 plasmas radiales'),
-        ('hol','inf','dat','01-01','Sellos de la profecía'),
-        ('hol','inf','dat','01-02','Componentes Electrónicos'),
-        ('hol','inf','dat','01-03','El heptágono de la Mente'),
-
-      ('hol','inf','dat','02','Los 13 tonos galácticos'),
-        ('hol','inf','dat','02-01','Rayos de Pulsación'),
-        ('hol','inf','dat','02-02','Los 7 pares especulares'),     
-        ('hol','inf','dat','02-03','Principios de la Creación'),           
-        ('hol','inf','dat','02-04','La onda encantada de la aventura'),
-        ('hol','inf','dat','02-05','Los 4 pulsares dimensionales'),
-        ('hol','inf','dat','02-06','Los 5 pulsares matices'),        
-
-      ('hol','inf','dat','03','Los 20 sellos solares'),
-        ('hol','inf','dat','03-01','Símbolos posicionales'),
-          ('hol','inf','dat','03-01-01','Las 3 etapas en el Desarrollo del Ser'),
-          ('hol','inf','dat','03-01-02','Las 4 etapas evolutivas de la mente'),
-          ('hol','inf','dat','03-01-03','Las 5 Familias Cíclicas de la Luz'),
-        ('hol','inf','dat','03-02','Colocación Cromática'),
-          ('hol','inf','dat','03-02-01','Las 5 familias terrestres'),
-          ('hol','inf','dat','03-02-02','Los 4 clanes galácticos'),          
-        ('hol','inf','dat','03-03','Colocación Armónica'),
-          ('hol','inf','dat','03-03-01','Las 4 razas raíz cósmicas'),
-          ('hol','inf','dat','03-03-02','Las 5 células del tiempo'),    
-        ('hol','inf','dat','03-04','Parejas del Oráculo'),
-          ('hol','inf','dat','03-04-01','Análogos'),
-          ('hol','inf','dat','03-04-02','Antípodas'),
-          ('hol','inf','dat','03-04-03','Ocultos'),    
-        ('hol','inf','dat','03-05','Holon Solar'),
-          ('hol','inf','dat','03-05-01','Las 10 Órbitas planetarias'),
-          ('hol','inf','dat','03-05-02','Las 5 Células Solares'),
-          ('hol','inf','dat','03-05-03','Los 5 Circuitos de telepatía'),
-        ('hol','inf','dat','03-06','Holon Planetario'),
-          ('hol','inf','dat','03-06-01','Los 5 Centros de la Fuerza-G'),
-          ('hol','inf','dat','03-06-02','Los 2 Flujos Polares'),
-        ('hol','inf','dat','03-07','Holon humano'),
-          ('hol','inf','dat','03-07-01','Los 5 Centros Galácticos'),
-          ('hol','inf','dat','03-07-02','Las 4 Extremidades Cromáticas'),
-          ('hol','inf','dat','03-07-03','Las 5 Dedos de las manos y pies'),
-          ('hol','inf','dat','03-07-04','Los 2 Lados de la Respiración S-G'),
-
-      ('hol','inf','dat','04','Las 28 días del giro lunar'),
-        ('hol','inf','dat','04-01','Las 4 héptadas'),
-
-      ('hol','inf','dat','05','Las 52 posiciones del castillo'),
-        ('hol','inf','dat','05-01','Los 4 Cuadrantes'),
-        ('hol','inf','dat','05-02','las 13 Armonías'),
-
-      ('hol','inf','dat','06','Los 64 hexagramas del i-ching'),
-        ('hol','inf','dat','06-01','Monogramas'),
-        ('hol','inf','dat','06-02','Bigramas'),
-        ('hol','inf','dat','06-03','Trigramas'),
-
-      ('hol','inf','dat','07','Los 260 Kines'),
-        ('hol','inf','dat','07-01','Módulo Armónico'),
-          ('hol','inf','dat','07-01-01','Los 52 portales de Activación Galáctica'),
-          ('hol','inf','dat','07-01-02','Los 13+1 campos de Energía'),
-        ('hol','inf','dat','07-02','Giro Espectral'),
-          ('hol','inf','dat','07-02-01','Estación Galáctica'),
-          ('hol','inf','dat','07-02-02','Elemento Cromático'),
-        ('hol','inf','dat','07-03','Giro Galáctico'),
-          ('hol','inf','dat','07-03-01','Trayectoria Armónica'),
-          ('hol','inf','dat','07-03-02','Célula del Tiempo'),
-        ('hol','inf','dat','07-04','Nave del Tiempo'),
-          ('hol','inf','dat','07-04-01','Castillo Direccional'),
-          ('hol','inf','dat','07-04-02','Aventura de la Onda Encantada'),
-
-      ('hol','inf','dat','08','Los 364 psi-cronos'),
-        ('hol','inf','dat','08-01','Las 4 estaciones solares'),
-        ('hol','inf','dat','08-02','Las 13 lunas del servicio planetario'),
-        ('hol','inf','dat','08-03','Los 19 vinales del haab'),
-        ('hol','inf','dat','08-04','Las 52 heptadas semanales')
-    ;
     -- ciclos del tiempo
     DELETE FROM `_api`.`doc_nav` WHERE `esq`='hol' AND `cab`='inf' AND `ide`='val';
     INSERT INTO `_api`.`doc_nav` VALUES 
@@ -144,6 +67,83 @@
   -- Bibliografía 
 
     DELETE FROM `_api`.`doc_nav` WHERE `esq`='hol' AND `cab`='bib'
+    ;
+    -- codigos y cuentas
+    DELETE FROM `_api`.`doc_nav` WHERE `esq`='hol' AND `cab`='bib' AND `ide`='dat';
+    INSERT INTO `_api`.`doc_nav` VALUES 
+
+      ('hol','bib','dat','01','Los 7 plasmas radiales'),
+        ('hol','bib','dat','01-01','Sellos de la profecía'),
+        ('hol','bib','dat','01-02','Componentes Electrónicos'),
+        ('hol','bib','dat','01-03','El heptágono de la Mente'),
+
+      ('hol','bib','dat','02','Los 13 tonos galácticos'),
+        ('hol','bib','dat','02-01','Rayos de Pulsación'),
+        ('hol','bib','dat','02-02','Los 7 pares especulares'),     
+        ('hol','bib','dat','02-03','Principios de la Creación'),           
+        ('hol','bib','dat','02-04','La onda encantada de la aventura'),
+        ('hol','bib','dat','02-05','Los 4 pulsares dimensionales'),
+        ('hol','bib','dat','02-06','Los 5 pulsares matices'),        
+
+      ('hol','bib','dat','03','Los 20 sellos solares'),
+        ('hol','bib','dat','03-01','Símbolos posicionales'),
+          ('hol','bib','dat','03-01-01','Las 3 etapas en el Desarrollo del Ser'),
+          ('hol','bib','dat','03-01-02','Las 4 etapas evolutivas de la mente'),
+          ('hol','bib','dat','03-01-03','Las 5 Familias Cíclicas de la Luz'),
+        ('hol','bib','dat','03-02','Colocación Cromática'),
+          ('hol','bib','dat','03-02-01','Las 5 familias terrestres'),
+          ('hol','bib','dat','03-02-02','Los 4 clanes galácticos'),          
+        ('hol','bib','dat','03-03','Colocación Armónica'),
+          ('hol','bib','dat','03-03-01','Las 4 razas raíz cósmicas'),
+          ('hol','bib','dat','03-03-02','Las 5 células del tiempo'),    
+        ('hol','bib','dat','03-04','Parejas del Oráculo'),
+          ('hol','bib','dat','03-04-01','Análogos'),
+          ('hol','bib','dat','03-04-02','Antípodas'),
+          ('hol','bib','dat','03-04-03','Ocultos'),    
+        ('hol','bib','dat','03-05','Holon Solar'),
+          ('hol','bib','dat','03-05-01','Las 10 Órbitas planetarias'),
+          ('hol','bib','dat','03-05-02','Las 5 Células Solares'),
+          ('hol','bib','dat','03-05-03','Los 5 Circuitos de telepatía'),
+        ('hol','bib','dat','03-06','Holon Planetario'),
+          ('hol','bib','dat','03-06-01','Los 5 Centros de la Fuerza-G'),
+          ('hol','bib','dat','03-06-02','Los 2 Flujos Polares'),
+        ('hol','bib','dat','03-07','Holon humano'),
+          ('hol','bib','dat','03-07-01','Los 5 Centros Galácticos'),
+          ('hol','bib','dat','03-07-02','Las 4 Extremidades Cromáticas'),
+          ('hol','bib','dat','03-07-03','Las 5 Dedos de las manos y pies'),
+          ('hol','bib','dat','03-07-04','Los 2 Lados de la Respiración S-G'),
+
+      ('hol','bib','dat','04','Las 28 días del giro lunar'),
+        ('hol','bib','dat','04-01','Las 4 héptadas'),
+
+      ('hol','bib','dat','05','Las 52 posiciones del castillo'),
+        ('hol','bib','dat','05-01','Los 4 Cuadrantes'),
+        ('hol','bib','dat','05-02','las 13 Armonías'),
+
+      ('hol','bib','dat','06','Los 64 hexagramas del i-ching'),
+        ('hol','bib','dat','06-01','Monogramas'),
+        ('hol','bib','dat','06-02','Bigramas'),
+        ('hol','bib','dat','06-03','Trigramas'),
+
+      ('hol','bib','dat','07','Los 260 Kines'),
+        ('hol','bib','dat','07-01','Módulo Armónico'),
+          ('hol','bib','dat','07-01-01','Los 52 portales de Activación Galáctica'),
+          ('hol','bib','dat','07-01-02','Los 13+1 campos de Energía'),
+        ('hol','bib','dat','07-02','Giro Espectral'),
+          ('hol','bib','dat','07-02-01','Estación Galáctica'),
+          ('hol','bib','dat','07-02-02','Elemento Cromático'),
+        ('hol','bib','dat','07-03','Giro Galáctico'),
+          ('hol','bib','dat','07-03-01','Trayectoria Armónica'),
+          ('hol','bib','dat','07-03-02','Célula del Tiempo'),
+        ('hol','bib','dat','07-04','Nave del Tiempo'),
+          ('hol','bib','dat','07-04-01','Castillo Direccional'),
+          ('hol','bib','dat','07-04-02','Aventura de la Onda Encantada'),
+
+      ('hol','bib','dat','08','Los 364 psi-cronos'),
+        ('hol','bib','dat','08-01','Las 4 estaciones solares'),
+        ('hol','bib','dat','08-02','Las 13 lunas del servicio planetario'),
+        ('hol','bib','dat','08-03','Los 19 vinales del haab'),
+        ('hol','bib','dat','08-04','Las 52 heptadas semanales')
     ;
     -- tutorial : Sincronario de 13 lunas
     DELETE FROM `_api`.`doc_nav` WHERE `esq`='hol' AND `cab`='bib' AND `ide`='tut';
@@ -408,6 +408,17 @@
         ('hol','bib','enc','02-01','La Misión del Encantamiento del Sueño de la Nave del Tiempo Tierra 2.013'),
         ('hol','bib','enc','02-02','Cómo jugar y entrar en el oráculo del Tiempo Galáctico'),
           ('hol','bib','enc','02-02-01','Oráculo del Encantamiento del Sueño: Partes'),
+            ('hol','bib','enc','02-02-01-01','1. Brujula Galáctica'),
+            ('hol','bib','enc','02-02-01-01-01','Funda de la Brújula'),
+            ('hol','bib','enc','02-02-01-01-02','Tarjeta de Referencia Rápida'),
+            ('hol','bib','enc','02-02-01-01-03','Brújula Galáctica'),
+            ('hol','bib','enc','02-02-01-01-04','Instrucciones'),
+            ('hol','bib','enc','02-02-01-01-05','Índice Armónico'),
+            ('hol','bib','enc','02-02-01-01-06','Guía del Oráculo'),
+            ('hol','bib','enc','02-02-01-02','2. Cubo de Color y Fichas'),
+            ('hol','bib','enc','02-02-01-03','3. Tablero del Oráculo'),
+            ('hol','bib','enc','02-02-01-04','4. Tablero del Viaje'),
+            ('hol','bib','enc','02-02-01-05','5. Textos del Encantamiento del Sueño'),
           ('hol','bib','enc','02-02-02','Oráculo del Destino del Encantamiento del Sueño: Cómo jugar'),
         ('hol','bib','enc','02-03','Reglas del Juego del Encantamiento del Sueño'),
           ('hol','bib','enc','02-03-01','Firma Galáctica: el Holón, el kin Planetario y el Ego'),
@@ -551,6 +562,7 @@
           ('hol','bib','tie','04-02-03','Ratios'),
           ('hol','bib','tie','04-02-04','El Tetraedro y el Orden Tetraédrico'),
           ('hol','bib','tie','04-02-05','El Factor Más Uno'),
+          ('hol','bib','tie','04-02-06','Resumen...'),
         ('hol','bib','tie','04-03','Pruebas y Demostraciones Matemáticas'),
           ('hol','bib','tie','04-03-01','El Código 0-19'),
           ('hol','bib','tie','04-03-02','La Onda Encantada'),

@@ -13,14 +13,19 @@
   }
   
   // require de clases manual // require_once("_/autoload.php");
-  foreach( ['api','hol','doc'] as $cla ){
-
+  foreach( ['api','doc','app','hol','usu'] as $cla ){ 
+    
     require_once("php/$cla.php");
   }
+
   // cargo interfaces
   $_api = new _api();
 
+  // cargo holon
   $_hol = new _hol();
+
+  // cargo usuario
+  $_usu = new _usu( $_SESSION['usu'] );  
   
   date_default_timezone_set( !empty($_usu->ubi) ? $_usu->ubi : $_SESSION['ubi'] );  
    
@@ -60,19 +65,7 @@
     $_ses = $_api->ses( $_uri->esq );
 
     // pagina
-    $_doc = $_api->doc();
-
-    // datos del usuario
-    $_usu = $_api::_('usu');
-    
-    // ajusto diseño  
-    
-    if( !empty($_doc->pan) || !empty($_doc->pie) ){
-      $_ver = [];
-      if( !empty($_doc->pan) ) $_ver []= 'pan';
-      if( !empty($_doc->pie) ) $_ver []= 'pie';
-      $_doc->ele['body']['data-ver'] = implode(',',$_ver);
-    }
+    $_app = new _app();
   }
 ?>
 <!DOCTYPE html>
@@ -85,19 +78,19 @@
     <meta name="viewport" content="width = device-width, initial-scale = 1, maximum-scale = 1">
 
     <?php // hojas de estilo
-    foreach( $_doc->css as $ide ){ 
+    foreach( $_app->css as $ide ){ 
       if( file_exists( $rec = "css/{$ide}.css" ) ){ echo "
         <link rel='stylesheet' href='".SYS_NAV.$rec."' >";
       }
     } ?>
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Material+Icons+Outlined'>
-    <link rel='stylesheet' href='<?= SYS_NAV."css/doc.css" ?>' >
+    <link rel='stylesheet' href='<?= SYS_NAV."css/api.css" ?>' >
     
-    <title><?= $_doc->nom ?></title>
+    <title><?= $_app->nom ?></title>
 
   </head>
 
-  <body <?= _htm::atr($_doc->ele['body']) ?>>
+  <body <?= _htm::atr($_app->ele['body']) ?>>
         
     <!-- Botonera -->
     <aside class='ope'>
@@ -105,30 +98,35 @@
       <!-- Paneles del navegador -->
       <nav class="ope dir-ver">
 
-        <?= $_doc->ope['ini']; ?>
+        <?= $_app->ope['ini']; ?>
         
-        <?= _doc::ico('ses',[ 'eti'=>"a", 'href'=>SYS_NAV."/{$_uri->esq}", 'title'=>"Inicio..." ]); ?>
-        
-        <?= $_doc->ope['nav']; ?>
-        
+        <?= $_app->ope['nav']; ?>
+
+        <?= $_app->ope['win']; ?>
       </nav>
 
-      <!-- Pantallas emergente -->
+      <!-- API -->
       <nav class="ope dir-ver">
 
-        <?= $_doc->ope['win']; ?>
+        <?= $_app->ope['nav_fin']; ?>
+
+        <?= $_app->ope['win_fin']; ?>
 
         <?php
+        $win = [];
         // consola
         if( $_usu->ide == 1 ) 
-          echo _doc_art::ope([ 'win'=>[ 'api_adm'=>[ 'ico'=>"eje", 'nom'=>"Administrador del Sistema" ] ]]);
-        // usuario
+          $win['api_adm'] = [ 'ico'=>"eje", 'nom'=>"Administrador del Sistema" ];
+        // usuario + loggin
         if( empty($_usu->ide) ){ 
-          echo _doc_art::ope([ 'win'=>[ 'ses_ini'=>[ 'ico'=>"ses_ini", 'nom'=>"Loggin"] ]]);
+          $win['ses_ini'] = [ 'ico'=>"ses_ini", 'nom'=>"Iniciar Sesión..."];
         }
         else{ 
-          echo _doc_art::ope([ 'win'=>[ 'ses_usu'=>[ 'ico'=>"ope", 'nom'=>"Cuenta de Usuario"] ]]);
-        }?>
+          $win['ses_fin'] = [ 'ico'=>"ses_fin", 'nom'=>"Cerrar Sesión..."];
+        }
+        
+        echo _app_ope::bot([ 'win'=>$win ]);
+        ?>
       </nav>
 
     </aside>
@@ -136,31 +134,31 @@
     <!-- Navegador -->
     <aside class='nav dis-ocu'>
 
-      <?= $_doc->nav ?>
+      <?= $_app->nav ?>
 
     </aside>
 
     <!-- Secciones -->
     <main>
 
-      <?= $_doc->sec ?>
+      <?= $_app->sec ?>
 
     </main>
     
-    <?php if( !empty($_doc->pan) ){ ?>      
+    <?php if( !empty($_app->pan) ){ ?>      
       <!-- sidebar -->
       <aside class='pan'>
 
-        <?= $_doc->pan ?>
+        <?= $_app->pan ?>
 
       </aside>
     <?php } ?>
 
-    <?php if( !empty($_doc->pie) ){  ?>
+    <?php if( !empty($_app->pie) ){  ?>
       <!-- pie de página -->
       <footer>
 
-        <?= $_doc->pie ?>
+        <?= $_app->pie ?>
 
       </footer>
     <?php } ?>
@@ -169,40 +167,41 @@
     <section id='win' class='dis-ocu'>
       <?php 
       // imprimo consola del administrador
-      if( $_usu->ide == 1 ){ 
-        $_doc->jso []= "api/adm";
+      if( $_usu->ide == 1 ){
+        $_app->jso []= "api/adm";
         include("php/api/adm.php");
       }
       // sesion del usuario
-      $tip = empty($_usu->ide) ? 'ini' : 'usu';
+      $tip = empty($_usu->ide) ? 'ini' : 'fin';
       include("php/api/ses.php");
 
       // imprimo pantallas ?>
+      <?= $_app->win ?>
 
-      <?= $_doc->win ?>
     </section>
 
     <!-- Programas -->
     <?php
-      foreach( $_doc->jso as $ide ){       
-        if( file_exists( $rec = "jso/{$ide}.js" ) ){ 
-          echo "<script src='".SYS_NAV.$rec."'></script>";
-        }
+    foreach( $_app->jso as $ide ){       
+      if( file_exists( $rec = "jso/{$ide}.js" ) ){ echo "
+        <script src='".SYS_NAV.$rec."'></script>";
       }
-      // cargo datos operativos
-      $_api_dat = [];
-      foreach( $_api_atr as $atr ){
+    }// cargo datos operativos
+    $_api_dat = [];
+    foreach( $_api_atr as $atr ){
 
-        if( isset($_api->{$atr}) ) $_api_dat[$atr] = $_api->{$atr};
-      }
+      if( isset($_api->{$atr}) ) $_api_dat[$atr] = $_api->{$atr};
+    }
     ?>
     <script>
-
+      // cargo datos de la interface
       var $_api = new _api(<?= _obj::cod( $_api_dat ) ?>);
-
-      var $_doc = new _doc();
-
-      <?= $_doc->cod ?>
+      // cargo aplicacion
+      var $_app = new _app();
+      // inicializo documento
+      $_app.ini();
+      // ejecucion inicial
+      <?= $_app->eje ?>
 
       console.log(`{-_-}.ini: en ${( ( Date.now() - (  <?= $sis_ini ?> * 1000 ) ) / 1000 ).toFixed(2)} segundos...`);
 

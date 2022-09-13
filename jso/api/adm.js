@@ -6,19 +6,21 @@ function _adm( $tip, $dat, $val, ...$opc ){
   
   let $=_doc.var($dat);
   
-  if( $$.for && ( $.res = $$.for.querySelector('.ope_res') ) ){ 
+  // -> desde form : vacío resultados previos
+  if( $_app.var && ( $.res = $_app.var.querySelector('.ope_res') ) ){ 
 
     _ele.eli($.res);
   }
+  // -> desde menu : capturo form
   else if( $dat.nodeName && $dat.nodeName == 'A' ){      
 
-    $$.for = $dat.parentElement.nextElementSibling.querySelector(`[ide="${$tip}"]`);
+    $_app.var = $dat.parentElement.nextElementSibling.querySelector(`[ide="${$tip}"]`);
   }
   
   switch( $tip ){
   // peticiones
   case 'aja':
-    $.lis = $$.for.querySelector(`nav.lis`);
+    $.lis = $_app.var.querySelector(`nav.lis`);
     _ele.eli($.lis);
     $_log.php.forEach( $log => {
       $.ver = document.createElement('a'); 
@@ -30,7 +32,7 @@ function _adm( $tip, $dat, $val, ...$opc ){
     break;
   // iconos
   case 'ico':
-    $.lis = $$.for.querySelector(`ul.lis`);
+    $.lis = $_app.var.querySelector(`ul.lis`);
     if( !$val ){
       // limpio listado
       _ele.eli($.lis);
@@ -72,7 +74,7 @@ function _adm( $tip, $dat, $val, ...$opc ){
     break;
   // base de datos
   case 'sql':
-    $.cod = $$.for.querySelector('[name="cod"]').value;
+    $.cod = $_app.var.querySelector('[name="cod"]').value;
     if( $.cod ){
       _eje.val( ['_sql::dec', [ $.cod ] ], $res => {
         // pido tabla
@@ -96,11 +98,11 @@ function _adm( $tip, $dat, $val, ...$opc ){
     break;
   // servidor
   case 'php':
-    $.val = $$.for.querySelector('pre.ope_res');
+    $.val = $_app.var.querySelector('pre.ope_res');
     $.val.innerText = '';        
-    $.htm = $$.for.querySelector('[name="htm"]').checked;
-    if( $.ide = $$.for.querySelector('[name="ide"]').value ){          
-      _eje.val([ $.ide, eval(`[${$$.for.querySelector('[name="par"]').value}]`) ], $res => {
+    $.htm = $_app.var.querySelector('[name="htm"]').checked;
+    if( $.ide = $_app.var.querySelector('[name="ide"]').value ){          
+      _eje.val([ $.ide, eval(`[${$_app.var.querySelector('[name="par"]').value}]`) ], $res => {
         if( $.htm ){
           $.res.innerHTML = !! $res._ ? $res._ : `${_doc.let( JSON.stringify($res) )}`;
         }else{
@@ -111,7 +113,7 @@ function _adm( $tip, $dat, $val, ...$opc ){
     break;
   // terminal
   case 'jso':
-    $.cod = $$.for.querySelector('[name="cod"]');
+    $.cod = $_app.var.querySelector('[name="cod"]');
 
     try{
 
@@ -147,10 +149,10 @@ function _adm( $tip, $dat, $val, ...$opc ){
   case 'htm':
     switch( $val ){
     case 'cod':
-      $.res = $$.for.querySelector('div.nod');          
-      _ele.eli($$.for.querySelector('div.ele'));
+      $.res = $_app.var.querySelector('div.nod');          
+      _ele.eli($_app.var.querySelector('div.ele'));
       _ele.eli($.res);
-      $.cod = $$.for.querySelector('[name="cod"]');
+      $.cod = $_app.var.querySelector('[name="cod"]');
 
       $.val = document.querySelectorAll($.cod.value);
 
@@ -166,7 +168,7 @@ function _adm( $tip, $dat, $val, ...$opc ){
     case 'val':
       $dat.parentElement.parentElement.querySelectorAll(`.${FON_SEL}`).forEach( $e => $e.classList.remove(FON_SEL) )
       $dat.nextElementSibling.classList.add(FON_SEL);
-      $.res = $$.for.querySelector('div.ele');
+      $.res = $_app.var.querySelector('div.ele');
       _ele.eli($.res);
       $.ver = $dat.nextElementSibling.innerText.replaceAll('\n','');            
       $.res.innerHTML = _doc_ele.ope('eti',document.querySelector($.ver));

@@ -223,11 +223,11 @@
     DELETE FROM `_api`.`ico` WHERE `ide` LIKE 'opc%';
     INSERT INTO `_api`.`ico` VALUES
 
-      ('opc',			'rule'),  
+      ('opc',			'help'),  
 
       -- tipos    
-      ('opc_vac', 'indeterminate_check_box'),
-      ('opc_bin',	'check_box'),
+      ('opc_vac', 'help_center'),
+      ('opc_bin',	'rule'),
       ('opc_lis', 'checklist'),
       ('opc_val', 'select_all'),
       ('opc_nad', 'deselect'),

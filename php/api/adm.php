@@ -1,7 +1,7 @@
 <?php
 
   $_ide = "api-adm";
-  $_eje = "_adm";
+  $_eje = "_adm";  
 
   // Ventana
   $win = [
@@ -125,4 +125,4 @@
   $win['htm'] = ob_get_clean();
 
   // articulo en ventana emergente
-  echo _doc_art::win('api_adm',$win);
+  echo _app_win::art('api_adm',$win);

@@ -57,13 +57,21 @@
           </fieldset>
 
         </form>"
-      ];      
+      ];
+      break;
+    // finalizo sesion del usuario
+    case 'fin': 
+      $win = [ 'ico' => "ses_ini", 'nom' => "Loggin", 'htm' => "
+        <form action=''>
+          
+        </form>"
+      ];
       break;
   }
 
   // modales [] || url ""
   if( is_array($win) ){
-    echo _doc_art::win("ses_$tip",$win);
+    echo _app_win::art("ses_$tip",$win);
   }
   else{
 

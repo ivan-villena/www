@@ -3,19 +3,19 @@
   define('SYS_DIR', "C:\\xampp\\htdocs" );
   define('SYS_NAV', "http://localhost/" );
   define('SYS_REC', "http://localhost/_/" );
+
+  // estilos y clases
+  define('DIS_OCU', "dis-ocu" );
+  define('FON_SEL', "fon-sel" );
+  define('BOR_SEL', "bor-sel" );
+  
   
   // Interfaces del sistema 
   class _api {
 
-    public object 
-      $_uri,
-      $_doc,
-      $_ses,
-      $_usu
-    ;
+    public object $_uri, $_app, $_ses;
 
     public array
-
       // documento
       $_ico = [],
       $_let = [],
@@ -61,8 +61,6 @@
       $this->_doc = new stdClass;
 
       $this->ses('api');
-
-      $this->usu( $_SESSION['usu'] );          
       
       // documento : iconos + letras
       $this->_ico = _dat::var('_api.ico', [ 'niv'=>['ide'] ]);
@@ -79,6 +77,38 @@
       }
     }
 
+    // get : estructura-objetos
+    static function _( string $ide, $val = NULL ) : string | array | object {
+      global $_api;
+      $_ = [];
+      // aseguro carga
+      if( !isset($_api->{"_$ide"}) ) $_api->{"_$ide"} = _dat::ini('api',$ide);
+      // cargo datos
+      $_dat = $_api->{"_$ide"};
+      if( !empty($val) ){
+        $_ = $val;
+        if( !is_object($val) ){
+          switch( $ide ){
+          case 'fec':
+            $_ = _fec::dat($val);
+            break;
+          default:
+            if( is_numeric($val) ){
+              $ide = intval($val)-1;
+              if( isset($_dat[$ide]) ) $_ = $_dat[$ide];
+            }
+            elseif( isset($_dat[$val]) ){ 
+              $_ = $_dat[$val];
+            }
+            break;
+          }
+        }
+      }// toda la lista
+      elseif( isset($_dat) ){
+        $_ = $_dat;
+      }
+      return $_;
+    }
     // peticion : hhtp://esq/cab/art/...val
     function uri( string $esq = '' ) : object {      
 
@@ -138,491 +168,8 @@
 
       return $this->_ses->$esq;      
     }
-    // usuario
-    function usu( int $ide = NULL ) : object {
-
-      if( !isset($ide) ){
-
-        $_ = $this->_usu;
-      }
-      else{
-        $_ = new stdClass;
-
-        if( empty($ide) ){
-          $_->ide = 0;
-          $_->pas = "";
-          $_->nom = "Usuario";
-          $_->ape = "Público";
-          $_->eda = "";
-          $_->fec = "";
-          $_->sin = "";
-          $_->kin = "";
-          $_->psi = "";
-          $_->mai = "";
-          $_->tel = "";
-          $_->ubi = "";  
-        }
-        // cargo datos
-        else{
-          foreach( _dat::var("_api.usu", [ 'ver'=>"`ide`='{$ide}'", 'opc'=>['uni'] ]) as $atr => $val ){
-  
-            $_->$atr = $val;
-          }
-          // calculo edad actual
-          $_->eda = _fec::cue('eda',$_->fec);          
-        }
-  
-        $this->_usu = $_; 
-      }      
-
-      return $_;
-    }
-    // página : esquema / cabecera / articulo / valor=dato 
-    function doc() : object {
-
-      // petición
-      $esq = $this->_uri->esq;
-      $cab = $this->_uri->cab;
-      $art = $this->_uri->art;
-      $val = $this->_uri->val;
-
-      // cargo objeto
-      $_doc = &$this->_doc;
-      
-      // objeto página
-      $_doc->css = ['api'];
-      $_doc->jso = ['api','doc'];
-      $_doc->cod = "";
-
-      // elementos
-      $_doc->ele = [
-        'body'=>[          
-          'doc'=>$esq,
-          'cab'=> !!$cab ? $cab : NULL, 
-          'art'=> !!$art ? $art : NULL
-        ]
-      ];
-
-      // cargo datos : esquema - cabecera - articulo - valor
-      $_doc->_esq = _dat::var("_api.doc_esq",[ 'ver'=>"`ide`='{$esq}'", 'opc'=>'uni' ]);
-
-      if( !empty($cab) ){
-        // cargo datos del menu
-        $_doc->_cab = _dat::var("_api.doc_cab",[ 'ver'=>"`esq`='{$esq}' AND `ide`='{$cab}'", 'ele'=>'ope', 'opc'=>'uni' ]);        
-                
-        if( !empty($art) ){
-          // cargo datos del artículo
-          $_doc->_art = _dat::var("_api.doc_art",[ 'ver'=>"`esq`='{$esq}' AND `cab`='{$cab}' AND `ide`='{$art}'", 'ele'=>'ope', 'opc'=>'uni' ]);          
-          
-          if( !empty($val) ){
-            // proceso seccion/valor
-            $_doc->_val = [];
-            foreach( explode(';',$val) as $_val ){
-              $_val = explode('=',$_val);
-              $_doc->_val[$_val[0]] = isset($_val[1]) ? $_val[1] : NULL;
-            }
-          }
-        }
-      }
-
-      // titulo
-      if( !empty($_doc->_art->nom) ){
-        $_doc->nom = $_doc->_art->nom;
-      }
-      elseif( !empty($_doc->_cab->nom) ){
-        $_doc->nom = $_doc->_cab->nom;
-      }
-      elseif( !empty($_doc->_esq->nom) ){
-        $_doc->nom = $_doc->_esq->nom; 
-      }
-      else{
-        $_doc->nom = "{-_-}";
-      }      
-
-      // botones
-      $_doc->ope = [
-        'ini'=>"", 'nav'=>"", 'sec'=>"", 'win'=>""
-      ];
-
-      // menú
-      $_doc->nav = "";
-      // main
-      $_doc->sec = "";
-      // modales
-      $_doc->win = "";
-      // paneles
-      $_doc->pan = "";
-      // pie
-      $_doc->pie = "";
-
-      // proceso contenido
-      if( class_exists($cla = "_{$esq}_doc") && method_exists($cla,"art") ){
-  
-        // datos + articulo + paneles + ventanas      
-        if( !empty( $art = $cla::art($this->_uri,$this->_doc,$this->_dir) ) ){
-  
-          // articulo
-          $_doc->sec = _doc_art::sec($art['htm']);
-  
-          // botones de paneles
-          $_doc->ope['nav'] = _doc_art::ope($art,'nav');
-  
-          // imprimo paneles    
-          foreach( $art['nav'] as $ide => $pan ){
-  
-            if( isset($pan['htm']) ) $_doc->nav .= $pan['htm'];
-          }
-  
-          // botones de modales : indice + pantallas ( fecha + est + tab )
-          $_doc->ope['win'] = _doc_art::ope($art,'win');
-  
-          // imprimo modales
-          foreach( $art['win'] as $ide => $win ){ 
-            
-            $_doc->win .= _doc_art::win($ide,$win);
-          }        
-        }
-      }      
-      return $_doc;
-    }
-    
-    /////////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////////
-    
-    // get : estructura-objetos
-    static function _( string $ide, $val = NULL ) : string | array | object {
-      global $_api;
-      $_ = [];
-      // aseguro carga
-      if( !isset($_api->{"_$ide"}) ) $_api->{"_$ide"} = _dat::ini('api',$ide);
-      // cargo datos
-      $_dat = $_api->{"_$ide"};
-      if( !empty($val) ){
-        $_ = $val;
-        if( !is_object($val) ){
-          switch( $ide ){
-          case 'fec':
-            $_ = _fec::dat($val);
-            break;
-          default:
-            if( is_numeric($val) ){
-              $ide = intval($val)-1;
-              if( isset($_dat[$ide]) ) $_ = $_dat[$ide];
-            }
-            elseif( isset($_dat[$val]) ){ 
-              $_ = $_dat[$val];
-            }
-            break;
-          }
-        }
-      }// toda la lista
-      elseif( isset($_dat) ){
-        $_ = $_dat;
-      }
-      return $_;
-    }
-    // estructuras
-    static function dat_est( string $esq, string $ide = NULL, string $ope = NULL ) : array | object {      
-      global $_api;
-      $_ = [];
-      // cargo estructuras de un esquema por operadores
-      if( empty($ide) ){
-
-        if( !isset( $_api->_dat_est[$esq] ) ){
-          
-          foreach( _dat::var("_api.dat_est",[ 'ver'=>"`esq`='{$esq}'", 'niv'=>['ide'], 'obj'=>"ope", 'red'=>"ope" ]) as $est => $_ope ){
-
-            $_api->_dat_est[$esq][$est] = _sql::est("_{$esq}",'ver',$est,'uni');
-
-            $_api->_dat_est[$esq][$est]->ope = $_ope;
-          }
-        }
-        $_ = $_api->_dat_est[$esq];
-      }
-      else{
-
-        if( !isset($_api->_dat_est[$esq][$ide]) ){ 
-
-          if( is_object( $_api->_dat_est[$esq][$ide] = _sql::est("_{$esq}",'ver',$ide,'uni') ) ){
-            // busco operadores
-            $_api->_dat_est[$esq][$ide]->ope = _dat::var("_api.dat_est",[
-              'ver'=>"`esq`='{$esq}' AND `ide`='{$ide}'", 'obj'=>"ope", 'red'=>"ope", 'opc'=>"uni"
-            ]);
-          }    
-        }
-        
-        $_ = $_api->_dat_est[$esq][$ide];        
-      }
-      // devuelvo operador
-      if( !empty($ope) ){
-
-        $_ = isset( $_->ope->$ope ) ? $_->ope->$ope : FALSE;
-      }
-
-      return $_;
-    }
-    // atributos 
-    static function dat_atr( string $esq, string $est, string | array $ide = NULL ) : bool | array | object {      
-      global $_api;
-
-      if( !isset($_api->_dat_atr[$esq]) ) $_api->_dat_atr[$esq] = [];
-
-      if( !isset($_api->_dat_atr[$esq][$est]) ){
-
-        $_api->_dat_atr[$esq][$est] = !empty( _sql::est("_{$esq}",'lis',"_{$est}",'uni') ) ? _sql::atr("_{$esq}","_{$est}") : _sql::atr("_{$esq}",$est);
-        
-        // cargo operadores del atributo
-        $_atr = &$_api->_dat_atr[$esq][$est];
-        foreach( _dat::var("_api.dat_atr",['ver'=>"`esq`='{$esq}' AND `est`='{$est}'", 'ele'=>'var' ]) as $_api_atr ){
-
-          if( !empty($_api_atr->var) && isset($_atr[$i = $_api_atr->ide]) ){
-
-            $_atr[$i]->var = _ele::jun($_atr[$i]->var, $_api_atr->var);
-          }
-        }
-      }
-      // todos
-      if( empty($ide) ){
-        $_ = $_api->_dat_atr[$esq][$est];
-      }// uno
-      elseif( is_string($ide) ){
-        $_ = isset($_api->_dat_atr[$esq][$est][$ide]) ? $_api->_dat_atr[$esq][$est][$ide] : FALSE;
-      }// muchos
-      else{
-        $_ = [];
-        foreach( $ide as $atr ){
-          $_ []= isset($_api->_dat_atr[$esq][$est][$atr]) ? $_api->_dat_atr[$esq][$est][$atr] : FALSE;
-        }
-      }
-      return $_;
-    }
-    // valores
-    static function dat_val( string $esq, string $est = NULL, string $ide = NULL ) : bool | array | object {      
-      global $_api;
-      
-      if( !isset($_api->_dat_val[$esq]) ) $_api->_dat_val[$esq] = [];
-
-      if( empty($est) ){
-        
-        $_ = $_api->_dat_val[$esq] = _dat::var("_api.dat_val",[ 
-          'ver'=>"`esq`='{$esq}'", 'niv'=>["est"], 'obj'=>"ope", 'red'=>"ope" 
-        ]);
-      }
-      else{
-
-        if( !isset($_api->_dat_val[$esq][$est]) ){
-
-          $_api->_dat_val[$esq][$est] = _dat::var("_api.dat_val",[ 
-            'ver'=>"`esq`='{$esq}' AND `est`='{$est}'", 'obj'=>"ope", 'red'=>"ope", 'opc'=>"uni" 
-          ]);
-        }
-
-        if( empty( $ide ) ){
-        
-          $_ = $_api->_dat_val[$esq][$est];
-        }
-        elseif( isset($_api->_dat_val[$esq][$est]->$ide) ){
-  
-          $_ = $_api->_dat_val[$esq][$est]->$ide;
-        }
-        else{
-  
-          $_ = FALSE;
-        }
-      }
-      return $_;
-    }  
-
-    // cargo valores de un proceso : absoluto o con dependencias ( _api.dat->est ) 
-    static function val( string | array $ope, mixed $dat = NULL ) : array {
-      global $_api;
-      $_ = [];
-      if( is_array($ope) ){      
-        // cargo temporal
-        foreach( $ope as $esq => $est_lis ){
-          // recorro estructuras del esquema
-          foreach( $est_lis as $est => $dat ){
-            // recorro dependencias
-            $dat_est = _api::dat_est($esq,$est,'est');
-            
-            foreach( ( !empty($dat_est) ? $dat_est : [ $esq => $est ] ) as $ide => $ref ){
-              // acumulo valores
-              if( isset($dat->$ide) ){
-                
-                $_["{$esq}-{$ref}"] = $dat->$ide;
-              }
-            }                            
-          }
-        }
-        $_api->_dat []= $_;
-      }
-      return $_;
-    }
-
-    // tablero de la aplicacion
-    static function tab( string $esq, string $est, array $ele = NULL ) : array | object {
-      global $_api;
-
-      if( !isset($_api->_tab[$esq][$est]) ){
-        $_api->_tab[$esq][$est] = _dat::var("_api.tab",[ 'ver'=>"`esq`='{$esq}' AND `est`='{$est}'", 'opc'=>'uni', 'ele'=>['ele','ope','opc'] ]);
-      }
-      // devuelvo tablero : ele + ope + opc
-      $_ = $_api->_tab[$esq][$est];
-
-      // combino elementos
-      if( isset($ele) ){
-        $_ = $ele;
-        if( !empty($_api->_tab[$esq][$est]->ele) ){
-
-          foreach( $_api->_tab[$esq][$est]->ele as $eti => $atr ){
-            
-            $_[$eti] = isset($_[$eti]) ? _ele::jun( $atr, $_[$eti] ) : $atr;
-          }
-        }
-      }
-      return $_;
-    }
-
-    // tabla de la base 
-    static function est( string $esq, string $est, array $ope = NULL ) : object {
-      global $_api;
-
-      if( !isset($_api->_est[$esq][$est]) || isset($ope) ){
-
-        // combinado        
-        $_est = _dat::var("_api.est",[ 'ver'=>"`esq`='{$esq}' AND `ide`='{$est}'", 'obj'=>'ope', 'red'=>'ope',  'opc'=>'uni' ]);
-
-        // cargo atributos por estructura de la base      
-        $_atr = _dat::atr($esq,$est);
-
-        // reemplazo atributos por defecto
-        if( isset($ope['atr']) ){
-          $_est->atr = _lis::ite($ope['atr']);
-          // descarto columnas ocultas
-          if( isset($_est->atr_ocu) ) unset($_est->atr_ocu);
-        }
-        if( empty($_est->atr) ){
-          $_est->atr = !empty($_atr) ? array_keys($_atr) : [];
-        }
-        if( isset($ope['atr_ocu']) ){
-          $_est->atr_ocu = _lis::ite($ope['atr_ocu']);
-        }
-
-        // calculo totales
-        $_est->atr_cue = count($_est->atr);
-            
-        // descripciones
-        $_val['tit'] = isset($ope['tit']);      
-        $_val['det'] = isset($ope['det']);      
-
-        // reemplazo e inicializo
-        foreach( ['tit'=>['cic','gru'], 'det'=>['des','cic','gru']] as $i => $v ){
-
-          foreach( $v as $e ){
-            if( isset($ope["{$i}_{$e}"]) ){
-            
-              $_est->{"{$i}_{$e}"} = _lis::ite($ope["{$i}_{$e}"]);
-            }
-            elseif( ( !$_val[$i] || !in_array($e,$ope[$i]) ) && isset($_est->{"{$i}_{$e}"}) ){
-              unset($_est->{"{$i}_{$e}"});
-            }
-          }
-        }
-
-        // ciclos y agrupaciones: busco descripciones + inicio de operadores      
-        foreach( ['cic','gru'] as $ide ){
-
-          if( isset($_est->{"tit_{$ide}"}) ){
-
-            foreach( $_est->{"tit_{$ide}"} as $atr ){
-              
-              // inicio ciclo
-              if( $ide == 'cic' ) $_est->cic_val[$atr] = -1;
-
-              // busco descripciones
-              if( isset( $_atr["{$atr}_des"] ) ){
-                if( !isset($_est->{"det_{$ide}"}) ) $_est->{"det_{$ide}"}=[]; 
-                $_est->{"det_{$ide}"} []= "{$atr}_des";
-              }
-            }
-          }
-        }
-
-        $_api->_est[$esq][$est] = $_est;
-      }
-
-      return $_api->_est[$esq][$est];
-    }
-
-    // controladores de valores variables
-    static function var( string $esq, string $dat='', string $val='', string $ide='' ) : array {
-      global $_api;
-      $_var = &$_api->_var;
-      $_ = [];
-      
-      if( empty($dat) ){
-        if( !isset($_var[$esq]) ){
-          $_var[$esq] = _dat::var("_api.var",[
-            'ver'=>"`esq`='{$esq}'", 'niv'=>['dat','val','ide'], 'ele'=>['atr'], 'red'=>'atr'
-          ]);
-        }
-      }elseif( empty($val) ){
-        if( !isset($_var[$esq][$dat]) ){
-          $_var[$esq][$dat] = _dat::var("_api.var",[
-            'ver'=>"`esq`='{$esq}' AND `dat`='{$dat}'", 'niv'=>['val','ide'], 'ele'=>['atr'], 'red'=>'atr'
-          ]);
-        }
-      }else{
-        if( !isset($_var[$esq][$dat][$val]) ){
-          $_var[$esq][$dat][$val] = _dat::var("_api.var",[
-            'ver'=>"`esq`='{$esq}' AND `dat`='{$dat}' AND `val`='{$val}'", 'niv'=>['ide'], 'ele'=>['atr'], 'red'=>'atr'
-          ]);
-        }
-      }
-      if( !empty($ide) ){
-        $_ = isset($_var[$esq][$dat][$val][$ide]) ? $_var[$esq][$dat][$val][$ide] : [];
-      }elseif( !empty($val) ){
-        $_ = isset($_var[$esq][$dat][$val]) ? $_var[$esq][$dat][$val] : [];
-      }elseif( !empty($dat) ){      
-        $_ = isset($_var[$esq][$dat]) ? $_var[$esq][$dat] : [];
-      }else{
-        $_ = isset($_var[$esq]) ? $_var[$esq] : [];
-      }
-
-      return $_;
-    }
-    // incremendo del identificador para operadores-variable
-    static function var_ide( string $ope ) : string {
-      global $_api;
-
-      if( !isset($_api->_ide[$ope]) ) $_api->_ide[$ope] = 0;
-
-      $_api->_ide[$ope]++;
-
-      return $_api->_ide[$ope];
-
-    }
-    // operaciones : ver, ...
-    static function var_ope( string $tip, mixed $dat, mixed $ope = [], ...$opc ) : mixed {
-      global $_api;
-      $_ = [];
-      switch( $tip ){
-      case 'opc':
-              
-        if( !isset($_api->_var_ope_opc[$tip][$dat[0]][$dat[1]]) ){
-
-          $_dat = _dat::var( _api::_('var_ope'), [ 'ver'=>[ ['tip','==',$dat[0]], ['dat','==',$dat[1]] ]] );
-    
-          $_api->_var_ope_opc[$tip][$dat[0]][$dat[1]] = _doc_lis::opc( $_dat, $ope, ...$opc);
-        }
-    
-        $_ = $_api->_var_ope_opc[$tip][$dat[0]][$dat[1]];
-        
-        break;
-      }
-      return $_;
-    }
   }
+
   // Código sql 
   class _sql {
 
@@ -1234,66 +781,7 @@
       return $_;
     }
 
-  }
-
-  // usuario : sesion + tránsitos
-  class _usu {
-
-    // administro sesion
-    public function ses(){      
-    }
-
-    // genero transitos
-    public function cic( string $tip = NULL, mixed $val = NULL ) : string {
-      $_usu = _api::_('usu');
-      $_ = "";
-      if( empty($tip) ){
-      }
-      else{
-        switch( $tip ){
-        // genero tránsitos anuales > lunares
-        case 'ani':          
-          // elimino previos
-          $_ .= "DELETE FROM `_api`.`usu_cic_ani` WHERE usu = $_usu->ide;<br>";
-          $_ .= "DELETE FROM `_api`.`usu_cic_lun` WHERE usu = $_usu->ide;<br>";
-
-          // pido tránsitos
-          foreach( _hol::dat_ani( $_usu->sin, 1, 52, 'not-lun') as $_cic_ani ){
-
-            $_ .= "INSERT INTO `_usu`.`cic_ani` VALUES( 
-              $_usu->ide, 
-              $_cic_ani->ide, 
-              $_cic_ani->eda, 
-              $_cic_ani->arm, 
-              $_cic_ani->ond, 
-              $_cic_ani->ton, 
-              '"._fec::var($_cic_ani->fec,'dia')."', '$_cic_ani->sin', $_cic_ani->kin 
-            );<br>";
-
-            if( empty($_cic_ani->lun) ) continue;
-
-            foreach( $_cic_ani->lun as $_cic_lun ){
-
-              $_ .= "INSERT INTO `_usu`.`cic_lun` VALUES( 
-                $_usu->ide, 
-                $_cic_lun->ani, 
-                $_cic_lun->ide, 
-                '"._fec::var($_cic_lun->fec,'dia')."', 
-                '$_cic_lun->sin', $_cic_lun->kin 
-              );<br>";
-            }
-          }
-
-          break;
-        // genero transito diario por ciclo lunar
-        case 'dia':
-          
-          break;
-        }
-      }
-      return $_;
-    }
-  }
+  }  
 
   // Dato : esq.est[ide].atr
   class _dat {
@@ -1433,11 +921,11 @@
       $_ = [];
       if( !isset($ide) ){
 
-        $_ = _api::dat_est($esq);
+        $_ = _app::dat_est($esq);
       }
       elseif( !isset($tip) ){
         
-        $_ = _api::dat_est($esq,$ide);
+        $_ = _app::dat_est($esq,$ide);
       }
       else{
         switch( $tip ){
@@ -1451,7 +939,7 @@
     }// operadores de la estructura : relaciones + ficha + filrtos + colores + imagenes + numeros + textos
     static function est_ope( string $esq, string $est, string $atr = NULL ) : mixed {
       $_ = FALSE;
-      $_val = _api::dat_est($esq,$est)->ope;
+      $_val = _app::dat_est($esq,$est)->ope;
       if( empty($atr) ){
         $_ = $_val;
       }
@@ -1472,7 +960,7 @@
 
         $ide = _dat::ide($dat);
 
-        $dat_est = _api::est($ide['esq'],$ide['est']);
+        $dat_est = _app::est($ide['esq'],$ide['est']);
 
         $_ = isset($dat_est->atr) ? count($dat_est->atr) : 0;
 
@@ -1484,7 +972,7 @@
   
           foreach( $est_lis as $est ){
 
-            $dat_est = _api::est($esq,$est);
+            $dat_est = _app::est($esq,$est);
 
             $_ += count($dat_est->atr);
           }
@@ -1509,10 +997,10 @@
       $_ = [];
       if( !isset($ide) ){
 
-        $_ = _api::dat_atr($esq,$est);
+        $_ = _app::dat_atr($esq,$est);
       }
       elseif( !isset($tip) ){
-        $_atr = _api::dat_atr($esq,$est);
+        $_atr = _app::dat_atr($esq,$est);
         // uno
         if( is_string($ide) ){
           if( isset($_atr[$ide]) ) $_ = $_atr[$ide];
@@ -1555,7 +1043,7 @@
     static function val( string $esq, string $est, string $atr = NULL, mixed $dat = NULL ) : mixed {
       $_ = FALSE; 
       
-      $_val = _api::dat_val($esq,$est);
+      $_val = _app::dat_val($esq,$est);
       
       if( empty($atr) ){
 
