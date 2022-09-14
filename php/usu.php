@@ -95,8 +95,6 @@
 
   // holon del sincronario
   class _usu_hol {
-
-    // menu
     
     // ficha
     static function fic( array $ope = [], ...$opc ) : string {
@@ -129,10 +127,22 @@
 
         </div>
 
-      </section>";
+      </section>
+      
+      <section>
+
+        <p>Tránsito Anual</p>
+
+        <p>Tránsito Lunar</p>
+
+        <p>Tránsito Diario</p>
+
+      </section>
+      ";
 
       return $_;
     }
+
     // tránsitos
     static function cic( array $ope = [], ...$opc ) : string {
       $_ = "";
@@ -197,6 +207,7 @@
       $ope['lis-2']['class'] = "ite";
       return _doc_lis::val($_lis,$ope);
     }    
+
     // firma galáctica
     static function val( array $ope = [], ...$opc ) : string {
       $_ = "";
@@ -204,6 +215,7 @@
 
       return $_;
     }
+
     // relaciones
     static function rel( array $ope = [], ...$opc ) : string {
       $_ = "";

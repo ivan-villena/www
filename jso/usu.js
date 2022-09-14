@@ -3,14 +3,20 @@
 
 class _usu {
 
-  constructor(){
+  constructor( $dat ){
+    
+    // datos propios
+    if( !!$dat && typeof($dat)=='object' ){
 
+      for( const $atr in $dat ){
+
+        this[$atr] = $dat[$atr];
+      }
+    }
   }
 
 }
 
-class _usu_hol {
-
-  
+class _usu_hol {  
   
 }

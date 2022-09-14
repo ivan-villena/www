@@ -45,32 +45,6 @@ class _api {
       $_ = $_api[`_${$ide}`] !== undefined ? $_api[`_${$ide}`] : [];
     }
     return $_;
-  }  
-
-  // devuelvo enlace desde url
-  uri( ...$opc ){
-    let $_="",$={};
-  
-    if( !!this._uri.esq ){
-      
-      $_ = `${this._uri.esq}`;
-  
-      if( !!this._uri.cab ){
-  
-        $_ += `/${this._uri.cab}`;
-  
-        if( !!this._uri.art ){
-  
-          $_ += `/${this._uri.art}`;
-  
-          if( $opc.includes('val') && !!this._uri.val ){
-  
-            $_ += `/${this._uri.val}`;
-          }
-        }
-      }
-    }        
-    return $_;
   }
 }
 

@@ -1,23 +1,116 @@
 <?php
-  // $this = _api
+  // $this = _app
 
   // biblioteca
-  class _app_hol_bib { 
+  class _hol_app_bib { 
 
-    static string $IDE = "_app_hol_bib-";
-    static string $EJE = "_app_hol_bib.";
+    static string $IDE = "_hol_app_bib-";
+    static string $EJE = "_hol_app_bib.";
 
-    // encantamiento
-    static function enc( string $tip, array $ope = [] ) : string {
+    // tierra en ascenso
+    static function asc( string $tip, string | int $ide, array $ele = [] ) : string {    
+      $_ = "";
+      $_ide = explode('.',$tip);
       $esq = "hol";
-      $_ = ""; 
-      $_ide = self::$IDE."enc('$tip',";
+      $est = $_ide[0];
+      switch( $_ide[0] ){
+      case 'kin': 
+        if( !isset($_ide[1]) ){ 
+        }
+        else{
+          switch( $_ide[1] ){
+          }
+        }
+        break;
+      }
+      return $_;
+    }
+    // factor maya
+    static function fac( string $tip, array $dat = [], array $ele = [] ) : string {          
+      $_ = "";
+      $_ide = explode('.',$tip);
+      $esq = "hol";
+      $est = $_ide[0];
+      switch( $_ide[0] ){
+      case 'kin': 
+        if( !isset($_ide[1]) ){ 
+          $ond = 0;
+          $_ = "
+          <table>";
+            if( !empty($ele['tit']) ){ $_.="
+              <caption>
+                ".( !empty($ele['tit']['htm']) ? "<p class='tit'>"._doc::let($ele['tit']['htm'])."</p>" : '' )."
+              </caption>";
+            }$_.="
+    
+            <thead>
+              <tr>
+                <td></td>
+                <td>CICLO AHAU</td>
+                <td>CICLO KATUN <c>(</c><i>índice armónico y año</i><c>)</c></td>
+                <td>CUALIDAD MORFOGENÉTICA</td>
+              </tr>
+            </thead>
+    
+            <tbody>";
+            foreach( ( !empty($dat) ? $dat : _hol::_('kin') ) as $_kin ){
+    
+              if( $ond != $_kin->nav_ond ){
+                $_ond = _hol::_('kin_nav_ond', $ond = $_kin->nav_ond); 
+                $_sel = _hol::_('sel', $_ond->sel);
+                $_ .= "
+                <tr class='tex_ali-izq'>
+                  <td>
+                    "._doc::ima('hol','kin_nav_ond',$_ond,['class'=>"mar_der-1"])."
+                  </td>
+                  <td colspan='3'>{$_sel->may}<c>:</c> "._doc::let($_ond->fac_ran)." <q>"._doc::let($_ond->fac_des)."</q></td>
+                </tr>";
+              }
+              $_sel = _hol::_('sel',$sel = intval($_kin->arm_tra_dia));
+              $_ .= "
+              <tr data-kin='{$_kin->ide}'>
+                <td>
+                  Etapa <n>".($ton = intval($_kin->nav_ond_dia))."</n>
+                </td>
+                <td></td>
+                <td>
+                  <n>$sel</n><c>.</c><n>$ton</n> <b class='ide'>$_sel->may</b><c>:</c>
+                  <br><n>"._num::int($_kin->fac)."</n><c>,</c> año <n>"._num::int($_kin->fac_ini)."</n>
+                </td>
+                <td>
+                  <q>"._doc::let($_sel->arm_tra_des)."</q>
+                </td>
+              </tr>";
+            }$_.="
+            </tbody>
+    
+          </table>";
+        }else{
+          switch( $_ide[1] ){            
+          }
+        }
+        break;
+      case 'sel': 
+        if( !isset($_ide[1]) ){ 
+        }
+        else{
+          switch( $_ide[1] ){
+          }
+        }
+        break;
+      }      
+      return $_;
+    }
+    // encantamiento
+    static function enc( string $tip, array $ope = [] ) : string {      
+      $_ = "";
       $_eje = self::$EJE."enc('$tip',";
-
-      switch( $tip ){
+      $_ide = explode('.',$tip);
+      $esq = "hol";
+      $est = $_ide[0];
+      switch( $_ide[0] ){
       // libro del kin        
       case 'kin':
-        $est = "kin";
         $_ = "
         <!-- libro del kin -->
         <form class='inf' esq='$esq' est='$est'>
@@ -156,69 +249,66 @@
       }
       return $_;
     }
-    // factor maya
-    static function fac( string $tip, array $dat = [], array $ele = [] ) : string {      
+    // 13 lunas
+    static function lun( string $tip, string | int $ide, array $ele = [] ) : string {
       $_ = "";
-      switch( $tip ){
+      $_ide = explode('.',$tip);
+      $esq = "hol";
+      $est = $_ide[0];
+      switch( $_ide[0] ){
       case 'kin': 
-        $ond = 0;
-        $_ = "
-        <table>";
-          if( !empty($ele['tit']) ){ $_.="
-            <caption>
-              ".( !empty($ele['tit']['htm']) ? "<p class='tit'>"._doc::let($ele['tit']['htm'])."</p>" : '' )."
-            </caption>";
-          }$_.="
-  
-          <thead>
-            <tr>
-              <td></td>
-              <td>CICLO AHAU</td>
-              <td>CICLO KATUN <c>(</c><i>índice armónico y año</i><c>)</c></td>
-              <td>CUALIDAD MORFOGENÉTICA</td>
-            </tr>
-          </thead>
-  
-          <tbody>";
-          foreach( ( !empty($dat) ? $dat : _hol::_('kin') ) as $_kin ){
-  
-            if( $ond != $_kin->nav_ond ){
-              $_ond = _hol::_('kin_nav_ond', $ond = $_kin->nav_ond); 
-              $_sel = _hol::_('sel', $_ond->sel);
-              $_ .= "
-              <tr class='tex_ali-izq'>
-                <td>
-                  "._doc::ima('hol','kin_nav_ond',$_ond,['class'=>"mar_der-1"])."
-                </td>
-                <td colspan='3'>{$_sel->may}<c>:</c> "._doc::let($_ond->fac_ran)." <q>"._doc::let($_ond->fac_des)."</q></td>
-              </tr>";
-            }
-            $_sel = _hol::_('sel',$sel = intval($_kin->arm_tra_dia));
-            $_ .= "
-            <tr data-kin='{$_kin->ide}'>
-              <td>
-                Etapa <n>".($ton = intval($_kin->nav_ond_dia))."</n>
-              </td>
-              <td></td>
-              <td>
-                <n>$sel</n><c>.</c><n>$ton</n> <b class='ide'>$_sel->may</b><c>:</c>
-                <br><n>"._num::int($_kin->fac)."</n><c>,</c> año <n>"._num::int($_kin->fac_ini)."</n>
-              </td>
-              <td>
-                <q>"._doc::let($_sel->arm_tra_des)."</q>
-              </td>
-            </tr>";
-          }$_.="
-          </tbody>
-  
-        </table>";        
+        if( !isset($_ide[1]) ){ 
+        }
+        else{
+          switch( $_ide[1] ){
+          }
+        }
         break;
       }
-      return $_;
+      return $_;      
+    }
+    // tratado del tiempo
+    static function tie( string $tip, string | int $ide, array $ele = [] ) : string {
+      $_ = "";
+      $_ide = explode('.',$tip);
+      $esq = "hol";
+      $est = $_ide[0];
+      switch( $_ide[0] ){
+      case 'kin': 
+        if( !isset($_ide[1]) ){ 
+        }
+        else{
+          switch( $_ide[1] ){
+          }
+        }
+        break;
+      }
+      return $_;      
+    }
+    // la sonda de arcturus
+    static function arc( string $tip, string | int $ide, array $ele = [] ) : string {
+      $_ = "";
+      $_ide = explode('.',$tip);
+      $esq = "hol";
+      $est = $_ide[0];
+      switch( $_ide[0] ){
+      case 'kin': 
+        if( !isset($_ide[1]) ){ 
+        }
+        else{
+          switch( $_ide[1] ){
+          }
+        }
+        break;
+      }
+      return $_;      
     }
     // telektonon
     static function tel( string $tip, string | int $ide, array $ele = [] ) : string {
       $_ = "";
+      $_ide = explode('.',$tip);
+      $esq = "hol";
+      $est = $_ide[0];      
       switch( $tip ){
       case 'rad': 
         $ele['lis'] = ['class'=>"ite"];
@@ -254,21 +344,57 @@
       }
       return $_;
     }
+    // rinri
+    static function rin( string $tip, string | int $ide, array $ele = [] ) : string {
+      $_ = "";
+      $_ide = explode('.',$tip);
+      $esq = "hol";
+      $est = $_ide[0];
+      switch( $_ide[0] ){
+      case 'kin': 
+        if( !isset($_ide[1]) ){ 
+        }
+        else{
+          switch( $_ide[1] ){
+          }
+        }
+        break;
+      }
+      return $_;      
+    }
+    // atomo del tiempo
+    static function ato( string $tip, string | int $ide, array $ele = [] ) : string {
+      $_ = "";
+      $_ide = explode('.',$tip);
+      $esq = "hol";
+      $est = $_ide[0];
+      switch( $_ide[0] ){
+      case 'kin': 
+        if( !isset($_ide[1]) ){ 
+        }
+        else{
+          switch( $_ide[1] ){
+          }
+        }
+        break;
+      }
+      return $_;      
+    }    
   }
 
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
   // cargo página
   $esq = 'hol';
   $_bib = SYS_NAV."hol/bib/";
 
-  // proceso fecha : informes + tableros
-  $_hol_dia = _hol::val( date('Y/m/d') );
-
   // inicializo datos
-  $_val = $_hol_dia;
-  $ide = "";
-  if( $val_fec = !empty($_uri->cab) && in_array($_uri->cab,['inf','tab']) ){
+  $dat_ide = "";
+  $_val = $_hol_dia = _hol::val( date('Y/m/d') );
+  if( 
+    ( $val_fec = !empty($_uri->cab) ) && in_array($_uri->cab,['inf','tab']) 
+  ){
 
     $dat_ide = empty($_uri->art) ? 'kin' : $_uri->art;
 
@@ -300,7 +426,7 @@
     
     // cargo operadores
     $est = explode('-',$dat_ide)[0];
-    $ide = "{$esq}.{$est}";
+    $dat_ide = "{$esq}.{$est}";
     
     // fecha => muestro listado por ciclos => acumulo posiciones
     if( isset($_val['fec']) ) _hol::val_acu( isset($est) ? $est : 'kin', $_val );
@@ -308,66 +434,42 @@
   // cargo datos y estructuras
   $dat_val = _api::_('dat');
   $dat_est = [ 'api'=>[ "fec" ], 'hol'=>[ "kin", "psi" ] ];
-  
-  // cargo índice por navegador para titulos
-  if( !empty($_uri->art) && in_array($_uri->cab,[ 'bib', 'inf' ]) ){
-    $_['nav']['art'] = [ 'ico' => "nav_val", 'nom' => "Índice de Contenidos",
-      'htm' => _app_nav::art( $nav = _dat::var("_api.doc_nav",[
-        'ver'=>"esq = '{$_uri->esq}' AND cab = '{$_uri->cab}' AND ide = '{$_uri->art}'", 'ord'=>"pos ASC", 'nav'=>'pos'
-      ]),[        
-        'nav'=>[ 'ide'=>'art' ],
-      ])
-    ];
-  }
-  
+    
   // menu principal: agrego valor diario
   $nav_htm_ini = "
-    <nav class='mar-1'>
-      "._hol_val::dia($_val)."
-    </nav>
-  ";
-  $nav_htm_fin = "";
-  
-  // ficha del usuario
-  if( !empty($_usu->ide) ){    
-    $htm = "
-    <article class='".DIS_OCU."' ide='usu'>
+  <section data-ide='dia' class='mar-1'>
 
-      <h2>Ficha Personal</h2>
+    "._hol_val::dia($_val)."
 
-      "._usu_hol::fic()."
-
-    </article>";
-    $_['nav_fin']['usu'] = [ 'ico'=>"ses_usu", 'nom'=>"Ficha Personal", 'htm'=>$htm ];    
-  }    
+  </section>";
 
   // imprimo secciones
   ob_start();  
   // inicio : 
   if( empty($_uri->cab) ){
     $_hol_kin = _hol::_('kin',$_hol_dia['kin']);
-    $_ope = [    
-      'kin' => [ 'nom'=>"Orden Sincrónico", 'des'=>"" ], 
-      'psi' => [ 'nom'=>"Orden Cíclico",    'des'=>"" ]
-      ];
+    
     ?>
     
     <h1>Inicio del Sincronario</h1>        
 
     <?= _hol_fic::kin('enc',$_hol_kin) ?>    
 
-    <?php          
+    <?php
+    $ele_ope = [ 'lis'=>[ 'style'=>"height: 70vh;" ], 'opc'=>['tog','ver'] ];
+
     echo 
 
-    _doc::nav('bar',$_ope)."
-    
-    <section>";
-    foreach( $_ope as $i => $v ){ echo "
-      <div ide='$i' class='".(  $i == 'kin' ?  "" : DIS_OCU )."'>
-        "._hol_val::$i( $_val[$i], [ 'lis'=>[ 'style'=>"max-height: 70vh; overflow: auto;" ], 'opc'=>['tog','ver'] ])."
-      </div>";
-    } echo "
-    </section>";
+    _doc::nav('bar',$_ope = [    
+      'kin' => [ 
+        'nom'=>"Orden Sincrónico", 'des'=>"", 'htm'=>_hol_val::kin( $_val['kin'], $ele_ope)
+      ],
+      'psi' => [ 
+        'nom'=>"Orden Cíclico",    'des'=>"", 'htm'=>_hol_val::psi( $_val['psi'], $ele_ope)
+      ]
+    ],[
+      'sel' => "kin"
+    ]);
   }
   // por menu : introduccion
   elseif( empty($_uri->art) ){
@@ -404,7 +506,7 @@
       $tab_opc = !empty($_tab->opc) ? $_tab->opc : [];
   
       // fecha => muestro listado por ciclos
-      $_ide = _dat::ide($ide);
+      $_ide = _dat::ide($dat_ide);
       if( !empty( $_val['fec'] ) ){
         // joins 
         if( in_array($_ide['est'],['kin','psi']) ){
@@ -425,19 +527,16 @@
       $lis_ope['val'] = isset($tab_ope['val']) ? $tab_ope['val'] : NULL;
       $lis_ope['dat'] = isset($tab_ope['dat']) ? $tab_ope['dat'] : NULL;
       $lis_ope['est'] = isset($tab_ope['est']) ? $tab_ope['est'] : NULL;
-          
+
       $_['win']['est'] = [ 'ico' => "est", 'nom' => "Listado de Posiciones",
         'art' => [ 'style'=>"max-width: 55rem; height: 90vh;" ],
-        'htm' => _app_est::ope('tod', $ide, $lis_ope, $lis_ele, ...$lis_opc )
+        'htm' => _app_est::ope('tod', $dat_ide, $lis_ope, $lis_ele, ...$lis_opc )
       ];
 
       // navegacion : operadores del tablero
-      $_['nav']['tab'] = [ 'ico' => "tab", 'nom' => "Tablero", 'htm' => "
-        <article ide='tab' style='width: 30rem; padding: 0;'>
-
-          "._app_tab::ope('tod', $ide, $tab_ope, $tab_ele, ...$tab_opc )."
-          
-        </article>"
+      $_['nav']['tab'] = [ 'ico' => "tab", 'nom' => "Tablero", 
+        'nav' => [ 'class'=>"pad-0", 'style'=>"width: 30rem;" ],
+        'htm' => _app_tab::ope('tod', $dat_ide, $tab_ope, $tab_ele, ...$tab_opc )
       ];
       
       // imprimo tablero en página principal
@@ -452,11 +551,45 @@
       }      
     }
     else{
+      // cargo índice por navegador para titulos
+      $this->nav_art = $nav = _dat::var("_api.doc_nav",[
+        'ver'=>"esq = '{$_uri->esq}' AND cab = '{$_uri->cab}' AND ide = '{$_uri->art}'", 
+        'ord'=>"pos ASC", 
+        'nav'=>'pos'
+      ]);
       switch( $_uri->cab ){
       // bibliografía : datos + glosario + libros
       case 'bib': 
         switch( $_uri->art ){
-        case 'ide': break;
+        // glosarios
+        case 'ide':
+          ?>           
+          <h1>Glosarios de Términos</h1>
+
+          <p>En el siguiente listado podés encontrar los términos y sus significados por Libro.</p>
+
+          <form>            
+
+          </form>
+
+          <table>
+
+            <thead>
+              <tr>
+                <th scope="col">Libro</th>
+                <th scope="col">Término</th>
+                <th scope="col">Definicion</th>
+              </tr>
+            </thead>
+
+            <tbody>
+
+            </tbody>
+
+          </table>
+          
+          <?php          
+          break;
         // datos : codigos y cuentas
         case 'dat': 
           ?>           
@@ -912,7 +1045,7 @@
       case 'inf': 
         switch( $_uri->art ){
         // ciclos del tiempo
-        case 'val':
+        case 'dia':
           // galáctico
           $_kin = _hol::_('kin', $_val['kin']);
           $_sel = _hol::_('sel',$_kin->arm_tra_dia);
@@ -1225,6 +1358,13 @@
     }
   }
 
+  // cuenta del usuario
+  if( !empty($_usu->ide) ){
+    $_['nav_fin']['usu'] = [ 'ico'=>"ses_usu", 'nom'=>"Ficha Personal",
+      'htm'=>_usu_hol::fic()
+    ];
+  }
+
   // tutoriales de la página
   if( isset( $art_ini ) ){
     $_['win_fin']['tut'] = [ 'ico'=>"opc", 'nom'=>"Tutorial", 'htm'=>$art_ini ];
@@ -1232,22 +1372,28 @@
 
   // genero articulo por contenido
   $_['sec'] = ob_get_clean();
-  $ele['art']['ide'] = !empty($_uri->cab) ? $_uri->cab : 'ini';
 
   // recursos del documento
-  $this->jso []= "app/$_uri->esq";
+  $this->jso []= "$_uri->esq/app";
   $this->css []= $_uri->esq;
 
   // cargo datos en articulos de dato
   global $_hol;
+  if( $_uri->cab == 'tab' ){
+    $this->_dat['hol'] = [];
+    foreach( $_hol as $i => $v ){
+      $this->_dat['hol'] []= $i;
+    }
+  }
+
   $this->eje .= "
     
     // datos 
-    var \$_hol = new _hol(".( $_uri->cab == 'tab' ? _obj::cod($_hol) : "").");
+    var \$_hol = new _hol();
 
     // pagina
-    var \$_app_hol = new _app_hol(".( $_uri->cab == 'tab' ? "{ val : "._obj::cod($_val)." }" : "" ).");
+    var \$_hol_app = new _hol_app(".( $_uri->cab == 'tab' ? "{ val : "._obj::cod($_val)." }" : "" ).");
 
-    \$_app_hol.ini();
+    \$_hol_app.ini();
   ";
   // devuelvo contenidos: [ win: modales, pan: paneles, htm: secciones ]

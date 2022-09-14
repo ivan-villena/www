@@ -14,7 +14,7 @@ function _adm( $tip, $dat, $val, ...$opc ){
   // -> desde menu : capturo form
   else if( $dat.nodeName && $dat.nodeName == 'A' ){      
 
-    $_app.var = $dat.parentElement.nextElementSibling.querySelector(`[ide="${$tip}"]`);
+    $_app.var = $dat.parentElement.nextElementSibling.querySelector(`[data-ide="${$tip}"]`);
   }
   
   switch( $tip ){
@@ -76,11 +76,12 @@ function _adm( $tip, $dat, $val, ...$opc ){
   case 'sql':
     $.cod = $_app.var.querySelector('[name="cod"]').value;
     if( $.cod ){
+
       _eje.val( ['_sql::dec', [ $.cod ] ], $res => {
         // pido tabla
         if( Array.isArray($res) ){
 
-          $.res.appendChild( _doc_est.lis($res) );
+          $.res.appendChild( _doc_lis.tab($res) );
         }// errores: html
         else if( typeof($res)=='object' ){
 
@@ -91,8 +92,7 @@ function _adm( $tip, $dat, $val, ...$opc ){
           $.htm.classList.add('sql');
           $.htm.innerHTML = _doc.let($res);
           $.res.appendChild($.htm);
-        }
-  
+        }  
       });
     }
     break;

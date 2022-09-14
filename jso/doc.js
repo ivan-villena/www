@@ -5,8 +5,6 @@
 const DIS_OCU = "dis-ocu";
 const FON_SEL = "fon-sel";
 const BOR_SEL = "bor-sel";
-const ROT_VER = "rotate(0deg)";
-const ROT_OCU = "rotate(270deg)";
 
 
 // documento
@@ -56,7 +54,7 @@ class _doc {
   // letras : c - n
   static let( $dat, $ele={} ){
 
-    let $_="", $pal, $_pal=[], $let=[], $_let=$_api._let, $num=0;
+    let $_="", $pal, $_pal=[], $let=[], $_let = $_api._('let'), $num = 0;
     
     if( $dat !== null && $dat !== undefined && $dat !== NaN ){      
 
@@ -171,62 +169,43 @@ class _doc {
   // pestañas por contenido
   static nav( $dat, $ope, ...$opc ){
     let $={};
-
+    // capturo contenedor
     $.nav = $dat.parentElement;
-
+    // con toggles
     $.val_tog = $opc.includes('tog');
-
+    // seleccion anterior
     if( $.sel_ant = $.nav.querySelector(`a.${FON_SEL}`) ){
 
       if( !$.val_tog || $.sel_ant != $dat ) $.sel_ant.classList.remove(FON_SEL);
     }
     // contenido
     if( $ope ){
-
+      // capturo contenido
       $.lis = $.nav.nextElementSibling;
-
+      // recorro items
       _lis.val( $.lis.children ).forEach( $e => {
-
-        if( $.val = $e.getAttribute('ide') ){
-
-          if( $.val == $ope ){
+        // coincide con el seleccionado
+        if( $e.dataset.ide == $ope ){
+          // hago toogles
+          if( $.val_tog ){
             
-            if( $.val_tog ){
-
-              $e.classList.toggle(DIS_OCU);
-              $dat.classList.toggle(FON_SEL);
-            }
-            else if( $e.classList.contains(DIS_OCU) ){
-
-              $e.classList.remove(DIS_OCU);
-              $dat.classList.add(FON_SEL);
-            }              
+            $e.classList.toggle(DIS_OCU);
+            $dat.classList.toggle(FON_SEL);
           }
-          else if( !$e.classList.contains(DIS_OCU) ){ 
+          // muestro y selecciono
+          else if( $e.classList.contains(DIS_OCU) ){
 
-            $e.classList.add(DIS_OCU); 
-          }
+            $e.classList.remove(DIS_OCU);
+            $dat.classList.add(FON_SEL);
+          }              
+        }// oculto los no coincidentes
+        else if( !$e.classList.contains(DIS_OCU) ){ 
+
+          $e.classList.add(DIS_OCU); 
         }
       });
     }      
   }
-
-  // contenido
-  static val(){
-  }
-
-  // ul.lis
-  static lis(){
-  }
-
-  // opcion
-  static opc(){    
-  }
-
-  // table
-  static tab(){    
-  }
-
 }
 
 // contenido
@@ -244,38 +223,38 @@ class _doc_val {
 
       $.sec = $.ite.nextElementSibling;
       
-      if( $.sec.classList.contains(DIS_OCU) ){
+      if( $.bot.classList.contains('ocu') ){
+        $.bot.classList.remove('ocu');
         $.sec.classList.remove(DIS_OCU);
-        $.bot.style.transform = ROT_VER;
       }
       else{
+        $.bot.classList.add('ocu');
         $.sec.classList.add(DIS_OCU);
-        $.bot.style.transform = ROT_OCU;
       }
     }
     // por opciones
     else if( ['tod','nad'].includes($ope) ){
 
-      if( $_app.var = _ele.ver($dat,{'eti':"form"}) ){
-        $.rot = ( $ope == 'tod' ) ? ROT_VER : ROT_OCU;
+      if( $_app.var = _ele.ver($dat,{'eti':"form"}) ){        
 
         $.lis = !!$_app.var.nextElementSibling ? $_app.var.nextElementSibling : $_app.var.parentElement.parentElement;
+
+        $.cla = ( $ope == 'tod' ) ? `.ocu` : `:not(.ocu)`;
               
-        $.lis.querySelectorAll(`.val.tog > .ico[ide="ope_tog"]:not([style*="${$.rot}"])`).forEach( $e => $e.click() );
+        $.lis.querySelectorAll(`.val > .ico[ide="ope_tog"]${$.cla}`).forEach( $e => $e.click() );
       }
     }
   }
 
-  // filtros
-  static ver(){
-    
+  // filtros : texto
+  static ver(){    
   }
 
 }
 
 // Lista
 class _doc_lis {
-
+  
   // opciones
   static opc( $dat, $ope, ...$opc ){
     let $_, $={};
@@ -315,28 +294,28 @@ class _doc_lis {
     for( const $ide in $dat ){ $.obj_tip = _obj.tip($dat[$ide]); break; }
     $.obj_pos = $.obj_tip == 'pos';
 
-    for( const $ide in $dat ){ const $val = $dat[$ide];
+    for( const $ide in $dat ){ const $ite = $dat[$ide];
 
       $.ite = document.createElement('option');
       $.val = $ide;
       $.htm = "";
       if( !$.obj_tip ){        
-        $.htm = $val;
+        $.htm = $ite;
       }
       else if( $.obj_pos ){        
-        $.htm = $val.join(', ');
+        $.htm = $ite.join(', ');
       }
       else{
         // valor
-        if( $val.ide ){ $.val = $val.ide; }else if( $val.pos ){ $.val = $val.pos; }
+        if( $ite.ide ){ $.val = $ite.ide; }else if( $ite.pos ){ $.val = $ite.pos; }
         // titulo
-        if( !!$val.des || !!$val.tit ) $.ite.setAttribute('title', !! $val.des ? $val.des : $val.tit );
+        if( !!$ite.des || !!$ite.tit ) $.ite.setAttribute('title', !! $ite.des ? $ite.des : $ite.tit );
         // contenido        
-        if( !!$.val_ide && !!$val.ide ) $.htm += `${$val.ide}: `;
-        if( !!$val.nom ) $.htm += $val.nom;
+        if( !!$.val_ide && !!$ite.ide ) $.htm += `${$ite.ide}: `;
+        if( !!$ite.nom ) $.htm += $ite.nom;
       }      
       $.ite.setAttribute('value',$.val);
-      if( $val && $val == $.val ) $.ite.setAttribute('selected',"");
+      if( $val == $.val ) $.ite.setAttribute('selected',"");
       $.ite.innerHTML = $.htm;
       $_.push($.ite);
     }
@@ -346,24 +325,28 @@ class _doc_lis {
   // punteos, numeraciones, y términos
   static ite(){
   }
-  static ite_tex( $dat ){
+  static ite_val( $dat, $ope ){
     let $=_doc.var($dat);
+    
+    if( !$ope ){
+      // toggles
+      if( $dat.nodeName == 'DT' ){
 
-    if( $dat.nodeName == 'DT' ){
+        $.dd = $dat.nextElementSibling;
 
-      $.dd = $dat.nextElementSibling;
-
-      while( $.dd && $.dd.nodeName == 'DD' ){
-        $.dd.classList.toggle(DIS_OCU);
-        $.dd = $.dd.nextElementSibling;
+        while( $.dd && $.dd.nodeName == 'DD' ){
+          $.dd.classList.toggle(DIS_OCU);
+          $.dd = $.dd.nextElementSibling;
+        }
       }
-    }
-    // por tipo : punteo o numerado
-    else{
+    }else{
+      switch( $ope ){
 
+      }
     }
   }
   static ite_tog( $dat, $ope ){
+
     let $=_doc.var($dat);
 
     if( !$dat || !$ope ){
@@ -380,7 +363,7 @@ class _doc_lis {
               ||
               ( $ope == 'nad' &&  !$ite.nextElementSibling.classList.contains(DIS_OCU) )
             ){
-              _doc_lis.ite_tex($ite);
+              _doc_lis.ite_val($ite);
             }
           }
         }
@@ -449,6 +432,7 @@ class _doc_lis {
   static val(){      
   }
   static val_ver( $dat, $ope = 'p:first-of-type', $cla = 'let-luz' ){
+
     let $=_doc.var($dat);
 
     // busco listado
@@ -512,9 +496,79 @@ class _doc_lis {
     }      
   }
 
-  // tabla
-  static tab(){
+  // indice : enlaces del navegador
+  static nav(){      
   }
+  // hago toogle por item
+  static nav_tog( $dat ){
+    let $={ ide : location.toString().split('#') };
+
+    if( $dat && $.ide[1] ){
+
+      if( $.nav = _doc_lis.nav_mar($dat) ){
+
+        // hago toogles ascendentes
+        while( 
+          ( $.lis = $.nav.parentElement.parentElement.parentElement ) 
+          && ( $.val = $.lis.previousElementSibling ) && ( $.val.nodeName == 'DIV' &&  $.val.classList.contains('val') )
+          && ( $.nav = $.val.querySelector('a[href^="#"]') )
+        ){
+          if( $.lis.classList.contains(DIS_OCU) && ( $.ico = $.nav.previousElementSibling ) && $.ico.classList.contains('ico') ){                
+            _doc_val.tog($.ico);
+          }                
+        }
+      }
+    }
+  }
+  // click en item
+  static nav_val( $dat, $cla = FON_SEL ){
+    let $ = {
+      nav : _ele.ver($dat,{'eti':'nav'})
+    };
+    // elimino marcas previas
+    $.nav && $.nav.querySelectorAll(`.val.${$cla}`).forEach( $e => $e.classList.remove($cla) );
+
+    // controlo el toggle automatico por dependencias
+    if( 
+      ( $.dep = $dat.parentElement.parentElement.querySelector('ul.lis') ) 
+      &&
+      ( $dat.classList.contains('ico') || $.dep.classList.contains(DIS_OCU) ) 
+    ){
+      _doc_val.tog($dat);
+    }
+
+    // pinto fondo
+    if( !( $.bot = $dat.parentElement.querySelector('.ico') ) || !$.bot.classList.contains('ocu') ){
+
+      $dat.parentElement.classList.add($cla);
+    }
+
+  }
+  // marco valor seleccionado
+  static nav_mar( $dat ){
+    let $={
+      ide : location.toString().split('#')
+    };
+
+    // hago toogle por item
+    if( $.nav = $dat.querySelector(`a[href="#${$.ide[1]}"]`) ){
+        
+      _doc_lis.nav_val($.nav);
+    }
+
+    return $.nav;
+  }
+  // ejecuto filtros
+  static nav_ver( $dat, $ope = 'a[href]' ){
+    let $=_doc.var($dat);
+
+    // ejecuto filtros
+    _doc_lis.val_ver($dat, $ope);
+
+    // volver a marcar el fondo del elemento seleccionado
+    _doc_lis.nav_tog($_app.var.nextElementSibling);
+
+  }  
 
   // desplazamiento horizontal x item
   static bar(){
@@ -548,6 +602,44 @@ class _doc_lis {
       if( $.ite = $.lis.querySelector(`li[pos="${$.pos}"]`) ) $.ite.classList.remove(DIS_OCU);
     }
   }
+
+  // tabla
+  static tab( $dat, $ele, ...$opc ){
+    let $ = {};
+
+    // 1- cabecera
+    $.tab_cab = document.createElement('thead');
+    $.cab_lis = document.createElement('tr');
+
+    if( $dat[0] ){
+      for( const $atr in $dat[0] ){
+        $.cab_ide = document.createElement('th');
+        $.cab_ide.innerHTML = $atr;
+        $.cab_lis.appendChild($.cab_ide);
+      }
+      $.tab_cab.appendChild($.cab_lis);
+    }
+
+    // 2-cuerpo
+    $.tab_dat = document.createElement('tbody');
+    $dat.forEach( $dat => {
+      $.lis = document.createElement('tr');
+      for( const $atr in $dat ){
+        $.dat_ite = document.createElement('td');
+        $.dat_ite.innerHTML = $dat[$atr];
+        $.lis.appendChild($.dat_ite);
+      }
+      $.tab_dat.appendChild($.lis);
+    });
+    // 3-pie
+    // ...
+
+    $.tab = document.createElement('table');
+    $.tab.appendChild($.tab_cab);
+    $.tab.appendChild($.tab_dat);
+
+    return $.tab;
+  } 
 }
 
 // Opcion

@@ -3,64 +3,57 @@
   define('SYS_DIR', "C:\\xampp\\htdocs" );
   define('SYS_NAV', "http://localhost/" );
   define('SYS_REC', "http://localhost/_/" );
-
-  // estilos y clases
-  define('DIS_OCU', "dis-ocu" );
-  define('FON_SEL', "fon-sel" );
-  define('BOR_SEL', "bor-sel" );
-  
   
   // Interfaces del sistema 
   class _api {
 
-    public object $_uri, $_app, $_ses;
-
+    // Interfaces
     public array
-      // documento
-      $_ico = [],
-      $_let = [],
-      $_var = [], // controladores
-      $_var_tip = [], // tipos
-      $_var_dat = [], // tipos de dato
-      $_var_val = [], // tipos de valor
-      $_var_ope = [], // tipos de operaciones
-      $_val_opc = [], // opciones por operadores
-      $_var_ide = [], // identificadores de controladores            
+      // contenido
+        $_ico = [],
+        $_let = [],
 
-      // datos      
+      // variables
+        $_var = [], 
+        $_var_tip = [], // tipos
+        $_var_dat = [], // tipos de dato
+        $_var_val = [], // tipos de valor
+        $_var_ope = [], // tipos de operaciones
+        $_val_opc = [], // opciones por operadores
+        $_var_ide = [], // identificadores de controladores
+        
+      // numeros
+        $_num = [],
+        $_num_int = [],
+
+      // fechas
+        $_fec = [],
+        $_fec_año = [],
+        $_fec_mes = [],
+        $_fec_sem = [],
+        $_fec_dia = [],
+        $_fec_hor = [],
+        $_fec_min = [],
+        $_fec_seg = [],
+
+      // holon
+        $_hol = []
+    ;
+    // Aplicacion
+    public array
+      // datos
       $_dat = [],
       $_dat_atr = [], // atributos de la base
       $_dat_est = [], // estructuras de la base            
-      
-      // estructuras-tablas
+
+      // tablas : valor por esquemas.estructrua/s
       $_est = [], 
 
-      // elementos de los tableros
-      $_tab = [],
-
-      // numeros
-      $_num_int = [],
-
-      // fechas
-      $_fec = [],
-      $_fec_año = [],
-      $_fec_mes = [],
-      $_fec_sem = [],
-      $_fec_dia = [],
-      $_fec_hor = [],
-      $_fec_min = [],
-      $_fec_seg = []
+      // tableros : estructura con valores por esquemas.estructrua/s
+      $_tab = []    
     ;
 
     function __construct(){
-
-      $this->_uri = new stdClass;
-
-      $this->_ses = new stdClass;
-
-      $this->_doc = new stdClass;
-
-      $this->ses('api');
       
       // documento : iconos + letras
       $this->_ico = _dat::var('_api.ico', [ 'niv'=>['ide'] ]);
@@ -79,12 +72,18 @@
 
     // get : estructura-objetos
     static function _( string $ide, $val = NULL ) : string | array | object {
+      
       global $_api;
+
       $_ = [];
+
       // aseguro carga
-      if( !isset($_api->{"_$ide"}) ) $_api->{"_$ide"} = _dat::ini('api',$ide);
+      $est = "_$ide";
+      if( !isset($_api->$est) ) $_api->$est = _dat::ini('api',$ide);
+      
       // cargo datos
-      $_dat = $_api->{"_$ide"};
+      $_dat = $_api->$est;
+      
       if( !empty($val) ){
         $_ = $val;
         if( !is_object($val) ){
@@ -108,65 +107,6 @@
         $_ = $_dat;
       }
       return $_;
-    }
-    // peticion : hhtp://esq/cab/art/...val
-    function uri( string $esq = '' ) : object {      
-
-      // peticion
-      $this->_uri->url = !empty($_REQUEST['uri']) ? $_REQUEST['uri'] : '';
-
-      // actualizo ultimo valor
-      $_SESSION['api-uri'] = $this->_uri->url;
-      
-      // por separaciones
-      $dat = explode('/',$this->_uri->url);
-      $this->_uri->esq = !empty($dat[0]) ? $dat[0] : $esq;
-      $this->_uri->cab = !empty($dat[1]) ? $dat[1] : FALSE;
-      $this->_uri->art = !empty($dat[2]) ? $dat[2] : FALSE;
-      $this->_uri->val = !empty($dat[3]) ? $dat[3] : FALSE;
-
-      return $this->_uri;
-    }
-    // directorio : accesos por aplicacion
-    function dir( object $uri = NULL ) : object {  
-
-      if( !isset($uri) ){
-        $uri = $this->uri();
-      }
-
-      $_ = new stdClass();
-
-      $_->rec = SYS_NAV."_/";
-      
-      $_->esq = SYS_NAV."{$uri->esq}";
-        
-      $_->cab = "{$uri->esq}/{$uri->cab}";
-
-      $_->ima = SYS_NAV."_/{$_->cab}/";
-
-      if( !empty($uri->art) ){
-
-        $_->art = $_->cab."/{$uri->art}";
-      
-        $_->ima .= "{$uri->art}/";
-      }
-
-      return $this->_dir = $_;
-    }
-    // sesion : datos por esquemas
-    function ses( string $esq ) : array {      
-
-      $this->_ses->$esq = [];      
-
-      foreach( $_REQUEST as $i => $v ){
-
-        if( preg_match("/^$esq-/",$i) ){
-
-          $this->_ses->$esq[$i] = $v;
-        }
-      }
-
-      return $this->_ses->$esq;      
     }
   }
 

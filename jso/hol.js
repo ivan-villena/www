@@ -4,22 +4,14 @@
 // sincronario
 class _hol {
 
-  constructor( $dat ){
-
-    // datos propios
-    if( !!$dat && typeof($dat)=='object' ){
-
-      for( const $atr in $dat ){
-
-        this[$atr] = $dat[$atr];
-      }
-    }
-  }  
+  constructor(){
+  }
+  
   // getter
   static _( $ide, $val ){
-    let $_=[], $est = `_${$ide}`;
+    let $_=[], $est = `_hol_${$ide}`;
     
-    if( $_hol[$est] === undefined ){
+    if( $_api[$est] === undefined ){
       // pido datos
       // .. vuelvo a llamar esta funcion
     }
@@ -27,23 +19,24 @@ class _hol {
       $_ = $val;
       switch( $ide ){
       case 'fec':
-        
+        // calculo fecha
         break;
       default:
         if( typeof($val) != 'object' ){
 
           if( Number($val) ) $val = parseInt($val)-1;
 
-          $_ = $_hol[$est] && !!($_hol[$est][$val]) ? $_hol[$est][$val] : {};
+          $_ = $_api[$est] && !!($_api[$est][$val]) ? $_api[$est][$val] : {};
         }
         break;
       }
     }
     else{
-      $_ = $_hol[$est] ? $_hol[$est] : [];
+      $_ = $_api[$est] ? $_api[$est] : [];
     }
     return $_;
   }
+
 }
 
 class _hol_val {
@@ -53,12 +46,12 @@ class _hol_val {
     // operador : fecha + sincronario
     let $ = _doc.var($dat);
 
-    if( !$_api._uri.cab || !['tab','inf'].includes($_api._uri.cab) ){
-      $_api._uri.cab = 'tab';
-      $_api._uri.art = 'kin-tzo';
+    if( !$_app.uri.cab || !['tab','inf'].includes($_app.uri.cab) ){
+      $_app.uri.cab = 'tab';
+      $_app.uri.art = 'kin-tzo';
     }
     
-    $.uri = $_api.uri();
+    $.uri = $_app.uri.ver();
 
     // calendario gregoriano
     if( ( $.ope = $_app.var.getAttribute('ide') ) == 'fec' ){

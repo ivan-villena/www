@@ -38,6 +38,6 @@
 	DELETE FROM `_api`.`doc_art` WHERE `esq`='hol' AND `cab`='inf';
 	INSERT INTO `_api`.`doc_art` VALUES
 		
-		('hol','inf','val', 1, 'Ciclos del Tiempo',	'', NULL, NULL ),
+		('hol','inf','dia', 1, 'Ciclos del Tiempo',	'', NULL, NULL ),
 		('hol','inf','hum', 2, 'Firma Galáctica',		'', NULL, NULL )
 	;

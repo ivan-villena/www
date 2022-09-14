@@ -2,7 +2,7 @@
 'use strict';
 
 // articulo
-class _app_hol {
+class _hol_app {
 
   // valor seleccioando
   _val = { };
@@ -37,7 +37,7 @@ class _app_hol {
 
   ini( $ = {} ){
     // inicializo
-    if( $_api && $_api._uri && $_api._uri.cab == 'tab' ){
+    if( $_app.uri.cab == 'tab' ){
 
       _app_tab.ini();
 
@@ -49,9 +49,9 @@ class _app_hol {
   
         if( $_app.tab[$ope] ){
   
-          $_app.tab[$ope].querySelectorAll(`form[ide] [name][onchange*="_app_hol_tab."]`).forEach( $inp => 
+          $_app.tab[$ope].querySelectorAll(`form[ide] [name][onchange*="_hol_app_tab."]`).forEach( $inp => 
   
-            _app_hol_tab[`${$ope}`](`${_ele.ver($inp,{'eti':`form`}).getAttribute('ide')}`, $inp )
+            _hol_app_tab[`${$ope}`](`${_ele.ver($inp,{'eti':`form`}).getAttribute('ide')}`, $inp )
           );
         }
       });
@@ -60,7 +60,7 @@ class _app_hol {
 }
 
 // -> libros
-class _app_hol_bib {
+class _hol_app_bib {
   
   // Encantamiento del sueño
   static enc( $atr, $dat, $ope ){
@@ -89,14 +89,14 @@ class _app_hol_bib {
 }
 
 // -> Valores
-class _app_hol_val {
+class _hol_app_val {
 
   // actualizo acumulados por seleccion de clase
   static acu( $dat, ...$ide ){
 
     let $ope = $ide.join('_');
 
-    $_app_hol._val_acu[$ope] = $dat.querySelectorAll(`._val-${$ope}`);
+    $_hol_app._val_acu[$ope] = $dat.querySelectorAll(`._val-${$ope}`);
 
   }
   // calculo totales por tipos de operador : portales + parejas + pulsares
@@ -112,8 +112,8 @@ class _app_hol_val {
     }
 
     // actualizo totales
-    $_app_hol._val_acu[$ope] = [];    
-    $.lis.forEach( $ide => $_app_hol._val_acu[$ope].push(...$_app_hol._val_acu[$ide]));    
+    $_hol_app._val_acu[$ope] = [];    
+    $.lis.forEach( $ide => $_hol_app._val_acu[$ope].push(...$_hol_app._val_acu[$ide]));    
   }
   // actualizo cuentas y porcentajes sobre totales 
   static cue( $dat, ...$ide ){
@@ -126,23 +126,23 @@ class _app_hol_val {
     // muestro totales
     if( $dat.nextElementSibling && ( $.tot = $dat.nextElementSibling.querySelector('n') )){
 
-      $.tot.innerHTML = $_app_hol._val_acu[$.ide].length;
+      $.tot.innerHTML = $_hol_app._val_acu[$.ide].length;
     }
 
     // actualizo acumulado total
-    _app_hol_val.tot($ide[0]);
+    _hol_app_val.tot($ide[0]);
   }
 }
 
 // -> Tablero
-class _app_hol_tab {
+class _hol_app_tab {
 
   // posicion : parejas + pulsares
   static pos( $tip, $dat, $ope, ...$opc ){
 
     let $=_doc.var($dat);
 
-    $.kin = $_app_hol._val.kin;
+    $.kin = $_hol_app._val.kin;
 
     $.ide = `${$tip}_${$.var_ide}`;
 
@@ -159,7 +159,7 @@ class _app_hol_tab {
 
         $._par_lis.forEach( $ide => {
 
-          _app_hol_tab.pos(`${$tip}`, $_app.var.querySelector(`[name="${$ide}"]`) );
+          _hol_app_tab.pos(`${$tip}`, $_app.var.querySelector(`[name="${$ide}"]`) );
         });
       }// por pareja
       else{        
@@ -172,7 +172,7 @@ class _app_hol_tab {
             _ele.act('cla_agr',$.ele,$.cla);          
           }
           // evaluo extensiones
-          _app_hol_tab.pos(`${$tip}`, $_app.var.querySelector(`[name="ext"]`) );
+          _hol_app_tab.pos(`${$tip}`, $_app.var.querySelector(`[name="ext"]`) );
           
         }// extiendo oráculo      
         else if( $.var_ide=='ext' ){
@@ -254,9 +254,9 @@ class _app_hol_tab {
         }
       }
       // acumulados
-      _app_hol_val.acu($_app.tab.dat,'pul',$.var_ide);      
+      _hol_app_val.acu($_app.tab.dat,'pul',$.var_ide);      
       // totales por valor
-      _app_hol_val.cue($dat,'pul',$.var_ide);
+      _hol_app_val.cue($dat,'pul',$.var_ide);
 
       break;
     }    
@@ -264,7 +264,7 @@ class _app_hol_tab {
   // opciones : seccion ( vistas ) + ...posicion
   static opc( $tip, $dat, $ope, ...$opc ){
     let $=_doc.var($dat);
-    $.kin = $_app_hol._val.kin;
+    $.kin = $_hol_app._val.kin;
     $.cla_ide = `${$.var_ide}_${$ope}`;
 
     switch( $tip ){

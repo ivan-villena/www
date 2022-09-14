@@ -9,11 +9,13 @@
     // estructuras por posicion
     static function _( string $ide, mixed $val = NULL ) : string | array | object {
       $_ = [];
-      global $_hol;
-      $est = "_$ide";
+
+      global $_api, $_hol;
+      
+      $est = "_hol_$ide";
 
       // aseguro carga
-      if( !isset($_hol->$est) ) $_hol->$est = _dat::ini('hol',$ide);
+      if( !isset($_api->$est) ) $_api->$est = _dat::ini('hol',$ide);
 
       // busco dato
       if( !empty($val) ){
@@ -27,17 +29,17 @@
             if( isset($fec->dia)  ) $_ = _dat::var( _hol::_('psi'), [ 'ver'=>[ ['fec_dia','==',$fec->dia], ['fec_mes','==',$fec->mes] ], 'opc'=>['uni'] ]);
             break;
           case 'kin':
-            $_ = $_hol->$est[ _num::ran( _num::sum($val), 260 ) - 1 ];
+            $_ = $_api->$est[ _num::ran( _num::sum($val), 260 ) - 1 ];
             break;
           default:
-            if( isset($_hol->$est[ $val = intval($val) - 1 ]) ) $_ = $_hol->$est[$val]; 
+            if( isset($_api->$est[ $val = intval($val) - 1 ]) ) $_ = $_api->$est[$val]; 
             break;
           }
         }
       }
       // devuelvo toda la lista
       else{
-        $_ = $_hol->$est;
+        $_ = $_api->$est;
       }
       return $_;    
     }
@@ -923,6 +925,7 @@
 
       return $_;
     }
+
     // ciclos del kin-galáctico
     static function kin( mixed $dat, array $ope = [], ...$opc ) : string {
       $_ = []; $esq = 'hol'; 
@@ -1027,6 +1030,7 @@
       $ope['lis-1'] = [ 'class'=>"ite" ];
       return _doc_lis::val($_,$ope);
     }
+    
     // ciclos del psi-solar
     static function psi( mixed $dat, array $ope = [], ...$opc ) : string {
       $_ = []; $esq = 'hol';
@@ -1426,15 +1430,6 @@
   // listado por atributo 
   class _hol_lis {
     
-    // plasma radial
-    static function rad( string $atr, array $ele = [] ) : string {
-      $esq = "hol"; $est = "rad_{$atr}";  
-      $lis_tip = "val"; $lis_pos = 0;
-      $_ = []; 
-      switch( $atr ){
-      }
-      return is_array($_) ? _hol::lis( $_, $est, $lis_tip, $ele ) : $_;
-    }
     // sello solar
     static function sel( string $atr, array $ele = [] ) : string {
       $esq = "hol"; $est = "sel_{$atr}"; $lis_tip = "val"; $lis_pos = 0;
@@ -1951,27 +1946,46 @@
     // giro lunar
     static function lun( string $atr, array $ele = [] ) : string {
       $esq = "hol"; $est = "lun_{$atr}"; $lis_tip = "val"; $lis_pos = 0;
-      $_ = [];      
-      switch( $atr ){
-      //
+      $_ = [];
+      $_atr = explode('-',$atr);
+      switch( $_atr[0] ){
+      // 13 lunas : heptadas - cuarto armónica
+      case 'arm':
+        if( isset($_atr[1]) ){
+          switch( $_atr[1] ){
+          // descripcion
+          case 'des': 
+            foreach( _hol::_('lun_arm') as $_hep ){
+              $_ []= _doc::let("$_hep->nom (")."<c class='let_col-4-$_hep->ide'>$_hep->col</c>"._doc::let("): $_hep->des");
+            }
+            break;
+          case 'pod':
+            foreach( _hol::_('lun_arm') as $_hep ){
+              $_ []= _doc::let("$_hep->nom: ")."<c class='let_col-4-$_hep->ide'>$_hep->col</c>"._doc::let(", $_hep->pod $_hep->car");
+            }        
+            break;            
+          }
+        }
+        break;
+      // por descripcion
       case 'des': 
-        foreach( _hol::_('lun_arm') as $_hep ){            
+        foreach( _hol::_('lun_arm') as $_hep ){
           $_ []= _doc::let("$_hep->nom (")."<c class='let_col-4-$_hep->ide'>$_hep->col</c>"._doc::let("): $_hep->des");
         }
         break;                
-      //
+      // por poderes
       case 'pod': 
-        foreach( _hol::_('lun_arm') as $_hep ){            
+        foreach( _hol::_('lun_arm') as $_hep ){
           $_ []= _doc::let("$_hep->nom: ")."<c class='let_col-4-$_hep->ide'>$_hep->col</c>"._doc::let(", $_hep->pod $_hep->car");
         }        
         break;
-      //
+      // telektonon : lines de fuerza
       case 'fue': 
         foreach( _hol::_($est) as $_lin ){
           $_ []= _doc::let("{$_lin->nom}: {$_lin->des}");
         }
         break;
-      //
+      // rinri : días del cubo
       case 'cub':
         foreach( _hol::_('lun_cub') as $_cub ){
           $_ []= 

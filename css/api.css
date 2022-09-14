@@ -782,12 +782,6 @@ Letra
   text-shadow: 0 0 5px;
 }
 
-.let_col-ide { color: var(--let_ide); }
-.let_col-val { color: var(--let_val); }
-.let_col-err { color: var(--let_err); }
-.let_col-tex { color: var(--let_tex); }
-.let_col-num { color: var(--let_num); }
-
 .let-1 {
   font-size: .5rem !important;
 }
@@ -832,6 +826,9 @@ Letra
 .let_col-10-9 {  color: var(--tra_gri); }
 .let_col-10-10 { color: var(--tra_neg); }
 
+/* 
+color
+*/
 .col-roj { color: var(--col_roj) !important; }
 .col-bla { color: var(--col_bla) !important; }
 .col-azu { color: var(--col_azu) !important; }
@@ -842,6 +839,7 @@ Letra
 .col-nar { color: var(--col_nar) !important; }
 .col-neg { color: var(--col_neg) !important; }
 .col-gri { color: var(--col_gri) !important; }
+
 
 
 /* ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

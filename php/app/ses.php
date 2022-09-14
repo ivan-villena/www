@@ -15,7 +15,7 @@
       
       $win = [ 'ico' => "ses_usu", 'nom' => "Cuenta de Usuario", 'htm' => "
       
-        <form class='api_dat' data-ope='val' data-esq='{$esq}' data-est='{$est}'>
+        <form class='api_dat' data-esq='{$esq}' data-est='{$est}'>
 
           <fieldset class='ren'>
 
@@ -62,8 +62,8 @@
     // finalizo sesion del usuario
     case 'fin': 
       $win = [ 'ico' => "ses_ini", 'nom' => "Loggin", 'htm' => "
-        <form action=''>
-          
+
+        <form class='api_dat' action=''>
         </form>"
       ];
       break;

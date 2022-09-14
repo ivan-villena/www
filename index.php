@@ -53,18 +53,7 @@
 
     $sis_ini = time();
 
-    $_api_atr = [ '_uri', '_ses', '_ico', '_let', '_var_tip', '_dat_val', '_fec_mes', '_fec_sem', '_fec_dia' ];
-
-    // peticion url ( por defecto: holon )
-    $_uri = $_api->uri('hol');
-
-    // directorios
-    $_dir = $_api->dir( $_uri );
-
-    // sesion
-    $_ses = $_api->ses( $_uri->esq );
-
-    // pagina
+    // cargo pagina
     $_app = new _app();
   }
 ?>
@@ -168,12 +157,12 @@
       <?php 
       // imprimo consola del administrador
       if( $_usu->ide == 1 ){
-        $_app->jso []= "api/adm";
-        include("php/api/adm.php");
+        $_app->jso []= "app/adm";
+        include("php/app/adm.php");
       }
       // sesion del usuario
       $tip = empty($_usu->ide) ? 'ini' : 'fin';
-      include("php/api/ses.php");
+      include("php/app/ses.php");
 
       // imprimo pantallas ?>
       <?= $_app->win ?>
@@ -188,18 +177,22 @@
       }
     }// cargo datos operativos
     $_api_dat = [];
-    foreach( $_api_atr as $atr ){
+    foreach( $_app->dat() as $atr ){
 
       if( isset($_api->{$atr}) ) $_api_dat[$atr] = $_api->{$atr};
     }
     ?>
     <script>
+      
       // cargo datos de la interface
       var $_api = new _api(<?= _obj::cod( $_api_dat ) ?>);
+      
       // cargo aplicacion
       var $_app = new _app();
-      // inicializo documento
+      
+      // inicializo página
       $_app.ini();
+
       // ejecucion inicial
       <?= $_app->eje ?>
 

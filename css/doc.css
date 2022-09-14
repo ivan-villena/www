@@ -354,13 +354,6 @@ q, blockquote {
   text-shadow: 0 0 5px;
 }
 
-dfn, /* Definiciones */
-abbr, /* Abreviaturas */
-dl dt /* Términos */
-{ 
-  color: var(--let_ide);
-}
-
 textarea {
   padding: .6rem;
   resize: vertical;
@@ -385,15 +378,34 @@ c.sep {
 }
 
 :is(p,b,i).tit {
-  margin-top: 1rem;
+  margin-top: .5rem;
   text-decoration: underline; 
   font-weight: bold; 
   font-style: italic;
 }
 
-:is(p,b,i).des {  
+:is(p,b,i).des {
   font-weight: bold;
   font-style: italic;
+}
+
+dfn, /* Definiciones */
+abbr, /* Abreviaturas */
+dl dt, /* Términos */
+:is(p,b,i).ide { 
+  color: var(--let_ide); 
+}
+:is(p,b,i).val { 
+  color: var(--let_val); 
+}
+:is(p,b,i).err { 
+  color: var(--let_err); 
+}
+:is(p,b,i).tex { 
+  color: var(--let_tex); 
+}
+:is(p,b,i).num { 
+  color: var(--let_num); 
 }
 
 /* 
@@ -907,31 +919,6 @@ Navegador : listado / pestaña / barra
 */
 
 /* 
-por indice-lista
-*/
-nav.lis {
-  display: flex;
-  flex-direction: column;
-}
-nav.lis a {
-  width: 100%;
-  margin: .1rem 0;
-  padding: .25rem;
-  text-decoration: none;
-  color: var(--let_tex);
-}
-nav.lis a:hover{
-  background-color: var(--fon_foc);
-  border-radius: .25rem;  
-}
-nav.lis > ul.lis {
-  font-size: .9rem;
-}
-nav.lis > ul.lis div.val { 
-  padding: 0;
-}
-
-/* 
 por contenido
 */
 nav:is(.pes,.bar) {
@@ -963,7 +950,9 @@ nav:is(.pes,.bar) + * {
   margin: 0 .5rem;
 }
 
-/* barra horizontal */
+/* 
+barra horizontal 
+*/
 nav.bar {
   justify-content: space-around;
 }
@@ -973,7 +962,9 @@ nav.bar > a:not(.ico) {
   font-style: italic;
 }
 
-/* Pestañas */
+/* 
+Pestañas 
+*/
 nav.pes {
   margin: 0 .5rem;
 }
