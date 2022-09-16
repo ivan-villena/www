@@ -191,7 +191,8 @@
         // insert, update
         'val'=>''// VALUES ('v_1','2','3', ...)
     
-      ];// solo agregar 1 registro :: ( ``,`` ) values( '','' )
+      ];
+      // solo agregar 1 registro :: ( ``,`` ) values( '','' )
       if( $tip=='agr' ){     
         $_['atr'] = [];
         $_['val'] = [];    
@@ -214,7 +215,8 @@
         }
         $_['atr'] = implode(', ',$_['atr']);
         $_['val'] = implode(', ',$_['val']);
-      }// solo modificar 1 o más campos de 1 o más registros :: set `atr` = 'val', 
+      }
+      // solo modificar 1 o más campos de 1 o más registros :: set `atr` = 'val', 
       elseif( $tip=='mod' ){
         $_['val'] = [];
         foreach( $ope['val'] as $i=>&$v ){ 
@@ -231,8 +233,9 @@
         }
         $_['val'] = implode(', ', $_['val'])." ";
     
-      }// consultar :: campos, juntar, agrupar, ordenar, limitar
-      if( $tip == 'ver' ){
+      }
+      // consultar :: campos, juntar, agrupar, ordenar, limitar
+      elseif( $tip == 'ver' ){
         // selecciono campos
         $_['atr']='*';
         if( isset($ope['atr']) ){
@@ -262,8 +265,10 @@
         // junto condiciones + limite
         $_['ord'] = $_['ord'].$_['gru'].$_['div'].( isset($ope['lim']) ? " LIMIT ".intval($ope['lim']) : '' );
         
-      }// filtros: where `atr` ope val/var/expr
+      }
+      // ++ filtros: where `atr` ope val/var/expr
       if( isset($ope['ver']) && $tip!='agr' ){
+
         if( is_array($ope['ver']) ){
           foreach( $ope['ver'] as $i=>$v ){
             switch( $v[1] ){
@@ -302,7 +307,8 @@
             }
             $_['ver'].=" {$bin}{$v[0]}{$v[1]}{$v[2]}";
           }
-        }elseif( is_string($ope['ver']) && !empty($ope['ver']) ){ 
+        }
+        elseif( is_string($ope['ver']) && !empty($ope['ver']) ){ 
           $_['ver']=" {$ope['ver']}";
         }
         if( !empty($_['ver']) ) $_['ver']=" WHERE{$_['ver']}";
@@ -2267,12 +2273,12 @@
       return $_;
     }
     // formateo para input : "aaa-mm-ddThh:mm:ss"
-    static function var( string $val = NULL, string $tip = '' ) : string {
+    static function var( string $val = NULL, string $tip = 'dia' ) : string {
       $_ = "";
   
       if( !empty($val) ){
 
-        if( ( $tip=='dia' || $tip=='dyh' ) ){
+        if( ( $tip == 'dia' || $tip == 'dyh' ) ){
 
           $_fec = _fec::dat($val,'año');
 

@@ -53,8 +53,8 @@
 
     $sis_ini = time();
 
-    // cargo pagina
-    $_app = new _app();
+    // cargo aplicacion
+    $_app = new _app('hol');
   }
 ?>
 <!DOCTYPE html>

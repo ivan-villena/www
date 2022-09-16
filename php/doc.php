@@ -306,7 +306,7 @@
       ];
 
       // contenedor : icono + ...elementos          
-      _ele::eje( $dat,'cli',"$_eje(this);");
+      _ele::eje( $dat,'cli',"$_eje(this);",'ini');
 
       return "
       <div"._htm::atr( _ele::cla( $ele['val'],"val tog",'ini') ).">
@@ -706,17 +706,12 @@
 
     // indices : a[href] > ...a[href]
     static function nav( array $dat, array $ele = [], ...$opc ) : string {
-      foreach( ['ope','nav','lis'] as $i ){ if( !isset($ele[$i]) ) $ele[$i] = []; }
+      foreach( ['ope','ope_dep','lis','dep'] as $i ){ if( !isset($ele[$i]) ) $ele[$i] = []; }
       $_eje = self::$EJE."nav_";// val | ver
       $_ = "";
 
-      _ele::cla( $ele['lis'], "lis", 'ini' );
+      // operador
       _ele::cla( $ele['ope'], "ite", 'ini' );
-
-      $opc_ide = in_array('ide',$opc);
-      $nav_ite = " onclick=\"{$_eje}val(this);\"";
-      $win_tog = _doc_val::tog_ico([ 'class'=>"ocu" ]);
-
       $_ .= "
       <form"._htm::atr($ele['ope']).">
 
@@ -724,84 +719,92 @@
 
         "._doc_val::ver('tex',[ 'cue'=>0, 'ele_val'=>['class'=>"anc-100"], 'eje'=>"{$_eje}ver(this);" ])."
 
-      </form>
-
-      <ul"._htm::atr($ele['lis']).">";          
+      </form>";
+      // dependencias
+      $tog_dep = FALSE;
+      if( in_array('tog_dep',$opc) ){
+        _ele::cla( $ele['ope_dep'], "ite", 'ini' ); $tog_dep = "
+        <form"._htm::atr($ele['ope_dep']).">
+  
+          "._doc_val::tog_ope()."
+  
+        </form>";
+      }
+      // armo listado de enlaces
+      $_lis = [];
+      $opc_ide = in_array('ide',$opc);
+      _ele::cla( $ele['lis'], "nav", 'ini' );
       foreach( $dat[1] as $nv1 => $_nv1 ){
-        $ide = $opc_ide ? $_nv1->ide : $nv1; $_ .= "
-        <li class='ite".( empty($ico = isset($dat[2][$nv1]) ? $win_tog : '') ? ' sep' : '' )."'>
-          <div class='val tog'>
-            {$ico}<a href='#_{$ide}-'{$nav_ite}>"._doc::let("{$_nv1->nom}")."</a>
-          </div>";
-          if( !empty($ico) ){ $_ .= "
-            <ul class='lis dis-ocu'>";
-            foreach( $dat[2][$nv1] as $nv2 => $_nv2 ){
-              $ide = $opc_ide ? $_nv2->ide : "{$nv1}-{$nv2}"; $_ .= "
-              <li class='ite".( empty($ico = isset($dat[3][$nv1][$nv2]) ? $win_tog : '') ? ' sep' : '' )."'>
-                <div class='val tog'>
-                  {$ico}<a href='#_{$ide}-'{$nav_ite}>"._doc::let("{$_nv2->nom}")."</a>
-                </div>";
-                if( !empty($ico) ){ $_ .= "
-                  <ul class='lis dis-ocu'>";
-                  foreach( $dat[3][$nv1][$nv2] as $nv3 => $_nv3 ){
-                    $ide = $opc_ide ? $_nv3->ide : "{$nv1}-{$nv2}-{$nv3}"; $_ .= "
-                    <li class='ite".( empty($ico = isset($dat[4][$nv1][$nv2][$nv3]) ? $win_tog : '') ? ' sep' : '' )."'>
-                      <div class='val tog'>
-                        {$ico}<a href='#_{$ide}-'{$nav_ite}>"._doc::let("{$_nv3->nom}")."</a>
-                      </div>";
-                      if( !empty($ico) ){ $_ .= "
-                        <ul class='lis dis-ocu'>";
-                        foreach( $dat[4][$nv1][$nv2][$nv3] as $nv4 => $_nv4 ){                        
-                          $ide = $opc_ide ? $_nv4->ide : "{$nv1}-{$nv2}-{$nv3}-{$nv4}"; $_ .= "
-                          <li class='ite".( empty($ico = isset($dat[5][$nv1][$nv2][$nv3][$nv4]) ? $win_tog : '') ? ' sep' : '' )."'>
-                            <div class='val tog'>
-                              {$ico}<a href='#_{$ide}-'{$nav_ite}>"._doc::let("{$_nv4->nom}")."</a>
-                            </div>";
-                            if( !empty($ico) ){ $_ .= "
-                              <ul class='lis dis-ocu'>";
-                              foreach( $dat[5][$nv1][$nv2][$nv3][$nv4] as $nv5 => $_nv5 ){
-                                $ide = $opc_ide ? $_nv5->ide : "{$nv1}-{$nv2}-{$nv3}-{$nv4}-{$nv5}"; $_ .= "
-                                <li class='ite".( empty($ico = isset($dat[6][$nv1][$nv2][$nv3][$nv4][$nv5]) ? $win_tog : '') ? ' sep' : '' )."'>
-                                  <div class='val tog'>
-                                    {$ico}<a href='#_{$ide}-'{$nav_ite}>"._doc::let("{$_nv5->nom}")."</a>
-                                  </div>";
-                                  if( !empty($ico) ){ $_ .= "
-                                    <ul class='lis dis-ocu'>";
-                                    foreach( $dat[6][$nv1][$nv2][$nv3][$nv4][$nv5] as $nv6 => $_nv6 ){
-                                      $ide = $opc_ide ? $_nv6->ide : "{$nv1}-{$nv2}-{$nv3}-{$nv4}-{$nv5}-{$nv6}"; $_ .= "
-                                      <li class='ite".( empty($ico = isset($dat[7][$nv1][$nv2][$nv3][$nv4][$nv5][$nv6]) ? $win_tog : '') ? ' sep' : '' )."'>
-                                        <div class='val t
-                                      og'>
-
-                                          {$ico}
-                                          <a href='#_{$ide}-'{$nav_ite}>"._doc::let("{$_nv6->nom}")."</a>
-                                        </div>";
-                                        if( !empty($ico) ){ 
-                                          $_ .= "";
-                                        }$_ .= "
-                                      </li>";
-                                    }$_ .= "
-                                    </ul>";
-                                  }$_ .= "
-                                </li>";
-                              }$_ .= "
-                              </ul>";
-                            }$_ .= "
-                          </li>";
-                        }$_ .= "
-                        </ul>";
-                      } $_ .= "
-                    </li>";
-                  }$_ .= "
-                  </ul>";
-                } $_ .= "
-              </li>";
-            }$_ .= "
-            </ul>";
-          } $_ .= "
-        </li>";
-      }$_.="
-      </ul>";
+        $ide = $opc_ide ? $_nv1->ide : $nv1;
+        $eti_1 = ['eti'=>"a", 'href'=>"#_{$ide}-", 'onclick'=>"{$_eje}val(this);", 'htm'=>_doc::let("{$_nv1->nom}") ];
+        if( !isset($dat[2][$nv1]) ){
+          $_lis []= _htm::val($eti_1);
+        }
+        else{
+          $_lis_2 = [];
+          foreach( $dat[2][$nv1] as $nv2 => $_nv2 ){
+            $ide = $opc_ide ? $_nv2->ide : "{$nv1}-{$nv2}"; 
+            $eti_2 = [ 'eti'=>"a", 'href'=>"#_{$ide}-", 'onclick'=>"{$_eje}val(this);", 'htm'=>_doc::let("{$_nv2->nom}") ];
+            if( !isset($dat[3][$nv1][$nv2])  ){
+              $_lis_2 []= _htm::val($eti_2);
+            }
+            else{
+              $_lis_3 = [];              
+              foreach( $dat[3][$nv1][$nv2] as $nv3 => $_nv3 ){
+                $ide = $opc_ide ? $_nv3->ide : "{$nv1}-{$nv2}-{$nv3}";
+                $eti_3 = [ 'eti'=>"a", 'href'=>"#_{$ide}-", 'onclick'=>"{$_eje}val(this);", 'htm'=>_doc::let("{$_nv3->nom}") ];
+                if( !isset($dat[4][$nv1][$nv2][$nv3]) ){
+                  $_lis_3 []= _htm::val($eti_3);
+                }
+                else{
+                  $_lis_4 = [];                  
+                  foreach( $dat[4][$nv1][$nv2][$nv3] as $nv4 => $_nv4 ){
+                    $ide = $opc_ide ? $_nv4->ide : "{$nv1}-{$nv2}-{$nv3}-{$nv4}"; 
+                    $eti_4 = [ 'eti'=>"a", 'href'=>"#_{$ide}-", 'onclick'=>"{$_eje}val(this);", 'htm'=>_doc::let("{$_nv4->nom}") ];
+                    if( !isset($dat[5][$nv1][$nv2][$nv3][$nv4]) ){
+                      $_lis_4 []= _htm::val($eti_4);
+                    }
+                    else{
+                      $_lis_5 = [];                      
+                      foreach( $dat[5][$nv1][$nv2][$nv3][$nv4] as $nv5 => $_nv5 ){
+                        $ide = $opc_ide ? $_nv5->ide : "{$nv1}-{$nv2}-{$nv3}-{$nv4}-{$nv5}"; 
+                        $eti_5 = [ 'eti'=>"a", 'href'=>"#_{$ide}-", 'onclick'=>"{$_eje}val(this);", 'htm'=>_doc::let("{$_nv5->nom}") ];
+                        if( !isset($dat[6][$nv1][$nv2][$nv3][$nv4][$nv5]) ){
+                          $_lis_5 []= _htm::val($eti_5);
+                        }
+                        else{
+                          $_lis_6 = [];
+                          foreach( $dat[6][$nv1][$nv2][$nv3][$nv4][$nv5] as $nv6 => $_nv6 ){
+                            $ide = $opc_ide ? $_nv6->ide : "{$nv1}-{$nv2}-{$nv3}-{$nv4}-{$nv5}-{$nv6}"; 
+                            $eti_6 = [ 'eti'=>"a", 'href'=>"#_{$ide}-", 'onclick'=>"{$_eje}val(this);", 'htm'=>_doc::let("{$_nv6->nom}") ];
+                            if( !isset($dat[7][$nv1][$nv2][$nv3][$nv4][$nv5][$nv6]) ){
+                              $_lis_6 []= _htm::val($eti_6);
+                            }
+                            else{
+                              $_lis_7 = [];
+                              // ... continuar ciclo
+                              $_lis_6 []= [ 'ite'=>$eti_6, 'lis'=>$_lis_7 ];                              
+                            }
+                          }
+                          $_lis_5 []= [ 'ite'=>$eti_5, 'lis'=>$_lis_6 ];
+                        }
+                      }
+                      $_lis_4 []= [ 'ite'=>$eti_4, 'lis'=>$_lis_5 ];
+                    }
+                  }
+                  $_lis_3 []= [ 'ite'=>$eti_3, 'lis'=>$_lis_4 ];
+                }
+              }
+              $_lis_2 []= [ 'ite'=>$eti_2, 'lis'=>$_lis_3 ];  
+            }
+          }
+          $_lis []= [ 'ite'=>$eti_1, 'lis'=>$_lis_2 ];
+        }
+      }
+      // pido listado
+      _ele::cla($ele['dep'],DIS_OCU);
+      $ele['opc'] = [];
+      $_ .= _doc_lis::val($_lis,$ele);
       return $_;
     }    
 

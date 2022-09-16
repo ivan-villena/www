@@ -617,6 +617,102 @@ Operadores-Botones : fieldset.ope > button + nav.ope > a + div.ope > span/button
   margin: .2rem 0;
 }
 
+
+/*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+/* 
+Navegador : listado / pestaña / barra
+*/
+
+/* 
+por listado
+*/
+ul.lis.nav {
+  font-size: .9rem;
+}
+ul.lis.nav li.ite.sep,
+ul.lis.nav li.ite:not(.sep) > div.val {
+  margin-top: .1rem;
+  margin-bottom: .1rem;
+  padding: .25rem;
+}
+ul.lis.nav li.ite.sep:hover,  
+ul.lis.nav li.ite:not(.sep) > div.val:hover {
+  background-color: var(--fon_foc);
+  border-radius: .25rem;
+}
+ul.lis.nav a {
+  text-decoration: none;
+  color: var(--let_tex);
+}
+
+/* 
+por contenido
+*/
+nav:is(.pes,.bar) {
+  display: flex;
+  align-items: center;
+  flex-flow: row nowrap;
+  margin: 0;
+  padding: 0;
+}
+nav:is(.pes,.bar) > a:not(.ico) {  
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 2;
+  margin: auto;
+  text-align: center;
+  font-size: medium;
+  color: var(--let_tex);
+}
+nav:is(.bar,.pes) > a:hover{
+  background-color: var(--fon_foc);  
+}
+
+/* Contenido */
+nav:is(.pes,.bar) + * {
+  overflow: auto;
+  padding: .5rem;
+  margin: 0 .5rem;
+}
+
+/* 
+barra horizontal 
+*/
+nav.bar {
+  justify-content: space-around;
+}
+nav.bar > a:not(.ico) {
+  padding: .5rem 1rem;
+  border-radius: .25rem;
+  font-style: italic;
+}
+
+/* 
+Pestañas 
+*/
+nav.pes {
+  margin: 0 .5rem;
+}
+nav.pes > a:not(.ico) {    
+  min-height: 3rem;
+  border-radius: 1rem 1rem 0 0;
+  text-decoration: none;  
+  font-style: normal;
+}
+nav.pes > a,
+nav.pes + * {
+  background-color: var(--fon_art);
+  border: 1px solid var(--bor_val);
+}
+nav.pes + * {  
+  border-radius: 0 0 .5rem .5rem;
+  border-top: 0;
+}
+
 /*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 /*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
@@ -911,76 +1007,3 @@ article > figure,
 article section > figure {
   margin: 1rem;
 }
-
-/*//////////////////////////////////////////////////////////////////////*/
-/*//////////////////////////////////////////////////////////////////////*/
-/* 
-Navegador : listado / pestaña / barra
-*/
-
-/* 
-por contenido
-*/
-nav:is(.pes,.bar) {
-  display: flex;
-  align-items: center;
-  flex-flow: row nowrap;
-  margin: 0;
-  padding: 0;
-}
-nav:is(.pes,.bar) > a:not(.ico) {  
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-items: center;
-  flex-grow: 2;
-  margin: auto;
-  text-align: center;
-  font-size: medium;
-  color: var(--let_tex);
-}
-nav:is(.bar,.pes) > a:hover{
-  background-color: var(--fon_foc);  
-}
-
-/* Contenido */
-nav:is(.pes,.bar) + * {
-  overflow: auto;
-  padding: .5rem;
-  margin: 0 .5rem;
-}
-
-/* 
-barra horizontal 
-*/
-nav.bar {
-  justify-content: space-around;
-}
-nav.bar > a:not(.ico) {
-  padding: .5rem 1rem;
-  border-radius: .25rem;
-  font-style: italic;
-}
-
-/* 
-Pestañas 
-*/
-nav.pes {
-  margin: 0 .5rem;
-}
-nav.pes > a:not(.ico) {    
-  min-height: 3rem;
-  border-radius: 1rem 1rem 0 0;
-  text-decoration: none;  
-  font-style: normal;
-}
-nav.pes > a,
-nav.pes + * {
-  background-color: var(--fon_art);
-  border: 1px solid var(--bor_val);
-}
-nav.pes + * {  
-  border-radius: 0 0 .5rem .5rem;
-  border-top: 0;
-}
-

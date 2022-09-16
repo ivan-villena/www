@@ -62,22 +62,6 @@ body > aside.nav > :is(nav,article)[ide] > header + * {
   padding: 0 .5rem;
 }
 
-/* listado de enlaces */
-body > aside.nav ul.lis {
-  font-size: .9rem;
-}
-body > aside.nav ul.lis a {
-  width: 100%;
-  margin: .1rem 0;
-  padding: .25rem;
-  text-decoration: none;
-  color: var(--let_tex);
-}
-body > aside.nav ul.lis a:hover{
-  background-color: var(--fon_foc);
-  border-radius: .25rem;  
-}
-
 /* 
   Seccion Principal
 */

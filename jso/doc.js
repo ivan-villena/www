@@ -499,68 +499,69 @@ class _doc_lis {
   // indice : enlaces del navegador
   static nav(){      
   }
-  // hago toogle por item
-  static nav_tog( $dat ){
-    let $={ ide : location.toString().split('#') };
+  // click en item
+  static nav_val( $dat, $cla = FON_SEL ){
 
-    if( $dat && $.ide[1] ){
+    let $ = { lis : _ele.ver($dat,{'eti':'ul'}) };
 
-      if( $.nav = _doc_lis.nav_mar($dat) ){
+    if( $.lis ){
+      // elimino marcas previas
+      $.lis.querySelectorAll(`:is( li.ite.sep, li.ite:not(.sep) > div.val ).${$cla}`).forEach( $e => $e.classList.remove($cla) );
 
-        // hago toogles ascendentes
-        while( 
-          ( $.lis = $.nav.parentElement.parentElement.parentElement ) 
-          && ( $.val = $.lis.previousElementSibling ) && ( $.val.nodeName == 'DIV' &&  $.val.classList.contains('val') )
-          && ( $.nav = $.val.querySelector('a[href^="#"]') )
-        ){
-          if( $.lis.classList.contains(DIS_OCU) && ( $.ico = $.nav.previousElementSibling ) && $.ico.classList.contains('ico') ){                
-            _doc_val.tog($.ico);
-          }                
-        }
+      // controlo el toggle automatico por dependencias
+      if( 
+        ( $.dep = $dat.parentElement.parentElement.querySelector('ul.lis') ) 
+        &&
+        ( $dat.classList.contains('ico') || $.dep.classList.contains(DIS_OCU) ) 
+      ){
+        _doc_val.tog($dat);
+      }
+
+      // pinto fondo
+      if( !( $.bot = $dat.parentElement.querySelector('.ico') ) || !$.bot.classList.contains('ocu') ){
+
+        $dat.parentElement.classList.add($cla);
       }
     }
   }
-  // click en item
-  static nav_val( $dat, $cla = FON_SEL ){
-    let $ = {
-      nav : _ele.ver($dat,{'eti':'nav'})
-    };
-    // elimino marcas previas
-    $.nav && $.nav.querySelectorAll(`.val.${$cla}`).forEach( $e => $e.classList.remove($cla) );
+  // hago toogle por item
+  static nav_tog( $lis ){
 
-    // controlo el toggle automatico por dependencias
-    if( 
-      ( $.dep = $dat.parentElement.parentElement.querySelector('ul.lis') ) 
-      &&
-      ( $dat.classList.contains('ico') || $.dep.classList.contains(DIS_OCU) ) 
-    ){
-      _doc_val.tog($dat);
+    let $={ nav : $lis ? _doc_lis.nav_mar($lis) : false };
+
+    if( $.nav ){
+
+      console.log($.nav);
+
+      // hago toogles ascendentes
+      while( 
+        ( $.lis = _ele.ver($.nav,{'eti':'ul'}) ) 
+        && 
+        ( $.val = $.lis.previousElementSibling ) && $.val.nodeName == 'DIV' &&  $.val.classList.contains('val')
+        && 
+        ( $.nav = $.val.querySelector('a[href^="#"]') )
+      ){
+        if( $.lis.classList.contains(DIS_OCU) && ( $.ico = $.nav.previousElementSibling ) && $.ico.classList.contains('ico') ){                
+          _doc_val.tog($.ico);
+        }                
+      }
     }
-
-    // pinto fondo
-    if( !( $.bot = $dat.parentElement.querySelector('.ico') ) || !$.bot.classList.contains('ocu') ){
-
-      $dat.parentElement.classList.add($cla);
-    }
-
   }
   // marco valor seleccionado
-  static nav_mar( $dat ){
-    let $={
-      ide : location.toString().split('#')
-    };
+  static nav_mar( $lis ){
+
+    let $nav;
 
     // hago toogle por item
-    if( $.nav = $dat.querySelector(`a[href="#${$.ide[1]}"]`) ){
+    if( $_app.uri.val && ( $nav = $lis.querySelector(`a[href="#${$_app.uri.val}"]`) ) ){
         
-      _doc_lis.nav_val($.nav);
+      _doc_lis.nav_val($nav);
     }
 
-    return $.nav;
+    return $nav;
   }
   // ejecuto filtros
   static nav_ver( $dat, $ope = 'a[href]' ){
-    let $=_doc.var($dat);
 
     // ejecuto filtros
     _doc_lis.val_ver($dat, $ope);

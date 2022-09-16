@@ -856,7 +856,10 @@
     }
   }
 
-  // valores : dia + kin + psi + sin + umb
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  
+
+  // diario : dia + kin + psi + sin + umb
   class _hol_val {
 
     static string $IDE = "_hol_val-";
@@ -1094,6 +1097,186 @@
       return _doc_lis::val($_,$ope);
     }
   }
+
+  // usuario : ficha + tránsitos + firma galáctica
+  class _hol_usu {
+      
+    // ficha
+    static function fic( array $ope = [], ...$opc ) : string {
+      $_ = "";
+      global $_usu;      
+      $_fec = _api::_('fec',$_usu->fec);
+      $_kin = _hol::_('kin',$_usu->kin);
+      $_psi = _hol::_('psi',$_usu->psi);
+      // sumatoria : kin + psi
+      $sum = $_kin->ide + $_psi->tzo;
+
+      // nombre + fecha : kin + psi
+      $_ = "
+      <section class='inf ren esp-ara'>
+
+        <div>
+
+          <p class='let-tit let-3 mar_aba-1'>"._doc::let("$_usu->nom $_usu->ape")."</p>
+
+          <p>"._doc::let($_fec->val." ( $_usu->eda años )")."</p>
+
+        </div>        
+
+        <div class='val'>
+
+          "._doc::ima('hol','kin',$_kin,['class'=>"mar_hor-1"])."
+
+          <c class='sep'>+</c>
+
+          "._doc::ima('hol','psi',$_psi,['class'=>"mar_hor-1"])."
+
+          <c class='sep'>=></c>
+
+          "._doc::ima('hol','kin',$sum,['class'=>"mar_hor-1"])."
+
+        </div>
+
+      </section>";
+
+      // transitos diarios
+      $dat = _usu::cic_dat();
+      $_ .= "
+      <section>
+
+        "._hol_usu::cic_ani( $dat )."
+
+        "._hol_usu::cic_lun( $dat )."
+
+        "._hol_usu::cic_dia( $dat )."
+
+      </section>";
+
+      return $_;
+    }
+
+    // tránsitos
+    static function cic( array $ope = [], ...$opc ) : string {
+      $_ = "";
+      global $_usu;
+      foreach(['nav','lis','dep','opc'] as $eti ){ if( !isset($ope["$eti"]) ) $ope["$eti"] = []; }
+      $opc_des = !in_array('not-des',$opc);
+      // operador
+      $_ = "
+      <form>
+      </form>";
+      // listado
+      $_lis = [];
+      foreach( _dat::var('_api.usu_cic') as $_arm ){
+        $_lis_cic = [];
+        foreach( _dat::var("_api.usu_cic_ani",[ 'ver'=>"`usu` = '{$_usu->ide}' AND `arm` = $_arm->ide", 'ord'=>"`ide` ASC" ]) as $_cic ){
+          // ciclos lunares
+          $_lis_lun = [];
+          foreach( _dat::var("_api.usu_cic_lun",[ 'ver'=>"`usu` = '{$_usu->ide}' AND `ani` = $_cic->ide", 'ord'=>"`ide` ASC" ]) as $_lun ){                            
+            $_fec = _api::_('fec',$_lun->fec);
+            $_lun_ton = _hol::_('ton',$_lun->ide);
+            $_kin = _hol::_('kin',$_lun->kin);
+            $nav = "<a href='http://localhost/hol/tab/kin-tzo/sin=$_lun->sin' target='_blank' title='Ver en Tableros...'>"._doc::let($_lun->sin)."</a>";
+            if( $opc_des ){
+              $_lis_lun []= 
+              _doc::ima('hol','kin',$_kin,['class'=>"tam-6 mar_der-1"])."
+              <p>
+                "._doc::let(intval($_lun_ton->ide)."° ciclo, ").$nav._doc::let(" ( $_fec->val ). $_lun_ton->ond_nom: $_lun_ton->ond_man")."
+                <br>"._hol_des::kin('enc',$_kin)."
+              </p>";
+            }else{
+
+            }
+          }
+          // ciclo anual
+          $_fec = _api::_('fec',$_cic->fec);
+          $_cas = _hol::_('cas',$_cic->ide);
+          $_cas_ton = _hol::_('ton',$_cic->ton);
+          $_cas_arm = _hol::_('cas_arm',$_cic->arm);            
+          $_kin = _hol::_('kin',$_cic->kin);            
+          $_lis_cic []= [
+            'ite'=>[ 'eti'=>"div", 'class'=>"ite", 'htm'=> $opc_des ?
+              _doc::ima('hol','kin',$_kin,['class'=>"tam-6 mar_der-1"])."
+              <p title = '$_cas->des'>
+                "._doc::let("$_cic->eda año".( $_cic->eda != 1 ? 's' : '' ).", $_cic->sin ( $_fec->val ): $_cas_arm->nom $_cas_arm->col d{$_cas_arm->dir}: $_cas_arm->pod")."
+                <br>"._doc::let("$_cas_ton->ond_nom: $_cas_ton->ond_man")."
+                <br>"._hol_des::kin('enc',$_kin)."
+              </p>" 
+              : ""
+            ],
+            'lis'=>$_lis_lun
+          ];
+        }
+        $_lis []= [
+          'ite'=>$_arm->nom,
+          'lis'=>$_lis_cic
+        ];
+      }
+      // configuro listado
+      _ele::cla($ope['dep'],DIS_OCU);
+      $ope['opc'] = ['tog','ver','cue','tog_dep'];
+      $ope['lis-2']['class'] = "ite";
+      return _doc_lis::val($_lis,$ope);
+    }
+    static function cic_ani( array $dat, array $ele = [], ...$opc ) : string {
+      global $_usu;      
+      $_ani = $dat['ani'];
+      $_ani_arm = _hol::_('arm',$dat['ani']->arm);
+      $_ani_ton = _hol::_('ton',$dat['ani']->ton);
+      $_kin = _hol::_('kin',$_ani->kin);      
+      $_ = "
+      <h3>Tránsito Anual</h3>
+
+      "._hol_fic::kin('enc',$_kin)."
+
+      ";
+      return $_;
+    }
+    static function cic_lun( array $dat, array $ele = [], ...$opc ) : string {
+      global $_usu;
+      $_ = "
+      <h3>Tránsito Lunar</h3>
+
+      "._hol_fic::kin('enc',$dat['lun']->kin)."
+
+      ";
+      return $_;
+    }
+    static function cic_dia( array $dat, array $ele = [], ...$opc ) : string {
+      global $_usu;
+      $_dat = _hol::val( date('Y/m/d') );
+
+      $_ = "
+      <h3>Tránsito Diario</h3>
+
+      "._hol_fic::kin('enc',$dat['dia']->kin)."
+
+
+
+      ";
+      return $_;
+    }
+
+    // firma galáctica
+    static function val( array $ope = [], ...$opc ) : string {
+      $_ = "";
+      global $_usu;
+
+      return $_;
+    }
+
+    // relaciones
+    static function rel( array $ope = [], ...$opc ) : string {
+      $_ = "";
+      global $_usu;
+
+      return $_;
+    }
+
+  }
+  
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   // descripciones por atributo
   class _hol_des {

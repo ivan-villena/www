@@ -1361,7 +1361,7 @@
   // cuenta del usuario
   if( !empty($_usu->ide) ){
     $_['nav_fin']['usu'] = [ 'ico'=>"ses_usu", 'nom'=>"Ficha Personal",
-      'htm'=>_usu_hol::fic()
+      'htm'=>_hol_usu::fic()
     ];
   }
 

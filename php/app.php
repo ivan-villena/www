@@ -35,12 +35,12 @@
     public string $pie = "";
 
     // cargo aplicacion
-    function __construct(){
+    function __construct( string $esq ){
       
       global $_api, $_usu;
       
       // peticion url ( por defecto: holon )
-      $_uri = new _app_uri('hol');
+      $_uri = new _app_uri( $esq );
 
       // cargo directorios
       $_dir = $_uri->dir();
@@ -540,6 +540,9 @@
     }
   }
 
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
   // operadpr : botonera + menu + articulo + glosario
   class _app_ope {
 
@@ -587,7 +590,7 @@
 
     // menu principal : titulo + descripcion + listado > item = [icono] + enlace
     static function nav( string $esq, array $ele = [] ) : string {
-      foreach( ['ope','dep'] as $i ){ if( !isset($ele[$i]) ) $ele[$i] = []; }          
+      foreach( ['ope','lis','dep'] as $i ){ if( !isset($ele[$i]) ) $ele[$i] = []; }          
       // armo listado de enlaces
       $_lis = [];
       foreach( _dat::var("_api.doc_cab",[ 'ver'=>"`esq`='$esq'", 'ord'=>"`pos` ASC" ]) as $_cab ){
@@ -615,6 +618,7 @@
         ];
       }
       // reinicio opciones
+      _ele::cla($ele['lis'],"nav");
       _ele::cla($ele['dep'],DIS_OCU);
       $ele['opc'] = [ 'tog', 'ver', 'cue' ];
       return _doc_lis::val($_lis,$ele);
@@ -874,6 +878,9 @@
       return $_;
     }
   }
+
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   // datos : valores( nom + des + ima ) + seleccion( col + ima + tex + num + fec ) + opciones( esq + est + atr + val ) + imagen( ide + fic )
   class _app_dat {

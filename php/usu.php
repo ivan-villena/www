@@ -91,137 +91,30 @@
       }
       return $_;
     }
-  }
+    // calculo tránsito actual
+    static function cic_dat( string $fec = '' ) : array {
+      global $_usu;
 
-  // holon del sincronario
-  class _usu_hol {
-    
-    // ficha
-    static function fic( array $ope = [], ...$opc ) : string {
-      $_ = "";
-      global $_usu;      
-      $_fec = _api::_('fec',$_usu->fec);
-      $_kin = _hol::_('kin',$_usu->kin);
-      $_psi = _hol::_('psi',$_usu->psi);
+      // valido fecha
+      if( empty($fec) ) $fec = date( 'Y/m/d' );
 
-      $sum = $_kin->ide + $_psi->tzo;
+      // cargo holon por fecha
+      $_['hol'] = _hol::val( $fec );
 
-      $_ = "
-      <section class='inf ren esp-ara'>
+      // busco anillo actual
+      $_['ani'] = _dat::var("_api.usu_cic_ani",[ 
+        'ver'=>"`usu` = '{$_usu->ide}' AND `fec` <= '"._fec::var( $_['hol']['fec'] )."'", 'ord'=>"`ide` DESC", 'lim'=>1, 'opc'=>"uni"
+      ]);
 
-        <div>
+      // busco transito lunar
+      $_['lun'] = _dat::var("_api.usu_cic_lun",[ 
+        'ver'=>"`usu` = '{$_usu->ide}' AND `ani` = {$_['ani']->ide} AND `fec` <= '"._fec::var( $_['hol']['fec'] )."'", 'ord'=>"`ani`, `ide` DESC", 'lim'=>1, 'opc'=>"uni" 
+      ]);
 
-          <p class='let-tit let-3 mar_aba-1'>"._doc::let("$_usu->nom $_usu->ape")."</p>
-
-          <p>"._doc::let($_fec->val." ( $_usu->eda años )")."</p>
-
-        </div>        
-
-        <div class='val'>
-
-          "._doc::ima('hol','kin',$_kin,['class'=>"mar_hor-1"])."
-
-          <c class='sep'>+</c>
-
-          "._doc::ima('hol','psi',$_psi,['class'=>"mar_hor-1"])."
-
-        </div>
-
-      </section>
-      
-      <section>
-
-        <p>Tránsito Anual</p>
-
-        <p>Tránsito Lunar</p>
-
-        <p>Tránsito Diario</p>
-
-      </section>
-      ";
+      // calculo diario
+      $_['dia'] = new stdClass;
+      $_['dia']->kin = _hol::_('kin', intval($_['hol']['kin']) + intval($_usu->kin) );
 
       return $_;
     }
-
-    // tránsitos
-    static function cic( array $ope = [], ...$opc ) : string {
-      $_ = "";
-      global $_usu;
-      foreach(['nav','lis','dep','opc'] as $eti ){ if( !isset($ope["$eti"]) ) $ope["$eti"] = []; }
-      $opc = isset($ope['opc']) ? $ope['opc'] : $opc;
-      $opc_des = !in_array('not-des',$opc);
-      // operador
-      $_ = "
-      <form>
-      </form>";
-      // listado
-      $_lis = [];
-      foreach( _dat::var('_api.usu_cic') as $_arm ){
-        $_lis_cic = [];
-        foreach( _dat::var("_api.usu_cic_ani",[ 'ver'=>"`usu` = '{$_usu->ide}' AND `arm` = $_arm->ide", 'ord'=>"`ide` ASC" ]) as $_cic ){
-          // ciclos lunares
-          $_lis_lun = [];
-          foreach( _dat::var("_api.usu_cic_lun",[ 'ver'=>"`usu` = '{$_usu->ide}' AND `ani` = $_cic->ide", 'ord'=>"`ide` ASC" ]) as $_lun ){                            
-            $_fec = _api::_('fec',$_lun->fec);
-            $_lun_ton = _hol::_('ton',$_lun->ide);
-            $_kin = _hol::_('kin',$_lun->kin);
-            $nav = "<a href='http://localhost/hol/tab/kin-tzo/sin=$_lun->sin' target='_blank' title='Ver en Tableros...'>"._doc::let($_lun->sin)."</a>";
-            if( $opc_des ){
-              $_lis_lun []= 
-              _doc::ima('hol','kin',$_kin,['class'=>"tam-6 mar_der-1"])."
-              <p>
-                "._doc::let(intval($_lun_ton->ide)."° ciclo, ").$nav._doc::let(" ( $_fec->val ). $_lun_ton->ond_nom: $_lun_ton->ond_man")."
-                <br>"._hol_des::kin('enc',$_kin)."
-              </p>";
-            }else{
-
-            }
-          }
-          // ciclo anual
-          $_fec = _api::_('fec',$_cic->fec);
-          $_cas = _hol::_('cas',$_cic->ide);
-          $_cas_ton = _hol::_('ton',$_cic->ton);
-          $_cas_arm = _hol::_('cas_arm',$_cic->arm);            
-          $_kin = _hol::_('kin',$_cic->kin);            
-          $_lis_cic []= [
-            'ite'=>[ 'eti'=>"div", 'class'=>"ite", 'htm'=> $opc_des ?
-              _doc::ima('hol','kin',$_kin,['class'=>"tam-6 mar_der-1"])."
-              <p title = '$_cas->des'>
-                "._doc::let("$_cic->eda año".( $_cic->eda != 1 ? 's' : '' ).", $_cic->sin ( $_fec->val ): $_cas_arm->nom $_cas_arm->col d{$_cas_arm->dir}: $_cas_arm->pod")."
-                <br>"._doc::let("$_cas_ton->ond_nom: $_cas_ton->ond_man")."
-                <br>"._hol_des::kin('enc',$_kin)."
-              </p>" 
-              : ""
-            ],
-            'lis'=>$_lis_lun
-          ];
-        }
-        $_lis []= [
-          'ite'=>$_arm->nom,
-          'lis'=>$_lis_cic
-        ];
-      }
-      // configuro listado
-      _ele::cla($ope['dep'],DIS_OCU);
-      array_push($ope['opc'],'tog','ver','cue','tog_dep');
-      $ope['lis-2']['class'] = "ite";
-      return _doc_lis::val($_lis,$ope);
-    }    
-
-    // firma galáctica
-    static function val( array $ope = [], ...$opc ) : string {
-      $_ = "";
-      global $_usu;
-
-      return $_;
-    }
-
-    // relaciones
-    static function rel( array $ope = [], ...$opc ) : string {
-      $_ = "";
-      global $_usu;
-
-      return $_;
-    }
-
   }

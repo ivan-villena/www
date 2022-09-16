@@ -16,7 +16,3 @@ class _usu {
   }
 
 }
-
-class _usu_hol {  
-  
-}
