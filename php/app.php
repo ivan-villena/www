@@ -155,15 +155,10 @@
         }
 
         // pido datos
-        $this->dat = [        
-          // iconos y caracteres
-          '_ico',
-          '_let',
-          // tipos de variable
-          '_var_tip',
-          // valores: nombre + descripcion + imagen
-          '_dat_val'
-        ];
+        $this->dat = [];      
+        foreach( ['ico','let','var_tip','dat_val'] as $ide ){
+          $this->dat[$ide] = _api::_($ide);
+        }
 
         // cargo por esquemas
         foreach( $_api_dat as $esq => $est ){
@@ -171,7 +166,7 @@
           if( empty($est) ) $est = [];
 
           foreach( _lis::ite($est) as $ide ){
-            $this->dat []= "_{$esq}_{$ide}";
+            $this->dat[$ide = "{$esq}_{$ide}"] = _api::_($ide);
           }     
         }
       }
