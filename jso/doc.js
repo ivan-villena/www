@@ -34,7 +34,7 @@ class _doc {
   // iconos
   static ico( $ide, $ele={} ){
     let $_="", $={
-      '_ico':$_api._('ico')
+      '_ico':_api._('ico')
     };
     if( !!($._ico[$ide]) ){
       $ele['eti'] = !!($ele['eti']) ? $ele['eti'] : 'span';
@@ -54,7 +54,7 @@ class _doc {
   // letras : c - n
   static let( $dat, $ele={} ){
 
-    let $_="", $pal, $_pal=[], $let=[], $_let = $_api._('let'), $num = 0;
+    let $_="", $pal, $_pal=[], $let=[], $_let = _api._('let'), $num = 0;
     
     if( $dat !== null && $dat !== undefined && $dat !== NaN ){      
 
@@ -206,10 +206,6 @@ class _doc {
       });
     }      
   }
-}
-
-// contenido
-class _doc_ope {
 
   // visibilidad de bloques
   static tog( $dat, $ope ){
@@ -249,8 +245,7 @@ class _doc_ope {
 
   // filtros : texto
   static ver(){    
-  }
-
+  }  
 }
 
 // Lista
@@ -419,7 +414,7 @@ class _doc_lis {
       // actualizo toggle
       if( $.tog[1] && ( $.ico = $_app.var.querySelector(`.ico[ide="ope_${$.tog[1]}"]`) ) ){
         
-        _doc_ope.tog($.ico,$.tog[1]);
+        _doc.tog($.ico,$.tog[1]);
       }            
       
       // actualizo total
@@ -452,7 +447,7 @@ class _doc_lis {
         &&
         ( $dat.classList.contains('ico') || $.dep.classList.contains(DIS_OCU) ) 
       ){
-        _doc_ope.tog($dat);
+        _doc.tog($dat);
       }
 
       // pinto fondo
@@ -477,7 +472,7 @@ class _doc_lis {
         ( $.nav = $.val.querySelector('a[href^="#"]') )
       ){
         if( $.lis.classList.contains(DIS_OCU) && ( $.ico = $.nav.previousElementSibling ) && $.ico.classList.contains('ico') ){                
-          _doc_ope.tog($.ico);
+          _doc.tog($.ico);
         }                
       }
     }
@@ -588,7 +583,7 @@ class _doc_dat {
     $ = _dat.ide($dat,$);
     $ope = _dat.var($.esq,$.est,$ope);
 
-    if( ($.dat_val = $_api._dat_val[$.esq][$.est]) && typeof($ope)=='object' ){
+    if( ($.dat_val = $_api.dat_val[$.esq][$.est]) && typeof($ope)=='object' ){
 
       if( $tip == 'tit' ){
         $_ = _obj.val($ope,$.dat_val.nom) + ( $.dat_val.des ? "\n"+_obj.val($ope,$.dat_val.des) : '' );

@@ -6,7 +6,9 @@ class _hol {
 
   // getter
   static _( $ide, $val ){
-    let $_=[], $est = `_hol_${$ide}`;
+    let 
+      $_ = [], 
+      $est = `hol_${$ide}`;
     
     if( $_api[$est] === undefined ){
       // pido datos

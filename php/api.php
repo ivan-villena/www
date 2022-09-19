@@ -7,62 +7,49 @@
   // Interfaces del sistema 
   class _api {
 
+    // documento
+    public array
+      $ico = [],
+      $let = [],
+      $var = [], 
+      $var_tip = [], // tipos
+      $var_dat = [], // tipos de dato
+      $var_val = [], // tipos de valor
+      $var_ope = [], // tipos de operaciones
+      $val_opc = [], // opciones por operadores
+      $var_ide = []  // identificadores de controladores
+    ;
     // Interfaces
     public array
-      // contenido
-        $_ico = [],
-        $_let = [],
-
-      // variables
-        $_var = [], 
-        $_var_tip = [], // tipos
-        $_var_dat = [], // tipos de dato
-        $_var_val = [], // tipos de valor
-        $_var_ope = [], // tipos de operaciones
-        $_val_opc = [], // opciones por operadores
-        $_var_ide = [], // identificadores de controladores
-        
       // numeros
-        $_num = [],
-        $_num_int = [],
-
+      $num = [],
       // fechas
-        $_fec = [],
-        $_fec_año = [],
-        $_fec_mes = [],
-        $_fec_sem = [],
-        $_fec_dia = [],
-        $_fec_hor = [],
-        $_fec_min = [],
-        $_fec_seg = [],
-
+      $fec = [],
       // holon
-        $_hol = []
+      $hol = []
     ;
     // Aplicacion
     public array
       // datos
-      $_dat = [],
-      $_dat_atr = [], // atributos de la base
-      $_dat_est = [], // estructuras de la base            
-
+      $dat = [],
+      $dat_atr = [], // atributos de la base
+      $dat_est = [], // estructuras de la base
       // tablas : valor por esquemas.estructrua/s
-      $_est = [], 
-
+      $est = [],
       // tableros : estructura con valores por esquemas.estructrua/s
-      $_tab = []    
+      $tab = []    
     ;
 
     function __construct(){
       
       // documento : iconos + letras
-      $this->_ico = _dat::var('_api.ico', [ 'niv'=>['ide'] ]);
-      $this->_let = _dat::var('_api.let', [ 'niv'=>['ide'] ]);
+      $this->ico = _dat::var('_api.ico', [ 'niv'=>['ide'] ]);
+      $this->let = _dat::var('_api.let', [ 'niv'=>['ide'] ]);
 
       // variable: tipos + operaciones
-      $this->_var_tip = _dat::var('_api.var_tip', [ 'niv'=>['ide'], 'ele'=>['ope'] ]);
-      $this->_var_ope = _dat::var('_api.var_ope', [ 'niv'=>['ide'] ]);
-
+      $this->var_tip = _dat::var('_api.var_tip', [ 'niv'=>['ide'], 'ele'=>['ope'] ]);
+      $this->var_ope = _dat::var('_api.var_ope', [ 'niv'=>['ide'] ]);
+      
       // fechas : mes + semana + dias
       foreach( ['mes','sem','dia'] as $ide ){
 
@@ -72,17 +59,16 @@
 
     // get : estructura-objetos
     static function _( string $ide, $val = NULL ) : string | array | object {
-      
       global $_api;
-
       $_ = [];
 
-      // aseguro carga
-      $est = "_$ide";
-      if( !isset($_api->$est) ) $_api->$est = _dat::ini('api',$ide);
+      // aseguro carga      
+      if( !isset($_api->$ide) ){
+        $_api->$ide = _dat::ini('api',$ide);
+      }
       
       // cargo datos
-      $_dat = $_api->$est;
+      $_dat = $_api->$ide;
       
       if( !empty($val) ){
         $_ = $val;
@@ -411,8 +397,7 @@
         }
       }
       elseif( $ope == 'ver' ){
-        global $_api;
-        $_var = $_api->_var_tip;
+        $_var = _api::_('var_tip');
         $pos = 0;    
         // si existe una vista, veo esas columnas...
         foreach( $dat_lis as $i => $atr ){
@@ -739,32 +724,17 @@
       // objeto->propiedad 
       if( is_string($ope) ){
 
-        $_ = new stdClass;
-
-        global 
-          $_api, $_hol, $_usu
-        ;
-        $var_lis = get_defined_vars();
-
         $esq = $dat;
         $est = $ope;
 
         $_ = isset($val) ? $val : new stdClass;
         
         if( !isset($val) || !_obj::tip($val) ){
+          
+          if( class_exists($_cla = "_$esq") ){
 
-          if( empty($var_lis["_{$esq}"]) ){
-            $var_lis["_{$esq}"] = _ele::cla("_{$esq}");
-          }
+            if(  method_exists($_cla,'_') ) $_ = !isset($val) ? $_cla::_($est) : $_cla::_($est,$val);
 
-          if( !empty($var_lis["_{$esq}"]) ){
-
-            $obj = $var_lis["_{$esq}"];
-
-            if( is_object($obj) && method_exists($obj,'_') ){
-
-              $_ = !isset($val) ? $obj->_($est) : $obj->_($est,$val);
-            }
           }
           elseif( function_exists($_fun = "_{$est}_dat") ){
 
@@ -798,26 +768,7 @@
           _est::ope($_,$ope);
       }
       return $_;
-    }
-
-    // proceso abm : alta , modificacion y baja de registro-objeto
-    static function abm( string $esq, string $est, string $tip, object $dat ) : string {
-      $_="";
-      $_sql = [];
-      if( $esq=='usu' ){
-        $_usu = new _usu();
-        $_sql = $_usu->dat($est,$tip,$dat);
-      }
-      // ejecuto transacciones    
-      $var_eve = [];
-      foreach( $_sql as $est=>$ope ){ 
-        $eje []= _val_dat( $tip, $est, $ope) ; 
-      }
-      if( !empty($eje) ){
-        $_ = _sql::dec( ...$eje );
-      }
-      return $_;
-    }
+    }    
 
     // identificadores
     static function ide( $dat, array $ope=[] ) : array {
@@ -896,7 +847,6 @@
       return $_;
     }// cuento columnas totales
     static function est_atr( string | array $dat, array $ope=[] ) : int {
-      global $_api;
       $_ = 0;
       if( isset($ope['atr']) ){
         
@@ -1034,6 +984,23 @@
         $_ = [];
       }
       return $_;
+    }// proceso abm : alta , modificacion y baja de registro-objeto
+    static function val_ope( string $esq, string $est, string $tip, object $dat ) : string {
+      $_="";
+      $_sql = [];
+      if( $esq=='usu' ){
+        $_usu = new _usu();
+        $_sql = $_usu->dat($est,$tip,$dat);
+      }
+      // ejecuto transacciones    
+      $var_eve = [];
+      foreach( $_sql as $est=>$ope ){ 
+        $eje []= _val_dat( $tip, $est, $ope) ; 
+      }
+      if( !empty($eje) ){
+        $_ = _sql::dec( ...$eje );
+      }
+      return $_;
     }
   }
 
@@ -1044,83 +1011,83 @@
     static function tip( mixed $val ) : bool | object {
       $_ = FALSE;
       $ide = strtolower(gettype($val));    
+      // vacios
       if( is_null($val) ){
         $ide = "null";
-      }// logicos
+      }
+      // logicos
       elseif( is_bool($val) ){
         $val = "bool";
-      }// funciones
+      }
+      // funciones
       elseif( is_callable($val) ){ 
-        $ide="function"; 
-      }// listados
-      elseif( is_array($val) ){
-        if( array_keys($val) !== range( 0, count( array_values($val) ) - 1 ) ){ 
-          $ide="asoc"; 
-        }elseif( count($val)>1 ){ 
-          $val=[]; $a['d']=[];
-          foreach( $val as $i=>$v ){ 
-            if(isset($val[$i-1])){ 
-              $a['d'][$v-$val[$i-1]] = $v-$val[$i-1]; 
-            } 
-            array_push($val, is_numeric($v) ? TRUE : FALSE );
-          }
-          if( !in_array(FALSE,$val) && count($a['d'])==1 ){ 
-            $ide = 'range'; 
-          }
-        }
-      }// numericos
+        $ide = "function"; 
+      }
+      // listados
+      elseif( is_array($val) && array_keys($val) !== range( 0, count( array_values($val) ) - 1 ) ){
+        $ide = "asoc"; 
+      }
+      // numericos
       elseif( is_numeric($val) ){ 
         $ide="int";      
-        if( is_nan($val) ){ $ide = "nan";
+        if( is_nan($val) ){ 
+          $ide = "nan";
         }// evaluar largos
         else{
           if( is_integer($val) || is_long($val) ){          
-            $ide="integer";
-            if(      $val >= -128 && $val <= 127 ){ 
-              $ide="tinyint";
+            $ide = "integer";
+            if( $val >= -128 && $val <= 127 ){ 
+              $ide = "tinyint";
             }elseif( $val >= -32768 && $val <= 32767 ){ 
-              $ide="smallint";
+              $ide = "smallint";
             }elseif( $val >= -8388608 && $val <= 8388607 ){ 
-              $ide="mediumint";
+              $ide = "mediumint";
             }elseif( $val >= -2147483648 && $val <= 2147483647 ){ 
-              $ide="int";
+              $ide = "int";
             }elseif( $val >= -92233720368547 && $val <= 92233720368547 ){ 
-              $ide="bigint";
+              $ide = "bigint";
             }else{
-              $ide="long";
+              $ide = "long";
             }
           }else{
             $ide="decimal";
-            if( is_double($val) ){ $ide="double";
-            }elseif( is_float($val) ){ $ide="float";
+            if( is_double($val) ){ 
+              $ide = "double";
+            }
+            elseif( is_float($val) ){ 
+              $ide = "float";
             }
           }
         }
-      }// textos
+      }
+      // textos
       elseif( is_string($val) ){
-        $tam=strlen($val);
-        $ide="varchar";
+        $tam = strlen($val);
+        $ide = "varchar";
         if( $tam <= 50 ){
-          if( preg_match("/^#[a-zA-Z0-9]{6}$/",$val) || preg_match("/^rgb\(/",$val) ){ 
-            $ide="color";
-          }elseif( preg_match("/^(\d{4})(\/|-)(0[1-9]|1[0-2])\2([0-2][0-9]|3[0-1])(\s)([0-1][0-9]|2[0-3])(:)([0-5][0-9])(:)([0-5][0-9])$/",$val) ){ 
-            $ide="datetime";
+          if( preg_match("/^(\d{4})(\/|-)(0[1-9]|1[0-2])\2([0-2][0-9]|3[0-1])(\s)([0-1][0-9]|2[0-3])(:)([0-5][0-9])(:)([0-5][0-9])$/",$val) ){ 
+            $ide = "datetime";
           }elseif( preg_match("/^\d{4}([\-\/\.])(0?[1-9]|1[1-2])\1(3[01]|[12][0-9]|0?[1-9])$/",$val) ){ 
-            $ide="date";              
+            $ide = "date";              
           }elseif( preg_match("/^([01]?[0-9]|2[0-3]):[0-5][0-9](:[0-5][0-9])?$/",$val) ){ 
-            $ide="time";                  
+            $ide = "time";                  
           }
-        }elseif( $tam <= 255 && $tam >= 100 ){
-          $ide="tinytext";
-        }elseif( $tam <= 65535 ){
-          $ide="text";
-        }elseif( $tam <= 16777215 ){
-          $ide="mediumtext";
-        }elseif( $tam <= 4294967295 ){
-          $ide="longtext";
-        }else{ 
-          $ide="string";
-        }      
+        }
+        elseif( $tam <= 255 && $tam >= 100 ){
+          $ide = "tinytext";
+        }
+        elseif( $tam <= 65535 ){
+          $ide = "text";
+        }
+        elseif( $tam <= 16777215 ){
+          $ide = "mediumtext";
+        }
+        elseif( $tam <= 4294967295 ){
+          $ide = "longtext";
+        }
+        else{ 
+          $ide = "string";
+        }
       }
       
       if( !empty( $tip = _api::_('var_tip',$ide) ) ){
@@ -1128,6 +1095,7 @@
       }
       return $_;
     }
+
     // comparaciones de valores
     static function ver( $dat, string $ide, $val ) : bool {
       $_ = FALSE;
@@ -1153,6 +1121,7 @@
       }
       return $_;
     }
+
   }
 
   // listado : []
@@ -2526,16 +2495,17 @@
 
     // datos del objeto
     static function dat( int | float | string $ide, string $atr='' ) : object | string {
-      global $_api;
-      $_num_int = $_api->_('num_int');
+      $_num_int = _api::_('num_int');
+      
       // aseguro valor
       if( is_string($ide) ) $ide = _num::val($ide);
+      
       // busco datos
       $_ = isset($_num_int[$ide]) ? $_num_int[$ide] : new stdClass();
+      
       // devuelvo atributo
-      if( !empty($atr) ){
-        $_ = isset($_->$atr) ? $_->$atr : "";
-      }
+      if( !empty($atr) ) $_ = isset($_->$atr) ? $_->$atr : "";
+
       return $_;
     }
     // devuelvo valor con "0-" o numérico : int | float

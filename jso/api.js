@@ -20,6 +20,7 @@ class _api {
     }
   }
 
+  // getter
   static _( $ide, $dat ){
     let $_=[], $={};
 
@@ -32,17 +33,17 @@ class _api {
         // por posicion: 1-n
         else if( _num.tip($dat) ){
 
-          $_ = $_api[`_${$ide}`] && $_api[`_${$ide}`][$.cod = parseInt($dat)-1] !== undefined ? $_api[`_${$ide}`][$.cod] : {};
+          $_ = $_api[$ide] && $_api[$ide][$.cod = _num.val($dat)-1] !== undefined ? $_api[$ide][$.cod] : {};
         }
         // por identificador
         else{
-          $_ = $_api[`_${$ide}`] && $_api[`_${$ide}`][$dat] !== undefined ? $_api[`_${$ide}`][$dat] : {};
+          $_ = $_api[$ide] && $_api[$ide][$dat] !== undefined ? $_api[$ide][$dat] : {};
         }
         break;
       }
     }
     else{
-      $_ = $_api[`_${$ide}`] !== undefined ? $_api[`_${$ide}`] : [];
+      $_ = $_api[$ide] !== undefined ? $_api[$ide] : [];
     }
     return $_;
   }
@@ -245,7 +246,7 @@ class _dat {
   // valores : nombre, descripcion, titulo, imagen, color...
   static val( $esq, $est, $atr, $dat ) {
     let $={}, $_ = false;         
-    $._val = $_api._dat_val[$esq][$est];
+    $._val = $_api.dat_val[$esq][$est];
     if( !($atr) ){
 
       $_ = $._val;
@@ -365,8 +366,8 @@ class _val {
         $ide="longtext";
       }
     }// busco
-    if( !!$_api._var_tip[$ide] ){
-      $_ = $_api._var_tip[$ide];
+    if( !!$_api.var_tip[$ide] ){
+      $_ = $_api.var_tip[$ide];
     }
     return $_;
   }

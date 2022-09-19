@@ -82,9 +82,6 @@
       elseif( !empty($this->_esq->nom) ){
         $this->nom = $this->_esq->nom; 
       }
-      
-      // pido datos por aplicacion: calendario
-      $this->_dat = [ 'fec'=>['mes','sem','dia'] ];
 
       // botones : navegacion + pantalla
       $this->ope['ini'] = _doc::ico('ses',[ 'eti'=>"a", 'href'=>SYS_NAV."/{$_uri->esq}", 'title'=>"Inicio..." ]);
@@ -96,6 +93,9 @@
         $_ = [ 'sec'=>"", 'nav'=>[], 'nav_fin'=>[], 'win'=>[], 'win_fin'=>[] ];
 
         $ele = [ 'art'=>[] ];
+
+        // pido calendario
+        $_api_dat = [ 'fec'=>[ 'mes','sem','dia' ] ];
 
         require_once($rec);
 
@@ -164,17 +164,16 @@
           // valores: nombre + descripcion + imagen
           '_dat_val'
         ];
+
         // cargo por esquemas
-        if( !empty($_api_dat) ){
-          foreach( $_api_dat as $esq => $est ){
-            // cargo todas las estructuras de la base que empiecen por "_api.$esq"
-            if( empty($est) ) $est = [];
-  
-            foreach( _lis::ite($est) as $ide ){
-              $this->dat []= "_{$esq}_{$ide}";
-            }     
-          }
-        }     
+        foreach( $_api_dat as $esq => $est ){
+          // cargo todas las estructuras de la base que empiecen por "_api.$esq"
+          if( empty($est) ) $est = [];
+
+          foreach( _lis::ite($est) as $ide ){
+            $this->dat []= "_{$esq}_{$ide}";
+          }     
+        }
       }
     }
     
@@ -185,30 +184,30 @@
       // cargo estructuras de un esquema por operadores
       if( empty($ide) ){
 
-        if( !isset( $_api->_dat_est[$esq] ) ){
+        if( !isset( $_api->dat_est[$esq] ) ){
           
           foreach( _dat::var("_api.dat_est",[ 'ver'=>"`esq`='{$esq}'", 'niv'=>['ide'], 'obj'=>"ope", 'red'=>"ope" ]) as $est => $_ope ){
 
-            $_api->_dat_est[$esq][$est] = _sql::est("_{$esq}",'ver',$est,'uni');
+            $_api->dat_est[$esq][$est] = _sql::est("_{$esq}",'ver',$est,'uni');
 
-            $_api->_dat_est[$esq][$est]->ope = $_ope;
+            $_api->dat_est[$esq][$est]->ope = $_ope;
           }
         }
-        $_ = $_api->_dat_est[$esq];
+        $_ = $_api->dat_est[$esq];
       }
       else{
 
-        if( !isset($_api->_dat_est[$esq][$ide]) ){ 
+        if( !isset($_api->dat_est[$esq][$ide]) ){ 
 
-          if( is_object( $_api->_dat_est[$esq][$ide] = _sql::est("_{$esq}",'ver',$ide,'uni') ) ){
+          if( is_object( $_api->dat_est[$esq][$ide] = _sql::est("_{$esq}",'ver',$ide,'uni') ) ){
             // busco operadores
-            $_api->_dat_est[$esq][$ide]->ope = _dat::var("_api.dat_est",[
+            $_api->dat_est[$esq][$ide]->ope = _dat::var("_api.dat_est",[
               'ver'=>"`esq`='{$esq}' AND `ide`='{$ide}'", 'obj'=>"ope", 'red'=>"ope", 'opc'=>"uni"
             ]);
           }    
         }
         
-        $_ = $_api->_dat_est[$esq][$ide];        
+        $_ = $_api->dat_est[$esq][$ide];        
       }
       // devuelvo operador
       if( !empty($ope) ){
@@ -221,14 +220,14 @@
     static function dat_atr( string $esq, string $est, string | array $ide = NULL ) : bool | array | object {      
       global $_api;
 
-      if( !isset($_api->_dat_atr[$esq]) ) $_api->_dat_atr[$esq] = [];
+      if( !isset($_api->dat_atr[$esq]) ) $_api->dat_atr[$esq] = [];
 
-      if( !isset($_api->_dat_atr[$esq][$est]) ){
+      if( !isset($_api->dat_atr[$esq][$est]) ){
 
-        $_api->_dat_atr[$esq][$est] = !empty( _sql::est("_{$esq}",'lis',"_{$est}",'uni') ) ? _sql::atr("_{$esq}","_{$est}") : _sql::atr("_{$esq}",$est);
+        $_api->dat_atr[$esq][$est] = !empty( _sql::est("_{$esq}",'lis',"_{$est}",'uni') ) ? _sql::atr("_{$esq}","_{$est}") : _sql::atr("_{$esq}",$est);
         
         // cargo operadores del atributo
-        $_atr = &$_api->_dat_atr[$esq][$est];
+        $_atr = &$_api->dat_atr[$esq][$est];
         foreach( _dat::var("_api.dat_atr",['ver'=>"`esq`='{$esq}' AND `est`='{$est}'", 'ele'=>'var' ]) as $_api_atr ){
 
           if( !empty($_api_atr->var) && isset($_atr[$i = $_api_atr->ide]) ){
@@ -239,15 +238,15 @@
       }
       // todos
       if( empty($ide) ){
-        $_ = $_api->_dat_atr[$esq][$est];
+        $_ = $_api->dat_atr[$esq][$est];
       }// uno
       elseif( is_string($ide) ){
-        $_ = isset($_api->_dat_atr[$esq][$est][$ide]) ? $_api->_dat_atr[$esq][$est][$ide] : FALSE;
+        $_ = isset($_api->dat_atr[$esq][$est][$ide]) ? $_api->dat_atr[$esq][$est][$ide] : FALSE;
       }// muchos
       else{
         $_ = [];
         foreach( $ide as $atr ){
-          $_ []= isset($_api->_dat_atr[$esq][$est][$atr]) ? $_api->_dat_atr[$esq][$est][$atr] : FALSE;
+          $_ []= isset($_api->dat_atr[$esq][$est][$atr]) ? $_api->dat_atr[$esq][$est][$atr] : FALSE;
         }
       }
       return $_;
@@ -255,30 +254,30 @@
     static function dat_val( string $esq, string $est = NULL, string $ide = NULL ) : bool | array | object {      
       global $_api;
       
-      if( !isset($_api->_dat_val[$esq]) ) $_api->_dat_val[$esq] = [];
+      if( !isset($_api->dat_val[$esq]) ) $_api->dat_val[$esq] = [];
 
       if( empty($est) ){
         
-        $_ = $_api->_dat_val[$esq] = _dat::var("_api.dat_val",[ 
+        $_ = $_api->dat_val[$esq] = _dat::var("_api.dat_val",[ 
           'ver'=>"`esq`='{$esq}'", 'niv'=>["est"], 'obj'=>"ope", 'red'=>"ope" 
         ]);
       }
       else{
 
-        if( !isset($_api->_dat_val[$esq][$est]) ){
+        if( !isset($_api->dat_val[$esq][$est]) ){
 
-          $_api->_dat_val[$esq][$est] = _dat::var("_api.dat_val",[ 
+          $_api->dat_val[$esq][$est] = _dat::var("_api.dat_val",[ 
             'ver'=>"`esq`='{$esq}' AND `est`='{$est}'", 'obj'=>"ope", 'red'=>"ope", 'opc'=>"uni" 
           ]);
         }
 
         if( empty( $ide ) ){
         
-          $_ = $_api->_dat_val[$esq][$est];
+          $_ = $_api->dat_val[$esq][$est];
         }
-        elseif( isset($_api->_dat_val[$esq][$est]->$ide) ){
+        elseif( isset($_api->dat_val[$esq][$est]->$ide) ){
   
-          $_ = $_api->_dat_val[$esq][$est]->$ide;
+          $_ = $_api->dat_val[$esq][$est]->$ide;
         }
         else{
   
@@ -291,7 +290,7 @@
     // controladores de valores variables
     static function var( string $esq, string $dat='', string $val='', string $ide='' ) : array {
       global $_api;
-      $_var = &$_api->_var;
+      $_var = &$_api->var;
       $_ = [];
       
       if( empty($dat) ){
@@ -328,11 +327,11 @@
     static function var_ide( string $ope ) : string {
       global $_api;
 
-      if( !isset($_api->_ide[$ope]) ) $_api->_ide[$ope] = 0;
+      if( !isset($_api->var_ide[$ope]) ) $_api->var_ide[$ope] = 0;
 
-      $_api->_ide[$ope]++;
+      $_api->var_ide[$ope]++;
 
-      return $_api->_ide[$ope];
+      return $_api->var_ide[$ope];
 
     }// operaciones : ver, ...
     static function var_ope( string $tip, mixed $dat, mixed $ope = [], ...$opc ) : mixed {
@@ -341,14 +340,14 @@
       switch( $tip ){
       case 'opc':
               
-        if( !isset($_api->_var_ope_opc[$tip][$dat[0]][$dat[1]]) ){
+        if( !isset($_api->var_ope_opc[$tip][$dat[0]][$dat[1]]) ){
 
           $_dat = _dat::var( _api::_('var_ope'), [ 'ver'=>[ ['tip','==',$dat[0]], ['dat','==',$dat[1]] ]] );
     
-          $_api->_var_ope_opc[$tip][$dat[0]][$dat[1]] = _doc_opc::val( $_dat, $ope, ...$opc);
+          $_api->var_ope_opc[$tip][$dat[0]][$dat[1]] = _doc_opc::val( $_dat, $ope, ...$opc);
         }
     
-        $_ = $_api->_var_ope_opc[$tip][$dat[0]][$dat[1]];
+        $_ = $_api->var_ope_opc[$tip][$dat[0]][$dat[1]];
         
         break;
       }
@@ -376,7 +375,7 @@
             }                            
           }
         }
-        $_api->_dat []= $_;
+        $_api->dat []= $_;
       }
       return $_;
     }
@@ -385,18 +384,18 @@
     static function tab( string $esq, string $est, array $ele = NULL ) : array | object {
       global $_api;
 
-      if( !isset($_api->_tab[$esq][$est]) ){
-        $_api->_tab[$esq][$est] = _dat::var("_api.tab",[ 'ver'=>"`esq`='{$esq}' AND `est`='{$est}'", 'opc'=>'uni', 'ele'=>['ele','ope','opc'] ]);
+      if( !isset($_api->tab[$esq][$est]) ){
+        $_api->tab[$esq][$est] = _dat::var("_api.tab",[ 'ver'=>"`esq`='{$esq}' AND `est`='{$est}'", 'opc'=>'uni', 'ele'=>['ele','ope','opc'] ]);
       }
       // devuelvo tablero : ele + ope + opc
-      $_ = $_api->_tab[$esq][$est];
+      $_ = $_api->tab[$esq][$est];
 
       // combino elementos
       if( isset($ele) ){
         $_ = $ele;
-        if( !empty($_api->_tab[$esq][$est]->ele) ){
+        if( !empty($_api->tab[$esq][$est]->ele) ){
 
-          foreach( $_api->_tab[$esq][$est]->ele as $eti => $atr ){
+          foreach( $_api->tab[$esq][$est]->ele as $eti => $atr ){
             
             $_[$eti] = isset($_[$eti]) ? _ele::jun( $atr, $_[$eti] ) : $atr;
           }
@@ -409,7 +408,7 @@
     static function est( string $esq, string $est, array $ope = NULL ) : object {
       global $_api;
 
-      if( !isset($_api->_est[$esq][$est]) || isset($ope) ){
+      if( !isset($_api->est[$esq][$est]) || isset($ope) ){
 
         // combinado        
         $_est = _dat::var("_api.est",[ 'ver'=>"`esq`='{$esq}' AND `ide`='{$est}'", 'obj'=>'ope', 'red'=>'ope',  'opc'=>'uni' ]);
@@ -470,10 +469,10 @@
           }
         }
 
-        $_api->_est[$esq][$est] = $_est;
+        $_api->est[$esq][$est] = $_est;
       }
 
-      return $_api->_est[$esq][$est];
+      return $_api->est[$esq][$est];
     }
   }
 
@@ -645,7 +644,7 @@
               if( !empty($art->ope['tex']) ){
                 $_ .= "            
                 <div class='val nav'>
-                  "._doc_ope::tog_ico()."
+                  "._doc::tog_ico()."
                   {$art_url}
                 </div>
                 <div class='dat'>

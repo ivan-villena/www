@@ -10,18 +10,16 @@
     static function _( string $ide, mixed $val = NULL ) : string | array | object {
       $_ = [];
 
-      global $_api, $_hol;
+      global $_api;
       
-      $est = "_hol_$ide";
+      $est = "hol_$ide";
 
       // aseguro carga
       if( !isset($_api->$est) ) $_api->$est = _dat::ini('hol',$ide);
 
       // busco dato
-      if( !empty($val) ){
-        
+      if( !empty($val) ){        
         $_ = $val;
-        
         if( !is_object($val) ){
           switch( $ide ){
           case 'fec':
@@ -43,6 +41,7 @@
       }
       return $_;    
     }
+
     // consults sql
     static function dat( string $ide ) : string {
       $_ = "";
@@ -445,7 +444,7 @@
       // recorro el castillo anual
       for( $cic_año = 1 ; $cic_año <= 52; $cic_año++ ){
         
-        $_hol = _hol::val($val,'sin');
+        $_val = _hol::val($val,'sin');
 
         $_cas = _hol::_('cas',$cic_año);
         
@@ -456,9 +455,9 @@
         $_cic_año->arm = $_cas->arm;
         $_cic_año->ond = $_cas->ond;
         $_cic_año->ton = $_cas->ton;
-        $_cic_año->fec = $_hol['fec'];
-        $_cic_año->sin = $_hol['sin'];
-        $_cic_año->kin = $_hol['kin'];
+        $_cic_año->fec = $_val['fec'];
+        $_cic_año->sin = $_val['sin'];
+        $_cic_año->kin = $_val['kin'];
         // genero transitos lunares
         if( $ver_lun ){
           $_cic_año->lun = [];
@@ -467,14 +466,14 @@
   
           for( $cic_mes = 1 ; $cic_mes <= 13; $cic_mes++ ){
 
-            $_hol_lun = _hol::val($val_lun,'sin');
+            $_val_lun = _hol::val($val_lun,'sin');
   
             $_cic_lun = new stdClass;  
             $_cic_lun->ani = $cic_año;
             $_cic_lun->ide = $cic_mes;
-            $_cic_lun->fec = $_hol_lun['fec'];
-            $_cic_lun->sin = $_hol_lun['sin'];
-            $_cic_lun->kin = $_hol_lun['kin'];
+            $_cic_lun->fec = $_val_lun['fec'];
+            $_cic_lun->sin = $_val_lun['sin'];
+            $_cic_lun->kin = $_val_lun['kin'];
             
             $_cic_año->lun []= $_cic_lun;
             // incremento 1 luna
@@ -499,12 +498,8 @@
 
     // genero acumulados por valor principal
     static function val( string $est, array $dat, int $ini = 1, int $inc = 1, string $ope = '+' ) : array {
-      global $_hol;
-
       $_ = [];
-
       $cue = 0;
-
       // x 260 dias por kin 
       if( $est == 'kin' && isset($dat['kin']) && isset($dat['fec']) ){
 
@@ -535,7 +530,6 @@
         }      
 
       }
-
       return $_;
     }
 
@@ -582,7 +576,7 @@
 
     }// Seccion: onda encantada + castillo => fondos + pulsares + orbitales
     static function tab_sec( string $tip, array $ope=[], array $ele=[], ...$opc ) : string {
-      global $_hol; $esq = 'hol';
+      $esq = 'hol';
       $_ = "";
       $_tip = explode('_',$tip);
       $_tab = _app::tab('hol',$_tip[0])->ele;
@@ -650,7 +644,7 @@
       return $_;
     }// Posicion: datos + titulos + contenido[ ima, num, tex]
     static function tab_pos( string $est, int | string | object $val, array &$ope=[], array $ele=[], ...$opc ) : string {
-      global $_hol; $esq = 'hol';      
+      $esq = 'hol';      
       
       // recibo objeto o identificador
       $val_ide = $val;
@@ -862,7 +856,7 @@
 
             <fieldset class='val'>
 
-              "._doc_ope::tog_ope()."
+              "._doc::tog_ope()."
 
               "._doc::var('atr',['hol','kin','ide'],[ 'nom'=>"ver kin", 'ope'=>[ 'onchange'=>"{$_eje}this);" ] ])."
 
@@ -897,7 +891,7 @@
                 </section>
                 ";
               }$_ .= "
-              "._doc_ope::tog(['eti'=>'h3','id'=>"_04-0{$_cas->ide}-",'cas'=>$_cas->ide,'htm'=>"Castillo {$_cas->nom}"])."
+              "._doc::tog(['eti'=>'h3','id'=>"_04-0{$_cas->ide}-",'cas'=>$_cas->ide,'htm'=>"Castillo {$_cas->nom}"])."
               <section data-kin_nav_cas='{$_cas->ide}' class='pad_izq-3'>
                 <p cas='{$_cas->ide}'>"._doc::let("Corte {$_cas->cor}: {$_cas->fun}")."</p>
               ";
@@ -919,7 +913,7 @@
                 </section>";
               }
               $_ .= "
-              "._doc_ope::tog([
+              "._doc::tog([
                 'eti'=>'h4', 'id'=>"_04-0{$_cas->ide}-0{$ond}-", 'data-ond'=>$_ond->ide, 
                 'htm'=>_doc::let("Onda Encantada {$_ond->ide} {$_ond->nom}")
               ])."
@@ -932,7 +926,7 @@
               $_cel = _hol::_('kin_arm_cel',$_kin->arm_cel); $_ .= "
               </section>
 
-              "._doc_ope::tog([
+              "._doc::tog([
                 'eti'=>'h5','class'=>"tex_ali-izq",'id'=>"kin_arm_cel-{$_cel->ide}-",'data-cel'=>$_cel->ide,
                 'htm'=>"<b class='ide'>ARMÓNICA <n>{$_cel->ide}</n></b><c>:</c> {$_cel->nom}<br>"._doc::let(_tex::let_may($_cel->des))
               ])."
@@ -979,7 +973,7 @@
         $ele['opc'] = ['tog','ver'];
         $_ = "
   
-        "._doc_ope::tog(
+        "._doc::tog(
           [ 'eti'=>'h3', 'htm'=>_doc::let("Índice de las 13 Trayectorias y 65 células armónicas.") ], 
           [ 'ico'=>['class'=>"ocu"] ]
         )."

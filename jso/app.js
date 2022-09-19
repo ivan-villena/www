@@ -118,7 +118,11 @@ class _app_uri {
 
   constructor( $ = {} ){
 
-    $.ide = window.location.toLocaleString().split('//')[2].split('/');
+    $.uri = window.location.toLocaleString().split('//');
+
+    if( !$.uri[2] ) $.uri[2] = 'hol';
+
+    $.ide = $.uri[2].split('/');
 
     this.esq = $.ide[0];
 
@@ -130,7 +134,7 @@ class _app_uri {
 
       this.val = $.ide[3];
     }
-    else if( $.val = this.art.split('#')[1] ){
+    else if( this.art && ( $.val = this.art.split('#')[1] ) ){
 
       this.val = $.val;
     }
