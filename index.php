@@ -175,17 +175,12 @@
       if( file_exists( $rec = "jso/{$ide}.js" ) ){ echo "
         <script src='".SYS_NAV.$rec."'></script>";
       }
-    }// cargo datos operativos
-    $_api_dat = [];
-    foreach( $_app->dat() as $atr ){
-
-      if( isset($_api->{$atr}) ) $_api_dat[$atr] = $_api->{$atr};
     }
     ?>
     <script>
       
       // cargo datos de la interface
-      var $_api = new _api(<?= _obj::cod( $_api_dat ) ?>);
+      var $_api = new _api(<?= _obj::cod( $_app->dat ) ?>);
       
       // cargo aplicacion
       var $_app = new _app();

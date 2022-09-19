@@ -986,9 +986,11 @@
   // cargo datos en articulos de dato
   global $_hol;
   if( $_uri->cab == 'tab' ){
-    $this->_dat['hol'] = [];
+    $_api_dat = [
+      'hol' => []
+    ];
     foreach( $_hol as $i => $v ){
-      $this->_dat['hol'] []= $i;
+      $_api_dat['hol'] []= $i;
     }
   }
 

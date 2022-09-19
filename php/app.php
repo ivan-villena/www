@@ -18,9 +18,9 @@
     public string $eje = "";
     // titulo
     public string $nom = "{-_-}";
-    // datos
+    // datos de interface
+    public array $dat = [];
     
-
     // operador: botones
     public array $ope = [ 'ini'=>"", 'nav'=>"", 'nav_fin'=>"", 'win'=>"", 'win_fin'=>"" ];
     // menú de navegación
@@ -153,34 +153,32 @@
           if( !empty($this->pie) ) $_ver []= 'pie';
           $this->ele['body']['data-ver'] = implode(',',$_ver);
         }
+
+        // pido datos
+        $this->dat = [        
+          // iconos y caracteres
+          '_ico',
+          '_let',
+          // tipos de variable
+          '_var_tip',
+          // valores: nombre + descripcion + imagen
+          '_dat_val'
+        ];
+        // cargo por esquemas
+        if( !empty($_api_dat) ){
+          foreach( $_api_dat as $esq => $est ){
+            // cargo todas las estructuras de la base que empiecen por "_api.$esq"
+            if( empty($est) ) $est = [];
+  
+            foreach( _lis::ite($est) as $ide ){
+              $this->dat []= "_{$esq}_{$ide}";
+            }     
+          }
+        }     
       }
     }
-
-    // datos de la base
-    public function dat() : array {      
-      $_ = [
-        // iconos y caracteres
-        '_ico',
-        '_let',
-        // tipos de variable
-        '_var_tip',
-        // valores: nombre + descripcion + imagen
-        '_dat_val',
-      ];
-      // cargo por esquemas
-      if( !empty($this->_dat) ){
-        foreach( $this->_dat as $esq => $est ){
-          // cargo todas las estructuras de la base que empiecen por "_api.esq"
-          if( empty($est) ){
-            $est = [];
-          }
-          foreach( _lis::ite($est) as $ide ){            
-            $_ []= "_{$esq}_{$ide}";
-          }     
-        }
-      }
-      return $_;
-    }// estructuras
+    
+    // estructuras
     static function dat_est( string $esq, string $ide = NULL, string $ope = NULL ) : array | object {      
       global $_api;
       $_ = [];
@@ -355,7 +353,7 @@
         break;
       }
       return $_;
-    }    
+    }
 
     // cargo valores de un proceso : absoluto o con dependencias ( _api.dat->est ) 
     static function val( string | array $ope, mixed $dat = NULL ) : array {
