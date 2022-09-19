@@ -39,9 +39,9 @@ class _hol_app {
     // inicializo
     if( $_app.uri.cab == 'tab' ){
 
-      _app_tab.ini();
+      _doc_tab.ini();
 
-      _app_est.ini();
+      _doc_est.ini();
   
       $_app.tab.cla = ( $_app.tab.dep = $_app.tab.dat.querySelector('.pos > [tab="uni_par"]') ) ? '.pos > [tab="uni_par"] > [pos]' : '.pos';
 

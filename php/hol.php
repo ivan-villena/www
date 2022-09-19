@@ -44,7 +44,7 @@
       return $_;    
     }
     // consults sql
-    static function sql( string $ide ) : string {
+    static function dat( string $ide ) : string {
       $_ = "";
       switch( $ide ){
       case 'kin': 
@@ -141,7 +141,6 @@
       }
       return $_;
     }
-
     // sumo o resto dias de un fecha dada
     static function ope( string $tip, string $val, int $cue = 1, string $opc = 'dia' ) : string {
 
@@ -376,7 +375,6 @@
       }
       return $_;
     }
-
     // busco valores : fecha - sincronario - tránsitos
     static function val( mixed $val, string $tip = '', array $ope = [] ) : array | object | string {    
       $_=[];
@@ -438,48 +436,9 @@
         $_ = "{-_-} la Fecha {$val} no es Válida"; 
       }
       return $_;
-    }// genero acumulados por valor principal
-    static function val_acu( string $est, array $dat, int $ini = 1, int $inc = 1, string $ope = '+' ) : array {
-      global $_hol;
-
-      $_ = [];
-
-      $cue = 0;
-
-      // x 260 dias por kin 
-      if( $est == 'kin' && isset($dat['kin']) && isset($dat['fec']) ){
-
-        $cue = 260;
-
-        $fec = _fec::ope( $dat['fec'], intval( is_object($dat['kin']) ? $dat['kin']->ide : $dat['kin'] ) - 1, '-');
-      }
-      // x 364+1 dias por psi-cronos
-      elseif( $est == 'psi' && isset($dat['psi']) && isset($dat['fec']) ){
-
-        $cue = 364;
-
-        $fec = _fec::ope( $dat['fec'], intval( is_object($dat['psi']) ? $dat['psi']->ide : $dat['psi'] ) - 1, '-');
-      }
-
-      if( isset($fec) ){
-    
-        for( $pos = 0; $pos < $cue; $pos++ ){
-
-          $_dat = _hol::val($fec);
-
-          $_ []= _app::val([
-            'api'=>[ 'fec'=>_api::_('fec',$fec) ],
-            'hol'=>[ 'kin'=>_hol::_('kin',$_dat['kin']), 'psi'=>_hol::_('psi',$_dat['psi']) ]
-          ]);
-
-          $fec = _fec::ope($fec, $inc, $ope);
-        }      
-
-      }
-
-      return $_;
-    }// genero transitos por fecha del sincronario
-    static function val_cic( string $val, ...$opc ) : array {
+    }
+    // genero transitos por fecha del sincronario
+    static function cic( string $val, ...$opc ) : array {
       $_ = [];
       $ver_lun = !in_array('not-lun',$opc);
       
@@ -529,32 +488,55 @@
 
       return $_;
     }
+  }
 
-    // devuelvo listado por Atributo
-    static function lis( string | array $dat, string $ide, string $tip, array $ele = [] ) : string {
+  // aplicacion
+  class _hol_app {
 
-      $_ = $dat;
+    // inicio por menu : app.cab.art/val
+    static function ini(){
+    }
 
-      if( is_array($dat) ){
+    // genero acumulados por valor principal
+    static function val( string $est, array $dat, int $ini = 1, int $inc = 1, string $ope = '+' ) : array {
+      global $_hol;
 
-        $ele['lis']['est'] = $ide;
+      $_ = [];
 
-        _ele::cla($ele['lis'], "anc_max-fit mar-aut mar_ver-3");        
-        
-        $_ = _doc_lis::$tip($dat, $ele);
+      $cue = 0;
+
+      // x 260 dias por kin 
+      if( $est == 'kin' && isset($dat['kin']) && isset($dat['fec']) ){
+
+        $cue = 260;
+
+        $fec = _fec::ope( $dat['fec'], intval( is_object($dat['kin']) ? $dat['kin']->ide : $dat['kin'] ) - 1, '-');
+      }
+      // x 364+1 dias por psi-cronos
+      elseif( $est == 'psi' && isset($dat['psi']) && isset($dat['fec']) ){
+
+        $cue = 364;
+
+        $fec = _fec::ope( $dat['fec'], intval( is_object($dat['psi']) ? $dat['psi']->ide : $dat['psi'] ) - 1, '-');
+      }
+
+      if( isset($fec) ){
+    
+        for( $pos = 0; $pos < $cue; $pos++ ){
+
+          $_dat = _hol::val($fec);
+
+          $_ []= _app::val([
+            'api'=>[ 'fec'=>_api::_('fec',$fec) ],
+            'hol'=>[ 'kin'=>_hol::_('kin',$_dat['kin']), 'psi'=>_hol::_('psi',$_dat['psi']) ]
+          ]);
+
+          $fec = _fec::ope($fec, $inc, $ope);
+        }      
+
       }
 
       return $_;
-    }
-
-    // devuelvo Tabla por Estructura
-    static function est( string | array $dat, array $ope, array $ele = [], array $opc = ['htm','cab_ocu'] ) : string {
-
-      if( !isset($ele['tab']) ){ $ele['tab'] = []; }
-
-      if( !isset($ele['tab']['class']) ) _ele::cla($ele['tab'],"anc-100 mar-aut mar_aba-2");
-
-      return _app_est::lis($dat, $ope, $ele, ...$opc);
     }
 
     // inicializo Tablero
@@ -760,20 +742,20 @@
         }
         if( isset($e['hol-kin']) ){
           $_kin = _hol::_('kin',$e['hol-kin']);
-          $pos_tit []= _app_dat::val('ver',"{$esq}.kin",$_kin);
+          $pos_tit []= _doc_dat::val('ver',"{$esq}.kin",$_kin);
         }
         if( isset($e['hol-sel']) ){
-          $pos_tit []= _app_dat::val('ver',"{$esq}.sel",$e['hol-sel']);
+          $pos_tit []= _doc_dat::val('ver',"{$esq}.sel",$e['hol-sel']);
         }
         if( isset($e['hol-ton']) ){
-          $pos_tit []= _app_dat::val('ver',"{$esq}.ton",$e['hol-ton']);
+          $pos_tit []= _doc_dat::val('ver',"{$esq}.ton",$e['hol-ton']);
         }
         if( isset($e['hol-psi']) ){
           $_psi = _hol::_('psi',$e['hol-psi']);
-          $pos_tit []= _app_dat::val('ver',"{$esq}.psi",$_psi);
+          $pos_tit []= _doc_dat::val('ver',"{$esq}.psi",$_psi);
         }
         if( isset($e['hol-rad']) ){
-          $pos_tit []= _app_dat::val('ver',"{$esq}.rad",$e['hol-rad']);
+          $pos_tit []= _doc_dat::val('ver',"{$esq}.rad",$e['hol-rad']);
         }
         $e['title'] = implode("\n\n",$pos_tit);
 
@@ -829,7 +811,7 @@
 
             if( !empty($ope['pos'][$tip]) ){                        
               $ide = _dat::ide($ope['pos'][$tip]);
-              $htm .= _app_dat::ver($tip, $ope['pos'][$tip], $e["{$ide['esq']}-{$ide['est']}"], isset($ele[$tip]) ? $ele[$tip] : [] );
+              $htm .= _doc_dat::ver($tip, $ope['pos'][$tip], $e["{$ide['esq']}-{$ide['est']}"], isset($ele[$tip]) ? $ele[$tip] : [] );
             }
           }
         }
@@ -853,19 +835,284 @@
       <{$pos_eti}"._htm::atr($e).">
         {$htm}
       </{$pos_eti}>";
-    }
+    }    
+
   }
 
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  
 
-  // diario : dia + kin + psi + sin + umb
+  // libros
+  class _hol_bib { 
+
+    static string $IDE = "_hol_bib-";
+    static string $EJE = "_hol_bib.";
+
+    // encantamiento
+    static function enc( string $ide, array $ele = [] ) : string {      
+      $_ = []; $esq = "hol"; $est = str_replace('.','_',$ide); $lis_tip = "val"; $lis_pos = 0;
+      $_eje = self::$EJE."enc('$ide',";
+      switch( $ide ){
+      // encantamiento : libro del kin        
+      case 'kin':
+        $_ = "
+        <!-- libro del kin -->
+        <form class='inf' esq='$esq' est='$est'>
+
+          <div class = 'val'>
+
+            <fieldset class='val'>
+
+              "._doc_ope::tog_ope()."
+
+              "._doc::var('atr',['hol','kin','ide'],[ 'nom'=>"ver kin", 'ope'=>[ 'onchange'=>"{$_eje}this);" ] ])."
+
+            </fieldset>
+
+            <fieldset class='ope'>
+
+              "._doc::ico('nav_fin',[ 'eti'=>"button", 'title'=>"Ir al Kin...", 'onclick'=>"{$_eje}this,'nav');" ])."
+            
+            </fieldset>
+
+          </div>
+
+          <output class='hol-kin'></output>
+          
+        </form>
+                
+        <nav>";
+          $nav_cas = 0; $nav_ond = 0;
+          $arm_tra = 0; $arm_cel = 0;
+          $cro_est = 0; $cro_ele = 0;
+          $gen_enc = 0; $gen_cel = 0;
+          foreach( _hol::_('kin') as $_kin ){
+
+            // castillo
+            if( $_kin->nav_cas != $nav_cas ){
+              $nav_cas = $_kin->nav_cas;
+              $_cas = _hol::_('kin_nav_cas',$_kin->nav_cas); 
+              if( $nav_cas != 1 ){ $_ .= "
+                  </section>
+
+                </section>
+                ";
+              }$_ .= "
+              "._doc_ope::tog(['eti'=>'h3','id'=>"_04-0{$_cas->ide}-",'cas'=>$_cas->ide,'htm'=>"Castillo {$_cas->nom}"])."
+              <section data-kin_nav_cas='{$_cas->ide}' class='pad_izq-3'>
+                <p cas='{$_cas->ide}'>"._doc::let("Corte {$_cas->cor}: {$_cas->fun}")."</p>
+              ";
+            }
+            // génesis
+            if( $_kin->gen_enc != $gen_enc ){
+              $gen_enc = $_kin->gen_enc;
+              $_gen = _hol::_('kin_gen_enc',$_kin->gen_enc); $_ .= "
+              <p class='tit' data-gen='{$_gen->ide}'>GÉNESIS "._tex::let_may($_gen->nom)."</p>";
+            }
+            // onda encantada
+            if( $_kin->nav_ond != $nav_ond ){
+              $nav_ond = $_kin->nav_ond;
+              $_ond = _hol::_('kin_nav_ond',$_kin->nav_ond);
+              $_sel = _hol::_('sel',$_ond->sel); 
+              $ond = _num::ran($_ond->ide,4);
+
+              if( $nav_ond != 1 && $ond != 1 ){ $_ .= "
+                </section>";
+              }
+              $_ .= "
+              "._doc_ope::tog([
+                'eti'=>'h4', 'id'=>"_04-0{$_cas->ide}-0{$ond}-", 'data-ond'=>$_ond->ide, 
+                'htm'=>_doc::let("Onda Encantada {$_ond->ide} {$_ond->nom}")
+              ])."
+              <section data-kin_nav_ond='{$_ond->ide}'>
+                <p class='let-enf' ond='{$_ond->ide}'>Poder "._tex::art_del($_sel->pod)."</p>";
+            }
+            // célula armónica : titulo + lectura
+            if( $_kin->arm_cel != $arm_cel ){
+              $arm_cel = $_kin->arm_cel;
+              $_cel = _hol::_('kin_arm_cel',$_kin->arm_cel); $_ .= "
+              </section>
+
+              "._doc_ope::tog([
+                'eti'=>'h5','class'=>"tex_ali-izq",'id'=>"kin_arm_cel-{$_cel->ide}-",'data-cel'=>$_cel->ide,
+                'htm'=>"<b class='ide'>ARMÓNICA <n>{$_cel->ide}</n></b><c>:</c> {$_cel->nom}<br>"._doc::let(_tex::let_may($_cel->des))
+              ])."
+              <section data-kin_arm_cel='{$_cel->ide}'>
+              ";
+            }
+            // kin : ficha + nombre + encantamiento
+            $_ .= "
+            <div data-kin='{$_kin->ide}' id='kin-{$_kin->ide}'>
+              <div class='hol-kin'>
+                "._doc::ima('hol','kin',$_kin->ide,['class'=>'mar-aut'])."
+                <p>
+                  <b>KIN</b> <n>{$_kin->ide}</n><c>:</c> <c class='let_col-4-{$_kin->arm_cel_dia}'>"._doc::let(_tex::let_may($_kin->nom))."</c>
+                  <br><q>"._doc::let($_kin->des)."</q>                  
+                </p>
+              </div>
+            </div>";
+          }$_ .= "
+          </section>
+        </nav>";        
+        break;
+      // encantamiento : índice armónico de 13 trayectorias y 65 células
+      case 'kin.arm':
+        $arm_cel = 0;
+        $_lis = [];
+        if( !isset($ele['nav']) ) $ele['nav'] = [];
+  
+        foreach( _hol::_('kin_arm_tra') as $_tra ){
+    
+          $_lis_cel = [];
+          foreach( _hol::_('sel_arm_cel') as $_cel ){
+            $arm_cel++;
+            $_cel = _hol::_('kin_arm_cel',$arm_cel); $_lis_cel []= "
+            <a class='tex' href='#kin_arm_cel-{$_cel->ide}-'>
+              <n>{$_cel->ide}</n><c>.</c> <b class='ide'>{$_cel->nom}</b>"._doc::let(": {$_cel->des}")."
+            </a>";
+          }
+          $_lis []= [
+            'ite'=>"Trayectoria $_tra->ide: Tono $_tra->ton, $_tra->ton_des",
+            'lis'=>$_lis_cel
+          ];
+        }
+        _ele::cla( $ele['nav'], "dis-ocu" );
+        $ele['opc'] = ['tog','ver'];
+        $_ = "
+  
+        "._doc_ope::tog(
+          [ 'eti'=>'h3', 'htm'=>_doc::let("Índice de las 13 Trayectorias y 65 células armónicas.") ], 
+          [ 'ico'=>['class'=>"ocu"] ]
+        )."
+        
+        <nav"._htm::atr($ele['nav']).">
+  
+          "._doc_lis::val($_lis,$ele)."
+
+        </nav>";    
+        break;
+      
+      }
+      return is_array($_) ? _doc_dat::lis( $_, $est, $lis_tip, $ele ) : $_;
+    }
+    // telektonon
+    static function tel( string $ide, array $ele = [] ) : string {
+      $_ = []; $esq = "hol"; $est = str_replace('.','_',$ide); $lis_tip = "val"; $lis_pos = 0;
+      switch( $ide ){
+      // libros-cartas
+      case 'lib': 
+        $ide = isset($ele['ide']) ? $ele['ide'] : 4;
+        $_dat = [
+          4  => ['ide'=> 4, 'tit'=>"Libro de la Forma Cósmica" ],
+          7  => ['ide'=> 7, 'tit'=>"Libro de las Siete Generaciones Perdidas" ],
+          13 => ['ide'=>13, 'tit'=>"Libro del Tiempo Galáctico" ],
+          28 => ['ide'=>28, 'tit'=>"Libro Telepático para la Redención de los Planetas Perdidos" ]
+        ];
+        $_ = [];
+        for( $pos = 1; $pos <= intval($ide); $pos++ ){ $_ []= "
+          <figure class='mar-0'>
+            <div class='ite'>
+              <img src='".SYS_REC."hol/bib/tel/{$ide}/{$pos}-1.jpg' alt='Carta ' class='mar_der-1' style='width:24rem; height: 30rem;'>
+              <img src='".SYS_REC."hol/bib/tel/{$ide}/{$pos}-2.jpg' alt='Carta ' class='mar_izq-1' style='width:24rem; height: 30rem;'>              
+            </div>
+          </figure>";
+        }
+        $_ = _doc_lis::bar( $_, $ele);
+        break;
+      }
+      return is_array($_) ? _doc_dat::lis( $_, $est, $lis_tip, $ele ) : $_;
+    } 
+  }
+  // Informe por objeto : propiedades + tablas comparativas
+  class _hol_inf {
+    
+    static function kin( string $ide, mixed $dat, array $ope = [], array $ele = [], ...$opc ) : string {
+      $esq = "hol"; $est = "kin";
+      $dat = !is_object($dat) ? _hol::_($est,$dat) : $dat;
+      $_ = "";
+      switch( $ide ){
+      // parejas del oráculo => tablas comparativas : ( ...kin + ...sel + ...ton )
+      case 'par':
+        $_ = [];
+        if( isset($ope['atr']) && is_string($ope['atr']) ){
+          switch( $ope['atr'] ){
+          // Propiedades : palabras clave del kin + sello + tono
+          case 'pro':
+
+            $_par_atr = !empty($ope['par']) ? $ope['par'] : ['fun','acc','mis'];
+      
+            $_ton_atr = !empty($ope['ton']) ? $ope['ton'] : ['acc'];
+      
+            $_sel_atr = !empty($ope['sel']) ? $ope['sel'] : ['car','des'];
+      
+            foreach( _hol::_('sel_par') as $_par ){
+              
+              $_kin = $_par->ide == 'des' ? $dat : _hol::_('kin',$dat->{"par_{$_par->ide}"});
+      
+              $ite = [ _doc::ima('hol','kin',$_kin) ];
+      
+              foreach( $_par_atr as $atr ){ if( isset($_par->$atr) ) $ite []= _doc::let($_par->$atr); }
+      
+              $_ton = _hol::_('ton',$_kin->nav_ond_dia);
+              foreach( $_ton_atr as $atr ){ if( isset($_ton->$atr) ) $ite []= _doc::let($_ton->$atr); }
+      
+              $_sel = _hol::_('sel',$_kin->arm_tra_dia);            
+              foreach( $_sel_atr as $atr ){  if( isset($_sel->$atr) ) $ite []= _doc::let($_sel->$atr); }
+      
+              $_ []= $ite;
+            }
+            break;
+          // Ciclos : posiciones en ciclos del kin
+          case 'cic':
+            $_atr = [ 'ene', 'ene_cam', 'pag', 'cro_est', 'cro_ele', 'arm_tra', 'arm_cel', 'nav_cas', 'nav_ond' ];
+      
+            foreach( _hol::_('sel_par') as $_par ){
+              
+              $_kin = $_par->ide == 'des' ? $dat : _hol::_('kin',$dat->{"par_{$_par->ide}"});
+      
+              $ite = [ _doc::ima('hol','kin',$_kin) ];
+      
+              foreach( $_atr as $atr ){
+                $ite []= _doc::ima('hol',"kin_{$atr}",$_kin->$atr,[ 'class'=>"tam-5" ]);
+              }
+              
+              $_ []= $ite;
+            }
+            break;
+          // Grupos : sincronometría del holon por sellos
+          case 'gru':
+            $_atr = [ 'sol_pla', 'sol_cel', 'sol_cir', 'pla_hem', 'pla_mer', 'hum_cen', 'hum_ext', 'hum_mer' ];
+      
+            foreach( _hol::_('sel_par') as $_par ){
+              
+              $_kin = $_par->ide == 'des' ? $dat : _hol::_('kin',$dat->{"par_{$_par->ide}"});                            
+      
+              $_sel = _hol::_('sel',$_kin->arm_tra_dia);
+      
+              $ite = [ _doc::ima('hol','kin',$_kin), $_par->nom, $_sel->pod ];
+      
+              foreach( $_atr as $atr ){
+                $ite []= _doc::ima('hol',"sel_{$atr}",$_sel->$atr,[ 'class'=>"tam-5" ]);
+              }
+              
+              $_ []= $ite;
+            }
+            break;
+          }
+          $ope = [];
+        }
+        $_ = _doc_dat::est( $_, $ope, $ele, ...$opc );
+        break;
+      }
+      return $_;
+    }
+  }
+  // valores : dia + kin + psi + sin + umb
   class _hol_val {
 
     static string $IDE = "_hol_val-";
     static string $EJE = "_hol_val.";
 
-    // valor diario : fecha + ns
+    // diario : fecha + ns
     static function dia( array $dat ) : string {
       $_ide = self::$IDE."dia";
       $_eje = self::$EJE."dia";
@@ -898,17 +1145,17 @@
           "._doc_num::ope('int', $_sin[0], [ 'maxlength'=>2, 'name'=>"gal", 'title'=>"Portales Galácticos, Ciclos NS de 52 años..."])."
 
           <c>.</c>
-          "._doc_lis::opc( _hol::_('ani'), [
+          "._doc_opc::val( _hol::_('ani'), [
             'eti'=>[ 'name'=>"ani", 'title'=>"Anillo Solar (año): 52 ciclos de 364+1 días...", 'val'=>$_sin[1] ], 
             'ite'=>[ 'title'=>'($)nom','htm'=>'($)ide' ]
           ])."
           <c>.</c>
-          "._doc_lis::opc( _hol::_('psi_lun'), [
+          "._doc_opc::val( _hol::_('psi_lun'), [
             'eti'=>[ 'name'=>"lun", 'title'=>"Giro Lunar (mes): 13 ciclos de 28 días...", 'val'=>$_sin[2] ],
             'ite'=>[ 'title'=>'()($)nom(): ()($)des()','htm'=>'($)ide' ]
           ])."
           <c>.</c>
-          "._doc_lis::opc( _hol::_('lun'), [ 
+          "._doc_opc::val( _hol::_('lun'), [ 
             'eti'=>[ 'name'=>"dia", 'title'=>"Día Lunar : 1 día de 28 que tiene la luna...", 'val'=>$_sin[3] ], 
             'ite'=>[ 'title'=>'($)des','htm'=>'($)ide' ]
           ])."          
@@ -929,7 +1176,7 @@
       return $_;
     }
 
-    // ciclos del kin-galáctico
+    // orden sincronico
     static function kin( mixed $dat, array $ope = [], ...$opc ) : string {
       $_ = []; $esq = 'hol'; 
       if( !isset($ope['lis']) ) $ope['lis'] = [];
@@ -954,7 +1201,7 @@
         _doc::ima($esq,$est,$_dat,['class'=>"tam-3 mar_der-1"])."
 
         <div>
-          <p>"._doc::let( _app_dat::val('nom',"$esq.$est",$_dat) )."</p>
+          <p>"._doc::let( _doc_dat::val('nom',"$esq.$est",$_dat) )."</p>
           <p>Día <n>{$_kin->{"{$atr}_dia"}}</n> de <n>$cue</n></p>
           <p>"._doc_num::ope('ran',$_kin->{"{$atr}_dia"},[ 'min'=>1, 'max'=>$cue, 'disabled'=>"", 'class'=>"anc-100"],'ver')."</p>            
         </div>";          
@@ -969,8 +1216,8 @@
         _doc::ima($esq,$est,$_dat,['class'=>"tam-3 mar_der-1"])."
 
         <div>
-          <p>"._doc::let( _app_dat::val('nom',"$esq.$est",$_dat) )."</p>
-          <p>"._doc::let( _app_dat::val('des',"$esq.$est",$_dat) )."</p>
+          <p>"._doc::let( _doc_dat::val('nom',"$esq.$est",$_dat) )."</p>
+          <p>"._doc::let( _doc_dat::val('des',"$esq.$est",$_dat) )."</p>
           <p>"._doc_num::ope('ran',$_kin->$atr,[ 'min'=>1, 'max'=>$cue, 'disabled'=>"", 'class'=>"anc-100"],'ver')."</p>          
         </div>";
       }
@@ -984,7 +1231,7 @@
           _doc::ima($esq,$est,$_dat,['class'=>"tam-3 mar_der-1"])."
 
           <div>
-            <p>"._doc::let( _app_dat::val('nom',"$esq.$est",$_dat) )."</p>
+            <p>"._doc::let( _doc_dat::val('nom',"$esq.$est",$_dat) )."</p>
             <p>Día <n>{$_kin->{"{$atr}_dia"}}</n> de <n>$cue</n></p>
             <p>"._doc_num::ope('ran',$_kin->{"{$atr}_dia"},[ 'min'=>1, 'max'=>$cue, 'disabled'=>"", 'class'=>"anc-100"],'ver')."</p>
           </div>          
@@ -999,7 +1246,7 @@
           _doc::ima($esq,$est,$_dat,['class'=>"tam-3 mar_der-1"])."
           
           <div>
-            <p>"._doc::let( _app_dat::val('nom',"$esq.$est",$_dat) )."</p>
+            <p>"._doc::let( _doc_dat::val('nom',"$esq.$est",$_dat) )."</p>
           </div>              
         ";          
       }
@@ -1012,7 +1259,7 @@
           _doc::ima($esq,$est,$_dat,['class'=>"tam-3 mar_der-1"])."
           
           <div>
-            <p>"._doc::let( _app_dat::val('nom',"$esq.$est",$_dat) )."</p>
+            <p>"._doc::let( _doc_dat::val('nom',"$esq.$est",$_dat) )."</p>
           </div>              
         ";
       }
@@ -1025,7 +1272,7 @@
           _doc::ima($esq,$est,$_dat,['class'=>"tam-3 mar_der-1"])."
           
           <div>
-            <p>"._doc::let( _app_dat::val('nom',"$esq.$est",$_dat) )."</p>
+            <p>"._doc::let( _doc_dat::val('nom',"$esq.$est",$_dat) )."</p>
           </div>              
         ";
       }              
@@ -1034,7 +1281,7 @@
       return _doc_lis::val($_,$ope);
     }
     
-    // ciclos del psi-solar
+    // orden ciclico
     static function psi( mixed $dat, array $ope = [], ...$opc ) : string {
       $_ = []; $esq = 'hol';
       if( !isset($ope['lis']) ) $ope['lis'] = [];
@@ -1097,7 +1344,6 @@
       return _doc_lis::val($_,$ope);
     }
   }
-
   // usuario : ficha + tránsitos + firma galáctica
   class _hol_usu {
       
@@ -1116,55 +1362,29 @@
       <section class='inf ren esp-ara'>
 
         <div>
-
           <p class='let-tit let-3 mar_aba-1'>"._doc::let("$_usu->nom $_usu->ape")."</p>
-
           <p>"._doc::let($_fec->val." ( $_usu->eda años )")."</p>
-
         </div>        
 
         <div class='val'>
-
           "._doc::ima('hol','kin',$_kin,['class'=>"mar_hor-1"])."
-
-          <c class='sep'>+</c>
-
+          <c>+</c>
           "._doc::ima('hol','psi',$_psi,['class'=>"mar_hor-1"])."
-
-          <c class='sep'>=></c>
-
+          <c>=></c>
           "._doc::ima('hol','kin',$sum,['class'=>"mar_hor-1"])."
-
         </div>
 
       </section>";
 
-      // transitos diarios
-      $dat = _usu::cic_dat();
-      $_ .= "
-      <section>
-
-        "._hol_usu::cic_ani( $dat )."
-
-        "._hol_usu::cic_lun( $dat )."
-
-        "._hol_usu::cic_dia( $dat )."
-
-      </section>";
-
       return $_;
-    }
+    }    
 
-    // tránsitos
-    static function cic( array $ope = [], ...$opc ) : string {
+    // tránsitos : listado
+    static function cic_nav( array $ope = [], ...$opc ) : string {
       $_ = "";
       global $_usu;
       foreach(['nav','lis','dep','opc'] as $eti ){ if( !isset($ope["$eti"]) ) $ope["$eti"] = []; }
       $opc_des = !in_array('not-des',$opc);
-      // operador
-      $_ = "
-      <form>
-      </form>";
       // listado
       $_lis = [];
       foreach( _dat::var('_api.usu_cic') as $_arm ){
@@ -1177,16 +1397,15 @@
             $_lun_ton = _hol::_('ton',$_lun->ide);
             $_kin = _hol::_('kin',$_lun->kin);
             $nav = "<a href='http://localhost/hol/tab/kin-tzo/sin=$_lun->sin' target='_blank' title='Ver en Tableros...'>"._doc::let($_lun->sin)."</a>";
-            if( $opc_des ){
-              $_lis_lun []= 
-              _doc::ima('hol','kin',$_kin,['class'=>"tam-6 mar_der-1"])."
+            $_lis_lun []= 
+            "<div class='ite'>
+              "._doc::ima('hol','kin',$_kin,['class'=>"tam-6 mar_der-1"])."
               <p>
-                "._doc::let(intval($_lun_ton->ide)."° ciclo, ").$nav._doc::let(" ( $_fec->val ). $_lun_ton->ond_nom: $_lun_ton->ond_man")."
-                <br>"._hol_des::kin('enc',$_kin)."
-              </p>";
-            }else{
-
-            }
+                "._doc::let(intval($_lun_ton->ide)."° ciclo, ").$nav._doc::let(" ( $_fec->val ).")."
+                <br>"._doc::let("$_lun_ton->ond_nom: $_lun_ton->ond_man")."
+              </p>              
+            </div>
+            <p class='mar-1 tex_ali-cen'>"._hol_des::kin('enc',$_kin)."</p>";
           }
           // ciclo anual
           $_fec = _api::_('fec',$_cic->fec);
@@ -1195,63 +1414,103 @@
           $_cas_arm = _hol::_('cas_arm',$_cic->arm);            
           $_kin = _hol::_('kin',$_cic->kin);            
           $_lis_cic []= [
-            'ite'=>[ 'eti'=>"div", 'class'=>"ite", 'htm'=> $opc_des ?
-              _doc::ima('hol','kin',$_kin,['class'=>"tam-6 mar_der-1"])."
-              <p title = '$_cas->des'>
-                "._doc::let("$_cic->eda año".( $_cic->eda != 1 ? 's' : '' ).", $_cic->sin ( $_fec->val ): $_cas_arm->nom $_cas_arm->col d{$_cas_arm->dir}: $_cas_arm->pod")."
-                <br>"._doc::let("$_cas_ton->ond_nom: $_cas_ton->ond_man")."
-                <br>"._hol_des::kin('enc',$_kin)."
-              </p>" 
-              : ""
+            'ite'=>[ 'eti'=>"div", 'class'=>"lis", 'htm'=> 
+              "<div class='ite'>
+                "._doc::ima('hol','kin',$_kin,['class'=>"tam-6 mar_der-1"])."
+                <p title = '$_cas->des'>
+                  "._doc::let("$_cic->eda año".( $_cic->eda != 1 ? 's' : '' ).", $_cic->sin ( $_fec->val ):")."
+                  <br>"._doc::let("Cuadrante $_cas_arm->col d{$_cas_arm->dir}: $_cas_arm->pod")."
+                  <br>"._doc::let("$_cas_ton->ond_nom: $_cas_ton->ond_man")."                
+                </p>
+              </div>
+              <p class='mar-1 tex_ali-cen'>"._hol_des::kin('enc',$_kin)."</p>"
             ],
             'lis'=>$_lis_lun
           ];
         }
-        $_lis []= [
-          'ite'=>$_arm->nom,
-          'lis'=>$_lis_cic
-        ];
+        $_lis []= [ 'ite'=>$_arm->nom, 'lis'=>$_lis_cic ];
       }
       // configuro listado
       _ele::cla($ope['dep'],DIS_OCU);
-      $ope['opc'] = ['tog','ver','cue','tog_dep'];
-      $ope['lis-2']['class'] = "ite";
+      $ope['opc'] = [ 'tog', 'ver', 'cue', 'tog_dep' ];
       return _doc_lis::val($_lis,$ope);
     }
-    static function cic_ani( array $dat, array $ele = [], ...$opc ) : string {
+    // tránsitos : informe
+    static function cic_inf( array $ele = [], ...$opc ) : string {
+      $dat = _usu::cic_dat();
+      $_ = "
+      <section>
+        "._hol_usu::cic_inf_ani( $dat, $ele, ...$opc )."
+        "._hol_usu::cic_inf_lun( $dat, $ele, ...$opc )."
+        "._hol_usu::cic_inf_dia( $dat, $ele, ...$opc )."
+      </section>"; 
+      return $_;
+    }// informe anual
+    static function cic_inf_ani( array $dat, array $ele = [], ...$opc ) : string {
       global $_usu;      
       $_ani = $dat['ani'];
-      $_ani_arm = _hol::_('arm',$dat['ani']->arm);
+      $_cas_arm = _hol::_('cas_arm',$dat['ani']->arm);
+      $_ani_arm = _dat::var('_api.usu_cic',['ver'=>"`ide` = $_ani->arm",'opc'=>"uni"]);
+      $_ani_fec = _api::_('fec',$_ani->fec);      
       $_ani_ton = _hol::_('ton',$dat['ani']->ton);
-      $_kin = _hol::_('kin',$_ani->kin);      
+      $_kin = _hol::_('kin',$_ani->kin);
       $_ = "
       <h3>Tránsito Anual</h3>
 
-      "._hol_fic::kin('enc',$_kin)."
+      <p>"._doc::let("#$_ani->eda de 51: desde el $_ani_fec->val")."</p>
+
+      "._doc_num::ope('ran',$_ani->eda,[ 'min'=>0, 'max'=>51, 'class'=>"anc-100", 'disabled'=>1 ],'ver')."
+
+      <div class='ite mar_ver-1'>
+        "._doc::ima('hol','cas_arm',$_cas_arm,[ 'class'=>"tam-7 mar_der-2" ])."
+        <div class='let-3'>
+          <p class='let-tit'>"._doc::let($_ani_arm->nom)."</p>
+          <p>$_cas_arm->nom<c>:</c> $_cas_arm->col<c>,</c> $_cas_arm->pod<c>.</c></p>
+          <p>$_ani_ton->ond_nom<c>:</c> $_ani_ton->ond_pod</p>
+          <p>"._doc_num::ope('ran',$_ani->ton,[ 'min'=>1, 'max'=>13, 'class'=>"anc-100", 'disabled'=>1 ],'ver')."</p>
+        </div>
+      </div>
+
+      "._hol_fic::kin('enc',$_kin,[ 'ima'=>[] ])."
 
       ";
       return $_;
-    }
-    static function cic_lun( array $dat, array $ele = [], ...$opc ) : string {
+    }// informe lunar
+    static function cic_inf_lun( array $dat, array $ele = [], ...$opc ) : string {
       global $_usu;
+      $_lun = $dat['lun'];
+      $_lun_fec = _api::_('fec',$_lun->fec);
+      $_lun_ton = _hol::_('ton',$_lun->ide);
+      $_kin = _hol::_('kin',$_lun->kin);
       $_ = "
       <h3>Tránsito Lunar</h3>
 
-      "._hol_fic::kin('enc',$dat['lun']->kin)."
+      <p>"._doc::let("#$_lun->ide de 13: desde el $_lun_fec->val")."</p>
+
+      "._doc_num::ope('ran',$_lun->ide,[ 'min'=>1, 'max'=>13, 'class'=>"anc-100", 'disabled'=>1 ],'ver')."
+
+      <div class='ite mar_ver-1'>
+        "._doc::ima('hol','ton',$_lun_ton,[ 'class'=>"tam-7 mar_der-2" ])."
+        <div class='let-3'>
+          <p>$_lun_ton->ond_nom<c>:</c> $_lun_ton->ond_pod</p>          
+        </div>
+      </div>
+
+
+      "._hol_fic::kin('enc', $_kin, [ 'atr'=>[] ])."
 
       ";
       return $_;
-    }
-    static function cic_dia( array $dat, array $ele = [], ...$opc ) : string {
+    }// informe diario
+    static function cic_inf_dia( array $dat, array $ele = [], ...$opc ) : string {
       global $_usu;
       $_dat = _hol::val( date('Y/m/d') );
+      $_kin = _hol::_('kin',$dat['dia']->kin);
 
       $_ = "
       <h3>Tránsito Diario</h3>
 
-      "._hol_fic::kin('enc',$dat['dia']->kin)."
-
-
+      "._hol_fic::kin('enc',$_kin,[ 'ima'=>[] ])."
 
       ";
       return $_;
@@ -1274,11 +1533,10 @@
     }
 
   }
-  
-  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-  // descripciones por atributo
+  // Descripciones
   class _hol_des {
 
     static function kin( string $tip, mixed $ide, array $ope = [] ) : string {
@@ -1298,9 +1556,9 @@
 
       return $_;
     }
-  }
 
-  // Ficha por objeto : imagen + ( nombre + descripcion ) + ...atributos + ...detalles
+  }
+  // Ficha : imagen + ( nombre + descripcion ) + ...atributos + ...detalles
   class _hol_fic {
 
     static function ton( string | array $atr, mixed $val, array $ope = [] ) : string {
@@ -1319,7 +1577,7 @@
   
           "._doc::ima($esq,$est,$dat,['class'=>'mar_der-2'])."
   
-          "._app_dat::atr($dat,[ 'est'=>"$esq.$est", 'atr'=>$atr ])."
+          "._doc_dat::atr($dat,[ 'est'=>"$esq.$est", 'atr'=>$atr ])."
   
         </div>";                
       }else{
@@ -1345,7 +1603,7 @@
   
           "._doc::ima($esq,$est,$dat,['class'=>'mar_der-2'])."
   
-          "._app_dat::atr($dat,['est'=>"$esq.$est", 'atr'=>$atr ])."
+          "._doc_dat::atr($dat,['est'=>"$esq.$est", 'atr'=>$atr ])."
   
         </div>";
       }
@@ -1362,38 +1620,23 @@
       $dat = _hol::_($est='kin',$val);
 
       if( is_array($atr) ){
-        if( empty($atr) ) $atr = [  ];
-        $htm_ini = isset($ope['htm_ini']) ? _doc::let($ope['htm_ini'])." " : "";
-        $htm_fin = isset($ope['htm_fin']) ? " "._doc::let($ope['htm_fin']) : "";
+        if( empty($atr) ) $atr = [];
         $_ = "
-        <p class='des'>{$htm_ini}Kin <c>#</c><n>{$dat->ide}</n><c>:</c> {$dat->arm}<c>.</c>{$htm_fin}</p>
+        <p class='des'>Kin <c>#</c><n>{$dat->ide}</n><c>:</c> {$dat->arm}<c>.</c></p>
   
         <div class='val jus-cen'>
   
           "._doc::ima($esq,$est,$dat,['class'=>'mar_der-2'])."
   
-          "._app_dat::atr($dat,['est'=>"$esq.$est", 'atr'=>$atr ])."
+          "._doc_dat::atr($dat,['est'=>"$esq.$est", 'atr'=>$atr ])."
   
         </div>";
+
+        if( isset($ope['ima']) ) $_ .= _doc_dat::ima($esq,'kin',$ope['ima'],$dat);
       }
       else{
         $est = "{$est}_{$atr}";
         switch( $atr ){
-        // encantamiento : libro del kin
-        case 'enc':
-          $htm_ini = isset($ope['htm_ini']) ? _doc::let($ope['htm_ini'])." " : "";
-          $htm_fin = isset($ope['htm_fin']) ? " "._doc::let($ope['htm_fin']) : "";
-          $_ = "
-          <p class='des'>{$htm_ini}Kin <c>#</c><n>{$dat->ide}</n><c>:</c> "._doc::let($dat->nom)."<c>.</c>{$htm_fin}</p>
-    
-          <div class='val jus-cen'>
-        
-            "._doc::ima($esq,'kin',$dat,['class'=>"mar_der-2"])."
-    
-            <q>"._doc::let("{$dat->des}")."</q>
-    
-          </div>";
-          break;
         // factor : katun del kin
         case 'fac':
           $_kin = $dat;
@@ -1419,6 +1662,24 @@
             <li>Índice Armónico <n>"._num::int($_kin->fac)."</n><c>:</c> período "._doc::let($_kin->fac_ran)."</li>
             <li><q>"._doc::let($_sel->arm_tra_des)."</q></li>
           </ul>";          
+          break;
+        // encantamiento : libro del kin
+        case 'enc':
+          $htm_ini = isset($ope['htm_ini']) ? _doc::let($ope['htm_ini'])." " : "";
+          $htm_fin = isset($ope['htm_fin']) ? " "._doc::let($ope['htm_fin']) : "";
+          $_ = "
+          <p class='des'>{$htm_ini}Kin <c>#</c><n>{$dat->ide}</n><c>:</c> "._doc::let($dat->nom)."<c>.</c>{$htm_fin}</p>
+    
+          <div class='val jus-cen'>
+        
+            "._doc::ima($esq,'kin',$dat,['class'=>"mar_der-2"])."
+    
+            <q>"._doc::let("{$dat->des}")."</q>
+    
+          </div>";
+
+          if( isset($ope['ima']) ) $_ .= _doc_dat::ima($esq,'kin',$ope['ima'],$dat);
+
           break;
         // encantamiento : parejas del oráculo
         case 'par':
@@ -1523,106 +1784,162 @@
       return $_;
     }
   }
+  // listados por estructura
+  class _hol_lis {
 
-  // Informe por objeto : propiedades + tablas comparativas
-  class _hol_inf {
-
-    // kin : parejas del oráculo
-    static function kin( string $ide, mixed $dat, array $ope = [], array $ele = [], ...$opc ) : string {
-      $esq = "hol"; $est = "kin";
-      $dat = !is_object($dat) ? _hol::_($est,$dat) : $dat;
-      $_ = "";
+    static function uni( $ide, array $ele = [] ) : string {
+      $_ = []; $esq = "hol"; $est = explode('.',$ide); $lis_tip = "val"; $lis_pos = 0;
       switch( $ide ){
-      // parejas del oráculo => tablas comparativas : ( ...kin + ...sel + ...ton )
-      case 'par':
-        $_ = [];
-        if( isset($ope['atr']) && is_string($ope['atr']) ){
-          switch( $ope['atr'] ){
-          // Propiedades : palabras clave del kin + sello + tono
-          case 'pro':
+      // campos planetarios
+      case 'pla_cam.nom': 
+        $_ = "      
+        <dl>
+          <dt>el campo electromagnético</dt>
+          <dd><c>(</c>magnetosfera y cinturores de radiación<c>,</c> incluyendo la ionosfera<c>)</c><c>,</c> </dd>
+          <dt>el campo biopsíquico</dt>
+          <dd> <c>(</c>biosfera incluyendo la simbiosis de eco<c>-</c>ciclos que integran el <c>\"</c>corpus inerte<c>\"</c> con el <c>\"</c>vivo<c>\"</c><c>)</c><c>,</c></dd>
+          <dt>y el campo gravitacional</dt>
+          <dd><c>(</c>incluyendo la estructura de placas tectónicas<c>,</c> mantos y núcleo de la Tierra<c>)</c><c>.</c></dd>
+        </dl>";
+        break; 
+      case 'pla_cam.des': 
+        $_ = "
+        <ul>
+          <li>el campo electromagnético se reconstituye psicofísicamente a través de los sentidos<c>;</c> </li>
+          <li>el campo bio<c>-</c>psíquico se reorganiza como orden cósmico telepático de la sociedad humana indistinguible de los órdenes vivos de la naturaleza<c>,</c> </li>
+          <li>y el campo gravitacional es conducido a un nuevo nivel de equilibrio a través de una vibrante correlación y simbiosis de los dos órdenes geoquímicos tridimensionales<c>,</c> SiO<sup>2</sup> <c>(</c>dióxido de silicio<c>)</c> y CO<sup>2</sup> <c>(</c>dióxido de carbono<c>)</c><c>.</c></li>
+        </ul>";
+        break;                              
+      }
+      return is_array($_) ? _doc_dat::lis( $_, $est, $lis_tip, $ele ) : $_;
+    }    
 
-            $_par_atr = !empty($ope['par']) ? $ope['par'] : ['fun','acc','mis'];
-      
-            $_ton_atr = !empty($ope['ton']) ? $ope['ton'] : ['acc'];
-      
-            $_sel_atr = !empty($ope['sel']) ? $ope['sel'] : ['car','des'];
-      
-            foreach( _hol::_('sel_par') as $_par ){
-              
-              $_kin = $_par->ide == 'des' ? $dat : _hol::_('kin',$dat->{"par_{$_par->ide}"});
-      
-              $ite = [ _doc::ima('hol','kin',$_kin) ];
-      
-              foreach( $_par_atr as $atr ){ if( isset($_par->$atr) ) $ite []= _doc::let($_par->$atr); }
-      
-              $_ton = _hol::_('ton',$_kin->nav_ond_dia);
-              foreach( $_ton_atr as $atr ){ if( isset($_ton->$atr) ) $ite []= _doc::let($_ton->$atr); }
-      
-              $_sel = _hol::_('sel',$_kin->arm_tra_dia);            
-              foreach( $_sel_atr as $atr ){  if( isset($_sel->$atr) ) $ite []= _doc::let($_sel->$atr); }
-      
-              $_ []= $ite;
-            }
-            break;
-          // Ciclos : posiciones en ciclos del kin
-          case 'cic':
-            $_atr = [ 'ene', 'ene_cam', 'pag', 'cro_est', 'cro_ele', 'arm_tra', 'arm_cel', 'nav_cas', 'nav_ond' ];
-      
-            foreach( _hol::_('sel_par') as $_par ){
-              
-              $_kin = $_par->ide == 'des' ? $dat : _hol::_('kin',$dat->{"par_{$_par->ide}"});
-      
-              $ite = [ _doc::ima('hol','kin',$_kin) ];
-      
-              foreach( $_atr as $atr ){
-                $ite []= _doc::ima('hol',"kin_{$atr}",$_kin->$atr,[ 'class'=>"tam-5" ]);
-              }
-              
-              $_ []= $ite;
-            }
-            break;
-          // Grupos : sincronometría del holon por sellos
-          case 'gru':
-            $_atr = [ 'sol_pla', 'sol_cel', 'sol_cir', 'pla_hem', 'pla_mer', 'hum_cen', 'hum_ext', 'hum_mer' ];
-      
-            foreach( _hol::_('sel_par') as $_par ){
-              
-              $_kin = $_par->ide == 'des' ? $dat : _hol::_('kin',$dat->{"par_{$_par->ide}"});                            
-      
-              $_sel = _hol::_('sel',$_kin->arm_tra_dia);
-      
-              $ite = [ _doc::ima('hol','kin',$_kin), $_par->nom, $_sel->pod ];
-      
-              foreach( $_atr as $atr ){
-                $ite []= _doc::ima('hol',"sel_{$atr}",$_sel->$atr,[ 'class'=>"tam-5" ]);
-              }
-              
-              $_ []= $ite;
-            }
-            break;
-          }
-          $ope = [];
+    static function rad( $atr, array $ele = [] ) : string {
+      $_ = []; $esq = "hol"; $est = "rad_$atr"; $lis_tip = "val"; $lis_pos = 0;
+      switch( $atr ){
+      // plasma : años por oráculos de la profecía
+      case 'ani': 
+        $ele['lis'] = ['class'=>"ite"];
+        $ele['ite'] = ['class'=>"mar_aba-1"];      
+
+        foreach( _hol::_('rad') as $_rad ){ $_ []=
+          _doc::ima('hol','rad',$_rad,['class'=>"mar_der-1"])."
+          <p>
+            <b class='ide'>{$_rad->nom}</b><c>:</c> $_rad->tel_des<c>,</c> <n>$_rad->tel_año</n> <c>-</c> <n>".($_rad->tel_año+1)."</n>
+            <br><q>"._doc::let($_rad->rin_des)."<c>.</c></q>
+          </p>";
         }
-        $_ = _hol::est( $_, $ope, $ele, ...$opc );
+        $_ = _doc_lis::val($_,$ele);
+        break;              
+      }
+      return is_array($_) ? _doc_dat::lis( $_, $est, $lis_tip, $ele ) : $_;
+    }
+
+    static function ton( $atr, array $ele = [] ) : string {
+      $_ = []; $esq = "hol"; $est = "ton_$atr"; $lis_tip = "val"; $lis_pos = 0;
+      switch( $atr ){
+      // tutorial : propiedades
+      case 'pro': 
+        $ope['atr'] = ['ide','nom','car','pod','acc'];
+        $_ = _doc_dat::est($_, $ope, $ele, ...$opc );
+        break;
+      // encantamiento : descripciones
+      case 'des':
+        $ope['atr'] = ['ide','nom','des','acc'];
+        $_ = _doc_dat::est($_, $ope, $ele, ...$opc );
+        break;
+      // factor : rayo de pulsacion
+      case 'gal':
+        $ele['lis'] = ['class'=>"ite"];
+
+        foreach( _hol::_('ton') as $_ton ){ $_ []= "
+          "._doc::ima('hol','ton',$_ton,['class'=>"mar_der-1"])."
+          <p>
+            <n>".intval($_ton->ide)."</n><c>.</c> El Rayo de Pulsación ".preg_replace("/^(del|de la)/","$1<b class='ide'>",_tex::art_del($_ton->gal))."</b>
+          </p>";
+        }        
+        break;
+      // factor : simetría especular
+      case 'sim': 
+        foreach( _hol::_($est) as $_sim ){ $_ []= "
+          <p>"._doc::let($_sim->des)."</p>";
+        }        
+        break;              
+      // encantamiento: aventura de la onda encantada 
+      case 'ond':
+        $_atr = array_merge([ 
+          'ima'=>_obj::atr(['ide'=>'ima','nom'=>''])
+          ], _dat::atr('hol','ton', [ 'ide','ond_pos','ond_pod','ond_man' ])
+        );
+  
+        // cargo valores
+        foreach( ( $_dat = _obj::atr(_hol::_('ton')) ) as $_ton ){
+          $_ton->ima = [ 'htm'=>_doc::ima('hol','ton',$_ton) ];
+          $_ton->ide = "Tono {$_ton->ide}";
+        }
+        // cargo titulos
+        $ond = 0;
+        $_tit = [];
+        foreach( $_dat as $lis_pos => $_ton ){
+          if( $_ton->ond_enc != 0 && $ond != $_ton->ond_enc ){              
+            $_ond = _hol::_('ton_ond',$ond = $_ton->ond_enc);
+            $_tit[$lis_pos] = $_ond->des;
+          }
+        }
+  
+        $_ = _doc_est::lis($_dat,[ 'atr_dat'=>$_atr, 'tit'=>$_tit ],$ele,'cab_ocu');              
+        break;
+            
+      // encantamiento : pulsares dimensionales
+      case 'dim':
+        foreach( _hol::_($est) as $_dat ){ $htm = "
+          <p>
+            <n>{$_dat->ide}</n><c>.</c> <b class='ide'>Pulsar de la {$_dat->pos} dimensión</b><c>:</c> <b class='val'>Dimensión {$_dat->nom}</b>
+            <br>Tonos "._doc::let("{$_dat->ton}: {$_dat->ond}")."
+          </p>
+          <div class='fic ite'>
+            "._doc::ima('hol',$est,$_dat,['class'=>"mar_der-1",'style'=>"min-width: 5rem; height: 5rem"])."
+            <c class='sep'>=></c>
+            <c class='_lis ini'>{</c>";
+              foreach( explode(', ',$_dat->ton) as $ton ){ $htm .= _doc::ima('hol','ton',$ton,['class'=>"mar_hor-2"]); } $htm .= "
+            <c class='_lis fin'>}</c>
+          </div>
+          ";
+          $_ []= $htm;
+        }        
+        break;
+      // encantamiento : pulsares matiz
+      case 'mat':
+        foreach( _hol::_($est) as $_dat ){ $htm = "
+          <p><n>{$_dat->ide}</n><c>.</c> <b class='ide'>Matiz {$_dat->nom}</b><c>,</c> <b class='val'>"._doc::let($_dat->cod)."</b><c>:</c>
+            <br>Tonos "._doc::let("{$_dat->ton}: {$_dat->ond}")."
+          </p>
+          <div class='fic ite'>
+            "._doc::ima('hol',$est,$_dat,['class'=>"mar_der-1",'style'=>"min-width: 5rem; height: 5rem"])."
+            <c class='sep'>=></c>
+            <c class='_lis ini'>{</c>";
+              foreach( explode(', ',$_dat->ton) as $ton ){ $htm .= _doc::ima('hol','ton',$ton,['class'=>"mar_hor-2"]); } $htm .= "              
+            <c class='_lis fin'>}</c>
+          </div>";
+          $_ []= $htm;
+        }        
         break;
       }
-      return $_;
+      return is_array($_) ? _doc_dat::lis( $_, $est, $lis_tip, $ele ) : $_;
     }
-  }
-  
-  // listado por atributo 
-  class _hol_lis {
-    
-    // sello solar
-    static function sel( string $atr, array $ele = [] ) : string {
-      $esq = "hol"; $est = "sel_{$atr}"; $lis_tip = "val"; $lis_pos = 0;
-      $_ = [];
-      
+
+    static function sel( $atr, array $ele = [] ) : string {
+      $_ = []; $esq = "hol"; $est = "sel_$atr"; $lis_tip = "val"; $lis_pos = 0;
       switch( $atr ){
+      // tutorial : propiedades
+      case 'pro': 
+        $ope['atr'] = ['ide','nom','pod','acc','car'];
+        $_ = _doc_dat::est($_, $ope, $ele, ...$opc );
+        break;        
       // factor : posiciones direccionales
       case 'cic_dir':
         $ele['lis'] = ['class'=>"ite"];
-
+        $_ = [];
         foreach( _hol::_($est) as $_dir ){ $_ []=
           _doc::ima('hol',$est,$_dir,['class'=>"mar_der-1 tam-11"])."
           <div>
@@ -1694,7 +2011,11 @@
           </p>";
         }        
         break;
-      // encantamiento : colocacion armónica, razas raíz cósmica
+                  
+      
+        break;
+              
+      // encantamiento : colocacion armónica => razas raíz cósmica
       case 'arm_raz':
         $sel = 1;
         foreach( _hol::_($est) as $_dat ){
@@ -1721,7 +2042,7 @@
           $_ []= $htm;
         }        
         break;
-      // encantamiento : colocacion armónica, células del tiempo
+      // encantamiento : colocacion armónica => células del tiempo
       case 'arm_cel':
         $lis_pos = 1;
 
@@ -1743,7 +2064,7 @@
           $_ []= $htm;
         }           
         break;
-      // encantamiento : colocacion cromática, clanes galácticos
+      // encantamiento : colocacion cromática => clanes galácticos
       case 'cro_ele':
         $sel = 20;      
         foreach( _hol::_($est) as $_dat ){
@@ -1768,7 +2089,7 @@
           $_ []= $htm;
         }          
         break;
-      // encantamiento : colocacion cromática, familias terrestres
+      // encantamiento : colocacion cromática => familias terrestres
       case 'cro_fam':
         $ele['lis'] = ['class'=>"ite"];
 
@@ -1847,7 +2168,7 @@
           }
         }        
         break;
-      // telektonon :    holon solar => circuitos de telepatía
+      // telektonon : holon solar => circuitos de telepatía
       case 'sol_cir':
         $ele['lis'] = ['class'=>"ite"];
 
@@ -1941,6 +2262,15 @@
           $_ []= $htm;
         }        
         break;
+      // tratado : campos planetarios por agrupacion
+      case 'pla_cam': 
+        $_ = "
+        <ul>
+          <li>el gravitacional <c>(</c>las Cuatro Razas Raíz<c>)</c><c>,</c> </li>
+          <li>el electromagnético <c>(</c>los Cuatro Clanes<c>)</c> </li>
+          <li>y el biopsíquico <c>(</c>las Cinco Familias Terrestres<c>)</c><c>.</c></li>
+        </ul>";
+        break;
       // encantamiento : holon humano => colocacion cromática
       case 'hum_ele': 
         $ele = []; $lis_pos = 0; $col = 4;
@@ -1967,7 +2297,7 @@
             'ima_cod'=>[ 'htm'=>_doc::ima('hol','sel_cod',$_sel,['class'=>"mar-1"]) ]
           ]);
         }
-        $_ = _app_est::lis($sel,[ 'tit'=>$ele ],[ 'lis'=>[ 'class'=>"mar-aut mar_aba-2" ] ],'cab_ocu');        
+        $_ = _doc_est::lis($sel,[ 'tit'=>$ele ],[ 'lis'=>[ 'class'=>"mar-aut mar_aba-2" ] ],'cab_ocu');        
         break;
       // encantamiento : holon humano => rol de familias terrestres
       case 'hum_fam':
@@ -1995,7 +2325,7 @@
           }
         }
   
-        $_ = _app_est::lis($sel,[ 'tit'=>$fam ],[ 'lis'=>[ 'class'=>"mar-aut mar_aba-2" ] ],'cab_ocu');            
+        $_ = _doc_est::lis($sel,[ 'tit'=>$fam ],[ 'lis'=>[ 'class'=>"mar-aut mar_aba-2" ] ],'cab_ocu');            
         break;
       // encantamiento : holon humano => extremidades del humano
       case 'hum_ext':
@@ -2039,99 +2369,13 @@
           </p>";
         }            
         break;
-      }      
-      return is_array($_) ? _hol::lis( $_, $est, $lis_tip, $ele ) : $_;
-    }    
-    // tono galáctico
-    static function ton( string $atr, array $ele = [] ) : string {
-      $esq = "hol"; $est = "ton_{$atr}"; $lis_tip = "val"; $lis_pos = 0;
-
-      $_ = [];        
-      switch( $atr ){
-      // factor : rayo de pulsacion
-      case 'gal':
-        $ele['lis'] = ['class'=>"ite"];
-
-        foreach( _hol::_('ton') as $_ton ){ $_ []= "
-          "._doc::ima('hol','ton',$_ton,['class'=>"mar_der-1"])."
-          <p>
-            <n>".intval($_ton->ide)."</n><c>.</c> El Rayo de Pulsación ".preg_replace("/^(del|de la)/","$1<b class='ide'>",_tex::art_del($_ton->gal))."</b>
-          </p>";
-        }        
-        break;
-      // encantamiento: aventura de la onda encantada 
-      case 'ond':
-        $_atr = array_merge([ 
-          'ima'=>_obj::atr(['ide'=>'ima','nom'=>''])
-          ], _dat::atr('hol','ton', [ 'ide','ond_pos','ond_pod','ond_man' ])
-        );
-  
-        // cargo valores
-        foreach( ( $_dat = _obj::atr(_hol::_('ton')) ) as $_ton ){
-          $_ton->ima = [ 'htm'=>_doc::ima('hol','ton',$_ton) ];
-          $_ton->ide = "Tono {$_ton->ide}";
-        }
-        // cargo titulos
-        $ond = 0;
-        $_tit = [];
-        foreach( $_dat as $lis_pos => $_ton ){
-          if( $_ton->ond_enc != 0 && $ond != $_ton->ond_enc ){              
-            $_ond = _hol::_('ton_ond',$ond = $_ton->ond_enc);
-            $_tit[$lis_pos] = $_ond->des;
-          }
-        }
-  
-        $_ = _app_est::lis($_dat,[ 'atr_dat'=>$_atr, 'tit'=>$_tit ],$ele,'cab_ocu');              
-        break;
-      // factor : simetría especular
-      case 'sim': 
-        foreach( _hol::_($est) as $_sim ){ $_ []= "
-          <p>"._doc::let($_sim->des)."</p>";
-        }        
-        break;        
-      // encantamiento : pulsares dimensionales
-      case 'dim':
-        foreach( _hol::_($est) as $_dat ){ $htm = "
-          <p>
-            <n>{$_dat->ide}</n><c>.</c> <b class='ide'>Pulsar de la {$_dat->pos} dimensión</b><c>:</c> <b class='val'>Dimensión {$_dat->nom}</b>
-            <br>Tonos "._doc::let("{$_dat->ton}: {$_dat->ond}")."
-          </p>
-          <div class='fic ite'>
-            "._doc::ima('hol',$est,$_dat,['class'=>"mar_der-1",'style'=>"min-width: 5rem; height: 5rem"])."
-            <c class='sep'>=></c>
-            <c class='_lis ini'>{</c>";
-              foreach( explode(', ',$_dat->ton) as $ton ){ $htm .= _doc::ima('hol','ton',$ton,['class'=>"mar_hor-2"]); } $htm .= "
-            <c class='_lis fin'>}</c>
-          </div>
-          ";
-          $_ []= $htm;
-        }        
-        break;
-      // encantamiento : pulsares matiz
-      case 'mat':
-        foreach( _hol::_($est) as $_dat ){ $htm = "
-          <p><n>{$_dat->ide}</n><c>.</c> <b class='ide'>Matiz {$_dat->nom}</b><c>,</c> <b class='val'>"._doc::let($_dat->cod)."</b><c>:</c>
-            <br>Tonos "._doc::let("{$_dat->ton}: {$_dat->ond}")."
-          </p>
-          <div class='fic ite'>
-            "._doc::ima('hol',$est,$_dat,['class'=>"mar_der-1",'style'=>"min-width: 5rem; height: 5rem"])."
-            <c class='sep'>=></c>
-            <c class='_lis ini'>{</c>";
-              foreach( explode(', ',$_dat->ton) as $ton ){ $htm .= _doc::ima('hol','ton',$ton,['class'=>"mar_hor-2"]); } $htm .= "              
-            <c class='_lis fin'>}</c>
-          </div>";
-          $_ []= $htm;
-        }        
-        break;
       }
-      return is_array($_) ? _hol::lis( $_, $est, $lis_tip, $ele ) : $_;
+      return is_array($_) ? _doc_dat::lis( $_, $est, $lis_tip, $ele ) : $_;
     }
-    // giro lunar
-    static function lun( string $atr, array $ele = [] ) : string {
-      $esq = "hol"; $est = "lun_{$atr}"; $lis_tip = "val"; $lis_pos = 0;
-      $_ = [];
-      $_atr = explode('-',$atr);
-      switch( $_atr[0] ){
+
+    static function lun( $atr, array $ele = [] ) : string {
+      $_ = []; $esq = "hol"; $est = "lun_$atr"; $lis_tip = "val"; $lis_pos = 0;
+      switch( $atr ){
       // 13 lunas : heptadas - cuarto armónica
       case 'arm':
         if( isset($_atr[1]) ){
@@ -2150,18 +2394,25 @@
           }
         }
         break;
-      // por descripcion
-      case 'des': 
-        foreach( _hol::_('lun_arm') as $_hep ){
+      // 13 lunas : heptadas lunares
+      case 'arm_col':
+        $_ .= "_$ide";
+        $ope['atr'] = [ 'ide','nom','col','dia','pod' ];
+        $opc []= 'cab_ocu';
+        $_ = _doc_dat::est($_, $ope, $ele, ...$opc );
+        break;        
+      // tutorial : descripcion de las heptadas
+      case 'arm_des': 
+        foreach( _hol::_($est) as $_hep ){
           $_ []= _doc::let("$_hep->nom (")."<c class='let_col-4-$_hep->ide'>$_hep->col</c>"._doc::let("): $_hep->des");
         }
-        break;                
-      // por poderes
-      case 'pod': 
+        break;
+      // telektonon : por poderes
+      case 'arm_pod': 
         foreach( _hol::_('lun_arm') as $_hep ){
           $_ []= _doc::let("$_hep->nom: ")."<c class='let_col-4-$_hep->ide'>$_hep->col</c>"._doc::let(", $_hep->pod $_hep->car");
         }        
-        break;
+        break;              
       // telektonon : lines de fuerza
       case 'fue': 
         foreach( _hol::_($est) as $_lin ){
@@ -2170,7 +2421,7 @@
         break;
       // rinri : días del cubo
       case 'cub':
-        foreach( _hol::_('lun_cub') as $_cub ){
+        foreach( _hol::_($est) as $_cub ){
           $_ []= 
           "<div class='ite'>
             "._doc::ima('hol','sel',$_cub->sel,['class'=>"mar_der-1"])."              
@@ -2183,16 +2434,14 @@
           ".( !empty($_cub->lec) ? "<p class='let-cur tex_ali-cen'>"._doc::let($_cub->lec)."</p>" : ""  )."
           <q>"._doc::let($_cub->afi)."</q>";
         }        
-        break;        
+        break;                    
       }
-      return is_array($_) ? _hol::lis( $_, $est, $lis_tip, $ele ) : $_;
-    }
-    // kin
-    static function kin( string $atr, array $ele = [] ) : string {
-      $esq = "hol"; $est = "kin_{$atr}"; $lis_tip = "val"; $lis_pos = 0;
-      
-      $_ = [];
-      switch( $atr ){      
+      return is_array($_) ? _doc_dat::lis( $_, $est, $lis_tip, $ele ) : $_;
+    }    
+
+    static function kin( $atr, array $ele = [] ) : string {
+      $_ = []; $esq = "hol"; $est = "kin_$atr"; $lis_tip = "val"; $lis_pos = 0;
+      switch( $atr ){
       // factor : portales de activacion
       case 'pag':
         $arm_tra = 0;
@@ -2219,78 +2468,73 @@
           </p>";
         }          
         break;
-      // encantamiento : génesis
-      case 'gen':
-        $_ = [
-          "<b class='ide'>Génesis del Dragón</b><c>:</c> <n>13.000</n> años del Encantamiento del Sueño<c>,</c> poder del sueño<c>.</c>",
-          "<b class='ide'>Génesis del Mono</b><c>:</c> <n>7.800</n> años del Encantamiento del Sueño<c>,</c> poder de la magia<c>.</c>",
-          "<b class='ide'>Génesis de la Luna</b><c>:</c> <n>5.200</n> años del Encantamiento del Sueño<c>,</c> poder del vuelo mágico<c>.</c>",
-        ];     
+      // factor : 1 trayectoria con detalles por katun ( ciclos del modelo morfogenetico )
+      case 'fec':
+        $ond = 0;
+        $_ = "
+        <table>";
+          if( !empty($ele['tit']) ){ $_.="
+            <caption>".( !empty($ele['tit']['htm']) ? "<p class='tit'>"._doc::let($ele['tit']['htm'])."</p>" : '' )."</caption>";
+          }$_.="
+  
+          <thead>
+            <tr>
+              <td></td>
+              <td>CICLO AHAU</td>
+              <td>CICLO KATUN <c>(</c><i>índice armónico y año</i><c>)</c></td>
+              <td>CUALIDAD MORFOGENÉTICA</td>
+            </tr>
+          </thead>
+  
+          <tbody>";
+          foreach( ( !empty($dat) ? $dat : _hol::_('kin') ) as $_kin ){
+  
+            if( $ond != $_kin->nav_ond ){
+              $_ond = _hol::_('kin_nav_ond', $ond = $_kin->nav_ond); 
+              $_sel = _hol::_('sel', $_ond->sel);
+              $_ .= "
+              <tr class='tex_ali-izq'>
+                <td>
+                  "._doc::ima('hol','kin_nav_ond',$_ond,['class'=>"mar_der-1"])."
+                </td>
+                <td colspan='3'>{$_sel->may}<c>:</c> "._doc::let($_ond->fac_ran)." <q>"._doc::let($_ond->fac_des)."</q></td>
+              </tr>";
+            }
+            $_sel = _hol::_('sel',$sel = intval($_kin->arm_tra_dia));
+            $_ .= "
+            <tr data-kin='{$_kin->ide}'>
+              <td>
+                Etapa <n>".($ton = intval($_kin->nav_ond_dia))."</n>
+              </td>
+              <td></td>
+              <td>
+                <n>$sel</n><c>.</c><n>$ton</n> <b class='ide'>$_sel->may</b><c>:</c>
+                <br><n>"._num::int($_kin->fac)."</n><c>,</c> año <n>"._num::int($_kin->fac_ini)."</n>
+              </td>
+              <td>
+                <q>"._doc::let($_sel->arm_tra_des)."</q>
+              </td>
+            </tr>";
+          }$_.="
+          </tbody>
+  
+        </table>";
         break;
-      // factor : guardianes por estacion cromatica
-      case 'cro_est':
-
-        foreach( _hol::_($est) as $_est ){
-
-          $_sel = _hol::_('sel',$_est->sel); $htm = "
-  
-          <div class='val'>
-            "._doc::ima('hol','sel',$_sel,['class'=>"mar_der-2"])."
-  
-            <p>
-              <b class='tit'>ESTACIÓN "._tex::let_may(_tex::art_del("el {$_est->nom}"))."</b>
-              <br>Guardían<c>:</c> <b class='ide'>{$_sel->may}</b> <c>(</c> {$_sel->nom} <c>)</c>
-            </p>
-          </div>";
-  
-          $lis = [];
-          foreach( _hol::_('kin_cro_ond') as $_ond ){ $lis []= "
-  
-            "._doc::ima('hol','ton',$_ond->ton,['class'=>"mar_der-2"])."
-  
-            <p>El quemador {$_ond->que} el Fuego<c>.</c>
-              <br><n>".intval($_ond->ton)."</n> {$_sel->may}
-            </p>";
-          }                
-          $_[] = $htm._doc_lis::val($lis,[ 'lis'=>['class'=>'ite'] ]);
-        }          
-        break;
-      // encantamiento : espectros galácticos
-      case 'cro_sel':
-        $ele['lis'] = ['class'=>"ite"];
-
-        foreach( _hol::_('kin_cro_est') as $_est ){ 
-          $_sel = _hol::_('sel',$_est->sel); $_ []= "
-          "._doc::ima('hol','sel',$_sel,['class'=>"mar_der-2"])."
-          <p>
-            <n>{$_est->ide}</n><c>.</c> El espectro galáctico <b class='let_col-4-{$_est->ide}'>{$_est->col}</b><c>:</c> 
-            Estación "._tex::art_del($_sel->nom)."
-          </p>";
-        }          
-        break;
-      // encantamiento : aventura por estaciones
-      case 'cro_ton':
-        $ele['lis'] = ['class'=>"ite"];
-
-        foreach( _hol::_('kin_cro_ond') as $_ond ){ $_ []= "
-          "._doc::ima('hol','ton',$_ond->ton,['class'=>"mar_der-2"])."
-          <p>
-            Tono <n>".intval($_ond->ton)."</n><c>:</c> 
-            {$_ond->nom} <n>".($_ond->cue*5)."</n> Kines <c>(</c> <n>{$_ond->cue}</n> cromática".( $_ond->cue > 1 ? "s" : "")." <c>)</c>
-          </p>";
-        }            
-        break;
-      // factor : aventura por guardián
-      case 'cro_ond':
-        $ele['lis'] = ['class'=>"ite"];
-
-        foreach( _hol::_('kin_cro_ond') as $_ond ){ $_ []= "
-          "._doc::ima('hol','ton',$_ond->ton,['class'=>"mar_der-2"])."
-          <p>
-            Tono <n>".intval($_ond->ton)."</n> de la familia terrestre polar<c>:</c> 
-            {$_ond->nom} <n>1</n> de los <n>4</n> Espectros Galácticos<c>.</c>
-          </p>";
-        }          
+      // x5 : trayectorias + castillos
+      case 'tie':
+        $_ = "
+        <dl>
+          <dt>Célula del Tiempo Uno <c class='col-roj'>Roja</c><c>,</c> Entrada<c>:</c></dt>      
+          <dd>Informar el girar<c>,</c> iniciar el nacimiento de la semilla</dd>
+          <dt>Célula del Tiempo Dos <c class='col-bla'>Blanca</c><c>,</c> Almacén<c>:</c></dt>
+          <dd>Recordar el cruzar<c>,</c> refinar la muerte del guerrero</dd>
+          <dt>Célula del Tiempo Tres <c class='col-azu'>Azul</c><c>,</c> Proceso<c>:</c></dt>
+          <dd>Formular el quemar<c>,</c> transformar la magia de la estrella</dd>
+          <dt>Célula del Tiempo Cuatro <c class='col-ama'>Amarilla</c><c>,</c> Salida<c>:</c></dt>
+          <dd>Expresar el dar<c>,</c> madurar la inteligencia del sol</dd>
+          <dt>Célula del Tiempo Cinco <c class='col-ver'>Verde</c><c>,</c> Matriz<c>:</c></dt>
+          <dd>Auto<c>-</c>regular el encantamiento<c>,</c> sincronizar el libre albedrío del humano</dd>
+        </dl>";
         break;
       // factor : 13 baktunes
       case 'arm_tra':
@@ -2325,6 +2569,79 @@
           </p>";
         }
         break;
+      // factor : guardianes por estacion cromatica
+      case 'cro_est':
+
+        foreach( _hol::_($est) as $_est ){
+
+          $_sel = _hol::_('sel',$_est->sel); $htm = "
+  
+          <div class='val'>
+            "._doc::ima('hol','sel',$_sel,['class'=>"mar_der-2"])."
+  
+            <p>
+              <b class='tit'>ESTACIÓN "._tex::let_may(_tex::art_del("el {$_est->nom}"))."</b>
+              <br>Guardían<c>:</c> <b class='ide'>{$_sel->may}</b> <c>(</c> {$_sel->nom} <c>)</c>
+            </p>
+          </div>";
+  
+          $lis = [];
+          foreach( _hol::_('kin_cro_ond') as $_ond ){ $lis []= "
+  
+            "._doc::ima('hol','ton',$_ond->ton,['class'=>"mar_der-2"])."
+  
+            <p>El quemador {$_ond->que} el Fuego<c>.</c>
+              <br><n>".intval($_ond->ton)."</n> {$_sel->may}
+            </p>";
+          }                
+          $_[] = $htm._doc_lis::val($lis,[ 'lis'=>['class'=>'ite'] ]);
+        }          
+        break;
+      // factor : aventura por guardián
+      case 'cro_ond':
+        $ele['lis'] = ['class'=>"ite"];
+
+        foreach( _hol::_('kin_cro_ond') as $_ond ){ $_ []= "
+          "._doc::ima('hol','ton',$_ond->ton,['class'=>"mar_der-2"])."
+          <p>
+            Tono <n>".intval($_ond->ton)."</n> de la familia terrestre polar<c>:</c> 
+            {$_ond->nom} <n>1</n> de los <n>4</n> Espectros Galácticos<c>.</c>
+          </p>";
+        }          
+        break;
+      // encantamiento : espectros galácticos
+      case 'cro_sel':
+        $ele['lis'] = ['class'=>"ite"];
+
+        foreach( _hol::_('kin_cro_est') as $_est ){ 
+          $_sel = _hol::_('sel',$_est->sel); $_ []= "
+          "._doc::ima('hol','sel',$_sel,['class'=>"mar_der-2"])."
+          <p>
+            <n>{$_est->ide}</n><c>.</c> El espectro galáctico <b class='let_col-4-{$_est->ide}'>{$_est->col}</b><c>:</c> 
+            Estación "._tex::art_del($_sel->nom)."
+          </p>";
+        }          
+        break;
+      // encantamiento : aventura por estaciones
+      case 'cro_ton':
+        $ele['lis'] = ['class'=>"ite"];
+
+        foreach( _hol::_('kin_cro_ond') as $_ond ){ $_ []= "
+          "._doc::ima('hol','ton',$_ond->ton,['class'=>"mar_der-2"])."
+          <p>
+            Tono <n>".intval($_ond->ton)."</n><c>:</c> 
+            {$_ond->nom} <n>".($_ond->cue*5)."</n> Kines <c>(</c> <n>{$_ond->cue}</n> cromática".( $_ond->cue > 1 ? "s" : "")." <c>)</c>
+          </p>";
+        }            
+        break;
+      // encantamiento : génesis
+      case 'gen':
+        $_ = [
+          "<b class='ide'>Génesis del Dragón</b><c>:</c> <n>13.000</n> años del Encantamiento del Sueño<c>,</c> poder del sueño<c>.</c>",
+          "<b class='ide'>Génesis del Mono</b><c>:</c> <n>7.800</n> años del Encantamiento del Sueño<c>,</c> poder de la magia<c>.</c>",
+          "<b class='ide'>Génesis de la Luna</b><c>:</c> <n>5.200</n> años del Encantamiento del Sueño<c>,</c> poder del vuelo mágico<c>.</c>",
+        ];     
+        break;
       // encantamiento : ondas y castillos con células del génesis
       case 'nav':
         $gen = 0;
@@ -2352,19 +2669,6 @@
           <p><n>".intval($_ond->ide)."</n><c>°</c> Onda encantada<c>:</c> <q>"._doc::let($_ond->enc_des)."</q></p>";
         }          
         break;
-      // encantamiento : castillos del encantamiento
-      case 'nav_cas':
-        $ele['lis'] = ['class'=>"ite"];
-
-        foreach( _hol::_($est) as $_cas ){ $_ [] = 
-          _doc::ima('hol',$est,$_cas,['class'=>"mar_der-2"])."
-  
-          <p>
-            <b class='ide'>Castillo $_cas->col $_cas->dir "._tex::art_del($_cas->acc)."</b><c>:</c>
-            <br>Ondas Encantadas <n>"._num::int($_cas->ond_ini)."</n> <c>-</c> <n>"._num::int($_cas->ond_fin)."</n>
-          </p>";
-        }          
-        break;
       // factor : ciclo ahau / onda encantada
       case 'nav_sel':
         $ele['lis'] = ['class'=>"ite"];
@@ -2380,16 +2684,28 @@
           </p>";
         }            
         break;
+              
+      // 13 lunas : castillos del encantamiento
+      case 'nav_cas':
+        $ele['lis'] = ['class'=>"ite"];
+
+        foreach( _hol::_($est) as $_cas ){ $_ [] = 
+          _doc::ima('hol',$est,$_cas,['class'=>"mar_der-2"])."
+  
+          <p>
+            <b class='ide'>Castillo $_cas->col $_cas->dir "._tex::art_del($_cas->acc)."</b><c>:</c>
+            <br>Ondas Encantadas <n>"._num::int($_cas->ond_ini)."</n> <c>-</c> <n>"._num::int($_cas->ond_fin)."</n>
+          </p>";
+        }          
+        break;              
       }
-      return is_array($_) ? _hol::lis( $_, $est, $lis_tip, $ele ) : $_;
+      return is_array($_) ? _doc_dat::lis( $_, $est, $lis_tip, $ele ) : $_;
     }
-    // psi-cronos
-    static function psi( string $atr, array $ele = [] ) : string {
-      $esq = "hol"; $est = "psi_{$atr}";  $lis_tip = "val"; $lis_pos = 0;
-      
-      $_ = [];
+
+    static function psi( $atr, array $ele = [] ) : string {
+      $_ = []; $esq = "hol"; $est = "psi_$atr"; $lis_tip = "val"; $lis_pos = 0;
       switch( $atr ){
-      // encantamiento : tonos galácticos
+      // encantamiento : por tonos galácticos
       case 'lun':
         $ele['lis'] = ['class'=>"ite"];
 
@@ -2400,7 +2716,7 @@
             <br>Luna "._tex::art_del($_lun->ton_car)."<c>:</c> "._doc::let($_lun->ton_pre)."
           </p>";
         }    
-        break;
+        break;        
       // encantamiento : fechas desde - hasta
       case 'lun_fec':
         $ele['lis'] = ['class'=>"ite"];
@@ -2450,157 +2766,8 @@
           <br><n>25</n> de Julio
         </p>";        
         break;
-      // telektonon : vinales
-      case 'vin':
-        $atr = ['ide','nom','fec','sin','cro'];
-
-        $ele['lis']['class'] = "anc-100 mar-2";
-
-        $_ = _app_est::lis("hol.$est",[ 'atr'=>$atr, 'det_des'=>[ 'des' ] ], $ele );
-        break;
-      // proyecto rinri : cromaticas entonadas
-      case 'cro_arm':
-        foreach( [ 1, 2, 3, 4 ] as $arm ){
-        
-          $cro_arm = _hol::_('psi_cro_arm',$arm);
-  
-          $_ []= "Cromática <c class='let_col-4-$arm'>$cro_arm->col</c><br>"._doc::let("$cro_arm->nom: $cro_arm->des");
-        }        
-        break;        
-      }
-
-      return is_array($_) ? _hol::lis( $_, $est, $lis_tip, $ele ) : $_;
-    }
-    // anillos solares
-    static function ani( int $ini = 1992, int $cue = 8, array $ele = [], ...$opc ) : string {
-      $_ = [];
-
-      $_[] = "
-      <b class='ide'>Año Uno</b>
-      <div class='ite'>
-        "._doc::ima('hol','kin',$_kin = _hol::_('kin',39),['class'=>"mar_der-1"])."
-        <p>$_kin->nom<c>:</c><br><n>26</n> de Julio  <n>1.992</n> <c>-</c> <n>25</n> Julio <n>1.993</n><c>.</c></p>
-      </div>"; $_[] = "
-      <b class='ide'>Año Dos</b>
-      <div class='ite'>
-        "._doc::ima('hol','kin',$_kin = _hol::_('kin',144),['class'=>"mar_der-1"])."
-        <p>$_kin->nom<c>:</c><br><n>26</n> de Julio <n>1.993</n> <c>-</c> <n>25</n> Julio <n>1.994</n><c>.</c></p>
-      </div>"; $_[] = "
-      <b class='ide'>Año Tres</b>
-      <div class='ite'>
-        "._doc::ima('hol','kin',$_kin = _hol::_('kin',249),['class'=>"mar_der-1"])."
-        <p>$_kin->nom<c>:</c><br><n>26</n> de Julio <n>1.994</n> <c>-</c> <n>25</n> Julio <n>1.995</n><c>.</c></p>
-      </div>"; $_[] = "
-      <b class='ide'>Año Cuatro</b>
-      <div class='ite'>
-        "._doc::ima('hol','kin',$_kin = _hol::_('kin',94),['class'=>"mar_der-1"])."
-        <p>$_kin->nom<c>:</c><br><n>26</n> de Julio <n>1.995</n> <c>-</c> <n>25</n> Julio <n>1.996</n><c>.</c></p>
-      </div>"; $_[] = "
-      <b class='ide'>Año Cinco</b>
-      <div class='ite'>
-        "._doc::ima('hol','kin',$_kin = _hol::_('kin',199),['class'=>"mar_der-1"])."
-        <p>$_kin->nom<c>:</c><br><n>26</n> de Julio <n>1.996</n> <c>-</c> <n>25</n> Julio <n>1.997</n><c>.</c></p>
-      </div>"; $_[] = "
-      <b class='ide'>Año Seis</b>
-      <div class='ite'>
-        "._doc::ima('hol','kin',$_kin = _hol::_('kin',44),['class'=>"mar_der-1"])."
-        <p>$_kin->nom<c>:</c><br><n>26</n> de Julio <n>1.997</n> <c>-</c> <n>25</n> Julio <n>1.998</n><c>.</c></p>
-      </div>"; $_[] = "
-      <b class='ide'>Año Siete</b>
-      <div class='ite'>
-        "._doc::ima('hol','kin',$_kin = _hol::_('kin',149),['class'=>"mar_der-1"])."
-        <p>$_kin->nom<c>:</c><br><n>26</n> de Julio <n>1.998</n> <c>-</c> <n>25</n> Julio <n>1.999</n><c>.</c></p>
-      </div>"; $_[] = "
-      <b class='ide'>Año Ocho</b>
-      <div class='ite'>
-        "._doc::ima('hol','kin',$_kin = _hol::_('kin',254),['class'=>"mar_der-1"])."
-        <p>$_kin->nom<c>:</c><br><n>26</n> de Julio <n>1.999</n> <c>-</c> <n>25</n> Julio <n>2.000</n><c>.</c></p>
-      </div>";
-      
-      return _doc_lis::val($_,$ele);
-    }    
-  }
-
-  // tablas por estructura 
-  class _hol_est {
-
-    static function rad( string $ide, array $ope = [], array $ele = [], ...$opc ) : string {
-      $esq = "hol"; $est = "rad";
-      $_ = "$esq.$est";
-
-      switch( $ide ){
-      default:
-        if( empty($ope['atr']) ) $ope['atr'] = [];           
-        break;
-      }
-      
-      return _hol::est($_, $ope, $ele, ...$opc );
-    }
-
-    static function ton( string $ide, array $ope = [], array $ele = [], ...$opc ) : string {
-      $esq = "hol"; $est = "ton";
-      $_ = "$esq.$est";
-
-      switch( $ide ){
-      // tutorial : propiedades
-      case 'pro': 
-        $ope['atr'] = ['ide','nom','car','pod','acc'];
-        break;
-      // encantamiento : descripciones
-      case 'des':
-        $ope['atr'] = ['ide','nom','des','acc'];
-        break;
-      }
-
-      return _hol::est($_, $ope, $ele, ...$opc );      
-    }
-
-    static function sel( string $ide, array $ope = [], array $ele = [], ...$opc ) : string {
-      $esq = "hol"; $est = "sel";
-      $_ = "$esq.$est";
-
-      switch( $ide ){
-      // tutorial : propiedades
-      case 'pro': 
-        $ope['atr'] = ['ide','nom','pod','acc','car'];
-        break;
-      }
-
-      return _hol::est($_, $ope, $ele, ...$opc );            
-    }
-
-    static function lun( string $ide, array $ope = [], array $ele = [], ...$opc ) : string {
-      $esq = "hol"; $est = "lun";
-      $_ = "$esq.$est";
-
-      switch( $ide ){
-      // lunas en movimiento : heptadas lunares
-      case 'arm':
-        $_ .= "_$ide";
-        $ope['atr'] = [ 'ide','nom','col','dia','pod' ];
-        $opc []= 'cab_ocu';
-        break;
-      }
-
-      return _hol::est($_, $ope, $ele, ...$opc );
-    }
-
-    static function kin( string $ide, array $ope = [], array $ele = [], ...$opc ) : string {
-      $esq = "hol"; $est = "kin";
-      $_ = "$esq.$est";
-
-      switch( $ide ){
-      }
-
-      return _hol::est($_, $ope, $ele, ...$opc );
-    }
-
-    static function psi( string $ide, array $ope = [], array $ele = [], ...$opc ) : string {
-      $esq = "hol"; $est = "psi";
-      $_ = "$esq.$est";
-      
-      switch( $ide ){
-      case 'lun':
+      // rinri : dias pag + cubo
+      case 'lun_dia':
         if( isset($ope['atr']) && is_string($ope['atr']) ){
           $est .= "_lun";
           foreach( ['lis'] as $e ){ if( !isset($ele[$e]) ) $ele[$e]=[]; }
@@ -2669,14 +2836,83 @@
         }
         elseif( empty($ope['atr']) ){
           $ope['atr'] = [];
+          $_ = _doc_dat::est($_, $ope, $ele, ...$opc );
         }
         break;
-      }
-      
-      return _hol::est($_, $ope, $ele, ...$opc );
-    }
-  }
+      // tratado : vinales
+      case 'vin':
+        $atr = ['ide','nom','fec','sin','cro'];
 
+        $ele['lis']['class'] = "anc-100 mar-2";
+
+        $_ = _doc_est::lis("hol.$est",[ 'atr'=>$atr, 'det_des'=>[ 'des' ] ], $ele );
+
+        break;
+      // proyecto rinri : cromaticas entonadas
+      case 'cro_arm':
+        foreach( [ 1, 2, 3, 4 ] as $arm ){
+        
+          $cro_arm = _hol::_('psi_cro_arm',$arm);
+  
+          $_ []= "Cromática <c class='let_col-4-$arm'>$cro_arm->col</c><br>"._doc::let("$cro_arm->nom: $cro_arm->des");
+        }        
+        break;        
+      }
+      return is_array($_) ? _doc_dat::lis( $_, $est, $lis_tip, $ele ) : $_;
+    }
+
+    static function ani( $atr, array $ele = [] ) : string {
+      $_ = []; $esq = "hol"; $est = "ani_$atr"; $lis_tip = "val"; $lis_pos = 0;
+      switch( $atr ){
+      // 13 lunas : años (desde-hasta) por anillos solares
+      case 'fec':
+        $ini = 1992;
+        $cue = 8;
+        $_[] = "
+        <b class='ide'>Año Uno</b>
+        <div class='ite'>
+          "._doc::ima('hol','kin',$_kin = _hol::_('kin',39),['class'=>"mar_der-1"])."
+          <p>$_kin->nom<c>:</c><br><n>26</n> de Julio  <n>1.992</n> <c>-</c> <n>25</n> Julio <n>1.993</n><c>.</c></p>
+        </div>"; $_[] = "
+        <b class='ide'>Año Dos</b>
+        <div class='ite'>
+          "._doc::ima('hol','kin',$_kin = _hol::_('kin',144),['class'=>"mar_der-1"])."
+          <p>$_kin->nom<c>:</c><br><n>26</n> de Julio <n>1.993</n> <c>-</c> <n>25</n> Julio <n>1.994</n><c>.</c></p>
+        </div>"; $_[] = "
+        <b class='ide'>Año Tres</b>
+        <div class='ite'>
+          "._doc::ima('hol','kin',$_kin = _hol::_('kin',249),['class'=>"mar_der-1"])."
+          <p>$_kin->nom<c>:</c><br><n>26</n> de Julio <n>1.994</n> <c>-</c> <n>25</n> Julio <n>1.995</n><c>.</c></p>
+        </div>"; $_[] = "
+        <b class='ide'>Año Cuatro</b>
+        <div class='ite'>
+          "._doc::ima('hol','kin',$_kin = _hol::_('kin',94),['class'=>"mar_der-1"])."
+          <p>$_kin->nom<c>:</c><br><n>26</n> de Julio <n>1.995</n> <c>-</c> <n>25</n> Julio <n>1.996</n><c>.</c></p>
+        </div>"; $_[] = "
+        <b class='ide'>Año Cinco</b>
+        <div class='ite'>
+          "._doc::ima('hol','kin',$_kin = _hol::_('kin',199),['class'=>"mar_der-1"])."
+          <p>$_kin->nom<c>:</c><br><n>26</n> de Julio <n>1.996</n> <c>-</c> <n>25</n> Julio <n>1.997</n><c>.</c></p>
+        </div>"; $_[] = "
+        <b class='ide'>Año Seis</b>
+        <div class='ite'>
+          "._doc::ima('hol','kin',$_kin = _hol::_('kin',44),['class'=>"mar_der-1"])."
+          <p>$_kin->nom<c>:</c><br><n>26</n> de Julio <n>1.997</n> <c>-</c> <n>25</n> Julio <n>1.998</n><c>.</c></p>
+        </div>"; $_[] = "
+        <b class='ide'>Año Siete</b>
+        <div class='ite'>
+          "._doc::ima('hol','kin',$_kin = _hol::_('kin',149),['class'=>"mar_der-1"])."
+          <p>$_kin->nom<c>:</c><br><n>26</n> de Julio <n>1.998</n> <c>-</c> <n>25</n> Julio <n>1.999</n><c>.</c></p>
+        </div>"; $_[] = "
+        <b class='ide'>Año Ocho</b>
+        <div class='ite'>
+          "._doc::ima('hol','kin',$_kin = _hol::_('kin',254),['class'=>"mar_der-1"])."
+          <p>$_kin->nom<c>:</c><br><n>26</n> de Julio <n>1.999</n> <c>-</c> <n>25</n> Julio <n>2.000</n><c>.</c></p>
+        </div>";
+      }
+      return is_array($_) ? _doc_dat::lis( $_, $est, $lis_tip, $ele ) : $_;
+    }    
+  }
   // tablero : seccion + posicion
   class _hol_tab {
     
@@ -2693,22 +2929,22 @@
           ._doc::ima("hol/gal",['eti'=>"div",'fic'=>'gal','title'=>'Fin de la Exhalación Solar. Comienzo de la Inhalación Galáctica.'])
           ._doc::ima("hol/sol",['eti'=>"div",'fic'=>'sol','title'=>'Fin de la Inhalación Galáctica. Comienzo de la Exhalación Solar.']);
           foreach( _hol::_('sel_pol_flu') as $v ){ 
-            $_ .= _doc::ima($esq,'sel_pol_flu',$v,['eti'=>"div",'flu'=>$v['ide'],'class'=>$ocu['res'],'title'=> _app_dat::val('ver',"{$esq}.sel_pol_flu",$v)]);
+            $_ .= _doc::ima($esq,'sel_pol_flu',$v,['eti'=>"div",'flu'=>$v['ide'],'class'=>$ocu['res'],'title'=> _doc_dat::val('ver',"{$esq}.sel_pol_flu",$v)]);
           }
           foreach( _hol::_('sel_sol_res') as $v ){ 
-            $_ .= _doc::ima($esq,'sel_sol_res',$v,['eti'=>"div",'res'=>$v['ide'],'class'=>$ocu['res'],'title'=> _app_dat::val('ver',"{$esq}.res_flu",$v)]);
+            $_ .= _doc::ima($esq,'sel_sol_res',$v,['eti'=>"div",'res'=>$v['ide'],'class'=>$ocu['res'],'title'=> _doc_dat::val('ver',"{$esq}.res_flu",$v)]);
           }          
           foreach( _hol::_('sel_sol_pla') as $v ){
-            $_ .= _doc::ima($esq,'sol_pla',$v,['eti'=>"div",'pla'=>$v['ide'],'class'=>$ocu['pla'],'title'=> _app_dat::val('ver',"{$esq}.sol_pla",$v)]);
+            $_ .= _doc::ima($esq,'sol_pla',$v,['eti'=>"div",'pla'=>$v['ide'],'class'=>$ocu['pla'],'title'=> _doc_dat::val('ver',"{$esq}.sol_pla",$v)]);
           }
           foreach( _hol::_('sel_cro_ele') as $v ){ $_ .= "
-            <div ele='{$v['ide']}' class='{$ocu['cla']}' title='"._app_dat::val('ver',"{$esq}.sel_cro_ele",$v)."'></div>";
+            <div ele='{$v['ide']}' class='{$ocu['cla']}' title='"._doc_dat::val('ver',"{$esq}.sel_cro_ele",$v)."'></div>";
           }
           foreach( _hol::_('sel_sol_cel') as $v ){ $_ .= "
-            <div cel='{$v['ide']}' class='{$ocu['cel']}' title='"._app_dat::val('ver',"{$esq}.sol_cel",$v)."'></div>";
+            <div cel='{$v['ide']}' class='{$ocu['cel']}' title='"._doc_dat::val('ver',"{$esq}.sol_cel",$v)."'></div>";
           }
           foreach( _hol::_('sel_sol_cir') as $v ){ $_ .= "
-            <div cir='{$v['ide']}' class='{$ocu['cir']}' title='"._app_dat::val('ver',"{$esq}.sol_cir",$v)."'></div>";
+            <div cir='{$v['ide']}' class='{$ocu['cir']}' title='"._doc_dat::val('ver',"{$esq}.sol_cir",$v)."'></div>";
           }
           foreach( _hol::_('sel') as $_sel ){ 
             $e = $ele['pos'];
@@ -2732,7 +2968,7 @@
   
           }
           foreach( _hol::_('sel_sol_pla') as $v ){ $_ .= "
-            <div pla='{$v->ide}' class='{$ocu['pla']}' title='"._app_dat::val('tit',"{$esq}.sol_pla",$v)."'></div>";
+            <div pla='{$v->ide}' class='{$ocu['pla']}' title='"._doc_dat::val('tit',"{$esq}.sol_pla",$v)."'></div>";
           }
           foreach( _hol::_('sel') as $_sel ){ 
             $e = $ele['pos'];
@@ -2925,7 +3161,7 @@
         $e = isset($ope['cel']) ? $ope['cel'] : [];
 
         _ele::cla($e,"sel");
-        $e['title'] = _app_dat::val('ver',"{$esq}.{$est}",$_arm); $_ = "
+        $e['title'] = _doc_dat::val('ver',"{$esq}.{$est}",$_arm); $_ = "
         <div"._htm::atr($e).">
           <div pos='00'>
             "._doc::ima($esq,'sel_arm_cel', $_arm, ['htm'=>$_arm->ide,'class'=>'ima'] )."
@@ -3189,7 +3425,7 @@
         $_tab = _app::tab('hol','arm')->ele;
         $_arm = _hol::_($est,$ide);
   
-        $ele['cel']['title'] = _app_dat::val('ver',"{$esq}.{$est}",$_arm); 
+        $ele['cel']['title'] = _doc_dat::val('ver',"{$esq}.{$est}",$_arm); 
         $_ = "
         <div"._htm::atr(_ele::jun($_tab['sec'],$ele['cel'])).">";
          
@@ -3240,7 +3476,7 @@
 
         _ele::cla( $ele['cas'], "fon_col-5-{$ide}".( empty($ope['sec']['col']) ? ' fon-0' : '' ) );
 
-        $ele['cas']['title'] = _app_dat::val('ver',"{$esq}.{$est}",$_cas);            
+        $ele['cas']['title'] = _doc_dat::val('ver',"{$esq}.{$est}",$_cas);            
         $ond_ini = ( ( $ide - 1 ) * 4 ) + 1;
         $ond_fin = $ond_ini + 4;
         for( $ond = $ond_ini; $ond < $ond_fin; $ond++ ){ 
@@ -3275,7 +3511,7 @@
         $_ond = _hol::_($est,$ide); 
         $_cas = _hol::_('kin_nav_cas',$_ond->nav_cas);
 
-        $ele['ond']['title'] = _app_dat::val('ver',"{$esq}.kin_nav_cas",$_cas)." .\n{$_ond->enc_des}"; 
+        $ele['ond']['title'] = _doc_dat::val('ver',"{$esq}.kin_nav_cas",$_cas)." .\n{$_ond->enc_des}"; 
         
         $_ = "
         <div"._htm::atr(_ele::jun($_tab['sec'],$ele['ond'])).">

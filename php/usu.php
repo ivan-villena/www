@@ -56,7 +56,7 @@
           $_ .= "DELETE FROM `_api`.`usu_cic_lun` WHERE usu = $_usu->ide;<br>";
 
           // pido tránsitos
-          foreach( _hol::dat_ani( $_usu->sin, 1, 52, 'not-lun') as $_cic_ani ){
+          foreach( _hol::cic( $_usu->sin, 1, 52, 'not-lun') as $_cic_ani ){
 
             $_ .= "INSERT INTO `_usu`.`cic_ani` VALUES( 
               $_usu->ide, 

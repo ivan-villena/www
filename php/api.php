@@ -1035,6 +1035,7 @@
       return $_;
     }
   }
+
   // Valor : tip + ver
   class _val {
 
@@ -1152,6 +1153,7 @@
       return $_;
     }
   }
+
   // listado : []
   class _lis {
 
@@ -1191,6 +1193,7 @@
       return $_;
     }
   }
+
   // Estructura : [ ...{} ] 
   class _est {
 
@@ -1486,6 +1489,7 @@
     }
     
   }
+
   // Ejecucion : ( ...par ) => { ...cod } : val 
   class _eje {
 
@@ -1622,6 +1626,7 @@
       return $_;
     }
   }
+
   // Elemento : <eti ...atr="val"> ...htm + ...tex </eti>
   class _ele {
 
@@ -2071,6 +2076,7 @@
       return $_;
     }
   }
+
   // Archivo : fichero + texto + imagen + audio + video + app + ...tipos
   class _arc {  
 
@@ -2121,6 +2127,7 @@
       return $_;
     }
   }
+
   // Fecha : aaaa-mm-dia hh:mm:ss utc
   class _fec {  
 
@@ -2396,6 +2403,7 @@
     }
 
   }    
+
   // Texto : caracter + letra + oracion + parrafo
   class _tex {
     
@@ -2511,6 +2519,7 @@
       return $_;
     }
   }
+  
   // Numero : separador + operador + entero + decimal + rango
   class _num {
 

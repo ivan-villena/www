@@ -239,6 +239,10 @@
           "nav_cas_dia":"cas"
         },
         
+        "atr_ima" : [
+          "nav_cas", "nav_ond", "arm_tra", "arm_cel", "cro_est", "cro_ele"
+        ],
+
         "fic": { 
           "ide":"ide", "atr":[ "cro_ele", "arm_cel", "nav_ond" ] 
         },
@@ -246,9 +250,10 @@
         "ver": [ 
           "pag", "ene", "ene_cam", "gen_enc", "gen_cel", "nav_cas", "nav_ond", "cro_est", "cro_ele", "arm_tra", "arm_cel" 
         ],
+
         "col": [
           "pag", "ene", "gen_enc", "gen_cel", "nav_cas", "nav_ond", "cro_est", "cro_ele", "arm_tra", "arm_cel"
-        ],
+        ],        
         "ima": [            
           "ide", "pag", "ene", "ene_cam", "chi", "par_ana", "par_gui", "par_ant", "par_ocu", 
           "nav_cas", "nav_ond", "nav_ond_dia", "arm_tra", "arm_cel", "arm_tra_dia", "cro_est", "cro_ele"

@@ -1,13 +1,12 @@
 -- Active: 1623270923336@@127.0.0.1@3306@_api
+
 -- Holon-Sincronario
 	DELETE FROM `_api`.`doc_art` WHERE `esq`='hol';
 	-- bibliografía 
 	DELETE FROM `_api`.`doc_art` WHERE `esq`='hol' AND `cab`='bib';
 	INSERT INTO `_api`.`doc_art` VALUES
-		
-		('hol','bib','ide', 1, 		'Glosarios',																'', NULL, NULL ),
-		('hol','bib','dat', 2, 		'Códigos y Cuentas',												'', NULL, NULL ),
-		('hol','bib','tut',	3, 		'Tutorial del Sincronario de 13 Lunas',			'', NULL, NULL ),
+	
+		('hol','bib','tut',	1, 		'Tutorial del Sincronario de 13 Lunas',			'', NULL, NULL ),
 		('hol','bib','asc',	1984, '1984 - La Tierra en Ascenso', 			  			'', NULL, NULL ),
 		('hol','bib','fac',	1987, '1987 - El Factor Maya',               			'', NULL, NULL ), 
 		('hol','bib','enc',	1990, '1990 - El Encantamiento del Sueño',   			'', NULL, NULL ),
@@ -21,7 +20,13 @@
 		('hol','bib','ato',	1999, '1999 - El Átomo del Tiempo', 				  		'', NULL, NULL ),
 		('hol','bib','cro',	2009, '2009 - El Sincronotrón', 						  		'', NULL, NULL )
 	;
-	-- Cuentas :  tablero + listado + informe 
+	-- informes
+	DELETE FROM `_api`.`doc_art` WHERE `esq`='hol' AND `cab`='inf';
+	INSERT INTO `_api`.`doc_art` VALUES	
+		('hol','inf','ide', 1, 		'Glosarios',																'', NULL, NULL ),
+		('hol','inf','dat', 2, 		'Códigos y Cuentas',												'', NULL, NULL )	
+	;		
+	-- tableros
 	DELETE FROM `_api`.`doc_art` WHERE `esq`='hol' AND `cab`='tab';
 	INSERT INTO `_api`.`doc_art` VALUES
 
@@ -34,10 +39,17 @@
 		('hol','tab','psi-lun', 7, 'Los 28 Días del Giro Lunar', 							'', NULL, NULL ),
 		('hol','tab','psi-tzo', 8, 'Las 2.080 unidades del Banco-Psi', 				'', NULL, NULL )
 	;
-	-- Informes : indice + texto 
-	DELETE FROM `_api`.`doc_art` WHERE `esq`='hol' AND `cab`='inf';
+	-- valores diario
+	DELETE FROM `_api`.`doc_art` WHERE `esq`='hol' AND `cab`='val';
 	INSERT INTO `_api`.`doc_art` VALUES
 		
-		('hol','inf','dia', 1, 'Ciclos del Tiempo',	'', NULL, NULL ),
-		('hol','inf','hum', 2, 'Firma Galáctica',		'', NULL, NULL )
+		('hol','val','dia', 1, 'Ciclos del Tiempo',	'', NULL, NULL ),
+		('hol','val','hum', 2, 'Firma Galáctica',		'', NULL, NULL )
+	;
+	-- cuenta de usuario
+	DELETE FROM `_api`.`doc_art` WHERE `esq`='hol' AND `cab`='usu';
+	INSERT INTO `_api`.`doc_art` VALUES
+		
+		('hol','usu','cic', 1, 'Sendero del Destino',					'', NULL, NULL ),
+		('hol','usu','dat', 2, 'Firma Galáctica',							'', NULL, NULL )
 	;
