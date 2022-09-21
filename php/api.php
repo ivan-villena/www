@@ -164,7 +164,7 @@
       return $_;
     }
     // codifica instrucciones de consultas
-    static function cod( string $ide, mixed $ope = NULL, string $tip='ver' ) : array {
+    static function cod( string $ide = '', array $ope = [], string $tip='ver' ) : array {
       $ide = explode('.',$ide);
       $_=[
         'est'=>"`{$ide[0]}`.`{$ide[1]}`",
@@ -303,7 +303,7 @@
       return $_;
     }
     // esquemas
-    static function esq( string $ope='', string $ide, ...$opc ) : string | array | object {
+    static function esq( string $ope, string $ide='', ...$opc ) : string | array | object {
       $_ = [];
       if( empty($ope) ){
         foreach( _sql::dec("SHOW DATABASES") as $esq ){
@@ -314,7 +314,7 @@
         case 'cop':
           // copio estructuras
           // elimino base inicial
-          $_sql []= "DROP SCHEMA `{$esq}`";
+          $_sql []= "DROP SCHEMA `{$ide}`";
           $_ = implode(';<br>',$_sql);
           break;
         }
@@ -828,7 +828,7 @@
       else{
         switch( $tip ){
         case 'ope': 
-          $_ = _dat::est($esq,$est);
+          $_ = _dat::est($esq,$ide);
           if( !empty($_->$ope) ) $_ = $_->ope;
           break;
         }
@@ -989,13 +989,12 @@
       $_="";
       $_sql = [];
       if( $esq=='usu' ){
-        $_usu = new _usu();
-        $_sql = $_usu->dat($est,$tip,$dat);
+        
       }
       // ejecuto transacciones    
       $var_eve = [];
       foreach( $_sql as $est=>$ope ){ 
-        $eje []= _val_dat( $tip, $est, $ope) ; 
+        $eje []= _dat::val( $tip, $est, $ope) ; 
       }
       if( !empty($eje) ){
         $_ = _sql::dec( ...$eje );
@@ -1279,7 +1278,7 @@
         foreach( $dat as $i => $val ){ 
           $i=[]; 
           foreach( $k as $ide ){ $i []= $val[$ide]; }
-          $_[ implode('(.)',$ide) ] = $val; 
+          $_[ implode('(.)',$i) ] = $val; 
         }
       }
       // Clave Múltiple => keys-[ [ [ [],[ {-_-} ],[], ] ] ]
@@ -1353,7 +1352,7 @@
                     }
                     elseif( is_array($n_4) ){
 
-                      foreach( $n_5 as &$n_5 ){
+                      foreach( $n_4 as &$n_5 ){
 
                         if( is_object($n_5) ){
                           if( isset($n_5->$atr) ) $n_5 = $n_5->$atr;
@@ -1464,7 +1463,7 @@
   class _eje {
 
     // ejecucion del entorno : funcion() |o| [namespace/]clase(...par).objeto->método(...par)
-    static function val( string | array $ide, mixed $par=[], array $ini=[] ) : mixed {
+    static function val( mixed $ide, mixed $par=[], array $ini=[] ) : mixed {
       // php.fun(,)par(,)... || rec/cla.met(,)par(,)...      
       if( is_string($ide) ){
 
@@ -1611,7 +1610,7 @@
       }
       // convierto {} => []
       elseif( is_object($ele) ){
-        $_ = _obj_nom($ele);
+        $_ = _obj::nom($ele);
       }
       // proceso atributos con variables : ()($)nom()
       elseif( is_array($_) && isset($dat) ){
@@ -1627,7 +1626,7 @@
       return $_;
     }
     // combino elementos
-    static function jun( stirng | array $ele, array $ope, array | object $dat = NULL, array $opc = [] ) : array {
+    static function jun( string | array $ele, array $ope, array | object $dat = NULL, array $opc = [] ) : array {
       // si es "", convierto a []
       $_ = _ele::val($ele,$dat);
       // proceso opciones
@@ -2221,7 +2220,7 @@
             $_->sem = _fec::tip($_,'sem');
             // proceso horario
             if( isset($val[1]) ){
-              $hor = explode(':', $_->tie = $tie[1]);
+              $hor = explode(':', $_->tie = $val[1]);
               // segundos
               if( isset($hor[2]) ) $_->seg = intval($hor[2]);
               // minutos

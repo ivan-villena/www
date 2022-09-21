@@ -1,5 +1,9 @@
-<?php
+<?php  
+  // mostrar errores
+  error_reporting(E_ALL);
+  ini_set('display_errors', '1');
   
+  // cargo sesuib
   session_start();
   
   if( !isset($_SESSION['usu']) ){
@@ -11,21 +15,25 @@
       'ser' => $_SERVER['SERVER_NAME'], 'usu' => "admin",  'pas' => "admin", 'esq' => "_api" 
     ];
   }
+  // acceso a database
+  $_SESSION['sql'] = [ 
+    'ser' => $_SERVER['SERVER_NAME'], 'usu' => "root",  'pas' => "", 'esq' => "_api" 
+  ];
   
   // require de clases manual // require_once("_/autoload.php");
   foreach( ['api','doc','app','hol','usu'] as $cla ){ 
     
     require_once("php/$cla.php");
-  }
+  }  
 
   // cargo interfaces
-  $_api = new _api();
+  $_api = new _api();  
 
   // cargo holon
   $_hol = new _hol();
 
   // cargo usuario
-  $_usu = new _usu( $_SESSION['usu'] );  
+  $_usu = new _usu( $_SESSION['usu'] );    
   
   date_default_timezone_set( !empty($_usu->ubi) ? $_usu->ubi : $_SESSION['ubi'] );  
    

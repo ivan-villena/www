@@ -614,7 +614,7 @@
     }
 
     // articulo por operador
-    static function art( array $nav, string $esq, string $cab ) : string {
+    static function art( object $nav, string $esq, string $cab ) : string {
       $_ = "";      
 
       $agr = _htm::dat($nav->ope);
