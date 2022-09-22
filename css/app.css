@@ -1,11 +1,3 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Lora');
-
-html {
-  font-family: 'Lora', 'Book Antiqua', 'Georgia';  
-  font-size: 14px;
-}
-
 /* 
 {-_-} 
 */
@@ -60,6 +52,16 @@ body > aside.nav > :is(nav,article)[ide] > header + * {
   overflow: auto;
   padding: 0 .5rem;
 }
+
+/* Menù principal */
+body > aside.nav > [ide="cab"] ul.lis.nav {
+  height: 65vh;
+}
+/* índices */
+body > aside.nav > [ide="art"] ul.lis.nav {
+  height: 85vh;
+}
+
 
 /* 
   Seccion Principal

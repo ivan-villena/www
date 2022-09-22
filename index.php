@@ -12,19 +12,15 @@
     $_SESSION['ubi'] = "America/Argentina/Buenos_Aires";
     // acceso a database
     $_SESSION['sql'] = [ 
-      'ser' => $_SERVER['SERVER_NAME'], 'usu' => "admin",  'pas' => "admin", 'esq' => "_api" 
+      'ser' => $_SERVER['SERVER_NAME'], 'usu' => "root",  'pas' => "", 'esq' => "_api" 
     ];
   }
-  // acceso a database
-  $_SESSION['sql'] = [ 
-    'ser' => $_SERVER['SERVER_NAME'], 'usu' => "root",  'pas' => "", 'esq' => "_api" 
-  ];
   
   // require de clases manual // require_once("_/autoload.php");
-  foreach( ['api','doc','app','hol','usu'] as $cla ){ 
+  foreach( ['api','app','hol'] as $cla ){ 
     
     require_once("php/$cla.php");
-  }  
+  }
 
   // cargo interfaces
   $_api = new _api();  
@@ -43,7 +39,7 @@
     // log del sistema por ajax
     function _log( ...$opc ) : string {
 
-      global $_api, $_hol;
+      global $_api, $_hol, $_usu;
 
       $_ = "  
       <h2>hola desde php<c>!</c></h2>
@@ -81,7 +77,7 @@
       }
     } ?>
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Material+Icons+Outlined'>
-    <link rel='stylesheet' href='<?= SYS_NAV."css/api.css" ?>' >
+    <link rel='stylesheet' href='<?= SYS_NAV."css/_.css" ?>' >
     
     <title><?= $_app->nom ?></title>
 

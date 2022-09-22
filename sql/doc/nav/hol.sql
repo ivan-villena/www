@@ -1,4 +1,4 @@
--- Active: 1623270923336@@127.0.0.1@3306@_api
+-- Active: 1663730672989@@127.0.0.1@3306@_api
 
 -- Holon-sincronario
   -- 
@@ -913,8 +913,13 @@
     -- 1999 - el átomo del tiempo
     DELETE FROM `_api`.`doc_nav` WHERE `esq`='hol' AND `cab`='bib' AND `ide`='ato';
     INSERT INTO `_api`.`doc_nav` VALUES 
-      ('hol','bib','ato','01','INTRODUCCIÓN: MODELO DEL UNIVERSO PLASMA -MATRIZ RADIAL (MR-MUP)'),
+      ('hol','bib','ato','01','Introducciòn: Modelo del Universo Plasma - Matriz Radial (MR-MUP)'),
+        ('hol','bib','ato','01-01','El modelo de universo plasma'),
+        ('hol','bib','ato','01-02','La matriz radial'),
       ('hol','bib','ato','02','La Práctica del 7:7::7:7, Índice e Inventario de Partes'),
+        ('hol','bib','ato','02-01',''),
+        ('hol','bib','ato','02-02',''),
+        ('hol','bib','ato','02-03',''),
       ('hol','bib','ato','03','Índice del 7:7::7:7'),
         ('hol','bib','ato','03-01','Los Siete Plasmas Radiales'),
         ('hol','bib','ato','03-02','Átomo Telepático del Tiempo'),

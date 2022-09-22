@@ -4,7 +4,7 @@
 // administrador
 function _adm( $tip, $dat, $val, ...$opc ){
   
-  let $=_doc.var($dat);
+  let $=_doc_val.var($dat);
   
   // -> desde form : vacío resultados previos
   if( $_app.var && ( $.res = $_app.var.querySelector('.ope_res') ) ){ 

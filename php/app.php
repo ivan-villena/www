@@ -1,19 +1,14 @@
-<?php
-
-  // estilos y clases
-  define('DIS_OCU', "dis-ocu" );
-  define('FON_SEL', "fon-sel" );
-  define('BOR_SEL', "bor-sel" );  
+<?php  
 
   // Página-app
   class _app {
 
     // estilos css
-    public array $css = ['doc','app'];
+    public array $css = ['api','app'];
     // modulos js
-    public array $jso = ['api','doc','app','hol','usu'];
+    public array $jso = ['api','app'];
     // elementos
-    public array $ele = [];
+    public array $ele = [ 'body'=>[] ];
     // script
     public string $eje = "";
     // titulo
@@ -36,14 +31,14 @@
 
     // cargo aplicacion
     function __construct( string $esq ){
-      
-      global $_api, $_usu;
-      
+            
+      global $_usu;
+
       // peticion url ( por defecto: holon )
       $_uri = new _app_uri( $esq );
 
       // cargo directorios
-      $_dir = $_uri->dir();
+      $_dir = $_uri->dir();      
 
       // cargo elementos
       $this->ele = [
@@ -87,33 +82,40 @@
       $this->ope['ini'] = _doc::ico('ses',[ 'eti'=>"a", 'href'=>SYS_NAV."/{$_uri->esq}", 'title'=>"Inicio..." ]);
 
       // pido contenido por aplicacion
-      if( file_exists($rec = "php/$_uri->esq/app.php") ){
+      if( class_exists($cla_app = "_{$_uri->esq}_app") ){
 
-        // inicializo elemento del articulo
-        $_ = [ 'sec'=>"", 'nav'=>[], 'nav_fin'=>[], 'win'=>[], 'win_fin'=>[] ];
-
+        // inicializo elemento del articulo        
         $ele = [ 'art'=>[] ];
 
         // pido calendario
         $_api_dat = [ 'fec'=>[ 'mes','sem','dia' ] ];
 
-        require_once($rec);
+        // cargo contenido
+        $_ = [ 'sec'=>"", 'nav'=>[], 'nav_fin'=>[], 'win'=>[], 'win_fin'=>[] ];
 
         // menu principal
-        $_['nav']['cab'] = [ 'ico'=>"nav", 'nom'=>"Menú Principal",
-          'htm' => 
-            ( isset($nav_htm_ini) ? $nav_htm_ini : '' )
-            ._app_ope::nav($_uri->esq, [ 'lis' => [ 'style'=>"height: 70.8vh;" ] ])
-            .( isset($nav_htm_fin) ? $nav_htm_fin : '' )
-        ];
+        $_['nav']['cab'] = [ 'ico'=>"nav", 'nom'=>"Menú Principal" ];
 
-        // indice por articulo
-        if( !empty($this->nav_art) ){
-          $_['nav']['art'] = [ 'ico' => "nav_val", 'nom' => "Índice de Contenidos",
-            'htm' => _doc_lis::nav( $this->nav_art, [ 'lis' => [ 'style'=>"height: 86.3vh;" ] ])
-          ];
+        $_['nav']['art'] = [ 'ico' => "nav_val", 'nom' => "Índice de Contenidos" ];
+
+        // cargo aplicacion
+        if( method_exists($cla_app,"ini") ){
+          $_ = $cla_app::ini($_,$_usu,$this,$_uri,$_dir,$_api_dat);
         }
 
+        // completo el menù
+        $_['nav']['cab']['htm'] = 
+          ( isset($_['nav_htm_ini']) ? $_['nav_htm_ini'] : '' )
+          ._app_ope::nav($_uri->esq, [ 'lis' => [] ])
+          .( isset($_['nav_htm_fin']) ? $_['nav_htm_fin'] : '' )
+        ;
+
+        // completo indice por articulo
+        if( empty($this->nav_art) ){
+          unset($_['nav']['art']);
+        }else{
+          $_['nav']['art']['htm'] = _doc_lis::nav( $this->nav_art, [ 'lis' => [] ]);
+        }
         // pido botones del navegador
         $art = [];
         if( !empty($_['nav']) ){
@@ -639,7 +641,7 @@
               if( !empty($art->ope['tex']) ){
                 $_ .= "            
                 <div class='val nav'>
-                  "._doc::tog_ico()."
+                  "._doc_val::tog_ico()."
                   {$art_url}
                 </div>
                 <div class='dat'>
