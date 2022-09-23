@@ -3,8 +3,8 @@
 -- variables
   
   -- tipos
-  DELETE FROM `_api`.`var_tip`;
-  INSERT INTO `_api`.`var_tip` (`ide`,`dat`,`val`,`nom`,`len`,`des`,`ope`) VALUES
+  DELETE FROM `_api`.`dat_tip`;
+  INSERT INTO `_api`.`dat_tip` (`ide`,`dat`,`val`,`nom`,`len`,`des`,`ope`) VALUES
 
     -- valores
       ( 'null',             'opc', 'vac', 'Nulo',             'php,jso',  'Valor no Definido','{ 
@@ -182,8 +182,8 @@
   ;
   
   -- tipo de dato 
-  DELETE FROM `_api`.`var_dat`;
-  INSERT INTO `_api`.`var_dat` (`ide`,`nom`,`des`,`ope`) VALUES
+  DELETE FROM `_api`.`dat_tip_dat`;
+  INSERT INTO `_api`.`dat_tip_dat` (`ide`,`nom`,`des`,`ope`) VALUES
 
     ( 'opc', 'Opción',    '', '{}' ),
     ( 'num', 'Número',    '', '{}' ),
@@ -197,8 +197,8 @@
   ;
   
   -- tipo de valor 
-  DELETE FROM `_api`.`var_val`;
-  INSERT INTO `_api`.`var_val` (`dat`,`ide`,`nom`,`des`,`len`,`ope`) VALUES
+  DELETE FROM `_api`.`dat_tip_val`;
+  INSERT INTO `_api`.`dat_tip_val` (`dat`,`ide`,`nom`,`des`,`len`,`ope`) VALUES
 
     -- opciones
       ( 'opc', 'val', 'Opción',         '', '', '{    
@@ -309,25 +309,3 @@
       }')
   ;
 
-  -- operaciones
-  DELETE FROM `_api`.`var_ope`;
-  INSERT INTO `_api`.`var_ope` (`tip`,`dat`,`ide`,`pos`,`nom`,`des`) VALUES
-
-    ( 'ver', 'opc', '==', 1, '==', 'Tiene que ser igual que...' ),
-    ( 'ver', 'opc', '!=', 2, '!=', 'Tiene que ser distinto que...' ),  
-
-    ( 'ver', 'num', '<<', 12, '<<', 'Tiene que ser Menor que...' ),
-    ( 'ver', 'num', '<=', 13, '<=', 'Tiene que ser Menor o igual que...' ),
-    ( 'ver', 'num', '>=', 15, '>=', 'Tiene que ser Mayor o igual que...' ),
-    ( 'ver', 'num', '>>', 14, '>>', 'Tiene que ser Mayor que...' ),
-
-    ( 'ver', 'tex', '^^', 20, '^^', 'Debe empezar con...' ),
-    ( 'ver', 'tex', '!*', 21, '!*', 'No debe contener...' ),
-    ( 'ver', 'tex', '**', 22, '**', 'Debe contener...' ),
-    ( 'ver', 'tex', '!^', 23, '!^', 'No debe empezar con...' ),
-    ( 'ver', 'tex', '$$', 24, '$$', 'Debe terminar en...' ),
-    ( 'ver', 'tex', '!$', 25, '!$', 'No debe terminar en...' ),
-
-    ( 'ver', 'lis', '()', 31, '()', 'Debe incluir...' ),
-    ( 'ver', 'lis', '!()', 31, '!()', 'No debe incluir...' )
-  ;

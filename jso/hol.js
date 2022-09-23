@@ -5,7 +5,7 @@
 class _hol_app {
 
   // valor seleccioando
-  _val = { };
+  _val = {};
   // valores acumulados
   _val_acu = {
 
@@ -37,7 +37,7 @@ class _hol_app {
 
   ini( $ = {} ){
     // inicializo
-    if( $_app.uri.cab == 'tab' ){
+    if( $_api.app_uri.cab == 'tab' ){
 
       _doc_tab.ini();
 
@@ -49,19 +49,17 @@ class _hol_app {
   
         if( $_app.tab[$ope] ){
   
-          $_app.tab[$ope].querySelectorAll(`form[ide] [name][onchange*="_hol_app_tab."]`).forEach( $inp => 
+          $_app.tab[$ope].querySelectorAll(`form[ide] [name][onchange*="_hol_app.tab_"]`).forEach( $inp => 
   
-            _hol_app_tab[`${$ope}`](`${_ele.ver($inp,{'eti':`form`}).getAttribute('ide')}`, $inp )
+            _hol_app[`tab_${$ope}`](`${_ele.ver($inp,{'eti':`form`}).getAttribute('ide')}`, $inp )
           );
         }
       });
     }
   }
-}// -> Valores
-class _hol_app_val {
-
+  
   // actualizo acumulados por seleccion de clase
-  static acu( $dat, ...$ide ){
+  static val_acu( $dat, ...$ide ){
 
     let $ope = $ide.join('_');
 
@@ -69,7 +67,7 @@ class _hol_app_val {
 
   }
   // calculo totales por tipos de operador : portales + parejas + pulsares
-  static tot( $dat, $ope ){
+  static val_tot( $dat, $ope ){
 
     let $ = _doc_val.var($dat);
 
@@ -81,16 +79,15 @@ class _hol_app_val {
     }
 
     // actualizo totales
-    $_hol_app._val_acu[$ope] = [];    
-    $.lis.forEach( $ide => $_hol_app._val_acu[$ope].push(...$_hol_app._val_acu[$ide]));    
+    $_hol_app._val_acu[$ope] = [];
+    $.lis.forEach( 
+      $ide => $_hol_app._val_acu[$ope].push(...$_hol_app._val_acu[$ide])
+    );
   }
   // actualizo cuentas y porcentajes sobre totales 
-  static cue( $dat, ...$ide ){
+  static val_cue( $dat, ...$ide ){
 
-    let $ = {
-      ide : `${$ide[0]}_${$ide[1]}`,
-      tot : false
-    };
+    let $ = { ide : `${$ide[0]}_${$ide[1]}`, tot : false };
 
     // muestro totales
     if( $dat.nextElementSibling && ( $.tot = $dat.nextElementSibling.querySelector('n') )){
@@ -99,13 +96,11 @@ class _hol_app_val {
     }
 
     // actualizo acumulado total
-    _hol_app_val.tot($ide[0]);
+    _hol_app.val_tot($ide[0]);
   }
-}// -> Tablero
-class _hol_app_tab {
 
   // posicion : parejas + pulsares
-  static pos( $tip, $dat, $ope, ...$opc ){
+  static tab_pos( $tip, $dat, $ope, ...$opc ){
 
     let $=_doc_val.var($dat);
 
@@ -126,7 +121,7 @@ class _hol_app_tab {
 
         $._par_lis.forEach( $ide => {
 
-          _hol_app_tab.pos(`${$tip}`, $_app.var.querySelector(`[name="${$ide}"]`) );
+          _hol_app.tab_pos(`${$tip}`, $_app.var.querySelector(`[name="${$ide}"]`) );
         });
       }// por pareja
       else{        
@@ -139,7 +134,7 @@ class _hol_app_tab {
             _ele.act('cla_agr',$.ele,$.cla);          
           }
           // evaluo extensiones
-          _hol_app_tab.pos(`${$tip}`, $_app.var.querySelector(`[name="ext"]`) );
+          _hol_app.tab_pos(`${$tip}`, $_app.var.querySelector(`[name="ext"]`) );
           
         }// extiendo oráculo      
         else if( $.var_ide=='ext' ){
@@ -221,15 +216,15 @@ class _hol_app_tab {
         }
       }
       // acumulados
-      _hol_app_val.acu($_app.tab.dat,'pul',$.var_ide);      
+      _hol_app.val_acu($_app.tab.dat,'pul',$.var_ide);      
       // totales por valor
-      _hol_app_val.cue($dat,'pul',$.var_ide);
+      _hol_app.val_cue($dat,'pul',$.var_ide);
 
       break;
     }    
   }
   // opciones : seccion ( vistas ) + ...posicion
-  static opc( $tip, $dat, $ope, ...$opc ){
+  static tab_opc( $tip, $dat, $ope, ...$opc ){
     let $=_doc_val.var($dat);
     $.kin = $_hol_app._val.kin;
     $.cla_ide = `${$.var_ide}_${$ope}`;
@@ -349,6 +344,9 @@ class _hol_app_tab {
   }
 }
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 class _hol_bib {
   
   // Encantamiento del sueño
@@ -380,19 +378,19 @@ class _hol_bib {
 class _hol_inf {
 }
 
-class _hol_val {
+class _hol_dia {
 
   // proceso valores 
-  static dia( $dat ){
+  static val( $dat ){
     // operador : fecha + sincronario
     let $ = _doc_val.var($dat);
 
-    if( !$_app.uri.cab || !['tab','inf'].includes($_app.uri.cab) ){
-      $_app.uri.cab = 'tab';
-      $_app.uri.art = 'kin-tzo';
+    if( !$_api.app_uri.cab || !['tab','inf'].includes($_api.app_uri.cab) ){
+      $_api.app_uri.cab = 'tab';
+      $_api.app_uri.art = 'kin-tzo';
     }
     
-    $.uri = $_app.uri.ver();
+    $.uri = $_app._uri();
 
     // calendario gregoriano
     if( ( $.ope = $_app.var.getAttribute('ide') ) == 'fec' ){

@@ -22,7 +22,7 @@ function _adm( $tip, $dat, $val, ...$opc ){
   case 'aja':
     $.lis = $_app.var.querySelector(`nav.lis`);
     _ele.eli($.lis);
-    $_log.php.forEach( $log => {
+    $_api.log.php.forEach( $log => {
       $.ver = document.createElement('a'); 
       $.ver.href = $log;
       $.ver.innerHTML = _doc.let($log); 
@@ -36,7 +36,7 @@ function _adm( $tip, $dat, $val, ...$opc ){
     if( !$val ){
       // limpio listado
       _ele.eli($.lis);
-      for( let $ico in ( $._api_ico = _api._('ico') ) ){ 
+      for( let $ico in ( $._api_ico = $_api.doc_ico ) ){ 
         $ico = $._api_ico[$ico];
         $.ico = document.createElement('span');
         $.ico.classList.add('ico','mar_der-1','material-icons-outlined');
@@ -62,7 +62,7 @@ function _adm( $tip, $dat, $val, ...$opc ){
       else{
         _lis.val($.lis.children).forEach( $e => {
 
-          if( _val.ver( $e.querySelector('.ide').innerHTML, '^^', $dat.value ) ){
+          if( _dat.ope_ver( $e.querySelector('.ide').innerHTML, '^^', $dat.value ) ){
             $e.classList.contains(DIS_OCU) && $e.classList.remove(DIS_OCU);
           }
           else if( !$e.classList.contains(DIS_OCU) ){
@@ -119,13 +119,13 @@ function _adm( $tip, $dat, $val, ...$opc ){
 
       $.val = eval($.cod.value);
 
-      $.var_tip = _val.tip($.val);
+      $.dat_tip = _dat.tip($.val);
 
-      if( $.var_tip.dat == 'obj' ){
+      if( $.dat_tip.dat == 'obj' ){
 
         $.res.appendChild( _doc_obj.ope('val',$.val) );
       }
-      else if( $.var_tip.dat == 'eje' ){
+      else if( $.dat_tip.dat == 'eje' ){
 
         $.res.innerHTML = _doc.let( $.val.toString() );
       }

@@ -2,12 +2,72 @@
 
 -- Holon-sincronario
   -- 
-  -- informes
-    DELETE FROM `_api`.`doc_nav` WHERE `esq`='hol' AND `cab`='inf'
+  -- Diario
+    DELETE FROM `_api`.`app_nav` WHERE `esq`='hol' AND `cab`='dia'
     ;
+    -- ciclos del tiempo
+    DELETE FROM `_api`.`app_nav` WHERE `esq`='hol' AND `cab`='dia' AND `ide`='cic';
+    INSERT INTO `_api`.`app_nav` VALUES
+      ('hol','dia','cic','01','Informe del Ciclo Galáctico'), 
+        ('hol','dia','cic','01-01','El Kin'),      
+          ('hol','dia','cic','01-01-01','Encantamiento del Kin'),
+          ('hol','dia','cic','01-01-02','Parejas del Oráculo'),
+            ('hol','dia','cic','01-01-02-01','Descripciones'),
+            ('hol','dia','cic','01-01-02-02','Lecturas'),
+            ('hol','dia','cic','01-01-02-03','Posiciones'),
+            ('hol','dia','cic','01-01-02-04','Sincronometría'),
+
+          ('hol','dia','cic','01-01-03','Nave del Tiempo'),
+            ('hol','dia','cic','01-01-03-01','Castillo Direccional'),
+            ('hol','dia','cic','01-01-03-02','Aventura de la Onda Encantada'),
+
+          ('hol','dia','cic','01-01-04','Giro Galáctico'),
+            ('hol','dia','cic','01-01-04-01','Trayectoria Armónica'),
+            ('hol','dia','cic','01-01-04-02','Célula del Tiempo'),        
+
+          ('hol','dia','cic','01-01-05','Giro Espectral'),
+            ('hol','dia','cic','01-01-05-01','Estación Galáctica'),
+            ('hol','dia','cic','01-01-05-02','Elemento Cromático'),
+
+          ('hol','dia','cic','01-01-06','Módulo Armónico'),
+            ('hol','dia','cic','01-01-06-01','Portales de Activación'),
+            ('hol','dia','cic','01-01-06-02','Modelo Energético'),    
+
+        ('hol','dia','cic','01-02','El tono galáctico'),
+          ('hol','dia','cic','01-02-01','Onda Encantada'),
+          ('hol','dia','cic','01-02-02','Simetría Especular'),
+          ('hol','dia','cic','01-02-03','Pulsares'),
+            ('hol','dia','cic','01-02-03-01','Dimensional'),
+            ('hol','dia','cic','01-02-03-02','Matiz'),
+
+        ('hol','dia','cic','01-03','El sello solar'),
+          ('hol','dia','cic','01-03-01','Colocación Cromática'),
+            ('hol','dia','cic','01-03-01-01','Familia Terrestre'),
+            ('hol','dia','cic','01-03-01-02','Clan Cromático'),
+          ('hol','dia','cic','01-03-02','Colocación Armónica'),      
+            ('hol','dia','cic','01-03-02-01','Raza Raiz Cósmica'),
+            ('hol','dia','cic','01-03-02-02','Célula del Tiempo'),
+          ('hol','dia','cic','01-03-03','Holones'),
+            ('hol','dia','cic','01-03-03-01','Solar-interplanetario'),
+            ('hol','dia','cic','01-03-03-02','Terrestre-planetario'),
+            ('hol','dia','cic','01-03-03-03','Humano'),      
+      ('hol','dia','cic','02','Informe del Ciclo Solar'), 
+        ('hol','dia','cic','02-01','Estación Solar'),
+        ('hol','dia','cic','02-02','Giro Lunar'),
+        ('hol','dia','cic','02-03','Heptada'),
+        ('hol','dia','cic','02-04','Banco-Psi')
+    ;
+    -- firma galáctica
+    DELETE FROM `_api`.`app_nav` WHERE `esq`='hol' AND `cab`='dia' AND `ide`='hum';
+    INSERT INTO `_api`.`app_nav` VALUES 
+      ('hol','dia','hum','01','')
+    ;
+  -- 
+  -- informes
+    DELETE FROM `_api`.`app_nav` WHERE `esq`='hol' AND `cab`='inf';
     -- codigos y cuentas
-    DELETE FROM `_api`.`doc_nav` WHERE `esq`='hol' AND `cab`='inf' AND `ide`='dat';
-    INSERT INTO `_api`.`doc_nav` VALUES 
+    DELETE FROM `_api`.`app_nav` WHERE `esq`='hol' AND `cab`='inf' AND `ide`='dat';
+    INSERT INTO `_api`.`app_nav` VALUES 
 
       ('hol','inf','dat','01','Los 7 plasmas radiales'),
         ('hol','inf','dat','01-01','Sellos de la profecía'),
@@ -80,76 +140,13 @@
         ('hol','inf','dat','07-05','Las 73 cromáticas entonadas')
     ;
   --
-  -- valores
-    DELETE FROM `_api`.`doc_nav` WHERE `esq`='hol' AND `cab`='val'
-    ;    
-    -- ciclos del tiempo
-    DELETE FROM `_api`.`doc_nav` WHERE `esq`='hol' AND `cab`='val' AND `ide`='dia';
-    INSERT INTO `_api`.`doc_nav` VALUES 
-
-      ('hol','val','dia','01','Informe del Ciclo Galáctico'), 
-        ('hol','val','dia','01-01','El Kin'),      
-          ('hol','val','dia','01-01-01','Encantamiento del Kin'),
-          ('hol','val','dia','01-01-02','Parejas del Oráculo'),
-            ('hol','val','dia','01-01-02-01','Descripciones'),
-            ('hol','val','dia','01-01-02-02','Lecturas'),
-            ('hol','val','dia','01-01-02-03','Posiciones'),
-            ('hol','val','dia','01-01-02-04','Sincronometría'),
-
-          ('hol','val','dia','01-01-03','Nave del Tiempo'),
-            ('hol','val','dia','01-01-03-01','Castillo Direccional'),
-            ('hol','val','dia','01-01-03-02','Aventura de la Onda Encantada'),
-
-          ('hol','val','dia','01-01-04','Giro Galáctico'),
-            ('hol','val','dia','01-01-04-01','Trayectoria Armónica'),
-            ('hol','val','dia','01-01-04-02','Célula del Tiempo'),        
-
-          ('hol','val','dia','01-01-05','Giro Espectral'),
-            ('hol','val','dia','01-01-05-01','Estación Galáctica'),
-            ('hol','val','dia','01-01-05-02','Elemento Cromático'),
-
-          ('hol','val','dia','01-01-06','Módulo Armónico'),
-            ('hol','val','dia','01-01-06-01','Portales de Activación'),
-            ('hol','val','dia','01-01-06-02','Modelo Energético'),    
-
-        ('hol','val','dia','01-02','El tono galáctico'),
-          ('hol','val','dia','01-02-01','Onda Encantada'),
-          ('hol','val','dia','01-02-02','Simetría Especular'),
-          ('hol','val','dia','01-02-03','Pulsares'),
-            ('hol','val','dia','01-02-03-01','Dimensional'),
-            ('hol','val','dia','01-02-03-02','Matiz'),
-
-        ('hol','val','dia','01-03','El sello solar'),
-          ('hol','val','dia','01-03-01','Colocación Cromática'),
-            ('hol','val','dia','01-03-01-01','Familia Terrestre'),
-            ('hol','val','dia','01-03-01-02','Clan Cromático'),
-          ('hol','val','dia','01-03-02','Colocación Armónica'),      
-            ('hol','val','dia','01-03-02-01','Raza Raiz Cósmica'),
-            ('hol','val','dia','01-03-02-02','Célula del Tiempo'),
-          ('hol','val','dia','01-03-03','Holones'),
-            ('hol','val','dia','01-03-03-01','Solar-interplanetario'),
-            ('hol','val','dia','01-03-03-02','Terrestre-planetario'),
-            ('hol','val','dia','01-03-03-03','Humano'),      
-      ('hol','val','dia','02','Informe del Ciclo Solar'), 
-        ('hol','val','dia','02-01','Estación Solar'),
-        ('hol','val','dia','02-02','Giro Lunar'),
-        ('hol','val','dia','02-03','Heptada'),
-        ('hol','val','dia','02-04','Banco-Psi')
-    ;
-    -- firma galáctica
-    DELETE FROM `_api`.`doc_nav` WHERE `esq`='hol' AND `cab`='val' AND `ide`='hum';
-    INSERT INTO `_api`.`doc_nav` VALUES 
-
-      ('hol','val','hum','01','')
-    ;
-  -- 
   -- Bibliografía 
 
-    DELETE FROM `_api`.`doc_nav` WHERE `esq`='hol' AND `cab`='bib'
+    DELETE FROM `_api`.`app_nav` WHERE `esq`='hol' AND `cab`='bib'
     ;
     -- tutorial : Sincronario de 13 lunas
-    DELETE FROM `_api`.`doc_nav` WHERE `esq`='hol' AND `cab`='bib' AND `ide`='tut';
-    INSERT INTO `_api`.`doc_nav` VALUES 
+    DELETE FROM `_api`.`app_nav` WHERE `esq`='hol' AND `cab`='bib' AND `ide`='tut';
+    INSERT INTO `_api`.`app_nav` VALUES 
       ('hol','bib','tut','01','Ciclos Simples'),
       ('hol','bib','tut','02','Cada día es un Portal Galáctico'),
       ('hol','bib','tut','03','Incorporándolo todo'),
@@ -166,8 +163,8 @@
       ('hol','bib','tut','05','La Firma Galáctica')
     ;  
     -- 1984 - la tierra en ascenso
-    DELETE FROM `_api`.`doc_nav` WHERE `esq`='hol' AND `cab`='bib' AND `ide`='asc';
-    INSERT INTO `_api`.`doc_nav` VALUES 
+    DELETE FROM `_api`.`app_nav` WHERE `esq`='hol' AND `cab`='bib' AND `ide`='asc';
+    INSERT INTO `_api`.`app_nav` VALUES 
       ('hol','bib','asc','01','Parte 1. La Geomancia es a la Historia, lo que la Gramática es al Lenguaje. Dos ensayos introductorios.'),
       ('hol','bib','asc','01-01','Las raíces de la Unidad. La Geomancia y el Orden Mundial'),
       ('hol','bib','asc','01-02','De la Geomancia a la Holonomia. El descubrimiento del Banco Psi, la Investigación de la Historia. La Educación Holonómica. Arte, Ciencia y Orden Sagrado.'),
@@ -240,8 +237,8 @@
       ('hol','bib','asc','03-03','Templete Formula Holonómica.')
     ;
     -- 1987 - el factor maya
-    DELETE FROM `_api`.`doc_nav` WHERE `esq`='hol' AND `cab`='bib' AND `ide`='fac';
-    INSERT INTO `_api`.`doc_nav` VALUES 
+    DELETE FROM `_api`.`app_nav` WHERE `esq`='hol' AND `cab`='bib' AND `ide`='fac';
+    INSERT INTO `_api`.`app_nav` VALUES 
       ('hol','bib','fac','00','Introducción. El misterio de los mayas: La ciencia trasciende'),
       ('hol','bib','fac','01','Mi búsqueda'),
         ('hol','bib','fac','01-01','1953: Inicios, la visión'),
@@ -401,8 +398,8 @@
         ('hol','bib','fac','11-05','Ciclo de 52 años y el calendario circular diario')	
     ;
     -- 1991 - el encantamiento del sueño
-    DELETE FROM `_api`.`doc_nav` WHERE `esq`='hol' AND `cab`='bib' AND `ide`='enc';
-    INSERT INTO `_api`.`doc_nav` VALUES 
+    DELETE FROM `_api`.`app_nav` WHERE `esq`='hol' AND `cab`='bib' AND `ide`='enc';
+    INSERT INTO `_api`.`app_nav` VALUES 
       ('hol','bib','enc','01','Parte 1. El Géneses'),
         ('hol','bib','enc','01-01','Génsis del Encantamiento del Sueño'),
         ('hol','bib','enc','01-02','El Don'),
@@ -496,8 +493,8 @@
         ('hol','bib','enc','06-04','Tablero del Viaje')		
     ;
     -- 1992 - las 13 lunas en movimiento
-    DELETE FROM `_api`.`doc_nav` WHERE `esq`='hol' AND `cab`='bib' AND `ide`='lun';
-    INSERT INTO `_api`.`doc_nav` VALUES 
+    DELETE FROM `_api`.`app_nav` WHERE `esq`='hol' AND `cab`='bib' AND `ide`='lun';
+    INSERT INTO `_api`.`app_nav` VALUES 
       ('hol','bib','lun','01','Una Época De Apocalipsis: El calendario Gregoriano Desenmascarado Una Postdata de 13 Lunas al Factor Maya'),
         ('hol','bib','lun','01-01','Pensando sobre lo Impensable'),
         ('hol','bib','lun','01-02','Lunas, Mayas y el Calendario de 13 Lunas'),
@@ -540,8 +537,8 @@
         ('hol','bib','lun','05-05','Sellos Solares')
     ;
     -- 1993 - Un tratado del tiempo: visto desde su propia dimensión
-    DELETE FROM `_api`.`doc_nav` WHERE `esq`='hol' AND `cab`='bib' AND `ide`='tie';
-    INSERT INTO `_api`.`doc_nav` VALUES 
+    DELETE FROM `_api`.`app_nav` WHERE `esq`='hol' AND `cab`='bib' AND `ide`='tie';
+    INSERT INTO `_api`.`app_nav` VALUES 
       ('hol','bib','tie','01','Introducción'),
       ('hol','bib','tie','02','Consideraciones'),
         ('hol','bib','tie','02-01','Pensando lo impensable'),
@@ -594,8 +591,8 @@
       ('hol','bib','tie','08-03','Los 18 Vinales del ciclo de frecuencia solar del Haab')
     ;
     -- 1995 - el telektonon
-    DELETE FROM `_api`.`doc_nav` WHERE `esq`='hol' AND `cab`='bib' AND `ide`='tel';
-    INSERT INTO `_api`.`doc_nav` VALUES 
+    DELETE FROM `_api`.`app_nav` WHERE `esq`='hol' AND `cab`='bib' AND `ide`='tel';
+    INSERT INTO `_api`.`app_nav` VALUES 
       ('hol','bib','tel','01','Parte 1. Introducción'),
         ('hol','bib','tel','01-01','Telektonon: La Espada de la Luz'),
         ('hol','bib','tel','01-02','Tiempo y Telepatía'),
@@ -649,8 +646,8 @@
         ('hol','bib','tel','04-07','Una Historia de Amor')
     ;
     -- 1996 la sonda de arcturus
-    DELETE FROM `_api`.`doc_nav` WHERE `esq`='hol' AND `cab`='bib' AND `ide`='arc';
-    INSERT INTO `_api`.`doc_nav` VALUES 
+    DELETE FROM `_api`.`app_nav` WHERE `esq`='hol' AND `cab`='bib' AND `ide`='arc';
+    INSERT INTO `_api`.`app_nav` VALUES 
       ('hol','bib','arc','00','INTRODUCCIÓN. ARCTURO RECORDADO'),
       ('hol','bib','arc','01','PRIMERA PARTE: LANZAMIENTO DE LA SONDA'),
       ('hol','bib','arc','01-01','Preámbulo: Nosotros, los de Arcturo'),
@@ -707,8 +704,8 @@
       ('hol','bib','arc','04','GLOSARIO')		
     ;
     -- 1996 - el proyecto rinri
-    DELETE FROM `_api`.`doc_nav` WHERE `esq`='hol' AND `cab`='bib' AND `ide`='rin';
-    INSERT INTO `_api`.`doc_nav` VALUES 
+    DELETE FROM `_api`.`app_nav` WHERE `esq`='hol' AND `cab`='bib' AND `ide`='rin';
+    INSERT INTO `_api`.`app_nav` VALUES 
       ('hol','bib','rin','01','¿Qué es?'),
         ('hol','bib','rin','01-01','Introducción: un experimento científico llamado paz mundial'),
         ('hol','bib','rin','01-02','Exposición del problema y solución propuesta por el proyecto rinri'),
@@ -774,8 +771,8 @@
       ('hol','bib','rin','05','Portal del Tiempo')
     ;
     -- 1996 - dinámicas del tiempo
-    DELETE FROM `_api`.`doc_nav` WHERE `esq`='hol' AND `cab`='bib' AND `ide`='din';
-    INSERT INTO `_api`.`doc_nav` VALUES 
+    DELETE FROM `_api`.`app_nav` WHERE `esq`='hol' AND `cab`='bib' AND `ide`='din';
+    INSERT INTO `_api`.`app_nav` VALUES 
       ('hol','bib','din','01','I.	ESTABLECIENDO LA NORMA'),
       ('hol','bib','din','01-01','0. Postulados que Gobiernan la Dinámica del Tiempo en Relación a la Dinámica del Espacio'),
       ('hol','bib','din','01-02','1. Postulados del Tiempo que Gobiernan el Propósito y Niveles de Consciencia de los Cuerpos en Evolución'),
@@ -804,8 +801,8 @@
       ('hol','bib','din','04-02','Cerebro Galáctico: La Dinámica del Tiempo Mostrando la Evolución del Tiempo como Consciencia – T(E)=Arte')
     ;
     -- 1997 - las 20 tablas del tiempo
-    DELETE FROM `_api`.`doc_nav` WHERE `esq`='hol' AND `cab`='bib' AND `ide`='tab';
-    INSERT INTO `_api`.`doc_nav` VALUES 
+    DELETE FROM `_api`.`app_nav` WHERE `esq`='hol' AND `cab`='bib' AND `ide`='tab';
+    INSERT INTO `_api`.`app_nav` VALUES 
       ('hol','bib','tab','01','I. PRÓLOGO: ENTRADA AL MISTERIO'),
         ('hol','bib','tab','01-01','Enigma de la Piedra, de Pacal Votan.'),
         ('hol','bib','tab','01-02','Valum Votan, El Cerrador del Ciclo.'),
@@ -911,8 +908,8 @@
         ('hol','bib','tab','07-05','SAMADHI DE PACAL VOTAN: RECUERDO DE LA RELIGION UNIVERSAL EN LA TIERRA')
     ;
     -- 1999 - el átomo del tiempo
-    DELETE FROM `_api`.`doc_nav` WHERE `esq`='hol' AND `cab`='bib' AND `ide`='ato';
-    INSERT INTO `_api`.`doc_nav` VALUES 
+    DELETE FROM `_api`.`app_nav` WHERE `esq`='hol' AND `cab`='bib' AND `ide`='ato';
+    INSERT INTO `_api`.`app_nav` VALUES 
       ('hol','bib','ato','01','Introducciòn: Modelo del Universo Plasma - Matriz Radial (MR-MUP)'),
         ('hol','bib','ato','01-01','El modelo de universo plasma'),
         ('hol','bib','ato','01-02','La matriz radial'),
@@ -947,8 +944,8 @@
       ('hol','bib','ato','06','Referencias')
     ;
     -- 2009 - el sincronotron
-    DELETE FROM `_api`.`doc_nav` WHERE `esq`='hol' AND `cab`='bib' AND `ide`='cro';
-    INSERT INTO `_api`.`doc_nav` VALUES     
+    DELETE FROM `_api`.`app_nav` WHERE `esq`='hol' AND `cab`='bib' AND `ide`='cro';
+    INSERT INTO `_api`.`app_nav` VALUES     
       ('hol','bib','cro','01','Introducción'),
         ('hol','bib','cro','01-01','El sistema del Synchronotron'),
         ('hol','bib','cro','01-02','Bases para la Práctica Básica del Synchronotron'),

@@ -1,42 +1,42 @@
 
-DELETE FROM `_api`.`var` WHERE `esq`='hol';
+DELETE FROM `_api`.`app_var` WHERE `esq`='hol';
 --
-  -- Valores : acumulados + sumatorias + atributos
-  DELETE FROM `_api`.`var` WHERE `esq`='hol' AND `dat` = 'val';
-  INSERT INTO `_api`.`var` VALUES 
+  -- Datos : acumulados + sumatorias + atributos
+  DELETE FROM `_api`.`app_var` WHERE `esq`='hol' AND `dat` = 'dat';
+  INSERT INTO `_api`.`app_var` VALUES 
     --
     -- sumatoria
-      ('hol','val','sum', 1, 'kin', '{ 
+      ('hol','dat','sum', 1, 'kin', '{ 
         "atr":"ide",
         "nom":"KIN",    
         "ope":{ "_tip":"num", "val":0, "max":260 },
         "var_fic":"hol.kin"
       }'),
-      ('hol','val','sum', 2, 'psi', '{ 
+      ('hol','dat','sum', 2, 'psi', '{ 
         "atr":"tzo",
         "nom":"PSI",    
         "ope":{ "_tip":"num", "val":0, "max":365 },
         "var_fic":"hol.psi"
       }'),  
-      ('hol','val','sum', 3, 'umb', '{ 
+      ('hol','dat','sum', 3, 'umb', '{ 
         "atr":"ide",
         "nom":"UMB",    
         "ope":{ "_tip":"num", "val":0, "max":441 }
       }'),
     --
     -- listado de atributos por posicion
-      ('hol','val','pos', 1, 'par', '{
+      ('hol','dat','pos', 1, 'par', '{
         "nom":"Parejas del Oráculo"
       }'),
-      ('hol','val','pos', 2, 'pul', '{
+      ('hol','dat','pos', 2, 'pul', '{
         "nom":"Pulsares de la Onda Encantada"
       }')  
 
   ;
   --
   -- tableros : seccion + posicion + valores + seleccion
-  DELETE FROM `_api`.`var` WHERE `esq`='hol' AND `dat` = 'tab';
-  INSERT INTO `_api`.`var` VALUES
+  DELETE FROM `_api`.`app_var` WHERE `esq`='hol' AND `dat` = 'tab';
+  INSERT INTO `_api`.`app_var` VALUES
     --
     -- secciones
 
@@ -101,8 +101,8 @@ DELETE FROM `_api`.`var` WHERE `esq`='hol';
   ;
   --
   -- Posición : oraculo + pulsares
-  DELETE FROM `_api`.`var` WHERE `esq`='hol' AND `dat` = 'pos';
-  INSERT INTO `_api`.`var` VALUES
+  DELETE FROM `_api`.`app_var` WHERE `esq`='hol' AND `dat` = 'pos';
+  INSERT INTO `_api`.`app_var` VALUES
 
     --
     -- parejas del oráculo ( kin + sel )

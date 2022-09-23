@@ -1,8 +1,8 @@
 
 -- sistema del sincronario
     
-  DELETE FROM `_api`.`est` WHERE `esq`='hol' AND `ide`='rad';
-  INSERT INTO `_api`.`est` VALUES
+  DELETE FROM `_api`.`app_est` WHERE `esq`='hol' AND `ide`='rad';
+  INSERT INTO `_api`.`app_est` VALUES
     ( 'hol', 'rad', '{ 
 
         "atr": [
@@ -11,8 +11,8 @@
 
     }' )
   ;
-  DELETE FROM `_api`.`est` WHERE `esq`='hol' AND `ide`='ton';
-  INSERT INTO `_api`.`est` VALUES
+  DELETE FROM `_api`.`app_est` WHERE `esq`='hol' AND `ide`='ton';
+  INSERT INTO `_api`.`app_est` VALUES
     ( 'hol', 'ton', '{
 
         "atr": [
@@ -34,8 +34,8 @@
         ]
     }' )
   ;
-  DELETE FROM `_api`.`est` WHERE `esq`='hol' AND `ide`='sel';
-  INSERT INTO `_api`.`est` VALUES
+  DELETE FROM `_api`.`app_est` WHERE `esq`='hol' AND `ide`='sel';
+  INSERT INTO `_api`.`app_est` VALUES
     ( 'hol', 'sel', '{
 
         "atr": [ 
@@ -66,8 +66,8 @@
         ]
     }' )
   ;
-  DELETE FROM `_api`.`est` WHERE `esq`='hol' AND `ide`='lun';
-  INSERT INTO `_api`.`est` VALUES
+  DELETE FROM `_api`.`app_est` WHERE `esq`='hol' AND `ide`='lun';
+  INSERT INTO `_api`.`app_est` VALUES
 
     ( 'hol', 'lun', '{
 
@@ -80,14 +80,14 @@
         ]
     }' )
   ;
-  DELETE FROM `_api`.`est` WHERE `esq`='hol' AND `ide`='chi';
-  INSERT INTO `_api`.`est` VALUES
+  DELETE FROM `_api`.`app_est` WHERE `esq`='hol' AND `ide`='chi';
+  INSERT INTO `_api`.`app_est` VALUES
 
     ( 'hol', 'chi', '{
     }' )
   ;
-  DELETE FROM `_api`.`est` WHERE `esq`='hol' AND `ide`='kin';
-  INSERT INTO `_api`.`est` VALUES
+  DELETE FROM `_api`.`app_est` WHERE `esq`='hol' AND `ide`='kin';
+  INSERT INTO `_api`.`app_est` VALUES
     ( 'hol', 'kin', '{
 
         "atr": [
@@ -118,8 +118,8 @@
         ]  
     }' )
   ;
-  DELETE FROM `_api`.`est` WHERE `esq`='hol' AND `ide`='psi';
-  INSERT INTO `_api`.`est` VALUES
+  DELETE FROM `_api`.`app_est` WHERE `esq`='hol' AND `ide`='psi';
+  INSERT INTO `_api`.`app_est` VALUES
     ( 'hol', 'psi', '{
 
         "atr": [ 

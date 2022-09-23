@@ -17,7 +17,7 @@
   }
   
   // require de clases manual // require_once("_/autoload.php");
-  foreach( ['api','app','hol'] as $cla ){ 
+  foreach( ['api','doc','hol'] as $cla ){ 
     
     require_once("php/$cla.php");
   }
@@ -25,11 +25,11 @@
   // cargo interfaces
   $_api = new _api();  
 
-  // cargo holon
-  $_hol = new _hol();
-
   // cargo usuario
   $_usu = new _usu( $_SESSION['usu'] );    
+
+  // cargo holon
+  $_hol = new _hol();
   
   date_default_timezone_set( !empty($_usu->ubi) ? $_usu->ubi : $_SESSION['ubi'] );  
    
@@ -77,7 +77,7 @@
       }
     } ?>
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Material+Icons+Outlined'>
-    <link rel='stylesheet' href='<?= SYS_NAV."css/_.css" ?>' >
+    <link rel='stylesheet' href='<?= SYS_NAV."css/api.css" ?>' >
     
     <title><?= $_app->nom ?></title>
 
@@ -118,7 +118,7 @@
           $win['ses_fin'] = [ 'ico'=>"ses_fin", 'nom'=>"Cerrar Sesión..."];
         }
         
-        echo _app_ope::bot([ 'win'=>$win ]);
+        echo _app::_ope([ 'win'=>$win ]);
         ?>
       </nav>
 
@@ -179,12 +179,11 @@
       if( file_exists( $rec = "jso/{$ide}.js" ) ){ echo "
         <script src='".SYS_NAV.$rec."'></script>";
       }
-    }
-    ?>
+    }?>
     <script>
       
       // cargo datos de la interface
-      var $_api = new _api(<?= _obj::cod( $_app->dat ) ?>);
+      var $_api = new _api(<?= _obj::cod( $_app->obj ) ?>);
       
       // cargo aplicacion
       var $_app = new _app();

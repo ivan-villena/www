@@ -1,10 +1,10 @@
--- Active: 1623270923336@@127.0.0.1@3306@_api
+-- Active: 1663730672989@@127.0.0.1@3306@_api
 
 -- Holon-Sincronario
-	DELETE FROM `_api`.`doc_art` WHERE `esq`='hol';
+	DELETE FROM `_api`.`app_art` WHERE `esq`='hol';
 	-- bibliografía 
-	DELETE FROM `_api`.`doc_art` WHERE `esq`='hol' AND `cab`='bib';
-	INSERT INTO `_api`.`doc_art` VALUES
+	DELETE FROM `_api`.`app_art` WHERE `esq`='hol' AND `cab`='bib';
+	INSERT INTO `_api`.`app_art` VALUES
 	
 		('hol','bib','tut',	1, 		'Tutorial del Sincronario de 13 Lunas',			'', NULL, NULL ),
 		('hol','bib','asc',	1984, '1984 - La Tierra en Ascenso', 			  			'', NULL, NULL ),
@@ -19,16 +19,17 @@
 		('hol','bib','tab',	1997, '1997 - Las Tablas del Tiempo', 			  		'', NULL, NULL ),
 		('hol','bib','ato',	1999, '1999 - El Átomo del Tiempo', 				  		'', NULL, NULL ),
 		('hol','bib','cro',	2009, '2009 - El Sincronotrón', 						  		'', NULL, NULL )
-	;
+	;	
+	
 	-- informes
-	DELETE FROM `_api`.`doc_art` WHERE `esq`='hol' AND `cab`='inf';
-	INSERT INTO `_api`.`doc_art` VALUES	
+	DELETE FROM `_api`.`app_art` WHERE `esq`='hol' AND `cab`='inf';
+	INSERT INTO `_api`.`app_art` VALUES	
 		('hol','inf','ide', 1, 		'Glosarios',																'', NULL, NULL ),
 		('hol','inf','dat', 2, 		'Códigos y Cuentas',												'', NULL, NULL )	
-	;		
+	;
 	-- tableros
-	DELETE FROM `_api`.`doc_art` WHERE `esq`='hol' AND `cab`='tab';
-	INSERT INTO `_api`.`doc_art` VALUES
+	DELETE FROM `_api`.`app_art` WHERE `esq`='hol' AND `cab`='tab';
+	INSERT INTO `_api`.`app_art` VALUES
 
 		('hol','tab','kin-tzo', 1, 'Los 260 kin del Tzolkin',									'', NULL, NULL ),
 		('hol','tab','kin-nav', 2, 'Los 5 Castillos de la Nave del Tiempo', 	'', NULL, NULL ),
@@ -40,15 +41,15 @@
 		('hol','tab','psi-tzo', 8, 'Las 2.080 unidades del Banco-Psi', 				'', NULL, NULL )
 	;
 	-- valores diario
-	DELETE FROM `_api`.`doc_art` WHERE `esq`='hol' AND `cab`='val';
-	INSERT INTO `_api`.`doc_art` VALUES
+	DELETE FROM `_api`.`app_art` WHERE `esq`='hol' AND `cab`='dia';
+	INSERT INTO `_api`.`app_art` VALUES
 		
-		('hol','val','dia', 1, 'Ciclos del Tiempo',	'', NULL, NULL ),
-		('hol','val','hum', 2, 'Firma Galáctica',		'', NULL, NULL )
+		('hol','dia','cic', 1, 'Ciclos del Tiempo',	'', NULL, NULL ),
+		('hol','dia','hum', 2, 'Firma Galáctica',		'', NULL, NULL )
 	;
 	-- cuenta de usuario
-	DELETE FROM `_api`.`doc_art` WHERE `esq`='hol' AND `cab`='usu';
-	INSERT INTO `_api`.`doc_art` VALUES
+	DELETE FROM `_api`.`app_art` WHERE `esq`='hol' AND `cab`='usu';
+	INSERT INTO `_api`.`app_art` VALUES
 		
 		('hol','usu','cic', 1, 'Sendero del Destino',					'', NULL, NULL ),
 		('hol','usu','dat', 2, 'Firma Galáctica',							'', NULL, NULL )

@@ -118,4 +118,4 @@
   ];  
 
   // articulo en ventana emergente
-  echo _app_win::art('api_adm',$win);
+  echo _app::_win('api_adm',$win);

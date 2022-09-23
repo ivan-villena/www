@@ -71,7 +71,7 @@
 
   // modales [] || url ""
   if( is_array($win) ){
-    echo _app_win::art("ses_$tip",$win);
+    echo _app::_win("ses_$tip",$win);
   }
   else{
 

@@ -1,9 +1,9 @@
 -- Active: 1623270923336@@127.0.0.1@3306@_api
 
 -- estilo 
-  DELETE FROM `_api`.`ico_gru`
+  DELETE FROM `_api`.`doc_ico_gru`
   ;
-  INSERT INTO `_api`.`ico_gru` VALUES
+  INSERT INTO `_api`.`doc_ico_gru` VALUES
     (NULL,'material-icons',					 'https://fonts.googleapis.com/css?family=Material+Icons'),
     (NULL,'material-icons-outlined', 'https://fonts.googleapis.com/css?family=Material+Icons+Outlined'),
     (NULL,'material-icons-two-tone', 'https://fonts.googleapis.com/css?family=Material+Icons+Two+Tone'),
@@ -12,12 +12,12 @@
   ;
 
 -- icono 
-  DELETE FROM `_api`.`ico`
+  DELETE FROM `_api`.`doc_ico`
   ;
   --
   -- por sistema
-    DELETE FROM `_api`.`ico` WHERE `ide` LIKE 'ses%';
-    INSERT INTO `_api`.`ico` VALUES   
+    DELETE FROM `_api`.`doc_ico` WHERE `ide` LIKE 'ses%';
+    INSERT INTO `_api`.`doc_ico` VALUES   
 
       ('ses', 'home'),
       -- admin
@@ -41,8 +41,8 @@
     ;
   --
   -- operadores    
-    DELETE FROM `_api`.`ico` WHERE `ide` LIKE 'ope%';
-    INSERT INTO `_api`.`ico` VALUES
+    DELETE FROM `_api`.`doc_ico` WHERE `ide` LIKE 'ope%';
+    INSERT INTO `_api`.`doc_ico` VALUES
 
       ('ope',     'settings'),        
 
@@ -65,8 +65,8 @@
       ('ope_des',	'deselect') 
 
     ;
-    DELETE FROM `_api`.`ico` WHERE `ide` LIKE 'mov%';
-    INSERT INTO `_api`.`ico` VALUES
+    DELETE FROM `_api`.`doc_ico` WHERE `ide` LIKE 'mov%';
+    INSERT INTO `_api`.`doc_ico` VALUES
       
       ('mov', 'open_with'),
 
@@ -83,8 +83,8 @@
       ('mov_iyr', 'south_east'),
       ('mov_iyb', 'south_west')
     ;    
-    DELETE FROM `_api`.`ico` WHERE `ide` LIKE 'nav%';
-    INSERT INTO `_api`.`ico` VALUES
+    DELETE FROM `_api`.`doc_ico` WHERE `ide` LIKE 'nav%';
+    INSERT INTO `_api`.`doc_ico` VALUES
 
       ('nav',			'menu'),  
 
@@ -96,8 +96,8 @@
       ('nav_fin',	'last_page')
 
     ;
-    DELETE FROM `_api`.`ico` WHERE `ide` LIKE 'art%';
-    INSERT INTO `_api`.`ico` VALUES  
+    DELETE FROM `_api`.`doc_ico` WHERE `ide` LIKE 'art%';
+    INSERT INTO `_api`.`doc_ico` VALUES  
 
       ('art',     'article'),
       -- bibliografias
@@ -115,8 +115,8 @@
 
   --
   -- entornos
-    DELETE FROM `_api`.`ico` WHERE `ide` LIKE 'dat%';
-    INSERT INTO `_api`.`ico` VALUES
+    DELETE FROM `_api`.`doc_ico` WHERE `ide` LIKE 'dat%';
+    INSERT INTO `_api`.`doc_ico` VALUES
 
       ('dat',			'database'),
 
@@ -130,8 +130,8 @@
       ('dat_eli',	'delete')
 
     ;
-    DELETE FROM `_api`.`ico` WHERE `ide` LIKE 'val%';
-    INSERT INTO `_api`.`ico` VALUES
+    DELETE FROM `_api`.`doc_ico` WHERE `ide` LIKE 'val%';
+    INSERT INTO `_api`.`doc_ico` VALUES
   
       ('val',	'check_box_outline_blank'),
 
@@ -144,8 +144,8 @@
       ('val_fec',	'history')
 
     ;    
-    DELETE FROM `_api`.`ico` WHERE `ide` LIKE 'lis%';
-    INSERT INTO `_api`.`ico` VALUES
+    DELETE FROM `_api`.`doc_ico` WHERE `ide` LIKE 'lis%';
+    INSERT INTO `_api`.`doc_ico` VALUES
 
       ('lis',			'list_alt'),
       -- operaciones
@@ -159,20 +159,20 @@
       ('lis_mov',	'unfold_more')
 
     ;
-    DELETE FROM `_api`.`ico` WHERE `ide` LIKE 'est%';
-    INSERT INTO `_api`.`ico` VALUES
+    DELETE FROM `_api`.`doc_ico` WHERE `ide` LIKE 'est%';
+    INSERT INTO `_api`.`doc_ico` VALUES
 
       ('est',	'view_list')
     ;
-    DELETE FROM `_api`.`ico` WHERE `ide` LIKE 'tab%';
-    INSERT INTO `_api`.`ico` VALUES
+    DELETE FROM `_api`.`doc_ico` WHERE `ide` LIKE 'tab%';
+    INSERT INTO `_api`.`doc_ico` VALUES
     
       ('tab',	'table_view')
     ;    
   -- 
   -- valores
-    DELETE FROM `_api`.`ico` WHERE `ide` LIKE 'obj%';
-    INSERT INTO `_api`.`ico` VALUES
+    DELETE FROM `_api`.`doc_ico` WHERE `ide` LIKE 'obj%';
+    INSERT INTO `_api`.`doc_ico` VALUES
       
       ('obj',	'widgets'),
 
@@ -182,8 +182,8 @@
       ('obj_atr',	'data_object')      
 
     ;
-    DELETE FROM `_api`.`ico` WHERE `ide` LIKE 'arc%';
-    INSERT INTO `_api`.`ico` VALUES  
+    DELETE FROM `_api`.`doc_ico` WHERE `ide` LIKE 'arc%';
+    INSERT INTO `_api`.`doc_ico` VALUES  
 
       ('arc',			'attach_file'),
 
@@ -198,8 +198,8 @@
       ('arc_eje',	'play_circle')
 
     ;
-    DELETE FROM `_api`.`ico` WHERE `ide` LIKE 'eje%';
-    INSERT INTO `_api`.`ico` VALUES
+    DELETE FROM `_api`.`doc_ico` WHERE `ide` LIKE 'eje%';
+    INSERT INTO `_api`.`doc_ico` VALUES
       
       ('eje',	    'terminal'),
 
@@ -209,8 +209,8 @@
       ('eje_fin',	'close')  
 
     ;
-    DELETE FROM `_api`.`ico` WHERE `ide` LIKE 'ele%';
-    INSERT INTO `_api`.`ico` VALUES
+    DELETE FROM `_api`.`doc_ico` WHERE `ide` LIKE 'ele%';
+    INSERT INTO `_api`.`doc_ico` VALUES
       
       ('ele', 'code'),
 
@@ -220,8 +220,8 @@
       ('ele_eje', 'javascript')
 
     ;    
-    DELETE FROM `_api`.`ico` WHERE `ide` LIKE 'opc%';
-    INSERT INTO `_api`.`ico` VALUES
+    DELETE FROM `_api`.`doc_ico` WHERE `ide` LIKE 'opc%';
+    INSERT INTO `_api`.`doc_ico` VALUES
 
       ('opc',			'help'),  
 
@@ -235,8 +235,8 @@
       ('opc_mul',	'format_list_numbered')
 
     ;
-    DELETE FROM `_api`.`ico` WHERE `ide` LIKE 'num%';
-    INSERT INTO `_api`.`ico` VALUES
+    DELETE FROM `_api`.`doc_ico` WHERE `ide` LIKE 'num%';
+    INSERT INTO `_api`.`doc_ico` VALUES
 
       ('num',			'calculate'),
 
@@ -264,8 +264,8 @@
       ('num_adi',	'functions')
 
     ;
-    DELETE FROM `_api`.`ico` WHERE `ide` LIKE 'tex%';
-    INSERT INTO `_api`.`ico` VALUES    
+    DELETE FROM `_api`.`doc_ico` WHERE `ide` LIKE 'tex%';
+    INSERT INTO `_api`.`doc_ico` VALUES    
 
       ('tex',			'edit_note'),
 
@@ -286,8 +286,8 @@
       
 
     ;
-    DELETE FROM `_api`.`ico` WHERE `ide` LIKE 'fec%';
-    INSERT INTO `_api`.`ico` VALUES
+    DELETE FROM `_api`.`doc_ico` WHERE `ide` LIKE 'fec%';
+    INSERT INTO `_api`.`doc_ico` VALUES
 
       ('fec',			'calendar_today'),      
 
@@ -302,8 +302,8 @@
       ('fec_val', 'edit_calendar')
 
     ;
-    DELETE FROM `_api`.`ico` WHERE `ide` LIKE 'fig%';
-    INSERT INTO `_api`.`ico` VALUES
+    DELETE FROM `_api`.`doc_ico` WHERE `ide` LIKE 'fig%';
+    INSERT INTO `_api`.`doc_ico` VALUES
 
       ('fig',	'auto_graph'),
       
