@@ -3,146 +3,142 @@
 -- Holon-sincronario
   -- 
   -- Diario
-    DELETE FROM `_api`.`app_nav` WHERE `esq`='hol' AND `cab`='dia'
+    DELETE FROM `_api`.`app_nav` WHERE `esq`='hol' AND `cab`='val'
     ;
     -- ciclos del tiempo
-    DELETE FROM `_api`.`app_nav` WHERE `esq`='hol' AND `cab`='dia' AND `ide`='cic';
+    DELETE FROM `_api`.`app_nav` WHERE `esq`='hol' AND `cab`='val' AND `ide`='dia';
     INSERT INTO `_api`.`app_nav` VALUES
-      ('hol','dia','cic','01','Informe del Ciclo Galáctico'), 
-        ('hol','dia','cic','01-01','El Kin'),      
-          ('hol','dia','cic','01-01-01','Encantamiento del Kin'),
-          ('hol','dia','cic','01-01-02','Parejas del Oráculo'),
-            ('hol','dia','cic','01-01-02-01','Descripciones'),
-            ('hol','dia','cic','01-01-02-02','Lecturas'),
-            ('hol','dia','cic','01-01-02-03','Posiciones'),
-            ('hol','dia','cic','01-01-02-04','Sincronometría'),
+      ('hol','val','dia','01','Informe del Ciclo Galáctico'), 
+        ('hol','val','dia','01-01','El Kin'),      
+          ('hol','val','dia','01-01-01','Encantamiento del Kin'),
+          ('hol','val','dia','01-01-02','Parejas del Oráculo'),
+            ('hol','val','dia','01-01-02-01','Descripciones'),
+            ('hol','val','dia','01-01-02-02','Lecturas'),
+            ('hol','val','dia','01-01-02-03','Posiciones'),
+            ('hol','val','dia','01-01-02-04','Sincronometría'),
 
-          ('hol','dia','cic','01-01-03','Nave del Tiempo'),
-            ('hol','dia','cic','01-01-03-01','Castillo Direccional'),
-            ('hol','dia','cic','01-01-03-02','Aventura de la Onda Encantada'),
+          ('hol','val','dia','01-01-03','Nave del Tiempo'),
+            ('hol','val','dia','01-01-03-01','Castillo Direccional'),
+            ('hol','val','dia','01-01-03-02','Aventura de la Onda Encantada'),
 
-          ('hol','dia','cic','01-01-04','Giro Galáctico'),
-            ('hol','dia','cic','01-01-04-01','Trayectoria Armónica'),
-            ('hol','dia','cic','01-01-04-02','Célula del Tiempo'),        
+          ('hol','val','dia','01-01-04','Giro Galáctico'),
+            ('hol','val','dia','01-01-04-01','Trayectoria Armónica'),
+            ('hol','val','dia','01-01-04-02','Célula del Tiempo'),        
 
-          ('hol','dia','cic','01-01-05','Giro Espectral'),
-            ('hol','dia','cic','01-01-05-01','Estación Galáctica'),
-            ('hol','dia','cic','01-01-05-02','Elemento Cromático'),
+          ('hol','val','dia','01-01-05','Giro Espectral'),
+            ('hol','val','dia','01-01-05-01','Estación Galáctica'),
+            ('hol','val','dia','01-01-05-02','Elemento Cromático'),
 
-          ('hol','dia','cic','01-01-06','Módulo Armónico'),
-            ('hol','dia','cic','01-01-06-01','Portales de Activación'),
-            ('hol','dia','cic','01-01-06-02','Modelo Energético'),    
+          ('hol','val','dia','01-01-06','Módulo Armónico'),
+            ('hol','val','dia','01-01-06-01','Portales de Activación'),
+            ('hol','val','dia','01-01-06-02','Modelo Energético'),    
 
-        ('hol','dia','cic','01-02','El tono galáctico'),
-          ('hol','dia','cic','01-02-01','Onda Encantada'),
-          ('hol','dia','cic','01-02-02','Simetría Especular'),
-          ('hol','dia','cic','01-02-03','Pulsares'),
-            ('hol','dia','cic','01-02-03-01','Dimensional'),
-            ('hol','dia','cic','01-02-03-02','Matiz'),
+        ('hol','val','dia','01-02','El tono galáctico'),
+          ('hol','val','dia','01-02-01','Onda Encantada'),
+          ('hol','val','dia','01-02-02','Simetría Especular'),
+          ('hol','val','dia','01-02-03','Pulsares'),
+            ('hol','val','dia','01-02-03-01','Dimensional'),
+            ('hol','val','dia','01-02-03-02','Matiz'),
 
-        ('hol','dia','cic','01-03','El sello solar'),
-          ('hol','dia','cic','01-03-01','Colocación Cromática'),
-            ('hol','dia','cic','01-03-01-01','Familia Terrestre'),
-            ('hol','dia','cic','01-03-01-02','Clan Cromático'),
-          ('hol','dia','cic','01-03-02','Colocación Armónica'),      
-            ('hol','dia','cic','01-03-02-01','Raza Raiz Cósmica'),
-            ('hol','dia','cic','01-03-02-02','Célula del Tiempo'),
-          ('hol','dia','cic','01-03-03','Holones'),
-            ('hol','dia','cic','01-03-03-01','Solar-interplanetario'),
-            ('hol','dia','cic','01-03-03-02','Terrestre-planetario'),
-            ('hol','dia','cic','01-03-03-03','Humano'),      
-      ('hol','dia','cic','02','Informe del Ciclo Solar'), 
-        ('hol','dia','cic','02-01','Estación Solar'),
-        ('hol','dia','cic','02-02','Giro Lunar'),
-        ('hol','dia','cic','02-03','Heptada'),
-        ('hol','dia','cic','02-04','Banco-Psi')
+        ('hol','val','dia','01-03','El sello solar'),
+          ('hol','val','dia','01-03-01','Colocación Cromática'),
+            ('hol','val','dia','01-03-01-01','Familia Terrestre'),
+            ('hol','val','dia','01-03-01-02','Clan Cromático'),
+          ('hol','val','dia','01-03-02','Colocación Armónica'),      
+            ('hol','val','dia','01-03-02-01','Raza Raiz Cósmica'),
+            ('hol','val','dia','01-03-02-02','Célula del Tiempo'),
+          ('hol','val','dia','01-03-03','Holones'),
+            ('hol','val','dia','01-03-03-01','Solar-interplanetario'),
+            ('hol','val','dia','01-03-03-02','Terrestre-planetario'),
+            ('hol','val','dia','01-03-03-03','Humano'),      
+      ('hol','val','dia','02','Informe del Ciclo Solar'), 
+        ('hol','val','dia','02-01','Estación Solar'),
+        ('hol','val','dia','02-02','Giro Lunar'),
+        ('hol','val','dia','02-03','Heptada'),
+        ('hol','val','dia','02-04','Banco-Psi')
     ;
     -- firma galáctica
-    DELETE FROM `_api`.`app_nav` WHERE `esq`='hol' AND `cab`='dia' AND `ide`='hum';
+    DELETE FROM `_api`.`app_nav` WHERE `esq`='hol' AND `cab`='val' AND `ide`='hum';
     INSERT INTO `_api`.`app_nav` VALUES 
-      ('hol','dia','hum','01','')
+      ('hol','val','hum','01','')
     ;
   -- 
-  -- informes
-    DELETE FROM `_api`.`app_nav` WHERE `esq`='hol' AND `cab`='inf';
+  -- Bibliografía 
+    DELETE FROM `_api`.`app_nav` WHERE `esq`='hol' AND `cab`='bib'
+    ;
     -- codigos y cuentas
-    DELETE FROM `_api`.`app_nav` WHERE `esq`='hol' AND `cab`='inf' AND `ide`='dat';
+    DELETE FROM `_api`.`app_nav` WHERE `esq`='hol' AND `cab`='bib' AND `ide`='dat';
     INSERT INTO `_api`.`app_nav` VALUES 
 
-      ('hol','inf','dat','01','Los 7 plasmas radiales'),
-        ('hol','inf','dat','01-01','Sellos de la profecía'),
-        ('hol','inf','dat','01-02','Componentes Electrónicos'),
-        ('hol','inf','dat','01-03','El heptágono de la Mente'),
+      ('hol','bib','dat','01','Los 7 plasmas radiales'),
+        ('hol','bib','dat','01-01','Sellos de la profecía'),
+        ('hol','bib','dat','01-02','Componentes Electrónicos'),
+        ('hol','bib','dat','01-03','El heptágono de la Mente'),
 
-      ('hol','inf','dat','02','Los 13 tonos galácticos'),
-        ('hol','inf','dat','02-01','Rayos de Pulsación'),
-        ('hol','inf','dat','02-02','Los 7 pares especulares'),     
-        ('hol','inf','dat','02-03','Principios de la Creación'),           
-        ('hol','inf','dat','02-04','La onda encantada de la aventura'),
-        ('hol','inf','dat','02-05','Los 4 pulsares dimensionales'),
-        ('hol','inf','dat','02-06','Los 5 pulsares matices'),        
+      ('hol','bib','dat','02','Los 13 tonos galácticos'),
+        ('hol','bib','dat','02-01','Rayos de Pulsación'),
+        ('hol','bib','dat','02-02','Los 7 pares especulares'),     
+        ('hol','bib','dat','02-03','Principios de la Creación'),           
+        ('hol','bib','dat','02-04','La onda encantada de la aventura'),
+        ('hol','bib','dat','02-05','Los 4 pulsares dimensionales'),
+        ('hol','bib','dat','02-06','Los 5 pulsares matices'),        
 
-      ('hol','inf','dat','03','Los 20 sellos solares'),
-        ('hol','inf','dat','03-01','Símbolos posicionales'),
-          ('hol','inf','dat','03-01-01','Las 3 etapas en el Desarrollo del Ser'),
-          ('hol','inf','dat','03-01-02','Las 4 etapas evolutivas de la mente'),
-          ('hol','inf','dat','03-01-03','Las 5 Familias Cíclicas de la Luz'),
-        ('hol','inf','dat','03-02','Colocación Cromática'),
-          ('hol','inf','dat','03-02-01','Las 5 familias terrestres'),
-          ('hol','inf','dat','03-02-02','Los 4 clanes galácticos'),          
-        ('hol','inf','dat','03-03','Colocación Armónica'),
-          ('hol','inf','dat','03-03-01','Las 4 razas raíz cósmicas'),
-          ('hol','inf','dat','03-03-02','Las 5 células del tiempo'),    
-        ('hol','inf','dat','03-04','Parejas del Oráculo'),
-          ('hol','inf','dat','03-04-01','Análogos'),
-          ('hol','inf','dat','03-04-02','Antípodas'),
-          ('hol','inf','dat','03-04-03','Ocultos'),    
-        ('hol','inf','dat','03-05','Holon Solar'),
-          ('hol','inf','dat','03-05-01','Las 10 Órbitas planetarias'),
-          ('hol','inf','dat','03-05-02','Las 5 Células Solares'),
-          ('hol','inf','dat','03-05-03','Los 5 Circuitos de telepatía'),
-        ('hol','inf','dat','03-06','Holon Planetario'),
-          ('hol','inf','dat','03-06-01','Los 3 Campos Dimensionales'),
-          ('hol','inf','dat','03-06-02','Los 5 Centros de la Fuerza-G'),
-          ('hol','inf','dat','03-06-03','Los 2 Flujos Polares'),
-        ('hol','inf','dat','03-07','Holon humano'),
-          ('hol','inf','dat','03-07-01','Los 5 Centros Galácticos'),
-          ('hol','inf','dat','03-07-02','Las 4 Extremidades Cromáticas'),
-          ('hol','inf','dat','03-07-03','Las 5 Dedos de las manos y pies'),
-          ('hol','inf','dat','03-07-04','Los 2 Lados de la Respiración S-G'),
+      ('hol','bib','dat','03','Los 20 sellos solares'),
+        ('hol','bib','dat','03-01','Símbolos posicionales'),
+          ('hol','bib','dat','03-01-01','Las 3 etapas en el Desarrollo del Ser'),
+          ('hol','bib','dat','03-01-02','Las 4 etapas evolutivas de la mente'),
+          ('hol','bib','dat','03-01-03','Las 5 Familias Cíclicas de la Luz'),
+        ('hol','bib','dat','03-02','Colocación Cromática'),
+          ('hol','bib','dat','03-02-01','Las 5 familias terrestres'),
+          ('hol','bib','dat','03-02-02','Los 4 clanes galácticos'),          
+        ('hol','bib','dat','03-03','Colocación Armónica'),
+          ('hol','bib','dat','03-03-01','Las 4 razas raíz cósmicas'),
+          ('hol','bib','dat','03-03-02','Las 5 células del tiempo'),    
+        ('hol','bib','dat','03-04','Parejas del Oráculo'),
+          ('hol','bib','dat','03-04-01','Análogos'),
+          ('hol','bib','dat','03-04-02','Antípodas'),
+          ('hol','bib','dat','03-04-03','Ocultos'),    
+        ('hol','bib','dat','03-05','Holon Solar'),
+          ('hol','bib','dat','03-05-01','Las 10 Órbitas planetarias'),
+          ('hol','bib','dat','03-05-02','Las 5 Células Solares'),
+          ('hol','bib','dat','03-05-03','Los 5 Circuitos de telepatía'),
+        ('hol','bib','dat','03-06','Holon Planetario'),
+          ('hol','bib','dat','03-06-01','Los 3 Campos Dimensionales'),
+          ('hol','bib','dat','03-06-02','Los 5 Centros de la Fuerza-G'),
+          ('hol','bib','dat','03-06-03','Los 2 Flujos Polares'),
+        ('hol','bib','dat','03-07','Holon humano'),
+          ('hol','bib','dat','03-07-01','Los 5 Centros Galácticos'),
+          ('hol','bib','dat','03-07-02','Las 4 Extremidades Cromáticas'),
+          ('hol','bib','dat','03-07-03','Las 5 Dedos de las manos y pies'),
+          ('hol','bib','dat','03-07-04','Los 2 Lados de la Respiración S-G'),
 
-      ('hol','inf','dat','04','Las 28 días del giro lunar'),
-        ('hol','inf','dat','04-01','Las 4 héptadas'),
+      ('hol','bib','dat','04','Las 28 días del giro lunar'),
+        ('hol','bib','dat','04-01','Las 4 héptadas'),
 
-      ('hol','inf','dat','05','Las 52 posiciones del castillo'),
-        ('hol','inf','dat','05-01','Los 4 Cuadrantes'),
-        ('hol','inf','dat','05-02','las 13 Armonías'),
+      ('hol','bib','dat','05','Las 52 posiciones del castillo'),
+        ('hol','bib','dat','05-01','Los 4 Cuadrantes'),
+        ('hol','bib','dat','05-02','las 13 Armonías'),
 
-      ('hol','inf','dat','06','Los 260 Kines'),
-        ('hol','inf','dat','06-01','Módulo Armónico'),
-          ('hol','inf','dat','06-01-01','Los 52 portales de Activación Galáctica'),
-          ('hol','inf','dat','06-01-02','Los 13 + 1 campos de Energía'),
-        ('hol','inf','dat','06-02','Giro Espectral'),
-          ('hol','inf','dat','06-02-01','Estación Galáctica'),
-          ('hol','inf','dat','06-02-02','Elemento Cromático'),
-        ('hol','inf','dat','06-03','Giro Galáctico'),
-          ('hol','inf','dat','06-03-01','Trayectoria Armónica'),
-          ('hol','inf','dat','06-03-02','Célula del Tiempo'),
-        ('hol','inf','dat','06-04','Nave del Tiempo'),
-          ('hol','inf','dat','06-04-01','Castillo Direccional'),
-          ('hol','inf','dat','06-04-02','Aventura de la Onda Encantada'),
+      ('hol','bib','dat','06','Los 260 Kines'),
+        ('hol','bib','dat','06-01','Módulo Armónico'),
+          ('hol','bib','dat','06-01-01','Los 52 portales de Activación Galáctica'),
+          ('hol','bib','dat','06-01-02','Los 13 + 1 campos de Energía'),
+        ('hol','bib','dat','06-02','Giro Espectral'),
+          ('hol','bib','dat','06-02-01','Estación Galáctica'),
+          ('hol','bib','dat','06-02-02','Elemento Cromático'),
+        ('hol','bib','dat','06-03','Giro Galáctico'),
+          ('hol','bib','dat','06-03-01','Trayectoria Armónica'),
+          ('hol','bib','dat','06-03-02','Célula del Tiempo'),
+        ('hol','bib','dat','06-04','Nave del Tiempo'),
+          ('hol','bib','dat','06-04-01','Castillo Direccional'),
+          ('hol','bib','dat','06-04-02','Aventura de la Onda Encantada'),
 
-      ('hol','inf','dat','07','Los 364 Psi-Cronos'),
-        ('hol','inf','dat','07-01','Las 4 estaciones solares'),
-        ('hol','inf','dat','07-02','Las 13 lunas del servicio planetario'),
-        ('hol','inf','dat','07-03','Los 19 vinales del haab'),
-        ('hol','inf','dat','07-04','Las 52 heptadas semanales'),
-        ('hol','inf','dat','07-05','Las 73 cromáticas entonadas')
-    ;
-  --
-  -- Bibliografía 
-
-    DELETE FROM `_api`.`app_nav` WHERE `esq`='hol' AND `cab`='bib'
+      ('hol','bib','dat','07','Los 364 Psi-Cronos'),
+        ('hol','bib','dat','07-01','Las 4 estaciones solares'),
+        ('hol','bib','dat','07-02','Las 13 lunas del servicio planetario'),
+        ('hol','bib','dat','07-03','Los 19 vinales del haab'),
+        ('hol','bib','dat','07-04','Las 52 heptadas semanales'),
+        ('hol','bib','dat','07-05','Las 73 cromáticas entonadas')
     ;
     -- tutorial : Sincronario de 13 lunas
     DELETE FROM `_api`.`app_nav` WHERE `esq`='hol' AND `cab`='bib' AND `ide`='tut';
@@ -914,9 +910,9 @@
         ('hol','bib','ato','01-01','El modelo de universo plasma'),
         ('hol','bib','ato','01-02','La matriz radial'),
       ('hol','bib','ato','02','La Práctica del 7:7::7:7, Índice e Inventario de Partes'),
-        ('hol','bib','ato','02-01',''),
-        ('hol','bib','ato','02-02',''),
-        ('hol','bib','ato','02-03',''),
+        ('hol','bib','ato','02-01','La práctica'),
+        ('hol','bib','ato','02-02','Cada día'),
+        ('hol','bib','ato','02-03','Cada semana'),
       ('hol','bib','ato','03','Índice del 7:7::7:7'),
         ('hol','bib','ato','03-01','Los Siete Plasmas Radiales'),
         ('hol','bib','ato','03-02','Átomo Telepático del Tiempo'),

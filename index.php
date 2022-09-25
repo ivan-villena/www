@@ -15,32 +15,27 @@
       'ser' => $_SERVER['SERVER_NAME'], 'usu' => "root",  'pas' => "", 'esq' => "_api" 
     ];
   }
+
+  date_default_timezone_set( $_SESSION['ubi'] );
   
   // require de clases manual // require_once("_/autoload.php");
-  foreach( ['api','doc','hol'] as $cla ){ 
-    
-    require_once("php/$cla.php");
-  }
 
-  // cargo interfaces
-  $_api = new _api();  
-
-  // cargo usuario
-  $_usu = new _usu( $_SESSION['usu'] );    
-
-  // cargo holon
-  $_hol = new _hol();
+  // cargo interface
+  require_once("php/api.php");
+  $_api = new _api();
   
-  date_default_timezone_set( !empty($_usu->ubi) ? $_usu->ubi : $_SESSION['ubi'] );  
+  // cargo usuario
+  require_once("php/api/usu.php"); 
+  $_usu = new _usu( $_SESSION['usu'] );
+  
    
   // peticion AJAX
   if( isset($_REQUEST['_']) ){  
 
     // log del sistema por ajax
-    function _log( ...$opc ) : string {
+    function _log() : string {
 
-      global $_api, $_hol, $_usu;
-
+      global $_usu;
       $_ = "  
       <h2>hola desde php<c>!</c></h2>
       ";
@@ -57,8 +52,14 @@
 
     $sis_ini = time();
 
-    // cargo aplicacion
-    $_app = new _app('hol');
+    // cargo modulos
+    foreach( ['doc','app','hol'] as $cla ){ 
+
+      require_once("php/api/$cla.php");
+    }
+
+    // cargo aplicacion    
+    $_app = new _app();
   }
 ?>
 <!DOCTYPE html>
@@ -118,41 +119,33 @@
           $win['ses_fin'] = [ 'ico'=>"ses_fin", 'nom'=>"Cerrar Sesión..."];
         }
         
-        echo _app::_ope([ 'win'=>$win ]);
+        echo _app_ope::tog([ 'win'=>$win ]);
         ?>
       </nav>
-
+      
     </aside>
 
     <!-- Navegador -->
     <aside class='nav dis-ocu'>
-
       <?= $_app->nav ?>
-
     </aside>
 
     <!-- Secciones -->
     <main>
-
       <?= $_app->sec ?>
-
     </main>
     
     <?php if( !empty($_app->pan) ){ ?>      
       <!-- sidebar -->
       <aside class='pan'>
-
         <?= $_app->pan ?>
-
       </aside>
     <?php } ?>
 
     <?php if( !empty($_app->pie) ){  ?>
       <!-- pie de página -->
       <footer>
-
         <?= $_app->pie ?>
-
       </footer>
     <?php } ?>
 

@@ -69,10 +69,10 @@
   
         </fieldset>
   
-        <div class='ope_res mar-1'>
+        <div class='ope_res mar-1' style='height: 40vh; overflow: auto;'>
         </div>
   
-        <pre class='ope_res'>
+        <pre class='ope_res' style='height: 40vh; overflow: auto;'>
         </pre>
         "
       ],
@@ -118,4 +118,4 @@
   ];  
 
   // articulo en ventana emergente
-  echo _app::_win('api_adm',$win);
+  echo _app_ope::win('api_adm',$win);

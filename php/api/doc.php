@@ -1,5 +1,4 @@
 <?php
-
   // documento 
   class _doc {
     
@@ -174,6 +173,55 @@
 
       return $_;
     }
+
+    // contenido visible/oculto
+    static function tog( string | array $dat = NULL, array $ele = [] ) : string {
+      $_ide = self::$IDE."tog";
+      $_eje = self::$EJE."tog";
+      foreach( ['val','ico'] as $eti ){ if( !isset($ele[$eti]) ) $ele[$eti]=[]; }
+      
+      // contenido textual
+      if( is_string($dat) ) $dat = [
+        'eti'=>"p", 'class'=>"let-tit", 'htm'=>_doc::let($dat) 
+      ];
+
+      // contenedor : icono + ...elementos          
+      _ele::eje( $dat,'cli',"$_eje(this);",'ini');
+
+      return "
+      <div"._htm::atr( _ele::cla( $ele['val'],"val tog",'ini') ).">
+      
+        "._doc_val::tog_ico( isset($ele['ico']) ? $ele['ico'] : [] )."
+
+        ".( isset($ele['htm_ini']) ? _htm::val($ele['htm_ini']) : '' )."
+        
+        "._htm::val( $dat )."
+
+        ".( isset($ele['htm_fin']) ? _htm::val($ele['htm_fin']) : '' )."
+
+      </div>";
+    }// icono de toggle
+    static function tog_ico( array $ele = [] ) : string {
+
+      $_eje = self::$EJE."tog";
+
+      return _doc::ico('ope_tog', _ele::eje($ele,'cli',"$_eje(this);",'ini'));
+    }// operadores: expandir / contraer
+    static function tog_ope( array $ele = [], ...$opc ) : string {
+      $_ide = self::$IDE."tog";
+      $_eje = self::$EJE."tog";      
+
+      if( !isset($ele['ope']) ) $ele['ope'] = [];
+      _ele::cla($ele['ope'],"ope",'ini');
+
+      $_eje_val = isset($ele['eje']) ? $ele['eje'] : "$_eje(this,";
+      return "
+      <fieldset"._htm::atr($ele['ope']).">
+        "._doc::ico('ope_tod', [ 'eti'=>"button", 'class'=>"tam-2", 'title'=>"Expandir todos...", 'onclick'=>$_eje_val."'tod');" ] )."
+        "._doc::ico('ope_nad', [ 'eti'=>"button", 'class'=>"tam-2", 'title'=>"Contraer todos...", 'onclick'=>$_eje_val."'nad');" ] )."        
+      </fieldset>";
+    }
+
     // variable : div.atr > label + (input,textarea,select,button)[name]
     static function var( string $tip, string | array $ide, array $ele=[], ...$opc ) : string {
       $_var_ope = [ 
@@ -209,7 +257,7 @@
       // carga operadores: esquema - dato - valor
       elseif( $tip != 'val' ){ 
 
-        $_var = _api::_app_var($tip,$esq,$est,$atr);
+        $_var = _app::var($tip,$esq,$est,$atr);
       }
 
       // combino operadores
@@ -291,68 +339,27 @@
         ".( !empty($agr['htm_fin']) ? $agr['htm_fin'] : '' )."      
       </div>
       ";   
-    }
-    // contenido visible/oculto
-    static function tog( string | array $dat = NULL, array $ele = [] ) : string {
-      $_ide = self::$IDE."tog";
-      $_eje = self::$EJE."tog";
-      foreach( ['val','ico'] as $eti ){ if( !isset($ele[$eti]) ) $ele[$eti]=[]; }
-      
-      // contenido textual
-      if( is_string($dat) ) $dat = [
-        'eti'=>"p", 'class'=>"let-tit", 'htm'=>_doc::let($dat) 
-      ];
+    }// busco proximo id
+    static function var_ide( string $ope ) : string {
 
-      // contenedor : icono + ...elementos          
-      _ele::eje( $dat,'cli',"$_eje(this);",'ini');
+      global $_api;
 
-      return "
-      <div"._htm::atr( _ele::cla( $ele['val'],"val tog",'ini') ).">
-      
-        "._doc_val::tog_ico( isset($ele['ico']) ? $ele['ico'] : [] )."
+      if( !isset($_api->doc_var[$ope]) ) $_api->doc_var[$ope] = 0;
 
-        ".( isset($ele['htm_ini']) ? _htm::val($ele['htm_ini']) : '' )."
-        
-        "._htm::val( $dat )."
+      $_api->doc_var[$ope]++;
 
-        ".( isset($ele['htm_fin']) ? _htm::val($ele['htm_fin']) : '' )."
+      return $_api->doc_var[$ope];
 
-      </div>";
-    }
-    // icono de toggle
-    static function tog_ico( array $ele = [] ) : string {
-
-      $_eje = self::$EJE."tog";
-
-      return _doc::ico('ope_tog', _ele::eje($ele,'cli',"$_eje(this);",'ini'));
-    }
-    // operadores: expandir / contraer
-    static function tog_ope( array $ele = [], ...$opc ) : string {
-      $_ide = self::$IDE."tog";
-      $_eje = self::$EJE."tog";      
-
-      if( !isset($ele['ope']) ) $ele['ope'] = [];
-      _ele::cla($ele['ope'],"ope",'ini');
-
-      $_eje_val = isset($ele['eje']) ? $ele['eje'] : "$_eje(this,";
-      return "
-      <fieldset"._htm::atr($ele['ope']).">
-        "._doc::ico('ope_tod', [ 'eti'=>"button", 'class'=>"tam-2", 'title'=>"Expandir todos...", 'onclick'=>$_eje_val."'tod');" ] )."
-        "._doc::ico('ope_nad', [ 'eti'=>"button", 'class'=>"tam-2", 'title'=>"Contraer todos...", 'onclick'=>$_eje_val."'nad');" ] )."        
-      </fieldset>";
-    }
-    // filtros : texto
-    static function ver( string $tip, string | array $dat = [], array $ele = [], ...$opc ) : string {
+    }// filtros : texto
+    static function var_ver( string $tip, string | array $dat = [], array $ele = [], ...$opc ) : string {
       $_ = "";
-      $_ide = self::$IDE."ver";
-      $_eje = self::$EJE."ver";
 
       switch( $tip ){
       // textuales
       case 'tex': 
         $dat['eje'] = !empty($dat['eje']) ? $dat['eje'] : NULL;
         // opciones de filtro por texto
-        $_ .= _api::_dat_ope_opc(['ver','tex'],[
+        $_ .= _dat::ope('opc',['ver','tex'],[
           'ite'=>[ 
             'dat'=>"()($)dat()" 
           ],
@@ -789,7 +796,7 @@
           "._doc_val::var('val','ver',[ 
             'nom'=>"Filtrar", 
             'id'=>"{$_ide}-ver {$esq}-{$ide}",
-            'htm'=>_doc_val::ver('tex', [ 'ide'=>"{$_ide}-ver {$esq}-{$ide}", 'eje'=>"$_eje('ver',this);" ])
+            'htm'=>_doc_val::var_ver('tex', [ 'ide'=>"{$_ide}-ver {$esq}-{$ide}", 'eje'=>"$_eje('ver',this);" ])
           ])."
         </form>
   
@@ -928,7 +935,7 @@
 
       // operadores por esquemas
       $_val = []; // -> obtener valor de la ficha
-      foreach( _api::_app_var($esq,'val','sum') as $ide => $ite ){
+      foreach( _app::var($esq,'val','sum') as $ide => $ite ){
     
         $_ .= _doc_val::var($esq, ['val','sum',$ide], [          
           'ope'=>[ 'id'=>"{$_ide} sum-{$ide}" ],
@@ -1228,9 +1235,9 @@
                 <fieldset class='inf ren'>
                   <legend>Secciones</legend>";
                   // operadores globales
-                  if( !empty($tab_sec = _api::_app_var('doc','tab',$tip)) ){ $_ .= "
+                  if( !empty($tab_sec = _app::var('doc','tab',$tip)) ){ $_ .= "
                     <div class='val'>";
-                    foreach( _api::_app_var('doc','tab',$tip) as $ide => $ite ){
+                    foreach( _app::var('doc','tab',$tip) as $ide => $ite ){
                       if( isset($ope[$tip][$ide]) ){ 
                         $_ .= _doc_val::var('doc',"tab.$tip.$ide", [ 
                           'val'=>$ope[$tip][$ide], 
@@ -1334,7 +1341,7 @@
       // solo muestro las declaradas en el operador
       $atr = array_keys($ope);
 
-      foreach( _api::_app_var($esq,'tab',$tip) as $ide => $_dat ){
+      foreach( _app::var($esq,'tab',$tip) as $ide => $_dat ){
 
         if( in_array($ide,$atr) ){
 
@@ -1361,7 +1368,7 @@
 
       foreach( $opc as $atr ){
         $htm = "";
-        foreach( _api::_app_var($esq,'pos',$atr) as $ide => $val ){
+        foreach( _app::var($esq,'pos',$atr) as $ide => $val ){
           $var = [
             'ope'=>[ 
               'id'=>"{$_ide}-{$atr}-{$ide}", 
@@ -1374,7 +1381,7 @@
           $htm .= _doc_val::var($esq, "pos.$atr.$ide", $var);
         }        
         // busco datos del operador 
-        if( !empty($htm) && !empty($_ope = _api::_app_var($esq,'val','pos',$atr)) ){
+        if( !empty($htm) && !empty($_ope = _app::var($esq,'val','pos',$atr)) ){
           $ele['ope']['pos'] = $atr; $_ .= "
           <form"._htm::atr($ele['ope']).">
             <fieldset class='inf ren'>
@@ -1443,7 +1450,7 @@
       if( is_string($dat) ){
         extract( _dat::ide($dat) );
         $_ide .= " _$esq.$est";
-        $_est = _api::_app_est($esq,$est,$ope);
+        $_est = _app::est($esq,$est,$ope);
       }// por listado
       else{        
         if( isset($ope['ide']) ){
@@ -1499,7 +1506,7 @@
             "._doc::ico('ope_ver',['eti'=>"button",'title'=>"Mostrar todas las Columnas", 'onclick'=>"{$_eje}_val(this,'ver');"])."
           </fieldset>
   
-          "._doc_val::var('val','ver',[ 'nom'=>"Filtrar", 'htm'=>_doc_val::ver('tex',[ 'eje'=>"{$_eje}_ver(this);" ]) ])."
+          "._doc_val::var('val','ver',[ 'nom'=>"Filtrar", 'htm'=>_doc_val::var_ver('tex',[ 'eje'=>"{$_eje}_ver(this);" ]) ])."
   
           <fieldset class='ite'>";
           foreach( $_cue as $atr => $val ){ $_ .= "
@@ -1610,7 +1617,7 @@
               
           foreach( $est_lis as $est ){
             // estrutura por aplicacion
-            $_est = _api::_app_est($esq,$est);
+            $_est = _app::est($esq,$est);
             // datos de la estructura
             $est_nom = _dat::est($esq,$est)->nom;
             // contenido : listado de checkbox en formulario
@@ -1652,7 +1659,7 @@
             
           foreach( $est_lis as $est ){
             
-            $_est =  _api::_app_est($esq,$est,$ope);
+            $_est =  _app::est($esq,$est,$ope);
 
             // ciclos, agrupaciones y lecturas
             if( !empty($_est->tit_cic) || !empty($_est->tit_gru) || !empty($_est->det_des) ){              
@@ -1674,7 +1681,7 @@
                   </form>";
                   
                   $lis_dep[] = [ 
-                    'ite'=>_api::_app_var('doc','est','ver',$ide)['nom'], 
+                    'ite'=>_app::var('doc','est','ver',$ide)['nom'], 
                     'htm'=>$htm
                   ];
                 }
@@ -1716,7 +1723,7 @@
       if( is_string($dat) ){
         extract( _dat::ide($dat) );
         $_ide .= " _$esq.$est";
-        $_est = _api::_app_est($esq,$est,$ope);
+        $_est = _app::est($esq,$est,$ope);
       }// por listado
       else{
         if( isset($ope['ide']) ){
@@ -1895,7 +1902,7 @@
       if( is_string($dat) ){
         extract( _dat::ide($dat) );
         $_ide .= " _$esq.$est";
-        $_est = _api::_app_est($esq,$est);
+        $_est = _app::est($esq,$est);
       }
       // por listado
       else{
@@ -1980,7 +1987,7 @@
 
         extract( _dat::ide($dat) );
         $_ide .= " _$esq.$est";
-        $_est = _api::_app_est($esq,$est);
+        $_est = _app::est($esq,$est);
       }
       // por listado
       elseif( isset($ope['ide']) ){
@@ -2063,7 +2070,7 @@
       // proceso estructura de la base
       if( is_string($dat) ){
         extract( _dat::ide($dat) );
-        $_est = _api::_app_est($esq,$est);
+        $_est = _app::est($esq,$est);
       }// por listado
       elseif( isset($ope['ide']) ){
         extract( _dat::ide($ope['ide']) );
@@ -2161,7 +2168,7 @@
       // proceso estructura de la base
       if( is_string($dat) ){
         extract( _dat::ide($dat) );
-        $_est = _api::_app_est($esq,$est);
+        $_est = _app::est($esq,$est);
       }// por listado
       elseif( isset($ope['ide']) ){
         extract( _dat::ide($ope['ide']) );
@@ -2221,7 +2228,7 @@
       if( $tod || in_array('ver',$opc) ){
         $_ .= _doc_val::var('val','ver',[ 
           'des'=>"Filtrar...",
-          'htm'=>_doc_val::ver('tex',[ 'cue'=>in_array('cue',$opc) ? 0 : NULL, 'eje'=>"{$_eje}_ver(this);" ])
+          'htm'=>_doc_val::var_ver('tex',[ 'cue'=>in_array('cue',$opc) ? 0 : NULL, 'eje'=>"{$_eje}_ver(this);" ])
         ]);
       }
 
@@ -2401,7 +2408,7 @@
 
         "._doc_val::tog_ope()."
 
-        "._doc_val::ver('tex',[ 'cue'=>0, 'ele_val'=>['class'=>"anc-100"], 'eje'=>"{$_eje}ver(this);" ])."
+        "._doc_val::var_ver('tex',[ 'cue'=>0, 'ele_val'=>['class'=>"anc-100"], 'eje'=>"{$_eje}ver(this);" ])."
 
       </form>";
       // dependencias
@@ -2863,7 +2870,7 @@
               unset($ope['class']); 
             }
             if( !isset($ope['id']) ){ 
-              $ope['id'] = "_num_ran-"._api::_ide('_num-ran');
+              $ope['id'] = "_num_ran-"._doc_val::var_ide('_num-ran');
             }
             $htm_out = "";
             if( !in_array('val-ocu',$opc) ){ $htm_out = "
@@ -2999,7 +3006,7 @@
               $dat_lis = [];
             }        
             if( empty($ope['id']) ){ 
-              $ope['id']="_tex-{$tip}-"._api::_ide("_tex-{$tip}-");
+              $ope['id']="_tex-{$tip}-"._doc_val::var_ide("_tex-{$tip}-");
             }
             $ope['list'] = "{$ope['id']}-lis";
             $lis_htm = "

@@ -16,10 +16,10 @@ class _doc {
         $.men.classList.add(DIS_OCU);
       }// pantallas
       else if( $.win = document.querySelector(`#win:not(.${DIS_OCU}) article header .ico[ide="eje_fin"]`) ){ 
-        _app._ope('win');
+        _app_ope,tog('win');
       }// navegacion
       else if( $.nav = document.querySelector(`aside.nav > [ide]:not(.${DIS_OCU})`) ){ 
-        _app._ope('nav');
+        _app_ope,tog('nav');
       }
       break;
     }
@@ -46,7 +46,7 @@ class _doc {
   // letras : c - n
   static let( $dat, $ele={} ){
 
-    let $_="", $pal, $_pal=[], $let=[], $_let = $_api._doc_let, $num = 0;
+    let $_="", $pal, $_pal=[], $let=[], $_let = $_api.doc_let, $num = 0;
     
     if( $dat !== null && $dat !== undefined && $dat !== NaN ){      
 

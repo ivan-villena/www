@@ -72,8 +72,12 @@ body > main {
   overflow: auto;
   display: flex;
   flex-direction: column;
-  background-color: var(--fon_art);/* por barra de desplazamiento */
-  padding: .5rem;
+  background-color: var(--fon_art);/* por barra de desplazamiento */  
+  text-align: center;
+}
+
+body > main > header {
+  background-color: var(--fon_sec);
 }
 
 /* contenido por articulos */
@@ -82,7 +86,6 @@ body > main > article {
   height: max-content;
   padding: 0 2rem 2rem;
   margin: auto;
-  text-align: center;
   border-radius: 1rem;
   border: 1px solid var(--bor_sel);  
   background-color: var(--fon_sec);
