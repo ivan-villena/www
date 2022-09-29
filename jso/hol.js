@@ -40,6 +40,36 @@ class _hol {
 // Bibliografìa
 class _hol_bib {
   
+  static ide( $tip, $dat, $ope ){
+
+    let $ = _doc_val.var($dat);
+
+    switch( $tip ){
+    case 'ver':
+      $.lis = $_app.var.nextElementSibling;
+      $.ope = $_app.var.querySelector(`[name="ope"]`);
+      $.val = $_app.var.querySelector(`[name="val"]`);
+      $.tot = $_app.var.querySelector(`[name="tot"]`);
+
+      if( $.val.value ){
+        // oculto todo
+        $.lis.querySelectorAll(`tbody > tr:not(.${DIS_OCU})`).forEach( $ite => $ite.classList.add(DIS_OCU) );
+        // recorro y ejecuto filtro
+        $.lis.querySelectorAll(`tbody > tr > td[data-atr="nom"]`).forEach( $ite => {
+
+          if( _dat.ver($ite.innerText, $.ope.value, $.val.value) ) $ite.parentElement.classList.remove(DIS_OCU);
+        });
+      }// muestro todo
+      else{
+        $.lis.querySelectorAll(`tbody > tr.${DIS_OCU}`).forEach( $ite => $ite.classList.remove(DIS_OCU) );
+      }
+      // actualizo cuenta
+      $.tot.innerHTML = $.lis.querySelectorAll(`tbody > tr:not(.${DIS_OCU})`).length;
+
+      break;
+    }
+
+  }
   // Encantamiento del sueño
   static enc( $atr, $dat, $ope ){
 
@@ -50,20 +80,27 @@ class _hol_bib {
     switch( $atr ){
     // libro del kin
     case 'kin': 
-      if( !$ope ){
+      $.val = _num.val( $_app.var.querySelector('[name="ide"]').value );
+      if( $.val ) $.kin_ide = `#kin-${_num.val($.val,3)}`;
 
-        $.val = _num.val( $_app.var.querySelector('[name="ide"]').value );
-
+      if( !$ope ){        
         $.res = $_app.var.querySelector('.hol-kin');
-
-        $.res.innerHTML = ( $.val && ( $.kin = $.lis.querySelector(`#kin-${_num.val($.val,3)} > .hol-kin`) ) ) ? $.kin.innerHTML : '';
+        if( $.kin_ide ){
+          $.res.innerHTML = $.lis.querySelector(`${$.kin_ide} > .hol-kin`).innerHTML;
+        }else{
+          $.res.innerHTML = '';
+        }
       }
       else{
-
-      }    
+        switch($ope){
+        case 'nav': 
+          if( $.kin_ide ) location.href = location.href.split('#')[0] + $.kin_ide;
+          break;
+        }
+      }     
       break;
     }
-  }     
+  }
 }
 // Diario
 class _hol_dia {

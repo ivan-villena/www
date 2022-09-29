@@ -14,33 +14,36 @@
 
     // Interfaces
     public array
-      // numeros
+      // Numero
       $num = [],
-      // fechas
+      // Texto
+      $tex = [],
+      // Fecha
       $fec = [],
-      // holon
+      // Holon
       $hol = []
     ;
-    // documento
+    // Documento
     public array
+      // iconos
       $doc_ico = [],
+      // letra
       $doc_let = [],
-      $doc_var = []// id por posicion
+      // id - variables
+      $doc_val_var = [],
+      // selector de operadores
+      $doc_val_ope = []
     ;
     // Datos
     public array
       $dat_atr = [], // atributos de la base
       $dat_est = [], // estructuras de la base
       $dat_val = [], // valores por registro
-      $dat_tip = [], // tipo de datos
-      $dat_tip_dat = [], // tipos de dato
-      $dat_tip_val = [], // tipos de valor      
-      $dat_ope = [], // operadores por tipo
-      $dat_ope_opc = [] // selector de opciones
+      $dat_tip = [],// tipo
+      $dat_ope = [] // operador
     ;
     // Aplicacion
     public array
-      // controladores
       $app_var = [],
       // datos
       $app_dat = [], 
@@ -53,17 +56,17 @@
     function __construct(){
       
       // documento : iconos + letras
-      $this->doc_ico = _dat::var('_api.doc_ico', [ 'niv'=>['ide'] ]);
-      $this->doc_let = _dat::var('_api.doc_let', [ 'niv'=>['ide'] ]);
+      $this->doc_ico = _dat::get('_api.doc_ico', [ 'niv'=>['ide'] ]);
+      $this->doc_let = _dat::get('_api.doc_let', [ 'niv'=>['ide'] ]);
 
       // variable: tipos + operaciones
-      $this->dat_tip = _dat::var('_api.dat_tip', [ 'niv'=>['ide'], 'ele'=>['ope'] ]);
-      $this->dat_ope = _dat::var('_api.dat_ope', [ 'niv'=>['ide'] ]);
+      $this->dat_tip = _dat::get('_api.dat_tip', [ 'niv'=>['ide'], 'ele'=>['ope'] ]);
+      $this->dat_ope = _dat::get('_api.dat_ope', [ 'niv'=>['ide'] ]);
       
       // fechas : mes + semana + dias
       foreach( ['mes','sem','dia'] as $ide ){
 
-        $this->{"fec_$ide"} = _dat::var("_api.fec_$ide");
+        $this->{"fec_$ide"} = _dat::get("_api.fec_$ide");
       }
     }
 
@@ -105,6 +108,7 @@
       return $_;
     }    
   }
+
   // Código sql 
   class _sql {
 
@@ -518,7 +522,7 @@
           $_atr->nom = $atr->Comment;
           $_atr->var = $var;
           $_atr->var_ide = $sql_tip;
-          $_atr->var_tip = $dat_tip;
+          $_atr->dat_tip = $dat_tip;
           $_atr->var_dat = $var_dat;
           $_atr->var_val = $var_val;
           // ...
@@ -725,50 +729,8 @@
   // Dato : esq.est[ide].atr
   class _dat {
 
-    // inicio estructura: busco datos por vista o tabla
-    static function ini( string $esq, string $est, array $ope = [] ) : string | array {
-      $_ = [];
-
-      $val_est = _sql::est("_{$esq}",'val',$est);
-
-      $vis = "_{$est}";
-
-      $val_vis = _sql::est("_{$esq}",'val',$vis);
-
-      if( $val_est || $val_vis ){
-
-        $ide = ( $val_vis == 'vis' ) ? $vis : $est;
-
-        $_ = _dat::var( "_{$esq}.{$ide}",$ope);
-      }
-
-      return $_;
-    }
-    // identificadores
-    static function ide( $dat, array $ope=[] ) : array {
-
-      if( is_string($dat) ) 
-        $dat = explode('.',$dat);
-
-      $_ = array_merge($ope,[ 
-        'esq'=>$dat[0], 
-        'est'=>FALSE, 
-        'atr'=>FALSE 
-      ]);
-
-      if( isset( $dat[1] ) ){
-        
-        $_['est'] = $dat[1];
-
-        if( isset($dat[2]) ){
-
-          $_['atr'] = $dat[2];
-        }
-      }
-      return $_;
-    }
-    // listado : devuelvo estructura - objeto
-    static function var( $dat, mixed $ope = NULL, mixed $val = NULL ) : array | object {
+    // getter : estructura - objeto
+    static function get( $dat, mixed $ope = NULL, mixed $val = NULL ) : array | object {
 
       // objeto->propiedad 
       if( is_string($ope) ){
@@ -815,6 +777,48 @@
         // resultados y operaciones
         if( isset($ope) && ( is_array($dat) || !isset($_['err']) ) )
           _est::ope($_,$ope);
+      }
+      return $_;
+    }
+    // inicio estructura: busco datos por vista o tabla
+    static function ini( string $esq, string $est, array $ope = [] ) : string | array {
+      $_ = [];
+
+      $val_est = _sql::est("_{$esq}",'val',$est);
+
+      $vis = "_{$est}";
+
+      $val_vis = _sql::est("_{$esq}",'val',$vis);
+
+      if( $val_est || $val_vis ){
+
+        $ide = ( $val_vis == 'vis' ) ? $vis : $est;
+
+        $_ = _dat::get( "_{$esq}.{$ide}",$ope);
+      }
+
+      return $_;
+    }
+    // identificadores
+    static function ide( $dat, array $ope=[] ) : array {
+
+      if( is_string($dat) ) 
+        $dat = explode('.',$dat);
+
+      $_ = array_merge($ope,[ 
+        'esq'=>$dat[0], 
+        'est'=>FALSE, 
+        'atr'=>FALSE 
+      ]);
+
+      if( isset( $dat[1] ) ){
+        
+        $_['est'] = $dat[1];
+
+        if( isset($dat[2]) ){
+
+          $_['atr'] = $dat[2];
+        }
       }
       return $_;
     }
@@ -907,26 +911,8 @@
       }
       return $_;
     }
-    // operaciones : opciones de seleccion por tipo
-    static function ope( string $tip, mixed $dat = NULL, mixed $ope = NULL, ...$opc ) : mixed {
-      global $_api;
-      $_ = [];
-
-      if( $tip == 'opc' ){
-
-        if( !isset($_api->dat_ope_opc[$dat[0]][$dat[1]]) ){
-
-          $_dat = _dat::var( $_api->dat_ope, [ 'ver'=>[ ['tip','==',$dat[0]], ['dat','==',$dat[1]] ]] );
-    
-          $_api->dat_ope_opc[$dat[0]][$dat[1]] = _doc_opc::val( $_dat, $ope, ...$opc);
-        }
-    
-        $_ = $_api->dat_ope_opc[$dat[0]][$dat[1]];
-
-      }
-      return $_;
-    }// operadores : comparaciones de valores
-    static function ope_ver( $dat, string $ide, $val ) : bool {
+    // comparaciones de valores
+    static function ver( $dat, string $ide, $val ) : bool {
       $_ = FALSE;
       switch( $ide ){
       case '===': $_ = ( $dat === $val );  break;
@@ -949,7 +935,7 @@
       case '!*':  $_ = !preg_match("/".$val."/",$dat);  break;
       }
       return $_;
-    }
+    }    
     // estructura : datos + operadores
     static function est( string $esq, string $ide = NULL, mixed $tip = NULL, mixed $ope = NULL ) : mixed {
       $_ = [];
@@ -959,7 +945,7 @@
 
         if( !isset( $_api->dat_est[$esq] ) ){
           
-          foreach( _dat::var("_api.dat_est",[ 
+          foreach( _dat::get("_api.dat_est",[ 
             'ver'=>"`esq`='{$esq}'", 'niv'=>['ide'], 'obj'=>"ope", 'red'=>"ope" 
           ]) as $est => $_ope ){
 
@@ -977,7 +963,7 @@
 
           if( is_object( $_api->dat_est[$esq][$ide] = _sql::est("_{$esq}",'ver',$ide,'uni') ) ){
             // busco operadores
-            $_api->dat_est[$esq][$ide]->ope = _dat::var("_api.dat_est",[
+            $_api->dat_est[$esq][$ide]->ope = _dat::get("_api.dat_est",[
               'ver'=>"`esq`='{$esq}' AND `ide`='{$ide}'", 'obj'=>"ope", 'red'=>"ope", 'opc'=>"uni"
             ]);
           }    
@@ -1065,33 +1051,38 @@
           : _sql::atr("_{$esq}",$est);
         
         // cargo operadores del atributo
-        $_atr = &$_api->dat_atr[$esq][$est];
-        foreach( _dat::var("_api.dat_atr",['ver'=>"`esq`='{$esq}' AND `est`='{$est}'", 'ele'=>'var' ]) as $_api_atr ){
+        $_api_dat = &$_api->dat_atr[$esq][$est];
+        foreach( _dat::get("_api.dat_atr",[
+          'ver'=>"`esq`='{$esq}' AND `est`='{$est}'", 
+          'ele'=>'var' 
+        ]) as $_api_atr ){
 
-          if( !empty($_api_atr->var) && isset($_atr[$i = $_api_atr->ide]) ){
+          if( !empty($_api_atr->var) && isset($_api_dat[$i = $_api_atr->ide]) ){
 
-            $_atr[$i]->var = _ele::jun($_atr[$i]->var, $_api_atr->var);
+            $_api_dat[$i]->var = _ele::jun($_api_dat[$i]->var, $_api_atr->var);
           }
         }
       }
+      $_ = $_api->dat_atr[$esq][$est];
       // devuelvo todos los atributos
-      if( !isset($ide) ){
-        $_ = $_atr;
-      }
-      elseif( !isset($tip) ){
-        // uno
-        if( is_string($ide) ){
-          if( isset($_atr[$ide]) ) $_ = $_atr[$ide];
-        }// muchos
-        else{
-          foreach( $ide as $atr ){ 
-            if( isset($_atr[$atr]) ) $_[$atr] = $_atr[$atr];
+      if( isset($ide) ){
+        $_atr = $_;
+        // devuelvo 1-n atributos
+        if( !isset($tip) ){
+          // uno
+          if( is_string($ide) ){
+            if( isset($_atr[$ide]) ) $_ = $_atr[$ide];
+          }// muchos
+          else{
+            foreach( $ide as $atr ){ 
+              if( isset($_atr[$atr]) ) $_[$atr] = $_atr[$atr];
+            }
           }
         }
-      }
-      else{
-        switch( $tip ){
-          
+        else{
+          switch( $tip ){
+            
+          }
         }
       }
       return $_;
@@ -1127,14 +1118,14 @@
       // todas las estructuras de un esquema
       if( empty($est) ){
         
-        $_ = $_api->dat_val[$esq] = _dat::var("_api.dat_val",[ 
+        $_ = $_api->dat_val[$esq] = _dat::get("_api.dat_val",[ 
           'ver'=>"`esq`='{$esq}'", 'niv'=>["est"], 'obj'=>"ope", 'red'=>"ope" 
         ]);
       }// una estructura
       else{
         if( !isset($_api->dat_val[$esq][$est]) ){
 
-          $_api->dat_val[$esq][$est] = _dat::var("_api.dat_val",[ 
+          $_api->dat_val[$esq][$est] = _dat::get("_api.dat_val",[ 
             'ver'=>"`esq`='{$esq}' AND `est`='{$est}'", 'obj'=>"ope", 'red'=>"ope", 'opc'=>"uni" 
           ]);
         }
@@ -1150,7 +1141,7 @@
             // valores variables ()($)...()
             if( isset($dat) ){
   
-              $_ = _obj::val( _dat::var($esq,$est,$dat), $_val->$atr );
+              $_ = _obj::val( _dat::get($esq,$est,$dat), $_val->$atr );
             }
           }
         }
@@ -1201,6 +1192,7 @@
       return $_;
     }
   }
+
   // listado : []
   class _lis {
 
@@ -1476,7 +1468,7 @@
           foreach( $ope as $ver ){ 
 
             if( $atr == $ver[0] ) 
-              $val_ite []= _dat::ope_ver( $val, $ver[1], $ver[2] );
+              $val_ite []= _dat::ver( $val, $ver[1], $ver[2] );
           }
         }
         // evaluo resultados
@@ -1524,7 +1516,7 @@
       
       foreach( $dat as $i => $v ){
 
-        if( !_dat::ope_ver( $opc_ide ? $i : $v, $ope, $val ) ) 
+        if( !_dat::ver( $opc_ide ? $i : $v, $ope, $val ) ) 
         
           $_[ $lis_tip ? $pos : $i ] = $v;
 
@@ -1989,7 +1981,7 @@
         // esquema.estructura : tabla de la base
         elseif( preg_match("/[A-Za-z0-9_]+\.[A-Za-z0-9_]+$/",$dat) ){
     
-          $_ = _dat::var($dat,$ope);
+          $_ = _dat::get($dat,$ope);
           
         }
       }// convierto : {} => []

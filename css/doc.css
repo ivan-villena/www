@@ -554,6 +554,8 @@ valores horizontal
 ul.val {
   justify-content: space-around;
   align-items: center;
+  padding: 0;
+  margin: 0;
 }
 
 /*////////////////////////////////*/
@@ -618,7 +620,7 @@ table th {
 Operadores-Botones : fieldset.ope > button + nav.ope > a + div.ope > span/button
 */
 
-:is(ul,nav,fieldset).ope {  
+:is(ul,nav,form,fieldset).ope {  
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
@@ -690,7 +692,6 @@ nav:is(.bar,.pes) > a:hover{
 /* Contenido */
 nav:is(.pes,.bar) + * {
   overflow: auto;
-  padding: .5rem;
   margin: 0 .5rem;
 }
 
@@ -705,7 +706,6 @@ nav.bar > a:not(.ico) {
   border-radius: .25rem;
   font-style: italic;
 }
-
 /* 
 Pestañas 
 */
@@ -799,12 +799,8 @@ Estructura
 
 div[var="est"] {
   height: 75vh;
-  overflow: auto;  
-  background-color: var(--fon_nav);
-  padding: 0 .5rem;  
-  border: 1px solid var(--bor_val);
-  border-radius: .5rem;
-  margin: .5rem;
+  overflow: auto;
+  padding: 0 .5rem;
   line-height: 1;
 }
 

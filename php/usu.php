@@ -31,7 +31,7 @@
 
       if( !empty($ide) ){
 
-        foreach( _dat::var("_api.usu", [ 'ver'=>"`ide`='{$ide}'", 'opc'=>'uni' ]) as $atr => $val ){
+        foreach( _dat::get("_api.usu", [ 'ver'=>"`ide`='{$ide}'", 'opc'=>'uni' ]) as $atr => $val ){
 
           $this->$atr = $val;
         }
@@ -102,12 +102,12 @@
       $_['hol'] = _hol::val( $fec );
 
       // busco anillo actual
-      $_['ani'] = _dat::var("_api.usu_cic_ani",[ 
+      $_['ani'] = _dat::get("_api.usu_cic_ani",[ 
         'ver'=>"`usu` = '{$_usu->ide}' AND `fec` <= '"._fec::var( $_['hol']['fec'] )."'", 'ord'=>"`ide` DESC", 'lim'=>1, 'opc'=>"uni"
       ]);
 
       // busco transito lunar
-      $_['lun'] = _dat::var("_api.usu_cic_lun",[ 
+      $_['lun'] = _dat::get("_api.usu_cic_lun",[ 
         'ver'=>"`usu` = '{$_usu->ide}' AND `ani` = {$_['ani']->ide} AND `fec` <= '"._fec::var( $_['hol']['fec'] )."'", 'ord'=>"`ani`, `ide` DESC", 'lim'=>1, 'opc'=>"uni" 
       ]);
 

@@ -3,41 +3,43 @@
   // Página-app
   class _app {
 
-    public object $uri;
-    // estilos css
-    public array $css = ['doc','app'];
-    // modulos js
-    public array $jso = ['api','api/doc','api/hol','api/app'];
-    // elementos
-    public array $ele = [ 'body'=>[] ];
-    // script
-    public string $eje = "";
+    // propiedades:
 
-    // titulo
-    public string $nom = "{-_-}";
-    
-    // datos de interface
-    public array $dat = [];
-    // objetos de interface
-    public array $obj = [];
+      // estilos css
+      public array $css = ['doc','app'];
+      // modulos js
+      public array $jso = ['api','usu','app','doc','hol'];
+      // elementos
+      public array $ele = [ 'body'=>[] ];
+      // script
+      public string $eje = "";
 
-    // pagina
-    public object $esq;
-    public object $cab;
-    public object $art;
-    
-    // operador: botones
-    public array $ope = [];
-    // menú de navegación
-    public string $nav = "";
-    // seccion principal
-    public string $sec = "";
-    // pantalla emergente
-    public string $win = "";
-    // paneles laterales
-    public string $pan = "";
-    // barra inferior
-    public string $pie = "";
+      // peticion
+      public object $uri;
+      // titulo
+      public string $nom = "{-_-}";      
+      // datos de interface
+      public array $dat = [];
+      // objetos de interface
+      public array $obj = [];
+
+      // pagina 
+      public object $esq;
+      public object $cab;
+      public object $art;
+      
+      // operador: botones
+      public array $ope = [];
+      // menú de navegación
+      public string $nav = "";
+      // seccion principal
+      public string $sec = "";
+      // pantalla emergente
+      public string $win = "";
+      // paneles laterales
+      public string $pan = "";
+      // barra inferior
+      public string $pie = "";
 
     // cargo aplicacion
     function __construct( string $esq = 'hol' ){
@@ -48,7 +50,7 @@
       // inicializo datos
       $this->dat = [
         'app'=>[ 'uri' ],        
-        'doc'=>[ 'ico', 'let' ],
+        'doc'=>[ 'ico', 'let' ],        
         'dat'=>[ 'tip', 'val' ],
         'fec'=>[ 'mes','sem','dia' ]
       ];
@@ -65,15 +67,15 @@
       ];
 
       // cargo datos : esquema - cabecera - articulo - valor
-      $this->esq = _dat::var("_api.app_esq",[ 'ver'=>"`ide`='{$_uri->esq}'", 'opc'=>'uni' ]);
+      $this->esq = _dat::get("_api.app_esq",[ 'ver'=>"`ide`='{$_uri->esq}'", 'opc'=>'uni' ]);
       if( !empty($_uri->cab) ){
         // cargo datos del menu
-        $this->cab = _dat::var("_api.app_cab",[ 
+        $this->cab = _dat::get("_api.app_cab",[ 
           'ver'=>"`esq`='{$_uri->esq}' AND `ide`='{$_uri->cab}'", 'ele'=>'ope', 'opc'=>'uni' 
         ]);
         if( !empty($_uri->art) ){
           // cargo datos del artículo
-          $this->art = _dat::var("_api.app_art",[ 
+          $this->art = _dat::get("_api.app_art",[ 
             'ver'=>"`esq`='{$_uri->esq}' AND `cab`='{$_uri->cab}' AND `ide`='{$_uri->art}'", 'ele'=>'ope', 'opc'=>'uni' 
           ]);
           if( !empty($val) ){
@@ -108,7 +110,7 @@
 
       // cargo índice de contenidos
       if( !empty($this->cab->nav) ){
-        $this->ope['nav_art'] = _dat::var("_api.app_nav",[
+        $this->ope['nav_art'] = _dat::get("_api.app_art_nav",[
           'ver'=>"esq = '{$_uri->esq}' AND cab = '{$_uri->cab}' AND ide = '{$_uri->art}'", 
           'ord'=>"pos ASC", 
           'nav'=>'pos'
@@ -196,27 +198,26 @@
         }
       }
     }
-
-    // controladores
+    // controlador : nombre => valor
     static function var( string $esq, string $dat='', string $val='', string $ide='' ) : array {
       global $_api;
       $_ = [];
       
       if( empty($dat) ){
         if( !isset($_api->app_var[$esq]) ){
-          $_api->app_var[$esq] = _dat::var("_api.app_var",[
+          $_api->app_var[$esq] = _dat::get("_api.app_var",[
             'ver'=>"`esq`='{$esq}'", 'niv'=>['dat','val','ide'], 'ele'=>['atr'], 'red'=>'atr'
           ]);
         }
       }elseif( empty($val) ){
         if( !isset($_api->app_var[$esq][$dat]) ){
-          $_api->app_var[$esq][$dat] = _dat::var("_api.app_var",[
+          $_api->app_var[$esq][$dat] = _dat::get("_api.app_var",[
             'ver'=>"`esq`='{$esq}' AND `dat`='{$dat}'", 'niv'=>['val','ide'], 'ele'=>['atr'], 'red'=>'atr'
           ]);
         }
       }else{
         if( !isset($_api->app_var[$esq][$dat][$val]) ){
-          $_api->app_var[$esq][$dat][$val] = _dat::var("_api.app_var",[
+          $_api->app_var[$esq][$dat][$val] = _dat::get("_api.app_var",[
             'ver'=>"`esq`='{$esq}' AND `dat`='{$dat}' AND `val`='{$val}'", 'niv'=>['ide'], 'ele'=>['atr'], 'red'=>'atr'
           ]);
         }
@@ -234,18 +235,18 @@
       return $_;
     }
     // datos de un proceso : absoluto o con dependencias ( _api.dat->est ) 
-    static function dat( string | array $ope, mixed $dat = NULL ) : array {
-      global $_api;
+    static function dat( string | array $ope, mixed $dat = NULL ) : array {      
       $_ = [];
+
       if( is_array($ope) ){
         // cargo temporal
         foreach( $ope as $esq => $est_lis ){
           // recorro estructuras del esquema
           foreach( $est_lis as $est => $dat ){
-            // recorro dependencias
-            $dat_est = _dat::est($esq,$est,'ope','est');
-            
-            foreach( ( !empty($dat_est) ? $dat_est : [ $esq => $est ] ) as $ide => $ref ){
+            // recorro dependencias            
+            foreach( 
+              ( !empty($dat_est = _dat::est($esq,$est,'ope','est')) ? $dat_est : [ $esq => $est ] ) 
+            as $ide => $ref ){
               // acumulo valores
               if( isset($dat->$ide) ){
                 
@@ -254,43 +255,51 @@
             }
           }
         }
+        global $_api;
         $_api->app_dat []= $_;
       }
       return $_;
-    }// tablero 
+    }
+    // tablero 
     static function tab( string $esq, string $est, array $ele = NULL ) : array | object {
       global $_api;
 
-      if( !isset($_api->app_tab[$esq][$est]) ){
-        $_api->app_tab[$esq][$est] = _dat::var("_api.app_tab",[ 
+      if( !isset($_api->app_art_tab[$esq][$est]) ){
+        $_api->app_art_tab[$esq][$est] = _dat::get("_api.app_tab",[ 
           'ver'=>"`esq`='{$esq}' AND `est`='{$est}'", 
           'opc'=>'uni', 
           'ele'=>['ele','ope','opc'] 
         ]);
       }
       // devuelvo tablero : ele + ope + opc
-      $_ = $_api->app_tab[$esq][$est];
+      $_ = $_api->app_art_tab[$esq][$est];
 
       // combino elementos
       if( isset($ele) ){
         $_ = $ele;
-        if( !empty($_api->app_tab[$esq][$est]->ele) ){
+        if( !empty($_api->app_art_tab[$esq][$est]->ele) ){
 
-          foreach( $_api->app_tab[$esq][$est]->ele as $eti => $atr ){
+          foreach( $_api->app_art_tab[$esq][$est]->ele as $eti => $atr ){
             
             $_[$eti] = isset($_[$eti]) ? _ele::jun( $atr, $_[$eti] ) : $atr;
           }
         }
       }
       return $_;
-    }// tabla 
+    }
+    // tabla 
     static function est( string $esq, string $est, array $ope = NULL ) : object {
       global $_api;
 
-      if( !isset($_api->app_est[$esq][$est]) || isset($ope) ){
+      if( !isset($_api->app_art_est[$esq][$est]) || isset($ope) ){
 
         // combinado        
-        $_est = _dat::var("_api.est",[ 'ver'=>"`esq`='{$esq}' AND `ide`='{$est}'", 'obj'=>'ope', 'red'=>'ope',  'opc'=>'uni' ]);
+        $_est = _dat::get("_api.app_est",[ 
+          'ver'=>"`esq`='{$esq}' AND `ide`='{$est}'", 
+          'obj'=>'ope', 
+          'red'=>'ope',
+          'opc'=>'uni' 
+        ]);
 
         // cargo atributos por estructura de la base      
         $_atr = _dat::atr($esq,$est);
@@ -309,14 +318,14 @@
         }
 
         // calculo totales
-        $_est->atr_cue = count($_est->atr);
+        $_est->atr_tot = count($_est->atr);
             
         // descripciones
         $_val['tit'] = isset($ope['tit']);      
         $_val['det'] = isset($ope['det']);      
 
         // reemplazo e inicializo
-        foreach( ['tit'=>['cic','gru'], 'det'=>['des','cic','gru']] as $i => $v ){
+        foreach( [ 'tit'=>['cic','gru'], 'det'=>['des','cic','gru'] ] as $i => $v ){
 
           foreach( $v as $e ){
             if( isset($ope["{$i}_{$e}"]) ){
@@ -341,6 +350,7 @@
 
               // busco descripciones
               if( isset( $_atr["{$atr}_des"] ) ){
+                
                 if( !isset($_est->{"det_{$ide}"}) ) $_est->{"det_{$ide}"}=[]; 
                 $_est->{"det_{$ide}"} []= "{$atr}_des";
               }
@@ -348,13 +358,14 @@
           }
         }
 
-        $_api->app_est[$esq][$est] = $_est;
+        $_api->app_art_est[$esq][$est] = $_est;
       }
 
-      return $_api->app_est[$esq][$est];
+      return $_api->app_art_est[$esq][$est];
     }
   }
 
+  // peticion y recursos
   class _app_uri {
 
     public string $esq;
@@ -440,6 +451,7 @@
     }
   }
 
+  // contenido : botonera + navegador + pantalla + seccion + paneles
   class _app_ope {
 
     static string $IDE = "_app_ope-";
@@ -579,7 +591,7 @@
       if( isset($ele['tit']) ){ $_ .= "
         <header"._htm::atr( isset($ele['cab']) ? $ele['cab'] : [] ).">";
           if( is_string($ele['tit']) ){ $_ .= "
-            <h1>{$ele['tit']}</h1>";
+            <h1>"._doc::let($ele['tit'])."</h1>";
           }else{
             $_ .= _ele::val(...$ele['tit']);
           }$_ .= "
@@ -608,6 +620,7 @@
 
   }
 
+  // navegadores : menu + secciones por indice
   class _app_nav {
    
     // menu principal : titulo + descripcion + listado > item = [icono] + enlace
@@ -617,14 +630,14 @@
 
       // armo listado de enlaces
       $_lis = [];
-      foreach( _dat::var("_api.app_cab",[ 'ver'=>"`esq`='$esq'", 'ord'=>"`pos` ASC" ]) as $_cab ){
+      foreach( _dat::get("_api.app_cab",[ 'ver'=>"`esq`='$esq'", 'ord'=>"`pos` ASC" ]) as $_cab ){
 
         if( !empty($_cab->usu) && empty($_usu->ide) ) continue;
 
         $ite_ico = !empty($_cab->ico) ? _doc::ico( $_cab->ico, [ 'class'=>"mar_der-1" ] ) : "";        
 
         $_lis_val = [];
-        foreach( _dat::var("_api.app_art",[ 
+        foreach( _dat::get("_api.app_art",[ 
           'ver'=>"`esq`='$esq' AND `cab`='$_cab->ide'", 'ord'=>"`pos` ASC" ]) as $_art 
         ){
 
@@ -659,7 +672,10 @@
 
       $_ide = explode('.',$ide);
 
-      $_nav = _dat::var("_api.app_nav",[ 'ver'=>"`esq`='{$_ide[0]}' AND `cab`='{$_ide[1]}' AND `ide`='{$_ide[2]}'", 'nav'=>'pos' ]);
+      $_nav = _dat::get("_api.app_art_nav",[ 
+        'ver'=>"`esq`='{$_ide[0]}' AND `cab`='{$_ide[1]}' AND `ide`='{$_ide[2]}'", 
+        'nav'=>'pos' 
+      ]);
 
       if( isset($_nav[1]) ){
 
@@ -708,19 +724,17 @@
     }
 
   }
+  
+  // conenido del articulo : dato + tabla + tablero + glosario
+  class _app_art {
 
-  class _app_win {
-  }
-
-  class _app_sec {
-    
     // articulo por operador
-    static function art( object $nav, string $esq, string $cab ) : string {
+    static function sec( object $nav, string $esq, string $cab ) : string {
       $_ = "";      
 
       $agr = _htm::dat($nav->ope);
 
-      $_art = _dat::var("_api.app_art",[ 'ver'=>"`esq`='{$esq}' AND `cab`='{$cab}'", 'ord'=>"`pos` ASC", 'ele'=>"ope" ]);
+      $_art = _dat::get("_api.app_art",[ 'ver'=>"`esq`='{$esq}' AND `cab`='{$cab}'", 'ord'=>"`pos` ASC", 'ele'=>"ope" ]);
 
       $_ = "
       <article class='inf'>";
@@ -763,18 +777,13 @@
 
       return $_;
     }
-
-  }
-
-  class _app_art {
-
     // glosarios por esquema
     static function ide( string $ide, array $ele = [] ) : string {
   
       $_ = [];
       $_ide = explode('.',$ide);      
       
-      if( is_array( $tex = _dat::var('_api.app_art_ide',['ver'=>"`esq`='{$_ide[0]}' AND `ide`='{$_ide[1]}'"]) ) ){
+      if( is_array( $tex = _dat::get('_api.app_art_ide',['ver'=>"`esq`='{$_ide[0]}' AND `ide`='{$_ide[1]}'"]) ) ){
 
         foreach( $tex as $pal ){
           $_[ $pal->nom ] = $pal->des;
@@ -785,22 +794,6 @@
       if( !isset($ele['opc']) ) $ele['opc'] = [];
 
       return _doc_lis::ite($_,$ele);
-    }
-  }
-
-  class _app_var {
-
-
-    static function ide( string $ope ) : string {
-
-      global $_api;
-
-      if( !isset($_api->app_var_ide[$ope]) ) $_api->app_var_ide[$ope] = 0;
-
-      $_api->app_var_ide[$ope]++;
-
-      return $_api->app_var_ide[$ope];
-
     }
   }
 

@@ -1,4 +1,5 @@
-  -- operaciones
+
+-- Operaciones
   DELETE FROM `_api`.`dat_ope`;
   INSERT INTO `_api`.`dat_ope` (`tip`,`dat`,`ide`,`pos`,`nom`,`des`) VALUES
 

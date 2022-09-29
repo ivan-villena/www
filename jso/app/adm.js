@@ -4,7 +4,7 @@
 // administrador
 function _adm( $tip, $dat, $val, ...$opc ){
   
-  let $=_doc_val.var($dat);
+  let $ = _doc_val.var($dat);
   
   // -> desde form : vacío resultados previos
   if( $_app.var && ( $.res = $_app.var.querySelector('.ope_res') ) ){ 
@@ -62,7 +62,7 @@ function _adm( $tip, $dat, $val, ...$opc ){
       else{
         _lis.val($.lis.children).forEach( $e => {
 
-          if( _dat.ope_ver( $e.querySelector('.ide').innerHTML, '^^', $dat.value ) ){
+          if( _dat.ver( $e.querySelector('.ide').innerHTML, '^^', $dat.value ) ){
             $e.classList.contains(DIS_OCU) && $e.classList.remove(DIS_OCU);
           }
           else if( !$e.classList.contains(DIS_OCU) ){

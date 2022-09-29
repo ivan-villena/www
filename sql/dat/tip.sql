@@ -1,8 +1,5 @@
--- Active: 1623270923336@@127.0.0.1@3306@_api
 
--- variables
-  
-  -- tipos
+-- tipos
   DELETE FROM `_api`.`dat_tip`;
   INSERT INTO `_api`.`dat_tip` (`ide`,`dat`,`val`,`nom`,`len`,`des`,`ope`) VALUES
 
@@ -308,4 +305,3 @@
       ( 'ele', 'lis', 'Nodos',          'Conjunto de Elementos dependientes de un mismo Nodo en el Documento', NULL, '{    
       }')
   ;
-

@@ -10,9 +10,6 @@
   const FON_SEL = "fon-sel";
   const BOR_SEL = "bor-sel";
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 // Interface
 class _api {
 
@@ -56,6 +53,7 @@ class _api {
     return $_;
   }
 }
+
 // Código HTML
 class _htm {
 
@@ -436,25 +434,19 @@ class _dom {
 }
 // Dato : esq.est[ide].atr
 class _dat {
-  
-  // identificador: esq.est[...atr]
-  static ide( $dat='', $val={} ){
-    
-    $val.ide = $dat.split('.');
-    $val.esq = $val.ide[0];
-    $val.est = $val.ide[1] ? $val.ide[1] : false;
-    $val.atr = $val.ide[2] ? $val.ide[2] : false;
 
-    return $val;
-  }
-  // busco dato: [ {}, {}, {} ]
-  static var( $dat, $ope, $val='' ){
+  // getter: estructuras | objetos
+  static get( $dat, $ope, $val='' ){
+
     let $_=[], $={};
+
     // por objeto[->propiedad]
-    if( typeof($ope)=='string' ){
+    if( $ope && typeof($ope) == 'string' ){
+
       $.esq = $dat;
       $.est = $ope;
       $_ = $val;
+
       if( !$val || !_obj.tip($val) ){
         
         // por clase : metodo estático
@@ -471,6 +463,7 @@ class _dat {
     }
     // por estructura : [ {}, [] ]
     else{
+
       $_ = _est.ope('ver',$dat,$ope);
     }
     return $_;
@@ -561,9 +554,9 @@ class _dat {
       $_ = $_api.dat_tip[$ide];
     }
     return $_;
-  }
+  }  
   // Comparaciones
-  static ope_ver( $dat, $ide, $val, $opc=['g','i'] ){
+  static ver( $dat, $ide, $val, $opc=['g','i'] ){
     let $_ = false;
     switch($ide){
     case '===': $_ = ( $dat === $val );  break;
@@ -585,6 +578,16 @@ class _dat {
     }
     return $_;
   }
+  // identificador: esq.est[...atr]
+  static ide( $dat='', $val={} ){
+    
+    $val.ide = $dat.split('.');
+    $val.esq = $val.ide[0];
+    $val.est = $val.ide[1] ? $val.ide[1] : false;
+    $val.atr = $val.ide[2] ? $val.ide[2] : false;
+
+    return $val;
+  }
   // valores : nombre, descripcion, titulo, imagen, color...
   static val( $esq, $est, $atr, $dat ) {
     let $={}, $_ = false;         
@@ -600,7 +603,7 @@ class _dat {
       // valores variables ()($)...()
       if( !!($dat) ){
 
-        $_ = _obj.val( _dat.var($esq,$est,$dat), $._val[$atr] );
+        $_ = _obj.val( _dat.get($esq,$est,$dat), $._val[$atr] );
       }
     }
     return $_;
@@ -622,6 +625,7 @@ class _dat {
     return $_;    
   }
 }
+
 // listado : []
 class _lis {
 
@@ -925,28 +929,37 @@ class _eje {
                 // [obj].met[-tip](,)ele(,)...par
                 $.par = $eje.split('(,)');
                 $.fun = $.par.shift().split('-');
+                
                 // [-tip(,)]ele(,)par
                 $.par = !!$.fun[1] ? [ $.fun[1], $.ele, ...$.par ] : [ $.ele, ...$.par ];
+                
                 // obj.met
-                $.fun = $.fun[0].split('.');
+                $.fun = $.fun[0].split('.');                
                 if( $.fun[1] ){ 
                   $.obj = !$.fun[0] ? '_doc' : $.fun[0] ; 
                   $.fun = $.fun[1]; 
-                }else{ 
+                }
+                else{ 
                   $.obj = 'window';
                   $.fun = $.fun[0];
                 }
+                // ejecucion
                 try{ 
                   $.ins = eval( $.obj ); 
-                }catch( $_err ){ 
+                }
+                catch( $_err ){ 
                   console.error(`{-_-}.err: No existe el objeto '${$.obj}'...`); 
                 }
                 if( !!$.ins ){
                   if( !!$.ins[$.fun] && typeof($.ins[$.fun])=='function' ){
+
                     console.log( $.log=`{-_-}.${$.eve.type} => ${($.obj=='window')?'':$.obj+'.'}${$.fun}( ${$.par.join('(,)')} )` );
+
                     $_api.log.jso.push($.log);// log
+
                     $_.push( $.ins[$.fun]( ...$.par ) );// invocacion
-                  }else{ 
+                  }
+                  else{ 
                     console.error(`{-_-}.err: el método '${$.fun}' del objeto '${$.obj}' no es ejecutable...`);
                   }
                 }        
@@ -1165,7 +1178,7 @@ class _ele {
     $.res = $val;
     if( $ope ){
       $.res = [];
-      _lis.ite($ope).forEach( $v => $.res.push( _ele.act( $ope, $val, ...$opc ) ) );
+      _lis.ite($ope).forEach( $ope_ite => $.res.push( _ele.act( $ope_ite, $val, ...$opc ) ) );
     }
 
     // resultados: [<>] => <> // si hay 1 solo, devuelvo único elemento

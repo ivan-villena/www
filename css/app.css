@@ -27,7 +27,7 @@ body > aside {
 /* 
   botonera : inicio + paneles + pantallas 
 */
-body > aside.ope {
+body > aside.bot {
   grid-column: 1;
   padding: 0 .25rem;
 }
@@ -36,8 +36,7 @@ body > aside.ope {
   nagegadores 
 */
 body > aside.nav {
-  grid-column: 2;  
-  padding: .25rem;
+  grid-column: 2;
 }
 body > aside.nav > :is(nav,article)[ide] {
   width: 400px;
@@ -147,7 +146,6 @@ body > footer {
   height: 92%;
   overflow-y: auto;
   overflow-x: hidden;
-  padding: .5rem;
 }
 
 /* /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */

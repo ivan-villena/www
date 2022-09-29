@@ -18,16 +18,16 @@
 
   date_default_timezone_set( $_SESSION['ubi'] );
   
-  // require de clases manual // require_once("_/autoload.php");
-
+  // require de clases manual // require_once("_/autoload.php");  
+  foreach( ['api','usu'] as $cla ){ 
+    
+    require_once("php/$cla.php");
+  }
   // cargo interface
-  require_once("php/api.php");
   $_api = new _api();
   
-  // cargo usuario
-  require_once("php/api/usu.php"); 
+  // cargo usuario  
   $_usu = new _usu( $_SESSION['usu'] );
-  
    
   // peticion AJAX
   if( isset($_REQUEST['_']) ){  
@@ -55,7 +55,7 @@
     // cargo modulos
     foreach( ['doc','app','hol'] as $cla ){ 
 
-      require_once("php/api/$cla.php");
+      require_once("php/$cla.php");
     }
 
     // cargo aplicacion    
@@ -87,7 +87,7 @@
   <body <?= _htm::atr($_app->ele['body']) ?>>
         
     <!-- Botonera -->
-    <aside class='ope'>
+    <aside class='bot'>
 
       <!-- Paneles del navegador -->
       <nav class="ope dir-ver">
@@ -97,6 +97,7 @@
         <?= $_app->ope['nav']; ?>
 
         <?= $_app->ope['win']; ?>
+
       </nav>
 
       <!-- API -->
