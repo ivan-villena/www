@@ -1,3 +1,4 @@
+-- Active: 1663730672989@@127.0.0.1@3306@_api
 
 -- Interface
   --
@@ -263,7 +264,7 @@
     DELETE FROM `_api`.`dat_est` WHERE `esq`='api' AND `ide` LIKE 'hol_kin%';
     INSERT INTO `_api`.`dat_est` VALUES
 
-      ( 'api', 'hol_kin', '{        
+      ( 'api', 'hol_kin', '{
 
           "est": {
             "ide":"hol_kin",
@@ -271,29 +272,38 @@
             "nav_ond_dia":"hol_ton",
             "nav_cas_dia":"hol_cas"
           },
-          
-          "atr_ima" : [
-            "nav_cas", "nav_ond", "arm_tra", "arm_cel", "cro_est", "cro_ele"
-          ],
 
           "fic": { 
             "ide":"ide", "atr":[ "cro_ele", "arm_cel", "nav_ond" ] 
           },
-
-          "ver": [ 
-            "pag", "ene", "ene_cam", "gen_enc", "gen_cel", "nav_cas", "nav_ond", "cro_est", "cro_ele", "arm_tra", "arm_cel" 
+          "fic_ima" : [
+            "nav_cas", "nav_ond", "arm_tra", "arm_cel", "cro_est", "cro_ele"
           ],
-
+          
+          "ver": [ 
+            "ene", "ene_cam", "gen_enc", "gen_cel", "nav_cas", "nav_ond", 
+            "cro_est", "cro_ele", "arm_tra", "arm_cel" 
+          ],
           "col": [
-            "pag", "ene", "gen_enc", "gen_cel", "nav_cas", "nav_ond", "cro_est", "cro_ele", "arm_tra", "arm_cel"
-          ],        
+            "ene", 
+            "gen_enc", "gen_cel", 
+            "nav_cas", "nav_ond", 
+            "cro_est", "cro_ele", 
+            "arm_tra", "arm_cel"
+          ],
           "ima": [            
-            "ide", "pag", "ene", "ene_cam", "chi", "par_ana", "par_gui", "par_ant", "par_ocu", 
-            "nav_cas", "nav_ond", "nav_ond_dia", "arm_tra", "arm_cel", "arm_tra_dia", "cro_est", "cro_ele"
+            "ide", "ene", "ene_cam", "chi", 
+            "par_ana", "par_gui", "par_ant", "par_ocu", 
+            "nav_cas", "nav_ond", "nav_ond_dia", 
+            "arm_tra", "arm_cel", "arm_tra_dia", 
+            "cro_est", "cro_ele"
           ],
           "num": [ 
-            "ide", "psi", "ene", "ene_cam", "gen_enc", "gen_enc_dia", "gen_cel", "gen_cel_dia", "nav_cas", "nav_cas_dia", "nav_ond", "nav_ond_dia", 
-            "cro_est", "cro_est_dia", "cro_ele", "cro_ele_dia", "arm_tra", "arm_tra_dia", "arm_cel", "arm_cel_dia"
+            "ide", "psi", "ene", "ene_cam", 
+            "gen_enc", "gen_enc_dia", "gen_cel", "gen_cel_dia", 
+            "nav_cas", "nav_cas_dia", "nav_ond", "nav_ond_dia", 
+            "cro_est", "cro_est_dia", "cro_ele", "cro_ele_dia", 
+            "arm_tra", "arm_tra_dia", "arm_cel", "arm_cel_dia"
           ],
           "tex": [
             "nom","des"
@@ -316,16 +326,26 @@
           },
 
           "ver": [ 
-            "pag", "est", "lun", "vin", "hep"
+            "est", "lun", "vin", "hep"
           ],
           "ima": [
-            "tzo", "lun", "est", "hep", "hep_dia"
+            "tzo", 
+            "lun", "est", 
+            "hep", "hep_dia"
           ],
           "col": [
-            "est", "lun", "lun_dia", "hep"
+            "est", 
+            "lun", "lun_dia", 
+            "hep"
           ],
+
           "num": [ 
-            "ide", "fec", "tzo", "est", "est_dia", "lun", "lun_dia", "vin", "vin_dia", "hep", "hep_dia", "cro", "cro_dia" 
+            "ide", "fec", "tzo", 
+            "est", "est_dia", 
+            "lun", "lun_dia", 
+            "vin", "vin_dia", 
+            "hep", "hep_dia", 
+            "cro", "cro_dia" 
           ]     
       }' ),
       ( 'api', 'hol_psi_lun', '{

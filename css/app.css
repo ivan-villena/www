@@ -110,6 +110,7 @@ body > footer {
   padding: .5rem;
 }
 
+
 /*
   Pantallas
 */
@@ -146,6 +147,179 @@ body > footer {
   height: 92%;
   overflow-y: auto;
   overflow-x: hidden;
+}
+
+/*//////////////////////////////////////////////////////////////////////*/
+/*//////////////////////////////////////////////////////////////////////*/
+/* 
+Articulo
+*/
+
+/* Párrafos */
+article > p,
+article section > p{
+  margin-bottom: .5rem;
+}
+
+/* Listados */
+article > ul,
+article section > ul {
+  margin: 1rem auto;
+}
+
+/* Imagenes */
+article > figure,
+article section > figure {
+  margin: 1rem;
+}
+
+/*//////////////////////////////////////////////////////////////////////*/
+/*//////////////////////////////////////////////////////////////////////*/
+
+/* 
+ABM de la base
+*/
+form.api_dat {
+  width: 100%;
+  max-width: 40rem;
+  background-color: var(--fon_nav);
+  border-radius: .5rem;
+  padding: 0 .5rem;   
+  margin: auto;
+}
+
+form.api_dat :is(fieldset,div).atr {
+  flex-grow: 2;
+  flex-direction: column;
+  align-items: start;
+  margin: .5rem;
+}
+
+form.api_dat :is(fieldset,div).atr label[for] {
+  margin: 0;
+  color: var(--let_ide);
+  padding: .5rem;
+}
+
+form.api_dat :is(fieldset,div).atr select,
+form.api_dat :is(fieldset,div).atr textarea,
+form.api_dat :is(fieldset,div).atr input:not([type='checkbox']):not([type='radio']) {
+  width: 100%; width:-webkit-fill-available; width:-moz-available;  
+  border: 0;
+  border-radius: 0;
+  border-bottom: 1px solid;
+}
+
+/*//////////////////////////////////////////////////////////////////////*/
+/*//////////////////////////////////////////////////////////////////////*/
+
+/* 
+Estructura de Tabla
+*/
+div[var="est"] {
+  height: 75vh;
+  overflow: auto;
+  padding: 0 .5rem;
+  line-height: 1;
+}
+
+div[var="est"] > table {
+  margin: 0 auto;
+  text-align: center;
+}
+
+div[var="est"] > table > thead > tr:not(.gru) th,
+div[var="est"] > table > tbody > tr:not([data-ope],[data-opc]) td {
+  border-right: 1px dotted var(--col_vio);
+}
+/* Cabecera */
+div[var="est"] > table > thead th {
+  max-width: min-content;  
+}
+div[var="est"] > table > thead th > :is(p,span) {
+  padding: .5rem;
+}
+/* Contenido */
+div[var="est"] > table > tbody > tr:is([data-opc="tit"],[data-opc="det"]) {
+  text-align: left; 
+  line-height: 1.5;
+}
+
+div[var="est"] > table > tbody > tr[data-opc="tit"] > td {
+  padding: .5rem 0;
+  padding-bottom: .25rem;
+}
+
+div[var="est"] > table > tbody > tr[data-ope="lec"][data-opc="det"] > td {
+  padding-top: .25rem;
+}
+
+div[var="est"] > table > tbody > tr > td > time {
+  display: flex;
+  max-width: fit-content;
+}
+
+/*//////////////////////////////////////////////////////////////////////*/
+/*//////////////////////////////////////////////////////////////////////*/
+
+/* 
+Tablero
+*/
+:is(div,table)[tab] {
+  min-width: max-content;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;  
+  text-align: center;
+  font-size: .7rem;
+  transition: background 1s, border 1s;  
+}
+div[tab] {
+  display: grid;
+  width: fit-content;
+  align-self: center;
+}
+
+table[tab]{
+  border-collapse: collapse;
+}
+
+/* posiciones y secciones */
+:is(div,table)[tab] :is(div,td)[pos], 
+:is(div,table)[tab] :is(div,td)[sec] {
+  transition: background 1s, border 1s;
+}
+
+div[tab] div[pos]:not([tab]) {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  align-content: center; 
+  justify-content: center;
+  width: 100%;
+  height: 100%;  
+}
+
+/* Bordes */
+:is(div,table)[tab] :is(div,td)[pos].bor-1{
+  border-color: #008000;
+}/* por seleccion */
+:is(div,table)[tab] :is(div,td)[pos][class*="_val-"][class*="-bor"] {  
+  border: 2px solid #991d99;
+}
+/* fondos */
+:is(div,table)[tab] :is(div,td)[pos][onclick]:not([tab]):hover {
+  background-color:var(--tra_ros);
+  color:black;
+}
+/* Fichas */
+:is(div,table)[tab] :is([sec],[pos]) > [ima] {
+  height: 100%;
+  min-width: 100%;
+}
+/* textos */
+:is(div,table)[tab] :is([sec],[pos]) > p {
+  text-align: center;
 }
 
 /* /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */

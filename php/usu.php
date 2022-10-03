@@ -1,5 +1,4 @@
 <?php
-
   // usuario : sesion + tránsitos  
   class _usu {
 

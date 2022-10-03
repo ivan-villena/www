@@ -53,7 +53,6 @@ class _api {
     return $_;
   }
 }
-
 // Código HTML
 class _htm {
 
@@ -464,7 +463,7 @@ class _dat {
     // por estructura : [ {}, [] ]
     else{
 
-      $_ = _est.ope('ver',$dat,$ope);
+      $_ = _lis.ope('ver',$dat,$ope);
     }
     return $_;
   }
@@ -612,8 +611,10 @@ class _dat {
     
     // dato
     let $={}, $_ = { 'esq': $esq, 'est': $est };
+
     // armo identificador
     if( !!($atr) ) $_['est'] = $atr == 'ide' ? $est : `${$est}_${$atr}`;
+    
     // valido dato
     if( !!( $.dat_Val = _dat.val($_['esq'],$_['est'],$tip,$dat) ) ){
       $_['ide'] = `${$_['esq']}.${$_['est']}`;
@@ -623,183 +624,6 @@ class _dat {
       $_ = [];
     }
     return $_;    
-  }
-}
-
-// listado : []
-class _lis {
-
-  // aseguro iteracion : []
-  static ite( $dat = [] ){
-
-    return _obj.tip($dat) == 'pos' ? $dat : [ $dat ] ;
-  }
-  // convierto a listado : []
-  static val( $dat ){
-  
-    let $_ = $dat;
-  
-    // elemento : armo listado o convierto a iterable
-    if( $dat.constructor && /(NodeList|^HTML[a-zA-Z]*(Element|Collection)$)/.test($dat.constructor.name) ){
-
-      $_ = ( /^HTML[a-zA-Z]*Element/.test($dat.constructor.name) ) ? _lis.ite($dat) : Array.from( $dat ) ;
-    }
-    // convierto : {} => []
-    else if( typeof($dat) == 'object' ){
-
-      $_=[]; 
-
-      for( const $i in $dat ){ 
-        
-        $_.push( $dat[$i] ); 
-      }
-    }
-    return $_;
-  }
-}
-// Estructura : [ ...{} ] 
-class _est {
-
-  static ope( $dat, $ope, $tip='' ){
-    let $_ = $dat;
-    if( !$tip ){
-      // nivelacion por identificador
-      if( !!($ope['niv']) ){
-
-        $_ = _est.ope($dat,$ope,'niv');
-      }
-      // reduccion muchos a uno
-      if( !!($ope['opc']) ){
-        
-        if( $ope['opc'].includes('uni') ){ 
-  
-          $_ = _est.ope($dat,$ope,'uni');
-        }
-      }
-    }
-    else{
-      switch( $tip ){
-      case 'niv': 
-        $_ = $dat;
-        $.tip = typeof($ope['niv']);
-        // key-pos = numérica
-        if( $.tip == 'number' ){ 
-          $_=[];
-          $.k = parseInt($.key);
-          for( const $i in $dat ){ $_[$.k++]=$dat[$i]; }
-        }// key-ide = Literal
-        else if( $.tip=='string' ){ 
-          $_={}; 
-          $.k = $.key.split('(.)');
-          for( const $i in $dat ){
-            $.ide=[];
-            for( let $ide of $.k ){ $.ide.push($dat[$i][$ide]); }
-            $_[$.ide.join('(.)')] = $dat[$i];
-          }
-        }// multidimensional => keys-[ [ [ [],[ {-_-} ],[], ] ] ]
-        else if( Array.isArray($ope['niv']) ){ 
-          $_ = {};
-          $.k = $ope['niv'];
-          switch( $k.length ){
-          case 0: $_ = $dat; break;
-          case 1: for( const $i in $dat ){ const $d=$dat[$i]; $_[$d[$.k[0]]]=$d; } break;
-          case 2: for( const $i in $dat ){ const $d=$dat[$i]; $_[$d[$.k[0]]][$d[$.k[1]]]=$d; } break;
-          case 3: for( const $i in $dat ){ const $d=$dat[$i]; $_[$d[$.k[0]]][$d[$.k[1]]][$d[$.k[2]]]=$d; } break;
-          case 4: for( const $i in $dat ){ const $d=$dat[$i]; $_[$d[$.k[0]]][$d[$.k[1]]][$d[$.k[2]]][$d[$.k[3]]]=$d; } break;
-          case 5: for( const $i in $dat ){ const $d=$dat[$i]; $_[$d[$.k[0]]][$d[$.k[1]]][$d[$.k[2]]][$d[$.k[3]]][$d[$.k[4]]]=$d; } break;
-          case 6: for( const $i in $dat ){ const $d=$dat[$i]; $_[$d[$.k[0]]][$d[$.k[1]]][$d[$.k[2]]][$d[$.k[3]]][$d[$.k[4]]][$d[$.k[5]]]=$d; } break;
-          case 7: for( const $i in $dat ){ const $d=$dat[$i]; $_[$d[$.k[0]]][$d[$.k[1]]][$d[$.k[2]]][$d[$.k[3]]][$d[$.k[4]]][$d[$.k[5]]][$d[$.k[6]]]=$d; } break;
-          }
-        }    
-        break;
-      case 'uni':
-        for( const $pos in $_ ){ 
-          $_ = $_[$pos]; 
-          break; 
-        } 
-        break;
-      }
-    }
-    return $_;
-  }  
-
-}
-// Objeto : [ ...val ], [ ...nom => val ], { ...atr : val }
-class _obj {
-
-  // valores por atributo : ()($)atr()
-  static val( $dat, $val='' ){
-    let $_={},$={};
-    $_ = [];
-    $val.split(' ').forEach( $pal =>{ 
-      $.let=[];
-      $pal.split('()').forEach( $cad =>{ 
-        $.val = $cad;
-        if( $cad.substring(0,3)=='($)' ){ 
-          $.val = !!($dat[ $.atr = $cad.substring(3) ]) ? $dat[$.atr] : ''; 
-        }
-        $.let.push($.val );
-      });
-      $_.push($.let.join(''));
-    });
-    $_ = $_.join(' ');
-    return $_;
-  }  
-  // convierto : {}-[] => "..."
-  static cod( $dat ){
-  
-    let $_ = $dat;
-  
-    if( typeof($dat) == 'object' ){ 
-  
-      $_ = JSON.stringify($dat); 
-    }
-  
-    return $_;
-  }
-  // convierto : "..." => {}-[]
-  static dec( $dat, $ope ){
-  
-    let $_ = $dat;
-  
-    if( typeof($dat) == 'string' ){
-  
-      if( !!$ope && /\(\)\(\$\).+\(\)/.test($dat) ){
-        $dat = _obj.val($ope,$dat);
-      }
-      // json : {} + []
-      if( /^({|\[).*(}|\])$/.test($dat) ){ 
-  
-        $_ = JSON.parse($dat);
-      }
-      // valores textuales : ('v_1','v_2','v_3')
-      else if( /^\('*.*'*\)$/.test($dat) ){ 
-  
-        $_ = /','/.test($dat) ? $dat.substr(1,$dat.length-1).split("','") : [ $dat.trim().substr(1,$dat.length-1) ] ;      
-      }
-      // elemento del documento : "a_1(=)v_1(,,)a_2(=)v_2"
-      else if( /\(,,\)/.test($dat) && /\(=\)/.test($dat) ){
-        $dat.split('(,,)').forEach( $v => { 
-          $eti = $v.split('(=)'); 
-          $_[$eti[0]] = $eti[1]; 
-        });
-      }
-    }
-    return $_;
-  }
-  // valido tipos : pos | nom | atr
-  static tip( $dat ){
-  
-    let $_ = false;
-  
-    if( Array.isArray($dat) ){
-      $_ = "pos";
-    }
-    else if( !!$dat && typeof($dat)=='object' ){
-  
-      $_ = ( $dat.constructor.name == 'Object' ) ? "nom" : "atr";
-    }
-    return $_;
   }
 }
 // Ejecucion : ( ...par ) => { ...cod } : val 
@@ -989,34 +813,49 @@ class _eje {
 // Elemento : <eti ...atr="val"> ...htm + ...tex </eti>
 class _ele {
 
-  // convierto y combino
-  static val( $dat, $ele, $val ){
-    let $_, $={};
-    // convierto
-    $_ = _obj.dec($dat,$val);
-    // recorro 2° elemento
+  // convierto
+  static val( $val, $dat ){
+
+    let $_ = $val, $={ tip : typeof($val) };
+    // "" => {}
+    if( $.tip == 'string' ){
+      $_ = _obj.dec($val,$dat);
+    }
+    // {html} => {}
+    else if( false ){
+
+    }
+    return $_;
+  }
+  // combino
+  static jun( $val, $ele, $dat ){
+
+    let $_ = $val, $={};
+
+    // aseguo elemento
+    $val = _ele.val($val);
+
+    // recorro 2°dos elemento...
     _lis.ite($ele).forEach( $ele => {    
-      for( const $atr in _obj.dec($ele,$val) ){ const $v = $ele[$atr];
+      for( const $atr in _obj.dec($ele,$dat) ){ const $v = $ele[$atr];
+        // si no tiene el atributo, lo agrego
         if( !($_[$atr]) ){ 
+
           $_[$atr] = $v;
-        }else{
-          switch($atr){
-          case '_eje':// separador: "(;;)"
-            _ele.eje($_,$v); 
-            break;
-          case 'class':
-            _ele.cla($_,$v); 
-            break;// separador: " "
-          case 'style':
-            _ele.css($_,$v); 
-            break;// separador: ";"
-          default: 
-            $_[$atr] = $v;
-            break;
+        }// combino, actualizo
+        else{
+          switch($atr){          
+          case 'onclick':   _ele.eje($_,'cli',$v); break;// separador: "(;;)"
+          case 'onchange':  _ele.eje($_,'cam',$v); break;// separador: "(;;)"
+          case 'oninput':   _ele.eje($_,'inp',$v); break;// separador: "(;;)"
+          case 'class':     _ele.cla($_,$v); break;// separador: " "
+          case 'style':     _ele.css($_,$v); break;// separador: ";"
+          default:          $_[$atr] = $v;   break;
           }
         }
       }
     });
+
     return $_;
   }
   // evento-ejecucion
@@ -1190,6 +1029,65 @@ class _ele {
     }
     return $_;
   }
+  // actualizo propiedades
+  static act( $tip, $ele, $val, $ope ){
+
+    let $_ = [], $={ tip : $tip.split('_') };
+
+    if( typeof($ele) == 'string' ){ 
+      $ele = document.querySelectorAll($ele);       
+    }
+
+    $.lis = _lis.val($ele);
+    switch( $.tip[0] ){
+    case 'nod':
+      if( !$.tip[1] ){             
+        $.htm = { 'main':'app', 'article':'art', 'form':'for', 'fieldset':'fie', 'div':'div' };
+        $_ = {};
+        $.her = $ele;
+        // armo ascendencia
+        while( $.her.parentElement ){ 
+          $.her = $.her.parentElement; 
+          $.ele.nod = $.her.nodeName.toLowerCase();         
+          if( $.htm[$.ele.nod] ){ 
+            $_[ $.htm[$.ele.nod] ] = $.her; 
+          }
+        }
+      }
+      break;
+    case 'cla':
+      switch( $.tip[1] ){
+      case 'val': $.lis.forEach( $v => $_.push( $v.classList.contains($val) ) ); break;
+      case 'pos': $.lis.forEach( $v => $_.push( $v.classList.item($val) ) ); break;
+      case 'tog': $.lis.forEach( $v => $_.push( $v.classList.toggle($val) ) ); break;
+      case 'agr': $.lis.forEach( $v => $_.push( !$v.classList.contains($val) && $v.classList.add($val) ) ); break;
+      case 'mod': $.lis.forEach( $v => $_.push( $v.classList.replace($val, $ope) ) ); break;
+      case 'eli': $.lis.forEach( $v => $_.push( $v.classList.remove($val) ) ); break;    
+      }
+      break;
+    case 'eje':
+      switch( $.tip[1] ){
+      case 'ver': break;
+      case 'agr': $.lis.forEach( $v => $_.push( $v.addEventListener( $val, eval($ope) ) ) ); break;
+      case 'eli': $.lis.forEach( $v => $_.push( $v.removeEventListener( $val, $ope ) ) ); break;
+      }
+      break;    
+    case 'css':
+      switch( $.tip[1] ){
+      case 'ver': break;
+      case 'agr': break;
+      case 'mod': break;
+      case 'eli': break;
+      }
+      break;
+    case 'htm': 
+      switch( $.tip[1] ){
+      case 'val': $.lis.forEach( $v => $_.push( $v.innerHTML = $val ) ); break;
+      case 'eli': $.lis.forEach( $v => { _lis.val($v.children).forEach( $v_2 => $_.push($v.removeChild($v_2)) ) } ); break;
+      }
+      break;
+    }  
+  }
   // busco nodos
   static ver( $ele, $ope={} ){
 
@@ -1246,65 +1144,6 @@ class _ele {
       $_ = $.val.length == 1 ? $.val[0] : $.val;
     }
     return $_;
-  }
-  // actualizo propiedades
-  static act( $tip, $ele, $val, $ope ){
-
-    let $_ = [], $={ tip : $tip.split('_') };
-
-    if( typeof($ele) == 'string' ){ 
-      $ele = document.querySelectorAll($ele);       
-    }
-    else if( Array.isArray($ele) ){
-      $ele[0] = ( !$ele[0] || typeof($ele[0]) == 'string' ) ? document.querySelector( $ele[0] ? $ele[0] : 'body' ) : $ele[0];
-      $ele = $ele[0].querySelectorAll($ele[1] ? $ele[1] : '*');
-    }
-
-    $.lis = _lis.val($ele);
-    switch( $.tip[0] ){
-    case 'nod':
-      if( !$.tip[1] ){             
-        $.htm = { 
-          'main':'app', 'article':'art', 'form':'for', 'fieldset':'fie', 'div':'div'
-        };
-        $_ = {};
-        $.her = $ele;
-        // armo ascendencia
-        while( $.her.parentElement ){ 
-          $.her = $.her.parentElement; 
-          $.ele.nod = $.her.nodeName.toLowerCase();         
-          if( $.htm[$.ele.nod] ){ 
-            $_[ $.htm[$.ele.nod] ] = $.her; 
-          }
-        }
-      }
-      break;
-    case 'cla':
-      switch( $.tip[1] ){
-      case 'val': $.lis.forEach( $v => $_.push( $v.classList.contains($val) ) ); break;
-      case 'pos': $.lis.forEach( $v => $_.push( $v.classList.item($val) ) ); break;
-      case 'tog': $.lis.forEach( $v => $_.push( $v.classList.toggle($val) ) ); break;
-      case 'agr': $.lis.forEach( $v => $_.push( !$v.classList.contains($val) && $v.classList.add($val) ) ); break;
-      case 'mod': $.lis.forEach( $v => $_.push( $v.classList.replace($val, $ope) ) ); break;
-      case 'eli': $.lis.forEach( $v => $_.push( $v.classList.remove($val) ) ); break;    
-      }
-      break;
-    case 'eje':
-      switch( $.tip[1] ){
-      case 'ver': break;
-      case 'agr': $.lis.forEach( $v => $_.push( $v.addEventListener( $val, eval($ope) ) ) ); break;
-      case 'eli': $.lis.forEach( $v => $_.push( $v.removeEventListener( $val, $ope ) ) ); break;
-      }
-      break;    
-    case 'art':
-      switch( $.tip[1] ){
-      case 'ver': break;
-      case 'agr': break;
-      case 'mod': break;
-      case 'eli': break;
-      }
-      break;
-    }  
   }
   // agrego nodo/s
   static agr( $val, $pad, ...$opc ){
@@ -1370,6 +1209,178 @@ class _ele {
     if( $nod ){
       _lis.val($nod).forEach( $ele => $_.push( $pad.removeChild($ele) ) ); 
     }
+    return $_;
+  }
+}
+// Objeto : [ ...val ], [ ...nom => val ], { ...atr : val }
+class _obj {
+
+  // valores por atributo : ()($)atr()
+  static val( $dat, $val='' ){
+    let $_={},$={};
+    $_ = [];
+    $val.split(' ').forEach( $pal =>{ 
+      $.let=[];
+      $pal.split('()').forEach( $cad =>{ 
+        $.val = $cad;
+        if( $cad.substring(0,3)=='($)' ){ 
+          $.val = !!($dat[ $.atr = $cad.substring(3) ]) ? $dat[$.atr] : ''; 
+        }
+        $.let.push($.val );
+      });
+      $_.push($.let.join(''));
+    });
+    $_ = $_.join(' ');
+    return $_;
+  }  
+  // convierto : {}-[] => "..."
+  static cod( $dat ){
+  
+    let $_ = $dat;
+  
+    if( typeof($dat) == 'object' ){ 
+  
+      $_ = JSON.stringify($dat); 
+    }
+  
+    return $_;
+  }
+  // convierto : "..." => {}-[]
+  static dec( $dat, $ope ){
+  
+    let $_ = $dat;
+  
+    if( typeof($dat) == 'string' ){
+  
+      if( !!$ope && /\(\)\(\$\).+\(\)/.test($dat) ){
+        $dat = _obj.val($ope,$dat);
+      }
+      // json : {} + []
+      if( /^({|\[).*(}|\])$/.test($dat) ){ 
+  
+        $_ = JSON.parse($dat);
+      }
+      // valores textuales : ('v_1','v_2','v_3')
+      else if( /^\('*.*'*\)$/.test($dat) ){ 
+  
+        $_ = /','/.test($dat) ? $dat.substr(1,$dat.length-1).split("','") : [ $dat.trim().substr(1,$dat.length-1) ] ;      
+      }
+      // elemento del documento : "a_1(=)v_1(,,)a_2(=)v_2"
+      else if( /\(,,\)/.test($dat) && /\(=\)/.test($dat) ){
+        $dat.split('(,,)').forEach( $v => { 
+          $eti = $v.split('(=)'); 
+          $_[$eti[0]] = $eti[1]; 
+        });
+      }
+    }
+    return $_;
+  }
+  // valido tipos : pos | nom | atr
+  static tip( $dat ){
+  
+    let $_ = false;
+  
+    if( Array.isArray($dat) ){
+      $_ = "pos";
+    }
+    else if( !!$dat && typeof($dat)=='object' ){
+  
+      $_ = ( $dat.constructor.name == 'Object' ) ? "nom" : "atr";
+    }
+    return $_;
+  }
+}
+// listado - tabla : []
+class _lis {
+
+  // aseguro iteracion : []
+  static ite( $dat = [] ){
+
+    return _obj.tip($dat) == 'pos' ? $dat : [ $dat ] ;
+  }
+  // convierto a listado : []
+  static val( $dat ){
+  
+    let $_ = $dat;
+  
+    // elemento : armo listado o convierto a iterable
+    if( $dat.constructor && /(NodeList|^HTML[a-zA-Z]*(Element|Collection)$)/.test($dat.constructor.name) ){
+
+      $_ = ( /^HTML[a-zA-Z]*Element/.test($dat.constructor.name) ) ? _lis.ite($dat) : Array.from( $dat ) ;
+    }
+    // convierto : {} => []
+    else if( typeof($dat) == 'object' ){
+
+      $_=[]; 
+
+      for( const $i in $dat ){ 
+        
+        $_.push( $dat[$i] ); 
+      }
+    }
+    return $_;
+  }
+  // operador de estructura
+  static ope( $dat, $ope ){
+    let $_ = $dat;
+    // nivelacion por identificador
+    if( !!($ope['niv']) ) $_ = _lis.niv($dat,$ope);
+
+    // valor unico : objeto
+    if( !!($ope['opc']) && $ope['opc'].includes('uni')) $_ = _lis.uni($dat);
+
+    return $_;
+  }
+  // nivelacion : num + ide + lis
+  static niv( $dat, $ope ){
+
+    let $_ = $dat, $={ tip : typeof($ope['niv']) };
+
+    // key-pos = numérica : []
+    if( $.tip == 'number' ){ 
+      $_=[];
+      $.k = parseInt($.key);
+      for( const $i in $dat ){ 
+        $_[$.k++]=$dat[$i]; 
+      }
+    }
+    // key-ide = Literal : {}
+    else if( $.tip=='string' ){ 
+      $_={}; 
+      $.k = $.key.split('(.)');
+      for( const $i in $dat ){
+        $.ide=[];
+        for( let $ide of $.k ){ $.ide.push($dat[$i][$ide]); }
+        $_[$.ide.join('(.)')] = $dat[$i];
+      }
+    }
+    // keys-[1-7] => [ [ [ [],[ {-_-} ],[], ] ] ]
+    else if( Array.isArray($ope['niv']) ){ 
+      $_ = {};
+      $.k = $ope['niv'];
+      switch( $k.length ){
+      case 0: $_ = $dat; break;
+      case 1: for( const $i in $dat ){ const $d=$dat[$i]; $_[$d[$.k[0]]]=$d; } break;
+      case 2: for( const $i in $dat ){ const $d=$dat[$i]; $_[$d[$.k[0]]][$d[$.k[1]]]=$d; } break;
+      case 3: for( const $i in $dat ){ const $d=$dat[$i]; $_[$d[$.k[0]]][$d[$.k[1]]][$d[$.k[2]]]=$d; } break;
+      case 4: for( const $i in $dat ){ const $d=$dat[$i]; $_[$d[$.k[0]]][$d[$.k[1]]][$d[$.k[2]]][$d[$.k[3]]]=$d; } break;
+      case 5: for( const $i in $dat ){ const $d=$dat[$i]; $_[$d[$.k[0]]][$d[$.k[1]]][$d[$.k[2]]][$d[$.k[3]]][$d[$.k[4]]]=$d; } break;
+      case 6: for( const $i in $dat ){ const $d=$dat[$i]; $_[$d[$.k[0]]][$d[$.k[1]]][$d[$.k[2]]][$d[$.k[3]]][$d[$.k[4]]][$d[$.k[5]]]=$d; } break;
+      case 7: for( const $i in $dat ){ const $d=$dat[$i]; $_[$d[$.k[0]]][$d[$.k[1]]][$d[$.k[2]]][$d[$.k[3]]][$d[$.k[4]]][$d[$.k[5]]][$d[$.k[6]]]=$d; } break;
+      }
+    }
+    return $_;
+  }
+  // valor unico : objeto
+  static uni( $dat ){
+
+    let $_ = {};
+
+    for( const $pos in $dat ){ 
+      $_ = $dat[$pos]; 
+      break;
+    }
+
     return $_;
   }
 }

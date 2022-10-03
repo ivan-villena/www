@@ -323,8 +323,7 @@
         }    
 
       }', NULL, NULL)
-    ,
-    -- parejas del oráculo
+    ,-- parejas del oráculo
     ( 'hol','sel_par', 
       '{ 
 
@@ -338,16 +337,13 @@
         } 
         
       }', NULL, NULL)
-    ,
-    -- colocacion armónica
+    ,-- colocacion armónica
     ( 'hol','sel_arm', 
       '{ 
-
         "sec":{ 
           "tab":"sel_arm", 
           "style":"grid: repeat(5,1fr)/repeat(6,1fr); grid-auto-flow: column; border-radius: 20%;" 
         },
-        
         "raz-1":{ "raz":"1", "style":"grid-column:1/2; grid-row:2/3;" },
         "raz-2":{ "raz":"2", "style":"grid-column:1/2; grid-row:3/4;" },
         "raz-3":{ "raz":"3", "style":"grid-column:1/2; grid-row:4/5;" },
@@ -359,24 +355,22 @@
         "cel-4":{ "cel":"4", "style":"grid-column:5/6; grid-row:1/2;" },
         "cel-5":{ "cel":"5", "style":"grid-column:6/7; grid-row:1/2;" },
 
-        "pos":{ "style":"width: 8rem; height: 8rem;" }      
-        
-      }', NULL, NULL)
-    ,
-    ( 'hol','sel_arm_tra', 
-      '{ 
-
-        "sec":{
-          "tab":"sel_arm_tra"
-        },
-
         "pos":{ 
-          "style":"width: 7.8rem; height: 7.8rem;" 
-        }    
+          "style":"width: 8rem; height: 8rem;" 
+        }
         
       }', NULL, NULL)
-    ,
-    -- colocacion cromática
+      ,-- trayectoria
+      ( 'hol','sel_arm_tra', 
+        '{ 
+          "sec":{
+            "tab":"sel_arm_tra"
+          },
+          "pos":{ 
+            "style":"width: 7.8rem; height: 7.8rem;" 
+          }
+        }', NULL, NULL)
+    ,-- colocacion cromática
     ( 'hol','sel_cro', 
       '{ 
 
@@ -513,8 +507,7 @@
           "pos-52":{ "pos":"52", "style":"grid-column:09; grid-row:08;" } 
 
       }', NULL, NULL
-    ),
-    -- circular
+    ),-- circular
     ( 'hol','cas_cir', 
       '{ 
         "sec":{ 
@@ -616,59 +609,24 @@
     -- tzolkin
     ( 'hol','kin_tzo', 
       '{ 
-
         "sec":{ 
           "tab":"kin-tzo", 
           "style":"grid: repeat(20,1fr) / repeat(13,1fr); grid-auto-flow: column;"
-        },
-        
-        "ton-01":{ "style":"grid-column: 2; grid-row: 1;" },
-        "ton-02":{ "style":"grid-column: 3; grid-row: 1;" },
-        "ton-03":{ "style":"grid-column: 4; grid-row: 1;" },
-        "ton-04":{ "style":"grid-column: 5; grid-row: 1;" },
-        "ton-05":{ "style":"grid-column: 6; grid-row: 1;" },
-        "ton-06":{ "style":"grid-column: 7; grid-row: 1;" },
-        "ton-07":{ "style":"grid-column: 8; grid-row: 1;" },
-        "ton-08":{ "style":"grid-column: 9; grid-row: 1;" },
-        "ton-09":{ "style":"grid-column: 10; grid-row: 1;" },
-        "ton-10":{ "style":"grid-column: 11; grid-row: 1;" },
-        "ton-11":{ "style":"grid-column: 12; grid-row: 1;" },
-        "ton-12":{ "style":"grid-column: 13; grid-row: 1;" },
-        "ton-13":{ "style":"grid-column: 14; grid-row: 1;" },
-
-        "sel-01":{ "style":"grid-column: 1; grid-row: 02;" },
-        "sel-02":{ "style":"grid-column: 1; grid-row: 03;" },
-        "sel-03":{ "style":"grid-column: 1; grid-row: 04;" },
-        "sel-04":{ "style":"grid-column: 1; grid-row: 05;" },
-        "sel-05":{ "style":"grid-column: 1; grid-row: 06;" },
-        "sel-06":{ "style":"grid-column: 1; grid-row: 07;" },
-        "sel-07":{ "style":"grid-column: 1; grid-row: 08;" },
-        "sel-08":{ "style":"grid-column: 1; grid-row: 09;" },
-        "sel-09":{ "style":"grid-column: 1; grid-row: 10;" },
-        "sel-10":{ "style":"grid-column: 1; grid-row: 11;" },
-        "sel-11":{ "style":"grid-column: 1; grid-row: 12;" },
-        "sel-12":{ "style":"grid-column: 1; grid-row: 13;" },
-        "sel-13":{ "style":"grid-column: 1; grid-row: 14;" },
-        "sel-14":{ "style":"grid-column: 1; grid-row: 15;" },
-        "sel-15":{ "style":"grid-column: 1; grid-row: 16;" },
-        "sel-16":{ "style":"grid-column: 1; grid-row: 17;" },
-        "sel-17":{ "style":"grid-column: 1; grid-row: 18;" },
-        "sel-18":{ "style":"grid-column: 1; grid-row: 19;" },
-        "sel-19":{ "style":"grid-column: 1; grid-row: 20;" },
-        "sel-20":{ "style":"grid-column: 1; grid-row: 21;" },
-
-        "pos":{  "style":"width: 1.9rem; height: 1.9rem;" },
-        "pos-0":{ "style":"grid-column: 1; grid-row: 1;" }     
-      
+        },        
+        "pos":{  
+          "style":"width: 1.9rem; height: 1.9rem;" 
+        }
       }', 
-      '{      
-        "sec":{ "sel": 1, "ton": 0 },
+      '{
+        "sec":{ "kin-sel": 1, "kin-ton": 0 },
 
-        "pos":{ "ima": "api.hol_ton.ide", "col": "api.hol_kin.pag", "num": "api.hol_kin.ide" }      
+        "pos":{ "ima": "api.hol_ton.ide", "col": "", "num": "api.hol_kin.ide" }, 
+
+        "pag": { "kin": 1 }
+
       }',
-      '[ "par" ]'
-    ),
-    -- parejas del oráculo
+      '[ "pag", "par" ]'
+    ),-- parejas del oráculo
     ( 'hol','kin_par', 
       '{ 
         "sec":{ 
@@ -676,25 +634,27 @@
           "style":"border: 1px solid var(--col_ver); border-radius: 50%;" 
         }
       }', NULL, NULL
-    ),
-    -- nave del tiempo
+    ),-- nave del tiempo
     ( 'hol','kin_nav', 
-      '{ 
-        "sec":{ 
-          "tab": "kin_nav", 
-          "style":"grid-gap: .15rem;" 
-        }, 
-        "pos":{ 
-          "style":"width: 1.1rem; height: 1.1rem;" 
-        },        
-        "pos-00":{ 
-          "style":"font-size:.5rem" 
-        }
-      }', '{
-        "sec":{ "cas":1, "cas-bor": 0, "cas-col": 1, "cas-orb": 0, "ton-col":0 },
-        "pos":{ "ima": "api.hol_kin.ide", "col": "", "num": "" }
-      }', '[ "par", "pul" ]'
-    ),
+        '{ 
+          "sec":{ 
+            "tab": "kin_nav", 
+            "style":"grid-gap: .15rem;" 
+          }, 
+          "pos":{ 
+            "style":"width: 1.1rem; height: 1.1rem;" 
+          },        
+          "pos-00":{ 
+            "style":"font-size:.5rem" 
+          }
+        }', '{
+
+          "sec":{ "cas-pos":1, "cas-bor": 0, "cas-col": 1, "cas-orb": 0, "ton-col":0 },
+
+          "pos":{ "ima": "api.hol_kin.ide", "col": "", "num": "" }
+
+        }', '[ "par", "pul" ]'
+      ),
       ( 'hol','kin_nav_cas', 
         '{ 
           "cas":{ 
@@ -716,24 +676,24 @@
             "style":"width: 9rem; height: 9rem;"
           }
         }', NULL, NULL
-      ),
-    -- estacion galáctica
+      )
+    ,-- estacion galáctica
     ( 'hol','kin_cro', 
-      '{ 
-        "sec":{ 
-          "tab": "kin_cro", "style":"grid-gap: .3rem;" 
-        },
-        "pos":{ 
-          "style":"width: 1rem; height: 1rem;" 
-        }
-      }', '{
+        '{ 
+          "sec":{ 
+            "tab": "kin_cro", "style":"grid-gap: .3rem;" 
+          },
+          "pos":{ 
+            "style":"width: 1rem; height: 1rem;" 
+          }
+        }', '{
 
-        "sec":{ "cas": 1, "cas-orb": 1, "ton-col":1, "sel-cro_ele": 1 },
+          "sec":{ "cas-pos": 1, "cas-orb": 1, "ton-col":1, "sel-cro_ele-pos": 1 },
 
-        "pos":{ "ima": "api.hol_sel.ide", "col": "", "num": "" }
+          "pos":{ "ima": "api.hol_sel.ide", "col": "", "num": "" }
 
-      }', '[ "par", "pul" ]'
-    ),
+        }', '[ "par", "pul" ]'
+      ),
       ( 'hol','kin_cro_est', 
         '{
           "est":{ 
@@ -757,24 +717,24 @@
           "rot-ton":[ "147", "070", "074", "071", "074", "330", "352", "335", "350", "230", "270", "240", "160", "140", "070", "074", "071", "074", "330", "352", "335", "350", "230", "270", "240", "160", "140", "070", "074", "071", "074", "330", "352", "335", "350", "230", "270", "240", "160", "140", "070", "074", "071", "074", "330", "352", "335", "350", "230", "270", "240", "160" ],
           "rot-cas":[ "025", "000", "340", "345", "340", "250", "255", "250", "255", "155", "170", "160", "065", "290", "290", "290", "290", "220", "170", "160", "165", "160", "070", "075", "070", "335", "180", "150", "170", "160", "165", "070", "075", "070", "073", "330", "350", "340", "245", "095", "070", "075", "073", "073", "330", "350", "340", "345", "250", "255", "250", "160" ]
         }', NULL, NULL
-      ),
-    -- trayectoria armónica
+      )
+    ,-- trayectoria armónica
     ( 'hol','kin_arm', 
-      '{ 
-        "sec":{ 
-          "tab": "kin_arm", "style":"grid-gap: .3rem;" 
-        }, 
-        "pos":{ 
-          "style":"width: 1.2rem; height: 1.2rem;" 
-        }
-      }', '{
+        '{ 
+          "sec":{ 
+            "tab": "kin_arm", "style":"grid-gap: .3rem;" 
+          }, 
+          "pos":{ 
+            "style":"width: 1.2rem; height: 1.2rem;" 
+          }
+        }', '{
 
-        "sec":{ "sel-arm_tra-bor": 0, "sel-arm_cel-bor": 0, "sel-arm_cel-col": 0, "sel-arm_cel": 1 },
+          "sec":{ "sel-arm_tra-bor": 0, "sel-arm_cel-pos": 1, "sel-arm_cel-bor": 0, "sel-arm_cel-col": 0},
 
-        "pos":{ "ima": "api.hol_sel.ide", "col": "", "num": "" }
+          "pos":{ "ima": "api.hol_sel.ide", "col": "", "num": "" }
 
-      }', '[ "par", "pul" ]'
-    ),
+        }', '[ "par", "pul" ]'
+      ),
       ( 'hol','kin_arm_tra',
         '{ 
           "tra":{ 
@@ -801,17 +761,20 @@
     -- anillo solar
     ( 'hol','psi_ban', 
       '{
-
-        "sec":{ "tab": "psi", "style": "grid-gap: .5rem;" },
-
-        "pos":{ "style": "width: 1.2rem; height: 1.2rem;" }   
-
+        "sec":{ 
+          "tab": "psi", "style": "grid-gap: .5rem;" 
+        },
+        "pos":{ 
+          "style": "width: 1.2rem; height: 1.2rem;" 
+        }
       }', '{
-        "sec":{},      
+
+        "sec":{ "lun-cab":1, "lun-hep":1 },
+
         "pos":{ "ima": "api.hol_kin.ide", "col": "", "num": "" }
-      }', '[ "par", "pul" ]'
-    ),
-    -- 4 estaciones
+
+      }', '[ "pag", "par", "pul" ]'
+    ),-- 4 estaciones
     ( 'hol','psi_est', 
       '{ 
 
@@ -820,11 +783,12 @@
         "pos":{ "style": "width: .855rem; height: .855rem;" }
 
       }', '{
-        "sec":{},
+
+        "sec":{ "cas-pos": 1, "cas-orb": 0, "ton-col": 0 },
+
         "pos":{ "ima": "api.hol_rad.ide", "col": "", "num": "" }
       }', '[ "par", "pul" ]'
-    ),
-    -- 13 lunas
+    ),-- 13 lunas
     ( 'hol','psi_lun', 
       '{
 
@@ -833,19 +797,22 @@
         "pos":{ "style": "width: 5rem; height: 5rem; max-height: 5rem;" }
       
       }', '{
-        "sec":{ "lun": 1, "lun-hep": 1, "lun-rad": 1 },
+
+        "sec":{ "lun-cab":1, "lun-hep":1, "lun-rad": 1 },
+
         "pos":{ "ima": "api.hol_kin.ide", "col": "", "num": "" }      
+
       }', '[ "par" ]'
-    ),    
-    -- 7 días
+    ),-- 52 heptadas
     ( 'hol','psi_hep', 
       '{ 
 
-        "sec":{ "tab": "psi_hep" }
+        "sec":{ 
+          "tab": "psi_hep" 
+        }
         
       }', NULL, NULL
-    ),
-    -- banco-psi
+    ),-- banco-psi
     ( 'hol','psi_tzo', 
       '{
 
@@ -859,9 +826,12 @@
         "pos":{ "style":"width: .95rem; height: .95rem;" }
         
       }', '{
-        "sec":{},
-        "pos":{ "ima": "api.hol_kin.ide", "col": "api.hol_kin.pag" }
-      }', '[ "par" ]'
+
+        "pos":{ "ima": "api.hol_kin.ide", "col": "", "num": "" },
+
+        "pag":{ "kin": 1 }
+
+      }', '[ "pag", "par" ]'
     )
   ;
   DELETE FROM `_api`.`app_tab` WHERE `esq`='hol' AND `est` LIKE 'umb%'

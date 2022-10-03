@@ -4,7 +4,6 @@
   -- HOLON
     DELETE FROM `_api`.`dat_val` WHERE `esq`='api' AND `est` LIKE 'hol_%';
     ;
-
     DELETE FROM `_api`.`dat_val` WHERE `esq`='api' AND `est` LIKE 'hol_rad%';
     INSERT INTO `_api`.`dat_val` VALUES
 
@@ -290,11 +289,6 @@
             "des": "()($)des().",
             "ima": "background: top/50% no-repeat url(http://localhost/_/hol/ima/ton/()($)nav_ond_dia().png), bottom/60% no-repeat url(http://localhost/_/hol/ima/sel/()($)arm_tra_dia().png);"
         }'),
-        ( 'api', 'hol_kin_pag', '{ 
-            "nom": "Estado ()($)nom()",
-            "ima": "background: center/contain no-repeat url(http://localhost/_/hol/ima/kin/pag/()($)ide().png);",
-            "col": 1
-        }' ),
         ( 'api', 'hol_kin_ene', '{ 
             "nom": "Grupo #()($)ide() de ()($)nom() ( ()($)gru() x ()($)gru_uni() = ()($)uni() unidades )",
             "ima": "background: center/contain no-repeat url(http://localhost/_/hol/ima/kin/ene/()($)ide().png);",

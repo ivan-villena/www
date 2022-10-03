@@ -43,17 +43,23 @@
       $dat_ope = [] // operador
     ;
     // Aplicacion
-    public array
-      $app_var = [],
-      // datos
-      $app_dat = [], 
-      // tablas
-      $app_est = [],
-      // tableros
-      $app_tab = []
+    public object 
+      $app_uri
+      ;
+      public array
+        $app_var = [],
+        // datos
+        $app_dat = [], 
+        // tablas
+        $app_est = [],
+        // tableros
+        $app_tab = []
     ;
 
     function __construct(){
+
+      // aplicacion
+      $this->app_uri = new stdClass;
       
       // documento : iconos + letras
       $this->doc_ico = _dat::get('_api.doc_ico', [ 'niv'=>['ide'] ]);
@@ -61,7 +67,7 @@
 
       // variable: tipos + operaciones
       $this->dat_tip = _dat::get('_api.dat_tip', [ 'niv'=>['ide'], 'ele'=>['ope'] ]);
-      $this->dat_ope = _dat::get('_api.dat_ope', [ 'niv'=>['ide'] ]);
+      $this->dat_ope = _dat::get('_api.dat_ope', [ 'niv'=>['ide'] ]);      
       
       // fechas : mes + semana + dias
       foreach( ['mes','sem','dia'] as $ide ){
@@ -106,9 +112,80 @@
         $_ = $_dat;
       }
       return $_;
-    }    
-  }
+    }
 
+    // peticion
+    static function uri_val( string $esq ) : object {
+
+      $_ = new stdClass;
+
+      $uri = explode('/', !empty($_REQUEST['uri']) ? $_REQUEST['uri'] : '');
+      
+      $_->esq = !empty($uri[0]) ? $uri[0] : $esq;
+      $_->cab = !empty($uri[1]) ? $uri[1] : FALSE;
+      $_->art = !empty($uri[2]) ? $uri[2] : FALSE;
+
+      if( $_->art ) $_val = explode('#',$_->art);
+
+      if( isset($_val[1]) ){
+        $_->art = $_val[0];
+        $_->val = $_val[1];  
+      }
+      else{          
+        $_->val = !empty($dat[3]) ? $dat[3] : FALSE;
+      }
+
+      global $_api;
+      return $_api->app_uri = $_;
+    }// contenido html : valido archivo
+    static function uri_rec( string $ide, array $arc = [ 'html', 'php' ] ) : string {
+
+      $_ = '';
+
+      foreach( $arc as $tip ){
+
+        if( file_exists( $rec = "{$ide}.{$tip}" ) ){
+
+          $_ = $rec;
+
+          break;
+        }        
+      }
+      return $_;
+    }// directorio
+    static function uri_dir( object $uri ) : object {
+
+      $_ = new stdClass();
+
+      $_->rec = SYS_NAV."_/";
+      
+      $_->esq = SYS_NAV."{$uri->esq}";
+        
+      $_->cab = "{$uri->esq}/{$uri->cab}";
+
+      $_->ima = SYS_NAV."_/{$_->cab}/";
+
+      if( !empty($uri->art) ){
+
+        $_->art = $_->cab."/{$uri->art}";
+      
+        $_->ima .= "{$uri->art}/";
+      }
+
+      return $_;
+    }// sesion
+    static function uri_ses( object $uri ) : array {
+      
+      $_ = [];
+
+      foreach( $_REQUEST as $i => $v ){
+
+        if( preg_match("/^{$uri->esq}-/",$i) ) $_[$i] = $v;
+      }
+
+      return $_;      
+    }        
+  }
   // Código sql 
   class _sql {
 
@@ -600,8 +677,7 @@
         }
       }
       return $_;
-    }    
-
+    }
     // convierto : []/{} => "<>"
     static function val( ...$dat ) : string {
       $_ = "";
@@ -656,7 +732,6 @@
       }
       return $_;
     }
-
     // atributos : "< ...atr="">"
     static function atr( $val, $dat = NULL ) : string {
       $_=''; 
@@ -691,7 +766,6 @@
       }
       return $_;
     }
-
     // etiqueta : <eti ...atr > htm </eti>
     static function eti( array $ele, $tip='' ) : string | array {
       $_ = "";
@@ -724,7 +798,6 @@
       }
       return $_;
     }
-
   }
   // Dato : esq.est[ide].atr
   class _dat {
@@ -776,7 +849,7 @@
         }
         // resultados y operaciones
         if( isset($ope) && ( is_array($dat) || !isset($_['err']) ) )
-          _est::ope($_,$ope);
+          _lis::ope($_,$ope);
       }
       return $_;
     }
@@ -935,7 +1008,7 @@
       case '!*':  $_ = !preg_match("/".$val."/",$dat);  break;
       }
       return $_;
-    }    
+    }
     // estructura : datos + operadores
     static function est( string $esq, string $ide = NULL, mixed $tip = NULL, mixed $ope = NULL ) : mixed {
       $_ = [];
@@ -1192,341 +1265,6 @@
       return $_;
     }
   }
-
-  // listado : []
-  class _lis {
-
-    // aseguro iteraciones 
-    static function ite( mixed $dat, mixed $ope = NULL ) : array {
-
-      $_ = [];
-
-      if( empty($ope) ){
-
-        $_ = _obj::pos($dat) ? $dat : [ $dat ];
-      }
-      // ejecuto funciones
-      elseif( is_array($dat) && is_callable($ope) ){
-        
-        foreach( $dat as $pos => $val ){
-
-          $_ []= $ope( $val, $pos );
-        }
-      }  
-      return $_;
-    }
-    // convierto a listado : [ ...$$ ]
-    static function val( array | object $dat ) : array {
-
-      $_ = $dat;
-
-      if( _obj::tip($dat) ){
-
-        $_ = [];
-
-        foreach( $dat as $v ){
-
-          $_[] = $v;
-        }
-      }
-      return $_;
-    }
-  }
-  // Estructura : [ ...{} ] 
-  class _est {
-
-    // proceso estructura
-    static function ope( array &$dat, array $ope=[], ...$opc ) : array | object {
-      
-
-      // junto estructuras
-      if( isset($ope['jun']) ){
-        _est::jun($dat, $ope['jun'], ...$opc);
-      }
-
-      // ejecuto filtro
-      if( isset($ope['ver']) ){
-        _est::ver($dat, $ope['ver'], ...$opc);
-      }
-      
-      // genero elementos
-      if( isset($ope['ele']) ){
-        _est::dec($dat, $ope['ele'], 'nom');
-      }
-      // genero objetos  
-      if( isset($ope['obj']) ){
-        _est::dec($dat, $ope['obj'] );
-      }
-
-      // nivelo estructura
-      if( isset($ope['niv']) ){
-        _est::niv($dat, $ope['niv'] );
-      }// o por indice
-      elseif( isset($ope['nav']) && is_string($ope['nav']) ){
-        _est::nav($dat, $ope['nav'] );
-      }
-
-      // reduccion por atributo
-      if( isset($ope['red']) && is_string($ope['red']) ){
-        _est::red($dat, $ope['red'] );
-      }
-      
-      // devuelvo unico objeto
-      if( isset($ope['opc']) ){
-
-        $ope['opc'] = _lis::ite($ope['opc']);
-
-        if( in_array('uni',$ope['opc']) ) _est::uni($dat, ...$opc );
-      }
-
-      return $dat;
-    }
-    // decodifica : "" => {} , []
-    static function dec( array &$dat, string | array $atr, ...$opc ) : array {
-
-      $atr = _lis::ite($atr);
-
-      foreach( $dat as &$ite ){
-
-        if( is_object($ite) ){
-
-          foreach( $atr as $ide ){
-
-            if( isset($ite->$ide) ){
-
-              $ite->$ide = _obj::dec( preg_replace("/\n/", '', $ite->$ide) , $ite, ...$opc);            
-            }
-          }
-        }
-      }
-      
-      return $dat;
-    }
-    // genero atributos
-    static function atr( string | array $dat, string $ope = "" ) : array {
-      $_ = [];
-      if( empty($ope) ){
-        // de la base
-        if( is_string($dat) ){        
-          $ide = _dat::ide($dat);
-          $_ = _dat::atr($ide['esq'],$ide['est']);
-        }
-        // del entorno 
-        else{
-          
-          foreach( $dat as $ite ){
-
-            foreach( $ite as $ide => $val ){ 
-              $atr = new stdClass;
-              $atr->ide = $ide;
-              $atr->nom = $ide;
-              $atr->var = _dat::tip($val);
-              // cargo atributo
-              $_ [$ide] = $atr;
-            }
-            break;
-          }        
-        }
-      }
-      return $_;
-    }
-    // nivelar indice
-    static function niv( array &$dat, mixed $ide ) : array {
-
-      $_ = [];
-      // numérica => pos
-      if( is_numeric($ide) ){
-        $k = intval($ide);
-        foreach( $dat as $val ){ 
-          $_[$k++]=$val; 
-        }
-      }
-      // Literal => nom
-      elseif( is_string($ide) ){
-        $k = explode('(.)',$ide);
-        foreach( $dat as $i => $val ){ 
-          $i=[]; 
-          foreach( $k as $ide ){ $i []= $val[$ide]; }
-          $_[ implode('(.)',$i) ] = $val; 
-        }
-      }
-      // Clave Múltiple => keys-[ [ [ [],[ {-_-} ],[], ] ] ]
-      elseif( is_array($ide) ){
-        $k = array_values($ide);
-        switch( count($k) ){
-        case 1: foreach( $dat as $v ){ $_[$v->{$k[0]}]=$v; } break;
-        case 2: foreach( $dat as $v ){ $_[$v->{$k[0]}][$v->{$k[1]}]=$v; } break;
-        case 3: foreach( $dat as $v ){ $_[$v->{$k[0]}][$v->{$k[1]}][$v->{$k[2]}]=$v; } break;
-        case 4: foreach( $dat as $v ){ $_[$v->{$k[0]}][$v->{$k[1]}][$v->{$k[2]}][$v->{$k[3]}]=$v; } break;
-        case 5: foreach( $dat as $v ){ $_[$v->{$k[0]}][$v->{$k[1]}][$v->{$k[2]}][$v->{$k[3]}][$v->{$k[4]}]=$v; } break;
-        case 6: foreach( $dat as $v ){ $_[$v->{$k[0]}][$v->{$k[1]}][$v->{$k[2]}][$v->{$k[3]}][$v->{$k[4]}][$v->{$k[5]}]=$v; } break;
-        case 7: foreach( $dat as $v ){ $_[$v->{$k[0]}][$v->{$k[1]}][$v->{$k[2]}][$v->{$k[3]}][$v->{$k[4]}][$v->{$k[5]}][$v->{$k[6]}]=$v; } break;
-        }
-      }
-      return $dat = $_;
-    }
-    // armar navegacion por posicion : xx-xx-xx
-    static function nav( array &$dat, string $atr = 'pos' ) : array {
-      $_ = [];      
-      // creo subniveles
-      for( $nav=1; $nav<=7; $nav++ ){
-        $_[$nav] = [];
-      }
-      // cargo por subnivel
-      foreach( 
-        $dat as $val 
-      ){
-        switch( 
-          $cue = count( $niv = explode('-', is_object($val) ? $val->$atr : $val[$atr] ) ) 
-        ){
-        case 1: $_[$cue][$niv[0]] = $val; break;
-        case 2: $_[$cue][$niv[0]][$niv[1]] = $val; break;
-        case 3: $_[$cue][$niv[0]][$niv[1]][$niv[2]] = $val; break;
-        case 4: $_[$cue][$niv[0]][$niv[1]][$niv[2]][$niv[3]] = $val; break;
-        case 5: $_[$cue][$niv[0]][$niv[1]][$niv[2]][$niv[3]][$niv[4]] = $val; break;
-        case 6: $_[$cue][$niv[0]][$niv[1]][$niv[2]][$niv[3]][$niv[4]][$niv[5]] = $val; break;
-        case 7: $_[$cue][$niv[0]][$niv[1]][$niv[2]][$niv[3]][$niv[4]][$niv[5]][$niv[6]] = $val; break;
-        }
-      }  
-      return $dat = $_;
-    }
-    // reducir elemento a un atributo
-    static function red( array &$dat, string $atr ) : array {    
-      
-      foreach( $dat as &$n_1 ){
-
-        if( is_object($n_1) ){
-          if( isset($n_1->$atr) ) $n_1 = $n_1->$atr;
-        }
-        elseif( is_array($n_1) ){
-
-          foreach( $n_1 as &$n_2 ){
-
-            if( is_object($n_2) ){
-              if( isset($n_2->$atr) ) $n_2 = $n_2->$atr;
-            }
-            elseif( is_array($n_2) ){
-
-              foreach( $n_2 as &$n_3 ){
-
-                if( is_object($n_3) ){
-                  if( isset($n_3->$atr) ) $n_3 = $n_3->$atr;
-                }
-                elseif( is_array($n_3) ){
-
-                  foreach( $n_3 as &$n_4 ){
-
-                    if( is_object($n_4) ){
-                      if( isset($n_4->$atr) ) $n_4 = $n_4->$atr;
-                    }
-                    elseif( is_array($n_4) ){
-
-                      foreach( $n_4 as &$n_5 ){
-
-                        if( is_object($n_5) ){
-                          if( isset($n_5->$atr) ) $n_5 = $n_5->$atr;
-                        }
-                        elseif( is_array($n_5) ){
-
-                          foreach( $n_5 as &$n_6 ){
-
-                            if( is_object($n_6) ){
-                              if( isset($n_6->$atr) ) $n_6 = $n_6->$atr;
-                            }
-                            elseif( is_array($n_6) ){
-
-                              foreach( $n_6 as &$n_7 ){
-
-                                if( is_object($n_7) ){
-                                  if( isset($n_7->$atr) ) $n_7 = $n_7->$atr;
-                                }
-                                elseif( is_array($n_7) ){                        
-                                  // ...
-                                }
-                              }                      
-                            }
-                          }                   
-                        }
-                      }              
-                    }
-                  }  
-                }
-              }    
-            }
-          }
-        }
-      }
-      return $dat;
-    }
-    // filtrar elementos
-    static function ver( array &$dat, array $ope = [], ...$opc ) : array {
-      $_ = [];
-      foreach( $dat as $pos => $ite ){ 
-        $val_ite = [];           
-        foreach( $ite as $atr => $val ){ 
-
-          foreach( $ope as $ver ){ 
-
-            if( $atr == $ver[0] ) 
-              $val_ite []= _dat::ver( $val, $ver[1], $ver[2] );
-          }
-        }
-        // evaluo resultados
-        if( count($val_ite) > 0 && !in_array(FALSE,$val_ite) )
-          $_[] = $ite;
-      }
-      return $dat = $_;
-    }
-    // juntar estructuras
-    static function jun( array &$dat, array $ope = [], ...$opc ) : array {
-
-      return $dat = array_merge($ope, $dat);
-    }
-    // agrupar elementos por atributo con funcion
-    static function gru( array &$dat, array $ope = [], ...$opc ) : array {
-      return $dat;
-    }
-    // ordenar elementos
-    static function ord( array &$dat, array $ope = [], ...$opc ) : array {
-      return $dat;
-    }
-    // limitar resultados
-    static function lim( array &$dat, array $ope = [], ...$opc ) : array {
-      return $dat;
-    }
-    // transforma a unico elemento
-    static function uni( array &$dat, ...$opc ) : array | object {
-      $_ = new stdClass;
-
-      if( in_array('fin',$opc) ){ $dat = array_reverse($dat); }
-
-      foreach( $dat as $i => $v ){
-        $_ = $dat[$i];
-        break;
-      }
-
-      return $dat = $_;
-    }
-    // elimina elementos
-    static function eli( array &$dat, string $ope, mixed $val, ...$opc ) : array {
-      $_ = [];
-      $pos = 0;
-      $opc_ide = in_array('ide',$opc);
-      $lis_tip = _obj::pos($dat);
-      
-      foreach( $dat as $i => $v ){
-
-        if( !_dat::ver( $opc_ide ? $i : $v, $ope, $val ) ) 
-        
-          $_[ $lis_tip ? $pos : $i ] = $v;
-
-        $pos++;
-      }
-      
-      return $dat = $_;
-    }
-    
-  }
   // Ejecucion : ( ...par ) => { ...cod } : val 
   class _eje {
 
@@ -1682,7 +1420,7 @@
       // proceso atributos con variables : ()($)nom()
       elseif( is_array($_) && isset($dat) ){
 
-        foreach( $_ as &$atr ){                    
+        foreach( $_ as &$atr ){
 
           if( is_string($atr) ){ // && preg_match("/\(\)\(\$\).*\(\)/",$atr) 
 
@@ -1694,29 +1432,33 @@
     }
     // combino elementos
     static function jun( string | array $ele, array $ope, array | object $dat = NULL, array $opc = [] ) : array {
+      
       // si es "", convierto a []
       $_ = _ele::val($ele,$dat);
+      
       // proceso opciones
       $opc_eje = isset($opc['eje']) ? $opc['eje'] : [];
       $opc_cla = isset($opc['cla']) ? $opc['cla'] : [];
       $opc_css = isset($opc['css']) ? $opc['css'] : [];
 
-      // recorro elementos
+      // recorro 2ºs elementos
       foreach( _lis::ite($ope) as $ele ){
         
         // recorro atributos
         foreach( _ele::val($ele,$dat) as $atr => $val ){
-
+          // agrego
           if( !isset($_[$atr]) ){
             $_[$atr] = $val;
           }
+          // actualizo
           else{
             switch($atr){
-            case 'class': _ele::cla($_,$val,...$opc_cla); break;// agrego con separador: " "
-            case 'style': _ele::css($_,$val,...$opc_css); break;// agrego con separador: ";"
-            default:// reemplazo
-              $_[$atr] = $val;
-              break;
+            case 'onclick':   _ele::eje($_,'cli',$val,...$opc_eje); break;
+            case 'onchange':  _ele::eje($_,'cam',$val,...$opc_eje); break;
+            case 'oninput':   _ele::eje($_,'inp',$val,...$opc_eje); break;
+            case 'class':     _ele::cla($_,$val,...$opc_cla); break;// agrego con separador: " "
+            case 'style':     _ele::css($_,$val,...$opc_css); break;// agrego con separador: ";"
+            default:          $_[$atr] = $val; break;// reemplazo
             }
           }
         }
@@ -2110,6 +1852,328 @@
       }
       return $_;
     }
+  }
+  // listado / tabla : [ ... ]
+  class _lis {
+
+    // aseguro iteraciones 
+    static function ite( mixed $dat, mixed $ope = NULL ) : array {
+
+      $_ = [];
+
+      if( empty($ope) ){
+
+        $_ = _obj::pos($dat) ? $dat : [ $dat ];
+      }
+      // ejecuto funciones
+      elseif( is_array($dat) && is_callable($ope) ){
+        
+        foreach( $dat as $pos => $val ){
+
+          $_ []= $ope( $val, $pos );
+        }
+      }  
+      return $_;
+    }
+    // convierto a listado : [ ...$$ ]
+    static function val( array | object $dat ) : array {
+
+      $_ = $dat;
+
+      if( _obj::tip($dat) ){
+
+        $_ = [];
+
+        foreach( $dat as $v ){
+
+          $_[] = $v;
+        }
+      }
+      return $_;
+    }
+    // proceso estructura
+    static function ope( array &$dat, array $ope=[], ...$opc ) : array | object {
+      
+      // junto estructuras
+      if( isset($ope['jun']) ){
+        _lis::jun($dat, $ope['jun'], ...$opc);
+      }
+      // ejecuto filtro
+      if( isset($ope['ver']) ){
+        _lis::ver($dat, $ope['ver'], ...$opc);
+      }      
+      // genero elementos
+      if( isset($ope['ele']) ){
+        _lis::dec($dat, $ope['ele'], 'nom');
+      }
+      // genero objetos  
+      if( isset($ope['obj']) ){
+        _lis::dec($dat, $ope['obj'] );
+      }
+      // nivelo estructura
+      if( isset($ope['niv']) ){
+        _lis::niv($dat, $ope['niv'] );
+      }// o por indice
+      elseif( isset($ope['nav']) && is_string($ope['nav']) ){
+        _lis::nav($dat, $ope['nav'] );
+      }
+      // reduccion por atributo
+      if( isset($ope['red']) && is_string($ope['red']) ){
+        _lis::red($dat, $ope['red'] );
+      }      
+      // devuelvo unico objeto
+      if( isset($ope['opc']) ){
+
+        $ope['opc'] = _lis::ite($ope['opc']);
+
+        if( in_array('uni',$ope['opc']) ) _lis::uni($dat, ...$opc );
+      }
+      return $dat;
+    }
+    // decodifica : "" => {} , []
+    static function dec( array &$dat, string | array $atr, ...$opc ) : array {
+
+      $atr = _lis::ite($atr);
+
+      foreach( $dat as &$ite ){
+
+        if( is_object($ite) ){
+
+          foreach( $atr as $ide ){
+
+            if( isset($ite->$ide) ){
+
+              $ite->$ide = _obj::dec( preg_replace("/\n/", '', $ite->$ide) , $ite, ...$opc);            
+            }
+          }
+        }
+      }
+      
+      return $dat;
+    }
+    // genero atributos
+    static function atr( string | array $dat, string $ope = "" ) : array {
+      $_ = [];
+      if( empty($ope) ){
+        // de la base
+        if( is_string($dat) ){        
+          $ide = _dat::ide($dat);
+          $_ = _dat::atr($ide['esq'],$ide['est']);
+        }
+        // del entorno 
+        else{
+          
+          foreach( $dat as $ite ){
+
+            foreach( $ite as $ide => $val ){ 
+              $atr = new stdClass;
+              $atr->ide = $ide;
+              $atr->nom = $ide;
+              $atr->var = _dat::tip($val);
+              // cargo atributo
+              $_ [$ide] = $atr;
+            }
+            break;
+          }        
+        }
+      }
+      return $_;
+    }
+    // nivelar indice
+    static function niv( array &$dat, mixed $ide ) : array {
+
+      $_ = [];
+      // numérica => pos
+      if( is_numeric($ide) ){
+        $k = intval($ide);
+        foreach( $dat as $val ){ 
+          $_[$k++]=$val; 
+        }
+      }
+      // Literal => nom
+      elseif( is_string($ide) ){
+        $k = explode('(.)',$ide);
+        foreach( $dat as $i => $val ){ 
+          $i=[]; 
+          foreach( $k as $ide ){ $i []= $val[$ide]; }
+          $_[ implode('(.)',$i) ] = $val; 
+        }
+      }
+      // Clave Múltiple => keys-[ [ [ [],[ {-_-} ],[], ] ] ]
+      elseif( is_array($ide) ){
+        $k = array_values($ide);
+        switch( count($k) ){
+        case 1: foreach( $dat as $v ){ $_[$v->{$k[0]}]=$v; } break;
+        case 2: foreach( $dat as $v ){ $_[$v->{$k[0]}][$v->{$k[1]}]=$v; } break;
+        case 3: foreach( $dat as $v ){ $_[$v->{$k[0]}][$v->{$k[1]}][$v->{$k[2]}]=$v; } break;
+        case 4: foreach( $dat as $v ){ $_[$v->{$k[0]}][$v->{$k[1]}][$v->{$k[2]}][$v->{$k[3]}]=$v; } break;
+        case 5: foreach( $dat as $v ){ $_[$v->{$k[0]}][$v->{$k[1]}][$v->{$k[2]}][$v->{$k[3]}][$v->{$k[4]}]=$v; } break;
+        case 6: foreach( $dat as $v ){ $_[$v->{$k[0]}][$v->{$k[1]}][$v->{$k[2]}][$v->{$k[3]}][$v->{$k[4]}][$v->{$k[5]}]=$v; } break;
+        case 7: foreach( $dat as $v ){ $_[$v->{$k[0]}][$v->{$k[1]}][$v->{$k[2]}][$v->{$k[3]}][$v->{$k[4]}][$v->{$k[5]}][$v->{$k[6]}]=$v; } break;
+        }
+      }
+      return $dat = $_;
+    }
+    // armar navegacion por posicion : xx-xx-xx
+    static function nav( array &$dat, string $atr = 'pos' ) : array {
+      $_ = [];      
+      // creo subniveles
+      for( $nav=1; $nav<=7; $nav++ ){
+        $_[$nav] = [];
+      }
+      // cargo por subnivel
+      foreach( 
+        $dat as $val 
+      ){
+        switch( 
+          $cue = count( $niv = explode('-', is_object($val) ? $val->$atr : $val[$atr] ) ) 
+        ){
+        case 1: $_[$cue][$niv[0]] = $val; break;
+        case 2: $_[$cue][$niv[0]][$niv[1]] = $val; break;
+        case 3: $_[$cue][$niv[0]][$niv[1]][$niv[2]] = $val; break;
+        case 4: $_[$cue][$niv[0]][$niv[1]][$niv[2]][$niv[3]] = $val; break;
+        case 5: $_[$cue][$niv[0]][$niv[1]][$niv[2]][$niv[3]][$niv[4]] = $val; break;
+        case 6: $_[$cue][$niv[0]][$niv[1]][$niv[2]][$niv[3]][$niv[4]][$niv[5]] = $val; break;
+        case 7: $_[$cue][$niv[0]][$niv[1]][$niv[2]][$niv[3]][$niv[4]][$niv[5]][$niv[6]] = $val; break;
+        }
+      }  
+      return $dat = $_;
+    }
+    // reducir elemento a un atributo
+    static function red( array &$dat, string $atr ) : array {    
+      
+      foreach( $dat as &$n_1 ){
+
+        if( is_object($n_1) ){
+          if( isset($n_1->$atr) ) $n_1 = $n_1->$atr;
+        }
+        elseif( is_array($n_1) ){
+
+          foreach( $n_1 as &$n_2 ){
+
+            if( is_object($n_2) ){
+              if( isset($n_2->$atr) ) $n_2 = $n_2->$atr;
+            }
+            elseif( is_array($n_2) ){
+
+              foreach( $n_2 as &$n_3 ){
+
+                if( is_object($n_3) ){
+                  if( isset($n_3->$atr) ) $n_3 = $n_3->$atr;
+                }
+                elseif( is_array($n_3) ){
+
+                  foreach( $n_3 as &$n_4 ){
+
+                    if( is_object($n_4) ){
+                      if( isset($n_4->$atr) ) $n_4 = $n_4->$atr;
+                    }
+                    elseif( is_array($n_4) ){
+
+                      foreach( $n_4 as &$n_5 ){
+
+                        if( is_object($n_5) ){
+                          if( isset($n_5->$atr) ) $n_5 = $n_5->$atr;
+                        }
+                        elseif( is_array($n_5) ){
+
+                          foreach( $n_5 as &$n_6 ){
+
+                            if( is_object($n_6) ){
+                              if( isset($n_6->$atr) ) $n_6 = $n_6->$atr;
+                            }
+                            elseif( is_array($n_6) ){
+
+                              foreach( $n_6 as &$n_7 ){
+
+                                if( is_object($n_7) ){
+                                  if( isset($n_7->$atr) ) $n_7 = $n_7->$atr;
+                                }
+                                elseif( is_array($n_7) ){                        
+                                  // ...
+                                }
+                              }                      
+                            }
+                          }                   
+                        }
+                      }              
+                    }
+                  }  
+                }
+              }    
+            }
+          }
+        }
+      }
+      return $dat;
+    }
+    // filtrar elementos
+    static function ver( array &$dat, array $ope = [], ...$opc ) : array {
+      $_ = [];
+      foreach( $dat as $pos => $ite ){ 
+        $val_ite = [];           
+        foreach( $ite as $atr => $val ){ 
+
+          foreach( $ope as $ver ){ 
+
+            if( $atr == $ver[0] ) 
+              $val_ite []= _dat::ver( $val, $ver[1], $ver[2] );
+          }
+        }
+        // evaluo resultados
+        if( count($val_ite) > 0 && !in_array(FALSE,$val_ite) )
+          $_[] = $ite;
+      }
+      return $dat = $_;
+    }
+    // juntar estructuras
+    static function jun( array &$dat, array $ope = [], ...$opc ) : array {
+
+      return $dat = array_merge($ope, $dat);
+    }
+    // agrupar elementos por atributo con funcion
+    static function gru( array &$dat, array $ope = [], ...$opc ) : array {
+      return $dat;
+    }
+    // ordenar elementos
+    static function ord( array &$dat, array $ope = [], ...$opc ) : array {
+      return $dat;
+    }
+    // limitar resultados
+    static function lim( array &$dat, array $ope = [], ...$opc ) : array {
+      return $dat;
+    }
+    // transforma a unico elemento
+    static function uni( array &$dat, ...$opc ) : array | object {
+      $_ = new stdClass;
+
+      if( in_array('fin',$opc) ){ $dat = array_reverse($dat); }
+
+      foreach( $dat as $i => $v ){
+        $_ = $dat[$i];
+        break;
+      }
+
+      return $dat = $_;
+    }
+    // elimina elementos
+    static function eli( array &$dat, string $ope, mixed $val, ...$opc ) : array {
+      $_ = [];
+      $pos = 0;
+      $opc_ide = in_array('ide',$opc);
+      $lis_tip = _obj::pos($dat);
+      
+      foreach( $dat as $i => $v ){
+
+        if( !_dat::ver( $opc_ide ? $i : $v, $ope, $val ) ) 
+        
+          $_[ $lis_tip ? $pos : $i ] = $v;
+
+        $pos++;
+      }
+      
+      return $dat = $_;
+    }    
   }
   // Archivo : fichero + texto + imagen + audio + video + app + ...tipos
   class _arc {  
@@ -2647,4 +2711,3 @@
     }
 
   }
-  

@@ -698,8 +698,8 @@ Fondos : imagen + color + icono ////////////////////////////////////////////////
 .fon-gri { background-color: var(--col_gri) !important; }
 
 /* color por agrupamiento */
-[class*='fon_col-'],
-[class*='fon_col-']:not([class*='fon_col-1-']) > n{
+[class*='fon_col-']:not(.fon-0),
+[class*='fon_col-']:not(.fon-0,[class*='fon_col-1-']) > n{
   color:black !important;
 }
 /* Seleccion de 1-0*/

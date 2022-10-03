@@ -28,7 +28,7 @@
 	DELETE FROM `_api`.`app_art` WHERE `esq`='hol' AND `cab`='tab';
 	INSERT INTO `_api`.`app_art` VALUES
 
-		('hol','tab','kin-tzo', 1, 'Los 260 kin del Tzolkin',									'', NULL, NULL ),
+		('hol','tab','kin-tzo', 1, 'Los 260 kines del Tzolkin',								'', NULL, NULL ),
 		('hol','tab','kin-nav', 2, 'Los 5 Castillos de la Nave del Tiempo', 	'', NULL, NULL ),
 		('hol','tab','kin-arm', 3, 'Las 13 Trayectorias del Giro Galáctico', 	'', NULL, NULL ),
 		('hol','tab','kin-cro', 4, 'Las 4 Estaciones del Giro Espectral', 		'', NULL, NULL ),

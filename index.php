@@ -182,11 +182,11 @@
       // cargo aplicacion
       var $_app = new _app();
       
+      // instacio objeto por aplicacion
+      <?= $_app->eje ?>
+
       // inicializo página
       $_app.ini();
-
-      // ejecucion inicial
-      <?= $_app->eje ?>
 
       console.log(`{-_-}.ini: en ${( ( Date.now() - (  <?= $sis_ini ?> * 1000 ) ) / 1000 ).toFixed(2)} segundos...`);
 
