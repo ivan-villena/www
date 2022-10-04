@@ -62,6 +62,11 @@ DELETE FROM `_api`.`app_var` WHERE `esq`='app';
         "tit":"Activar las Posiciones Seleccionadas...",
         "ope":{ "_tip":"opc_bin" }
       }'),
+      ('app','val','acu', 4, 'opc', '{
+        "nom":"¿Opciones?",
+        "tit":"Contar las posiciones marcadas por opciones del tablero...",
+        "ope":{ "_tip":"opc_bin" }
+      }'),
     --
     -- filtro: valores ( todos ) + datos ( estructura > valor ) + listados ( posicion + fecha )
 

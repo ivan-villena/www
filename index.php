@@ -19,14 +19,17 @@
   date_default_timezone_set( $_SESSION['ubi'] );
   
   // require de clases manual // require_once("_/autoload.php");  
-  foreach( ['api','usu'] as $cla ){ 
+  foreach( ['api'] as $cla ){ 
     
     require_once("php/$cla.php");
   }
+  
+
   // cargo interface
   $_api = new _api();
   
   // cargo usuario  
+  require_once("php/api/usu.php");
   $_usu = new _usu( $_SESSION['usu'] );
    
   // peticion AJAX
@@ -55,7 +58,7 @@
     // cargo modulos
     foreach( ['doc','app','hol'] as $cla ){ 
 
-      require_once("php/$cla.php");
+      require_once("php/api/$cla.php");
     }
 
     // cargo aplicacion    

@@ -45,7 +45,7 @@
       // plantillas css
       $this->css = [ 'doc','app' ];
       // modulos js
-      $this->jso = [ 'api','usu','app','doc','hol' ];      
+      $this->jso = [ 'api','api/doc','api/app','api/usu','api/hol' ];
       // ejecucion inicial
       $this->eje = "";
       
@@ -377,17 +377,17 @@
 
     // operador : botones del panel ( nav + win )    
     static function tog( $dat, ...$opc ) : string {
-      $_eje = self::$EJE."tog";
+      $_eje = self::$EJE;
 
       $_ = "";      
 
-      foreach( ( !empty($opc) ? $opc : [ 'nav', 'win' ] ) as $tip ){
+      foreach( ( !empty($opc) ? $opc : [ 'nav', 'win', 'sec' ] ) as $tip ){
 
         if( isset($dat[$tip]) ){
 
           foreach( $dat[$tip] as $ide => $art ){
 
-            $eje_tog = "{$_eje}('$tip','$ide');";
+            $eje_tog = "{$_eje}{$tip}('$ide');";
 
             if( is_string($art) ){
 
@@ -416,7 +416,7 @@
     // pantalla emergente : #sis > article[ide] > header + section
     static function win( string $ide, array $ope = [] ) : string {      
       foreach( ['art','cab','sec'] as $e ){ if( !isset($ope[$e]) ){ $ope[$e]=[]; } }
-      $_eje = self::$EJE."tog";
+      $_eje = self::$EJE."win";
       $_ = "";
       // identificador
       $ope['art']['ide'] = $ide;
@@ -442,7 +442,7 @@
 
         <header"._htm::atr($ope['cab']).">
         
-          {$cab_ico} {$cab_tit} "._doc::ico('eje_fin',[ 'title'=>'Cerrar', 'onclick'=>"$_eje('win');" ])."
+          {$cab_ico} {$cab_tit} "._doc::ico('eje_fin',[ 'title'=>'Cerrar', 'onclick'=>"$_eje();" ])."
 
         </header>
 
@@ -459,7 +459,7 @@
     // docks de navegacion : nav|article[ide] > header + section
     static function nav( string $ide, array $ope = [] ) : string {
       foreach( ['nav','cab','sec'] as $e ){ if( !isset($ope[$e]) ){ $ope[$e]=[]; } }            
-      $_eje = self::$EJE."tog";
+      $_eje = self::$EJE."nav";
       $_ = "";
       // identificador
       $ope['nav']['ide'] = $ide;
@@ -489,7 +489,7 @@
 
         <header"._htm::atr($ope['cab']).">
         
-          {$cab_ico} {$cab_tit} "._doc::ico('eje_fin',[ 'title'=>'Cerrar', 'onclick'=>"$_eje('nav');" ])."
+          {$cab_ico} {$cab_tit} "._doc::ico('eje_fin',[ 'title'=>'Cerrar', 'onclick'=>"$_eje();" ])."
 
         </header>
 
@@ -976,7 +976,7 @@
           }
           if( !empty($_ima) || !empty( $_ima = _dat::val_ver('ima',$esq,$est,$atr) ) ){
             
-            $_ = _doc::ima( $_ima['esq'], $_ima['est'], $dat->$atr, $ele );
+            $_ = _doc::ima($_ima['esq'],$_ima['est'],$dat->$atr,$ele);
           }
           else{
             $_ = "<div class='err fon-roj' title='No existe la imagen para el atributo : _{$esq}-{$est}-{$atr}'>{$dat->$atr}</div>";
@@ -1246,17 +1246,20 @@
 
       if( !empty($ope['ide']) ) $_ide = $ope['ide'];
 
-      foreach( $opc as $ide ){        
-        $_ .= _doc_val::var('app',"val.acu.$ide", [
-          'ope'=> [ 
-            'id'=>"{$_ide}-{$ide}", 'val'=>isset($dat[$ide]) ? $dat[$ide] : NULL, 'onchange'=>$_eje_val
-          ],
-          'htm_fin'=>( !empty($ope['ope']['htm_fin']) ? $ope['ope']['htm_fin'] : '' ).( !empty($ope["var-{$ide}"]['htm_fin']) ? $ope["var-{$ide}"]['htm_fin'] : '' )
-        ]);
-      }
-      if( !empty($ope['htm_fin']) ){
-        $_ .= $ope['htm_fin'];
-      }
+      $_ .= "
+      <div class='ren'>";
+        foreach( $opc as $ide ){        
+          $_ .= _doc_val::var('app',"val.acu.$ide", [
+            'ope'=> [ 
+              'id'=>"{$_ide}-{$ide}", 'val'=>isset($dat[$ide]) ? $dat[$ide] : NULL, 'onchange'=>$_eje_val
+            ],
+            'htm_fin'=>( !empty($ope['ope']['htm_fin']) ? $ope['ope']['htm_fin'] : '' ).( !empty($ope["var-{$ide}"]['htm_fin']) ? $ope["var-{$ide}"]['htm_fin'] : '' )
+          ]);
+        }
+        if( !empty($ope['htm_fin']) ){
+          $_ .= $ope['htm_fin'];
+        } $_ .= "
+      </div>";
       return $_;
     }
     // sumatorias
@@ -1601,7 +1604,7 @@
               
               "._app_val::acu($ope['val']['acu'],[
                 'ide'=>$_ide, // agrego evento para ejecutar todos los filtros
-                'eje'=>"{$_eje}_acu(this); ".self::$EJE."dat_ver('dat',this);",
+                'eje'=>"{$_eje}_acu(this); ".self::$EJE.$tip."_ver();",
                 'ope'=>[ 'htm_fin'=>"<span><c class='sep'>(</c> <n>0</n> <c class='sep'>)</c></span>" ]
               ]); 
               $_ .= "
@@ -2293,9 +2296,9 @@
         // por acumulados
         if( isset($ope['val']['acu']) ){
           // agrego contenido por aplicacion
-          if( class_exists($cla  = "_{$esq}_tab") && method_exists($cla,"_ope") ){
+          if( class_exists($cla  = "_{$esq}") && method_exists($cla,"tab_ope") ){
 
-            $_ .= $cla::_ope($tip,$ope,$ele,...$opc);
+            $_ .= $cla::tab_ope($tip,$ope,$ele,...$opc);
           }
           $_ .= "
           <form ide = 'acu'>

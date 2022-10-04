@@ -31,25 +31,6 @@ DELETE FROM `_api`.`app_var` WHERE `esq`='hol';
   DELETE FROM `_api`.`app_var` WHERE `esq`='hol' AND `dat` = 'atr';
   INSERT INTO `_api`.`app_var` VALUES
 
-    -- sumatoria 
-      ('hol','atr','sum', 1, 'kin', '{ 
-        "atr":"ide",
-        "nom":"KIN",
-        "ope":{ "_tip":"num", "val":0, "max":260 },
-        "var_fic":"api.hol_kin"
-      }'),
-      ('hol','atr','sum', 2, 'psi', '{ 
-        "atr":"tzo",
-        "nom":"PSI",    
-        "ope":{ "_tip":"num", "val":0, "max":365 },
-        "var_fic":"api.hol_psi"
-      }'),  
-      ('hol','atr','sum', 3, 'umb', '{ 
-        "atr":"ide",
-        "nom":"UMB",    
-        "ope":{ "_tip":"num", "val":0, "max":441 }
-      }'),
-    --
     -- Portales de Activación
       ('hol','atr','pag', 1, 'cue', '{
         "nom":"Total",
@@ -136,7 +117,8 @@ DELETE FROM `_api`.`app_var` WHERE `esq`='hol';
   --
   -- Tablero : seccion + posicion + valores + seleccion
   DELETE FROM `_api`.`app_var` WHERE `esq`='hol' AND `dat` = 'tab'
-  ;  
+  ;
+  -- por secciones
   DELETE FROM `_api`.`app_var` WHERE `esq`='hol' AND `dat` = 'tab' AND `val` = 'sec';
   INSERT INTO `_api`.`app_var` VALUES
     
@@ -308,19 +290,17 @@ DELETE FROM `_api`.`app_var` WHERE `esq`='hol';
         "ope":{ "_tip":"opc_bin" }
       }')
   ;
+  -- por opciones
   DELETE FROM `_api`.`app_var` WHERE `esq`='hol' AND `dat` = 'tab' AND `val` = 'atr';
   INSERT INTO `_api`.`app_var` VALUES
 
-    ('hol','tab','atr', 1, 'sum', '{
-      "nom":"Sumatorias del kin"
-    }'),
-    ('hol','tab','atr', 2, 'pag', '{
+    ('hol','tab','atr', 1, 'pag', '{
       "nom":"Portales de Activación"
     }'),
-    ('hol','tab','atr', 3, 'par', '{
+    ('hol','tab','atr', 2, 'par', '{
       "nom":"Parejas del Oráculo"
     }'),
-    ('hol','tab','atr', 4, 'pul', '{
+    ('hol','tab','atr', 3, 'pul', '{
       "nom":"Pulsares de la Onda Encantada"
     }')
   ;

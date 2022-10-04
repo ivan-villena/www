@@ -20,24 +20,24 @@ body[cab="tab"][art] > main > article {
 }
 
 /* P.A.G. */
-:is(div,table):is([tab="kin-tzo"]) :is(._val-pag_kin,._val-pag_psi) {
+:is(div,table):is([tab="kin-tzo"]) :is(._hol-pag_kin,._hol-pag_psi) {
   background-color: var(--tra_ver) !important;
 }
-:is(div,table):not([tab="kin-tzo"]) :is(._val-pag_kin,._val-pag_psi) {
+:is(div,table):not([tab="kin-tzo"]) :is(._hol-pag_kin,._hol-pag_psi) {
   border: 1px solid var(--col_ver) !important;
 }
 
 /* Extensiones */
-:is(div,table)[tab] ._val-par_ana-ext { border: 1px solid var(--col_roj) !important; }
-:is(div,table)[tab] ._val-par_gui-ext { border: 1px solid var(--col_bla) !important; }
-:is(div,table)[tab] ._val-par_ant-ext { border: 1px solid var(--col_azu) !important; }
-:is(div,table)[tab] ._val-par_ocu-ext { border: 1px solid var(--col_ama) !important; }
+:is(div,table)[tab] ._hol-par_ana-ext { border: 1px solid var(--col_roj) !important; }
+:is(div,table)[tab] ._hol-par_gui-ext { border: 1px solid var(--col_bla) !important; }
+:is(div,table)[tab] ._hol-par_ant-ext { border: 1px solid var(--col_azu) !important; }
+:is(div,table)[tab] ._hol-par_ocu-ext { border: 1px solid var(--col_ama) !important; }
 
 /* Parejas */
-:is(div,table)[tab] ._val-par_ana { border: 1px solid var(--col_roj) !important; }
-:is(div,table)[tab] ._val-par_gui { border: 1px solid var(--col_bla) !important; }
-:is(div,table)[tab] ._val-par_ant { border: 1px solid var(--col_azu) !important; }
-:is(div,table)[tab] ._val-par_ocu { border: 1px solid var(--col_ama) !important; }
+:is(div,table)[tab] ._hol-par_ana { border: 1px solid var(--col_roj) !important; }
+:is(div,table)[tab] ._hol-par_gui { border: 1px solid var(--col_bla) !important; }
+:is(div,table)[tab] ._hol-par_ant { border: 1px solid var(--col_azu) !important; }
+:is(div,table)[tab] ._hol-par_ocu { border: 1px solid var(--col_ama) !important; }
 
 /* 
 Oráculo

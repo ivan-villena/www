@@ -3,27 +3,7 @@
 
 // documento
 class _doc {
-
-  // telcas : escape
-  static inp( $dat ){
-    let $={};
-
-    switch( $dat.keyCode ){
-    // Escape => ocultar modales
-    case 27: 
-      // menú contextual
-      if( $.men = document.querySelector(`ul.ope_opc:not(.${DIS_OCU})`) ){
-        $.men.classList.add(DIS_OCU);
-      }// pantallas
-      else if( $.win = document.querySelector(`#win:not(.${DIS_OCU}) article header .ico[ide="eje_fin"]`) ){ 
-        _app_ope.tog('win');
-      }// navegacion
-      else if( $.nav = document.querySelector(`aside.nav > [ide]:not(.${DIS_OCU})`) ){ 
-        _app_ope.tog('nav');
-      }
-      break;
-    }
-  }
+  
   // iconos
   static ico( $ide, $ele={} ){
 

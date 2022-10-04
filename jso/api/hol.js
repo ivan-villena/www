@@ -35,4 +35,9 @@ class _hol {
     }
     return $_;
   }
+  // imagen : _/hol
+  static ima( $est, $dat, $ele ){
+
+    return _doc.ima('api',`hol_${$est}`,$dat,$ele);
+  }
 }

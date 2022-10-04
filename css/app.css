@@ -303,9 +303,10 @@ div[tab] div[pos]:not([tab]) {
 /* Bordes */
 :is(div,table)[tab] :is(div,td)[pos].bor-1{
   border-color: #008000;
-}/* por seleccion */
-:is(div,table)[tab] :is(div,td)[pos][class*="_val-"][class*="-bor"] {  
-  border: 2px solid #991d99;
+}
+/* por seleccion */
+:is(div,table)[tab] :is(div,td)[pos][class*="_val-"][class*="-bor"] {
+  border: 1px solid #991d99;
 }
 /* fondos */
 :is(div,table)[tab] :is(div,td)[pos][onclick]:not([tab]):hover {

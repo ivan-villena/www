@@ -71,8 +71,8 @@ class _htm {
           $_ += _doc.ico($ele['ico'],$ele);
         }
         // por ficha
-        else if( $ele['fic'] ){
-          $.est = $ele['fic'].split('.');
+        else if( $ele['ima'] ){
+          $.est = $ele['ima'].split('.');
           $.est.push( !!($ele['ide']) ? $ele['ide'] : 0, $ele);
           $_ += _doc.ima(...$.est);
         }
@@ -1039,7 +1039,7 @@ class _ele {
     }
 
     $.lis = _lis.val($ele);
-    switch( $.tip[0] ){
+    switch( $.tip[0] ){    
     case 'nod':
       if( !$.tip[1] ){             
         $.htm = { 'main':'app', 'article':'art', 'form':'for', 'fieldset':'fie', 'div':'div' };
@@ -1055,14 +1055,27 @@ class _ele {
         }
       }
       break;
+    case 'htm': 
+      switch( $.tip[1] ){
+      // actualizacion creando elemento
+      case 'val': $.lis.forEach( $v => $_.push( $v.innerHTML = $val ) ); break;
+      case 'eli': $.lis.forEach( $v => { _lis.val($v.children).forEach( $v_2 => $_.push($v.removeChild($v_2)) ) } ); break;
+      }
+      break;
+    case 'atr': 
+      switch( $.tip[1] ){
+      case 'act': $.lis.forEach( $v => $_.push( $v.setAttribute($val,$ope) ) ); break;
+      case 'val': $.lis.forEach( $v => $_ = $v.getAttribute($val) ); break;
+      }    
+      break;
     case 'cla':
       switch( $.tip[1] ){
       case 'val': $.lis.forEach( $v => $_.push( $v.classList.contains($val) ) ); break;
       case 'pos': $.lis.forEach( $v => $_.push( $v.classList.item($val) ) ); break;
       case 'tog': $.lis.forEach( $v => $_.push( $v.classList.toggle($val) ) ); break;
-      case 'agr': $.lis.forEach( $v => $_.push( !$v.classList.contains($val) && $v.classList.add($val) ) ); break;
+      case 'agr': $.lis.forEach( $v => _lis.ite($val).forEach( $val_cla => $_.push( $v.classList.add($val_cla) ) ) ); break;
       case 'mod': $.lis.forEach( $v => $_.push( $v.classList.replace($val, $ope) ) ); break;
-      case 'eli': $.lis.forEach( $v => $_.push( $v.classList.remove($val) ) ); break;    
+      case 'eli': $.lis.forEach( $v => _lis.ite($val).forEach( $val_cla => $_.push( $v.classList.remove($val_cla) ) ) );break;    
       }
       break;
     case 'eje':
@@ -1080,13 +1093,8 @@ class _ele {
       case 'eli': break;
       }
       break;
-    case 'htm': 
-      switch( $.tip[1] ){
-      case 'val': $.lis.forEach( $v => $_.push( $v.innerHTML = $val ) ); break;
-      case 'eli': $.lis.forEach( $v => { _lis.val($v.children).forEach( $v_2 => $_.push($v.removeChild($v_2)) ) } ); break;
-      }
-      break;
-    }  
+    }
+    return $_;
   }
   // busco nodos
   static ver( $ele, $ope={} ){

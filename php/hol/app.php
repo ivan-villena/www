@@ -1115,7 +1115,7 @@
             // cargo datos
             $tab_ope['dat'] = _hol::dat( $ide, $_val );
             // acumulados
-            $tab_ope['val']['acu'] = [ 'pos'=>1, 'mar'=>1, 'ver'=>1 ];
+            $tab_ope['val']['acu'] = [ 'pos'=>1, 'mar'=>1, 'ver'=>1, 'opc'=>1 ];
           }
           // valor seleccionado
           $tab_ope['val']['pos'] = $_val;
@@ -1145,7 +1145,7 @@
         ];          
         // imprimo tablero en página principal
         echo _hol_tab::$ide($art_tab[1], $tab_ope, [ 
-          'pos'=>[ 'onclick'=>"_app_tab.dat('mar',this);" ]
+          'pos'=>[ 'onclick'=>"_app_tab.val('mar',this);" ]
         ], ...$tab_opc);
       }
       else{
@@ -1211,7 +1211,7 @@
       
           <n name='kin'>$_kin->ide</n>
 
-          "._doc::ima('api','hol_kin',$_kin,['class'=>"mar_hor-1", 'style'=>'min-width:3em; height:3em;'])."
+          "._hol::ima("kin",$_kin,['class'=>"mar_hor-1", 'style'=>'min-width:3em; height:3em;'])."
           
         </div>
 
@@ -1329,7 +1329,7 @@
             $_ .= "
             <div data-kin='{$_kin->ide}' id='kin-{$_kin->ide}'>
               <div class='hol-kin'>
-                "._doc::ima('api','hol_kin',$_kin->ide,['class'=>'mar-aut'])."
+                "._hol::ima("kin",$_kin->ide,['class'=>'mar-aut'])."
                 <p>
                   <b>KIN</b> <n>{$_kin->ide}</n><c>:</c> <c class='let_col-4-{$_kin->arm_cel_dia}'>"._doc::let(_tex::let_may($_kin->nom))."</c>
                   <br><q>"._doc::let($_kin->des)."</q>                  
@@ -1439,7 +1439,7 @@
         $_dat = _hol::_($est="kin_$atr",$_kin->$atr); 
         $_[0]['lis'] []= 
         
-        _doc::ima('api',"hol_{$est}",$_dat,['class'=>"tam-3 mar_der-1"])."
+        _hol::ima("{$est}",$_dat,['class'=>"tam-3 mar_der-1"])."
 
         <div class='tam-cre'>
           <p>"._doc::let( _app_dat::val('nom',"api.hol_{$est}",$_dat) )."</p>
@@ -1454,7 +1454,7 @@
         $_dat = _hol::_($est,$_kin->$atr); 
         $_[1]['lis'] []= 
         
-        _doc::ima('api',"hol_{$est}",$_dat,['class'=>"tam-3 mar_der-1"])."
+        _hol::ima("{$est}",$_dat,['class'=>"tam-3 mar_der-1"])."
 
         <div class='tam-cre'>
           <p>"._doc::let( _app_dat::val('nom',"api.hol_{$est}",$_dat) )."</p>
@@ -1469,7 +1469,7 @@
         
         $_[2]['lis'] []= 
         
-          _doc::ima('api',"hol_{$est}",$_dat,['class'=>"tam-3 mar_der-1"])."
+          _hol::ima("{$est}",$_dat,['class'=>"tam-3 mar_der-1"])."
 
           <div class='tam-cre'>
             <p>"._doc::let( _app_dat::val('nom',"api.hol_{$est}",$_dat) )."</p>
@@ -1484,7 +1484,7 @@
         $_dat = _hol::_($est = "sel_{$atr}",$_sel->$atr); 
         $_[3]['lis'] []= 
 
-          _doc::ima('api',"hol_{$est}",$_dat,['class'=>"tam-3 mar_der-1"])."
+          _hol::ima("{$est}",$_dat,['class'=>"tam-3 mar_der-1"])."
           
           <div class='tam-cre'>
             <p>"._doc::let( _app_dat::val('nom',"api.hol_{$est}",$_dat) )."</p>
@@ -1497,7 +1497,7 @@
         $_dat = _hol::_($est = "sel_{$atr}",$_sel->$atr); 
         $_[4]['lis'] []= 
 
-          _doc::ima('api',"hol_{$est}",$_dat,['class'=>"tam-3 mar_der-1"])."
+          _hol::ima("{$est}",$_dat,['class'=>"tam-3 mar_der-1"])."
           
           <div class='tam-cre'>
             <p>"._doc::let( _app_dat::val('nom',"api.hol_{$est}",$_dat) )."</p>
@@ -1510,7 +1510,7 @@
         $_dat = _hol::_($est = "sel_{$atr}",$_sel->$atr); 
         $_[5]['lis'] []= 
 
-          _doc::ima('api',"hol_{$est}",$_dat,['class'=>"tam-3 mar_der-1"])."
+          _hol::ima("{$est}",$_dat,['class'=>"tam-3 mar_der-1"])."
           
           <div class='tam-cre'>
             <p>"._doc::let( _app_dat::val('nom',"api.hol_{$est}",$_dat) )."</p>
@@ -1535,7 +1535,7 @@
       $_est = _hol::_('psi_est',$_psi->est); 
       $_[0]['lis'] []= 
         
-        _doc::ima('api',"hol_psi_est",$_est,['class'=>"tam-3 mar_der-1"])."
+        _hol::ima("psi_est",$_est,['class'=>"tam-3 mar_der-1"])."
 
         <div>
 
@@ -1543,7 +1543,7 @@
       $_hep = _hol::_('psi_hep',$_psi->hep); 
       $_[0]['lis'] []= 
         
-        _doc::ima('api',"hol_psi_hep",$_hep,['class'=>"tam-3 mar_der-1"])."
+        _hol::ima("psi_hep",$_hep,['class'=>"tam-3 mar_der-1"])."
 
         <div>
 
@@ -1554,7 +1554,7 @@
       $_lun = _hol::_('psi_lun',$_psi->lun); 
       $_[1]['lis'] []= 
         
-        _doc::ima('api',"hol_psi_lun",$_lun,['class'=>"tam-3 mar_der-1"])."
+        _hol::ima("psi_lun",$_lun,['class'=>"tam-3 mar_der-1"])."
 
         <div>
 
@@ -1562,7 +1562,7 @@
       $_arm = _hol::_('lun_arm',_num::ran($_psi->hep,'4')); 
       $_[1]['lis'] []= 
         
-        _doc::ima('api',"hol_lun_arm",$_arm,['class'=>"tam-3 mar_der-1"])."
+        _hol::ima("lun_arm",$_arm,['class'=>"tam-3 mar_der-1"])."
 
         <div>
 
@@ -1573,7 +1573,7 @@
       $_rad = _hol::_('rad',$_psi->hep_dia);
       $_[2]['lis'] []= 
         
-        _doc::ima('api',"hol_rad",$_rad,['class'=>"tam-3 mar_der-1"])."
+        _hol::ima("rad",$_rad,['class'=>"tam-3 mar_der-1"])."
 
         <div>
 
@@ -1608,11 +1608,11 @@
         </div>        
 
         <div class='val'>
-          "._doc::ima('api','hol_kin',$_kin,['class'=>"mar_hor-1"])."
+          "._hol::ima("kin",$_kin,['class'=>"mar_hor-1"])."
           <c>+</c>
-          "._doc::ima('api','hol_psi',$_psi,['class'=>"mar_hor-1"])."
+          "._hol::ima("psi",$_psi,['class'=>"mar_hor-1"])."
           <c>=></c>
-          "._doc::ima('api','hol_kin',$sum,['class'=>"mar_hor-1"])."
+          "._hol::ima("kin",$sum,['class'=>"mar_hor-1"])."
         </div>
 
       </section>";
@@ -1640,7 +1640,7 @@
             $nav = "<a href='http://localhost/hol/tab/kin-tzo/sin=$_lun->sin' target='_blank' title='Ver en Tableros...'>"._doc::let($_lun->sin)."</a>";
             $_lis_lun []= 
             "<div class='ite'>
-              "._doc::ima('api','hol_kin',$_kin,['class'=>"tam-6 mar_der-1"])."
+              "._hol::ima("kin",$_kin,['class'=>"tam-6 mar_der-1"])."
               <p>
                 "._doc::let(intval($_lun_ton->ide)."° ciclo, ").$nav._doc::let(" ( $_fec->val ).")."
                 <br>"._doc::let("$_lun_ton->ond_nom: $_lun_ton->ond_man")."
@@ -1657,7 +1657,7 @@
           $_lis_cic []= [
             'ite'=>[ 'eti'=>"div", 'class'=>"lis", 'htm'=> 
               "<div class='ite'>
-                "._doc::ima('api','hol_kin',$_kin,['class'=>"tam-6 mar_der-1"])."
+                "._hol::ima("kin",$_kin,['class'=>"tam-6 mar_der-1"])."
                 <p title = '$_cas->des'>
                   "._doc::let("$_cic->eda año".( $_cic->eda != 1 ? 's' : '' ).", $_cic->sin ( $_fec->val ):")."
                   <br>"._doc::let("Cuadrante $_cas_arm->col d{$_cas_arm->dir}: $_cas_arm->pod")."
@@ -1703,7 +1703,7 @@
       "._doc_num::ope('ran',$_ani->eda,[ 'min'=>0, 'max'=>51, 'class'=>"anc-100", 'disabled'=>1 ],'ver')."
 
       <div class='ite mar_ver-1'>
-        "._doc::ima('api','hol_cas_arm',$_cas_arm,[ 'class'=>"tam-7 mar_der-2" ])."
+        "._hol::ima("cas_arm",$_cas_arm,[ 'class'=>"tam-7 mar_der-2" ])."
         <div class='let-3'>
           <p class='let-tit'>"._doc::let($_ani_arm->nom)."</p>
           <p>$_cas_arm->nom<c>:</c> $_cas_arm->col<c>,</c> $_cas_arm->pod<c>.</c></p>
@@ -1731,7 +1731,7 @@
       "._doc_num::ope('ran',$_lun->ide,[ 'min'=>1, 'max'=>13, 'class'=>"anc-100", 'disabled'=>1 ],'ver')."
 
       <div class='ite mar_ver-1'>
-        "._doc::ima('api','hol_ton',$_lun_ton,[ 'class'=>"tam-7 mar_der-2" ])."
+        "._hol::ima("ton",$_lun_ton,[ 'class'=>"tam-7 mar_der-2" ])."
         <div class='let-3'>
           <p>$_lun_ton->ond_nom<c>:</c> $_lun_ton->ond_pod</p>          
         </div>

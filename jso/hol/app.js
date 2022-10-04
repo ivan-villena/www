@@ -34,15 +34,15 @@ class _hol_app {
     
     // Actualizo total por item
     if( $ope.nextElementSibling && ( $.tot = $ope.nextElementSibling.querySelector('n') ) ){
-      $.tot.innerHTML = $_app.tab.lis.querySelectorAll(`._val-${$.ide}_${$.var_ide}`).length;
+      $.tot.innerHTML = $_app.tab.lis.querySelectorAll(`._hol-${$.ide}_${$.var_ide}`).length;
     }    
     // Actualizo total general
     if( $.tot = $_app.var.querySelector('div.atr > [name="cue"]') ){
-      $.tot.innerHTML = $_app.tab.lis.querySelectorAll(`[class*="_val-${$.ide}_"]`).length;
+      $.tot.innerHTML = $_app.tab.lis.querySelectorAll(`[class*="_hol-${$.ide}_"]`).length;
     }
 
     // Actualizo operador de acumulados
-    _app_tab.act('mar');
+    _app_tab.act('opc');
   }
   
   // Secciones por tablero
@@ -285,9 +285,7 @@ class _hol_app {
 
     $.ide = `pag_${$.var_ide}`;
 
-    $.cla = `_val-${$.ide}`;
-
-    $.cla_mar = `_val-mar-${$.ide}`;
+    $.cla = [`_hol-${$.ide}`, "_val-opc","_val-opc-fon"];
 
     $.tab = $_app.tab.ide;
 
@@ -302,10 +300,8 @@ class _hol_app {
 
           if( $dat.checked ){
             _ele.act('cla_agr',$pos,$.cla);
-            _ele.act('cla_agr',$pos,$.cla_mar);
           }else{            
             _ele.act('cla_eli',$pos,$.cla);
-            _ele.act('cla_eli',$pos,$.cla_mar);
           }
         }
       });
@@ -323,10 +319,8 @@ class _hol_app {
 
           if( $dat.checked ){ 
             _ele.act('cla_agr',$pos,$.cla);
-            _ele.act('cla_agr',$pos,$.cla_mar);
           }else{
             _ele.act('cla_eli',$pos,$.cla);
-            _ele.act('cla_eli',$pos,$.cla_mar);
           }
         }
       });
@@ -343,9 +337,7 @@ class _hol_app {
 
     $.ide = `par_${$.var_ide}`;
 
-    $.cla = `_val-${$.ide}`;    
-
-    $.cla_mar = `_val-mar-${$.ide}`;
+    $.cla = [`_hol-${$.ide}`, "_val-opc","_val-opc-fon"];
 
     $._par_lis = ['ana','gui','ant','ocu'];      
     // marcar todos los patrones del oráculo
@@ -361,8 +353,7 @@ class _hol_app {
       if( $._par_lis.includes($.var_ide) ){
 
         // desmarco todos los anteriores
-        _ele.act('cla_eli',$_app.tab.lis.querySelectorAll(`.${$.cla}`),$.cla);
-        _ele.act('cla_eli',$_app.tab.lis.querySelectorAll(`.${$.cla_mar}`),$.cla_mar);
+        _ele.act('cla_eli',$_app.tab.lis.querySelectorAll(`.${$.cla[0]}`),$.cla);
         
         // marco correspondientes
         if( $dat.checked ){
@@ -371,7 +362,6 @@ class _hol_app {
           ).forEach(
             $ele =>{ 
               _ele.act('cla_agr',$ele,$.cla);
-              _ele.act('cla_agr',$ele,$.cla_mar);
             }
           )
         }
@@ -384,18 +374,17 @@ class _hol_app {
         
         $.val_tot = 0;
         $._par_lis.forEach( $i => {
-          // elimino marcas previas + marco extensiones por pareja
-          $.cla     = `_val-par_${$i}-ext`;
-          $.cla_mar = `_val-mar-par_${$i}-ext`;
 
-          _ele.act('cla_eli',$_app.tab.lis.querySelectorAll(`.${$.cla}`),$.cla);          
-          _ele.act('cla_eli',$_app.tab.lis.querySelectorAll(`.${$.cla_mar}`),$.cla_mar);
+          // elimino marcas previas + marco extensiones por pareja
+          $.cla[0] = `_hol-par_${$i}-ext`;
+          _ele.act('cla_eli',$_app.tab.lis.querySelectorAll(`.${$.cla[0]}`),$.cla);
 
           // marco extensiones
-          if( 
-            $dat.checked && $_app.var.querySelector(`[name="${$i}"]`).checked 
-            && 
-            ( $.ele = $_app.tab.lis.querySelector(`${$_app.tab.cla}[api-hol_kin="${_hol._('kin',$.kin)[`par_${$i}`]}"]`) ) 
+          if( $dat.checked 
+            && $_app.var.querySelector(`[name="${$i}"]`).checked 
+            && ( $.ele = $_app.tab.lis.querySelector(
+              `${$_app.tab.cla}[api-hol_kin="${_hol._('kin',$.kin)[`par_${$i}`]}"]`
+            ) ) 
           ){
             $._kin = _hol._('kin',$.ele.getAttribute('api-hol_kin'));
 
@@ -406,7 +395,6 @@ class _hol_app {
               ).forEach( $ele_ext => {
                   $.val_tot++;
                   _ele.act('cla_agr',$ele_ext,$.cla);
-                  _ele.act('cla_agr',$ele_ext,$.cla_mar);
                 }
               )
             });
@@ -439,9 +427,7 @@ class _hol_app {
 
     $.ide = `pul_${$.var_ide}`;
 
-    $.cla = `_val-${$.ide}`;
-
-    $.cla_mar = `_val-mar-${$.ide}`;
+    $.cla = [`_hol-${$.ide}`,"_val-opc","_val-opc-fon"];
 
     $.tab = $_app.tab.ide;
 
@@ -449,8 +435,7 @@ class _hol_app {
     _ele.act('htm_eli',$_app.tab.lis.querySelectorAll(`[sec="ond"][data-pul="${$.var_ide}"]`));
     
     // inicializo acumulados
-    _ele.act('cla_eli',$_app.tab.lis.querySelectorAll(`${$_app.tab.cla}.${$.cla}`),$.cla);
-    _ele.act('cla_eli',$_app.tab.lis.querySelectorAll(`${$_app.tab.cla}.${$.cla_mar}`),$.cla_mar);
+    _ele.act('cla_eli',$_app.tab.lis.querySelectorAll(`.${$.cla[0]}`),$.cla);
     
     // posicion principal por kin      
     if( $dat.checked && ( $.pos = $_app.tab.lis.querySelector(`${$_app.tab.cla}[api-hol_kin="${$.kin}"]`) ) ){
@@ -486,13 +471,12 @@ class _hol_app {
 
           if( $.ton_pul == $.ton[$.pul_ide] ){
             $e.classList.add($.cla);
-            $e.classList.add($.cla_mar);
           }
         });
         // muestro pulsares de la o.e.
         $_app.tab.lis.querySelectorAll(`[sec^="ond"][data-pul="${$.var_ide}"]`).forEach( $e => {
           
-          $e.innerHTML += _doc.ima('api',`hol_ton_${$.var_ide}`, $.ton_pul, {'class':'fon'} );
+          $e.innerHTML += _hol.ima(`ton_${$.var_ide}`, $.ton_pul, {'class':'fon'} );
         });
       }
     }

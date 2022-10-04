@@ -699,9 +699,9 @@
           elseif( isset($ele['ico']) ){
             $_ .= _doc::ico($ele['ico'],$ele);
           }
-          // por ficha
-          elseif( isset($ele['fic']) ){
-            $est = explode('.',$ele['fic']);
+          // por imagen
+          elseif( isset($ele['ima']) ){
+            $est = explode('.',$ele['ima']);
             array_push($est,!empty($ele['ide'])?$ele['ide']:0,$ele);
             $_ .= _doc::ima(...$est);
           }
