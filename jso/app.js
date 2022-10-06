@@ -28,7 +28,7 @@ class _app {
     acu : [ "pos", "mar", "ver", "opc" ],
     // filtros
     ver : {
-      val : `form[ide = "dat"] select[name="val"]`,
+      val : `form[ide = "val"] select[name="val"]`,
       fec : `form[ide = "fec"] input[name="ini"]`,
       pos : `form[ide = "pos"] input[name="ini"]`
     }
@@ -598,17 +598,17 @@ class _app_val {
 
     $.cla_val = `_val-ver`;
     $.cla_ide = `${$.cla_val}_${$tip}`;
-
-    _ele.act('cla_eli',$dat,$.cla_ide);
-    _ele.act('cla_eli',$dat,$.cla_val);
+    
+    _ele.act('cla_eli',$dat,[$.cla_val, $.cla_ide]);
 
     $_app.var = $ope.querySelector(`form[ide="${$tip}"]`);
 
     // datos de la base : estructura > valores [+ima]
-    if( $tip == 'dat' ){
+    if( $tip == 'val' ){
+
       $.dat_est = $_app.var.querySelector(`[name="est"]`);
       $.dat_ide = $_app.var.querySelector(`[name="ver"]`);
-      $.dat_val = $_app.var.querySelector(`[name="val"]`);
+      $.dat_val = $_app.var.querySelector(`[name="val"]`);     
 
       // actualizo dependencia
       if( $.dat_ide.value && $.dat_val.value ){
@@ -619,11 +619,7 @@ class _app_val {
 
           if( ( $.dat = _dat.get($.esq,$.est,$e.getAttribute(`${$.esq}-${$.est}`)) ) ){
 
-            if( $.dat[$.atr] == $.dat_val.value ){
-
-              $e.classList.add($.cla_ide);
-              $e.classList.add($.cla_val);
-            } 
+            if( $.dat[$.atr] == $.dat_val.value ) _ele.act('cla_agr',$e,[$.cla_val, $.cla_ide]);
           }
         });
       }
@@ -646,7 +642,7 @@ class _app_val {
       
       // valido: si el inicio es mayor que el final
       if( $.val.ini && $.val.ini > $.val.fin ){
-        
+
         $_app.var.querySelector(`[name="ini"]`).value = $.val.ini = $.val.fin;
       }
       // si el final es mejor que el inicio
@@ -655,26 +651,26 @@ class _app_val {
         $_app.var.querySelector(`[name="fin"]`).value = $.val.fin = $.val.ini;
       }    
       // inicializo incremento
+      $.inc_val = 1;
       if( ( !$.val.inc || $.val.inc <= 0 ) && ( $.ite = $_app.var.querySelector(`[name="inc"]`) ) ){
         $.ite.value = $.val.inc = 1;
       }
-      $.inc_val = 1;
       // inicializo limites desde
       if( !$.val.fin 
         && ( $.ite = $_app.var.querySelector(`[name="fin"]`) ) && ( $.max = $.ite.getAttribute('max') ) 
       ){
         $.val.fin = $.max;
       }
-      // filtro por posicion de lista
+      // filtro por posicion de lista      
       if( $tip == 'pos' ){
         
         $dat.forEach( $e => {
           // valor por desde-hasta
           $.pos_val = $e.getAttribute('pos');
           if( $.inc_val == 1 && $.pos_val >= $.val.ini && $.pos_val <= $.val.fin ){
-            $e.classList.add($.cla_ide); 
-            $e.classList.add($.cla_val); 
-          }// aplico salto
+            _ele.act('cla_agr',$e,[$.cla_val, $.cla_ide]);
+          }
+          // aplico salto
           $.inc_val++;
           if( $.inc_val > $.val.inc ) $.inc_val = 1;
         });
@@ -686,11 +682,12 @@ class _app_val {
         $.val.fin = $.val.fin ? $.val.fin.split('-') : '';
 
         $dat.forEach( $e => {
-          // valor por desde-hasta
+          // desde-hasta
           if( $.inc_val == 1 && _fec.ver( $e.getAttribute('api-fec'), $.val.ini, $.val.fin ) ){
-            $e.classList.add($.cla_ide);
-            $e.classList.add($.cla_val);
-          }// aplico salto
+
+            _ele.act('cla_agr',$e,[$.cla_val, $.cla_ide]);
+          }
+          // aplico salto
           $.inc_val++;
           if( $.inc_val > $.val.inc ) $.inc_val = 1;
         });
@@ -706,10 +703,7 @@ class _app_val {
         $.lim_cue = 0;
         $.lis.forEach( $e => {
           $.lim_cue ++;
-          if( $.lim_cue > $.val.lim ){
-            $e.classList.remove($.cla_ide);
-            $e.classList.remove($.cla_val);
-          }
+          if( $.lim_cue > $.val.lim ) _ele.act('cla_eli',$e,[$.cla_val, $.cla_ide]);
         });
       }
     }
@@ -1070,7 +1064,7 @@ class _app_tab {
         $_app.tab.lis.querySelectorAll($_app.tab.cla).forEach( $e => {
           $.htm = '';
           $.ele = { 'title' : false };
-          if( $.ima.pos || $.ima.ver || $.ima.mar ){
+          if( $.ima.pos || $.ima.mar || $.ima.ver || $.ima.opc ){
 
             if( $.ima.pos && $e.classList.contains('_val-pos') ){ 
               $.htm = _app.dat_ima($e,$);
@@ -1079,6 +1073,9 @@ class _app_tab {
               $.htm = _app.dat_ima($e,$);
             }
             else if( $.ima.ver && $e.classList.contains('_val-ver') ){ 
+              $.htm = _app.dat_ima($e,$);
+            }
+            else if( $.ima.opc && $e.classList.contains('_val-opc') ){ 
               $.htm = _app.dat_ima($e,$);
             }
           }// todos
@@ -1210,7 +1207,7 @@ class _app_est {
           $.tot = 0;
           if( $.val.checked ){
             // recorro seleccionados
-            $_app.tab.lis.querySelectorAll(`tr[pos]._val-${$ide}`).forEach( $e =>{
+            $_app.tab.lis.querySelectorAll(`[pos]._val-${$ide}`).forEach( $e =>{
               
               if( $.ele = $_app.est.lis.querySelector(
                 `tr[pos][${$.esq}-${$.est}="${$e.getAttribute(`${$.esq}-${$.est}`)}"].${DIS_OCU}`
@@ -1227,7 +1224,7 @@ class _app_est {
         }          
       });
     }
-  }// filtros : datos + posicion + atributos
+  }// filtros : Valores + Fecha + Posicion
   static val_ver( $tip, $dat, $ope, ...$opc ){
 
     let $ = _doc_val.var($dat);

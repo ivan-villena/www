@@ -433,7 +433,7 @@
         $_ = "{-_-} la Fecha {$val} no es Válida"; 
       }
       return $_;
-    }    
+    }
     // genero acumulados por valor principal
     static function dat( string $est, array $dat, array $ope = [] ) : array {
       $_ = [];
@@ -842,24 +842,6 @@
       <{$pos_eti}"._htm::atr($e).">
         {$htm}
       </{$pos_eti}>";
-    }// Operadores : 
-    static function tab_ope( string $tip, array $ope = [], array $ele = [], ...$opc ) : string {
-      $_ = "";
-      switch( $tip ){
-      case 'val': 
-        $_ = "      
-        <form ide = 'sum'>
-  
-          <fieldset class='inf ren' data-esq='api' data-est='hol_kin'>
-            <legend>Sumatorias del Kin</legend>
-  
-            "._app_val::sum('hol.kin', isset($ope['val']['pos']['kin']) ? $ope['val']['pos']['kin'] : NULL )."
-  
-          </fieldset>
-        </form>";
-        break;
-      }
-      return $_;
     }    
   }
 
@@ -883,7 +865,6 @@
 
       return $_;
     }
-
   }
   
   // Ficha : por valor => imagen + ( nombre + descripcion ) + ...atributos + ...detalles
@@ -3178,3 +3159,369 @@
       return $_;
     }
   }
+
+  // Diario : kin + psi + sin + umb
+  class _hol_dia {
+
+    static string $IDE = "_hol_dia-";
+    static string $EJE = "_hol_dia.";
+
+    // ciclos del orden sincronico
+    static function kin( mixed $dat, array $ope = [], ...$opc ) : string {
+      $_ = [];
+      if( !isset($ope['lis']) ) $ope['lis'] = [];
+
+      $_kin = _hol::_('kin',$dat);
+      $_sel = _hol::_('sel',$_kin->arm_tra_dia);
+      $_ton = _hol::_('ton',$_kin->nav_ond_dia);
+      $_kin_atr = _dat::atr('api',"hol_kin");
+      
+      $_est = [
+        'arm_tra_dia'=>[ 'cue'=>20, 'est'=>"sel" ],
+        'arm_cel_dia'=>[ 'cue'=>4,  'est'=>"sel_arm_raz" ],
+        'cro_est_dia'=>[ 'cue'=>65, 'est'=>"chi" ],
+        'cro_ele_dia'=>[ 'cue'=>5,  'est'=>"sel_cro_fam" ],
+        'nav_cas_dia'=>[ 'cue'=>52, 'est'=>"cas" ],
+        'nav_ond_dia'=>[ 'cue'=>13, 'est'=>"ton" ],
+      ];
+      
+      $_[0] = [ 'ite'=>"Nave del Tiempo", 'lis'=>[] ];
+      foreach( [ 'nav_cas'=>52, 'nav_ond'=>13 ] as $atr => $cue ){ 
+        $_dat = _hol::_($est="kin_$atr",$_kin->$atr); 
+        $_[0]['lis'] []= 
+        
+        _hol::ima("{$est}",$_dat,['class'=>"tam-3 mar_der-1"])."
+
+        <div class='tam-cre'>
+          <p>"._doc::let( _app_dat::val('nom',"api.hol_{$est}",$_dat) )."</p>
+          <p>Día <n>{$_kin->{"{$atr}_dia"}}</n> de <n>$cue</n></p>
+          <p>"._doc_num::ope('ran',$_kin->{"{$atr}_dia"},[ 'min'=>1, 'max'=>$cue, 'disabled'=>"", 'class'=>"anc-100"],'ver')."</p>            
+        </div>";          
+      }        
+
+      $_[1] = [ 'ite'=>"Giro Galáctico", 'lis'=>[] ];
+      foreach( [ 'arm_tra'=>13, 'arm_tra_dia'=>20, 'arm_cel'=>65, 'arm_cel_dia'=>4 ] as $atr => $cue ){ 
+        $est = isset($_est[$atr]['est']) ? $_est[$atr]['est'] : "kin_$atr"; 
+        $_dat = _hol::_($est,$_kin->$atr); 
+        $_[1]['lis'] []= 
+        
+        _hol::ima("{$est}",$_dat,['class'=>"tam-3 mar_der-1"])."
+
+        <div class='tam-cre'>
+          <p>"._doc::let( _app_dat::val('nom',"api.hol_{$est}",$_dat) )."</p>
+          <p>"._doc::let( _app_dat::val('des',"api.hol_{$est}",$_dat) )."</p>
+          <p>"._doc_num::ope('ran',$_kin->$atr,[ 'min'=>1, 'max'=>$cue, 'disabled'=>"", 'class'=>"anc-100"],'ver')."</p>          
+        </div>";
+      }
+
+      $_[2] = [ 'ite'=>"Giro Espectral", 'lis'=>[] ];
+      foreach( [ 'cro_est'=>65, 'cro_ele'=>5 ] as $atr => $cue ){ 
+        $_dat = _hol::_($est="kin_$atr",$_kin->$atr); 
+        
+        $_[2]['lis'] []= 
+        
+          _hol::ima("{$est}",$_dat,['class'=>"tam-3 mar_der-1"])."
+
+          <div class='tam-cre'>
+            <p>"._doc::let( _app_dat::val('nom',"api.hol_{$est}",$_dat) )."</p>
+            <p>Día <n>{$_kin->{"{$atr}_dia"}}</n> de <n>$cue</n></p>
+            <p>"._doc_num::ope('ran',$_kin->{"{$atr}_dia"},[ 'min'=>1, 'max'=>$cue, 'disabled'=>"", 'class'=>"anc-100"],'ver')."</p>
+          </div>          
+        ";          
+      } 
+
+      $_[3] = [ 'ite'=>"Holon Solar", 'lis'=>[] ];
+      foreach( ['sol_pla','sol_cel','sol_cir'] as $atr ){ 
+        $_dat = _hol::_($est = "sel_{$atr}",$_sel->$atr); 
+        $_[3]['lis'] []= 
+
+          _hol::ima("{$est}",$_dat,['class'=>"tam-3 mar_der-1"])."
+          
+          <div class='tam-cre'>
+            <p>"._doc::let( _app_dat::val('nom',"api.hol_{$est}",$_dat) )."</p>
+          </div>              
+        ";          
+      }
+
+      $_[4] = [ 'ite'=>"Holon Planetario", 'lis'=>[] ];
+      foreach( ['pla_cen','pla_hem','pla_mer'] as $atr ){ 
+        $_dat = _hol::_($est = "sel_{$atr}",$_sel->$atr); 
+        $_[4]['lis'] []= 
+
+          _hol::ima("{$est}",$_dat,['class'=>"tam-3 mar_der-1"])."
+          
+          <div class='tam-cre'>
+            <p>"._doc::let( _app_dat::val('nom',"api.hol_{$est}",$_dat) )."</p>
+          </div>              
+        ";
+      }
+
+      $_[5] = [ 'ite'=>"Holon Humano", 'lis'=>[] ];
+      foreach( ['hum_cen','hum_ext','hum_ded','hum_mer'] as $atr ){ 
+        $_dat = _hol::_($est = "sel_{$atr}",$_sel->$atr); 
+        $_[5]['lis'] []= 
+
+          _hol::ima("{$est}",$_dat,['class'=>"tam-3 mar_der-1"])."
+          
+          <div class='tam-cre'>
+            <p>"._doc::let( _app_dat::val('nom',"api.hol_{$est}",$_dat) )."</p>
+          </div>              
+        ";
+      }              
+
+      $ope['lis-1'] = [ 'class'=>"ite" ];
+      return _doc_lis::val($_,$ope);
+    }    
+    // ciclos del orden ciclico
+    static function psi( mixed $dat, array $ope = [], ...$opc ) : string {
+      $_ = []; $esq = 'hol';
+      if( !isset($ope['lis']) ) $ope['lis'] = [];
+
+      $_psi = _hol::_('psi',$dat);
+      $_lun = _hol::_('lun',$_psi->lun);
+      $_rad = _hol::_('rad',$_psi->hep_dia);
+      $ope['lis']['ide'] = 'psi';         
+
+      $_[0] = [ 'ite'=>"Estación Solar", 'lis'=>[] ];
+      $_est = _hol::_('psi_est',$_psi->est); 
+      $_[0]['lis'] []= 
+        
+        _hol::ima("psi_est",$_est,['class'=>"tam-3 mar_der-1"])."
+
+        <div>
+
+        </div>"; 
+      $_hep = _hol::_('psi_hep',$_psi->hep); 
+      $_[0]['lis'] []= 
+        
+        _hol::ima("psi_hep",$_hep,['class'=>"tam-3 mar_der-1"])."
+
+        <div>
+
+        </div>
+      ";
+
+      $_[1] = [ 'ite'=>"Giro Lunar", 'lis'=>[] ];
+      $_lun = _hol::_('psi_lun',$_psi->lun); 
+      $_[1]['lis'] []= 
+        
+        _hol::ima("psi_lun",$_lun,['class'=>"tam-3 mar_der-1"])."
+
+        <div>
+
+        </div>";
+      $_arm = _hol::_('lun_arm',_num::ran($_psi->hep,'4')); 
+      $_[1]['lis'] []= 
+        
+        _hol::ima("lun_arm",$_arm,['class'=>"tam-3 mar_der-1"])."
+
+        <div>
+
+        </div>
+      ";
+
+      $_[2] = [ 'ite'=>"Héptada", 'lis'=>[] ];
+      $_rad = _hol::_('rad',$_psi->hep_dia);
+      $_[2]['lis'] []= 
+        
+        _hol::ima("rad",$_rad,['class'=>"tam-3 mar_der-1"])."
+
+        <div>
+
+        </div>
+      ";        
+      
+      $ope['lis-1'] = [ 'class'=>"ite" ];
+      return _doc_lis::val($_,$ope);
+    }
+  }
+  
+  // Usuario : ficha + tránsitos + firma galáctica
+  class _hol_usu {
+      
+    // ficha
+    static function fic( array $ope = [], ...$opc ) : string {
+      $_ = "";
+      global $_usu;      
+      $_fec = _api::_('fec',$_usu->fec);
+      $_kin = _hol::_('kin',$_usu->kin);
+      $_psi = _hol::_('psi',$_usu->psi);
+      // sumatoria : kin + psi
+      $sum = $_kin->ide + $_psi->tzo;
+
+      // nombre + fecha : kin + psi
+      $_ = "
+      <section class='inf ren esp-ara'>
+
+        <div>
+          <p class='let-tit let-3 mar_aba-1'>"._doc::let("$_usu->nom $_usu->ape")."</p>
+          <p>"._doc::let($_fec->val." ( $_usu->eda años )")."</p>
+        </div>        
+
+        <div class='val'>
+          "._hol::ima("kin",$_kin,['class'=>"mar_hor-1"])."
+          <c>+</c>
+          "._hol::ima("psi",$_psi,['class'=>"mar_hor-1"])."
+          <c>=></c>
+          "._hol::ima("kin",$sum,['class'=>"mar_hor-1"])."
+        </div>
+
+      </section>";
+
+      return $_;
+    }    
+
+    // tránsitos : listado
+    static function cic_nav( array $ope = [], ...$opc ) : string {
+      $_ = "";
+      global $_usu;
+      foreach(['nav','lis','dep','opc'] as $eti ){ if( !isset($ope["$eti"]) ) $ope["$eti"] = []; }
+      $opc_des = !in_array('not-des',$opc);
+      // listado
+      $_lis = [];
+      foreach( _dat::get('_api.usu_cic') as $_arm ){
+        $_lis_cic = [];
+        foreach( _dat::get("_api.usu_cic_ani",[ 'ver'=>"`usu` = '{$_usu->ide}' AND `arm` = $_arm->ide", 'ord'=>"`ide` ASC" ]) as $_cic ){
+          // ciclos lunares
+          $_lis_lun = [];
+          foreach( _dat::get("_api.usu_cic_lun",[ 'ver'=>"`usu` = '{$_usu->ide}' AND `ani` = $_cic->ide", 'ord'=>"`ide` ASC" ]) as $_lun ){                            
+            $_fec = _api::_('fec',$_lun->fec);
+            $_lun_ton = _hol::_('ton',$_lun->ide);
+            $_kin = _hol::_('kin',$_lun->kin);
+            $nav = "<a href='http://localhost/hol/tab/kin-tzo/sin=$_lun->sin' target='_blank' title='Ver en Tableros...'>"._doc::let($_lun->sin)."</a>";
+            $_lis_lun []= 
+            "<div class='ite'>
+              "._hol::ima("kin",$_kin,['class'=>"tam-6 mar_der-1"])."
+              <p>
+                "._doc::let(intval($_lun_ton->ide)."° ciclo, ").$nav._doc::let(" ( $_fec->val ).")."
+                <br>"._doc::let("$_lun_ton->ond_nom: $_lun_ton->ond_man")."
+              </p>              
+            </div>
+            <p class='mar-1 tex_ali-cen'>"._hol_des::kin('enc',$_kin)."</p>";
+          }
+          // ciclo anual
+          $_fec = _api::_('fec',$_cic->fec);
+          $_cas = _hol::_('cas',$_cic->ide);
+          $_cas_ton = _hol::_('ton',$_cic->ton);
+          $_cas_arm = _hol::_('cas_arm',$_cic->arm);            
+          $_kin = _hol::_('kin',$_cic->kin);            
+          $_lis_cic []= [
+            'ite'=>[ 'eti'=>"div", 'class'=>"lis", 'htm'=> 
+              "<div class='ite'>
+                "._hol::ima("kin",$_kin,['class'=>"tam-6 mar_der-1"])."
+                <p title = '$_cas->des'>
+                  "._doc::let("$_cic->eda año".( $_cic->eda != 1 ? 's' : '' ).", $_cic->sin ( $_fec->val ):")."
+                  <br>"._doc::let("Cuadrante $_cas_arm->col d{$_cas_arm->dir}: $_cas_arm->pod")."
+                  <br>"._doc::let("$_cas_ton->ond_nom: $_cas_ton->ond_man")."                
+                </p>
+              </div>
+              <p class='mar-1 tex_ali-cen'>"._hol_des::kin('enc',$_kin)."</p>"
+            ],
+            'lis'=>$_lis_lun
+          ];
+        }
+        $_lis []= [ 'ite'=>$_arm->nom, 'lis'=>$_lis_cic ];
+      }
+      // configuro listado
+      _ele::cla($ope['dep'],DIS_OCU);
+      $ope['opc'] = [ 'tog', 'ver', 'cue', 'tog_dep' ];
+      return _doc_lis::val($_lis,$ope);
+    }
+    // tránsitos : informe
+    static function cic_inf( array $ele = [], ...$opc ) : string {
+      $dat = _usu::cic_dat();
+      $_ = "
+      <section>
+        "._hol_usu::cic_inf_ani( $dat, $ele, ...$opc )."
+        "._hol_usu::cic_inf_lun( $dat, $ele, ...$opc )."
+        "._hol_usu::cic_inf_dia( $dat, $ele, ...$opc )."
+      </section>"; 
+      return $_;
+    }// informe anual
+    static function cic_inf_ani( array $dat, array $ele = [], ...$opc ) : string {
+      global $_usu;      
+      $_ani = $dat['ani'];
+      $_cas_arm = _hol::_('cas_arm',$dat['ani']->arm);
+      $_ani_arm = _dat::get('_api.usu_cic',['ver'=>"`ide` = $_ani->arm",'opc'=>"uni"]);
+      $_ani_fec = _api::_('fec',$_ani->fec);      
+      $_ani_ton = _hol::_('ton',$dat['ani']->ton);
+      $_kin = _hol::_('kin',$_ani->kin);
+      $_ = "
+      <h3>Tránsito Anual</h3>
+
+      <p>"._doc::let("#$_ani->eda de 51: desde el $_ani_fec->val")."</p>
+
+      "._doc_num::ope('ran',$_ani->eda,[ 'min'=>0, 'max'=>51, 'class'=>"anc-100", 'disabled'=>1 ],'ver')."
+
+      <div class='ite mar_ver-1'>
+        "._hol::ima("cas_arm",$_cas_arm,[ 'class'=>"tam-7 mar_der-2" ])."
+        <div class='let-3'>
+          <p class='let-tit'>"._doc::let($_ani_arm->nom)."</p>
+          <p>$_cas_arm->nom<c>:</c> $_cas_arm->col<c>,</c> $_cas_arm->pod<c>.</c></p>
+          <p>$_ani_ton->ond_nom<c>:</c> $_ani_ton->ond_pod</p>
+          <p>"._doc_num::ope('ran',$_ani->ton,[ 'min'=>1, 'max'=>13, 'class'=>"anc-100", 'disabled'=>1 ],'ver')."</p>
+        </div>
+      </div>
+
+      "._hol_fic::kin('enc',$_kin,[ 'ima'=>[] ])."
+
+      ";
+      return $_;
+    }// informe lunar
+    static function cic_inf_lun( array $dat, array $ele = [], ...$opc ) : string {
+      global $_usu;
+      $_lun = $dat['lun'];
+      $_lun_fec = _api::_('fec',$_lun->fec);
+      $_lun_ton = _hol::_('ton',$_lun->ide);
+      $_kin = _hol::_('kin',$_lun->kin);
+      $_ = "
+      <h3>Tránsito Lunar</h3>
+
+      <p>"._doc::let("#$_lun->ide de 13: desde el $_lun_fec->val")."</p>
+
+      "._doc_num::ope('ran',$_lun->ide,[ 'min'=>1, 'max'=>13, 'class'=>"anc-100", 'disabled'=>1 ],'ver')."
+
+      <div class='ite mar_ver-1'>
+        "._hol::ima("ton",$_lun_ton,[ 'class'=>"tam-7 mar_der-2" ])."
+        <div class='let-3'>
+          <p>$_lun_ton->ond_nom<c>:</c> $_lun_ton->ond_pod</p>          
+        </div>
+      </div>
+
+
+      "._hol_fic::kin('enc', $_kin, [ 'atr'=>[] ])."
+
+      ";
+      return $_;
+    }// informe diario
+    static function cic_inf_dia( array $dat, array $ele = [], ...$opc ) : string {
+      global $_usu;
+      $_dat = _hol::val( date('Y/m/d') );
+      $_kin = _hol::_('kin',$dat['dia']->kin);
+
+      $_ = "
+      <h3>Tránsito Diario</h3>
+
+      "._hol_fic::kin('enc',$_kin,[ 'ima'=>[] ])."
+
+      ";
+      return $_;
+    }
+
+    // firma galáctica
+    static function val( array $ope = [], ...$opc ) : string {
+      $_ = "";
+      global $_usu;
+
+      return $_;
+    }
+
+    // relaciones
+    static function rel( array $ope = [], ...$opc ) : string {
+      $_ = "";
+      global $_usu;
+
+      return $_;
+    }
+
+  }  

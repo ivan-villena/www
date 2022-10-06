@@ -113,78 +113,6 @@
       }
       return $_;
     }
-
-    // peticion
-    static function uri_val( string $esq ) : object {
-
-      $_ = new stdClass;
-
-      $uri = explode('/', !empty($_REQUEST['uri']) ? $_REQUEST['uri'] : '');
-      
-      $_->esq = !empty($uri[0]) ? $uri[0] : $esq;
-      $_->cab = !empty($uri[1]) ? $uri[1] : FALSE;
-      $_->art = !empty($uri[2]) ? $uri[2] : FALSE;
-
-      if( $_->art ) $_val = explode('#',$_->art);
-
-      if( isset($_val[1]) ){
-        $_->art = $_val[0];
-        $_->val = $_val[1];  
-      }
-      else{          
-        $_->val = !empty($dat[3]) ? $dat[3] : FALSE;
-      }
-
-      global $_api;
-      return $_api->app_uri = $_;
-    }// contenido html : valido archivo
-    static function uri_rec( string $ide, array $arc = [ 'html', 'php' ] ) : string {
-
-      $_ = '';
-
-      foreach( $arc as $tip ){
-
-        if( file_exists( $rec = "{$ide}.{$tip}" ) ){
-
-          $_ = $rec;
-
-          break;
-        }        
-      }
-      return $_;
-    }// directorio
-    static function uri_dir( object $uri ) : object {
-
-      $_ = new stdClass();
-
-      $_->rec = SYS_NAV."_/";
-      
-      $_->esq = SYS_NAV."{$uri->esq}";
-        
-      $_->cab = "{$uri->esq}/{$uri->cab}";
-
-      $_->ima = SYS_NAV."_/{$_->cab}/";
-
-      if( !empty($uri->art) ){
-
-        $_->art = $_->cab."/{$uri->art}";
-      
-        $_->ima .= "{$uri->art}/";
-      }
-
-      return $_;
-    }// sesion
-    static function uri_ses( object $uri ) : array {
-      
-      $_ = [];
-
-      foreach( $_REQUEST as $i => $v ){
-
-        if( preg_match("/^{$uri->esq}-/",$i) ) $_[$i] = $v;
-      }
-
-      return $_;      
-    }        
   }
   // Código sql 
   class _sql {
@@ -659,7 +587,7 @@
       return $_;
     }
 
-  }  
+  }
   // Código html 
   class _htm {
 

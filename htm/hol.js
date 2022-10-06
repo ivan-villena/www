@@ -4,9 +4,6 @@
 // Sincronario
 class _hol_app {
 
-  // valor : fec + sin + psi + kin
-  val = {};
-
   constructor( $dat ){
     
     if( !!$dat && typeof($dat)=='object' ){
@@ -24,6 +21,58 @@ class _hol_app {
     }
   }
 
+  // proceso valores
+  static ope( $dat ){
+    // operador : fecha + sincronario
+    let $ = _doc_val.var($dat);
+
+    if( !$_api.app_uri.cab || !['tab','inf'].includes($_api.app_uri.cab) ){
+      $_api.app_uri.cab = 'tab';
+      $_api.app_uri.art = 'kin-tzo';
+    }
+    
+    $.uri = $_app.uri_val();
+
+    // calendario gregoriano
+    if( ( $.ope = $_app.var.getAttribute('ide') ) == 'fec' ){
+      
+      if( $.fec = $_app.var.querySelector('[name="fec"]').value ){
+
+        _arc.url(`${$.uri}/fec=${$.fec.replaceAll('/','-')}`);
+      }
+      else{
+        alert('La fecha del calendario es inválida...')
+      }
+    }
+    // sincronario
+    else if( $.ope == 'sin' ){
+      $.atr = {};
+      $.hol = [];
+      $.val = true;
+      ['gal','ani','lun','dia'].forEach( $v => {
+
+        $.atr[$v] = $_app.var.querySelector(`[name="${$v}"]`).value;
+
+        if( !$.atr[$v] ){ 
+          return $.val = false;          
+        }
+        else{ 
+          $.hol.push($.atr[$v]) 
+        }
+      });
+      if( !!$.val ){
+
+        _arc.url(`${$.uri}/sin=${$.hol.join('.')}`);
+      }
+      else{
+        alert('La fecha del sincronario es inválida...')
+      }
+    }
+  }
+
+  // Valor
+  val = {    
+  };
   // Actualizo acumulados
   static val_acu( $ope ){
 
@@ -34,10 +83,12 @@ class _hol_app {
     
     // Actualizo total por item
     if( $ope.nextElementSibling && ( $.tot = $ope.nextElementSibling.querySelector('n') ) ){
+
       $.tot.innerHTML = $_app.tab.lis.querySelectorAll(`._hol-${$.ide}_${$.var_ide}`).length;
     }    
     // Actualizo total general
     if( $.tot = $_app.var.querySelector('div.atr > [name="cue"]') ){
+
       $.tot.innerHTML = $_app.tab.lis.querySelectorAll(`[class*="_hol-${$.ide}_"]`).length;
     }
 
@@ -285,7 +336,7 @@ class _hol_app {
 
     $.ide = `pag_${$.var_ide}`;
 
-    $.cla = [`_hol-${$.ide}`, "_val-opc","_val-opc-fon"];
+    $.cla = [`_hol-${$.ide}`, "_val-opc", "_val-opc-fon"];
 
     $.tab = $_app.tab.ide;
 
@@ -294,13 +345,13 @@ class _hol_app {
 
       $_app.tab.lis.querySelectorAll(`${$_app.tab.cla}[api-hol_kin]`).forEach( $pos => {
 
-        $.kin = _hol._('kin',$pos.getAttribute('api-hol_kin'));        
+        $.kin = _hol._('kin',$pos.getAttribute('api-hol_kin'));
 
         if( $.kin.pag != 0 ){
 
-          if( $dat.checked ){
+          if( $dat.checked ){ 
             _ele.act('cla_agr',$pos,$.cla);
-          }else{            
+          }else{
             _ele.act('cla_eli',$pos,$.cla);
           }
         }
@@ -337,9 +388,9 @@ class _hol_app {
 
     $.ide = `par_${$.var_ide}`;
 
-    $.cla = [`_hol-${$.ide}`, "_val-opc","_val-opc-fon"];
+    $.cla = [`_hol-${$.ide}`,"_val-opc","_val-opc-fon"];
 
-    $._par_lis = ['ana','gui','ant','ocu'];      
+    $._par_lis = ['ana','gui','ant','ocu'];
     // marcar todos los patrones del oráculo
     if( !$.var_ide ){
 
@@ -365,11 +416,11 @@ class _hol_app {
             }
           )
         }
+
         // evaluo extensiones
         _hol_app.tab_par( $_app.var.querySelector(`[name="ext"]`) );
-        
       }
-      // extiendo oráculo      
+      // extiendo oráculo
       else if( $.var_ide == 'ext' ){
         
         $.val_tot = 0;
@@ -405,16 +456,16 @@ class _hol_app {
 
           if( $.tot = $_app.var.querySelector(`div.atr > [name="${$ide}"] ~ span > n`) ){
 
-            $.tot.innerHTML = $_app.tab.lis.querySelectorAll(`[class*="_val-par_${$ide}"]`).length;
+            $.tot.innerHTML = $_app.tab.lis.querySelectorAll(`[class*="_hol-par_${$ide}"]`).length;
           }
         });
         // total general
         if( $.tot = $_app.var.querySelector('div.atr > [name="cue"]') ){
 
-          $.tot.innerHTML = $_app.tab.lis.querySelectorAll(`[class*="_val-par_"]`).length;
+          $.tot.innerHTML = $_app.tab.lis.querySelectorAll(`[class*="_hol-par_"]`).length;
         }
-        // actualizo acumulado por marcas
-        _app_tab.act('mar');        
+        // actualizo acumulado por opciones
+        _app_tab.act('opc');        
       }
     }
   }  
@@ -469,9 +520,8 @@ class _hol_app {
 
           $.ton = _hol._('ton',$e.getAttribute('api-hol_ton'));
 
-          if( $.ton_pul == $.ton[$.pul_ide] ){
-            $e.classList.add($.cla);
-          }
+          if( $.ton_pul == $.ton[$.pul_ide] ) _ele.act('cla_agr',$e,$.cla);
+          
         });
         // muestro pulsares de la o.e.
         $_app.tab.lis.querySelectorAll(`[sec^="ond"][data-pul="${$.var_ide}"]`).forEach( $e => {
@@ -480,62 +530,8 @@ class _hol_app {
         });
       }
     }
-
     // actualizo acumulados
     _hol_app.val_acu($dat);
-  }
-}
-
-// Valores
-class _hol_val {
-
-  // proceso valores 
-  static fec( $dat ){
-    // operador : fecha + sincronario
-    let $ = _doc_val.var($dat);
-
-    if( !$_api.app_uri.cab || !['tab','inf'].includes($_api.app_uri.cab) ){
-      $_api.app_uri.cab = 'tab';
-      $_api.app_uri.art = 'kin-tzo';
-    }
-    
-    $.uri = $_app.uri_val();
-
-    // calendario gregoriano
-    if( ( $.ope = $_app.var.getAttribute('ide') ) == 'fec' ){
-      
-      if( $.fec = $_app.var.querySelector('[name="fec"]').value ){
-
-        _arc.url(`${$.uri}/fec=${$.fec.replaceAll('/','-')}`);
-      }
-      else{
-        alert('La fecha del calendario es inválida...')
-      }
-    }
-    // sincronario
-    else if( $.ope == 'sin' ){
-      $.atr = {};
-      $.hol = [];
-      $.val = true;
-      ['gal','ani','lun','dia'].forEach( $v => {
-
-        $.atr[$v] = $_app.var.querySelector(`[name="${$v}"]`).value;
-
-        if( !$.atr[$v] ){ 
-          return $.val = false;          
-        }
-        else{ 
-          $.hol.push($.atr[$v]) 
-        }
-      });
-      if( !!$.val ){
-
-        _arc.url(`${$.uri}/sin=${$.hol.join('.')}`);
-      }
-      else{
-        alert('La fecha del sincronario es inválida...')
-      }
-    }
   }
 }
 

@@ -71,100 +71,100 @@ DELETE FROM `_api`.`app_var` WHERE `esq`='app';
     -- filtro: valores ( todos ) + datos ( estructura > valor ) + listados ( posicion + fecha )
 
       -- por Valores
-      ('app','val','ver', 1, 'tot', '{
-        "nom":"Cantidad",
-        "tit":"",
-        "ope":{ "_tip":"num", "val":"0" }
-      }'),         
-      ('app','val','ver', 2, 'tod', '{
-        "nom":"¿Todos?",
-        "tit":"Mostrar todos...",
-        "ope":{ "_tip":"opc_bin" }
-      }'),
-      ('app','val','ver', 3, 'nad', '{
-        "nom":"¿Nada?",
-        "tit":"Ocultar todos...",
-        "ope":{ "_tip":"opc_bin" }
-      }'),
-      ('app','val','ver', 4, 'uni', '{
-        "nom":"¿Único?",
-        "tit":"Mostrar un único valor...",
-        "ope":{ "_tip":"opc_bin" }
-      }'),
-      ('app','val','ver', 5, 'inc', '{
-        "nom":"¿Cada?",
-        "tit":"Indica un valor de salto o incremento entre las posiciones...",
-        "ope":{ "_tip":"num_int", "val":1, "min":1, "max":999 }
-      }'),
-      ('app','val','ver', 6, 'lim', '{
-        "nom":"¿Cuántos?",
-        "tit":"Indicar la cantidad máxima de resultados...",
-        "ope":{ "_tip":"num_int", "min":1, "max":999 }
-      }'),
+        ('app','val','ver', 1, 'tot', '{
+          "nom":"Cantidad",
+          "tit":"",
+          "ope":{ "_tip":"num", "val":"0" }
+        }'),         
+        ('app','val','ver', 2, 'tod', '{
+          "nom":"¿Todos?",
+          "tit":"Mostrar todos...",
+          "ope":{ "_tip":"opc_bin" }
+        }'),
+        ('app','val','ver', 3, 'nad', '{
+          "nom":"¿Nada?",
+          "tit":"Ocultar todos...",
+          "ope":{ "_tip":"opc_bin" }
+        }'),
+        ('app','val','ver', 4, 'uni', '{
+          "nom":"¿Único?",
+          "tit":"Mostrar un único valor...",
+          "ope":{ "_tip":"opc_bin" }
+        }'),
+        ('app','val','ver', 5, 'inc', '{
+          "nom":"¿Cada?",
+          "tit":"Indica un valor de salto o incremento entre las posiciones...",
+          "ope":{ "_tip":"num_int", "val":1, "min":1, "max":999 }
+        }'),
+        ('app','val','ver', 6, 'lim', '{
+          "nom":"¿Cuántos?",
+          "tit":"Indicar la cantidad máxima de resultados...",
+          "ope":{ "_tip":"num_int", "min":1, "max":999 }
+        }'),
       -- por tipo de datos
-      ('app','val','ver', 11, 'opc', '{
-        "nom":"¿Opciones?",
-        "tit":"Mostrar valores por opción...",
-        "ope":{ "_tip":"opc_bin", "val":1 }
-      }'),
-      ('app','val','ver', 12, 'num', '{
-        "nom":"¿Números?",
-        "tit":"Mostrar valores numéricos...",
-        "ope":{ "_tip":"opc_bin", "val":1 }
-      }'),
-      ('app','val','ver', 13, 'tex', '{
-        "nom":"¿Textos?",
-        "tit":"Mostrar valores textuales...",
-        "ope":{ "_tip":"opc_bin", "val":1 }
-      }'),
-      ('app','val','ver', 14, 'fec', '{
-        "nom":"¿Fechas?",
-        "tit":"Mostrar valores de fechas...",
-        "ope":{ "_tip":"opc_bin", "val":1 }
-      }'),
-      ('app','val','ver', 15, 'obj', '{
-        "nom":"¿Objetos?",
-        "tit":"Mostrar objetos...",
-        "ope":{ "_tip":"opc_bin", "val":1 }
-      }'),
-      ('app','val','ver', 16, 'arc', '{
-        "nom":"¿Archivos?",
-        "tit":"Mostrar archivos...",        
-        "ope":{ "_tip":"opc_bin", "val":1 }
-      }'),
+        ('app','val','ver', 11, 'opc', '{
+          "nom":"¿Opciones?",
+          "tit":"Mostrar valores por opción...",
+          "ope":{ "_tip":"opc_bin", "val":1 }
+        }'),
+        ('app','val','ver', 12, 'num', '{
+          "nom":"¿Números?",
+          "tit":"Mostrar valores numéricos...",
+          "ope":{ "_tip":"opc_bin", "val":1 }
+        }'),
+        ('app','val','ver', 13, 'tex', '{
+          "nom":"¿Textos?",
+          "tit":"Mostrar valores textuales...",
+          "ope":{ "_tip":"opc_bin", "val":1 }
+        }'),
+        ('app','val','ver', 14, 'fec', '{
+          "nom":"¿Fechas?",
+          "tit":"Mostrar valores de fechas...",
+          "ope":{ "_tip":"opc_bin", "val":1 }
+        }'),
+        ('app','val','ver', 15, 'obj', '{
+          "nom":"¿Objetos?",
+          "tit":"Mostrar objetos...",
+          "ope":{ "_tip":"opc_bin", "val":1 }
+        }'),
+        ('app','val','ver', 16, 'arc', '{
+          "nom":"¿Archivos?",
+          "tit":"Mostrar archivos...",        
+          "ope":{ "_tip":"opc_bin", "val":1 }
+        }'),
       -- por Estructuras de Datos
-      ('app','val','ver', 21, 'dat', '{
-        "ico":"dat_ver",
-        "tit":"Seleccionar la Estructura e indicar el Valor Buscado..."
-      }'),
-      ('app','val','ver', 22, 'esq', '{
-        "nom":"Esquema",
-        "tit":"Indicar el Esquema de datos..."
-      }'),
-      ('app','val','ver', 23, 'est', '{
-        "nom":"Estructura",
-        "tit":"Indicar la Estructura de datos..."
-      }'),
-      ('app','val','ver', 24, 'atr', '{
-        "nom":"Atributo",
-        "tit":"Indicar el Atributo de la Estructura..."
-      }'),
+        ('app','val','ver', 21, 'dat', '{
+          "ico":"dat_ver",
+          "tit":"Seleccionar la Estructura e indicar el Valor Buscado..."
+        }'),
+        ('app','val','ver', 22, 'esq', '{
+          "nom":"Esquema",
+          "tit":"Indicar el Esquema de datos..."
+        }'),
+        ('app','val','ver', 23, 'est', '{
+          "nom":"Estructura",
+          "tit":"Indicar la Estructura de datos..."
+        }'),
+        ('app','val','ver', 24, 'atr', '{
+          "nom":"Atributo",
+          "tit":"Indicar el Atributo de la Estructura..."
+        }'),
       -- por rango de valores : posicion / fecha
-      ('app','val','ver', 31, 'pos', '{
-        "nom":"Posición",
-        "tit":"Indicar el valor de la posición buscada...",
-        "ope":{ "_tip":"num_int", "min":1, "max":999 }
-      }'),
-      ('app','val','ver', 32, 'ini', '{
-        "nom":"Desde",
-        "tit":"Indicar el Valor inicial...",
-        "ope":{ "_tip":"" }
-      }'),
-      ('app','val','ver', 33, 'fin', '{
-        "nom":"Hasta",
-        "tit":"Indicar el Valor final...",
-        "ope":{ "_tip":"" }
-      }')
+        ('app','val','ver', 31, 'pos', '{
+          "nom":"Posición",
+          "tit":"Indicar el valor de la posición buscada...",
+          "ope":{ "_tip":"num_int", "min":1, "max":999 }
+        }'),
+        ('app','val','ver', 32, 'ini', '{
+          "nom":"Desde",
+          "tit":"Indicar el Valor inicial...",
+          "ope":{ "_tip":"" }
+        }'),
+        ('app','val','ver', 33, 'fin', '{
+          "nom":"Hasta",
+          "tit":"Indicar el Valor final...",
+          "ope":{ "_tip":"" }
+        }')
     --
   ;
   -- Estructura
@@ -247,6 +247,11 @@ DELETE FROM `_api`.`app_var` WHERE `esq`='app';
         "tit":"Mostrar el Borde exterior de las posiciones seleccionadas...",
         "ope":{ "_tip":"opc_bin" }
       }'),
+      ('app','tab', 'pos', 14, 'bor_opc', '{
+        "nom":"¿Opciones?",
+        "tit":"Mostrar el borde extearior en las posiciones por las opciones seleccionadas...",
+        "ope":{ "_tip":"opc_bin" }
+      }'),
       ('app','tab', 'pos', 20, 'col', '{
         "ide":"col",
         "ico":"fig_col",
@@ -266,6 +271,11 @@ DELETE FROM `_api`.`app_var` WHERE `esq`='app';
       ('app','tab', 'pos', 23, 'col_ver', '{
         "nom":"¿Selección?",
         "tit":"Mostrar el Color de Fondo de las posiciones seleccionadas...",
+        "ope":{ "_tip":"opc_bin" }
+      }'),
+      ('app','tab', 'pos', 24, 'col_opc', '{
+        "nom":"¿Opciones?",
+        "tit":"Mostrar el Color de Fondo para las posiciones por las opciones seleccionadas...",
         "ope":{ "_tip":"opc_bin" }
       }'),
       ('app','tab', 'pos', 30, 'ima', '{
@@ -289,6 +299,11 @@ DELETE FROM `_api`.`app_var` WHERE `esq`='app';
         "tit":"Mostrar las Fichas de las posiciones seleccionadas...",
         "ope":{ "_tip":"opc_bin" }
       }'),
+      ('app','tab', 'pos', 34, 'ima_opc', '{
+        "nom":"¿Opciones?",
+        "tit":"Mostrar las Fichas de las posiciones por las opciones seleccionadas...",
+        "ope":{ "_tip":"opc_bin" }
+      }'),
       ('app','tab', 'pos', 40, 'num', '{        
         "ide":"num",
         "ico":"num_cod",
@@ -302,12 +317,17 @@ DELETE FROM `_api`.`app_var` WHERE `esq`='app';
       }'),
       ('app','tab', 'pos', 42, 'num_mar', '{
         "nom":"¿Marcas?",
-        "tit":"Mostrar  el valor numérico de las posiciones marcadas...",
+        "tit":"Mostrar el valor numérico de las posiciones marcadas...",
         "ope":{ "_tip":"opc_bin" }
       }'),
       ('app','tab', 'pos', 43, 'num_ver', '{
         "nom":"¿Selección?",
-        "tit":"Mostrar  el valor numérico de las posiciones seleccionadas...",
+        "tit":"Mostrar el valor numérico de las posiciones seleccionadas...",
+        "ope":{ "_tip":"opc_bin" }
+      }'),
+      ('app','tab', 'pos', 44, 'num_opc', '{
+        "nom":"¿Opciones?",
+        "tit":"Mostrar el valor numérico de las posiciones por las opciones seleccionadas...",
         "ope":{ "_tip":"opc_bin" }
       }'),
       ('app','tab', 'pos', 50, 'tex', '{
@@ -323,12 +343,17 @@ DELETE FROM `_api`.`app_var` WHERE `esq`='app';
       }'),
       ('app','tab', 'pos', 52, 'tex_mar', '{
         "nom":"¿Marcas?",
-        "tit":"Mostrar  el valor textual de las posiciones marcadas...",
+        "tit":"Mostrar el valor textual de las posiciones marcadas...",
         "ope":{ "_tip":"opc_bin" }
       }'),
       ('app','tab', 'pos', 53, 'tex_ver', '{
         "nom":"¿Selección?",
-        "tit":"Mostrar  el valor textual de las posiciones seleccionadas...",
+        "tit":"Mostrar el valor textual de las posiciones seleccionadas...",
+        "ope":{ "_tip":"opc_bin" }
+      }'),
+      ('app','tab', 'pos', 54, 'tex_opc', '{
+        "nom":"¿Opciones?",
+        "tit":"Mostrar el valor textual de las posiciones por las opciones seleccionadas...",
         "ope":{ "_tip":"opc_bin" }
       }'),
       ('app','tab', 'pos', 60, 'fec', '{
@@ -344,12 +369,17 @@ DELETE FROM `_api`.`app_var` WHERE `esq`='app';
       }'),
       ('app','tab', 'pos', 62, 'fec_mar', '{
         "nom":"¿Marcas?",
-        "tit":"Mostrar  el valor temporal de las posiciones marcadas...",
+        "tit":"Mostrar el valor temporal de las posiciones marcadas...",
         "ope":{ "_tip":"opc_bin" }
       }'),
       ('app','tab', 'pos', 63, 'fec_ver', '{
         "nom":"¿Selección?",
-        "tit":"Mostrar  el valor temporal de las posiciones seleccionadas...",
+        "tit":"Mostrar el valor temporal de las posiciones seleccionadas...",
+        "ope":{ "_tip":"opc_bin" }
+      }'),
+      ('app','tab', 'pos', 64, 'fec_opc', '{
+        "nom":"¿Opciones?",
+        "tit":"Mostrar el valor temporal de las posiciones por las opciones seleccionadas...",
         "ope":{ "_tip":"opc_bin" }
       }')
   ;

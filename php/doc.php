@@ -228,13 +228,12 @@
     }
     // variable : div.atr > label + (input,textarea,select,button)[name]
     static function var( string $tip, string | array $ide, array $ele=[], ...$opc ) : string {
-      $_var_ope = [ 
+      $_ = [ 
         'ico'=>"", 'nom'=>"", 'des'=>"", 
         'ite'=>[], 'eti'=>[], 'ope'=>[], 
         'htm'=>"", 'htm_pre'=>"", 'htm_med'=>"", 'htm_pos'=>"" 
       ];
-      $_ = "";
-
+      
       // identificadores
       $dat_ide = is_string($ide) ? explode('.',$ide) : $ide;
       if( isset($dat_ide[2]) ){

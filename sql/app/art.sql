@@ -7,9 +7,8 @@
 	DELETE FROM `_api`.`app_art` WHERE `esq`='hol' AND `cab`='bib';
 	INSERT INTO `_api`.`app_art` VALUES
 	
-		('hol','bib','ide', 1, 		'Glosarios',																'', NULL, NULL ),
-		('hol','bib','dat', 2, 		'Códigos y Cuentas',												'', NULL, NULL ),
-		('hol','bib','tut',	3, 		'Tutorial del Sincronario de 13 Lunas',			'', NULL, NULL ),
+		('hol','bib','ide', 1, 		'Glosarios',																'', NULL, NULL ),		
+		('hol','bib','tut',	2, 		'Tutorial del Sincronario de 13 Lunas',			'', NULL, NULL ),
 		('hol','bib','asc',	1984, '1984 - La Tierra en Ascenso', 			  			'', NULL, NULL ),
 		('hol','bib','fac',	1987, '1987 - El Factor Maya',               			'', NULL, NULL ), 
 		('hol','bib','enc',	1990, '1990 - El Encantamiento del Sueño',   			'', NULL, NULL ),
@@ -23,8 +22,41 @@
 		('hol','bib','ato',	1999, '1999 - El Átomo del Tiempo', 				  		'', NULL, NULL ),
 		('hol','bib','cro',	2009, '2009 - El Sincronotrón', 						  		'', NULL, NULL )
 	;
-
-	-- tableros
+	-- Datos
+	DELETE FROM `_api`.`app_art` WHERE `esq`='hol' AND `cab`='dat';
+	INSERT INTO `_api`.`app_art` VALUES
+		
+		('hol','dat','rad',   7, 'Los 7 Plasmas Radiales',						'', NULL, NULL ),
+		('hol','dat','ton',  13, 'Los 13 Tonos Galácticos',						'', NULL, NULL ),
+		('hol','dat','sel',  20, 'Los 20 Sellos Solares',							'', NULL, NULL ),
+		('hol','dat','lun',  28, 'Los 28 Días del Giro Lunar',				'', NULL, NULL ),
+		('hol','dat','cas',  52, 'Las 52 Posiciones del Castillo',		'', NULL, NULL ),
+		('hol','dat','kin', 260, 'Los 260 kines del Tzolkin',					'', NULL, NULL ),
+		('hol','dat','psi', 365, 'Los 365 Psi-cronos del Banco-psi',	'', NULL, NULL )
+	;
+	-- Valores
+	DELETE FROM `_api`.`app_art` WHERE `esq`='hol' AND `cab`='val';
+	INSERT INTO `_api`.`app_art` VALUES
+		('hol','val','rad',   7, 'Plasma Radial',											'', NULL, NULL ),
+		('hol','val','ton',  13, 'Tono Galáctico',										'', NULL, NULL ),
+		('hol','val','sel',  20, 'Sello Solar',												'', NULL, NULL ),
+		('hol','val','lun',  28, 'Día del Giro Lunar',								'', NULL, NULL ),
+		('hol','val','cas',  52, 'Posición del Castillo',							'', NULL, NULL ),
+		('hol','val','kin', 260, 'kin del Módulo Armónico',						'', NULL, NULL ),
+		('hol','val','psi', 365, 'Psi-cronos del Banco-psi',					'', NULL, NULL )	
+	;
+	-- Informe
+	DELETE FROM `_api`.`app_art` WHERE `esq`='hol' AND `cab`='inf';
+	INSERT INTO `_api`.`app_art` VALUES
+		
+		('hol','inf','kin', 1, 'Kin',							'', NULL, NULL ),
+		('hol','inf','sel', 2, 'Sello Solar',			'', NULL, NULL ),
+		('hol','inf','ton', 3, 'Tono Galáctico',	'', NULL, NULL ),
+		('hol','inf','psi', 4, 'Psi-Cronos',			'', NULL, NULL ),
+		('hol','inf','lun', 5, 'Giro Lunar',			'', NULL, NULL ),
+		('hol','inf','rad', 6, 'Plasma Radial',		'', NULL, NULL )
+	;	
+	-- Tableros
 	DELETE FROM `_api`.`app_art` WHERE `esq`='hol' AND `cab`='tab';
 	INSERT INTO `_api`.`app_art` VALUES
 
@@ -36,17 +68,8 @@
 		('hol','tab','psi-est', 6, 'Las 4 Estaciones del Anillo Solar', 			'', NULL, NULL ),
 		('hol','tab','psi-lun', 7, 'Los 28 Días del Giro Lunar', 							'', NULL, NULL ),
 		('hol','tab','psi-tzo', 8, 'Las 2.080 unidades del Banco-Psi', 				'', NULL, NULL )
-	;
-	
-	-- diario
-	DELETE FROM `_api`.`app_art` WHERE `esq`='hol' AND `cab`='val';
-	INSERT INTO `_api`.`app_art` VALUES
-		
-		('hol','val','dia', 1, 'Ciclos del Tiempo',	'', NULL, NULL ),
-		('hol','val','hum', 2, 'Firma Galáctica',		'', NULL, NULL )
-	;
-	
-	-- cuenta de usuario
+	;	
+	-- Usuario
 	DELETE FROM `_api`.`app_art` WHERE `esq`='hol' AND `cab`='usu';
 	INSERT INTO `_api`.`app_art` VALUES
 		
