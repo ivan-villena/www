@@ -1,5 +1,5 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0--
+-- version 5.2.0
 
 -- https://www.phpmyadmin.net/
 --
@@ -10,7 +10,6 @@
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
-SET time_zone = "+00:00";
 SET time_zone = "+00:00";
 
 
