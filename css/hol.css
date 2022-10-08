@@ -12,11 +12,15 @@ body[cab="lib"][art="asc"] > main section > figure {
 
 /*//////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 /* Tableros ////////////////////////////////////////////////////////////////////////////////////////////////////*/
-body[cab="tab"][art] > main > article {
+body[cab="tab"] > main > article {
   line-height: initial;
   padding: 0;
-  background: initial;
+  /* background: initial; */
   border: initial;
+}
+
+body > main > article > [tab] {
+  margin: auto;
 }
 
 /* P.A.G. */

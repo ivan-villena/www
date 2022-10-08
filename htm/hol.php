@@ -226,7 +226,7 @@
 
           <p>Posteriormente<c>,</c> en el libro de <a href="<?=$_bib?>lun#_02-07-" target="_blank">Las <n>13</n> lunas en movimiento</a>, se mencionan los plasmas para nombrar a cada uno de los días de la semana<c>-</c>heptada<c>.</c></p>
 
-          <?=_app_est::lis('api.hol_rad',[ 'atr'=>['ide','nom','pod'] ])?>
+          <?=_doc_lis::tab('api.hol_rad',[ 'atr'=>['ide','nom','pod'] ])?>
 
         </article>
         <!-- sellos de la profecia -->
@@ -237,13 +237,13 @@
 
           <p>Para la lectura anual se crean 3 oráculos en base a los kines que codifican los ciclos del sincronario<c>:</c> familia portal y familia señal <c>(</c> Ver <a href="<?=$_bib?>enc#_03-14-" target="_blank">el encantamiento del sueño</a> <c>)</c><c>.</c></p>
 
-          <?=_app_est::lis('api.hol_rad',[ 'atr'=>['ide','tel','tel_des','tel_año','tel_ora_año','tel_ora_ani','tel_ora_gen'] ])?>
+          <?=_doc_lis::tab('api.hol_rad',[ 'atr'=>['ide','tel','tel_des','tel_año','tel_ora_año','tel_ora_ani','tel_ora_gen'] ])?>
 
           <p>En el <a href="<?=$_bib?>rin#_02-05-01-" target="_blank">Proyecto Rinri</a> se amplía el contenido de los sellos de la profecía del telektonon<c>.</c></p>
 
           <p>En este caso se utilizan los sellos como liberadores de plasma en la activación del <dfn title="Campo Resonante de la Tierra">banco<c>-</c>psi</dfn> durante la transición biósfera<c>-</c>noosfera<c>.</c></p>
 
-          <?=_app_est::lis('api.hol_rad',[ 'atr'=>['ide','tel_des','tel_año','rin_des'] ])?>
+          <?=_doc_lis::tab('api.hol_rad',[ 'atr'=>['ide','tel_des','tel_año','rin_des'] ])?>
 
         </article>
         <!-- heptágono de la mente -->
@@ -254,7 +254,7 @@
 
           <p>En el <a href="<?=$_bib?>rin#_02-06-01-" target="_blank">Proyecto Rinri</a>...</p>            
 
-          <?=_app_est::lis('api.hol_rad',[ 'atr'=>['ide','nom','hep','hep_pos'] ])?>
+          <?=_doc_lis::tab('api.hol_rad',[ 'atr'=>['ide','nom','hep','hep_pos'] ])?>
 
         </article>
         <!-- autodeclaraciones diarias -->
@@ -263,7 +263,7 @@
 
           <p>En <a href="<?=$_bib?>ato#_03-06-" target="_blank">Átomo del Tiempo</a> se describen las afirmaciones correspondientes a las Autodeclaraciones Diarias de Padmasambhava para cada plasma<c>.</c></p>
 
-          <?=_app_est::lis('api.hol_rad',[ 'atr'=>['ide','nom','hum_cha','cha_nom','pla_des'] ])?>
+          <?=_doc_lis::tab('api.hol_rad',[ 'atr'=>['ide','nom','hum_cha','cha_nom','pla_des'] ])?>
 
         </article>
         <!-- componenetes electrónicos -->
@@ -272,7 +272,7 @@
 
           <p>En el <a href="<?=$_bib?>ato#_03-01-" target="_blank">átomo del tiempo</a> se establecen los principios y componentes de los plasmas en el marco de la energía o electricidad cósmica<c>.</c></p>
 
-          <?=_app_est::lis('api.hol_rad',[ 
+          <?=_doc_lis::tab('api.hol_rad',[ 
             'atr'=>['ide','nom','col','pla_qua','pla_pod','pla_ene','pla_fue_pre','pla_fue_pos'] 
           ])?>
 
@@ -280,11 +280,11 @@
 
           <p>Los <n>12</n> tipos de líneas electrónicas<c>:</c></p>
 
-          <?=_app_est::lis('api.hol_rad_pla_fue',[ 'atr'=>['ide','nom','ele_pre','ele_ope','ele_pos'] ])?>
+          <?=_doc_lis::tab('api.hol_rad_pla_fue',[ 'atr'=>['ide','nom','ele_pre','ele_ope','ele_pos'] ])?>
 
           <p>Los <n>6</n> tipos de electricidad son<c>:</c></p>
 
-          <?=_app_est::lis('api.hol_rad_pla_ele',[ 'atr'=>['ide','cod','nom','des'] ])?>            
+          <?=_doc_lis::tab('api.hol_rad_pla_ele',[ 'atr'=>['ide','cod','nom','des'] ])?>            
 
         </article>        
         <?php
@@ -300,7 +300,7 @@
             Y se definen como <a href="<?=$_bib?>fac#_04-04-01-" target="_blank">rayos de pulsación</a> dotados con una función radio<c>-</c>resonante en particular<c>.</c>
           </p>
 
-          <?=_app_est::lis('api.hol_ton',[ 'atr'=>['ide','gal'] ])?>
+          <?=_doc_lis::tab('api.hol_ton',[ 'atr'=>['ide','gal'] ])?>
 
         </article>
         <!-- simetría especular -->
@@ -312,7 +312,7 @@
             Luego<c>,</c> se describen sus relaciones aplicando el concepto a los <a href="<?=$_bib?>fac#_04-04-01-02-" target="_blank">rayos de pulsación</a>>.</c>
           </p>
 
-          <?=_app_est::lis('api.hol_ton_sim',[ 'atr'=>['ide','nom','ton'] ])?>
+          <?=_doc_lis::tab('api.hol_ton_sim',[ 'atr'=>['ide','nom','ton'] ])?>
           
         </article>        
         <!-- principios de la creacion -->
@@ -324,7 +324,7 @@
             De esta manera se crea el <a href="<?=$_bib?>enc#_03-09-" target="_blank">Módulo de Sincronización Galáctica</a> que sincroniza tanto las <a href="<?=$_bib?>enc#_02-03-09-" target="_blank">lunaciones del ciclo anual</a><c>,</c> como el movimiento a través de <a href="<?=$_bib?>enc#_02-03-10-" target="_blank">los castillos de la nave</a><c>,</c> las <a href="<?=$_bib?>enc#_02-03-07-" target="_blank">trayectorias armónicas</a> y las <a href="<?=$_bib?>enc#_03-16-" target="_blank">estaciones galácticas</a><c>.</c>
           </p>
 
-          <?=_app_est::lis('api.hol_ton',[ 'atr'=>['ide','nom','des','acc'] ])?>
+          <?=_doc_lis::tab('api.hol_ton',[ 'atr'=>['ide','nom','des','acc'] ])?>
 
         </article>
         <!-- O.E. de la Aventura -->
@@ -336,7 +336,7 @@
             Cada posición de la Onda Encantada está cargada con un determinado <a href="<?=$_bib?>enc#_03-12-" target="_blank">mandato de acción</a> definido por la naturaleza de su tono correspondiente<c>.</c>
           </p>
 
-          <?=_app_est::lis('api.hol_ton',[ 'atr'=>['ide','ond_nom','ond_pos','ond_pod','ond_man'], 
+          <?=_doc_lis::tab('api.hol_ton',[ 'atr'=>['ide','ond_nom','ond_pos','ond_pod','ond_man'], 
             'tit_cic'=>['ond_enc']
           ])?>
           
@@ -351,7 +351,7 @@
             <c>.</c>
           </p>
 
-          <?=_app_est::lis('api.hol_ton_dim')?>
+          <?=_doc_lis::tab('api.hol_ton_dim')?>
           
         </article>
         <!-- pulsar matiz -->
@@ -360,7 +360,7 @@
 
           <p>En el <a href="<?=$_bib?>enc#_03-13-" target="_blank">Encantamiento del sueño</a><c>.</c></p>
 
-          <?=_app_est::lis('api.hol_ton_mat')?>
+          <?=_doc_lis::tab('api.hol_ton_mat')?>
           
         </article>        
         <?php
@@ -373,7 +373,7 @@
 
           <p>En <a href="<?=$_bib?>fac#_04-04-02-03-" target="_blank">el Factor maya</a><c>.</c></p>
 
-          <?=_app_est::lis('api.hol_sel_cic_dir')?>
+          <?=_doc_lis::tab('api.hol_sel_cic_dir')?>
 
           <!-- desarrollo del ser -->
           <h3 id="<?="_{$nav[2]['01']['01']->pos}-"?>"><?=_doc::let($nav[2]['01']['01']->nom)?></h3>
@@ -381,7 +381,7 @@
 
             <p>En <a href="<?=$_bib?>fac#_04-04-02-04-" target="_blank">el Factor maya</a><c>.</c></p>
 
-            <?=_app_est::lis('api.hol_sel',[ 'atr'=>['ide','may','cic_dir','cic_ser_des'], 'tit_cic'=>['cic_ser'] ])?>
+            <?=_doc_lis::tab('api.hol_sel',[ 'atr'=>['ide','may','cic_dir','cic_ser_des'], 'tit_cic'=>['cic_ser'] ])?>
 
           </section>
           <!-- etapas evolutivas de la mente -->
@@ -390,7 +390,7 @@
 
             <p>En <a href="<?=$_bib?>fac#_04-04-02-06-" target="_blank">el Factor maya</a><c>.</c></p>
 
-            <?=_app_est::lis('api.hol_sel_cic_men',[ 'atr'=>['sel','nom','des','lec'] ])?>
+            <?=_doc_lis::tab('api.hol_sel_cic_men',[ 'atr'=>['sel','nom','des','lec'] ])?>
 
           </section>
           <!-- familias ciclicas -->
@@ -399,7 +399,7 @@
 
             <p>En <a href="<?=$_bib?>fac#_04-04-02-05-" target="_blank">el Factor maya</a><c>.</c></p>
 
-            <?=_app_est::lis('api.hol_sel',[ 'atr'=>['ide','may','cic_dir','cic_luz_des'], 'tit_cic'=>['cic_luz'] ])?>
+            <?=_doc_lis::tab('api.hol_sel',[ 'atr'=>['ide','may','cic_dir','cic_luz_des'], 'tit_cic'=>['cic_luz'] ])?>
 
           </section>
 
@@ -410,7 +410,7 @@
           
           <p>Consiste en ordenar secuencialmente los sellos comenzando desde 20 o 00 a 19.</p>
           
-          <?=_app_est::lis('api.hol_sel_cod',[ 'atr'=>['ide','ord','cro_ele_des'], 'tit_cic'=>['cro_ele'] ])?>
+          <?=_doc_lis::tab('api.hol_sel_cod',[ 'atr'=>['ide','ord','cro_ele_des'], 'tit_cic'=>['cro_ele'] ])?>
 
           <!-- familias -->
           <h3 id="<?="_{$nav[2]['02']['01']->pos}-"?>"><?=_doc::let($nav[2]['02']['01']->nom)?></h3>
@@ -418,7 +418,7 @@
 
             <p>En <a href="<?=$_bib?>enc#_03-14-" target="_blank">el Encantamiento del Sueño</a><c>.</c></p>
 
-            <?=_app_est::lis('api.hol_sel_cro_fam',[ 'atr'=>['ide','nom','pla','hum','des','sel'] ])?>
+            <?=_doc_lis::tab('api.hol_sel_cro_fam',[ 'atr'=>['ide','nom','pla','hum','des','sel'] ])?>
 
           </section>
           <!-- clanes -->
@@ -427,7 +427,7 @@
 
             <p>En <a href="<?=$_bib?>enc#_03-02-" target="_blank">el Encantamiento del Sueño</a><c>.</c></p>
 
-            <?=_app_est::lis('api.hol_sel_cro_ele',[ 'atr'=>['ide','nom','col','men','des','sel'] ])?>
+            <?=_doc_lis::tab('api.hol_sel_cro_ele',[ 'atr'=>['ide','nom','col','men','des','sel'] ])?>
 
           </section>
 
@@ -438,7 +438,7 @@
 
           <p>Consiste en ordenar secuencialmente los sellos comenzando desde 01 a 20.</p>
 
-          <?=_app_est::lis('api.hol_sel',[ 'atr'=>['ide','arm_cel_des'], 'tit_cic'=>['arm_cel'] ])?>
+          <?=_doc_lis::tab('api.hol_sel',[ 'atr'=>['ide','arm_cel_des'], 'tit_cic'=>['arm_cel'] ])?>
 
           <!-- razas -->
           <h3 id="<?="_{$nav[2]['03']['01']->pos}-"?>"><?=_doc::let($nav[2]['03']['01']->nom)?></h3>
@@ -446,7 +446,7 @@
 
             <p>En <a href="<?=$_bib?>enc#_03-04-" target="_blank">el Encantamiento del Sueño</a><c>.</c></p>
 
-            <?=_app_est::lis('api.hol_sel_arm_raz',[ 'atr'=>['ide','nom','pod','dir','sel'] ])?>
+            <?=_doc_lis::tab('api.hol_sel_arm_raz',[ 'atr'=>['ide','nom','pod','dir','sel'] ])?>
 
           </section>
           <!-- células -->
@@ -455,7 +455,7 @@
 
             <p>En <a href="<?=$_bib?>enc#_03-05-" target="_blank">el Encantamiento del Sueño</a><c>.</c></p>
 
-            <?=_app_est::lis('api.hol_sel_arm_cel',[ 'atr'=>['ide','nom','fun','pod','des','sel'] ])?>
+            <?=_doc_lis::tab('api.hol_sel_arm_cel',[ 'atr'=>['ide','nom','fun','pod','des','sel'] ])?>
 
           </section>
 
@@ -474,7 +474,7 @@
 
             <p>En <a href="<?=$_bib?>enc#_02-03-06-06-" target="_blank">el Encantamiento del Sueño</a><c>.</c></p>
 
-            <?=_app_est::lis('api.hol_sel_par_ana')?>
+            <?=_doc_lis::tab('api.hol_sel_par_ana')?>
 
           </section>
           <!-- antipodas -->
@@ -483,7 +483,7 @@
 
             <p>En <a href="<?=$_bib?>enc#_02-03-06-04-" target="_blank">el Encantamiento del Sueño</a><c>.</c></p>
 
-            <?=_app_est::lis('api.hol_sel_par_ant')?>
+            <?=_doc_lis::tab('api.hol_sel_par_ant')?>
 
           </section>
           <!-- ocultos -->
@@ -492,7 +492,7 @@
 
             <p>En <a href="<?=$_bib?>enc#_02-03-06-05-" target="_blank">el Encantamiento del Sueño</a><c>.</c></p>
 
-            <?=_app_est::lis('api.hol_sel_par_ocu')?>
+            <?=_doc_lis::tab('api.hol_sel_par_ocu')?>
 
           </section>
 
@@ -503,7 +503,7 @@
 
           <p>El código 0-19</p>              
 
-          <?=_app_est::lis('api.hol_sel_cod',[ 'atr'=>['ide','sol_pla_des'], 
+          <?=_doc_lis::tab('api.hol_sel_cod',[ 'atr'=>['ide','sol_pla_des'], 
             'tit_cic'=>['sol_cel','sol_cir','sol_pla'] 
           ])?>
 
@@ -513,7 +513,7 @@
 
             <p>En <a href="<?=$_bib?>fac" target="_blank">el Factor Maya</a><c>.</c></p>
 
-            <?=_app_est::lis('api.hol_sel_sol_pla')?>
+            <?=_doc_lis::tab('api.hol_sel_sol_pla')?>
 
           </section>
           <!-- células solares -->
@@ -522,7 +522,7 @@
 
             <p>En <a href="<?=$_bib?>enc#_03-03-" target="_blank">el Encantamiento del Sueño</a><c>.</c></p>
 
-            <?=_app_est::lis('api.hol_sel_sol_cel')?>
+            <?=_doc_lis::tab('api.hol_sel_sol_cel')?>
 
           </section>
           <!-- circuitos de telepatía -->
@@ -531,7 +531,7 @@
 
             <p>En <a href="<?=$_bib?>tel" target="_blank">Telektonon</a><c>.</c></p>
 
-            <?=_app_est::lis('api.hol_sel_sol_cir')?>
+            <?=_doc_lis::tab('api.hol_sel_sol_cir')?>
 
           </section>              
 
@@ -542,13 +542,13 @@
           
           <p>En <a href="<?=$_bib?>enc#_03-07-" target="_blank">el Encantamiento del Sueño</a><c>.</c></p>
 
-          <?=_app_est::lis('api.hol_sel_cod',[ 'atr'=>['ide','nom','cro_fam','pla_mer','pla_mer_cod','pla_hem','pla_hem_cod'] ])?>
+          <?=_doc_lis::tab('api.hol_sel_cod',[ 'atr'=>['ide','nom','cro_fam','pla_mer','pla_mer_cod','pla_hem','pla_hem_cod'] ])?>
 
           <!-- centros galácticos -->
           <h3 id="<?="_{$nav[2]['06']['01']->pos}-"?>"><?=_doc::let($nav[2]['06']['01']->nom)?></h3>
           <section>
 
-            <?=_app_est::lis('api.hol_sel_pla_cen')?>
+            <?=_doc_lis::tab('api.hol_sel_pla_cen')?>
 
           </section>
           <!-- flujos de la fuerza-g -->
@@ -557,7 +557,7 @@
 
             <p>En <a href="<?=$_bib?>enc#_03-16-" target="_blank">el Encantamiento del Sueño</a><c>.</c></p>
 
-            <?=_app_est::lis('api.hol_sel_pla_res')?>
+            <?=_doc_lis::tab('api.hol_sel_pla_res')?>
 
           </section>              
 
@@ -568,7 +568,7 @@
 
           <p>En <a href="<?=$_bib?>enc#_03-08-" target="_blank">el Encantamiento del Sueño</a><c>.</c></p>
 
-          <?=_app_est::lis('api.hol_sel_cod',[ 'atr'=>['ide','nom','hum_cen','hum_ext','hum_ded','hum_res'], 
+          <?=_doc_lis::tab('api.hol_sel_cod',[ 'atr'=>['ide','nom','hum_cen','hum_ext','hum_ded','hum_res'], 
             'tit_cic'=>['cro_ele'] 
           ])?>
 
@@ -576,28 +576,28 @@
           <h3 id="<?="_{$nav[2]['07']['01']->pos}-"?>"><?=_doc::let($nav[2]['07']['01']->nom)?></h3>
           <section>
 
-            <?=_app_est::lis('api.hol_sel_hum_cen')?>
+            <?=_doc_lis::tab('api.hol_sel_hum_cen')?>
 
           </section>
           <!-- Extremidades -->
           <h3 id="<?="_{$nav[2]['07']['02']->pos}-"?>"><?=_doc::let($nav[2]['07']['02']->nom)?></h3>
           <section>
 
-            <?=_app_est::lis('api.hol_sel_hum_ext')?>
+            <?=_doc_lis::tab('api.hol_sel_hum_ext')?>
 
           </section>                     
           <!-- dedos -->
           <h3 id="<?="_{$nav[2]['07']['03']->pos}-"?>"><?=_doc::let($nav[2]['07']['03']->nom)?></h3>
           <section>            
             
-            <?=_app_est::lis('api.hol_sel_hum_ded')?>
+            <?=_doc_lis::tab('api.hol_sel_hum_ded')?>
 
           </section>
           <!-- lados -->
           <h3 id="<?="_{$nav[2]['07']['04']->pos}-"?>"><?=_doc::let($nav[2]['07']['04']->nom)?></h3>
           <section>
             
-            <?=_app_est::lis('api.hol_sel_hum_res')?>
+            <?=_doc_lis::tab('api.hol_sel_hum_res')?>
 
           </section>              
 
@@ -612,7 +612,7 @@
 
           <p>En <a href="<?=$_bib?>" target="_blank">el Encantamiento del Sueño</a><c>.</c></p>
 
-          <?=_app_est::lis('api.hol_lun',[ 'atr'=>['ide','arm','rad','ato_des'] ])?> 
+          <?=_doc_lis::tab('api.hol_lun',[ 'atr'=>['ide','arm','rad','ato_des'] ])?> 
         </article>
 
         <!-- 4 heptadas -->
@@ -995,7 +995,6 @@
         $tab_ide = "hol.{$ide}";
         $tab_ele = [];
         $tab_ope = !empty($_tab->ope) ? $_tab->ope : [];
-        $tab_opc = !empty($_tab->opc) ? $_tab->opc : [];
 
         // inicializo valores
         $tab_ope['val'] = [];
@@ -1010,7 +1009,7 @@
             $tab_ope['dat'] = _hol::dat( $ide, $_val );
             // acumulados
             $tab_ope['val']['acu'] = [ 'pos'=>1, 'mar'=>1, 'ver'=>1 ];
-            if( !empty($tab_opc) ){
+            if( !empty($tab_ope['opc']) ){
               $tab_ope['val']['acu']['opc'] = 1;
             }
           }
@@ -1022,7 +1021,7 @@
         $_ope = _obj::nom(_app_tab::$OPE,'ver',['cue','val','opc']);
         foreach( $_ope as $ope_ide => $ope_tab ){
           if( 
-            !empty( $htm = _app_tab::ope($ope_ide, $tab_ide, $tab_ope, $tab_ele, ...$tab_opc ) ) 
+            !empty( $htm = _app_tab::ope($ope_ide, $tab_ide, $tab_ope, $tab_ele ) ) 
           ){
             $_['nav'][$ope_ide] = [ 
               'ico' => $ope_tab['ico'],
@@ -1046,7 +1045,7 @@
           "._hol_tab::$ide($art_tab[1], $tab_ope, [ 
             'sec'=>[ 'class'=>"mar-aut" ],
             'pos'=>[ 'onclick'=>"_app_tab.val('mar',this);" ]
-          ], ...$tab_opc)."
+          ])."
         </article>";
       }
       else{

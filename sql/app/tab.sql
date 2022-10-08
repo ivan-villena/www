@@ -3,6 +3,7 @@
 -- Holon
   DELETE FROM `_api`.`app_tab` WHERE `esq`='hol'
   ;
+
   DELETE FROM `_api`.`app_tab` WHERE `esq`='hol' AND `est` LIKE 'uni%';
   INSERT INTO `_api`.`app_tab` VALUES
 
@@ -59,7 +60,7 @@
 
         "sel-fic":{ "style":"width: 75%; height: 75%;" } 
         
-      }', NULL, NULL
+      }', NULL
     ),
     -- holon planetario
     ( 'hol','uni_pla', '
@@ -107,7 +108,7 @@
 
         "sel-fic":{ "style":"width: 30%;" }  
 
-      }', NULL, NULL
+      }', NULL
     ),
     -- holon humano
     ( 'hol','uni_hum', 
@@ -175,9 +176,10 @@
         "sel-18":{ "sel":"18", "style":"grid-column:10; grid-row:19; top:35%; left:15%;" },
         "sel-19":{ "sel":"19", "style":"grid-column:10; grid-row:19; bottom:50%;" }  
 
-      }', NULL, NULL
+      }', NULL
     )
-  ;  
+  ;
+  
   DELETE FROM `_api`.`app_tab` WHERE `esq`='hol' AND `est` LIKE 'arm%';
   INSERT INTO `_api`.`app_tab` VALUES
     -- cuadrado-cubo
@@ -195,9 +197,10 @@
         "pos-3":{ "pos":"3", "style":"grid-column:1/4; grid-row:4/8;" },
         "pos-4":{ "pos":"4", "style":"grid-column:4/7; grid-row:4/8;" }   
 
-      }', NULL, NULL
+      }', NULL
     )
-  ;  
+  ;
+  
   DELETE FROM `_api`.`app_tab` WHERE `esq`='hol' AND `est` LIKE 'cro%';
   INSERT INTO `_api`.`app_tab` VALUES
     -- cruz-atomo
@@ -216,7 +219,7 @@
         "pos-4":{ "pos":"4", "style":"grid-column:2; grid-row:3;" },
         "pos-5":{ "pos":"5", "style":"grid-column:2; grid-row:2;" }   
 
-      }', NULL, NULL
+      }', NULL
     ),
     -- pentagono tipo petalos
     ( 'hol','cro_cir', 
@@ -235,9 +238,10 @@
         "pos-4":{ "pos":"4", "style":"grid-column:3/4; grid-row:2/3; top: 35.5%; left: 12%; transform: rotate(287deg);" },
         "pos-5":{ "pos":"5", "style":"grid-column:3/4; grid-row:1/2; top: 3%;    left:-30%; transform: rotate(217deg);" }      
 
-      }', NULL, NULL
+      }', NULL
     )
-  ;  
+  ;
+  
   DELETE FROM `_api`.`app_tab` WHERE `esq`='hol' AND `est` LIKE 'rad%';
   INSERT INTO `_api`.`app_tab` VALUES
     -- heptágono
@@ -258,14 +262,15 @@
         "pos-6":{ "pos":"6", "style":"grid-column:4; grid-row:2; bottom:  20%; right: 35%;" },
         "pos-7":{ "pos":"7", "style":"grid-column:2; grid-row:2; top:     50%; left:  50%;" } 
         
-      }', NULL, NULL
+      }', NULL
     ),
     -- atomo por quantum
     ( 'hol','rad_ato', 
       '{
-      }', NULL, NULL
+      }', NULL
     )
-  ;  
+  ;
+  
   DELETE FROM `_api`.`app_tab` WHERE `esq`='hol' AND `est` LIKE 'ton%';
   INSERT INTO `_api`.`app_tab` VALUES
 
@@ -304,9 +309,10 @@
         "pos-12":{ "pos":"12", "style":"grid-column:5/6; grid-row:2/3;" },
         "pos-13":{ "pos":"13", "style":"grid-column:4/5; grid-row:2/3;" }   
         
-      }', NULL, NULL
+      }', NULL
     )
-  ;  
+  ;
+  
   DELETE FROM `_api`.`app_tab` WHERE `esq`='hol' AND `est` LIKE 'sel%';
   INSERT INTO `_api`.`app_tab` VALUES
 
@@ -322,7 +328,7 @@
           "style":"width: 1.9rem; height: 1.9rem;"
         }    
 
-      }', NULL, NULL)
+      }', NULL)
     ,-- parejas del oráculo
     ( 'hol','sel_par', 
       '{ 
@@ -336,7 +342,7 @@
           "style":"width: 1.9rem; height: 1.9rem;" 
         } 
         
-      }', NULL, NULL)
+      }', NULL)
     ,-- colocacion armónica
     ( 'hol','sel_arm', 
       '{ 
@@ -359,7 +365,7 @@
           "style":"width: 8rem; height: 8rem;" 
         }
         
-      }', NULL, NULL)
+      }', NULL)
       ,-- trayectoria
       ( 'hol','sel_arm_tra', 
         '{ 
@@ -369,7 +375,7 @@
           "pos":{ 
             "style":"width: 7.8rem; height: 7.8rem;" 
           }
-        }', NULL, NULL)
+        }', NULL)
     ,-- colocacion cromática
     ( 'hol','sel_cro', 
       '{ 
@@ -394,9 +400,10 @@
           "style":"width: 7rem; height: 7rem;" 
         }  
         
-      }', NULL, NULL
+      }', NULL
     )
-  ;  
+  ;
+
   DELETE FROM `_api`.`app_tab` WHERE `esq`='hol' AND `est` LIKE 'lun%';
   INSERT INTO `_api`.`app_tab` VALUES
     -- forma de almanque
@@ -410,9 +417,10 @@
         "pos":{ 
           "style":"width: 3rem; height: 3rem;"
         }     
-      }', NULL, NULL
+      }', NULL
     )
-  ;  
+  ;
+
   DELETE FROM `_api`.`app_tab` WHERE `esq`='hol' AND `est` LIKE 'cas%';
   INSERT INTO `_api`.`app_tab` VALUES
     -- fractal en cruz
@@ -506,7 +514,7 @@
           "pos-51":{ "pos":"51", "style":"grid-column:10; grid-row:08;" },
           "pos-52":{ "pos":"52", "style":"grid-column:09; grid-row:08;" } 
 
-      }', NULL, NULL
+      }', NULL
     ),-- circular
     ( 'hol','cas_cir', 
       '{ 
@@ -601,9 +609,10 @@
           "pos-51":{ "pos":"51", "style":"grid-column:18; grid-row:11; right: 10%;" },
           "pos-52":{ "pos":"52", "style":"grid-column:18; grid-row:10;" }      
         
-      }', NULL, NULL
+      }', NULL
     )
   ;
+
   DELETE FROM `_api`.`app_tab` WHERE `esq`='hol' AND `est` LIKE 'kin%';
   INSERT INTO `_api`.`app_tab` VALUES
     -- tzolkin
@@ -616,16 +625,12 @@
         "pos":{  
           "style":"width: 1.75rem; height: 1.75rem;" 
         }
-      }', 
-      '{
+      }','{
         "sec":{ "kin-sel": 1, "kin-ton": 0 },
-
         "pos":{ "ima": "api.hol_ton.ide", "col": "", "num": "api.hol_kin.ide" }, 
-
+        "opc": [ "pag", "par" ],
         "pag": { "kin": 1 }
-
-      }',
-      '[ "pag", "par" ]'
+      }'
     ),-- parejas del oráculo
     ( 'hol','kin_par', 
       '{ 
@@ -633,7 +638,7 @@
           "tab":"uni_par-kin", 
           "style":"border: 1px solid var(--col_ver); border-radius: 50%;" 
         }
-      }', NULL, NULL
+      }', NULL
     ),-- nave del tiempo
     ( 'hol','kin_nav', 
         '{ 
@@ -647,13 +652,11 @@
           "pos-00":{ 
             "style":"font-size:.5rem" 
           }
-        }', '{
-
-          "sec":{ "cas-pos":1, "cas-bor": 0, "cas-col": 1, "cas-orb": 0, "ton-col":0 },
-
-          "pos":{ "ima": "api.hol_kin.ide", "col": "", "num": "" }
-
-        }', '[ "par", "pul" ]'
+        }','{
+          "sec": { "cas-pos":1, "cas-bor": 0, "cas-col": 1, "cas-orb": 0, "ton-col":0 },
+          "pos": { "ima": "api.hol_kin.ide", "col": "", "num": "" },
+          "opc": [ "par", "pul" ]
+        }'
       ),
       ( 'hol','kin_nav_cas', 
         '{ 
@@ -664,7 +667,7 @@
           "pos":{ 
             "style":"width: 4rem; height: 4rem;" 
           }      
-        }', NULL, NULL
+        }', NULL
       ),
       ( 'hol','kin_nav_ond', 
         '{ 
@@ -675,7 +678,7 @@
           "pos":{ 
             "style":"width: 9rem; height: 9rem;"
           }
-        }', NULL, NULL
+        }', NULL
       )
     ,-- estacion galáctica
     ( 'hol','kin_cro', 
@@ -686,13 +689,11 @@
           "pos":{ 
             "style":"width: 1rem; height: 1rem;" 
           }
-        }', '{
-
-          "sec":{ "cas-pos": 1, "cas-orb": 1, "ton-col":1, "sel-cro_ele-pos": 1 },
-
-          "pos":{ "ima": "api.hol_sel.ide", "col": "", "num": "" }
-
-        }', '[ "par", "pul" ]'
+        }','{
+          "sec": { "cas-pos": 1, "cas-orb": 1, "ton-col":1, "sel-cro_ele-pos": 1 },
+          "pos": { "ima": "api.hol_sel.ide", "col": "", "num": "" },
+          "opc": [ "par", "pul" ]
+        }'
       ),
       ( 'hol','kin_cro_est', 
         '{
@@ -702,7 +703,7 @@
           "pos":{ 
             "style":"width: 2.8rem; height: 2.8rem;" 
           }
-        }', NULL, NULL
+        }', NULL
       ),
       ( 'hol','kin_cro_ele', 
         '{ 
@@ -716,7 +717,7 @@
 
           "rot-ton":[ "147", "070", "074", "071", "074", "330", "352", "335", "350", "230", "270", "240", "160", "140", "070", "074", "071", "074", "330", "352", "335", "350", "230", "270", "240", "160", "140", "070", "074", "071", "074", "330", "352", "335", "350", "230", "270", "240", "160", "140", "070", "074", "071", "074", "330", "352", "335", "350", "230", "270", "240", "160" ],
           "rot-cas":[ "025", "000", "340", "345", "340", "250", "255", "250", "255", "155", "170", "160", "065", "290", "290", "290", "290", "220", "170", "160", "165", "160", "070", "075", "070", "335", "180", "150", "170", "160", "165", "070", "075", "070", "073", "330", "350", "340", "245", "095", "070", "075", "073", "073", "330", "350", "340", "345", "250", "255", "250", "160" ]
-        }', NULL, NULL
+        }', NULL
       )
     ,-- trayectoria armónica
     ( 'hol','kin_arm', 
@@ -728,12 +729,10 @@
             "style":"width: 1.08rem; height: 1.08rem;" 
           }
         }', '{
-
-          "sec":{ "sel-arm_tra-bor": 0, "sel-arm_cel-pos": 1, "sel-arm_cel-bor": 0, "sel-arm_cel-col": 0},
-
-          "pos":{ "ima": "api.hol_sel.ide", "col": "", "num": "" }
-
-        }', '[ "par", "pul" ]'
+          "sec": { "sel-arm_tra-bor": 0, "sel-arm_cel-pos": 1, "sel-arm_cel-bor": 0, "sel-arm_cel-col": 0},
+          "pos": { "ima": "api.hol_sel.ide", "col": "", "num": "" },
+          "opc": [ "par", "pul" ]
+        }'
       ),
       ( 'hol','kin_arm_tra',
         '{ 
@@ -743,7 +742,7 @@
           "pos":{ 
             "style":"width: 7.8rem; height: 7.8rem;" 
           }
-        }', NULL, NULL
+        }', NULL
       ),
       ( 'hol','kin_arm_cel',
         '{
@@ -753,30 +752,9 @@
           "pos":{ 
             "style":"width: 18rem; height: 18rem;" 
           }
-        }', NULL, NULL
+        }', NULL
       )
   ;
-  DELETE FROM `_api`.`app_tab` WHERE `esq`='hol' AND `est` LIKE 'kin_tzo%';
-  INSERT INTO `_api`.`app_tab` VALUES ( 'hol','kin_tzo', 
-    '{ 
-      "sec":{ 
-        "tab":"kin-tzo", 
-        "style":"grid: repeat(20,1fr) / repeat(13,1fr); grid-auto-flow: column;"
-      },        
-      "pos":{  
-        "style":"width: 1.75rem; height: 1.75rem;" 
-      }
-    }', 
-    '{
-      "sec":{ "kin-sel": 1, "kin-ton": 0 },
-
-      "pos":{ "ima": "api.hol_ton.ide", "col": "", "num": "api.hol_kin.ide" }, 
-
-      "pag": { "kin": 1 }
-
-    }',
-    '[ "pag", "par" ]'
-  );
 
   DELETE FROM `_api`.`app_tab` WHERE `esq`='hol' AND `est` LIKE 'psi%';
   INSERT INTO `_api`.`app_tab` VALUES
@@ -790,12 +768,10 @@
           "style": "width: 1.15rem; height: 1.15rem;" 
         }
       }', '{
-
-        "sec":{ "lun-cab":1, "lun-hep":1 },
-
-        "pos":{ "ima": "api.hol_kin.ide", "col": "", "num": "" }
-
-      }', '[ "pag", "par", "pul" ]'
+        "sec": { "lun-cab":1, "lun-hep":1 },
+        "pos": { "ima": "api.hol_kin.ide", "col": "", "num": "" },
+        "opc": [ "pag", "par", "pul" ]
+      }'
     ),-- 4 estaciones
     ( 'hol','psi_est', 
       '{ 
@@ -804,12 +780,11 @@
 
         "pos":{ "style": "width: .855rem; height: .855rem;" }
 
-      }', '{
-
-        "sec":{ "cas-pos": 1, "cas-orb": 0, "ton-col": 0 },
-
-        "pos":{ "ima": "api.hol_rad.ide", "col": "", "num": "" }
-      }', '[ "par", "pul" ]'
+      }','{
+        "sec": { "cas-pos": 1, "cas-orb": 0, "ton-col": 0 },
+        "pos": { "ima": "api.hol_rad.ide", "col": "", "num": "" },
+        "opc": [ "par", "pul" ]
+      }'
     ),-- 13 lunas
     ( 'hol','psi_lun', 
       '{
@@ -818,13 +793,11 @@
 
         "pos":{ "style": "width: 5rem; height: 5rem; max-height: 5rem;" }
       
-      }', '{
-
-        "sec":{ "lun-cab":1, "lun-hep":1, "lun-rad": 1 },
-
-        "pos":{ "ima": "api.hol_kin.ide", "col": "", "num": "" }      
-
-      }', '[ "par" ]'
+      }','{
+        "sec": { "lun-cab":1, "lun-hep":1, "lun-rad": 1 },
+        "pos": { "ima": "api.hol_kin.ide", "col": "", "num": "" },
+        "opc": [ "pul", "par" ]
+      }'
     ),-- 52 heptadas
     ( 'hol','psi_hep', 
       '{ 
@@ -833,7 +806,7 @@
           "tab": "psi_hep" 
         }
         
-      }', NULL, NULL
+      }', NULL
     ),-- banco-psi
     ( 'hol','psi_tzo', 
       '{
@@ -847,14 +820,13 @@
 
         "pos":{ "style":"width: .95rem; height: .95rem;" }
         
-      }', '{
-
-        "pos":{ "ima": "api.hol_kin.ide", "col": "", "num": "" },
-
-        "pag":{ "kin": 1 }
-
-      }', '[ "pag", "par" ]'
+      }','{
+        "pos": { "ima": "api.hol_kin.ide", "col": "", "num": "" },
+        "opc": [ "pag", "par" ],
+        "pag": { "kin": 1 }
+      }'
     )
   ;
+
   DELETE FROM `_api`.`app_tab` WHERE `esq`='hol' AND `est` LIKE 'umb%'
   ;
