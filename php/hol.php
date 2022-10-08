@@ -896,7 +896,6 @@
       }
       return $_;
     }
-
     static function sel( string | array $atr, mixed $val, array $ope = [] ) : string {
       
       $dat = _hol::_('sel',$val);
@@ -921,8 +920,7 @@
         }
       }
       return $_;
-    }
-    
+    }    
     static function kin( string | array $atr, mixed $val, array $ope = [] ) : string {
       
       $dat = _hol::_('kin',$val);
@@ -1098,9 +1096,11 @@
   // Listado : por estructura => items + tabla
   class _hol_lis {
 
-    static function uni( $ide, array $ele = [] ) : string {
-      $_ = []; $est = "hol_uni_".$ide; $lis_tip = "val"; $lis_pos = 0;
-      switch( $ide ){
+    static function uni( string $atr, array $ele = [] ) : string {
+      $_ = []; $est = "hol_uni_".$atr; 
+      $lis_tip = "val"; $lis_pos = 0;
+      $ope = [ 'opc'=>['htm','cab_ocu'] ];
+      switch( $atr ){
       // campos planetarios
       case 'pla_cam.nom':
         $_ = "      
@@ -1123,10 +1123,11 @@
         break;                              
       }
       return is_array($_) ? _app_dat::lis( $_, $est, $lis_tip, $ele ) : $_;
-    }
-    
-    static function rad( $atr, array $ele = [] ) : string {
-      $_ = []; $lis_tip = "val"; $lis_pos = 0;
+    }    
+    static function rad( string $atr, array $ele = [] ) : string {
+      $_ = []; 
+      $lis_tip = "val"; $lis_pos = 0;
+      $ope = [ 'opc'=>['htm','cab_ocu'] ];
       switch( $atr ){
       // plasma : años por oráculos de la profecía
       case 'ani': 
@@ -1145,19 +1146,20 @@
       }
       return is_array($_) ? _app_dat::lis( $_, "hol_rad_$atr", $lis_tip, $ele ) : $_;
     }
-
-    static function ton( $atr, array $ele = [], ...$opc ) : string {
-      $_ = []; $lis_tip = "val"; $lis_pos = 0;
+    static function ton( string $atr, array $ele = [] ) : string {
+      $_ = []; 
+      $lis_tip = "val"; $lis_pos = 0;
+      $ope = [ 'opc'=>['htm','cab_ocu'] ];
       switch( $atr ){
       // tutorial : propiedades
       case 'pro': 
         $ope['atr'] = ['ide','nom','car','pod','acc'];
-        $_ = _app_dat::est("api.hol_ton", $ope, $ele, ...$opc );
+        $_ = _app_est::lis("api.hol_ton", $ope, $ele );
         break;
       // encantamiento : descripciones
       case 'des':
         $ope['atr'] = ['ide','nom','des','acc'];
-        $_ = _app_dat::est("api.hol_ton", $ope, $ele, ...$opc );
+        $_ = _app_est::lis("api.hol_ton", $ope, $ele );
         break;
       // factor : rayo de pulsacion
       case 'gal':
@@ -1198,7 +1200,7 @@
           }
         }
   
-        $_ = _app_est::lis($_dat,[ 'atr_dat'=>$_atr, 'tit'=>$_tit ],$ele,'cab_ocu');              
+        $_ = _app_est::lis($_dat,[ 'atr_dat'=>$_atr, 'tit'=>$_tit, 'opc'=>['cab_ocu'] ],$ele);              
         break;
             
       // encantamiento : pulsares dimensionales
@@ -1238,14 +1240,15 @@
       }
       return is_array($_) ? _app_dat::lis( $_, "hol_ton_$atr", $lis_tip, $ele ) : $_;
     }
-
-    static function sel( $atr, array $ele = [], ...$opc ) : string {
-      $_ = []; $lis_tip = "val"; $lis_pos = 0;
+    static function sel( string $atr, array $ele = [] ) : string {
+      $_ = []; 
+      $lis_tip = "val"; $lis_pos = 0; 
+      $ope = [ 'opc'=>['htm','cab_ocu'] ];
       switch( $atr ){
       // tutorial : propiedades
       case 'pro': 
         $ope['atr'] = ['ide','nom','pod','acc','car'];
-        $_ = _app_dat::est("api.hol_sel", $ope, $ele, ...$opc );
+        $_ = _app_est::lis("api.hol_sel", $ope, $ele );
         break;        
       // factor : posiciones direccionales
       case 'cic_dir':
@@ -1604,7 +1607,7 @@
             'ima_cod'=>[ 'htm'=>_hol::ima("sel_cod",$_sel,['class'=>"mar-1"]) ]
           ]);
         }
-        $_ = _app_est::lis($sel,[ 'tit'=>$ele ],[ 'lis'=>[ 'class'=>"mar-aut mar_aba-2" ] ],'cab_ocu');        
+        $_ = _app_est::lis($sel,[ 'tit'=>$ele, 'opc'=>['cab_ocu'] ]);
         break;
       // encantamiento : holon humano => rol de familias terrestres
       case 'hum_fam':
@@ -1632,7 +1635,7 @@
           }
         }
   
-        $_ = _app_est::lis($sel,[ 'tit'=>$fam ],[ 'lis'=>[ 'class'=>"mar-aut mar_aba-2" ] ],'cab_ocu');            
+        $_ = _app_est::lis($sel,[ 'tit'=>$fam, 'opc'=>['cab_ocu'] ]);
         break;
       // encantamiento : holon humano => extremidades del humano
       case 'hum_ext':
@@ -1679,9 +1682,10 @@
       }
       return is_array($_) ? _app_dat::lis( $_, "hol_sel_$atr", $lis_tip, $ele ) : $_;
     }
-
-    static function lun( $atr, array $ele = [], ...$opc ) : string {
-      $_ = []; $lis_tip = "val"; $lis_pos = 0;
+    static function lun( string $atr, array $ele = [] ) : string {
+      $_ = []; 
+      $lis_tip = "val"; $lis_pos = 0;
+      $ope = [ 'opc'=>['htm','cab_ocu'] ];
       switch( $atr ){
       // 13 lunas : heptadas - cuarto armónica
       case 'arm':
@@ -1704,8 +1708,8 @@
       // 13 lunas : heptadas lunares
       case 'arm_col':
         $ope['atr'] = [ 'ide','nom','col','dia','pod' ];
-        $opc []= 'cab_ocu';
-        $_ = _app_dat::est("api.hol_lun_arm", $ope, $ele, ...$opc );
+        $ope['opc'] []= 'cab_ocu';
+        $_ = _app_est::lis("api.hol_lun_arm", $ope, $ele );
         break;        
       // tutorial : descripcion de las heptadas
       case 'arm_des': 
@@ -1744,15 +1748,16 @@
       }
       return is_array($_) ? _app_dat::lis( $_, "hol_lun_$atr", $lis_tip, $ele ) : $_;
     }    
-
-    static function kin( $atr, array $ele = [], ...$opc ) : string {
-      $_ = []; $lis_tip = "val"; $lis_pos = 0;
+    static function kin( string $atr, array $ele = [] ) : string {
+      $_ = []; 
+      $lis_tip = "val"; $lis_pos = 0;
+      $ope = [ 'opc'=>['htm','cab_ocu'] ];
       switch( $atr ){
       case 'par':
-        if( !isset($opc[0]) ) $opc[0] = [];
         if( !isset($ele['atr']) ) $ele['atr'] = "";
         if( !isset($ele['dat']) ) $ele['dat'] = "001";
-        $dat = !is_object($ele['dat']) ? _hol::_('kin',$ele['dat']) : $ele['dat'];
+        $dat = _hol::_('kin',$ele['dat']);
+        $ele_lis = isset($ele['ele']) ? $ele['ele'] : [];
         switch( $ele['atr'] ){
         // Propiedades : palabras clave del kin + sello + tono
         case 'pro':
@@ -1817,7 +1822,7 @@
           }
           break;
         }
-        $_ = _app_dat::est( $_, $ele, $opc[0]);
+        $_ = _app_est::lis( $_, $ope, $ele_lis);
         break;
       // factor : portales de activacion
       case 'pag':
@@ -2078,9 +2083,10 @@
       }
       return is_array($_) ? _app_dat::lis( $_, "hol_kin_$atr", $lis_tip, $ele ) : $_;
     }
-
-    static function psi( $atr, array $ele = [], ...$opc ) : string {
-      $_ = []; $lis_tip = "val"; $lis_pos = 0;
+    static function psi( string $atr, array $ele = [] ) : string {
+      $_ = []; 
+      $lis_tip = "val"; $lis_pos = 0;
+      $ope = [ 'opc'=>['htm','cab_ocu'] ];
       switch( $atr ){
       // encantamiento : por tonos galácticos
       case 'lun':
@@ -2212,17 +2218,15 @@
         }
         elseif( empty($ope['atr']) ){
           $ope['atr'] = [];
-          $_ = _app_dat::est("api.hol_lun", $ope, $ele, ...$opc );
+          $_ = _app_est::lis("api.hol_lun", $ope, $ele );
         }
         break;
       // tratado : vinales
       case 'vin':
-        
-        $ele['lis']['class'] = "anc-100 mar-2";
-
-        $_ = _app_est::lis("api.hol_psi_{$atr}",[ 
-          'atr'=>['ide','nom','fec','sin','cro'], 'det_des'=>[ 'des' ] 
-        ], $ele );
+        $ope['atr'] = ['ide','nom','fec','sin','cro'];
+        $ope['det_des'] = ['des'];
+        //$ele['lis']['class'] = "anc-100 mar-2";
+        $_ = _app_est::lis("api.hol_psi_{$atr}", $ope, $ele);
 
         break;
       // proyecto rinri : cromaticas entonadas
@@ -2237,9 +2241,10 @@
       }
       return is_array($_) ? _app_dat::lis( $_, "api.psi_$atr", $lis_tip, $ele ) : $_;
     }
-
-    static function ani( $atr, array $ele = [], ...$opc ) : string {
-      $_ = []; $lis_tip = "val"; $lis_pos = 0;
+    static function ani( string $atr, array $ele = [] ) : string {
+      $_ = []; 
+      $lis_tip = "val"; $lis_pos = 0;
+      $ope = [ 'opc'=>['htm','cab_ocu'] ];
       switch( $atr ){
       // 13 lunas : años (desde-hasta) por anillos solares
       case 'fec':
@@ -3159,6 +3164,76 @@
       return $_;
     }
   }
+
+  // Valor principal : fec + sin + psi + kin
+  class _hol_val {
+
+    static string $IDE = "_hol_val-";
+    static string $EJE = "_hol_val.";
+
+    // fecha + ns:kin
+    static function fec( array $dat ) : string {
+      $_eje = self::$EJE."fec";
+
+      $_kin = isset($dat['kin']) ? ( is_object($dat['kin']) ? $dat['kin'] : _hol::_('kin',$dat['kin']) ) : [];
+      $_psi = isset($dat['psi']) ? ( is_object($dat['psi']) ? $dat['psi'] : _hol::_('psi',$dat['psi']) ) : [];
+      $_sin = isset($dat['sin']) ? explode('.',$dat['sin']) : [];
+      $_fec = isset($dat['fec']) ? $dat['fec'] : [];      
+
+      $_ = "
+      <!-- Fecha del Calendario -->
+      <form class='val' ide = 'fec'>
+
+        <div class='atr'>
+          "._doc_fec::ope('dia', $_fec, [ 'name'=>"fec" ])."
+          "._doc::ico('dat_ver',[ 
+            'eti'=>"button", 'type'=>"submit", 'title'=>'Buscar en el Calendario...', 'class'=>"mar_hor-1", 'onclick'=>"$_eje(this);"
+          ])."
+        </div>
+
+      </form>
+
+      <!-- Fecha del Sincronario -->
+      <form class='val' ide = 'sin'>
+        
+        <div class='atr'>
+
+          <label>N<c>.</c>S<c>.</c></label>
+
+          "._doc_num::ope('int', $_sin[0], [ 'maxlength'=>2, 'name'=>"gal", 'title'=>"Portales Galácticos, Ciclos NS de 52 años..."])."
+
+          <c>.</c>
+          "._doc_opc::val( _hol::_('ani'), [
+            'eti'=>[ 'name'=>"ani", 'title'=>"Anillo Solar (año): 52 ciclos de 364+1 días...", 'val'=>$_sin[1] ], 
+            'ite'=>[ 'title'=>'($)nom','htm'=>'($)ide' ]
+          ])."
+          <c>.</c>
+          "._doc_opc::val( _hol::_('psi_lun'), [
+            'eti'=>[ 'name'=>"lun", 'title'=>"Giro Lunar (mes): 13 ciclos de 28 días...", 'val'=>$_sin[2] ],
+            'ite'=>[ 'title'=>'()($)nom(): ()($)des()','htm'=>'($)ide' ]
+          ])."
+          <c>.</c>
+          "._doc_opc::val( _hol::_('lun'), [ 
+            'eti'=>[ 'name'=>"dia", 'title'=>"Día Lunar : 1 día de 28 que tiene la luna...", 'val'=>$_sin[3] ], 
+            'ite'=>[ 'title'=>'($)des','htm'=>'($)ide' ]
+          ])."          
+          <c class='sep'>:</c>
+      
+          <n name='kin'>$_kin->ide</n>
+
+          "._hol::ima("kin",$_kin,['class'=>"mar_hor-1", 'style'=>'min-width:3em; height:3em;'])."
+          
+        </div>
+
+        "._doc::ico('dat_ver',[ 
+          'eti'=>"button", 'title'=>'Buscar en el Sincronario', 'type'=>"submit", 'onclick'=>"$_eje(this);" 
+        ])."
+
+      </form>";
+
+      return $_;
+    }
+  }  
 
   // Diario : kin + psi + sin + umb
   class _hol_dia {

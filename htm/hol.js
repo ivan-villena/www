@@ -20,56 +20,7 @@ class _hol_app {
       ;
     }
   }
-
-  // proceso valores
-  static ope( $dat ){
-    // operador : fecha + sincronario
-    let $ = _doc_val.var($dat);
-
-    if( !$_api.app_uri.cab || !['tab','inf'].includes($_api.app_uri.cab) ){
-      $_api.app_uri.cab = 'tab';
-      $_api.app_uri.art = 'kin-tzo';
-    }
-    
-    $.uri = $_app.uri_val();
-
-    // calendario gregoriano
-    if( ( $.ope = $_app.var.getAttribute('ide') ) == 'fec' ){
-      
-      if( $.fec = $_app.var.querySelector('[name="fec"]').value ){
-
-        _arc.url(`${$.uri}/fec=${$.fec.replaceAll('/','-')}`);
-      }
-      else{
-        alert('La fecha del calendario es inválida...')
-      }
-    }
-    // sincronario
-    else if( $.ope == 'sin' ){
-      $.atr = {};
-      $.hol = [];
-      $.val = true;
-      ['gal','ani','lun','dia'].forEach( $v => {
-
-        $.atr[$v] = $_app.var.querySelector(`[name="${$v}"]`).value;
-
-        if( !$.atr[$v] ){ 
-          return $.val = false;          
-        }
-        else{ 
-          $.hol.push($.atr[$v]) 
-        }
-      });
-      if( !!$.val ){
-
-        _arc.url(`${$.uri}/sin=${$.hol.join('.')}`);
-      }
-      else{
-        alert('La fecha del sincronario es inválida...')
-      }
-    }
-  }
-
+  
   // Valor
   val = {    
   };

@@ -12,6 +12,9 @@ body {
   color: var(--let_tex);
 }
 
+/*//////////////////////////////////////////////////////////////////////*/
+/*//////////////////////////////////////////////////////////////////////*/
+
 /* 
   Menú
 */
@@ -49,18 +52,20 @@ body > aside.nav > :is(nav,article)[ide] > header {
 body > aside.nav > :is(nav,article)[ide] > header + * {
   max-height: 92.5vh;
   overflow: auto;
-  padding: 0 .5rem;
+  /* padding: 0 .5rem; */
 }
 
 /* Menù principal */
 body > aside.nav > [ide="cab"] ul.lis.nav {
-  height: 65vh;
+  height: 85vh;
 }
 /* índices */
 body > aside.nav > [ide="art"] ul.lis.nav {
   height: 85vh;
 }
 
+/*//////////////////////////////////////////////////////////////////////*/
+/*//////////////////////////////////////////////////////////////////////*/
 
 /* 
   Seccion Principal
@@ -80,17 +85,39 @@ body > main > header {
 }
 
 /* contenido por articulos */
-body > main > article {
+
+body > main > :is(nav,article,section) {
+  width: 100%;
   max-width: 55rem;
   height: max-content;
   padding: 0 2rem 2rem;
-  margin: auto;
+  margin: .5rem auto;
   border-radius: 1rem;
   border: 1px solid var(--bor_sel);  
   background-color: var(--fon_sec);
   line-height: 1.5;
-  font-size: 1.01rem;
 }
+
+/* Párrafos */
+body > main > article p,
+body > main > article section > p {
+  margin-bottom: .5rem;
+}
+
+/* Listados */
+body > main > article > ul,
+body > main > article section > ul {
+  margin: 1rem auto;
+}
+
+/* Imagenes */
+body > main > article > figure,
+body > main > article section > figure {
+  margin: 1rem;
+}
+
+/*//////////////////////////////////////////////////////////////////////*/
+/*//////////////////////////////////////////////////////////////////////*/
 
 /* 
   sidebar 
@@ -101,6 +128,9 @@ body > aside.pan {
   overflow: auto;
 }
 
+/*//////////////////////////////////////////////////////////////////////*/
+/*//////////////////////////////////////////////////////////////////////*/
+
 /* 
   pie de página
 */
@@ -110,6 +140,8 @@ body > footer {
   padding: .5rem;
 }
 
+/*//////////////////////////////////////////////////////////////////////*/
+/*//////////////////////////////////////////////////////////////////////*/
 
 /*
   Pantallas
@@ -151,35 +183,11 @@ body > footer {
 
 /*//////////////////////////////////////////////////////////////////////*/
 /*//////////////////////////////////////////////////////////////////////*/
-/* 
-Articulo
-*/
-
-/* Párrafos */
-article > p,
-article section > p{
-  margin-bottom: .5rem;
-}
-
-/* Listados */
-article > ul,
-article section > ul {
-  margin: 1rem auto;
-}
-
-/* Imagenes */
-article > figure,
-article section > figure {
-  margin: 1rem;
-}
-
-/*//////////////////////////////////////////////////////////////////////*/
-/*//////////////////////////////////////////////////////////////////////*/
 
 /* 
 ABM de la base
 */
-form.api_dat {
+form._api-dat_val {
   width: 100%;
   max-width: 40rem;
   background-color: var(--fon_nav);
@@ -188,75 +196,26 @@ form.api_dat {
   margin: auto;
 }
 
-form.api_dat :is(fieldset,div).atr {
+form._api-dat_val :is(fieldset,div).atr {
   flex-grow: 2;
   flex-direction: column;
   align-items: start;
   margin: .5rem;
 }
 
-form.api_dat :is(fieldset,div).atr label[for] {
+form._api-dat_val :is(fieldset,div).atr label[for] {
   margin: 0;
   color: var(--let_ide);
   padding: .5rem;
 }
 
-form.api_dat :is(fieldset,div).atr select,
-form.api_dat :is(fieldset,div).atr textarea,
-form.api_dat :is(fieldset,div).atr input:not([type='checkbox']):not([type='radio']) {
+form._api-dat_val :is(fieldset,div).atr select,
+form._api-dat_val :is(fieldset,div).atr textarea,
+form._api-dat_val :is(fieldset,div).atr input:not([type='checkbox']):not([type='radio']) {
   width: 100%; width:-webkit-fill-available; width:-moz-available;  
   border: 0;
   border-radius: 0;
   border-bottom: 1px solid;
-}
-
-/*//////////////////////////////////////////////////////////////////////*/
-/*//////////////////////////////////////////////////////////////////////*/
-
-/* 
-Estructura de Tabla
-*/
-div[var="est"] {
-  height: 75vh;
-  overflow: auto;
-  padding: 0 .5rem;
-  line-height: 1;
-}
-
-div[var="est"] > table {
-  margin: 0 auto;
-  text-align: center;
-}
-
-div[var="est"] > table > thead > tr:not(.gru) th,
-div[var="est"] > table > tbody > tr:not([data-ope],[data-opc]) td {
-  border-right: 1px dotted var(--col_vio);
-}
-/* Cabecera */
-div[var="est"] > table > thead th {
-  max-width: min-content;  
-}
-div[var="est"] > table > thead th > :is(p,span) {
-  padding: .5rem;
-}
-/* Contenido */
-div[var="est"] > table > tbody > tr:is([data-opc="tit"],[data-opc="det"]) {
-  text-align: left; 
-  line-height: 1.5;
-}
-
-div[var="est"] > table > tbody > tr[data-opc="tit"] > td {
-  padding: .5rem 0;
-  padding-bottom: .25rem;
-}
-
-div[var="est"] > table > tbody > tr[data-ope="lec"][data-opc="det"] > td {
-  padding-top: .25rem;
-}
-
-div[var="est"] > table > tbody > tr > td > time {
-  display: flex;
-  max-width: fit-content;
 }
 
 /*//////////////////////////////////////////////////////////////////////*/
@@ -322,6 +281,7 @@ div[tab] div[pos]:not([tab]) {
 :is(div,table)[tab] :is([sec],[pos]) > p {
   text-align: center;
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 /* /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */

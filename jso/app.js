@@ -124,7 +124,10 @@ class _app {
 
     // inicializo por aplicacion
     if( $_app.uri && $_app.uri.cab ){
-
+      // expando menu seleccionado
+      if( $.cab = $_app.ope.nav.querySelector(`nav[ide="cab"] p[ide="${$_app.uri.cab}"]`) ){
+        $.cab.click();
+      }
       // operadores de datos
       if( $_app.uri.cab == 'tab' ){
 

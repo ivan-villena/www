@@ -614,7 +614,7 @@
           "style":"grid: repeat(20,1fr) / repeat(13,1fr); grid-auto-flow: column;"
         },        
         "pos":{  
-          "style":"width: 1.9rem; height: 1.9rem;" 
+          "style":"width: 1.75rem; height: 1.75rem;" 
         }
       }', 
       '{
@@ -642,7 +642,7 @@
             "style":"grid-gap: .15rem;" 
           }, 
           "pos":{ 
-            "style":"width: 1.1rem; height: 1.1rem;" 
+            "style":"width: 1.05rem; height: 1.05rem;" 
           },        
           "pos-00":{ 
             "style":"font-size:.5rem" 
@@ -725,7 +725,7 @@
             "tab": "kin_arm", "style":"grid-gap: .3rem;" 
           }, 
           "pos":{ 
-            "style":"width: 1.2rem; height: 1.2rem;" 
+            "style":"width: 1.08rem; height: 1.08rem;" 
           }
         }', '{
 
@@ -756,6 +756,28 @@
         }', NULL, NULL
       )
   ;
+  DELETE FROM `_api`.`app_tab` WHERE `esq`='hol' AND `est` LIKE 'kin_tzo%';
+  INSERT INTO `_api`.`app_tab` VALUES ( 'hol','kin_tzo', 
+    '{ 
+      "sec":{ 
+        "tab":"kin-tzo", 
+        "style":"grid: repeat(20,1fr) / repeat(13,1fr); grid-auto-flow: column;"
+      },        
+      "pos":{  
+        "style":"width: 1.75rem; height: 1.75rem;" 
+      }
+    }', 
+    '{
+      "sec":{ "kin-sel": 1, "kin-ton": 0 },
+
+      "pos":{ "ima": "api.hol_ton.ide", "col": "", "num": "api.hol_kin.ide" }, 
+
+      "pag": { "kin": 1 }
+
+    }',
+    '[ "pag", "par" ]'
+  );
+
   DELETE FROM `_api`.`app_tab` WHERE `esq`='hol' AND `est` LIKE 'psi%';
   INSERT INTO `_api`.`app_tab` VALUES
     -- anillo solar
@@ -765,7 +787,7 @@
           "tab": "psi", "style": "grid-gap: .5rem;" 
         },
         "pos":{ 
-          "style": "width: 1.2rem; height: 1.2rem;" 
+          "style": "width: 1.15rem; height: 1.15rem;" 
         }
       }', '{
 

@@ -1,3 +1,6 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Lora');
+
 :root { 
 
   /* tamañanos */
@@ -58,19 +61,18 @@
   --tra_ros:rgba(251,124,253,.7);
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Lora');
-
-html {
-  font-family: 'Lora', 'Book Antiqua', 'Georgia';  
-  font-size: 14px;
-}
-
 *, :before, :after { 
   box-sizing: border-box;
 }
 
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+html {
+  font-family: 'Lora', 'Book Antiqua', 'Georgia';  
+  font-size: 16px;
+}
+
+/*////////////////////////////////////////////////////////////////////////////////////*/
+/*////////////////////////////////////////////////////////////////////////////////////*/
 
 /* 
 Documento : lista, renglon, dato
@@ -101,8 +103,8 @@ div:is(.ite,.val) {
   flex-wrap: nowrap;
 }
 
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/*////////////////////////////////////////////////////////////////////////////////////*/
+/*////////////////////////////////////////////////////////////////////////////////////*/
 
 /* 
 campos
@@ -156,18 +158,9 @@ fieldset.ren {
   margin: .15rem .5rem;
 }
 
-/* 
-atributo > label + val 
-*/
-form :is(fieldset,div).atr {
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-  margin:.25rem;
-}
 
-/*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-/*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/*////////////////////////////////////////////////////////////////////////////////////*/
+/*////////////////////////////////////////////////////////////////////////////////////*/
 
 /* 
   Etiquetas 
@@ -192,7 +185,7 @@ legend {
 }
 
 /* 
-valores
+  valores
 */
 input, 
 textarea,
@@ -471,8 +464,87 @@ optgroup {
   color: var(--let_opc);
 }
 
-/*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-/*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/*///////////////////////////////////////////////////////////////////////////////*/
+/*///////////////////////////////////////////////////////////////////////////////*/
+
+/* 
+  contenido oculto
+*/
+
+div.val > .ico[ide="ope_tog"] {
+  text-shadow: 0 0 5px;
+}
+div.val > .ico[ide="ope_tog"].ocu {
+  transform: rotate(270deg);
+}
+
+
+/* 
+Operadores-Botones : fieldset.ope > button + nav.ope > a + div.ope > span/button
+*/
+
+:is(ul,nav,form,fieldset).ope {  
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  width: fit-content;
+  margin: 0;
+  padding: 0;
+}
+:is(ul,nav,fieldset).ope:not(.dir-ver) > .ico {
+  margin: 0 .3rem;
+}
+:is(ul,nav,fieldset).ope.dir-ver > .ico {
+  margin: .2rem 0;
+}
+
+/* 
+atributo > label + val 
+*/
+form :is(fieldset,div).atr {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  margin:.15rem;
+}
+
+/*////////////////////////////////*/
+/*////////////////////////////////*/
+/* 
+Informe
+*/
+:is(form,fieldset,article,section,div).inf {
+  display: flex;
+  flex-direction: column;
+  padding: .5rem;
+  border: 1px solid var(--bor_dat);
+  border-radius: .5rem;
+  margin: .5rem;  
+}
+:is(form,fieldset,article,section,div).inf.ren {
+  flex-flow: row wrap;
+}
+:is(form,fieldset,article,section,div).inf.ite {
+  flex-flow: row nowrap;
+}
+
+:is(article,section).inf {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+:is(fieldset,div).inf {
+  flex-grow: 2;
+  align-items: center;
+}
+
+:is(article,section,div).inf > * {
+  margin: .5rem;
+}
+
+
+/*////////////////////////////////////////////////////////////////////////////////////*/
+/*////////////////////////////////////////////////////////////////////////////////////*/
 
 /* 
 Listados 
@@ -615,30 +687,6 @@ table th {
 
 /*////////////////////////////////*/
 /*////////////////////////////////*/
-
-/* 
-Operadores-Botones : fieldset.ope > button + nav.ope > a + div.ope > span/button
-*/
-
-:is(ul,nav,form,fieldset).ope {  
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-  width: fit-content;
-  margin: 0;
-  padding: 0;
-}
-:is(ul,nav,fieldset).ope:not(.dir-ver) > .ico {
-  margin: 0 .3rem;
-}
-:is(ul,nav,fieldset).ope.dir-ver > .ico {
-  margin: .2rem 0;
-}
-
-
-/*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-/*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-
 /* 
 Navegador : listado / pestaña / barra
 */
@@ -690,7 +738,7 @@ nav:is(.bar,.pes) > a:hover{
 }
 
 /* Contenido */
-nav:is(.pes,.bar) + * {
+nav:is(.pes,.bar) + :is(div,section) {
   overflow: auto;
   margin: 0 .5rem;
 }
@@ -728,8 +776,8 @@ nav.pes + * {
   border-top: 0;
 }
 
-/*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-/*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/*////////////////////////////////////////////////////////////////////////////////////*/
+/*////////////////////////////////////////////////////////////////////////////////////*/
 
 /* 
 Variables
@@ -791,51 +839,48 @@ div[var*="obj_"] > .dat > .atr > .val {
   margin: .1rem;
 }
 
-/*///////////////////////////////////////////////////////////////////////////////*/
-/*///////////////////////////////////////////////////////////////////////////////*/
-
 /* 
-contenido oculto
+Tabla por Estructura
 */
-
-div.val > .ico[ide="ope_tog"] {
-  text-shadow: 0 0 5px;
-}
-div.val > .ico[ide="ope_tog"].ocu {
-  transform: rotate(270deg);
+div[var="est"] {
+  height: 75vh;
+  overflow: auto;
+  padding: 0 .5rem;
+  line-height: 1;
 }
 
-/*//////////////////////////////////////////////////////////////////////*/
-/*//////////////////////////////////////////////////////////////////////*/
+div[var="est"] > table {
+  margin: 0 auto;
+  text-align: center;
+}
 
-/* 
-Informe
-*/
-:is(form,fieldset,article,section,div).inf {
-  display: flex;
-  flex-direction: column;
+div[var="est"] > table > thead > tr:not(.gru) th,
+div[var="est"] > table > tbody > tr:not([data-ope],[data-opc]) td {
+  border-right: 1px dotted var(--col_vio);
+}
+/* Cabecera */
+div[var="est"] > table > thead th {
+  max-width: min-content;  
+}
+div[var="est"] > table > thead th > :is(p,span) {
   padding: .5rem;
-  border: 1px solid var(--bor_dat);
-  border-radius: .5rem;
-  margin: .5rem;  
 }
-:is(form,fieldset,article,section,div).inf.ren {
-  flex-flow: row wrap;
-}
-:is(form,fieldset,article,section,div).inf.ite {
-  flex-flow: row nowrap;
+/* Contenido */
+div[var="est"] > table > tbody > tr:is([data-opc="tit"],[data-opc="det"]) {
+  text-align: left; 
+  line-height: 1.5;
 }
 
-:is(article,section).inf {
-  margin-left: auto;
-  margin-right: auto;
+div[var="est"] > table > tbody > tr[data-opc="tit"] > td {
+  padding: .5rem 0;
+  padding-bottom: .25rem;
 }
 
-:is(fieldset,div).inf {
-  flex-grow: 2;
-  align-items: center;
+div[var="est"] > table > tbody > tr[data-ope="lec"][data-opc="det"] > td {
+  padding-top: .25rem;
 }
 
-:is(article,section,div).inf > * {
-  margin: .5rem;
+div[var="est"] > table > tbody > tr > td > time {
+  display: flex;
+  max-width: fit-content;
 }
