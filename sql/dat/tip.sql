@@ -1,7 +1,7 @@
 
 -- tipos
-  DELETE FROM `_api`.`dat_tip`;
-  INSERT INTO `_api`.`dat_tip` (`ide`,`dat`,`val`,`nom`,`len`,`des`,`ope`) VALUES
+  DELETE FROM `api`.`dat_tip`;
+  INSERT INTO `api`.`dat_tip` (`ide`,`dat`,`val`,`nom`,`len`,`des`,`ope`) VALUES
 
     -- valores
       ( 'null',             'opc', 'vac', 'Nulo',             'php,jso',  'Valor no Definido','{ 
@@ -179,8 +179,8 @@
   ;
   
   -- tipo de dato 
-  DELETE FROM `_api`.`dat_tip_dat`;
-  INSERT INTO `_api`.`dat_tip_dat` (`ide`,`nom`,`des`,`ope`) VALUES
+  DELETE FROM `api`.`dat_tip_dat`;
+  INSERT INTO `api`.`dat_tip_dat` (`ide`,`nom`,`des`,`ope`) VALUES
 
     ( 'opc', 'Opción',    '', '{}' ),
     ( 'num', 'Número',    '', '{}' ),
@@ -194,8 +194,8 @@
   ;
   
   -- tipo de valor 
-  DELETE FROM `_api`.`dat_tip_val`;
-  INSERT INTO `_api`.`dat_tip_val` (`dat`,`ide`,`nom`,`des`,`len`,`ope`) VALUES
+  DELETE FROM `api`.`dat_tip_val`;
+  INSERT INTO `api`.`dat_tip_val` (`dat`,`ide`,`nom`,`des`,`len`,`ope`) VALUES
 
     -- opciones
       ( 'opc', 'val', 'Opción',         '', '', '{    

@@ -2,12 +2,12 @@
 
 -- Interface
   --
-  -- calendario
-    DELETE FROM `_api`.`dat_opc` WHERE `esq` = 'api' AND `est` LIKE 'fec_%'
+  -- Calendario
+    DELETE FROM `api`.`dat_opc` WHERE `esq` = 'api' AND `est` LIKE 'fec_%'
     ;
     
-    DELETE FROM `_api`.`dat_opc` WHERE `esq` = 'api' AND `est` LIKE 'fec%';
-    INSERT INTO `_api`.`dat_opc` VALUES
+    DELETE FROM `api`.`dat_opc` WHERE `esq` = 'api' AND `est` LIKE 'fec%';
+    INSERT INTO `api`.`dat_opc` VALUES
       -- fecha
       ( 'api', 'fec',         '{
         
@@ -28,12 +28,12 @@
       }')
     ;
   --
-  -- HOLON
-    DELETE FROM `_api`.`dat_est` WHERE `esq`='api' AND `ide` LIKE 'hol_%'
+  -- Holon
+    DELETE FROM `api`.`dat_est` WHERE `esq`='api' AND `ide` LIKE 'hol_%'
     ;  
     
-    DELETE FROM `_api`.`dat_est` WHERE `esq`='api' AND `ide` LIKE 'hol_rad%';
-    INSERT INTO `_api`.`dat_est` VALUES
+    DELETE FROM `api`.`dat_est` WHERE `esq`='api' AND `ide` LIKE 'hol_rad%';
+    INSERT INTO `api`.`dat_est` VALUES
 
       ( 'api', 'hol_rad',     '{
 
@@ -72,8 +72,8 @@
           ]
       }' ) 
     ;
-    DELETE FROM `_api`.`dat_est` WHERE `esq`='api' AND `ide` LIKE 'hol_ton%';
-    INSERT INTO `_api`.`dat_est` VALUES
+    DELETE FROM `api`.`dat_est` WHERE `esq`='api' AND `ide` LIKE 'hol_ton%';
+    INSERT INTO `api`.`dat_est` VALUES
 
       ( 'api', 'hol_ton', '{
 
@@ -111,8 +111,8 @@
       ( 'api', 'hol_ton_sim', '{
       }' )
     ;
-    DELETE FROM `_api`.`dat_est` WHERE `esq`='api' AND `ide` LIKE 'hol_sel%';
-    INSERT INTO `_api`.`dat_est` VALUES
+    DELETE FROM `api`.`dat_est` WHERE `esq`='api' AND `ide` LIKE 'hol_sel%';
+    INSERT INTO `api`.`dat_est` VALUES
 
       ( 'api', 'hol_sel', '{
 
@@ -217,8 +217,8 @@
             "ima": [ "ide" ]
         }' )
     ;
-    DELETE FROM `_api`.`dat_est` WHERE `esq`='api' AND `ide` LIKE 'hol_lun%';
-    INSERT INTO `_api`.`dat_est` VALUES
+    DELETE FROM `api`.`dat_est` WHERE `esq`='api' AND `ide` LIKE 'hol_lun%';
+    INSERT INTO `api`.`dat_est` VALUES
 
       ( 'api', 'hol_lun', '{  
 
@@ -242,8 +242,8 @@
           ]
       }' )    
     ;
-    DELETE FROM `_api`.`dat_est` WHERE `esq`='api' AND `ide` LIKE 'hol_cas%';
-    INSERT INTO `_api`.`dat_est` VALUES
+    DELETE FROM `api`.`dat_est` WHERE `esq`='api' AND `ide` LIKE 'hol_cas%';
+    INSERT INTO `api`.`dat_est` VALUES
 
       ( 'api', 'hol_cas', '{
 
@@ -261,16 +261,16 @@
           ]
       }' )
     ;
-    DELETE FROM `_api`.`dat_est` WHERE `esq`='api' AND `ide` LIKE 'hol_kin%';
-    INSERT INTO `_api`.`dat_est` VALUES
+    DELETE FROM `api`.`dat_est` WHERE `esq`='api' AND `ide` LIKE 'hol_kin%';
+    INSERT INTO `api`.`dat_est` VALUES
 
       ( 'api', 'hol_kin', '{
 
           "est": {
             "ide":"hol_kin",
-            "arm_tra_dia":"hol_sel",
-            "nav_ond_dia":"hol_ton",
-            "nav_cas_dia":"hol_cas"
+            "arm_tra_dia" : "hol_sel",
+            "nav_ond_dia": "hol_ton",
+            "nav_cas_dia" : "hol_cas"
           },
 
           "fic": { 
@@ -310,8 +310,8 @@
           ]
       }')
     ;
-    DELETE FROM `_api`.`dat_est` WHERE `esq`='api' AND `ide` LIKE 'hol_psi%';
-    INSERT INTO `_api`.`dat_est` VALUES
+    DELETE FROM `api`.`dat_est` WHERE `esq`='api' AND `ide` LIKE 'hol_psi%';
+    INSERT INTO `api`.`dat_est` VALUES
 
       ( 'api', 'hol_psi', '{
 

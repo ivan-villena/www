@@ -1,11 +1,11 @@
 -- Active: 1663730672989@@127.0.0.1@3306@_api
 
 -- Holon-Sincronario
-	DELETE FROM `_api`.`app_art` WHERE `esq`='hol';
+	DELETE FROM `api`.`app_art` WHERE `esq`='hol';
 	
 	-- bibliografía 
-	DELETE FROM `_api`.`app_art` WHERE `esq`='hol' AND `cab`='bib';
-	INSERT INTO `_api`.`app_art` VALUES
+	DELETE FROM `api`.`app_art` WHERE `esq`='hol' AND `cab`='bib';
+	INSERT INTO `api`.`app_art` VALUES
 	
 		('hol','bib','ide', 1, 		'Glosarios',																'', NULL, NULL ),		
 		('hol','bib','tut',	2, 		'Tutorial del Sincronario de 13 Lunas',			'', NULL, NULL ),
@@ -23,8 +23,8 @@
 		('hol','bib','cro',	2009, '2009 - El Sincronotrón', 						  		'', NULL, NULL )
 	;
 	-- Datos
-	DELETE FROM `_api`.`app_art` WHERE `esq`='hol' AND `cab`='dat';
-	INSERT INTO `_api`.`app_art` VALUES
+	DELETE FROM `api`.`app_art` WHERE `esq`='hol' AND `cab`='dat';
+	INSERT INTO `api`.`app_art` VALUES
 		
 		('hol','dat','rad',   7, 'Los 7 Plasmas Radiales',						'', NULL, NULL ),
 		('hol','dat','ton',  13, 'Los 13 Tonos Galácticos',						'', NULL, NULL ),
@@ -35,8 +35,8 @@
 		('hol','dat','psi', 365, 'Los 365 Psi-cronos del Banco-psi',	'', NULL, NULL )
 	;
 	-- Valores
-	DELETE FROM `_api`.`app_art` WHERE `esq`='hol' AND `cab`='val';
-	INSERT INTO `_api`.`app_art` VALUES
+	DELETE FROM `api`.`app_art` WHERE `esq`='hol' AND `cab`='val';
+	INSERT INTO `api`.`app_art` VALUES
 		('hol','val','rad',   7, 'Plasma Radial',											'', NULL, NULL ),
 		('hol','val','ton',  13, 'Tono Galáctico',										'', NULL, NULL ),
 		('hol','val','sel',  20, 'Sello Solar',												'', NULL, NULL ),
@@ -46,8 +46,8 @@
 		('hol','val','psi', 365, 'Psi-cronos del Banco-psi',					'', NULL, NULL )	
 	;
 	-- Informe
-	DELETE FROM `_api`.`app_art` WHERE `esq`='hol' AND `cab`='inf';
-	INSERT INTO `_api`.`app_art` VALUES
+	DELETE FROM `api`.`app_art` WHERE `esq`='hol' AND `cab`='inf';
+	INSERT INTO `api`.`app_art` VALUES
 		
 		('hol','inf','kin', 1, 'Kin',							'', NULL, NULL ),
 		('hol','inf','sel', 2, 'Sello Solar',			'', NULL, NULL ),
@@ -57,8 +57,8 @@
 		('hol','inf','rad', 6, 'Plasma Radial',		'', NULL, NULL )
 	;	
 	-- Tableros
-	DELETE FROM `_api`.`app_art` WHERE `esq`='hol' AND `cab`='tab';
-	INSERT INTO `_api`.`app_art` VALUES
+	DELETE FROM `api`.`app_art` WHERE `esq`='hol' AND `cab`='tab';
+	INSERT INTO `api`.`app_art` VALUES
 
 		('hol','tab','kin-tzo', 1, 'Los 260 kines del Tzolkin',								'', NULL, NULL ),
 		('hol','tab','kin-nav', 2, 'Los 5 Castillos de la Nave del Tiempo', 	'', NULL, NULL ),
@@ -70,8 +70,8 @@
 		('hol','tab','psi-tzo', 8, 'Las 2.080 unidades del Banco-Psi', 				'', NULL, NULL )
 	;	
 	-- Usuario
-	DELETE FROM `_api`.`app_art` WHERE `esq`='hol' AND `cab`='usu';
-	INSERT INTO `_api`.`app_art` VALUES
+	DELETE FROM `api`.`app_art` WHERE `esq`='hol' AND `cab`='usu';
+	INSERT INTO `api`.`app_art` VALUES
 		
 		('hol','usu','cic', 1, 'Sendero del Destino',					'', NULL, NULL ),
 		('hol','usu','dat', 2, 'Firma Galáctica',							'', NULL, NULL )

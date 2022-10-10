@@ -50,19 +50,19 @@
       ];
 
       // cargo datos de la pagina por peticion : esquema - cabecera - articulo - valor
-      $this->esq = _dat::get("_api.app_esq",[ 
+      $this->esq = _dat::get("api.app_esq",[ 
         'ver'=>"`ide`='{$this->uri->esq}'", 
         'opc'=>'uni' 
       ]);
       if( !empty($this->uri->cab) ){
         // cargo datos del menu
-        $this->cab = _dat::get("_api.app_cab",[ 
+        $this->cab = _dat::get("api.app_cab",[ 
           'ver'=>"`esq`='{$this->uri->esq}' AND `ide`='{$this->uri->cab}'", 
           'ele'=>'ope', 'opc'=>'uni' 
         ]);
         if( !empty($this->uri->art) ){
           // cargo datos del artículo
-          $this->art = _dat::get("_api.app_art",[ 
+          $this->art = _dat::get("api.app_art",[ 
             'ver'=>"`esq`='{$this->uri->esq}' AND `cab`='{$this->uri->cab}' AND `ide`='{$this->uri->art}'", 
             'ele'=>'ope', 'opc'=>'uni' 
           ]);
@@ -137,7 +137,7 @@
       // cargo índice de contenidos
       if( !empty($this->cab->nav) ){
 
-        $this->ope['nav_art'] = _dat::get("_api.app_art_nav",[
+        $this->ope['nav_art'] = _dat::get("api.app_art_nav",[
           'ver'=>"esq = '{$_uri->esq}' AND cab = '{$_uri->cab}' AND ide = '{$_uri->art}'", 
           'ord'=>"pos ASC", 
           'nav'=>'pos'
@@ -217,7 +217,7 @@
       global $_api;
       $_dat = [];
       foreach( $this->rec['dat'] as $esq => $est ){
-        // cargo todas las estructuras de la base que empiecen por "_api.$esq_"
+        // cargo todas las estructuras de la base que empiecen por "api.$esq_"
         if( empty($est) ){
           foreach( $_api as $i => $v ){
             if( preg_match("/^{$esq}_/",$i) ) $_dat[$i] = $v;
@@ -372,19 +372,19 @@
       
       if( empty($dat) ){
         if( !isset($_api->app_var[$esq]) ){
-          $_api->app_var[$esq] = _dat::get("_api.app_var",[
+          $_api->app_var[$esq] = _dat::get("api.app_var",[
             'ver'=>"`esq`='{$esq}'", 'niv'=>['dat','val','ide'], 'ele'=>['atr'], 'red'=>'atr'
           ]);
         }
       }elseif( empty($val) ){
         if( !isset($_api->app_var[$esq][$dat]) ){
-          $_api->app_var[$esq][$dat] = _dat::get("_api.app_var",[
+          $_api->app_var[$esq][$dat] = _dat::get("api.app_var",[
             'ver'=>"`esq`='{$esq}' AND `dat`='{$dat}'", 'niv'=>['val','ide'], 'ele'=>['atr'], 'red'=>'atr'
           ]);
         }
       }else{
         if( !isset($_api->app_var[$esq][$dat][$val]) ){
-          $_api->app_var[$esq][$dat][$val] = _dat::get("_api.app_var",[
+          $_api->app_var[$esq][$dat][$val] = _dat::get("api.app_var",[
             'ver'=>"`esq`='{$esq}' AND `dat`='{$dat}' AND `val`='{$val}'", 'niv'=>['ide'], 'ele'=>['atr'], 'red'=>'atr'
           ]);
         }
@@ -401,7 +401,7 @@
 
       return $_;
     }
-    // cargo Valores : absoluto o con dependencias ( _api.dat->est ) 
+    // cargo Valores : absoluto o con dependencias ( api.dat->est ) 
     static function val( string | array $ope, mixed $dat = NULL ) : array {      
       $_ = [];
 
@@ -432,7 +432,7 @@
       global $_api;
 
       if( !isset($_api->app_tab[$esq][$est]) ){
-        $_api->app_tab[$esq][$est] = _dat::get("_api.app_tab",[ 
+        $_api->app_tab[$esq][$est] = _dat::get("api.app_tab",[ 
           'ver'=>"`esq`='{$esq}' AND `est`='{$est}'", 
           'opc'=>'uni', 
           'ele'=>['ele','ope','opc'] 
@@ -459,7 +459,7 @@
       global $_api;
       if( !isset($_api->app_est[$esq][$est]) || isset($ope) ){
         // combinado        
-        $_est = _dat::get("_api.app_est",[ 
+        $_est = _dat::get("api.app_est",[ 
           'ver'=>"`esq`='{$esq}' AND `ide`='{$est}'", 
           'obj'=>'ope', 'red'=>'ope', 'opc'=>'uni'
         ]);
@@ -782,7 +782,7 @@
 
       // armo listado de enlaces
       $_lis = [];
-      foreach( _dat::get("_api.app_cab",[ 'ver'=>"`esq`='$esq'", 'ord'=>"`pos` ASC" ]) as $_cab ){
+      foreach( _dat::get("api.app_cab",[ 'ver'=>"`esq`='$esq'", 'ord'=>"`pos` ASC" ]) as $_cab ){
 
         if( !empty($_cab->ocu) || ( !empty($_cab->usu) && empty($_usu->ide) ) ){
           continue;
@@ -791,7 +791,7 @@
         $ite_ico = !empty($_cab->ico) ? _doc::ico( $_cab->ico, [ 'class'=>"mar_der-1" ] ) : "";
 
         $_lis_val = [];
-        foreach( _dat::get("_api.app_art",[ 
+        foreach( _dat::get("api.app_art",[ 
           'ver'=>"`esq`='$esq' AND `cab`='$_cab->ide'", 'ord'=>"`pos` ASC" ]) as $_art 
         ){
 
@@ -828,7 +828,7 @@
 
       $_ide = explode('.',$ide);
 
-      $_nav = _dat::get("_api.app_art_nav",[ 
+      $_nav = _dat::get("api.app_art_nav",[ 
         'ver'=>"`esq`='{$_ide[0]}' AND `cab`='{$_ide[1]}' AND `ide`='{$_ide[2]}'", 
         'nav'=>'pos' 
       ]);
@@ -890,7 +890,7 @@
 
       $agr = _htm::dat($nav->ope);
 
-      $_art = _dat::get("_api.app_art",[ 'ver'=>"`esq`='{$esq}' AND `cab`='{$cab}'", 'ord'=>"`pos` ASC", 'ele'=>"ope" ]);
+      $_art = _dat::get("api.app_art",[ 'ver'=>"`esq`='{$esq}' AND `cab`='{$cab}'", 'ord'=>"`pos` ASC", 'ele'=>"ope" ]);
 
       $_ = "
       <article class='inf'>";
@@ -939,7 +939,7 @@
       $_ = [];
       $_ide = explode('.',$ide);      
       
-      if( is_array( $tex = _dat::get('_api.app_art_ide',['ver'=>"`esq`='{$_ide[0]}' AND `ide`='{$_ide[1]}'"]) ) ){
+      if( is_array( $tex = _dat::get('api.app_art_ide',['ver'=>"`esq`='{$_ide[0]}' AND `ide`='{$_ide[1]}'"]) ) ){
 
         foreach( $tex as $pal ){
           $_[ $pal->nom ] = $pal->des;

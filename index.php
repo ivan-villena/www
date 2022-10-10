@@ -1,10 +1,10 @@
 <?php  
-  // mostrar errores
+  // mostrar errores:
   // error_reporting(E_ALL);
   // ini_set('display_errors', '1');
   
   // cargo sesuib
-  session_start();  
+  session_start(); 
   
   if( !isset($_SESSION['usu']) ){
     // interface
@@ -12,10 +12,13 @@
     $_SESSION['ubi'] = "America/Argentina/Buenos_Aires";
     // acceso a database
     $_SESSION['sql'] = [ 
-      'ser' => $_SERVER['SERVER_NAME'], 'usu' => "root",  'pas' => "", 'esq' => "_api" 
+      'ser' => $_SERVER['SERVER_NAME'],
+      'usu' => "root", 
+      'pas' => "", 
+      'esq' => "api" 
     ];
   }
-
+  
   date_default_timezone_set( $_SESSION['ubi'] );
 
   $sis_ini = time();

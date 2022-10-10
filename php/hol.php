@@ -1790,7 +1790,7 @@
           break;
         // Ciclos : posiciones en ciclos del kin
         case 'cic':
-          $_atr = [ 'ene', 'ene_cam', 'pag', 'cro_est', 'cro_ele', 'arm_tra', 'arm_cel', 'nav_cas', 'nav_ond' ];
+          $_atr = [ 'ene', 'ene_cam',  'cro_est', 'cro_ele', 'arm_tra', 'arm_cel', 'nav_cas', 'nav_ond' ];
     
           foreach( _hol::_('sel_par') as $_par ){
             
@@ -3456,12 +3456,12 @@
       $opc_des = !in_array('not-des',$opc);
       // listado
       $_lis = [];
-      foreach( _dat::get('_api.usu_cic') as $_arm ){
+      foreach( _dat::get('api.usu_cic') as $_arm ){
         $_lis_cic = [];
-        foreach( _dat::get("_api.usu_cic_ani",[ 'ver'=>"`usu` = '{$_usu->ide}' AND `arm` = $_arm->ide", 'ord'=>"`ide` ASC" ]) as $_cic ){
+        foreach( _dat::get("api.usu_cic_ani",[ 'ver'=>"`usu` = '{$_usu->ide}' AND `arm` = $_arm->ide", 'ord'=>"`ide` ASC" ]) as $_cic ){
           // ciclos lunares
           $_lis_lun = [];
-          foreach( _dat::get("_api.usu_cic_lun",[ 'ver'=>"`usu` = '{$_usu->ide}' AND `ani` = $_cic->ide", 'ord'=>"`ide` ASC" ]) as $_lun ){                            
+          foreach( _dat::get("api.usu_cic_lun",[ 'ver'=>"`usu` = '{$_usu->ide}' AND `ani` = $_cic->ide", 'ord'=>"`ide` ASC" ]) as $_lun ){                            
             $_fec = _api::_('fec',$_lun->fec);
             $_lun_ton = _hol::_('ton',$_lun->ide);
             $_kin = _hol::_('kin',$_lun->kin);
@@ -3519,7 +3519,7 @@
       global $_usu;      
       $_ani = $dat['ani'];
       $_cas_arm = _hol::_('cas_arm',$dat['ani']->arm);
-      $_ani_arm = _dat::get('_api.usu_cic',['ver'=>"`ide` = $_ani->arm",'opc'=>"uni"]);
+      $_ani_arm = _dat::get('api.usu_cic',['ver'=>"`ide` = $_ani->arm",'opc'=>"uni"]);
       $_ani_fec = _api::_('fec',$_ani->fec);      
       $_ani_ton = _hol::_('ton',$dat['ani']->ton);
       $_kin = _hol::_('kin',$_ani->kin);

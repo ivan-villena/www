@@ -1,10 +1,10 @@
 -- Active: 1663730672989@@127.0.0.1@3306@_api
 
-DELETE FROM `_api`.`app_var` WHERE `esq`='hol';
+DELETE FROM `api`.`app_var` WHERE `esq`='hol';
 --
   -- Valores
-  DELETE FROM `_api`.`app_var` WHERE `esq`='hol' AND `dat` = 'val';
-  INSERT INTO `_api`.`app_var` VALUES
+  DELETE FROM `api`.`app_var` WHERE `esq`='hol' AND `dat` = 'val';
+  INSERT INTO `api`.`app_var` VALUES
 
     -- sumatoria 
       ('hol','val','sum', 1, 'kin', '{ 
@@ -28,8 +28,8 @@ DELETE FROM `_api`.`app_var` WHERE `esq`='hol';
   ;
   --
   -- Atributos : oraculo + pulsares
-  DELETE FROM `_api`.`app_var` WHERE `esq`='hol' AND `dat` = 'atr';
-  INSERT INTO `_api`.`app_var` VALUES
+  DELETE FROM `api`.`app_var` WHERE `esq`='hol' AND `dat` = 'atr';
+  INSERT INTO `api`.`app_var` VALUES
 
     -- Portales de Activación
       ('hol','atr','pag', 1, 'cue', '{
@@ -116,11 +116,11 @@ DELETE FROM `_api`.`app_var` WHERE `esq`='hol';
   ;
   --
   -- Tablero : seccion + posicion + valores + seleccion
-  DELETE FROM `_api`.`app_var` WHERE `esq`='hol' AND `dat` = 'tab'
+  DELETE FROM `api`.`app_var` WHERE `esq`='hol' AND `dat` = 'tab'
   ;
   -- por secciones
-  DELETE FROM `_api`.`app_var` WHERE `esq`='hol' AND `dat` = 'tab' AND `val` = 'sec';
-  INSERT INTO `_api`.`app_var` VALUES
+  DELETE FROM `api`.`app_var` WHERE `esq`='hol' AND `dat` = 'tab' AND `val` = 'sec';
+  INSERT INTO `api`.`app_var` VALUES
     
     ('hol','tab','sec', 50, 'par', '{
       "nom":"¿Oráculo?",
@@ -291,8 +291,8 @@ DELETE FROM `_api`.`app_var` WHERE `esq`='hol';
       }')
   ;
   -- por opciones
-  DELETE FROM `_api`.`app_var` WHERE `esq`='hol' AND `dat` = 'tab' AND `val` = 'atr';
-  INSERT INTO `_api`.`app_var` VALUES
+  DELETE FROM `api`.`app_var` WHERE `esq`='hol' AND `dat` = 'tab' AND `val` = 'atr';
+  INSERT INTO `api`.`app_var` VALUES
 
     ('hol','tab','atr', 1, 'pag', '{
       "nom":"Portales de Activación"

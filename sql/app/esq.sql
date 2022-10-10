@@ -2,8 +2,8 @@
 
 -- Aplicaciones por esquema
 
-DELETE FROM `_api`.`app_esq`;
-INSERT INTO `_api`.`app_esq` VALUES 
+DELETE FROM `api`.`app_esq`;
+INSERT INTO `api`.`app_esq` VALUES 
 
 	('hol', 1, 'Sincronario' )
 ;

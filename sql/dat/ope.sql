@@ -1,7 +1,7 @@
 
 -- Operaciones
-  DELETE FROM `_api`.`dat_ope`;
-  INSERT INTO `_api`.`dat_ope` (`tip`,`dat`,`ide`,`pos`,`nom`,`des`) VALUES
+  DELETE FROM `api`.`dat_ope`;
+  INSERT INTO `api`.`dat_ope` (`tip`,`dat`,`ide`,`pos`,`nom`,`des`) VALUES
 
     ( 'ver', 'opc', '==', 1, '==', 'Tiene que ser igual que...' ),
     ( 'ver', 'opc', '!=', 2, '!=', 'Tiene que ser distinto que...' ),  

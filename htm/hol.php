@@ -101,19 +101,14 @@
     }
     // Inicio
     public function ini( array $_, array $_hol ) : array {
-      ob_start();
-
-      var_dump( $_SERVER );
-            
+      ob_start();            
       ?>
       <article>
 
         <h2>Inicio</h2>
 
       </article>
-
       <?php
-
       $_['sec'] = ob_get_clean();
 
       return $_;
@@ -179,11 +174,11 @@
               <tbody>
               <?php
               $_lib = FALSE;
-              foreach( _dat::get("_api.app_art_ide",[
+              foreach( _dat::get("api.app_art_ide",[
                 'ver'=>"`esq` = 'hol'", 'ord'=>"`ide` ASC, `nom` ASC"
               ]) as $i => $v ){ 
                 if( !$_lib || $_lib->ide != explode('_',$v->ide)[0] ){
-                  $_lib = _dat::get("_api.app_art",[ 
+                  $_lib = _dat::get("api.app_art",[ 
                     'ver'=>"esq = 'hol' AND cab = 'bib' AND ide = '$v->ide'", 
                     'opc'=>"uni" 
                   ]);
@@ -208,7 +203,7 @@
         // cargo directorio para imágenes del libro
         $_dir = $_uri->dir($_uri);
         if( !empty( $rec = $_uri->rec($val = "htm/$_uri->esq/$_uri->cab/$_uri->art") ) ){
-
+          
           include( $rec );
         }
         else{ echo "
@@ -739,7 +734,7 @@
 
             <p>En la siguiente tabla se muestran las principales propiedades y claves para cada pareja del oráculo<c>:</c></p>
 
-            <?= _hol_lis::kin('par',[ 'dat'=>$_kin, 'atr'=>"pro", 'ele'=>[ 'lis'=>['class'=>"anc-100"] ] ]) ?>
+            <?= _hol_lis::kin('par',[ 'dat'=>$_kin,  'atr'=>"pro",  'ele'=>[ 'lis'=>['class'=>"anc-100"] ] ]) ?>
 
             <br>
             

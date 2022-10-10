@@ -59,17 +59,17 @@
       $this->app_uri = new stdClass;
       
       // documento : iconos + letras
-      $this->doc_ico = _dat::get('_api.doc_ico', [ 'niv'=>['ide'] ]);
-      $this->doc_let = _dat::get('_api.doc_let', [ 'niv'=>['ide'] ]);
+      $this->doc_ico = _dat::get('api.doc_ico', [ 'niv'=>['ide'] ]);
+      $this->doc_let = _dat::get('api.doc_let', [ 'niv'=>['ide'] ]);
 
       // variable: tipos + operaciones
-      $this->dat_tip = _dat::get('_api.dat_tip', [ 'niv'=>['ide'], 'ele'=>['ope'] ]);
-      $this->dat_ope = _dat::get('_api.dat_ope', [ 'niv'=>['ide'] ]);      
+      $this->dat_tip = _dat::get('api.dat_tip', [ 'niv'=>['ide'], 'ele'=>['ope'] ]);
+      $this->dat_ope = _dat::get('api.dat_ope', [ 'niv'=>['ide'] ]);      
       
       // fechas : mes + semana + dias
       foreach( ['mes','sem','dia'] as $ide ){
 
-        $this->{"fec_$ide"} = _dat::get("_api.fec_$ide");
+        $this->{"fec_$ide"} = _dat::get("api.fec_$ide");
       }
     }
 
@@ -782,17 +782,17 @@
     static function ini( string $esq, string $est, array $ope = [] ) : string | array {
       $_ = [];
 
-      $val_est = _sql::est("_{$esq}",'val',$est);
+      $val_est = _sql::est($esq,'val',$est);
 
       $vis = "_{$est}";
 
-      $val_vis = _sql::est("_{$esq}",'val',$vis);
+      $val_vis = _sql::est($esq,'val',$vis);
 
       if( $val_est || $val_vis ){
 
         $ide = ( $val_vis == 'vis' ) ? $vis : $est;
 
-        $_ = _dat::get( "_{$esq}.{$ide}",$ope);
+        $_ = _dat::get( "{$esq}.{$ide}",$ope);
       }
 
       return $_;
@@ -943,11 +943,11 @@
 
         if( !isset( $_api->dat_est[$esq] ) ){
           
-          foreach( _dat::get("_api.dat_est",[ 
+          foreach( _dat::get("api.dat_est",[ 
             'ver'=>"`esq`='{$esq}'", 'niv'=>['ide'], 'obj'=>"ope", 'red'=>"ope" 
           ]) as $est => $_ope ){
 
-            $_api->dat_est[$esq][$est] = _sql::est("_{$esq}",'ver',$est,'uni');
+            $_api->dat_est[$esq][$est] = _sql::est($esq,'ver',$est,'uni');
 
             $_api->dat_est[$esq][$est]->ope = $_ope;
           }
@@ -959,9 +959,9 @@
         
         if( !isset($_api->dat_est[$esq][$ide]) ){ 
 
-          if( is_object( $_api->dat_est[$esq][$ide] = _sql::est("_{$esq}",'ver',$ide,'uni') ) ){
+          if( is_object( $_api->dat_est[$esq][$ide] = _sql::est($esq,'ver',$ide,'uni') ) ){
             // busco operadores
-            $_api->dat_est[$esq][$ide]->ope = _dat::get("_api.dat_est",[
+            $_api->dat_est[$esq][$ide]->ope = _dat::get("api.dat_est",[
               'ver'=>"`esq`='{$esq}' AND `ide`='{$ide}'", 'obj'=>"ope", 'red'=>"ope", 'opc'=>"uni"
             ]);
           }    
@@ -1044,16 +1044,12 @@
       // cargo atributos de la estructura
       if( !isset($_api->dat_atr[$esq][$est]) ){
 
-        $_api->dat_atr[$esq][$est] = !empty( _sql::est("_{$esq}",'lis',"_{$est}",'uni') ) 
-          ? _sql::atr("_{$esq}","_{$est}") 
-          : _sql::atr("_{$esq}",$est);
+        // busco atributos de una vista ( si existe ) o de una tabla
+        $_api->dat_atr[$esq][$est] = _sql::atr($esq, !empty( _sql::est($esq,'lis',"_{$est}",'uni') )  ? "_{$est}" : $est );
         
         // cargo operadores del atributo
         $_api_dat = &$_api->dat_atr[$esq][$est];
-        foreach( _dat::get("_api.dat_atr",[
-          'ver'=>"`esq`='{$esq}' AND `est`='{$est}'", 
-          'ele'=>'var' 
-        ]) as $_api_atr ){
+        foreach( _dat::get("api.dat_atr",[ 'ver'=>"`esq`='{$esq}' AND `est`='{$est}'", 'ele'=>'var' ]) as $_api_atr ){
 
           if( !empty($_api_atr->var) && isset($_api_dat[$i = $_api_atr->ide]) ){
 
@@ -1084,7 +1080,7 @@
         }
       }
       return $_;
-    }// identificador por relaciones : esq.est_atr | _api.dat_atr[ide].dat
+    }// identificador por relaciones : esq.est_atr | api.dat_atr[ide].dat
     static function atr_est( string $esq, string $est, string $atr ) : string {
       $_ = '';      
       // busco relacion en atributo
@@ -1097,7 +1093,7 @@
       elseif( $atr == 'ide' ){
         $_ = $est;
       }
-      elseif( !!_sql::est("_{$esq}",'val',"{$est}_{$atr}") ){ 
+      elseif( !!_sql::est($esq,'val',"{$est}_{$atr}") ){ 
         $_ = "{$est}_{$atr}";
       }
       else{
@@ -1116,14 +1112,14 @@
       // todas las estructuras de un esquema
       if( empty($est) ){
         
-        $_ = $_api->dat_val[$esq] = _dat::get("_api.dat_val",[ 
+        $_ = $_api->dat_val[$esq] = _dat::get("api.dat_val",[ 
           'ver'=>"`esq`='{$esq}'", 'niv'=>["est"], 'obj'=>"ope", 'red'=>"ope" 
         ]);
       }// una estructura
       else{
         if( !isset($_api->dat_val[$esq][$est]) ){
 
-          $_api->dat_val[$esq][$est] = _dat::get("_api.dat_val",[ 
+          $_api->dat_val[$esq][$est] = _dat::get("api.dat_val",[ 
             'ver'=>"`esq`='{$esq}' AND `est`='{$est}'", 'obj'=>"ope", 'red'=>"ope", 'opc'=>"uni" 
           ]);
         }

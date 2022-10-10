@@ -2,10 +2,10 @@
 -- Interface
 
   -- HOLON
-    DELETE FROM `_api`.`dat_val` WHERE `esq`='api' AND `est` LIKE 'hol_%';
+    DELETE FROM `api`.`dat_val` WHERE `esq`='api' AND `est` LIKE 'hol_%';
     ;
-    DELETE FROM `_api`.`dat_val` WHERE `esq`='api' AND `est` LIKE 'hol_rad%';
-    INSERT INTO `_api`.`dat_val` VALUES
+    DELETE FROM `api`.`dat_val` WHERE `esq`='api' AND `est` LIKE 'hol_rad%';
+    INSERT INTO `api`.`dat_val` VALUES
 
         ( 'api', 'hol_rad',     '{ 
             "nom": "Plasma #()($)ide() de 7: ()($)nom().",
@@ -45,8 +45,8 @@
             "ima": "background: center/contain no-repeat url(http://localhost/_/hol/ima/rad/hum_mud/()($)ide().png);"
         }' )        
     ;
-    DELETE FROM `_api`.`dat_val` WHERE `esq`='api' AND `est` LIKE 'hol_ton%';
-    INSERT INTO `_api`.`dat_val` VALUES
+    DELETE FROM `api`.`dat_val` WHERE `esq`='api' AND `est` LIKE 'hol_ton%';
+    INSERT INTO `api`.`dat_val` VALUES
 
         ( 'api', 'hol_ton', '{
             "nom": "Tono Galáctico #()($)ide() de 13: ()($)nom().",
@@ -83,8 +83,8 @@
             "col": 7
         }' )
     ;
-    DELETE FROM `_api`.`dat_val` WHERE `esq`='api' AND `est` LIKE 'hol_sel%';
-    INSERT INTO `_api`.`dat_val` VALUES
+    DELETE FROM `api`.`dat_val` WHERE `esq`='api' AND `est` LIKE 'hol_sel%';
+    INSERT INTO `api`.`dat_val` VALUES
         -- datos
         ( 'api', 'hol_sel', '{
             "nom": "Sello Solar #()($)ide(), ()($)arm().",
@@ -223,8 +223,8 @@
                 "col": 10
             }' )
     ;
-    DELETE FROM `_api`.`dat_val` WHERE `esq`='api' AND `est` LIKE 'hol_lun%';
-    INSERT INTO `_api`.`dat_val` VALUES
+    DELETE FROM `api`.`dat_val` WHERE `esq`='api' AND `est` LIKE 'hol_lun%';
+    INSERT INTO `api`.`dat_val` VALUES
 
         ( 'api', 'hol_lun', '{
             "nom": "()($)ide()° Día de 28.",
@@ -237,8 +237,8 @@
             "col": 4
         }' )  
     ;
-    DELETE FROM `_api`.`dat_val` WHERE `esq`='api' AND `est` LIKE 'hol_cas%';
-    INSERT INTO `_api`.`dat_val` VALUES
+    DELETE FROM `api`.`dat_val` WHERE `esq`='api' AND `est` LIKE 'hol_cas%';
+    INSERT INTO `api`.`dat_val` VALUES
 
         ( 'api', 'hol_cas', '{
             "nom": "Posicion #()($)ide() de 52.",
@@ -257,8 +257,8 @@
             "col": 4
         }')
     ;
-    DELETE FROM `_api`.`dat_val` WHERE `esq`='api' AND `est` LIKE 'hol_chi%';
-    INSERT INTO `_api`.`dat_val` VALUES
+    DELETE FROM `api`.`dat_val` WHERE `esq`='api' AND `est` LIKE 'hol_chi%';
+    INSERT INTO `api`.`dat_val` VALUES
 
         ( 'api', 'hol_chi', '{ 
             "nom": "",
@@ -281,8 +281,8 @@
             "ima": "background: center/contain no-repeat url(http://localhost/_/hol/ima/chi/tri/()($)ide().png);"
         }' ) 
     ;
-    DELETE FROM `_api`.`dat_val` WHERE `esq`='api' AND `est` LIKE 'hol_kin%';
-    INSERT INTO `_api`.`dat_val` VALUES
+    DELETE FROM `api`.`dat_val` WHERE `esq`='api' AND `est` LIKE 'hol_kin%';
+    INSERT INTO `api`.`dat_val` VALUES
 
         ( 'api', 'hol_kin', '{
             "nom": "Kin #()($)ide() de 260: ()($)nom().",
@@ -345,8 +345,8 @@
             "col": 4
         }' )
     ;
-    DELETE FROM `_api`.`dat_val` WHERE `esq`='api' AND `est` LIKE 'hol_psi%';
-    INSERT INTO `_api`.`dat_val` VALUES
+    DELETE FROM `api`.`dat_val` WHERE `esq`='api' AND `est` LIKE 'hol_psi%';
+    INSERT INTO `api`.`dat_val` VALUES
 
         ( 'api', 'hol_psi', '{
             "nom": "PSI #()($)ide() de 365, correspondiente al ()($)fec().",

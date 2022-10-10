@@ -19,10 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `_api`
+-- Base de datos: `api`
 --
-CREATE DATABASE IF NOT EXISTS `_api` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci;
-USE `_api`;
+CREATE DATABASE IF NOT EXISTS `api` 
+  DEFAULT CHARACTER SET utf8mb4 
+  COLLATE utf8mb4_spanish_ci
+;
+USE `api`;
 
 -- --------------------------------------------------------
 

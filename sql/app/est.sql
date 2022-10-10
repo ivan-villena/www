@@ -2,8 +2,8 @@
 -- Inteface
 
   -- Calendario
-    DELETE FROM `_api`.`app_est` WHERE `esq`='api' AND `ide` LIKE 'fec%';
-    INSERT INTO `_api`.`app_est` VALUES
+    DELETE FROM `api`.`app_est` WHERE `esq`='api' AND `ide` LIKE 'fec%';
+    INSERT INTO `api`.`app_est` VALUES
 
       ('api','fec', '{
         
@@ -17,10 +17,10 @@
     ;
   --
   -- Holon
-    DELETE FROM `_api`.`app_est` WHERE `esq`='api' AND `ide` LIKE 'hol%'
+    DELETE FROM `api`.`app_est` WHERE `esq`='api' AND `ide` LIKE 'hol%'
     ;    
-    DELETE FROM `_api`.`app_est` WHERE `esq`='api' AND `ide` LIKE 'hol_rad%';
-    INSERT INTO `_api`.`app_est` VALUES
+    DELETE FROM `api`.`app_est` WHERE `esq`='api' AND `ide` LIKE 'hol_rad%';
+    INSERT INTO `api`.`app_est` VALUES
       ( 'api', 'hol_rad', '{ 
 
           "atr": [
@@ -29,8 +29,8 @@
 
       }' )
     ;
-    DELETE FROM `_api`.`app_est` WHERE `esq`='api' AND `ide` LIKE 'hol_ton%';
-    INSERT INTO `_api`.`app_est` VALUES
+    DELETE FROM `api`.`app_est` WHERE `esq`='api' AND `ide` LIKE 'hol_ton%';
+    INSERT INTO `api`.`app_est` VALUES
       ( 'api', 'hol_ton', '{
 
           "atr": [
@@ -52,8 +52,8 @@
           ]
       }' )
     ;
-    DELETE FROM `_api`.`app_est` WHERE `esq`='api' AND `ide` LIKE 'hol_sel%';
-    INSERT INTO `_api`.`app_est` VALUES
+    DELETE FROM `api`.`app_est` WHERE `esq`='api' AND `ide` LIKE 'hol_sel%';
+    INSERT INTO `api`.`app_est` VALUES
       ( 'api', 'hol_sel', '{
 
           "atr": [ 
@@ -84,8 +84,8 @@
           ]
       }' )
     ;
-    DELETE FROM `_api`.`app_est` WHERE `esq`='api' AND `ide` LIKE 'hol_lun%';
-    INSERT INTO `_api`.`app_est` VALUES
+    DELETE FROM `api`.`app_est` WHERE `esq`='api' AND `ide` LIKE 'hol_lun%';
+    INSERT INTO `api`.`app_est` VALUES
 
       ( 'api', 'hol_lun', '{
 
@@ -98,14 +98,14 @@
           ]
       }' )
     ;
-    DELETE FROM `_api`.`app_est` WHERE `esq`='api' AND `ide` LIKE 'hol_chi%';
-    INSERT INTO `_api`.`app_est` VALUES
+    DELETE FROM `api`.`app_est` WHERE `esq`='api' AND `ide` LIKE 'hol_chi%';
+    INSERT INTO `api`.`app_est` VALUES
 
       ( 'api', 'hol_chi', '{
       }' )
     ;
-    DELETE FROM `_api`.`app_est` WHERE `esq`='api' AND `ide` LIKE 'hol_kin%';
-    INSERT INTO `_api`.`app_est` VALUES
+    DELETE FROM `api`.`app_est` WHERE `esq`='api' AND `ide` LIKE 'hol_kin%';
+    INSERT INTO `api`.`app_est` VALUES
       ( 'api', 'hol_kin', '{
 
           "atr": [
@@ -136,8 +136,8 @@
           ]  
       }' )
     ;
-    DELETE FROM `_api`.`app_est` WHERE `esq`='api' AND `ide` LIKE 'hol_psi%';
-    INSERT INTO `_api`.`app_est` VALUES
+    DELETE FROM `api`.`app_est` WHERE `esq`='api' AND `ide` LIKE 'hol_psi%';
+    INSERT INTO `api`.`app_est` VALUES
       ( 'api', 'hol_psi', '{
 
           "atr": [ 

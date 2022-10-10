@@ -1,10 +1,10 @@
 -- Active: 1663730672989@@127.0.0.1@3306@_api
 
 -- Holon
-	DELETE FROM `_api`.`dat_atr` WHERE `esq`='api' AND `est` LIKE 'hol_%'
+	DELETE FROM `api`.`dat_atr` WHERE `esq`='api' AND `est` LIKE 'hol_%'
 	;
-	DELETE FROM `_api`.`dat_atr` WHERE `esq`='api' AND `est` LIKE 'hol_rad%';
-	INSERT INTO `_api`.`dat_atr` VALUES
+	DELETE FROM `api`.`dat_atr` WHERE `esq`='api' AND `est` LIKE 'hol_rad%';
+	INSERT INTO `api`.`dat_atr` VALUES
 	
 		-- plasma
 			('api','hol_rad','ide','{ "min":1, "max":7, "dat":"api.hol_rad" }'),
@@ -24,8 +24,8 @@
 			('api','hol_rad_pla_fue','ele_pre','{ "min":1, "max":6, "dat":"api.hol_rad_pla_ele" }'),
 			('api','hol_rad_pla_fue','ele_pos','{ "min":1, "max":6, "dat":"api.hol_rad_pla_ele" }')
 	;
-	DELETE FROM `_api`.`dat_atr` WHERE `esq`='api' AND `est` LIKE 'hol_ton%';
-	INSERT INTO `_api`.`dat_atr` VALUES
+	DELETE FROM `api`.`dat_atr` WHERE `esq`='api' AND `est` LIKE 'hol_ton%';
+	INSERT INTO `api`.`dat_atr` VALUES
 
 		-- 13 tonos
 			('api','hol_ton','ide','{ "min":1, "max":13, 		"dat":"api.hol_ton" }'),
@@ -51,8 +51,8 @@
 			('api','hol_ton_sim','ide','{ "min":1, "max":7, "dat":"api.hol_ton_sim" }'),
 			('api','hol_ton_sim','inv','{ min":1, "max":13, "dat":"api.hol_ton" }')
 	;
-	DELETE FROM `_api`.`dat_atr` WHERE `esq`='api' AND `est` LIKE 'hol_sel%';
-	INSERT INTO `_api`.`dat_atr` VALUES
+	DELETE FROM `api`.`dat_atr` WHERE `esq`='api' AND `est` LIKE 'hol_sel%';
+	INSERT INTO `api`.`dat_atr` VALUES
 
 		-- sello solar
 			('api','hol_sel','ide','{ "min":1, "max":20, 			"dat":"api.hol_sel" }'),
@@ -162,8 +162,8 @@
 			-- meridianos
 			('api','hol_sel_hum_mer','ide','{ "min":1, "max":10, "dat":"api.hol_sel_hum_mer" }')					
 	;
-	DELETE FROM `_api`.`dat_atr` WHERE `esq`='api' AND `est` LIKE 'hol_lun%';
-	INSERT INTO `_api`.`dat_atr` VALUES
+	DELETE FROM `api`.`dat_atr` WHERE `esq`='api' AND `est` LIKE 'hol_lun%';
+	INSERT INTO `api`.`dat_atr` VALUES
 		-- posiciones
 			('api','hol_lun','ide','{ "min":1, "max":28, "dat":"api.hol_lun" }'),
 			('api','hol_lun','arm','{ "min":1, "max":4, "dat":"api.hol_lun_arm" }'),
@@ -177,8 +177,8 @@
 		-- cubo del guerrero
 			('api','hol_lun_tel_cub','ide','{ "min":1, "max":16, "dat":"api.hol_lun_tel_cub" }')
 	;
-	DELETE FROM `_api`.`dat_atr` WHERE `esq`='api' AND `est` LIKE 'hol_cas%';
-	INSERT INTO `_api`.`dat_atr` VALUES
+	DELETE FROM `api`.`dat_atr` WHERE `esq`='api' AND `est` LIKE 'hol_cas%';
+	INSERT INTO `api`.`dat_atr` VALUES
 		-- posiciones
 			('api','hol_cas','ide','{ "min":1, "max":52, "dat":"api.hol_cas" }'),
 			('api','hol_cas','arm','{ "min":1, "max":4, "dat":"api.hol_cas_arm" }'),
@@ -188,8 +188,8 @@
 			('api','hol_cas','ton_arm','{ "min":1, "max":13, "dat":"api.hol_ton" }')
 
 	;
-	DELETE FROM `_api`.`dat_atr` WHERE `esq`='api' AND `est` LIKE 'hol_kin%';
-	INSERT INTO `_api`.`dat_atr` VALUES
+	DELETE FROM `api`.`dat_atr` WHERE `esq`='api' AND `est` LIKE 'hol_kin%';
+	INSERT INTO `api`.`dat_atr` VALUES
 
 		-- tzolkin
 			('api','hol_kin','ide','{ "min":1, "max":260, "dat":"api.hol_kin" }'),
@@ -218,8 +218,8 @@
 			('api','hol_kin','par_ocu','{ "min":1, "max":260, "dat":"api.hol_kin" }')
 
 	;
-	DELETE FROM `_api`.`dat_atr` WHERE `esq`='api' AND `est` LIKE 'hol_psi%';
-	INSERT INTO `_api`.`dat_atr` VALUES
+	DELETE FROM `api`.`dat_atr` WHERE `esq`='api' AND `est` LIKE 'hol_psi%';
+	INSERT INTO `api`.`dat_atr` VALUES
 
 		-- banco-psi
 			('api','hol_psi','ide','{ "min":1, "max":365, "dat":"api.hol_psi" }'),

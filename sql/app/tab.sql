@@ -1,11 +1,11 @@
 -- Active: 1663730672989@@127.0.0.1@3306@_api
 
 -- Holon
-  DELETE FROM `_api`.`app_tab` WHERE `esq`='hol'
+  DELETE FROM `api`.`app_tab` WHERE `esq`='hol'
   ;
 
-  DELETE FROM `_api`.`app_tab` WHERE `esq`='hol' AND `est` LIKE 'uni%';
-  INSERT INTO `_api`.`app_tab` VALUES
+  DELETE FROM `api`.`app_tab` WHERE `esq`='hol' AND `est` LIKE 'uni%';
+  INSERT INTO `api`.`app_tab` VALUES
 
     -- holon solar
     ( 'hol','uni_sol', 
@@ -180,8 +180,8 @@
     )
   ;
   
-  DELETE FROM `_api`.`app_tab` WHERE `esq`='hol' AND `est` LIKE 'arm%';
-  INSERT INTO `_api`.`app_tab` VALUES
+  DELETE FROM `api`.`app_tab` WHERE `esq`='hol' AND `est` LIKE 'arm%';
+  INSERT INTO `api`.`app_tab` VALUES
     -- cuadrado-cubo
     ( 'hol','arm', 
       '{
@@ -201,8 +201,8 @@
     )
   ;
   
-  DELETE FROM `_api`.`app_tab` WHERE `esq`='hol' AND `est` LIKE 'cro%';
-  INSERT INTO `_api`.`app_tab` VALUES
+  DELETE FROM `api`.`app_tab` WHERE `esq`='hol' AND `est` LIKE 'cro%';
+  INSERT INTO `api`.`app_tab` VALUES
     -- cruz-atomo
     ( 'hol','cro', 
       '{
@@ -242,8 +242,8 @@
     )
   ;
   
-  DELETE FROM `_api`.`app_tab` WHERE `esq`='hol' AND `est` LIKE 'rad%';
-  INSERT INTO `_api`.`app_tab` VALUES
+  DELETE FROM `api`.`app_tab` WHERE `esq`='hol' AND `est` LIKE 'rad%';
+  INSERT INTO `api`.`app_tab` VALUES
     -- heptágono
     ( 'hol','rad', 
       '{ 
@@ -271,8 +271,8 @@
     )
   ;
   
-  DELETE FROM `_api`.`app_tab` WHERE `esq`='hol' AND `est` LIKE 'ton%';
-  INSERT INTO `_api`.`app_tab` VALUES
+  DELETE FROM `api`.`app_tab` WHERE `esq`='hol' AND `est` LIKE 'ton%';
+  INSERT INTO `api`.`app_tab` VALUES
 
     ( 'hol','ton', 
       '{
@@ -313,8 +313,8 @@
     )
   ;
   
-  DELETE FROM `_api`.`app_tab` WHERE `esq`='hol' AND `est` LIKE 'sel%';
-  INSERT INTO `_api`.`app_tab` VALUES
+  DELETE FROM `api`.`app_tab` WHERE `esq`='hol' AND `est` LIKE 'sel%';
+  INSERT INTO `api`.`app_tab` VALUES
 
     ( 'hol','sel', 
       '{ 
@@ -404,8 +404,8 @@
     )
   ;
 
-  DELETE FROM `_api`.`app_tab` WHERE `esq`='hol' AND `est` LIKE 'lun%';
-  INSERT INTO `_api`.`app_tab` VALUES
+  DELETE FROM `api`.`app_tab` WHERE `esq`='hol' AND `est` LIKE 'lun%';
+  INSERT INTO `api`.`app_tab` VALUES
     -- forma de almanque
     ( 'hol','lun', 
       '{ 
@@ -421,8 +421,8 @@
     )
   ;
 
-  DELETE FROM `_api`.`app_tab` WHERE `esq`='hol' AND `est` LIKE 'cas%';
-  INSERT INTO `_api`.`app_tab` VALUES
+  DELETE FROM `api`.`app_tab` WHERE `esq`='hol' AND `est` LIKE 'cas%';
+  INSERT INTO `api`.`app_tab` VALUES
     -- fractal en cruz
     ( 'hol','cas', 
       '{ 
@@ -613,8 +613,8 @@
     )
   ;
 
-  DELETE FROM `_api`.`app_tab` WHERE `esq`='hol' AND `est` LIKE 'kin%';
-  INSERT INTO `_api`.`app_tab` VALUES
+  DELETE FROM `api`.`app_tab` WHERE `esq`='hol' AND `est` LIKE 'kin%';
+  INSERT INTO `api`.`app_tab` VALUES
     -- tzolkin
     ( 'hol','kin_tzo', 
       '{ 
@@ -756,8 +756,8 @@
       )
   ;
 
-  DELETE FROM `_api`.`app_tab` WHERE `esq`='hol' AND `est` LIKE 'psi%';
-  INSERT INTO `_api`.`app_tab` VALUES
+  DELETE FROM `api`.`app_tab` WHERE `esq`='hol' AND `est` LIKE 'psi%';
+  INSERT INTO `api`.`app_tab` VALUES
     -- anillo solar
     ( 'hol','psi_ban', 
       '{
@@ -828,5 +828,5 @@
     )
   ;
 
-  DELETE FROM `_api`.`app_tab` WHERE `esq`='hol' AND `est` LIKE 'umb%'
+  DELETE FROM `api`.`app_tab` WHERE `esq`='hol' AND `est` LIKE 'umb%'
   ;

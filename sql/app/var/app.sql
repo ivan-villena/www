@@ -1,10 +1,10 @@
 -- Active: 1663730672989@@127.0.0.1@3306@_api
 
-DELETE FROM `_api`.`app_var` WHERE `esq`='app';
+DELETE FROM `api`.`app_var` WHERE `esq`='app';
 --
   -- Valores
-  DELETE FROM `_api`.`app_var` WHERE `esq`='app' AND `dat`='val';
-  INSERT INTO `_api`.`app_var` VALUES 
+  DELETE FROM `api`.`app_var` WHERE `esq`='app' AND `dat`='val';
+  INSERT INTO `api`.`app_var` VALUES 
     -- 
     -- abm : contar, ver, agregar, modificar, eliminar      
       ('app','val','abm', 1, 'act', '{
@@ -168,8 +168,8 @@ DELETE FROM `_api`.`app_var` WHERE `esq`='app';
     --
   ;
   -- Estructura
-  DELETE FROM `_api`.`app_var` WHERE `esq`='app' AND `dat`='est';
-  INSERT INTO `_api`.`app_var` VALUES
+  DELETE FROM `api`.`app_var` WHERE `esq`='app' AND `dat`='est';
+  INSERT INTO `api`.`app_var` VALUES
     --
     -- filtro por conjuntos
       ('app','est','ver', 1, 'cic', '{
@@ -204,8 +204,8 @@ DELETE FROM `_api`.`app_var` WHERE `esq`='app';
     --   
   ;
   -- Tablero
-  DELETE FROM `_api`.`app_var` WHERE `esq`='app' AND `dat`='tab';
-  INSERT INTO `_api`.`app_var` VALUES
+  DELETE FROM `api`.`app_var` WHERE `esq`='app' AND `dat`='tab';
+  INSERT INTO `api`.`app_var` VALUES
     --
     -- secciones : borde + imagen + color
 

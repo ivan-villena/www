@@ -1,8 +1,8 @@
 -- Active: 1623270923336@@127.0.0.1@3306@_api
 
 -- letra
-  DELETE FROM `_api`.`doc_let`;
-  INSERT INTO `_api`.`doc_let` (`pos`,`ide`,`tip`,`var`) VALUES
+  DELETE FROM `api`.`doc_let`;
+  INSERT INTO `api`.`doc_let` (`pos`,`ide`,`tip`,`var`) VALUES
     ( NULL, '.', 'ope', 'cod' ),
     ( NULL, ',', 'ope', 'cod' ),
     ( NULL, ':', 'ope', 'cod' ),
