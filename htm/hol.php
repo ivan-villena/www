@@ -101,14 +101,21 @@
     }
     // Inicio
     public function ini( array $_, array $_hol ) : array {
+      ob_start();
 
-      $_['sec'] = "
-      
+      var_dump( $_SERVER );
+            
+      ?>
       <article>
 
-        <h2>Inicio</h2>        
+        <h2>Inicio</h2>
 
-      </article>";
+      </article>
+
+      <?php
+
+      $_['sec'] = ob_get_clean();
+
       return $_;
     }
     // Menú
@@ -1232,8 +1239,8 @@
         for( $pos = 1; $pos <= intval($ide); $pos++ ){ $_ []= "
           <figure class='mar-0'>
             <div class='ite'>
-              <img src='".SYS_REC."hol/bib/tel/{$ide}/{$pos}-1.jpg' alt='Carta ' class='mar_der-1' style='width:24rem; height: 30rem;'>
-              <img src='".SYS_REC."hol/bib/tel/{$ide}/{$pos}-2.jpg' alt='Carta ' class='mar_izq-1' style='width:24rem; height: 30rem;'>              
+              <img src='".SYS_NAV."_/hol/bib/tel/{$ide}/{$pos}-1.jpg' alt='Carta ' class='mar_der-1' style='width:24rem; height: 30rem;'>
+              <img src='".SYS_NAV."_/hol/bib/tel/{$ide}/{$pos}-2.jpg' alt='Carta ' class='mar_izq-1' style='width:24rem; height: 30rem;'>              
             </div>
           </figure>";
         }

@@ -1,10 +1,7 @@
 <?php
   // SISTEMA : accesos
-    define('SYS_DIR', "C:\\xampp\\htdocs" );
-    define('SYS_NAV', "http://localhost/" );
-    define('SYS_REC', "http://localhost/_/" );
-
-  // OPERACIONES : clases
+    define('SYS_NAV', "http://{$_SERVER['HTTP_HOST']}/" );
+    // OPERACIONES : clases
     define('DIS_OCU', "dis-ocu" );
     define('BOR_SEL', "bor-sel" );
     define('FON_SEL', "fon-sel" );

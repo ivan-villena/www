@@ -3,7 +3,6 @@
 
 // sistema
   const SYS_NAV = "http://localhost/";
-  const SYS_REC = "http://localhost/_/";
 
 // operativas
   const DIS_OCU = "dis-ocu";
