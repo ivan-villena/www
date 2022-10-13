@@ -2,12 +2,12 @@
 'use strict';
 
 // sistema
-  const SYS_NAV = "http://localhost/";
+const SYS_NAV = "http://localhost/";
 
 // operativas
-  const DIS_OCU = "dis-ocu";
-  const FON_SEL = "fon-sel";
-  const BOR_SEL = "bor-sel";
+const DIS_OCU = "dis-ocu";
+const FON_SEL = "fon-sel";
+const BOR_SEL = "bor-sel";
 
 // Interface
 class _api {
@@ -218,7 +218,6 @@ class _dom {
     _ele.ope( $.obj.querySelectorAll(`${$css}${$ide}`), 'cla_tog', $cla );
     return $ele;
   }    
-
   static val( $ele, $rel, $dep, $ope, $val ){    
     let $ = {};
     // selector por documento
@@ -248,7 +247,6 @@ class _dom {
     }// selector, operador, valor  
     return _ele.ope( $rel.querySelectorAll($dep), $ope, $val );
   }
-
   static act( $tip, $ele, $val, $ope ){
     let $_ = [], $={
       tip : $tip.split('_')
@@ -306,7 +304,6 @@ class _dom {
       break;
     }  
   }
-
   static ver( $ele, $ope={} ){
 
     let $_ = false, $ = {};
@@ -363,7 +360,6 @@ class _dom {
     }
     return $_;
   }
-
   static agr( $val, $pad, ...$opc ){
     let $_=[],$={};
     // recibo 1 o muchos
@@ -392,7 +388,6 @@ class _dom {
     }
     return ( $.val_uni && $_[0] ) ? $_[0] : $_;
   }
-
   static mod( $val, $pad, $mod, ...$opc ){
     let $_={},$={};
     // aseguro valor
@@ -414,7 +409,6 @@ class _dom {
     }
     return $_;
   }
-
   static eli( $pad, $nod ){
     let $_=[];
     // elimino todos

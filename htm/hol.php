@@ -1,22 +1,19 @@
 <?php
+
   // aplicacion
   class _hol_app {
-
-    static string $IDE = "_hol_app-";
-    static string $EJE = "_hol_app.";
 
     // main : app.cab.art/val
     public function __construct( array &$_ ){
 
-      global $_usu, $_app;
+      global $_app;
 
       $_uri = $_app->uri;
 
       // inicializo datos    
       $_val = _hol::val( date('Y/m/d') );
-
       // proceso y actualizo fecha en sesion
-      if( in_array($_uri->cab,[ 'inf', 'tab', 'usu' ]) ){
+      if( in_array($_uri->cab,[ 'inf', 'tab' ]) ){
 
         $dat_ide = empty($_uri->art) ? 'kin' : explode('-',$_uri->art)[0];
 
@@ -46,23 +43,8 @@
         // actualizo valor de sesion
         $_SESSION['hol-val'] = $hol_val;
       }
-            
-      // menu principal: agrego valor diario
-      $ele_ope = [ 
-        'ope' => [ 'class'=>"mar_arr-1" ], 'lis'=>[ 'style'=>"height: 65vh;" ], 'opc'=>['tog','ver'] 
-      ];
-      $_['nav']['ope'] = [
-        'ico'=>"fec_val",
-        'nom'=>"Operador",
-        'htm'=>
-          _hol_val::fec($_val)
-          ._doc_val::nav('bar',[
-            'kin' => [ 'nom'=>"Orden Sincrónico", 'des'=>"", 'htm'=>_hol_dia::kin( $_val['kin'], $ele_ope) ],
-            'psi' => [ 'nom'=>"Orden Cíclico",    'des'=>"", 'htm'=>_hol_dia::psi( $_val['psi'], $ele_ope) ]
-            ],[            
-            'sel' => "kin"
-          ])
-      ];
+      // muestro fecha en el menu
+      $_['nav_htm_ini'] = _hol_app::val($_val);
 
       // inicio : 
       if( empty($_uri->cab) ){
@@ -99,22 +81,119 @@
       ";
       return $_;
     }
-    // Inicio
+    // Inicio : explicacion del sitio
     public function ini( array $_, array $_hol ) : array {
-      ob_start();            
-      ?>
+      
+      // cargo articulo
+      ob_start(); ?>
+
+      <?=_doc_val::tex('adv',"Este sitio aún se está en construcción. Puede que se encuentre con contenido incompleto, errores o fallas; estamos trabajando en ello... Mientras tanto se decidió publicar el contenido para que los usuarios puedan acceder al mismo, mientras continuamos creciendo y evolucionando juntos.")?>
+
       <article>
+        <h2><c>¿</c>Que puedo encontrar aquí<c>?</c></h2>
 
-        <h2>Inicio</h2>
+        <p>En el panel que se encuentra a la izquierda encontrarás el menú y las aplicaciones del sitio<c>.</c> Desde el menú podés acceder a los distintos contenidos y secciones<c>,</c> donde encontrarás libros y glosarios<c>,</c> datos relacionados a las cuentas del sincronario<c>,</c> Tableros e Informes según el valor diario seleccionado<c>.</c> Este valor lo encontrarás en el tercer botón del panel<c>,</c> donde podrés buscar otra fecha y ver un resumen del orden cíclico y sincrónico para dicho valor<c>.</c> Las demás aplicaciones irán apareciendo según la página en la que te encuentres<c>:</c> en los artículos aparecerá un índice<c>,</c> en los tableros aparecerán los operadores<c>,</c> etc<c>.</c> A medida que el sitio crezca se irán agregando nuevas funcionalidades<c>...</c></p>      
 
+    
       </article>
       <?php
       $_['sec'] = ob_get_clean();
 
+      // cargo tutorial:
+      ob_start(); ?>
+        <!-- Bibliografía -->
+        <section>
+
+          <h3>La bibliografía</h3>
+
+          <div class="val jus-cen">
+            <?= _doc::ico('app_nav',['class'=>"mar_hor-1"]) ?>
+            <c>-></c>
+            <?= _doc::ico('tex_lib',['class'=>"mar_hor-1"]) ?>
+          </div>
+
+          <p>En esta sección podrás encontrar un glosario global y los distintos libros en los cuales se basa la teoría del Sincronario<c>:</c> <b class="ide">La ley del Tiempo</b></p>
+
+          <p>El glosario es un rejunte de todos los que aparecen en los distintos libros<c>,</c> al cual se agregó un filtro para buscar entre sus términos y accesos al libro donde se encuentra<c>.</c> Los libros son todos del mismo autor <c>(</c><a href="https://es.wikipedia.org/wiki/Jos%C3%A9_Arg%C3%BCelles" target="_blank">José Argüelles</a><c>)</c><c>,</c> y se pueden descargar desde el mismo lugar <c>(</c><a href="https://13lunas.net/mapa.htm#biblioteca" target="_blank">Biblioteca de <n>13</n> Lunas</a><c>)</c><c>.</c></p>
+
+          <p>En este sitio se adaptó el formato de texto de cada libro para una página web<c>,</c> se agregaron los íconos correspondientes a cada símbolo e imágenes que amplían su contenido vislamente<c>.</c> También se muestran en orden cronológico ya que este conocimiento es incremental<c>,</c> y los temas se entrelazan y completan en cada publicación<c>.</c></p>
+
+          <p>En la página donde verás el contenido del libro hay un índice en el panel izquierdo<c>,</c> que puedes ocultar o mostrar haciendo click en el botón<c>.</c> Los puntos originales que figuran en el libro son los mismos<c>,</c> pero se agregaron nuevos para segmentar mejor la información y poder acceder a ella desde otros lados<c>.</c></p>      
+
+        </section>
+        <!-- Codigos y Cuentas -->
+        <section>
+
+          <h3>Las cuentas</h3>
+
+          <div class="val jus-cen">        
+            <?= _doc::ico('app_nav',['class'=>"mar_hor-1"]) ?>
+            <c>-></c>
+            <?= _doc::ico('num_val',['class'=>"mar_hor-1"]) ?>
+          </div>
+
+          <p>Los sistemas del Sincronario están basados en códigos y cuentas<c>.</c> Los <n>13</n> tonos galácticos crean el módulo de sincronización para las <n>13</n> lunas del giro solar y las <n>13</n> trayectorias armónicas del giro galáctico<c>.</c> Cada kin está compuesto por uno de los <n>13</n> tonos galácticos<c>,</c> y uno de los <n>20</n> sellos solares<c>.</c> Cada día del año se encuentra en una de las <n>13</n> lunas y se asocia a uno de los <n>7</n> plasma radiales<c>.</c> Un castillo está compuesto por <n>52</n> posiciones que se dividen en <n>4</n> ondas encantadas de <n>13</n> unidades<c>.</c> Con el castillo se codifican las <n>4</n> estaciones espectrales del giro galáctico<c>,</c> las <n>4</n> estaciones cíclicas del giro solar<c>,</c> los <n>52</n> anillos solares del ciclo Nuevo Siario y los <n>52</n> años del sendero del destino para el kin planetario<c>.</c> A su vez<c>,</c> la nave del tiempo tierra está compuesta de <n>5</n> castillos para abarcar los <n>260</n> kines del giro galáctico<c>.</c> Todos estos son ejemplos de las cuentas utilizadas para medir el tiempo con el concepto de Matriz Radial<c>.</c> Cada cuenta va del <n>1</n> al <n>n</n><c>,</c> siendo <n>n</n> el valor total que define la cuenta<c>.</c> De esta manera<c>:</c> los plasmas val del <n>1<c>-</c>7</n><c>,</c> los tonos del <n>1<c>-</c>13</n><c>,</c> los sellos del <n>1<c>-</c>20</n><c>,</c> las lunas del <n>1<c>-</c>28</n><c>,</c>etc<c>.</c></p>
+
+          <p>En esta sección podrás encontrar datos que van apareciendo en los distintos libros y están relacionados a cada código y cuenta<c>,</c> junto con sus respectivas agrupaciones y subciclos<c>.</c> Haciendo referencia a la fuente<c>,</c> se describen brevemente para introducir al lector en sus conceptos y bridarle acceso directo al material donde puede encontrarlo<c>.</c> A partir de su comprensión se pueden realizar lecturas y relaciones entre distintas posiciones<c>,</c> fechas o firmas galácticas<c>.</c></p>      
+
+        </section>
+        <!-- Diario -->
+        <section>
+          <h3>El Diario</h3>
+
+          <div class="val jus-cen">        
+            <?= _doc::ico('fec_val',['class'=>"mar_hor-1"]) ?>
+            <c>-></c>
+            <?= _doc::ico('dat_ver',['class'=>"mar_hor-1"]) ?>
+          </div>
+
+          <p>Este es un panel que está en la mayoría de las páginas del sitio<c>.</c> Desde aquí puedes cambiar la fecha operativa del sistema<c>.</c> Esta fecha se utiliza para posicionarte en los tableros y para ver los datos correspondientes al día en la sección de informes<c>.</c> La fecha se inicializa con el día actual<c>,</c> pero puedes cambiarla en cualquier momento utilizando el calendario gregoriano o las fechas del sincronario <c>(</c>ciclo NS<c>)</c><c>.</c> Si quieres saber más sobre los ciclos del sincronario<c>,</c> haz click <a href="https://www.13lunas.net/boletines/Rinri/V03N3_1.htm" target="_blank">aquí</a><c>.</c></p>
+
+          <p>Aquí tambien encontrarás un resumen sobre el posicionamiento para la fecha seleccionada<c>.</c> En el orden sincrónico están todas las cuentas relacionadas al kin <c>(</c><n>1<c>-</c>260</n><c>)</c><c>;</c> y el orden cíclico hace referencia a las cuentas relacionadas al psi<c>-</c>cronos<c>(</c><n>1<c>-</c>365</n><c>)</c><c>.</c> Para cada serie de cuentas hay un buscador con el que puedes filtrar la lista y ver los datos de dicho<c>/</c>s subciclo<c>/</c>s en particular<c>.</c></p>
+          
+        </section>
+        <!-- Tableros -->
+        <section>
+          <h3>Los tableros</h3>
+
+          <div class="val jus-cen">
+            <?= _doc::ico('app_nav',['class'=>"mar_hor-1"]) ?>
+            <c>-></c>
+            <?= _doc::ico('lis_tab',['class'=>"mar_hor-1"]) ?>
+          </div>
+          
+          <p>Desde el menú principal puedes acceder a un listado de tableros relacionados al posicionamiento según la fecha seleccionada en el Diario<c>.</c> Para cada tablero se genera un ciclo de tiempo que contiene la fecha y abarca el total de días para el ciclo que representa<c>,</c> por ej<c>:</c> el <a href="<?=SYS_NAV."hol/tab/kin-tzo"?>" target="_blank">tzolkin</a> genera un ciclo de <n>260</n> días<c>,</c> el <a href="<?=SYS_NAV."hol/tab/psi-ban"?>" target="_blank">banco<c>-</c>psi</a> genera un ciclo de <n>365</n> días<c>,</c> y la <a href="<?=SYS_NAV."hol/tab/psi-lun"?>" target="_blank">luna</a> uno de <n>28</n><c>.</c></p>
+
+          <p>Desde allí podrás acceder a opciones<c>,</c> elementos<c>,</c> un índice y un listado que te permitirán interactuar con su contenido<c>.</c></p>
+
+          <ul class="lis sep">
+            <li><?=_doc::ico('opc_bin',[ 'class'=>"mar_der-1" ])?> En las opciones puedes cambiar los colores de fondo<c>,</c> seleccionar fichas y ver contenido numero o textual para cada posición<c>.</c> Según los atributos del tablero definido por sus cuentas<c>,</c> podrás activar o desactivar ciertas posiciones clave<c>,</c> como aquellas relacionadas por el oráculo del destino o las que se encuentran en un mismo pulsar de la onda encantada<c>.</c></li>
+            <li><?=_doc::ico('lis_est',[ 'class'=>"mar_der-1" ])?> En el operador puedes seleccionar aquellos activos y ver la sumatoria del kin correspondiente a ellos<c>.</c> Tambien puedes realizar selecciones grupales aplicando filtros por estructuras de cuentas<c>,</c> fechas o posiciones<c>.</c></li>
+            <li><?=_doc::ico('lis_nav',[ 'class'=>"mar_der-1" ])?> En el índice encontrarás un listado de los códigos y cuentas incluidos en el armado de tablero<c>.</c> Para cada código se muestra un total de elementos activos <c>(</c> por posición<c>,</c> marcas<c>,</c> seleccion y opciones <c>)</c> </li>
+            <li><?=_doc::ico('lis_ite',[ 'class'=>"mar_der-1" ])?> En el listado puedes acceder a los datos de las posiciones ya sea por los acumulados o puedes verlos todos y aplicar filtros<c>.</c> Luego puedes seleccionar las columnas con los datos que deseas ver<c>,</c> y mostrar los titulos por agrupaciones o lecturas para cada posición<c>.</c></li>
+          </ul>
+          
+        </section>
+        <!-- Informes -->
+        <section>
+          <h3>Los informes</h3>
+
+          <div class="val jus-cen">        
+            <?= _doc::ico('app_nav',['class'=>"mar_hor-1"]) ?>
+            <c>-></c>
+            <?= _doc::ico('tex_inf',['class'=>"mar_hor-1"]) ?>
+          </div>
+
+          <p>Según la fecha seleccionada podrás ver un detalle de cada codigo o cuenta relacionada<c>.</c> </p>
+          
+        </section>
+      <?php
+      $_['app_tut'] = ob_get_clean();
+
       return $_;
     }
-    // Menú
-    public function sec( array $_, _app_uri $_uri, array $_hol ) : array {
+    // Menú : contenido de ayuda
+    public function sec( array $_, object $_uri, array $_hol ) : array {
 
       switch( $_uri->cab ){
       case 'bib': 
@@ -130,23 +209,85 @@
         <?php
         break;
       case 'tab': 
-        ?>      
+        ?>
         <?php
         break;
       }
       return $_;
     }
-    // Bibliografía
-    public function bib( array $_, _app_uri $_uri, array $nav, array $_val ) : array {
+    // valor : fecha + ns:kin
+    static function val( array $dat ) : string {
+      $_eje = "_hol_app.val";
+
+      $_kin = isset($dat['kin']) ? ( is_object($dat['kin']) ? $dat['kin'] : _hol::_('kin',$dat['kin']) ) : [];
+      $_psi = isset($dat['psi']) ? ( is_object($dat['psi']) ? $dat['psi'] : _hol::_('psi',$dat['psi']) ) : [];
+      $_sin = isset($dat['sin']) ? explode('.',$dat['sin']) : [];
+      $_fec = isset($dat['fec']) ? $dat['fec'] : [];      
+
+      $_ = "
+      <!-- Fecha del Calendario -->
+      <form class='val' ide = 'fec'>
+
+        <div class='atr'>
+          "._doc_fec::ope('dia', $_fec, [ 'name'=>"fec" ])."
+          "._doc::ico('dat_ver',[ 
+            'eti'=>"button", 'type'=>"submit", 'title'=>'Buscar en el Calendario...', 'class'=>"mar_hor-1", 'onclick'=>"$_eje(this);"
+          ])."
+        </div>
+
+      </form>
+
+      <!-- Fecha del Sincronario -->
+      <form class='val' ide = 'sin'>
+        
+        <div class='atr'>
+
+          <label>N<c>.</c>S<c>.</c></label>
+
+          "._doc_num::ope('int', $_sin[0], [ 'maxlength'=>2, 'name'=>"gal", 'title'=>"Portales Galácticos, Ciclos NS de 52 años..."])."
+
+          <c>.</c>
+          "._doc_lis::opc( _hol::_('ani'), [
+            'eti'=>[ 'name'=>"ani", 'title'=>"Anillo Solar (año): 52 ciclos de 364+1 días...", 'val'=>$_sin[1] ], 
+            'ite'=>[ 'title'=>'($)nom','htm'=>'($)ide' ]
+          ])."
+          <c>.</c>
+          "._doc_lis::opc( _hol::_('psi_lun'), [
+            'eti'=>[ 'name'=>"lun", 'title'=>"Giro Lunar (mes): 13 ciclos de 28 días...", 'val'=>$_sin[2] ],
+            'ite'=>[ 'title'=>'()($)nom(): ()($)des()','htm'=>'($)ide' ]
+          ])."
+          <c>.</c>
+          "._doc_lis::opc( _hol::_('lun'), [ 
+            'eti'=>[ 'name'=>"dia", 'title'=>"Día Lunar : 1 día de 28 que tiene la luna...", 'val'=>$_sin[3] ], 
+            'ite'=>[ 'title'=>'($)des','htm'=>'($)ide' ]
+          ])."          
+          <c class='sep'>:</c>
+      
+          <n name='kin'>$_kin->ide</n>
+
+          "._hol::ima("kin",$_kin,['class'=>"mar_hor-1", 'style'=>'min-width:3em; height:3em;'])."
+          
+        </div>
+
+        "._doc::ico('dat_ver',[ 'eti'=>"button", 'title'=>'Buscar en el Sincronario', 'type'=>"submit", 'onclick'=>"$_eje(this);" ])."
+
+      </form>";
+
+      return $_;
+    }
+    // Bibliografía : glosarios y libros
+    public function bib( array $_, object $_uri, array $nav, array $_val ) : array {
       // cargo referencia
       $_bib = SYS_NAV."hol/bib/";
+      // cargo directorio para imágenes del libro
+      $_dir = $_uri->dir();
 
       switch( $_uri->art ){
       // glosarios
       case 'ide':
         ?>
-        <h2></h2>
-        <section>
+        <article>
+          <h2>Buscar</h2>
 
           <p>En el siguiente listado podés encontrar los términos y sus significados por Libro.</p>
 
@@ -155,7 +296,7 @@
             <?= _doc_val::var('val','ver',[ 
               'des'=>"Filtrar...",
               'ite'=>[ 'class'=>"tam-cre" ],
-              'htm'=>_doc_val::ver(['cue'=>0, 'eje'=>"_hol_bib.ide('ver',this)" ], [ 'class'=>"anc-100" ])
+              'htm'=>_doc_val::ver(['cue'=>0, 'eje'=>"_hol_app_bib.ide('ver',this)" ], [ 'class'=>"anc-100" ])
             ]) ?>
 
           </form>
@@ -195,26 +336,24 @@
             </table>
           </div>
 
-        </section>        
+        </article>
         <?php          
         break;
       // libros html
       default:
-        // cargo directorio para imágenes del libro
-        $_dir = $_uri->dir($_uri);
         if( !empty( $rec = $_uri->rec($val = "htm/$_uri->esq/$_uri->cab/$_uri->art") ) ){
           
           include( $rec );
         }
-        else{ echo "
-          <p class='err'><c>{-_-}</c> No existe el archivo <c>'</c><b class='ide'>{$val}</b><>'</c></p>";
-        }       
+        else{
+          echo _doc_val::tex('err',"No existe el archivo '$val'");
+        }
         break;
       }      
       return $_;
     }
-    // Datos
-    public function dat( array $_, _app_uri $_uri, array $nav, array $_val ) : array {
+    // Datos : codigos y cuentas
+    public function dat( array $_, object $_uri, array $nav, array $_val ) : array {
       // cargo referencia
       $_bib = SYS_NAV."hol/bib/";
       switch( $_uri->art ){
@@ -672,15 +811,8 @@
       }
       return $_;
     }
-    // Valor
-    public function val( array $_, _app_uri $_uri, array $nav, array $_val ) : array {
-      $_bib = SYS_NAV."hol/bib/";
-      switch( $_uri->art ){
-      }
-      return $_;
-    }
-    // Informe
-    public function inf( array $_, _app_uri $_uri, array $nav, array $_val ) : array {
+    // Informe : valores por posicion
+    public function inf( array $_, object $_uri, array $nav, array $_val ) : array {
       $_bib = SYS_NAV."hol/bib/";
       // galáctico
       $_kin = _hol::_('kin', $_val['kin']);
@@ -985,8 +1117,8 @@
       }      
       return $_;
     }
-    // Tableros 
-    public function tab( array $_, _app_uri $_uri, array $_val ) : array {
+    // Tableros : posicionamiento y seleccion
+    public function tab( array $_, object $_uri, array $_val ) : array {
           
       $art_tab = explode('-',$_uri->art);
       if( isset($art_tab[1]) && method_exists("_hol_tab",$ide = $art_tab[0]) ){
@@ -1018,59 +1150,135 @@
           // valor seleccionado
           $tab_ope['val']['pos'] = $_val;
         }
-        
+
         // operadores del tablero
-        $_ope = _obj::nom(_app_tab::$OPE,'ver',['cue','val','opc']);
+        $_ope = _obj::nom(_app_tab::$OPE,'ver',['val','opc','cue']);
         foreach( $_ope as $ope_ide => $ope_tab ){
-          if( 
-            !empty( $htm = _app_tab::ope($ope_ide, $tab_ide, $tab_ope, $tab_ele ) ) 
-          ){
+
+          if( !empty( $htm = _app_tab::ope($ope_ide, $tab_ide, $tab_ope, $tab_ele ) ) ){
             $_['nav'][$ope_ide] = [ 
-              'ico' => $ope_tab['ico'],
-              'nom' => $ope_tab['nom'], 
+              'ico' => $ope_tab['ico'], 'nom' => $ope_tab['nom'], 
               'nav' => [ 'style'=>"width: 30rem;" ],
               'htm' => $htm
             ];
           }
         }
+
+        // valores diario
+        $dia_ele = [ 
+          'ope' => [ 'class'=>"mar_arr-1" ], 'lis'=>[ 'style'=>"height: 75vh;" ], 'opc'=>['tog','ver'] 
+        ];
+        $_['nav']['ope'] = [ 'ico'=>"fec_val", 'nom'=>"Diario", 'htm'=>
+          _doc_val::nav('bar',[
+            'kin' => [ 'nom'=>"Orden Sincrónico", 'des'=>"", 'htm'=>_hol_app_dia::kin( $_val['kin'], $dia_ele) ],
+            'psi' => [ 'nom'=>"Orden Cíclico",    'des'=>"", 'htm'=>_hol_app_dia::psi( $_val['psi'], $dia_ele) ]
+            ],[            
+            'sel' => "kin"
+          ])
+        ];        
+
         // operador de lista
         $_ope = _app_tab::$OPE['lis'];
-        $_['win']['est'] = [ 
-          'ico' => $_ope['ico'], 
-          'nom' => $_ope['nom'],
+        $_['win']['est'] = [ 'ico' => $_ope['ico'], 'nom' => $_ope['nom'],
           'art' => [ 'style'=>"max-width: 55rem; height: 90vh;" ],
           'htm' => _app_tab::ope('lis',"api.hol_{$ide}",$tab_ope)
-        ];          
+        ];
+        
         // imprimo tablero en página principal
         echo "
-        <article>
+        <article class='anc_max-fit'>
           "._hol_tab::$ide($art_tab[1], $tab_ope, [ 
             'sec'=>[ 'class'=>"mar-aut" ],
             'pos'=>[ 'onclick'=>"_app_tab.val('mar',this);" ]
           ])."
         </article>";
       }
-      else{
-        echo _doc::let("Error: No existe el tablero del Holon solicitado con '$_uri->art'");
+      else{ 
+        echo _doc_val::tex('err',"No existe el tablero '$_uri->art'");
       }
+      // cargo tutorial    
+      ob_start(); ?>
+        <!-- Diario -->
+        <section>
+
+          <div class="val jus-cen">
+            <?= _doc::ico('fec_val',['class'=>"mar_hor-1"]) ?>
+            <h3>Diario</h3>
+          </div>
+
+          <p></p>
+
+        </section>
+        <!-- Opciones -->
+        <section>
+
+          <div class="val jus-cen">
+            <?= _doc::ico('opc_bin',['class'=>"mar_hor-1"]) ?>
+            <h3>Opciones</h3>
+          </div>
+
+          <p></p>
+
+        </section>
+        <!-- Operador -->
+        <section>
+
+          <div class="val jus-cen">
+            <?= _doc::ico('lis_est',['class'=>"mar_hor-1"]) ?>
+            <h3>Operador</h3>
+          </div>
+
+          <p></p>
+
+        </section>
+        <!-- Indice -->
+        <section>
+
+          <div class="val jus-cen">
+            <?= _doc::ico('lis_nav',['class'=>"mar_hor-1"]) ?>
+            <h3>Índice</h3>
+          </div>
+
+          <p></p>
+
+        </section>
+        <!-- Listado -->
+        <section>
+
+          <div class="val jus-cen">
+            <?= _doc::ico('lis_ite',['class'=>"mar_hor-1"]) ?>
+            <h3>Listado</h3>
+          </div>
+
+          <p></p>
+
+        </section>        
+      <?php
+      $_['app_tut'] = ob_get_clean();
+
       return $_;
     }
     // Kin Planetario : transitos + firma galàctica
-    public function usu( array $_, _app_uri $_uri, array $nav, array $_val ) : array {
+    public function usu( array $_, object $_uri, array $nav, array $_val ) : array {
       global $_usu;
 
       return $_;
     }  
   }
-  
-  // Bibliografìa : glosario + ciclos y cuentas + ...libros
-  class _hol_bib { 
 
-    static string $IDE = "_hol_bib-";
-    static string $EJE = "_hol_bib.";
-    
+  // Bibliografìa : indices, listados, cartas, tableros
+  class _hol_app_bib { 
+
+    static string $IDE = "_hol_app_bib-";
+    static string $EJE = "_hol_app_bib.";
+
+    // tierra en ascenso
+    static function asc( string $ide, array $ope = [] ) : string {
+      $_ = "";
+      return $_;
+    }
     // encantamiento
-    static function enc( string $ide, array $ele = [] ) : string {      
+    static function enc( string $ide, array $ope = [] ) : string {
       $_ = []; $esq = "hol"; $est = str_replace('.','_',$ide); $lis_tip = "val"; $lis_pos = 0;
       $_eje = self::$EJE."enc('$ide',";
       switch( $ide ){
@@ -1093,7 +1301,7 @@
 
             <fieldset class='ope'>
 
-              "._doc::ico('nav_fin',[ 'eti'=>"button", 'title'=>"Ir al Kin...", 'onclick'=>"{$_eje}this,'nav');" ])."
+              "._doc::ico('lis_fin',[ 'eti'=>"button", 'title'=>"Ir al Kin...", 'onclick'=>"{$_eje}this,'nav');" ])."
             
             </fieldset>
 
@@ -1181,7 +1389,7 @@
       case 'kin.arm':
         $arm_cel = 0;
         $_lis = [];
-        if( !isset($ele['nav']) ) $ele['nav'] = [];
+        if( !isset($ope['nav']) ) $ope['nav'] = [];
   
         foreach( _hol::_('kin_arm_tra') as $_tra ){
     
@@ -1198,32 +1406,33 @@
             'lis'=>$_lis_cel
           ];
         }
-        _ele::cla( $ele['nav'], "dis-ocu" );
-        $ele['opc'] = ['tog','ver'];
+        _ele::cla( $ope['nav'], "dis-ocu" );
+        $ope['opc'] = ['tog','ver'];
         $_ = "
   
         "._doc_val::tog(
           [ 'eti'=>'h3', 'htm'=>_doc::let("Índice de las 13 Trayectorias y 65 células armónicas.") ], 
           [ 'ico'=>['class'=>"ocu"] ]
         )."
-        
-        <nav"._htm::atr($ele['nav']).">
+        <nav"._htm::atr($ope['nav']).">
   
-          "._doc_lis::val($_lis,$ele)."
+          "._doc_lis::val($_lis,$ope)."
 
         </nav>";    
         break;
       
+      // brujula galáctica
+      case 'bru': break;
       }
-      return is_array($_) ? _app_dat::lis( $_, $est, $lis_tip, $ele ) : $_;
+      return is_array($_) ? _app_dat::lis( $_, $est, $lis_tip, $ope ) : $_;
     }
     // telektonon
-    static function tel( string $ide, array $ele = [] ) : string {
-      $_ = []; $esq = "hol"; $est = str_replace('.','_',$ide); $lis_tip = "val"; $lis_pos = 0;
+    static function tel( string $ide, array $ope = [] ) : string {
+      $_ = "";
       switch( $ide ){
       // libros-cartas
       case 'lib': 
-        $ide = isset($ele['ide']) ? $ele['ide'] : 4;
+        $ide = isset($ope['ide']) ? $ope['ide'] : 4;
         $_dat = [
           4  => ['ide'=> 4, 'tit'=>"Libro de la Forma Cósmica" ],
           7  => ['ide'=> 7, 'tit'=>"Libro de las Siete Generaciones Perdidas" ],
@@ -1239,9 +1448,379 @@
             </div>
           </figure>";
         }
-        $_ = _doc_lis::bar( $_, $ele);
+        $_ = _doc_lis::bar( $_, $ope);
         break;
+      // tablero del telektonon
+      case 'tab': break;
       }
-      return is_array($_) ? _app_dat::lis( $_, $est, $lis_tip, $ele ) : $_;
-    } 
+      return $_;
+    }
+    // atomo del tiempo 
+    static function ato( string $ide, array $ope = [] ) : string {
+      $_ = "";
+      switch( $ide ){
+      case 'fic': break;
+      }
+      return $_;
+    }
+  }
+
+  // diario : ciclico + sincronico
+  class _hol_app_dia {
+
+    static string $IDE = "_hol_app_dia-";
+    static string $EJE = "_hol_app_dia.";
+
+    // ciclos del orden sincronico
+    static function kin( mixed $dat, array $ope = [], ...$opc ) : string {
+      $_ = [];
+      if( !isset($ope['lis']) ) $ope['lis'] = [];
+
+      $_kin = _hol::_('kin',$dat);
+      $_sel = _hol::_('sel',$_kin->arm_tra_dia);
+      $_ton = _hol::_('ton',$_kin->nav_ond_dia);
+      $_kin_atr = _dat::atr('api',"hol_kin");
+      
+      $_est = [
+        'arm_tra_dia'=>[ 'cue'=>20, 'est'=>"sel" ],
+        'arm_cel_dia'=>[ 'cue'=>4,  'est'=>"sel_arm_raz" ],
+        'cro_est_dia'=>[ 'cue'=>65, 'est'=>"chi" ],
+        'cro_ele_dia'=>[ 'cue'=>5,  'est'=>"sel_cro_fam" ],
+        'nav_cas_dia'=>[ 'cue'=>52, 'est'=>"cas" ],
+        'nav_ond_dia'=>[ 'cue'=>13, 'est'=>"ton" ],
+      ];
+      
+      $_[0] = [ 'ite'=>"Nave del Tiempo", 'lis'=>[] ];
+      foreach( [ 'nav_cas'=>52, 'nav_ond'=>13 ] as $atr => $cue ){ 
+        $_dat = _hol::_($est="kin_$atr",$_kin->$atr); 
+        $_[0]['lis'] []= 
+        
+        _hol::ima("{$est}",$_dat,['class'=>"tam-3 mar_der-1"])."
+
+        <div class='tam-cre'>
+          <p>"._doc::let( _app_dat::val('nom',"api.hol_{$est}",$_dat) )."</p>
+          <p>Día <n>{$_kin->{"{$atr}_dia"}}</n> de <n>$cue</n></p>
+          <p>"._doc_num::ope('ran',$_kin->{"{$atr}_dia"},[ 'min'=>1, 'max'=>$cue, 'disabled'=>"", 'class'=>"anc-100"],'ver')."</p>            
+        </div>";          
+      }        
+
+      $_[1] = [ 'ite'=>"Giro Galáctico", 'lis'=>[] ];
+      foreach( [ 'arm_tra'=>13, 'arm_tra_dia'=>20, 'arm_cel'=>65, 'arm_cel_dia'=>4 ] as $atr => $cue ){ 
+        $est = isset($_est[$atr]['est']) ? $_est[$atr]['est'] : "kin_$atr"; 
+        $_dat = _hol::_($est,$_kin->$atr); 
+        $_[1]['lis'] []= 
+        
+        _hol::ima("{$est}",$_dat,['class'=>"tam-3 mar_der-1"])."
+
+        <div class='tam-cre'>
+          <p>"._doc::let( _app_dat::val('nom',"api.hol_{$est}",$_dat) )."</p>
+          <p>"._doc::let( _app_dat::val('des',"api.hol_{$est}",$_dat) )."</p>
+          <p>"._doc_num::ope('ran',$_kin->$atr,[ 'min'=>1, 'max'=>$cue, 'disabled'=>"", 'class'=>"anc-100"],'ver')."</p>          
+        </div>";
+      }
+
+      $_[2] = [ 'ite'=>"Giro Espectral", 'lis'=>[] ];
+      foreach( [ 'cro_est'=>65, 'cro_ele'=>5 ] as $atr => $cue ){ 
+        $_dat = _hol::_($est="kin_$atr",$_kin->$atr); 
+        
+        $_[2]['lis'] []= 
+        
+          _hol::ima("{$est}",$_dat,['class'=>"tam-3 mar_der-1"])."
+
+          <div class='tam-cre'>
+            <p>"._doc::let( _app_dat::val('nom',"api.hol_{$est}",$_dat) )."</p>
+            <p>Día <n>{$_kin->{"{$atr}_dia"}}</n> de <n>$cue</n></p>
+            <p>"._doc_num::ope('ran',$_kin->{"{$atr}_dia"},[ 'min'=>1, 'max'=>$cue, 'disabled'=>"", 'class'=>"anc-100"],'ver')."</p>
+          </div>          
+        ";          
+      } 
+
+      $_[3] = [ 'ite'=>"Holon Solar", 'lis'=>[] ];
+      foreach( ['sol_pla','sol_cel','sol_cir'] as $atr ){ 
+        $_dat = _hol::_($est = "sel_{$atr}",$_sel->$atr); 
+        $_[3]['lis'] []= 
+
+          _hol::ima("{$est}",$_dat,['class'=>"tam-3 mar_der-1"])."
+          
+          <div class='tam-cre'>
+            <p>"._doc::let( _app_dat::val('nom',"api.hol_{$est}",$_dat) )."</p>
+          </div>              
+        ";          
+      }
+
+      $_[4] = [ 'ite'=>"Holon Planetario", 'lis'=>[] ];
+      foreach( ['pla_cen','pla_hem','pla_mer'] as $atr ){ 
+        $_dat = _hol::_($est = "sel_{$atr}",$_sel->$atr); 
+        $_[4]['lis'] []= 
+
+          _hol::ima("{$est}",$_dat,['class'=>"tam-3 mar_der-1"])."
+          
+          <div class='tam-cre'>
+            <p>"._doc::let( _app_dat::val('nom',"api.hol_{$est}",$_dat) )."</p>
+          </div>              
+        ";
+      }
+
+      $_[5] = [ 'ite'=>"Holon Humano", 'lis'=>[] ];
+      foreach( ['hum_cen','hum_ext','hum_ded','hum_mer'] as $atr ){ 
+        $_dat = _hol::_($est = "sel_{$atr}",$_sel->$atr); 
+        $_[5]['lis'] []= 
+
+          _hol::ima("{$est}",$_dat,['class'=>"tam-3 mar_der-1"])."
+          
+          <div class='tam-cre'>
+            <p>"._doc::let( _app_dat::val('nom',"api.hol_{$est}",$_dat) )."</p>
+          </div>              
+        ";
+      }              
+
+      $ope['lis-1'] = [ 'class'=>"ite" ];
+      return _doc_lis::val($_,$ope);
+    }    
+    // ciclos del orden ciclico
+    static function psi( mixed $dat, array $ope = [], ...$opc ) : string {
+      $_ = []; $esq = 'hol';
+      if( !isset($ope['lis']) ) $ope['lis'] = [];
+
+      $_psi = _hol::_('psi',$dat);
+      $_lun = _hol::_('lun',$_psi->lun);
+      $_rad = _hol::_('rad',$_psi->hep_dia);
+      $ope['lis']['ide'] = 'psi';         
+
+      $_[0] = [ 'ite'=>"Estación Solar", 'lis'=>[] ];
+      $_est = _hol::_('psi_est',$_psi->est); 
+      $_[0]['lis'] []= 
+        
+        _hol::ima("psi_est",$_est,['class'=>"tam-3 mar_der-1"])."
+
+        <div>
+
+        </div>"; 
+      $_hep = _hol::_('psi_hep',$_psi->hep); 
+      $_[0]['lis'] []= 
+        
+        _hol::ima("psi_hep",$_hep,['class'=>"tam-3 mar_der-1"])."
+
+        <div>
+
+        </div>
+      ";
+
+      $_[1] = [ 'ite'=>"Giro Lunar", 'lis'=>[] ];
+      $_lun = _hol::_('psi_lun',$_psi->lun); 
+      $_[1]['lis'] []= 
+        
+        _hol::ima("psi_lun",$_lun,['class'=>"tam-3 mar_der-1"])."
+
+        <div>
+
+        </div>";
+      $_arm = _hol::_('lun_arm',_num::ran($_psi->hep,'4')); 
+      $_[1]['lis'] []= 
+        
+        _hol::ima("lun_arm",$_arm,['class'=>"tam-3 mar_der-1"])."
+
+        <div>
+
+        </div>
+      ";
+
+      $_[2] = [ 'ite'=>"Héptada", 'lis'=>[] ];
+      $_rad = _hol::_('rad',$_psi->hep_dia);
+      $_[2]['lis'] []= 
+        
+        _hol::ima("rad",$_rad,['class'=>"tam-3 mar_der-1"])."
+
+        <div>
+
+        </div>
+      ";        
+      
+      $ope['lis-1'] = [ 'class'=>"ite" ];
+      return _doc_lis::val($_,$ope);
+    }    
+
+  }
+
+  // Usuario : ficha + tránsitos + firma galáctica
+  class _hol_app_usu {
+
+    static string $IDE = "_hol_app_val-";
+    static string $EJE = "_hol_app_val.";
+      
+    // ficha
+    static function fic( array $ope = [], ...$opc ) : string {
+      $_ = "";
+      global $_usu;      
+      $_fec = _api::_('fec',$_usu->fec);
+      $_kin = _hol::_('kin',$_usu->kin);
+      $_psi = _hol::_('psi',$_usu->psi);
+      // sumatoria : kin + psi
+      $sum = $_kin->ide + $_psi->tzo;
+
+      // nombre + fecha : kin + psi
+      $_ = "
+      <section class='inf ren esp-ara'>
+
+        <div>
+          <p class='let-tit let-3 mar_aba-1'>"._doc::let("$_usu->nom $_usu->ape")."</p>
+          <p>"._doc::let($_fec->val." ( $_usu->eda años )")."</p>
+        </div>        
+
+        <div class='val'>
+          "._hol::ima("kin",$_kin,['class'=>"mar_hor-1"])."
+          <c>+</c>
+          "._hol::ima("psi",$_psi,['class'=>"mar_hor-1"])."
+          <c>=></c>
+          "._hol::ima("kin",$sum,['class'=>"mar_hor-1"])."
+        </div>
+
+      </section>";
+
+      return $_;
+    }
+    // firma galáctica
+    static function inf( array $ope = [], ...$opc ) : string {
+      $_ = "";
+      global $_usu;
+
+      return $_;
+    }
+    
+    // tránsitos : listado
+    static function cic_nav( array $ope = [], ...$opc ) : string {
+      $_ = "";
+      global $_usu;
+      foreach(['nav','lis','dep','opc'] as $eti ){ if( !isset($ope["$eti"]) ) $ope["$eti"] = []; }
+      $opc_des = !in_array('not-des',$opc);
+      // listado
+      $_lis = [];
+      foreach( _dat::get('api.usu_cic') as $_arm ){
+        $_lis_cic = [];
+        foreach( _dat::get("api.usu_cic_ani",[ 'ver'=>"`usu` = '{$_usu->ide}' AND `arm` = $_arm->ide", 'ord'=>"`ide` ASC" ]) as $_cic ){
+          // ciclos lunares
+          $_lis_lun = [];
+          foreach( _dat::get("api.usu_cic_lun",[ 'ver'=>"`usu` = '{$_usu->ide}' AND `ani` = $_cic->ide", 'ord'=>"`ide` ASC" ]) as $_lun ){                            
+            $_fec = _api::_('fec',$_lun->fec);
+            $_lun_ton = _hol::_('ton',$_lun->ide);
+            $_kin = _hol::_('kin',$_lun->kin);
+            $nav = "<a href='http://localhost/hol/tab/kin-tzo/sin=$_lun->sin' target='_blank' title='Ver en Tableros...'>"._doc::let($_lun->sin)."</a>";
+            $_lis_lun []= 
+            "<div class='ite'>
+              "._hol::ima("kin",$_kin,['class'=>"tam-6 mar_der-1"])."
+              <p>
+                "._doc::let(intval($_lun_ton->ide)."° ciclo, ").$nav._doc::let(" ( $_fec->val ).")."
+                <br>"._doc::let("$_lun_ton->ond_nom: $_lun_ton->ond_man")."
+              </p>              
+            </div>
+            <p class='mar-1 tex_ali-cen'>"._hol_des::kin('enc',$_kin)."</p>";
+          }
+          // ciclo anual
+          $_fec = _api::_('fec',$_cic->fec);
+          $_cas = _hol::_('cas',$_cic->ide);
+          $_cas_ton = _hol::_('ton',$_cic->ton);
+          $_cas_arm = _hol::_('cas_arm',$_cic->arm);            
+          $_kin = _hol::_('kin',$_cic->kin);            
+          $_lis_cic []= [
+            'ite'=>[ 'eti'=>"div", 'class'=>"lis", 'htm'=> 
+              "<div class='ite'>
+                "._hol::ima("kin",$_kin,['class'=>"tam-6 mar_der-1"])."
+                <p title = '$_cas->des'>
+                  "._doc::let("$_cic->eda año".( $_cic->eda != 1 ? 's' : '' ).", $_cic->sin ( $_fec->val ):")."
+                  <br>"._doc::let("Cuadrante $_cas_arm->col d{$_cas_arm->dir}: $_cas_arm->pod")."
+                  <br>"._doc::let("$_cas_ton->ond_nom: $_cas_ton->ond_man")."                
+                </p>
+              </div>
+              <p class='mar-1 tex_ali-cen'>"._hol_des::kin('enc',$_kin)."</p>"
+            ],
+            'lis'=>$_lis_lun
+          ];
+        }
+        $_lis []= [ 'ite'=>$_arm->nom, 'lis'=>$_lis_cic ];
+      }
+      // configuro listado
+      _ele::cla($ope['dep'],DIS_OCU);
+      $ope['opc'] = [ 'tog', 'ver', 'cue', 'tog_dep' ];
+      return _doc_lis::val($_lis,$ope);
+    }
+    // tránsitos : informe
+    static function cic_inf( array $ele = [], ...$opc ) : string {
+      $dat = _usu::cic_dat();
+      $_ = "
+      <section>
+        "._hol_app_usu::cic_inf_ani( $dat, $ele, ...$opc )."
+        "._hol_app_usu::cic_inf_lun( $dat, $ele, ...$opc )."
+        "._hol_app_usu::cic_inf_dia( $dat, $ele, ...$opc )."
+      </section>"; 
+      return $_;
+    }// informe anual
+    static function cic_inf_ani( array $dat, array $ele = [], ...$opc ) : string {
+      global $_usu;      
+      $_ani = $dat['ani'];
+      $_cas_arm = _hol::_('cas_arm',$dat['ani']->arm);
+      $_ani_arm = _dat::get('api.usu_cic',['ver'=>"`ide` = $_ani->arm",'opc'=>"uni"]);
+      $_ani_fec = _api::_('fec',$_ani->fec);      
+      $_ani_ton = _hol::_('ton',$dat['ani']->ton);
+      $_kin = _hol::_('kin',$_ani->kin);
+      $_ = "
+      <h3>Tránsito Anual</h3>
+
+      <p>"._doc::let("#$_ani->eda de 51: desde el $_ani_fec->val")."</p>
+
+      "._doc_num::ope('ran',$_ani->eda,[ 'min'=>0, 'max'=>51, 'class'=>"anc-100", 'disabled'=>1 ],'ver')."
+
+      <div class='ite mar_ver-1'>
+        "._hol::ima("cas_arm",$_cas_arm,[ 'class'=>"tam-7 mar_der-2" ])."
+        <div class='let-3'>
+          <p class='let-tit'>"._doc::let($_ani_arm->nom)."</p>
+          <p>$_cas_arm->nom<c>:</c> $_cas_arm->col<c>,</c> $_cas_arm->pod<c>.</c></p>
+          <p>$_ani_ton->ond_nom<c>:</c> $_ani_ton->ond_pod</p>
+          <p>"._doc_num::ope('ran',$_ani->ton,[ 'min'=>1, 'max'=>13, 'class'=>"anc-100", 'disabled'=>1 ],'ver')."</p>
+        </div>
+      </div>
+
+      "._hol_fic::kin('enc',$_kin,[ 'ima'=>[] ])."
+
+      ";
+      return $_;
+    }// informe lunar
+    static function cic_inf_lun( array $dat, array $ele = [], ...$opc ) : string {
+      global $_usu;
+      $_lun = $dat['lun'];
+      $_lun_fec = _api::_('fec',$_lun->fec);
+      $_lun_ton = _hol::_('ton',$_lun->ide);
+      $_kin = _hol::_('kin',$_lun->kin);
+      $_ = "
+      <h3>Tránsito Lunar</h3>
+
+      <p>"._doc::let("#$_lun->ide de 13: desde el $_lun_fec->val")."</p>
+
+      "._doc_num::ope('ran',$_lun->ide,[ 'min'=>1, 'max'=>13, 'class'=>"anc-100", 'disabled'=>1 ],'ver')."
+
+      <div class='ite mar_ver-1'>
+        "._hol::ima("ton",$_lun_ton,[ 'class'=>"tam-7 mar_der-2" ])."
+        <div class='let-3'>
+          <p>$_lun_ton->ond_nom<c>:</c> $_lun_ton->ond_pod</p>          
+        </div>
+      </div>
+
+
+      "._hol_fic::kin('enc', $_kin, [ 'atr'=>[] ])."
+
+      ";
+      return $_;
+    }// informe diario
+    static function cic_inf_dia( array $dat, array $ele = [], ...$opc ) : string {
+      global $_usu;
+      $_dat = _hol::val( date('Y/m/d') );
+      $_kin = _hol::_('kin',$dat['dia']->kin);
+
+      $_ = "
+      <h3>Tránsito Diario</h3>
+
+      "._hol_fic::kin('enc',$_kin,[ 'ima'=>[] ])."
+
+      ";
+      return $_;
+    }
   }

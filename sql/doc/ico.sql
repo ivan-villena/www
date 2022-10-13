@@ -1,4 +1,4 @@
--- Active: 1623270923336@@127.0.0.1@3306@_api
+-- Active: 1665550796793@@127.0.0.1@3306@api
 
 -- estilo 
   DELETE FROM `api`.`doc_ico_gru`
@@ -14,277 +14,169 @@
 -- icono 
   DELETE FROM `api`.`doc_ico`
   ;
-  --
-  -- por sistema
-    DELETE FROM `api`.`doc_ico` WHERE `ide` LIKE 'ses%';
-    INSERT INTO `api`.`doc_ico` VALUES   
-
-      ('ses', 'home'),
-      -- admin
-      ('ses_adm',	'manage_accounts'),
-      
-      -- logs
-      ('ses_ini',	'login'),
-      ('ses_fin',	'logout'),
-
-      -- usuario
-      ('ses_usu',	'person'),
-      ('ses_gru',	'group'),		
-
-      -- tipos
-      ('ses_pas',	'password'),
-      ('ses_web',	'web_asset'),
-      ('ses_mai',	'email'),
-      ('ses_tel',	'phone'),
-      ('ses_ubi',	'share_location')
-
-    ;
-  --
-  -- operadores    
-    DELETE FROM `api`.`doc_ico` WHERE `ide` LIKE 'ope%';
-    INSERT INTO `api`.`doc_ico` VALUES
-
-      ('ope',     'settings'),        
-
-      -- togs
-      ('ope_tog',	'arrow_drop_down'),
-      
-      ('ope_tod',	'playlist_add_check'),
-      ('ope_nad',	'playlist_remove'),
-
-      -- filtros      
-      ('ope_ver',	'visibility'),
-      ('ope_ocu',	'visibility_off'),
-
-      -- valores
-      ('ope_val',	'checklist'),
-      ('ope_inv',	'flaky'),
-
-      -- seleccion
-      ('ope_sel',	'select_all'),
-      ('ope_des',	'deselect') 
-
-    ;
-    DELETE FROM `api`.`doc_ico` WHERE `ide` LIKE 'mov%';
-    INSERT INTO `api`.`doc_ico` VALUES
-      
-      ('mov', 'open_with'),
-
-      ('mov_hor', 'swap_horiz'),
-      ('mov_ver', 'import_export'),
-
-      ('mov_arr', 'north'),
-      ('mov_aba', 'south'),
-      ('mov_izq', 'west'),
-      ('mov_der', 'east'),
-
-      ('mov_dyr', 'north_east'),
-      ('mov_dyb', 'north_west'),
-      ('mov_iyr', 'south_east'),
-      ('mov_iyb', 'south_west')
-    ;    
-    DELETE FROM `api`.`doc_ico` WHERE `ide` LIKE 'nav%';
-    INSERT INTO `api`.`doc_ico` VALUES
-
-      ('nav',			'menu'),  
-
-      -- operaciones
-      ('nav_val',	'menu_open'),
-      ('nav_ini',	'first_page'),
-      ('nav_pre',	'navigate_before'),
-      ('nav_pos',	'navigate_next'),
-      ('nav_fin',	'last_page')
-
-    ;
-    DELETE FROM `api`.`doc_ico` WHERE `ide` LIKE 'art%';
+  -- 
+  -- por aplicacion
+    DELETE FROM `api`.`doc_ico` WHERE `ide` LIKE 'app%';
     INSERT INTO `api`.`doc_ico` VALUES  
-
-      ('art',     'article'),
-      -- bibliografias
-      ('art_bib', 'auto_stories'),
-      -- listados
-      ('art_est', 'table'),
-      -- tableros
-      ('art_tab', 'dataset'),
-      -- informes
-      ('art_inf', 'description'),
-      -- valores
-      ('art_val', 'document_scanner')      
-
-    ;      
-
-  --
-  -- entornos
+      ('app',         'home'),      
+      ('app_ses',	    'manage_accounts'),
+      ('app_ini',	    'login'),
+      ('app_fin',	    'logout'),
+      ('app_ope',     'settings'),
+      ('app_nav',			'menu'),
+      ('app_art',     'article'),
+      ('app_val',     'document_scanner')
+    ;
+    DELETE FROM `api`.`doc_ico` WHERE `ide` LIKE 'usu%';
+    INSERT INTO `api`.`doc_ico` VALUES
+      ('usu',	    'person'),      
+      ('usu_pas',	'password'),
+      ('usu_ubi',	'share_location'),
+      ('usu_mai',	'email'),
+      ('usu_tel',	'phone'),
+      ('usu_web',	'web_asset'),
+      ('usu_gru',	'group'),
+      ('usu_age',	'menu_book')
+    ;
     DELETE FROM `api`.`doc_ico` WHERE `ide` LIKE 'dat%';
     INSERT INTO `api`.`doc_ico` VALUES
 
       ('dat',			'database'),
-
-      -- por operaciones
-      ('dat_tip',	'input'),      
-      ('dat_val',	'done'),
+      -- atributos
+      ('dat_pos',	''),
+      ('dat_ide',	''),
+      ('dat_nom',	''),
+      ('dat_des',	'help_center'),
+      ('dat_tip',	'input'),
+      ('dat_var',	'variables'),
+      ('dat_err',	'gpp_bad'),
+      ('dat_adv',	'gpp_maybe'),
+      -- operaciones
+      ('dat_ope', 'play_arrow'),
+      ('dat_ini',	'done'),
+      ('dat_fin',	'close'),
+      ('dat_tod',	'checklist'),
+      ('dat_nad',	'flaky'),
       ('dat_ver',	'search'),
       ('dat_act',	'sync'),
       ('dat_agr',	'add'),
       ('dat_mod',	'edit'),
       ('dat_eli',	'delete')
-
-    ;
+    ;    
     DELETE FROM `api`.`doc_ico` WHERE `ide` LIKE 'val%';
     INSERT INTO `api`.`doc_ico` VALUES
-  
-      ('val',	'check_box_outline_blank'),
 
-      -- tipos
-      ('val_var',	'variables'),
-      ('val_col',	'palette'),
-      ('val_ima',	'image'),
-      ('val_tex',	'text_fields'),
-      ('val_num',	'pin'),
-      ('val_fec',	'history')
-
-    ;    
+      ('val',	    'check_box_outline_blank'),
+      -- carteles :
+      ('val_tex',	    'comment'),
+      ('val_tex-err',	'error'),
+      ('val_tex-adv',	'warning'),
+      ('val_tex-opc',	'help'),
+      ('val_tex-val',	'check_circle'),
+      -- toggs : item - activo - inactivo
+      ('val_tog',	    'arrow_drop_down'),
+      ('val_tog-tod',	'toggle_on'),
+      ('val_tog-nad',	'toggle_off'),
+      -- filtros : mostrar - ocultar
+      ('val_ver',	    ''),
+      ('val_ver-tod',	'visibility'),
+      ('val_ver-nad',	'visibility_off'),
+      -- seleccion : todo - nada
+      ('val_sel',	''),
+      ('val_sel-tod',	'select_all'),
+      ('val_sel-nad',	'deselect'),
+      -- movimiento
+      ('val_mov',     'open_with'),  
+      ('val_mov-hor', 'swap_horiz'),
+      ('val_mov-ver', 'import_export'),
+      ('val_mov-arr', 'north'),
+      ('val_mov-aba', 'south'),
+      ('val_mov-izq', 'west'),
+      ('val_mov-der', 'east'),
+      ('val_mov-dyr', 'north_east'),
+      ('val_mov-dyb', 'north_west'),
+      ('val_mov-iyr', 'south_east'),
+      ('val_mov-iyb', 'south_west')
+    ;  
+  --
+  -- por tipos
     DELETE FROM `api`.`doc_ico` WHERE `ide` LIKE 'lis%';
     INSERT INTO `api`.`doc_ico` VALUES
 
       ('lis',			'list_alt'),
+      -- tipos
+      ('lis_tab',  'dataset'),
+      ('lis_est',	 'table_view'),
+      ('lis_ite',	 'view_list'),
+      ('lis_val',	 'list'),
+      ('lis_nav',	 'menu_open'),
+      ('lis_opc',  'checklist_rtl'),
+      -- navegacion      
+      ('lis_ini',	'first_page'),
+      ('lis_fin',	'last_page'),
+      ('lis_pre',	'navigate_before'),
+      ('lis_pos',	'navigate_next'),      
       -- operaciones
-      ('lis_val',	'list'),
+      ('lis_tod',	'playlist_add_check'),
+      ('lis_nad',	'playlist_remove'),
       ('lis_cue',	'summarize'),  
       ('lis_ver',	'filter_alt'),
-      ('lis_jun',	'join'),
+      ('lis_jun',	'join_inner'),
       ('lis_gru',	'low_priority'),
       ('lis_ord',	'sort'),
       ('lis_lim',	'segment'),
       ('lis_mov',	'unfold_more')
-
     ;
-    DELETE FROM `api`.`doc_ico` WHERE `ide` LIKE 'est%';
-    INSERT INTO `api`.`doc_ico` VALUES
-
-      ('est',	'view_list')
-    ;
-    DELETE FROM `api`.`doc_ico` WHERE `ide` LIKE 'tab%';
-    INSERT INTO `api`.`doc_ico` VALUES
-    
-      ('tab',	'table_view')
-    ;    
-  -- 
-  -- valores
-    DELETE FROM `api`.`doc_ico` WHERE `ide` LIKE 'obj%';
-    INSERT INTO `api`.`doc_ico` VALUES
-      
-      ('obj',	'widgets'),
-
-      -- tipos      
-      ('obj_pos',	'format_list_numbered'),
-      ('obj_nom',	'data_array'),
-      ('obj_atr',	'data_object')      
-
-    ;
-    DELETE FROM `api`.`doc_ico` WHERE `ide` LIKE 'arc%';
-    INSERT INTO `api`.`doc_ico` VALUES  
-
-      ('arc',			'attach_file'),
-
-      -- tipos
-      ('arc_val',	'note'),
-      ('arc_fic',	'folder'),
-      ('arc_url',	'language'),
-      ('arc_tex',	'text_snippet'),
-      ('arc_ima',	'collections'),
-      ('arc_mus',	'audio_file'),
-      ('arc_vid',	'video_file'),
-      ('arc_eje',	'play_circle')
-
-    ;
-    DELETE FROM `api`.`doc_ico` WHERE `ide` LIKE 'eje%';
-    INSERT INTO `api`.`doc_ico` VALUES
-      
-      ('eje',	    'terminal'),
-
-      -- operadores
-      ('eje_val', 'play_arrow'),
-      ('eje_ini',	'done'),
-      ('eje_fin',	'close')  
-
-    ;
-    DELETE FROM `api`.`doc_ico` WHERE `ide` LIKE 'ele%';
-    INSERT INTO `api`.`doc_ico` VALUES
-      
-      ('ele', 'code'),
-
-      -- valores
-      ('ele_htm', 'html'),
-      ('ele_css', 'css'),
-      ('ele_eje', 'javascript')
-
-    ;    
     DELETE FROM `api`.`doc_ico` WHERE `ide` LIKE 'opc%';
     INSERT INTO `api`.`doc_ico` VALUES
 
-      ('opc',			'help'),  
-
+      ('opc',			'fact_check'),
       -- tipos    
-      ('opc_vac', 'help_center'),
+      ('opc_vac', 'check_box_outline_blank'),
       ('opc_bin',	'rule'),
-      ('opc_lis', 'checklist'),
-      ('opc_val', 'select_all'),
-      ('opc_nad', 'deselect'),
-      ('opc_uni',	'format_list_bulleted'),
-      ('opc_mul',	'format_list_numbered')
-
-    ;
+      ('opc_uni',	'radio_button_checked'),
+      ('opc_mul',	'check_box')
+    ;    
     DELETE FROM `api`.`doc_ico` WHERE `ide` LIKE 'num%';
     INSERT INTO `api`.`doc_ico` VALUES
 
       ('num',			'calculate'),
-
       -- valores
       ('num_cod',	'tag'),
       ('num_val',	'pin'),      
       ('num_sep',	''),
       ('num_sup',	'superscript'),
-      ('num_inf',	'subscript'),
-      
+      ('num_inf',	'subscript'),      
       -- tipos
       ('num_bit',	'1k'),
       ('num_int',	'numbers'),  
       ('num_dec',	'percent'),
       ('num_ran',	'linear_scale'),
-
       -- operadores      
       ('num_sum',	'add'),
       ('num_res',	'remove'),
       ('num_mul',	'close'),
       ('num_div',	'percent'),
-
       -- calculos
       ('num_fun',	'function'),
       ('num_adi',	'functions')
-
     ;
     DELETE FROM `api`.`doc_ico` WHERE `ide` LIKE 'tex%';
     INSERT INTO `api`.`doc_ico` VALUES    
 
       ('tex',			'edit_note'),
-
-      -- valores
-      ('tex_cod',	'format_size'),
-      
       -- tipos
+      ('tex_val',	'rtt'),
       ('tex_let',	'title'),
       ('tex_pal',	'text_fields'),
       ('tex_ora',	'short_text'),
-      ('tex_par',	'rtt'),
-      ('tex_lib',	'menu_book'),
-
+      ('tex_par',	'chat'),      
+      ('tex_lib',	'auto_stories'),
+      ('tex_inf',	'description'),
       -- operadores
       ('tex_ord',	'sort_by_alpha'),
       ('tex_mov',	'wrap_text'),
-      ('tex_rot',	'text_rotation_down')      
-      
-
+      ('tex_rot',	'text_rotation_down')
     ;
     DELETE FROM `api`.`doc_ico` WHERE `ide` LIKE 'fec%';
     INSERT INTO `api`.`doc_ico` VALUES
@@ -304,16 +196,51 @@
     ;
     DELETE FROM `api`.`doc_ico` WHERE `ide` LIKE 'fig%';
     INSERT INTO `api`.`doc_ico` VALUES
-
-      ('fig',	'auto_graph'),
-      
+      ('fig',	'auto_graph'),      
       -- valores
       ('fig_col',	'palette'),
       ('fig_ima',	'image'),
-
       -- tipos
       ('fig_geo',	'shape_line'),
       ('fig_pun',	'scatter_plot'),
       ('fig_lin',	'trending_down'),
       ('fig_pol',	'polyline')
-    ;  
+    ;
+    DELETE FROM `api`.`doc_ico` WHERE `ide` LIKE 'arc%';
+    INSERT INTO `api`.`doc_ico` VALUES  
+
+      ('arc',			'attach_file'),
+      -- tipos
+      ('arc_val',	'note'),
+      ('arc_fic',	'folder'),
+      ('arc_url',	'language'),
+      ('arc_tex',	'text_snippet'),
+      ('arc_ima',	'collections'),
+      ('arc_mus',	'audio_file'),
+      ('arc_vid',	'video_file'),
+      ('arc_eje',	'play_circle')
+
+    ;
+    DELETE FROM `api`.`doc_ico` WHERE `ide` LIKE 'eje%';
+    INSERT INTO `api`.`doc_ico` VALUES
+
+      ('eje',	    'terminal')
+    ;
+    DELETE FROM `api`.`doc_ico` WHERE `ide` LIKE 'obj%';
+    INSERT INTO `api`.`doc_ico` VALUES
+
+      ('obj',	'widgets'),
+      -- tipos      
+      ('obj_pos',	'format_list_numbered'),
+      ('obj_nom',	'data_array'),
+      ('obj_atr',	'data_object')
+    ;
+    DELETE FROM `api`.`doc_ico` WHERE `ide` LIKE 'ele%';
+    INSERT INTO `api`.`doc_ico` VALUES      
+      ('ele', 'code'),
+      -- valores
+      ('ele_htm', 'html'),
+      ('ele_css', 'css'),
+      ('ele_eje', 'javascript')
+    ;
+  --

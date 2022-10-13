@@ -57,7 +57,7 @@ body > aside.nav > :is(nav,article)[ide] > header + * {
 
 /* Menù principal */
 body > aside.nav > [ide="cab"] ul.lis.nav {
-  height: 85vh;
+  height: 73vh;
 }
 /* índices */
 body > aside.nav > [ide="art"] ul.lis.nav {
@@ -181,6 +181,11 @@ body > footer {
   overflow-x: hidden;
 }
 
+#win > article > header + * > section {
+  margin: 1rem;
+  text-align: center;  
+}
+
 /*//////////////////////////////////////////////////////////////////////*/
 /*//////////////////////////////////////////////////////////////////////*/
 
@@ -277,6 +282,9 @@ div[tab] div[pos]:not([tab]) {
   height: 100%;
   min-width: 100%;
 }
+table[tab] td:is([sec],[pos]) > [ima] {
+  min-height: 100%;  
+}
 /* textos */
 :is(div,table)[tab] :is([sec],[pos]) > p {
   text-align: center;
@@ -294,6 +302,7 @@ div[tab] div[pos]:not([tab]) {
 
   body > main {
     grid-column: 2;
+    padding: 0 1rem;
   }
 
   body > aside.nav {
@@ -303,4 +312,43 @@ div[tab] div[pos]:not([tab]) {
     top: 0;
     background-color: var(--fon_sec);
   }
+
+  div[var="est"] {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media ( max-width: 800px ){
+
+  div[var="est"] {
+    max-width:700px;
+  }
+}
+@media ( max-width: 700px ){
+
+  div[var="est"] {
+    max-width: 600px;
+  }
+}
+@media ( max-width: 600px ){
+
+  div[var="est"] {
+    max-width: 500px;
+  }
+}
+@media ( max-width: 500px ){
+
+  div[var="est"] {
+    max-width: 400px;
+  }
+
+}
+@media ( max-width: 400px ){
+
+  div[var="est"] {
+    max-width: 300px;
+  }
+
 }

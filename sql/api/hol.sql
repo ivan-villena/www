@@ -1,4 +1,4 @@
--- Active: 1663730672989@@127.0.0.1@3306@_api
+-- Active: 1665550796793@@127.0.0.1@3306@api
 -- HOLON
   --
   -- x7 : plasma radial
@@ -15,6 +15,8 @@
         `api`.`hol_rad_hep` _hep ON _rad.ide = _hep.ide
       INNER JOIN 
         `api`.`hol_rad_hum_cha` _cha ON _rad.hum_cha = _cha.ide
+      ORDER BY
+        _rad.ide ASC
     ;
   --
   -- x20 : sello solar

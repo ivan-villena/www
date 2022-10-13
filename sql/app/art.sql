@@ -9,8 +9,13 @@
 	
 		('hol','bib','ide', 1, 		'Glosarios',																'', NULL, NULL ),		
 		('hol','bib','tut',	2, 		'Tutorial del Sincronario de 13 Lunas',			'', NULL, NULL ),
-		('hol','bib','asc',	1984, '1984 - La Tierra en Ascenso', 			  			'', NULL, NULL ),
-		('hol','bib','fac',	1987, '1987 - El Factor Maya',               			'', NULL, NULL ), 
+		('hol','bib','asc',	1984, '1984 - La Tierra en Ascenso', 			  			'
+			Se introduce el concepto de Holonomia y se realiza una aplicación del banco-psi al desarrollo evolutivo en este Planeta. 
+		', NULL, NULL ),
+		('hol','bib','fac',	1987, '1987 - El Factor Maya',               			'
+			Se presenta a los mayas como agentes de sincronización galáctica, repasando aspectos claves de su historia.
+			El Tzolkin se aplica como el Módulo Armónico provisto de un código galáctico.
+		', NULL, NULL ), 
 		('hol','bib','enc',	1990, '1990 - El Encantamiento del Sueño',   			'', NULL, NULL ),
 		('hol','bib','lun',	1991, '1991 - Las 13 lunas en Movimiento', 				'', NULL, NULL ),		
 		('hol','bib','arc',	1992, '1992 - La Sonda de Arcturus', 			  			'', NULL, NULL ),

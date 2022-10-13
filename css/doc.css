@@ -471,11 +471,23 @@ optgroup {
   contenido oculto
 */
 
-div.val > .ico[ide="ope_tog"] {
+div.val > .ico[ide="val_tog"] {
   text-shadow: 0 0 5px;
 }
-div.val > .ico[ide="ope_tog"].ocu {
+div.val > .ico[ide="val_tog"].ocu {
   transform: rotate(270deg);
+}
+
+/* 
+  contenido textual
+*/
+div.val_tex {
+  max-width: 55rem;
+  margin: 1rem auto;
+  padding: 1rem;
+  background-color: var(--fon_sec);
+  border: 2px dashed var(--col_azu);
+  border-radius: .5rem;
 }
 
 

@@ -198,7 +198,7 @@ class _doc_val {
       
       $.ite = $dat.parentElement;
       if( 
-        ( $.bot = $.ite.querySelector('.ico[ide="ope_tog"]') ) 
+        ( $.bot = $.ite.querySelector('.ico[ide="val_tog"]') ) 
         && ( $.sec = $.ite.nextElementSibling )
       ){        
       
@@ -221,7 +221,7 @@ class _doc_val {
 
         $.cla = ( $ope == 'tod' ) ? `.ocu` : `:not(.ocu)`;
               
-        $.lis.querySelectorAll(`.val > .ico[ide="ope_tog"]${$.cla}`).forEach( $e => $e.click() );
+        $.lis.querySelectorAll(`.val > .ico[ide="val_tog"]${$.cla}`).forEach( $e => $e.click() );
       }
     }
   }
@@ -390,7 +390,7 @@ class _doc_lis {
       }
       
       // actualizo toggle
-      if( $.tog[1] && ( $.ico = $_app.var.querySelector(`.ico[ide="ope_${$.tog[1]}"]`) ) ){
+      if( $.tog[1] && ( $.ico = $_app.var.querySelector(`.ico[ide="val_tog-${$.tog[1]}"]`) ) ){
         
         _doc_val.tog($.ico,$.tog[1]);
       }            
@@ -704,8 +704,8 @@ class _doc_num {
     }
   }
 }
-// Fecha
-class _doc_fec {
+// Texto
+class _doc_tex {
 
   static ope( $tip, $dat, $ope, ...$opc ){
 
@@ -717,8 +717,21 @@ class _doc_fec {
     return $_;      
   }    
 }
-// Texto
-class _doc_tex {
+// Figura
+class _doc_fig {
+
+  static ope( $tip, $dat, $ope, ...$opc ){
+
+    let $_ = ""; $={};
+
+    switch( $tip ){
+    }
+
+    return $_;      
+  }    
+}
+// Fecha
+class _doc_fec {
 
   static ope( $tip, $dat, $ope, ...$opc ){
 
@@ -913,7 +926,7 @@ class _doc_ele {
     $dat.forEach( $e => {
       $.ite = document.createElement('li');            
       $.ite.classList.add('mar_ver-2');            
-      $.ite.innerHTML = `${_doc.ico('val_ver',{'class':"tam-1 mar_der-1",'onclick':"_doc_ele.act(this);"})}`;
+      $.ite.innerHTML = `${_doc.ico('dat_ver',{'class':"tam-1 mar_der-1",'onclick':"_doc_ele.act(this);"})}`;
       $.tex = document.createElement('p');
       $.tex.innerHTML = _doc.ele('her',$e);
       $.ite.appendChild($.tex);

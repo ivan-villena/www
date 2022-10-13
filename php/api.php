@@ -1,11 +1,4 @@
-<?php
-  // SISTEMA : accesos
-    define('SYS_NAV', "http://{$_SERVER['HTTP_HOST']}/" );
-    // OPERACIONES : clases
-    define('DIS_OCU', "dis-ocu" );
-    define('BOR_SEL', "bor-sel" );
-    define('FON_SEL', "fon-sel" );
-    
+<?php    
   // Interfaces del sistema 
   class _api {
 
@@ -164,7 +157,8 @@
         <ul class='lis'>";
         foreach( $err as $i => $v ){ $_['_err'] .= "
           <li>
-            ".( isset($var_eve[$i]) ? "<p class='err'>"._doc::let($v)."</p><c class='sep'>=></c><q>"._doc::let($var_eve[$i])."</q>" : "<p class='err'>"._doc::let($v)."</p>" )."
+            <p class='err'>"._doc::let($v)."</p>
+            ".( isset($var_eve[$i]) ? "<c class='sep'>=></c><q>"._doc::let($var_eve[$i])."</q>" : "" )."
           </li>";
         }$_['_err'] .= "
         </ul>";
@@ -1386,7 +1380,6 @@
       }
       return $_;
     }
-
     // ejecuciones
     static function eje( array &$dat, string $ide, string $val = NULL, ...$opc ) : array {
       $_ = $dat;
@@ -1570,7 +1563,6 @@
       if( empty($ope['rep']) ) $ope['rep']='no-repeat';
       return "background: {$ope['rep']} {$ope['ali']}/{$ope['tam']} url('{$val}.{$ope['tip']}');";
     }
-    
   }
   // Objeto : [ ...val ], [ ...nom => val ], { ...atr : val }
   class _obj {
@@ -1723,12 +1715,16 @@
         switch( $tip ){
         case 'ver':
           $_ = [];
-          $ope = _lis::ite($ope);
-          $ope_val = empty($ope);
-          foreach( $dat as $atr => $val ){
-            if( $ope_val || in_array($atr,$ope) ){
-              $_[$atr] = $val;
-            }
+          if( empty($ope = _lis::ite($ope)) ){
+
+            foreach( $dat as $atr => $val ){ $_[$atr] = $val; }
+          }
+          elseif( is_object($dat) ){
+
+            foreach( $ope as $atr ){ if( isset($dat->$atr) ) $_[$atr] = $dat->$atr; }
+          }
+          else{
+            foreach( $ope as $atr ){ if( isset($dat[$atr]) ) $_[$atr] = $dat[$atr]; }
           }
           break;
         }

@@ -79,7 +79,7 @@ class _app {
         if( $.men = document.querySelector(`ul.ope_opc:not(.${DIS_OCU})`) ){
           $.men.classList.add(DIS_OCU);
         }// pantallas
-        else if( document.querySelector(`#win:not(.${DIS_OCU}) article header .ico[ide="eje_fin"]`) ){ 
+        else if( document.querySelector(`#win:not(.${DIS_OCU}) article header .ico[ide="dat_fin"]`) ){ 
           _app_ope.win();
         }// navegacion
         else if( document.querySelector(`aside.nav > [ide]:not(.${DIS_OCU})`) ){ 
@@ -225,7 +225,6 @@ class _app {
     return $_;
   }
 }
-
 // Página
 class _app_ope {
 
@@ -275,7 +274,6 @@ class _app_ope {
     _lis.val( _ele.ver($dat,{'eti':'fieldset'}).children ).forEach( $e => $e != $dat && $e.classList.toggle(DIS_OCU) );
   }
 }
-
 // Dato
 class _app_dat {
 
@@ -404,7 +402,6 @@ class _app_dat {
     return $_;
   }
 }
-
 // Valor
 class _app_val {
 
@@ -701,7 +698,7 @@ class _app_val {
 
         $.lis = $dat.filter( $e => $e.classList.contains($.cla_ide) );
         // ultimos
-        if( $_app.var.querySelector(`.ico[ide="nav_fin"].bor-sel`) ) $.lis = $.lis.reverse();
+        if( $_app.var.querySelector(`.ico[ide="lis_fin"].bor-sel`) ) $.lis = $.lis.reverse();
 
         $.lim_cue = 0;
         $.lis.forEach( $e => {
@@ -773,7 +770,6 @@ class _app_val {
     }    
   }
 }
-
 // Tablero
 class _app_tab {
 
@@ -1124,7 +1120,6 @@ class _app_tab {
     }
   }
 }
-
 // Estructura
 class _app_est {
  

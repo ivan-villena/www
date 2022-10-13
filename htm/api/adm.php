@@ -63,7 +63,7 @@
             'ope'=>[ '_tip'=>"opc_bin", 'val'=>1, 'id'=>"_adm-php-htm" ]
           ])."
           
-          "._doc::ico('eje_val',[
+          "._doc::ico('dat_ope',[
             'eti'=>"button", 'type'=>"submit", 'onclick'=>"_adm('php',this)"
           ])."
   
@@ -84,7 +84,7 @@
           "._doc_val::var('val','cod',[ 
             'ite'=>[ 'class'=>"tam-cre" ], 
             'ope'=>[ '_tip'=>"tex_par", 'row'=>5, 'class'=>"anc-100 mar_der-1" ],
-            'htm_fin'=>_doc::ico('eje_val',[ 'eti'=>"button", 'type'=>"submit", 'onclick'=>"_adm('sql',this,'cod')" ])
+            'htm_fin'=>_doc::ico('dat_ope',[ 'eti'=>"button", 'type'=>"submit", 'onclick'=>"_adm('sql',this,'cod')" ])
           ])."
   
         </fieldset>
@@ -100,7 +100,7 @@
           "._doc_val::var('val','cod',[ 
             'ite'=>['class'=>"tam-cre"], 
             'ope'=>['_tip'=>"tex_ora", 'class'=>"anc-100 mar_der-1"],
-            'htm_fin'=>_doc::ico('eje_val',['eti'=>"button", 'type'=>"submit", 'onclick'=>"_adm('htm',this,'cod')"])
+            'htm_fin'=>_doc::ico('dat_ope',['eti'=>"button", 'type'=>"submit", 'onclick'=>"_adm('htm',this,'cod')"])
           ])."
   
         </fieldset>

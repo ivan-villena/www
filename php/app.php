@@ -91,7 +91,7 @@
       // inicializo operadores
       $this->ope = [ 
         // inicio
-        'ini'=>_doc::ico('ses',[ 'eti'=>"a", 'href'=>SYS_NAV."/{$this->uri->esq}", 'title'=>"Inicio..." ]),
+        'ini'=>_doc::ico('app',[ 'eti'=>"a", 'href'=>SYS_NAV."/{$this->uri->esq}", 'title'=>"Inicio..." ]),
         // menu
         'nav_cab'=>[],
         // indice
@@ -132,7 +132,7 @@
       $_ = [ 'sec'=>[], 'nav'=>[], 'nav_fin'=>[], 'win'=>[], 'win_fin'=>[] ];
 
       // cargo menu principal
-      $_['nav']['cab'] = [ 'ico'=>"nav", 'nom'=>"Menú Principal" ];
+      $_['nav']['cab'] = [ 'ico'=>"app_nav", 'nom'=>"Menú Principal" ];
 
       // cargo índice de contenidos
       if( !empty($this->cab->nav) ){
@@ -145,8 +145,8 @@
 
         if( !empty($this->ope['nav_art'][1]) ){
 
-          $_['nav']['art'] = [ 'ico' => "nav_val", 'nom' => "Índice de Contenidos", 
-
+          $_['nav']['art'] = [ 
+            'ico' => "lis_nav", 'nom' => "Índice",
             'htm'=>_doc_lis::nav( $this->ope['nav_art'], [ 'lis' => [] ])
           ];
         }
@@ -168,8 +168,10 @@
         .( isset($_['nav_htm_fin']) ? $_['nav_htm_fin'] : '' );
 
         // tutoriales de la página
-        if( !empty( $_['win_tut'] ) ) $_['win_fin']['tut'] = [
-          'ico'=>"opc", 'nom'=>"Tutorial", 'htm'=>$_['win_tut'] 
+        if( !empty( $_['app_tut'] ) ) $_['win_fin']['tut'] = [
+          'ico'=>"dat_des", 
+          'nom'=>"Tutorial", 
+          'htm'=>$_['app_tut'] 
         ];
 
         // pido botones del navegador
@@ -277,10 +279,10 @@
                 $win['api_adm'] = [ 'ico'=>"eje", 'nom'=>"Administrador del Sistema" ];
               // usuario + loggin
               if( empty($_usu->ide) ){ 
-                $win['ses_ini'] = [ 'ico'=>"ses_ini", 'nom'=>"Iniciar Sesión..."];
+                $win['ses_ini'] = [ 'ico'=>"app_ini", 'nom'=>"Iniciar Sesión..."];
               }
               else{ 
-                $win['ses_fin'] = [ 'ico'=>"ses_fin", 'nom'=>"Cerrar Sesión..."];
+                $win['ses_fin'] = [ 'ico'=>"app_fin", 'nom'=>"Cerrar Sesión..."];
               }
               
               echo _app_ope::tog([ 'win'=>$win ]);
@@ -520,7 +522,6 @@
       return $_api->app_est[$esq][$est];
     }
   }
-
   // peticion
   class _app_uri {
 
@@ -604,8 +605,7 @@
 
       return $_;      
     }
-  }
-  
+  }  
   // Contenido : botonera + navegador + pantalla + seccion + paneles
   class _app_ope {
 
@@ -679,15 +679,15 @@
 
         <header"._htm::atr($ope['cab']).">
         
-          {$cab_ico} {$cab_tit} "._doc::ico('eje_fin',[ 'title'=>'Cerrar', 'onclick'=>"$_eje();" ])."
+          {$cab_ico} {$cab_tit} "._doc::ico('dat_fin',[ 'title'=>'Cerrar', 'onclick'=>"$_eje();" ])."
 
         </header>
 
-        <section"._htm::atr($ope['sec']).">
+        <div"._htm::atr($ope['sec']).">
 
           {$ope['htm']}
 
-        </section>
+        </div>
 
       </article>";
       
@@ -726,7 +726,7 @@
 
         <header"._htm::atr($ope['cab']).">
         
-          {$cab_ico} {$cab_tit} "._doc::ico('eje_fin',[ 'title'=>'Cerrar', 'onclick'=>"$_eje();" ])."
+          {$cab_ico} {$cab_tit} "._doc::ico('dat_fin',[ 'title'=>'Cerrar', 'onclick'=>"$_eje();" ])."
 
         </header>
 
@@ -771,7 +771,6 @@
       return $_;
     }
   }
-
   // Navegadores : menu + secciones por indice
   class _app_nav {
    
@@ -880,7 +879,6 @@
     }
 
   }
-
   // Articulo : dato + tabla + tablero + glosario
   class _app_art {
 
@@ -952,7 +950,6 @@
       return _doc_lis::ite($_,$ele);
     }
   }
-
   // Dato : valores, opciones, ficha, listado, tabla, atributos, descripciones, imagenes
   class _app_dat {
 
@@ -1138,14 +1135,14 @@
       }
       // selector de esquema [opcional]
       if( $opc_esq ){
-        $_ .= _doc_opc::val($dat_esq,$ele_esq,'nad')."<c class='sep'>.</c>";
+        $_ .= _doc_lis::opc($dat_esq,$ele_esq,'nad')."<c class='sep'>.</c>";
       }
       // selector de estructura [opcional]
       if( $opc_esq || $opc_est ){
-        $_ .= _doc_opc::val($dat_est,$ele_est,'nad')."<c class='sep'>.</c>";
+        $_ .= _doc_lis::opc($dat_est,$ele_est,'nad')."<c class='sep'>.</c>";
       }
       // selector de atributo con nombre de variable por operador
-      $_ .= _doc_opc::val($dat_ope,$ele_ope,'nad');
+      $_ .= _doc_lis::opc($dat_ope,$ele_ope,'nad');
       
       // selector de valor por relacion
       if( $opc_val ){
@@ -1154,7 +1151,7 @@
         $_ .= "
         <div class='val'>
           <c class='sep'>:</c>
-          "._doc_opc::val( isset($dat_val) ? $dat_val : [], $ele_val, 'nad')."
+          "._doc_lis::opc( isset($dat_val) ? $dat_val : [], $ele_val, 'nad')."
           <span class='ico'></span>
         </div>";
       }
@@ -1387,7 +1384,6 @@
       return $_;
     }
   }
-
   // Valor : acumulado + sumatoria + filtro + conteos
   class _app_val {
 
@@ -1433,14 +1429,14 @@
         $_ = "
         <fieldset class='ope mar-2 esp-ara'>
 
-          "._doc::ico('dat_val', [ 'eti'=>"button", 'title'=>$_ope[$tip]['nom'], 'type'=>"submit", 'onclick'=>"{$_eje}('{$tip}');" ]);
+          "._doc::ico('dat_ini', [ 'eti'=>"button", 'title'=>$_ope[$tip]['nom'], 'type'=>"submit", 'onclick'=>"{$_eje}('{$tip}');" ]);
 
           if( in_array('eli',$ope['opc']) ){
 
             $_ .= _doc::ico('dat_eli', [ 'eti'=>"button", 'type'=>"button", 'title'=>$_ope['eli']['nom'], 'onclick'=>"{$_eje}('eli');" ]);
           }$_ .= "
 
-          "._doc::ico('dat_act', [ 'eti'=>"button", 'title'=>$_ope['fin']['nom'], 'type'=>"reset", 'onclick'=>"{$_eje}('fin');" ])."    
+          "._doc::ico('dat_fin', [ 'eti'=>"button", 'title'=>$_ope['fin']['nom'], 'type'=>"reset", 'onclick'=>"{$_eje}('fin');" ])."    
 
         </fieldset>";
         break;              
@@ -1552,8 +1548,8 @@
               $_eje = "_doc_val.var('mar', this, 'bor-sel');".( isset($ele['ope']['onchange']) ? " {$ele['ope']['onchange']}" : "" );
               $ele['htm_fin'] = "
               <fieldset class = 'ope'>
-                "._doc::ico('nav_ini',[ 'eti'=>"button", 'title'=>"Los primeros...", 'class'=>"bor-sel", 'onclick'=>$_eje ])."
-                "._doc::ico('nav_fin',[ 'eti'=>"button", 'title'=>"Los primeros...", 'onclick'=>$_eje ])."
+                "._doc::ico('lis_ini',[ 'eti'=>"button", 'title'=>"Los primeros...", 'class'=>"bor-sel", 'onclick'=>$_eje ])."
+                "._doc::ico('lis_fin',[ 'eti'=>"button", 'title'=>"Los primeros...", 'onclick'=>$_eje ])."
               </fieldset>"; 
               $_ .=
               _doc_val::var('app',"val.ver.lim", $_ite('lim',$dat,$ele) );
@@ -1658,7 +1654,6 @@
       return $_;
     }
   }
-
   // Tabla : atributos + valores + filtros + columnas + titulo + detalle
   class _app_est {
 
@@ -1721,8 +1716,8 @@
         <form class='val jus-ini' dat='atr'>
   
           <fieldset class='ope'>
-            "._doc::ico('ope_ocu',['eti'=>"button",'title'=>"Ocultar todas las Columnas", 'onclick'=>"{$_eje}_val(this,'ocu');"])."
-            "._doc::ico('ope_ver',['eti'=>"button",'title'=>"Mostrar todas las Columnas", 'onclick'=>"{$_eje}_val(this,'ver');"])."
+            "._doc::ico('val_ver-nad',['eti'=>"button",'title'=>"Ocultar todas las Columnas", 'onclick'=>"{$_eje}_val(this,'ocu');"])."
+            "._doc::ico('val_ver-tod',['eti'=>"button",'title'=>"Mostrar todas las Columnas", 'onclick'=>"{$_eje}_val(this,'ver');"])."
           </fieldset>
   
           "._doc_val::var('val','ver',[ 
@@ -1807,7 +1802,7 @@
           $_eje .= "_ver";
           $dat_tot = count($ope['dat']);
           $_ .= "
-          <section ide = 'ver'>
+          <div ide = 'ver'>
   
             <form ide = 'val'>
               <fieldset class = 'inf ren'>
@@ -1841,7 +1836,7 @@
               </fieldset>
             </form>
             -->
-          <section>";
+          </div>";
         }
         // filtros por : cic + gru
         else{
@@ -1861,9 +1856,9 @@
             $htm = "
             <form ide = '{$tip}' class='ren jus-ini mar_izq-2'>
               <fieldset class='ope'>
-                "._doc::ico('ope_ver',['eti'=>"button", 'title'=>"Mostrar todas las Columnas", 'class'=>"tam-2",
+                "._doc::ico('val_ver-tod',['eti'=>"button", 'title'=>"Mostrar todas las Columnas", 'class'=>"tam-2",
                 'data-val'=>"ver", 'data-esq'=>$esq, 'data-est'=>$est, 'onclick'=>"{$_eje}_tog(this);"])."
-                "._doc::ico('ope_ocu',['eti'=>"button", 'title'=>"Ocultar todas las Columnas", 'class'=>"tam-2",
+                "._doc::ico('val_ver-nad',['eti'=>"button", 'title'=>"Ocultar todas las Columnas", 'class'=>"tam-2",
                 'data-val'=>"ocu", 'data-esq'=>$esq, 'data-est'=>$est, 'onclick'=>"{$_eje}_tog(this);"])."                
               </fieldset>";
               foreach( $_est->atr as $atr ){
@@ -1950,7 +1945,6 @@
       return $_;
     }
   }
-
   // tablero : opciones + posiciones + secciones
   class _app_tab {
 
@@ -1958,13 +1952,13 @@
       'opc' => [ 'ide'=>"opc", 'ico'=>"opc_bin", 'nom'=>"Opciones del Tablero",
         'des'=>"" 
       ],
-      'val' => [ 'ide'=>"val", 'ico'=>"tab",     'nom'=>"Elementos del Tablero",
+      'val' => [ 'ide'=>"val", 'ico'=>"lis_est", 'nom'=>"Elementos del Tablero",
         'des'=>"" 
       ],
-      'cue' => [ 'ide'=>"cue", 'ico'=>"nav_val", 'nom'=>"Códigos y Cuentas",
+      'cue' => [ 'ide'=>"cue", 'ico'=>"lis_nav", 'nom'=>"Códigos y Cuentas",
         'des'=>"" 
       ],      
-      'lis' => [ 'ide'=>"lis", 'ico'=>"lis_val", 'nom'=>"Listado de Posiciones", 
+      'lis' => [ 'ide'=>"lis", 'ico'=>"lis_ite", 'nom'=>"Listado de Posiciones", 
         'des'=>""
       ]
     ];
@@ -2262,4 +2256,3 @@
       return $_;
     }    
   }
-

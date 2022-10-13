@@ -1,4 +1,4 @@
--- Active: 1663730672989@@127.0.0.1@3306@_api
+-- Active: 1665550796793@@127.0.0.1@3306@api
 
 DELETE FROM `api`.`app_var` WHERE `esq`='app';
 --
@@ -280,7 +280,7 @@ DELETE FROM `api`.`app_var` WHERE `esq`='app';
       }'),
       ('app','tab', 'pos', 30, 'ima', '{
         "ide":"ima",
-        "ico":"arc_ima",
+        "ico":"fig_ima",
         "nom":"Ficha",
         "tit":"Seleccionar un tipo de Ficha para las Posiciones..."
       }'),
