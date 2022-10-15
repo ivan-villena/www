@@ -359,7 +359,7 @@ class _app_dat {
           $ = _dat.ide( $.dat.dataset.ide ? $.dat.dataset.ide : $.dat.value, $ );
           $.opc.dataset.esq = $.esq;
           $.opc.dataset.est = $.est;
-          _eje.val(['_dat::get', [`_${$.esq}.${$.est}`] ], $dat => {
+          _eje.val(['_dat::get', [`${$.esq}.${$.est}`] ], $dat => {
             $.opc = _doc_opc.val( $dat, $.opc, 'ide');
           });
         }

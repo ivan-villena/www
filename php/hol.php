@@ -1788,7 +1788,7 @@
           break;
         // Ciclos : posiciones en ciclos del kin
         case 'cic':
-          $_atr = [ 'ene', 'ene_cam',  'cro_est', 'cro_ele', 'arm_tra', 'arm_cel', 'nav_cas', 'nav_ond' ];
+          $_atr = [ 'ene_cam', 'cro_est', 'cro_ele', 'arm_tra', 'arm_cel', 'nav_cas', 'nav_ond' ];
     
           foreach( _hol::_('sel_par') as $_par ){
             

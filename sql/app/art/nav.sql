@@ -1,4 +1,4 @@
--- Active: 1663730672989@@127.0.0.1@3306@_api
+-- Active: 1665550796793@@127.0.0.1@3306@api
 
 -- Holon
   --
@@ -81,81 +81,74 @@
       ('hol','dat','psi','03','Los 19 vinales del haab'),
       ('hol','dat','psi','04','Las 52 heptadas semanales'),
       ('hol','dat','psi','05','Las 73 cromáticas entonadas')    
-    ;
+    ;  
   -- 
-  -- Valor :
-    DELETE FROM `api`.`app_art_nav` WHERE `esq`='hol' AND `cab`='val'
+  -- Diario :
+    DELETE FROM `api`.`app_art_nav` WHERE `esq`='hol' AND `cab`='dia'
     ;
-    DELETE FROM `api`.`app_art_nav` WHERE `esq`='hol' AND `cab`='val' AND `ide`='rad';
-    INSERT INTO `api`.`app_art_nav` VALUES
-    ;    
-  -- 
-  -- Informe :
-    DELETE FROM `api`.`app_art_nav` WHERE `esq`='hol' AND `cab`='inf'
-    ;
-    DELETE FROM `api`.`app_art_nav` WHERE `esq`='hol' AND `cab`='inf' AND `ide`='kin';
+    DELETE FROM `api`.`app_art_nav` WHERE `esq`='hol' AND `cab`='dia' AND `ide`='kin';
     INSERT INTO `api`.`app_art_nav` VALUES
       
-      ('hol','inf','kin','01','Encantamiento del Kin'),
+      ('hol','dia','kin','01','Encantamiento del Kin'),
 
-      ('hol','inf','kin','02','Parejas del Oráculo'),
-        ('hol','inf','kin','02-01','Descripciones'),
-        ('hol','inf','kin','02-02','Lecturas'),
-        ('hol','inf','kin','02-03','Posiciones'),
-        ('hol','inf','kin','02-04','Sincronometría'),
+      ('hol','dia','kin','02','Parejas del Oráculo'),
+        ('hol','dia','kin','02-01','Descripciones'),
+        ('hol','dia','kin','02-02','Lecturas'),
+        ('hol','dia','kin','02-03','Posiciones'),
+        ('hol','dia','kin','02-04','Sincronometría'),
 
-      ('hol','inf','kin','03','Nave del Tiempo'),
-        ('hol','inf','kin','03-01','Castillo Direccional'),
-        ('hol','inf','kin','03-02','Aventura de la Onda Encantada'),
+      ('hol','dia','kin','03','Nave del Tiempo'),
+        ('hol','dia','kin','03-01','Castillo Direccional'),
+        ('hol','dia','kin','03-02','Aventura de la Onda Encantada'),
 
-      ('hol','inf','kin','04','Giro Galáctico'),
-        ('hol','inf','kin','04-01','Trayectoria Armónica'),
-        ('hol','inf','kin','04-02','Célula del Tiempo'),        
+      ('hol','dia','kin','04','Giro Galáctico'),
+        ('hol','dia','kin','04-01','Trayectoria Armónica'),
+        ('hol','dia','kin','04-02','Célula del Tiempo'),        
 
-      ('hol','inf','kin','05','Giro Espectral'),
-        ('hol','inf','kin','05-01','Estación Galáctica'),
-        ('hol','inf','kin','05-02','Elemento Cromático'),
+      ('hol','dia','kin','05','Giro Espectral'),
+        ('hol','dia','kin','05-01','Estación Galáctica'),
+        ('hol','dia','kin','05-02','Elemento Cromático'),
 
-      ('hol','inf','kin','06','Módulo Armónico'),
-        ('hol','inf','kin','06-01','Portales de Activación'),
-        ('hol','inf','kin','06-02','Modelo Energético')
+      ('hol','dia','kin','06','Módulo Armónico'),
+        ('hol','dia','kin','06-01','Portales de Activación'),
+        ('hol','dia','kin','06-02','Modelo Energético')
     ;
-    DELETE FROM `api`.`app_art_nav` WHERE `esq`='hol' AND `cab`='inf' AND `ide`='ton';
+    DELETE FROM `api`.`app_art_nav` WHERE `esq`='hol' AND `cab`='dia' AND `ide`='ton';
     INSERT INTO `api`.`app_art_nav` VALUES
-      ('hol','inf','ton','01','Onda Encantada'),
-      ('hol','inf','ton','02','Simetría Especular'),          
-      ('hol','inf','ton','03','Pulsar Dimensional'),
-      ('hol','inf','ton','04','Pulsar Matiz')
+      ('hol','dia','ton','01','Onda Encantada'),
+      ('hol','dia','ton','02','Simetría Especular'),          
+      ('hol','dia','ton','03','Pulsar Dimensional'),
+      ('hol','dia','ton','04','Pulsar Matiz')
     ;
-    DELETE FROM `api`.`app_art_nav` WHERE `esq`='hol' AND `cab`='inf' AND `ide`='sel';
+    DELETE FROM `api`.`app_art_nav` WHERE `esq`='hol' AND `cab`='dia' AND `ide`='sel';
     INSERT INTO `api`.`app_art_nav` VALUES
 
-      ('hol','inf','sel','01','Colocación Cromática'),
-        ('hol','inf','sel','01-01','Familia Terrestre'),
-        ('hol','inf','sel','01-02','Clan Cromático'),
-      ('hol','inf','sel','02','Colocación Armónica'),      
-        ('hol','inf','sel','02-01','Raza Raiz Cósmica'),
-        ('hol','inf','sel','02-02','Célula del Tiempo'),
-      ('hol','inf','sel','03','Holones'),
-        ('hol','inf','sel','03-01','Solar-interplanetario'),
-        ('hol','inf','sel','03-02','Terrestre-planetario'),
-        ('hol','inf','sel','03-03','Humano')      
+      ('hol','dia','sel','01','Colocación Cromática'),
+        ('hol','dia','sel','01-01','Familia Terrestre'),
+        ('hol','dia','sel','01-02','Clan Cromático'),
+      ('hol','dia','sel','02','Colocación Armónica'),      
+        ('hol','dia','sel','02-01','Raza Raiz Cósmica'),
+        ('hol','dia','sel','02-02','Célula del Tiempo'),
+      ('hol','dia','sel','03','Holones'),
+        ('hol','dia','sel','03-01','Solar-interplanetario'),
+        ('hol','dia','sel','03-02','Terrestre-planetario'),
+        ('hol','dia','sel','03-03','Humano')      
     ;
-    DELETE FROM `api`.`app_art_nav` WHERE `esq`='hol' AND `cab`='inf' AND `ide`='psi';
+    DELETE FROM `api`.`app_art_nav` WHERE `esq`='hol' AND `cab`='dia' AND `ide`='psi';
     INSERT INTO `api`.`app_art_nav` VALUES
-      ('hol','inf','psi','01','Estación Solar'),
-      ('hol','inf','psi','02','Giro Lunar'),
-      ('hol','inf','psi','03','Heptada')      
+      ('hol','dia','psi','01','Estación Solar'),
+      ('hol','dia','psi','02','Giro Lunar'),
+      ('hol','dia','psi','03','Heptada')      
     ;
-    DELETE FROM `api`.`app_art_nav` WHERE `esq`='hol' AND `cab`='inf' AND `ide`='lun';
+    DELETE FROM `api`.`app_art_nav` WHERE `esq`='hol' AND `cab`='dia' AND `ide`='lun';
     INSERT INTO `api`.`app_art_nav` VALUES
-      ('hol','inf','lun','01','Día Lunar'),
-      ('hol','inf','lun','02','Héptada')
+      ('hol','dia','lun','01','Día Lunar'),
+      ('hol','dia','lun','02','Héptada')
     ;
-    DELETE FROM `api`.`app_art_nav` WHERE `esq`='hol' AND `cab`='inf' AND `ide`='rad';
+    DELETE FROM `api`.`app_art_nav` WHERE `esq`='hol' AND `cab`='dia' AND `ide`='rad';
     INSERT INTO `api`.`app_art_nav` VALUES
-      ('hol','inf','rad','01','Sello de la Profecía'),
-      ('hol','inf','rad','02','Electricidad Cósmica')
+      ('hol','dia','rad','01','Sello de la Profecía'),
+      ('hol','dia','rad','02','Electricidad Cósmica')
     ;
   -- 
   -- Bibliografía 

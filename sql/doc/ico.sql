@@ -73,10 +73,10 @@
       ('val_tex-adv',	'warning'),
       ('val_tex-opc',	'help'),
       ('val_tex-val',	'check_circle'),
-      -- toggs : item - activo - inactivo
+      -- toggs : item - expandir - contraer
       ('val_tog',	    'arrow_drop_down'),
-      ('val_tog-tod',	'toggle_on'),
-      ('val_tog-nad',	'toggle_off'),
+      ('val_tog-tod',	'expand_circle_down'),
+      ('val_tog-nad',	'expand_circle_down'),
       -- filtros : mostrar - ocultar
       ('val_ver',	    ''),
       ('val_ver-tod',	'visibility'),
@@ -85,6 +85,10 @@
       ('val_sel',	''),
       ('val_sel-tod',	'select_all'),
       ('val_sel-nad',	'deselect'),
+      -- estado : activo - inactivo
+      ('val_est',	''),
+      ('val_est-tod',	'toggle_on'),
+      ('val_est-nad',	'toggle_off'),
       -- movimiento
       ('val_mov',     'open_with'),  
       ('val_mov-hor', 'swap_horiz'),

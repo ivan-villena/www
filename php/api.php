@@ -1689,7 +1689,7 @@
       return $_;
     }
     // posicion : [ # => $$ ]
-    static function pos( mixed $dat, string $tip = NULL, mixed $val = NULL ) : bool | array {
+    static function pos( mixed $dat, string $tip = NULL, mixed $ope = NULL ) : bool | array {
       $_ = [];
       if( !isset($tip) ){
         // valido tipo : []
@@ -1757,12 +1757,16 @@
         switch( $tip ){
         case 'ver':
           $_ = new stdClass();
-          $ope = _lis::ite($ope);
-          $ope_val = empty($ope);   
-          foreach( $dat as $atr => $val ){
-            if( $ope_val || in_array($atr,$ope) ){
-              $_->$atr = $val;
-            }
+          if( empty($ope = _lis::ite($ope)) ){
+
+            foreach( $dat as $atr => $val ){ $_->$atr = $val; }
+          }
+          elseif( is_object($dat) ){
+
+            foreach( $ope as $atr ){ if( isset($dat->$atr) ) $_->$atr = $dat->$atr; }
+          }
+          else{
+            foreach( $ope as $atr ){ if( isset($dat[$atr]) ) $_->$atr = $dat[$atr]; }
           }
           break;
         }

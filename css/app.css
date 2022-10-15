@@ -42,7 +42,7 @@ body > aside.nav {
   grid-column: 2;
 }
 body > aside.nav > :is(nav,article)[ide] {
-  width: 400px;
+  width: 450px;
 }
 body > aside.nav > :is(nav,article)[ide] > header {
   display: flex;
@@ -57,7 +57,7 @@ body > aside.nav > :is(nav,article)[ide] > header + * {
 
 /* Menù principal */
 body > aside.nav > [ide="cab"] ul.lis.nav {
-  height: 73vh;
+  height: 70vh;
 }
 /* índices */
 body > aside.nav > [ide="art"] ul.lis.nav {
@@ -113,9 +113,8 @@ body > main > article section > ul {
 /* Imagenes */
 body > main > article > figure,
 body > main > article section > figure {
-  margin: 1rem;
+  margin: 1rem auto;
 }
-
 /*//////////////////////////////////////////////////////////////////////*/
 /*//////////////////////////////////////////////////////////////////////*/
 

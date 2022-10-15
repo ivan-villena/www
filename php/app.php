@@ -91,7 +91,7 @@
       // inicializo operadores
       $this->ope = [ 
         // inicio
-        'ini'=>_doc::ico('app',[ 'eti'=>"a", 'href'=>SYS_NAV."/{$this->uri->esq}", 'title'=>"Inicio..." ]),
+        'ini'=>_doc::ico('app',[ 'eti'=>"a", 'href'=>SYS_NAV."/{$this->uri->esq}", 'title'=>"Ir a la página de Inicio..." ]),
         // menu
         'nav_cab'=>[],
         // indice
@@ -658,22 +658,22 @@
       // identificador
       $ope['art']['ide'] = $ide;
       _ele::cla($ope['art'],'dis-ocu');
-
+      // icono de lado izquierdo
       $cab_ico = "";
       if( !empty($ope['ico']) ) $cab_ico = _doc::ico($ope['ico'],['class'=>"mar_hor-1"]);
-
+      // titulo al centro
       $cab_tit = "";
       if( !empty($ope['nom']) ) $cab_tit = "
         <h2 style='text-decoration: none; margin:0;'>".( !empty($ope['nom']) ? $ope['nom'] : '' )."</h2>
       ";
-
+      // contenido 
       if( !isset($ope['htm']) ){
         $ope['htm'] = '';
       }
       elseif( is_array($ope['htm']) ){ 
         $ope['htm'] = _ele::val( $ope['htm'] );
       }      
-
+      // imprimo
       $_ = "
       <article"._htm::atr($ope['art']).">
 
@@ -712,7 +712,7 @@
 
       $eti_nav = isset($ope['nav']['eti']) ? $ope['nav']['eti'] : 'nav';
 
-      $eti_sec = isset($ope['sec']['eti']) ? $ope['sec']['eti'] : 'section';
+      $eti_sec = isset($ope['sec']['eti']) ? $ope['sec']['eti'] : 'div';
 
       if( !isset($ope['htm']) ){
         $ope['htm'] = '';
@@ -877,7 +877,6 @@
 
       return $_;
     }
-
   }
   // Articulo : dato + tabla + tablero + glosario
   class _app_art {

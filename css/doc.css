@@ -268,9 +268,9 @@ img {
 .ico.tam-6 { font-size: 2.25rem; }
 .ico.tam-7 { font-size: 2.5rem; }
 
-.ico[onclick]:not(.fic):active {
+/* .ico[onclick]:not(.fic):active {
   transform: scale(.75);
-}
+} */
 
 .ico:is([href],[onclick]):hover {
   text-shadow: 0 0 5px;

@@ -1,4 +1,4 @@
--- Active: 1663730672989@@127.0.0.1@3306@_api
+-- Active: 1665550796793@@127.0.0.1@3306@api
 
 -- Holon
 	DELETE FROM `api`.`dat_atr` WHERE `esq`='api' AND `est` LIKE 'hol_%'

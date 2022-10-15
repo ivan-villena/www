@@ -44,7 +44,12 @@
         $_SESSION['hol-val'] = $hol_val;
       }
       // muestro fecha en el menu
-      $_['nav_htm_ini'] = _hol_app::val($_val);
+      $_['nav_htm_ini'] = "
+      <section class='mar_aba-2'>
+        
+        "._hol_app::val($_val)."
+
+      </section>";
 
       // inicio : 
       if( empty($_uri->cab) ){
@@ -87,12 +92,19 @@
       // cargo articulo
       ob_start(); ?>
 
-      <?=_doc_val::tex('adv',"Este sitio aún se está en construcción. Puede que se encuentre con contenido incompleto, errores o fallas; estamos trabajando en ello... Mientras tanto se decidió publicar el contenido para que los usuarios puedan acceder al mismo, mientras continuamos creciendo y evolucionando juntos.")?>
+      <?=_doc_val::tex('adv',"Este sitio aún se está en construcción, puede haber contenido incompleto, errores o fallas. Estamos trabajando en ello...")?>
 
       <article>
-        <h2><c>¿</c>Que puedo encontrar aquí<c>?</c></h2>
+        <h2>Inicio</h2>
 
-        <p>En el panel que se encuentra a la izquierda encontrarás el menú y las aplicaciones del sitio<c>.</c> Desde el menú podés acceder a los distintos contenidos y secciones<c>,</c> donde encontrarás libros y glosarios<c>,</c> datos relacionados a las cuentas del sincronario<c>,</c> Tableros e Informes según el valor diario seleccionado<c>.</c> Este valor lo encontrarás en el tercer botón del panel<c>,</c> donde podrés buscar otra fecha y ver un resumen del orden cíclico y sincrónico para dicho valor<c>.</c> Las demás aplicaciones irán apareciendo según la página en la que te encuentres<c>:</c> en los artículos aparecerá un índice<c>,</c> en los tableros aparecerán los operadores<c>,</c> etc<c>.</c> A medida que el sitio crezca se irán agregando nuevas funcionalidades<c>...</c></p>      
+        <p>En el panel de la izquierda encontrarás el menú y las aplicaciones del sitio<c>.</c></p>
+
+        <ul class="lis sep">
+          <li><?=_doc::ico('app_nav',[ 'class'=>"mar_der-1" ])?>Desde el menú podés seleccionar la fecha del sistema y acceder a los distintos contenidos<c>,</c> donde encontrarás libros y glosarios<c>,</c> datos relacionados a las cuentas del sincronario<c>,</c> Tableros e Informes según el valor diario seleccionado<c>.</c></li>
+          <li><?=_doc::ico('dat_des',[ 'class'=>"mar_der-1" ])?>En el mismo panel<c>,</c> pero en la seccion inferior<c>,</c> está el botón de ayuda que aparecerá en la páginas que lo requieran por su complejidad<c>.</c> Haz click en él para saber más sobre el contenido de este sitio<c>.</c></li>
+        </ul>
+        
+        <p>Las demás aplicaciones irán apareciendo según la página en la que te encuentres<c>:</c> en los artículos aparecerá un índice<c>,</c> en los tableros aparecerán los operadores<c>,</c> etc<c>.</c> A medida que el sitio crezca se irán agregando nuevas funcionalidades<c>...</c></p>
 
     
       </article>
@@ -101,6 +113,19 @@
 
       // cargo tutorial:
       ob_start(); ?>
+        <!-- Fecha del sistema -->
+        <section>
+          <h3>La Fecha del Sistema</h3>
+
+          <div class="val jus-cen">
+            <?= _doc::ico('app_nav',['class'=>"mar_hor-1"]) ?>
+            <c>-></c>
+            <?= _doc::ico('fec_val',['class'=>"mar_hor-1"]) ?>
+          </div>
+
+          <p>Desde aquí puedes cambiar la fecha operativa del sistema<c>.</c> Esta fecha se utiliza para posicionarte en los tableros y mostrar los datos correspondientes en el Diario<c>.</c> La fecha se inicializa con el día actual<c>,</c> pero puedes cambiarla en cualquier momento utilizando el calendario gregoriano o las fechas del sincronario <c>(</c>ciclo NS<c>)</c><c>.</c> Si quieres saber más sobre los ciclos del sincronario<c>,</c> haz click <a href="https://www.13lunas.net/boletines/Rinri/V03N3_1.htm" target="_blank">aquí</a><c>.</c></p>
+          
+        </section>      
         <!-- Bibliografía -->
         <section>
 
@@ -112,45 +137,44 @@
             <?= _doc::ico('tex_lib',['class'=>"mar_hor-1"]) ?>
           </div>
 
-          <p>En esta sección podrás encontrar un glosario global y los distintos libros en los cuales se basa la teoría del Sincronario<c>:</c> <b class="ide">La ley del Tiempo</b></p>
+          <p>Aquí podrás encontrar la mayoría de los libros en los cuales se basa la teoría del Sincronario<c>:</c> <q>La ley del Tiempo</q><c>.</c> Esta fué desarrollada por <a href="https://es.wikipedia.org/wiki/Jos%C3%A9_Arg%C3%BCelles" target="_blank">José Argüelles</a> quien organizó una fundación con el mismo nombre <c>(</c><a href="http://www.lawoftime.org" target="_blank">The Law of Time</a><c>)</c><c>.</c> Todos sus libros y materiales se pueden descargar gratuitamente desde <a href="https://13lunas.net/mapa.htm#biblioteca" target="_blank">La Biblioteca de <n>13</n> Lunas</a><c>.</c></p>
 
-          <p>El glosario es un rejunte de todos los que aparecen en los distintos libros<c>,</c> al cual se agregó un filtro para buscar entre sus términos y accesos al libro donde se encuentra<c>.</c> Los libros son todos del mismo autor <c>(</c><a href="https://es.wikipedia.org/wiki/Jos%C3%A9_Arg%C3%BCelles" target="_blank">José Argüelles</a><c>)</c><c>,</c> y se pueden descargar desde el mismo lugar <c>(</c><a href="https://13lunas.net/mapa.htm#biblioteca" target="_blank">Biblioteca de <n>13</n> Lunas</a><c>)</c><c>.</c></p>
+          <p>En este sitio se adaptó el formato de texto de cada libro para una página web<c>,</c> se agregaron los íconos correspondientes a cada símbolo e imágenes que amplían su contenido visualamente<c>.</c> También se muestran en orden cronológico<c>,</c> ya que este conocimiento es incremental y los temas se entrelazan y completan en cada publicación<c>.</c></p>
 
-          <p>En este sitio se adaptó el formato de texto de cada libro para una página web<c>,</c> se agregaron los íconos correspondientes a cada símbolo e imágenes que amplían su contenido vislamente<c>.</c> También se muestran en orden cronológico ya que este conocimiento es incremental<c>,</c> y los temas se entrelazan y completan en cada publicación<c>.</c></p>
-
-          <p>En la página donde verás el contenido del libro hay un índice en el panel izquierdo<c>,</c> que puedes ocultar o mostrar haciendo click en el botón<c>.</c> Los puntos originales que figuran en el libro son los mismos<c>,</c> pero se agregaron nuevos para segmentar mejor la información y poder acceder a ella desde otros lados<c>.</c></p>      
+          <p>En la página de cada libro hay un índice en el panel izquierdo<c>,</c> que puedes ocultar o mostrar haciendo click en el botón<c>.</c> Los items del índice que figuran en el libro son los mismos<c>,</c> pero se agregaron nuevos para segmentar la información y poder acceder desde enlaces<c>.</c></p>
 
         </section>
-        <!-- Codigos y Cuentas -->
+        <!-- Artículos -->
+        <section>          
+
+          <h3>Los Artículos</h3>
+
+          <div class="val jus-cen">
+            <?= _doc::ico('app_nav',['class'=>"mar_hor-1"]) ?>
+            <c>-></c>
+            <?= _doc::ico('tex_inf',['class'=>"mar_hor-1"]) ?>
+          </div>
+
+          <p>En esta sección se cargan los Articulos con información relacionada a los temas del Sincronario<c>.</c></p>
+
+          <p>En primer lugar<c>,</c> el glosario es un rejunte de todos los que aparecen en los distintos libros<c>,</c> al cual se agregó un filtro para buscar entre sus términos y accesos al libro donde se encuentra<c>.</c></p>
+          
+          <p>Luego<c>,</c> se irán agregando nuevos a medida que el sitio crezca o sean requeridos para ampliar la información tratada<c>.</c></p>
+
+        </section>
+        <!-- Cuentas -->
         <section>
 
           <h3>Las cuentas</h3>
 
-          <div class="val jus-cen">        
+          <div class="val jus-cen">
             <?= _doc::ico('app_nav',['class'=>"mar_hor-1"]) ?>
             <c>-></c>
             <?= _doc::ico('num_val',['class'=>"mar_hor-1"]) ?>
           </div>
 
-          <p>Los sistemas del Sincronario están basados en códigos y cuentas<c>.</c> Los <n>13</n> tonos galácticos crean el módulo de sincronización para las <n>13</n> lunas del giro solar y las <n>13</n> trayectorias armónicas del giro galáctico<c>.</c> Cada kin está compuesto por uno de los <n>13</n> tonos galácticos<c>,</c> y uno de los <n>20</n> sellos solares<c>.</c> Cada día del año se encuentra en una de las <n>13</n> lunas y se asocia a uno de los <n>7</n> plasma radiales<c>.</c> Un castillo está compuesto por <n>52</n> posiciones que se dividen en <n>4</n> ondas encantadas de <n>13</n> unidades<c>.</c> Con el castillo se codifican las <n>4</n> estaciones espectrales del giro galáctico<c>,</c> las <n>4</n> estaciones cíclicas del giro solar<c>,</c> los <n>52</n> anillos solares del ciclo Nuevo Siario y los <n>52</n> años del sendero del destino para el kin planetario<c>.</c> A su vez<c>,</c> la nave del tiempo tierra está compuesta de <n>5</n> castillos para abarcar los <n>260</n> kines del giro galáctico<c>.</c> Todos estos son ejemplos de las cuentas utilizadas para medir el tiempo con el concepto de Matriz Radial<c>.</c> Cada cuenta va del <n>1</n> al <n>n</n><c>,</c> siendo <n>n</n> el valor total que define la cuenta<c>.</c> De esta manera<c>:</c> los plasmas val del <n>1<c>-</c>7</n><c>,</c> los tonos del <n>1<c>-</c>13</n><c>,</c> los sellos del <n>1<c>-</c>20</n><c>,</c> las lunas del <n>1<c>-</c>28</n><c>,</c>etc<c>.</c></p>
-
           <p>En esta sección podrás encontrar datos que van apareciendo en los distintos libros y están relacionados a cada código y cuenta<c>,</c> junto con sus respectivas agrupaciones y subciclos<c>.</c> Haciendo referencia a la fuente<c>,</c> se describen brevemente para introducir al lector en sus conceptos y bridarle acceso directo al material donde puede encontrarlo<c>.</c> A partir de su comprensión se pueden realizar lecturas y relaciones entre distintas posiciones<c>,</c> fechas o firmas galácticas<c>.</c></p>      
 
-        </section>
-        <!-- Diario -->
-        <section>
-          <h3>El Diario</h3>
-
-          <div class="val jus-cen">        
-            <?= _doc::ico('fec_val',['class'=>"mar_hor-1"]) ?>
-            <c>-></c>
-            <?= _doc::ico('dat_ver',['class'=>"mar_hor-1"]) ?>
-          </div>
-
-          <p>Este es un panel que está en la mayoría de las páginas del sitio<c>.</c> Desde aquí puedes cambiar la fecha operativa del sistema<c>.</c> Esta fecha se utiliza para posicionarte en los tableros y para ver los datos correspondientes al día en la sección de informes<c>.</c> La fecha se inicializa con el día actual<c>,</c> pero puedes cambiarla en cualquier momento utilizando el calendario gregoriano o las fechas del sincronario <c>(</c>ciclo NS<c>)</c><c>.</c> Si quieres saber más sobre los ciclos del sincronario<c>,</c> haz click <a href="https://www.13lunas.net/boletines/Rinri/V03N3_1.htm" target="_blank">aquí</a><c>.</c></p>
-
-          <p>Aquí tambien encontrarás un resumen sobre el posicionamiento para la fecha seleccionada<c>.</c> En el orden sincrónico están todas las cuentas relacionadas al kin <c>(</c><n>1<c>-</c>260</n><c>)</c><c>;</c> y el orden cíclico hace referencia a las cuentas relacionadas al psi<c>-</c>cronos<c>(</c><n>1<c>-</c>365</n><c>)</c><c>.</c> Para cada serie de cuentas hay un buscador con el que puedes filtrar la lista y ver los datos de dicho<c>/</c>s subciclo<c>/</c>s en particular<c>.</c></p>
-          
         </section>
         <!-- Tableros -->
         <section>
@@ -162,29 +186,22 @@
             <?= _doc::ico('lis_tab',['class'=>"mar_hor-1"]) ?>
           </div>
           
-          <p>Desde el menú principal puedes acceder a un listado de tableros relacionados al posicionamiento según la fecha seleccionada en el Diario<c>.</c> Para cada tablero se genera un ciclo de tiempo que contiene la fecha y abarca el total de días para el ciclo que representa<c>,</c> por ej<c>:</c> el <a href="<?=SYS_NAV."hol/tab/kin-tzo"?>" target="_blank">tzolkin</a> genera un ciclo de <n>260</n> días<c>,</c> el <a href="<?=SYS_NAV."hol/tab/psi-ban"?>" target="_blank">banco<c>-</c>psi</a> genera un ciclo de <n>365</n> días<c>,</c> y la <a href="<?=SYS_NAV."hol/tab/psi-lun"?>" target="_blank">luna</a> uno de <n>28</n><c>.</c></p>
+          <p>Desde el menú principal puedes acceder a un listado de tableros relacionados al posicionamiento según la fecha seleccionada en el Menú<c>.</c> Para cada tablero se genera un ciclo de tiempo que contiene la fecha y abarca el total de días para el ciclo que representa<c>,</c> por ej<c>:</c> el <a href="<?=SYS_NAV."hol/tab/kin-tzo"?>" target="_blank">tzolkin</a> genera un ciclo de <n>260</n> días<c>,</c> el <a href="<?=SYS_NAV."hol/tab/psi-ban"?>" target="_blank">banco<c>-</c>psi</a> genera un ciclo de <n>365</n> días<c>,</c> y la <a href="<?=SYS_NAV."hol/tab/psi-lun"?>" target="_blank">luna</a> uno de <n>28</n><c>.</c></p>
 
-          <p>Desde allí podrás acceder a opciones<c>,</c> elementos<c>,</c> un índice y un listado que te permitirán interactuar con su contenido<c>.</c></p>
-
-          <ul class="lis sep">
-            <li><?=_doc::ico('opc_bin',[ 'class'=>"mar_der-1" ])?> En las opciones puedes cambiar los colores de fondo<c>,</c> seleccionar fichas y ver contenido numero o textual para cada posición<c>.</c> Según los atributos del tablero definido por sus cuentas<c>,</c> podrás activar o desactivar ciertas posiciones clave<c>,</c> como aquellas relacionadas por el oráculo del destino o las que se encuentran en un mismo pulsar de la onda encantada<c>.</c></li>
-            <li><?=_doc::ico('lis_est',[ 'class'=>"mar_der-1" ])?> En el operador puedes seleccionar aquellos activos y ver la sumatoria del kin correspondiente a ellos<c>.</c> Tambien puedes realizar selecciones grupales aplicando filtros por estructuras de cuentas<c>,</c> fechas o posiciones<c>.</c></li>
-            <li><?=_doc::ico('lis_nav',[ 'class'=>"mar_der-1" ])?> En el índice encontrarás un listado de los códigos y cuentas incluidos en el armado de tablero<c>.</c> Para cada código se muestra un total de elementos activos <c>(</c> por posición<c>,</c> marcas<c>,</c> seleccion y opciones <c>)</c> </li>
-            <li><?=_doc::ico('lis_ite',[ 'class'=>"mar_der-1" ])?> En el listado puedes acceder a los datos de las posiciones ya sea por los acumulados o puedes verlos todos y aplicar filtros<c>.</c> Luego puedes seleccionar las columnas con los datos que deseas ver<c>,</c> y mostrar los titulos por agrupaciones o lecturas para cada posición<c>.</c></li>
-          </ul>
+          <p>Desde allí podrás acceder a los datos del valor diario<c>,</c> opciones<c>,</c> elementos<c>,</c> un índice de las cuentas incluídas y un listado de las posiciones<c>.</c></p>
           
         </section>
-        <!-- Informes -->
+        <!-- Diario -->
         <section>
-          <h3>Los informes</h3>
+          <h3>El Diario</h3>
 
-          <div class="val jus-cen">        
+          <div class="val jus-cen">
             <?= _doc::ico('app_nav',['class'=>"mar_hor-1"]) ?>
             <c>-></c>
-            <?= _doc::ico('tex_inf',['class'=>"mar_hor-1"]) ?>
+            <?= _doc::ico('fec_dia',['class'=>"mar_hor-1"]) ?>
           </div>
 
-          <p>Según la fecha seleccionada podrás ver un detalle de cada codigo o cuenta relacionada<c>.</c> </p>
+          <p>Desde esta sección podrás ver un detalle de cada código por cuenta correspondiente al valor seleccionado en la fecha del sistema<c>.</c> La información se presenta en forma de fichas<c>,</c> con los atributos principales del código<c>,</c> descripciones simbólicas<c>,</c> las subcuentas relacionadas<c>,</c> y las posiciones en los tableros por sus ciclos de tiempo<c>.</c></p>
           
         </section>
       <?php
@@ -226,50 +243,52 @@
 
       $_ = "
       <!-- Fecha del Calendario -->
-      <form class='val' ide = 'fec'>
+      <form class='val mar-1' ide='fec'>
 
-        <div class='atr'>
-          "._doc_fec::ope('dia', $_fec, [ 'name'=>"fec" ])."
-          "._doc::ico('dat_ver',[ 
-            'eti'=>"button", 'type'=>"submit", 'title'=>'Buscar en el Calendario...', 'class'=>"mar_hor-1", 'onclick'=>"$_eje(this);"
-          ])."
-        </div>
+        "._doc::ico('fec_val',[ 'eti'=>"label", 'for'=>"_hol_app-val-fec", 'class'=>"mar_hor-1", 
+          'title'=>"Desde aquí puedes cambiar la fecha operativa del sistema..." 
+        ])."
+        "._doc_fec::ope('dia', $_fec, [ 'id'=>"_hol_app-val-fec", 'name'=>"fec", 
+          'title'=>"Selecciona o escribe una fecha del Calendario para buscar en el Sincronario..."
+        ])."
+        "._doc::ico('dat_ver',[ 'eti'=>"button", 'type'=>"submit", 'class'=>"mar_hor-1", 'onclick'=>"$_eje(this);", 
+          'title'=>'Haz click para buscar esta fecha en el Calendario Gregoriano...'
+        ])."
 
       </form>
 
       <!-- Fecha del Sincronario -->
-      <form class='val' ide = 'sin'>
+      <form class='val mar-1' ide='sin'>
         
-        <div class='atr'>
+        <label>N<c>.</c>S<c>.</c></label>
 
-          <label>N<c>.</c>S<c>.</c></label>
+        "._doc_num::ope('int', $_sin[0], [ 
+          'maxlength'=>2, 'name'=>"gal", 'title'=>"Portales Galácticos, Ciclos NS de 52 años..."
+        ])."
+        <c>.</c>
+        "._doc_lis::opc( _hol::_('ani'), [
+          'eti'=>[ 'name'=>"ani", 'title'=>"Anillo Solar (año): los 52 ciclos anuales de 364+1 días...", 'val'=>$_sin[1] ], 
+          'ite'=>[ 'title'=>'($)nom','htm'=>'($)ide' ]
+        ])."
+        <c>.</c>
+        "._doc_lis::opc( _hol::_('psi_lun'), [
+          'eti'=>[ 'name'=>"lun", 'title'=>"Giro Lunar (mes): los 13 ciclos mensuales de 28 días...", 'val'=>$_sin[2] ],
+          'ite'=>[ 'title'=>'()($)nom(): ()($)des()','htm'=>'($)ide' ]
+        ])."
+        <c>.</c>
+        "._doc_lis::opc( _hol::_('lun'), [ 
+          'eti'=>[ 'name'=>"dia", 'title'=>"Día Lunar : los 28 días del Giro Lunar...", 'val'=>$_sin[3] ], 
+          'ite'=>[ 'title'=>'($)des','htm'=>'($)ide' ]
+        ])."          
+        <c class='sep'>:</c>
+    
+        <n name='kin'>$_kin->ide</n>
 
-          "._doc_num::ope('int', $_sin[0], [ 'maxlength'=>2, 'name'=>"gal", 'title'=>"Portales Galácticos, Ciclos NS de 52 años..."])."
+        "._hol::ima("kin",$_kin,['class'=>"mar_hor-1", 'style'=>'min-width:2.5rem; height:2.5rem;'])."
 
-          <c>.</c>
-          "._doc_lis::opc( _hol::_('ani'), [
-            'eti'=>[ 'name'=>"ani", 'title'=>"Anillo Solar (año): 52 ciclos de 364+1 días...", 'val'=>$_sin[1] ], 
-            'ite'=>[ 'title'=>'($)nom','htm'=>'($)ide' ]
-          ])."
-          <c>.</c>
-          "._doc_lis::opc( _hol::_('psi_lun'), [
-            'eti'=>[ 'name'=>"lun", 'title'=>"Giro Lunar (mes): 13 ciclos de 28 días...", 'val'=>$_sin[2] ],
-            'ite'=>[ 'title'=>'()($)nom(): ()($)des()','htm'=>'($)ide' ]
-          ])."
-          <c>.</c>
-          "._doc_lis::opc( _hol::_('lun'), [ 
-            'eti'=>[ 'name'=>"dia", 'title'=>"Día Lunar : 1 día de 28 que tiene la luna...", 'val'=>$_sin[3] ], 
-            'ite'=>[ 'title'=>'($)des','htm'=>'($)ide' ]
-          ])."          
-          <c class='sep'>:</c>
-      
-          <n name='kin'>$_kin->ide</n>
-
-          "._hol::ima("kin",$_kin,['class'=>"mar_hor-1", 'style'=>'min-width:3em; height:3em;'])."
-          
-        </div>
-
-        "._doc::ico('dat_ver',[ 'eti'=>"button", 'title'=>'Buscar en el Sincronario', 'type'=>"submit", 'onclick'=>"$_eje(this);" ])."
+        "._doc::ico('dat_ver',[ 'eti'=>"button", 'type'=>"submit", 'onclick'=>"$_eje(this);",
+          'title'=>"Haz Click para buscar esta fecha en el Sincronario de 13 Lunas..."
+        ])."
 
       </form>";
 
@@ -278,9 +297,24 @@
     // Bibliografía : glosarios y libros
     public function bib( array $_, object $_uri, array $nav, array $_val ) : array {
       // cargo referencia
+      $_bib = SYS_NAV."hol/bib/";            
+      // busco archivos : html-php
+      if( !empty( $rec = $_uri->rec($val = "htm/$_uri->esq/$_uri->cab/$_uri->art") ) ){
+        // cargo directorio para imágenes del libro
+        $_dir = $_uri->dir();
+
+        include( $rec );
+      }
+      else{
+        echo _doc_val::tex('err',"No existe el archivo '$val'");
+      }
+
+      return $_;
+    }
+    // Artículos
+    public function art( array $_, object $_uri, array $nav, array $_val ) : array {
+      // cargo referencia
       $_bib = SYS_NAV."hol/bib/";
-      // cargo directorio para imágenes del libro
-      $_dir = $_uri->dir();
 
       switch( $_uri->art ){
       // glosarios
@@ -339,20 +373,10 @@
         </article>
         <?php          
         break;
-      // libros html
-      default:
-        if( !empty( $rec = $_uri->rec($val = "htm/$_uri->esq/$_uri->cab/$_uri->art") ) ){
-          
-          include( $rec );
-        }
-        else{
-          echo _doc_val::tex('err',"No existe el archivo '$val'");
-        }
-        break;
       }      
-      return $_;
+      return $_;      
     }
-    // Datos : codigos y cuentas
+    // Cuentas
     public function dat( array $_, object $_uri, array $nav, array $_val ) : array {
       // cargo referencia
       $_bib = SYS_NAV."hol/bib/";
@@ -809,10 +833,23 @@
         <?php
         break;
       }
+      // cargo tutorial    
+      ob_start(); ?>
+        <!-- Introduccion -->
+        <section>
+
+          <h3>Introducción</h3>
+
+          <p>Los sistemas del Sincronario están basados en códigos y cuentas<c>.</c> Los <n>13</n> tonos galácticos crean el módulo de sincronización para las <n>13</n> lunas del giro solar y las <n>13</n> trayectorias armónicas del giro galáctico<c>.</c> Cada kin está compuesto por uno de los <n>13</n> tonos galácticos<c>,</c> y uno de los <n>20</n> sellos solares<c>.</c> Cada día del año se encuentra en una de las <n>13</n> lunas y se asocia a uno de los <n>7</n> plasma radiales<c>.</c> Un castillo está compuesto por <n>52</n> posiciones que se dividen en <n>4</n> ondas encantadas de <n>13</n> unidades<c>.</c> Con el castillo se codifican las <n>4</n> estaciones espectrales del giro galáctico<c>,</c> las <n>4</n> estaciones cíclicas del giro solar<c>,</c> los <n>52</n> anillos solares del ciclo Nuevo Siario y los <n>52</n> años del sendero del destino para el kin planetario<c>.</c> A su vez<c>,</c> la nave del tiempo tierra está compuesta de <n>5</n> castillos para abarcar los <n>260</n> kines del giro galáctico<c>.</c> Todos estos son ejemplos de las cuentas utilizadas para medir el tiempo con el concepto de Matriz Radial<c>.</c> Cada cuenta va del <n>1</n> al <n>n</n><c>,</c> siendo <n>n</n> el valor total que define la cuenta<c>.</c> De esta manera<c>:</c> los plasmas val del <n>1<c>-</c>7</n><c>,</c> los tonos del <n>1<c>-</c>13</n><c>,</c> los sellos del <n>1<c>-</c>20</n><c>,</c> las lunas del <n>1<c>-</c>28</n><c>,</c>etc<c>.</c></p>
+
+        </section>
+      <?php
+      $_['app_tut'] = ob_get_clean();      
+
       return $_;
     }
-    // Informe : valores por posicion
-    public function inf( array $_, object $_uri, array $nav, array $_val ) : array {
+    // Diario : valores por posicion
+    public function dia( array $_, object $_uri, array $nav, array $_val ) : array {
       $_bib = SYS_NAV."hol/bib/";
       // galáctico
       $_kin = _hol::_('kin', $_val['kin']);
@@ -837,7 +874,7 @@
           <p>Para navegar entre las trayectorias armónicas<c>,</c> génesis de los castillos<c>,</c> ondas encantadas y células del tiempo<c>,</c> ver los <a href='<?=$_bib?>enc#_04-' target='_blank'>Índices del Libro del Kin</a> en el Encantamiento del Sueño<c>...</c></p>
 
         </article>
-        <!-- 4 + 1 : parejas -->
+        <!-- parejas -->
         <article>
           <h2 id="<?="_{$nav[1]['02']->pos}-"?>"><?=_doc::let($nav[1]['02']->nom)?></h2>
 
@@ -903,7 +940,7 @@
           </section>
           
         </article>
-        <!-- 4 x 52:13 nave del tiempo -->
+        <!-- Nave del tiempo -->
         <article>
           <h2 id="<?="_{$nav[1]['03']->pos}-"?>"><?=_doc::let($nav[1]['03']->nom)?></h2>
           <!-- x52 : Castillo Fractal -->  
@@ -964,7 +1001,7 @@
 
           </section>  
         </article>
-        <!-- 13 x 20:4 Giro Galáctico -->
+        <!-- Giro Galáctico -->
         <article>
           <h2 id="<?="_{$nav[1]['04']->pos}-"?>"><?=_doc::let($nav[1]['04']->nom)?></h2>
           <!-- x20 : Trayectoria Armónica -->  
@@ -1015,7 +1052,7 @@
 
           </section>  
         </article>
-        <!-- 4 x 13:5 Giro Espectral -->
+        <!-- Giro Espectral -->
         <article>
           <h2 id="<?="_{$nav[1]['05']->pos}-"?>"><?=_doc::let($nav[1]['05']->nom)?></h2>
           <!-- x65 : Estación Galáctica -->
@@ -1158,7 +1195,7 @@
           if( !empty( $htm = _app_tab::ope($ope_ide, $tab_ide, $tab_ope, $tab_ele ) ) ){
             $_['nav'][$ope_ide] = [ 
               'ico' => $ope_tab['ico'], 'nom' => $ope_tab['nom'], 
-              'nav' => [ 'style'=>"width: 30rem;" ],
+              'nav' => [ 'style'=>"" ],
               'htm' => $htm
             ];
           }
@@ -1217,7 +1254,7 @@
             <h3>Opciones</h3>
           </div>
 
-          <p></p>
+          <p>Puedes cambiar los colores de fondo<c>,</c> seleccionar fichas y ver contenido numero o textual para cada posición<c>.</c> Según los atributos del tablero definido por sus cuentas<c>,</c> podrás activar o desactivar ciertas posiciones clave<c>,</c> como aquellas relacionadas por el oráculo del destino o las que se encuentran en un mismo pulsar de la onda encantada<c>.</c></p>
 
         </section>
         <!-- Operador -->
@@ -1228,7 +1265,7 @@
             <h3>Operador</h3>
           </div>
 
-          <p></p>
+          <p>Puedes seleccionar aquellas posiciones activas y ver la sumatoria del kin correspondiente a ellas<c>.</c> Tambien puedes realizar selecciones grupales aplicando filtros por estructuras de cuentas<c>,</c> fechas o posiciones<c>.</c></p>
 
         </section>
         <!-- Indice -->
@@ -1239,7 +1276,7 @@
             <h3>Índice</h3>
           </div>
 
-          <p></p>
+          <p>Encontrarás un listado de los códigos y cuentas incluidos en el armado de tablero<c>.</c> Para cada código se muestra un total de elementos activos <c>(</c> por posición<c>,</c> marcas<c>,</c> seleccion y opciones <c>)</c> </p>
 
         </section>
         <!-- Listado -->
@@ -1250,7 +1287,8 @@
             <h3>Listado</h3>
           </div>
 
-          <p></p>
+          <p>Puedes acceder a los datos de las posiciones ya sea por los acumulados<c>,</c> o puedes verlos todos<c>,</c> y aplicar filtros<c>.</c> 
+          Luego puedes seleccionar las columnas con los datos que deseas ver<c>,</c> y mostrar los titulos por agrupaciones o lecturas para cada posición<c>.</c></p>
 
         </section>        
       <?php
@@ -1576,7 +1614,7 @@
 
       $ope['lis-1'] = [ 'class'=>"ite" ];
       return _doc_lis::val($_,$ope);
-    }    
+    }
     // ciclos del orden ciclico
     static function psi( mixed $dat, array $ope = [], ...$opc ) : string {
       $_ = []; $esq = 'hol';
@@ -1638,15 +1676,14 @@
       
       $ope['lis-1'] = [ 'class'=>"ite" ];
       return _doc_lis::val($_,$ope);
-    }    
-
+    }
   }
 
   // Usuario : ficha + tránsitos + firma galáctica
   class _hol_app_usu {
 
-    static string $IDE = "_hol_app_val-";
-    static string $EJE = "_hol_app_val.";
+    static string $IDE = "_hol_app_usu-";
+    static string $EJE = "_hol_app_usu.";
       
     // ficha
     static function fic( array $ope = [], ...$opc ) : string {
