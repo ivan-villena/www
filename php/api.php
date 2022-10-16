@@ -25,12 +25,11 @@
       $doc_val_ope = []
     ;
     // Datos
-    public array
-      $dat_atr = [], // atributos de la base
-      $dat_est = [], // estructuras de la base
-      $dat_val = [], // valores por registro
-      $dat_tip = [],// tipo
-      $dat_ope = [] // operador
+    public array      
+      $dat_est = [],// estructuras de la base
+      $dat_atr = [],// atributos de la base
+      $dat_tip = [],// tipo de datos
+      $dat_ope = [] // operaciones por tipo de dato
     ;
     // Aplicacion
     public object 
@@ -342,10 +341,10 @@
         }
       }
       else{
-        $ver = [];
         // proceso ides
+        $ver = [];        
         if( !empty($ide) ){
-          if( in_array('uni',$opc) ){
+          if( $opc_uni = in_array('uni',$opc) ){
             $ver []= "`Name` = '{$ide}'"; 
           }else{
             $ver []= "`Name` LIKE '".( in_array('ini',$opc) ? "%{$ide}" : ( in_array('tod',$opc) ? "%{$ide}%" : "{$ide}%" ) )."'"; 
@@ -364,8 +363,7 @@
       
             $_[] = $v->Name;
           }
-        }
-        // armo datos por estructura/s
+        }// o : armo datos por estructura
         elseif( $ope == 'ver' ){
       
           if( in_array('vis',$opc) ){ 
@@ -385,7 +383,7 @@
             $_[$_est->ide] = $_est;
           }
           // devuelvo uno solo
-          if( !empty($ide) && isset($_est) ){
+          if( !empty($ide) && $opc_uni && isset($_est) ){
             $_ = $_est;
           }
         }
@@ -534,10 +532,9 @@
       $esq = $ide[0];
       $est = $ide[1];
 
-      switch( $opc ){
+      switch( $ope ){
       case 'ver': 
         if( !empty($ide = $opc[0]) ){
-
           foreach( _sql::dec("SHOW KEYS FROM `$esq`.`$est` WHERE `Key_name` = '".( $ide == 'pri' ? "PRIMARY" : $ide )."'") as $key ){
 
             $_[] = $key->Column_name;
@@ -546,14 +543,18 @@
         break;
       case 'lis': 
         break;
-      case 'agr': 
+      case 'agr':
+        // ALTER TABLE `api`.`$est` ADD PRIMARY KEY;<br>
         break;
+      case 'eli':
+        // ALTER TABLE `api`.`$est` DROP PRIMARY KEY;<br>
+        break;        
       }
 
       return $_;
     }
-    // elementos
-    static function val( string $tip, string $ide, mixed $ope=[] ) : array | object | string {
+    // registros
+    static function reg( string $tip, string $ide, mixed $ope=[] ) : array | object | string {
       $_ = [];
 
       $e = _sql::cod($ide,$ope, ( $tip == 'cue' ) ? 'ver' : $tip );
@@ -577,7 +578,6 @@
       }
       return $_;
     }
-
   }
   // Código html 
   class _htm {
@@ -751,7 +751,7 @@
         if( is_string($ide = $dat) ){
 
           // ejecuto consulta
-          $_ = _sql::val('ver',$ide,isset($ope) ? $ope : []);
+          $_ = _sql::reg('ver',$ide,isset($ope) ? $ope : []);
 
           if( isset($ope) ){
             // elimino marcas
@@ -767,8 +767,8 @@
           }
         }
         // resultados y operaciones
-        if( isset($ope) && ( is_array($dat) || !isset($_['err']) ) )
-          _lis::ope($_,$ope);
+        if( isset($ope) && ( is_array($dat) || !isset($_['err']) ) ) _lis::ope($_,$ope);
+
       }
       return $_;
     }
@@ -937,12 +937,12 @@
 
         if( !isset( $_api->dat_est[$esq] ) ){
           
-          foreach( _dat::get("api.dat_est",[ 
-            'ver'=>"`esq`='{$esq}'", 'niv'=>['ide'], 'obj'=>"ope", 'red'=>"ope" 
+          foreach( _dat::get("api.app_dat",[ 
+            'ver'=>"`esq`='{$esq}'", 'niv'=>['ide'], 'obj'=>"ope", 'red'=>"ope"
           ]) as $est => $_ope ){
-
+            // cargo datos del la base
             $_api->dat_est[$esq][$est] = _sql::est($esq,'ver',$est,'uni');
-
+            // cargo operadores
             $_api->dat_est[$esq][$est]->ope = $_ope;
           }
         }
@@ -955,7 +955,7 @@
 
           if( is_object( $_api->dat_est[$esq][$ide] = _sql::est($esq,'ver',$ide,'uni') ) ){
             // busco operadores
-            $_api->dat_est[$esq][$ide]->ope = _dat::get("api.dat_est",[
+            $_api->dat_est[$esq][$ide]->ope = _dat::get("api.app_dat",[
               'ver'=>"`esq`='{$esq}' AND `ide`='{$ide}'", 'obj'=>"ope", 'red'=>"ope", 'opc'=>"uni"
             ]);
           }    
@@ -964,65 +964,6 @@
       }
       else{
         switch( $tip ){
-        case 'ope':
-          $_ = _dat::est($esq,$ide)->ope;
-          if( !empty($ope) && isset($_->$ope) ){
-            $_ = $_->$ope;
-          }
-          break;
-        }
-      }
-      return $_;
-    }// operadores de la estructura : relaciones + ficha + filrtos + colores + imagenes + numeros + textos
-    static function est_ope( string $esq, string $est, string $atr = NULL ) : mixed {
-      $_ = FALSE;
-      $_val = _dat::est($esq,$est,'ope');
-      if( empty($atr) ){
-        $_ = $_val;
-      }
-      elseif( isset($_val->$atr) ){
-        $_ = $_val->$atr;
-      }
-      return $_;
-    }// cuento columnas totales
-    static function est_atr( string | array $dat, array $ope=[] ) : int {
-      $_ = 0;
-      if( isset($ope['atr']) ){
-        
-        $_ = count($ope['atr']);
-      }
-      // 1 estructura de la base
-      elseif( !( $obj_tip = _obj::tip($dat) ) ){
-
-        $ide = _dat::ide($dat);
-
-        $dat_est = _app::est($ide['esq'],$ide['est']);
-
-        $_ = isset($dat_est->atr) ? count($dat_est->atr) : 0;
-
-      }
-      // n estructuras de la base
-      elseif( $obj_tip == 'nom' ){
-
-        foreach( $dat as $esq => $est_lis ){
-  
-          foreach( $est_lis as $est ){
-
-            $dat_est = _app::est($esq,$est);
-
-            $_ += count($dat_est->atr);
-          }
-        }
-      }
-      // por listado                    
-      elseif( $obj_tip == 'pos' ){
-
-        foreach( $dat as $ite ){
-
-          foreach( $ite as $val ){ 
-            $_ ++; 
-          }
-          break;
         }
       }
       return $_;
@@ -1043,11 +984,10 @@
         
         // cargo operadores del atributo
         $_api_dat = &$_api->dat_atr[$esq][$est];
-        foreach( _dat::get("api.dat_atr",[ 'ver'=>"`esq`='{$esq}' AND `est`='{$est}'", 'ele'=>'var' ]) as $_api_atr ){
-
-          if( !empty($_api_atr->var) && isset($_api_dat[$i = $_api_atr->ide]) ){
-
-            $_api_dat[$i]->var = _ele::jun($_api_dat[$i]->var, $_api_atr->var);
+        foreach( _app::dat($esq,$est,'atr') as $i => $_atr_var ){
+          
+          if( isset($_api_dat[$i]) ){
+            $_api_dat[$i]->var = _ele::jun($_api_dat[$i]->var, _obj::nom($_atr_var));
           }
         }
       }
@@ -1074,8 +1014,26 @@
         }
       }
       return $_;
-    }// identificador por relaciones : esq.est_atr | api.dat_atr[ide].dat
-    static function atr_est( string $esq, string $est, string $atr ) : string {
+    }
+    // proceso abm : alta , modificacion y baja de registro-objeto
+    static function reg( string $esq, string $est, string $tip, object $dat ) : string {
+      $_="";
+      $_sql = [];
+      if( $esq=='usu' ){
+        
+      }
+      // ejecuto transacciones    
+      $var_eve = [];
+      foreach( $_sql as $est=>$ope ){ 
+        $eje []= _app::dat_val( $tip, $est, $ope) ; 
+      }
+      if( !empty($eje) ){
+        $_ = _sql::dec( ...$eje );
+      }
+      return $_;
+    }
+    // identificador por relaciones : esq.est_atr | api.dat_atr[ide].dat
+    static function rel( string $esq, string $est, string $atr ) : string {
       $_ = '';      
       // busco relacion en atributo
       $_atr = _dat::atr($esq,$est,$atr);
@@ -1092,90 +1050,6 @@
       }
       else{
         $_ = $atr;
-      }
-      return $_;
-    }
-    // valores : nombre, descripcion, titulo, imagen, color...
-    static function val( string $esq, string $est, string $atr = NULL, mixed $dat = NULL ) : mixed {
-      $_ = FALSE;
-
-      global $_api;
-      
-      if( !isset($_api->dat_val[$esq]) ) $_api->dat_val[$esq] = [];
-
-      // todas las estructuras de un esquema
-      if( empty($est) ){
-        
-        $_ = $_api->dat_val[$esq] = _dat::get("api.dat_val",[ 
-          'ver'=>"`esq`='{$esq}'", 'niv'=>["est"], 'obj'=>"ope", 'red'=>"ope" 
-        ]);
-      }// una estructura
-      else{
-        if( !isset($_api->dat_val[$esq][$est]) ){
-
-          $_api->dat_val[$esq][$est] = _dat::get("api.dat_val",[ 
-            'ver'=>"`esq`='{$esq}' AND `est`='{$est}'", 'obj'=>"ope", 'red'=>"ope", 'opc'=>"uni" 
-          ]);
-        }
-        $_ = $_api->dat_val[$esq][$est];
-
-        // busco por atributos y datos
-        if( !empty($atr) ){
-          $_val = $_;
-          if( isset($_val->$atr) ){
-  
-            $_ = $_val->$atr;
-  
-            // valores variables ()($)...()
-            if( isset($dat) ){
-  
-              $_ = _obj::val( _dat::get($esq,$est,$dat), $_val->$atr );
-            }
-          }
-        }
-      }
-      return $_;
-    }// ver valores : imagen, color...
-    static function val_ver( string $tip, string $esq, string $est, string $atr = NULL, mixed $dat = NULL ) : array {
-      // dato
-      $_ = [ 'esq' => $esq, 'est' => $est ];
-
-      // armo identificador
-      if( !empty($atr) ){        
-        $_['est'] = $atr == 'ide' ? $est : "{$est}_{$atr}";  
-
-        // busco dato en atributos
-        $_atr = _dat::atr($esq,$est,$atr);
-        
-        if( isset($_atr->var['dat']) && !empty($var_dat = $_atr->var['dat']) ){
-          $dat = explode('.',$var_dat);
-          $_['esq'] = $dat[0];
-          $_['est'] = $dat[1];
-        }
-      }
-      // valido dato
-      if( !empty( $dat_Val = _dat::val($_['esq'],$_['est'],$tip,$dat) ) ){
-        $_['ide'] = "{$_['esq']}.{$_['est']}";
-        $_['val'] = $dat_Val;
-      }
-      else{
-        $_ = [];
-      }
-      return $_;
-    }// proceso abm : alta , modificacion y baja de registro-objeto
-    static function val_ope( string $esq, string $est, string $tip, object $dat ) : string {
-      $_="";
-      $_sql = [];
-      if( $esq=='usu' ){
-        
-      }
-      // ejecuto transacciones    
-      $var_eve = [];
-      foreach( $_sql as $est=>$ope ){ 
-        $eje []= _dat::val( $tip, $est, $ope) ; 
-      }
-      if( !empty($eje) ){
-        $_ = _sql::dec( ...$eje );
       }
       return $_;
     }

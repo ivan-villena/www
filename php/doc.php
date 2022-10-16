@@ -954,7 +954,7 @@
           }
         }
         // caclulo total de columnas
-        $ope['atr_tot'] = _dat::est_atr($dat,$ope);
+        $ope['atr_tot'] = _doc_lis::tab_atr_cue($dat,$ope);
 
         // cabecera
         if( !in_array('cab_ocu',$ope['opc']) ){ 
@@ -1026,7 +1026,7 @@
                 // recorro referencias
                 foreach( $est_lis as $est){
                   // cargo relaciones                  
-                  if( $dat_opc_est = _dat::est_ope($esq,$est,'est') ){
+                  if( $dat_opc_est = _app::dat($esq,$est,'est') ){
 
                     foreach( $dat_opc_est as $atr => $ref ){
 
@@ -1153,6 +1153,48 @@
       }   
 
       return $_;
+    }// cuento columnas totales
+    static function tab_atr_cue( string | array $dat, array $ope=[] ) : int {
+      $_ = 0;
+      if( isset($ope['atr']) ){
+        
+        $_ = count($ope['atr']);
+      }
+      // 1 estructura de la base
+      elseif( !( $obj_tip = _obj::tip($dat) ) ){
+
+        $ide = _dat::ide($dat);
+
+        $dat_est = _app::est($ide['esq'],$ide['est']);
+
+        $_ = isset($dat_est->atr) ? count($dat_est->atr) : 0;
+
+      }
+      // n estructuras de la base
+      elseif( $obj_tip == 'nom' ){
+
+        foreach( $dat as $esq => $est_lis ){
+  
+          foreach( $est_lis as $est ){
+
+            $dat_est = _app::est($esq,$est);
+
+            $_ += count($dat_est->atr);
+          }
+        }
+      }
+      // por listado                    
+      elseif( $obj_tip == 'pos' ){
+
+        foreach( $dat as $ite ){
+
+          foreach( $ite as $val ){ 
+            $_ ++; 
+          }
+          break;
+        }
+      }
+      return $_;
     }// posicion : titulo + detalle
     static function tab_pos( string $tip, int $ide, array $ope = [], array $ele = [] ) : string {
       $_ = "";
@@ -1213,7 +1255,7 @@
             $val = _dat::get($esq,$est,$ope['dat_val']);
             foreach( $_est->cic_val as $atr => &$pos ){
               
-              if( !empty($ide = _dat::atr_est($esq,$est,$atr) ) && $pos != $val->$atr ){
+              if( !empty($ide = _dat::rel($esq,$est,$atr) ) && $pos != $val->$atr ){
 
                 if( !empty($val->$atr) ){
                   $ope['dat_ite'] = [$atr,$ide,$val->$atr];
@@ -1229,7 +1271,7 @@
           if( isset($_est->$tip) ){
             foreach( $_est->$tip as $atr ){
 
-              if( !empty($ide = _dat::atr_est($esq,$est,$atr)) ){
+              if( !empty($ide = _dat::rel($esq,$est,$atr)) ){
 
                 foreach( _dat::get($esq,$ide) as $val ){
                   $ope['dat_ite'] = [$atr,$ide,$val];
@@ -1267,7 +1309,7 @@
       if( isset($_est) ){
 
         $_atr    = _dat::atr($esq,$est);
-        $est_ima = _dat::est_ope($esq,$est,'ima');  
+        $est_ima = _app::dat($esq,$est,'opc.ima');
         $atr_ocu = isset($_est->atr_ocu) ? $_est->atr_ocu : FALSE;
         
         foreach( ( isset($ope['atr']) ? $ope['atr'] : $_est->atr ) as $atr ){

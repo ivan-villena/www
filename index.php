@@ -50,6 +50,12 @@
       <h2>hola desde php<c>!</c></h2>
       ";
 
+      // recorrer tablas y 
+      foreach( _sql::est("api",'lis','hol_','tab') as $est ){
+        $_ .= "";
+      }
+      // ALTER TABLE `api`.`$est` DROP PRIMARY KEY;<br>
+
       return $_;
     }
     

@@ -1,9 +1,7 @@
 // WINDOW
 'use strict';
-
 // sistema
 const SYS_NAV = "http://localhost/";
-
 // operativas
 const DIS_OCU = "dis-ocu";
 const FON_SEL = "fon-sel";
@@ -579,44 +577,6 @@ class _dat {
     $val.atr = $val.ide[2] ? $val.ide[2] : false;
 
     return $val;
-  }
-  // valores : nombre, descripcion, titulo, imagen, color...
-  static val( $esq, $est, $atr, $dat ) {
-    let $={}, $_ = false;         
-    $._val = $_api.dat_val[$esq][$est];
-    if( !($atr) ){
-
-      $_ = $._val;
-    }
-    else if( !!($._val[$atr]) ){
-
-      $_ = $._val[$atr];
-
-      // valores variables ()($)...()
-      if( !!($dat) ){
-
-        $_ = _obj.val( _dat.get($esq,$est,$dat), $._val[$atr] );
-      }
-    }
-    return $_;
-  }// ver valores : imagen, color...
-  static val_ver( $tip, $esq, $est, $atr, $dat ){
-    
-    // dato
-    let $={}, $_ = { 'esq': $esq, 'est': $est };
-
-    // armo identificador
-    if( !!($atr) ) $_['est'] = $atr == 'ide' ? $est : `${$est}_${$atr}`;
-    
-    // valido dato
-    if( !!( $.dat_Val = _dat.val($_['esq'],$_['est'],$tip,$dat) ) ){
-      $_['ide'] = `${$_['esq']}.${$_['est']}`;
-      $_['val'] = $.dat_Val;
-    }
-    else{
-      $_ = [];
-    }
-    return $_;    
   }
 }
 // Ejecucion : ( ...par ) => { ...cod } : val 

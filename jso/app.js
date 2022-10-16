@@ -183,7 +183,7 @@ class _app {
   // peticion
   uri = null;
   // devuelvo enlace desde url
-  uri_val( ...$opc ) {
+  static uri_val( ...$opc ) {
 
     let $_ = [];
   
@@ -211,19 +211,54 @@ class _app {
 
   // datos
   dat = null;
-  // imagen por identificadores
+  // valores : nombre, descripcion, titulo, imagen, color...
+  static dat_val( $esq, $est, $atr, $dat ) {
+
+    let $={}, $_ = false;
+
+    if( $_api.app_dat[$esq][$est].ope && ( $_ = $_api.app_dat[$esq][$est].ope.val ) ){
+      
+      $_ = $._val;
+      // valores variables ()($)...()
+      if( !!$atr ){
+        $_ = $._val[$atr];        
+        if( !!($dat) ) $_ = _obj.val( _dat.get($esq,$est,$dat), $_ );
+      }    
+    }
+
+    return $_;
+  }// por seleccion : imagen, color...
+  static dat_opc( $tip, $esq, $est, $atr, $dat ){
+    
+    // dato
+    let $={}, $_ = { 'esq': $esq, 'est': $est };
+
+    // armo identificador
+    if( !!($atr) ) $_['est'] = $atr == 'ide' ? $est : `${$est}_${$atr}`;
+    
+    // valido dato
+    if( !!( $.dat_Val = _app.dat_val($_['esq'],$_['est'],`opc.${$tip}`,$dat) ) ){
+      $_['ide'] = `${$_['esq']}.${$_['est']}`;
+      $_['val'] = $.dat_Val;
+    }
+    else{
+      $_ = [];
+    }
+    return $_;    
+  }// imagen por identificadores
   static dat_ima( $dat, $ope ){
 
     let $_ = "";
 
     if( $ope.esq && $ope.est && $ope.atr && ( $ope.val = $dat.getAttribute(`${$ope.esq}-${$ope.est}`) ) ){
 
-      if( !$ope.fic ) $ope.fic = _dat.val_ver('ima', $ope.esq, $ope.est );
+      if( !$ope.fic ) $ope.fic = _app.dat_opc('ima', $ope.esq, $ope.est );
 
       $_ = _doc.ima($ope.fic.esq, $ope.fic.est, _dat.get($ope.esq,$ope.est,$ope.val)[$ope.atr], $ope.ele);
     }
     return $_;
   }
+
 }
 // Página
 class _app_ope {
@@ -1028,7 +1063,7 @@ class _app_tab {
 
         $ = _dat.ide($dat.value,$);
 
-        $.col = _dat.val_ver('col', ...( ( $.dat = $dat.options[$dat.selectedIndex].getAttribute('dat') ) ? $.dat : $dat.value ).split('.') );
+        $.col = _app.dat_opc('col', ...( ( $.dat = $dat.options[$dat.selectedIndex].getAttribute('dat') ) ? $.dat : $dat.value ).split('.') );
 
         $.col = ( $.col && $.col.val ) ? $.col.val : 0;
 
@@ -1055,7 +1090,7 @@ class _app_tab {
         $ = _dat.ide($dat.value,$);
         
         // busco valores de ficha
-        $.fic = _dat.val_ver('ima', ...( 
+        $.fic = _app.dat_opc('ima', ...( 
           ( $.dat = $dat.options[$dat.selectedIndex].getAttribute('dat') ) ? $.dat : $dat.value 
         ).split('.') );
 

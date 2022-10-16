@@ -20,7 +20,6 @@ class _hol_app {
       ;
     }
   }
-  
 
   // proceso valores
   static val( $dat ){
@@ -32,7 +31,7 @@ class _hol_app {
       $_api.app_uri.art = 'kin-tzo';
     }
     
-    $.uri = $_app.uri_val();
+    $.uri = _app.uri_val();
 
     // calendario gregoriano
     if( ( $.ope = $_app.var.getAttribute('ide') ) == 'fec' ){
@@ -69,8 +68,7 @@ class _hol_app {
         alert('La fecha del sincronario es inválida...')
       }
     }
-  }
-  // Actualizo acumulados
+  }// Actualizo acumulados
   static val_acu( $ope ){
 
     let $ = _doc_val.var($ope);
@@ -323,8 +321,7 @@ class _hol_app {
       break;
     }
 
-  }
-  // portales de activacion
+  }// portales de activacion
   static tab_pag( $dat, $ope, ...$opc ){
 
     let $ = _doc_val.var($dat);
@@ -375,8 +372,7 @@ class _hol_app {
     }
     // Actualizo acumulados
     _hol_app.val_acu($dat);
-  }
-  // parejas del oráculo
+  }// parejas del oráculo
   static tab_par( $dat, $ope, ...$opc ){
 
     let $ = _doc_val.var($dat);
@@ -465,8 +461,7 @@ class _hol_app {
         _app_tab.act('opc');        
       }
     }
-  }  
-  // pulsares de onda
+  }  // pulsares de onda
   static tab_pul( $dat, $ope, ...$opc ){
 
     let $ = _doc_val.var($dat);
@@ -597,10 +592,4 @@ class _hol_app_bib {
       break;
     }
   }
-}
-
-// valores
-class _hol_app_val {
-
-
 }

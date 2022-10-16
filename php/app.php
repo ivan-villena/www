@@ -32,9 +32,9 @@
         'htm' => [],
         'eje' => "",
         'dat' => [
-          'app'=>[ 'uri' ],
-          'doc'=>[ 'ico', 'let' ],
-          'dat'=>[ 'tip', 'val' ],
+          'app'=>[ 'uri', 'dat' ],
+          'dat'=>[ 'tip' ],
+          'doc'=>[ 'ico', 'let' ],          
           'fec'=>[ 'mes','sem','dia' ]
         ]
       ];
@@ -367,6 +367,60 @@
       </html>      
       <?php
     }
+    // cargo datos
+    static function dat( string $esq, string $est, string $ide ) : mixed {
+
+      $_ = _dat::est($esq,$est)->ope;
+      
+      foreach( explode('.',$ide) as $ide ){
+
+        if( isset($_->$ide) ) $_ =  $_->$ide;
+      }
+
+      return $_;
+    }// valores : nombre, descripcion, titulo, imagen, color...
+    static function dat_val( string $esq, string $est, string $atr = NULL, mixed $dat = NULL ) : mixed {
+      $_ = FALSE;
+      // cargo valores de la estructura
+      $_ = _app::dat($esq,$est,'val');
+      // busco por atributos y datos
+      if( !empty($atr) ){
+        $_val = $_;
+        // valores variables ()($)...()
+        if( isset($_val->$atr) ){
+          $_ = $_val->$atr;
+          if( isset($dat) ) $_ = _obj::val( _dat::get($esq,$est,$dat), $_ );
+        }
+      }
+      return $_;
+    }// por seleccion : imagen, color...
+    static function dat_opc( string $tip, string $esq, string $est, string $atr = NULL, mixed $dat = NULL ) : array {
+      // dato
+      $_ = [ 'esq' => $esq, 'est' => $est ];
+
+      // armo identificador
+      if( !empty($atr) ){        
+        $_['est'] = $atr == 'ide' ? $est : "{$est}_{$atr}";  
+
+        // busco dato en atributos
+        $_atr = _dat::atr($esq,$est,$atr);
+        
+        if( isset($_atr->var['dat']) && !empty($var_dat = $_atr->var['dat']) ){
+          $dat = explode('.',$var_dat);
+          $_['esq'] = $dat[0];
+          $_['est'] = $dat[1];
+        }
+      }
+      // valido dato
+      if( !empty( $dat_Val = _app::dat_val($_['esq'],$_['est'],"opc.$tip",$dat) ) ){
+        $_['ide'] = "{$_['esq']}.{$_['est']}";
+        $_['val'] = $dat_Val;
+      }
+      else{
+        $_ = [];
+      }
+      return $_;
+    }
     // armo controlador : nombre => valor
     static function var( string $esq, string $dat='', string $val='', string $ide='' ) : array {
       global $_api;
@@ -414,7 +468,7 @@
           foreach( $est_lis as $est => $dat ){
             // recorro dependencias            
             foreach( 
-              ( !empty($dat_est = _dat::est($esq,$est,'ope','est')) ? $dat_est : [ $esq => $est ] ) 
+              ( !empty($dat_est = _app::dat($esq,$est,'est')) ? $dat_est : [ $esq => $est ] ) 
             as $ide => $ref ){
               // acumulo valores
               if( isset($dat->$ide) ){
@@ -960,13 +1014,14 @@
       $_ = "";
       // proceso estructura
       extract( _dat::ide($ide) );
-
+      // cargo datos
       $dat_var = _dat::get($esq,$est,$dat);
-      $dat_val = _dat::val($esq,$est);
+      // cargo valores
+      $dat_val = _app::dat_val($esq,$est);
 
       // armo titulo : nombre <br> detalle
       if( $tip == 'tit' ){
-
+        
         $_ = ( isset($dat_val->nom) ? _obj::val($dat_var,$dat_val->nom) : "" ).( isset($dat_val->des) ? "\n"._obj::val($dat_var,$dat_val->des) : "");
       }
       // por atributos con texto : nom + des + ima 
@@ -1073,14 +1128,14 @@
       $_opc_ite = function( string $esq, string $est, string $ide, string $cla = NULL ) : array {
         $_ = [];
         // atributos parametrizados
-        if( ( $dat_opc_ide = _dat::est_ope($esq,$est,$ide) ) && is_array($dat_opc_ide) ){  
+        if( ( $dat_opc_ide = _app::dat($esq,$est,$ide) ) && is_array($dat_opc_ide) ){  
           // recorro atributos + si tiene el operador, agrego la opcion      
           foreach( $dat_opc_ide as $atr ){
             // cargo atributo
             $_atr = _dat::atr($esq,$est,$atr);
             // identificador
             $dat = "{$esq}.";
-            if( !empty($_atr->var['dat']) ){ $dat = $_atr->var['dat']; }else{ $dat .= _dat::atr_est($esq,$est,$atr); }  
+            if( !empty($_atr->var['dat']) ){ $dat = $_atr->var['dat']; }else{ $dat .= _dat::rel($esq,$est,$atr); }  
             $_ []= [                 
               'data-esq'=>$esq, 'data-est'=>$est, 'data-ide'=>$dat, 
               'value'=>"{$esq}.{$est}.{$atr}", 'class'=>$cla, 
@@ -1100,7 +1155,7 @@
         // recorro estructura/s por esquema
         foreach( $est_lis as $est_ide ){
           // busco estructuras dependientes
-          if( $dat_opc_est = _dat::est_ope($esq_ide,$est_ide,'est') ){
+          if( $dat_opc_est = _app::dat($esq_ide,$est_ide,'est') ){
             // recorro dependencias de la estructura
             foreach( $dat_opc_est as $dep_ide ){
               // datos de la estructura relacional
@@ -1189,7 +1244,7 @@
         }// color en atributo
         elseif( $tip == 'col' ){
           
-          if( $col = _dat::val_ver('col',$esq,$est,$atr) ){
+          if( $col = _app::dat_opc('col',$esq,$est,$atr) ){
             $_ = "<div"._htm::atr(_ele::cla($ele,"fon-{$col}-{$dat->$atr} alt-100 anc-100",'ini'))."></div>";
           }else{
             $_ = "<div class='err fon-roj' title='No existe el color para el atributo : _{$esq}-{$est}-{$atr}'>{$dat->$atr}</div>";
@@ -1202,7 +1257,7 @@
             $_ima['esq'] = $_ima_ide[0];
             $_ima['est'] = $_ima_ide[1];
           }
-          if( !empty($_ima) || !empty( $_ima = _dat::val_ver('ima',$esq,$est,$atr) ) ){
+          if( !empty($_ima) || !empty( $_ima = _app::dat_opc('ima',$esq,$est,$atr) ) ){
             
             $_ = _doc::ima($_ima['esq'],$_ima['est'],$dat->$atr,$ele);
           }
@@ -1265,7 +1320,7 @@
       // proceso estructura
       extract( _dat::ide($ide) );
 
-      $_fic = _dat::est_ope($esq,$est,'fic');
+      $_fic = _app::dat($esq,$est,'fic.val');
 
       if( isset($_fic->ide) ){ $_ .= 
 
@@ -1368,12 +1423,12 @@
       // busco valores
       if( isset($val) ) $val = _dat::get($esq,$est,$val);
       // busco atributos en : _dat.est.ope
-      if( empty($atr) ) $atr = _dat::est_ope($esq,$est,'fic_ima');
+      if( empty($atr) ) $atr = _app::dat($esq,$est,'fic.ima');
       $_ = "
       <ul class='val'>  
         <li><c>{</c></li>";        
         foreach( $atr as $atr ){
-          $_ima = _dat::val_ver('ima',$esq,$est,$atr); $_ .= "
+          $_ima = _app::dat_opc('ima',$esq,$est,$atr); $_ .= "
           <li class='mar_hor-1' data-esq='$esq' data-est='$est' data-atr='$atr' data-ima='{$_ima['ide']}'>
             ".( isset($val->$atr) ? _doc::ima($esq,"{$est}_{$atr}",$val->$atr,[ 'class'=>"tam-4" ]) : "" )."
           </li>";
@@ -1581,16 +1636,16 @@
           foreach( $est_lis as $est_ide ){
 
             // -> por dependencias ( est_atr )
-            foreach( ( !empty($dat_opc_est = _dat::est_ope($esq,$est_ide,'est')) ? $dat_opc_est : [ $est_ide ] ) as $est ){
+            foreach( ( !empty($dat_opc_est = _app::dat($esq,$est_ide,'est')) ? $dat_opc_est : [ $est_ide ] ) as $est ){
 
               // armo listado para aquellos que permiten filtros
-              if( $dat_opc_ver = _dat::est_ope($esq,$est,'ver') ){
+              if( $dat_opc_ver = _app::dat($esq,$est,'opc.ver') ){
                 // nombre de la estructura
                 $est_nom = _dat::est($esq,$est)->nom;                
                 $htm_lis = [];
                 foreach( $dat_opc_ver as $atr ){
                   // armo relacion por atributo
-                  $rel = _dat::atr_est($esq,$est,$atr);
+                  $rel = _dat::rel($esq,$est,$atr);
                   // busco nombre de estructura relacional
                   $rel_nom = _dat::est($esq,$rel)->nom;
                   // armo listado : form + table por estructura
@@ -1610,7 +1665,7 @@
       case 'est':
         if( isset($ope['ide']) ) $_ide = $ope['ide'];
         // armo relacion por atributo
-        $ide = !empty($atr) ? _dat::atr_est($esq,$est,$atr) : $est;
+        $ide = !empty($atr) ? _dat::rel($esq,$est,$atr) : $est;
         $_ = "
         <!-- filtros -->
         <form class='val'>
@@ -1630,7 +1685,7 @@
             $ide = isset($_var->ide) ? $_var->ide : $ide;
   
             if( !empty($atr) ){
-              $ima = !empty( $_ima = _dat::val_ver('ima',$esq,$est,$atr) ) ? _doc::ima($_ima['esq'], $_ima['est'], $ide, ['class'=>"tam-1 mar_der-1"]) : '';
+              $ima = !empty( $_ima = _app::dat_opc('ima',$esq,$est,$atr) ) ? _doc::ima($_ima['esq'], $_ima['est'], $ide, ['class'=>"tam-1 mar_der-1"]) : '';
             }
             else{
               $ima = _doc::ima($esq, $est, $ide, ['class'=>"tam-1 mar_der-1"]);
@@ -1943,6 +1998,7 @@
 
       return $_;
     }
+
   }
   // tablero : opciones + posiciones + secciones
   class _app_tab {

@@ -194,9 +194,9 @@
     CREATE VIEW `api`.`_hol_psi` AS 
       SELECT 
         _psi.*,
-        _kin.pag AS 'pag',
-        _kin.arm_tra_dia AS 'kin_sel',
-        _kin.nav_ond_dia AS 'kin_ton'
+        _kin.pag AS `pag`,
+        _kin.arm_tra_dia AS `kin_sel`,
+        _kin.nav_ond_dia AS `kin_ton`
       FROM 
         `api`.`hol_psi` _psi
       INNER JOIN 

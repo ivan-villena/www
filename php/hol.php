@@ -700,7 +700,7 @@
         }
         // por dependencias estructura
         else{
-          if( !empty( $dat_est = _dat::est("api","{$esq}_{$est}",'ope','est') ) ){
+          if( !empty( $dat_est = _app::dat("api","{$esq}_{$est}",'est') ) ){
 
             foreach( $dat_est as $atr => $ref ){
 
@@ -807,7 +807,7 @@
               && 
               !empty( $_dat = _dat::get($_ide['esq'],$_ide['est'],$e["{$_ide['esq']}-{$_ide['est']}"]) ) 
             ){
-              $col = _dat::val_ver('col', ...explode('.',$_val['pos_col']));
+              $col = _app::dat_opc('col', ...explode('.',$_val['pos_col']));
               if( isset($col['val']) ){
                 $col = $col['val'];
                 $val = ( $col == 1 && $_dat->{$_ide['atr']} > $col ) ?  0 : $_dat->{$_ide['atr']};
@@ -1129,7 +1129,7 @@
       $lis_tip = "val"; $lis_pos = 0;
       $ope = [ 'opc'=>['htm','cab_ocu'] ];
       switch( $atr ){
-      // plasma : años por oráculos de la profecía
+      // rinri : años por oráculos de la profecía
       case 'ani': 
         $ele['lis'] = ['class'=>"ite"];
         $ele['ite'] = ['class'=>"mar_aba-1"];      
@@ -1143,6 +1143,12 @@
         }
         $_ = _doc_lis::val($_,$ele);
         break;              
+      // atomo : plasmas con lineas de fuerza
+      case '': break;
+      // atomo : 6 tipos de electricidad
+      case '': break;
+      // atomo : 12 lineas de fuerza
+      case '': break;            
       }
       return is_array($_) ? _app_dat::lis( $_, "hol_rad_$atr", $lis_tip, $ele ) : $_;
     }
