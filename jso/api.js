@@ -1,11 +1,5 @@
 // WINDOW
 'use strict';
-// sistema
-const SYS_NAV = "http://localhost/";
-// operativas
-const DIS_OCU = "dis-ocu";
-const FON_SEL = "fon-sel";
-const BOR_SEL = "bor-sel";
 
 // Interface
 class _api {
@@ -50,6 +44,23 @@ class _api {
     return $_;
   }
 }
+// Usuario
+class _usu {
+
+  constructor( $dat ){
+    
+    // datos propios
+    if( !!$dat && typeof($dat)=='object' ){
+
+      for( const $atr in $dat ){
+
+        this[$atr] = $dat[$atr];
+      }
+    }
+  }
+
+}
+
 // Código HTML
 class _htm {
 
@@ -196,8 +207,7 @@ class _htm {
     </${$.eti}>` : ''}`;
     return $_;
   }  
-}
-// Modelo del Documento
+}// Modelo del Documento
 class _dom {
 
   static tog( $ele, $eti, $css, $ide, $cla='dis-ocu', $ope='cla_agr' ){  
@@ -422,6 +432,7 @@ class _dom {
     return $_;
   }
 }
+
 // Dato : esq.est[ide].atr
 class _dat {
 
@@ -578,8 +589,7 @@ class _dat {
 
     return $val;
   }
-}
-// Ejecucion : ( ...par ) => { ...cod } : val 
+}// Ejecucion : ( ...par ) => { ...cod } : val 
 class _eje {
 
   static val( $dat, $val ){
@@ -762,8 +772,84 @@ class _eje {
     return $_;
   }
 
-}
-// Elemento : <eti ...atr="val"> ...htm + ...tex </eti>
+}// Objeto : [ ...val ], [ ...nom => val ], { ...atr : val }
+class _obj {
+
+  // valores por atributo : ()($)atr()
+  static val( $dat, $val='' ){
+    let $_={},$={};
+    $_ = [];
+    $val.split(' ').forEach( $pal =>{ 
+      $.let=[];
+      $pal.split('()').forEach( $cad =>{ 
+        $.val = $cad;
+        if( $cad.substring(0,3)=='($)' ){ 
+          $.val = !!($dat[ $.atr = $cad.substring(3) ]) ? $dat[$.atr] : ''; 
+        }
+        $.let.push($.val );
+      });
+      $_.push($.let.join(''));
+    });
+    $_ = $_.join(' ');
+    return $_;
+  }  
+  // convierto : {}-[] => "..."
+  static cod( $dat ){
+  
+    let $_ = $dat;
+  
+    if( typeof($dat) == 'object' ){ 
+  
+      $_ = JSON.stringify($dat); 
+    }
+  
+    return $_;
+  }
+  // convierto : "..." => {}-[]
+  static dec( $dat, $ope ){
+  
+    let $_ = $dat;
+  
+    if( typeof($dat) == 'string' ){
+  
+      if( !!$ope && /\(\)\(\$\).+\(\)/.test($dat) ){
+        $dat = _obj.val($ope,$dat);
+      }
+      // json : {} + []
+      if( /^({|\[).*(}|\])$/.test($dat) ){ 
+  
+        $_ = JSON.parse($dat);
+      }
+      // valores textuales : ('v_1','v_2','v_3')
+      else if( /^\('*.*'*\)$/.test($dat) ){ 
+  
+        $_ = /','/.test($dat) ? $dat.substr(1,$dat.length-1).split("','") : [ $dat.trim().substr(1,$dat.length-1) ] ;      
+      }
+      // elemento del documento : "a_1(=)v_1(,,)a_2(=)v_2"
+      else if( /\(,,\)/.test($dat) && /\(=\)/.test($dat) ){
+        $dat.split('(,,)').forEach( $v => { 
+          $eti = $v.split('(=)'); 
+          $_[$eti[0]] = $eti[1]; 
+        });
+      }
+    }
+    return $_;
+  }
+  // valido tipos : pos | nom | atr
+  static tip( $dat ){
+  
+    let $_ = false;
+  
+    if( Array.isArray($dat) ){
+      $_ = "pos";
+    }
+    else if( !!$dat && typeof($dat)=='object' ){
+  
+      $_ = ( $dat.constructor.name == 'Object' ) ? "nom" : "atr";
+    }
+    return $_;
+  }
+}// Elemento : <eti ...atr="val"> ...htm + ...tex </eti>
 class _ele {
 
   // convierto
@@ -1173,84 +1259,6 @@ class _ele {
     return $_;
   }
 }
-// Objeto : [ ...val ], [ ...nom => val ], { ...atr : val }
-class _obj {
-
-  // valores por atributo : ()($)atr()
-  static val( $dat, $val='' ){
-    let $_={},$={};
-    $_ = [];
-    $val.split(' ').forEach( $pal =>{ 
-      $.let=[];
-      $pal.split('()').forEach( $cad =>{ 
-        $.val = $cad;
-        if( $cad.substring(0,3)=='($)' ){ 
-          $.val = !!($dat[ $.atr = $cad.substring(3) ]) ? $dat[$.atr] : ''; 
-        }
-        $.let.push($.val );
-      });
-      $_.push($.let.join(''));
-    });
-    $_ = $_.join(' ');
-    return $_;
-  }  
-  // convierto : {}-[] => "..."
-  static cod( $dat ){
-  
-    let $_ = $dat;
-  
-    if( typeof($dat) == 'object' ){ 
-  
-      $_ = JSON.stringify($dat); 
-    }
-  
-    return $_;
-  }
-  // convierto : "..." => {}-[]
-  static dec( $dat, $ope ){
-  
-    let $_ = $dat;
-  
-    if( typeof($dat) == 'string' ){
-  
-      if( !!$ope && /\(\)\(\$\).+\(\)/.test($dat) ){
-        $dat = _obj.val($ope,$dat);
-      }
-      // json : {} + []
-      if( /^({|\[).*(}|\])$/.test($dat) ){ 
-  
-        $_ = JSON.parse($dat);
-      }
-      // valores textuales : ('v_1','v_2','v_3')
-      else if( /^\('*.*'*\)$/.test($dat) ){ 
-  
-        $_ = /','/.test($dat) ? $dat.substr(1,$dat.length-1).split("','") : [ $dat.trim().substr(1,$dat.length-1) ] ;      
-      }
-      // elemento del documento : "a_1(=)v_1(,,)a_2(=)v_2"
-      else if( /\(,,\)/.test($dat) && /\(=\)/.test($dat) ){
-        $dat.split('(,,)').forEach( $v => { 
-          $eti = $v.split('(=)'); 
-          $_[$eti[0]] = $eti[1]; 
-        });
-      }
-    }
-    return $_;
-  }
-  // valido tipos : pos | nom | atr
-  static tip( $dat ){
-  
-    let $_ = false;
-  
-    if( Array.isArray($dat) ){
-      $_ = "pos";
-    }
-    else if( !!$dat && typeof($dat)=='object' ){
-  
-      $_ = ( $dat.constructor.name == 'Object' ) ? "nom" : "atr";
-    }
-    return $_;
-  }
-}
 // listado - tabla : []
 class _lis {
 
@@ -1344,8 +1352,7 @@ class _lis {
 
     return $_;
   }
-}
-// Archivo : fichero + texto + imagen + audio + video + app + ...tipos
+}// Archivo : fichero + texto + imagen + audio + video + app + ...tipos
 class _arc {  
 
   static val( $val ){ 
@@ -1421,8 +1428,7 @@ class _arc {
     return $;
   }
 
-}
-// Texto : caracter + letra + oracion + parrafo
+}// Texto : caracter + letra + oracion + parrafo
 class _tex {  
 
   static cod( $dat ){
@@ -1561,8 +1567,7 @@ class _tex {
     return $_;
   } 
 
-}
-// Numero : separador + operador + entero + decimal + rango
+}// Numero : separador + operador + entero + decimal + rango
 class _num {  
 
   static val( $dat, $tot ){
@@ -1758,8 +1763,7 @@ class _num {
       break;
     }
   }
-}
-// Fecha : aaaa-mm-dia hh:mm:ss utc
+}// Fecha : aaaa-mm-dia hh:mm:ss utc
 class _fec {
 
   static dec( $dat ){ 
@@ -1999,4 +2003,43 @@ class _fec {
     return $_;
   }  
 
+}// Holon : ns.ani.lun.dia:kin
+class _hol {
+
+  // getter
+  static _( $ide, $val ){
+    let 
+      $_ = [], 
+      $est = `hol_${$ide}`;
+    
+    if( $_api[$est] === undefined ){
+      // pido datos
+      // .. vuelvo a llamar esta funcion
+    }
+    if( !!($val) ){
+      $_ = $val;
+      switch( $ide ){
+      case 'fec':
+        // calculo fecha
+        break;
+      default:
+        if( typeof($val) != 'object' ){
+
+          if( Number($val) ) $val = parseInt($val)-1;
+
+          $_ = $_api[$est] && !!($_api[$est][$val]) ? $_api[$est][$val] : {};
+        }
+        break;
+      }
+    }
+    else{
+      $_ = $_api[$est] ? $_api[$est] : [];
+    }
+    return $_;
+  }
+  // imagen : _/hol
+  static ima( $est, $dat, $ele ){
+
+    return _doc.ima('api',`hol_${$est}`,$dat,$ele);
+  }
 }

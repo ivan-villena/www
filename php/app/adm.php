@@ -83,13 +83,13 @@
   
           "._doc_val::var('val','cod',[ 
             'ite'=>[ 'class'=>"tam-cre" ], 
-            'ope'=>[ '_tip'=>"tex_par", 'row'=>5, 'class'=>"anc-100 mar_der-1" ],
+            'ope'=>[ '_tip'=>"tex_ora", 'class'=>"anc-100 mar_der-1" ],
             'htm_fin'=>_doc::ico('dat_ope',[ 'eti'=>"button", 'type'=>"submit", 'onclick'=>"_adm('sql',this,'cod')" ])
           ])."
   
         </fieldset>
   
-        <div class='ope_res mar-1'>
+        <div class='ope_res mar-1' var='est' style='height: 47vh;'>
         </div>"
       ],
       'htm' => [ 'nom'=>"D.O.M.",

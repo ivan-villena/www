@@ -132,7 +132,7 @@ class _app {
       if( $_app.uri.cab == 'tab' ){
 
         // inicializo opciones por esquema : sec + pos + atr
-        if( $.cla_app = eval($.cla = `_${$_app.uri.esq}_app`) ){          
+        if( $.cla_app = eval($.cla = `_${$_app.uri.esq}_tab`) ){          
 
           _app_tab.ini();
 
@@ -143,7 +143,7 @@ class _app {
       
             if( $_app.tab.opc[$ope] ){
 
-              $.eje = `tab_${$ope}`;
+              $.eje = `_${$ope}`;
       
               $_app.tab.opc[$ope].querySelectorAll(`form[ide] [name][onchange*="${$.cla}.${$.eje}"]`).forEach( 
   
@@ -156,7 +156,7 @@ class _app {
   
             $_app.tab.opc.atr.querySelectorAll(`form[ide]`).forEach( $for => {
               
-              $.eje = `tab_${$for.getAttribute('ide')}`;
+              $.eje = `_${$for.getAttribute('ide')}`;
               
               $for.querySelectorAll(`[name][onchange*="${$.cla}.${$.eje}"]`).forEach( $inp => {
 
@@ -209,22 +209,19 @@ class _app {
     return $_.join('/');
   }
 
-  // datos
-  dat = null;
-  // valores : nombre, descripcion, titulo, imagen, color...
-  static dat_val( $esq, $est, $atr, $dat ) {
+  // datos : nombre, descripcion, titulo, imagen, color...
+  static dat( $esq, $est, $ope, $dat ) {
 
-    let $={}, $_ = false;
+    let $={}, $_ = $_api.app_dat[$esq][$est];
 
-    if( $_api.app_dat[$esq][$est].ope && ( $_ = $_api.app_dat[$esq][$est].ope.val ) ){
-      
-      $_ = $._val;
-      // valores variables ()($)...()
-      if( !!$atr ){
-        $_ = $._val[$atr];        
-        if( !!($dat) ) $_ = _obj.val( _dat.get($esq,$est,$dat), $_ );
-      }    
-    }
+    // cargo atributo
+    $.ope_atr = $ope.split('.');
+    $.ope_atr.forEach( $ide => {
+      $_ = ( typeof($_) == 'object' && !!($_[$ide]) ) ? $_[$ide] : false;
+    });
+
+    // proceso valores con datos
+    if( $_ && $.ope_atr[0] == 'val' && !!($dat) ) $_ = _obj.val( _dat.get($esq,$est,$dat), $_ );
 
     return $_;
   }// por seleccion : imagen, color...
@@ -237,7 +234,7 @@ class _app {
     if( !!($atr) ) $_['est'] = $atr == 'ide' ? $est : `${$est}_${$atr}`;
     
     // valido dato
-    if( !!( $.dat_Val = _app.dat_val($_['esq'],$_['est'],`opc.${$tip}`,$dat) ) ){
+    if( !!( $.dat_Val = _app.dat($_['esq'],$_['est'],`val.${$tip}`,$dat) ) ){
       $_['ide'] = `${$_['esq']}.${$_['est']}`;
       $_['val'] = $.dat_Val;
     }
@@ -316,44 +313,40 @@ class _app_dat {
   static val( $tip, $dat, $ope, ...$opc ){
 
     let $_ = "", $ = {};
-
+    // proceso estructura
     $ = _dat.ide($dat,$);
-
+    // cargo datos
     $.dat_var = _dat.get($.esq,$.est,$ope);
-    $.dat_val = $_api.dat_val[$.esq][$.est];
-
-    if( $.dat_val && typeof($.dat_var) == 'object' ){
-
-      if( $tip == 'tit' ){
-        $_ = _obj.val($.dat_var,$.dat_val.nom) + ( $.dat_val.des ? "\n"+_obj.val($.dat_var,$.dat_val.des) : '' );
-      }
-      else if( !!($.dat_val[$tip]) ){
-        $_ = _obj.val($.dat_var,$.dat_val[$tip]);  
-      }
-      if( $tip == 'ima' ){
-
-        $.ele = !!$opc[0] ? $opc[0] : {};
-
-        if( $.ele.title === undefined ){
-
-          $.ele.title = _app_dat.val('tit',`${$.esq}.${$.est}`,$.dat_var);
-        }
-        else if( $.ele.title === false ){
-
-          delete($.ele.title);
-        }        
-        $_ = _doc.ima( { 'style': $_ }, $.ele );
-      }
-      else if( !!$opc[0] ){
-        if( !($opc[0]['eti']) ){ 
-          $opc[0]['eti'] = 'p'; 
-        }
-        $opc[0]['htm'] = _doc.let($_);
-        $_ = _htm.val($opc[0]);
-      }
+    // cargo valores
+    $.dat_val = _app.dat($.esq,$.est,'val');
+    
+    // armo titulo : nombre <br> detalle
+    if( $tip == 'tit' ){
+      $_ = _obj.val($.dat_var,$.dat_val.nom) + ( $.dat_val.des ? "\n"+_obj.val($.dat_var,$.dat_val.des) : '' );
     }
-    else{
-      $_ = `<span ima='' title='error de ficha: ${ !$.dat_val ? ` para el dato ${$.esq}.${$.est}` : ` no existe el objeto asociado` }'></span>`;
+    else if( !!($.dat_val[$tip]) ){
+      $_ = _obj.val($.dat_var,$.dat_val[$tip]);  
+    }
+    // armo ficha
+    if( $tip == 'ima' ){
+
+      $.ele = !!$opc[0] ? $opc[0] : {};
+
+      if( $.ele.title === undefined ){
+
+        $.ele.title = _app_dat.val('tit',`${$.esq}.${$.est}`,$.dat_var);
+      }
+      else if( $.ele.title === false ){
+
+        delete($.ele.title);
+      }        
+      $_ = _doc.ima( { 'style': $_ }, $.ele );
+    }
+    else if( !!$opc[0] ){
+      
+      if( !($opc[0]['eti']) ) $opc[0]['eti'] = 'p'; 
+      $opc[0]['htm'] = _doc.let($_);
+      $_ = _htm.val($opc[0]);
     }
 
     return $_;

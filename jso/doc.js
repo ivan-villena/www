@@ -122,6 +122,7 @@ class _doc {
     return $_;
   }
 }
+
 // contenedor
 class _doc_val {  
     
@@ -225,8 +226,7 @@ class _doc_val {
       }
     }
   }
-}
-// Listado
+}// Listado
 class _doc_lis {
 
   // punteos, numeraciones, y términos
@@ -511,9 +511,11 @@ class _doc_lis {
       if( $.ite = $.lis.querySelector(`li[data-pos="${$.pos}"]`) ) $.ite.classList.remove(DIS_OCU);
     }
   }
+}// Tabla
+class _doc_est {
 
   // tabla
-  static tab( $dat, $ele, ...$opc ){
+  static lis( $dat, $ele, ...$opc ){
     let $ = {};
 
     // 1- cabecera
@@ -548,8 +550,10 @@ class _doc_lis {
     $.tab.appendChild($.tab_dat);
 
     return $.tab;
-  } 
+  }
+
 }
+
 // Opcion
 class _doc_opc {
 
@@ -659,8 +663,7 @@ class _doc_opc {
     }
     return $_;
   }  
-}
-// Número
+}// Número
 class _doc_num {
   
   // operadores
@@ -703,8 +706,7 @@ class _doc_num {
       }      
     }
   }
-}
-// Texto
+}// Texto
 class _doc_tex {
 
   static ope( $tip, $dat, $ope, ...$opc ){
@@ -716,8 +718,7 @@ class _doc_tex {
 
     return $_;      
   }    
-}
-// Figura
+}// Figura
 class _doc_fig {
 
   static ope( $tip, $dat, $ope, ...$opc ){
@@ -729,8 +730,7 @@ class _doc_fig {
 
     return $_;      
   }    
-}
-// Fecha
+}// Fecha
 class _doc_fec {
 
   static ope( $tip, $dat, $ope, ...$opc ){
@@ -743,6 +743,7 @@ class _doc_fec {
     return $_;      
   }    
 }
+
 // Archivo
 class _doc_arc {
 
@@ -755,8 +756,7 @@ class _doc_arc {
 
     return $_;      
   }    
-}
-// Objeto
+}// Objeto
 class _doc_obj {
 
   // operadores
@@ -791,8 +791,7 @@ class _doc_obj {
     return $_;      
   }
   // 
-}
-// Ejecucion
+}// Ejecucion
 class _doc_eje {
 
   static ope( $tip, $dat, $ope, ...$opc ){
@@ -805,8 +804,7 @@ class _doc_eje {
     return $_;      
   }
 
-}
-// Elemento
+}// Elemento
 class _doc_ele {
 
   // operadores

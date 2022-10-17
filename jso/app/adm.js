@@ -81,7 +81,7 @@ function _adm( $tip, $dat, $val, ...$opc ){
         // pido tabla
         if( Array.isArray($res) ){
 
-          $.res.appendChild( _doc_lis.tab($res) );
+          $.res.appendChild( _doc_est.lis($res) );
         }// errores: html
         else if( typeof($res)=='object' ){
 

@@ -35,8 +35,6 @@
   require_once("php/api.php");
   $_api = new _api();
   
-  // cargo usuario  
-  require_once("php/usu.php");
   $_usu = new _usu( $_SESSION['usu'] );
    
   // peticion AJAX
@@ -67,7 +65,7 @@
   else{
 
     // cargo modulos
-    foreach( ['doc','app','hol'] as $cla ){ 
+    foreach( ['doc','app'] as $cla ){ 
 
       require_once("php/$cla.php");
     }
