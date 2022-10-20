@@ -5,19 +5,19 @@
     // peticion
     public object $uri;
     // recursos
-    public array $rec;
+    public array  $rec;
     // elementos
-    public array $ele;
+    public array  $ele;
     // pagina
     public object $esq;
     // menu
     public object $cab;
     // articulo
     public object $art;
-    // operador: botones + contenido
-    public array $ope = [];
+    // operador
+    public array  $ope;
     // documento
-    public array $doc = [];
+    public array  $doc;
 
     // cargo aplicacion ( por defecto: sincronario )
     function __construct( string $esq = 'hol' ){
@@ -724,7 +724,7 @@
         $this->val = $_val[1];  
       }
       else{          
-        $this->val = !empty($dat[3]) ? $dat[3] : FALSE;
+        $this->val = !empty($uri[3]) ? $uri[3] : FALSE;
       }
       
       global $_api;
@@ -2123,26 +2123,17 @@
   class _app_tab {
 
     static array $OPE = [
-      'opc' => [ 'ide'=>"opc", 'ico'=>"opc_bin", 'nom'=>"Opciones del Tablero",
-        'des'=>"" 
-      ],
-      'val' => [ 'ide'=>"val", 'ico'=>"lis_est", 'nom'=>"Elementos del Tablero",
-        'des'=>"" 
-      ],
-      'cue' => [ 'ide'=>"cue", 'ico'=>"lis_nav", 'nom'=>"Códigos y Cuentas",
-        'des'=>"" 
-      ],      
-      'lis' => [ 'ide'=>"lis", 'ico'=>"lis_ite", 'nom'=>"Listado de Posiciones", 
-        'des'=>""
-      ]
+      'opc' => [ 'ide'=>"opc", 'ico'=>"opc_bin", 'nom'=>"Opciones", 'des'=>"" ],
+      'val' => [ 'ide'=>"val", 'ico'=>"lis_est", 'nom'=>"Datos",    'des'=>"" ],
+      'cue' => [ 'ide'=>"cue", 'ico'=>"lis_nav", 'nom'=>"Cuentas",  'des'=>"" ],      
+      'lis' => [ 'ide'=>"lis", 'ico'=>"lis_ite", 'nom'=>"Listado",  'des'=>"" ]
     ];
     static array $ATR = [
-      // joins por estructuras
-      'est'=>[],
-      // elementos del tablero
-      'dat'=>[],
-      // operador de valores
-      'val'=>[ 'acu'=>[], 'pos'=>[] ]
+      'est'=>[],// joins      
+      'dat'=>[],// datos
+      'val'=>[  // valores
+        'acu'=>[], 'pos'=>[], 'mar'=>[], 'ver'=>[], 'opc'=>[] 
+      ]
     ];
     static string $IDE = "_app_tab-";
     static string $EJE = "_app_tab.";

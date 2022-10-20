@@ -55,12 +55,8 @@ body > aside.nav > :is(nav,article)[ide] > header + * {
   /* padding: 0 .5rem; */
 }
 
-/* Menù principal */
-body > aside.nav > [ide="cab"] ul.lis.nav {
-  height: 70vh;
-}
-/* índices */
-body > aside.nav > [ide="art"] ul.lis.nav {
+/* Menù principal e índices */
+body > aside.nav > :is([ide="cab"],[ide="art"]) ul.lis.nav {
   height: 85vh;
 }
 

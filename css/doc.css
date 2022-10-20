@@ -679,6 +679,7 @@ ul.bar {
 }
 ul.bar li[data-pos] {
   overflow: auto;
+  width: 100%;
 }
 
 /*////////////////////////////////*/

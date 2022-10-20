@@ -132,7 +132,7 @@ class _app {
       if( $_app.uri.cab == 'tab' ){
 
         // inicializo opciones por esquema : sec + pos + atr
-        if( $.cla_app = eval($.cla = `_${$_app.uri.esq}_tab`) ){          
+        if( $.cla_app = eval($.cla = `_${$_app.uri.esq}_tab`) ){
 
           _app_tab.ini();
 
@@ -165,9 +165,6 @@ class _app {
             });
           }
         }
-
-        // muestro panel : opciones
-        _app_ope.nav('opc');
       }
       // inicializo indice por artículo
       else if( $_app.uri.art && ( $.art_nav = $_app.ope.nav.querySelector('nav[ide="art"] ul.lis.nav') ) ){          

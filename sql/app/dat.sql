@@ -63,14 +63,14 @@
           ]
         }
     }' ),
-    ( 'api', 'hol_rad_hep', '{ 
+    ( 'api', 'hol_rad_pla_cub', '{ 
         "val": {
-          "ima": "background: center/contain no-repeat url(http://localhost/_/hol/ima/rad/hep/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://localhost/_/hol/ima/rad/pla_cub/()($)ide().png);",
           "col": 4
         }
     }' ),
     -- plasma: energía cósmica
-    ( 'api', 'hol_rad_pla_car', '{ 
+    ( 'api', 'hol_rad_pla_pol', '{ 
         "val": {
           "nom": "Carga #()($)ide() de 2: ()($)nom().",
           "ima": "background: center/contain no-repeat url(http://localhost/_/hol/ima/rad/pla_car/()($)ide().png);"
@@ -78,7 +78,7 @@
     }' ),      
     ( 'api', 'hol_rad_pla_ele',     '{
         "val": {
-          "nom": "Tipo de Electricidad Cósmica #()($)ide() de 6: ()($)nom().",
+          "nom": "Tipo de Electricidad Cósmica #()($)ide() de 6: ()($)nom() - ()($)cod().",
           "ima": "background: center/contain no-repeat url(http://localhost/_/hol/ima/rad/pla_ele/()($)ide().png);"                      
         },
         "opc": {
@@ -687,6 +687,23 @@
         "atr": {
           "ide": { "min":1, "max":16, "dat":"api.hol_lun_tel_cub" }
         }
+    }' ),
+    -- Atomo del Tiempo    
+    ( 'api', 'hol_lun_pla_ato', '{
+      "val": {
+        "nom": "Atomo del Tiempo #()($)ide() de 4. ()($)nom()",
+        "des": "()($)des()",
+        "ima": "background: center/contain no-repeat url(http://localhost/_/hol/ima/lun/pla_ato/()($)ide().png);",
+        "col": 4
+      }
+    }' ),
+    ( 'api', 'hol_lun_pla_tet', '{
+      "val": {
+        "nom": "Tetraedro #()($)ide() de 2. ()($)nom()",
+        "des": "()($)des()",
+        "ima": "background: center/contain no-repeat url(http://localhost/_/hol/ima/lun/pla_tet/()($)ide().png);",
+        "col": 2
+      }
     }' )
   ;
   DELETE FROM `api`.`app_dat` WHERE `esq`='api' AND `ide` LIKE 'hol_cas%'; INSERT INTO `api`.`app_dat` VALUES
@@ -694,7 +711,8 @@
     ( 'api', 'hol_cas', '{
         "val": {
           "nom": "Posicion #()($)ide() de 52.",
-          "des": "Cuadrante #()($)arm() de 4; Tono Galáctico #()($)ton() de 13; Onda de la Aventura #()($)ond() de 4."
+          "des": "Cuadrante #()($)arm() de 4; Tono Galáctico #()($)ton() de 13; Onda de la Aventura #()($)ond() de 4.",
+          "ima": "background: center/contain no-repeat url(http://localhost/_/hol/ima/ton/arm/()($)arm().png), center/contain no-repeat url(http://localhost/_/hol/ima/ton/()($)ton().png);"
         },
         "atr": {
           "ide": { "min":1, "max":52, "dat":"api.hol_cas" },
@@ -766,7 +784,7 @@
           "ima": "background: center/contain no-repeat url(http://localhost/_/hol/ima/chi/tri/()($)ide().png);"
         }
     }' )     
-  ;    
+  ;
   DELETE FROM `api`.`app_dat` WHERE `esq`='api' AND `ide` LIKE 'hol_kin%'; INSERT INTO `api`.`app_dat` VALUES
 
     ( 'api', 'hol_kin', '{

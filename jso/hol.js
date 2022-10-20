@@ -18,6 +18,8 @@ class _hol_app {
         ? '.pos > [tab="uni_par"] > [pos]' 
         : '.pos'
       ;
+      // muestro panel
+      _app_ope.nav('dia');
     }
   }
 }
@@ -95,18 +97,38 @@ class _hol_art {
 // Valores
 class _hol_val {
 
+  // Actualizo acumulados
+  static acu( $ope ){
+
+    let $ = _doc_val.var($ope);
+
+    // portales + parejas + pulsares
+    $.ide = $_app.var.getAttribute('ide');
+    
+    // Actualizo total por item
+    if( $ope.nextElementSibling && ( $.tot = $ope.nextElementSibling.querySelector('n') ) ){
+
+      $.tot.innerHTML = $_app.tab.lis.querySelectorAll(`._hol-${$.ide}_${$.var_ide}`).length;
+    }    
+    // Actualizo total general
+    if( $.tot = $_app.var.querySelector('div.atr > [name="cue"]') ){
+
+      $.tot.innerHTML = $_app.tab.lis.querySelectorAll(`[class*="_hol-${$.ide}_"]`).length;
+    }
+
+    // Actualizo operador de acumulados
+    _app_tab.act('opc');
+  }
+}
+// Tableros
+class _hol_tab {
+
   // proceso valores
-  static fec( $dat ){
+  static _val( $dat ){
     // operador : fecha + sincronario
     let $ = _doc_val.var($dat);
-
-    if( !$_api.app_uri.cab || !['tab','inf'].includes($_api.app_uri.cab) ){
-      $_api.app_uri.cab = 'tab';
-      $_api.app_uri.art = 'kin-tzo';
-    }
     
     $.uri = _app.uri_val();
-
     // calendario gregoriano
     if( ( $.ope = $_app.var.getAttribute('ide') ) == 'fec' ){
       
@@ -142,33 +164,8 @@ class _hol_val {
         alert('La fecha del sincronario es inválida...')
       }
     }
-  }
-  // Actualizo acumulados
-  static acu( $ope ){
-
-    let $ = _doc_val.var($ope);
-
-    // portales + parejas + pulsares
-    $.ide = $_app.var.getAttribute('ide');
     
-    // Actualizo total por item
-    if( $ope.nextElementSibling && ( $.tot = $ope.nextElementSibling.querySelector('n') ) ){
-
-      $.tot.innerHTML = $_app.tab.lis.querySelectorAll(`._hol-${$.ide}_${$.var_ide}`).length;
-    }    
-    // Actualizo total general
-    if( $.tot = $_app.var.querySelector('div.atr > [name="cue"]') ){
-
-      $.tot.innerHTML = $_app.tab.lis.querySelectorAll(`[class*="_hol-${$.ide}_"]`).length;
-    }
-
-    // Actualizo operador de acumulados
-    _app_tab.act('opc');
   }
-}
-// Tableros
-class _hol_tab {
-
   // Secciones por tablero
   static _sec( $dat, $ope, ...$opc ){
 
