@@ -19,7 +19,7 @@ class _hol_app {
         : '.pos'
       ;
       // muestro panel
-      _app_ope.nav('dia');
+      _app_ope.pan('dia');
     }
   }
 }

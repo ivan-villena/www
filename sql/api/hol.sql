@@ -3,26 +3,30 @@
 -- HOLON
   --
   -- x7 : plasma radial
-    DROP VIEW IF EXISTS `api`.`_hol_rad`; 
-    CREATE VIEW `api`.`_hol_rad` AS
+    DROP VIEW IF EXISTS `api`.`_hol_rad`; CREATE VIEW `api`.`_hol_rad` AS
       SELECT 
         _rad.*,
-        _hep.ide AS `hep`,
-        _hep.pos AS `hep_pos`,
         _cha.nom as `cha_nom`
       FROM 
         `api`.`hol_rad` _rad
-      INNER JOIN 
-        `api`.`hol_rad_hep` _hep ON _rad.ide = _hep.ide
       INNER JOIN 
         `api`.`hol_rad_hum_cha` _cha ON _rad.hum_cha = _cha.ide
       ORDER BY
         _rad.ide ASC
     ;
+    DROP VIEW IF EXISTS `api`.`_hol_rad_pla_cub`; CREATE VIEW `api`.`_hol_rad_pla_cub` AS
+      SELECT 
+        _cub.*,
+        _rad.pla_cub_pos AS `nom`,
+        _rad.nom         AS `pla`        
+      FROM 
+        `api`.`hol_rad_pla_cub` _cub
+      INNER JOIN 
+        `api`.`hol_rad` _rad ON _rad.ide = _cub.ide
+    ;
   --
   -- x20 : sello solar
-    DROP VIEW IF EXISTS `api`.`_hol_sel`; 
-    CREATE VIEW `api`.`_hol_sel` AS
+    DROP VIEW IF EXISTS `api`.`_hol_sel`; CREATE VIEW `api`.`_hol_sel` AS
       SELECT 
         _sel.*,
         _dir.nom     AS `cic_dir`,
@@ -46,8 +50,7 @@
         _sel.ide ASC
     ;
     -- código 0-19...
-    DROP VIEW IF EXISTS `api`.`_hol_sel_cod`; 
-    CREATE VIEW `api`.`_hol_sel_cod` AS
+    DROP VIEW IF EXISTS `api`.`_hol_sel_cod`; CREATE VIEW `api`.`_hol_sel_cod` AS
       SELECT
         _sel.*
       FROM 
@@ -56,8 +59,7 @@
         _sel.ord ASC
     ;
     -- parejas analogas
-    DROP VIEW IF EXISTS `api`.`_hol_sel_par_ana`;
-    CREATE VIEW `api`.`_hol_sel_par_ana` AS
+    DROP VIEW IF EXISTS `api`.`_hol_sel_par_ana`;CREATE VIEW `api`.`_hol_sel_par_ana` AS
       SELECT
         _ana.ini,
         _ini.nom AS `ini_nom`,
@@ -75,8 +77,7 @@
         `api`.`hol_sel` _fin ON _ana.fin = _fin.ide        
     ;
     -- parejas antípodas
-    DROP VIEW IF EXISTS `api`.`_hol_sel_par_ant`;
-    CREATE VIEW `api`.`_hol_sel_par_ant` AS
+    DROP VIEW IF EXISTS `api`.`_hol_sel_par_ant`;CREATE VIEW `api`.`_hol_sel_par_ant` AS
       SELECT
         _ant.ini,
         _ini.nom AS `ini_nom`,
@@ -94,8 +95,7 @@
         `api`.`hol_sel` _fin ON _ant.fin = _fin.ide        
     ;
     -- parejas oculas
-    DROP VIEW IF EXISTS `api`.`_hol_sel_par_ocu`;
-    CREATE VIEW `api`.`_hol_sel_par_ocu` AS
+    DROP VIEW IF EXISTS `api`.`_hol_sel_par_ocu`;CREATE VIEW `api`.`_hol_sel_par_ocu` AS
       SELECT
         _ocu.ini,
         _ini.nom AS `ini_nom`,
@@ -115,8 +115,7 @@
   --
   -- x52 : Castillo fractal-galactico
     -- onda de la aventura
-    DROP VIEW IF EXISTS `api`.`_hol_cas_ond`; 
-    CREATE VIEW `api`.`_hol_cas_ond` AS
+    DROP VIEW IF EXISTS `api`.`_hol_cas_ond`; CREATE VIEW `api`.`_hol_cas_ond` AS
       SELECT 
         _ond.*
       FROM 
@@ -127,8 +126,7 @@
   --
   -- x260 : Kin  
     -- trayectorias armónicas
-    DROP VIEW IF EXISTS `api`.`_hol_kin_arm_tra`; 
-    CREATE VIEW `api`.`_hol_kin_arm_tra` AS
+    DROP VIEW IF EXISTS `api`.`_hol_kin_arm_tra`; CREATE VIEW `api`.`_hol_kin_arm_tra` AS
       SELECT 
         _tra.*,
         _ton.des as `ton_des`
@@ -138,8 +136,7 @@
         `api`.`hol_ton` _ton ON _tra.ide = _ton.ide
     ;    
     -- estacion galáctica
-    DROP VIEW IF EXISTS `api`.`_hol_kin_cro_est`; 
-    CREATE VIEW `api`.`_hol_kin_cro_est` AS
+    DROP VIEW IF EXISTS `api`.`_hol_kin_cro_est`; CREATE VIEW `api`.`_hol_kin_cro_est` AS
       SELECT 
         _est.*,
         _cic.nom as `cer`,
@@ -159,8 +156,7 @@
         `api`.`hol_sel` _sel ON _cic.sel = _sel.ide    
     ;
     -- ondas de las estaciones galácticas
-    DROP VIEW IF EXISTS `api`.`_hol_kin_cro_ond`; 
-    CREATE VIEW `api`.`_hol_kin_cro_ond` AS
+    DROP VIEW IF EXISTS `api`.`_hol_kin_cro_ond`; CREATE VIEW `api`.`_hol_kin_cro_ond` AS
       SELECT 
         _cro.*, 
         _ond.nom,
@@ -171,8 +167,7 @@
         `api`.`hol_ton_ond` _ond ON _cro.ide = _ond.ide
     ;
     -- elemento galáctico
-    DROP VIEW IF EXISTS `api`.`_hol_kin_cro_ele`; 
-    CREATE VIEW `api`.`_hol_kin_cro_ele` AS
+    DROP VIEW IF EXISTS `api`.`_hol_kin_cro_ele`; CREATE VIEW `api`.`_hol_kin_cro_ele` AS
       SELECT 
         _ele.*,
         _cas.des AS `cas_des`,
@@ -191,8 +186,7 @@
   --
   -- x365 : Banco-psi
     -- psi-cronos
-    DROP VIEW IF EXISTS `api`.`_hol_psi`; 
-    CREATE VIEW `api`.`_hol_psi` AS 
+    DROP VIEW IF EXISTS `api`.`_hol_psi`; CREATE VIEW `api`.`_hol_psi` AS 
       SELECT 
         _psi.*,
         _kin.pag AS `pag`,
@@ -204,8 +198,7 @@
         `api`.`hol_kin` _kin ON _kin.ide = _psi.tzo
     ;
     -- 13 lunas del giro solar
-    DROP VIEW IF EXISTS `api`.`_hol_psi_lun`; 
-    CREATE VIEW `api`.`_hol_psi_lun` AS 
+    DROP VIEW IF EXISTS `api`.`_hol_psi_lun`; CREATE VIEW `api`.`_hol_psi_lun` AS 
       SELECT 
         _lun.*,         
         _ton.ide AS `ton`,
@@ -231,8 +224,7 @@
         `api`.`hol_ton` _ton ON _lun.ide = _ton.ide
     ;
     -- 52 heptadas del giro solar
-    DROP VIEW IF EXISTS `api`.`_hol_psi_hep`; 
-    CREATE VIEW `api`.`_hol_psi_hep` AS
+    DROP VIEW IF EXISTS `api`.`_hol_psi_hep`; CREATE VIEW `api`.`_hol_psi_hep` AS
       SELECT 
         _hep.*, 
         _cas.ond AS `ond`, 
@@ -255,8 +247,7 @@
     ;
   --
   -- x250x365 : anillos del encantamiento
-    DROP VIEW IF EXISTS `api`.`_hol_ani`; 
-    CREATE VIEW `api`.`_hol_ani` AS 
+    DROP VIEW IF EXISTS `api`.`_hol_ani`; CREATE VIEW `api`.`_hol_ani` AS 
       SELECT 
         _ani.ide, 
         _kin.nom, 

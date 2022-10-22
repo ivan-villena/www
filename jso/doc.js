@@ -199,7 +199,7 @@ class _doc_val {
       
       $.ite = $dat.parentElement;
       if( 
-        ( $.bot = $.ite.querySelector('.ico[ide="val_tog"]') ) 
+        ( $.bot = $.ite.querySelector('[ico="val_tog"]') ) 
         && ( $.sec = $.ite.nextElementSibling )
       ){        
       
@@ -222,7 +222,7 @@ class _doc_val {
 
         $.cla = ( $ope == 'tod' ) ? `.ocu` : `:not(.ocu)`;
               
-        $.lis.querySelectorAll(`.val > .ico[ide="val_tog"]${$.cla}`).forEach( $e => $e.click() );
+        $.lis.querySelectorAll(`.val > [ico="val_tog"]${$.cla}`).forEach( $e => $e.click() );
       }
     }
   }
@@ -390,7 +390,7 @@ class _doc_lis {
       }
       
       // actualizo toggle
-      if( $.tog[1] && ( $.ico = $_app.var.querySelector(`.ico[ide="val_tog-${$.tog[1]}"]`) ) ){
+      if( $.tog[1] && ( $.ico = $_app.var.querySelector(`[ico="val_tog-${$.tog[1]}"]`) ) ){
         
         _doc_val.tog($.ico,$.tog[1]);
       }            
@@ -429,7 +429,7 @@ class _doc_lis {
       }
 
       // pinto fondo
-      if( !( $.bot = $dat.parentElement.querySelector('.ico') ) || !$.bot.classList.contains('ocu') ){
+      if( !( $.bot = $dat.parentElement.querySelector('[ico]') ) || !$.bot.classList.contains('ocu') ){
 
         $dat.parentElement.classList.add($cla);
       }
@@ -449,7 +449,7 @@ class _doc_lis {
         && 
         ( $.nav = $.val.querySelector('a[href^="#"]') )
       ){
-        if( $.lis.classList.contains(DIS_OCU) && ( $.ico = $.nav.previousElementSibling ) && $.ico.classList.contains('ico') ){                
+        if( $.lis.classList.contains(DIS_OCU) && ( $.ico = $.nav.previousElementSibling ) && $.ico.getAttribute('ico') ){                
           _doc_val.tog($.ico);
         }                
       }

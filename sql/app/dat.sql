@@ -40,7 +40,8 @@
           "tel_ora":     { "min":1997, "max":1999, "dat":"api.fec_año" },
           "tel_ora_año": { "min":1, "max":260, "dat":"api.hol_kin" },
           "tel_ora_ani": { "min":1, "max":260, "dat":"api.hol_kin" },
-          "tel_ora_gen": { "min":1, "max":260, "dat":"api.hol_kin" },            
+          "tel_ora_gen": { "min":1, "max":260, "dat":"api.hol_kin" },
+          "pla_cub":     { "min":1, "max":7, "dat":"api.hol_rad_pla_cub" },
           "pla_fue_pre": { "min":1, "max":12, "dat":"api.hol_rad_pla_fue" },
           "pla_fue_pos": { "min":1, "max":12, "dat":"api.hol_rad_pla_fue" },          
           "hum_cha":     { "min":1, "max":7, "dat":"api.hol_rad_hum_cha" }
@@ -50,13 +51,13 @@
             "ide", "pla_qua" 
           ],
           "ima": [
-            "ide", "hep", 
+            "ide", 
             "tel_ora_año", "tel_ora_ani", "tel_ora_gen", 
-            "pla_fue_pre", "pla_fue_pos", "pla_qua", 
+            "pla_cub", "pla_fue_pre", "pla_fue_pos", "pla_qua", 
             "hum_cha"
           ],
           "col": [
-            "hep", "pla_qua"
+            "pla_qua"
           ],
           "num": [ 
             "ide", "pla_qua" 
@@ -65,6 +66,8 @@
     }' ),
     ( 'api', 'hol_rad_pla_cub', '{ 
         "val": {
+          "nom": "Plasma #()($)ide() de 7: ()($)pla().",
+          "tit": "()($)nom()",
           "ima": "background: center/contain no-repeat url(http://localhost/_/hol/ima/rad/pla_cub/()($)ide().png);",
           "col": 4
         }
@@ -659,7 +662,7 @@
     ( 'api', 'hol_lun_arm', '{  
         "val": {
           "nom": "Armonía lunar ()($)ide()",
-          "des": "()($)ide()",
+          "des": "()($)nom(), ()($)col(). ()($)dia(): ()($)des()",
           "ima": "background: center/contain no-repeat url(http://localhost/_/hol/ima/rad.png), center/contain no-repeat url(http://localhost/_/hol/ima/arm/()($)ide().png);",
           "col": 4
         },

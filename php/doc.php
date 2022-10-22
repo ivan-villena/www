@@ -13,10 +13,10 @@
         if( $ele['eti'] == 'button' ){
           if( empty($ele['type']) ) $ele['type'] = "button";
         }
-        $ele['ide'] = $ide;
+        $ele['ico'] = $ide;
         $htm = $_ico[$ide]->val;
         $_ = "
-        <{$ele['eti']}"._htm::atr(_ele::cla($ele,"ico material-icons-outlined",'ini')).">
+        <{$ele['eti']}"._htm::atr(_ele::cla($ele,"material-icons-outlined",'ini')).">
           {$htm}
         </{$ele['eti']}>";
       }
@@ -113,7 +113,6 @@
       return $_;
     }
   }
-
   // Contenedor
   class _doc_val {
 
@@ -413,45 +412,10 @@
         "._doc::ico('val_tog-nad', [ 'eti'=>"button", 'class'=>"tam-2", 'title'=>"Contraer todos...", 'onclick'=>$_eje_val."'nad');", 'style'=>"transform: rotate(180deg);" ] )."
       </fieldset>";
     }
-  }// Listado
+  }
+  // Listado
   class _doc_lis {
 
-    static array $TAB = [
-      // identificador : esq.est
-      'ide'=>"",
-      // opciones
-      'opc'=>[
-        'cab_ocu',  // ocultar cabecera de columnas
-        'ite_ocu',  // oculto items: en titulo + detalle
-        'det_cit',  // en detalle: agrego comillas
-        'ima',      // buscar imagen para el dato
-        'var',      // mostrar variable en el dato
-        'htm'       // convertir texto html en el dato
-      ],
-      // columnas del listado
-      'atr'=>[],
-      'atr_tot'=>0,// columnas totales
-      'atr_ocu'=>[],// columnas ocultas
-      'atr_dat'=>[],// datos de las columnas
-      // estructuras por esquema => [ ...$esq =>[ ...$est ] ]
-      'est'=>[],
-      'est_dat'=>[],// datos y operadores por estructura
-      // filas: valores por estructura [...{...$}]
-      'dat'=>[],
-      'dat_ite'=>[],// titulos + detalles
-      'dal_val'=>[],// datos por fila
-      // Valores : acumulado + posicion principal
-      'val'=>[ 'acu'=>[], 'pos'=>[] ],
-      // titulos: por base {'cic','gru','des'} o por operador [$pos]
-      'tit'=>[],
-      'tit_cic'=>[],// titulos por ciclos
-      'tit_gru'=>[],// titulos por agrupaciones
-      // detalles: por base {'cic','gru','des'} o por operador [$pos]
-      'det'=>[],
-      'det_cic'=>[],// detalle por ciclos
-      'det_gru'=>[],// detalle por agrupaciones
-      'det_des'=>[] // detalle por descripciones
-    ];
     static string $IDE = "_doc_lis-";
     static string $EJE = "_doc_lis.";
         
@@ -908,7 +872,8 @@
       </li>";        
       return $_;
     }
-  }// Tabla
+  }
+  // Tabla
   class _doc_est {
 
     static string $IDE = "_doc_est-";

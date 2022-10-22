@@ -38,25 +38,25 @@ body > aside.bot {
 /* 
   nagegadores 
 */
-body > aside.nav {
+body > aside.pan {
   grid-column: 2;
 }
-body > aside.nav > :is(nav,article)[ide] {
+body > aside.pan > :is(nav,article)[ide] {
   width: 450px;
 }
-body > aside.nav > :is(nav,article)[ide] > header {
+body > aside.pan > :is(nav,article)[ide] > header {
   display: flex;
   justify-content: space-between;
   padding: .5rem;
 }
-body > aside.nav > :is(nav,article)[ide] > header + * {
+body > aside.pan > :is(nav,article)[ide] > header + * {
   max-height: 92.5vh;
   overflow: auto;
   /* padding: 0 .5rem; */
 }
 
 /* Menù principal e índices */
-body > aside.nav > :is([ide="cab"],[ide="art"]) ul.lis.nav {
+body > aside.pan > :is([ide="cab"],[ide="art"]) ul.lis.nav {
   height: 85vh;
 }
 
@@ -117,7 +117,7 @@ body > main > article section > figure {
 /* 
   sidebar 
 */
-body > aside.pan {
+body > aside.bar {
   grid-row: 1;
   grid-column: 4;
   overflow: auto;
@@ -300,7 +300,7 @@ table[tab] td:is([sec],[pos]) > [ima] {
     padding: 0 1rem;
   }
 
-  body > aside.nav {
+  body > aside.pan {
     z-index: 9999;
     position: absolute;
     left: 2rem;

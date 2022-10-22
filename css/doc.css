@@ -201,7 +201,7 @@ button {
 }
 
 /* Focos */
-:is(input,select,button:not(.ico)):focus {
+:is(input,select,button:not([ico])):focus {
   background-color: var(--tra_azu);
 }
 :is(input,select,textarea):focus {
@@ -245,7 +245,7 @@ img {
   height: auto;
 }
 
-.ico, 
+[ico], 
 [ima] {
   background-color: var(--col_tra);
   padding: 0;
@@ -254,25 +254,25 @@ img {
 }
 
 /* Iconos */
-.ico[class*='material-icons-']{
+[ico][class*='material-icons-']{
   color: #ccc0b0;
   font-size: 1.5rem;
   text-decoration: none;
 }
-.ico.tam-0 { font-size: .5rem; }
-.ico.tam-1 { font-size: 1rem; }
-.ico.tam-2 { font-size: 1.25rem; }
-.ico.tam-3 { font-size: 1.5rem; }
-.ico.tam-4 { font-size: 1.75rem; }
-.ico.tam-5 { font-size: 2rem; }
-.ico.tam-6 { font-size: 2.25rem; }
-.ico.tam-7 { font-size: 2.5rem; }
+[ico].tam-0 { font-size: .5rem; }
+[ico].tam-1 { font-size: 1rem; }
+[ico].tam-2 { font-size: 1.25rem; }
+[ico].tam-3 { font-size: 1.5rem; }
+[ico].tam-4 { font-size: 1.75rem; }
+[ico].tam-5 { font-size: 2rem; }
+[ico].tam-6 { font-size: 2.25rem; }
+[ico].tam-7 { font-size: 2.5rem; }
 
-/* .ico[onclick]:not(.fic):active {
+/* [ico][onclick]:not(.fic):active {
   transform: scale(.75);
 } */
 
-.ico:is([href],[onclick]):hover {
+[ico]:is([href],[onclick]):hover {
   text-shadow: 0 0 5px;
 }
 
@@ -302,7 +302,7 @@ img {
 /* 
   Enlaces
 */
-a:not(.ico,.tex) {
+a:not([ico],.tex) {
   text-decoration: underline;
   font-style: italic;
   color: var(--let_ide);
@@ -471,10 +471,10 @@ optgroup {
   contenido oculto
 */
 
-div.val > .ico[ide="val_tog"] {
+div.val > [ico="val_tog"] {
   text-shadow: 0 0 5px;
 }
-div.val > .ico[ide="val_tog"].ocu {
+div.val > [ico="val_tog"].ocu {
   transform: rotate(270deg);
 }
 
@@ -503,10 +503,10 @@ Operadores-Botones : fieldset.ope > button + nav.ope > a + div.ope > span/button
   margin: 0;
   padding: 0;
 }
-:is(ul,nav,fieldset).ope:not(.dir-ver) > .ico {
+:is(ul,nav,fieldset).ope:not(.dir-ver) > [ico] {
   margin: 0 .3rem;
 }
-:is(ul,nav,fieldset).ope.dir-ver > .ico {
+:is(ul,nav,fieldset).ope.dir-ver > [ico] {
   margin: .2rem 0;
 }
 
@@ -735,7 +735,7 @@ nav:is(.pes,.bar) {
   margin: 0;
   padding: 0;
 }
-nav:is(.pes,.bar) > a:not(.ico) {  
+nav:is(.pes,.bar) > a:not([ico]) {  
   display: flex;
   flex-wrap: nowrap;
   justify-content: center;
@@ -762,7 +762,7 @@ barra horizontal
 nav.bar {
   justify-content: space-around;
 }
-nav.bar > a:not(.ico) {
+nav.bar > a:not([ico]) {
   padding: .5rem 1rem;
   border-radius: .25rem;
   font-style: italic;
@@ -773,7 +773,7 @@ Pestañas
 nav.pes {
   margin: 0 .5rem;
 }
-nav.pes > a:not(.ico) {    
+nav.pes > a:not([ico]) {    
   min-height: 3rem;
   border-radius: 1rem 1rem 0 0;
   text-decoration: none;  

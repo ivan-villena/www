@@ -39,12 +39,13 @@ function _adm( $tip, $dat, $val, ...$opc ){
       for( let $ico in ( $._api_ico = $_api.doc_ico ) ){ 
         $ico = $._api_ico[$ico];
         $.ico = document.createElement('span');
-        $.ico.classList.add('ico','mar_der-1','material-icons-outlined');
+        $.ico.setAttribute('ico',$ico.ide);
+        $.ico.classList.add('material-icons-outlined');
+        $.ico.classList.add('mar_der-1');        
         $.ico.innerHTML = $ico.val;
         $.nom = document.createElement('p');
         $.nom.innerHTML = `
-          <c>-</c> <b class='ide'>${$ico.ide}</b> <c>=</c> 
-          ${$ico.val}
+          <c>-</c> <b class='ide'>${$ico.ide}</b> <c>=</c> ${$ico.val}
         `;
         $.ite = document.createElement('li');
         for( const $pad in $.ele = { 'ite':['ico','nom'], 'lis':['ite'] } ){
