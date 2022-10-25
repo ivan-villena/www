@@ -32,7 +32,7 @@
         "val": {
           "nom": "Plasma #()($)ide() de 7: ()($)nom().",
           "des": "()($)pla_pod() ()($)pla_fue().\\n\\"()($)pla_lec()\\"",
-          "ima": "background: center/contain no-repeat url(http://localhost/_/hol/ima/rad/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/rad/()($)ide().png);",
           "col": 7
         },
         "atr": {
@@ -68,7 +68,7 @@
         "val": {
           "nom": "Plasma #()($)ide() de 7: ()($)pla().",
           "tit": "()($)nom()",
-          "ima": "background: center/contain no-repeat url(http://localhost/_/hol/ima/rad/pla_cub/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/rad/pla_cub/()($)ide().png);",
           "col": 4
         }
     }' ),
@@ -76,13 +76,13 @@
     ( 'api', 'hol_rad_pla_pol', '{ 
         "val": {
           "nom": "Carga #()($)ide() de 2: ()($)nom().",
-          "ima": "background: center/contain no-repeat url(http://localhost/_/hol/ima/rad/pla_car/()($)ide().png);"
+          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/rad/pla_car/()($)ide().png);"
         }
     }' ),      
     ( 'api', 'hol_rad_pla_ele',     '{
         "val": {
           "nom": "Tipo de Electricidad Cósmica #()($)ide() de 6: ()($)nom() - ()($)cod().",
-          "ima": "background: center/contain no-repeat url(http://localhost/_/hol/ima/rad/pla_ele/()($)ide().png);"                      
+          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/rad/pla_ele/()($)ide().png);"                      
         },
         "opc": {
           "ima": [ "ide" ]
@@ -91,7 +91,7 @@
     ( 'api', 'hol_rad_pla_fue',     '{
         "val": {
           "nom": "Línea de Fuerza #()($)ide() de 12: ()($)nom().",
-          "ima": "background: center/contain no-repeat url(http://localhost/_/hol/ima/rad/pla_fue/()($)ide().png);"
+          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/rad/pla_fue/()($)ide().png);"
         },
         "atr": {
           "ele_pre": { "min":1, "max":6, "dat":"api.hol_rad_pla_ele" },
@@ -104,7 +104,7 @@
     ( 'api', 'hol_rad_pla_qua',     '{
         "val": {
           "nom": "Quantum #()($)ide() de 3: ()($)nom().",
-          "ima": "background: center/contain no-repeat url(http://localhost/_/hol/ima/rad/pla_qua/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/rad/pla_qua/()($)ide().png);",
           "col": 3
         },
         "opc": {
@@ -115,14 +115,14 @@
     ( 'api', 'hol_rad_hum_cha', '{
         "val": {
           "nom": "Chakra #()($)ide() de 7: ()($)nom().",
-          "ima": "background: center/contain no-repeat url(http://localhost/_/hol/ima/rad/hum_cha/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/rad/hum_cha/()($)ide().png);",
           "col": 7
         }
     }' ),
     ( 'api', 'hol_rad_hum_mud', '{ 
         "val": {
           "nom": "Mudra #()($)ide() de 7: ()($)nom().",
-          "ima": "background: center/contain no-repeat url(http://localhost/_/hol/ima/rad/hum_mud/()($)ide().png);" 
+          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/rad/hum_mud/()($)ide().png);" 
         }
     }' )      
   ;
@@ -132,7 +132,7 @@
         "val": {
           "nom": "Tono Galáctico #()($)ide() de 13: ()($)nom().",
           "des": "()($)des() ()($)acc_lec().",
-          "ima": "background: center/contain no-repeat url(http://localhost/_/hol/ima/ton/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/ton/()($)ide().png);",
           "col": 7
         },
         "atr": {
@@ -157,7 +157,7 @@
     ( 'api', 'hol_ton_ond', '{
         "val": {
           "nom": "Aventura de la Onda Encantada #()($)ide() de 4: ()($)des().",
-          "ima": "background: center/contain no-repeat url(http://localhost/_/hol/ima/ton/ond/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/ton/ond/()($)ide().png);",
           "col": 4
         },
         "atr": {
@@ -172,7 +172,7 @@
         "val": {
           "nom": "Pulsar Dimensional #()($)ide() de 4: ()($)nom().",
           "des": "Campo de aplicación ()($)des().", 
-          "ima": "background: center/contain no-repeat url(http://localhost/_/hol/ima/ton/dim/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/ton/dim/()($)ide().png);",
           "col": 4
         },
         "atr":{
@@ -186,7 +186,7 @@
         "val": {
           "nom": "Pulsar Matiz #()($)ide() de 5: ()($)nom().",
           "des": "()($)des().", 
-          "ima": "background: center/contain no-repeat url(http://localhost/_/hol/ima/ton/mat/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/ton/mat/()($)ide().png);",
           "col": 5
         },
         "atr":{
@@ -199,7 +199,7 @@
     ( 'api', 'hol_ton_sim', '{
         "val": {
           "nom": "Simetría Especular de tonos ()($)ide() y ()($)inv(): ()($)nom().",
-          "ima": "background: center/contain no-repeat url(http://localhost/_/hol/ima/ton/sim/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/ton/sim/()($)ide().png);",
           "col": 7
         },
         "atr":{
@@ -214,7 +214,7 @@
     ( 'api', 'hol_ton_hum_art', '{
         "val": {
           "nom": "Articulación #()($)ide() de 7: ()($)nom().",
-          "ima": "background: center/contain no-repeat url(http://localhost/_/hol/ima/ton/hum_art/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/ton/hum_art/()($)ide().png);",
           "col": 7
         }
     }' )
@@ -225,7 +225,7 @@
         "val": {
           "nom": "Sello Solar #()($)ide(), ()($)arm().",
           "des": "()($)car() ()($)des().",
-          "ima": "background: center/contain no-repeat url(http://localhost/_/hol/ima/sel/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/sel/()($)ide().png);",
           "col": 4
         },
         "atr": {
@@ -279,7 +279,7 @@
         "val": {
           "nom": "Código #()($)cod()",
           "des": "()($)car() ()($)des().",
-          "ima": "background: center/contain no-repeat url(http://localhost/_/hol/ima/sel/cod/()($)cod().png);",
+          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/sel/cod/()($)cod().png);",
           "col": 5
         },
         "atr": {
@@ -313,7 +313,7 @@
         "val": {
           "nom": "Ciclo Direccional #()($)ide() de 4: ()($)nom()",
           "des": "()($)des().", 
-          "ima": "background: center/contain no-repeat url(http://localhost/_/hol/ima/sel/cic_dir/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/sel/cic_dir/()($)ide().png);",
           "col": 4
         },
         "atr": {
@@ -379,7 +379,7 @@
         "val": {
           "nom": "Raza Raiz Cósmica #()($)ide() de 4: ()($)nom().",
           "des": "Poder: ()($)pod(); Dirección: ()($)dir(); Momento de Mayor Vibración: ()($)dia().",
-          "ima": "background: center/contain no-repeat url(http://localhost/_/hol/ima/sel/arm_raz/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/sel/arm_raz/()($)ide().png);",
           "col": 4            
         },
         "opc": {
@@ -390,7 +390,7 @@
         "val": {
           "nom": "Célula del Tiempo #()($)ide() de 5: ()($)nom().",
           "des": "Poder: ()($)pod(); Función: ()($)fun().", 
-          "ima": "background: center/contain no-repeat url(http://localhost/_/hol/ima/sel/arm_cel/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/sel/arm_cel/()($)ide().png);",
           "col": 5
         },
         "opc": {
@@ -399,7 +399,7 @@
     }' ),
     ( 'api', 'hol_sel_arm_tra', '{
         "val": {
-          "ima": "background: center/contain no-repeat url(http://localhost/_/hol/ima/sel.png), center/contain no-repeat url(http://localhost/_/hol/ima/sel/()($)ide().png);"
+          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/sel.png), center/contain no-repeat url(http://localhost/img/hol/fic/sel/()($)ide().png);"
         }          
     }' ),
     -- cromaticas
@@ -407,7 +407,7 @@
         "val": {
           "nom": "Familia Terrestre #()($)ide() de 5: ()($)nom().",
           "des": "Función: ()($)pla(); Centro-G: ()($)hum(); Misión: ()($)des();",
-          "ima": "background: center/contain no-repeat url(http://localhost/_/hol/ima/sel/cro_fam/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/sel/cro_fam/()($)ide().png);",
           "col": 5
         },
         "atr": {
@@ -424,7 +424,7 @@
         "val": {
           "nom": "Clan #()($)ide() de 4: ()($)nom() ()($)col().",
           "des": "()($)des().",
-          "ima": "background: center/contain no-repeat url(http://localhost/_/hol/ima/sel/cro_ele/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/sel/cro_ele/()($)ide().png);",
           "col": 4
         },
         "atr": {
@@ -440,7 +440,7 @@
     ( 'api', 'hol_sel_sol_res', '{        
         "val": {
           "nom": "()($)nom()",
-          "ima": "background: center/contain no-repeat url(http://localhost/_/hol/ima/sel/sol_res/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/sel/sol_res/()($)ide().png);",
           "col": 2
         },
         "atr": {
@@ -453,7 +453,7 @@
     ( 'api', 'hol_sel_sol_orb', '{        
         "val": {
           "nom": "Grupo Orbital #()($)nom() de 2: ()($)nom().",
-          "ima": "background: center/contain no-repeat url(http://localhost/_/hol/ima/sel/sol_orb/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/sel/sol_orb/()($)ide().png);",
           "col": 2
         },
         "atr": {
@@ -466,7 +466,7 @@
     ( 'api', 'hol_sel_sol_pla', '{        
         "val": {
           "nom": "Órbita Planetaria #()($)ide() de 10: ()($)nom().",
-          "ima": "background: center/contain no-repeat url(http://localhost/_/hol/ima/sel/sol_pla/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/sel/sol_pla/()($)ide().png);",
           "col": 10
         },
         "atr": {
@@ -482,7 +482,7 @@
     ( 'api', 'hol_sel_sol_cel', '{        
         "val": {
           "nom": "Célula Solar #()($)ide() de 5: ()($)nom().",
-          "ima": "background: center/contain no-repeat url(http://localhost/_/hol/ima/sel/sol_cel/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/sel/sol_cel/()($)ide().png);",
           "col": 5
         },
         "atr": {
@@ -495,7 +495,7 @@
     ( 'api', 'hol_sel_sol_cir', '{        
         "val": {
           "nom": "Circuito de Telepatía #()($)ide() de 5: ()($)nom().",
-          "ima": "background: center/contain no-repeat url(http://localhost/_/hol/ima/sel/sol_cir/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/sel/sol_cir/()($)ide().png);",
           "col": 5
         },
         "atr": {
@@ -509,7 +509,7 @@
     ( 'api', 'hol_sel_pla_res', '{
         "val": {
           "nom": "()($)nom()",
-          "ima": "background: center/contain no-repeat url(http://localhost/_/hol/ima/sel/pla_res/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/sel/pla_res/()($)ide().png);",
           "col": 2
         },
         "atr": {
@@ -524,7 +524,7 @@
     ( 'api', 'hol_sel_pla_cen', '{
         "val": {
           "nom": "Centro Planetario #()($)ide() de 5: ()($)nom().",
-          "ima": "background: center/contain no-repeat url(http://localhost/_/hol/ima/sel/pla_cen/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/sel/pla_cen/()($)ide().png);",
           "col": 5
         },
         "atr": {
@@ -538,7 +538,7 @@
     ( 'api', 'hol_sel_pla_hem', '{
         "val": {
           "nom": "Hemisferio #()($)ide() de 3: ()($)nom().",
-          "ima": "background: center/contain no-repeat url(http://localhost/_/hol/ima/sel/pla_hem/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/sel/pla_hem/()($)ide().png);",
           "col": 3
         },
         "atr": {
@@ -551,7 +551,7 @@
     ( 'api', 'hol_sel_pla_mer', '{
         "val": {
           "nom": "Meridiano #()($)ide() de 2: ()($)nom().",
-          "ima": "background: center/contain no-repeat url(http://localhost/_/hol/ima/sel/pla_mer/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/sel/pla_mer/()($)ide().png);",
           "col": 2
         },
         "atr": {
@@ -565,7 +565,7 @@
     ( 'api', 'hol_sel_hum_res', '{
         "val": {
           "nom": "()($)nom()",
-          "ima": "background: center/contain no-repeat url(http://localhost/_/hol/ima/sel/hum_res/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/sel/hum_res/()($)ide().png);",
           "col": 2
         },
         "atr": {
@@ -578,7 +578,7 @@
     ( 'api', 'hol_sel_hum_cen', '{
         "val": {
           "nom": "Centro Galáctico #()($)ide() de 5: ()($)nom().",
-          "ima": "background: center/contain no-repeat url(http://localhost/_/hol/ima/sel/hum_cen/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/sel/hum_cen/()($)ide().png);",
           "col": 5
         },
         "atr": {
@@ -592,7 +592,7 @@
     ( 'api', 'hol_sel_hum_ded', '{
         "val": {
           "nom": "Dedo #()($)ide() de 5: ()($)nom().",
-          "ima": "background: center/contain no-repeat url(http://localhost/_/hol/ima/sel/hum_ded/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/sel/hum_ded/()($)ide().png);",
           "col": 5
         },
         "atr": {
@@ -606,7 +606,7 @@
     ( 'api', 'hol_sel_hum_ext', '{
         "val": {
           "nom": "Extremidad #()($)ide() de 4: ()($)nom().",
-          "ima": "background: center/contain no-repeat url(http://localhost/_/hol/ima/sel/hum_ext/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/sel/hum_ext/()($)ide().png);",
           "col": 4
         },
         "atr": {
@@ -620,7 +620,7 @@
     ( 'api', 'hol_sel_hum_mer', '{
         "val": {
           "nom": "Meridiano Orgánico #()($)ide() de 10: ()($)nom().",
-          "ima": "background: center/contain no-repeat url(http://localhost/_/hol/ima/sel/hum_mer/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/sel/hum_mer/()($)ide().png);",
           "col": 10
         },
         "atr": {
@@ -663,7 +663,7 @@
         "val": {
           "nom": "Armonía lunar ()($)ide()",
           "des": "()($)nom(), ()($)col(). ()($)dia(): ()($)des()",
-          "ima": "background: center/contain no-repeat url(http://localhost/_/hol/ima/rad.png), center/contain no-repeat url(http://localhost/_/hol/ima/arm/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/rad.png), center/contain no-repeat url(http://localhost/img/hol/fic/arm/()($)ide().png);",
           "col": 4
         },
         "atr": {
@@ -696,7 +696,7 @@
       "val": {
         "nom": "Atomo del Tiempo #()($)ide() de 4. ()($)nom()",
         "des": "()($)des()",
-        "ima": "background: center/contain no-repeat url(http://localhost/_/hol/ima/lun/pla_ato/()($)ide().png);",
+        "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/lun/pla_ato/()($)ide().png);",
         "col": 4
       }
     }' ),
@@ -704,7 +704,7 @@
       "val": {
         "nom": "Tetraedro #()($)ide() de 2. ()($)nom()",
         "des": "()($)des()",
-        "ima": "background: center/contain no-repeat url(http://localhost/_/hol/ima/lun/pla_tet/()($)ide().png);",
+        "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/lun/pla_tet/()($)ide().png);",
         "col": 2
       }
     }' )
@@ -715,7 +715,7 @@
         "val": {
           "nom": "Posicion #()($)ide() de 52.",
           "des": "Cuadrante #()($)arm() de 4; Tono Galáctico #()($)ton() de 13; Onda de la Aventura #()($)ond() de 4.",
-          "ima": "background: center/contain no-repeat url(http://localhost/_/hol/ima/ton/arm/()($)arm().png), center/contain no-repeat url(http://localhost/_/hol/ima/ton/()($)ton().png);"
+          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/ton/arm/()($)arm().png), center/contain no-repeat url(http://localhost/img/hol/fic/ton/()($)ton().png);"
         },
         "atr": {
           "ide": { "min":1, "max":52, "dat":"api.hol_cas" },
@@ -744,7 +744,7 @@
         "val": {
           "nom": "Cuadrante #()($)ide() de 4",
           "des": "Dirección: ()($)dir(); Poder: ()($)pod(); Color: ()($)col().",
-          "ima": "background: center/contain no-repeat url(http://localhost/_/hol/ima/cas/arm/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/cas/arm/()($)ide().png);",
           "col": 4
         }
     }'),
@@ -752,7 +752,7 @@
         "val": {
           "nom": "Aventura de la Onda Encantada #()($)ide() de 4",
           "des": "()($)des().",
-          "ima": "background: center/contain no-repeat url(http://localhost/_/hol/ima/cas/ond/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/cas/ond/()($)ide().png);",
           "col": 4
         }
     }')
@@ -763,28 +763,28 @@
         "val": {
           "nom": "",
           "des": "",
-          "ima": "background: center/contain no-repeat url(http://localhost/_/hol/ima/chi/()($)ide().png);"
+          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/chi/()($)ide().png);"
         }
     }' ),
     ( 'api', 'hol_chi_mon', '{ 
         "val": {
           "nom": "",
           "des": "",
-          "ima": "background: center/contain no-repeat url(http://localhost/_/hol/ima/chi/mon/()($)ide().png);"
+          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/chi/mon/()($)ide().png);"
         }
     }' ),
     ( 'api', 'hol_chi_bin', '{ 
         "val": {
           "nom": "",
           "des": "",
-          "ima": "background: center/contain no-repeat url(http://localhost/_/hol/ima/chi/bin/()($)ide().png);"
+          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/chi/bin/()($)ide().png);"
         }
     }' ),
     ( 'api', 'hol_chi_tri', '{ 
         "val": {
           "nom": "",
           "des": "",
-          "ima": "background: center/contain no-repeat url(http://localhost/_/hol/ima/chi/tri/()($)ide().png);"
+          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/chi/tri/()($)ide().png);"
         }
     }' )     
   ;
@@ -794,7 +794,7 @@
         "val": {
           "nom": "Kin #()($)ide() de 260: ()($)nom().",
           "des": "()($)des().",
-          "ima": "background: top/50% no-repeat url(http://localhost/_/hol/ima/ton/()($)nav_ond_dia().png), bottom/60% no-repeat url(http://localhost/_/hol/ima/sel/()($)arm_tra_dia().png);"            
+          "ima": "background: top/50% no-repeat url(http://localhost/img/hol/fic/ton/()($)nav_ond_dia().png), bottom/60% no-repeat url(http://localhost/img/hol/fic/sel/()($)arm_tra_dia().png);"            
         },
         "atr": {
           "ide": { "min":1, "max":260, "dat":"api.hol_kin" },
@@ -872,14 +872,14 @@
     ( 'api', 'hol_kin_ene', '{ 
         "val": {
           "nom": "Grupo #()($)ide() de ()($)nom() ( ()($)gru() x ()($)gru_uni() = ()($)uni() unidades )",
-          "ima": "background: center/contain no-repeat url(http://localhost/_/hol/ima/kin/ene/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/kin/ene/()($)ide().png);",
           "col": 4
         }          
     }' ),
     ( 'api', 'hol_kin_ene_cam', '{ 
         "val": {
           "nom": "Campo #()($)ide() de ()($)nom() unidades",
-          "ima": "background: center/contain no-repeat url(http://localhost/_/hol/ima/kin/ene_cam/()($)ide().png);"
+          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/kin/ene_cam/()($)ide().png);"
         }
     }' ),
     -- giro galáctico
@@ -887,7 +887,7 @@
         "val": {
           "nom": "Trayectoria Armónica #()($)ide() de 13: ()($)nom().",
           "des": "()($)ton_des() del Giro Galáctico.",
-          "ima": "background: top/75% no-repeat url(http://localhost/_/hol/ima/ton/()($)ide().png), center/contain no-repeat url(http://localhost/_/hol/ima/sel.png);",
+          "ima": "background: top/75% no-repeat url(http://localhost/img/hol/fic/ton/()($)ide().png), center/contain no-repeat url(http://localhost/img/hol/fic/sel.png);",
           "col": 7            
         }
     }' ),
@@ -895,7 +895,7 @@
         "val": {
           "nom": "Célula del Tiempo #()($)ide() de 65: ()($)nom().", 
           "des": "()($)des().",
-          "ima": "background: top/75% no-repeat url(http://localhost/_/hol/ima/ton/()($)ton().png), center/contain no-repeat url(http://localhost/_/hol/ima/sel/arm_cel/()($)cel().png);",
+          "ima": "background: top/75% no-repeat url(http://localhost/img/hol/fic/ton/()($)ton().png), center/contain no-repeat url(http://localhost/img/hol/fic/sel/arm_cel/()($)cel().png);",
           "col": 5            
         }
     }' ),
@@ -904,7 +904,7 @@
         "val": {
           "nom": "Espectro Galáctico #()($)ide() de 4: ()($)col() del ()($)dir().",
           "des": "Guardían ()($)may(): ()($)cer(), ()($)cer_des()",
-          "ima": "background: center/contain no-repeat url(http://localhost/_/hol/ima/cas/arm/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/cas/arm/()($)ide().png);",
           "col": 4            
         }
     }' ),
@@ -912,7 +912,7 @@
         "val": {
           "nom": "Elemento Cromático #()($)ide() de 52: ()($)nom().",
           "des": "()($)des(): ()($)cas_des().",
-          "ima": "background: bottom/75% no-repeat url(http://localhost/_/hol/ima/ton/()($)ton().png), center/contain no-repeat url(http://localhost/_/hol/ima/sel/cro_ele/()($)ele().png);",
+          "ima": "background: bottom/75% no-repeat url(http://localhost/img/hol/fic/ton/()($)ton().png), center/contain no-repeat url(http://localhost/img/hol/fic/sel/cro_ele/()($)ele().png);",
           "col": 4            
         }
     }' ),
@@ -921,7 +921,7 @@
         "val": {
           "nom": "Castillo #()($)ide() de 5: ()($)nom().",
           "des": "()($)des().",
-          "ima": "background: center/contain no-repeat url(http://localhost/_/hol/ima/kin/nav_cas/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/kin/nav_cas/()($)ide().png);",
           "col": 5            
         }
     }' ),
@@ -929,7 +929,7 @@
         "val": {
           "nom": "Onda Encantada #()($)ide() de 20: ()($)nom().",
           "des": "()($)enc_des().", 
-          "ima": "background: center/contain no-repeat url(http://localhost/_/hol/ima/ton/arm/()($)cas_arm().png), center/contain no-repeat url(http://localhost/_/hol/ima/sel/()($)sel().png);",
+          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/ton/arm/()($)cas_arm().png), center/contain no-repeat url(http://localhost/img/hol/fic/sel/()($)sel().png);",
           "col": 4            
         }
     }' ),
@@ -954,7 +954,7 @@
         "val": {
           "nom": "PSI #()($)ide() de 365, correspondiente al ()($)fec().",
           "des": "Psi-Cronos: ()($)tzo(). Estación Solar #()($)est() de 4, día ()($)est_dia(). Giro Lunar #()($)lun() de 13, día ()($)lun_dia() de 28. Héptada #()($)hep() de 52, día ()($)hep_dia() de 7.",
-          "ima": "background: top/50% no-repeat url(http://localhost/_/hol/ima/ton/()($)kin_ton().png), bottom/60% no-repeat url(http://localhost/_/hol/ima/sel/()($)kin_sel().png);"
+          "ima": "background: top/50% no-repeat url(http://localhost/img/hol/fic/ton/()($)kin_ton().png), bottom/60% no-repeat url(http://localhost/img/hol/fic/sel/()($)kin_sel().png);"
         },
         "atr": {
           "ide": { "min":1, "max":365, "dat":"api.hol_psi" },
@@ -1007,7 +1007,7 @@
       "val": {
         "nom": "Estación Solar #()($)ide() de 4: ()($)nom().",
         "des": "()($)des() ( ()($)pol_sur() al sur, ()($)pol_nor() al norte )",
-        "ima": "background: center/contain no-repeat url(http://localhost/_/hol/ima/cas/arm/()($)ide().png);",
+        "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/cas/arm/()($)ide().png);",
         "col": 4          
       }
     }' ),      
@@ -1015,7 +1015,7 @@
         "val": {
           "nom": "Luna #()($)ide() de 13: tono ()($)ton_nom().",
           "des": "()($)des() del Giro Solar Anual; Totem ()($)tot(): ()($)tot_pro().",
-          "ima": "background: url(http://localhost/_/hol/ima/psi/lun/()($)ide().png) center/contain no-repeat;",
+          "ima": "background: url(http://localhost/img/hol/fic/psi/lun/()($)ide().png) center/contain no-repeat;",
           "col": 7
         },
         "atr": {
@@ -1032,7 +1032,7 @@
         "val": {
           "nom": "Heptada #()($)ide() de 52.",
           "des": "()($)ton_des() del cuadrante ()($)arm_col() en el ()($)arm_dir().",
-          "ima": "background: center/contain no-repeat url(http://localhost/_/hol/ima/sel/cod/()($)ton().png), center/contain no-repeat url(http://localhost/_/hol/ima/rad.png), center/contain no-repeat url(http://localhost/_/hol/ima/arm/()($)ond().png);",
+          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/sel/cod/()($)ton().png), center/contain no-repeat url(http://localhost/img/hol/fic/rad.png), center/contain no-repeat url(http://localhost/img/hol/fic/arm/()($)ond().png);",
           "col": 4
         }
     }' ),

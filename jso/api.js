@@ -44,6 +44,7 @@ class _api {
     return $_;
   }
 }
+
 // Usuario
 class _usu {
 
@@ -76,13 +77,13 @@ class _htm {
       else{      
         // por ícono
         if( $ele['ico'] ){
-          $_ += _doc.ico($ele['ico'],$ele);
+          $_ += _app.ico($ele['ico'],$ele);
         }
         // por ficha
         else if( $ele['ima'] ){
           $.est = $ele['ima'].split('.');
           $.est.push( !!($ele['ide']) ? $ele['ide'] : 0, $ele);
-          $_ += _doc.ima(...$.est);
+          $_ += _app.ima(...$.est);
         }
         // por variable
         else if( $ele['_tip'] ){
@@ -207,7 +208,8 @@ class _htm {
     </${$.eti}>` : ''}`;
     return $_;
   }  
-}// Modelo del Documento
+}
+// Modelo del Documento
 class _dom {
 
   static tog( $ele, $eti, $css, $ide, $cla='dis-ocu', $ope='cla_agr' ){  
@@ -432,7 +434,6 @@ class _dom {
     return $_;
   }
 }
-
 // Dato : esq.est[ide].atr
 class _dat {
 
@@ -468,6 +469,16 @@ class _dat {
       $_ = _lis.ope('ver',$dat,$ope);
     }
     return $_;
+  }  
+  // identificador: esq.est[...atr]
+  static ide( $dat='', $val={} ){
+    
+    $val.ide = $dat.split('.');
+    $val.esq = $val.ide[0];
+    $val.est = $val.ide[1] ? $val.ide[1] : false;
+    $val.atr = $val.ide[2] ? $val.ide[2] : false;
+
+    return $val;
   }
   // tipo
   static tip( $val ){
@@ -555,7 +566,43 @@ class _dat {
       $_ = $_api.dat_tip[$ide];
     }
     return $_;
-  }  
+  }
+  // por seleccion : imagen, color...
+  static opc( $tip, $esq, $est, $atr, $dat ){
+    
+    // dato
+    let $={}, $_ = { 'esq': $esq, 'est': $est };
+
+    // armo identificador
+    if( !!($atr) ) $_['est'] = $atr == 'ide' ? $est : `${$est}_${$atr}`;
+    
+    // valido dato
+    if( !!( $.dat_Val = _app.dat($_['esq'],$_['est'],`val.${$tip}`,$dat) ) ){
+      $_['ide'] = `${$_['esq']}.${$_['est']}`;
+      $_['val'] = $.dat_Val;
+    }
+    else{
+      $_ = [];
+    }
+    return $_;    
+  }
+  // imagen por identificadores
+  static ima( $dat, $ope ){
+
+    let $_ = "";
+
+    if( $ope.esq && $ope.est && $ope.atr && ( $ope.val = $dat.getAttribute(`${$ope.esq}-${$ope.est}`) ) ){
+
+      if( !$ope.fic ) $ope.fic = _dat.opc('ima', $ope.esq, $ope.est );
+
+      $_ = _app.ima($ope.fic.esq, $ope.fic.est, _dat.get($ope.esq,$ope.est,$ope.val)[$ope.atr], $ope.ele);
+    }
+    return $_;
+  }
+}
+// Valor
+class _val {
+
   // Comparaciones
   static ver( $dat, $ide, $val, $opc=['g','i'] ){
     let $_ = false;
@@ -579,17 +626,8 @@ class _dat {
     }
     return $_;
   }
-  // identificador: esq.est[...atr]
-  static ide( $dat='', $val={} ){
-    
-    $val.ide = $dat.split('.');
-    $val.esq = $val.ide[0];
-    $val.est = $val.ide[1] ? $val.ide[1] : false;
-    $val.atr = $val.ide[2] ? $val.ide[2] : false;
-
-    return $val;
-  }
-}// Ejecucion : ( ...par ) => { ...cod } : val 
+}
+// Ejecucion : ( ...par ) => { ...cod } : val 
 class _eje {
 
   static val( $dat, $val ){
@@ -772,7 +810,8 @@ class _eje {
     return $_;
   }
 
-}// Objeto : [ ...val ], [ ...nom => val ], { ...atr : val }
+}
+// Objeto : [ ...val ], [ ...nom => val ], { ...atr : val }
 class _obj {
 
   // valores por atributo : ()($)atr()
@@ -849,7 +888,8 @@ class _obj {
     }
     return $_;
   }
-}// Elemento : <eti ...atr="val"> ...htm + ...tex </eti>
+}
+// Elemento : <eti ...atr="val"> ...htm + ...tex </eti>
 class _ele {
 
   // convierto
@@ -1352,7 +1392,8 @@ class _lis {
 
     return $_;
   }
-}// Archivo : fichero + texto + imagen + audio + video + app + ...tipos
+}
+// Archivo : fichero + texto + imagen + audio + video + app + ...tipos
 class _arc {  
 
   static val( $val ){ 
@@ -1428,7 +1469,8 @@ class _arc {
     return $;
   }
 
-}// Texto : caracter + letra + oracion + parrafo
+}
+// Texto : caracter + letra + oracion + parrafo
 class _tex {  
 
   static cod( $dat ){
@@ -1567,7 +1609,8 @@ class _tex {
     return $_;
   } 
 
-}// Numero : separador + operador + entero + decimal + rango
+}
+// Numero : separador + operador + entero + decimal + rango
 class _num {  
 
   static val( $dat, $tot ){
@@ -1763,7 +1806,8 @@ class _num {
       break;
     }
   }
-}// Fecha : aaaa-mm-dia hh:mm:ss utc
+}
+// Fecha : aaaa-mm-dia hh:mm:ss utc
 class _fec {
 
   static dec( $dat ){ 
@@ -2003,7 +2047,8 @@ class _fec {
     return $_;
   }  
 
-}// Holon : ns.ani.lun.dia:kin
+}
+// Holon : ns.ani.lun.dia:kin
 class _hol {
 
   // getter
@@ -2037,9 +2082,9 @@ class _hol {
     }
     return $_;
   }
-  // imagen : _/hol
+  // imagen : img/hol
   static ima( $est, $dat, $ele ){
 
-    return _doc.ima('api',`hol_${$est}`,$dat,$ele);
+    return _app.ima('api',`hol_${$est}`,$dat,$ele);
   }
 }

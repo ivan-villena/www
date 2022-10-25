@@ -4,29 +4,10 @@
 // documento
 class _doc {
   
-  // iconos
-  static ico( $ide, $ele={} ){
-
-    let $_="", $={ _ico : $_api._doc_ico };
-
-    if( !!($._ico[$ide]) ){
-      $ele['eti'] = !!($ele['eti']) ? $ele['eti'] : 'span';
-      if( $ele['eti'] == 'button' ){
-        if( !($ele['type']) ) $ele['type'] = "button";
-      }
-      $ele['ide'] = $ide;
-      $htm = $._ico[$ide].val;
-      $_ = `
-      <${$ele['eti']}${_htm.atr(_ele.cla($ele,"ico material-icons-outlined",'ini'))}>
-        ${$htm}
-      </${$ele['eti']}>`;
-    }
-    return $_;
-  }
   // letras : c - n
   static let( $dat, $ele={} ){
 
-    let $_="", $pal, $_pal=[], $let=[], $_let = $_api.doc_let, $num = 0;
+    let $_="", $pal, $_pal=[], $let=[], $_let = $_api.tex_let, $num = 0;
     
     if( $dat !== null && $dat !== undefined && $dat !== NaN ){      
 
@@ -34,20 +15,20 @@ class _doc {
         
         $num = _num.val($pal);
         if( !!$num || $num == 0 ){
-          if( /,/.test($pal) ) $pal.replaceAll(",","<c>,</c>");
-          if( /\./.test($pal) ) $pal.replaceAll(".","<c>.</c>");
+          // if( /,/.test($pal) ) $pal.replaceAll(",","<c>,</c>");
+          // if( /\./.test($pal) ) $pal.replaceAll(".","<c>.</c>");
           $_pal.push( `<n>${$pal}</n>` );
         }
         else{
           $let = [];
           $pal.split('').forEach( $car =>{
-            $ele = $ele;
             $num = _num.val($car);
             if( !!$num || $num == 0 ){
               $let.push( `<n>${$car}</n>` );
             }
             else if( $_let[$car] ){
-              $let.push( `<c${_htm.atr(_ele.cla($ele,`${$_let[$car].tip} _${$_let[$car].cla}`,'ini'))}>${$car}</c>` );
+              // ${_htm.atr(_ele.cla($ele,`${$_let[$car].cla}`,'ini'))}
+              $let.push( `<c>${$car}</c>` );
             }
             else{
               $let.push( $car );
@@ -60,69 +41,7 @@ class _doc {
     }
     return $_;
   }
-  // imagen : (span,button)[ima]
-  static ima( ...$dat ){  
-
-    let $_="", $={}, $ele={};
-
-    if( $dat[2] !== undefined ){
-
-      // if( /_ide$/.test($dat[1]) ){ $dat[1] = $dat[1].replace(/_ide$/,''); }
-
-      $.ele = !!($dat[3]) ? $dat[3] : {};
-
-      $.ele['ima'] = `${$dat[0]}.${$dat[1]}`;
-
-      $_ = _app_dat.val('ima', `${$dat[0]}.${$dat[1]}`, $dat[2], $.ele);
-    }
-    else{
-      $ele = !!$dat[1] ? $dat[1] : {};
-      $.tip = typeof($dat = $dat[0]);
-      $.fic_ide = '';
-      
-      // por estilos : bkg
-      if( $.tip == 'object' ){
-
-        $ele = _ele.jun( $dat, $ele );        
-      }
-      // por directorio : localhost/_/esq/ima/...
-      else if( $.tip == 'string' ){
-    
-        $.ima = $dat.split('.');
-
-        $dat = $.ima[0];
-
-        $.tip = !!$.ima[1] ? $.ima[1] : 'png';
-
-        $.dir = `_/${$dat}/ima`;
-
-        $.fic_ide = $.dir+"."+$.tip;
-
-        _ele.css( $ele, _ele.fon($.dir,{'tip':$.tip}) );
-      }
-    
-      // etiqueta
-      $.eti = !!($ele['eti']) ? $ele['eti'] : 'span';
-
-      // codifico botones
-      if( $.eti == 'button' && !$ele['type'] ) $ele['type'] = "button";
-      
-      // contenido 
-      $.htm = '';
-      if( !!($ele['htm']) ){
-        _ele.cla($ele,'dis-fle dir-ver jus-cen ali-cen');
-        $.htm = $ele['htm'];
-      }
-
-      // aseguro identificador
-      if( !$ele['ima'] && $.fic_ide ) $ele['ima'] = $.fic_ide;
-
-      $_ = `<${$.eti}${_htm.atr($ele)}>${$.htm}</${$.eti}>`;
-    }
-    return $_;
-  }
 }
-
 // contenedor
 class _doc_val {  
     
@@ -166,31 +85,6 @@ class _doc_val {
       });
     }      
   }
-  // variable : div.atr > label + (select,input,textarea,button)[name]
-  static var( $tip, $dat, $ope, ...$opc ){
-    let $={};
-    if( $tip && $tip.nodeName ){
-      $dat = $tip;
-      $_app.var = _ele.ver($dat,{'eti':'form'});
-      $.var_ide = $dat.getAttribute('name');
-    }else{
-      switch( $tip ){
-      case 'mar':
-        if( $ope ){
-          $dat.parentElement.parentElement.querySelectorAll(`.${$ope}`).forEach( $e => $e.classList.remove($ope) );
-          $dat.classList.add($ope);
-        }
-        break;
-      case 'tog':
-        if( $ope ){
-          $dat.parentElement.querySelectorAll(`.${$ope}`).forEach( $e => $e != $dat && $e.classList.remove($ope) );
-          $dat.classList.toggle($ope);
-        }
-        break;
-      }
-    }
-    return $;
-  }
   // visibilidad de bloques
   static tog( $dat, $ope ){
     let $ = {};
@@ -226,14 +120,120 @@ class _doc_val {
       }
     }
   }
-}// Listado
+}
+// Listado
 class _doc_lis {
+
+  // desplazamiento horizontal x item
+  static bar(){
+  }
+  static bar_ite( $tip, $dat ){
+    
+    let $ = _app_var.ope($dat);
+
+    if( $tip == 'val' ){
+
+      $.lis = $_app.var.previousElementSibling;
+
+      $.val = $_app.var.querySelector('[name="val"]');
+      $.pos = _num.val($.val.value);
+
+      switch( $dat.getAttribute('name') ){
+      case 'ini': $.pos = _num.val($.val.min);
+        break;
+      case 'pre': $.pos = $.pos > _num.val($.val.min) ? $.pos-1 : $.pos;
+        break;
+      case 'pos': $.pos = $.pos < _num.val($.val.max) ? $.pos+1 : $.pos;
+        break;
+      case 'fin': $.pos = _num.val($.val.max);
+        break;
+      }
+      // valido y muestro item
+      $.val.value = $.pos;
+
+      _ele.act('cla_agr',$.lis.querySelectorAll(`li[data-pos]:not(.${DIS_OCU})`),DIS_OCU);
+
+      if( $.ite = $.lis.querySelector(`li[data-pos="${$.pos}"]`) ) $.ite.classList.remove(DIS_OCU);
+    }
+  }
+
+  // indice : enlaces del navegador
+  static nav(){      
+  }// click en item
+  static nav_val( $dat, $cla = FON_SEL ){
+
+    let $ = { lis : _ele.ver($dat,{'eti':'nav'}) };
+
+    if( $.lis ){
+      // elimino marcas previas
+      $.lis.querySelectorAll(
+        `ul.lis.nav :is( li.ite.sep, li.ite:not(.sep) > div.val ).${$cla}`
+      ).forEach( 
+        $e => $e.classList.remove($cla) 
+      );
+
+      // controlo el toggle automatico por dependencias
+      if( 
+        ( $.dep = $dat.parentElement.parentElement.querySelector('ul.lis') ) 
+        &&
+        ( $dat.classList.contains('ico') || $.dep.classList.contains(DIS_OCU) ) 
+      ){
+        _doc_val.tog($dat);
+      }
+
+      // pinto fondo
+      if( !( $.bot = $dat.parentElement.querySelector('[ico]') ) || !$.bot.classList.contains('ocu') ){
+
+        $dat.parentElement.classList.add($cla);
+      }
+    }
+  }// hago toogle por item
+  static nav_tog( $lis ){
+
+    let $={};
+
+    if( $.nav = $lis ? _doc_lis.nav_mar($lis) : false ){
+      // hago toogles ascendentes
+      while( 
+        ( $.lis = _ele.ver($.nav,{'eti':'ul'}) ) 
+        && 
+        ( $.val = $.lis.previousElementSibling ) && $.val.nodeName == 'DIV' &&  $.val.classList.contains('val')
+        && 
+        ( $.nav = $.val.querySelector('a[href^="#"]') )
+      ){
+        if( $.lis.classList.contains(DIS_OCU) && ( $.ico = $.nav.previousElementSibling ) && $.ico.getAttribute('ico') ){                
+          _doc_val.tog($.ico);
+        }                
+      }
+    }
+  }// marco valor seleccionado
+  static nav_mar( $lis ){
+
+    let $nav, $val = location.href.split('#')[1];
+
+    // hago toogle por item
+    if( $val && ( $nav = $lis.querySelector(`a[href="#${$val}"]`) ) ){
+        
+      _doc_lis.nav_val($nav);
+    }
+
+    return $nav;
+  }// ejecuto filtros
+  static nav_ver( $dat, $ope = 'a[href]' ){
+
+    // ejecuto filtros
+    _doc_lis.val_ver($dat, $ope);
+
+    // volver a marcar el fondo del elemento seleccionado
+    _doc_lis.nav_tog($_app.var.nextElementSibling);
+
+  }  
 
   // punteos, numeraciones, y términos
   static ite(){
   }
   static ite_val( $dat, $ope ){
-    let $ = _doc_val.var($dat);
+    let $ = _app_var.ope($dat);
     
     if( !$ope ){
       // toggles
@@ -254,7 +254,7 @@ class _doc_lis {
   }
   static ite_tog( $dat, $ope ){
 
-    let $ = _doc_val.var($dat);
+    let $ = _app_var.ope($dat);
 
     if( !$dat || !$ope ){
       _ele.act('cla_tog',$.lis.children,DIS_OCU); 
@@ -278,7 +278,7 @@ class _doc_lis {
     }
   }  
   static ite_ver( $dat, $ope ){
-    let $ = _doc_val.var($dat);
+    let $ = _app_var.ope($dat);
     
     // filtro por valor textual        
     if( !$ope ){
@@ -291,7 +291,7 @@ class _doc_lis {
         
         if( $.lis.nodeName == 'DL' ){
           $.lis.querySelectorAll(`dt`).forEach( $e => {
-            if( $.ope_val = _dat.ver($e.innerHTML,$.ope,$.val) ){
+            if( $.ope_val = _val.ver($e.innerHTML,$.ope,$.val) ){
               $e.classList.remove(DIS_OCU);
             }else{
               $e.classList.add(DIS_OCU);                 
@@ -309,7 +309,7 @@ class _doc_lis {
         }
         else{
           _lis.val($.lis.children).forEach( $e => 
-            _dat.ver($e.innerHTML,$.ope,$.val) && $e.classList.remove(DIS_OCU) 
+            _val.ver($e.innerHTML,$.ope,$.val) && $e.classList.remove(DIS_OCU) 
           );
         }
       }
@@ -340,7 +340,7 @@ class _doc_lis {
   }
   static val_ver( $dat, $ope = 'p:first-of-type', $cla = 'let-luz' ){
 
-    let $ = _doc_val.var($dat);
+    let $ = _app_var.ope($dat);
 
     // busco listado
     if( $_app.var ){
@@ -364,7 +364,7 @@ class _doc_lis {
         $.ite = _ele.ver($ite,{'eti':'li'});
 
         // ejecuto comparacion por elemento selector ( p / a ), y oculto/mustro item
-        if( !$.val.value || _dat.ver($ite.innerText, $.ope.value, $.val.value) ){
+        if( !$.val.value || _val.ver($ite.innerText, $.ope.value, $.val.value) ){
           $.ite.classList.contains(DIS_OCU) && $.ite.classList.remove(DIS_OCU);
           !!$.val.value && $ite.classList.add($cla);// agrego brillo
         }
@@ -402,116 +402,8 @@ class _doc_lis {
       }            
     }      
   }
-
-  // indice : enlaces del navegador
-  static nav(){      
-  }
-  // click en item
-  static nav_val( $dat, $cla = FON_SEL ){
-
-    let $ = { lis : _ele.ver($dat,{'eti':'nav'}) };
-
-    if( $.lis ){
-      // elimino marcas previas
-      $.lis.querySelectorAll(
-        `ul.lis.nav :is( li.ite.sep, li.ite:not(.sep) > div.val ).${$cla}`
-      ).forEach( 
-        $e => $e.classList.remove($cla) 
-      );
-
-      // controlo el toggle automatico por dependencias
-      if( 
-        ( $.dep = $dat.parentElement.parentElement.querySelector('ul.lis') ) 
-        &&
-        ( $dat.classList.contains('ico') || $.dep.classList.contains(DIS_OCU) ) 
-      ){
-        _doc_val.tog($dat);
-      }
-
-      // pinto fondo
-      if( !( $.bot = $dat.parentElement.querySelector('[ico]') ) || !$.bot.classList.contains('ocu') ){
-
-        $dat.parentElement.classList.add($cla);
-      }
-    }
-  }
-  // hago toogle por item
-  static nav_tog( $lis ){
-
-    let $={};
-
-    if( $.nav = $lis ? _doc_lis.nav_mar($lis) : false ){
-      // hago toogles ascendentes
-      while( 
-        ( $.lis = _ele.ver($.nav,{'eti':'ul'}) ) 
-        && 
-        ( $.val = $.lis.previousElementSibling ) && $.val.nodeName == 'DIV' &&  $.val.classList.contains('val')
-        && 
-        ( $.nav = $.val.querySelector('a[href^="#"]') )
-      ){
-        if( $.lis.classList.contains(DIS_OCU) && ( $.ico = $.nav.previousElementSibling ) && $.ico.getAttribute('ico') ){                
-          _doc_val.tog($.ico);
-        }                
-      }
-    }
-  }
-  // marco valor seleccionado
-  static nav_mar( $lis ){
-
-    let $nav, $val = location.href.split('#')[1];
-
-    // hago toogle por item
-    if( $val && ( $nav = $lis.querySelector(`a[href="#${$val}"]`) ) ){
-        
-      _doc_lis.nav_val($nav);
-    }
-
-    return $nav;
-  }
-  // ejecuto filtros
-  static nav_ver( $dat, $ope = 'a[href]' ){
-
-    // ejecuto filtros
-    _doc_lis.val_ver($dat, $ope);
-
-    // volver a marcar el fondo del elemento seleccionado
-    _doc_lis.nav_tog($_app.var.nextElementSibling);
-
-  }  
-
-  // desplazamiento horizontal x item
-  static bar(){
-  }
-  static bar_ite( $tip, $dat ){
-    
-    let $ = _doc_val.var($dat);
-
-    if( $tip == 'val' ){
-
-      $.lis = $_app.var.previousElementSibling;
-
-      $.val = $_app.var.querySelector('[name="val"]');
-      $.pos = _num.val($.val.value);
-
-      switch( $dat.getAttribute('name') ){
-      case 'ini': $.pos = _num.val($.val.min);
-        break;
-      case 'pre': $.pos = $.pos > _num.val($.val.min) ? $.pos-1 : $.pos;
-        break;
-      case 'pos': $.pos = $.pos < _num.val($.val.max) ? $.pos+1 : $.pos;
-        break;
-      case 'fin': $.pos = _num.val($.val.max);
-        break;
-      }
-      // valido y muestro item
-      $.val.value = $.pos;
-
-      _ele.act('cla_agr',$.lis.querySelectorAll(`li[data-pos]:not(.${DIS_OCU})`),DIS_OCU);
-
-      if( $.ite = $.lis.querySelector(`li[data-pos="${$.pos}"]`) ) $.ite.classList.remove(DIS_OCU);
-    }
-  }
-}// Tabla
+}
+// Tabla
 class _doc_est {
 
   // tabla
@@ -551,9 +443,7 @@ class _doc_est {
 
     return $.tab;
   }
-
 }
-
 // Opcion
 class _doc_opc {
 
@@ -663,7 +553,8 @@ class _doc_opc {
     }
     return $_;
   }  
-}// Número
+}
+// Número
 class _doc_num {
   
   // operadores
@@ -706,7 +597,8 @@ class _doc_num {
       }      
     }
   }
-}// Texto
+}
+// Texto
 class _doc_tex {
 
   static ope( $tip, $dat, $ope, ...$opc ){
@@ -718,7 +610,8 @@ class _doc_tex {
 
     return $_;      
   }    
-}// Figura
+}
+// Figura
 class _doc_fig {
 
   static ope( $tip, $dat, $ope, ...$opc ){
@@ -730,7 +623,8 @@ class _doc_fig {
 
     return $_;      
   }    
-}// Fecha
+}
+// Fecha
 class _doc_fec {
 
   static ope( $tip, $dat, $ope, ...$opc ){
@@ -743,7 +637,6 @@ class _doc_fec {
     return $_;      
   }    
 }
-
 // Archivo
 class _doc_arc {
 
@@ -756,7 +649,8 @@ class _doc_arc {
 
     return $_;      
   }    
-}// Objeto
+}
+// Objeto
 class _doc_obj {
 
   // operadores
@@ -791,7 +685,8 @@ class _doc_obj {
     return $_;      
   }
   // 
-}// Ejecucion
+}
+// Ejecucion
 class _doc_eje {
 
   static ope( $tip, $dat, $ope, ...$opc ){
@@ -804,7 +699,8 @@ class _doc_eje {
     return $_;      
   }
 
-}// Elemento
+}
+// Elemento
 class _doc_ele {
 
   // operadores
@@ -924,7 +820,7 @@ class _doc_ele {
     $dat.forEach( $e => {
       $.ite = document.createElement('li');            
       $.ite.classList.add('mar_ver-2');            
-      $.ite.innerHTML = `${_doc.ico('dat_ver',{'class':"tam-1 mar_der-1",'onclick':"_doc_ele.act(this);"})}`;
+      $.ite.innerHTML = `${_app.ico('dat_ver',{'class':"tam-1 mar_der-1",'onclick':"_doc_ele.act(this);"})}`;
       $.tex = document.createElement('p');
       $.tex.innerHTML = _doc.ele('her',$e);
       $.ite.appendChild($.tex);

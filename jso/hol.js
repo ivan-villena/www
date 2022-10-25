@@ -30,7 +30,7 @@ class _hol_bib {
   // Encantamiento del sueño
   static enc( $atr, $dat, $ope ){
 
-    let $ = _doc_val.var($dat);
+    let $ = _app_var.ope($dat);
 
     if( $_app.var ) $.lis = $_app.var.nextElementSibling;
 
@@ -65,7 +65,7 @@ class _hol_art {
   // glosario
   static ide( $tip, $dat, $ope ){
 
-    let $ = _doc_val.var($dat);
+    let $ = _app_var.ope($dat);
 
     switch( $tip ){
     case 'ver':
@@ -80,7 +80,7 @@ class _hol_art {
         // recorro y ejecuto filtro
         $.lis.querySelectorAll(`tbody > tr > td[data-atr="nom"]`).forEach( $ite => {
 
-          if( _dat.ver($ite.innerText, $.ope.value, $.val.value) ) $ite.parentElement.classList.remove(DIS_OCU);
+          if( _val.ver($ite.innerText, $.ope.value, $.val.value) ) $ite.parentElement.classList.remove(DIS_OCU);
         });
       }// muestro todo
       else{
@@ -94,13 +94,14 @@ class _hol_art {
 
   }
 }
-// Valores
+
+// Operador - Valores
 class _hol_val {
 
   // Actualizo acumulados
   static acu( $ope ){
 
-    let $ = _doc_val.var($ope);
+    let $ = _app_var.ope($ope);
 
     // portales + parejas + pulsares
     $.ide = $_app.var.getAttribute('ide');
@@ -120,15 +121,15 @@ class _hol_val {
     _app_tab.act('opc');
   }
 }
-// Tableros
+// Operador - Tableros
 class _hol_tab {
 
   // proceso valores
   static _val( $dat ){
     // operador : fecha + sincronario
-    let $ = _doc_val.var($dat);
+    let $ = _app_var.ope($dat);
     
-    $.uri = _app.uri_val();
+    $.uri = _app_uri.val();
     // calendario gregoriano
     if( ( $.ope = $_app.var.getAttribute('ide') ) == 'fec' ){
       
@@ -169,7 +170,7 @@ class _hol_tab {
   // Secciones por tablero
   static _sec( $dat, $ope, ...$opc ){
 
-    let $ = _doc_val.var($dat);    
+    let $ = _app_var.ope($dat);    
 
     $.tab = $_app.tab.ide;
 
@@ -399,7 +400,7 @@ class _hol_tab {
   // portales de activacion
   static _pag( $dat, $ope, ...$opc ){
 
-    let $ = _doc_val.var($dat);
+    let $ = _app_var.ope($dat);
 
     $.kin = $_hol_app.val.kin;
 
@@ -451,7 +452,7 @@ class _hol_tab {
   // parejas del oráculo
   static _par( $dat, $ope, ...$opc ){
 
-    let $ = _doc_val.var($dat);
+    let $ = _app_var.ope($dat);
 
     $.kin = $_hol_app.val.kin;
 
@@ -541,7 +542,7 @@ class _hol_tab {
   // pulsares de onda
   static _pul( $dat, $ope, ...$opc ){
 
-    let $ = _doc_val.var($dat);
+    let $ = _app_var.ope($dat);
 
     $.kin = $_hol_app.val.kin;
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-10-2022 a las 07:14:43
+-- Tiempo de generación: 22-10-2022 a las 06:07:53
 -- Versión del servidor: 10.4.25-MariaDB
 -- Versión de PHP: 8.1.10
 
@@ -35,57 +35,43 @@ CREATE TABLE `app_art` (
   `ide` varchar(15) NOT NULL COMMENT 'Identificador',
   `pos` smallint(5) UNSIGNED NOT NULL COMMENT 'Orden',
   `nom` varchar(50) NOT NULL COMMENT 'Nombre',
-  `des` tinytext NOT NULL COMMENT 'Descripción',
-  `ico` varchar(11) DEFAULT NULL COMMENT 'Ícono',
-  `ele` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL COMMENT 'Elemento' CHECK (json_valid(`ele`))
+  `des` tinytext NOT NULL COMMENT 'Descripción'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Artículo';
 
 --
 -- Volcado de datos para la tabla `app_art`
 --
 
-INSERT INTO `app_art` (`esq`, `cab`, `ide`, `pos`, `nom`, `des`, `ico`, `ele`) VALUES
-('hol', 'art', 'ide', 1, 'Glosarios', '', NULL, NULL),
-('hol', 'bib', 'arc', 1992, '1992 - La Sonda de Arcturus', '\r\n		', NULL, NULL),
-('hol', 'bib', 'asc', 1984, '1984 - La Tierra en Ascenso', '\r\n			Se introduce el concepto de Holonomia y se realiza una aplicación del banco-psi al desarrollo evolutivo en este Planeta.\r\n		', NULL, NULL),
-('hol', 'bib', 'ato', 1999, '1999 - El Átomo del Tiempo', '\r\n		', NULL, NULL),
-('hol', 'bib', 'cro', 2009, '2009 - El Sincronotrón', '\r\n		', NULL, NULL),
-('hol', 'bib', 'din', 1996, '1996 - Dinámicas del Tiempo', '\r\n		', NULL, NULL),
-('hol', 'bib', 'enc', 1990, '1990 - El Encantamiento del Sueño', '\r\n		', NULL, NULL),
-('hol', 'bib', 'fac', 1987, '1987 - El Factor Maya', '\r\n			Se presenta a los mayas como agentes de sincronización galáctica, repasando aspectos claves de su historia.\r\n			El Tzolkin se aplica como el Módulo Armónico provisto de un código galáctico.\r\n		', NULL, NULL),
-('hol', 'bib', 'lun', 1991, '1991 - Las 13 lunas en Movimiento', '\r\n		', NULL, NULL),
-('hol', 'bib', 'rin', 1995, '1995 - El Proyecto Rinri', '\r\n		', NULL, NULL),
-('hol', 'bib', 'tab', 1997, '1997 - Las Tablas del Tiempo', '\r\n		', NULL, NULL),
-('hol', 'bib', 'tel', 1994, '1994 - El Telektonon', '\r\n		', NULL, NULL),
-('hol', 'bib', 'tie', 1993, '1993 - Un Tratado del Tiempo', '\r\n		', NULL, NULL),
-('hol', 'bib', 'tut', 2, 'Tutorial del Sincronario de 13 Lunas', '\r\n		', NULL, NULL),
-('hol', 'dat', 'cas', 52, 'Las 52 Posiciones del Castillo', '', NULL, NULL),
-('hol', 'dat', 'kin', 260, 'Los 260 kines del Tzolkin', '', NULL, NULL),
-('hol', 'dat', 'lun', 28, 'Los 28 Días del Giro Lunar', '', NULL, NULL),
-('hol', 'dat', 'psi', 365, 'Los 365 Psi-cronos del Banco-psi', '', NULL, NULL),
-('hol', 'dat', 'rad', 7, 'Los 7 Plasmas Radiales', '', NULL, NULL),
-('hol', 'dat', 'sel', 20, 'Los 20 Sellos Solares', '', NULL, NULL),
-('hol', 'dat', 'ton', 13, 'Los 13 Tonos Galácticos', '', NULL, NULL),
-('hol', 'dia', 'kin', 1, 'Kin', '', NULL, NULL),
-('hol', 'dia', 'lun', 5, 'Giro Lunar', '', NULL, NULL),
-('hol', 'dia', 'psi', 4, 'Psi-Cronos', '', NULL, NULL),
-('hol', 'dia', 'rad', 6, 'Plasma Radial', '', NULL, NULL),
-('hol', 'dia', 'sel', 2, 'Sello Solar', '', NULL, NULL),
-('hol', 'dia', 'ton', 3, 'Tono Galáctico', '', NULL, NULL),
-('hol', 'inf', 'dia', 1, 'Diario', '', NULL, NULL),
-('hol', 'inf', 'hum', 2, 'Firma Galáctica', '', NULL, NULL),
-('hol', 'tab', 'kin-arm', 3, 'Las 13 Trayectorias del Giro Galáctico', '', NULL, NULL),
-('hol', 'tab', 'kin-cro', 4, 'Las 4 Estaciones del Giro Espectral', '', NULL, NULL),
-('hol', 'tab', 'kin-nav', 2, 'Los 5 Castillos de la Nave del Tiempo', '', NULL, NULL),
-('hol', 'tab', 'kin-tzo', 1, 'Los 260 kines del Tzolkin', '', NULL, NULL),
-('hol', 'tab', 'psi-ban', 5, 'Los 365 días del Giro Solar', '', NULL, NULL),
-('hol', 'tab', 'psi-est', 6, 'Las 4 Estaciones del Anillo Solar', '', NULL, NULL),
-('hol', 'tab', 'psi-lun', 7, 'Los 28 Días del Giro Lunar', '', NULL, NULL),
-('hol', 'tab', 'psi-tzo', 8, 'Las 2.080 unidades del Banco-Psi', '', NULL, NULL),
-('hol', 'tut', 'dat', 2, 'Códigos y Cuentas', '', NULL, NULL),
-('hol', 'tut', 'sin', 1, 'Sincronario de 13 Lunas', '', NULL, NULL),
-('hol', 'usu', 'cic', 1, 'Sendero del Destino', '', NULL, NULL),
-('hol', 'usu', 'dat', 2, 'Firma Galáctica', '', NULL, NULL);
+INSERT INTO `app_art` (`esq`, `cab`, `ide`, `pos`, `nom`, `des`) VALUES
+('hol', 'art', 'dat', 2, 'Códigos y Cuentas', ''),
+('hol', 'art', 'ide', 1, 'Glosarios', ''),
+('hol', 'bib', 'arc', 1992, '1992 - La Sonda de Arcturus', '\r\n		'),
+('hol', 'bib', 'asc', 1984, '1984 - La Tierra en Ascenso', '\r\n			Se introduce el concepto de Holonomia y se realiza una aplicación del banco-psi al desarrollo evolutivo en este Planeta.\r\n		'),
+('hol', 'bib', 'ato', 1999, '1999 - El Átomo del Tiempo', '\r\n		'),
+('hol', 'bib', 'cro', 2009, '2009 - El Sincronotrón', '\r\n		'),
+('hol', 'bib', 'din', 1996, '1996 - Dinámicas del Tiempo', '\r\n		'),
+('hol', 'bib', 'enc', 1990, '1990 - El Encantamiento del Sueño', '\r\n		'),
+('hol', 'bib', 'fac', 1987, '1987 - El Factor Maya', '\r\n			Se presenta a los mayas como agentes de sincronización galáctica, repasando aspectos claves de su historia.\r\n			El Tzolkin se aplica como el Módulo Armónico provisto de un código galáctico.\r\n		'),
+('hol', 'bib', 'lun', 1991, '1991 - Las 13 lunas en Movimiento', '\r\n		'),
+('hol', 'bib', 'rin', 1995, '1995 - El Proyecto Rinri', '\r\n		'),
+('hol', 'bib', 'tab', 1997, '1997 - Las Tablas del Tiempo', '\r\n		'),
+('hol', 'bib', 'tel', 1994, '1994 - El Telektonon', '\r\n		'),
+('hol', 'bib', 'tie', 1993, '1993 - Un Tratado del Tiempo', '\r\n		'),
+('hol', 'bib', 'tut', 2, 'Tutorial del Sincronario de 13 Lunas', '\r\n		'),
+('hol', 'inf', 'dia', 1, 'Diario', ''),
+('hol', 'inf', 'hum', 2, 'Firma Galáctica', ''),
+('hol', 'tab', 'kin-arm', 3, 'Las 13 Trayectorias del Giro Galáctico', ''),
+('hol', 'tab', 'kin-cro', 4, 'Las 4 Estaciones del Giro Espectral', ''),
+('hol', 'tab', 'kin-nav', 2, 'Los 5 Castillos de la Nave del Tiempo', ''),
+('hol', 'tab', 'kin-tzo', 1, 'Los 260 kines del Tzolkin', ''),
+('hol', 'tab', 'psi-ban', 5, 'Los 365 días del Giro Solar', ''),
+('hol', 'tab', 'psi-est', 6, 'Las 4 Estaciones del Anillo Solar', ''),
+('hol', 'tab', 'psi-lun', 7, 'Los 28 Días del Giro Lunar', ''),
+('hol', 'tab', 'psi-tzo', 8, 'Las 2.080 unidades del Banco-Psi', ''),
+('hol', 'tut', 'dat', 2, 'Códigos y Cuentas', ''),
+('hol', 'tut', 'sin', 1, 'Sincronario de 13 Lunas', ''),
+('hol', 'usu', 'cic', 1, 'Sendero del Destino', ''),
+('hol', 'usu', 'dat', 2, 'Firma Galáctica', '');
 
 -- --------------------------------------------------------
 
@@ -536,39 +522,6 @@ INSERT INTO `app_art_nav` (`esq`, `cab`, `ide`, `pos`, `nom`) VALUES
 ('hol', 'bib', 'asc', '03-01', 'Reporte del Arte Planetario.'),
 ('hol', 'bib', 'asc', '03-02', 'Los Cuadrados Mágicos de Ben Franklin y la Polaridad Cruzada.'),
 ('hol', 'bib', 'asc', '03-03', 'Templete Formula Holonómica.'),
-('hol', 'bib', 'ato', '01', 'Introducción: Modelo del Universo Plasma - Matriz Radial (MR-MUP)'),
-('hol', 'bib', 'ato', '01-01', 'El modelo de universo plasma'),
-('hol', 'bib', 'ato', '01-02', 'La matriz radial'),
-('hol', 'bib', 'ato', '01-03', 'Los 3 niveles'),
-('hol', 'bib', 'ato', '02', 'La Práctica del 7:7::7:7, Índice e Inventario de Partes'),
-('hol', 'bib', 'ato', '02-01', 'La práctica'),
-('hol', 'bib', 'ato', '02-02', 'Cada día'),
-('hol', 'bib', 'ato', '02-03', 'Cada semana'),
-('hol', 'bib', 'ato', '03', 'Índice del 7:7::7:7'),
-('hol', 'bib', 'ato', '03-01', 'Los Siete Plasmas Radiales'),
-('hol', 'bib', 'ato', '03-02', 'Átomo Telepático del Tiempo'),
-('hol', 'bib', 'ato', '03-03', '7 x 4 Juegos Semanales de Color'),
-('hol', 'bib', 'ato', '03-04', 'Heptágono de la Mente'),
-('hol', 'bib', 'ato', '03-05', 'Las Cuatro Iniciaciones Semanales'),
-('hol', 'bib', 'ato', '03-06', 'Las Siete Autodeclaraciones Diarias de Padmasambhava'),
-('hol', 'bib', 'ato', '03-07', 'Los Siete Chakras y el Cubo del Radión'),
-('hol', 'bib', 'ato', '04', 'Catálogo de las Partes del 7:7::7:7'),
-('hol', 'bib', 'ato', '04-01', '7:7::7:7 Revelación de 28 Días del Tablero del Plasma de Compresión Fractal del Tiempo'),
-('hol', 'bib', 'ato', '04-02', 'Descripción de las 28 Cartas del Plasma'),
-('hol', 'bib', 'ato', '04-03', 'La Hoja de Instrucciones del 7:7::7:7 '),
-('hol', 'bib', 'ato', '05', 'Apéndices'),
-('hol', 'bib', 'ato', '05-01', 'Raíces del 7:7::7:7 en el Telektonon'),
-('hol', 'bib', 'ato', '05-02', 'Fuente de MUP Modelo Universal del Plasma'),
-('hol', 'bib', 'ato', '05-03', 'El Ciclo de la Profecía de Chilam Balam Completo: Triunfo de UR.'),
-('hol', 'bib', 'ato', '05-04', 'Cruce del Cuerpo Calloso de la Historia Codón 49 (7x 7), la Séptima Luna y las Siete Tierras de UR'),
-('hol', 'bib', 'ato', '05-05', 'La Revelación 7:7::7:7: Siete Katunes es a Siete Años como Siete Años son a Siete Lunas'),
-('hol', 'bib', 'ato', '05-06', 'Cierre del Ciclo: Las Siete Últimas Lunas de los Trece Baktunes Heptágono Interior de la Mente: Los 144.000 Cubicados Dentro'),
-('hol', 'bib', 'ato', '05-07', 'Cierre del Ciclo – Kin del Cronógrafo 201, Dragón Rítmico Rojo, Luna Rítmica, 2012-2013 DA, “Luna-Fuera-del-Tiempo” (ver al final el gráfico del Catálogo Codón 7:7::7:7)'),
-('hol', 'bib', 'ato', '05-08', 'Cierre del Ciclo: Siete Lunas Místicas para el Lanzamiento de la Nave del Tiempo Tierra 2013 – La Culminación del 7:7::7:7'),
-('hol', 'bib', 'ato', '05-09', '7:7::7:7, 4:7::7:13, y la constante 13:7'),
-('hol', 'bib', 'ato', '05-10', 'El Libro de las Siete Generaciones y las Profecías de Chilam Balam'),
-('hol', 'bib', 'ato', '05-11', 'Votan Recordado, Parte II: Avatares de la Tradición de Chilam Balam'),
-('hol', 'bib', 'ato', '06', 'Referencias'),
 ('hol', 'bib', 'cro', '01', 'Introducción'),
 ('hol', 'bib', 'cro', '01-01', 'El sistema del Synchronotron'),
 ('hol', 'bib', 'cro', '01-02', 'Bases para la Práctica Básica del Synchronotron'),
@@ -1017,8 +970,7 @@ INSERT INTO `app_art_nav` (`esq`, `cab`, `ide`, `pos`, `nom`) VALUES
 ('hol', 'bib', 'tab', '02-03-02-03-04', 'Duodécima Tabla, 2008-09: Cuarto Amarillo del Sur, Cuadrante Estelar Oeste    '),
 ('hol', 'bib', 'tab', '02-03-02-04', 'Cuadrante Estelar Sur, Fuente Divina, TEL-EK-TON-ON, Tablas 13-16'),
 ('hol', 'bib', 'tab', '02-03-02-04-01', 'Decimotercera Tabla, 2009-10: Cuarto Rojo del Este, Cuadrante Estelar Sur'),
-('hol', 'bib', 'tab', '02-03-02-04-02', 'Decimocuarta Tabla, 2010-11: Cuarto Blanco del Norte, Cuadrante Estelar Sur');
-INSERT INTO `app_art_nav` (`esq`, `cab`, `ide`, `pos`, `nom`) VALUES
+('hol', 'bib', 'tab', '02-03-02-04-02', 'Decimocuarta Tabla, 2010-11: Cuarto Blanco del Norte, Cuadrante Estelar Sur'),
 ('hol', 'bib', 'tab', '02-03-02-04-03', 'Decimoquinta Tabla, 2011-12: Cuarto Azul del Oeste, Cuadrante Estelar Sur'),
 ('hol', 'bib', 'tab', '02-03-02-04-04', 'Decimosexta Tabla, 2012-13: Cuarto Amarillo del Sur, Cuadrante Estelar Sur    '),
 ('hol', 'bib', 'tab', '02-03-03', 'Las Claves de las 64 Runas de UR y los 64 Codones del Libro de la Vida Universal'),
@@ -1043,7 +995,8 @@ INSERT INTO `app_art_nav` (`esq`, `cab`, `ide`, `pos`, `nom`) VALUES
 ('hol', 'bib', 'tab', '04-03-01-02', 'Bolontiku: El Reino de los Nueve Señores del Tiempo y el Destino'),
 ('hol', 'bib', 'tab', '04-03-02', 'Segunda Etapa de la Hoja de Ruta: Plantillas CA y la CA'),
 ('hol', 'bib', 'tab', '04-03-02-01', 'Continuidad Aborigen, Plantilla de los 32 Codones y Runas: Camino de la Conducta'),
-('hol', 'bib', 'tab', '04-03-02-02', 'Conciencia Cósmica, Plantilla CA, 32 Codones y Runa: Camino de Ejercer el Poder'),
+('hol', 'bib', 'tab', '04-03-02-02', 'Conciencia Cósmica, Plantilla CA, 32 Codones y Runa: Camino de Ejercer el Poder');
+INSERT INTO `app_art_nav` (`esq`, `cab`, `ide`, `pos`, `nom`) VALUES
 ('hol', 'bib', 'tab', '04-03-03', 'Tercera Etapa de la Hoja de Ruta: Génesis y Onda Encantada de la Aventura de Trece Años Proporción 3:13'),
 ('hol', 'bib', 'tab', '04-03-03-01', 'Los Tres Años de la Nueva Génesis: 1997-2000 DA'),
 ('hol', 'bib', 'tab', '04-03-03-02', 'Oxlahuntiku, La Onda Encantada de la Aventura de la Segunda Creación, 2000-13 DA'),
@@ -1205,103 +1158,114 @@ INSERT INTO `app_art_nav` (`esq`, `cab`, `ide`, `pos`, `nom`) VALUES
 ('hol', 'bib', 'tut', '04-03', 'Los Oráculos'),
 ('hol', 'bib', 'tut', '04-04', 'El Oráculo de Quinta Fuerza y ​​el Tiempo Net '),
 ('hol', 'bib', 'tut', '05', 'La Firma Galáctica'),
-('hol', 'dat', 'rad', '01', 'Días del Giro Lunar'),
-('hol', 'dat', 'rad', '02', 'Sellos de la profecía'),
-('hol', 'dat', 'rad', '03', 'El heptágono de la Mente'),
-('hol', 'dat', 'rad', '04', 'Autodelcaraciones Diarias'),
-('hol', 'dat', 'rad', '05', 'Componentes Electrónicos'),
-('hol', 'dat', 'ton', '01', 'Rayos de Pulsación'),
-('hol', 'dat', 'ton', '02', 'Los 7 pares especulares'),
-('hol', 'dat', 'ton', '03', 'Principios de la Creación'),
-('hol', 'dat', 'ton', '04', 'La onda encantada de la aventura'),
-('hol', 'dat', 'ton', '05', 'Los 4 pulsares dimensionales'),
-('hol', 'dat', 'ton', '06', 'Los 5 pulsares matices'),
-('hol', 'dat', 'sel', '01', 'Símbolos posicionales'),
-('hol', 'dat', 'sel', '01-01', 'Las 3 etapas en el Desarrollo del Ser'),
-('hol', 'dat', 'sel', '01-02', 'Las 4 etapas evolutivas de la mente'),
-('hol', 'dat', 'sel', '01-03', 'Las 5 Familias Cíclicas de la Luz'),
-('hol', 'dat', 'sel', '02', 'Colocación Cromática'),
-('hol', 'dat', 'sel', '02-01', 'Las 5 familias terrestres'),
-('hol', 'dat', 'sel', '02-02', 'Los 4 clanes galácticos'),
-('hol', 'dat', 'sel', '03', 'Colocación Armónica'),
-('hol', 'dat', 'sel', '03-01', 'Las 4 razas raíz cósmicas'),
-('hol', 'dat', 'sel', '03-02', 'Las 5 células del tiempo'),
-('hol', 'dat', 'sel', '04', 'Parejas del Oráculo'),
-('hol', 'dat', 'sel', '04-01', 'Análogos'),
-('hol', 'dat', 'sel', '04-02', 'Antípodas'),
-('hol', 'dat', 'sel', '04-03', 'Ocultos'),
-('hol', 'dat', 'sel', '05', 'Holon Solar'),
-('hol', 'dat', 'sel', '05-01', 'Las 10 Órbitas planetarias'),
-('hol', 'dat', 'sel', '05-02', 'Las 5 Células Solares'),
-('hol', 'dat', 'sel', '05-03', 'Los 5 Circuitos de telepatía'),
-('hol', 'dat', 'sel', '06', 'Holon Planetario'),
-('hol', 'dat', 'sel', '06-01', 'Los 3 Campos Dimensionales'),
-('hol', 'dat', 'sel', '06-02', 'Los 5 Centros de la Fuerza-G'),
-('hol', 'dat', 'sel', '06-03', 'Los 2 Flujos Polares'),
-('hol', 'dat', 'sel', '07', 'Holon humano'),
-('hol', 'dat', 'sel', '07-01', 'Los 5 Centros Galácticos'),
-('hol', 'dat', 'sel', '07-02', 'Las 4 Extremidades Cromáticas'),
-('hol', 'dat', 'sel', '07-03', 'Las 5 Dedos de las manos y pies'),
-('hol', 'dat', 'sel', '07-04', 'Los 2 Lados de la Respiración S-G'),
-('hol', 'dat', 'lun', '01', 'Las 4 héptadas'),
-('hol', 'dat', 'cas', '01', 'Los 4 Cuadrantes'),
-('hol', 'dat', 'cas', '02', 'las 13 Armonías'),
-('hol', 'dat', 'kin', '01', 'Módulo Armónico'),
-('hol', 'dat', 'kin', '01-01', 'Los 52 portales de Activación Galáctica'),
-('hol', 'dat', 'kin', '01-02', 'Los 13 + 1 campos de Energía'),
-('hol', 'dat', 'kin', '02', 'Giro Espectral'),
-('hol', 'dat', 'kin', '02-01', 'Estación Galáctica'),
-('hol', 'dat', 'kin', '02-02', 'Elemento Cromático'),
-('hol', 'dat', 'kin', '03', 'Giro Galáctico'),
-('hol', 'dat', 'kin', '03-01', 'Trayectoria Armónica'),
-('hol', 'dat', 'kin', '03-02', 'Célula del Tiempo'),
-('hol', 'dat', 'kin', '04', 'Nave del Tiempo'),
-('hol', 'dat', 'kin', '04-01', 'Castillo Direccional'),
-('hol', 'dat', 'kin', '04-02', 'Aventura de la Onda Encantada'),
-('hol', 'dat', 'psi', '01', 'Las 4 estaciones solares'),
-('hol', 'dat', 'psi', '02', 'Las 13 lunas del servicio planetario'),
-('hol', 'dat', 'psi', '03', 'Los 19 vinales del haab'),
-('hol', 'dat', 'psi', '04', 'Las 52 heptadas semanales'),
-('hol', 'dat', 'psi', '05', 'Las 73 cromáticas entonadas'),
-('hol', 'dia', 'kin', '01', 'Encantamiento del Kin'),
-('hol', 'dia', 'kin', '02', 'Parejas del Oráculo'),
-('hol', 'dia', 'kin', '02-01', 'Descripciones'),
-('hol', 'dia', 'kin', '02-02', 'Lecturas'),
-('hol', 'dia', 'kin', '02-03', 'Posiciones'),
-('hol', 'dia', 'kin', '02-04', 'Sincronometría'),
-('hol', 'dia', 'kin', '03', 'Nave del Tiempo'),
-('hol', 'dia', 'kin', '03-01', 'Castillo Direccional'),
-('hol', 'dia', 'kin', '03-02', 'Aventura de la Onda Encantada'),
-('hol', 'dia', 'kin', '04', 'Giro Galáctico'),
-('hol', 'dia', 'kin', '04-01', 'Trayectoria Armónica'),
-('hol', 'dia', 'kin', '04-02', 'Célula del Tiempo'),
-('hol', 'dia', 'kin', '05', 'Giro Espectral'),
-('hol', 'dia', 'kin', '05-01', 'Estación Galáctica'),
-('hol', 'dia', 'kin', '05-02', 'Elemento Cromático'),
-('hol', 'dia', 'kin', '06', 'Módulo Armónico'),
-('hol', 'dia', 'kin', '06-01', 'Portales de Activación'),
-('hol', 'dia', 'kin', '06-02', 'Modelo Energético'),
-('hol', 'dia', 'ton', '01', 'Onda Encantada'),
-('hol', 'dia', 'ton', '02', 'Simetría Especular'),
-('hol', 'dia', 'ton', '03', 'Pulsar Dimensional'),
-('hol', 'dia', 'ton', '04', 'Pulsar Matiz'),
-('hol', 'dia', 'sel', '01', 'Colocación Cromática'),
-('hol', 'dia', 'sel', '01-01', 'Familia Terrestre'),
-('hol', 'dia', 'sel', '01-02', 'Clan Cromático'),
-('hol', 'dia', 'sel', '02', 'Colocación Armónica'),
-('hol', 'dia', 'sel', '02-01', 'Raza Raiz Cósmica'),
-('hol', 'dia', 'sel', '02-02', 'Célula del Tiempo'),
-('hol', 'dia', 'sel', '03', 'Holones'),
-('hol', 'dia', 'sel', '03-01', 'Solar-interplanetario'),
-('hol', 'dia', 'sel', '03-02', 'Terrestre-planetario'),
-('hol', 'dia', 'sel', '03-03', 'Humano'),
-('hol', 'dia', 'psi', '01', 'Estación Solar'),
-('hol', 'dia', 'psi', '02', 'Giro Lunar'),
-('hol', 'dia', 'psi', '03', 'Heptada'),
-('hol', 'dia', 'lun', '01', 'Día Lunar'),
-('hol', 'dia', 'lun', '02', 'Héptada'),
-('hol', 'dia', 'rad', '01', 'Sello de la Profecía'),
-('hol', 'dia', 'rad', '02', 'Electricidad Cósmica');
+('hol', 'art', 'dat', '01', 'Los 7 Plasmas Radiales'),
+('hol', 'art', 'dat', '01-01', 'Días del Giro Lunar'),
+('hol', 'art', 'dat', '01-02', 'Sellos de la profecía'),
+('hol', 'art', 'dat', '01-03', 'El heptágono de la Mente'),
+('hol', 'art', 'dat', '01-04', 'Autodelcaraciones Diarias'),
+('hol', 'art', 'dat', '01-05', 'Componentes Electrónicos'),
+('hol', 'art', 'dat', '02', 'Los 13 Tonos Galácticos'),
+('hol', 'art', 'dat', '02-01', 'Rayos de Pulsación'),
+('hol', 'art', 'dat', '02-02', 'Los 7 pares especulares'),
+('hol', 'art', 'dat', '02-03', 'Principios de la Creación'),
+('hol', 'art', 'dat', '02-04', 'La onda encantada de la aventura'),
+('hol', 'art', 'dat', '02-05', 'Los 4 pulsares dimensionales'),
+('hol', 'art', 'dat', '02-06', 'Los 5 pulsares matices'),
+('hol', 'art', 'dat', '03', 'Los 20 Sellos Solares'),
+('hol', 'art', 'dat', '03-01', 'Símbolos posicionales'),
+('hol', 'art', 'dat', '03-02', 'Las 3 etapas en el Desarrollo del Ser'),
+('hol', 'art', 'dat', '03-03', 'Las 4 etapas evolutivas de la mente'),
+('hol', 'art', 'dat', '03-04', 'Las 5 Familias Cíclicas de la Luz'),
+('hol', 'art', 'dat', '03-05', 'Colocación Cromática'),
+('hol', 'art', 'dat', '03-06', 'Las 5 familias terrestres'),
+('hol', 'art', 'dat', '03-07', 'Los 4 clanes galácticos'),
+('hol', 'art', 'dat', '03-08', 'Colocación Armónica'),
+('hol', 'art', 'dat', '03-09', 'Las 4 razas raíz cósmicas'),
+('hol', 'art', 'dat', '03-10', 'Las 5 células del tiempo'),
+('hol', 'art', 'dat', '03-11', 'Parejas del Oráculo'),
+('hol', 'art', 'dat', '03-12', 'Análogos'),
+('hol', 'art', 'dat', '03-13', 'Antípodas'),
+('hol', 'art', 'dat', '03-14', 'Ocultos'),
+('hol', 'art', 'dat', '03-15', 'Holon Solar'),
+('hol', 'art', 'dat', '03-16', 'Las 10 Órbitas planetarias'),
+('hol', 'art', 'dat', '03-17', 'Las 5 Células Solares'),
+('hol', 'art', 'dat', '03-18', 'Los 5 Circuitos de telepatía'),
+('hol', 'art', 'dat', '03-19', 'Holon Planetario'),
+('hol', 'art', 'dat', '03-20', 'Los 3 Campos Dimensionales'),
+('hol', 'art', 'dat', '03-21', 'Los 5 Centros de la Fuerza-G'),
+('hol', 'art', 'dat', '03-22', 'Los 2 Flujos Polares'),
+('hol', 'art', 'dat', '03-23', 'Holon humano'),
+('hol', 'art', 'dat', '03-24', 'Los 5 Centros Galácticos'),
+('hol', 'art', 'dat', '03-25', 'Las 4 Extremidades Cromáticas'),
+('hol', 'art', 'dat', '03-26', 'Las 5 Dedos de las manos y pies'),
+('hol', 'art', 'dat', '03-27', 'Los 2 Lados de la Respiración S-G'),
+('hol', 'art', 'dat', '04', 'Los 28 días del Giro Lunar'),
+('hol', 'art', 'dat', '04-01', 'Las 4 héptadas'),
+('hol', 'art', 'dat', '05', 'Las 52 posiciones del Castillo Fractal'),
+('hol', 'art', 'dat', '05-01', 'Los 4 Cuadrantes'),
+('hol', 'art', 'dat', '05-02', 'las 13 Armonías'),
+('hol', 'art', 'dat', '06', 'Los 64 Codones del ADN'),
+('hol', 'art', 'dat', '07', 'Los 260 Kines del Giro Galáctico'),
+('hol', 'art', 'dat', '07-01', 'Los 52 portales de Activación Galáctica'),
+('hol', 'art', 'dat', '07-02', 'Los 13 + 1 campos de Energía'),
+('hol', 'art', 'dat', '07-03', 'Giro Espectral'),
+('hol', 'art', 'dat', '07-04', 'Estación Galáctica'),
+('hol', 'art', 'dat', '07-05', 'Elemento Cromático'),
+('hol', 'art', 'dat', '07-06', 'Giro Galáctico'),
+('hol', 'art', 'dat', '07-07', 'Trayectoria Armónica'),
+('hol', 'art', 'dat', '07-08', 'Célula del Tiempo'),
+('hol', 'art', 'dat', '07-09', 'Nave del Tiempo'),
+('hol', 'art', 'dat', '07-10', 'Castillo Direccional'),
+('hol', 'art', 'dat', '07-11', 'Aventura de la Onda Encantada'),
+('hol', 'art', 'dat', '08', 'Los 365 Psi-cronos del Giro Solar'),
+('hol', 'art', 'dat', '08-01', 'Las 4 estaciones solares'),
+('hol', 'art', 'dat', '08-02', 'Las 13 lunas del servicio planetario'),
+('hol', 'art', 'dat', '08-03', 'Los 19 vinales del haab'),
+('hol', 'art', 'dat', '08-04', 'Las 52 heptadas semanales'),
+('hol', 'art', 'dat', '08-05', 'Las 73 cromáticas entonadas'),
+('hol', 'bib', 'ato', '01', 'Introducción: Modelo del Universo Plasma - Matriz Radial (MR-MUP)'),
+('hol', 'bib', 'ato', '01-01', 'El modelo de universo plasma'),
+('hol', 'bib', 'ato', '01-02', 'La matriz radial'),
+('hol', 'bib', 'ato', '01-03', 'Los 3 niveles'),
+('hol', 'bib', 'ato', '02', 'La Práctica del 7:7::7:7, Índice e Inventario de Partes'),
+('hol', 'bib', 'ato', '02-01', 'La práctica'),
+('hol', 'bib', 'ato', '02-02', 'Cada día'),
+('hol', 'bib', 'ato', '02-03', 'Cada semana'),
+('hol', 'bib', 'ato', '03', 'Índice del 7:7::7:7'),
+('hol', 'bib', 'ato', '03-01', 'Los Siete Plasmas Radiales'),
+('hol', 'bib', 'ato', '03-02', 'Átomo Telepático del Tiempo'),
+('hol', 'bib', 'ato', '03-03', '7 x 4 Juegos Semanales de Color'),
+('hol', 'bib', 'ato', '03-04', 'Heptágono de la Mente'),
+('hol', 'bib', 'ato', '03-05', 'Las Cuatro Iniciaciones Semanales'),
+('hol', 'bib', 'ato', '03-06', 'Las Siete Autodeclaraciones Diarias de Padmasambhava'),
+('hol', 'bib', 'ato', '03-07', 'Los Siete Chakras y el Cubo del Radión'),
+('hol', 'bib', 'ato', '04', 'Catálogo de las Partes del 7:7::7:7'),
+('hol', 'bib', 'ato', '04-01', '7:7::7:7 Revelación de 28 Días del Tablero del Plasma de Compresión Fractal del Tiempo'),
+('hol', 'bib', 'ato', '04-01-01', 'Semana 1'),
+('hol', 'bib', 'ato', '04-01-02', 'Semana 2'),
+('hol', 'bib', 'ato', '04-01-03', 'Semana 3'),
+('hol', 'bib', 'ato', '04-01-04', 'Semana 4'),
+('hol', 'bib', 'ato', '04-02', 'Descripción de las 28 Cartas del Plasma'),
+('hol', 'bib', 'ato', '04-02-01', 'Frente'),
+('hol', 'bib', 'ato', '04-02-02', 'Dorso'),
+('hol', 'bib', 'ato', '04-02-03', 'Resumen'),
+('hol', 'bib', 'ato', '04-03', 'La Hoja de Instrucciones del 7:7::7:7'),
+('hol', 'bib', 'ato', '04-03-01', 'Holograma Cúbico 7:28'),
+('hol', 'bib', 'ato', '04-03-02', 'Física del Cubo de la Ley'),
+('hol', 'bib', 'ato', '04-03-03', 'Modelo de Estudio del Tablero del Plasma'),
+('hol', 'bib', 'ato', '04-03-04', 'Siete Tierras de UR la Escritura Oculta de las Lunas'),
+('hol', 'bib', 'ato', '05', 'Apéndices'),
+('hol', 'bib', 'ato', '05-01', '01) Raíces del 7:7::7:7 en el Telektonon'),
+('hol', 'bib', 'ato', '05-02', '02) Fuente de MUP Modelo Universal del Plasma'),
+('hol', 'bib', 'ato', '05-03', '03) Triunfo de UR'),
+('hol', 'bib', 'ato', '05-04', '04) La Séptima Luna y las Siete Tierras de UR'),
+('hol', 'bib', 'ato', '05-05', '05) La Revelación 7:7::7:7'),
+('hol', 'bib', 'ato', '05-06', '06) Cierre del Ciclo: Las Siete Últimas Lunas de los Trece Baktunes Heptágono Interior de la Mente'),
+('hol', 'bib', 'ato', '05-07', '07) Cierre del Ciclo: Kin del Cronógrafo 201'),
+('hol', 'bib', 'ato', '05-08', '08) Cierre del Ciclo: Siete Lunas Místicas para el Lanzamiento de la Nave del Tiempo Tierra 2013'),
+('hol', 'bib', 'ato', '05-09', '09) 7:7::7:7, 4:7::7:13, y la constante 13:7'),
+('hol', 'bib', 'ato', '05-10', '10) El Libro de las Siete Generaciones y las Profecías de Chilam Balam'),
+('hol', 'bib', 'ato', '05-11', '11) Votan Recordado, Parte II: Avatares de la Tradición de Chilam Balam');
 
 -- --------------------------------------------------------
 
@@ -1329,10 +1293,9 @@ CREATE TABLE `app_cab` (
 INSERT INTO `app_cab` (`esq`, `ide`, `pos`, `nom`, `des`, `ico`, `ocu`, `url`, `nav`, `usu`) VALUES
 ('hol', 'bib', 1, 'Bibliografía', '', 'tex_lib', 0, 0, 1, 0),
 ('hol', 'art', 2, 'Artículos', '', 'tex_inf', 0, 0, 1, 0),
-('hol', 'dat', 3, 'Cuentas', '', 'num_val', 0, 0, 1, 0),
-('hol', 'tab', 4, 'Tableros', '', 'lis_tab', 0, 0, 0, 0),
-('hol', 'dia', 5, 'Diario', '', 'fec_dia', 0, 0, 1, 0),
-('hol', 'usu', 6, 'Kin Planetario', '', 'usu', 1, 0, 1, 0);
+('hol', 'tab', 3, 'Tableros', '', 'lis_tab', 0, 0, 0, 0),
+('hol', 'dia', 4, 'Diario', '', 'fec_dia', 1, 0, 1, 0),
+('hol', 'usu', 5, 'Kin Planetario', '', 'usu', 1, 0, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -1352,14 +1315,6 @@ CREATE TABLE `app_dat` (
 
 INSERT INTO `app_dat` (`esq`, `ide`, `ope`) VALUES
 ('api', 'fec', '{\r\n        \"val\": {\r\n        },\r\n        \"est\": {\r\n          \"val\":\"fec\", \r\n          \"dia\":\"fec_dia\", \r\n          \"sem\":\"fec_sem\", \r\n          \"año\":\"fec_año\"\r\n        },\r\n        \"opc\": {\r\n          \"ver\": [ \"dia\", \"sem\", \"mes\" ],\r\n          \"num\": [ \"dia\", \"sem\", \"mes\" ]\r\n        }        \r\n    }'),
-('api', 'hol_rad', '{\r\n        \"val\": {\r\n          \"nom\": \"Plasma #()($)ide() de 7: ()($)nom().\",\r\n          \"des\": \"()($)pla_pod() ()($)pla_fue().\\n\\\"()($)pla_lec()\\\"\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/_/hol/ima/rad/()($)ide().png);\",\r\n          \"col\": 7\r\n        },\r\n        \"atr\": {\r\n          \"ide\":         { \"min\":1, \"max\":7, \"dat\":\"api.hol_rad\" },            \r\n          \"tel_ora\":     { \"min\":1997, \"max\":1999, \"dat\":\"api.fec_año\" },\r\n          \"tel_ora_año\": { \"min\":1, \"max\":260, \"dat\":\"api.hol_kin\" },\r\n          \"tel_ora_ani\": { \"min\":1, \"max\":260, \"dat\":\"api.hol_kin\" },\r\n          \"tel_ora_gen\": { \"min\":1, \"max\":260, \"dat\":\"api.hol_kin\" },            \r\n          \"pla_fue_pre\": { \"min\":1, \"max\":12, \"dat\":\"api.hol_rad_pla_fue\" },\r\n          \"pla_fue_pos\": { \"min\":1, \"max\":12, \"dat\":\"api.hol_rad_pla_fue\" },          \r\n          \"hum_cha\":     { \"min\":1, \"max\":7, \"dat\":\"api.hol_rad_hum_cha\" }\r\n        },\r\n        \"opc\": {\r\n          \"ver\": [ \r\n            \"ide\", \"pla_qua\" \r\n          ],\r\n          \"ima\": [\r\n            \"ide\", \"hep\", \r\n            \"tel_ora_año\", \"tel_ora_ani\", \"tel_ora_gen\", \r\n            \"pla_fue_pre\", \"pla_fue_pos\", \"pla_qua\", \r\n            \"hum_cha\"\r\n          ],\r\n          \"col\": [\r\n            \"hep\", \"pla_qua\"\r\n          ],\r\n          \"num\": [ \r\n            \"ide\", \"pla_qua\" \r\n          ]\r\n        }\r\n    }'),
-('api', 'hol_rad_hep', '{ \r\n        \"val\": {\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/_/hol/ima/rad/hep/()($)ide().png);\",\r\n          \"col\": 4\r\n        }\r\n    }'),
-('api', 'hol_rad_pla_car', '{ \r\n        \"val\": {\r\n          \"nom\": \"Carga #()($)ide() de 2: ()($)nom().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/_/hol/ima/rad/pla_car/()($)ide().png);\"\r\n        }\r\n    }'),
-('api', 'hol_rad_pla_ele', '{\r\n        \"val\": {\r\n          \"nom\": \"Tipo de Electricidad Cósmica #()($)ide() de 6: ()($)nom().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/_/hol/ima/rad/pla_ele/()($)ide().png);\"                      \r\n        },\r\n        \"opc\": {\r\n          \"ima\": [ \"ide\" ]\r\n        }          \r\n    }'),
-('api', 'hol_rad_pla_fue', '{\r\n        \"val\": {\r\n          \"nom\": \"Línea de Fuerza #()($)ide() de 12: ()($)nom().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/_/hol/ima/rad/pla_fue/()($)ide().png);\"\r\n        },\r\n        \"atr\": {\r\n          \"ele_pre\": { \"min\":1, \"max\":6, \"dat\":\"api.hol_rad_pla_ele\" },\r\n          \"ele_pos\": { \"min\":1, \"max\":6, \"dat\":\"api.hol_rad_pla_ele\" }\r\n        },\r\n        \"opc\": {\r\n          \"ima\": [ \"ide\", \"ele_pre\", \"ele_pos\" ]            \r\n        }          \r\n    }'),
-('api', 'hol_rad_pla_qua', '{\r\n        \"val\": {\r\n          \"nom\": \"Quantum #()($)ide() de 3: ()($)nom().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/_/hol/ima/rad/pla_qua/()($)ide().png);\",\r\n          \"col\": 3\r\n        },\r\n        \"opc\": {\r\n          \"ima\": [ \"ide\" ]            \r\n        }          \r\n    }'),
-('api', 'hol_rad_hum_cha', '{\r\n        \"val\": {\r\n          \"nom\": \"Chakra #()($)ide() de 7: ()($)nom().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/_/hol/ima/rad/hum_cha/()($)ide().png);\",\r\n          \"col\": 7\r\n        }\r\n    }'),
-('api', 'hol_rad_hum_mud', '{ \r\n        \"val\": {\r\n          \"nom\": \"Mudra #()($)ide() de 7: ()($)nom().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/_/hol/ima/rad/hum_mud/()($)ide().png);\" \r\n        }\r\n    }'),
 ('api', 'hol_ton', '{\r\n        \"val\": {\r\n          \"nom\": \"Tono Galáctico #()($)ide() de 13: ()($)nom().\",\r\n          \"des\": \"()($)des() ()($)acc_lec().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/_/hol/ima/ton/()($)ide().png);\",\r\n          \"col\": 7\r\n        },\r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":13, \"dat\":\"api.hol_ton\" },\r\n          \"ond\": { \"min\":1, \"max\":4, \"dat\":\"api.hol_ton_ond\" },\r\n          \"ond_enc\":  { \"min\":0, \"max\":4, \"dat\":\"api.hol_ton_ond\" },\r\n          \"dim\": { \"min\":1, \"max\":4, \"dat\":\"api.hol_ton_dim\" },\r\n          \"mat\": { \"min\":1, \"max\":5, \"dat\":\"api.hol_ton_mat\" },\r\n          \"sim\": { \"min\":1, \"max\":7, \"dat\":\"api.hol_ton_sim\" },\r\n          \"hum_lad\": { \"min\":1, \"max\":3, \"dat\":\"api.hol_ton_hum_lad\" },\r\n          \"hum_art\": { \"min\":1, \"max\":7, \"dat\":\"api.hol_ton_hum_art\" },\r\n          \"hum_sen\": { \"min\":1, \"max\":7, \"dat\":\"api.hol_ton_hum_sen\" }\r\n        },\r\n        \"opc\": {\r\n          \"ver\": [ \"ide\", \"ond\", \"dim\", \"mat\", \"sim\", \"hum_art\" ],\r\n          \"ima\": [ \"ide\", \"ond\", \"dim\", \"mat\" ],\r\n          \"col\": [ \"ide\", \"ond\", \"dim\", \"mat\", \"sim\", \"hum_art\", \"hum_lad\" ],\r\n          \"num\": [ \"ide\", \"ond\", \"dim\", \"mat\", \"sim\", \"hum_art\", \"hum_lad\" ]\r\n        }\r\n    }'),
 ('api', 'hol_ton_ond', '{\r\n        \"val\": {\r\n          \"nom\": \"Aventura de la Onda Encantada #()($)ide() de 4: ()($)des().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/_/hol/ima/ton/ond/()($)ide().png);\",\r\n          \"col\": 4\r\n        },\r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":4, \"dat\":\"api.hol_ton_ond\" }\r\n        },\r\n        \"opc\": {\r\n          \"ima\": [ \"ide\" ] \r\n        }          \r\n    }'),
 ('api', 'hol_ton_dim', '{\r\n        \"val\": {\r\n          \"nom\": \"Pulsar Dimensional #()($)ide() de 4: ()($)nom().\",\r\n          \"des\": \"Campo de aplicación ()($)des().\", \r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/_/hol/ima/ton/dim/()($)ide().png);\",\r\n          \"col\": 4\r\n        },\r\n        \"atr\":{\r\n          \"ide\": { \"min\":1, \"max\":4, \"dat\":\"api.hol_ton_dim\" }\r\n        },\r\n        \"opc\": {\r\n          \"ima\": [ \"ide\" ] \r\n        }          \r\n    }'),
@@ -1394,18 +1349,6 @@ INSERT INTO `app_dat` (`esq`, `ide`, `ope`) VALUES
 ('api', 'hol_sel_hum_ded', '{\r\n        \"val\": {\r\n          \"nom\": \"Dedo #()($)ide() de 5: ()($)nom().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/_/hol/ima/sel/hum_ded/()($)ide().png);\",\r\n          \"col\": 5\r\n        },\r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":5, \"dat\":\"api.hol_sel_hum_ded\" },\r\n          \"fam\": { \"min\":1, \"max\":5, \"dat\":\"api.hol_sel_cro_fam\" }\r\n        },\r\n        \"opc\": {\r\n          \"ima\": [ \"ide\", \"fam\" ] \r\n        }          \r\n    }'),
 ('api', 'hol_sel_hum_ext', '{\r\n        \"val\": {\r\n          \"nom\": \"Extremidad #()($)ide() de 4: ()($)nom().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/_/hol/ima/sel/hum_ext/()($)ide().png);\",\r\n          \"col\": 4\r\n        },\r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":4, \"dat\":\"api.hol_sel_hum_ext\" },\r\n          \"ele\": { \"min\":1, \"max\":4, \"dat\":\"api.hol_sel_cro_ele\" }\r\n        },\r\n        \"opc\": {\r\n          \"ima\": [ \"ide\", \"ele\" ] \r\n        }          \r\n    }'),
 ('api', 'hol_sel_hum_mer', '{\r\n        \"val\": {\r\n          \"nom\": \"Meridiano Orgánico #()($)ide() de 10: ()($)nom().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/_/hol/ima/sel/hum_mer/()($)ide().png);\",\r\n          \"col\": 10\r\n        },\r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":10, \"dat\":\"api.hol_sel_hum_mer\" }\r\n        },\r\n        \"opc\": {\r\n          \"ima\": [ \"ide\" ] \r\n        }          \r\n    }'),
-('api', 'hol_lun', '{  \r\n        \"val\": {\r\n          \"nom\": \"()($)ide()° Día de 28.\",\r\n          \"des\": \"\"\r\n        },\r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":28, \"dat\":\"api.hol_lun\" },\r\n          \"arm\": { \"min\":1, \"max\":4, \"dat\":\"api.hol_lun_arm\" },\r\n          \"rad\": { \"min\":1, \"max\":7, \"dat\":\"api.hol_rad\" }\r\n        },\r\n        \"opc\": {\r\n          \"ver\": [ \r\n            \"ide\", \"arm\" \r\n          ],\r\n          \"ima\": [\r\n            \"arm\", \"rad\"\r\n          ],\r\n          \"col\": [\r\n            \"arm\", \"rad\"\r\n          ],\r\n          \"num\": [ \r\n            \"ide\", \"arm\" \r\n          ]\r\n        }          \r\n    }'),
-('api', 'hol_lun_arm', '{  \r\n        \"val\": {\r\n          \"nom\": \"Armonía lunar ()($)ide()\",\r\n          \"des\": \"()($)ide()\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/_/hol/ima/rad.png), center/contain no-repeat url(http://localhost/_/hol/ima/arm/()($)ide().png);\",\r\n          \"col\": 4\r\n        },\r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":4, \"dat\":\"api.hol_lun_arm\" }\r\n        },\r\n        \"opc\": {\r\n          \"ima\": [\r\n            \"ide\"\r\n          ]            \r\n        }\r\n    }'),
-('api', 'hol_lun_tel_tor', '{  \r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":4, \"dat\":\"api.hol_lun_tel_tor\" }\r\n        }\r\n    }'),
-('api', 'hol_lun_tel_cam', '{  \r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":8, \"dat\":\"api.hol_lun_tel_cam\" }\r\n        }\r\n    }'),
-('api', 'hol_lun_tel_cub', '{  \r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":16, \"dat\":\"api.hol_lun_tel_cub\" }\r\n        }\r\n    }'),
-('api', 'hol_cas', '{\r\n        \"val\": {\r\n          \"nom\": \"Posicion #()($)ide() de 52.\",\r\n          \"des\": \"Cuadrante #()($)arm() de 4; Tono Galáctico #()($)ton() de 13; Onda de la Aventura #()($)ond() de 4.\"\r\n        },\r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":52, \"dat\":\"api.hol_cas\" },\r\n          \"arm\": { \"min\":1, \"max\":4, \"dat\":\"api.hol_cas_arm\" },\r\n          \"ond\": {\"min\":1, \"max\":4, \"dat\":\"api.hol_cas_ond\" },\r\n          \"pos_arm\": { \"min\":1, \"max\":4, \"dat\":\"api.hol_arm\" },\r\n          \"ton\": {\"min\":1, \"max\":13, \"dat\":\"api.hol_ton\" },\r\n          \"ton_arm\": { \"min\":1, \"max\":13, \"dat\":\"api.hol_ton\" }\r\n        },\r\n        \"opc\": {\r\n          \"ver\": [ \r\n            \"ide\", \"arm\" \r\n          ],    \r\n          \"ima\": [\r\n            \"arm\", \"ond\"\r\n          ],\r\n          \"col\": [\r\n            \"arm\", \"ond\", \"ton_arm\"\r\n          ],\r\n          \"num\": [ \r\n            \"ide\", \"arm\", \"ton_arm\" \r\n          ]            \r\n        }\r\n    }'),
-('api', 'hol_cas_arm', '{\r\n        \"val\": {\r\n          \"nom\": \"Cuadrante #()($)ide() de 4\",\r\n          \"des\": \"Dirección: ()($)dir(); Poder: ()($)pod(); Color: ()($)col().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/_/hol/ima/cas/arm/()($)ide().png);\",\r\n          \"col\": 4\r\n        }\r\n    }'),
-('api', 'hol_cas_ond', '{\r\n        \"val\": {\r\n          \"nom\": \"Aventura de la Onda Encantada #()($)ide() de 4\",\r\n          \"des\": \"()($)des().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/_/hol/ima/cas/ond/()($)ide().png);\",\r\n          \"col\": 4\r\n        }\r\n    }'),
-('api', 'hol_chi', '{ \r\n        \"val\": {\r\n          \"nom\": \"\",\r\n          \"des\": \"\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/_/hol/ima/chi/()($)ide().png);\"\r\n        }\r\n    }'),
-('api', 'hol_chi_mon', '{ \r\n        \"val\": {\r\n          \"nom\": \"\",\r\n          \"des\": \"\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/_/hol/ima/chi/mon/()($)ide().png);\"\r\n        }\r\n    }'),
-('api', 'hol_chi_bin', '{ \r\n        \"val\": {\r\n          \"nom\": \"\",\r\n          \"des\": \"\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/_/hol/ima/chi/bin/()($)ide().png);\"\r\n        }\r\n    }'),
-('api', 'hol_chi_tri', '{ \r\n        \"val\": {\r\n          \"nom\": \"\",\r\n          \"des\": \"\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/_/hol/ima/chi/tri/()($)ide().png);\"\r\n        }\r\n    }'),
 ('api', 'hol_kin', '{\r\n        \"val\": {\r\n          \"nom\": \"Kin #()($)ide() de 260: ()($)nom().\",\r\n          \"des\": \"()($)des().\",\r\n          \"ima\": \"background: top/50% no-repeat url(http://localhost/_/hol/ima/ton/()($)nav_ond_dia().png), bottom/60% no-repeat url(http://localhost/_/hol/ima/sel/()($)arm_tra_dia().png);\"            \r\n        },\r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":260, \"dat\":\"api.hol_kin\" },\r\n          \"ene\": { \"min\":1, \"max\":4, \"dat\":\"api.hol_kin_ene\" },\r\n          \"ene_cam\": { \"min\":1, \"max\":14, \"dat\":\"api.hol_kin_ene_cam\" },\r\n          \"chi\": { \"min\":1, \"max\":65, \"dat\":\"api.hol_chi\" },\r\n          \"cro_est\": { \"min\":1, \"max\":4, \"dat\":\"api.hol_kin_cro_est\" },\r\n          \"cro_est_dia\": { \"min\":1, \"max\":65, \"dat\":\"api.hol_chi\" },\r\n          \"cro_ele\": { \"min\":1, \"max\":4, \"dat\":\"api.hol_kin_cro_ele\" },\r\n          \"cro_ele_dia\": { \"min\":1, \"max\":5, \"dat\":\"api.hol_sel_cro_fam\" },\r\n          \"arm_tra\": { \"min\":1, \"max\":13, \"dat\":\"api.hol_kin_arm_tra\" },\r\n          \"arm_tra_dia\": { \"min\":1, \"max\":20, \"dat\":\"api.hol_sel\" },\r\n          \"arm_cel\": { \"min\":1, \"max\":5, \"dat\":\"api.hol_kin_arm_cel\" },\r\n          \"arm_cel_dia\": { \"min\":1, \"max\":4, \"dat\":\"api.hol_sel_arm_raz\" },  \r\n          \"gen_enc\": { \"min\":1, \"max\":3, \"dat\":\"api.hol_kin_gen_enc\" },\r\n          \"gen_enc_dia\": { \"min\":1, \"max\":3, \"max-1\":130, \"max-2\":90, \"max-3\":52 },\r\n          \"gen_cel\": { \"min\":1, \"max\":5, \"dat\":\"api.hol_kin_gen_cel\" },\r\n          \"gen_cel_dia\": { \"min\":1, \"max\":26 },\r\n          \"nav_cas\": { \"min\":1, \"max\":5, \"dat\":\"api.hol_kin_nav_cas\" },\r\n          \"nav_cas_dia\": { \"min\":1, \"max\":52, \"dat\":\"api.hol_cas\" },  \r\n          \"nav_ond\": { \"min\":1, \"max\":20, \"dat\":\"api.hol_kin_nav_ond\" },\r\n          \"nav_ond_dia\": { \"min\":1, \"max\":13, \"dat\":\"api.hol_ton\" },\r\n          \"par_ana\": { \"min\":1, \"max\":260, \"dat\":\"api.hol_kin\" },\r\n          \"par_gui\": { \"min\":1, \"max\":260, \"dat\":\"api.hol_kin\" },\r\n          \"par_ant\": { \"min\":1, \"max\":260, \"dat\":\"api.hol_kin\" },\r\n          \"par_ocu\": { \"min\":1, \"max\":260, \"dat\":\"api.hol_kin\" }\r\n        },\r\n        \"est\": {\r\n          \"ide\":\"hol_kin\",\r\n          \"arm_tra_dia\" : \"hol_sel\",\r\n          \"nav_ond_dia\": \"hol_ton\",\r\n          \"nav_cas_dia\" : \"hol_cas\"\r\n        },\r\n        \"fic\": {\r\n          \"val\": {\r\n            \"ide\": \"ide\",\r\n            \"atr\": [ \"cro_ele\", \"arm_cel\", \"nav_ond\" ]\r\n          },\r\n          \"ima\" : [\r\n            \"nav_cas\", \"nav_ond\", \"arm_tra\", \"arm_cel\", \"cro_est\", \"cro_ele\"\r\n          ]\r\n        },\r\n        \"opc\": {\r\n          \"ver\": [ \r\n            \"ene\", \"ene_cam\", \"gen_enc\", \"gen_cel\", \"nav_cas\", \"nav_ond\", \r\n            \"cro_est\", \"cro_ele\", \"arm_tra\", \"arm_cel\" \r\n          ],\r\n          \"col\": [\r\n            \"ene\", \r\n            \"gen_enc\", \"gen_cel\", \r\n            \"nav_cas\", \"nav_ond\", \r\n            \"cro_est\", \"cro_ele\", \r\n            \"arm_tra\", \"arm_cel\"\r\n          ],\r\n          \"ima\": [\r\n            \"ide\", \"ene\", \"ene_cam\", \"chi\", \r\n            \"par_ana\", \"par_gui\", \"par_ant\", \"par_ocu\", \r\n            \"nav_cas\", \"nav_ond\", \"nav_ond_dia\", \r\n            \"arm_tra\", \"arm_cel\", \"arm_tra_dia\", \r\n            \"cro_est\", \"cro_ele\"\r\n          ],\r\n          \"num\": [ \r\n            \"ide\", \"psi\", \"ene\", \"ene_cam\", \r\n            \"gen_enc\", \"gen_enc_dia\", \"gen_cel\", \"gen_cel_dia\", \r\n            \"nav_cas\", \"nav_cas_dia\", \"nav_ond\", \"nav_ond_dia\", \r\n            \"cro_est\", \"cro_est_dia\", \"cro_ele\", \"cro_ele_dia\", \r\n            \"arm_tra\", \"arm_tra_dia\", \"arm_cel\", \"arm_cel_dia\"\r\n          ],\r\n          \"tex\": [\r\n            \"nom\",\"des\"\r\n          ]            \r\n        }\r\n    }'),
 ('api', 'hol_kin_ene', '{ \r\n        \"val\": {\r\n          \"nom\": \"Grupo #()($)ide() de ()($)nom() ( ()($)gru() x ()($)gru_uni() = ()($)uni() unidades )\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/_/hol/ima/kin/ene/()($)ide().png);\",\r\n          \"col\": 4\r\n        }          \r\n    }'),
 ('api', 'hol_kin_ene_cam', '{ \r\n        \"val\": {\r\n          \"nom\": \"Campo #()($)ide() de ()($)nom() unidades\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/_/hol/ima/kin/ene_cam/()($)ide().png);\"\r\n        }\r\n    }'),
@@ -1422,7 +1365,29 @@ INSERT INTO `app_dat` (`esq`, `ide`, `ope`) VALUES
 ('api', 'hol_psi_lun', '{\r\n        \"val\": {\r\n          \"nom\": \"Luna #()($)ide() de 13: tono ()($)ton_nom().\",\r\n          \"des\": \"()($)des() del Giro Solar Anual; Totem ()($)tot(): ()($)tot_pro().\",\r\n          \"ima\": \"background: url(http://localhost/_/hol/ima/psi/lun/()($)ide().png) center/contain no-repeat;\",\r\n          \"col\": 7\r\n        },\r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":13, \"dat\":\"api.hol_psi_lun\" },\r\n          \"ond\": { \"min\":1, \"max\":4, \"dat\":\"api.hol_ton_ond\" }\r\n        },\r\n        \"opc\": {\r\n          \"ima\": [\r\n            \"ide\"\r\n          ]            \r\n        }\r\n    }'),
 ('api', 'hol_psi_hep', '{\r\n        \"val\": {\r\n          \"nom\": \"Heptada #()($)ide() de 52.\",\r\n          \"des\": \"()($)ton_des() del cuadrante ()($)arm_col() en el ()($)arm_dir().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/_/hol/ima/sel/cod/()($)ton().png), center/contain no-repeat url(http://localhost/_/hol/ima/rad.png), center/contain no-repeat url(http://localhost/_/hol/ima/arm/()($)ond().png);\",\r\n          \"col\": 4\r\n        }\r\n    }'),
 ('api', 'hol_psi_vin', '{\r\n        \"val\": {\r\n          \"nom\": \"Vinal #()($)ide() de 19: ()($)nom().\",\r\n          \"des\": \"()($)des().\"\r\n        }\r\n    }'),
-('api', 'hol_psi_cro', '{\r\n        \"val\": {\r\n          \"nom\": \"Cromática Entonada #()($)ide() de 75.\",\r\n          \"des\": \"\"\r\n        }\r\n    }');
+('api', 'hol_psi_cro', '{\r\n        \"val\": {\r\n          \"nom\": \"Cromática Entonada #()($)ide() de 75.\",\r\n          \"des\": \"\"\r\n        }\r\n    }'),
+('api', 'hol_chi', '{ \r\n        \"val\": {\r\n          \"nom\": \"\",\r\n          \"des\": \"\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/_/hol/ima/chi/()($)ide().png);\"\r\n        }\r\n    }'),
+('api', 'hol_chi_mon', '{ \r\n        \"val\": {\r\n          \"nom\": \"\",\r\n          \"des\": \"\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/_/hol/ima/chi/mon/()($)ide().png);\"\r\n        }\r\n    }'),
+('api', 'hol_chi_bin', '{ \r\n        \"val\": {\r\n          \"nom\": \"\",\r\n          \"des\": \"\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/_/hol/ima/chi/bin/()($)ide().png);\"\r\n        }\r\n    }'),
+('api', 'hol_chi_tri', '{ \r\n        \"val\": {\r\n          \"nom\": \"\",\r\n          \"des\": \"\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/_/hol/ima/chi/tri/()($)ide().png);\"\r\n        }\r\n    }'),
+('api', 'hol_cas', '{\r\n        \"val\": {\r\n          \"nom\": \"Posicion #()($)ide() de 52.\",\r\n          \"des\": \"Cuadrante #()($)arm() de 4; Tono Galáctico #()($)ton() de 13; Onda de la Aventura #()($)ond() de 4.\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/_/hol/ima/ton/arm/()($)arm().png), center/contain no-repeat url(http://localhost/_/hol/ima/ton/()($)ton().png);\"\r\n        },\r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":52, \"dat\":\"api.hol_cas\" },\r\n          \"arm\": { \"min\":1, \"max\":4, \"dat\":\"api.hol_cas_arm\" },\r\n          \"ond\": {\"min\":1, \"max\":4, \"dat\":\"api.hol_cas_ond\" },\r\n          \"pos_arm\": { \"min\":1, \"max\":4, \"dat\":\"api.hol_arm\" },\r\n          \"ton\": {\"min\":1, \"max\":13, \"dat\":\"api.hol_ton\" },\r\n          \"ton_arm\": { \"min\":1, \"max\":13, \"dat\":\"api.hol_ton\" }\r\n        },\r\n        \"opc\": {\r\n          \"ver\": [ \r\n            \"ide\", \"arm\" \r\n          ],    \r\n          \"ima\": [\r\n            \"arm\", \"ond\"\r\n          ],\r\n          \"col\": [\r\n            \"arm\", \"ond\", \"ton_arm\"\r\n          ],\r\n          \"num\": [ \r\n            \"ide\", \"arm\", \"ton_arm\" \r\n          ]            \r\n        }\r\n    }'),
+('api', 'hol_cas_arm', '{\r\n        \"val\": {\r\n          \"nom\": \"Cuadrante #()($)ide() de 4\",\r\n          \"des\": \"Dirección: ()($)dir(); Poder: ()($)pod(); Color: ()($)col().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/_/hol/ima/cas/arm/()($)ide().png);\",\r\n          \"col\": 4\r\n        }\r\n    }'),
+('api', 'hol_cas_ond', '{\r\n        \"val\": {\r\n          \"nom\": \"Aventura de la Onda Encantada #()($)ide() de 4\",\r\n          \"des\": \"()($)des().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/_/hol/ima/cas/ond/()($)ide().png);\",\r\n          \"col\": 4\r\n        }\r\n    }'),
+('api', 'hol_lun', '{  \r\n        \"val\": {\r\n          \"nom\": \"()($)ide()° Día de 28.\",\r\n          \"des\": \"\"\r\n        },\r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":28, \"dat\":\"api.hol_lun\" },\r\n          \"arm\": { \"min\":1, \"max\":4, \"dat\":\"api.hol_lun_arm\" },\r\n          \"rad\": { \"min\":1, \"max\":7, \"dat\":\"api.hol_rad\" }\r\n        },\r\n        \"opc\": {\r\n          \"ver\": [ \r\n            \"ide\", \"arm\" \r\n          ],\r\n          \"ima\": [\r\n            \"arm\", \"rad\"\r\n          ],\r\n          \"col\": [\r\n            \"arm\", \"rad\"\r\n          ],\r\n          \"num\": [ \r\n            \"ide\", \"arm\" \r\n          ]\r\n        }          \r\n    }'),
+('api', 'hol_lun_arm', '{  \r\n        \"val\": {\r\n          \"nom\": \"Armonía lunar ()($)ide()\",\r\n          \"des\": \"()($)nom(), ()($)col(). ()($)dia(): ()($)des()\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/_/hol/ima/rad.png), center/contain no-repeat url(http://localhost/_/hol/ima/arm/()($)ide().png);\",\r\n          \"col\": 4\r\n        },\r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":4, \"dat\":\"api.hol_lun_arm\" }\r\n        },\r\n        \"opc\": {\r\n          \"ima\": [\r\n            \"ide\"\r\n          ]            \r\n        }\r\n    }'),
+('api', 'hol_lun_tel_tor', '{  \r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":4, \"dat\":\"api.hol_lun_tel_tor\" }\r\n        }\r\n    }'),
+('api', 'hol_lun_tel_cam', '{  \r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":8, \"dat\":\"api.hol_lun_tel_cam\" }\r\n        }\r\n    }'),
+('api', 'hol_lun_tel_cub', '{  \r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":16, \"dat\":\"api.hol_lun_tel_cub\" }\r\n        }\r\n    }'),
+('api', 'hol_lun_pla_ato', '{\r\n      \"val\": {\r\n        \"nom\": \"Atomo del Tiempo #()($)ide() de 4. ()($)nom()\",\r\n        \"des\": \"()($)des()\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/_/hol/ima/lun/pla_ato/()($)ide().png);\",\r\n        \"col\": 4\r\n      }\r\n    }'),
+('api', 'hol_lun_pla_tet', '{\r\n      \"val\": {\r\n        \"nom\": \"Tetraedro #()($)ide() de 2. ()($)nom()\",\r\n        \"des\": \"()($)des()\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/_/hol/ima/lun/pla_tet/()($)ide().png);\",\r\n        \"col\": 2\r\n      }\r\n    }'),
+('api', 'hol_rad', '{\r\n        \"val\": {\r\n          \"nom\": \"Plasma #()($)ide() de 7: ()($)nom().\",\r\n          \"des\": \"()($)pla_pod() ()($)pla_fue().\\n\\\"()($)pla_lec()\\\"\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/_/hol/ima/rad/()($)ide().png);\",\r\n          \"col\": 7\r\n        },\r\n        \"atr\": {\r\n          \"ide\":         { \"min\":1, \"max\":7, \"dat\":\"api.hol_rad\" },            \r\n          \"tel_ora\":     { \"min\":1997, \"max\":1999, \"dat\":\"api.fec_año\" },\r\n          \"tel_ora_año\": { \"min\":1, \"max\":260, \"dat\":\"api.hol_kin\" },\r\n          \"tel_ora_ani\": { \"min\":1, \"max\":260, \"dat\":\"api.hol_kin\" },\r\n          \"tel_ora_gen\": { \"min\":1, \"max\":260, \"dat\":\"api.hol_kin\" },\r\n          \"pla_cub\":     { \"min\":1, \"max\":7, \"dat\":\"api.hol_rad_pla_cub\" },\r\n          \"pla_fue_pre\": { \"min\":1, \"max\":12, \"dat\":\"api.hol_rad_pla_fue\" },\r\n          \"pla_fue_pos\": { \"min\":1, \"max\":12, \"dat\":\"api.hol_rad_pla_fue\" },          \r\n          \"hum_cha\":     { \"min\":1, \"max\":7, \"dat\":\"api.hol_rad_hum_cha\" }\r\n        },\r\n        \"opc\": {\r\n          \"ver\": [ \r\n            \"ide\", \"pla_qua\" \r\n          ],\r\n          \"ima\": [\r\n            \"ide\", \r\n            \"tel_ora_año\", \"tel_ora_ani\", \"tel_ora_gen\", \r\n            \"pla_cub\", \"pla_fue_pre\", \"pla_fue_pos\", \"pla_qua\", \r\n            \"hum_cha\"\r\n          ],\r\n          \"col\": [\r\n            \"pla_qua\"\r\n          ],\r\n          \"num\": [ \r\n            \"ide\", \"pla_qua\" \r\n          ]\r\n        }\r\n    }'),
+('api', 'hol_rad_pla_cub', '{ \r\n        \"val\": {\r\n          \"nom\": \"Plasma #()($)ide() de 7: ()($)pla().\",\r\n          \"tit\": \"()($)nom()\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/_/hol/ima/rad/pla_cub/()($)ide().png);\",\r\n          \"col\": 4\r\n        }\r\n    }'),
+('api', 'hol_rad_pla_pol', '{ \r\n        \"val\": {\r\n          \"nom\": \"Carga #()($)ide() de 2: ()($)nom().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/_/hol/ima/rad/pla_car/()($)ide().png);\"\r\n        }\r\n    }'),
+('api', 'hol_rad_pla_ele', '{\r\n        \"val\": {\r\n          \"nom\": \"Tipo de Electricidad Cósmica #()($)ide() de 6: ()($)nom() - ()($)cod().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/_/hol/ima/rad/pla_ele/()($)ide().png);\"                      \r\n        },\r\n        \"opc\": {\r\n          \"ima\": [ \"ide\" ]\r\n        }          \r\n    }'),
+('api', 'hol_rad_pla_fue', '{\r\n        \"val\": {\r\n          \"nom\": \"Línea de Fuerza #()($)ide() de 12: ()($)nom().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/_/hol/ima/rad/pla_fue/()($)ide().png);\"\r\n        },\r\n        \"atr\": {\r\n          \"ele_pre\": { \"min\":1, \"max\":6, \"dat\":\"api.hol_rad_pla_ele\" },\r\n          \"ele_pos\": { \"min\":1, \"max\":6, \"dat\":\"api.hol_rad_pla_ele\" }\r\n        },\r\n        \"opc\": {\r\n          \"ima\": [ \"ide\", \"ele_pre\", \"ele_pos\" ]            \r\n        }          \r\n    }'),
+('api', 'hol_rad_pla_qua', '{\r\n        \"val\": {\r\n          \"nom\": \"Quantum #()($)ide() de 3: ()($)nom().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/_/hol/ima/rad/pla_qua/()($)ide().png);\",\r\n          \"col\": 3\r\n        },\r\n        \"opc\": {\r\n          \"ima\": [ \"ide\" ]            \r\n        }          \r\n    }'),
+('api', 'hol_rad_hum_cha', '{\r\n        \"val\": {\r\n          \"nom\": \"Chakra #()($)ide() de 7: ()($)nom().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/_/hol/ima/rad/hum_cha/()($)ide().png);\",\r\n          \"col\": 7\r\n        }\r\n    }'),
+('api', 'hol_rad_hum_mud', '{ \r\n        \"val\": {\r\n          \"nom\": \"Mudra #()($)ide() de 7: ()($)nom().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/_/hol/ima/rad/hum_mud/()($)ide().png);\" \r\n        }\r\n    }');
 
 -- --------------------------------------------------------
 
@@ -2537,6 +2502,7 @@ CREATE TABLE `hol_arm` (
   `col` varchar(10) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Color',
   `dir` varchar(15) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Dirección',
   `pod` varchar(10) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Poder',
+  `pol` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Dualidad',
   `dia` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Momento del Día'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Armónica';
 
@@ -2544,11 +2510,11 @@ CREATE TABLE `hol_arm` (
 -- Volcado de datos para la tabla `hol_arm`
 --
 
-INSERT INTO `hol_arm` (`ide`, `col`, `dir`, `pod`, `dia`) VALUES
-(1, 'Rojo', 'el Oriente', 'Inicia', 'Amanecer'),
-(2, 'Blanco', 'el Norte', 'Refina', 'Mediodía'),
-(3, 'Azul', 'el Occiden', 'Transforma', 'Atardecer'),
-(4, 'Amarillo', 'el Sur', 'Madura', 'Medianoche');
+INSERT INTO `hol_arm` (`ide`, `col`, `dir`, `pod`, `pol`, `dia`) VALUES
+(1, 'rojo', 'el Oriente', 'Inicia', 'conocimiento / ignorancia', 'Amanecer'),
+(2, 'blanco', 'el Norte', 'Refina', 'humildad / sobervia', 'Mediodía'),
+(3, 'azul', 'el Occiden', 'Transforma', 'paciencia / ansiedad', 'Atardecer'),
+(4, 'amarillo', 'el Sur', 'Madura', 'soberanía / esclavitud', 'Medianoche');
 
 -- --------------------------------------------------------
 
@@ -3614,6 +3580,7 @@ CREATE TABLE `hol_lun` (
   `arm` smallint(1) UNSIGNED ZEROFILL DEFAULT NULL COMMENT 'Héptada',
   `rad` smallint(1) UNSIGNED ZEROFILL DEFAULT NULL COMMENT 'Plasma Radial',
   `fas` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Fase del Telektonon',
+  `sel` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Sello del flujo G-S',
   `ato_des` tinytext COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Descripción del Átomo del Tiempo'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Día del Giro Lunar';
 
@@ -3621,35 +3588,35 @@ CREATE TABLE `hol_lun` (
 -- Volcado de datos para la tabla `hol_lun`
 --
 
-INSERT INTO `hol_lun` (`ide`, `arm`, `rad`, `fas`, `ato_des`) VALUES
-(01, 1, 1, 1, 'Focaliza la fuerza térmica del átomo telepático del tiempo analogo'),
-(02, 1, 2, 1, 'Fluye la fuerza lumínica del átomo telepático del tiempo analogo'),
-(03, 1, 3, 1, 'Pacifica la fuerza de impacto t-l del átomo telepático del tiempo analogo'),
-(04, 1, 4, 1, 'Establece la cohesión distensión del átomo telepático del tiempo analogo'),
-(05, 1, 5, 1, 'Libera el electrón doble extendido del átomo telepático del tiempo analogo'),
-(06, 1, 6, 1, 'Purifica el electrón mental del átomo telepático del tiempo analogo'),
-(07, 1, 7, 2, 'Descarga el electrón neutrón mental del átomo telepático del tiempo analogo'),
-(08, 2, 1, 2, 'Focaliza la fuerza térmica del átomo telepático del tiempo antípoda'),
-(09, 2, 2, 2, 'Fluye la fuerza lumínica del átomo telepático del tiempo antípoda'),
-(10, 2, 3, 2, 'Pacifica la fuerza de impacto t-l del átomo telepático del tiempo antípoda'),
-(11, 2, 4, 2, 'Establece la cohesión distensión del átomo telepático del tiempo antípoda'),
-(12, 2, 5, 2, 'Libera el electrón doble extendido del átomo telepático del tiempo antípoda'),
-(13, 2, 6, 2, 'Purifica el electrón mental del átomo telepático del tiempo antípoda'),
-(14, 2, 7, 2, 'Descarga el electrón neutrón mental del átomo telepático del tiempo antípoda'),
-(15, 3, 1, 2, 'Focaliza la fuerza térmica del átomo telepático del tiempo oculto'),
-(16, 3, 2, 2, 'Fluye la fuerza lumínica del átomo telepático del tiempo oculto'),
-(17, 3, 3, 2, 'Pacifica la fuerza de impacto t-l del átomo telepático del tiempo oculto'),
-(18, 3, 4, 2, 'Establece la cohesión distensión del átomo telepático del tiempo oculto'),
-(19, 3, 5, 2, 'Libera el electrón doble extendido del átomo telepático del tiempo oculto'),
-(20, 3, 6, 2, 'Purifica el electrón mental del átomo telepático del tiempo oculto'),
-(21, 3, 7, 2, 'Descarga el electrón neutrón mental del átomo telepático del tiempo oculto'),
-(22, 4, 1, 2, 'Focaliza la fuerza térmica del átomo telepático del tiempo de campo unificado'),
-(23, 4, 2, 3, 'Fluye la fuerza lumínica del átomo telepático del tiempo de campo unificado'),
-(24, 4, 3, 3, 'Pacifica la fuerza de impacto t-l del átomo telepático del tiempo de campo unificado'),
-(25, 4, 4, 3, 'Establece la cohesión distensión del átomo telepático del tiempo de campo unificado'),
-(26, 4, 5, 3, 'Libera el electrón doble extendido del átomo telepático del tiempo de campo unificado'),
-(27, 4, 6, 3, 'Purifica el electrón mental del átomo telepático del tiempo de campo unificado'),
-(28, 4, 7, 3, 'Descarga el electrón neutrón mental del átomo telepático del tiempo de campo unificado');
+INSERT INTO `hol_lun` (`ide`, `arm`, `rad`, `fas`, `sel`, `ato_des`) VALUES
+(01, 1, 1, 1, 07, 'Focaliza la fuerza térmica del átomo telepático del tiempo analogo'),
+(02, 1, 2, 1, 08, 'Fluye la fuerza lumínica del átomo telepático del tiempo analogo'),
+(03, 1, 3, 1, 09, 'Pacifica la fuerza de impacto t-l del átomo telepático del tiempo analogo'),
+(04, 1, 4, 1, 10, 'Establece la cohesión distensión del átomo telepático del tiempo analogo'),
+(05, 1, 5, 1, 11, 'Libera el electrón doble extendido del átomo telepático del tiempo analogo'),
+(06, 1, 6, 1, 12, 'Purifica el electrón mental del átomo telepático del tiempo analogo'),
+(07, 1, 7, 2, 01, 'Descarga el electrón neutrón mental del átomo telepático del tiempo analogo'),
+(08, 2, 1, 2, 02, 'Focaliza la fuerza térmica del átomo telepático del tiempo antípoda'),
+(09, 2, 2, 2, 03, 'Fluye la fuerza lumínica del átomo telepático del tiempo antípoda'),
+(10, 2, 3, 2, 04, 'Pacifica la fuerza de impacto t-l del átomo telepático del tiempo antípoda'),
+(11, 2, 4, 2, 05, 'Establece la cohesión distensión del átomo telepático del tiempo antípoda'),
+(12, 2, 5, 2, 06, 'Libera el electrón doble extendido del átomo telepático del tiempo antípoda'),
+(13, 2, 6, 2, 07, 'Purifica el electrón mental del átomo telepático del tiempo antípoda'),
+(14, 2, 7, 2, 08, 'Descarga el electrón neutrón mental del átomo telepático del tiempo antípoda'),
+(15, 3, 1, 2, 09, 'Focaliza la fuerza térmica del átomo telepático del tiempo oculto'),
+(16, 3, 2, 2, 10, 'Fluye la fuerza lumínica del átomo telepático del tiempo oculto'),
+(17, 3, 3, 2, 11, 'Pacifica la fuerza de impacto t-l del átomo telepático del tiempo oculto'),
+(18, 3, 4, 2, 12, 'Establece la cohesión distensión del átomo telepático del tiempo oculto'),
+(19, 3, 5, 2, 13, 'Libera el electrón doble extendido del átomo telepático del tiempo oculto'),
+(20, 3, 6, 2, 14, 'Purifica el electrón mental del átomo telepático del tiempo oculto'),
+(21, 3, 7, 2, 15, 'Descarga el electrón neutrón mental del átomo telepático del tiempo oculto'),
+(22, 4, 1, 2, 16, 'Focaliza la fuerza térmica del átomo telepático del tiempo de campo unificado'),
+(23, 4, 2, 3, 17, 'Fluye la fuerza lumínica del átomo telepático del tiempo de campo unificado'),
+(24, 4, 3, 3, 18, 'Pacifica la fuerza de impacto t-l del átomo telepático del tiempo de campo unificado'),
+(25, 4, 4, 3, 19, 'Establece la cohesión distensión del átomo telepático del tiempo de campo unificado'),
+(26, 4, 5, 3, 20, 'Libera el electrón doble extendido del átomo telepático del tiempo de campo unificado'),
+(27, 4, 6, 3, 01, 'Purifica el electrón mental del átomo telepático del tiempo de campo unificado'),
+(28, 4, 7, 3, 02, 'Descarga el electrón neutrón mental del átomo telepático del tiempo de campo unificado');
 
 -- --------------------------------------------------------
 
@@ -3661,22 +3628,21 @@ CREATE TABLE `hol_lun_arm` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Héptada',
   `nom` varchar(10) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `col` varchar(10) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Color',
-  `pod` varchar(10) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Poder',
-  `car` varchar(15) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Característica',
-  `dua` varchar(15) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Dualidad',
-  `des` tinytext COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Lectura',
-  `dia` varchar(15) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Rango'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Heptada Lunar';
+  `dia` varchar(15) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Rango',
+  `des` varchar(30) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Descripción',
+  `tel_des` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Poder del Telektonon',
+  `umb_des` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Cualidad'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Armonía Lunar';
 
 --
 -- Volcado de datos para la tabla `hol_lun_arm`
 --
 
-INSERT INTO `hol_lun_arm` (`ide`, `nom`, `col`, `pod`, `car`, `dua`, `des`, `dia`) VALUES
-(1, 'Semana 1', 'Roja', 'inicia', 'el conocimiento', 'la ignorancia', 'El Conocimiento inicia la Visión', 'Días 1-7'),
-(2, 'Semana 2', 'Blanca', 'refina', 'la humildad', 'la sobervia', 'La Humildad refina Meditación', 'Días 8-14'),
-(3, 'Semana 3', 'Azul', 'transforma', 'la paciencia', 'la ansiedad', 'La Paciencia transforma la Conducta', 'Días 14-21'),
-(4, 'Semana 4', 'Amarilla', 'madura', 'el poder', 'la esclavitud', 'El Poder madura el Fruto', 'Días 22-28');
+INSERT INTO `hol_lun_arm` (`ide`, `nom`, `col`, `dia`, `des`, `tel_des`, `umb_des`) VALUES
+(1, 'Semana 1', 'roja', 'Días 1-7', 'inicia el conocimiento', 'Clama el Poder de la Profecía', 'El Conocimiento inicia la Visión'),
+(2, 'Semana 2', 'blanca', 'Días 8-14', 'refina la Humildad', 'Mantén el Poder de la Profecía', 'La Humildad refina Meditación'),
+(3, 'Semana 3', 'azul', 'Días 14-21', 'transforma la paciencia', 'Proclama la Victoria de la Profecía', 'La Paciencia transforma la Conducta'),
+(4, 'Semana 4', 'amarilla', 'Días 22-28', 'poder Maduro', 'Transfórmate en la Victoria de la Profecía', 'El Poder madura el Fruto');
 
 -- --------------------------------------------------------
 
@@ -3775,6 +3741,136 @@ INSERT INTO `hol_lun_fue` (`ide`, `nom`, `des`, `lun_ini`, `lun_fin`) VALUES
 (12, '12-17', 'Baktun 12 - Profecía 4 (Escalera al Cielo)', 12, 17),
 (13, '13-16', 'Baktún 13 - Profecía 3', 13, 16),
 (14, '14-15', 'Profecía 1 - Profecía 2', 14, 15);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `hol_lun_pla`
+--
+
+CREATE TABLE `hol_lun_pla` (
+  `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Línea de Fuerza Vertical',
+  `nom` varchar(30) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
+  `des` varchar(200) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Descripción',
+  `dia` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Días del Giro Lunar'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Tablero del Plasma';
+
+--
+-- Volcado de datos para la tabla `hol_lun_pla`
+--
+
+INSERT INTO `hol_lun_pla` (`ide`, `nom`, `des`, `dia`) VALUES
+(1, 'Día Torre', 'Los Cuatro Días Torre, reunidos por los dos rayos verdes extendidos, el rayo uno que conecta los días 1 y 28, el rayo dos que conecta los días 6 y 23. Los Días Torre ligan el circuito teleplásmico.', '1, 6, 23, 28'),
+(2, 'Orden Instintivo', 'Los cuatro días del Orden Instintivo (Caminata en la Tierra, del Telektonon), días 2-5.', '2-5'),
+(3, ' Mente Supra-Consciente', 'El Cubo, Plano de la Mente Supra-Consciente: Cultiva la Claridad, días 7-10.', '7-10'),
+(4, 'Plano del Espíritu', 'El Cubo, Plano del Espíritu: Cultiva la Radiancia, días 11-14.', '11-14'),
+(5, 'Plano de la Voluntad', 'El Cubo, Plano de la Voluntad: Cultiva la Carencia de Impedimentos, días 15-18.', '15-18'),
+(6, 'Fuente Divina', 'El Cubo, Fuente Divina TEL-EK-TON-ON: Cultiva la Sabiduría, días 19-22.', '19-22'),
+(7, 'Orden Telepático', 'Los cuatro días del Orden Telepático (Caminata en el Cielo, del Telektonon), días 24-27.', '24-27');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `hol_lun_pla_ato`
+--
+
+CREATE TABLE `hol_lun_pla_ato` (
+  `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Átomo',
+  `nom` varchar(30) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
+  `des` tinytext COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Descripción',
+  `car` varchar(30) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Carga Semanal',
+  `car_sec` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Secuencia de Cargas',
+  `hep` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Heptágono de la Mente',
+  `hep_cub` varchar(60) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Holograma Cúbico',
+  `val` varchar(15) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Unidad Temporal',
+  `val_lun` varchar(30) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Valor Lunar',
+  `val_lun_acu` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Valor Lunar Acumulado',
+  `val_rad` smallint(3) UNSIGNED ZEROFILL NOT NULL COMMENT 'Valor del Radión',
+  `val_kin` varchar(30) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Código Semanal del Kin',
+  `ini` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Iniciación Semanal'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Átomo del Tiempo';
+
+--
+-- Volcado de datos para la tabla `hol_lun_pla_ato`
+--
+
+INSERT INTO `hol_lun_pla_ato` (`ide`, `nom`, `des`, `car`, `car_sec`, `hep`, `hep_cub`, `val`, `val_lun`, `val_lun_acu`, `val_rad`, `val_kin`, `ini`) VALUES
+(1, 'Tiempo Análogo', '', 'inicia el conocimiento', 'Análoga: Análogo-Oculto-Análogo-Oculto- Análogo-Oculto-Análogo', 'la Matriz Primordial', 'el Cubo más externo', '1 katún', '260 ( Lunas por Katún )', '1.820 ( 260 x 7 )', 260, '260', 'Externa: Poder de la Iluminación Cósmica'),
+(2, 'Tiempo Antípoda', '', 'refina la humildad', 'Antípoda: Todas las cargas, del Antípoda', 'el Cielo', 'el segundo Cubo más externo', '1 año', '13 ( Lunas por Año )', '91 ( 13 x 7 )', 273, '013', 'Interna: Poder de la Profecía Cósmica'),
+(3, 'Tiempo Oculto', '', 'transforma la paciencia ', 'Oculta: Oculto-Análogo-Oculto-Análogo-\nOculto-Análogo-Oculto', 'la Tierra', 'el segundo Cubo más interno', '1 año', '13 ( Lunas por Año )', '91 ( 13 x 7 )', 286, '026', 'Secreta: Poder Cósmico de la Muerte'),
+(4, 'Tiempo del Campo Unificado', '', 'madura el poder ', 'del Campo Unificado: Todas las cargas, del Campo Unificado', 'el Cubo Interior de los 144.000', 'el Cubo más interno', '1 luna', '1 ( Valor de Campo Unificado )', '7 ( 1 x 7 )', 287, '027, 028', 'de la Semejanza: Poder del Logro Magnético');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `hol_lun_pla_eje`
+--
+
+CREATE TABLE `hol_lun_pla_eje` (
+  `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Identificador',
+  `nom` varchar(30) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
+  `des` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Descripción',
+  `tie` varchar(6) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Tierras de UR'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Eje del Cubo Primigenio y del Átomo Telepático';
+
+--
+-- Volcado de datos para la tabla `hol_lun_pla_eje`
+--
+
+INSERT INTO `hol_lun_pla_eje` (`ide`, `nom`, `des`, `tie`) VALUES
+(1, 'Electromagnético de Sensación', '', '5, 4'),
+(2, 'Gravitacional de Forma', '', '3, 2'),
+(3, 'Biopsíquico de Telepatía', '', '1, 7');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `hol_lun_pla_tet`
+--
+
+CREATE TABLE `hol_lun_pla_tet` (
+  `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL,
+  `nom` varchar(25) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `des` tinytext COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Descripción',
+  `dia` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Día Lunar'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Tetraedro de Plasma';
+
+--
+-- Volcado de datos para la tabla `hol_lun_pla_tet`
+--
+
+INSERT INTO `hol_lun_pla_tet` (`ide`, `nom`, `des`, `dia`) VALUES
+(1, 'Análogo-Antípoda', 'El Día 14, los primeros dos Átomos Telepáticos del Tiempo crean el primero de dos tetraedros, el Tetraedro del Análogo-Antípoda', 14),
+(2, 'Oculto-Campo Unificado', 'El Día 28, los segundos dos Átomos Telepáticos del Tiempo crean el segundo de los dos tetraedros, el Tetraedro del Oculto-Campo Unificado', 28);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `hol_lun_pla_tie`
+--
+
+CREATE TABLE `hol_lun_pla_tie` (
+  `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Línea de Fuerza Vertical',
+  `nom` varchar(30) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
+  `des` varchar(200) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Descripción',
+  `dia` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Día del Giro Lunar',
+  `tel` varchar(10) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Posición del Telektonon',
+  `rad` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Plasma Radial',
+  `pos` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Posición de la Luna Mística'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Tablero del Plasma';
+
+--
+-- Volcado de datos para la tabla `hol_lun_pla_tie`
+--
+
+INSERT INTO `hol_lun_pla_tie` (`ide`, `nom`, `des`, `dia`, `tel`, `rad`, `pos`) VALUES
+(1, 'Exterior', 'Y por la Tierra y su expansión', 01, 'Torre 1', 5, 'Quinta'),
+(2, 'Solar', 'Por el Sol y su creciente esplendor', 06, 'Torre 2', 4, 'Cuarta'),
+(3, 'Lunar', 'Y por la Luna cuando sigue al Sol', 08, 'Cubo 2', 3, 'Tercera'),
+(4, 'de la Noche', 'Y por la Noche cuando tiende un velo sobre él', 13, 'Cubo 7', 2, 'Segunda'),
+(5, 'del Día', 'Y por el Día cuando revela la gloria', 18, 'Cubo 12', 1, 'Primera'),
+(6, 'Interior', 'Y por el Alma y su perfección', 23, 'Torre 3', 7, 'Séptima'),
+(7, 'del Cielo', 'Y por el Cielo y su creación', 28, 'Torre 4', 6, 'Sexta');
 
 -- --------------------------------------------------------
 
@@ -4584,7 +4680,7 @@ CREATE TABLE `hol_rad` (
   `nom` varchar(10) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `col` varchar(15) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Color',
   `pod` varchar(15) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Poder',
-  `dia` varchar(14) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Días Mensuales',
+  `dia` varchar(14) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Días Lunares',
   `tel` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Telektonon',
   `tel_des` tinytext COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Proyecía',
   `tel_año` year(4) NOT NULL COMMENT 'Año',
@@ -4592,14 +4688,16 @@ CREATE TABLE `hol_rad` (
   `tel_ora_ani` smallint(3) UNSIGNED ZEROFILL NOT NULL COMMENT 'Oráculo del Anillo',
   `tel_ora_gen` smallint(3) UNSIGNED ZEROFILL NOT NULL COMMENT 'Generación Perdida',
   `rin_des` tinytext COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Función Anual',
+  `pla_des` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Componente Electrónico',
   `pla_pod` varchar(10) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Poder',
-  `pla_ene` varchar(40) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Energía',
-  `pla_fue` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Componente Electrónico',
-  `pla_fue_pre` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT '1° línea electrónica',
-  `pla_fue_pos` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT '2° línea electrónica',
+  `pla_fue` varchar(40) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Tipo de Fuerza',
+  `pla_fue_pre` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT '1° línea de Fuerza',
+  `pla_fue_pos` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT '2° línea de Fuerza',
   `pla_qua` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Quantum',
   `pla_man` varchar(10) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Mantra',
-  `pla_des` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Afirmación',
+  `pla_cub` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Cubo del Radión',
+  `pla_cub_pos` varchar(15) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Posición',
+  `pla_lec` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Afirmación',
   `hum_cha` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Chakra',
   `umb` smallint(3) UNSIGNED ZEROFILL NOT NULL COMMENT 'UMB',
   `umb_map` varchar(30) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Mapa Estelar',
@@ -4614,38 +4712,14 @@ CREATE TABLE `hol_rad` (
 -- Volcado de datos para la tabla `hol_rad`
 --
 
-INSERT INTO `hol_rad` (`ide`, `nom`, `col`, `pod`, `dia`, `tel`, `tel_des`, `tel_año`, `tel_ora_año`, `tel_ora_ani`, `tel_ora_gen`, `rin_des`, `pla_pod`, `pla_ene`, `pla_fue`, `pla_fue_pre`, `pla_fue_pos`, `pla_qua`, `pla_man`, `pla_des`, `hum_cha`, `umb`, `umb_map`, `umb_pat`, `umb_arc`, `umb_pue`, `umb_esf`, `umb_esf_fun`) VALUES
-(1, 'Dali', 'amarillo', 'Apunta', '01, 08, 15, 22', 'Profecía del Año Uno', 'La Victoria Da en el Blanco', 1993, 144, 248, 194, 'Dalí liberada, capacidad técnica lumínica establecida', 'Focaliza', 'La Fuerza Térmica', 'Focaliza la Fuerza Térmica', 01, 02, 1, 'Om', 'Mi Padre es la Consciencia Intrínseca. Yo Siento el Calor. ', 1, 108, 'Fuente Omnigaláctica', 'Cristo', 'Trono', 'Alfa-Alfa', 'Preconsciente (Hemisferio Derecho Trasero)', 'Samadhi Profundo'),
-(2, 'Seli', 'rojo', 'Fluye', '02, 09, 16, 23', 'Profecía del Año Dos', 'La Victoria Fluye', 1994, 249, 093, 195, 'Seli liberada, capacidad térmica-lumínica ampliada', 'Fluye', 'La Fuerza Lumínica', 'Fluye Fuerza Lumínica', 03, 03, 1, 'Hram', 'Mi Madre es la Esfera última. Yo Veo la Luz. ', 7, 291, 'Tierra Cristal', 'Mahoma', 'Avatar', 'Alfa-Beta', 'Subconsciente (Hemisferio Derecho Frontal)', 'Samadhi Informativo'),
-(3, 'Gama', 'blanco', 'Pacifica', '03, 10, 17, 24', 'Profecía del Año Tres', 'La Victoria Pacifica', 1995, 094, 198, 196, 'Gamma liberada capacidad térmica-lumínica ampliada, alcanza el \"poder extraordinario\"', 'Pacifica', 'La Fuerza de Impáctico Térmico-Lumínica', 'Fuerza de Impácto Térmico-Lumí', 04, 05, 1, 'Hraha', 'Mi Linaje es la Unión de la Consciencia Intrínseca y la Esfera Última.', 2, 144, 'Hubab Ku', 'Pacal Votan', 'Misterio', 'Beta-Beta', 'Consciente (Hemisferio Izquierdo Frontal)', 'Mediumnidad del Consciente Des'),
-(4, 'Kali', 'azul', 'Establece', '04, 11, 18, 25', 'Profecía del Año Cuatro', 'La Victoria Establece', 1996, 199, 043, 197, ' Kali liberada, capacidad Normativa de cohesión-distensión catalítica alcanzada', 'Establece', 'La Cohesión Distensión', '', 06, 06, 2, 'Hrim', 'Mi Nombre es el Glorioso Nacido del Loto. Yo Catalizo la Luz-Calor Adentro.', 6, 515, 'Ahau Kin', 'Quetzalcoatl', 'Iniciación', 'Beta-Alta', 'Consciente Contínuo (Hemisferio Izquierdo Trasero)', 'Control de la Mente Superior'),
-(5, 'Alfa', 'amarillo', 'Libera', '05, 12, 19, 26', 'Profecía del Año Cinco', 'La Victoria Libera', 1997, 044, 148, 198, 'Alfa liberado, activación del doble electrón extendido, Cubo de la Ley plásmicamente liberado como experiencia de la Telepatía Universal', 'Libera', 'El Electrón Doble Extendido', '', 07, 07, 3, 'Hraum', 'Mi País es la Esfera Última no Nacida. Yo Libero el Electrón Doble Extendido en ', 3, 414, 'Sirio', 'San Juan', 'Tiempo-Espacio', 'Hiper Electrón', 'Superconsciente (Conecta Lobulo Frontal y Trasero Derecho)', 'Superconsciente HiperElectróni'),
-(6, 'Limi', 'rojo', 'Purifica', '06, 13, 20, 27', 'Profecía del Año Seis', 'La Victoria Purifica', 1998, 149, 253, 199, 'Limi liberada generando el electrón mental, la mente galáctica fortalece la mente Telepática de la Tierra con los poderes generativos del electrón', 'Purifica', 'El Electrón Metal', '', 09, 09, 3, 'Hrum', 'Yo Consumo Pensamientos Dualistas comos si fueran Alimento. Yo Purifico el Elect', 5, 402, 'Estación Intermedia AA', 'Padmasambhava', 'Trascendencia', 'Hiper Neutrón', 'Consciente Subliminal (Conecta Lobulo Frontal y Trasero Izquierdo)', 'Consciente Subliminal HiperNeu'),
-(7, 'Silio', 'blanco', 'Descarga', '07, 14, 21, 28', 'Profecía del Año Siete', 'La Victoria Descarga', 1999, 254, 098, 200, 'Silio liberado, electrón-neutrón generado, completa la creación del Heptágono de la Mente dispara el Puente Arco iris Circumpolar', 'Descarga', 'El Electrón-Neutrón Mental', '', 10, 11, 3, 'Hraim', 'Mi Rol es Cumplir las Acciones del Buda. Yo Descargo el Electrón-Neutrón Mental ', 4, 441, 'Pléyades', 'Buda', 'Cubo', 'Sirio Beta 52-Elemen', 'Perceptor Holomental (Conecta Todas las Dimensiones del Tiempo)', 'Iluminación Hiperplásmica');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `hol_rad_hep`
---
-
-CREATE TABLE `hol_rad_hep` (
-  `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Heptágono',
-  `pos` varchar(15) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Posición'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Cubo de Plasma';
-
---
--- Volcado de datos para la tabla `hol_rad_hep`
---
-
-INSERT INTO `hol_rad_hep` (`ide`, `pos`) VALUES
-(1, 'Arriba'),
-(2, 'Abajo'),
-(3, 'Derecha'),
-(4, 'Izquierda'),
-(5, 'Frente'),
-(6, 'Detrás'),
-(7, 'Centro');
+INSERT INTO `hol_rad` (`ide`, `nom`, `col`, `pod`, `dia`, `tel`, `tel_des`, `tel_año`, `tel_ora_año`, `tel_ora_ani`, `tel_ora_gen`, `rin_des`, `pla_des`, `pla_pod`, `pla_fue`, `pla_fue_pre`, `pla_fue_pos`, `pla_qua`, `pla_man`, `pla_cub`, `pla_cub_pos`, `pla_lec`, `hum_cha`, `umb`, `umb_map`, `umb_pat`, `umb_arc`, `umb_pue`, `umb_esf`, `umb_esf_fun`) VALUES
+(1, 'Dali', 'amarillo', 'Apunta', '01, 08, 15, 22', 'Profecía del Año Uno', 'La Victoria Da en el Blanco', 1993, 144, 248, 194, 'Dalí liberada, capacidad técnica lumínica establecida', 'Focaliza la Fuerza Térmica', 'Focaliza', 'Fuerza Térmica', 01, 02, 1, 'Om', 0, 'Arriba', 'Mi Padre es la Consciencia Intrínseca. Yo Siento el Calor. ', 1, 108, 'Fuente Omnigaláctica', 'Cristo', 'Trono', 'Alfa-Alfa', 'Preconsciente (Hemisferio Derecho Trasero)', 'Samadhi Profundo'),
+(2, 'Seli', 'rojo', 'Fluye', '02, 09, 16, 23', 'Profecía del Año Dos', 'La Victoria Fluye', 1994, 249, 093, 195, 'Seli liberada, capacidad térmica-lumínica ampliada', 'Fluye Fuerza Lumínica', 'Fluye', 'Fuerza Lumínica', 03, 03, 1, 'Hram', 0, 'Abajo', 'Mi Madre es la Esfera última. Yo Veo la Luz. ', 7, 291, 'Tierra Cristal', 'Mahoma', 'Avatar', 'Alfa-Beta', 'Subconsciente (Hemisferio Derecho Frontal)', 'Samadhi Informativo'),
+(3, 'Gama', 'blanco', 'Pacifica', '03, 10, 17, 24', 'Profecía del Año Tres', 'La Victoria Pacifica', 1995, 094, 198, 196, 'Gamma liberada capacidad térmica-lumínica ampliada, alcanza el \"poder extraordinario\"', 'Pacifica la Fuerza de Impácto Térmico-Lumí', 'Pacifica', 'Fuerza Pacificadora', 04, 05, 1, 'Hraha', 0, 'Derecha', 'Mi Linaje es la Unión de la Consciencia Intrínseca y la Esfera Última.', 2, 144, 'Hubab Ku', 'Pacal Votan', 'Misterio', 'Beta-Beta', 'Consciente (Hemisferio Izquierdo Frontal)', 'Mediumnidad del Consciente Des'),
+(4, 'Kali', 'azul', 'Establece', '04, 11, 18, 25', 'Profecía del Año Cuatro', 'La Victoria Establece', 1996, 199, 043, 197, ' Kali liberada, capacidad Normativa de cohesión-distensión catalítica alcanzada', 'Establece la Cohesión-Distensión', 'Establece', 'Agente Catalizador', 06, 06, 2, 'Hrim', 0, 'Izquierda', 'Mi Nombre es el Glorioso Nacido del Loto. Yo Catalizo la Luz-Calor Adentro.', 6, 515, 'Ahau Kin', 'Quetzalcoatl', 'Iniciación', 'Beta-Alta', 'Consciente Contínuo (Hemisferio Izquierdo Trasero)', 'Control de la Mente Superior'),
+(5, 'Alfa', 'amarillo', 'Libera', '05, 12, 19, 26', 'Profecía del Año Cinco', 'La Victoria Libera', 1997, 044, 148, 198, 'Alfa liberado, activación del doble electrón extendido, Cubo de la Ley plásmicamente liberado como experiencia de la Telepatía Universal', 'Libera el Electrón Doble-Extendido', 'Libera', 'Electrón Doble-Extendido', 07, 07, 3, 'Hraum', 0, 'Frente', 'Mi País es la Esfera Última no Nacida. Yo Libero el Electrón Doble Extendido en ', 3, 414, 'Sirio', 'San Juan', 'Tiempo-Espacio', 'Hiper Electrón', 'Superconsciente (Conecta Lobulo Frontal y Trasero Derecho)', 'Superconsciente HiperElectróni'),
+(6, 'Limi', 'rojo', 'Purifica', '06, 13, 20, 27', 'Profecía del Año Seis', 'La Victoria Purifica', 1998, 149, 253, 199, 'Limi liberada generando el electrón mental, la mente galáctica fortalece la mente Telepática de la Tierra con los poderes generativos del electrón', 'Purifica el Electrón Mental', 'Purifica', 'Electrón Metal', 09, 09, 3, 'Hrum', 0, 'Detrás', 'Yo Consumo Pensamientos Dualistas comos si fueran Alimento. Yo Purifico el Elect', 5, 402, 'Estación Intermedia AA', 'Padmasambhava', 'Trascendencia', 'Hiper Neutrón', 'Consciente Subliminal (Conecta Lobulo Frontal y Trasero Izquierdo)', 'Consciente Subliminal HiperNeu'),
+(7, 'Silio', 'blanco', 'Descarga', '07, 14, 21, 28', 'Profecía del Año Siete', 'La Victoria Descarga', 1999, 254, 098, 200, 'Silio liberado, electrón-neutrón generado, completa la creación del Heptágono de la Mente dispara el Puente Arco iris Circumpolar', 'Descarga el Electrón-Neutrón Mental', 'Descarga', 'Electrón-Neutrón Mental', 10, 11, 3, 'Hraim', 0, 'Centro', 'Mi Rol es Cumplir las Acciones del Buda. Yo Descargo el Electrón-Neutrón Mental ', 4, 441, 'Pléyades', 'Buda', 'Cubo', 'Sirio Beta 52-Elemen', 'Perceptor Holomental (Conecta Todas las Dimensiones del Tiempo)', 'Iluminación Hiperplásmica');
 
 -- --------------------------------------------------------
 
@@ -4656,6 +4730,8 @@ INSERT INTO `hol_rad_hep` (`ide`, `pos`) VALUES
 CREATE TABLE `hol_rad_hum_cha` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Chakra',
   `nom` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
+  `cod` varchar(15) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre Original',
+  `pos` varchar(15) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Posición Vertical',
   `col` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Color',
   `gla` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Glándula',
   `ele` varchar(10) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Elemento',
@@ -4672,14 +4748,14 @@ CREATE TABLE `hol_rad_hum_cha` (
 -- Volcado de datos para la tabla `hol_rad_hum_cha`
 --
 
-INSERT INTO `hol_rad_hum_cha` (`ide`, `nom`, `col`, `gla`, `ele`, `mus`, `sen`, `acc`, `pla`, `niv`, `fre`, `flo`) VALUES
-(1, 'Corona', 'Violeta', 'Pitiutaria', 'Eter', 'si', 'Pensamiento', 'Saber y Conocer', 'Espiritual', 'Unidad', 963, 972),
-(2, '3er Ojo', 'Índigo', 'Pineal', 'Luz', 'la', 'Telepatía', 'Ver y Percibir', 'Mental', 'Inteligencia', 852, 96),
-(3, 'Garganta', 'Azul', 'Tiroides', 'Sonido', 'sol', 'Oído', 'Decir y Oir', 'Creativo', 'Expresión', 741, 16),
-(4, 'Corazón', 'Verde', 'Timo', 'Aire', 'fa', 'Tacto', 'Amar y Ser amado', 'Afectivo', 'Amor', 639, 12),
-(5, 'Plexo Solar', 'Amarillo', 'Higado/Páncreas', 'Fuego', 'mi', 'Visión', 'Obrar y Poder', 'Emocional', 'Autosuficiencia', 528, 10),
-(6, 'Sacro', 'Naranja', 'Gonadas', 'Agua', 're', 'Sabor', 'Sentir y Desear', 'Sexual', 'Placer', 417, 6),
-(7, 'Raiz', 'Rojo', 'Endocrina', 'Tierra', 'do', 'Olor', 'Tener y Sobrevivir', 'Físico', 'Enraizamiento', 396, 4);
+INSERT INTO `hol_rad_hum_cha` (`ide`, `nom`, `cod`, `pos`, `col`, `gla`, `ele`, `mus`, `sen`, `acc`, `pla`, `niv`, `fre`, `flo`) VALUES
+(1, 'Corona', 'Sahasrara', 'Séptimo', 'Violeta', 'Pitiutaria', 'Eter', 'si', 'Pensamiento', 'Saber y Conocer', 'Espiritual', 'Unidad', 963, 972),
+(2, 'Tercer Ojo', 'Agnya', 'Sexto', 'Índigo', 'Pineal', 'Luz', 'la', 'Telepatía', 'Ver y Percibir', 'Mental', 'Inteligencia', 852, 96),
+(3, 'Garganta', 'Vissudha', 'Quinto', 'Azul', 'Tiroides', 'Sonido', 'sol', 'Oído', 'Decir y Oir', 'Creativo', 'Expresión', 741, 16),
+(4, 'Corazón', 'Anahata', 'Cuarto', 'Verde', 'Timo', 'Aire', 'fa', 'Tacto', 'Amar y Ser amado', 'Afectivo', 'Amor', 639, 12),
+(5, 'Plexo Solar', 'Manipura', 'Tercer', 'Amarillo', 'Higado/Páncreas', 'Fuego', 'mi', 'Visión', 'Obrar y Poder', 'Emocional', 'Autosuficiencia', 528, 10),
+(6, 'Sacro', 'Svadhisthana', 'Segundo', 'Naranja', 'Gonadas', 'Agua', 're', 'Sabor', 'Sentir y Desear', 'Sexual', 'Placer', 417, 6),
+(7, 'Raiz', 'Muladhara', 'Primer', 'Rojo', 'Endocrina', 'Tierra', 'do', 'Olor', 'Tener y Sobrevivir', 'Físico', 'Enraizamiento', 396, 4);
 
 -- --------------------------------------------------------
 
@@ -4708,43 +4784,34 @@ INSERT INTO `hol_rad_hum_mud` (`ide`, `nom`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_rad_pla_ato`
---
-
-CREATE TABLE `hol_rad_pla_ato` (
-  `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Átomo',
-  `nom` varchar(30) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Átomo del Tiempo';
-
---
--- Volcado de datos para la tabla `hol_rad_pla_ato`
---
-
-INSERT INTO `hol_rad_pla_ato` (`ide`, `nom`) VALUES
-(1, 'Tiempo Análogo'),
-(2, 'Tiempo Antípoda'),
-(3, 'Tiempo Oculto'),
-(4, 'Tiempo del Campo Unificado');
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `hol_rad_pla_car`
 --
 
 CREATE TABLE `hol_rad_pla_car` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Identificador',
-  `nom` varchar(10) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
-  `ope` char(1) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Operador'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Carga Eléctrica del Plasma';
+  `nom` varchar(15) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
+  `col` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Colores'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Polaridad Eléctrica del Plasma';
 
 --
 -- Volcado de datos para la tabla `hol_rad_pla_car`
 --
 
-INSERT INTO `hol_rad_pla_car` (`ide`, `nom`, `ope`) VALUES
-(1, 'Negativa', '-'),
-(2, 'Positiva', '+');
+INSERT INTO `hol_rad_pla_car` (`ide`, `nom`, `col`) VALUES
+(1, 'Análogo', 'rojo y blanco o azul y amarillo'),
+(2, 'Antípoda', 'rojo y azul o blanco y amarillo'),
+(3, 'Oculto', 'rojo y amarillo o blanco y azul'),
+(4, 'Campo Unifado', 'Todos iguales');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `hol_rad_pla_cub`
+--
+
+CREATE TABLE `hol_rad_pla_cub` (
+  `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Heptágono'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Cubo de Plasma';
 
 -- --------------------------------------------------------
 
@@ -4806,43 +4873,47 @@ INSERT INTO `hol_rad_pla_fue` (`ide`, `nom`, `ele_pre`, `ele_ope`, `ele_pos`) VA
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `hol_rad_pla_pol`
+--
+
+CREATE TABLE `hol_rad_pla_pol` (
+  `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Identificador',
+  `nom` varchar(10) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
+  `ope` char(1) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Operador'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Polaridad Eléctrica del Plasma';
+
+--
+-- Volcado de datos para la tabla `hol_rad_pla_pol`
+--
+
+INSERT INTO `hol_rad_pla_pol` (`ide`, `nom`, `ope`) VALUES
+(1, 'Negativa', '-'),
+(2, 'Positiva', '+');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `hol_rad_pla_qua`
 --
 
 CREATE TABLE `hol_rad_pla_qua` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Quántum',
   `nom` varchar(30) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
-  `des` tinytext COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Descripción',
-  `lec` tinytext COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Lectura'
+  `des` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Descripción',
+  `arm_des` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Carga por Colores',
+  `ato_des` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Átomo Telepático del Tiempo',
+  `pla_des` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Afirmación Diaria',
+  `cub_des` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Cubo del Radión'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Quantum del Plasma Radial';
 
 --
 -- Volcado de datos para la tabla `hol_rad_pla_qua`
 --
 
-INSERT INTO `hol_rad_pla_qua` (`ide`, `nom`, `des`, `lec`) VALUES
-(1, 'Quantum Sensorial Primario', '', 'Quantum Sensorial Primario completamente habilitado.'),
-(2, 'Agente Catalizador', '', 'Agente Catalizador establecido para unificación de los quanta Sensorial y Telepático.'),
-(3, 'Quantum Telepático Cromático', '', 'Quantum Telepático Cromático completamente habilitado.');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `hol_rad_pla_tet`
---
-
-CREATE TABLE `hol_rad_pla_tet` (
-  `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL,
-  `nom` varchar(25) COLLATE utf8mb4_spanish_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Tetraedro de Plasma';
-
---
--- Volcado de datos para la tabla `hol_rad_pla_tet`
---
-
-INSERT INTO `hol_rad_pla_tet` (`ide`, `nom`) VALUES
-(1, 'Análogo-Antípoda'),
-(2, 'Oculto-Campo Unificado');
+INSERT INTO `hol_rad_pla_qua` (`ide`, `nom`, `des`, `arm_des`, `ato_des`, `pla_des`, `cub_des`) VALUES
+(1, 'Quantum Sensorial Primario', '', 'Los primeros tres colores forman la base primaria del quanto sensorial', 'Estos primeros tres Plasmas Radiales constituyen un quantum primario de base sensorial', 'Base primaria, Quantum sensorial establecido', 'Quantum Sensorial Primario completamente habilitado'),
+(2, 'Agente Catalizador', '', 'El Azul central es el agente catalítico, Kali', 'Constituye el agente catalizador del quantum sensorial y el telepático', 'Agente catalizador establecido', 'Agente Catalizador establecido para unificación de los quanta Sensorial y Telepático'),
+(3, 'Quantum Telepático Cromático', '', 'Los últimos tres colores, tal como los primeros tres, forman la base cromática del quanto telepático', 'Estos segundos tres Plasmas Radiales constituyen un quantum telepático de base cromática', 'Base cromática, Quantum telepático establecido', 'Quantum Telepático Cromático completamente habilitado');
 
 -- --------------------------------------------------------
 
@@ -7076,14 +7147,16 @@ CREATE TABLE `_hol_rad` (
 ,`tel_ora_ani` smallint(3) unsigned zerofill
 ,`tel_ora_gen` smallint(3) unsigned zerofill
 ,`rin_des` tinytext
+,`pla_des` varchar(50)
 ,`pla_pod` varchar(10)
-,`pla_ene` varchar(40)
-,`pla_fue` varchar(50)
+,`pla_fue` varchar(40)
 ,`pla_fue_pre` smallint(2) unsigned zerofill
 ,`pla_fue_pos` smallint(2) unsigned zerofill
 ,`pla_qua` smallint(1) unsigned zerofill
 ,`pla_man` varchar(10)
-,`pla_des` varchar(100)
+,`pla_cub` smallint(1) unsigned zerofill
+,`pla_cub_pos` varchar(15)
+,`pla_lec` varchar(100)
 ,`hum_cha` smallint(1) unsigned zerofill
 ,`umb` smallint(3) unsigned zerofill
 ,`umb_map` varchar(30)
@@ -7092,9 +7165,19 @@ CREATE TABLE `_hol_rad` (
 ,`umb_pue` varchar(20)
 ,`umb_esf` varchar(80)
 ,`umb_esf_fun` varchar(30)
-,`hep` smallint(1) unsigned zerofill
-,`hep_pos` varchar(15)
 ,`cha_nom` varchar(20)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura Stand-in para la vista `_hol_rad_pla_cub`
+-- (Véase abajo para la vista actual)
+--
+CREATE TABLE `_hol_rad_pla_cub` (
+`ide` smallint(1) unsigned zerofill
+,`nom` varchar(15)
+,`pla` varchar(10)
 );
 
 -- --------------------------------------------------------
@@ -7370,7 +7453,16 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `_hol_rad`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `_hol_rad`  AS SELECT `_rad`.`ide` AS `ide`, `_rad`.`nom` AS `nom`, `_rad`.`col` AS `col`, `_rad`.`pod` AS `pod`, `_rad`.`dia` AS `dia`, `_rad`.`tel` AS `tel`, `_rad`.`tel_des` AS `tel_des`, `_rad`.`tel_año` AS `tel_año`, `_rad`.`tel_ora_año` AS `tel_ora_año`, `_rad`.`tel_ora_ani` AS `tel_ora_ani`, `_rad`.`tel_ora_gen` AS `tel_ora_gen`, `_rad`.`rin_des` AS `rin_des`, `_rad`.`pla_pod` AS `pla_pod`, `_rad`.`pla_ene` AS `pla_ene`, `_rad`.`pla_fue` AS `pla_fue`, `_rad`.`pla_fue_pre` AS `pla_fue_pre`, `_rad`.`pla_fue_pos` AS `pla_fue_pos`, `_rad`.`pla_qua` AS `pla_qua`, `_rad`.`pla_man` AS `pla_man`, `_rad`.`pla_des` AS `pla_des`, `_rad`.`hum_cha` AS `hum_cha`, `_rad`.`umb` AS `umb`, `_rad`.`umb_map` AS `umb_map`, `_rad`.`umb_pat` AS `umb_pat`, `_rad`.`umb_arc` AS `umb_arc`, `_rad`.`umb_pue` AS `umb_pue`, `_rad`.`umb_esf` AS `umb_esf`, `_rad`.`umb_esf_fun` AS `umb_esf_fun`, `_hep`.`ide` AS `hep`, `_hep`.`pos` AS `hep_pos`, `_cha`.`nom` AS `cha_nom` FROM ((`hol_rad` `_rad` join `hol_rad_hep` `_hep` on(`_rad`.`ide` = `_hep`.`ide`)) join `hol_rad_hum_cha` `_cha` on(`_rad`.`hum_cha` = `_cha`.`ide`)) ORDER BY `_rad`.`ide` ASC  ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `_hol_rad`  AS SELECT `_rad`.`ide` AS `ide`, `_rad`.`nom` AS `nom`, `_rad`.`col` AS `col`, `_rad`.`pod` AS `pod`, `_rad`.`dia` AS `dia`, `_rad`.`tel` AS `tel`, `_rad`.`tel_des` AS `tel_des`, `_rad`.`tel_año` AS `tel_año`, `_rad`.`tel_ora_año` AS `tel_ora_año`, `_rad`.`tel_ora_ani` AS `tel_ora_ani`, `_rad`.`tel_ora_gen` AS `tel_ora_gen`, `_rad`.`rin_des` AS `rin_des`, `_rad`.`pla_des` AS `pla_des`, `_rad`.`pla_pod` AS `pla_pod`, `_rad`.`pla_fue` AS `pla_fue`, `_rad`.`pla_fue_pre` AS `pla_fue_pre`, `_rad`.`pla_fue_pos` AS `pla_fue_pos`, `_rad`.`pla_qua` AS `pla_qua`, `_rad`.`pla_man` AS `pla_man`, `_rad`.`pla_cub` AS `pla_cub`, `_rad`.`pla_cub_pos` AS `pla_cub_pos`, `_rad`.`pla_lec` AS `pla_lec`, `_rad`.`hum_cha` AS `hum_cha`, `_rad`.`umb` AS `umb`, `_rad`.`umb_map` AS `umb_map`, `_rad`.`umb_pat` AS `umb_pat`, `_rad`.`umb_arc` AS `umb_arc`, `_rad`.`umb_pue` AS `umb_pue`, `_rad`.`umb_esf` AS `umb_esf`, `_rad`.`umb_esf_fun` AS `umb_esf_fun`, `_cha`.`nom` AS `cha_nom` FROM (`hol_rad` `_rad` join `hol_rad_hum_cha` `_cha` on(`_rad`.`hum_cha` = `_cha`.`ide`)) ORDER BY `_rad`.`ide` ASC  ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura para la vista `_hol_rad_pla_cub`
+--
+DROP TABLE IF EXISTS `_hol_rad_pla_cub`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `_hol_rad_pla_cub`  AS SELECT `_cub`.`ide` AS `ide`, `_rad`.`pla_cub_pos` AS `nom`, `_rad`.`nom` AS `pla` FROM (`hol_rad_pla_cub` `_cub` join `hol_rad` `_rad` on(`_rad`.`ide` = `_cub`.`ide`))  ;
 
 -- --------------------------------------------------------
 
@@ -7606,6 +7698,36 @@ ALTER TABLE `hol_lun_fue`
   ADD PRIMARY KEY (`ide`);
 
 --
+-- Indices de la tabla `hol_lun_pla`
+--
+ALTER TABLE `hol_lun_pla`
+  ADD PRIMARY KEY (`ide`);
+
+--
+-- Indices de la tabla `hol_lun_pla_ato`
+--
+ALTER TABLE `hol_lun_pla_ato`
+  ADD PRIMARY KEY (`ide`);
+
+--
+-- Indices de la tabla `hol_lun_pla_eje`
+--
+ALTER TABLE `hol_lun_pla_eje`
+  ADD PRIMARY KEY (`ide`);
+
+--
+-- Indices de la tabla `hol_lun_pla_tet`
+--
+ALTER TABLE `hol_lun_pla_tet`
+  ADD PRIMARY KEY (`ide`);
+
+--
+-- Indices de la tabla `hol_lun_pla_tie`
+--
+ALTER TABLE `hol_lun_pla_tie`
+  ADD PRIMARY KEY (`ide`);
+
+--
 -- Indices de la tabla `hol_psi`
 --
 ALTER TABLE `hol_psi`
@@ -7689,12 +7811,6 @@ ALTER TABLE `hol_rad`
   ADD KEY `hum_cha` (`hum_cha`);
 
 --
--- Indices de la tabla `hol_rad_hep`
---
-ALTER TABLE `hol_rad_hep`
-  ADD PRIMARY KEY (`ide`);
-
---
 -- Indices de la tabla `hol_rad_hum_cha`
 --
 ALTER TABLE `hol_rad_hum_cha`
@@ -7707,15 +7823,15 @@ ALTER TABLE `hol_rad_hum_mud`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_rad_pla_ato`
---
-ALTER TABLE `hol_rad_pla_ato`
-  ADD PRIMARY KEY (`ide`);
-
---
 -- Indices de la tabla `hol_rad_pla_car`
 --
 ALTER TABLE `hol_rad_pla_car`
+  ADD PRIMARY KEY (`ide`);
+
+--
+-- Indices de la tabla `hol_rad_pla_cub`
+--
+ALTER TABLE `hol_rad_pla_cub`
   ADD PRIMARY KEY (`ide`);
 
 --
@@ -7731,15 +7847,15 @@ ALTER TABLE `hol_rad_pla_fue`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_rad_pla_qua`
+-- Indices de la tabla `hol_rad_pla_pol`
 --
-ALTER TABLE `hol_rad_pla_qua`
+ALTER TABLE `hol_rad_pla_pol`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_rad_pla_tet`
+-- Indices de la tabla `hol_rad_pla_qua`
 --
-ALTER TABLE `hol_rad_pla_tet`
+ALTER TABLE `hol_rad_pla_qua`
   ADD PRIMARY KEY (`ide`);
 
 --

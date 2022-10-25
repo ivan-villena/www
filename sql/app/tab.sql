@@ -1,4 +1,4 @@
--- Active: 1663730672989@@127.0.0.1@3306@_api
+-- Active: 1665550796793@@127.0.0.1@3306@api
 
 -- Holon
   DELETE FROM `api`.`app_tab` WHERE `esq`='hol'
@@ -14,12 +14,12 @@
         },
 
         "fon":{ "style":"grid-column: 1/sp; grid-row: 1/sp; width: 100%; height: 100%;" },
-        "fon-map":{ "fon":"map", "style":"background: center/contain no-repeat url(http://localhost/_/hol/tab/sol/map.png);" },
-        "fon-ato":{ "fon":"ato", "style":"background: center/contain no-repeat url(http://localhost/_/hol/tab/sol/ato.png);" },
-        "fon-res":{ "fon":"res", "style":"background: center/contain no-repeat url(http://localhost/_/hol/tab/sol/res.png);" },
-        "fon-cel":{ "fon":"cel", "style":"background: center/contain no-repeat url(http://localhost/_/hol/tab/sol/cel.png);" },
-        "fon-cir":{ "fon":"cir", "style":"background: center/contain no-repeat url(http://localhost/_/hol/tab/sol/cir.png);" },
-        "fon-pla":{ "fon":"pla", "style":"background: center/contain no-repeat url(http://localhost/_/hol/tab/sol/pla.png);" },
+        "fon-map":{ "fon":"map", "style":"background: center/contain no-repeat url(http://localhost/img/hol/tab/sol/map.png);" },
+        "fon-ato":{ "fon":"ato", "style":"background: center/contain no-repeat url(http://localhost/img/hol/tab/sol/ato.png);" },
+        "fon-res":{ "fon":"res", "style":"background: center/contain no-repeat url(http://localhost/img/hol/tab/sol/res.png);" },
+        "fon-cel":{ "fon":"cel", "style":"background: center/contain no-repeat url(http://localhost/img/hol/tab/sol/cel.png);" },
+        "fon-cir":{ "fon":"cir", "style":"background: center/contain no-repeat url(http://localhost/img/hol/tab/sol/cir.png);" },
+        "fon-pla":{ "fon":"pla", "style":"background: center/contain no-repeat url(http://localhost/img/hol/tab/sol/pla.png);" },
 
         "pla":{ "style":"position: relative; width: 110%; height: 100%;" },
         "pla-10":{ "pla":"10", "style":"grid-column:3/5; grid-row:2; transform: rotate( 053deg); top: 25%; left: 15%;" },
@@ -69,10 +69,10 @@
         },
 
         "fon":{ "style":"grid-column:2/10; grid-row:1/6; width: 100%; height: 100%;" },
-        "fon-map":{ "fon":"map", "style":"background: center/contain no-repeat url(http://localhost/_/hol/tab/pla/map.png);" },
-        "fon-sel":{ "fon":"sel", "style":"background: center/contain no-repeat url(http://localhost/_/hol/tab/pla/sel.png);" },
-        "fon-res":{ "fon":"res", "style":"background: center/contain no-repeat url(http://localhost/_/hol/tab/pla/res.png);" },
-        "fon-flu":{ "fon":"flu", "style":"background: center/contain no-repeat url(http://localhost/_/hol/tab/pla/flu.png);" },
+        "fon-map":{ "fon":"map", "style":"background: center/contain no-repeat url(http://localhost/img/hol/tab/pla/map.png);" },
+        "fon-sel":{ "fon":"sel", "style":"background: center/contain no-repeat url(http://localhost/img/hol/tab/pla/sel.png);" },
+        "fon-res":{ "fon":"res", "style":"background: center/contain no-repeat url(http://localhost/img/hol/tab/pla/res.png);" },
+        "fon-flu":{ "fon":"flu", "style":"background: center/contain no-repeat url(http://localhost/img/hol/tab/pla/flu.png);" },
 
         "fam":{ "style":"height: 80%; width: 80%;" },
         "fam-1":{ "fam":"1", "style":"grid-column:1/2; grid-row:2;" },
@@ -117,11 +117,11 @@
         },
 
         "fon":{ "style":"grid-column: 1/sp; grid-row: 1/sp; width: 100%; height: 100%;" },
-        "fon-map":{ "fon":"map", "style":"background: center/contain no-repeat url(http://localhost/_/hol/tab/hum/map.png);" },
-        "fon-res":{ "fon":"res", "style":"background: center/contain no-repeat url(http://localhost/_/hol/tab/hum/res.png);" },
-        "fon-cir":{ "fon":"cir", "style":"background: center/contain no-repeat url(http://localhost/_/hol/tab/hum/cir.png);" },
-        "fon-cen":{ "fon":"cen", "style":"background: center/contain no-repeat url(http://localhost/_/hol/tab/hum/cen.png);" },
-        "fon-ext":{ "fon":"ext", "style":"background: center/contain no-repeat url(http://localhost/_/hol/tab/hum/ext.png);" },
+        "fon-map":{ "fon":"map", "style":"background: center/contain no-repeat url(http://localhost/img/hol/tab/hum/map.png);" },
+        "fon-res":{ "fon":"res", "style":"background: center/contain no-repeat url(http://localhost/img/hol/tab/hum/res.png);" },
+        "fon-cir":{ "fon":"cir", "style":"background: center/contain no-repeat url(http://localhost/img/hol/tab/hum/cir.png);" },
+        "fon-cen":{ "fon":"cen", "style":"background: center/contain no-repeat url(http://localhost/img/hol/tab/hum/cen.png);" },
+        "fon-ext":{ "fon":"ext", "style":"background: center/contain no-repeat url(http://localhost/img/hol/tab/hum/ext.png);" },
 
         "raz":{ "style":"position: relative;" },
         "raz-4":{ "raz":"4", "style":"grid-column:2/5; grid-row:10/12; left:5%; top:5%;" },
@@ -241,7 +241,7 @@
 
         "sec":{ 
           "tab": "rad", 
-          "style":"grid: repeat(4,1fr)/repeat(4,1fr); background: center/contain no-repeat url(http://localhost/_/hol/ima/rad.png);"
+          "style":"grid: repeat(4,1fr)/repeat(4,1fr); background: center/contain no-repeat url(http://localhost/img/hol/ima/rad.png);"
         },
 
         "pos":{ "style":"position: relative;" },
@@ -806,3 +806,4 @@
       }'
     )
   ;
+--

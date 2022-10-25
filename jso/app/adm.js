@@ -4,7 +4,7 @@
 // administrador
 function _adm( $tip, $dat, $val, ...$opc ){
   
-  let $ = _doc_val.var($dat);
+  let $ = _app_var.ope($dat);
   
   // -> desde form : vacío resultados previos
   if( $_app.var && ( $.res = $_app.var.querySelector('.ope_res') ) ){ 
@@ -36,7 +36,7 @@ function _adm( $tip, $dat, $val, ...$opc ){
     if( !$val ){
       // limpio listado
       _ele.eli($.lis);
-      for( let $ico in ( $._api_ico = $_api.doc_ico ) ){ 
+      for( let $ico in ( $._api_ico = $_api.app_ico ) ){ 
         $ico = $._api_ico[$ico];
         $.ico = document.createElement('span');
         $.ico.setAttribute('ico',$ico.ide);
@@ -63,7 +63,7 @@ function _adm( $tip, $dat, $val, ...$opc ){
       else{
         _lis.val($.lis.children).forEach( $e => {
 
-          if( _dat.ver( $e.querySelector('.ide').innerHTML, '^^', $dat.value ) ){
+          if( _val.ver( $e.querySelector('.ide').innerHTML, '^^', $dat.value ) ){
             $e.classList.contains(DIS_OCU) && $e.classList.remove(DIS_OCU);
           }
           else if( !$e.classList.contains(DIS_OCU) ){

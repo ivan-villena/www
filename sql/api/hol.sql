@@ -15,14 +15,12 @@
         _rad.ide ASC
     ;
     DROP VIEW IF EXISTS `api`.`_hol_rad_pla_cub`; CREATE VIEW `api`.`_hol_rad_pla_cub` AS
-      SELECT 
-        _cub.*,
-        _rad.pla_cub_pos AS `nom`,
-        _rad.nom         AS `pla`        
+      SELECT         
+        _rad.pla_cub      AS `ide`,
+        _rad.pla_cub_pos  AS `nom`,
+        _rad.nom          AS `pla`
       FROM 
-        `api`.`hol_rad_pla_cub` _cub
-      INNER JOIN 
-        `api`.`hol_rad` _rad ON _rad.ide = _cub.ide
+        `api`.`hol_rad` _rad
     ;
   --
   -- x20 : sello solar
