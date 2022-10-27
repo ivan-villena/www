@@ -8,18 +8,12 @@ class _app {
   uri = null;
   // página
   ope = {
-    // botonera
-    bot : 'body > aside.bot',
-    // pantalla modal
-    win : '#win',
-    // panel
-    pan : 'body > aside.pan',
-    // principal
-    sec : 'body > main',
-    // lateral
-    bar : 'body > aside.bar',
-    // barra inferior
-    pie : 'body > footer',
+    bot : 'body > header',// botonera
+    win : 'body > section.app-win',// pantalla modal
+    pan : 'body > aside.app-pan',// panel
+    sec : 'body > main',// principal
+    bar : 'body > aside.app-bar',// lateral
+    pie : 'body > footer.app-pie' // barra inferior
   };
   // Formulario
   var = null
@@ -37,7 +31,7 @@ class _app {
   };  
   // Estructura
   est = {
-    lis : `article[ide="est"] div[var="est"] > table`,
+    lis : `article[ide="est"] div.app_est > table`,
     // Valores
     val : {
       acu : `article[ide="est"] [data-ide="val"] [ide="acu"]`,      
@@ -55,19 +49,19 @@ class _app {
     lis : `main > article > [tab]`,
     // Valores
     val : {
-      acu : `aside.pan > [ide="val"] [ide="acu"]`,      
-      sum : `aside.pan > [ide="val"] [ide="sum"]`
+      acu : `aside > [ide="val"] [ide="acu"]`,      
+      sum : `aside > [ide="val"] [ide="sum"]`
     },
     // Seleccion
-    ver : `aside.pan > [ide="ver"]`,
+    ver : `aside > [ide="ver"]`,
     // Opciones : seccion + posicion + ...atributos
     opc : {
-      sec : `aside.pan > [ide="opc"] form[ide="sec"]`,    
-      pos : `aside.pan > [ide="opc"] form[ide="pos"]`,
-      atr : `aside.pan > [ide="opc"] section[ide="atr"]`
+      sec : `aside > [ide="opc"] form[ide="sec"]`,    
+      pos : `aside > [ide="opc"] form[ide="pos"]`,
+      atr : `aside > [ide="opc"] section[ide="atr"]`
     },
     // Conteos
-    cue : `aside.pan > [ide="cue"]`
+    cue : `aside > [ide="cue"]`
   }
 
   // cargo elementos
@@ -83,10 +77,10 @@ class _app {
         if( $.men = document.querySelector(`ul.ope_opc:not(.${DIS_OCU})`) ){
           $.men.classList.add(DIS_OCU);
         }// pantallas
-        else if( document.querySelector(`#win:not(.${DIS_OCU}) article header [ico="dat_fin"]`) ){ 
+        else if( document.querySelector(`.app-win:not(.${DIS_OCU}) article header [ico="dat_fin"]`) ){ 
           _app_ope.win();
         }// navegacion
-        else if( document.querySelector(`aside.pan > [ide]:not(.${DIS_OCU})`) ){ 
+        else if( document.querySelector(`.app-pan > [ide]:not(.${DIS_OCU})`) ){ 
           _app_ope.pan();
         }
         break;
@@ -173,7 +167,7 @@ class _app {
       // inicializo indice por artículo
       else if( $_app.uri.art && ( $.art_nav = $_app.ope.pan.querySelector('nav[ide="doc_nav"] ul.lis.nav') ) ){
         // inicio indice
-        _doc_lis.nav_tog($.art_nav);
+        _app_lis.nav_tog($.art_nav);
         
         // muestro panel
         _app_ope.pan('doc_nav');
@@ -181,6 +175,43 @@ class _app {
     }      
   }
   
+  // letras : c - n
+  static let( $dat, $ele={} ){
+
+    let $_="", $pal, $_pal=[], $let=[], $_let = $_api.tex_let, $num = 0;
+    
+    if( $dat !== null && $dat !== undefined && $dat !== NaN ){      
+
+      $dat.toString().split(' ').forEach( $pal => {
+        
+        $num = _num.val($pal);
+        if( !!$num || $num == 0 ){
+          // if( /,/.test($pal) ) $pal.replaceAll(",","<c>,</c>");
+          // if( /\./.test($pal) ) $pal.replaceAll(".","<c>.</c>");
+          $_pal.push( `<n>${$pal}</n>` );
+        }
+        else{
+          $let = [];
+          $pal.split('').forEach( $car =>{
+            $num = _num.val($car);
+            if( !!$num || $num == 0 ){
+              $let.push( `<n>${$car}</n>` );
+            }
+            else if( $_let[$car] ){
+              // ${_htm.atr(_ele.cla($ele,`${$_let[$car].cla}`,'ini'))}
+              $let.push( `<c>${$car}</c>` );
+            }
+            else{
+              $let.push( $car );
+            }
+          });
+          $_pal.push( $let.join('') );
+        }
+      });
+      $_ = $_pal.join(' ');
+    }
+    return $_;
+  }
   // iconos
   static ico( $ide, $ele = {} ){
 
@@ -310,10 +341,11 @@ class _app_uri {
     return $_.join('/');
   }
 }
+
 // Página
 class _app_ope {
 
-  // pantalla : #win > article > header + section
+  // pantalla : .app-win > article > header + section
   static win( $ide ){
     // muestro articulo
     if( $ide ){
@@ -332,7 +364,7 @@ class _app_ope {
       $_app.ope.win.classList.add(DIS_OCU);
     }
   }
-  // navegadores : aside.pan
+  // navegadores : aside.app-pan
   static pan( $ide ){
 
     if( $ide && $ide.nodeName ) $ide=$ide.getAttribute('ide');
@@ -343,12 +375,14 @@ class _app_ope {
     // aculto-muestro contenedor
     if( $_app.ope.pan.querySelector(`:is(nav,article)[ide]:not(.${DIS_OCU})`) ){
       $_app.ope.pan.classList.contains(DIS_OCU) && $_app.ope.pan.classList.remove(DIS_OCU);
+      $_app.ope.sec.style.gridColumn = "2/sp";
     }
     else if( !$_app.ope.pan.classList.contains(DIS_OCU) ){
       $_app.ope.pan.classList.add(DIS_OCU);
-    }
+      $_app.ope.sec.style.gridColumn = "1/sp";
+    }    
   }
-  // seccion : main > article
+  // seccion : main.app-sec > article
   static sec( $ide ){
     $_app.ope.sec.querySelectorAll(`article[ide]:not(.${DIS_OCU})`).forEach( $e => $e.classList.add(DIS_OCU) );
     $_app.ope.sec.querySelectorAll(`article[ide="${$ide}"].${DIS_OCU}`).forEach( $e => $e.classList.remove(DIS_OCU) );
@@ -358,12 +392,91 @@ class _app_ope {
   static var( $ide ){
     _lis.val( _ele.ver($dat,{'eti':'fieldset'}).children ).forEach( $e => $e != $dat && $e.classList.toggle(DIS_OCU) );
   }
+  // bloques 
+  static tog( $dat, $ope ){
+    let $ = {};
+    // elementos del documento
+    if( !$ope ){
+      
+      $.ite = $dat.parentElement;
+      if( 
+        ( $.bot = $.ite.querySelector('[ico="val_tog"]') ) 
+        && ( $.sec = $.ite.nextElementSibling )
+      ){        
+      
+        if( $.bot.classList.contains('ocu') ){
+          $.bot.classList.remove('ocu');
+          $.sec.classList.remove(DIS_OCU);
+        }
+        else{
+          $.bot.classList.add('ocu');
+          $.sec.classList.add(DIS_OCU);
+        }
+      }
+    }
+    // por opciones
+    else if( ['tod','nad'].includes($ope) ){
+
+      if( $_app.var = _ele.ver($dat,{'eti':"form"}) ){        
+
+        $.lis = !!$_app.var.nextElementSibling ? $_app.var.nextElementSibling : $_app.var.parentElement.parentElement;
+
+        $.cla = ( $ope == 'tod' ) ? `.ocu` : `:not(.ocu)`;
+              
+        $.lis.querySelectorAll(`.val > [ico="val_tog"]${$.cla}`).forEach( $e => $e.click() );
+      }
+    }
+  }  
 }
-// formulario : campos + variables
-class _app_var {
+// Navegacion
+class _app_nav {
   
+  // pestañas por contenido
+  static sec( $dat, $ope, ...$opc ){
+    let $={};
+    // capturo contenedor
+    $.nav = $dat.parentElement;
+    // con toggles
+    $.val_tog = $opc.includes('tog');
+    // seleccion anterior
+    if( $.sel_ant = $.nav.querySelector(`a.${FON_SEL}`) ){
+
+      if( !$.val_tog || $.sel_ant != $dat ) $.sel_ant.classList.remove(FON_SEL);
+    }
+    // contenido
+    if( $ope ){
+      // capturo contenido
+      $.lis = $.nav.nextElementSibling;
+      // recorro items
+      _lis.val( $.lis.children ).forEach( $e => {
+        // coincide con el seleccionado
+        if( $e.dataset.ide == $ope ){
+          // hago toogles
+          if( $.val_tog ){
+            
+            $e.classList.toggle(DIS_OCU);
+            $dat.classList.toggle(FON_SEL);
+          }
+          // muestro y selecciono
+          else if( $e.classList.contains(DIS_OCU) ){
+
+            $e.classList.remove(DIS_OCU);
+            $dat.classList.add(FON_SEL);
+          }              
+        }// oculto los no coincidentes
+        else if( !$e.classList.contains(DIS_OCU) ){ 
+
+          $e.classList.add(DIS_OCU); 
+        }
+      });
+    }      
+  }  
+}
+// Dato
+class _app_dat {
+
   // div.atr > label + (select,input,textarea,button)[name]
-  static ope( $tip, $dat, $ope, ...$opc ){
+  static var( $tip, $dat, $ope, ...$opc ){
     let $={};
     if( $tip && $tip.nodeName ){
       $dat = $tip;
@@ -387,10 +500,6 @@ class _app_var {
     }
     return $;
   }
-}
-// Dato
-class _app_dat {
-
   // valor : p[tit, nom, des] + ima 
   static val( $tip, $dat, $ope, ...$opc ){
 
@@ -427,7 +536,7 @@ class _app_dat {
     else if( !!$opc[0] ){
       
       if( !($opc[0]['eti']) ) $opc[0]['eti'] = 'p'; 
-      $opc[0]['htm'] = _doc.let($_);
+      $opc[0]['htm'] = _app.let($_);
       $_ = _htm.val($opc[0]);
     }
 
@@ -435,7 +544,7 @@ class _app_dat {
   }
   // opciones : esquema.estructura.atributos.valores
   static opc( $tip, $dat, $ope, ...$opc ){
-    let $_="", $=_app_var.ope($dat);
+    let $_="", $=_app_dat.var($dat);
     // vacio valores y atributos
     $.ini = ( $ide=["val"] ) => {
       $ide.forEach( $i => { if( $.ope = $_app.var.querySelector(`[name="${$i}"]`) ) _ele.eli( $.ope, `option:not([value=""])` ); });
@@ -470,7 +579,7 @@ class _app_dat {
           $.opc.dataset.esq = $.esq;
           $.opc.dataset.est = $.est;
           _eje.val(['_dat::get', [`${$.esq}.${$.est}`] ], $dat => {
-            $.opc = _doc_opc.val( $dat, $.opc, 'ide');
+            $.opc = _app_opc.val( $dat, $.opc, 'ide');
           });
         }
       }
@@ -480,7 +589,7 @@ class _app_dat {
   }
   // ficha : imagenes por valor con relaciones por estructura
   static fic( $dat, $ope, ...$opc ){
-    let $_="", $=_app_var.ope($dat);
+    let $_="", $=_app_dat.var($dat);
     $.dat = {};
 
     // actualizo valores principales
@@ -512,12 +621,13 @@ class _app_dat {
     return $_;
   }
 }
+
 // Valor
 class _app_val {
 
   // alta, baja, modificacion por tabla-informe
   static abm( $tip, $dat, $ope, ...$opc ){
-    let $ = _app_var.ope($dat);
+    let $ = _app_dat.var($dat);
     switch( $tip ){
     // cargo valores
     case 'var':
@@ -611,7 +721,7 @@ class _app_val {
           $._tex = `
           <ul class='col-roj'>`; 
             $._err[$.ide].forEach( $e => $._tex += `
-            <li>${_doc.let($e)}</li>`
+            <li>${_app.let($e)}</li>`
             ); $._tex += `
           </ul>`;
           _ele.agr( $._tex, $_atr );
@@ -702,7 +812,7 @@ class _app_val {
   // filtros : dato + variables
   static ver( $tip, $dat, $ope, ...$opc ){
 
-    let $ = _app_var.ope($dat);
+    let $ = _app_dat.var($dat);
 
     $._tip = $tip.split('-');
 
@@ -821,7 +931,7 @@ class _app_val {
   }
   // conteos : valores de estructura relacionada por atributo
   static cue( $tip, $dat, $ope, ...$opc ){
-    let $ = _app_var.ope($dat);
+    let $ = _app_dat.var($dat);
 
     switch( $tip ){
     // actualizo cuentas por valores
@@ -880,297 +990,46 @@ class _app_val {
     }    
   }
 }
-// Estructura
-class _app_est {
- 
-  // inicializo : acumulados
-  static ini(){
-
-    let $={};   
-
-    if( $_app.est.val.acu ){
-
-      if( $.ele = $_app.est.val.acu.querySelector(`[name="tod"]`) ){
-
-        _app_est.val_tod($.ele);
-      }
-    }
-
-  }
-  // actualizo : acumulado + cuentas + descripciones
-  static act(){
-
-    let $={};
-    // actualizo total
-    if( $_app.est.val.acu && ( $.tot = $_app.est.val.acu.querySelector('[name="tot"]') ) ){
-      
-      $.tot.innerHTML = _app_est.val('tot');
-    }    
-    // actualizo cuentas
-    if( $_app.est.cue ){
-
-      _app_val.cue('act', $_app.est.lis.querySelectorAll(`tr[pos]:not(.${DIS_OCU})`), $_app.est.cue);
-    }
-    // actualizo descripciones
-    if( $_app.est.des ){
-
-      $_app.est.des.querySelectorAll(`[name]:checked`).forEach( $e => _app_est.des_tog($e) );
-    }
-  }
-  // datos : todos | acumulados
-  static val( $tip ){
-
-    switch( $tip ){
-    // cuento items en pantalla
-    case 'tot':
-      if( $_app.est.lis ){
-      
-        return $_app.est.lis.querySelectorAll(`tr[pos]:not(.${DIS_OCU})`).length;
-      }
-      else{
-        return 'err: no hay tabla relacionada';
-      }      
-      break;
-    }
-  }// - todos ? o por acumulados
-  static val_tod( $dat ){
-
-    let $ = _app_var.ope($dat);  
-    
-    if( $_app.est.val.acu ){
-      // ajusto controles acumulados
-      $_app.val.acu.forEach( $i => {
-
-        if( $.val = $_app.est.val.acu.querySelector(`[name='${$i}']`) ) $.val.disabled = $dat.checked;
-      });
-    }
-    // ejecuto todos los filtros y actualizo totales
-    _app_est.ver();
-
-  }// - acumulados : posicion - marcas - seleccion
-  static val_acu(){
-
-    let $={};
-    
-    if( ( $.esq = $_app.est.lis.dataset.esq ) && ( $.est = $_app.est.lis.dataset.est ) ){
-      
-      // oculto todos los items de la tabla
-      _ele.act('cla_agr',$_app.est.lis.querySelectorAll(`tr[pos]:not(.${DIS_OCU})`),DIS_OCU);
-
-      // actualizo por acumulado
-      $_app.val.acu.forEach( $ide => {
-
-        if( $.val = $_app.est.val.acu.querySelector(`[name='${$ide}']`) ){
-
-          $.tot = 0;
-          if( $.val.checked ){
-            // recorro seleccionados
-            $_app.tab.lis.querySelectorAll(`[pos]._val-${$ide}`).forEach( $e =>{
-              
-              if( $.ele = $_app.est.lis.querySelector(
-                `tr[pos][${$.esq}-${$.est}="${$e.getAttribute(`${$.esq}-${$.est}`)}"].${DIS_OCU}`
-              ) ){
-                $.tot++;
-                $.ele.classList.remove(DIS_OCU);
-              }
-            });            
-          }
-          // actualizo total
-          if( $.val.nextElementSibling && ( $.ele = $.val.nextElementSibling.querySelector('n') ) ){
-            $.ele.innerHTML = $.tot;
-          }
-        }          
-      });
-    }
-  }
-  // filtros : Valores + Fecha + Posicion
-  static ver( $tip, $dat, $ope ){
-
-    let $ = _app_var.ope($dat);
-
-    // ejecuto filtros
-    if( !$tip ){
-
-      // 1º - muestro todos
-      if( !$_app.est.val.acu || $_app.est.val.acu.querySelector(`[name="tod"]:checked`) ){
-
-        _ele.act('cla_eli',$_app.est.lis.querySelectorAll(`tr[pos].${DIS_OCU}`),DIS_OCU);
-      }// o muestro solo acumulados
-      else{
-        _app_est.val_acu();
-      }
-      // 2º - cargo filtros : - dato(val) -fecha(ini) -posicion(ini)
-      $.eje = [];
-      for( const $ope_ide in $_app.val.ver ){
-        // tomo solo los que tienen valor
-        if( ( $.val = $_app.est.ver.querySelector(`${$_app.val.ver[$ope_ide]}`) ) && !!$.val.value ){
-          $.eje.push($ope_ide);
-        }
-      }
-      // 3º - ejecuto todos los filtros
-      if( $.eje.length > 0 ){
-
-        $.eje.forEach( $ope_ide => {
-
-          _app_val.ver($ope_ide, _lis.val( $_app.est.lis.querySelectorAll(`tr[pos]:not(.${DIS_OCU})`) ), 
-            $_app.est.ver
-          );
-
-          // oculto valores no seleccionados
-          _ele.act('cla_agr',$_app.est.lis.querySelectorAll(`tr[pos]:not(._val-ver, .${DIS_OCU})`),DIS_OCU);
-        });
-      }
-    }
-    // por ciclos + agrupaciones
-    else{
-      if( ['cic','gru'].includes($tip) ){
-        // muestro todos los items
-        _ele.act('cla_eli',$_app.est.lis.querySelectorAll(`tbody tr:not([pos]).${DIS_OCU}`),DIS_OCU);        
-        
-        // aplico filtro
-        // ... 
-      }
-    }
-    // actualizo total, cuentas y descripciones
-    _app_est.act();
-  }
-  // columnas : toggles + atributos
-  static atr(){
-  }// - muestro-oculto
-  static atr_tog( $dat ){
-
-    let $ = _app_var.ope($dat);      
-
-    $.esq = $dat.dataset.esq;
-    $.est = $dat.dataset.est;
-
-    // checkbox
-    if( $dat.nodeName == 'INPUT' ){
-
-      $_app.est.lis.querySelectorAll(
-        `:is(thead,tbody) :is(td,th)[data-esq="${$.esq}"][data-est="${$.est}"][data-atr="${$dat.name}"]`
-      ).forEach( $ite => {
-        // muetro columna
-        if( $dat.checked ){
-          $ite.classList.contains(DIS_OCU) && $ite.classList.remove(DIS_OCU);
-        }// oculto columna
-        else if( !$ite.classList.contains(DIS_OCU) ){
-          $ite.classList.add(DIS_OCU);
-        }
-      });
-    }
-    // botones: ver | ocultar x todas las columnas
-    else{
-      $dat.parentElement.parentElement.querySelectorAll('input[type="checkbox"]').forEach( $e => {
-          
-        $e.checked = ( $dat.dataset.val == 'ver' );
-
-        _app_est.atr_tog($e);
-      });
-    }
-  }
-  // descripciones : titulo ( posicion + ciclos + agrupaciones) + detalle ( descripciones, lecturas )
-  static des(){
-  }// - muestro-oculto
-  static des_tog( $dat ){
-
-    let $ = _app_var.ope($dat);
-    $.ope  = $_app.var.getAttribute('ide');
-    $.esq = $_app.var.dataset.esq;
-    $.est = $_app.var.dataset.est;
-    $.atr = $.var_ide;
-    
-    // oculto todos
-    _ele.act('cla_agr',$_app.est.lis.querySelectorAll(
-      `tbody tr[data-ope="${$.ope}"][data-esq="${$.esq}"][data-est="${$.est}"][data-atr="${$.atr}"]:not(.${DIS_OCU})`
-    ),DIS_OCU);
-    
-    // muestro titulos y lecturas para los que no están ocultos
-    if( $dat.checked ){
-
-      $_app.est.lis.querySelectorAll(`tr[pos]:not(.${DIS_OCU})`).forEach( $ite => {
-
-        if( ( $.val = _dat.get($.esq,$.est,$ite.getAttribute(`${$.esq}-${$.est}`)) ) && $.val[$.atr] ){
-
-          $.ide=( $.ope == 'des' ) ? $ite.getAttribute(`${$.esq}-${$.est}`) : $.val[$.atr];
-
-          _ele.act('cla_eli',$_app.est.lis.querySelectorAll(
-            `tbody tr[data-ope="${$.ope}"][data-esq="${$.esq}"][data-est="${$.est}"][data-atr="${$.atr}"][data-ide="${$.ide}"].${DIS_OCU}`
-          ),DIS_OCU)          
-        }
-      });
-    }   
-
-  }// - filtro por descripciones
-  static des_ver( $dat ){
-
-    let $ = _app_var.ope($dat);    
-
-    // por selectores : titulo + detalle + lectura 
-    if( ['tit','det'].includes($.var_ide) ){
-  
-      // oculto por cilcos y agrupaciones
-      $_app.est.lis.querySelectorAll(`tbody tr:not([data-ope="des"])[opc="${$.ite}"]:not(.${DIS_OCU})`).forEach( $e => $e.classList.add(DIS_OCU) );
-
-      // estructura
-      if( $.est = $_app.est.ver.querySelector(`form[ide="dat"] select[name] + .dep:not(.${DIS_OCU})`) ){
-        $.est = $.est.previousElementSibling.querySelector('select');
-        $.opc = $.est.parentElement.parentElement.dataset.atr;
-        // valor de dependencia
-        $.ide=$_app.est.ver.querySelector(`form[ide="dat"] select[name="${$.opc}"] + div.dep > select:not(.${DIS_OCU})`);
-      }
-      // muestro        
-      if( $dat.checked && ( $.est || $.ide ) ){
-        $.atr = $.est.value.split('-')[1];
-        // titulo por atributo seleccionado
-        if( $.ite == 'tit' ){
-          // no considero agrupaciones sin valor
-          if( $.opc != 'gru' || ( !!$.ide && !!$.ide.value ) ){
-
-            $.agr = !!$.ide && $.ide.value ? `[ide="${$.ide.value}"]` : '';
-
-            _ele.act('cla_eli',$_app.est.lis.querySelectorAll(`tbody tr[data-atr="${$.atr}"]${$.agr}.${DIS_OCU}`),DIS_OCU);            
-          }
-        }// descripciones por item no oculto
-        else{
-          $_app.est.lis.querySelectorAll(`tbody tr:not([pos]):not(.${DIS_OCU})`).forEach( $e =>{
-
-            if( $.lis_ite = $_app.est.lis.querySelector(
-                `table tr[data-atr="${$.atr}_des"][data-ide="${$e.dataset.ide}"].${DIS_OCU}`
-            ) ){ 
-              $.lis_ite.classList.remove(DIS_OCU);
-            }
-          });
-        }
-      }
-    }
-    // muestro por lecturas
-    else if( $.var_ide == 'des' ){
-
-      // desmarco otras opciones
-      _ele.act('atr_act',$_app.est.lec.querySelectorAll(`input[name]:not([name="${$.ite}"]):checked`),'checked',false);
-
-      // oculto todas las leyendas
-      _ele.act('cla_agr',$_app.est.lis.querySelectorAll(`tr[data-ope="${$tip}"]:not(.${DIS_OCU})`),DIS_OCU);
-
-      // muestro por atributo seleccionado      
-      if( $dat.checked ){
-
-        $_app.est.lis.querySelectorAll(`tbody tr:not([pos]):not(.${DIS_OCU})`).forEach( $e => {
-
-          if( $.lec = $_app.est.lis.querySelector(
-            `table tr[data-ope="${$tip}"][data-atr="${$dat.value}"][ide="${$e.dataset.ide}"].${DIS_OCU}`
-          ) ){
-            $.lec.classList.remove(DIS_OCU);
-          }
-        });
-      }
-    }
-  }
-}
 // Tablero
 class _app_tab {
 
+  // tabla
+  static lis( $dat, $ele, ...$opc ){
+    let $ = {};
+
+    // 1- cabecera
+    $.tab_cab = document.createElement('thead');
+    $.cab_lis = document.createElement('tr');
+
+    if( $dat[0] ){
+      for( const $atr in $dat[0] ){
+        $.cab_ide = document.createElement('th');
+        $.cab_ide.innerHTML = $atr;
+        $.cab_lis.appendChild($.cab_ide);
+      }
+      $.tab_cab.appendChild($.cab_lis);
+    }
+
+    // 2-cuerpo
+    $.tab_dat = document.createElement('tbody');
+    $dat.forEach( $dat => {
+      $.lis = document.createElement('tr');
+      for( const $atr in $dat ){
+        $.dat_ite = document.createElement('td');
+        $.dat_ite.innerHTML = $dat[$atr];
+        $.lis.appendChild($.dat_ite);
+      }
+      $.tab_dat.appendChild($.lis);
+    });
+    // 3-pie
+    // ...
+
+    $.tab = document.createElement('table');
+    $.tab.appendChild($.tab_cab);
+    $.tab.appendChild($.tab_dat);
+
+    return $.tab;
+  }
   // inicializo : opciones, posicion, filtros
   static ini(){
 
@@ -1257,7 +1116,7 @@ class _app_tab {
   // Datos
   static val( $tip, $dat ){
 
-    let $ = _app_var.ope($dat);
+    let $ = _app_dat.var($dat);
 
     switch( $tip ){
     case 'pos': 
@@ -1306,9 +1165,9 @@ class _app_tab {
   }// - acumulados( posicion + marcas + seleccion )
   static val_acu( $dat, $ope ){
     
-    let $ = _app_var.ope($dat);
+    let $ = _app_dat.var($dat);
 
-    if( !$.var_ide && $ope ) $ = _app_var.ope( $dat = $_app.tab.val.acu.querySelector(`[name="${$ope}"]`) );
+    if( !$.var_ide && $ope ) $ = _app_dat.var( $dat = $_app.tab.val.acu.querySelector(`[name="${$ope}"]`) );
     
     // busco marcas y aplico bordes
     $.cla_ide=`_val-${$.var_ide}`;
@@ -1327,7 +1186,7 @@ class _app_tab {
   }// - secciones : bordes + colores + imagen + ...
   static opc_sec( $dat ){
 
-    let $ = _app_var.ope($dat); 
+    let $ = _app_dat.var($dat); 
 
     switch( $.var_ide ){
     case 'bor':
@@ -1367,7 +1226,7 @@ class _app_tab {
   }// - posiciones : borde + color + imagen + texto + numero + fecha
   static opc_pos( $dat ){
 
-    let $ = _app_var.ope($dat); 
+    let $ = _app_dat.var($dat); 
     
     if( ( $.var_ide=$.var_ide.split('_')[0] ) != 'bor' ){
       // aseguro selector
@@ -1517,5 +1376,961 @@ class _app_tab {
 
     // actualizo calculos + vistas( fichas + items )
     _app_tab.act('ver');
+  }
+}
+// Estructura
+class _app_est {
+ 
+  // inicializo : acumulados
+  static ini(){
+
+    let $={};   
+
+    if( $_app.est.val.acu ){
+
+      if( $.ele = $_app.est.val.acu.querySelector(`[name="tod"]`) ){
+
+        _app_est.val_tod($.ele);
+      }
+    }
+
+  }
+  // actualizo : acumulado + cuentas + descripciones
+  static act(){
+
+    let $={};
+    // actualizo total
+    if( $_app.est.val.acu && ( $.tot = $_app.est.val.acu.querySelector('[name="tot"]') ) ){
+      
+      $.tot.innerHTML = _app_est.val('tot');
+    }    
+    // actualizo cuentas
+    if( $_app.est.cue ){
+
+      _app_val.cue('act', $_app.est.lis.querySelectorAll(`tr[pos]:not(.${DIS_OCU})`), $_app.est.cue);
+    }
+    // actualizo descripciones
+    if( $_app.est.des ){
+
+      $_app.est.des.querySelectorAll(`[name]:checked`).forEach( $e => _app_est.des_tog($e) );
+    }
+  }
+  // datos : todos | acumulados
+  static val( $tip ){
+
+    switch( $tip ){
+    // cuento items en pantalla
+    case 'tot':
+      if( $_app.est.lis ){
+      
+        return $_app.est.lis.querySelectorAll(`tr[pos]:not(.${DIS_OCU})`).length;
+      }
+      else{
+        return 'err: no hay tabla relacionada';
+      }      
+      break;
+    }
+  }// - todos ? o por acumulados
+  static val_tod( $dat ){
+
+    let $ = _app_dat.var($dat);  
+    
+    if( $_app.est.val.acu ){
+      // ajusto controles acumulados
+      $_app.val.acu.forEach( $i => {
+
+        if( $.val = $_app.est.val.acu.querySelector(`[name='${$i}']`) ) $.val.disabled = $dat.checked;
+      });
+    }
+    // ejecuto todos los filtros y actualizo totales
+    _app_est.ver();
+
+  }// - acumulados : posicion - marcas - seleccion
+  static val_acu(){
+
+    let $={};
+    
+    if( ( $.esq = $_app.est.lis.dataset.esq ) && ( $.est = $_app.est.lis.dataset.est ) ){
+      
+      // oculto todos los items de la tabla
+      _ele.act('cla_agr',$_app.est.lis.querySelectorAll(`tr[pos]:not(.${DIS_OCU})`),DIS_OCU);
+
+      // actualizo por acumulado
+      $_app.val.acu.forEach( $ide => {
+
+        if( $.val = $_app.est.val.acu.querySelector(`[name='${$ide}']`) ){
+
+          $.tot = 0;
+          if( $.val.checked ){
+            // recorro seleccionados
+            $_app.tab.lis.querySelectorAll(`[pos]._val-${$ide}`).forEach( $e =>{
+              
+              if( $.ele = $_app.est.lis.querySelector(
+                `tr[pos][${$.esq}-${$.est}="${$e.getAttribute(`${$.esq}-${$.est}`)}"].${DIS_OCU}`
+              ) ){
+                $.tot++;
+                $.ele.classList.remove(DIS_OCU);
+              }
+            });            
+          }
+          // actualizo total
+          if( $.val.nextElementSibling && ( $.ele = $.val.nextElementSibling.querySelector('n') ) ){
+            $.ele.innerHTML = $.tot;
+          }
+        }          
+      });
+    }
+  }
+  // filtros : Valores + Fecha + Posicion
+  static ver( $tip, $dat, $ope ){
+
+    let $ = _app_dat.var($dat);
+
+    // ejecuto filtros
+    if( !$tip ){
+
+      // 1º - muestro todos
+      if( !$_app.est.val.acu || $_app.est.val.acu.querySelector(`[name="tod"]:checked`) ){
+
+        _ele.act('cla_eli',$_app.est.lis.querySelectorAll(`tr[pos].${DIS_OCU}`),DIS_OCU);
+      }// o muestro solo acumulados
+      else{
+        _app_est.val_acu();
+      }
+      // 2º - cargo filtros : - dato(val) -fecha(ini) -posicion(ini)
+      $.eje = [];
+      for( const $ope_ide in $_app.val.ver ){
+        // tomo solo los que tienen valor
+        if( ( $.val = $_app.est.ver.querySelector(`${$_app.val.ver[$ope_ide]}`) ) && !!$.val.value ){
+          $.eje.push($ope_ide);
+        }
+      }
+      // 3º - ejecuto todos los filtros
+      if( $.eje.length > 0 ){
+
+        $.eje.forEach( $ope_ide => {
+
+          _app_val.ver($ope_ide, _lis.val( $_app.est.lis.querySelectorAll(`tr[pos]:not(.${DIS_OCU})`) ), 
+            $_app.est.ver
+          );
+
+          // oculto valores no seleccionados
+          _ele.act('cla_agr',$_app.est.lis.querySelectorAll(`tr[pos]:not(._val-ver, .${DIS_OCU})`),DIS_OCU);
+        });
+      }
+    }
+    // por ciclos + agrupaciones
+    else{
+      if( ['cic','gru'].includes($tip) ){
+        // muestro todos los items
+        _ele.act('cla_eli',$_app.est.lis.querySelectorAll(`tbody tr:not([pos]).${DIS_OCU}`),DIS_OCU);        
+        
+        // aplico filtro
+        // ... 
+      }
+    }
+    // actualizo total, cuentas y descripciones
+    _app_est.act();
+  }
+  // columnas : toggles + atributos
+  static atr(){
+  }// - muestro-oculto
+  static atr_tog( $dat ){
+
+    let $ = _app_dat.var($dat);      
+
+    $.esq = $dat.dataset.esq;
+    $.est = $dat.dataset.est;
+
+    // checkbox
+    if( $dat.nodeName == 'INPUT' ){
+
+      $_app.est.lis.querySelectorAll(
+        `:is(thead,tbody) :is(td,th)[data-esq="${$.esq}"][data-est="${$.est}"][data-atr="${$dat.name}"]`
+      ).forEach( $ite => {
+        // muetro columna
+        if( $dat.checked ){
+          $ite.classList.contains(DIS_OCU) && $ite.classList.remove(DIS_OCU);
+        }// oculto columna
+        else if( !$ite.classList.contains(DIS_OCU) ){
+          $ite.classList.add(DIS_OCU);
+        }
+      });
+    }
+    // botones: ver | ocultar x todas las columnas
+    else{
+      $dat.parentElement.parentElement.querySelectorAll('input[type="checkbox"]').forEach( $e => {
+          
+        $e.checked = ( $dat.dataset.val == 'ver' );
+
+        _app_est.atr_tog($e);
+      });
+    }
+  }
+  // descripciones : titulo ( posicion + ciclos + agrupaciones) + detalle ( descripciones, lecturas )
+  static des(){
+  }// - muestro-oculto
+  static des_tog( $dat ){
+
+    let $ = _app_dat.var($dat);
+    $.ope  = $_app.var.getAttribute('ide');
+    $.esq = $_app.var.dataset.esq;
+    $.est = $_app.var.dataset.est;
+    $.atr = $.var_ide;
+    
+    // oculto todos
+    _ele.act('cla_agr',$_app.est.lis.querySelectorAll(
+      `tbody tr[data-ope="${$.ope}"][data-esq="${$.esq}"][data-est="${$.est}"][data-atr="${$.atr}"]:not(.${DIS_OCU})`
+    ),DIS_OCU);
+    
+    // muestro titulos y lecturas para los que no están ocultos
+    if( $dat.checked ){
+
+      $_app.est.lis.querySelectorAll(`tr[pos]:not(.${DIS_OCU})`).forEach( $ite => {
+
+        if( ( $.val = _dat.get($.esq,$.est,$ite.getAttribute(`${$.esq}-${$.est}`)) ) && $.val[$.atr] ){
+
+          $.ide=( $.ope == 'des' ) ? $ite.getAttribute(`${$.esq}-${$.est}`) : $.val[$.atr];
+
+          _ele.act('cla_eli',$_app.est.lis.querySelectorAll(
+            `tbody tr[data-ope="${$.ope}"][data-esq="${$.esq}"][data-est="${$.est}"][data-atr="${$.atr}"][data-ide="${$.ide}"].${DIS_OCU}`
+          ),DIS_OCU)          
+        }
+      });
+    }   
+
+  }// - filtro por descripciones
+  static des_ver( $dat ){
+
+    let $ = _app_dat.var($dat);    
+
+    // por selectores : titulo + detalle + lectura 
+    if( ['tit','det'].includes($.var_ide) ){
+  
+      // oculto por cilcos y agrupaciones
+      $_app.est.lis.querySelectorAll(`tbody tr:not([data-ope="des"])[opc="${$.ite}"]:not(.${DIS_OCU})`).forEach( $e => $e.classList.add(DIS_OCU) );
+
+      // estructura
+      if( $.est = $_app.est.ver.querySelector(`form[ide="dat"] select[name] + .dep:not(.${DIS_OCU})`) ){
+        $.est = $.est.previousElementSibling.querySelector('select');
+        $.opc = $.est.parentElement.parentElement.dataset.atr;
+        // valor de dependencia
+        $.ide=$_app.est.ver.querySelector(`form[ide="dat"] select[name="${$.opc}"] + div.dep > select:not(.${DIS_OCU})`);
+      }
+      // muestro        
+      if( $dat.checked && ( $.est || $.ide ) ){
+        $.atr = $.est.value.split('-')[1];
+        // titulo por atributo seleccionado
+        if( $.ite == 'tit' ){
+          // no considero agrupaciones sin valor
+          if( $.opc != 'gru' || ( !!$.ide && !!$.ide.value ) ){
+
+            $.agr = !!$.ide && $.ide.value ? `[ide="${$.ide.value}"]` : '';
+
+            _ele.act('cla_eli',$_app.est.lis.querySelectorAll(`tbody tr[data-atr="${$.atr}"]${$.agr}.${DIS_OCU}`),DIS_OCU);            
+          }
+        }// descripciones por item no oculto
+        else{
+          $_app.est.lis.querySelectorAll(`tbody tr:not([pos]):not(.${DIS_OCU})`).forEach( $e =>{
+
+            if( $.lis_ite = $_app.est.lis.querySelector(
+                `table tr[data-atr="${$.atr}_des"][data-ide="${$e.dataset.ide}"].${DIS_OCU}`
+            ) ){ 
+              $.lis_ite.classList.remove(DIS_OCU);
+            }
+          });
+        }
+      }
+    }
+    // muestro por lecturas
+    else if( $.var_ide == 'des' ){
+
+      // desmarco otras opciones
+      _ele.act('atr_act',$_app.est.lec.querySelectorAll(`input[name]:not([name="${$.ite}"]):checked`),'checked',false);
+
+      // oculto todas las leyendas
+      _ele.act('cla_agr',$_app.est.lis.querySelectorAll(`tr[data-ope="${$tip}"]:not(.${DIS_OCU})`),DIS_OCU);
+
+      // muestro por atributo seleccionado      
+      if( $dat.checked ){
+
+        $_app.est.lis.querySelectorAll(`tbody tr:not([pos]):not(.${DIS_OCU})`).forEach( $e => {
+
+          if( $.lec = $_app.est.lis.querySelector(
+            `table tr[data-ope="${$tip}"][data-atr="${$dat.value}"][ide="${$e.dataset.ide}"].${DIS_OCU}`
+          ) ){
+            $.lec.classList.remove(DIS_OCU);
+          }
+        });
+      }
+    }
+  }
+}
+// Listado
+class _app_lis {
+
+  // desplazamiento horizontal x item
+  static bar(){
+  }
+  static bar_ite( $tip, $dat ){
+    
+    let $ = _app_dat.var($dat);
+
+    if( $tip == 'val' ){
+
+      $.lis = $_app.var.previousElementSibling;
+
+      $.val = $_app.var.querySelector('[name="val"]');
+      $.pos = _num.val($.val.value);
+
+      switch( $dat.getAttribute('name') ){
+      case 'ini': $.pos = _num.val($.val.min);
+        break;
+      case 'pre': $.pos = $.pos > _num.val($.val.min) ? $.pos-1 : $.pos;
+        break;
+      case 'pos': $.pos = $.pos < _num.val($.val.max) ? $.pos+1 : $.pos;
+        break;
+      case 'fin': $.pos = _num.val($.val.max);
+        break;
+      }
+      // valido y muestro item
+      $.val.value = $.pos;
+
+      _ele.act('cla_agr',$.lis.querySelectorAll(`li[data-pos]:not(.${DIS_OCU})`),DIS_OCU);
+
+      if( $.ite = $.lis.querySelector(`li[data-pos="${$.pos}"]`) ) $.ite.classList.remove(DIS_OCU);
+    }
+  }
+
+  // indice : enlaces del navegador
+  static nav(){      
+  }// click en item
+  static nav_val( $dat, $cla = FON_SEL ){
+
+    let $ = { lis : _ele.ver($dat,{'eti':'nav'}) };
+
+    if( $.lis ){
+      // elimino marcas previas
+      $.lis.querySelectorAll(
+        `ul.lis.nav :is( li.ite.sep, li.ite:not(.sep) > div.val ).${$cla}`
+      ).forEach( 
+        $e => $e.classList.remove($cla) 
+      );
+
+      // controlo el toggle automatico por dependencias
+      if( 
+        ( $.dep = $dat.parentElement.parentElement.querySelector('ul.lis') ) 
+        &&
+        ( $dat.classList.contains('ico') || $.dep.classList.contains(DIS_OCU) ) 
+      ){
+        _app_ope.tog($dat);
+      }
+
+      // pinto fondo
+      if( !( $.bot = $dat.parentElement.querySelector('[ico]') ) || !$.bot.classList.contains('ocu') ){
+
+        $dat.parentElement.classList.add($cla);
+      }
+    }
+  }// hago toogle por item
+  static nav_tog( $lis ){
+
+    let $={};
+
+    if( $.nav = $lis ? _app_lis.nav_mar($lis) : false ){
+      // hago toogles ascendentes
+      while( 
+        ( $.lis = _ele.ver($.nav,{'eti':'ul'}) ) 
+        && 
+        ( $.val = $.lis.previousElementSibling ) && $.val.nodeName == 'DIV' &&  $.val.classList.contains('val')
+        && 
+        ( $.nav = $.val.querySelector('a[href^="#"]') )
+      ){
+        if( $.lis.classList.contains(DIS_OCU) && ( $.ico = $.nav.previousElementSibling ) && $.ico.getAttribute('ico') ){                
+          _app_ope.tog($.ico);
+        }                
+      }
+    }
+  }// marco valor seleccionado
+  static nav_mar( $lis ){
+
+    let $nav, $val = location.href.split('#')[1];
+
+    // hago toogle por item
+    if( $val && ( $nav = $lis.querySelector(`a[href="#${$val}"]`) ) ){
+        
+      _app_lis.nav_val($nav);
+    }
+
+    return $nav;
+  }// ejecuto filtros
+  static nav_ver( $dat, $ope = 'a[href]' ){
+
+    // ejecuto filtros
+    _app_lis.val_ver($dat, $ope);
+
+    // volver a marcar el fondo del elemento seleccionado
+    _app_lis.nav_tog($_app.var.nextElementSibling);
+
+  }  
+
+  // punteos, numeraciones, y términos
+  static ite(){
+  }
+  static ite_val( $dat, $ope ){
+    let $ = _app_dat.var($dat);
+    
+    if( !$ope ){
+      // toggles
+      if( $dat.nodeName == 'DT' ){
+
+        $.dd = $dat.nextElementSibling;
+
+        while( $.dd && $.dd.nodeName == 'DD' ){
+          $.dd.classList.toggle(DIS_OCU);
+          $.dd = $.dd.nextElementSibling;
+        }
+      }
+    }else{
+      switch( $ope ){
+
+      }
+    }
+  }
+  static ite_tog( $dat, $ope ){
+
+    let $ = _app_dat.var($dat);
+
+    if( !$dat || !$ope ){
+      _ele.act('cla_tog',$.lis.children,DIS_OCU); 
+    }
+    else{
+      _lis.val($.lis.children).forEach( $ite => {
+
+        if( $ite.nodeName == 'DT' && !$ite.classList.contains(DIS_OCU) ){
+
+          if( $ite.nextElementSibling ){
+            if( 
+              ( $ope == 'tod' &&  $ite.nextElementSibling.classList.contains(DIS_OCU) )
+              ||
+              ( $ope == 'nad' &&  !$ite.nextElementSibling.classList.contains(DIS_OCU) )
+            ){
+              _app_lis.ite_val($ite);
+            }
+          }
+        }
+      } );
+    }
+  }  
+  static ite_ver( $dat, $ope ){
+    let $ = _app_dat.var($dat);
+    
+    // filtro por valor textual        
+    if( !$ope ){
+      // muestro por coincidencias
+      if( $.val = $_app.var.querySelector('[name="val"]').value ){
+        // oculto todos
+        _ele.act('cla_agr',$.lis.children,DIS_OCU); 
+
+        $.ope = $_app.var.querySelector('[name="ope"]').value;
+        
+        if( $.lis.nodeName == 'DL' ){
+          $.lis.querySelectorAll(`dt`).forEach( $e => {
+            if( $.ope_val = _val.ver($e.innerHTML,$.ope,$.val) ){
+              $e.classList.remove(DIS_OCU);
+            }else{
+              $e.classList.add(DIS_OCU);                 
+            }
+            $.dd = $e.nextElementSibling;
+            while( $.dd && $.dd.nodeName == 'DD' ){
+              if( $.ope_val ){ 
+                $.dd.classList.remove(DIS_OCU); 
+              }else{ 
+                $.dd.classList.add(DIS_OCU); 
+              }
+              $.dd = $.dd.nextElementSibling;
+            }
+          });
+        }
+        else{
+          _lis.val($.lis.children).forEach( $e => 
+            _val.ver($e.innerHTML,$.ope,$.val) && $e.classList.remove(DIS_OCU) 
+          );
+        }
+      }
+      else{
+        _ele.act('cla_eli',$.lis.children,DIS_OCU);
+      }
+    }
+    // operadores
+    else{
+      switch( $ope ){
+      case 'tod': _ele.act('cla_eli',$.lis.children,DIS_OCU); break;
+      case 'nad': _ele.act('cla_agr',$.lis.children,DIS_OCU); break;
+      }
+    }
+
+    // actualizo cuenta
+    if( $.tot = $_app.var.querySelector('[name="tot"]') ){
+      if( $.lis.nodeName == 'DL' ){
+        $.tot.innerHTML = _lis.val($.lis.children).filter( $ite => $ite.nodeName=='DT' && !$ite.classList.contains(DIS_OCU) ).length;
+      }else{
+        $.tot.innerHTML = _lis.val($.lis.children).filter( $ite => !$ite.classList.contains(DIS_OCU) ).length;
+      }
+    }    
+  }
+
+  // valores con titulo
+  static val(){      
+  }
+  static val_ver( $dat, $ope = 'p:first-of-type', $cla = 'let-luz' ){
+
+    let $ = _app_dat.var($dat);
+
+    // busco listado
+    if( $_app.var ){
+      $.lis = !! $_app.var.nextElementSibling ? $_app.var.nextElementSibling : $_app.var.parentElement;
+      if( $.lis.nodeName == 'LI' ){
+        $.lis = $.lis.parentElement;
+        $.val_dep = true;
+      }
+    }
+
+    // ejecuto filtros
+    if( $.lis && ( $.ope = $_app.var.querySelector(`[name="ope"]`) ) && ( $.val = $_app.var.querySelector(`[name="val"]`) ) ){
+      
+      // elimino marcas anteriores      
+      $.lis.querySelectorAll(`li.ite ${$ope}.${$cla}`).forEach( $ite => $ite.classList.remove($cla) );
+      
+      // muestro u oculto por coincidencias
+      $.lis.querySelectorAll(`li.ite ${$ope}`).forEach( $ite => {
+
+        // capturo item : li > [.val] (p / a)
+        $.ite = _ele.ver($ite,{'eti':'li'});
+
+        // ejecuto comparacion por elemento selector ( p / a ), y oculto/mustro item
+        if( !$.val.value || _val.ver($ite.innerText, $.ope.value, $.val.value) ){
+          $.ite.classList.contains(DIS_OCU) && $.ite.classList.remove(DIS_OCU);
+          !!$.val.value && $ite.classList.add($cla);// agrego brillo
+        }
+        else if( !$.ite.classList.contains(DIS_OCU) ){
+          $.ite.classList.add(DIS_OCU);
+        }
+      } );      
+      // por cada item mostrado, muestro ascendentes
+      $.tot = 0;
+      if( $.val.value ){
+        $.lis.querySelectorAll(`li.ite:not(.${DIS_OCU})`).forEach( $ite => {
+          $.tot ++;
+          $.val = $ite;
+          while( ( $.ite = $.val.parentElement.parentElement ) && $.ite.nodeName == 'LI' && $.ite.classList.contains('ite') ){
+            $.ite.classList.contains(DIS_OCU) && $.ite.classList.remove(DIS_OCU);
+            $.val = $.ite;
+          }
+        } );
+        $.tog = ['ver','tod'];
+      }
+      else{
+        $.tog = ['ocu','nad'];
+      }
+      
+      // actualizo toggle
+      if( $.tog[1] && ( $.ico = $_app.var.querySelector(`[ico="val_tog-${$.tog[1]}"]`) ) ){
+        
+        _app_ope.tog($.ico,$.tog[1]);
+      }            
+      
+      // actualizo total
+      if( $.tot_val = $_app.var.querySelector(`[name="tot"]`) ){
+
+        $.tot_val.innerHTML = $.tot;
+      }            
+    }      
+  }
+}
+// Opcion
+class _app_opc {
+
+  static ope( $tip, $dat, $ope, ...$opc ){
+
+    let $_ = "", $={};
+
+    switch( $tip ){
+    case 'val': 
+      if( !$ope.nodeName ){
+        $.opc = document.createElement('select');
+        for( const $atr in $ope ){
+          $.opc.setAttribute($atr,$ope[$atr]);
+        }
+        $ope = $.opc;
+      }
+      if( $opc.includes('nad') ){
+        $.ite = document.createElement('option');
+        $.ite.value = ''; $.ite.innerHTML = '{-_-}';
+        $ope.appendChild($.ite);
+      }
+      $.val_ide = $opc.includes('ide');
+      $dat.forEach( ($dat,$ite) => {
+        $.ite = document.createElement('option');
+        // identificador
+        if( $dat.ide ){ $.ide = $dat.ide; }else if( $dat.pos ){ $.ide = $dat.pos; }else{ $.ide = $ite; }
+        // valor
+        $.ite.setAttribute('value',$.ide);
+        // titulo
+        if( !!$dat.des || !!$dat.tit ) $.ite.setAttribute('title', !! $dat.des ? $dat.des : $dat.tit );
+        // contenido
+        $.htm = "";
+        if( !!$.val_ide && !!$dat.ide ){ $.htm += `${$dat.ide}: `; }
+        if( !!$dat.nom ){ $.htm += $dat.nom; }
+        $.ite.innerHTML = $.htm;
+        $ope.appendChild($.ite);
+      });
+      $_ = $ope;
+      break;
+    }
+    return $_;      
+  }
+  // selector
+  static val( $dat, $ope, ...$opc ){
+    let $_, $={};
+
+    if( $ope && !$ope.nodeName ){
+      $.opc = document.createElement('select');
+      for( const $atr in $ope ){ $.opc.setAttribute($atr,$_[$atr]); }
+      $_ = $.opc;
+    }else{
+      $_ = $ope;
+    }
+    $.val = '';
+    if( $ope.value ){
+      $.val = $ope.value;
+    }else if( $ope.val ){
+      $.val = $ope.val;
+    }
+
+    _app_opc.lis($dat,$.val,...$opc).forEach( 
+      $e => $_.appendChild($e) 
+    );
+
+    return $_;      
+  }
+  // opction
+  static lis( $dat, $val, ...$opc ){
+    let $_=[], $={};    
+
+    if( $opc.includes('nad') ){
+      $.ite = document.createElement('option');
+      $.ite.value = ''; 
+      $.ite.innerHTML = '{-_-}';
+      $_.push($.ite);
+    }
+
+    $.val_ide = $opc.includes('ide');
+
+    for( const $ide in $dat ){ $.obj_tip = _obj.tip($dat[$ide]); break; }
+    $.obj_pos = $.obj_tip == 'pos';
+
+    for( const $ide in $dat ){ const $ite = $dat[$ide];
+
+      $.ite = document.createElement('option');
+      $.val = $ide;
+      $.htm = "";
+      if( !$.obj_tip ){        
+        $.htm = $ite;
+      }
+      else if( $.obj_pos ){        
+        $.htm = $ite.join(', ');
+      }
+      else{
+        // valor
+        if( $ite.ide ){ $.val = $ite.ide; }else if( $ite.pos ){ $.val = $ite.pos; }
+        // titulo
+        if( !!$ite.des || !!$ite.tit ) $.ite.setAttribute('title', !! $ite.des ? $ite.des : $ite.tit );
+        // contenido        
+        if( !!$.val_ide && !!$ite.ide ) $.htm += `${$ite.ide}: `;
+        if( !!$ite.nom ) $.htm += $ite.nom;
+      }      
+      $.ite.setAttribute('value',$.val);
+      if( $val == $.val ) $.ite.setAttribute('selected',"");
+      $.ite.innerHTML = $.htm;
+      $_.push($.ite);
+    }
+    return $_;
+  }  
+}
+// Número
+class _app_num {
+  
+  // operadores
+  static ope( $tip, $dat, $ope, ...$opc ){
+
+    let $_ = ""; $={};
+
+    switch( $tip ){
+    }
+
+    return $_;      
+  }
+  // al actualizar
+  static act( $dat ){
+
+    let $={};
+
+    $.val = _num.val($dat.value);
+
+    // excluyo bits
+    if( $dat.type != 'text' ){
+
+      // valido minimos y máximos
+      if( ( $.min = _num.val($dat.min) ) && $dat.value && $.val < $.min ) $dat.value = $.val = $.min;    
+
+      if( ( $.max = _num.val($dat.max) ) && $dat.value && $.val > $.max ) $dat.value = $.val = $.max;
+
+      // relleno con ceros
+      if( $dat.getAttribute('num_pad') && ( $.num_cue = $dat.maxlength ) ) $.num_pad = _num.val($.val,$.num_cue);
+
+      // actualizo valores por rango
+      if( $dat.type == 'range' ){
+
+        if( $.val = $dat.parentElement.nextElementSibling ) $.val.innerHTML = $.num_pad ? $.num_pad : $dat.value;
+      }
+      // por entero o decimales
+      else{
+
+        if( $.num_pad ) $dat.value = $.num_pad;
+      }      
+    }
+  }
+}
+// Texto
+class _app_tex {
+
+  static ope( $tip, $dat, $ope, ...$opc ){
+
+    let $_ = ""; $={};
+
+    switch( $tip ){
+    }
+
+    return $_;      
+  }    
+}
+// Figura
+class _app_fig {
+
+  static ope( $tip, $dat, $ope, ...$opc ){
+
+    let $_ = ""; $={};
+
+    switch( $tip ){
+    }
+
+    return $_;      
+  }    
+}
+// Fecha
+class _app_fec {
+
+  static ope( $tip, $dat, $ope, ...$opc ){
+
+    let $_ = ""; $={};
+
+    switch( $tip ){
+    }
+
+    return $_;      
+  }    
+}
+// Archivo
+class _app_arc {
+
+  static ope( $tip, $dat, $ope, ...$opc ){
+
+    let $_ = ""; $={};
+
+    switch( $tip ){
+    }
+
+    return $_;      
+  }    
+}
+// Objeto
+class _app_obj {
+
+  // operadores
+  static ope( $tip, $dat, $ope, ...$opc ){
+
+    let $_ = ""; $={};
+
+    $_ = document.createElement('ul');
+
+    $_.classList.add('lis');
+
+    for( const $i in $dat ){ const $v = $dat[$i];
+
+      $.tip = _dat.tip($v);
+
+      $.ite = document.createElement('li');
+      $.ite.classList.add('mar_ver-1');
+      $.ite.innerHTML = `
+        <q class='ide'>${$i}</q> <c class='sep'>:</c>
+      `;
+      if( ![undefined,NaN,null,true,false].includes($v) ){
+
+        $.ite.innerHTML += _app.let( ( $.tip.dat=='obj' ) ? JSON.stringify($v) : $v.toString() ) ;          
+      }
+      else{
+        $.ite.innerHTML += `<c>${$v}</c>`;
+      }
+
+      $_.appendChild($.ite);
+    }
+
+    return $_;      
+  }
+  // 
+}
+// Ejecucion
+class _app_eje {
+
+  static ope( $tip, $dat, $ope, ...$opc ){
+
+    let $_ = ""; $={};
+
+    switch( $tip ){
+    }
+
+    return $_;      
+  }
+
+}
+// Elemento
+class _app_ele {
+
+  // operadores
+  static ope( $tip, $dat, $ope, ...$opc ){
+
+    let $_ = ""; $={};
+
+    switch( $tip ){
+    case 'her':
+      $.her = [];
+      $.ele = $dat; 
+      while( $.ele ){ 
+        $.nom = $.ele.nodeName.toLowerCase();
+        if( $.nom=='#document' || $.nom=='html' ){
+          break;
+        }
+        $.tex=`<font class='ide'>${$.nom}</font>`; 
+        if( $.ele.id ){ 
+          $.tex += `<c>#</c><font class='val'>${$.ele.id}</font>`; 
+        }
+        else if( $.ele.name ){ 
+          $.tex += `<c>[</c><font class='val'>${$.ele.name}</font><c>]</c>`; 
+        }
+        if( $.ele.className){
+          $.cla_lis = $.ele.className.split(' ').map( $ite => `<c>.</c><font class='val'>${$ite}</font>` );
+          $.tex += `${$.cla_lis.join('')}`;
+        }
+        $.her.push($.tex);
+        $.ele = ( $.ele.parentNode) ? $.ele.parentNode : false;
+      }
+      $_ = $.her.reverse().join(`<c class='sep'>></c>`);
+      break;            
+    case 'eti':
+      $.nom = $dat.nodeName.toLowerCase();
+      $.fin=`
+      <c class='lis'><</font>
+      <c>/</c>
+      <font class='ide'>${$.nom}</font>
+      <c class='lis'>></c>`;
+      $.eti_htm=''; 
+      if( $dat.childNodes.length>0 ){ 
+        _lis.val($dat.childNodes).forEach( $e =>{
+          if( $e.nodeName.toLowerCase() != '#text' ){ $.eti_htm += `
+            <li>${this.ele('eti',$e)}</li>`;
+          }else{ $.eti_htm += `
+            <li>${_app.let($e.textContent)}</li>`;
+          }
+        });
+      }
+      $.eti_atr=[];
+      $dat.getAttributeNames().forEach( $atr => $.eti_atr.push(`
+        <li class='mar_hor-1'>
+          <font class='val'>${$atr}</font>
+          <c class='sep'>=</c>
+          <q>${$dat.getAttribute($atr)}</q>
+        </li>`)
+      );
+      $_ =`
+      <div var='ele_eti' class='dat'>
+
+        <div class='ite ini'>
+
+          <c class='lis sep'><</font>
+          <font class='ide' onclick='_app_ele.act(this,'ver');'>${$.nom}</font>
+          <ul class='val _atr'>
+            ${$.eti_atr.join('')}
+          </ul>
+          <c class='lis sep'>></c>          
+
+          <p class='tog dis-ocu'>
+            c onclick='_app_ele.act(this,'ver');' class='tog dis-ocu'>...</>
+            ${$.fin}
+          </p>
+        </div>`;
+        if( !['input','img','br','hr'].includes($.nom) ){
+          $_ += `
+          <ul class='val _nod mar_hor-3'>
+            ${$.eti_htm}
+          </ul>
+
+          <div class='ite tog fin'>
+            ${$.fin}
+          </div>  `;
+        }$_ += `
+      </div>`;
+      break;
+    }
+
+    return $_;      
+  }
+  // ...
+  static act( $dat ){
+    let $={};
+
+    $dat.parentElement.parentElement.querySelectorAll(`.${FON_SEL}`).forEach( $e => $e.classList.remove(FON_SEL) )
+
+    $dat.nextElementSibling.classList.add(FON_SEL);
+
+    $.ver = $dat.nextElementSibling.innerText.replaceAll('\n','');
+    // resultado
+    $.res = $dat.parentElement.parentElement.previousElementSibling.querySelector('div.ele');
+
+    _ele.eli($.res);
+
+    $.res.innerHTML = _doc.ele('eti',document.querySelector($.ver));
+  }
+  // ...
+  static val( $dat ){
+    let $={};
+
+    $.ope = document.createElement('form');
+
+    $.lis = document.createElement('ul');
+
+    $.lis.classList.add('lis');
+
+    $dat.forEach( $e => {
+      $.ite = document.createElement('li');            
+      $.ite.classList.add('mar_ver-2');            
+      $.ite.innerHTML = `${_app.ico('dat_ver',{'class':"tam-1 mar_der-1",'onclick':"_app_ele.act(this);"})}`;
+      $.tex = document.createElement('p');
+      $.tex.innerHTML = _doc.ele('her',$e);
+      $.ite.appendChild($.tex);
+      $.lis.appendChild($.ite);
+    });
+
+    return [ $.ope, $.lis ];     
   }
 }

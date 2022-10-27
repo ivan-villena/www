@@ -1,9 +1,9 @@
--- Active: 1665550796793@@127.0.0.1@3306@api
+-- Active: 1665550796793@@127.0.0.1@3306@c1461857_api
 
 -- Holon
-  DELETE FROM `api`.`app_tab` WHERE `esq`='hol'
+  DELETE FROM `app_tab` WHERE `esq`='hol'
   ;
-  DELETE FROM `api`.`app_tab` WHERE `esq`='hol' AND `est` LIKE 'uni%'; INSERT INTO `api`.`app_tab` VALUES
+  DELETE FROM `app_tab` WHERE `esq`='hol' AND `est` LIKE 'uni%'; INSERT INTO `app_tab` VALUES
     -- holon solar
     ( 'hol','uni_sol', 
       '{
@@ -14,12 +14,12 @@
         },
 
         "fon":{ "style":"grid-column: 1/sp; grid-row: 1/sp; width: 100%; height: 100%;" },
-        "fon-map":{ "fon":"map", "style":"background: center/contain no-repeat url(http://localhost/img/hol/tab/sol/map.png);" },
-        "fon-ato":{ "fon":"ato", "style":"background: center/contain no-repeat url(http://localhost/img/hol/tab/sol/ato.png);" },
-        "fon-res":{ "fon":"res", "style":"background: center/contain no-repeat url(http://localhost/img/hol/tab/sol/res.png);" },
-        "fon-cel":{ "fon":"cel", "style":"background: center/contain no-repeat url(http://localhost/img/hol/tab/sol/cel.png);" },
-        "fon-cir":{ "fon":"cir", "style":"background: center/contain no-repeat url(http://localhost/img/hol/tab/sol/cir.png);" },
-        "fon-pla":{ "fon":"pla", "style":"background: center/contain no-repeat url(http://localhost/img/hol/tab/sol/pla.png);" },
+        "fon-map":{ "fon":"map", "style":"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/tab/sol/map.png);" },
+        "fon-ato":{ "fon":"ato", "style":"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/tab/sol/ato.png);" },
+        "fon-res":{ "fon":"res", "style":"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/tab/sol/res.png);" },
+        "fon-cel":{ "fon":"cel", "style":"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/tab/sol/cel.png);" },
+        "fon-cir":{ "fon":"cir", "style":"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/tab/sol/cir.png);" },
+        "fon-pla":{ "fon":"pla", "style":"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/tab/sol/pla.png);" },
 
         "pla":{ "style":"position: relative; width: 110%; height: 100%;" },
         "pla-10":{ "pla":"10", "style":"grid-column:3/5; grid-row:2; transform: rotate( 053deg); top: 25%; left: 15%;" },
@@ -69,10 +69,10 @@
         },
 
         "fon":{ "style":"grid-column:2/10; grid-row:1/6; width: 100%; height: 100%;" },
-        "fon-map":{ "fon":"map", "style":"background: center/contain no-repeat url(http://localhost/img/hol/tab/pla/map.png);" },
-        "fon-sel":{ "fon":"sel", "style":"background: center/contain no-repeat url(http://localhost/img/hol/tab/pla/sel.png);" },
-        "fon-res":{ "fon":"res", "style":"background: center/contain no-repeat url(http://localhost/img/hol/tab/pla/res.png);" },
-        "fon-flu":{ "fon":"flu", "style":"background: center/contain no-repeat url(http://localhost/img/hol/tab/pla/flu.png);" },
+        "fon-map":{ "fon":"map", "style":"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/tab/pla/map.png);" },
+        "fon-sel":{ "fon":"sel", "style":"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/tab/pla/sel.png);" },
+        "fon-res":{ "fon":"res", "style":"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/tab/pla/res.png);" },
+        "fon-flu":{ "fon":"flu", "style":"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/tab/pla/flu.png);" },
 
         "fam":{ "style":"height: 80%; width: 80%;" },
         "fam-1":{ "fam":"1", "style":"grid-column:1/2; grid-row:2;" },
@@ -117,11 +117,11 @@
         },
 
         "fon":{ "style":"grid-column: 1/sp; grid-row: 1/sp; width: 100%; height: 100%;" },
-        "fon-map":{ "fon":"map", "style":"background: center/contain no-repeat url(http://localhost/img/hol/tab/hum/map.png);" },
-        "fon-res":{ "fon":"res", "style":"background: center/contain no-repeat url(http://localhost/img/hol/tab/hum/res.png);" },
-        "fon-cir":{ "fon":"cir", "style":"background: center/contain no-repeat url(http://localhost/img/hol/tab/hum/cir.png);" },
-        "fon-cen":{ "fon":"cen", "style":"background: center/contain no-repeat url(http://localhost/img/hol/tab/hum/cen.png);" },
-        "fon-ext":{ "fon":"ext", "style":"background: center/contain no-repeat url(http://localhost/img/hol/tab/hum/ext.png);" },
+        "fon-map":{ "fon":"map", "style":"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/tab/hum/map.png);" },
+        "fon-res":{ "fon":"res", "style":"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/tab/hum/res.png);" },
+        "fon-cir":{ "fon":"cir", "style":"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/tab/hum/cir.png);" },
+        "fon-cen":{ "fon":"cen", "style":"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/tab/hum/cen.png);" },
+        "fon-ext":{ "fon":"ext", "style":"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/tab/hum/ext.png);" },
 
         "raz":{ "style":"position: relative;" },
         "raz-4":{ "raz":"4", "style":"grid-column:2/5; grid-row:10/12; left:5%; top:5%;" },
@@ -176,7 +176,7 @@
       }', NULL
     )
   ;  
-  DELETE FROM `api`.`app_tab` WHERE `esq`='hol' AND `est` LIKE 'arm%'; INSERT INTO `api`.`app_tab` VALUES
+  DELETE FROM `app_tab` WHERE `esq`='hol' AND `est` LIKE 'arm%'; INSERT INTO `app_tab` VALUES
     -- cuadrado-cubo
     ( 'hol','arm', 
       '{
@@ -195,7 +195,7 @@
       }', NULL
     )
   ;  
-  DELETE FROM `api`.`app_tab` WHERE `esq`='hol' AND `est` LIKE 'cro%'; INSERT INTO `api`.`app_tab` VALUES
+  DELETE FROM `app_tab` WHERE `esq`='hol' AND `est` LIKE 'cro%'; INSERT INTO `app_tab` VALUES
     -- cruz-atomo
     ( 'hol','cro', 
       '{
@@ -234,14 +234,14 @@
       }', NULL
     )
   ;  
-  DELETE FROM `api`.`app_tab` WHERE `esq`='hol' AND `est` LIKE 'rad%'; INSERT INTO `api`.`app_tab` VALUES
+  DELETE FROM `app_tab` WHERE `esq`='hol' AND `est` LIKE 'rad%'; INSERT INTO `app_tab` VALUES
     -- heptágono
     ( 'hol','rad', 
       '{ 
 
         "sec":{ 
           "tab": "rad", 
-          "style":"grid: repeat(4,1fr)/repeat(4,1fr); background: center/contain no-repeat url(http://localhost/img/hol/ima/rad.png);"
+          "style":"grid: repeat(4,1fr)/repeat(4,1fr); background: center/contain no-repeat url(http://icpv.com.ar/img/hol/ima/rad.png);"
         },
 
         "pos":{ "style":"position: relative;" },
@@ -261,7 +261,7 @@
       }', NULL
     )
   ;  
-  DELETE FROM `api`.`app_tab` WHERE `esq`='hol' AND `est` LIKE 'ton%'; INSERT INTO `api`.`app_tab` VALUES
+  DELETE FROM `app_tab` WHERE `esq`='hol' AND `est` LIKE 'ton%'; INSERT INTO `app_tab` VALUES
 
     ( 'hol','ton', 
       '{
@@ -301,7 +301,7 @@
       }', NULL
     )
   ;  
-  DELETE FROM `api`.`app_tab` WHERE `esq`='hol' AND `est` LIKE 'sel%'; INSERT INTO `api`.`app_tab` VALUES
+  DELETE FROM `app_tab` WHERE `esq`='hol' AND `est` LIKE 'sel%'; INSERT INTO `app_tab` VALUES
 
     ( 'hol','sel', 
       '{ 
@@ -390,7 +390,7 @@
       }', NULL
     )
   ;
-  DELETE FROM `api`.`app_tab` WHERE `esq`='hol' AND `est` LIKE 'lun%'; INSERT INTO `api`.`app_tab` VALUES
+  DELETE FROM `app_tab` WHERE `esq`='hol' AND `est` LIKE 'lun%'; INSERT INTO `app_tab` VALUES
     -- forma de almanque
     ( 'hol','lun', 
       '{ 
@@ -405,7 +405,7 @@
       }', NULL
     )
   ;
-  DELETE FROM `api`.`app_tab` WHERE `esq`='hol' AND `est` LIKE 'cas%'; INSERT INTO `api`.`app_tab` VALUES
+  DELETE FROM `app_tab` WHERE `esq`='hol' AND `est` LIKE 'cas%'; INSERT INTO `app_tab` VALUES
     -- fractal en cruz
     ( 'hol','cas', 
       '{ 
@@ -595,17 +595,12 @@
       }', NULL
     )
   ;
-  DELETE FROM `api`.`app_tab` WHERE `esq`='hol' AND `est` LIKE 'kin%'; INSERT INTO `api`.`app_tab` VALUES
+  DELETE FROM `app_tab` WHERE `esq`='hol' AND `est` LIKE 'kin%'; INSERT INTO `app_tab` VALUES
     -- tzolkin
     ( 'hol','kin_tzo', 
       '{ 
-        "sec":{ 
-          "tab":"kin-tzo", 
-          "style":"grid: repeat(20,1fr) / repeat(13,1fr); grid-auto-flow: column;"
-        },        
-        "pos":{  
-          "style":"width: 1.75rem; height: 1.75rem;" 
-        }
+        "sec":{ "tab":"kin-tzo", "style":"grid: repeat(20,1fr) / repeat(13,1fr); grid-auto-flow: column;" }
+
       }','{
         "sec":{ "kin-sel": 1, "kin-ton": 0 },
         "pos":{ "ima": "api.hol_ton.ide", "col": "", "num": "api.hol_kin.ide" }, 
@@ -615,24 +610,14 @@
     ),-- parejas del oráculo
     ( 'hol','kin_par', 
       '{ 
-        "sec":{ 
-          "tab":"uni_par-kin", 
-          "style":"border: 1px solid var(--col_ver); border-radius: 50%;" 
-        }
+        "sec":{ "tab":"uni_par-kin", "style":"border: 1px solid var(--col_ver); border-radius: 50%;" }
+
       }', NULL
     ),-- nave del tiempo
     ( 'hol','kin_nav', 
         '{ 
-          "sec":{ 
-            "tab": "kin_nav", 
-            "style":"grid-gap: .15rem;" 
-          }, 
-          "pos":{ 
-            "style":"width: 1.05rem; height: 1.05rem;" 
-          },        
-          "pos-00":{ 
-            "style":"font-size:.5rem" 
-          }
+          "sec":{ "tab": "kin_nav", "style":"grid-gap: .15rem;" },
+          "pos-00":{ "style":"font-size:.5rem" }
         }','{
           "sec": { "cas-pos":1, "cas-bor": 0, "cas-col": 1, "cas-orb": 0, "ton-col":0 },
           "pos": { "ima": "api.hol_kin.ide", "col": "", "num": "" },
@@ -664,12 +649,7 @@
     ,-- estacion galáctica
     ( 'hol','kin_cro', 
         '{ 
-          "sec":{ 
-            "tab": "kin_cro", "style":"grid-gap: .3rem;" 
-          },
-          "pos":{ 
-            "style":"width: 1rem; height: 1rem;" 
-          }
+          "sec":{ "tab": "kin_cro", "style":"grid-gap: .3rem;" }
         }','{
           "sec": { "cas-pos": 1, "cas-orb": 1, "ton-col":1, "sel-cro_ele-pos": 1 },
           "pos": { "ima": "api.hol_sel.ide", "col": "", "num": "" },
@@ -703,12 +683,7 @@
     ,-- trayectoria armónica
     ( 'hol','kin_arm', 
         '{ 
-          "sec":{ 
-            "tab": "kin_arm", "style":"grid-gap: .3rem;" 
-          }, 
-          "pos":{ 
-            "style":"width: 1.08rem; height: 1.08rem;" 
-          }
+          "sec":{ "tab": "kin_arm", "style":"grid-gap: .3rem;" }
         }', '{
           "sec": { "sel-arm_tra-bor": 0, "sel-arm_cel-pos": 1, "sel-arm_cel-bor": 0, "sel-arm_cel-col": 0},
           "pos": { "ima": "api.hol_sel.ide", "col": "", "num": "" },
@@ -736,16 +711,12 @@
         }', NULL
       )
   ;
-  DELETE FROM `api`.`app_tab` WHERE `esq`='hol' AND `est` LIKE 'psi%'; INSERT INTO `api`.`app_tab` VALUES
+  DELETE FROM `app_tab` WHERE `esq`='hol' AND `est` LIKE 'psi%'; INSERT INTO `app_tab` VALUES
     -- anillo solar
     ( 'hol','psi_ban', 
       '{
-        "sec":{ 
-          "tab": "psi", "style": "grid-gap: .5rem;" 
-        },
-        "pos":{ 
-          "style": "width: 1.15rem; height: 1.15rem;" 
-        }
+        "sec":{ "tab": "psi", "style": "grid-gap: .5rem;" }
+
       }', '{
         "sec": { "lun-cab":1, "lun-hep":1 },
         "pos": { "ima": "api.hol_kin.ide", "col": "", "num": "" },
@@ -754,10 +725,7 @@
     ),-- 4 estaciones
     ( 'hol','psi_est', 
       '{ 
-
-        "sec":{ "tab": "psi_est" },
-
-        "pos":{ "style": "width: .855rem; height: .855rem;" }
+        "sec":{ "tab": "psi_est" }
 
       }','{
         "sec": { "cas-pos": 1, "cas-orb": 0, "ton-col": 0 },
@@ -767,10 +735,7 @@
     ),-- 13 lunas
     ( 'hol','psi_lun', 
       '{
-
-        "lun":{ "tab": "psi_lun" },
-
-        "pos":{ "style": "width: 5rem; height: 5rem; max-height: 5rem;" }
+        "lun":{ "tab": "psi_lun" }        
       
       }','{
         "sec": { "lun-cab":1, "lun-hep":1, "lun-rad": 1 },
@@ -780,24 +745,18 @@
     ),-- 52 heptadas
     ( 'hol','psi_hep', 
       '{ 
+        "sec":{ "tab": "psi_hep" }        
 
-        "sec":{ 
-          "tab": "psi_hep" 
-        }
-        
       }', NULL
     ),-- banco-psi
     ( 'hol','psi_tzo', 
       '{
-
         "sec":{ "tab": "psi_tzo", "style": "grid-template-columns: repeat(4,1fr);" },
-
+        
         "tzo-5":{ "style":"transform: rotate(180deg);" },
         "tzo-6":{ "style":"transform: rotate(180deg);" },
         "tzo-7":{ "style":"transform: rotate(180deg);" },
-        "tzo-8":{ "style":"transform: rotate(180deg);" },
-
-        "pos":{ "style":"width: .95rem; height: .95rem;" }
+        "tzo-8":{ "style":"transform: rotate(180deg);" }
         
       }','{
         "pos": { "ima": "api.hol_kin.ide", "col": "", "num": "" },

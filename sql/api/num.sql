@@ -1,7 +1,7 @@
 
 -- Datos
-  DELETE FROM `api`.`num_int`;
-  INSERT INTO `api`.`num_int` (`ide`,`nom`,`pos`) VALUES 
+  DELETE FROM `num_int`;
+  INSERT INTO `num_int` (`ide`,`nom`,`pos`) VALUES 
     (  1, 'uno',          'primero' ),
     (  2, 'dos',          'segundo' ),
     (  3, 'tres',         'tercero' ),

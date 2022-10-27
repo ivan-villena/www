@@ -1,10 +1,10 @@
 -- Active: 1665550796793@@127.0.0.1@3306@api
 
 -- Holon-Sincronario
-	DELETE FROM `api`.`app_art` WHERE `esq`='hol';
+	DELETE FROM `app_art` WHERE `esq`='hol';
 	
 	-- Libros
-	DELETE FROM `api`.`app_art` WHERE `esq`='hol' AND `cab`='bib'; INSERT INTO `api`.`app_art` VALUES
+	DELETE FROM `app_art` WHERE `esq`='hol' AND `cab`='bib'; INSERT INTO `app_art` VALUES
 		('hol','bib','asc',	1984, '1984 - La Tierra en Ascenso', 				'' ),
 		('hol','bib','fac',	1987, '1987 - El Factor Maya',            	'' ), 
 		('hol','bib','enc',	1990, '1990 - El Encantamiento del Sueño',	'' ),
@@ -14,17 +14,17 @@
 		('hol','bib','tel',	1994, '1994 - El Telektonon', 							'' ),
 		('hol','bib','rin',	1995, '1995 - El Proyecto Rinri', 					'' ),
 		('hol','bib','din',	1996, '1996 - Dinámicas del Tiempo', 				'' ),
-		('hol','bib','tab',	1997, '1997 - Las Tablas del Tiempo', 			'' ),
+		('hol','bib','tab',	1997, '1997 - Las 20 Tablas del Tiempo', 		'' ),
 		('hol','bib','ato',	1999, '1999 - El Átomo del Tiempo', 				'' ),
 		('hol','bib','cro',	2009, '2009 - El Sincronotrón', 						'' )
 	;
 	-- Artículos
-	DELETE FROM `api`.`app_art` WHERE `esq`='hol' AND `cab`='art'; INSERT INTO `api`.`app_art` VALUES
+	DELETE FROM `app_art` WHERE `esq`='hol' AND `cab`='art'; INSERT INTO `app_art` VALUES
 		('hol','art','ide',  	1, 'Glosarios', 														'' ),
 		('hol','art','tut',		2, 'Tutorial del Sincronario de 13 Lunas',	'' )
 	;
 	-- Codigos y cuentas
-	DELETE FROM `api`.`app_art` WHERE `esq`='hol' AND `cab`='dat'; INSERT INTO `api`.`app_art` VALUES
+	DELETE FROM `app_art` WHERE `esq`='hol' AND `cab`='dat'; INSERT INTO `app_art` VALUES
 		('hol','dat','rad',   7, 'Los 7 Plasmas Radiales', 						'' ),
 		('hol','dat','ton',  13, 'Los 13 Tonos Galácticos', 					'' ),
 		('hol','dat','sel',  20, 'Los 20 Sellos Solares', 						'' ),
@@ -35,7 +35,7 @@
 		('hol','dat','psi', 365, 'Los 365 Psi-Cronos del Giro Solar',	'' )
 	;
 	-- Diario
-	DELETE FROM `api`.`app_art` WHERE `esq`='hol' AND `cab`='dia'; INSERT INTO `api`.`app_art` VALUES
+	DELETE FROM `app_art` WHERE `esq`='hol' AND `cab`='dia'; INSERT INTO `app_art` VALUES
 		
 		('hol','dia','kin', 				01, 'El Kin',										'' ),
 		('hol','dia','sel', 				02, 'Sello Solar',							'' ),
@@ -51,7 +51,7 @@
 		('hol','dia','rad', 				23, 'Plasma Radial',						'' )
 	;	
 	-- Tableros
-	DELETE FROM `api`.`app_art` WHERE `esq`='hol' AND `cab`='tab'; INSERT INTO `api`.`app_art` VALUES
+	DELETE FROM `app_art` WHERE `esq`='hol' AND `cab`='tab'; INSERT INTO `app_art` VALUES
 
 		('hol','tab','kin-tzo', 1, 'Los 260 kines del Tzolkin',								'' ),
 		('hol','tab','kin-nav', 2, 'Los 5 Castillos de la Nave del Tiempo', 	'' ),
@@ -63,7 +63,7 @@
 		('hol','tab','psi-tzo', 8, 'Las 2.080 unidades del Banco-Psi', 				'' )
 	;	
 	-- Usuario
-	DELETE FROM `api`.`app_art` WHERE `esq`='hol' AND `cab`='usu'; INSERT INTO `api`.`app_art` VALUES
+	DELETE FROM `app_art` WHERE `esq`='hol' AND `cab`='usu'; INSERT INTO `app_art` VALUES
 		
 		('hol','usu','cic', 1, 'Sendero del Destino',					'' ),
 		('hol','usu','dat', 2, 'Firma Galáctica',							'' )

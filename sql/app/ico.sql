@@ -2,9 +2,9 @@
 
 --
 -- estilo 
-  DELETE FROM `api`.`app_ico_gru`
+  DELETE FROM `app_ico_gru`
   ;
-  INSERT INTO `api`.`app_ico_gru` VALUES
+  INSERT INTO `app_ico_gru` VALUES
     (NULL,'material-icons',					 'https://fonts.googleapis.com/css?family=Material+Icons'),
     (NULL,'material-icons-outlined', 'https://fonts.googleapis.com/css?family=Material+Icons+Outlined'),
     (NULL,'material-icons-two-tone', 'https://fonts.googleapis.com/css?family=Material+Icons+Two+Tone'),
@@ -13,12 +13,12 @@
   ;
 --
 -- icono 
-  DELETE FROM `api`.`app_ico`
+  DELETE FROM `app_ico`
   ;
   -- 
   -- por aplicacion
-    DELETE FROM `api`.`app_ico` WHERE `ide` LIKE 'app%';
-    INSERT INTO `api`.`app_ico` VALUES  
+    DELETE FROM `app_ico` WHERE `ide` LIKE 'app%';
+    INSERT INTO `app_ico` VALUES  
       ('app',         'home'),      
       ('app_ses',	    'manage_accounts'),
       ('app_ini',	    'login'),
@@ -28,8 +28,8 @@
       ('app_art',     'article'),
       ('app_val',     'document_scanner')
     ;
-    DELETE FROM `api`.`app_ico` WHERE `ide` LIKE 'usu%';
-    INSERT INTO `api`.`app_ico` VALUES
+    DELETE FROM `app_ico` WHERE `ide` LIKE 'usu%';
+    INSERT INTO `app_ico` VALUES
       ('usu',	    'person'),      
       ('usu_pas',	'password'),
       ('usu_ubi',	'share_location'),
@@ -39,8 +39,8 @@
       ('usu_gru',	'group'),
       ('usu_age',	'menu_book')
     ;
-    DELETE FROM `api`.`app_ico` WHERE `ide` LIKE 'dat%';
-    INSERT INTO `api`.`app_ico` VALUES
+    DELETE FROM `app_ico` WHERE `ide` LIKE 'dat%';
+    INSERT INTO `app_ico` VALUES
 
       ('dat',			'database'),
       -- atributos
@@ -64,8 +64,8 @@
       ('dat_mod',	'edit'),
       ('dat_eli',	'delete')
     ;    
-    DELETE FROM `api`.`app_ico` WHERE `ide` LIKE 'val%';
-    INSERT INTO `api`.`app_ico` VALUES
+    DELETE FROM `app_ico` WHERE `ide` LIKE 'val%';
+    INSERT INTO `app_ico` VALUES
 
       ('val',	    'check_box_outline_blank'),
       -- carteles :
@@ -105,8 +105,8 @@
     ;  
   --
   -- por tipos
-    DELETE FROM `api`.`app_ico` WHERE `ide` LIKE 'lis%';
-    INSERT INTO `api`.`app_ico` VALUES
+    DELETE FROM `app_ico` WHERE `ide` LIKE 'lis%';
+    INSERT INTO `app_ico` VALUES
 
       ('lis',			'list_alt'),
       -- tipos
@@ -132,8 +132,8 @@
       ('lis_lim',	'segment'),
       ('lis_mov',	'unfold_more')
     ;
-    DELETE FROM `api`.`app_ico` WHERE `ide` LIKE 'opc%';
-    INSERT INTO `api`.`app_ico` VALUES
+    DELETE FROM `app_ico` WHERE `ide` LIKE 'opc%';
+    INSERT INTO `app_ico` VALUES
 
       ('opc',			'fact_check'),
       -- tipos    
@@ -142,8 +142,8 @@
       ('opc_uni',	'radio_button_checked'),
       ('opc_mul',	'check_box')
     ;    
-    DELETE FROM `api`.`app_ico` WHERE `ide` LIKE 'num%';
-    INSERT INTO `api`.`app_ico` VALUES
+    DELETE FROM `app_ico` WHERE `ide` LIKE 'num%';
+    INSERT INTO `app_ico` VALUES
 
       ('num',			'calculate'),
       -- valores
@@ -166,8 +166,8 @@
       ('num_fun',	'function'),
       ('num_adi',	'functions')
     ;
-    DELETE FROM `api`.`app_ico` WHERE `ide` LIKE 'tex%';
-    INSERT INTO `api`.`app_ico` VALUES    
+    DELETE FROM `app_ico` WHERE `ide` LIKE 'tex%';
+    INSERT INTO `app_ico` VALUES    
 
       ('tex',			'edit_note'),
       -- tipos
@@ -183,8 +183,8 @@
       ('tex_mov',	'wrap_text'),
       ('tex_rot',	'text_rotation_down')
     ;
-    DELETE FROM `api`.`app_ico` WHERE `ide` LIKE 'fec%';
-    INSERT INTO `api`.`app_ico` VALUES
+    DELETE FROM `app_ico` WHERE `ide` LIKE 'fec%';
+    INSERT INTO `app_ico` VALUES
 
       ('fec',			'calendar_today'),      
 
@@ -199,8 +199,8 @@
       ('fec_val', 'edit_calendar')
 
     ;
-    DELETE FROM `api`.`app_ico` WHERE `ide` LIKE 'fig%';
-    INSERT INTO `api`.`app_ico` VALUES
+    DELETE FROM `app_ico` WHERE `ide` LIKE 'fig%';
+    INSERT INTO `app_ico` VALUES
       ('fig',	'auto_graph'),      
       -- valores
       ('fig_col',	'palette'),
@@ -211,8 +211,8 @@
       ('fig_lin',	'trending_down'),
       ('fig_pol',	'polyline')
     ;
-    DELETE FROM `api`.`app_ico` WHERE `ide` LIKE 'arc%';
-    INSERT INTO `api`.`app_ico` VALUES  
+    DELETE FROM `app_ico` WHERE `ide` LIKE 'arc%';
+    INSERT INTO `app_ico` VALUES  
 
       ('arc',			'attach_file'),
       -- tipos
@@ -226,13 +226,13 @@
       ('arc_eje',	'play_circle')
 
     ;
-    DELETE FROM `api`.`app_ico` WHERE `ide` LIKE 'eje%';
-    INSERT INTO `api`.`app_ico` VALUES
+    DELETE FROM `app_ico` WHERE `ide` LIKE 'eje%';
+    INSERT INTO `app_ico` VALUES
 
       ('eje',	    'terminal')
     ;
-    DELETE FROM `api`.`app_ico` WHERE `ide` LIKE 'obj%';
-    INSERT INTO `api`.`app_ico` VALUES
+    DELETE FROM `app_ico` WHERE `ide` LIKE 'obj%';
+    INSERT INTO `app_ico` VALUES
 
       ('obj',	'widgets'),
       -- tipos      
@@ -240,8 +240,8 @@
       ('obj_nom',	'data_array'),
       ('obj_atr',	'data_object')
     ;
-    DELETE FROM `api`.`app_ico` WHERE `ide` LIKE 'ele%';
-    INSERT INTO `api`.`app_ico` VALUES      
+    DELETE FROM `app_ico` WHERE `ide` LIKE 'ele%';
+    INSERT INTO `app_ico` VALUES      
       ('ele', 'code'),
       -- valores
       ('ele_htm', 'html'),

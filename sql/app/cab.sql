@@ -3,7 +3,7 @@
 -- Cabecera: 1° nivel : Opcion del Menú
 
 	-- Sincronario
-		DELETE FROM `api`.`app_cab` WHERE `esq`='hol'; INSERT INTO `api`.`app_cab` 
+		DELETE FROM `app_cab` WHERE `esq`='hol'; INSERT INTO `app_cab` 
 
 			( `esq`, `ide`, `pos`, `nom`, `des`, `ico`, `ocu`, `url`, `nav`, `usu` )
 			

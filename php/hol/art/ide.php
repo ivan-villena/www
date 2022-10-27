@@ -6,10 +6,10 @@
 
   <form class="ite">
 
-    <?= _doc_val::var('val','ver',[ 
+    <?= _app_ope::var('val','ver',[ 
       'des'=>"Filtrar...",
       'ite'=>[ 'class'=>"tam-cre" ],
-      'htm'=>_doc_val::ver(['cue'=>0, 'eje'=>"_hol_art.ide('ver',this)" ], [ 'class'=>"anc-100" ])
+      'htm'=>_app_ope::ver(['cue'=>0, 'eje'=>"_hol_art.ide('ver',this)" ], [ 'class'=>"anc-100" ])
     ]) ?>
 
   </form>
@@ -28,20 +28,20 @@
       <tbody>
       <?php
       $_lib = FALSE;
-      foreach( _dat::get("api.app_ide",[
+      foreach( _dat::get("app_ide",[
         'ver'=>"`esq` = 'hol'", 
         'ord'=>"`ide` ASC, `nom` ASC"
       ]) as $i => $v ){ 
         if( !$_lib || $_lib->ide != explode('_',$v->ide)[0] ){
-          $_lib = _dat::get("api.app_art",[ 
+          $_lib = _dat::get("app_art",[ 
             'ver'=>"esq = 'hol' AND cab = 'bib' AND ide = '$v->ide'", 
             'opc'=>"uni" 
           ]);
         }echo "
         <tr>
-          <td data-atr='ide'><a href='$_bib/$_lib->ide' target='_blank'>"._doc::let($_lib->nom)."</a></td>
-          <td data-atr='nom'>"._doc::let($v->nom)."</td>
-          <td data-atr='des'>"._doc::let($v->des)."</td>            
+          <td data-atr='ide'><a href='$_bib/$_lib->ide' target='_blank'>"._app::let($_lib->nom)."</a></td>
+          <td data-atr='nom'>"._app::let($v->nom)."</td>
+          <td data-atr='des'>"._app::let($v->des)."</td>            
         </tr>";
       }?>
       </tbody>

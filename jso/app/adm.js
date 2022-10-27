@@ -4,7 +4,7 @@
 // administrador
 function _adm( $tip, $dat, $val, ...$opc ){
   
-  let $ = _app_var.ope($dat);
+  let $ = _app_dat.var($dat);
   
   // -> desde form : vacío resultados previos
   if( $_app.var && ( $.res = $_app.var.querySelector('.ope_res') ) ){ 
@@ -25,7 +25,7 @@ function _adm( $tip, $dat, $val, ...$opc ){
     $_api.log.php.forEach( $log => {
       $.ver = document.createElement('a'); 
       $.ver.href = $log;
-      $.ver.innerHTML = _doc.let($log); 
+      $.ver.innerHTML = _app.let($log); 
       $.ver.target='_blank'; 
       $.lis.appendChild($.ver);
     });                          
@@ -82,7 +82,7 @@ function _adm( $tip, $dat, $val, ...$opc ){
         // pido tabla
         if( Array.isArray($res) ){
 
-          $.res.appendChild( _doc_est.lis($res) );
+          $.res.appendChild( _app_est.lis($res) );
         }// errores: html
         else if( typeof($res)=='object' ){
 
@@ -91,7 +91,7 @@ function _adm( $tip, $dat, $val, ...$opc ){
         else{                        
           $.htm = document.createElement('p');
           $.htm.classList.add('sql');
-          $.htm.innerHTML = _doc.let($res);
+          $.htm.innerHTML = _app.let($res);
           $.res.appendChild($.htm);
         }  
       });
@@ -105,7 +105,7 @@ function _adm( $tip, $dat, $val, ...$opc ){
     if( $.ide = $_app.var.querySelector('[name="ide"]').value ){          
       _eje.val([ $.ide, eval(`[${$_app.var.querySelector('[name="par"]').value}]`) ], $res => {
         if( $.htm ){
-          $.res.innerHTML = !! $res._ ? $res._ : `${_doc.let( JSON.stringify($res) )}`;
+          $.res.innerHTML = !! $res._ ? $res._ : `${_app.let( JSON.stringify($res) )}`;
         }else{
           $.val.innerText = !! $res._ ? $res._ : JSON.stringify($res);
         }
@@ -124,15 +124,15 @@ function _adm( $tip, $dat, $val, ...$opc ){
 
       if( $.dat_tip.dat == 'obj' ){
 
-        $.res.appendChild( _doc_obj.ope('val',$.val) );
+        $.res.appendChild( _app_obj.ope('val',$.val) );
       }
       else if( $.dat_tip.dat == 'eje' ){
 
-        $.res.innerHTML = _doc.let( $.val.toString() );
+        $.res.innerHTML = _app.let( $.val.toString() );
       }
       else if( ![undefined,NaN,null,true,false].includes($.val) ){
 
-        $.res.innerHTML = _doc.let( $.val );
+        $.res.innerHTML = _app.let( $.val );
       }
       else{
 
@@ -160,11 +160,11 @@ function _adm( $tip, $dat, $val, ...$opc ){
       $.tit = document.createElement('h4');
       $.tit.innerHTML = 'Listado';
       $.tex = document.createElement('p');
-      $.tex.innerHTML = _doc.let(`Total: ${$.val.length}`);        
+      $.tex.innerHTML = _app.let(`Total: ${$.val.length}`);        
       $.res.appendChild($.tit);
       $.res.appendChild($.tex);
       // genero elemento
-      $.res.appendChild( _doc_ele.val($.val)[1] );
+      $.res.appendChild( _app_ele.val($.val)[1] );
       break;
     case 'val':
       $dat.parentElement.parentElement.querySelectorAll(`.${FON_SEL}`).forEach( $e => $e.classList.remove(FON_SEL) )
@@ -172,7 +172,7 @@ function _adm( $tip, $dat, $val, ...$opc ){
       $.res = $_app.var.querySelector('div.ele');
       _ele.eli($.res);
       $.ver = $dat.nextElementSibling.innerText.replaceAll('\n','');            
-      $.res.innerHTML = _doc_ele.ope('eti',document.querySelector($.ver));
+      $.res.innerHTML = _app_ele.ope('eti',document.querySelector($.ver));
       break;
     }
     break;        

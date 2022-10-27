@@ -15,7 +15,7 @@
   ;
 
   -- let_cue : longitud de campo
-  SELECT char_length(campo) FROM `api`.`tabla`; 
+  SELECT char_length(campo) FROM `tabla`; 
 
 
 ----------------------------------------------------------------------------------------------------------------

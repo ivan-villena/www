@@ -1,7 +1,7 @@
 
 -- fecha
-DROP TABLE IF EXISTS `api`.`fec`;
-CREATE TABLE `api`.`fec` ( 
+DROP TABLE IF EXISTS `fec`;
+CREATE TABLE `fec` ( 
   `año` SMALLINT(4) UNSIGNED ZEROFILL NULL DEFAULT NULL COMMENT 'Año',
   `mes` TINYINT(2) UNSIGNED ZEROFILL NULL DEFAULT NULL COMMENT 'Mes',
   `dia` TINYINT(2) UNSIGNED ZEROFILL NULL DEFAULT NULL COMMENT 'Dia',
@@ -15,24 +15,24 @@ CREATE TABLE `api`.`fec` (
   `sir` SMALLINT(2) NULL DEFAULT NULL COMMENT 'Nuevo Sirio' 
 ) ENGINE = InnoDB COMMENT = 'Fecha'
 ;
-DELETE FROM `api`.`fec`
+DELETE FROM `fec`
 ;
 
 -- años
-DROP TABLE IF EXISTS `api`.`fec_año`;
-CREATE TABLE `api`.`fec_año` ( 
+DROP TABLE IF EXISTS `fec_año`;
+CREATE TABLE `fec_año` ( 
   `ide` SMALLINT(4) NOT NULL COMMENT 'Año',
   PRIMARY KEY (`ide`)
 ) ENGINE = InnoDB COMMENT = 'Año'
 ;
-DELETE FROM `api`.`fec_año`;
-INSERT INTO `api`.`fec_año` VALUES
+DELETE FROM `fec_año`;
+INSERT INTO `fec_año` VALUES
   (1970)
 ;
 
 -- meses
-DROP TABLE IF EXISTS `api`.`fec_mes`;
-CREATE TABLE `api`.`fec_mes` ( 
+DROP TABLE IF EXISTS `fec_mes`;
+CREATE TABLE `fec_mes` ( 
   `ide` TINYINT(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Mes', 
   `nom` VARCHAR(15) NOT NULL COMMENT 'Nombre', 
   `dia` TINYINT(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Cantidad de Días', 
@@ -40,8 +40,8 @@ CREATE TABLE `api`.`fec_mes` (
 ) ENGINE = InnoDB COMMENT = 'Mes del Calendario'
 ;
 
-DELETE FROM `api`.`fec_mes`;
-INSERT INTO `api`.`fec_mes` VALUES
+DELETE FROM `fec_mes`;
+INSERT INTO `fec_mes` VALUES
   (1,   'Enero',      31),
   (2,   'Febrero',    28),
   (3,   'Marzo',      31),
@@ -57,8 +57,8 @@ INSERT INTO `api`.`fec_mes` VALUES
 ;
 
 -- semana
-DROP TABLE IF EXISTS `api`.`fec_sem`;
-CREATE TABLE `api`.`fec_sem` ( 
+DROP TABLE IF EXISTS `fec_sem`;
+CREATE TABLE `fec_sem` ( 
   `ide` TINYINT(1) UNSIGNED NOT NULL COMMENT 'Semana', 
   `cod` CHAR(1) NOT NULL COMMENT 'Código',
   `nom` VARCHAR(15) NOT NULL COMMENT 'Nombre',
@@ -66,8 +66,8 @@ CREATE TABLE `api`.`fec_sem` (
 ) ENGINE = InnoDB COMMENT = 'Día de la Semana'
 ;
 
-DELETE FROM `api`.`fec_sem`;
-INSERT INTO `api`.`fec_sem` VALUES
+DELETE FROM `fec_sem`;
+INSERT INTO `fec_sem` VALUES
   (0, 'D', 'Domingo' ),
   (1, 'L', 'Lunes' ),
   (2, 'M', 'Martes' ),
@@ -78,15 +78,15 @@ INSERT INTO `api`.`fec_sem` VALUES
 ;
 
 -- días
-DROP TABLE IF EXISTS `api`.`fec_dia`;
-CREATE TABLE `api`.`fec_dia` ( 
+DROP TABLE IF EXISTS `fec_dia`;
+CREATE TABLE `fec_dia` ( 
   `ide` TINYINT(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Día',
   PRIMARY KEY (`ide`)
 ) ENGINE = InnoDB COMMENT = 'Día del Mes'
 ;
 
-DELETE FROM `api`.`fec_dia`;
-INSERT INTO `api`.`fec_dia` VALUES
+DELETE FROM `fec_dia`;
+INSERT INTO `fec_dia` VALUES
   (1), (2), (3), (4), (5), (6), (7), (8), (9), 
   (10), (11), (12), (13), (14), (15), (16), (17), (18), (19), 
   (20), (21), (22), (23), (24), (25), (26), (27), (28), (29), 
@@ -94,27 +94,27 @@ INSERT INTO `api`.`fec_dia` VALUES
 ;
 
 -- horas
-DROP TABLE IF EXISTS `api`.`fec_hor`;
-CREATE TABLE `api`.`fec_hor` ( 
+DROP TABLE IF EXISTS `fec_hor`;
+CREATE TABLE `fec_hor` ( 
   `ide` TINYINT(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Hora',
   PRIMARY KEY (`ide`)
 ) ENGINE = InnoDB COMMENT = 'Hora'
 ;
-DELETE FROM `api`.`fec_hor`;
-INSERT INTO `api`.`fec_hor` VALUES 
+DELETE FROM `fec_hor`;
+INSERT INTO `fec_hor` VALUES 
   (1), (2), (3), (4), (5), (6), (7), (8), (9), 
   (10), (11), (12), (13), (14), (15), (16), (17), (18), (19), 
   (20), (21), (22), (23), (24)
 ;
 
 -- minutos
-CREATE TABLE `api`.`fec_min` ( 
+CREATE TABLE `fec_min` ( 
   `ide` TINYINT(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Minuto',
   PRIMARY KEY (`ide`)
 ) ENGINE = InnoDB COMMENT = 'Minuto'
 ;
-DELETE FROM `api`.`fec_min`;
-INSERT INTO `api`.`fec_min` VALUES 
+DELETE FROM `fec_min`;
+INSERT INTO `fec_min` VALUES 
   (1), (2), (3), (4), (5), (6), (7), (8), (9),
   (10), (11), (12), (13), (14), (15), (16), (17), (18), (19), 
   (20), (21), (22), (23), (24), (25), (26), (27), (28), (29),
@@ -125,15 +125,15 @@ INSERT INTO `api`.`fec_min` VALUES
 ;
 
 -- segundos
-DROP TABLE IF EXISTS `api`.`fec_seg`;
-CREATE TABLE `api`.`fec_seg` ( 
+DROP TABLE IF EXISTS `fec_seg`;
+CREATE TABLE `fec_seg` ( 
   `ide` TINYINT(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Segundo',
   PRIMARY KEY (`ide`)
 ) ENGINE = InnoDB COMMENT = 'Segundo'
 ;
 
-DELETE FROM `api`.`fec_seg`;
-INSERT INTO `api`.`fec_seg` VALUES 
+DELETE FROM `fec_seg`;
+INSERT INTO `fec_seg` VALUES 
   (1), (2), (3), (4), (5), (6), (7), (8), (9),
   (10), (11), (12), (13), (14), (15), (16), (17), (18), (19), 
   (20), (21), (22), (23), (24), (25), (26), (27), (28), (29),

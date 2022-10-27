@@ -1,7 +1,7 @@
 
 -- letra
-  DELETE FROM `api`.`tex_let`;
-  INSERT INTO `api`.`tex_let` (`pos`,`ide`,`tip`,`var`) VALUES
+  DELETE FROM `tex_let`;
+  INSERT INTO `tex_let` (`pos`,`ide`,`tip`,`var`) VALUES
     ( NULL, '.', 'ope', 'cod' ),
     ( NULL, ',', 'ope', 'cod' ),
     ( NULL, ':', 'ope', 'cod' ),

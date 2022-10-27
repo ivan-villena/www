@@ -2,8 +2,8 @@
 -- Holon
 
   -- del factor maya 
-  DELETE FROM `api`.`app_ide` WHERE `esq`='hol' AND `ide`='fac';
-  INSERT INTO `api`.`app_ide` VALUES 
+  DELETE FROM `app_ide` WHERE `esq`='hol' AND `ide`='fac';
+  INSERT INTO `app_ide` VALUES 
     ('hol','fac','HUNAB KU','El que da el movimiento y medida. El principio de la energía inteligente que llena al universo entero, ya sea animado o  inanimado.'),
     ('hol','fac','HUYUB CAAN','El Corazón de los Cielos. El arquitecto celestial, principio del designio cósmico.'),
     ('hol','fac','KIN','El sol. El principal mediador de Hunab Ku para nuestro sistema  planetario. Día. Unidad armónica fundamental, o propiedad de las  ondas.'),
@@ -59,8 +59,8 @@
     ('hol','fac','TZOLKIN','La cuenta de los días. El Calendario Sagrado, matriz cósmica. El módulo armónico universal que ajusta toda posible permutación de HUNAB KU, que es el dador del movimiento y la medida.')
   ;
   -- del El encantamiento del sueño 
-  DELETE FROM `api`.`app_ide` WHERE `esq`='hol' AND `ide`='enc';
-  INSERT INTO `api`.`app_ide` VALUES 
+  DELETE FROM `app_ide` WHERE `esq`='hol' AND `ide`='enc';
+  INSERT INTO `app_ide` VALUES 
     ('hol','enc','Alfa','En el código Solar-Galáctico 0-19, Plutón y Mercurio tienen el comienzo alfa y el final omega de la inspiración galáctica y expiración solar del aliento de Kinich Ahau.'),
     ('hol','enc','Omega','En el código Solar-Galáctico 0-19, Plutón y Mercurio tienen el comienzo alfa y el final omega de la inspiración galáctica y expiración solar del aliento de Kinich Ahau.'),  
     ('hol','enc','Año solar-galáctico','Ciclo de sincronización de 13 Lunas que va del 26 de julio del calendario gregoriano al 25 de julio del año siguiente.'),
@@ -156,8 +156,8 @@
     ('hol','enc','Viajar en el tiempo','Habilidad del holón para localizar, recuperar, y divulgar información de acuerdo con las necesidades actuales y representado por el ego tri-dimensional; base del poder del vuelo mágico.'),
     ('hol','enc','Vuelo mágico','Capacidad de conectar Ondas Encantadas, Castillos, giros espectrales y Encantamientos del Sueño; espacio creativamente conectado entre los pórticos cósmicos y magnéticos de dos Ondas Encantadas.')
   ;
-  DELETE FROM `api`.`app_ide` WHERE `esq`='hol' AND `ide`='enc_cod'; 
-  INSERT INTO `api`.`app_ide` VALUES
+  DELETE FROM `app_ide` WHERE `esq`='hol' AND `ide`='enc_cod'; 
+  INSERT INTO `app_ide` VALUES
     ('hol','enc_cod','1 Kin','= 1 unidad que puede acomodarse a cualquier equivalencia'),
     ('hol','enc_cod','1 Célula del Tiempo','= 4 sellos solares codificados por el color en sucesión diaria: rojo, blanco, azul y amarillo'),
     ('hol','enc_cod','1 Armónica','= 1 célula del tiempo de 4 Kin codificados por 4 tonos galácticos'),
@@ -183,8 +183,8 @@
     ('hol','enc_cod','36,5 giros galácticos','= 26 años solares = 9.490 Kin'),
     ('hol','enc_cod','52 años solares','= 73 giros galácticos = 18.980 Kin')
   ;
-  DELETE FROM `api`.`app_ide` WHERE `esq`='hol' AND `ide`='enc_nav';
-  INSERT INTO `api`.`app_ide` VALUES
+  DELETE FROM `app_ide` WHERE `esq`='hol' AND `ide`='enc_nav';
+  INSERT INTO `app_ide` VALUES
     ('hol','enc_nav','HOLON','La totalidad galáctica, caracterizado por la consistencia integral, la capacidad de auto-organizarse, y la inclusividad multidimensional; la estructura cuatri-dimensional del tiempo, representado como un tetraedro; un subconjunto y cualquiera de sus partes dentro de la totalidad galáctica.'),
     ('hol','enc_nav','FRACTAL','Una gama de frecuencia que mantiene una simetría a lo largo de una escala; la proporción del holón dentro de un holón mayor que siempre recapitula la totalidad.'),
     ('hol','enc_nav','HOLONÓMICO','La cualidad de la autonomía fractal que refleja y mantiene la totalidad.'),
@@ -230,8 +230,8 @@
     ('hol','enc_nav','SECUENCIA BIOCROMATICA','Internalización del código cromático del holón humano que se expande a lo largo del ciclo cromático de 5 Kin; base para identificar el vínculo del Kin humano con la red del holón planetario.')    
   ;
   -- de las 13 lunas en movimiento
-  DELETE FROM `api`.`app_ide` WHERE `esq`='hol' AND `ide` LIKE 'lun%';
-  INSERT INTO `api`.`app_ide` VALUES
+  DELETE FROM `app_ide` WHERE `esq`='hol' AND `ide` LIKE 'lun%';
+  INSERT INTO `app_ide` VALUES
     ('hol','lun','Inhalar','10 kin (secuencia de sellos solares Sol-Luna) pueden ser iguales a 10 días, que es la mitad de una trayectoria armónica, 10 años que es la mitad de un katún, o 10 Katunes que es la mitad de una baktun.'),
     ('hol','lun','Exhalar','10 kin (secuencia de sellos solares Perro-Tormenta) pueden ser iguales a 10 días, que es la mitad de una trayectoria armónica, 10 años que es la mitad de un katún, o 10 Katunes que es la mitad de una baktun.'),
     ('hol','lun_cod','Código de Color','Cuatro frecuencias de color: rojo, blanco, azul, amarillo Quinta frecuencia entonada: Verde.'),
@@ -267,8 +267,8 @@
     ('hol','lun_cic','Intervalo de Hunab Ku','104.000 años solar-lunares del Encantamiento del Sueño, 20 Gran Ciclos, 260 baktun, cuatro años Pleyadianos.')
   ;
   -- del Telektonon 
-  DELETE FROM `api`.`app_ide` WHERE `esq`='hol' AND `ide`='tel';
-  INSERT INTO `api`.`app_ide` VALUES       
+  DELETE FROM `app_ide` WHERE `esq`='hol' AND `ide`='tel';
+  INSERT INTO `app_ide` VALUES       
     ('hol','tel','Baktun','Cuenta de 144.000 Kin 0 días; la cuenta de trece Baktunes es la medida del ciclo de la historia desde 3113 AC hasta 2012 DA.'),
     ('hol','tel','Biosfera','Frágil membrana planetaria de vida y su sistema de apoyo inorgánico diseminado sobre la superficie de la Tierra; zona de experimento de la libre voluntad de las Guerras del Tiempo que ahora está amenazada por la civilización 12:60 del materialismo del Planeta Babilónico; ver también Noosfera.'),
     ('hol','tel','Bolon Ik','Amante celestial de Pacal Votan quien teje la visión del viaje en el Laberinto del Guerrero desde su torre de la Navegación en Urano. Bolon Ik significa "Viento Solar Blanco".'),
@@ -304,8 +304,8 @@
     ('hol','tel','Tzolkin','Calendario sagrado de los Maya: medida cuatridimensional del tiempo galáctico; giro galáctico de 260 Kin; módulo armónico.')
   ;
   -- de la Sonda de Arcturus 
-  DELETE FROM `api`.`app_ide` WHERE `esq`='hol' AND `ide`='arc';
-  INSERT INTO `api`.`app_ide` VALUES
+  DELETE FROM `app_ide` WHERE `esq`='hol' AND `ide`='arc';
+  INSERT INTO `app_ide` VALUES
     ('hol','arc','',''),
     ('hol','arc','','')
   ;
