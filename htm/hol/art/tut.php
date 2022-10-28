@@ -205,11 +205,11 @@
 
       <h4>Los <n>13</n> Tonos Galácticos</h4>
 
-      <?=_app_est::lis("hol_ton",['atr'=>['ide','nom','car','pod','acc'],'opc'=>['htm','cab_ocu']])?>
+      <?=_app_est::lis("hol.ton",['atr'=>['ide','nom','car','pod','acc'],'opc'=>['htm','cab_ocu']])?>
 
       <h4>Los <n>20</n> Sellos Solares</h4>
 
-      <?=_app_est::lis("hol_sel",['atr'=>['ide','nom','pod','acc','car'],'opc'=>['htm','cab_ocu']])?>
+      <?=_app_est::lis("hol.sel",['atr'=>['ide','nom','pod','acc','car'],'opc'=>['htm','cab_ocu']])?>
 
       <p>El portal galáctico siempre se lee <c>"</c>Sello<c>,</c> Tono<c>,</c> Color<c>"</c><c>.</c> Por ejemplo<c>,</c> un día dragón rojo<c>,</c> con el tono magnético se lee<c>:</c> <c>"</c> Dragón Magnético Rojo<c>"</c><c>.</c> Las palabras clave del Dragón Rojo son<c>:</c> nutrir<c>,</c> nacimiento<c>,</c> ser <c>-</c>Las palabras claves para el tono magnético son<c>:</c> unificar<c>,</c> atraer propósito<c>.</c></p>
 

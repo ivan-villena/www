@@ -574,7 +574,7 @@ class _dat {
 
     let $_ = "";
 
-    if( $ope.esq && $ope.est && $ope.atr && ( $ope.val = $dat.getAttribute(`${$ope.esq}-${$ope.est}`) ) ){
+    if( $dat.dataset && $ope.esq && $ope.est && $ope.atr && ( $ope.val = $dat.dataset[`${$ope.esq}_${$ope.est}`] ) ){
 
       if( !$ope.fic ) $ope.fic = _dat.opc('ima', $ope.esq, $ope.est );
 

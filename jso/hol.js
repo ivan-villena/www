@@ -38,6 +38,6 @@ class _hol {
   // imagen : img/hol
   static ima( $est, $dat, $ele ){
 
-    return _app.ima('api',`hol_${$est}`,$dat,$ele);
+    return _app.ima('hol',`${$est}`,$dat,$ele);
   }
 }

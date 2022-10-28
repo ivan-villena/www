@@ -1,6 +1,6 @@
 <?php    
 
-  // Interfaces del sistema 
+  // Base de datos
   class _api {
 
     // Interfaces
@@ -72,12 +72,8 @@
     static function _( string $ide, $val = NULL ) : string | array | object {
       global $_api;
       $_ = [];
-
       // aseguro carga      
-      if( !isset($_api->$ide) ){
-        $_api->$ide = _dat::ini(DAT_ESQ,$ide);
-      }
-      
+      if( !isset($_api->$ide) ) $_api->$ide = _dat::ini(DAT_ESQ,$ide);      
       // cargo datos
       $_dat = $_api->$ide;
       
@@ -106,6 +102,7 @@
       return $_;
     }
   }
+
   // Código sql 
   class _sql {
 
@@ -722,33 +719,24 @@
     }
   }
 
-  // Dato : esq.est[ide].atr
+  // Dato : (api).esq.est[ide].atr
   class _dat {
 
     // getter : estructura - objeto
-    static function get( $dat, mixed $ope = NULL, mixed $val = NULL ) : array | object {
+    static function get( mixed $dat, mixed $ope = NULL, mixed $val = NULL ) : array | object {
 
       // objeto->propiedad 
-      if( is_string($ope) ){
+      if( is_string($dat) && is_string($ope) ){
 
-        $ide = explode('_',$dat);
-        $esq = isset($ide[1]) ? $ide[1] : $ide[0];
-        $est = $ope;
-
+        $esq = $dat;
+        $est = $ope;        
+        // busco datos por $clase::_($identificador)
         $_ = isset($val) ? $val : new stdClass;
-        
-        if( !isset($val) || !_obj::tip($val) ){
+        if( ( !isset($val) || !_obj::tip($val) ) && class_exists($_cla = "_$esq") && method_exists($_cla,'_') ){
 
-          if( !class_exists($_cla = "_$esq") ){
-            // require
-          }
-          
-          if( class_exists($_cla) ){
-
-            if(  method_exists($_cla,'_') ) $_ = !isset($val) ? $_cla::_($est) : $_cla::_($est,$val);
-          }
+          $_ = !isset($val) ? $_cla::_($est) : $_cla::_($est,$val);
         }
-      }// estructuras
+      }// estructuras de la base
       else{
         $_ = $dat;
         // datos de la base 
@@ -911,7 +899,7 @@
 
         if( !isset($_api->dat_est[$esq][$ide]) ){
 
-          $_api->dat_est[$esq][$ide] = _sql::est('ver',$ide,'uni');
+          $_api->dat_est[$esq][$ide] = _sql::est('ver',"{$esq}_{$ide}",'uni');
         }
         $_ = $_api->dat_est[$esq][$ide];
       }
@@ -924,12 +912,13 @@
     // atributo : datos + tipo + variable
     static function atr( string $esq, string $est, mixed $ide = NULL, string $tip = NULL, mixed $ope = NULL ) : mixed {
       $_ = [];
-      global $_api;      
+      global $_api;            
       // cargo atributos de la estructura
       if( !isset($_api->dat_atr[$esq][$est]) ){
         
         // busco atributos de una vista ( si existe ) o de una tabla
-        $_api->dat_atr[$esq][$est] = _sql::atr( !empty( _sql::est('lis',"_{$est}",'uni') )  ? "_{$est}" : $est );
+        $sql_ide = "{$esq}_{$est}";
+        $_api->dat_atr[$esq][$est] = _sql::atr( !empty( _sql::est('lis',"_{$sql_ide}",'uni') )  ? "_{$sql_ide}" : $sql_ide );
 
         // cargo operadores del atributo
         $dat = &$_api->dat_atr[$esq][$est];
@@ -967,6 +956,73 @@
         }
       }
       return $_;
+    }// genero atributos desde listado o desde la base
+    static function atr_ver( string | array $dat, string $ope = "" ) : array {
+      $_ = [];
+      if( empty($ope) ){
+        // de la base
+        if( is_string($dat) ){        
+          $ide = _dat::ide($dat);
+          $_ = _dat::atr($ide['esq'],$ide['est']);
+        }
+        // listado variable por objeto
+        else{
+          foreach( $dat as $ite ){
+            // del 1° objeto: cargo atributos
+            foreach( $ite as $ide => $val ){ 
+              $atr = new stdClass;
+              $atr->ide = $ide;
+              $atr->nom = $ide;
+              $atr->var = _dat::tip($val);
+              $_ [$ide] = $atr;
+            }
+            break;
+          }        
+        }
+      }
+      return $_;
+    }// cuento columnas totales
+    static function atr_cue( string | array $dat, array $ope=[] ) : int {
+      $_ = 0;
+      if( isset($ope['atr']) ){
+        
+        $_ = count($ope['atr']);
+      }
+      // 1 estructura de la base
+      elseif( !( $obj_tip = _obj::tip($dat) ) ){
+
+        $ide = _dat::ide($dat);
+
+        $dat_est = _app::est($ide['esq'],$ide['est']);
+
+        $_ = isset($dat_est->atr) ? count($dat_est->atr) : 0;
+
+      }
+      // n estructuras de la base
+      elseif( $obj_tip == 'nom' ){
+
+        foreach( $dat as $esq => $est_lis ){
+  
+          foreach( $est_lis as $est ){
+
+            $dat_est = _app::est($esq,$est);
+
+            $_ += count($dat_est->atr);
+          }
+        }
+      }
+      // por listado                    
+      elseif( $obj_tip == 'pos' ){
+
+        foreach( $dat as $ite ){
+
+          foreach( $ite as $val ){ 
+            $_ ++; 
+          }
+          break;
+        }
+      }
+      return $_;
     }
     // proceso abm : alta , modificacion y baja de registro-objeto
     static function reg( string $est, string $tip, object $dat ) : string {
@@ -985,19 +1041,17 @@
     }
     // relaciones : esq.est_atr | api.dat_atr[ide].dat
     static function rel( string $esq, string $est, string $atr ) : string {
-      $_ = '';      
-      // busco relacion en atributo
-      $_atr = _dat::atr($esq,$est,$atr);
-      
-      if( !empty($_atr->var['dat']) ){
-
-        $_ = explode('.',$_atr->var['dat'])[1];
-      }
+      $_ = '';
       // armo identificador por nombre de estructura + atributo
-      elseif( $atr == 'ide' ){
+      if( $atr == 'ide' ){
         $_ = $est;
       }
-      elseif( !!_sql::est('val',"{$est}_{$atr}") ){ 
+      // parametrizado en : $_app.dat_atr
+      elseif( ( $_atr = _dat::atr($esq,$est,$atr) ) && !empty($_atr->var['dat']) ){        
+        $_ = explode('.',$_atr->var['dat'])[1];
+      }
+      // valido existencia de tabla relacional : "_api.esq_est_atr"
+      elseif( !!_sql::est('val',"{$esq}_{$est}_{$atr}") ){ 
         $_ = "{$est}_{$atr}";
       }
       else{
@@ -1009,13 +1063,11 @@
     static function opc( string $tip, string $esq, string $est, string $atr = NULL, mixed $dat = NULL ) : array {
       // dato
       $_ = [ 'esq' => $esq, 'est' => $est ];
-      // armo identificador
-      if( !empty($atr) ){        
+      if( !empty($atr) ){
+        // armo identificador
         $_['est'] = $atr == 'ide' ? $est : "{$est}_{$atr}";  
-
         // busco dato en atributos
         $_atr = _dat::atr($esq,$est,$atr);
-        
         if( isset($_atr->var['dat']) && !empty($var_dat = $_atr->var['dat']) ){
           $dat = explode('.',$var_dat);
           $_['esq'] = $dat[0];
@@ -2211,8 +2263,42 @@
     }
   }
   // Fecha : aaaa-mm-dia hh:mm:ss utc
-  class _fec {  
-
+  class _fec {    
+    // get : estructura-objetos
+    static function _( string $ide, $val = NULL ) : string | array | object {
+      global $_api;
+      $_ = [];
+      // aseguro carga      
+      $est = "fec_$ide";
+      if( !isset($_api->$est) ){
+        $_api->$est = _dat::ini(DAT_ESQ,$est);
+      }// cargo datos
+      $_dat = $_api->$est;
+      
+      if( !empty($val) ){
+        $_ = $val;
+        if( !is_object($val) ){
+          switch( $ide ){
+          case 'dat':
+            $_ = _fec::dat($val);
+            break;
+          default:
+            if( is_numeric($val) ){
+              $ide = intval($val)-1;
+              if( isset($_dat[$ide]) ) $_ = $_dat[$ide];
+            }
+            elseif( isset($_dat[$val]) ){ 
+              $_ = $_dat[$val];
+            }
+            break;
+          }
+        }
+      }// toda la lista
+      elseif( isset($_dat) ){
+        $_ = $_dat;
+      }
+      return $_;
+    }
     // codifico fecha : [ año, mes, dia ]
     static function cod( string $val, string $sep = NULL ) : array {
       $_ = [];

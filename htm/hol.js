@@ -23,6 +23,7 @@ class _hol_app {
     }
   }
 }
+
 // Bibliografìa
 class _hol_bib {
 
@@ -58,6 +59,7 @@ class _hol_bib {
     }
   }
 }
+
 // Artículos
 class _hol_art {
 
@@ -93,6 +95,7 @@ class _hol_art {
 
   }
 }
+
 // Operador - Valores
 class _hol_val {
 
@@ -119,6 +122,7 @@ class _hol_val {
     _app_tab.act('opc');
   }
 }
+
 // Operador - Tableros
 class _hol_tab {
 
@@ -404,16 +408,16 @@ class _hol_tab {
 
     $.ide = `pag_${$.var_ide}`;
 
-    $.cla = [`_hol-${$.ide}`, "_val-opc", "_val-opc-fon"];
+    $.cla = [`_hol-${$.ide}`, "_val-opc", "_val-opc-act"];
 
     $.tab = $_app.tab.ide;
 
     // galácticos
     if( $.var_ide == 'kin' ){
 
-      $_app.tab.lis.querySelectorAll(`${$_app.tab.cla}[api-hol_kin]`).forEach( $pos => {
+      $_app.tab.lis.querySelectorAll(`${$_app.tab.cla}[data-hol_kin]`).forEach( $pos => {
 
-        $.kin = _hol._('kin',$pos.getAttribute('api-hol_kin'));
+        $.kin = _hol._('kin',$pos.dataset['hol_kin']);
 
         if( $.kin.pag != 0 ){
 
@@ -428,9 +432,9 @@ class _hol_tab {
     // solares
     else if( $.var_ide == 'psi' ){
 
-      $_app.tab.lis.querySelectorAll(`${$_app.tab.cla}[api-hol_psi]`).forEach( $pos => {
+      $_app.tab.lis.querySelectorAll(`${$_app.tab.cla}[data-hol_psi]`).forEach( $pos => {
 
-        $.psi = _hol._('psi',$pos.getAttribute('api-hol_psi'));
+        $.psi = _hol._('psi',$pos.dataset['hol_psi']);
 
         $.kin = _hol._('kin',$.psi.tzo);
 
@@ -456,7 +460,7 @@ class _hol_tab {
 
     $.ide = `par_${$.var_ide}`;
 
-    $.cla = [`_hol-${$.ide}`,"_val-opc","_val-opc-fon"];
+    $.cla = [`_hol-${$.ide}`,"_val-opc","_val-opc-act"];
 
     $._par_lis = ['ana','gui','ant','ocu'];
     // marcar todos los patrones del oráculo
@@ -470,21 +474,17 @@ class _hol_tab {
     else{
       // marco pareja
       if( $._par_lis.includes($.var_ide) ){
-
         // desmarco todos los anteriores
         _ele.act('cla_eli',$_app.tab.lis.querySelectorAll(`.${$.cla[0]}`),$.cla);
-        
         // marco correspondientes
         if( $dat.checked ){
           $_app.tab.lis.querySelectorAll(
-            `${$_app.tab.cla}[api-hol_kin="${_hol._('kin',$.kin)[`par_${$.var_ide}`]}"]:not(.${$.cla})`
-          ).forEach(
-            $ele =>{ 
-              _ele.act('cla_agr',$ele,$.cla);
-            }
-          )
+            `${$_app.tab.cla}[data-hol_kin="${_hol._('kin',$.kin)[`par_${$.var_ide}`]}"]:not(.${$.cla})`
+          ).forEach( $ele =>{ 
+            
+            _ele.act('cla_agr',$ele,$.cla);
+          })
         }
-
         // evaluo extensiones
         _hol_tab._par( $_app.var.querySelector(`[name="ext"]`) );
       }
@@ -495,27 +495,23 @@ class _hol_tab {
         $._par_lis.forEach( $i => {
 
           // elimino marcas previas + marco extensiones por pareja
-          $.cla[0] = `_hol-par_${$i}-ext`;
+          $.cla[0] = `_hol-par_${$i}-ext`;                    
+          // agrgo 3 clases : -ext , _val-opc, _val-opc-act
           _ele.act('cla_eli',$_app.tab.lis.querySelectorAll(`.${$.cla[0]}`),$.cla);
 
           // marco extensiones
-          if( $dat.checked 
-            && $_app.var.querySelector(`[name="${$i}"]`).checked 
-            && ( $.ele = $_app.tab.lis.querySelector(
-              `${$_app.tab.cla}[api-hol_kin="${_hol._('kin',$.kin)[`par_${$i}`]}"]`
-            ) ) 
+          if( 
+            $dat.checked && $_app.var.querySelector(`[name="${$i}"]`).checked && 
+            ( $.ele = $_app.tab.lis.querySelector(`${$_app.tab.cla}[data-hol_kin="${_hol._('kin',$.kin)[`par_${$i}`]}"]:not(.${$.cla[0]})`) ) 
           ){
-            $._kin = _hol._('kin',$.ele.getAttribute('api-hol_kin'));
+            $._kin = _hol._('kin',$.ele.dataset['hol_kin']);
 
             $._par_lis.map( $ide => `par_${$ide}` ).forEach( $ide_ext => {
 
-              $_app.tab.lis.querySelectorAll(
-                `${$_app.tab.cla}[api-hol_kin = "${$._kin[$ide_ext]}"]:not(.${$.cla})`
-              ).forEach( $ele_ext => {
-                  $.val_tot++;
-                  _ele.act('cla_agr',$ele_ext,$.cla);
-                }
-              )
+              $_app.tab.lis.querySelectorAll(`${$_app.tab.cla}[data-hol_kin="${$._kin[$ide_ext]}"]`).forEach( $ext => {
+                $.val_tot++;                
+                _ele.act('cla_agr',$ext,$.cla);
+              })
             });
           }
         });
@@ -546,7 +542,7 @@ class _hol_tab {
 
     $.ide = `pul_${$.var_ide}`;
 
-    $.cla = [`_hol-${$.ide}`,"_val-opc","_val-opc-fon"];
+    $.cla = [`_hol-${$.ide}`,"_val-opc","_val-opc-act"];
 
     $.tab = $_app.tab.ide;
 
@@ -557,7 +553,7 @@ class _hol_tab {
     _ele.act('cla_eli',$_app.tab.lis.querySelectorAll(`.${$.cla[0]}`),$.cla);
     
     // posicion principal por kin      
-    if( $dat.checked && ( $.pos = $_app.tab.lis.querySelector(`${$_app.tab.cla}[api-hol_kin="${$.kin}"]`) ) ){
+    if( $dat.checked && ( $.pos = $_app.tab.lis.querySelector(`${$_app.tab.cla}[data-hol_kin="${$.kin}"]`) ) ){
       switch( $.tab ){
       // estaciones cromáticas : 1 x 5
       case 'kin_cro': 
@@ -573,7 +569,7 @@ class _hol_tab {
         break;
       // posicion directa x 1
       default:
-        if( $.pos.getAttribute('api-hol_ton') ) $.val = $.pos.getAttribute('api-hol_ton');         
+        if( $.pos.dataset['hol_ton'] ) $.val = $.pos.dataset['hol_ton'];         
         break;
       }
       // busco tono del elemento y cargo la ficha del pulsar
@@ -584,9 +580,9 @@ class _hol_tab {
         $.ton_pul = $.ton[ $.pul_ide = $.ide.split('_')[1] ];
         
         // marco acumulos
-        $_app.tab.lis.querySelectorAll(`${$_app.tab.cla}[api-hol_kin]`).forEach( $e => {
+        $_app.tab.lis.querySelectorAll(`${$_app.tab.cla}[data-hol_kin]`).forEach( $e => {
 
-          $.ton = _hol._('ton',$e.getAttribute('api-hol_ton'));
+          $.ton = _hol._('ton',$e.dataset['hol_ton']);
 
           if( $.ton_pul == $.ton[$.pul_ide] ) _ele.act('cla_agr',$e,$.cla);
           

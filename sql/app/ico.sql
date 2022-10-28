@@ -1,5 +1,4 @@
-
-
+-- Active: 1665550796793@@127.0.0.1@3306@c1461857_api
 --
 -- estilo 
   DELETE FROM `app_ico_gru`
@@ -24,7 +23,8 @@
       ('app_ini',	    'login'),
       ('app_fin',	    'logout'),
       ('app_ope',     'settings'),
-      ('app_nav',			'menu'),
+      ('app_cab',			'menu'),
+      ('app_nav',	 'menu_open'),
       ('app_art',     'article'),
       ('app_val',     'document_scanner')
     ;
@@ -53,7 +53,7 @@
       ('dat_err',	'gpp_bad'),
       ('dat_adv',	'gpp_maybe'),
       -- operaciones
-      ('dat_ope', 'play_arrow'),
+      ('dat_ope', 'play_arrow'),      
       ('dat_ini',	'done'),
       ('dat_fin',	'close'),
       ('dat_tod',	'checklist'),
@@ -105,16 +105,30 @@
     ;  
   --
   -- por tipos
+    DELETE FROM `app_ico` WHERE `ide` LIKE 'tab%';
+    INSERT INTO `app_ico` VALUES
+      ('tab',  'dataset'),
+      ('tab_sec',  ''),
+      ('tab_pos',  ''),
+      ('tab_opc',  ''),
+      ('tab_val',  '')
+    ;    
+    DELETE FROM `app_ico` WHERE `ide` LIKE 'est%';
+    INSERT INTO `app_ico` VALUES
+      ('est',	     'table_view'),
+      ('est_dat',	 ''),
+      ('est_atr',	 ''),
+      ('est_ide',	 ''),
+      ('est_ind',	 ''),
+      ('est_val',	 '')
+    ;    
     DELETE FROM `app_ico` WHERE `ide` LIKE 'lis%';
     INSERT INTO `app_ico` VALUES
 
       ('lis',			'list_alt'),
       -- tipos
-      ('lis_tab',  'dataset'),
-      ('lis_est',	 'table_view'),
       ('lis_ite',	 'view_list'),
       ('lis_val',	 'list'),
-      ('lis_nav',	 'menu_open'),
       ('lis_opc',  'checklist_rtl'),
       -- navegacion      
       ('lis_ini',	'first_page'),
@@ -136,11 +150,13 @@
     INSERT INTO `app_ico` VALUES
 
       ('opc',			'fact_check'),
-      -- tipos    
+      -- tipos          
       ('opc_vac', 'check_box_outline_blank'),
-      ('opc_bin',	'rule'),
+      ('opc_bin',	'rule'),      
       ('opc_uni',	'radio_button_checked'),
-      ('opc_mul',	'check_box')
+      ('opc_mul',	'check_box'),
+      -- listado
+      ('opc_lis',  'checklist_rtl')
     ;    
     DELETE FROM `app_ico` WHERE `ide` LIKE 'num%';
     INSERT INTO `app_ico` VALUES

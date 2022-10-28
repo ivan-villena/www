@@ -72,7 +72,9 @@
       INNER JOIN
         `hol_sel` _ini ON _ana.ini = _ini.ide
       INNER JOIN
-        `hol_sel` _fin ON _ana.fin = _fin.ide        
+        `hol_sel` _fin ON _ana.fin = _fin.ide
+      ORDER BY
+        _ana.ini
     ;
     -- parejas antípodas
     DROP VIEW IF EXISTS `_hol_sel_par_ant`;CREATE VIEW `_hol_sel_par_ant` AS
@@ -90,7 +92,9 @@
       INNER JOIN
         `hol_sel` _ini ON _ant.ini = _ini.ide
       INNER JOIN
-        `hol_sel` _fin ON _ant.fin = _fin.ide        
+        `hol_sel` _fin ON _ant.fin = _fin.ide
+      ORDER BY
+        _ant.ini
     ;
     -- parejas oculas
     DROP VIEW IF EXISTS `_hol_sel_par_ocu`;CREATE VIEW `_hol_sel_par_ocu` AS
@@ -108,7 +112,9 @@
       INNER JOIN
         `hol_sel` _ini ON _ocu.ini = _ini.ide
       INNER JOIN
-        `hol_sel` _fin ON _ocu.fin = _fin.ide        
+        `hol_sel` _fin ON _ocu.fin = _fin.ide
+      ORDER BY
+        _ocu.ini
     ;
   --
   -- x52 : Castillo fractal-galactico
@@ -120,6 +126,8 @@
         `hol_cas_ond` _cas
       INNER JOIN 
         `hol_ton_ond` _ond ON _cas.ide = _ond.ide
+      ORDER BY
+        _ond.ide
     ;  
   --
   -- x260 : Kin  
@@ -132,6 +140,8 @@
         `hol_kin_arm_tra` _tra
       INNER JOIN 
         `hol_ton` _ton ON _tra.ide = _ton.ide
+      ORDER BY
+        _tra.ide        
     ;    
     -- estacion galáctica
     DROP VIEW IF EXISTS `_hol_kin_cro_est`; CREATE VIEW `_hol_kin_cro_est` AS
@@ -152,6 +162,8 @@
         `hol_cas_arm` _cas ON _est.ide = _cas.ide
       INNER JOIN 
         `hol_sel` _sel ON _cic.sel = _sel.ide    
+      ORDER BY
+        _est.ide        
     ;
     -- ondas de las estaciones galácticas
     DROP VIEW IF EXISTS `_hol_kin_cro_ond`; CREATE VIEW `_hol_kin_cro_ond` AS
@@ -163,6 +175,8 @@
         `hol_kin_cro_ond` _cro
       INNER JOIN 
         `hol_ton_ond` _ond ON _cro.ide = _ond.ide
+      ORDER BY
+        _cro.ide
     ;
     -- elemento galáctico
     DROP VIEW IF EXISTS `_hol_kin_cro_ele`; CREATE VIEW `_hol_kin_cro_ele` AS
@@ -179,6 +193,8 @@
         `hol_cas` _cas ON _ele.ide = _cas.ide
       INNER JOIN 
         `hol_ton` _ton ON _cas.ton = _ton.ide
+      ORDER BY
+        _ele.ide ASC
     ;
 
   --
@@ -194,6 +210,8 @@
         `hol_psi` _psi
       INNER JOIN 
         `hol_kin` _kin ON _kin.ide = _psi.tzo
+      ORDER BY
+        _psi.ide        
     ;
     -- 13 lunas del giro solar
     DROP VIEW IF EXISTS `_hol_psi_lun`; CREATE VIEW `_hol_psi_lun` AS 
@@ -220,6 +238,8 @@
         `hol_psi_lun` _lun      
       INNER JOIN 
         `hol_ton` _ton ON _lun.ide = _ton.ide
+      ORDER BY
+        _lun.ide        
     ;
     -- 52 heptadas del giro solar
     DROP VIEW IF EXISTS `_hol_psi_hep`; CREATE VIEW `_hol_psi_hep` AS
@@ -242,6 +262,8 @@
         `hol_cas_arm` _arm ON _cas.arm = _arm.ide        
       INNER JOIN 
         `hol_ton` _ton ON _cas.ton = _ton.ide
+      ORDER BY
+        _hep.ide        
     ;
   --
   -- x250x365 : anillos del encantamiento
@@ -260,6 +282,8 @@
         `hol_kin` _kin ON _kin.ide = _ani.fam_4 
       INNER JOIN 
         `hol_cas` _cas ON _ani.ide+1 = _cas.ide
+      ORDER BY
+        _ani.ide
     ;
   --
 --

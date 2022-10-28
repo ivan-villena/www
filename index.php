@@ -19,7 +19,7 @@
   define('BOR_SEL', "bor-sel" );
   define('FON_SEL', "fon-sel" );
 
-  // cargo sesion  
+  // cargo sesion
   if( !isset($_SESSION['usu']) ){    
     $_SESSION['usu'] = 1;
     $_SESSION['ubi'] = "America/Argentina/Buenos_Aires";
@@ -71,6 +71,6 @@
     $_app = new _app();        
 
     // cargo página
-    $_app->ini();
+    $_app->htm();
   }
 ?>

@@ -603,7 +603,7 @@
 
       }','{
         "sec":{ "kin-sel": 1, "kin-ton": 0 },
-        "pos":{ "ima": "api.hol_ton.ide", "col": "", "num": "api.hol_kin.ide" }, 
+        "pos":{ "ima": "hol.ton.ide", "col": "", "num": "hol.kin.ide" }, 
         "opc": [ "pag", "par" ],
         "pag": { "kin": 1 }
       }'
@@ -620,7 +620,7 @@
           "pos-00":{ "style":"font-size:.5rem" }
         }','{
           "sec": { "cas-pos":1, "cas-bor": 0, "cas-col": 1, "cas-orb": 0, "ton-col":0 },
-          "pos": { "ima": "api.hol_kin.ide", "col": "", "num": "" },
+          "pos": { "ima": "hol.kin.ide", "col": "", "num": "" },
           "opc": [ "par", "pul" ]
         }'
       ),
@@ -652,7 +652,7 @@
           "sec":{ "tab": "kin_cro", "style":"grid-gap: .3rem;" }
         }','{
           "sec": { "cas-pos": 1, "cas-orb": 1, "ton-col":1, "sel-cro_ele-pos": 1 },
-          "pos": { "ima": "api.hol_sel.ide", "col": "", "num": "" },
+          "pos": { "ima": "hol.sel.ide", "col": "", "num": "" },
           "opc": [ "par", "pul" ]
         }'
       ),
@@ -686,7 +686,7 @@
           "sec":{ "tab": "kin_arm", "style":"grid-gap: .3rem;" }
         }', '{
           "sec": { "sel-arm_tra-bor": 0, "sel-arm_cel-pos": 1, "sel-arm_cel-bor": 0, "sel-arm_cel-col": 0},
-          "pos": { "ima": "api.hol_sel.ide", "col": "", "num": "" },
+          "pos": { "ima": "hol.sel.ide", "col": "", "num": "" },
           "opc": [ "par", "pul" ]
         }'
       ),
@@ -719,7 +719,7 @@
 
       }', '{
         "sec": { "lun-cab":1, "lun-hep":1 },
-        "pos": { "ima": "api.hol_kin.ide", "col": "", "num": "" },
+        "pos": { "ima": "hol.kin.ide", "col": "", "num": "" },
         "opc": [ "pag", "par", "pul" ]
       }'
     ),-- 4 estaciones
@@ -729,7 +729,7 @@
 
       }','{
         "sec": { "cas-pos": 1, "cas-orb": 0, "ton-col": 0 },
-        "pos": { "ima": "api.hol_rad.ide", "col": "", "num": "" },
+        "pos": { "ima": "hol.rad.ide", "col": "", "num": "" },
         "opc": [ "par", "pul" ]
       }'
     ),-- 13 lunas
@@ -739,7 +739,7 @@
       
       }','{
         "sec": { "lun-cab":1, "lun-hep":1, "lun-rad": 1 },
-        "pos": { "ima": "api.hol_kin.ide", "col": "", "num": "" },
+        "pos": { "ima": "hol.kin.ide", "col": "", "num": "" },
         "opc": [ "pul", "par" ]
       }'
     ),-- 52 heptadas
@@ -759,7 +759,7 @@
         "tzo-8":{ "style":"transform: rotate(180deg);" }
         
       }','{
-        "pos": { "ima": "api.hol_kin.ide", "col": "", "num": "" },
+        "pos": { "ima": "hol.kin.ide", "col": "", "num": "" },
         "opc": [ "pag", "par" ],
         "pag": { "kin": 1 }
       }'

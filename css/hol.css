@@ -106,3 +106,12 @@ main > article > [tab="psi-tzo"] [pos].pos {
   width: .95rem; 
   height: .95rem;
 }
+
+@media ( max-width: 400px ){
+
+  /* Tzolkin */
+  main > article > [tab="kin-tzo"] > :is([sec],[pos]) {
+    width: 1.5rem; 
+    height: 1.5rem;
+  }
+}

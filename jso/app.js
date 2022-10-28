@@ -31,7 +31,7 @@ class _app {
   };  
   // Estructura
   est = {
-    lis : `article[ide="est"] div.app_est > table`,
+    lis : `article[ide="est"] div.app_est`,
     // Valores
     val : {
       acu : `article[ide="est"] [data-ide="val"] [ide="acu"]`,      
@@ -167,7 +167,7 @@ class _app {
       // inicializo indice por artículo
       else if( $_app.uri.art && ( $.art_nav = $_app.ope.pan.querySelector('nav[ide="doc_nav"] ul.lis.nav') ) ){
         // inicio indice
-        _app_lis.nav_tog($.art_nav);
+        _app_nav.art_tog($.art_nav);
         
         // muestro panel
         _app_ope.pan('doc_nav');
@@ -426,12 +426,84 @@ class _app_ope {
         $.lis.querySelectorAll(`.val > [ico="val_tog"]${$.cla}`).forEach( $e => $e.click() );
       }
     }
-  }  
+  }
 }
 // Navegacion
 class _app_nav {
   
-  // pestañas por contenido
+  // indice 
+  static art(){      
+  }// click en item
+  static art_val( $dat, $cla = FON_SEL ){
+
+    let $ = { lis : _ele.ver($dat,{'eti':'nav'}) };
+
+    if( $.lis ){
+      // elimino marcas previas
+      $.lis.querySelectorAll(
+        `ul.lis.nav :is( li.ite.sep, li.ite:not(.sep) > div.val ).${$cla}`
+      ).forEach( 
+        $e => $e.classList.remove($cla) 
+      );
+
+      // controlo el toggle automatico por dependencias
+      if( 
+        ( $.dep = $dat.parentElement.parentElement.querySelector('ul.lis') ) 
+        &&
+        ( $dat.classList.contains('ico') || $.dep.classList.contains(DIS_OCU) ) 
+      ){
+        _app_ope.tog($dat);
+      }
+
+      // pinto fondo
+      if( !( $.bot = $dat.parentElement.querySelector('[ico]') ) || !$.bot.classList.contains('ocu') ){
+
+        $dat.parentElement.classList.add($cla);
+      }
+    }
+  }// hago toogle por item
+  static art_tog( $lis ){
+
+    let $={};
+
+    if( $.nav = $lis ? _app_nav.art_mar($lis) : false ){
+      // hago toogles ascendentes
+      while( 
+        ( $.lis = _ele.ver($.nav,{'eti':'ul'}) ) 
+        && 
+        ( $.val = $.lis.previousElementSibling ) && $.val.nodeName == 'DIV' &&  $.val.classList.contains('val')
+        && 
+        ( $.nav = $.val.querySelector('a[href^="#"]') )
+      ){
+        if( $.lis.classList.contains(DIS_OCU) && ( $.ico = $.nav.previousElementSibling ) && $.ico.getAttribute('ico') ){                
+          _app_ope.tog($.ico);
+        }                
+      }
+    }
+  }// marco valor seleccionado
+  static art_mar( $lis ){
+
+    let $nav, $val = location.href.split('#')[1];
+
+    // hago toogle por item
+    if( $val && ( $nav = $lis.querySelector(`a[href="#${$val}"]`) ) ){
+        
+      _app_nav.art_val($nav);
+    }
+
+    return $nav;
+  }// ejecuto filtros
+  static art_ver( $dat, $ope = 'a[href]' ){
+
+    // ejecuto filtros
+    _app_lis.val_ver($dat, $ope);
+
+    // volver a marcar el fondo del elemento seleccionado
+    _app_nav.art_tog($_app.var.nextElementSibling);
+
+  }
+  
+  // contenido : pestaña-barra-operador
   static sec( $dat, $ope, ...$opc ){
     let $={};
     // capturo contenedor
@@ -578,7 +650,7 @@ class _app_dat {
           $ = _dat.ide( $.dat.dataset.ide ? $.dat.dataset.ide : $.dat.value, $ );
           $.opc.dataset.esq = $.esq;
           $.opc.dataset.est = $.est;
-          _eje.val(['_dat::get', [`${$.esq}.${$.est}`] ], $dat => {
+          _eje.val(['_dat::get', [`${$.esq}_${$.est}`] ], $dat => {
             $.opc = _app_opc.val( $dat, $.opc, 'ide');
           });
         }
@@ -598,8 +670,8 @@ class _app_dat {
       $.atr = $ite.querySelector('[name]').getAttribute('name');
       $.num = $ite.querySelector('[max]');
       $.num_max = $.num.getAttribute('max');
-      $.dat[`hol_${$.atr}`] = ( $ope > 0 ) ? _num.ran($ope, $.num_max) : 0;
-      $.num.innerHTML = $.dat[`hol_${$.atr}`];
+      $.dat[`${$.atr}`] = ( $ope > 0 ) ? _num.ran($ope, $.num_max) : 0;
+      $.num.innerHTML = $.dat[`${$.atr}`];
     });    
 
     // actualizo fichas : principal => { ...dependencias } 
@@ -610,11 +682,9 @@ class _app_dat {
       $.atr = $ite.dataset.atr;
       $.ima = $ite.dataset.ima.split('.');
       // actualizo fichas
-      _ele.eli($ite,'[ima]');      
+      _ele.eli($ite,'[ima]');
       if( $.val = $.dat[$.est] ){
-        _ele.agr( 
-          _app.ima( $.ima[0], $.ima[1], _dat.get($.esq,$.est,$.val)[$.atr], {'class':`tam-4`} ), $ite
-        );
+        _ele.agr( _app.ima( $.ima[0], $.ima[1], _dat.get($.esq,$.est,$.val)[$.atr], {'class':`tam-4`} ), $ite );
       }
     });   
     
@@ -786,7 +856,7 @@ class _app_val {
     // calculo el total grupal
     if( $.tot = $ope.querySelector(`[name="tot"]`) ){
 
-      $.tot.innerHTML = $dat.querySelectorAll(`[class*="_val-"]:is([class*="-bor"],[class*="-fon"])`).length;
+      $.tot.innerHTML = $dat.querySelectorAll(`[class*="_val-"]:is([class*="-bor"],[class*="-act"])`).length;
     }
 
     // devuelvo seleccion
@@ -801,10 +871,7 @@ class _app_val {
     $ope.querySelectorAll('fieldset[data-esq][data-est]').forEach( $val => {
 
       $.sum = 0;
-
-      $dat.forEach( 
-        $ite => $.sum += parseInt( $ite.getAttribute(`${$val.dataset.esq}-${$val.dataset.est}`) ) 
-      );
+      $dat.forEach( $ite => $.sum += parseInt( $ite.dataset[`${$val.dataset.esq}_${$val.dataset.est}`] ) );
 
       _app_dat.fic( $val, $.sum);
     });
@@ -837,7 +904,7 @@ class _app_val {
       
         $dat.forEach( $e =>{
 
-          if( ( $.dat = _dat.get($.esq,$.est,$e.getAttribute(`${$.esq}-${$.est}`)) ) ){
+          if( ( $.dat = _dat.get($.esq,$.est,$e.dataset[`${$.esq}_${$.est}`]) ) ){
 
             if( $.dat[$.atr] == $.dat_val.value ) _ele.act('cla_agr',$e,[$.cla_val, $.cla_ide]);
           }
@@ -903,7 +970,7 @@ class _app_val {
 
         $dat.forEach( $e => {
           // desde-hasta
-          if( $.inc_val == 1 && _fec.ver( $e.getAttribute('api-fec'), $.val.ini, $.val.fin ) ){
+          if( $.inc_val == 1 && _fec.ver( $e.dataset['fec_dat'], $.val.ini, $.val.fin ) ){
 
             _ele.act('cla_agr',$e,[$.cla_val, $.cla_ide]);
           }
@@ -952,7 +1019,7 @@ class _app_val {
             
             $dat.forEach( $v => {
 
-              if( $.dat = $v.getAttribute(`${$.esq}-${$.est}`) ){
+              if( $.dat = $v.dataset[`${$.esq}_${$.est}`] ){
 
                 if( ( $.dat_val = _dat.get($.esq,$.est,$.dat) ) && ( $.dat_ide=$.dat_val[$.atr] ) && $.dat_ide == $.ide ) $.tot++;
               }
@@ -1068,7 +1135,7 @@ class _app_tab {
 
     $.dat = $_app.tab.lis;
 
-    // acumulados
+    // acumulados + listado
     if( $_app.tab.val.acu ){ 
 
       // actualizo toales acumulados
@@ -1122,7 +1189,7 @@ class _app_tab {
     case 'pos': 
       if( $_hol_app && $_hol_app.val && ( $.kin = $_hol_app.val.kin ) ){
 
-        $_app.tab.lis.querySelectorAll(`${$_app.tab.cla}[api-hol_kin="${$.kin}"]`).forEach( $e => {
+        $_app.tab.lis.querySelectorAll(`${$_app.tab.cla}[data-hol_kin="${$.kin}"]`).forEach( $e => {
           $e.classList.add(`_val-pos`);
           if( $_app.tab.val.acu && $_app.tab.val.acu.querySelector(`[name="pos"]:checked`) ){
             $e.classList.add(`_val-pos-bor`);
@@ -1174,7 +1241,7 @@ class _app_tab {
 
     _ele.act('cla_eli',$_app.tab.lis.querySelectorAll(`.${$.cla_ide}-bor`),`${$.cla_ide}-bor`);    
     if( $dat.checked ){
-      _ele.act('cla_agr',$_app.tab.lis.querySelectorAll(`.${$.cla_ide}:not(.${$.cla_ide}-fon)`),`${$.cla_ide}-bor`);
+      _ele.act('cla_agr',$_app.tab.lis.querySelectorAll(`.${$.cla_ide}:not(.${$.cla_ide}-act)`),`${$.cla_ide}-bor`);
     }
 
     // actualizo calculos + vistas( fichas + items )        
@@ -1228,7 +1295,7 @@ class _app_tab {
 
     let $ = _app_dat.var($dat); 
     
-    if( ( $.var_ide=$.var_ide.split('_')[0] ) != 'bor' ){
+    if( ( $.var_ide = $.var_ide.split('_')[0] ) != 'bor' ){
       // aseguro selector
       if( !$dat.options  ){
         $dat = $_app.tab.opc.pos.querySelector(`[name="${$.var_ide}"]`);
@@ -1277,7 +1344,7 @@ class _app_tab {
 
         $_app.tab.lis.querySelectorAll($.agr).forEach( $e =>{
 
-          if( $._dat = _dat.get($.esq,$.est,$e.getAttribute(`${$.esq}-${$.est}`)) ){
+          if( $._dat = _dat.get($.esq,$.est,$e.dataset[`${$.esq}_${$.est}`]) ){
 
             $.val = ( $.col == 1 && $._dat[$.atr] > $.col ) ?  0 : $._dat[$.atr];
 
@@ -1348,7 +1415,7 @@ class _app_tab {
 
         $_app.tab.lis.querySelectorAll($_app.tab.cla).forEach( $e =>{
 
-          if( $.obj = _dat.get($.esq,$.est,$e.getAttribute(`${$.esq}-${$.est}`)) ){
+          if( $.obj = _dat.get($.esq,$.est,$e.dataset[`${$.esq}_${$.est}`]) ){
 
             if( !($.tex = $e.querySelector($.eti)) ){
               
@@ -1466,7 +1533,7 @@ class _app_est {
             $_app.tab.lis.querySelectorAll(`[pos]._val-${$ide}`).forEach( $e =>{
               
               if( $.ele = $_app.est.lis.querySelector(
-                `tr[pos][${$.esq}-${$.est}="${$e.getAttribute(`${$.esq}-${$.est}`)}"].${DIS_OCU}`
+                `tr[pos][data-${$.esq}_${$.est}="${$e.dataset[`${$.esq}_${$.est}`]}"].${DIS_OCU}`
               ) ){
                 $.tot++;
                 $.ele.classList.remove(DIS_OCU);
@@ -1588,9 +1655,9 @@ class _app_est {
 
       $_app.est.lis.querySelectorAll(`tr[pos]:not(.${DIS_OCU})`).forEach( $ite => {
 
-        if( ( $.val = _dat.get($.esq,$.est,$ite.getAttribute(`${$.esq}-${$.est}`)) ) && $.val[$.atr] ){
+        if( ( $.val = _dat.get($.esq,$.est,$ite.dataset[`${$.esq}_${$.est}`]) ) && $.val[$.atr] ){
 
-          $.ide=( $.ope == 'des' ) ? $ite.getAttribute(`${$.esq}-${$.est}`) : $.val[$.atr];
+          $.ide=( $.ope == 'des' ) ? $ite.dataset[`${$.esq}_${$.est}`] : $.val[$.atr];
 
           _ele.act('cla_eli',$_app.est.lis.querySelectorAll(
             `tbody tr[data-ope="${$.ope}"][data-esq="${$.esq}"][data-est="${$.est}"][data-atr="${$.atr}"][data-ide="${$.ide}"].${DIS_OCU}`
@@ -1668,111 +1735,6 @@ class _app_est {
 }
 // Listado
 class _app_lis {
-
-  // desplazamiento horizontal x item
-  static bar(){
-  }
-  static bar_ite( $tip, $dat ){
-    
-    let $ = _app_dat.var($dat);
-
-    if( $tip == 'val' ){
-
-      $.lis = $_app.var.previousElementSibling;
-
-      $.val = $_app.var.querySelector('[name="val"]');
-      $.pos = _num.val($.val.value);
-
-      switch( $dat.getAttribute('name') ){
-      case 'ini': $.pos = _num.val($.val.min);
-        break;
-      case 'pre': $.pos = $.pos > _num.val($.val.min) ? $.pos-1 : $.pos;
-        break;
-      case 'pos': $.pos = $.pos < _num.val($.val.max) ? $.pos+1 : $.pos;
-        break;
-      case 'fin': $.pos = _num.val($.val.max);
-        break;
-      }
-      // valido y muestro item
-      $.val.value = $.pos;
-
-      _ele.act('cla_agr',$.lis.querySelectorAll(`li[data-pos]:not(.${DIS_OCU})`),DIS_OCU);
-
-      if( $.ite = $.lis.querySelector(`li[data-pos="${$.pos}"]`) ) $.ite.classList.remove(DIS_OCU);
-    }
-  }
-
-  // indice : enlaces del navegador
-  static nav(){      
-  }// click en item
-  static nav_val( $dat, $cla = FON_SEL ){
-
-    let $ = { lis : _ele.ver($dat,{'eti':'nav'}) };
-
-    if( $.lis ){
-      // elimino marcas previas
-      $.lis.querySelectorAll(
-        `ul.lis.nav :is( li.ite.sep, li.ite:not(.sep) > div.val ).${$cla}`
-      ).forEach( 
-        $e => $e.classList.remove($cla) 
-      );
-
-      // controlo el toggle automatico por dependencias
-      if( 
-        ( $.dep = $dat.parentElement.parentElement.querySelector('ul.lis') ) 
-        &&
-        ( $dat.classList.contains('ico') || $.dep.classList.contains(DIS_OCU) ) 
-      ){
-        _app_ope.tog($dat);
-      }
-
-      // pinto fondo
-      if( !( $.bot = $dat.parentElement.querySelector('[ico]') ) || !$.bot.classList.contains('ocu') ){
-
-        $dat.parentElement.classList.add($cla);
-      }
-    }
-  }// hago toogle por item
-  static nav_tog( $lis ){
-
-    let $={};
-
-    if( $.nav = $lis ? _app_lis.nav_mar($lis) : false ){
-      // hago toogles ascendentes
-      while( 
-        ( $.lis = _ele.ver($.nav,{'eti':'ul'}) ) 
-        && 
-        ( $.val = $.lis.previousElementSibling ) && $.val.nodeName == 'DIV' &&  $.val.classList.contains('val')
-        && 
-        ( $.nav = $.val.querySelector('a[href^="#"]') )
-      ){
-        if( $.lis.classList.contains(DIS_OCU) && ( $.ico = $.nav.previousElementSibling ) && $.ico.getAttribute('ico') ){                
-          _app_ope.tog($.ico);
-        }                
-      }
-    }
-  }// marco valor seleccionado
-  static nav_mar( $lis ){
-
-    let $nav, $val = location.href.split('#')[1];
-
-    // hago toogle por item
-    if( $val && ( $nav = $lis.querySelector(`a[href="#${$val}"]`) ) ){
-        
-      _app_lis.nav_val($nav);
-    }
-
-    return $nav;
-  }// ejecuto filtros
-  static nav_ver( $dat, $ope = 'a[href]' ){
-
-    // ejecuto filtros
-    _app_lis.val_ver($dat, $ope);
-
-    // volver a marcar el fondo del elemento seleccionado
-    _app_lis.nav_tog($_app.var.nextElementSibling);
-
-  }  
 
   // punteos, numeraciones, y términos
   static ite(){
@@ -1880,7 +1842,7 @@ class _app_lis {
     }    
   }
 
-  // valores con titulo
+  // contenedores
   static val(){      
   }
   static val_ver( $dat, $ope = 'p:first-of-type', $cla = 'let-luz' ){
@@ -1947,6 +1909,39 @@ class _app_lis {
       }            
     }      
   }
+
+  // desplazamiento horizontal x item
+  static bar(){
+  }
+  static bar_ite( $tip, $dat ){
+    
+    let $ = _app_dat.var($dat);
+
+    if( $tip == 'val' ){
+
+      $.lis = $_app.var.previousElementSibling;
+
+      $.val = $_app.var.querySelector('[name="val"]');
+      $.pos = _num.val($.val.value);
+
+      switch( $dat.getAttribute('name') ){
+      case 'ini': $.pos = _num.val($.val.min);
+        break;
+      case 'pre': $.pos = $.pos > _num.val($.val.min) ? $.pos-1 : $.pos;
+        break;
+      case 'pos': $.pos = $.pos < _num.val($.val.max) ? $.pos+1 : $.pos;
+        break;
+      case 'fin': $.pos = _num.val($.val.max);
+        break;
+      }
+      // valido y muestro item
+      $.val.value = $.pos;
+
+      _ele.act('cla_agr',$.lis.querySelectorAll(`li[data-pos]:not(.${DIS_OCU})`),DIS_OCU);
+
+      if( $.ite = $.lis.querySelector(`li[data-pos="${$.pos}"]`) ) $.ite.classList.remove(DIS_OCU);
+    }
+  }  
 }
 // Opcion
 class _app_opc {
