@@ -20,7 +20,7 @@ class _hol_app {
       ;
       // muestro diario
       let $ = {};
-      ( $.bot_ini = $_app.ope.bot.querySelector('.ico.fec_val') ) && $.bot_ini.click();
+      // ( $.bot_ini = $_app.ope.bot.querySelector('.ico.fec_val') ) && $.bot_ini.click();
     }
   }
 }

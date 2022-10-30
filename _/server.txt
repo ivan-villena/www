@@ -1,6 +1,4 @@
 
-
-
 Conexion FTP : 
 
   servidor : c1461857.ferozo.com

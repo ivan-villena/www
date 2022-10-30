@@ -384,14 +384,14 @@ ul.lis a {
   text-decoration: none;
   color: var(--let_tex);
 }
-ul.lis.nav li.ite.sep,
-ul.lis.nav li.ite:not(.sep) > div.val {
+ul.lis.nav li.pos.sep,
+ul.lis.nav li.pos:not(.sep) > div.val {
   margin-top: .1rem;
   margin-bottom: .1rem;
   padding: .25rem;
 }
-ul.lis.nav li.ite.sep:hover,  
-ul.lis.nav li.ite:not(.sep) > div.val:hover {
+ul.lis.nav li.pos.sep:hover,  
+ul.lis.nav li.pos:not(.sep) > div.val:hover {
   background-color: var(--fon_foc);
   border-radius: .25rem;
 }
@@ -496,6 +496,19 @@ Informe
 /* 
   Navegadores
 */
+
+nav.lis {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+nav.lis > :is(p,a) {
+  margin: .5rem;  
+}
+
+/* 
+  por Contenido 
+*/
 nav:is(.pes,.bar) {
   display: flex;
   align-items: center;
@@ -509,15 +522,16 @@ nav:is(.pes,.bar) > a:not(.ico) {
   justify-content: center;
   align-items: center;
   flex-grow: 2;
-  margin: auto;
   text-align: center;
   font-size: medium;
   color: var(--let_tex);
+  margin: auto;
 }
 nav:is(.bar,.pes) > a:hover{
   background-color: var(--fon_foc);  
 }
-/* Contenido */
+
+/* Contenedor */
 nav:is(.pes,.bar,.ope) + :is(div,section) {
   overflow: auto;
   margin: 0 .5rem;
@@ -526,9 +540,7 @@ nav:is(.pes,.bar,.ope) + :is(div,section) > [class*="ide-"] {
   animation: dis-ver 1s;
 }
 
-/* 
-Barra
-*/
+/* por Barra */
 nav.bar {
   justify-content: space-around;
 }
@@ -537,9 +549,7 @@ nav.bar > a:not(.ico) {
   border-radius: .25rem;
   font-style: italic;
 }
-/* 
-Pestañas 
-*/
+/* por Pestañas */
 nav.pes {
   margin: 0 .5rem;
 }
@@ -1049,9 +1059,9 @@ body > section.app_win > article > header + * > section {
 body > aside {
   z-index: 9999;
   position: fixed;
-  top: 4vh;
+  top: 3.9vh;
   display: flex;  
-  height: 96vh;
+  height: 96.1vh;
   width: 450px;
   background-color: var(--fon_sec);  
 }
@@ -1060,18 +1070,18 @@ body > aside {
 */
 body > aside.app_pan {
   max-width: 100%;
+  overflow: hidden;
   border: 1px solid var(--col_azu);
   border-left: 0;
   border-radius: 0 1rem 1rem 0;    
-  transition: width 1s, height 1s;
+  transition: all 1s;
   animation: app_pan-ver 1s, dis-ver 1s;
 }
 body > aside.app_pan.dis-ocu {  
   animation: app_pan-ocu 1s;
   display: flex !important;
   width: 0 !important;
-  height: 0 !important;
-  overflow: hidden !important;
+  height: 0 !important;   
   border: 0 !important;
   padding: 0 !important;
   margin: 0 !important;
@@ -1163,4 +1173,17 @@ body > main > article section > figure {
 body > footer.app_pie {
   padding: .5rem;
   text-align: center;
+}
+
+
+/*//////////////////////////////////////////////////////////////////////*/
+/*//////////////////////////////////////////////////////////////////////*/
+/* 
+  Menú Principal e indices 
+*/
+body > aside.app_pan > nav.ide-doc_cab ul.lis.nav {
+  height: 85vh;
+}
+body > aside.app_pan > nav.ide-doc_nav ul.lis.nav {
+  height: 81vh;
 }

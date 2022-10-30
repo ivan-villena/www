@@ -2208,13 +2208,10 @@
       switch( $tip ){        
       case 'dat': 
         $_ = [];
-        
         // -> por esquemas
         foreach( ( is_array($dat) ? $dat : [ $esq=>[ $est ] ] ) as $esq => $est_lis ){
-
           // -> por estructuras
           foreach( $est_lis as $est_ide ){
-
             // -> por dependencias ( est_atr )
             foreach( ( !empty($dat_opc_est = _app::dat($esq,$est_ide,'rel')) ? $dat_opc_est : [ $est_ide ] ) as $est ){
               $est = str_replace("{$esq}_",'',$est);
@@ -2270,7 +2267,7 @@
             else{
               $ima = _app::ima($esq, $est, $ide, ['class'=>"tam-1 mar_der-1"]);
             }$_ .= "
-            <tr class='ide-{$ide}'>
+            <tr class='pos' data-ide='{$ide}'>
               <td data-atr='ima'>{$ima}</td>
               <td data-atr='ide'>"._app::let($ide)."</td>
               <td data-atr='nom'>"._app::let(isset($_var->nom) ? $_var->nom : '')."</td>
@@ -2362,7 +2359,10 @@
         // cuentas por estructura
         $_ .= "
         <section class='ide-cue inf'>
-          "._app_lis::val( _app_val::cue('dat',$ope['est'],[ 'ide'=>$_ide ]), [ 'dep'=>['class'=>DIS_OCU], 'opc'=>['tog','ver','cue'] ])."
+          <h3>Totales por Estructura</h3>
+
+          "._app_lis::val( _app_val::cue('dat',$ope['est'],['ide'=>$_ide]), [ 'dep'=>['class'=>DIS_OCU], 'opc'=>['tog','ver','cue'] ])."
+          
         </section>";
         break;
       // Opciones : sección + posición
@@ -2714,7 +2714,7 @@
   
           </form>";
           $_ .= "
-          <tr class='pos ite-{$pos}' data-esq='{$esq}' data-est='{$est}' data-atr='{$atr}'>
+          <tr class='pos ide-{$pos}' data-esq='{$esq}' data-est='{$est}' data-atr='{$atr}'>
             <td data-atr='val'>
               "._app::ico( isset($app_lis->ocu) && in_array($atr,$app_lis->ocu) ? "ope_ver" : "ope_ocu",[
                 'eti'=>"button",'title'=>"Mostrar",'class'=>"tam-2{$cla_ver}",'value'=>"tog",'onclick'=>"$_eje('val',this);"
@@ -2964,7 +2964,7 @@
                 // fila-columnas
                 $pos_val++; 
                 $ele_pos = $ele['ite'];
-                _ele::cla($ele_pos,"pos ite-$pos_val",'ini'); $_.="
+                _ele::cla($ele_pos,"pos ide-$pos_val",'ini'); $_.="
                 <tr"._htm::atr($ele_pos).">"._app_est::ite($dat,$val,$ope,$ele)."</tr>";
                 // detalles
                 if( !empty($ope['det'][$pos]) ) $_ .= _app_est::pos('det',$pos,$ope,$ele);                    
@@ -3015,7 +3015,7 @@
                 // item por esquema.estructuras
                 $pos_val ++;
                 $ele_pos = $ele['ite'];
-                _ele::cla($ele_pos,"pos ite-$pos_val",'ini'); $_ .= "
+                _ele::cla($ele_pos,"pos ide-$pos_val",'ini'); $_ .= "
                 <tr"._htm::atr($ele_pos).">";
                 foreach( $ope['est'] as $esq => $est_lis ){
                   foreach( $est_lis as $est ){
@@ -3393,10 +3393,11 @@
       if( !isset($ope['lis']) ) $ope['lis']=[];
       $_.="
       <ul"._htm::atr(_ele::cla($ope['lis'],"bar",'ini')).">";
-        $ele_ite = $ope['ite'];
+        if( !isset($ope['ite']) ) $ope['ite'] = [];
         foreach( $dat as $ite ){ 
-          $pos++;          
-          _ele::cla($ele_ite,"pos ite-$pos",'ini');
+          $pos++;
+          $ele_ite = $ope['ite'];
+          _ele::cla($ele_ite,"pos ide-$pos",'ini');
           if( $pos != $pos_ver ) _ele::cla($ele_ite,DIS_OCU);
           $_.="
           <li"._htm::atr($ope['ite']).">";
@@ -3505,7 +3506,6 @@
       $_ = "";
       // elementos        
       _ele::cla($ope['lis'],"lis",'ini');
-      _ele::cla($ope['ite'],"ite",'ini');
       _ele::cla($ope['dep'],"lis",'ini');
       _ele::cla($ope['ope'],"ite",'ini');      
       // operadores
@@ -3513,8 +3513,9 @@
       // listado
       $_ .= "
       <ul"._htm::atr($ope['lis']).">";
-      foreach( $dat as $ide => $val ){
-
+      $ide = 0;
+      foreach( $dat as $val ){
+        $ide++;
         $_ .= _app_lis::val_pos( 1, $ide, $val, $ope );
       }$_ .= "
       </ul>";
@@ -3523,6 +3524,7 @@
     static function val_pos( int $niv, int | string $ide, string | array $val, array $ope ) : string {
     
       $ope_ite = $ope['ite'];      
+      _ele::cla($ope_ite,"pos ide-$ide",'ini');
       // con dependencia : evalúo rotacion de icono
       if( $val_lis = is_array($val) ){
         $ope_ico = $ope['ico'];
@@ -3535,7 +3537,7 @@
         _ele::cla($ope_ite,"sep");
       }
       $_ = "
-      <li"._htm::atr( isset($ope["ite-$niv"]) ? _ele::jun($ope_ite  ,$ope["ite-$niv"]) : $ope_ite  ).">
+      <li"._htm::atr( isset($ope["ite-$ide"]) ? _ele::jun($ope["ite-$ide"],$ope_ite) : $ope_ite  ).">
 
         ".( $val_lis ? _app_ope::tog( isset($val['ite']) ? $val['ite'] : $ide, $val['ite_ope'] ) : $val );
         

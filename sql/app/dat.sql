@@ -3,9 +3,7 @@
 -- Calendario
   DELETE FROM `app_dat` WHERE `esq` = 'api'
   ;
-  DELETE FROM `app_dat` WHERE `esq` = 'fec'
-  ;
-  INSERT INTO `app_dat` VALUES
+  DELETE FROM `app_dat` WHERE `esq` = 'fec'; INSERT INTO `app_dat` VALUES
     -- fecha
     ( 'fec', 'dat', '{
         "val": {
@@ -19,7 +17,7 @@
         "est":{
           "atr": [ "val" ]
         },
-        "opc": {
+        "_opc": {
           "ver": [ "dia", "sem", "mes" ],
           "num": [ "dia", "sem", "mes" ]
         }        

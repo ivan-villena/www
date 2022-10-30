@@ -17,23 +17,26 @@ class _api {
     }
   }
   // getter
-  static _( $ide, $dat ){
+  static _( $ide, $val ){
     let $_=[], $={};
 
-    if( $dat !== undefined ){
+    if( $val !== undefined ){
       switch( $ide ){
+      case 'fec': 
+        $_ = _fec.dat($val);
+        break;
       default:
-        if( typeof($dat)=='object' ){
-          $_ = $dat;
+        if( typeof($val)=='object' ){
+          $_ = $val;
         }
         // por posicion: 1-n
-        else if( _num.tip($dat) ){
+        else if( _num.tip($val) ){
 
-          $_ = $_api[$ide] && $_api[$ide][$.cod = _num.val($dat)-1] !== undefined ? $_api[$ide][$.cod] : {};
+          $_ = $_api[$ide] && $_api[$ide][$.cod = _num.val($val)-1] !== undefined ? $_api[$ide][$.cod] : {};
         }
         // por identificador
         else{
-          $_ = $_api[$ide] && $_api[$ide][$dat] !== undefined ? $_api[$ide][$dat] : {};
+          $_ = $_api[$ide] && $_api[$ide][$val] !== undefined ? $_api[$ide][$val] : {};
         }
         break;
       }
@@ -600,12 +603,12 @@ class _val {
     case '<<':  $_ = ( $dat  <  $val );  break;
     case '>=':  $_ = ( $dat >=  $val );  break;
     case '<=':  $_ = ( $dat <=  $val );  break;
-    case '^^':  $_ = _tex.dec(`^${_tex.cod($val)}`,     $opc.join('') ).test( $dat.toString() ); break;
-    case '!^':  $_ = _tex.dec(`^[^${_tex.cod($val)}]`,  $opc.join('') ).test( $dat.toString() ); break;
-    case '$$':  $_ = _tex.dec( `${_tex.cod($val)}$`,    $opc.join('') ).test( $dat.toString() ); break;
+    case '^^':  $_ = _tex.dec(`^${_tex.cod($val)}`, $opc.join('') ).test( $dat.toString() ); break;
+    case '!^':  $_ = _tex.dec(`^[^${_tex.cod($val)}]`, $opc.join('') ).test( $dat.toString() ); break;
+    case '$$':  $_ = _tex.dec( `${_tex.cod($val)}$`, $opc.join('') ).test( $dat.toString() ); break;
     case '!$':  $_ = _tex.dec( `[^${_tex.cod($val)}]$`, $opc.join('') ).test( $dat.toString() ); break;
-    case '**':  $_ = _tex.dec( `${_tex.cod($val)}`,     $opc.join('') ).test( $dat.toString() ); break;
-    case '!*':  $_ = _tex.dec( `[^${_tex.cod($val)}]`,  $opc.join('') ).test( $dat.toString() ); break;
+    case '**':  $_ = _tex.dec( `${_tex.cod($val)}`, $opc.join('') ).test( $dat.toString() ); break;
+    case '!*':  $_ = _tex.dec( `[^${_tex.cod($val)}]`, $opc.join('') ).test( $dat.toString() ); break;
     }
     return $_;
   }
@@ -1792,7 +1795,34 @@ class _num {
 }
 // Fecha : aaaa-mm-dia hh:mm:ss utc
 class _fec {
-
+  // getter
+  static _( $ide, $val ){
+    let $_ = [], $est = `fec_${$ide}`;
+    
+    if( $_api[$est] === undefined ){
+      // pido datos
+      // .. vuelvo a llamar esta funcion
+    }
+    if( !!($val) ){
+      $_ = $val;
+      switch( $ide ){
+      case 'dat':
+        $_ = _fec.dat($val);
+        break;
+      default:
+        if( typeof($val) != 'object' ){
+          if( Number($val) ) $val = parseInt($val)-1;
+          $_ = $_api[$est] && !!($_api[$est][$val]) ? $_api[$est][$val] : {};
+        }
+        break;
+      }
+    }
+    else{
+      $_ = $_api[$est] ? $_api[$est] : [];
+    }
+    return $_;
+  }
+  // objeto Date : por actual, numero, string u objeto propio
   static dec( $dat ){ 
     let $={},$_;
     $.tip = typeof($dat);
@@ -1819,7 +1849,7 @@ class _fec {
     }
     return $_;
   }
-
+  // codifico : "año/-mes/-dia" => [ año, mes, dia ]
   static cod( $val, $sep ){
     let $_ = [], $ = {};
     $.val = $val;
@@ -1836,7 +1866,7 @@ class _fec {
     }
     return $_;
   }
-
+  // armo objeto : val + año + mes + sem + dia + tie + hor + min + seg + ubi
   static dat( $val, $sep='/' ){
     let $_={}, $={};
   
@@ -1880,26 +1910,27 @@ class _fec {
     
     return $_;  
   }
-
+  // valido una fecha y devuelvo => "año/mes/dia" o "dia/mes/año"
   static val( $dat, ...$opc ){
     let $_=$dat, $={};
+
     $.fec_val = ( $año, $mes, $dia ) => {
       $_ = false;
       if( !!($año) && !!($mes) && !!($dia) ){
+
         if( ['1','3','5','7','8','10','12'].includes($mes) ){ 
           if( $dia > 0 && $dia <= 31){ 
             $_ = true; 
           }
         }else if( $mes != '2' ){ 
-          if( $dia > 0 && $dia <= 30){ 
-            $_ = true; 
-          }
-        }// CANTIDAD DE DIAS DE FEBRERO PARA ESE AÑO
+
+          if( $dia > 0 && $dia <= 30) $_ = true; 
+        }
+        // CANTIDAD DE DIAS DE FEBRERO PARA ESE AÑO
         else{
           let $val_dia = new Date( $año || new Date().getFullYear(),2,0 ).getDate();
-          if( $dia > 0 && $dia <= $val_dia){ 
-            $_ = true; 
-          }
+
+          if( $dia > 0 && $dia <= $val_dia) $_ = true; 
         }
       }
       return $_;
@@ -1935,7 +1966,7 @@ class _fec {
     }
     return $_;
   }
-
+  // formato por tipos : dyh + hor + dia + sem
   static tip( $dat, $tip='' ){
     let $_,$={};
     if( !$tip ){
@@ -1962,7 +1993,7 @@ class _fec {
     }
     return $_;
   }
-
+  // cantidades :  de dias en el mes, año...
   static cue( $tip, $dat ){
     let $={},$_ = _fec.dat($dat)
     switch( $tip ){
@@ -1991,7 +2022,7 @@ class _fec {
     }
     return $_;
   }
-
+  // valido fehcas : desde - hasta
   static ver( $val, $ini, $fin ){
     let $_ = true, $ = {};
     if( !!$val ){

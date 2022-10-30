@@ -1203,7 +1203,7 @@
               $dat_ide = is_object($dat_ide[$est]) ? $dat_ide[$est]->ide : $dat_ide[$est];
             }
             // agrego seleccion
-            if( $_dat->ide == $dat_ide ) $agr .= ( !empty($agr) ? ' ': '' ).'_val-pos _val-pos-bor';
+            if( $_dat->ide == $dat_ide ) $agr .= ( !empty($agr) ? ' ': '' ).'_val-pos _val-pos_bor';
           }
         }
       //////////////////////////////////////////////////////////////////////////    
@@ -1292,7 +1292,7 @@
         }
         // agrego posicion automatica-incremental
         $ope['_tab_pos']++;
-        _ele::cla($e,"pos ite-{$ope['_tab_pos']}",'ini');
+        _ele::cla($e,"pos ide-{$ope['_tab_pos']}",'ini');
       //////////////////////////////////////////////////////////////////////////
       // devuelvo posicion /////////////////////////////////////////////////////
       return "
@@ -1358,7 +1358,7 @@
       case 'cro':
         $_ = "
         <ul"._htm::atr($ele['sec']).">
-          <li class='pos ite-0'></li>";
+          <li class='pos ide-0'></li>";
           foreach( _hol::_('sel_cro_fam') as $_dep ){ 
             $_ .= _hol::ima("sel_cro_fam",$_dep,['fam'=>$_dep->ide]);
           } 
@@ -1381,7 +1381,7 @@
       case 'arm':
         $_ .= "
         <ul"._htm::atr($ele['sec']).">
-          <li class='pos ite-0'></li>
+          <li class='pos ide-0'></li>
           ";
           foreach( _hol::_('sel_arm_cel') as $_dep ){ 
             $_ .= _hol::ima("sel_arm_cel",$_dep,['cel'=>$_dep->ide]);
@@ -1419,7 +1419,7 @@
         _ele::cla($ele['cel'],"app_tab sel {$atr}",'ini');
         $_ = "
         <ul"._htm::atr($ele['cel']).">
-          <li class='pos ite-0'>"._hol::ima("sel_arm_cel", $_arm, ['htm'=>$_arm->ide,'class'=>'ima'] )."</li>";
+          <li class='pos ide-0'>"._hol::ima("sel_arm_cel", $_arm, ['htm'=>$_arm->ide,'class'=>'ima'] )."</li>";
           foreach( _hol::_('sel_arm_raz') as $_raz ){
             $_.= _hol_tab::_pos('sel',$sel,$ope,$ele);
             $sel++;
