@@ -5,7 +5,7 @@
   error_reporting(E_ALL);
   ini_set('display_errors', '1');
 
-  // directorios :: localhost / icpv.com.ar
+  // directorios :: localhost / icpv.com.ar  
   define('SYS_NAV', "http://{$_SERVER['HTTP_HOST']}/" );
 
   // Base de datos: local / produccion
@@ -20,14 +20,10 @@
   define('FON_SEL', "fon-sel" );
 
   // cargo sesion
-  if( !isset($_SESSION['usu']) ){    
-    $_SESSION['usu'] = 1;
-    $_SESSION['ubi'] = "America/Argentina/Buenos_Aires";
-  }
-  
+  $_SESSION['ubi'] = "America/Argentina/Buenos_Aires";  
+  if( !isset($_SESSION['usu']) ) $_SESSION['usu'] = 1;
   date_default_timezone_set( $_SESSION['ubi'] );
-
-  $sis_ini = time();
+  $sis_ini = time();  
   
   // cargo modulos
   require_once("./php/api.php");

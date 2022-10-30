@@ -984,11 +984,21 @@
     }// cuento columnas totales
     static function atr_cue( string | array $dat, array $ope=[] ) : int {
       $_ = 0;
+      
+      // atributos
       if( isset($ope['atr']) ){
         
         $_ = count($ope['atr']);
       }
-      // 1 estructura de la base
+      // joins
+      elseif( isset($ope['est']) ){
+        foreach( $ope['est'] as $esq => $est_lis ){  
+          foreach( $est_lis as $est ){
+            $dat_est = _app::est($esq,$est,$ope);
+            $_ += count($dat_est->atr);
+          }
+        }
+      }// 1 estructura de la base
       elseif( !( $obj_tip = _obj::tip($dat) ) ){
 
         $ide = _dat::ide($dat);
@@ -997,19 +1007,6 @@
 
         $_ = isset($dat_est->atr) ? count($dat_est->atr) : 0;
 
-      }
-      // n estructuras de la base
-      elseif( $obj_tip == 'nom' ){
-
-        foreach( $dat as $esq => $est_lis ){
-  
-          foreach( $est_lis as $est ){
-
-            $dat_est = _app::est($esq,$est);
-
-            $_ += count($dat_est->atr);
-          }
-        }
       }
       // por listado                    
       elseif( $obj_tip == 'pos' ){

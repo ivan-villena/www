@@ -552,7 +552,7 @@
 
       $_ = "
       <!-- Fecha del Calendario -->
-      <form class='val mar-1' ide='fec'>
+      <form class='val fec mar-1'>
 
         "._app::ico('fec_dia',[ 'eti'=>"label", 'for'=>"hol_val-fec", 'class'=>"mar_hor-1", 
           'title'=>"Desde aquí puedes cambiar la fecha..." 
@@ -567,7 +567,7 @@
       </form>
 
       <!-- Fecha del Sincronario -->
-      <form class='val mar-1' ide='sin'>
+      <form class='val sin mar-1'>
         
         <label>N<c>.</c>S<c>.</c></label>
 
@@ -1024,25 +1024,25 @@
     // armo tablero
     static function _dat( string $est, string $atr, array $ope = [], array $ele = [] ) : array {
 
-      $_ = [ 
-        'esq'=>"hol", 
-        'ide'=>$est, 
-        'est'=> $est = $est.( !empty($atr) ? "_$atr" : $atr ) 
-      ];
-
-      // cargo elementos del tablero
-      $ele = _app::tab('hol',$est,$ele);      
-      foreach( ['sec','pos'] as $v ){ if( !isset($ele[$v]) ){ $ele[$v]=[]; } }
-
-      // opciones
-      $opc = isset($ope['opc']) ? $ope['opc'] : [];
-
-      // operador de opciones
-      if( !empty($ope['pos']['bor']) ) _ele::cla($ele['pos'],"bor-1");
+      $_ = [ 'esq'=>"hol", 'ide'=>$est, 'est'=> $est = $est.( !empty($atr) ? "_$atr" : $atr ) ];
       
+      // cargo elementos del tablero
+      $ele = _app::tab('hol',$est,$ele);
+      foreach( ['sec','pos'] as $v ){ if( !isset($ele[$v]) ){ $ele[$v]=[]; } }
+      if( empty($ele['sec']['class']) || !preg_match("/app_tab/",$ele['sec']['class']) ) _ele::cla($ele['sec'],
+        "app_tab {$_['ide']}_{$atr}",'ini'
+      );
+      // opciones
+      if( !isset($ope['opc']) ) $ope['opc'] = [];
+      $opc = $ope['opc'];      
+      // contador de posiciones
+      $ope['_tab_pos'] = 0;
+      // items
+      if( !isset($ope['eti']) ) $ope['eti'] = "li";
+      // operador de opciones
+      if( !empty($ope['pos']['bor']) ) _ele::cla($ele['pos'],"bor-1");      
       // identificadores de datos
       if( is_object( $ide = !empty($ope['ide']) ? $ope['ide'] : 0 ) ) $ide = $ide->ide;
-
       // valor por posicion 
       $val = NULL;
       if( !empty($ope['val']['pos']) ){
@@ -1066,80 +1066,62 @@
     }// Seccion: onda encantada + castillo => fondos + pulsares + orbitales
     static function _sec( string $tip, array $ope=[], array $ele=[] ) : string {
       $_ = "";
-
       $_tip = explode('_',$tip);
-
       $_tab = _app::tab('hol',$_tip[0])->ele;
-
       $_pul = ['dim'=>'','mat'=>'','sim'=>''];
-
       // opciones por seccion
       $orb_ocu = !empty($ope['sec']['cas-orb']) ? '' : 'dis-ocu';
       $col_ocu = !empty($ope['sec']['ond-col']) ? '' : ' fon-0';
-
       // pulsares por posicion
       if( in_array($_tip[0],['ton','cas']) && isset($ope['val']['pos']) ){
         
         $_val = $ope['val']['pos'];
 
-        if( 
-          ( is_array($_val) && isset($_val['kin']->nav_ond_dia) ) 
-          || 
-          ( is_object($_val) && isset($_val->ide) ) 
-        ){
+        if( ( is_array($_val) && isset($_val['kin']->nav_ond_dia) ) || ( is_object($_val) && isset($_val->ide) ) ){
 
           $_ton = _hol::_('ton', is_object($_val) ? intval($_val->ide) : intval($_val['kin']->nav_ond_dia) );
-            
           foreach( $_pul as $i => $v ){
-            
             if( !empty($ope['opc']["ton-pul_{$i}"]) ){
               $_pul[$i] = _hol::ima("ton_pul_[$i]", $_ton["pul_{$i}"], ['class'=>'fon'] );
             }
           }
         }
       }
-
       switch( $_tip[0] ){
-      // onda encantada
+      // oraculo
+      case 'par':
+        break;
+      // onda
       case 'ton':
         // fondo: imagen
         $_ .= "
-        <div"._htm::atr(_ele::jun($_tab['ima'],[ 'class'=>DIS_OCU ])).">
-        </div>";
+        <{$ope['eti']}"._htm::atr(_ele::jun($_tab['ima'],[ 'class'=>DIS_OCU ]))."></{$ope['eti']}>";
         // fondos: color
         $_ .= "
-        <div"._htm::atr(_ele::jun($_tab['fon'],[ 'class'=>"{$col_ocu}" ])).">
-        </div>";
+        <{$ope['eti']}"._htm::atr(_ele::jun($_tab['fon'],[ 'class'=>"{$col_ocu}" ]))."></{$ope['eti']}>";
         // pulsares
         foreach( ['dim','mat','sim'] as $ide ){ $_ .= "
-          <div"._htm::atr(_ele::jun($_tab['ond'],[ 'data-pul'=>$ide ])).">
-            {$_pul[$ide]}
-          </div>";
+          <{$ope['eti']}"._htm::atr(_ele::jun($_tab['ond'],[ 'data-pul'=>$ide ])).">{$_pul[$ide]}</{$ope['eti']}>";
         }
         break;
-      // castillo del destino
+      // castillo
       case 'cas':
         // fondos: imagen
         for( $i = 1; $i <= 4; $i++ ){ $_ .= "
-          <div"._htm::atr(_ele::jun($_tab["ond-{$i}"],[ $_tab['ima'], [ 'class'=>DIS_OCU ] ])).">
-          </div>";
+          <{$ope['eti']}"._htm::atr(_ele::jun($_tab["ond-{$i}"],[ $_tab['ima'], [ 'class'=>DIS_OCU ] ]))."></{$ope['eti']}>";
         }
         // fondos: color
         for( $i = 1; $i <= 4; $i++ ){ $_ .= "
-          <div"._htm::atr(_ele::jun($_tab["ond-{$i}"],[ $_tab['fon'], [ 'class'=>"fon_col-4-{$i}{$col_ocu}" ] ])).">
-          </div>";
+          <{$ope['eti']}"._htm::atr(_ele::jun($_tab["ond-{$i}"],[ $_tab['fon'], [ 'class'=>"fon_col-4-{$i}{$col_ocu}" ] ]))."></{$ope['eti']}>";
         }        
         // bordes: orbitales
-        for( $i=1; $i <= ($tip == 'cas_cir' ? 8 : 5); $i++ ){ $_ .= "
-          <div"._htm::atr(_ele::jun(['class'=>$orb_ocu ],[ $_tab['orb'], $_tab["orb-{$i}"] ])).">
-          </div>";
+        for( $i = 1; $i <= ($tip == 'cas_cir' ? 8 : 5); $i++ ){ $_ .= "
+          <{$ope['eti']}"._htm::atr(_ele::jun(['class'=>$orb_ocu ],[ $_tab['orb'], $_tab["orb-{$i}"] ]))."></{$ope['eti']}>";
         }        
         // fondos: pulsares
-        for( $i=1; $i<=4; $i++ ){
+        for( $i = 1; $i <= 4; $i++ ){
           foreach( ['dim','mat','sim'] as $ide ){ $_ .= "
-            <div"._htm::atr(_ele::jun($_tab['ond'],[ [ 'data-pul'=>$ide ] , $_tab["ond-{$i}"] ])).">
-              {$_pul[$ide]}
-            </div>";
+            <{$ope['eti']}"._htm::atr(_ele::jun($_tab['ond'],[ [ 'data-pul'=>$ide ] , $_tab["ond-{$i}"] ])).">{$_pul[$ide]}</{$ope['eti']}>";
           }
         }
         break;      
@@ -1148,24 +1130,23 @@
     }// Posicion: datos + titulos + contenido[ ima, num, tex]
     static function _pos( string $est, mixed $val, array &$ope, array $ele ) : string {
       $esq = 'hol';
-
-      // recibo objeto o identificador
-      $val_ide = $val;
-      if( is_object($val) ){
+      // recibo objeto 
+      if( is_object( $val_ide = $val ) ){
         $_dat = $val;
         $val_ide = intval($_dat->ide);
-      }
+      }// o identificador
       else{
         $_dat = _hol::_($est,$val);
       }
-
       // seccion
       $_val['sec_par'] = !empty($ope['sec']['par']) ? 'sec_par' : FALSE;
       // posicion
       $_val['pos_dep'] = !empty($ope['sec']['pos_dep']);// patrones
       $_val['pos_col'] = !empty($ope['pos']['col']) ? $ope['pos']['col'] : FALSE;// color
-      $_val['pos_ima'] = !empty($ope['pos']['ima']) ? $ope['pos']['ima'] : FALSE;// imagen
-      
+      $_val['pos_ima'] = !empty($ope['pos']['ima']) ? $ope['pos']['ima'] : FALSE;// imagen      
+      // portales 
+      $_val['kin_pag'] = !empty($ope['pag']['kin']);
+      $_val['psi_pag'] = !empty($ope['pag']['psi']);
       //////////////////////////////////////////////////////////////////////////
       // cargo datos ///////////////////////////////////////////////////////////
 
@@ -1202,17 +1183,15 @@
           }
         }    
       //////////////////////////////////////////////////////////////////////////
-      // posiciones del tablero principal //////////////////////////////////////    
-
+      // .posiciones del tablero principal /////////////////////////////////////
         $agr = "";    
         // omito dependencias
         if( !$_val['pos_dep'] ){
 
-          $agr = "pos";
+          $agr = "app_ope";
 
           if( $_val['sec_par'] ){ 
-            $agr .= !empty($agr) ? ' ': '';
-            $agr .= $_val['sec_par']; 
+            $agr .= ( !empty($agr) ? ' ': '' ).$_val['sec_par']; 
             $par_ima = !empty($_val['pos_ima']) ? $_val['pos_ima'] : "{$esq}.{$est}.ide";
           }
 
@@ -1223,11 +1202,8 @@
             if( is_array($dat_ide) && isset($dat_ide[$est]) ){
               $dat_ide = is_object($dat_ide[$est]) ? $dat_ide[$est]->ide : $dat_ide[$est];
             }
-
-            if( $_dat->ide == $dat_ide ){
-              $agr .= !empty($agr) ? ' ': ''; 
-              $agr .= '_val-pos _val-pos-bor';
-            }
+            // agrego seleccion
+            if( $_dat->ide == $dat_ide ) $agr .= ( !empty($agr) ? ' ': '' ).'_val-pos _val-pos-bor';
           }
         }
       //////////////////////////////////////////////////////////////////////////    
@@ -1239,6 +1215,7 @@
         if( isset($e["data-hol_kin"]) ){
           $_kin = _hol::_('kin',$e["data-hol_kin"]);
           $pos_tit []= _app_dat::val('tit',"hol.kin",$_kin);
+          if( $_val['kin_pag'] && !empty($_kin->pag) ) $agr .= " _hol-pag_kin";
         }
         if( isset($e["data-hol_sel"]) ){
           $pos_tit []= _app_dat::val('tit',"hol.sel",$e["data-hol_sel"]);
@@ -1248,7 +1225,11 @@
         }
         if( isset($e["data-hol_psi"]) ){
           $_psi = _hol::_('psi',$e["data-hol_psi"]);
-          $pos_tit []= _app_dat::val('tit',"hol.psi",$_psi);
+          $pos_tit []= _app_dat::val('tit',"hol.psi",$_psi);          
+          if( $_val['psi_pag'] ){
+            $_psi->tzo = _hol::_('kin',$_psi->tzo);
+            if( !empty($_psi->tzo->pag) ) $agr .= " _hol-pag_psi";
+          }
         }
         if( isset($e["data-hol_rad"]) ){
           $pos_tit []= _app_dat::val('tit',"hol.rad",$e["data-hol_rad"]);
@@ -1273,8 +1254,6 @@
             unset($ele_sec['style']);
           }
           
-          // $ope['sec']['par'] = $ope['sec']['par'] - 1;
-
           $htm = _hol_tab::$est('par',[
             'ide'=>$_dat,
             'sec'=>[ 'par'=>$ope['sec']['par'] - 1, 'pos_dep'=>1 ],// fuera de posicion principal ( [pos].pos )
@@ -1282,12 +1261,11 @@
           ],[
             'sec'=>$ele_sec
           ]);
-
         }
         // genero posicion
         elseif( !empty($_dat) ){
           // color de fondo
-          if( $_val['pos_col'] ){            
+          if( $_val['pos_col'] ){
             $_ide = _dat::ide($_val['pos_col']);
             if( 
               isset($e["data-{$_ide['esq']}_{$_ide['est']}"]) 
@@ -1313,63 +1291,56 @@
           }
         }
         // agrego posicion automatica-incremental
-        if( !$_val['pos_dep'] ){
-
-          if( !isset($e['pos']) ){
-            if( empty($ope['_tab_pos']) ){
-              $ope['_tab_pos'] = 0;
-            }
-            $ope['_tab_pos']++;
-            $e['pos'] = $ope['_tab_pos'];
-          }
-        }
+        $ope['_tab_pos']++;
+        _ele::cla($e,"pos ite-{$ope['_tab_pos']}",'ini');
       //////////////////////////////////////////////////////////////////////////
       // devuelvo posicion /////////////////////////////////////////////////////
-      
-      $pos_eti = isset($ope['eti']) ? $ope['eti'] : 'div';
-
       return "
-      <{$pos_eti}"._htm::atr($e).">
-        {$htm}
-      </{$pos_eti}>";
+      <{$ope['eti']}"._htm::atr($e).">{$htm}</{$ope['eti']}>";
     }
 
     // por estructuras:
     static function rad( string $atr, array $ope = [], array $ele = [] ) : string {
       extract( _hol_tab::_dat('rad',$atr,$ope,$ele) );
-
+      $_ = "";
       return $_;
     }
     static function ton( string $atr, array $ope = [], array $ele = [] ) : string {
       extract( _hol_tab::_dat('ton',$atr,$ope,$ele) );
-      $_tab = _app::tab('hol','ton')->ele;
-      $_ .= "
-      <div"._htm::atr(_ele::jun($ele['sec'],$_tab['sec'])).">
-        <div fon='ima'></div>
-        "._hol_tab::_sec('ton',$ope)
-        ;
-        $ele_pos = isset($_tab['pos']) ? _ele::jun($_tab['pos'],$ele['pos']) : $ele['pos'];
-
-        foreach( _hol::_('ton') as $_ton ){
-          $i = "pos-{$_ton->ide}";
-          $ele['pos'] = _ele::jun($_tab[$i],[ $ele_pos, isset($ele[$i]) ? $ele[$i] : [] ]);
-          $_ .= _hol_tab::_pos('ton',$_ton,$ope,$ele);
-        } $_ .= "
-      </div>";
+      $_ = "";
+      switch( $atr ){
+      // onda encantada
+      case 'ond': 
+        $_tab = _app::tab('hol','ton')->ele;
+        $_ .= "
+        <ul"._htm::atr(_ele::jun($_tab['sec'],$ele['sec'])).">
+          <li fon='ima'></li>
+          "._hol_tab::_sec('ton',$ope)
+          ;
+          $ele_pos = isset($_tab['pos']) ? _ele::jun($_tab['pos'],$ele['pos']) : $ele['pos'];
+          
+          foreach( _hol::_('ton') as $_ton ){
+            $ide = "pos-{$_ton->ide}";
+            $ele['pos'] = _ele::jun($_tab[$ide],[ $ele_pos, isset($ele[$ide]) ? $ele[$ide] : [] ]);
+            $_ .= _hol_tab::_pos('ton',$_ton,$ope,$ele);
+          } $_ .= "
+        </ul>";
+        break;
+      }
       return $_;
     }
     static function sel( string $atr, array $ope = [], array $ele = [] ) : string {
       extract( _hol_tab::_dat('sel',$atr,$ope) );
-
+      $_ = "";
       switch( $atr ){
       // codigo
-      case 'cod': 
+      case 'cod':
         $_ = "
-        <div"._htm::atr($ele['sec']).">";
+        <ul"._htm::atr($ele['sec']).">";
           foreach( _hol::_('sel') as $_sel ){ 
             $agr = ( !!$ide && $_sel->ide == $ide ) ? ' _val-pos' : '';
             $_ .= "
-            <div class='sec{$agr}'>
+            <li class='sec{$agr}'>
               <ul class='val jus-cen'>
                 "._hol::ima("sel",$_sel,['eti'=>"li"])."
                 "._hol::ima("sel_cod",$_sel->cod,['eti'=>"li",'class'=>'tam-2'])."
@@ -1379,19 +1350,15 @@
                 <br>{$_sel->acc}
                 <br>{$_sel->pod}
               </p>
-            </div>";
+            </li>";
           } $_ .= "
-        </div>";        
+        </ul>";        
         break;
       // colocacion cromática
       case 'cro':
-
-        $e = $ele['sec'];
-
-        _ele::cla($e,"sel");         
         $_ = "
-        <div"._htm::atr($e).">
-          <div pos='0'></div>";
+        <ul"._htm::atr($ele['sec']).">
+          <li class='pos ite-0'></li>";
           foreach( _hol::_('sel_cro_fam') as $_dep ){ 
             $_ .= _hol::ima("sel_cro_fam",$_dep,['fam'=>$_dep->ide]);
           } 
@@ -1402,20 +1369,19 @@
             $_sel = _hol::_('sel', ( $i == 0 ) ? 20 : $i);
             $agr = ( !!$ide && $_sel->ide == $ide ) ? ' _val-pos' : '' ;
             $e = $ele['pos'];
-            _ele::cla($e,"pos{$agr}");             
-            $e['pos'] = $_sel->ide;
+            _ele::cla($e,"pos-".intval($_sel->ide)."{$agr}");                         
             $e['hol-sel'] = $_sel->ide; $_ .= "
-            <div"._htm::atr($e).">
+            <li"._htm::atr($e).">
               "._hol::ima("sel",$_sel,[ 'onclick'=>isset($ele['pos']['_eje']) ? $ele['pos']['_eje'] : "" ])."
-            </div>";
+            </li>";
           } $_ .= "
-        </div>";        
+        </ul>";        
         break;
       // colocacion armónica
       case 'arm':
         $_ .= "
-        <div"._htm::atr($ele['sec']).">
-          <div pos='0'></div>
+        <ul"._htm::atr($ele['sec']).">
+          <li class='pos ite-0'></li>
           ";
           foreach( _hol::_('sel_arm_cel') as $_dep ){ 
             $_ .= _hol::ima("sel_arm_cel",$_dep,['cel'=>$_dep->ide]);
@@ -1426,106 +1392,98 @@
           foreach( _hol::_('sel') as $_sel ){
             $agr = ( !empty($ide) && $_sel->ide == $ide ) ? ' _val-pos' : '' ;
             $e = $ele['pos'];
-            _ele::cla($e,"pos{$agr}"); 
-            $e['pos'] = $_sel->ide;
+            _ele::cla($e,"pos-".intval($_sel->ide)."{$agr}",'ini');             
             $e['sel'] = $_sel->ide; $_ .= "
-            <div"._htm::atr($e).">
+            <li"._htm::atr($e).">
               "._hol::ima("sel",$_sel,[ 'onclick'=>isset($ele['pos']['onclick']) ? $ele['pos']['onclick'] : NULL ])."
-            </div>";
+            </li>";
           }
           $_ .= "
-        </div>";        
+        </ul>";        
         break;
       // tablero del oráculo
-      case 'arm_tra': 
+      case 'arm_tra':
         $_ .= "
-        <div"._htm::atr($ele['sec']).">";
-          for( $i=1; $i<=5; $i++ ){             
+        <ul"._htm::atr($ele['sec']).">";
+          for( $i=1; $i<=5; $i++ ){
             $ope['ide'] = $i;
             $_ .= _hol_tab::kin('arm_cel',$ope,$ele);
           } $_ .= "
-        </div>";        
-        break;
+        </ul>";        
+        break;      
       // célula del tiempo para el oráculo
       case 'arm_cel':
-        
         $_arm = _hol::_('sel_arm_cel',$ide);
         
-        $e = isset($ope['cel']) ? $ope['cel'] : [];
-
-        _ele::cla($e,"sel");
-        $e['title'] = _app_dat::val('tit',"hol.{$est}",$_arm); $_ = "
-        <div"._htm::atr($e).">
-          <div pos='00'>
-            "._hol::ima("sel_arm_cel", $_arm, ['htm'=>$_arm->ide,'class'=>'ima'] )."
-          </div>
-          ";
+        $ele['cel']['title'] = _app_dat::val('tit',"hol.{$est}",$_arm); 
+        _ele::cla($ele['cel'],"app_tab sel {$atr}",'ini');
+        $_ = "
+        <ul"._htm::atr($ele['cel']).">
+          <li class='pos ite-0'>"._hol::ima("sel_arm_cel", $_arm, ['htm'=>$_arm->ide,'class'=>'ima'] )."</li>";
           foreach( _hol::_('sel_arm_raz') as $_raz ){
             $_.= _hol_tab::_pos('sel',$sel,$ope,$ele);
             $sel++;
           } $_ .= "
-        </div>";        
+        </ul>";        
         break;
       }
       return $_;
     }  
     static function lun( string $atr, array $ope = [], array $ele = [] ) : string {
       extract( _hol_tab::_dat('lun',$atr,$ope,$ele) );
-
+      $_ = "";
       return $_;
     }
     static function cas( string $atr, array $ope = [], array $ele = [] ) : string {
       extract( _hol_tab::_dat('cas',$atr,$ope,$ele) );
-
-      $_tab = _app::tab('hol','cas')->ele;
-
-      $_ = "
-      <div"._htm::atr(_ele::jun($_tab['sec'],$ele['sec'])).">
-        <div fon='ima'></div>
-        <div"._htm::atr( isset($ele['pos-00']) ? _ele::jun($_tab['pos-00'],$ele['pos-00']) : $_tab['pos-00'] )."></div>
-        "._hol_tab::_sec('cas',$ope)
-        ;
-        $ele_pos = $ele['pos'];
-        foreach( _hol::_('cas') as $_cas ){
-          $i = "pos-{$_cas->ide}";
-          $ele['pos'] = _ele::jun($_tab[$i],[ $ele_pos, isset($ele[$i]) ? $ele[$i] : [] ]);
-          $_ .= _hol_tab::_pos('cas',$_cas,$ope,$ele);
-        } $_ .= "
-      </div>";
-
+      $_ = "";      
+      switch( $atr ){
+      // x 4 ondas encantadas
+      case 'ond': 
+        $_tab = _app::tab('hol','cas')->ele;
+        $_ = "
+        <ul"._htm::atr(_ele::jun($_tab['sec'],$ele['sec'])).">
+          <li fon='ima'></li>
+          <li"._htm::atr( isset($ele['pos-00']) ? _ele::jun($_tab['pos-00'],$ele['pos-00']) : $_tab['pos-00'] )."></li>
+          "._hol_tab::_sec('cas',$ope)
+          ;
+          $ele_pos = $ele['pos'];
+          foreach( _hol::_('cas') as $_cas ){
+            $ide = "pos-{$_cas->ide}";
+            $ele['pos'] = _ele::jun($_tab[$ide],[ $ele_pos, isset($ele[$ide]) ? $ele[$dei] : [] ]);
+            $_ .= _hol_tab::_pos('cas',$_cas,$ope,$ele);
+          } $_ .= "
+        </ul>";
+        break;
+      }
       return $_;
     }
     static function kin( string $atr, array $ope = [], array $ele = [] ) : string {
       extract( _hol_tab::_dat('kin',$atr,$ope,$ele) );
       $_ = "";
-      
       switch( $atr ){
       // tzolkin
       case 'tzo':
         $ton_htm = isset($ope['sec']['kin-ton']);
         $ton_val = !empty($ope['sec']['kin-ton']);
-        $ele_ton=[ 'sec'=>'ton', 'class'=> $ton_val ? "" : "dis-ocu" ];
+        $ele_ton=[ 'class'=> "sec -ton".( $ton_val ? "" : " dis-ocu" ) ];
         $sel_htm = isset($ope['sec']['kin-sel']);
         $sel_val = !empty($ope['sec']['kin-sel']);
-        $ele_sel = [ 'sec'=>'sel', 'class' => $sel_val ? "" : "dis-ocu" ];
-        $kin_pag = !empty($ope['pag']['kin']);
+        $ele_sel = [ 'class' => "sec -sel".( $sel_val ? "" : " dis-ocu" ) ];
         // ajusto grilla
         if( $ton_val ) _ele::css($ele['sec'],"grid: repeat(21,1fr) / repeat(13,1fr);");
+
         $_ = "
-        <div"._htm::atr($ele['sec']).">";
+        <ul"._htm::atr($ele['sec']).">";
           // 1° columna
           if( $ton_htm && $sel_htm ){ $_ .= "
-            <div"._htm::atr([ 'sec'=>'ini', 'class' => $ton_val && $sel_val ? "" : "dis-ocu" ]).">
-            </div>";
+            <li"._htm::atr([ 'class' => "sec -ini".( $ton_val && $sel_val ? "" : " dis-ocu" )])."></li>";
           }
-          if( $sel_htm ){
-            // filas por sellos            
+          // filas por sellos
+          if( $sel_htm ){            
             foreach( _hol::_('sel') as $_sel ){
-              $ele_sel['data-ide'] = $_sel->ide; 
-              $_ .= "
-              <div"._htm::atr($ele_sel).">
-                "._hol::ima("sel",$_sel)."
-              </div>"; 
+              $ele_sel['data-ide'] = $_sel->ide; $_ .= "
+              <li"._htm::atr($ele_sel).">"._hol::ima("sel",$_sel)."</li>"; 
             }
           }
           // 260 kines por 13 columnas 
@@ -1536,38 +1494,27 @@
             $kin_arm_tra = intval($_kin->arm_tra);
             if( $ton_htm && $kin_arm != $kin_arm_tra ){
               $ele_ton['data-ide'] = $_kin->arm_tra; $_ .= "
-              <div"._htm::atr($ele_ton).">
-                "._hol::ima("ton",$_kin->arm_tra)."
-              </div>";
+              <li"._htm::atr($ele_ton).">"._hol::ima("ton",$_kin->arm_tra)."</li>";
               $kin_arm = $kin_arm_tra;
             }
             // posicion
             if( isset($ele["pos-{$_kin->ide}"]) ) $ele['pos'] = _ele::jun( $ele["pos-{$_kin->ide}"], $ele['pos'] );
-            // marco portales PAG
-            if( $kin_pag && !empty($_kin->pag) ){
-              if( $kin_pag ) _ele::cla($ele['pos'],"_hol-pag_kin");
-            }
             $_ .= _hol_tab::_pos('kin',$_kin,$ope,$ele);
             $ele['pos'] = $ele_pos;
           } $_ .= "
-        </div>";        
+        </ul>";        
         break;
       // oráculo del destino por tipo de pareja
       case 'par': 
-        $_tab = _app::tab('hol','cro')->ele;
-        
         if( empty($ide) ) $ide = 1;
-
-        $_kin = is_object($ide) ? $ide : _hol::_('kin',$ide); 
-  
+        $_tab = _app::tab('hol','cro')->ele;        
+        $_kin = is_object($ide) ? $ide : _hol::_('kin',$ide);   
         $ele_pos = isset($_tab['pos']) ? _ele::jun($_tab['pos'],$ele['pos']) : $ele['pos'];
 
         $_ = "
-        <div"._htm::atr(_ele::jun($_tab['sec'],$ele['sec'])).">";
-          foreach( _hol::_('sel_par') as $_par  ){               
-            
+        <ul"._htm::atr(_ele::jun($_tab['sec'],$ele['sec'])).">";
+          foreach( _hol::_('sel_par') as $_par  ){
             $par_ide = $_par->ide;
-
             $par_kin = ( $par_ide == 'des' ) ? $_kin : _hol::_('kin',$_kin->{"par_{$par_ide}"});
             // combino elementos :
             $ele['pos'] = _ele::jun($_tab["pos-{$_par->pos}"], [ 
@@ -1576,309 +1523,275 @@
             _ele::cla($ele['pos'],"pos-{$par_ide}",'ini');
             $_ .= _hol_tab::_pos('kin',$par_kin,$ope,$ele);
           }$_ .="
-        </div>";        
+        </ul>";        
         break;
       // castillo del destino por familia terrestre
       case 'cas':
-        $_tab = _app::tab('hol','cas')->ele;
-      
-        $_fam = _hol::_('sel_cro_fam',$ide);
-  
-        $_fam_kin = [ 1 => 1, 2 => 222, 3 => 0, 4 => 0, 5 => 105 ]; 
-        
-        $_="
-        <div"._htm::atr(_ele::jun($_tab['sec'],$ele['sec'])).">
-          <div"._htm::atr( isset($ele['pos-00']) ? _ele::jun($_tab['pos-00'],$ele['pos-00']) : $_tab['pos-00'] ).">
-          </div>"
+        $_tab = _app::tab('hol','cas')->ele;      
+        $_fam = _hol::_('sel_cro_fam',$ide);  
+        $_fam_kin = [ 1 => 1, 2 => 222, 3 => 0, 4 => 0, 5 => 105 ];
+
+        $_ = "
+        <ul"._htm::atr(_ele::jun($_tab['sec'],$ele['sec'])).">
+          <li"._htm::atr( isset($ele['pos-00']) ? _ele::jun($_tab['pos-00'],$ele['pos-00']) : $_tab['pos-00'] )."></li>"
           ._hol_tab::_sec('cas',$ope)
           ;
-          $kin = intval($_fam['kin']);
-          
           $ele_pos = $ele['pos'];
-
+          $kin = intval($_fam['kin']);          
           foreach( _hol::_('cas') as $_cas ){
             $_kin = _hol::_('kin',$kin);
-            $i = "pos-{$_cas->ide}";
-            $ele['pos'] = _ele::jun($_tab[$i], [ $ele_pos, isset($ele[$i]) ? $ele[$i] : [] ]);
+            $ide = "pos-{$_cas->ide}";
+            $ele['pos'] = _ele::jun($_tab[$ide], [ $ele_pos, isset($ele[$ide]) ? $ele[$ide] : [] ]);
             $_ .= _hol_tab::_pos('kin',$kin,$ope,$ele);
-            $kin = $kin + 105; 
-            if( $kin > 260 ){ $kin = $kin - 260; }
+            $kin = _num::ran($kin + 105, 260);
           } $_ .= "
-        </div>";          
+        </ul>";          
+        break;
+      // nave del tiempo : 5 castillos + 20 ondas
+      case 'nav':
+        foreach(['cas','ond'] as $i ){ if( !isset($ele[$i]) ){ $ele[$i]=[]; } } 
+        $_tab = _app::tab('hol','cro')->ele;        
+        $ele_cas = $ele['cas'];
+
+        $_ = "
+        <ul"._htm::atr(_ele::jun($_tab['sec'],$ele['sec'])).">";
+          foreach( _hol::_('kin_nav_cas') as $cas => $_cas ){
+            $ide = "pos-{$_cas->ide}";
+            $ele['cas'] = _ele::jun($_tab[$ide],[ $ele_cas, isset($ele[$ide]) ? $ele[$ide] : [] ]);
+            $ope['ide'] = $_cas->ide;
+            $_ .= _hol_tab::kin('nav_cas',$ope,$ele);
+          } $_ .= "
+        </ul>";
+        break;
+      case 'nav_cas':
+        foreach(['cas','ond'] as $i ){ if( !isset($ele[$i]) ){ $ele[$i]=[]; } } 
+        $_cas = _hol::_($est,$ide);        
+        $_tab = _app::tab('hol','cas')->ele;
+        
+        $ond_ini = ( ( $ide - 1 ) * 4 ) + 1;
+        $ond_fin = $ond_ini + 4;
+        $ele['cas']['title'] = _app_dat::val('tit',"hol.{$est}",$_cas);
+        for( $ond = $ond_ini; $ond < $ond_fin; $ond++ ){ 
+          $_ond = _hol::_('kin_nav_ond',$ond);
+          $ele['cas']['title'] .= "\n".$_ond->enc_des;
+        }
+        _ele::cla($ele['cas'],"app_tab kin {$atr} fon_col-5-{$ide}".( empty($ope['sec']['cas-col']) ? ' fon-0' : '' ),'ini');
+        $_ = "
+        <ul"._htm::atr( _ele::jun($_tab['sec'],$ele['cas']) ).">
+          <li"._htm::atr(_ele::jun($_tab['pos-00'],[ [ 'class'=>"bor_col-5-{$ide} fon_col-5-{$ide}" ], isset($ele['pos-00']) ? $ele['pos-00'] : [] ])).">
+            {$ide}
+          </li>
+          "._hol_tab::_sec('cas',$ope);
+          
+          $kin = ( ( $ide - 1 ) * 52 ) + 1;
+          $ele_pos = _ele::jun($_tab['pos'],$ele['pos']);
+          foreach( _hol::_('cas') as $_cas ){ 
+            $ide = "pos-{$_cas->ide}";
+            $ele['pos'] = _ele::jun($_tab[$ide],[ $ele_pos, isset($ele[$ide]) ? $ele[$ide] : [] ]);
+            $_ .= _hol_tab::_pos('kin',$kin,$ope,$ele);
+            $kin++;
+          } $_ .= "
+        </ul>";        
+        break;
+      case 'nav_ond':
+        foreach(['cas','ond'] as $i ){ if( !isset($ele[$i]) ){ $ele[$i]=[]; } } 
+        $_ond = _hol::_($est,$ide); 
+        $_cas = _hol::_('kin_nav_cas',$_ond->nav_cas);
+        $_tab = _app::tab('hol','ton')->ele;
+
+        $ele['ond']['title'] = _app_dat::val('tit',"hol.kin_nav_cas",$_cas)." .\n{$_ond->enc_des}"; 
+        _ele::cla($ele['ond'],"app_tab kin {$atr}",'ini');
+        $_ = "
+        <ul"._htm::atr(_ele::jun($_tab['sec'],$ele['ond'])).">
+          "._hol_tab::_sec('ton',$ope)
+          ;
+          $kin = ( ( $ide - 1 ) * 13 ) + 1;
+          $ele_pos = _ele::jun($_tab['pos'],$ele['pos']);
+          foreach( _hol::_('ton') as $_ton ){
+            $ide = "pos-{$_ton->ide}";
+            $ele['pos'] = _ele::jun($_tab[$ide],[ $ele_pos, isset($ele[$ide]) ? $ele[$ide] : [] ]);
+            $_ .= _hol_tab::_pos('kin',$kin,$ope,$ele);
+            $kin++;
+          } $_ .= "
+        </ul>";        
+        break;      
+      // armónicas : 13 trayectorias + 65 células
+      case 'arm':
+        foreach(['tra','cel'] as $i ){ if( !isset($ele[$i]) ){ $ele[$i]=[]; } } 
+        $_tab = _app::tab('hol','ton')->ele;
+
+        $_ = "
+        <ul"._htm::atr(_ele::jun($_tab['sec'],$ele['sec'])).">
+          "._hol_tab::_sec('ton',$ope)
+          ;
+          $ele_tra = isset($_tab['pos']) ? _ele::jun($ele['tra'],$_tab['pos']) : $ele['tra'];
+          foreach( _hol::_('kin_arm_tra') as $_tra ){ 
+            $ide = "pos-{$_tra->ide}";
+            $ele['tra'] = _ele::jun($_tab[$ide],[ $ele_tra, isset($ele[$ide]) ? $ele[$ide] : [] ]);
+            $ope['ide'] = $_tra->ide;
+            $_ .= _hol_tab::kin('arm_tra',$ope,$ele);
+          } $_ .= "
+        </ul>";        
+        break;
+      case 'arm_tra':
+        foreach(['tra','cel'] as $i ){ if( !isset($ele[$i]) ){ $ele[$i]=[]; } }
+        $_tra = _hol::_('kin',$ide);
+        $_tab = _app::tab('hol','cro')->ele;
+
+        _ele::cla($ele['tra'],"app_tab kin {$atr}",'ini');
+        $_ = "
+        <ul"._htm::atr(_ele::jun($_tab['sec'],$ele['tra'])).">";
+          $cel_pos = 0;
+          $cel_ini = ( ( intval($_tra->ide) - 1 ) * 5 ) + 1;
+          $cel_fin = $cel_ini + 5; 
+          $ele_cel = isset($_tab['pos']) ? _ele::jun($_tab['pos'],$ele['cel']) : $ele['cel'];
+          for( $cel = $cel_ini; $cel < $cel_fin; $cel++ ){
+            $cel_pos++;
+            $ide = "pos-{$cel_pos}";
+            $ele['cel'] = _ele::jun($_tab[$ide],[ $ele_cel, isset($ele[$ide]) ? $ele[$ide] : [] ]);
+            $ope['ide'] = $cel;
+            $_ .= _hol_tab::kin('arm_cel',$ope,$ele);
+          } $_ .= "
+        </ul>";        
+        break;
+      case 'arm_cel': 
+        foreach(['tra','cel'] as $i ){ if( !isset($ele[$i]) ){ $ele[$i]=[]; } }         
+        $_arm = _hol::_($est,$ide);
+        $_tab = _app::tab('hol','arm')->ele;
+
+        $ele_cel = $ele['cel'];
+        $ele_cel['title'] = _app_dat::val('tit',"hol.{$est}",$_arm);
+        _ele::cla($ele_cel,"app_tab kin {$atr} fon_col-5-$_arm->cel fon-0");
+        $_ = "
+        <ul"._htm::atr(_ele::jun($_tab['sec'],$ele_cel)).">";
+          $_ .= "
+          <li"._htm::atr(_ele::jun($_tab['pos-0'], isset($ele['pos-0']) ? $ele['pos-0'] : [] )).">
+            "._hol::ima("sel_arm_cel", $_arm->cel, [ 'htm'=>$_arm->ide, 'class'=>'ima' ] )."
+          </li>";
+          $kin = ( ( $ide - 1 ) * 4 ) + 1;
+          $ele_pos = $ele['pos'];
+          for( $arm = 1; $arm <= 4; $arm++ ){
+            $ide = "pos-{$arm}";
+            $ele['pos'] = _ele::jun($_tab[$ide],[ $ele_pos, isset($ele[$ide]) ? $ele[$ide] : [] ]);
+            $_ .= _hol_tab::_pos('kin',$kin,$ope,$ele);
+            $kin++;
+          } $_ .= "
+        </ul>";        
         break;
       // cromáticas : 4 estaciones + 52 elementos
       case 'cro': 
         foreach(['est','ele'] as $i ){ if( !isset($ele[$i]) ){ $ele[$i]=[]; } }
-
+        if( !in_array('fic_cas',$ope['opc']) ) $ope['opc'] []= 'fic_cas';
         $_tab = _app::tab('hol','cas')->ele;
 
-        if( !in_array('fic_cas',$opc) ) $opc []= 'fic_cas'; 
-
         $_ = "
-        <div"._htm::atr(_ele::jun($_tab['sec'],$ele['sec'])).">
-          <div"._htm::atr( isset($ele['pos-00']) ? _ele::jun($_tab['pos-00'],$ele['pos-00']) : $_tab['pos-00'] ).">
+        <ul"._htm::atr(_ele::jun($_tab['sec'],$ele['sec'])).">
+          <li"._htm::atr( isset($ele['pos-00']) ? _ele::jun($_tab['pos-00'],$ele['pos-00']) : $_tab['pos-00'] ).">
             "._app::ima('hol/tab/gal')."
-          </div>"
+          </li>"
           ._hol_tab::_sec('cas',$ope)
           ;
           $ele_ele = isset($_tab['pos']) ? _ele::jun($_tab['pos'],$ele['ele']) : $ele['ele'];
           foreach( _hol::_('kin_cro_ele') as $_cro ){                
-            $i = "pos-{$_cro->ide}";
-            $ele['ele'] = _ele::jun($_tab[$i],[ $ele_ele, isset($ele[$i]) ? $ele[$i] : [] ]);
+            $ide = "pos-{$_cro->ide}";
+            $ele['ele'] = _ele::jun($_tab[$ide],[ $ele_ele, isset($ele[$ide]) ? $ele[$ide] : [] ]);
             $ope['ide'] = $_cro->ide;
             $_ .= _hol_tab::kin('cro_ele',$ope,$ele);
           } $_ .= "
-        </div>";        
+        </ul>";        
         break;
       case 'cro_est':
         foreach(['est','ele'] as $i ){ if( !isset($ele[$i]) ){ $ele[$i]=[]; } }
-
+        if( !in_array('fic_cas',$ope['opc']) ) $ope['opc'] []= 'fic_ond';
         $_tab = _app::tab('hol','ton')->ele;
 
-        if( !in_array('fic_cas',$opc) ) $opc []= 'fic_ond';
-        
+        _ele::cla($ele['est'],"app_tab kin {$atr}",'ini');
         $_ = "
-        <div"._htm::atr(_ele::jun($_tab['sec'],$ele['est'])).">
+        <ul"._htm::atr(_ele::jun($_tab['sec'],$ele['est'])).">
           "._hol_tab::_sec('ton',$ope)
           ;
           $_est = _hol::_('kin_cro_est',$ide); 
           $cas = $_est->cas;
           $ele_ele = isset($_tab['ele']) ? _ele::jun($_tab['ele'],$ele['ele']) : $ele['ele'];
           foreach( _hol::_('ton') as $_ton ){                
-            $i = "pos-{$_ton->ide}";
-            $ele['ele'] = _ele::jun($_tab[$i], [ $ele_ele, isset($ele[$i]) ? $ele[$i] : [] ]);                
+            $ide = "pos-{$_ton->ide}";
+            $ele['ele'] = _ele::jun($_tab[$ide], [ $ele_ele, isset($ele[$ide]) ? $ele[$ide] : [] ]);                
             $ope['ide'] = $cas;
             $_ .= _hol_tab::kin('cro_ele',$ope,$ele);
-            $cas++; if( $cas > 52 ){ $cas = 1; }
+            $cas = _num::ran($cas + 1, 52);
           } $_ .= "
-        </div>";        
+        </ul>";
         break;
       case 'cro_ele':
         foreach(['ele'] as $i ){ if( !isset($ele[$i]) ){ $ele[$i]=[]; } }
-
+        
         $_tab = _app::tab('hol','cro_cir')->ele;
         $_ele = _hol::_('kin_cro_ele',$ide);
-
         // cuenta de inicio
         $kin_ini = 185;
         $ele['ele']['title']="{$_ele->ide}: {$_ele->nom}";
-
         // del castillo | onda : rotaciones
-        if( isset($ele['ele']['pos']) ){
-
-          _ele::css($ele['ele'],"transform: rotate(".(in_array('fic_cas',$opc) ? $ele['rot-cas'][$ide-1] : $ele['rot-ton'][$ide-1])."deg)");
+        if( in_array('fic_cas',$opc) || in_array('fic_ond',$opc) ){ _ele::css($ele['ele'],
+          "transform: rotate(".(in_array('fic_cas',$opc) ? $ele['rot-cas'][$ide-1] : $ele['rot-ton'][$ide-1])."deg)");
         }
+        _ele::cla($ele['ele'],"app_tab kin {$atr}",'ini');
         $_ .= "
-        <div"._htm::atr(_ele::jun($_tab['sec'],$ele['ele'])).">
-          <div"._htm::atr(_ele::jun($_tab['pos-0'],isset($ele['pos-0']) ? $ele['pos-0'] : [])).">
-            "._app::ima("hol/ima/arm/"._num::ran($_ele->ide,4), [ 'htm'=>$_ele->ide, 'class'=>"alt-100 anc-100" ])."
-          </div>";
+        <ul"._htm::atr(_ele::jun($_tab['sec'],$ele['ele'])).">
+          <li"._htm::atr(_ele::jun($_tab['pos-0'],isset($ele['pos-0']) ? $ele['pos-0'] : [])).">
+            "._app::ima("hol/fic/arm/"._num::ran($_ele->ide,4), [ 'htm'=>$_ele->ide, 'class'=>"alt-100 anc-100" ])."
+          </li>";
 
-          $kin = $kin_ini + ( ( $ide - 1 ) * 5 ) + 1;
-
-          if( $kin > 260 ) $kin -= 260;
-
+          $kin = _num::ran($kin_ini + ( ( $ide - 1 ) * 5 ) + 1, 260);
           $ele_pos = isset($_tab['pos']) ? _ele::jun($_tab['pos'],$ele['pos']) : $ele['pos'];
-
           foreach( _hol::_('sel_cro_fam') as $cro_fam ){
-            $i = "pos-{$cro_fam->ide}";
-            $ele['pos'] = _ele::jun($_tab[$i],[ $ele_pos, isset($ele[$i]) ? $ele[$i] : [] ]);
+            $ide = "pos-{$cro_fam->ide}";
+            $ele['pos'] = _ele::jun($_tab[$ide],[ $ele_pos, isset($ele[$ide]) ? $ele[$ide] : [] ]);
             $_ .= _hol_tab::_pos('kin',$kin,$ope,$ele);
             $kin++;// por verdad eléctrica
             if( $kin > 260 ) $kin = 1;
           }$_ .= "
-        </div>";        
+        </ul>";        
         break;
-      // armónicas : 13 trayectorias + 65 células
-      case 'arm':
-        foreach(['tra','cel'] as $i ){ if( !isset($ele[$i]) ){ $ele[$i]=[]; } } 
-
-        $_tab = _app::tab('hol','ton')->ele;
-        
-        $_ = "
-        <div"._htm::atr(_ele::jun($_tab['sec'],$ele['sec'])).">
-          "._hol_tab::_sec('ton',$ope)
-          ;
-          $ele_tra = isset($_tab['pos']) ? _ele::jun($ele['tra'],$_tab['pos']) : $ele['tra'];
-          foreach( _hol::_('kin_arm_tra') as $_tra ){ 
-            $i = "pos-{$_tra->ide}";
-            $ele['tra'] = _ele::jun($_tab[$i],[ $ele_tra, isset($ele[$i]) ? $ele[$i] : [] ]);
-            $ope['ide'] = $_tra->ide;
-            $_ .= _hol_tab::kin('arm_tra',$ope,$ele);
-          } $_ .= "
-        </div>";        
-        break;
-      case 'arm_tra':
-        foreach(['tra','cel'] as $i ){ if( !isset($ele[$i]) ){ $ele[$i]=[]; } } 
-
-        $_tab = _app::tab('hol','cro')->ele;
-        $_tra = _hol::_('kin',$ide); $_ = "
-        <div"._htm::atr(_ele::jun($_tab['sec'],$ele['tra'])).">";
-          $cel_pos = 0;
-          $cel_ini = ( ( intval($_tra->ide) - 1 ) * 5 ) + 1;
-          $cel_fin = $cel_ini + 5; 
-          $ele_cel = isset($_tab['pos']) ? _ele::jun($_tab['pos'],$ele['cel']) : $ele['cel'];
-          for( $cel = $cel_ini; $cel < $cel_fin; $cel++ ){
-            $cel_pos++;                
-            $i = "pos-{$cel_pos}";
-            $ele['cel'] = _ele::jun($_tab[$i],[ $ele_cel, isset($ele[$i]) ? $ele[$i] : [] ]);
-            $ope['ide'] = $cel;
-            $_ .= _hol_tab::kin('arm_cel',$ope,$ele);
-          } $_ .= "
-        </div>";        
-        break;
-      case 'arm_cel': 
-        foreach(['tra','cel'] as $i ){ if( !isset($ele[$i]) ){ $ele[$i]=[]; } } 
-
-        $_tab = _app::tab('hol','arm')->ele;
-        $_arm = _hol::_($est,$ide);
-        
-        $ele_cel = $ele['cel'];
-        $ele_cel['title'] = _app_dat::val('tit',"hol.{$est}",$_arm);
-        _ele::cla($ele_cel,"fon_col-5-$_arm->cel fon-0");
-        $_ = "
-        <div"._htm::atr(_ele::jun($_tab['sec'],$ele_cel)).">";
-          $_ .= "
-          <div"._htm::atr(_ele::jun($_tab['pos-0'], isset($ele['pos-0']) ? $ele['pos-0'] : [] )).">
-            "._hol::ima("sel_arm_cel", $_arm->cel, [ 'htm'=>$_arm->ide, 'class'=>'ima' ] )."
-          </div>";
-
-          $kin = ( ( $ide - 1 ) * 4 ) + 1;
-          
-          $ele_pos = $ele['pos'];
-          for( $arm = 1; $arm <= 4; $arm++ ){
-            $i = "pos-{$arm}";
-            $ele['pos'] = _ele::jun($_tab[$i],[ $ele_pos, isset($ele[$i]) ? $ele[$i] : [] ]);
-            $_ .= _hol_tab::_pos('kin',$kin,$ope,$ele);
-            $kin++;
-          } $_ .= "
-        </div>";        
-        break;
-      // nave del tiempo : 5 castillos + 20 ondas
-      case 'nav':
-        foreach(['cas','ond'] as $i ){ if( !isset($ele[$i]) ){ $ele[$i]=[]; } } 
-
-        $_tab = _app::tab('hol','cro')->ele;
-        
-        $ele_cas = $ele['cas'];
-
-        $_ = "
-        <div"._htm::atr(_ele::jun($_tab['sec'],$ele['sec'])).">";
-          foreach( _hol::_('kin_nav_cas') as $cas => $_cas ){
-            $i = "pos-{$_cas->ide}";
-            $ele['cas'] = _ele::jun($_tab[$i],[ $ele_cas, isset($ele[$i]) ? $ele[$i] : [] ]);
-            $ope['ide'] = $_cas->ide;
-            $_ .= _hol_tab::kin('nav_cas',$ope,$ele);
-          } $_ .= "
-        </div>";
-
-        break;
-      case 'nav_cas':
-        foreach(['cas','ond'] as $i ){ if( !isset($ele[$i]) ){ $ele[$i]=[]; } } 
-
-        $_tab = _app::tab('hol','cas')->ele;
-        $_cas = _hol::_($est,$ide);
-
-        _ele::cla( $ele['cas'], "fon_col-5-{$ide}".( empty($ope['sec']['cas-col']) ? ' fon-0' : '' ) );
-
-        $ele['cas']['title'] = _app_dat::val('tit',"hol.{$est}",$_cas);            
-        $ond_ini = ( ( $ide - 1 ) * 4 ) + 1;
-        $ond_fin = $ond_ini + 4;
-        for( $ond = $ond_ini; $ond < $ond_fin; $ond++ ){ 
-          $_ond = _hol::_('kin_nav_ond',$ond);
-          $ele['cas']['title'].="\n".$_ond->enc_des;
-        }
-        $_ = "
-        <div"._htm::atr( _ele::jun($_tab['sec'],$ele['cas']) ).">
-          <div"._htm::atr(_ele::jun($_tab['pos-00'],[ 
-            [ 'class'=>"bor_col-5-{$ide} fon_col-5-{$ide}" ], isset($ele['pos-00']) ? $ele['pos-00'] : [] 
-          ])).">
-            {$ide}
-          </div>
-          "._hol_tab::_sec('cas',$ope);
-
-          $kin = ( ( $ide - 1 ) * 52 ) + 1;
-
-          $ele_pos = _ele::jun($_tab['pos'],$ele['pos']);
-
-          foreach( _hol::_('cas') as $_cas ){ 
-            $i = "pos-{$_cas->ide}";
-            $ele['pos'] = _ele::jun($_tab[$i],[ $ele_pos, isset($ele[$i]) ? $ele[$i] : [] ]);
-            $_ .= _hol_tab::_pos('kin',$kin,$ope,$ele);
-            $kin++;
-          } $_ .= "
-        </div>";        
-        break;
-      case 'nav_ond':
-        foreach(['cas','ond'] as $i ){ if( !isset($ele[$i]) ){ $ele[$i]=[]; } } 
-
-        $_tab = _app::tab('hol','ton')->ele;
-        $_ond = _hol::_($est,$ide); 
-        $_cas = _hol::_('kin_nav_cas',$_ond->nav_cas);
-
-        $ele['ond']['title'] = _app_dat::val('tit',"hol.kin_nav_cas",$_cas)." .\n{$_ond->enc_des}"; 
-        
-        $_ = "
-        <div"._htm::atr(_ele::jun($_tab['sec'],$ele['ond'])).">
-          "._hol_tab::_sec('ton',$ope)
-          ;
-          $kin = ( ( $ide - 1 ) * 13 ) + 1;
-          
-          $ele_pos = _ele::jun($_tab['pos'],$ele['pos']);
-
-          foreach( _hol::_('ton') as $_ton ){
-            $i = "pos-{$_ton->ide}";
-            $ele['pos'] = _ele::jun($_tab[$i],[ $ele_pos, isset($ele[$i]) ? $ele[$i] : [] ]);
-            $_ .= _hol_tab::_pos('kin',$kin,$ope,$ele);
-            $kin++;
-          } $_ .= "
-        </div>";        
-        break;      
       }
       return $_;
     }
     static function psi( string $atr, array $ope = [], array $ele = [] ) : string {
       extract( _hol_tab::_dat('psi',$atr,$ope,$ele) );
       $_ = "";
-
-      switch( $atr ){
-      // giro solar de 13 lunas con psi-cronos
+      switch( $atr ){// giro solar de 13 lunas con psi-cronos
       case 'ban': 
-        foreach( ['lun','cab'] as $v ){ if( !isset($ele[$v]) ){ $ele[$v]=[]; } }        
-
+        foreach( ['lun','cab'] as $v ){ if( !isset($ele[$v]) ){ $ele[$v]=[]; } }
         $_tab = _app::tab('hol','ton')->ele;
-  
+        _ele::css($ele['sec'],"grid-gap:.1rem");
         $_ = "
-        <div"._htm::atr(_ele::jun($_tab['sec'],$ele['sec'])).">
-          <div sec='uni-sol' style='width:100px; height:100px; grid-row:1; grid-column:2; justify-self:end; align-self:end;'>
-            "._app::ima('hol/tab/sol')."
-          </div>
-          <div sec='uni-lun' style='width:60px; height:60px; grid-row:3; grid-column:3; align-self:center; justify-self:center;'>
-            "._app::ima('hol/tab/pla')."
-          </div>
+        <ul"._htm::atr(_ele::jun($_tab['sec'],$ele['sec'])).">          
+          "._app::ima('hol/tab/sol',['eti'=>"li", 'fic'=>"uni-sol", 
+            'style'=>"width:100%; max-width:80px; height:100%; max-height:80px; grid-row:1; grid-column:2; justify-self:end; align-self:end;" 
+          ])."
+          "._app::ima('hol/tab/pla',['eti'=>"li", 'fic'=>"uni-lun", 
+            'style'=>"width:100%; max-width:60px; height:100%; max-height:60px; grid-row:3; grid-column:3; align-self:center; justify-self:center;" 
+          ])."
           "._hol_tab::_sec('ton',$ope)
           ;
-
-          if( !in_array('cab_nom',$opc) ) $opc []= 'cab_nom';
-          $ele_lun = _ele::jun($_tab['pos'],$ele['lun']);
+          if( !in_array('cab_nom',$ope['opc']) ) $ope['opc'] []= 'cab_nom';
+          $ele_lun = $_tab['pos'];
           foreach( _hol::_('psi_lun') as $_lun ){
-            $i = "pos-{$_lun->ide}";
-            $ele['lun'] = _ele::jun($_tab[$i],[$ele_lun, isset($ele["lun-{$i}"]) ? $ele["lun-{$i}"] : [] ]);
+            $ide = "pos-{$_lun->ide}";
+            $ele_pos = _ele::jun($_tab[$ide],[$ele_lun, isset($ele["lun-{$ide}"]) ? $ele["lun-{$ide}"] : [] ]);
             $ope['ide'] = $_lun->ide;
-            $_ .= _hol_tab::psi('lun',$ope,$ele);
+            $_ .= "
+            <li"._htm::atr($ele_pos).">"._hol_tab::psi('lun',$ope,$ele)."</li>";
           } $_ .= "
-        </div>";        
+        </ul>";        
         break;
       // anillos solares por ciclo de sirio
       case 'ani': 
-
         $_tab = _app::tab('hol','cas_cir')->ele;
-
-        $kin = 34;
         $ope['sec']['orb_cir'] = '1';
+        $kin = 34;
 
         $_ = "
-        <div"._htm::atr(_ele::jun($_tab['sec'],$ele['sec'])).">
+        <ul"._htm::atr(_ele::jun($_tab['sec'],$ele['sec'])).">
   
           "._hol_tab::_sec('cas_cir',$ope)
           ;
@@ -1886,87 +1799,84 @@
             $_kin = _hol::_('kin',$kin);
             $agr = '';
             $e = $ele['pos'];
-            _ele::cla($e,"pos{$agr}"); 
-            $e['pos'] = $_cas->ide;         
-            $e['kin'] = $_kin->ide;
-            $e['ton'] = $_cas['ton'];
+            _ele::cla($e,"pos-".intval($_cas->ide)."{$agr}",'ini');
+            $e['data-hol_kin'] = $_kin->ide;
+            $e['data-hol_ton'] = $_cas['ton'];
             $_ .= "
-            <div"._htm::atr($e).">
-              "._hol::ima("kin",$_kin,[ 'onclick'=>isset($e['_eje'])?$e['_eje']:NULL ])."
-            </div>";
+            <li"._htm::atr($e).">"._hol::ima("kin",$_kin,[ 'onclick'=>isset($e['_eje'])?$e['_eje']:NULL ])."</li>";
             $kin += 105; if( $kin >260 ) $kin -= 260;
           } $_ .= "
-        </div>";        
+        </ul>";        
         break;
       // estaciones de 91 días
       case 'est':
         foreach( ['hep'] as $v ){ if( !isset($ele[$v]) ){ $ele[$v]=[]; } }
-
         $_tab = _app::tab('hol','cas')->ele;
+
         $_ = "
-        <div"._htm::atr( _ele::jun($_tab['sec'],$ele['sec']) ).">
+        <ul"._htm::atr( _ele::jun($_tab['sec'],$ele['sec']) ).">
+          <li"._htm::atr( isset($ele['pos-00']) ? _ele::jun($_tab['pos-00'],$ele['pos-00']) : $_tab['pos-00'] ).">
+            "._app::ima('hol/tab/pla',[])."
+          </li>
           "._hol_tab::_sec('cas',$ope)
           ; 
-          $ele_hep = $ele['hep'];
+          $ele_hep = isset($_tab['pos']) ? _ele::jun($_tab['pos'],$ele['hep']) : $ele['hep'];
           foreach( _hol::_('cas') as $_cas ){
-            $i = "hep-{$_cas->ide}";
-            $ele['hep'] = _ele::jun($_tab["pos-{$_cas->ide}"],[ $ele_hep, isset($ele[$i]) ? $ele[$i] : [] ]);
+            $ide = "hep-{$_cas->ide}";
+            $ele['hep'] = _ele::jun($_tab["pos-{$_cas->ide}"],[ $ele_hep, isset($ele[$ide]) ? $ele[$ide] : [] ]);
             $ope['ide'] = $_cas->ide;
             $_ .= _hol_tab::psi('hep',$ope,$ele);
           } $_ .= "
-        </div>";        
+        </ul>";        
         break;
       // luna de 28 días
       case 'lun':
         foreach( ['lun','cab'] as $v ){ if( !isset($ele[$v]) ){ $ele[$v]=[]; } }
-        if( empty($ide) ){
-          if( is_array($val) && isset($val['psi']) ){
-            $ide = _hol::_('psi',$val['psi'])->lun;
-          }
-        }
+        if( empty($ide) && is_array($val) && isset($val['psi']) ) $ide = _hol::_('psi',$val['psi'])->lun;
         $_lun = _hol::_($est,$ide);
         $_ton = _hol::_('ton',$ide);
         $_tab = _app::tab('hol','lun')->ele;
         $cab_ocu = in_array('cab_ocu',$opc);
-        $cab_nom = in_array('cab_nom',$opc);
+        $cab_nom = in_array('cab_nom',$opc);        
+
+        _ele::cla($ele['lun'],"app_tab psi {$atr}",'ini');
         $_ = "
-        <table"._htm::atr(_ele::jun($_tab['sec'],$ele['lun'])).">";
-          if( !$cab_ocu ){
-            $_ .= "
-            <thead sec = 'cab'>
-              <tr data-sec='ton'>
+        <table"._htm::atr($ele['lun']).">";
+          if( !$cab_ocu ){ $_ .= "
+            <thead>
+              <tr data-cab='ton'>
                 <th colspan='8'>
-                <div class='val tex_ali-izq' title='{$_lun->nom}: {$_lun->tot}'>
+                  <div class='val tex_ali-izq' title='{$_lun->nom}: {$_lun->tot}'>
 
                     "._hol::ima("{$est}",$_lun,['class'=>( $cab_nom ? "tam-1 mar_der-1" : "tam-16 mar-1" )])."
 
                     ".( $cab_nom ? "
                       <p><n>{$ide}</n><c>°</c> ".explode(' ',$_lun->nom)[1]."</p>                      
                     " : "
-                    <div>
-                      <p class='tit let-4'>
-                        <n>{$ide}</n><c>°</c> Luna<c>:</c> Tono ".explode(' ',$_lun->nom)[1]."
-                      </p>
-                      <p class='let-3 let_col-tex mar-1'>
-                        "._app::let($_lun->ond_nom." ( $_lun->ond_pos ) : ".$_lun->ond_pod)."
-                        <br>"._app::let($_lun->ond_man)."
-                      </p>                   
-                      <p class='let-3 let_col-tex mar-1'>
-                        Totem<c>:</c> $_lun->tot
-                        <br>Propiedades<c>:</c> "._app::let($_lun->tot_pro)."
-                      </p> 
-                    </div>                      
+                      <div>
+                        <p class='tit let-4'>
+                          <n>{$ide}</n><c>°</c> Luna<c>:</c> Tono ".explode(' ',$_lun->nom)[1]."
+                        </p>
+                        <p class='let-3 mar-1'>
+                          "._app::let($_lun->ond_nom." ( $_lun->ond_pos ) : ".$_lun->ond_pod)."
+                          <br>"._app::let($_lun->ond_man)."
+                        </p>                   
+                        <p class='let-3 mar-1'>
+                          Totem<c>:</c> $_lun->tot
+                          <br>Propiedades<c>:</c> "._app::let($_lun->tot_pro)."
+                        </p> 
+                      </div>                      
                     " )."
                   </div>
                 </th>
               </tr>";
               // agrego plasmas
               if( !$cab_nom ){ $_ .= "
-                <tr sec='rad'>
+                <tr data-cab='rad'>
                   <th>
-                    <p class='tex_ali-der'>Plasma</p>
-                    <p class='tex_ali-cen'><c>/</c></p>                    
-                    <p class='tex_ali-izq'>Héptada</p>
+                    <span class='tex_ali-der'>Plasma</span>
+                    <span class='tex_ali-cen'><c>/</c></span>                    
+                    <span class='tex_ali-izq'>Héptada</span>
                   </th>";
                   foreach( _hol::_('rad') as $_rad ){ $_ .= "
                     <th>"._hol::ima("rad",$_rad,[])."</th>";
@@ -1974,7 +1884,7 @@
                 </tr>";
               }$_ .="
             </thead>";
-          }  
+          }
           $dia = 1;    
           $hep = ( ( intval($_lun->ide) - 1 ) * 4 ) + 1;
           $psi = ( ( intval($_lun->ide) - 1 ) * 28 ) + 1;
@@ -1983,10 +1893,9 @@
           <tbody>";
           for( $arm = 1; $arm <= 4; $arm++ ){
             $_ .= "
-            <tr>
-              <td"._htm::atr(_ele::jun(
-                  [ 'sec'=>"hep", 'data-arm'=>$arm, 'data-hep'=>$hep, 'class'=>"fon_col-4-{$arm}", 'style'=>'min-width:1rem;' ], 
-                  isset($ele[$i = "hep-{$arm}"]) ? $ele[$i] : []
+            <tr class='ite-$arm'>
+              <td"._htm::atr(_ele::jun([ 'data-arm'=>$arm, 'data-hep'=>$hep, 'class'=>"sec -hep fon_col-4-{$arm}" ], 
+                  isset($ele[$ide = "hep-{$arm}"]) ? $ele[$ide] : []
                 )).">";
                 if( $cab_ocu || $cab_nom ){
                   $_ .= "<n>$hep</n>";
@@ -1994,53 +1903,46 @@
                   $_ .= _hol::ima("psi_hep",$hep,[]);
                 }$_ .= "
               </td>";
-
               for( $rad=1; $rad<=7; $rad++ ){
                 $_dia = _hol::_('lun',$dia);
-                $i = "pos-{$_dia->ide}";
-                $ele['pos'] = _ele::jun($ele_pos, isset($ele[$i]) ? $ele[$i] : []);
+                $ide = "pos-{$_dia->ide}";
+                $ele['pos'] = _ele::jun($ele_pos, isset($ele[$ide]) ? $ele[$ide] : []);
                 $_ .= _hol_tab::_pos('psi',$psi,$ope,$ele);
                 $dia++;
                 $psi++;
               }
-              $hep++; $_ .= "
+              $hep++; 
+              $_ .= "
             </tr>";
           }$_ .= "
-          </tbody>
-  
+          </tbody>  
         </table>";        
         break;
       // heptada de 7 días
       case 'hep': 
         foreach( ['hep'] as $v ){ if( !isset($ele[$v]) ){ $ele[$v]=[]; } }
-
-        if( empty($ide) ){
-          if( is_array($val) && isset($val['psi']) ){
-            $ide = _hol::_('psi',$val['psi'])->hep;
-          }
-        }        
+        if( empty($ide) && is_array($val) && isset($val['psi'])) $ide = _hol::_('psi',$val['psi'])->hep;     
         $_tab = _app::tab('hol','rad')->ele;
-        $_hep = _hol::_('psi_hep',$ide);        
+        $_hep = _hol::_('psi_hep',$ide);
+
+        _ele::cla($ele['hep'],"app_tab psi {$atr}",'ini');
         $_ = "
-        <div"._htm::atr(_ele::jun($_tab['sec'],$ele['hep'])).">";
+        <ul"._htm::atr(_ele::jun($_tab['sec'],$ele['hep'])).">";
 
           $psi = ( ( intval($_hep->ide) - 1 ) * 7 ) + 1;
-
           $ele_pos = isset($_tab['pos']) ? _ele::jun($_tab['pos'],$ele['pos']) : $ele['pos'] ;
-
           foreach( _hol::_('rad') as $_rad ){
-            $_psi = _hol::_('psi',$psi);            
-            $i = "pos-{$_rad->ide}";
-            $ele['pos'] = _ele::jun($_tab[$i],[ $ele_pos, isset($ele["rad_{$i}"]) ? $ele["rad_{$i}"] : [] ]);
+            $ide = "pos-{$_rad->ide}";
+            $ele['pos'] = _ele::jun($_tab[$ide],[ $ele_pos, isset($ele["rad-{$ide}"]) ? $ele["rad-{$ide}"] : [] ]);
             $_ .= _hol_tab::_pos('psi',$psi,$ope,$ele);
             $psi++;
           } $_ .= "
-        </div>";        
+        </ul>";        
         break;
       // banco-psi de 8 tzolkin con psi-cronos
       case 'tzo': 
         $_ = "
-        <div"._htm::atr($ele['sec']).">";
+        <ul"._htm::atr($ele['sec']).">";
 
           $ele_tzo = $ele['sec'];
           for( $i=1 ; $i<=8 ; $i++ ){
@@ -2049,13 +1951,13 @@
             if( isset($ele["tzo-$i"]) ) $ele['sec'] = _ele::jun($ele['sec'],$ele["tzo-$i"]);
             $_ .= _hol_tab::kin('tzo',$ope,$ele);
           } $_ .= "
-        </div>";        
+        </ul>";        
         break;
       }
       return $_;
     }
     static function ani( string $atr, array $ope = [], array $ele = [] ) : string {
-      $esq = "hol";
+      $esq = "hol";      
       $_ = "";
       if( isset($val['kin']) ){
         $_kin = _hol::_('kin',$val['kin']);
@@ -2066,116 +1968,101 @@
         if( isset($val['ton']) ) $_ton = _hol::_('ton',$val['ton']);
       }      
       switch( $atr ){
-      // telektonon : tablero completo
+      // telektonon
       case 'tel': 
         $ocu = []; 
         foreach( ['res','cla','cel','cir','pla','sel'] as $i ){ $ocu[$i] = isset($ope['sec'][$i]) ? '' : ' dis-ocu'; }
   
         $_ = "
-        <div"._htm::atr($ele['sec']).">"
-          ._app::ima("hol/gal",['eti'=>"div",'fic'=>'gal','title'=>'Fin de la Exhalación Solar. Comienzo de la Inhalación Galáctica.'])
-          ._app::ima("hol/sol",['eti'=>"div",'fic'=>'sol','title'=>'Fin de la Inhalación Galáctica. Comienzo de la Exhalación Solar.']);
+        <ul"._htm::atr($ele['sec']).">"
+          ._app::ima("hol/gal",['eti'=>"li",'fic'=>'gal','title'=>'Fin de la Exhalación Solar. Comienzo de la Inhalación Galáctica.'])
+          ._app::ima("hol/sol",['eti'=>"li",'fic'=>'sol','title'=>'Fin de la Inhalación Galáctica. Comienzo de la Exhalación Solar.']);
           foreach( _hol::_('sel_pol_flu') as $v ){ 
-            $_ .= _hol::ima("sel_pol_flu",$v,[
-              'eti'=>"div",'flu'=>$v['ide'],'class'=>$ocu['res'],'title'=> _app_dat::val('tit',"hol.sel_pol_flu",$v)
-            ]);
+            $_ .= _hol::ima("sel_pol_flu",$v,[ 'eti'=>"li",
+              'flu'=>$v['ide'],'class'=>$ocu['res'],'title'=> _app_dat::val('tit',"hol.sel_pol_flu",$v)
+            ]); 
           }
           foreach( _hol::_('sel_sol_res') as $v ){ 
-            $_ .= _hol::ima("sel_sol_res",$v,[
-              'eti'=>"div",'res'=>$v['ide'],'class'=>$ocu['res'],'title'=> _app_dat::val('tit',"hol.res_flu",$v)
+            $_ .= _hol::ima("sel_sol_res",$v,[ 'eti'=>"li",
+              'res'=>$v['ide'],'class'=>$ocu['res'],'title'=> _app_dat::val('tit',"hol.res_flu",$v)
             ]);
           }          
           foreach( _hol::_('sel_sol_pla') as $v ){
-            $_ .= _hol::ima("sol_pla",$v,[
-              'eti'=>"div",'pla'=>$v['ide'],'class'=>$ocu['pla'],'title'=> _app_dat::val('tit',"hol.sol_pla",$v)
+            $_ .= _hol::ima("sol_pla",$v,[ 'eti'=>"li",
+              'pla'=>$v['ide'],'class'=>$ocu['pla'],'title'=> _app_dat::val('tit',"hol.sol_pla",$v)
             ]);
           }
           foreach( _hol::_('sel_cro_ele') as $v ){ $_ .= "
-            <div ele='{$v['ide']}' class='{$ocu['cla']}' title='"._app_dat::val('tit',"hol.sel_cro_ele",$v)."'></div>";
+            <li ele='{$v['ide']}' class='{$ocu['cla']}' title='"._app_dat::val('tit',"hol.sel_cro_ele",$v)."'></li>";
           }
           foreach( _hol::_('sel_sol_cel') as $v ){ $_ .= "
-            <div cel='{$v['ide']}' class='{$ocu['cel']}' title='"._app_dat::val('tit',"hol.sol_cel",$v)."'></div>";
+            <li cel='{$v['ide']}' class='{$ocu['cel']}' title='"._app_dat::val('tit',"hol.sol_cel",$v)."'></li>";
           }
           foreach( _hol::_('sel_sol_cir') as $v ){ $_ .= "
-            <div cir='{$v['ide']}' class='{$ocu['cir']}' title='"._app_dat::val('tit',"hol.sol_cir",$v)."'></div>";
+            <li cir='{$v['ide']}' class='{$ocu['cir']}' title='"._app_dat::val('tit',"hol.sol_cir",$v)."'></li>";
           }
           foreach( _hol::_('sel') as $_sel ){ 
             $e = $ele['pos'];
-            _ele::cla($e,"pos{$ocu['sel']}"); 
-            $e['sel'] = $_sel->ide; $_ .= "
-            <div"._htm::atr($e).">
-              "._hol::ima("sel_cod",$_sel)."
-            </div>";
+            _ele::cla($e,"pos-".intval($_sel->ide)."{$ocu['sel']}",'ini'); 
+            $_ .= "
+            <li"._htm::atr($e).">"._hol::ima("sel_cod",$_sel)."</li>";
           }
           $_ .= " 
-        </div>";        
+        </ul>";        
         break;
-      // telektonon : holon solar por flujo vertical
+      // holon solar por flujo vertical
       case 'sol': 
         $ocu = []; 
-        foreach( ['cel','pla','sel'] as $i ){ 
-          $ocu[$i] = isset($ope['sec'][$i]) ? '' : ' dis-ocu'; 
-        }
-        $_="
-        <div"._htm::atr($ele['sec']).">
-          <div fon='map'></div>
-          <div fon='ato'></div>";
+        foreach( ['cel','pla','sel'] as $i ){ $ocu[$i] = isset($ope['sec'][$i]) ? '' : ' dis-ocu'; }
+        $_ = "
+        <ul"._htm::atr($ele['sec']).">
+          <li fon='map'></li>
+          <li fon='ato'></li>";
           // circuitos
-          foreach( ['res','cla','cel','cir','pla','sel'] as $i ){ 
-            $_.="<div fon='$i' class='".isset($ope['sec'][$i]) ? '' : ' dis-ocu'."'></div>";          
-  
+          foreach( ['res','cla','cel','cir','pla','sel'] as $i ){ $_ .= "
+            <li fon='$i' class='".isset($ope['sec'][$i]) ? '' : ' dis-ocu'."'></li>";  
           }
           foreach( _hol::_('sel_sol_pla') as $v ){ $_ .= "
-            <div pla='{$v->ide}' class='{$ocu['pla']}' title='"._app_dat::val('tit',"{$esq}.sol_pla",$v)."'></div>";
+            <li pla='{$v->ide}' class='{$ocu['pla']}' title='"._app_dat::val('tit',"{$esq}.sol_pla",$v)."'></li>";
           }
           foreach( _hol::_('sel') as $_sel ){ 
             $e = $ele['pos'];
-            _ele::cla($e,"pos"); 
-            $e['pos'] = $e['sel'] = $_sel->ide; $_ .= "
-            <div"._htm::atr($e).">
-              "._hol::ima("sel_cod",$_sel->cod)."
-            </div>";
+            _ele::cla($e,"pos-".intval($_sel->ide),'ini'); $_ .= "
+            <li"._htm::atr($e).">"._hol::ima("sel_cod",$_sel->cod)."</li>";
           }
           $_ .= " 
-        </div>";        
+        </ul>";        
         break;
-      // encantamiento : holon planetario
+      // holon planetario
       case 'pla':
-        $_="
-        <div"._htm::atr($ele['sec']).">
-          <div fon='map'></div>";
-          foreach( ['res','flu','cen','sel'] as $i ){
-            $_.="<div fon='$i' class='".isset($ope['sec'][$i]) ? '' : ' dis-ocu'."'></div>";
-          }
-          $ocu = [];
-          foreach( ['fam'] as $i ){ 
-            $ocu[$i] = isset($ope['sec'][$i]) ? '' : ' dis-ocu'; 
+        $ocu = [];
+        foreach( ['fam'] as $i ) $ocu[$i] = isset($ope['sec'][$i]) ? '' : ' dis-ocu'; 
+        $_ = "
+        <ul"._htm::atr($ele['sec']).">
+          <li fon='map'></li>";
+          foreach( ['res','flu','cen','sel'] as $i ){ $_ .= "
+            <li fon='$i' class='".isset($ope['sec'][$i]) ? '' : ' dis-ocu'."'></li>";
           }
           foreach( _hol::_('sel_cro_fam') as $_dat ){
             $_.=_hol::ima("sel_cro_fam",$_dat,[ 'fam'=>$_dat->ide, 'class'=>$ocu['fam'] ]);
           }
           foreach( _hol::_('sel') as $_sel ){
             $e = $ele['pos'];
-            _ele::cla($e,"pos");
-            $e['pos'] = $e['sel'] = $_sel->ide; $_ .= "
-            <div"._htm::atr($e).">
-              "._hol::ima("sel",$_sel)."
-            </div>";
+            _ele::cla($e,"pos-".intval($_sel->ide).'ini'); $_ .= "
+            <li"._htm::atr($e).">"._hol::ima("sel",$_sel)."</li>";
           }
           $_ .= "
-        </div>";        
+        </ul>";        
         break;
-      // encantamiento : holon humano
+      // holon humano
       case 'hum':
+        $ocu = []; 
+        foreach( ['ext','cen'] as $i ){ $ocu[$i] = isset($ope['sec'][$i]) ? '' : ' dis-ocu'; }
         $_ = "
-        <div"._htm::atr($ele['sec']).">
-          <div fon='map'></div>";
-          foreach( ['res','ext','cir','cen'] as $i ){
-            $_.="<div fon='$i' class='".isset($ope['sec'][$i]) ? '' : ' dis-ocu'."'></div>";
-          }
-          $ocu = []; 
-          foreach( ['ext','cen'] as $i ){ 
-            $ocu[$i] = isset($ope['sec'][$i]) ? '' : ' dis-ocu'; 
+        <ul"._htm::atr($ele['sec']).">
+          <li fon='map'></li>";
+          foreach( ['res','ext','cir','cen'] as $ide ){ $_ .= "
+            <li fon='$ide' class='".isset($ope['sec'][$ide]) ? '' : ' dis-ocu'."'></li>";
           }
           foreach( _hol::_('sel_cro_ele') as $_dat ){ 
             $_ .= _hol::ima("sel_cro_ele",$_dat,['ele'=>$_dat->ide,'class'=>$ocu['ext']]);
@@ -2185,15 +2072,11 @@
           }
           foreach( _hol::_('sel') as $_dat ){
             $e = $ele['pos'];
-            _ele::cla($e,"pos");
-            $e['pos'] = $e['data-sel'] = $_dat->ide; 
-            $_ .= "
-            <div"._htm::atr($e).">
-              "._hol::ima("sel",$_dat)."
-            </div>";
+            _ele::cla($e,"pos-".intval($_sel->ide),'ini'); $_ .= "
+            <li"._htm::atr($e).">"._hol::ima("sel",$_dat)."</li>";
           }
           $_ .= "
-        </div>";        
+        </ul>";        
         break;
       }
       return $_;

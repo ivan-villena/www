@@ -1,11 +1,25 @@
 
-Sistema WEB
 
-1. Estructura del Archivo 
 
-  "_" / Carpeta de recursos: imagenes - fondos
+Conexion FTP : 
 
-  "_app" / ...páginas 
+  servidor : c1461857.ferozo.com
+  usuario  : c1461857
+  password : lu51zakoWA
+  puerto   : 21
 
-  "codigo" / ...estructuras
+panel : 
+
+  https://ferozo.host
+
+  usuario : c1461857
+  password : lu51zakoWA
+
+Base de datos:
+
+  https://c146.ferozo.com:2092/extra_soft/phpMyAdmin/index.php?db=c1461857_api&target=db_structure.php
+
+  database : c1461857_api
+  usuario  : c1461857
+  password : lu51zakoWA
 

@@ -2,17 +2,17 @@
 /*//////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 /* Libros //////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
-body[cab="lib"] > main section {
+body[data-cab="lib"] > main section {
   padding: 0 2rem;
 }
 
-body[cab="lib"][art="asc"] > main section > figure {
+body[data-cab="lib"][data-art="asc"] > main section > figure {
   margin: 1em 0;
 }
 
 /*//////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 /* Tableros ////////////////////////////////////////////////////////////////////////////////////////////////////*/
-body[cab="tab"] > main > article {
+body[data-cab="tab"] > .app_sec > article {
   max-width: fit-content;
   padding: 0;
   border: initial;
@@ -20,98 +20,181 @@ body[cab="tab"] > main > article {
   line-height: initial;
 }
 
+body[data-cab="tab"] > .app_pan > .ide-val > .ide-cue > ul {
+  height: 40vh;
+}
+
+body[data-cab="tab"] > .app_win > .ide-est {
+  max-width: 60rem;
+  height: 90vh;
+}
+body[data-cab="tab"] > .app_win > .ide-est > div > .app_est {
+  height: 74vh;
+}
+
+
 /* P.A.G. */
-:is(div,table):is([tab="kin-tzo"]) :is(._hol-pag_kin,._hol-pag_psi) {
+.app_tab.kin_tzo :is(._hol-pag_kin, ._hol-pag_psi) {
   background-color: var(--tra_ver) !important;
 }
-:is(div,table):not([tab="kin-tzo"]) :is(._hol-pag_kin,._hol-pag_psi) {
+.app_tab:not(.kin_tzo) :is(._hol-pag_kin,._hol-pag_psi) {
   border: 1px solid var(--col_ver) !important;
 }
 
 /* Extensiones */
-:is(div,table)[tab] ._hol-par_ana-ext { border: 1px solid var(--col_roj) !important; }
-:is(div,table)[tab] ._hol-par_gui-ext { border: 1px solid var(--col_bla) !important; }
-:is(div,table)[tab] ._hol-par_ant-ext { border: 1px solid var(--col_azu) !important; }
-:is(div,table)[tab] ._hol-par_ocu-ext { border: 1px solid var(--col_ama) !important; }
+.app_tab ._hol-par_ana-ext { border: 1px solid var(--col_roj) !important; }
+.app_tab ._hol-par_gui-ext { border: 1px solid var(--col_bla) !important; }
+.app_tab ._hol-par_ant-ext { border: 1px solid var(--col_azu) !important; }
+.app_tab ._hol-par_ocu-ext { border: 1px solid var(--col_ama) !important; }
 
 /* Parejas */
-:is(div,table)[tab] ._hol-par_ana { border: 1px solid var(--col_roj) !important; }
-:is(div,table)[tab] ._hol-par_gui { border: 1px solid var(--col_bla) !important; }
-:is(div,table)[tab] ._hol-par_ant { border: 1px solid var(--col_azu) !important; }
-:is(div,table)[tab] ._hol-par_ocu { border: 1px solid var(--col_ama) !important; }
+.app_tab ._hol-par_ana { border: 1px solid var(--col_roj) !important; }
+.app_tab ._hol-par_gui { border: 1px solid var(--col_bla) !important; }
+.app_tab ._hol-par_ant { border: 1px solid var(--col_azu) !important; }
+.app_tab ._hol-par_ocu { border: 1px solid var(--col_ama) !important; }
 
 /* 
 Oráculo
 */
-:is(div,table)[tab] .pos.sec_par {
+.app_tab .app_ope.app_tab.par {
   border-radius: 50%;
 }
-:is(div,table)[tab] [tab*="uni_par-"], 
-:is(div,table)[tab] [tab*="uni_par-"] > li[pos]{
+.app_tab .app_tab.par,
+.app_tab .app_tab.par > .pos {
   width: 100%; 
   height: 100%;
 }
 
 /*///////////////////////////////////////*/
 /*///////////////////////////////////////*/
-main > article > [tab] {
+main > article > .app_tab {
   margin: auto;
 }
 
 /* Tzolkin */
-main > article > [tab="kin-tzo"] > :is([sec],[pos]) {
+main > article > .app_tab.kin_tzo > :is(.app_ope,.sec) {
   width: 1.9rem; 
   height: 1.9rem;
 }
-
 /* Nave del Tiempo */
-main > article > [tab="kin-nav"] [pos].pos {
-  width: 1.10rem; 
-  height: 1.10rem;
+main > article > .app_tab.kin_nav {
+  grid-gap: .15rem;
 }
-
+main > article > .app_tab.kin_nav .app_ope {
+  width: 1.10rem; 
+  height: 1.10rem;  
+}
 /* Giro Galáctico */
-main > article > [tab="kin-arm"] [pos].pos {
+main > article > .app_tab.kin_arm {
+  grid-gap: .3rem;
+}
+main > article > .app_tab.kin_arm .app_ope {
   width: 1.08rem; 
   height: 1.08rem;
 }
-
 /* Giro Espectral */
-main > article > [tab="kin-cro"] [pos].pos {
+main > article > .app_tab.kin_cro {
+  grid-gap: .3rem;
+}
+main > article > .app_tab.kin_cro .app_ope {
   width: 1rem; 
   height: 1rem;
 }
 
 /* Giro Solar */
-main > article > [tab="psi-ban"] [pos].pos {
-  width: 1.15rem; 
-  height: 1.15rem;
+main > article > .app_tab.psi_ban :is(.app_ope,.sec) {
+  width: 1.4rem;
+  height: 1.4rem;
 }
-
 /* Estacion Solar */
-main > article > [tab="psi-est"] [pos].pos {
-  width: .855rem; 
-  height: .855rem;
+main > article > .app_tab.psi_est .app_ope {
+  width: .9rem; 
+  height: .9rem;
 }
-
 /* Giro Lunar */
-main > article > [tab="psi-lun"] [pos].pos {
+main > article > .app_tab.psi_lun :is(.app_ope,.sec) {
   width: 5rem; 
-  height: 5rem; 
-  max-height: 5rem;
+  height: 5rem;
+}
+/* Banco-Psi */
+main > article > .app_tab.psi_tzo .app_ope {
+  width: 1rem; 
+  height: 1rem;
 }
 
-/* Banco-Psi */
-main > article > [tab="psi-tzo"] [pos].pos {
-  width: .95rem; 
-  height: .95rem;
+@media ( max-width: 790px ){
+  
+  main > article > .app_tab.psi_ban :is(.app_ope,.sec) {
+    width: 1rem; 
+    height: 1rem;
+  }
+  main > article > .app_tab.psi_tzo .app_ope {
+    width: .85rem; 
+    height: .85rem;
+  }
+}
+
+@media ( max-width: 550px ){
+  
+  main > article > .app_tab.kin_nav .app_ope {
+    width: .75rem; 
+    height: .75rem;
+  }  
+  
+  main > article > .app_tab.kin_arm .app_ope {
+    width: .65rem; 
+    height: .65rem;
+  }
+
+  main > article > .app_tab.kin_cro {
+    grid-gap: 0;
+  }
+  main > article > .app_tab.kin_cro .app_ope {
+    width: .8rem; 
+    height: .8rem;    
+  }
+
+  main > article > .app_tab.psi_ban :is(.app_ope,.sec) {
+    width: .8rem; 
+    height: .8rem;
+  }
+  main > article > .app_tab.psi_est .app_ope {
+    width: .7rem; 
+    height: .7rem;
+  }
+  main > article > .app_tab.psi_lun :is(.app_ope,.sec) {
+    width: 4rem; 
+    height: 4rem;
+  }
+  main > article > .app_tab.psi_tzo .app_ope {
+    width: .65rem; 
+    height: .65rem;
+  }
 }
 
 @media ( max-width: 400px ){
-
-  /* Tzolkin */
-  main > article > [tab="kin-tzo"] > :is([sec],[pos]) {
+  
+  main > article > .app_tab.kin_tzo > :is(.app_ope,.sec) {
     width: 1.5rem; 
     height: 1.5rem;
+    font-size: .5rem;
+  }
+
+  main > article > .app_tab.psi_ban :is(.app_ope,.sec) {
+    width: .6rem; 
+    height: .6rem;
+    font-size: .5rem;
+  }
+  main > article > .app_tab.psi_est .app_ope {
+    width: .55rem; 
+    height: .55rem;
+  }
+  main > article > .app_tab.psi_lun :is(.app_ope,.sec) {
+    width: 2.8rem; 
+    height: 2.8rem;
+  }  
+  main > article > .app_tab.psi_tzo .app_ope {
+    width: .45rem; 
+    height: .45rem;
   }
 }

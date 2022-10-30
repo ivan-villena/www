@@ -1019,6 +1019,8 @@
 
           "atr": [ "ide", "tzo", "est", "est_dia", "lun", "lun_dia", "hep", "hep_dia" ],
 
+          "atr_ocu": [ "est_dia", "lun_dia" ],
+
           "tit_cic": [ "est", "lun", "vin", "hep" ]
         },
         "atr": {

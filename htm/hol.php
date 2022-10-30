@@ -947,7 +947,7 @@
       foreach( $ope_atr as $ope_ide ){
         $ope[$ope_ide]['htm'] = _hol_inf::$ope_ide($_val[$ope_ide],[ 'opc'=>['tog','ver'] ]);
       }
-      $_app->ope['dia'] = [ 'ico'=>"fec_val", 'bot'=>"ini", 'tip'=>"pan", 'nom'=>"Diario", 'htm'=>"
+      $_app->ope['dia'] = [ 'ico'=>"fec_val", 'tip'=>"pan", 'nom'=>"Diario", 'htm'=>"
 
         <section class='mar_aba-1'>
           "._hol_val::fec($_val,['eje'=>"_hol_tab._val"])."
@@ -957,20 +957,17 @@
 
       ];
       // operadores del tablero
-      $ope = _obj::nom(_app_tab::$OPE,'ver',['ver','opc','val','cue']);
+      $ope = _obj::nom(_app_tab::$OPE,'ver',['ver','opc','val']);
       foreach( $ope as $ope_ide => $ope_tab ){
 
         if( !empty( $htm = _app_tab::ope($ope_ide, $tab_ide, $tab_ope, $tab_ele ) ) ){
 
-          $_app->ope[$ope_ide] = [ 'ico'=>$ope_tab['ico'], 'bot'=>"ini", 'tip'=>"pan", 'nom'=>$ope_tab['nom'], 'htm'=>$htm];
+          $_app->ope[$ope_ide] = [ 'ico'=>$ope_tab['ico'], 'tip'=>"pan", 'nom'=>$ope_tab['nom'], 'htm'=>$htm];
         }
       }
       // operador de lista
       $ope = _app_tab::$OPE['lis'];
-      $_app->ope['est'] = [ 'ico'=>$ope['ico'], 'bot'=>"ini", 'tip'=>"win", 'nom'=>$ope['nom'],  
-        'art'=>[ 'style'=>"max-width:60rem;" ],
-        'htm'=>_app_tab::ope('lis',"hol.{$ide}",$tab_ope,[ 'lis'=>['style'=>"height:64vh;"] ])
-      ];
+      $_app->ope['est'] = [ 'ico'=>$ope['ico'], 'tip'=>"win", 'nom'=>$ope['nom'], 'htm'=>_app_tab::ope('lis',"hol.{$ide}",$tab_ope) ];
       // imprimo tablero en página principal
       echo "
       <article>

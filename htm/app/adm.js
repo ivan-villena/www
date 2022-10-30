@@ -7,20 +7,20 @@ function _adm( $tip, $dat, $val, ...$opc ){
   let $ = _app_dat.var($dat);
   
   // -> desde form : vacío resultados previos
-  if( $_app.var && ( $.res = $_app.var.querySelector('.ope_res') ) ){ 
+  if( $_app.ope.var && ( $.res = $_app.ope.var.querySelector('.ope_res') ) ){ 
 
     _ele.eli($.res);
   }
   // -> desde menu : capturo form
-  else if( $dat.nodeName && $dat.nodeName == 'A' ){      
+  else if( $dat.nodeName && $dat.nodeName == 'A' ){
 
-    $_app.var = $dat.parentElement.nextElementSibling.querySelector(`[data-ide="${$tip}"]`);
+    $_app.ope.var = $dat.parentElement.nextElementSibling.querySelector(`.ide-${$tip}`);
   }
   
   switch( $tip ){
   // peticiones
   case 'aja':
-    $.lis = $_app.var.querySelector(`nav.lis`);
+    $.lis = $_app.ope.var.querySelector(`nav.lis`);
     _ele.eli($.lis);
     $_api.log.php.forEach( $log => {
       $.ver = document.createElement('a'); 
@@ -32,21 +32,22 @@ function _adm( $tip, $dat, $val, ...$opc ){
     break;
   // iconos
   case 'ico':
-    $.lis = $_app.var.querySelector(`ul.lis`);
+    $.lis = $_app.ope.var.querySelector(`ul.lis`);
     if( !$val ){
       // limpio listado
       _ele.eli($.lis);
       for( let $ico in ( $._api_ico = $_api.app_ico ) ){ 
         $ico = $._api_ico[$ico];
         $.ico = document.createElement('span');
-        $.ico.setAttribute('ico',$ico.ide);
+        $.ico.classList.add('ico');
         $.ico.classList.add('material-icons-outlined');
-        $.ico.classList.add('mar_der-1');        
+        $.ico.classList.add($ico.ide);
+        $.ico.classList.add('mar_der-1');
         $.ico.innerHTML = $ico.val;
+        
         $.nom = document.createElement('p');
-        $.nom.innerHTML = `
-          <c>-</c> <b class='ide'>${$ico.ide}</b> <c>=</c> ${$ico.val}
-        `;
+        $.nom.innerHTML = `<c>-</c> <b class='ide'>${$ico.ide}</b> <c>=</c> ${$ico.val}`;
+
         $.ite = document.createElement('li');
         for( const $pad in $.ele = { 'ite':['ico','nom'], 'lis':['ite'] } ){
           $.ele[$pad].forEach( $e => $[$pad].appendChild($[$e]) );
@@ -75,7 +76,7 @@ function _adm( $tip, $dat, $val, ...$opc ){
     break;
   // base de datos
   case 'sql':
-    $.cod = $_app.var.querySelector('[name="cod"]').value;
+    $.cod = $_app.ope.var.querySelector('[name="cod"]').value;
     if( $.cod ){
 
       _eje.val( ['_sql::dec', [ $.cod ] ], $res => {
@@ -99,11 +100,11 @@ function _adm( $tip, $dat, $val, ...$opc ){
     break;
   // servidor
   case 'php':
-    $.val = $_app.var.querySelector('pre.ope_res');
+    $.val = $_app.ope.var.querySelector('pre.ope_res');
     $.val.innerText = '';        
-    $.htm = $_app.var.querySelector('[name="htm"]').checked;
-    if( $.ide = $_app.var.querySelector('[name="ide"]').value ){          
-      _eje.val([ $.ide, eval(`[${$_app.var.querySelector('[name="par"]').value}]`) ], $res => {
+    $.htm = $_app.ope.var.querySelector('[name="htm"]').checked;
+    if( $.ide = $_app.ope.var.querySelector('[name="ide"]').value ){          
+      _eje.val([ $.ide, eval(`[${$_app.ope.var.querySelector('[name="par"]').value}]`) ], $res => {
         if( $.htm ){
           $.res.innerHTML = !! $res._ ? $res._ : `${_app.let( JSON.stringify($res) )}`;
         }else{
@@ -114,7 +115,7 @@ function _adm( $tip, $dat, $val, ...$opc ){
     break;
   // terminal
   case 'jso':
-    $.cod = $_app.var.querySelector('[name="cod"]');
+    $.cod = $_app.ope.var.querySelector('[name="cod"]');
 
     try{
 
@@ -150,10 +151,10 @@ function _adm( $tip, $dat, $val, ...$opc ){
   case 'htm':
     switch( $val ){
     case 'cod':
-      $.res = $_app.var.querySelector('div.nod');          
-      _ele.eli($_app.var.querySelector('div.ele'));
+      $.res = $_app.ope.var.querySelector('div.nod');          
+      _ele.eli($_app.ope.var.querySelector('div.ele'));
       _ele.eli($.res);
-      $.cod = $_app.var.querySelector('[name="cod"]');
+      $.cod = $_app.ope.var.querySelector('[name="cod"]');
 
       $.val = document.querySelectorAll($.cod.value);
 
@@ -169,7 +170,7 @@ function _adm( $tip, $dat, $val, ...$opc ){
     case 'val':
       $dat.parentElement.parentElement.querySelectorAll(`.${FON_SEL}`).forEach( $e => $e.classList.remove(FON_SEL) )
       $dat.nextElementSibling.classList.add(FON_SEL);
-      $.res = $_app.var.querySelector('div.ele');
+      $.res = $_app.ope.var.querySelector('div.ele');
       _ele.eli($.res);
       $.ver = $dat.nextElementSibling.innerText.replaceAll('\n','');            
       $.res.innerHTML = _app_ele.ope('eti',document.querySelector($.ver));

@@ -1409,7 +1409,7 @@ class _arc {
 
   static url( $val, $tip ){
 
-    let $_ = `http://localhost/${ Array.isArray($val) ? $val.join('/') : $val }`;
+    let $_ = `${SYS_NAV}${ Array.isArray($val) ? $val.join('/') : $val }`;
 
     if( $tip === undefined ){
       window.location.href = $_;
