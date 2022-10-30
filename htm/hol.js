@@ -12,7 +12,7 @@ class _hol_app {
     }
 
     // inicializo tablero con clase principal
-    if( $_app.uri.cab == 'tab' ){
+    if( $_app.uri.cab == 'ope' ){
 
       $_app.tab.cla = ( $_app.tab.dep = $_app.tab.lis.querySelector('.app_ope > .app_tab.par') ) 
         ? '.app_ope > .app_tab.par > [class*="pos-"]' 

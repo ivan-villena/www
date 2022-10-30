@@ -51,16 +51,16 @@
 		('hol','dia','rad', 				23, 'Plasma Radial',						'' )
 	;	
 	-- Tableros
-	DELETE FROM `app_art` WHERE `esq`='hol' AND `cab`='tab'; INSERT INTO `app_art` VALUES
+	DELETE FROM `app_art` WHERE `esq`='hol' AND `cab`='ope'; INSERT INTO `app_art` VALUES
 
-		('hol','tab','kin-tzo', 1, 'El Tzolkin',							'' ),
-		('hol','tab','kin-nav', 2, 'La Nave del Tiempo', 			'' ),
-		('hol','tab','kin-arm', 3, 'El Giro Galáctico', 			'' ),
-		('hol','tab','kin-cro', 4, 'El Giro Espectral', 			'' ),
-		('hol','tab','psi-ban', 5, 'El Giro Solar', 					'' ),
-		('hol','tab','psi-est', 6, 'Las Estaciones Solares', 	'' ),
-		('hol','tab','psi-lun', 7, 'El Giro Lunar', 					'' ),
-		('hol','tab','psi-tzo', 8, 'El Banco-Psi', 						'' )
+		('hol','ope','kin-tzo', 1, 'El Tzolkin',							'' ),
+		('hol','ope','kin-nav', 2, 'La Nave del Tiempo', 			'' ),
+		('hol','ope','kin-arm', 3, 'El Giro Galáctico', 			'' ),
+		('hol','ope','kin-cro', 4, 'El Giro Espectral', 			'' ),
+		('hol','ope','psi-ban', 5, 'El Giro Solar', 					'' ),
+		('hol','ope','psi-est', 6, 'Las Estaciones Solares', 	'' ),
+		('hol','ope','psi-lun', 7, 'El Giro Lunar', 					'' ),
+		('hol','ope','psi-tzo', 8, 'El Banco-Psi', 						'' )
 	;	
 	-- Usuario
 	DELETE FROM `app_art` WHERE `esq`='hol' AND `cab`='usu'; INSERT INTO `app_art` VALUES

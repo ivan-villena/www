@@ -26,7 +26,7 @@
         $this->{$_uri->cab}($_app);
         $_app->sec = ob_get_clean();
         // cargo todos los datos utilizados por esquema
-        if( $_uri->cab == 'tab' ) $_app->rec['dat']['hol'] = [];
+        if( $_uri->cab == 'ope' ) $_app->rec['dat']['hol'] = [];
       }
       // recursos del documento
       $_app->rec['htm'] []= "$_uri->esq";
@@ -885,8 +885,8 @@
       <?php
       $_app->doc['dat'] = ob_get_clean();  
     }
-    // Tableros
-    public function tab( _app $_app ) : void {
+    // Operadores : Modulos
+    public function ope( _app $_app ) : void {
       $_uri = $_app->uri;
       $_val = &$this->_val;
       // valido tablero

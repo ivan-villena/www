@@ -90,8 +90,8 @@ class _app {
     this.uri = !! $_api.app_uri ? $_api.app_uri : {};    
     // cargo operadores
     for( const $ide in this.ope ){ this.ope[$ide] = document.querySelector(this.ope[$ide]); }
-    // - de tableros
-    if( this.uri.cab == 'tab' ){
+    // - de operadores
+    if( this.uri.cab == 'ope' ){
       ['est','tab'].forEach( $ope => {
         for( const $ide in this[$ope] ){
           if( typeof(this[$ope][$ide]) == 'string' ){
@@ -116,8 +116,8 @@ class _app {
     else{
       // expando menu seleccionado      
       if( $.cab = $_app.ope.pan.querySelector(`nav.ide-doc_cab p.ide-${$_app.uri.cab}`) ) $.cab.click();
-      // inicializo tableros  : sec + pos + atr
-      if( $_app.uri.cab == 'tab' ){
+      // inicializo operadores  : sec + pos + atr
+      if( $_app.uri.cab == 'ope' ){
         if( $.cla_app = eval($.cla = `_${$_app.uri.esq}_tab`) ){
           _app_tab.ini();
           _app_est.ini();
