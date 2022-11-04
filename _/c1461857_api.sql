@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-10-2022 a las 16:37:42
+-- Tiempo de generación: 31-10-2022 a las 21:11:46
 -- Versión del servidor: 10.4.25-MariaDB
 -- Versión de PHP: 8.1.10
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `api`
+-- Base de datos: `c1461857_api`
 --
 
 -- --------------------------------------------------------
@@ -27,6 +27,7 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `app_art`
 --
 
+DROP TABLE IF EXISTS `app_art`;
 CREATE TABLE `app_art` (
   `esq` char(3) NOT NULL COMMENT 'Aplicación',
   `cab` char(3) NOT NULL COMMENT 'Menú',
@@ -65,18 +66,30 @@ INSERT INTO `app_art` (`esq`, `cab`, `ide`, `pos`, `nom`, `des`) VALUES
 ('hol', 'dat', 'ton', 13, 'Los 13 Tonos Galácticos', ''),
 ('hol', 'inf', 'dia', 1, 'Diario', ''),
 ('hol', 'inf', 'hum', 2, 'Firma Galáctica', ''),
-('hol', 'tab', 'kin-arm', 3, 'Las 13 Trayectorias del Giro Galáctico', ''),
-('hol', 'tab', 'kin-cro', 4, 'Las 4 Estaciones del Giro Espectral', ''),
-('hol', 'tab', 'kin-nav', 2, 'Los 5 Castillos de la Nave del Tiempo', ''),
-('hol', 'tab', 'kin-tzo', 1, 'Los 260 kines del Tzolkin', ''),
-('hol', 'tab', 'psi-ban', 5, 'Los 365 días del Giro Solar', ''),
-('hol', 'tab', 'psi-est', 6, 'Las 4 Estaciones del Anillo Solar', ''),
-('hol', 'tab', 'psi-lun', 7, 'Los 28 Días del Giro Lunar', ''),
-('hol', 'tab', 'psi-tzo', 8, 'Las 2.080 unidades del Banco-Psi', ''),
+('hol', 'ope', 'kin_arm', 3, 'El Giro Galáctico', ''),
+('hol', 'ope', 'kin_cro', 4, 'El Giro Espectral', ''),
+('hol', 'ope', 'kin_nav', 2, 'La Nave del Tiempo', ''),
+('hol', 'ope', 'kin_tzo', 1, 'El Tzolkin', ''),
+('hol', 'ope', 'psi_ban', 5, 'El Giro Solar', ''),
+('hol', 'ope', 'psi_est', 6, 'Las Estaciones Solares', ''),
+('hol', 'ope', 'psi_lun', 7, 'El Giro Lunar', ''),
+('hol', 'ope', 'psi_tzo', 8, 'El Banco-Psi', ''),
 ('hol', 'tut', 'dat', 2, 'Códigos y Cuentas', ''),
 ('hol', 'tut', 'sin', 1, 'Sincronario de 13 Lunas', ''),
 ('hol', 'usu', 'cic', 1, 'Sendero del Destino', ''),
-('hol', 'usu', 'dat', 2, 'Firma Galáctica', '');
+('hol', 'usu', 'dat', 2, 'Firma Galáctica', ''),
+('hol', 'val', 'kin_arm_cel', 14, 'Célula del Tiempo', ''),
+('hol', 'val', 'kin_arm_tra', 13, 'Trayectoria Armónica', ''),
+('hol', 'val', 'kin_cro_ele', 16, 'Elemento Cromático', ''),
+('hol', 'val', 'kin_cro_est', 15, 'Estación Espectral', ''),
+('hol', 'val', 'kin_ide', 1, 'El Kin', ''),
+('hol', 'val', 'kin_nav_cas', 11, 'Castillo', ''),
+('hol', 'val', 'kin_nav_ond', 12, 'Onda Encantada', ''),
+('hol', 'val', 'lun_ide', 22, 'Giro Lunar', ''),
+('hol', 'val', 'psi_ide', 21, 'Psi-Cronos', ''),
+('hol', 'val', 'rad_ide', 23, 'Plasma Radial', ''),
+('hol', 'val', 'sel_ide', 2, 'Sello Solar', ''),
+('hol', 'val', 'ton_ide', 3, 'Tono Galáctico', '');
 
 -- --------------------------------------------------------
 
@@ -84,6 +97,7 @@ INSERT INTO `app_art` (`esq`, `cab`, `ide`, `pos`, `nom`, `des`) VALUES
 -- Estructura de tabla para la tabla `app_cab`
 --
 
+DROP TABLE IF EXISTS `app_cab`;
 CREATE TABLE `app_cab` (
   `esq` char(3) NOT NULL COMMENT 'Aplicación',
   `ide` char(3) NOT NULL COMMENT 'Identificador',
@@ -105,9 +119,8 @@ INSERT INTO `app_cab` (`esq`, `ide`, `pos`, `nom`, `des`, `ico`, `ocu`, `url`, `
 ('hol', 'bib', 1, 'Bibliografía', '', 'tex_lib', 0, 0, 1, 0),
 ('hol', 'art', 2, 'Artículos', '', 'tex_inf', 0, 0, 1, 0),
 ('hol', 'dat', 3, 'Códigos', '', 'num_cod', 0, 0, 1, 0),
-('hol', 'tab', 4, 'Tableros', '', 'lis_tab', 0, 0, 0, 0),
-('hol', 'dia', 5, 'Diario', '', 'fec_dia', 1, 0, 1, 0),
-('hol', 'usu', 6, 'Kin Planetario', '', 'usu', 1, 0, 1, 0);
+('hol', 'ope', 4, 'Módulos', '', 'tab', 0, 0, 0, 0),
+('hol', 'usu', 6, 'Usuario', '', 'usu', 1, 0, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -115,6 +128,7 @@ INSERT INTO `app_cab` (`esq`, `ide`, `pos`, `nom`, `des`, `ico`, `ocu`, `url`, `
 -- Estructura de tabla para la tabla `app_dat`
 --
 
+DROP TABLE IF EXISTS `app_dat`;
 CREATE TABLE `app_dat` (
   `esq` varchar(7) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Aplicación',
   `ide` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Estructura',
@@ -126,80 +140,80 @@ CREATE TABLE `app_dat` (
 --
 
 INSERT INTO `app_dat` (`esq`, `ide`, `ope`) VALUES
-('api', 'fec', '{\r\n        \"val\": {\r\n        },\r\n        \"est\": {\r\n          \"val\":\"fec\", \r\n          \"dia\":\"fec_dia\", \r\n          \"sem\":\"fec_sem\", \r\n          \"año\":\"fec_año\"\r\n        },\r\n        \"opc\": {\r\n          \"ver\": [ \"dia\", \"sem\", \"mes\" ],\r\n          \"num\": [ \"dia\", \"sem\", \"mes\" ]\r\n        }        \r\n    }'),
-('api', 'hol_rad', '{\r\n        \"val\": {\r\n          \"nom\": \"Plasma #()($)ide() de 7: ()($)nom().\",\r\n          \"des\": \"()($)pla_pod() ()($)pla_fue().\\n\\\"()($)pla_lec()\\\"\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/rad/()($)ide().png);\",\r\n          \"col\": 7\r\n        },\r\n        \"atr\": {\r\n          \"ide\":         { \"min\":1, \"max\":7, \"dat\":\"api.hol_rad\" },            \r\n          \"tel_ora\":     { \"min\":1997, \"max\":1999, \"dat\":\"api.fec_año\" },\r\n          \"tel_ora_año\": { \"min\":1, \"max\":260, \"dat\":\"api.hol_kin\" },\r\n          \"tel_ora_ani\": { \"min\":1, \"max\":260, \"dat\":\"api.hol_kin\" },\r\n          \"tel_ora_gen\": { \"min\":1, \"max\":260, \"dat\":\"api.hol_kin\" },\r\n          \"pla_cub\":     { \"min\":1, \"max\":7, \"dat\":\"api.hol_rad_pla_cub\" },\r\n          \"pla_fue_pre\": { \"min\":1, \"max\":12, \"dat\":\"api.hol_rad_pla_fue\" },\r\n          \"pla_fue_pos\": { \"min\":1, \"max\":12, \"dat\":\"api.hol_rad_pla_fue\" },          \r\n          \"hum_cha\":     { \"min\":1, \"max\":7, \"dat\":\"api.hol_rad_hum_cha\" }\r\n        },\r\n        \"opc\": {\r\n          \"ver\": [ \r\n            \"ide\", \"pla_qua\" \r\n          ],\r\n          \"ima\": [\r\n            \"ide\", \r\n            \"tel_ora_año\", \"tel_ora_ani\", \"tel_ora_gen\", \r\n            \"pla_cub\", \"pla_fue_pre\", \"pla_fue_pos\", \"pla_qua\", \r\n            \"hum_cha\"\r\n          ],\r\n          \"col\": [\r\n            \"pla_qua\"\r\n          ],\r\n          \"num\": [ \r\n            \"ide\", \"pla_qua\" \r\n          ]\r\n        }\r\n    }'),
-('api', 'hol_rad_pla_cub', '{ \r\n        \"val\": {\r\n          \"nom\": \"Plasma #()($)ide() de 7: ()($)pla().\",\r\n          \"tit\": \"()($)nom()\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/rad/pla_cub/()($)ide().png);\",\r\n          \"col\": 4\r\n        }\r\n    }'),
-('api', 'hol_rad_pla_pol', '{ \r\n        \"val\": {\r\n          \"nom\": \"Carga #()($)ide() de 2: ()($)nom().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/rad/pla_car/()($)ide().png);\"\r\n        }\r\n    }'),
-('api', 'hol_rad_pla_ele', '{\r\n        \"val\": {\r\n          \"nom\": \"Tipo de Electricidad Cósmica #()($)ide() de 6: ()($)nom() - ()($)cod().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/rad/pla_ele/()($)ide().png);\"                      \r\n        },\r\n        \"opc\": {\r\n          \"ima\": [ \"ide\" ]\r\n        }          \r\n    }'),
-('api', 'hol_rad_pla_fue', '{\r\n        \"val\": {\r\n          \"nom\": \"Línea de Fuerza #()($)ide() de 12: ()($)nom().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/rad/pla_fue/()($)ide().png);\"\r\n        },\r\n        \"atr\": {\r\n          \"ele_pre\": { \"min\":1, \"max\":6, \"dat\":\"api.hol_rad_pla_ele\" },\r\n          \"ele_pos\": { \"min\":1, \"max\":6, \"dat\":\"api.hol_rad_pla_ele\" }\r\n        },\r\n        \"opc\": {\r\n          \"ima\": [ \"ide\", \"ele_pre\", \"ele_pos\" ]            \r\n        }          \r\n    }'),
-('api', 'hol_rad_pla_qua', '{\r\n        \"val\": {\r\n          \"nom\": \"Quantum #()($)ide() de 3: ()($)nom().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/rad/pla_qua/()($)ide().png);\",\r\n          \"col\": 3\r\n        },\r\n        \"opc\": {\r\n          \"ima\": [ \"ide\" ]            \r\n        }          \r\n    }'),
-('api', 'hol_rad_hum_cha', '{\r\n        \"val\": {\r\n          \"nom\": \"Chakra #()($)ide() de 7: ()($)nom().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/rad/hum_cha/()($)ide().png);\",\r\n          \"col\": 7\r\n        }\r\n    }'),
-('api', 'hol_rad_hum_mud', '{ \r\n        \"val\": {\r\n          \"nom\": \"Mudra #()($)ide() de 7: ()($)nom().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/rad/hum_mud/()($)ide().png);\" \r\n        }\r\n    }'),
-('api', 'hol_ton', '{\r\n        \"val\": {\r\n          \"nom\": \"Tono Galáctico #()($)ide() de 13: ()($)nom().\",\r\n          \"des\": \"()($)des() ()($)acc_lec().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/ton/()($)ide().png);\",\r\n          \"col\": 7\r\n        },\r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":13, \"dat\":\"api.hol_ton\" },\r\n          \"ond\": { \"min\":1, \"max\":4, \"dat\":\"api.hol_ton_ond\" },\r\n          \"ond_enc\":  { \"min\":0, \"max\":4, \"dat\":\"api.hol_ton_ond\" },\r\n          \"dim\": { \"min\":1, \"max\":4, \"dat\":\"api.hol_ton_dim\" },\r\n          \"mat\": { \"min\":1, \"max\":5, \"dat\":\"api.hol_ton_mat\" },\r\n          \"sim\": { \"min\":1, \"max\":7, \"dat\":\"api.hol_ton_sim\" },\r\n          \"hum_lad\": { \"min\":1, \"max\":3, \"dat\":\"api.hol_ton_hum_lad\" },\r\n          \"hum_art\": { \"min\":1, \"max\":7, \"dat\":\"api.hol_ton_hum_art\" },\r\n          \"hum_sen\": { \"min\":1, \"max\":7, \"dat\":\"api.hol_ton_hum_sen\" }\r\n        },\r\n        \"opc\": {\r\n          \"ver\": [ \"ide\", \"ond\", \"dim\", \"mat\", \"sim\", \"hum_art\" ],\r\n          \"ima\": [ \"ide\", \"ond\", \"dim\", \"mat\" ],\r\n          \"col\": [ \"ide\", \"ond\", \"dim\", \"mat\", \"sim\", \"hum_art\", \"hum_lad\" ],\r\n          \"num\": [ \"ide\", \"ond\", \"dim\", \"mat\", \"sim\", \"hum_art\", \"hum_lad\" ]\r\n        }\r\n    }'),
-('api', 'hol_ton_ond', '{\r\n        \"val\": {\r\n          \"nom\": \"Aventura de la Onda Encantada #()($)ide() de 4: ()($)des().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/ton/ond/()($)ide().png);\",\r\n          \"col\": 4\r\n        },\r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":4, \"dat\":\"api.hol_ton_ond\" }\r\n        },\r\n        \"opc\": {\r\n          \"ima\": [ \"ide\" ] \r\n        }          \r\n    }'),
-('api', 'hol_ton_dim', '{\r\n        \"val\": {\r\n          \"nom\": \"Pulsar Dimensional #()($)ide() de 4: ()($)nom().\",\r\n          \"des\": \"Campo de aplicación ()($)des().\", \r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/ton/dim/()($)ide().png);\",\r\n          \"col\": 4\r\n        },\r\n        \"atr\":{\r\n          \"ide\": { \"min\":1, \"max\":4, \"dat\":\"api.hol_ton_dim\" }\r\n        },\r\n        \"opc\": {\r\n          \"ima\": [ \"ide\" ] \r\n        }          \r\n    }'),
-('api', 'hol_ton_mat', '{\r\n        \"val\": {\r\n          \"nom\": \"Pulsar Matiz #()($)ide() de 5: ()($)nom().\",\r\n          \"des\": \"()($)des().\", \r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/ton/mat/()($)ide().png);\",\r\n          \"col\": 5\r\n        },\r\n        \"atr\":{\r\n          \"ide\": { \"min\":1, \"max\":5, \"dat\":\"api.hol_ton_mat\" }\r\n        },\r\n        \"opc\": {\r\n          \"ima\": [ \"ide\" ]\r\n        }\r\n    }'),
-('api', 'hol_ton_sim', '{\r\n        \"val\": {\r\n          \"nom\": \"Simetría Especular de tonos ()($)ide() y ()($)inv(): ()($)nom().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/ton/sim/()($)ide().png);\",\r\n          \"col\": 7\r\n        },\r\n        \"atr\":{\r\n          \"ide\": { \"min\":1, \"max\":7, \"dat\":\"api.hol_ton_sim\" },\r\n          \"inv\": { \"min\":1, \"max\":13, \"dat\":\"api.hol_ton\" }\r\n        },\r\n        \"opc\": {\r\n          \"ima\": [ \"ide\" ]\r\n        }\r\n    }'),
-('api', 'hol_ton_hum_art', '{\r\n        \"val\": {\r\n          \"nom\": \"Articulación #()($)ide() de 7: ()($)nom().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/ton/hum_art/()($)ide().png);\",\r\n          \"col\": 7\r\n        }\r\n    }'),
-('api', 'hol_sel', '{\r\n        \"val\": {\r\n          \"nom\": \"Sello Solar #()($)ide(), ()($)arm().\",\r\n          \"des\": \"()($)car() ()($)des().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/sel/()($)ide().png);\",\r\n          \"col\": 4\r\n        },\r\n        \"atr\": {\r\n          \"ide\":      { \"min\":1, \"max\":20, \"dat\":\"api.hol_sel\" },\r\n          \"cod\":      { \"min\":0, \"max\":19 },\r\n          \"ord\":      { \"min\":1, \"max\":20,  \"dat\":\"api.hol_sel_cod\" },\r\n          \"cic_ser\":  { \"min\":1, \"max\":3, 	\"dat\":\"api.hol_sel_cic_ser\" },\r\n          \"cic_luz\":  { \"min\":1, \"max\":5, 	\"dat\":\"api.hol_sel_cic_luz\" },\r\n          \"arm_tra\":  { \"min\":1, \"max\":20, 	\"dat\":\"api.hol_sel.arm_tra\" },\r\n          \"arm_raz\":  { \"min\":1, \"max\":4, 	\"dat\":\"api.hol_sel_arm_raz\" },\r\n          \"arm_cel\":  { \"min\":1, \"max\":5, 	\"dat\":\"api.hol_sel_arm_cel\" },\r\n          \"cro_fam\":  { \"min\":1, \"max\":5, 	\"dat\":\"api.hol_sel_cro_fam\" },\r\n          \"cro_ele\":  { \"min\":1, \"max\":4, 	\"dat\":\"api.hol_sel_cro_ele\" },\r\n          \"par_ana\":  { \"min\":1, \"max\":20, 	\"dat\":\"api.hol_sel\" },\r\n          \"par_ant\":  { \"min\":1, \"max\":20, 	\"dat\":\"api.hol_sel\" },\r\n          \"par_ocu\":  { \"min\":1, \"max\":20, 	\"dat\":\"api.hol_sel\" },\r\n          \"res_flu\":  { \"min\":1, \"max\":2, 	\"dat\":\"api.hol_sel_res_flu\" },\r\n          \"sol_pla\":  { \"min\":1, \"max\":10, 	\"dat\":\"api.hol_sel_sol_pla\" },\r\n          \"sol_cel\":  { \"min\":1, \"max\":10, 	\"dat\":\"api.hol_sel_sol_cel\" },\r\n          \"sol_cir\":  { \"min\":1, \"max\":10, 	\"dat\":\"api.hol_sel_sol_cir\" },			\r\n          \"pla_cen\":  { \"min\":1, \"max\":5, 	\"dat\":\"api.hol_sel_pla_cen\" },\r\n          \"pla_hem\":  { \"min\":1, \"max\":3, 	\"dat\":\"api.hol_sel_pla_hem\" },\r\n          \"pla_mer\":  { \"min\":1, \"max\":2, 	\"dat\":\"api.hol_sel_pla_mer\" },\r\n          \"hum_res\":  { \"min\":1, \"max\":2, 	\"dat\":\"api.hol_sel_res_flu\" },\r\n          \"hum_cen\":  { \"min\":1, \"max\":5, 	\"dat\":\"api.hol_sel_hum_cen\" },\r\n          \"hum_ext\":  { \"min\":1, \"max\":5, 	\"dat\":\"api.hol_sel_hum_ext\" },\r\n          \"hum_ded\":  { \"min\":1, \"max\":5, 	\"dat\":\"api.hol_sel_hum_ded\" },\r\n          \"hum_mer\":  { \"min\":1, \"max\":10, 	\"dat\":\"api.hol_sel_hum_mer\" }\r\n        },\r\n        \"opc\": {\r\n          \"ver\": [ \r\n            \"ide\", \"cic_luz\", \"cro_fam\", \"cro_ele\", \"arm_raz\", \"arm_cel\",\r\n            \"res_flu\", \"sol_pla\", \"sol_cel\", \"sol_cir\", \"pla_cen\", \"hum_ext\", \"hum_cen\", \"hum_ded\", \"hum_mer\" \r\n          ],\r\n          \"ima\": [\r\n            \"ide\", \"ord\", \"par_ana\", \"par_ant\", \"par_ocu\", \"cro_fam\", \"cro_ele\", \r\n            \"res_flu\", \"sol_pla\", \"sol_cel\", \"sol_cir\", \"pla_cen\", \"pla_hem\", \"pla_mer\", \"hum_res\", \"hum_mer\", \"hum_cen\", \"hum_ext\", \"hum_ded\"\r\n          ],\r\n          \"col\": [\r\n            \"ide\", \"ord\", \"par_ana\", \"par_ant\", \"par_ocu\", \"cic_ser\", \"cic_luz\", \"cro_fam\", \"cro_ele\", \"arm_raz\", \"arm_cel\",\r\n            \"res_flu\", \"sol_pla\", \"sol_cel\", \"sol_cir\", \"pla_cen\", \"pla_hem\", \"pla_mer\", \"hum_mer\"\r\n          ],\r\n          \"num\": [ \r\n            \"ide\", \"cod\", \"cic_ser\", \"cic_luz\", \r\n            \"cro_fam\", \"cro_ele\", \"arm_tra\", \"arm_raz\", \"arm_cel\", \"par_ana\", \"par_ant\", \"par_ocu\", \r\n            \"res_flu\", \"sol_pla\", \"sol_cel\", \"sol_cir\", \"pla_cen\", \"hum_ext\", \"hum_cen\", \"hum_ded\", \"hum_mer\"\r\n          ]            \r\n        }          \r\n    }'),
-('api', 'hol_sel_cod', '{\r\n        \"val\": {\r\n          \"nom\": \"Código #()($)cod()\",\r\n          \"des\": \"()($)car() ()($)des().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/sel/cod/()($)cod().png);\",\r\n          \"col\": 5\r\n        },\r\n        \"atr\": {\r\n          \"ide\":     { \"min\":1, \"max\":20, \"dat\":\"api.hol_sel\" },\r\n          \"cod\":     { \"min\":0, \"max\":19 },\r\n          \"ord\":     { \"min\":1, \"max\":20, \"dat\":\"api.hol_sel_cod\" },\r\n          \"cro_fam\": { \"min\":1, \"max\":5, \"dat\":\"api.hol_sel_cro_fam\" },\r\n          \"cro_ele\": { \"min\":1, \"max\":4, \"dat\":\"api.hol_sel_cro_ele\" },\r\n          \"res_flu\": { \"min\":1, \"max\":2, \"dat\":\"api.hol_sel_res_flu\" },\r\n          \"sol_pla\": { \"min\":1, \"max\":10, \"dat\":\"api.hol_sel_sol_pla\" },\r\n          \"sol_cel\": { \"min\":1, \"max\":10, \"dat\":\"api.hol_sel_sol_cel\" },\r\n          \"sol_cir\": { \"min\":1, \"max\":10, \"dat\":\"api.hol_sel_sol_cir\" },\r\n          \"pla_cen\": { \"min\":1, \"max\":5, \"dat\":\"api.hol_sel_pla_cen\" },\r\n          \"pla_hem\": { \"min\":1, \"max\":3, \"dat\":\"api.hol_sel_pla_hem\" },\r\n          \"pla_mer\": { \"min\":1, \"max\":2, \"dat\":\"api.hol_sel_pla_mer\" },\r\n          \"hum_res\": { \"min\":1, \"max\":2, \"dat\":\"api.hol_sel_res_flu\" },\r\n          \"hum_cen\": { \"min\":1, \"max\":5, \"dat\":\"api.hol_sel_hum_cen\" },\r\n          \"hum_ext\": { \"min\":1, \"max\":5, \"dat\":\"api.hol_sel_hum_ext\" },\r\n          \"hum_ded\": { \"min\":1, \"max\":5, \"dat\":\"api.hol_sel_hum_ded\" },\r\n          \"hum_mer\": { \"min\":1, \"max\":10, \"dat\":\"api.hol_sel_hum_mer\" }\r\n        },\r\n        \"opc\": {\r\n          \"ima\": [\r\n            \"ide\", \"ord\", \"par_ana\", \"par_ant\", \"par_ocu\", \"cro_fam\", \"cro_ele\", \r\n            \"res_flu\", \"sol_pla\", \"sol_cel\", \"sol_cir\", \"pla_cen\", \"pla_hem\", \"pla_mer\", \"hum_res\", \"hum_mer\", \"hum_cen\", \"hum_ext\", \"hum_ded\"\r\n          ]            \r\n        }\r\n    }'),
-('api', 'hol_sel_cic_dir', '{\r\n        \"val\": {\r\n          \"nom\": \"Ciclo Direccional #()($)ide() de 4: ()($)nom()\",\r\n          \"des\": \"()($)des().\", \r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/sel/cic_dir/()($)ide().png);\",\r\n          \"col\": 4\r\n        },\r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":4, \"dat\":\"api.hol_sel_cic_dir\" }\r\n        },\r\n        \"opc\": {\r\n          \"ima\": [ \"ide\" ] \r\n        }          \r\n    }'),
-('api', 'hol_sel_cic_ser', '{ \r\n        \"val\": {\r\n          \"nom\": \"Desarrollo del ser #()($)ide() de 3: ()($)nom().\",\r\n          \"des\": \"()($)des().\",\r\n          \"col\": 3\r\n        }\r\n    }'),
-('api', 'hol_sel_cic_luz', '{ \r\n        \"val\": {\r\n          \"nom\": \"Grupo Cíclico de la luz #()($)ide() de 5: ()($)nom().\",\r\n          \"des\": \"()($)des().\",\r\n          \"col\": 5\r\n        }\r\n    }'),
-('api', 'hol_sel_cic_men', '{\r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":4, \"dat\":\"api.hol_kin_cro_est\" },\r\n          \"sel\": { \"min\":1, \"max\":20, \"dat\":\"api.hol_sel\" }\r\n        },\r\n        \"opc\": {\r\n          \"ima\": [ \"ide\", \"sel\" ]            \r\n        }          \r\n    }'),
-('api', 'hol_sel_par_ana', '{\r\n        \"atr\": {\r\n          \"ini\": { \"min\":1, \"max\":20, \"dat\":\"api.hol_sel\" },\r\n          \"fin\": { \"min\":1, \"max\":20, \"dat\":\"api.hol_sel\" }\r\n        },\r\n        \"opc\": {\r\n          \"ima\": [ \"ini\", \"fin\" ]            \r\n        }          \r\n    }'),
-('api', 'hol_sel_par_ant', '{\r\n        \"atr\": {\r\n          \"ini\": { \"min\":1, \"max\":20, \"dat\":\"api.hol_sel\" },\r\n          \"fin\": { \"min\":1, \"max\":20, \"dat\":\"api.hol_sel\" }\r\n        },\r\n        \"opc\": {\r\n          \"ima\": [ \"ini\", \"fin\" ]            \r\n        }          \r\n    }'),
-('api', 'hol_sel_par_ocu', '{\r\n        \"atr\": {\r\n          \"ini\": { \"min\":1, \"max\":20, \"dat\":\"api.hol_sel\" },\r\n          \"fin\": { \"min\":1, \"max\":20, \"dat\":\"api.hol_sel\" }\r\n        },\r\n        \"opc\": {\r\n          \"ima\": [ \"ini\", \"fin\" ]\r\n        }          \r\n    }'),
-('api', 'hol_sel_arm_raz', '{\r\n        \"val\": {\r\n          \"nom\": \"Raza Raiz Cósmica #()($)ide() de 4: ()($)nom().\",\r\n          \"des\": \"Poder: ()($)pod(); Dirección: ()($)dir(); Momento de Mayor Vibración: ()($)dia().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/sel/arm_raz/()($)ide().png);\",\r\n          \"col\": 4            \r\n        },\r\n        \"opc\": {\r\n          \"ima\": [ \"ide\" ]\r\n        }          \r\n    }'),
-('api', 'hol_sel_arm_cel', '{\r\n        \"val\": {\r\n          \"nom\": \"Célula del Tiempo #()($)ide() de 5: ()($)nom().\",\r\n          \"des\": \"Poder: ()($)pod(); Función: ()($)fun().\", \r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/sel/arm_cel/()($)ide().png);\",\r\n          \"col\": 5\r\n        },\r\n        \"opc\": {\r\n          \"ima\": [ \"ide\" ]\r\n        }          \r\n    }'),
-('api', 'hol_sel_arm_tra', '{\r\n        \"val\": {\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/sel.png), center/contain no-repeat url(http://localhost/img/hol/fic/sel/()($)ide().png);\"\r\n        }          \r\n    }'),
-('api', 'hol_sel_cro_fam', '{\r\n        \"val\": {\r\n          \"nom\": \"Familia Terrestre #()($)ide() de 5: ()($)nom().\",\r\n          \"des\": \"Función: ()($)pla(); Centro-G: ()($)hum(); Misión: ()($)des();\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/sel/cro_fam/()($)ide().png);\",\r\n          \"col\": 5\r\n        },\r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":5, \"dat\":\"api.hol_sel_cro_fam\" },\r\n          \"pla_cen\": { \"min\":1, \"max\":5, \"dat\":\"api.hol_sel_pla_cen\" },\r\n          \"hum_cen\": { \"min\":1, \"max\":5, \"dat\":\"api.hol_sel_hum_cen\" },\r\n          \"hum_ded\": { \"min\":1, \"max\":5, \"dat\":\"api.hol_sel_hum_ded\" }\r\n        },\r\n        \"opc\": {\r\n          \"ima\": [ \"ide\", \"pla_cen\", \"hum_cen\", \"hum_ded\" ]\r\n        }          \r\n    }'),
-('api', 'hol_sel_cro_ele', '{\r\n        \"val\": {\r\n          \"nom\": \"Clan #()($)ide() de 4: ()($)nom() ()($)col().\",\r\n          \"des\": \"()($)des().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/sel/cro_ele/()($)ide().png);\",\r\n          \"col\": 4\r\n        },\r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":4, \"dat\":\"api.hol_sel_cro_ele\" },\r\n          \"res_flu\": { \"min\":1, \"max\":2, \"dat\":\"api.hol_sel_res_flu\" },\r\n          \"hum_ext\": { \"min\":1, \"max\":4, \"dat\":\"api.hol_sel_hum_ext\" }\r\n        },\r\n        \"opc\": {\r\n          \"ima\": [ \"ide\", \"res_flu\", \"hum_ext\" ]\r\n        }          \r\n    }'),
-('api', 'hol_sel_sol_res', '{        \r\n        \"val\": {\r\n          \"nom\": \"()($)nom()\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/sel/sol_res/()($)ide().png);\",\r\n          \"col\": 2\r\n        },\r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":2, \"dat\":\"api.hol_sel_sol_res\" }\r\n        },\r\n        \"opc\": {\r\n          \"ima\": [ \"ide\" ]\r\n        }          \r\n    }'),
-('api', 'hol_sel_sol_orb', '{        \r\n        \"val\": {\r\n          \"nom\": \"Grupo Orbital #()($)nom() de 2: ()($)nom().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/sel/sol_orb/()($)ide().png);\",\r\n          \"col\": 2\r\n        },\r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":2, \"dat\":\"api.hol_sel_sol_orb\" }\r\n        },\r\n        \"opc\": {\r\n          \"ima\": [ \"ide\" ]\r\n        }          \r\n    }'),
-('api', 'hol_sel_sol_pla', '{        \r\n        \"val\": {\r\n          \"nom\": \"Órbita Planetaria #()($)ide() de 10: ()($)nom().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/sel/sol_pla/()($)ide().png);\",\r\n          \"col\": 10\r\n        },\r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":10, \"dat\":\"api.hol_sel_sol_pla\" },\r\n          \"orb\": { \"min\":1, \"max\":5, \"dat\":\"api.hol_sel_sol_orb\" },\r\n          \"cel\": { \"min\":1, \"max\":5, \"dat\":\"api.hol_sel_sol_cel\" },\r\n          \"cir\": { \"min\":1, \"max\":5, \"dat\":\"api.hol_sel_sol_cir\" }\r\n        },\r\n        \"opc\": {\r\n          \"ima\": [ \"ide\",\"orb\",\"cel\",\"cir\" ]\r\n        }          \r\n    }'),
-('api', 'hol_sel_sol_cel', '{        \r\n        \"val\": {\r\n          \"nom\": \"Célula Solar #()($)ide() de 5: ()($)nom().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/sel/sol_cel/()($)ide().png);\",\r\n          \"col\": 5\r\n        },\r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":5, \"dat\":\"api.hol_sel_sol_cel\" }\r\n        },\r\n        \"opc\": {\r\n          \"ima\": [ \"ide\" ]\r\n        }          \r\n    }'),
-('api', 'hol_sel_sol_cir', '{        \r\n        \"val\": {\r\n          \"nom\": \"Circuito de Telepatía #()($)ide() de 5: ()($)nom().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/sel/sol_cir/()($)ide().png);\",\r\n          \"col\": 5\r\n        },\r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":5, \"dat\":\"api.hol_sel_sol_cir\" }\r\n        },\r\n        \"opc\": {\r\n          \"ima\": [ \"ide\" ]\r\n        }          \r\n    }'),
-('api', 'hol_sel_pla_res', '{\r\n        \"val\": {\r\n          \"nom\": \"()($)nom()\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/sel/pla_res/()($)ide().png);\",\r\n          \"col\": 2\r\n        },\r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":2, \"dat\":\"api.hol_sel_pla_res\" },\r\n          \"hem\": { \"min\":1, \"max\":3, \"dat\":\"api.hol_sel_pla_hem\" },\r\n          \"fam\": { \"min\":1, \"max\":5, \"dat\":\"api.hol_sel_cro_fam\" }\r\n        },\r\n        \"opc\": {\r\n          \"ima\": [ \"ide\",\"hem\",\"fam\" ]\r\n        }          \r\n    }'),
-('api', 'hol_sel_pla_cen', '{\r\n        \"val\": {\r\n          \"nom\": \"Centro Planetario #()($)ide() de 5: ()($)nom().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/sel/pla_cen/()($)ide().png);\",\r\n          \"col\": 5\r\n        },\r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":5, \"dat\":\"api.hol_sel_pla_cen\" },\r\n          \"fam\": { \"min\":1, \"max\":5, \"dat\":\"api.hol_sel_cro_fam\" }\r\n        },\r\n        \"opc\": {\r\n          \"ima\": [ \"ide\", \"fam\" ]            \r\n        }          \r\n    }'),
-('api', 'hol_sel_pla_hem', '{\r\n        \"val\": {\r\n          \"nom\": \"Hemisferio #()($)ide() de 3: ()($)nom().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/sel/pla_hem/()($)ide().png);\",\r\n          \"col\": 3\r\n        },\r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":3, \"dat\":\"api.hol_sel_pla_hem\" }\r\n        },\r\n        \"opc\": {\r\n          \"ima\": [ \"ide\" ]            \r\n        }          \r\n    }'),
-('api', 'hol_sel_pla_mer', '{\r\n        \"val\": {\r\n          \"nom\": \"Meridiano #()($)ide() de 2: ()($)nom().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/sel/pla_mer/()($)ide().png);\",\r\n          \"col\": 2\r\n        },\r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":2, \"dat\":\"api.hol_sel_pla_mer\" }\r\n        },\r\n        \"opc\": {\r\n          \"ima\": [ \"ide\" ]            \r\n        }          \r\n    }'),
-('api', 'hol_sel_hum_res', '{\r\n        \"val\": {\r\n          \"nom\": \"()($)nom()\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/sel/hum_res/()($)ide().png);\",\r\n          \"col\": 2\r\n        },\r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":2, \"dat\":\"api.hol_sel_hum_res\" }\r\n        },\r\n        \"opc\": {\r\n          \"ima\": [ \"ide\" ]            \r\n        }          \r\n    }'),
-('api', 'hol_sel_hum_cen', '{\r\n        \"val\": {\r\n          \"nom\": \"Centro Galáctico #()($)ide() de 5: ()($)nom().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/sel/hum_cen/()($)ide().png);\",\r\n          \"col\": 5\r\n        },\r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":5, \"dat\":\"api.hol_sel_hum_cen\" },\r\n          \"fam\": { \"min\":1, \"max\":5, \"dat\":\"api.hol_sel_cro_fam\" }\r\n        },\r\n        \"opc\": {\r\n          \"ima\": [ \"ide\", \"fam\" ] \r\n        }          \r\n    }'),
-('api', 'hol_sel_hum_ded', '{\r\n        \"val\": {\r\n          \"nom\": \"Dedo #()($)ide() de 5: ()($)nom().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/sel/hum_ded/()($)ide().png);\",\r\n          \"col\": 5\r\n        },\r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":5, \"dat\":\"api.hol_sel_hum_ded\" },\r\n          \"fam\": { \"min\":1, \"max\":5, \"dat\":\"api.hol_sel_cro_fam\" }\r\n        },\r\n        \"opc\": {\r\n          \"ima\": [ \"ide\", \"fam\" ] \r\n        }          \r\n    }'),
-('api', 'hol_sel_hum_ext', '{\r\n        \"val\": {\r\n          \"nom\": \"Extremidad #()($)ide() de 4: ()($)nom().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/sel/hum_ext/()($)ide().png);\",\r\n          \"col\": 4\r\n        },\r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":4, \"dat\":\"api.hol_sel_hum_ext\" },\r\n          \"ele\": { \"min\":1, \"max\":4, \"dat\":\"api.hol_sel_cro_ele\" }\r\n        },\r\n        \"opc\": {\r\n          \"ima\": [ \"ide\", \"ele\" ] \r\n        }          \r\n    }'),
-('api', 'hol_sel_hum_mer', '{\r\n        \"val\": {\r\n          \"nom\": \"Meridiano Orgánico #()($)ide() de 10: ()($)nom().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/sel/hum_mer/()($)ide().png);\",\r\n          \"col\": 10\r\n        },\r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":10, \"dat\":\"api.hol_sel_hum_mer\" }\r\n        },\r\n        \"opc\": {\r\n          \"ima\": [ \"ide\" ] \r\n        }          \r\n    }'),
-('api', 'hol_lun', '{  \r\n        \"val\": {\r\n          \"nom\": \"()($)ide()° Día de 28.\",\r\n          \"des\": \"\"\r\n        },\r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":28, \"dat\":\"api.hol_lun\" },\r\n          \"arm\": { \"min\":1, \"max\":4, \"dat\":\"api.hol_lun_arm\" },\r\n          \"rad\": { \"min\":1, \"max\":7, \"dat\":\"api.hol_rad\" }\r\n        },\r\n        \"opc\": {\r\n          \"ver\": [ \r\n            \"ide\", \"arm\" \r\n          ],\r\n          \"ima\": [\r\n            \"arm\", \"rad\"\r\n          ],\r\n          \"col\": [\r\n            \"arm\", \"rad\"\r\n          ],\r\n          \"num\": [ \r\n            \"ide\", \"arm\" \r\n          ]\r\n        }          \r\n    }'),
-('api', 'hol_lun_arm', '{  \r\n        \"val\": {\r\n          \"nom\": \"Armonía lunar ()($)ide()\",\r\n          \"des\": \"()($)nom(), ()($)col(). ()($)dia(): ()($)des()\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/rad.png), center/contain no-repeat url(http://localhost/img/hol/fic/arm/()($)ide().png);\",\r\n          \"col\": 4\r\n        },\r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":4, \"dat\":\"api.hol_lun_arm\" }\r\n        },\r\n        \"opc\": {\r\n          \"ima\": [\r\n            \"ide\"\r\n          ]            \r\n        }\r\n    }'),
-('api', 'hol_lun_tel_tor', '{  \r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":4, \"dat\":\"api.hol_lun_tel_tor\" }\r\n        }\r\n    }'),
-('api', 'hol_lun_tel_cam', '{  \r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":8, \"dat\":\"api.hol_lun_tel_cam\" }\r\n        }\r\n    }'),
-('api', 'hol_lun_tel_cub', '{  \r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":16, \"dat\":\"api.hol_lun_tel_cub\" }\r\n        }\r\n    }'),
-('api', 'hol_lun_pla_ato', '{\r\n      \"val\": {\r\n        \"nom\": \"Atomo del Tiempo #()($)ide() de 4. ()($)nom()\",\r\n        \"des\": \"()($)des()\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/lun/pla_ato/()($)ide().png);\",\r\n        \"col\": 4\r\n      }\r\n    }'),
-('api', 'hol_lun_pla_tet', '{\r\n      \"val\": {\r\n        \"nom\": \"Tetraedro #()($)ide() de 2. ()($)nom()\",\r\n        \"des\": \"()($)des()\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/lun/pla_tet/()($)ide().png);\",\r\n        \"col\": 2\r\n      }\r\n    }'),
-('api', 'hol_cas', '{\r\n        \"val\": {\r\n          \"nom\": \"Posicion #()($)ide() de 52.\",\r\n          \"des\": \"Cuadrante #()($)arm() de 4; Tono Galáctico #()($)ton() de 13; Onda de la Aventura #()($)ond() de 4.\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/ton/arm/()($)arm().png), center/contain no-repeat url(http://localhost/img/hol/fic/ton/()($)ton().png);\"\r\n        },\r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":52, \"dat\":\"api.hol_cas\" },\r\n          \"arm\": { \"min\":1, \"max\":4, \"dat\":\"api.hol_cas_arm\" },\r\n          \"ond\": {\"min\":1, \"max\":4, \"dat\":\"api.hol_cas_ond\" },\r\n          \"pos_arm\": { \"min\":1, \"max\":4, \"dat\":\"api.hol_arm\" },\r\n          \"ton\": {\"min\":1, \"max\":13, \"dat\":\"api.hol_ton\" },\r\n          \"ton_arm\": { \"min\":1, \"max\":13, \"dat\":\"api.hol_ton\" }\r\n        },\r\n        \"opc\": {\r\n          \"ver\": [ \r\n            \"ide\", \"arm\" \r\n          ],    \r\n          \"ima\": [\r\n            \"arm\", \"ond\"\r\n          ],\r\n          \"col\": [\r\n            \"arm\", \"ond\", \"ton_arm\"\r\n          ],\r\n          \"num\": [ \r\n            \"ide\", \"arm\", \"ton_arm\" \r\n          ]            \r\n        }\r\n    }'),
-('api', 'hol_cas_arm', '{\r\n        \"val\": {\r\n          \"nom\": \"Cuadrante #()($)ide() de 4\",\r\n          \"des\": \"Dirección: ()($)dir(); Poder: ()($)pod(); Color: ()($)col().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/cas/arm/()($)ide().png);\",\r\n          \"col\": 4\r\n        }\r\n    }'),
-('api', 'hol_cas_ond', '{\r\n        \"val\": {\r\n          \"nom\": \"Aventura de la Onda Encantada #()($)ide() de 4\",\r\n          \"des\": \"()($)des().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/cas/ond/()($)ide().png);\",\r\n          \"col\": 4\r\n        }\r\n    }'),
-('api', 'hol_chi', '{ \r\n        \"val\": {\r\n          \"nom\": \"\",\r\n          \"des\": \"\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/chi/()($)ide().png);\"\r\n        }\r\n    }'),
-('api', 'hol_chi_mon', '{ \r\n        \"val\": {\r\n          \"nom\": \"\",\r\n          \"des\": \"\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/chi/mon/()($)ide().png);\"\r\n        }\r\n    }'),
-('api', 'hol_chi_bin', '{ \r\n        \"val\": {\r\n          \"nom\": \"\",\r\n          \"des\": \"\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/chi/bin/()($)ide().png);\"\r\n        }\r\n    }'),
-('api', 'hol_chi_tri', '{ \r\n        \"val\": {\r\n          \"nom\": \"\",\r\n          \"des\": \"\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/chi/tri/()($)ide().png);\"\r\n        }\r\n    }'),
-('api', 'hol_kin', '{\r\n        \"val\": {\r\n          \"nom\": \"Kin #()($)ide() de 260: ()($)nom().\",\r\n          \"des\": \"()($)des().\",\r\n          \"ima\": \"background: top/50% no-repeat url(http://localhost/img/hol/fic/ton/()($)nav_ond_dia().png), bottom/60% no-repeat url(http://localhost/img/hol/fic/sel/()($)arm_tra_dia().png);\"            \r\n        },\r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":260, \"dat\":\"api.hol_kin\" },\r\n          \"ene\": { \"min\":1, \"max\":4, \"dat\":\"api.hol_kin_ene\" },\r\n          \"ene_cam\": { \"min\":1, \"max\":14, \"dat\":\"api.hol_kin_ene_cam\" },\r\n          \"chi\": { \"min\":1, \"max\":65, \"dat\":\"api.hol_chi\" },\r\n          \"cro_est\": { \"min\":1, \"max\":4, \"dat\":\"api.hol_kin_cro_est\" },\r\n          \"cro_est_dia\": { \"min\":1, \"max\":65, \"dat\":\"api.hol_chi\" },\r\n          \"cro_ele\": { \"min\":1, \"max\":4, \"dat\":\"api.hol_kin_cro_ele\" },\r\n          \"cro_ele_dia\": { \"min\":1, \"max\":5, \"dat\":\"api.hol_sel_cro_fam\" },\r\n          \"arm_tra\": { \"min\":1, \"max\":13, \"dat\":\"api.hol_kin_arm_tra\" },\r\n          \"arm_tra_dia\": { \"min\":1, \"max\":20, \"dat\":\"api.hol_sel\" },\r\n          \"arm_cel\": { \"min\":1, \"max\":5, \"dat\":\"api.hol_kin_arm_cel\" },\r\n          \"arm_cel_dia\": { \"min\":1, \"max\":4, \"dat\":\"api.hol_sel_arm_raz\" },  \r\n          \"gen_enc\": { \"min\":1, \"max\":3, \"dat\":\"api.hol_kin_gen_enc\" },\r\n          \"gen_enc_dia\": { \"min\":1, \"max\":3, \"max-1\":130, \"max-2\":90, \"max-3\":52 },\r\n          \"gen_cel\": { \"min\":1, \"max\":5, \"dat\":\"api.hol_kin_gen_cel\" },\r\n          \"gen_cel_dia\": { \"min\":1, \"max\":26 },\r\n          \"nav_cas\": { \"min\":1, \"max\":5, \"dat\":\"api.hol_kin_nav_cas\" },\r\n          \"nav_cas_dia\": { \"min\":1, \"max\":52, \"dat\":\"api.hol_cas\" },  \r\n          \"nav_ond\": { \"min\":1, \"max\":20, \"dat\":\"api.hol_kin_nav_ond\" },\r\n          \"nav_ond_dia\": { \"min\":1, \"max\":13, \"dat\":\"api.hol_ton\" },\r\n          \"par_ana\": { \"min\":1, \"max\":260, \"dat\":\"api.hol_kin\" },\r\n          \"par_gui\": { \"min\":1, \"max\":260, \"dat\":\"api.hol_kin\" },\r\n          \"par_ant\": { \"min\":1, \"max\":260, \"dat\":\"api.hol_kin\" },\r\n          \"par_ocu\": { \"min\":1, \"max\":260, \"dat\":\"api.hol_kin\" }\r\n        },\r\n        \"est\": {\r\n          \"ide\":\"hol_kin\",\r\n          \"arm_tra_dia\" : \"hol_sel\",\r\n          \"nav_ond_dia\": \"hol_ton\",\r\n          \"nav_cas_dia\" : \"hol_cas\"\r\n        },\r\n        \"fic\": {\r\n          \"val\": {\r\n            \"ide\": \"ide\",\r\n            \"atr\": [ \"cro_ele\", \"arm_cel\", \"nav_ond\" ]\r\n          },\r\n          \"ima\" : [\r\n            \"nav_cas\", \"nav_ond\", \"arm_tra\", \"arm_cel\", \"cro_est\", \"cro_ele\"\r\n          ]\r\n        },\r\n        \"opc\": {\r\n          \"ver\": [ \r\n            \"ene\", \"ene_cam\", \"gen_enc\", \"gen_cel\", \"nav_cas\", \"nav_ond\", \r\n            \"cro_est\", \"cro_ele\", \"arm_tra\", \"arm_cel\" \r\n          ],\r\n          \"col\": [\r\n            \"ene\", \r\n            \"gen_enc\", \"gen_cel\", \r\n            \"nav_cas\", \"nav_ond\", \r\n            \"cro_est\", \"cro_ele\", \r\n            \"arm_tra\", \"arm_cel\"\r\n          ],\r\n          \"ima\": [\r\n            \"ide\", \"ene\", \"ene_cam\", \"chi\", \r\n            \"par_ana\", \"par_gui\", \"par_ant\", \"par_ocu\", \r\n            \"nav_cas\", \"nav_ond\", \"nav_ond_dia\", \r\n            \"arm_tra\", \"arm_cel\", \"arm_tra_dia\", \r\n            \"cro_est\", \"cro_ele\"\r\n          ],\r\n          \"num\": [ \r\n            \"ide\", \"psi\", \"ene\", \"ene_cam\", \r\n            \"gen_enc\", \"gen_enc_dia\", \"gen_cel\", \"gen_cel_dia\", \r\n            \"nav_cas\", \"nav_cas_dia\", \"nav_ond\", \"nav_ond_dia\", \r\n            \"cro_est\", \"cro_est_dia\", \"cro_ele\", \"cro_ele_dia\", \r\n            \"arm_tra\", \"arm_tra_dia\", \"arm_cel\", \"arm_cel_dia\"\r\n          ],\r\n          \"tex\": [\r\n            \"nom\",\"des\"\r\n          ]            \r\n        }\r\n    }'),
-('api', 'hol_kin_ene', '{ \r\n        \"val\": {\r\n          \"nom\": \"Grupo #()($)ide() de ()($)nom() ( ()($)gru() x ()($)gru_uni() = ()($)uni() unidades )\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/kin/ene/()($)ide().png);\",\r\n          \"col\": 4\r\n        }          \r\n    }'),
-('api', 'hol_kin_ene_cam', '{ \r\n        \"val\": {\r\n          \"nom\": \"Campo #()($)ide() de ()($)nom() unidades\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/kin/ene_cam/()($)ide().png);\"\r\n        }\r\n    }'),
-('api', 'hol_kin_arm_tra', '{ \r\n        \"val\": {\r\n          \"nom\": \"Trayectoria Armónica #()($)ide() de 13: ()($)nom().\",\r\n          \"des\": \"()($)ton_des() del Giro Galáctico.\",\r\n          \"ima\": \"background: top/75% no-repeat url(http://localhost/img/hol/fic/ton/()($)ide().png), center/contain no-repeat url(http://localhost/img/hol/fic/sel.png);\",\r\n          \"col\": 7            \r\n        }\r\n    }'),
-('api', 'hol_kin_arm_cel', '{ \r\n        \"val\": {\r\n          \"nom\": \"Célula del Tiempo #()($)ide() de 65: ()($)nom().\", \r\n          \"des\": \"()($)des().\",\r\n          \"ima\": \"background: top/75% no-repeat url(http://localhost/img/hol/fic/ton/()($)ton().png), center/contain no-repeat url(http://localhost/img/hol/fic/sel/arm_cel/()($)cel().png);\",\r\n          \"col\": 5            \r\n        }\r\n    }'),
-('api', 'hol_kin_cro_est', '{\r\n        \"val\": {\r\n          \"nom\": \"Espectro Galáctico #()($)ide() de 4: ()($)col() del ()($)dir().\",\r\n          \"des\": \"Guardían ()($)may(): ()($)cer(), ()($)cer_des()\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/cas/arm/()($)ide().png);\",\r\n          \"col\": 4            \r\n        }\r\n    }'),
-('api', 'hol_kin_cro_ele', '{ \r\n        \"val\": {\r\n          \"nom\": \"Elemento Cromático #()($)ide() de 52: ()($)nom().\",\r\n          \"des\": \"()($)des(): ()($)cas_des().\",\r\n          \"ima\": \"background: bottom/75% no-repeat url(http://localhost/img/hol/fic/ton/()($)ton().png), center/contain no-repeat url(http://localhost/img/hol/fic/sel/cro_ele/()($)ele().png);\",\r\n          \"col\": 4            \r\n        }\r\n    }'),
-('api', 'hol_kin_nav_cas', '{ \r\n        \"val\": {\r\n          \"nom\": \"Castillo #()($)ide() de 5: ()($)nom().\",\r\n          \"des\": \"()($)des().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/kin/nav_cas/()($)ide().png);\",\r\n          \"col\": 5            \r\n        }\r\n    }'),
-('api', 'hol_kin_nav_ond', '{ \r\n        \"val\": {\r\n          \"nom\": \"Onda Encantada #()($)ide() de 20: ()($)nom().\",\r\n          \"des\": \"()($)enc_des().\", \r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/ton/arm/()($)cas_arm().png), center/contain no-repeat url(http://localhost/img/hol/fic/sel/()($)sel().png);\",\r\n          \"col\": 4            \r\n        }\r\n    }'),
-('api', 'hol_kin_gen_enc', '{ \r\n        \"val\": {\r\n          \"nom\": \"()($)ide()° Génesis del Encantamiento del Sueño: ()($)nom().\",\r\n          \"des\": \"()($)des().\",\r\n          \"col\": 3\r\n        }\r\n    }'),
-('api', 'hol_kin_gen_cel', '{ \r\n        \"val\": {\r\n          \"nom\": \"Célula de la Memoria #()($)ide() de 5: ()($)nom().\",\r\n          \"des\": \"()($)des().\",\r\n          \"col\": 5            \r\n        }\r\n    }'),
-('api', 'hol_psi', '{\r\n        \"val\": {\r\n          \"nom\": \"PSI #()($)ide() de 365, correspondiente al ()($)fec().\",\r\n          \"des\": \"Psi-Cronos: ()($)tzo(). Estación Solar #()($)est() de 4, día ()($)est_dia(). Giro Lunar #()($)lun() de 13, día ()($)lun_dia() de 28. Héptada #()($)hep() de 52, día ()($)hep_dia() de 7.\",\r\n          \"ima\": \"background: top/50% no-repeat url(http://localhost/img/hol/fic/ton/()($)kin_ton().png), bottom/60% no-repeat url(http://localhost/img/hol/fic/sel/()($)kin_sel().png);\"\r\n        },\r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":365, \"dat\":\"api.hol_psi\" },\r\n          \"tzo\": { \"min\":1, \"max\":260, \"dat\":\"api.hol_kin\" },\r\n          \"est\": { \"min\":1, \"max\":4, \"dat\":\"api.hol_psi_est\" },\r\n          \"est_dia\": { \"min\":1, \"max\":91, \"dat\":\"\" },\r\n          \"lun\": { \"min\":1, \"max\":13, \"dat\":\"api.hol_psi_lun\" },\r\n          \"lun_dia\": { \"min\":1, \"max\":28, \"dat\":\"api.hol_lun\" },\r\n          \"hep\": { \"min\":1, \"max\":52, \"dat\":\"api.hol_psi_hep\" },\r\n          \"hep_dia\": { \"min\":1, \"max\":7, \"dat\":\"api.hol_rad\" }\r\n        },\r\n        \"est\": {\r\n          \"ide\":\"hol_psi\", \r\n          \"lun_dia\":\"hol_lun\",\r\n          \"hep_dia\":\"hol_rad\"\r\n        },          \r\n        \"fic\": { \r\n          \"val\": {\r\n            \"ide\": \"tzo\", \r\n            \"atr\": [ \"est\", \"lun\", \"hep\" ]\r\n          }            \r\n        },\r\n        \"opc\": {\r\n          \"ver\": [ \r\n            \"est\", \"lun\", \"vin\", \"hep\"\r\n          ],\r\n          \"ima\": [\r\n            \"tzo\", \r\n            \"lun\", \"est\", \r\n            \"hep\", \"hep_dia\"\r\n          ],\r\n          \"col\": [\r\n            \"est\", \r\n            \"lun\", \"lun_dia\", \r\n            \"hep\"\r\n          ],\r\n          \"num\": [ \r\n            \"ide\", \"fec\", \"tzo\", \r\n            \"est\", \"est_dia\", \r\n            \"lun\", \"lun_dia\", \r\n            \"vin\", \"vin_dia\", \r\n            \"hep\", \"hep_dia\", \r\n            \"cro\", \"cro_dia\" \r\n          ],\r\n          \"tex\": [\r\n          ]                  \r\n        }    \r\n    }'),
-('api', 'hol_psi_est', '{\r\n      \"val\": {\r\n        \"nom\": \"Estación Solar #()($)ide() de 4: ()($)nom().\",\r\n        \"des\": \"()($)des() ( ()($)pol_sur() al sur, ()($)pol_nor() al norte )\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/cas/arm/()($)ide().png);\",\r\n        \"col\": 4          \r\n      }\r\n    }'),
-('api', 'hol_psi_lun', '{\r\n        \"val\": {\r\n          \"nom\": \"Luna #()($)ide() de 13: tono ()($)ton_nom().\",\r\n          \"des\": \"()($)des() del Giro Solar Anual; Totem ()($)tot(): ()($)tot_pro().\",\r\n          \"ima\": \"background: url(http://localhost/img/hol/fic/psi/lun/()($)ide().png) center/contain no-repeat;\",\r\n          \"col\": 7\r\n        },\r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":13, \"dat\":\"api.hol_psi_lun\" },\r\n          \"ond\": { \"min\":1, \"max\":4, \"dat\":\"api.hol_ton_ond\" }\r\n        },\r\n        \"opc\": {\r\n          \"ima\": [\r\n            \"ide\"\r\n          ]            \r\n        }\r\n    }'),
-('api', 'hol_psi_hep', '{\r\n        \"val\": {\r\n          \"nom\": \"Heptada #()($)ide() de 52.\",\r\n          \"des\": \"()($)ton_des() del cuadrante ()($)arm_col() en el ()($)arm_dir().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/sel/cod/()($)ton().png), center/contain no-repeat url(http://localhost/img/hol/fic/rad.png), center/contain no-repeat url(http://localhost/img/hol/fic/arm/()($)ond().png);\",\r\n          \"col\": 4\r\n        }\r\n    }'),
-('api', 'hol_psi_vin', '{\r\n        \"val\": {\r\n          \"nom\": \"Vinal #()($)ide() de 19: ()($)nom().\",\r\n          \"des\": \"()($)des().\"\r\n        }\r\n    }'),
-('api', 'hol_psi_cro', '{\r\n        \"val\": {\r\n          \"nom\": \"Cromática Entonada #()($)ide() de 75.\",\r\n          \"des\": \"\"\r\n        }\r\n    }');
+('hol', 'ton', '{\r\n        \"val\": {\r\n          \"nom\": \"Tono Galáctico #()($)ide() de 13: ()($)nom().\",\r\n          \"des\": \"()($)des() ()($)acc_lec().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/ton/()($)ide().png);\",\r\n          \"col\": 7\r\n        },\r\n        \"est\": {\r\n\r\n          \"atr\": [ \"ide\", \"nom\", \"car\", \"pod\", \"acc\", \"dim\", \"mat\", \"sim\" ],\r\n          \"atr_ocu\": [ \"dim\", \"mat\", \"sim\" ],\r\n\r\n          \"tit_cic\": [ \"ond\" ],\r\n          \"tit_gru\": [ \"dim\", \"mat\", \"sim\" ],\r\n\r\n          \"det_des\": [ \"des_pro\", \"des_med\", \"des_pre\", \"ond_man\" ]\r\n        },\r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":13, \"dat\":\"hol.ton\" },\r\n          \"ond\": { \"min\":1, \"max\":4, \"dat\":\"hol.ton_ond\" },\r\n          \"ond_enc\":  { \"min\":0, \"max\":4, \"dat\":\"hol.ton_ond\" },\r\n          \"dim\": { \"min\":1, \"max\":4, \"dat\":\"hol.ton_dim\" },\r\n          \"mat\": { \"min\":1, \"max\":5, \"dat\":\"hol.ton_mat\" },\r\n          \"sim\": { \"min\":1, \"max\":7, \"dat\":\"hol.ton_sim\" },\r\n          \"hum_lad\": { \"min\":1, \"max\":3, \"dat\":\"hol.ton_hum_lad\" },\r\n          \"hum_art\": { \"min\":1, \"max\":7, \"dat\":\"hol.ton_hum_art\" },\r\n          \"hum_sen\": { \"min\":1, \"max\":7, \"dat\":\"hol.ton_hum_sen\" }\r\n        },\r\n        \"opc\": {\r\n          \"ver\": [ \"ide\", \"ond\", \"dim\", \"mat\", \"sim\", \"hum_art\" ],\r\n          \"ima\": [ \"ide\", \"ond\", \"dim\", \"mat\" ],\r\n          \"col\": [ \"ide\", \"ond\", \"dim\", \"mat\", \"sim\", \"hum_art\", \"hum_lad\" ],\r\n          \"num\": [ \"ide\", \"ond\", \"dim\", \"mat\", \"sim\", \"hum_art\", \"hum_lad\" ]\r\n        }\r\n    }'),
+('hol', 'ton_ond', '{\r\n        \"val\": {\r\n          \"nom\": \"Aventura de la Onda Encantada #()($)ide() de 4: ()($)des().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/ton/ond/()($)ide().png);\",\r\n          \"col\": 4\r\n        },\r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":4, \"dat\":\"hol.ton_ond\" }\r\n        },\r\n        \"opc\": {\r\n          \"ima\": [ \"ide\" ] \r\n        }          \r\n    }'),
+('hol', 'ton_dim', '{\r\n        \"val\": {\r\n          \"nom\": \"Pulsar Dimensional #()($)ide() de 4: ()($)nom().\",\r\n          \"des\": \"Campo de aplicación ()($)des().\", \r\n          \"ima\": \"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/ton/dim/()($)ide().png);\",\r\n          \"col\": 4\r\n        },\r\n        \"atr\":{\r\n          \"ide\": { \"min\":1, \"max\":4, \"dat\":\"hol.ton_dim\" }\r\n        },\r\n        \"opc\": {\r\n          \"ima\": [ \"ide\" ] \r\n        }          \r\n    }'),
+('hol', 'ton_mat', '{\r\n        \"val\": {\r\n          \"nom\": \"Pulsar Matiz #()($)ide() de 5: ()($)nom().\",\r\n          \"des\": \"()($)des().\", \r\n          \"ima\": \"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/ton/mat/()($)ide().png);\",\r\n          \"col\": 5\r\n        },\r\n        \"atr\":{\r\n          \"ide\": { \"min\":1, \"max\":5, \"dat\":\"hol.ton_mat\" }\r\n        },\r\n        \"opc\": {\r\n          \"ima\": [ \"ide\" ]\r\n        }\r\n    }'),
+('hol', 'ton_sim', '{\r\n        \"val\": {\r\n          \"nom\": \"Simetría Especular de tonos ()($)ide() y ()($)inv(): ()($)nom().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/ton/sim/()($)ide().png);\",\r\n          \"col\": 7\r\n        },\r\n        \"atr\":{\r\n          \"ide\": { \"min\":1, \"max\":7, \"dat\":\"hol.ton_sim\" },\r\n          \"inv\": { \"min\":1, \"max\":13, \"dat\":\"hol.ton\" }\r\n        },\r\n        \"opc\": {\r\n          \"ima\": [ \"ide\" ]\r\n        }\r\n    }'),
+('hol', 'ton_hum_art', '{\r\n        \"val\": {\r\n          \"nom\": \"Articulación #()($)ide() de 7: ()($)nom().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/ton/hum_art/()($)ide().png);\",\r\n          \"col\": 7\r\n        }\r\n    }'),
+('hol', 'sel', '{\r\n        \"val\": {\r\n          \"nom\": \"Sello Solar #()($)ide(), ()($)arm().\",\r\n          \"des\": \"()($)car() ()($)des().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/sel/()($)ide().png);\",\r\n          \"col\": 4\r\n        },\r\n        \"est\": {\r\n\r\n          \"atr\": [ \r\n            \"ide\", \"cod\", \"nom\", \"car\", \"acc\", \"pod\", \r\n            \"cro_fam\", \"cro_ele\", \"arm_raz\", \"arm_cel\", \"par_ana\", \"par_ant\", \"par_ocu\", \r\n            \"res_flu\", \"sol_pla\", \"pla_cen\", \"hum_cen\", \"hum_ded\", \"hum_mer\" \r\n          ],\r\n          \"atr_ocu\": [ \r\n            \"cro_fam\", \"cro_ele\", \"arm_raz\", \"arm_cel\", \"par_ana\", \"par_ant\", \"par_ocu\", \r\n            \"res_flu\", \"sol_pla\", \"pla_cen\", \"hum_mer\", \"hum_cen\", \"hum_ded\" \r\n          ],\r\n\r\n          \"tit_cic\": [ \"cic_ser\", \"cic_luz\", \"cro_ele\", \"arm_cel\", \"res_flu\" ],\r\n          \"tit_gru\": [ \"cro_fam\", \"arm_raz\", \"sol_pla\", \"sol_cel\", \"sol_cir\", \"pla_cen\", \"hum_cen\", \"hum_ded\", \"hum_mer\" ],\r\n\r\n          \"det_des\": [ \"des_pro\", \"des_pal\", \"des_som\" ]\r\n        },\r\n        \"atr\": {\r\n          \"ide\":      { \"min\":1, \"max\":20, \"dat\":\"hol.sel\" },\r\n          \"cod\":      { \"min\":0, \"max\":19 },\r\n          \"ord\":      { \"min\":1, \"max\":20,  \"dat\":\"hol.sel_cod\" },\r\n          \"cic_ser\":  { \"min\":1, \"max\":3, 	\"dat\":\"hol.sel_cic_ser\" },\r\n          \"cic_luz\":  { \"min\":1, \"max\":5, 	\"dat\":\"hol.sel_cic_luz\" },\r\n          \"arm_tra\":  { \"min\":1, \"max\":20, 	\"dat\":\"hol.sel.arm_tra\" },\r\n          \"arm_raz\":  { \"min\":1, \"max\":4, 	\"dat\":\"hol.sel_arm_raz\" },\r\n          \"arm_cel\":  { \"min\":1, \"max\":5, 	\"dat\":\"hol.sel_arm_cel\" },\r\n          \"cro_fam\":  { \"min\":1, \"max\":5, 	\"dat\":\"hol.sel_cro_fam\" },\r\n          \"cro_ele\":  { \"min\":1, \"max\":4, 	\"dat\":\"hol.sel_cro_ele\" },\r\n          \"par_ana\":  { \"min\":1, \"max\":20, 	\"dat\":\"hol.sel\" },\r\n          \"par_ant\":  { \"min\":1, \"max\":20, 	\"dat\":\"hol.sel\" },\r\n          \"par_ocu\":  { \"min\":1, \"max\":20, 	\"dat\":\"hol.sel\" },\r\n          \"res_flu\":  { \"min\":1, \"max\":2, 	\"dat\":\"hol.sel_res_flu\" },\r\n          \"sol_pla\":  { \"min\":1, \"max\":10, 	\"dat\":\"hol.sel_sol_pla\" },\r\n          \"sol_cel\":  { \"min\":1, \"max\":10, 	\"dat\":\"hol.sel_sol_cel\" },\r\n          \"sol_cir\":  { \"min\":1, \"max\":10, 	\"dat\":\"hol.sel_sol_cir\" },			\r\n          \"pla_cen\":  { \"min\":1, \"max\":5, 	\"dat\":\"hol.sel_pla_cen\" },\r\n          \"pla_hem\":  { \"min\":1, \"max\":3, 	\"dat\":\"hol.sel_pla_hem\" },\r\n          \"pla_mer\":  { \"min\":1, \"max\":2, 	\"dat\":\"hol.sel_pla_mer\" },\r\n          \"hum_res\":  { \"min\":1, \"max\":2, 	\"dat\":\"hol.sel_res_flu\" },\r\n          \"hum_cen\":  { \"min\":1, \"max\":5, 	\"dat\":\"hol.sel_hum_cen\" },\r\n          \"hum_ext\":  { \"min\":1, \"max\":5, 	\"dat\":\"hol.sel_hum_ext\" },\r\n          \"hum_ded\":  { \"min\":1, \"max\":5, 	\"dat\":\"hol.sel_hum_ded\" },\r\n          \"hum_mer\":  { \"min\":1, \"max\":10, 	\"dat\":\"hol.sel_hum_mer\" }\r\n        },\r\n        \"opc\": {\r\n          \"ver\": [ \r\n            \"ide\", \"cic_luz\", \"cro_fam\", \"cro_ele\", \"arm_raz\", \"arm_cel\",\r\n            \"res_flu\", \"sol_pla\", \"sol_cel\", \"sol_cir\", \"pla_cen\", \"hum_ext\", \"hum_cen\", \"hum_ded\", \"hum_mer\" \r\n          ],\r\n          \"ima\": [\r\n            \"ide\", \"ord\", \"par_ana\", \"par_ant\", \"par_ocu\", \"cro_fam\", \"cro_ele\", \r\n            \"res_flu\", \"sol_pla\", \"sol_cel\", \"sol_cir\", \"pla_cen\", \"pla_hem\", \"pla_mer\", \"hum_res\", \"hum_mer\", \"hum_cen\", \"hum_ext\", \"hum_ded\"\r\n          ],\r\n          \"col\": [\r\n            \"ide\", \"ord\", \"par_ana\", \"par_ant\", \"par_ocu\", \"cic_ser\", \"cic_luz\", \"cro_fam\", \"cro_ele\", \"arm_raz\", \"arm_cel\",\r\n            \"res_flu\", \"sol_pla\", \"sol_cel\", \"sol_cir\", \"pla_cen\", \"pla_hem\", \"pla_mer\", \"hum_mer\"\r\n          ],\r\n          \"num\": [ \r\n            \"ide\", \"cod\", \"cic_ser\", \"cic_luz\", \r\n            \"cro_fam\", \"cro_ele\", \"arm_tra\", \"arm_raz\", \"arm_cel\", \"par_ana\", \"par_ant\", \"par_ocu\", \r\n            \"res_flu\", \"sol_pla\", \"sol_cel\", \"sol_cir\", \"pla_cen\", \"hum_ext\", \"hum_cen\", \"hum_ded\", \"hum_mer\"\r\n          ]            \r\n        }          \r\n    }'),
+('hol', 'sel_cod', '{\r\n        \"val\": {\r\n          \"nom\": \"Código #()($)cod()\",\r\n          \"des\": \"()($)car() ()($)des().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/sel/cod/()($)cod().png);\",\r\n          \"col\": 5\r\n        },\r\n        \"atr\": {\r\n          \"ide\":     { \"min\":1, \"max\":20, \"dat\":\"hol.sel\" },\r\n          \"cod\":     { \"min\":0, \"max\":19 },\r\n          \"ord\":     { \"min\":1, \"max\":20, \"dat\":\"hol.sel_cod\" },\r\n          \"cro_fam\": { \"min\":1, \"max\":5, \"dat\":\"hol.sel_cro_fam\" },\r\n          \"cro_ele\": { \"min\":1, \"max\":4, \"dat\":\"hol.sel_cro_ele\" },\r\n          \"res_flu\": { \"min\":1, \"max\":2, \"dat\":\"hol.sel_res_flu\" },\r\n          \"sol_pla\": { \"min\":1, \"max\":10, \"dat\":\"hol.sel_sol_pla\" },\r\n          \"sol_cel\": { \"min\":1, \"max\":10, \"dat\":\"hol.sel_sol_cel\" },\r\n          \"sol_cir\": { \"min\":1, \"max\":10, \"dat\":\"hol.sel_sol_cir\" },\r\n          \"pla_cen\": { \"min\":1, \"max\":5, \"dat\":\"hol.sel_pla_cen\" },\r\n          \"pla_hem\": { \"min\":1, \"max\":3, \"dat\":\"hol.sel_pla_hem\" },\r\n          \"pla_mer\": { \"min\":1, \"max\":2, \"dat\":\"hol.sel_pla_mer\" },\r\n          \"hum_res\": { \"min\":1, \"max\":2, \"dat\":\"hol.sel_res_flu\" },\r\n          \"hum_cen\": { \"min\":1, \"max\":5, \"dat\":\"hol.sel_hum_cen\" },\r\n          \"hum_ext\": { \"min\":1, \"max\":5, \"dat\":\"hol.sel_hum_ext\" },\r\n          \"hum_ded\": { \"min\":1, \"max\":5, \"dat\":\"hol.sel_hum_ded\" },\r\n          \"hum_mer\": { \"min\":1, \"max\":10, \"dat\":\"hol.sel_hum_mer\" }\r\n        },\r\n        \"opc\": {\r\n          \"ima\": [\r\n            \"ide\", \"ord\", \"par_ana\", \"par_ant\", \"par_ocu\", \"cro_fam\", \"cro_ele\", \r\n            \"res_flu\", \"sol_pla\", \"sol_cel\", \"sol_cir\", \"pla_cen\", \"pla_hem\", \"pla_mer\", \"hum_res\", \"hum_mer\", \"hum_cen\", \"hum_ext\", \"hum_ded\"\r\n          ]            \r\n        }\r\n    }'),
+('hol', 'sel_cic_dir', '{\r\n        \"val\": {\r\n          \"nom\": \"Ciclo Direccional #()($)ide() de 4: ()($)nom()\",\r\n          \"des\": \"()($)des().\", \r\n          \"ima\": \"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/sel/cic_dir/()($)ide().png);\",\r\n          \"col\": 4\r\n        },\r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":4, \"dat\":\"hol.sel_cic_dir\" }\r\n        },\r\n        \"opc\": {\r\n          \"ima\": [ \"ide\" ] \r\n        }          \r\n    }'),
+('hol', 'sel_cic_ser', '{ \r\n        \"val\": {\r\n          \"nom\": \"Desarrollo del ser #()($)ide() de 3: ()($)nom().\",\r\n          \"des\": \"()($)des().\",\r\n          \"col\": 3\r\n        }\r\n    }'),
+('hol', 'sel_cic_luz', '{ \r\n        \"val\": {\r\n          \"nom\": \"Grupo Cíclico de la luz #()($)ide() de 5: ()($)nom().\",\r\n          \"des\": \"()($)des().\",\r\n          \"col\": 5\r\n        }\r\n    }'),
+('hol', 'sel_cic_men', '{\r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":4, \"dat\":\"hol.kin_cro_est\" },\r\n          \"sel\": { \"min\":1, \"max\":20, \"dat\":\"hol.sel\" }\r\n        },\r\n        \"opc\": {\r\n          \"ima\": [ \"ide\", \"sel\" ]            \r\n        }          \r\n    }'),
+('hol', 'sel_par_ana', '{\r\n        \"atr\": {\r\n          \"ini\": { \"min\":1, \"max\":20, \"dat\":\"hol.sel\" },\r\n          \"fin\": { \"min\":1, \"max\":20, \"dat\":\"hol.sel\" }\r\n        },\r\n        \"opc\": {\r\n          \"ima\": [ \"ini\", \"fin\" ]            \r\n        }          \r\n    }'),
+('hol', 'sel_par_ant', '{\r\n        \"atr\": {\r\n          \"ini\": { \"min\":1, \"max\":20, \"dat\":\"hol.sel\" },\r\n          \"fin\": { \"min\":1, \"max\":20, \"dat\":\"hol.sel\" }\r\n        },\r\n        \"opc\": {\r\n          \"ima\": [ \"ini\", \"fin\" ]            \r\n        }          \r\n    }'),
+('hol', 'sel_par_ocu', '{\r\n        \"atr\": {\r\n          \"ini\": { \"min\":1, \"max\":20, \"dat\":\"hol.sel\" },\r\n          \"fin\": { \"min\":1, \"max\":20, \"dat\":\"hol.sel\" }\r\n        },\r\n        \"opc\": {\r\n          \"ima\": [ \"ini\", \"fin\" ]\r\n        }          \r\n    }'),
+('hol', 'sel_arm_raz', '{\r\n        \"val\": {\r\n          \"nom\": \"Raza Raiz Cósmica #()($)ide() de 4: ()($)nom().\",\r\n          \"des\": \"Poder: ()($)pod(); Dirección: ()($)dir(); Momento de Mayor Vibración: ()($)dia().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/sel/arm_raz/()($)ide().png);\",\r\n          \"col\": 4            \r\n        },\r\n        \"opc\": {\r\n          \"ima\": [ \"ide\" ]\r\n        }          \r\n    }'),
+('hol', 'sel_arm_cel', '{\r\n        \"val\": {\r\n          \"nom\": \"Célula del Tiempo #()($)ide() de 5: ()($)nom().\",\r\n          \"des\": \"Poder: ()($)pod(); Función: ()($)fun().\", \r\n          \"ima\": \"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/sel/arm_cel/()($)ide().png);\",\r\n          \"col\": 5\r\n        },\r\n        \"opc\": {\r\n          \"ima\": [ \"ide\" ]\r\n        }          \r\n    }'),
+('hol', 'sel_arm_tra', '{\r\n        \"val\": {\r\n          \"ima\": \"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/sel.png), center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/sel/()($)ide().png);\"\r\n        }          \r\n    }'),
+('hol', 'sel_cro_fam', '{\r\n        \"val\": {\r\n          \"nom\": \"Familia Terrestre #()($)ide() de 5: ()($)nom().\",\r\n          \"des\": \"Función: ()($)pla(); Centro-G: ()($)hum(); Misión: ()($)des();\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/sel/cro_fam/()($)ide().png);\",\r\n          \"col\": 5\r\n        },\r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":5, \"dat\":\"hol.sel_cro_fam\" },\r\n          \"pla_cen\": { \"min\":1, \"max\":5, \"dat\":\"hol.sel_pla_cen\" },\r\n          \"hum_cen\": { \"min\":1, \"max\":5, \"dat\":\"hol.sel_hum_cen\" },\r\n          \"hum_ded\": { \"min\":1, \"max\":5, \"dat\":\"hol.sel_hum_ded\" }\r\n        },\r\n        \"opc\": {\r\n          \"ima\": [ \"ide\", \"pla_cen\", \"hum_cen\", \"hum_ded\" ]\r\n        }          \r\n    }'),
+('hol', 'sel_cro_ele', '{\r\n        \"val\": {\r\n          \"nom\": \"Clan #()($)ide() de 4: ()($)nom() ()($)col().\",\r\n          \"des\": \"()($)des().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/sel/cro_ele/()($)ide().png);\",\r\n          \"col\": 4\r\n        },\r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":4, \"dat\":\"hol.sel_cro_ele\" },\r\n          \"res_flu\": { \"min\":1, \"max\":2, \"dat\":\"hol.sel_res_flu\" },\r\n          \"hum_ext\": { \"min\":1, \"max\":4, \"dat\":\"hol.sel_hum_ext\" }\r\n        },\r\n        \"opc\": {\r\n          \"ima\": [ \"ide\", \"res_flu\", \"hum_ext\" ]\r\n        }          \r\n    }'),
+('hol', 'sel_sol_res', '{        \r\n        \"val\": {\r\n          \"nom\": \"()($)nom()\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/sel/sol_res/()($)ide().png);\",\r\n          \"col\": 2\r\n        },\r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":2, \"dat\":\"hol.sel_sol_res\" }\r\n        },\r\n        \"opc\": {\r\n          \"ima\": [ \"ide\" ]\r\n        }          \r\n    }'),
+('hol', 'sel_sol_orb', '{        \r\n        \"val\": {\r\n          \"nom\": \"Grupo Orbital #()($)nom() de 2: ()($)nom().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/sel/sol_orb/()($)ide().png);\",\r\n          \"col\": 2\r\n        },\r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":2, \"dat\":\"hol.sel_sol_orb\" }\r\n        },\r\n        \"opc\": {\r\n          \"ima\": [ \"ide\" ]\r\n        }          \r\n    }'),
+('hol', 'sel_sol_pla', '{        \r\n        \"val\": {\r\n          \"nom\": \"Órbita Planetaria #()($)ide() de 10: ()($)nom().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/sel/sol_pla/()($)ide().png);\",\r\n          \"col\": 10\r\n        },\r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":10, \"dat\":\"hol.sel_sol_pla\" },\r\n          \"orb\": { \"min\":1, \"max\":5, \"dat\":\"hol.sel_sol_orb\" },\r\n          \"cel\": { \"min\":1, \"max\":5, \"dat\":\"hol.sel_sol_cel\" },\r\n          \"cir\": { \"min\":1, \"max\":5, \"dat\":\"hol.sel_sol_cir\" }\r\n        },\r\n        \"opc\": {\r\n          \"ima\": [ \"ide\",\"orb\",\"cel\",\"cir\" ]\r\n        }          \r\n    }'),
+('hol', 'sel_sol_cel', '{        \r\n        \"val\": {\r\n          \"nom\": \"Célula Solar #()($)ide() de 5: ()($)nom().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/sel/sol_cel/()($)ide().png);\",\r\n          \"col\": 5\r\n        },\r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":5, \"dat\":\"hol.sel_sol_cel\" }\r\n        },\r\n        \"opc\": {\r\n          \"ima\": [ \"ide\" ]\r\n        }          \r\n    }'),
+('hol', 'sel_sol_cir', '{        \r\n        \"val\": {\r\n          \"nom\": \"Circuito de Telepatía #()($)ide() de 5: ()($)nom().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/sel/sol_cir/()($)ide().png);\",\r\n          \"col\": 5\r\n        },\r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":5, \"dat\":\"hol.sel_sol_cir\" }\r\n        },\r\n        \"opc\": {\r\n          \"ima\": [ \"ide\" ]\r\n        }          \r\n    }'),
+('hol', 'sel_pla_res', '{\r\n        \"val\": {\r\n          \"nom\": \"()($)nom()\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/sel/pla_res/()($)ide().png);\",\r\n          \"col\": 2\r\n        },\r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":2, \"dat\":\"hol.sel_pla_res\" },\r\n          \"hem\": { \"min\":1, \"max\":3, \"dat\":\"hol.sel_pla_hem\" },\r\n          \"fam\": { \"min\":1, \"max\":5, \"dat\":\"hol.sel_cro_fam\" }\r\n        },\r\n        \"opc\": {\r\n          \"ima\": [ \"ide\",\"hem\",\"fam\" ]\r\n        }          \r\n    }'),
+('hol', 'sel_pla_cen', '{\r\n        \"val\": {\r\n          \"nom\": \"Centro Planetario #()($)ide() de 5: ()($)nom().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/sel/pla_cen/()($)ide().png);\",\r\n          \"col\": 5\r\n        },\r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":5, \"dat\":\"hol.sel_pla_cen\" },\r\n          \"fam\": { \"min\":1, \"max\":5, \"dat\":\"hol.sel_cro_fam\" }\r\n        },\r\n        \"opc\": {\r\n          \"ima\": [ \"ide\", \"fam\" ]            \r\n        }          \r\n    }'),
+('hol', 'sel_pla_hem', '{\r\n        \"val\": {\r\n          \"nom\": \"Hemisferio #()($)ide() de 3: ()($)nom().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/sel/pla_hem/()($)ide().png);\",\r\n          \"col\": 3\r\n        },\r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":3, \"dat\":\"hol.sel_pla_hem\" }\r\n        },\r\n        \"opc\": {\r\n          \"ima\": [ \"ide\" ]            \r\n        }          \r\n    }'),
+('hol', 'sel_pla_mer', '{\r\n        \"val\": {\r\n          \"nom\": \"Meridiano #()($)ide() de 2: ()($)nom().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/sel/pla_mer/()($)ide().png);\",\r\n          \"col\": 2\r\n        },\r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":2, \"dat\":\"hol.sel_pla_mer\" }\r\n        },\r\n        \"opc\": {\r\n          \"ima\": [ \"ide\" ]            \r\n        }          \r\n    }'),
+('hol', 'sel_hum_res', '{\r\n        \"val\": {\r\n          \"nom\": \"()($)nom()\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/sel/hum_res/()($)ide().png);\",\r\n          \"col\": 2\r\n        },\r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":2, \"dat\":\"hol.sel_hum_res\" }\r\n        },\r\n        \"opc\": {\r\n          \"ima\": [ \"ide\" ]            \r\n        }          \r\n    }'),
+('hol', 'sel_hum_cen', '{\r\n        \"val\": {\r\n          \"nom\": \"Centro Galáctico #()($)ide() de 5: ()($)nom().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/sel/hum_cen/()($)ide().png);\",\r\n          \"col\": 5\r\n        },\r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":5, \"dat\":\"hol.sel_hum_cen\" },\r\n          \"fam\": { \"min\":1, \"max\":5, \"dat\":\"hol.sel_cro_fam\" }\r\n        },\r\n        \"opc\": {\r\n          \"ima\": [ \"ide\", \"fam\" ] \r\n        }          \r\n    }'),
+('hol', 'sel_hum_ded', '{\r\n        \"val\": {\r\n          \"nom\": \"Dedo #()($)ide() de 5: ()($)nom().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/sel/hum_ded/()($)ide().png);\",\r\n          \"col\": 5\r\n        },\r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":5, \"dat\":\"hol.sel_hum_ded\" },\r\n          \"fam\": { \"min\":1, \"max\":5, \"dat\":\"hol.sel_cro_fam\" }\r\n        },\r\n        \"opc\": {\r\n          \"ima\": [ \"ide\", \"fam\" ] \r\n        }          \r\n    }'),
+('hol', 'sel_hum_ext', '{\r\n        \"val\": {\r\n          \"nom\": \"Extremidad #()($)ide() de 4: ()($)nom().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/sel/hum_ext/()($)ide().png);\",\r\n          \"col\": 4\r\n        },\r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":4, \"dat\":\"hol.sel_hum_ext\" },\r\n          \"ele\": { \"min\":1, \"max\":4, \"dat\":\"hol.sel_cro_ele\" }\r\n        },\r\n        \"opc\": {\r\n          \"ima\": [ \"ide\", \"ele\" ] \r\n        }          \r\n    }'),
+('hol', 'sel_hum_mer', '{\r\n        \"val\": {\r\n          \"nom\": \"Meridiano Orgánico #()($)ide() de 10: ()($)nom().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/sel/hum_mer/()($)ide().png);\",\r\n          \"col\": 10\r\n        },\r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":10, \"dat\":\"hol.sel_hum_mer\" }\r\n        },\r\n        \"opc\": {\r\n          \"ima\": [ \"ide\" ] \r\n        }          \r\n    }'),
+('hol', 'lun', '{  \r\n        \"val\": {\r\n          \"nom\": \"()($)ide()° Día de 28.\",\r\n          \"des\": \"\"\r\n        },\r\n        \"est\": {\r\n\r\n          \"atr\": [ \"ide\", \"arm\", \"rad\" ],\r\n          \r\n          \"tit_cic\": [ \"arm\" ]\r\n        },\r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":28, \"dat\":\"hol.lun\" },\r\n          \"arm\": { \"min\":1, \"max\":4, \"dat\":\"hol.lun_arm\" },\r\n          \"rad\": { \"min\":1, \"max\":7, \"dat\":\"hol.rad\" }\r\n        },\r\n        \"opc\": {\r\n          \"ver\": [ \r\n            \"ide\", \"arm\" \r\n          ],\r\n          \"ima\": [\r\n            \"arm\", \"rad\"\r\n          ],\r\n          \"col\": [\r\n            \"arm\", \"rad\"\r\n          ],\r\n          \"num\": [ \r\n            \"ide\", \"arm\" \r\n          ]\r\n        }          \r\n    }'),
+('hol', 'lun_arm', '{  \r\n        \"val\": {\r\n          \"nom\": \"Armonía lunar ()($)ide()\",\r\n          \"des\": \"()($)nom(), ()($)col(). ()($)dia(): ()($)des()\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/rad.png), center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/arm/()($)ide().png);\",\r\n          \"col\": 4\r\n        },\r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":4, \"dat\":\"hol.lun_arm\" }\r\n        },\r\n        \"opc\": {\r\n          \"ima\": [\r\n            \"ide\"\r\n          ]            \r\n        }\r\n    }'),
+('hol', 'lun_tel_tor', '{  \r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":4, \"dat\":\"hol.lun_tel_tor\" }\r\n        }\r\n    }'),
+('hol', 'lun_tel_cam', '{  \r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":8, \"dat\":\"hol.lun_tel_cam\" }\r\n        }\r\n    }'),
+('hol', 'lun_tel_cub', '{  \r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":16, \"dat\":\"hol.lun_tel_cub\" }\r\n        }\r\n    }'),
+('hol', 'lun_pla_ato', '{\r\n      \"val\": {\r\n        \"nom\": \"Atomo del Tiempo #()($)ide() de 4. ()($)nom()\",\r\n        \"des\": \"()($)des()\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/lun/pla_ato/()($)ide().png);\",\r\n        \"col\": 4\r\n      }\r\n    }'),
+('hol', 'lun_pla_tet', '{\r\n      \"val\": {\r\n        \"nom\": \"Tetraedro #()($)ide() de 2. ()($)nom()\",\r\n        \"des\": \"()($)des()\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/lun/pla_tet/()($)ide().png);\",\r\n        \"col\": 2\r\n      }\r\n    }'),
+('hol', 'cas', '{\r\n        \"val\": {\r\n          \"nom\": \"Posicion #()($)ide() de 52.\",\r\n          \"des\": \"Cuadrante #()($)arm() de 4; Tono Galáctico #()($)ton() de 13; Onda de la Aventura #()($)ond() de 4.\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/ton/arm/()($)arm().png), center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/ton/()($)ton().png);\"\r\n        },\r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":52, \"dat\":\"hol.cas\" },\r\n          \"arm\": { \"min\":1, \"max\":4, \"dat\":\"hol.cas_arm\" },\r\n          \"ond\": {\"min\":1, \"max\":4, \"dat\":\"hol.cas_ond\" },\r\n          \"pos_arm\": { \"min\":1, \"max\":4, \"dat\":\"hol.arm\" },\r\n          \"ton\": {\"min\":1, \"max\":13, \"dat\":\"hol.ton\" },\r\n          \"ton_arm\": { \"min\":1, \"max\":13, \"dat\":\"hol.ton\" }\r\n        },\r\n        \"opc\": {\r\n          \"ver\": [ \r\n            \"ide\", \"arm\" \r\n          ],    \r\n          \"ima\": [\r\n            \"arm\", \"ond\"\r\n          ],\r\n          \"col\": [\r\n            \"arm\", \"ond\", \"ton_arm\"\r\n          ],\r\n          \"num\": [ \r\n            \"ide\", \"arm\", \"ton_arm\" \r\n          ]            \r\n        }\r\n    }'),
+('hol', 'cas_arm', '{\r\n        \"val\": {\r\n          \"nom\": \"Cuadrante #()($)ide() de 4\",\r\n          \"des\": \"Dirección: ()($)dir(); Poder: ()($)pod(); Color: ()($)col().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/cas/arm/()($)ide().png);\",\r\n          \"col\": 4\r\n        }\r\n    }'),
+('hol', 'cas_ond', '{\r\n        \"val\": {\r\n          \"nom\": \"Aventura de la Onda Encantada #()($)ide() de 4\",\r\n          \"des\": \"()($)des().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/cas/ond/()($)ide().png);\",\r\n          \"col\": 4\r\n        }\r\n    }'),
+('hol', 'chi', '{ \r\n        \"val\": {\r\n          \"nom\": \"\",\r\n          \"des\": \"\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/chi/()($)ide().png);\"\r\n        }\r\n    }'),
+('hol', 'chi_mon', '{ \r\n        \"val\": {\r\n          \"nom\": \"\",\r\n          \"des\": \"\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/chi/mon/()($)ide().png);\"\r\n        }\r\n    }'),
+('hol', 'chi_bin', '{ \r\n        \"val\": {\r\n          \"nom\": \"\",\r\n          \"des\": \"\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/chi/bin/()($)ide().png);\"\r\n        }\r\n    }'),
+('hol', 'chi_tri', '{ \r\n        \"val\": {\r\n          \"nom\": \"\",\r\n          \"des\": \"\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/chi/tri/()($)ide().png);\"\r\n        }\r\n    }'),
+('hol', 'kin', '{\r\n        \"val\": {\r\n          \"nom\": \"Kin #()($)ide() de 260: ()($)nom().\",\r\n          \"des\": \"()($)des().\",\r\n          \"ima\": \"background: top/50% no-repeat url(http://icpv.com.ar/img/hol/fic/ton/()($)nav_ond_dia().png), bottom/60% no-repeat url(http://icpv.com.ar/img/hol/fic/sel/()($)arm_tra_dia().png);\"            \r\n        },\r\n        \"est\": {\r\n\r\n          \"atr\": [\r\n            \"ide\",\r\n            \"pag\", \"chi\",\r\n            \"ene\", \"ene_cam\",\r\n            \"cro_est\", \"cro_ele\", \r\n            \"arm_tra\", \"arm_cel\", \r\n            \"gen_enc\", \"gen_cel\", \r\n            \"nav_cas\", \"nav_ond\", \r\n            \"par_ana\", \"par_gui\", \r\n            \"par_ant\", \"par_ocu\"\r\n          ],          \r\n          \"atr_ocu\": [ \"pag\", \"chi\", \"ene\", \"ene_cam\", \"gen_enc\", \"gen_cel\", \"par_ana\", \"par_gui\", \"par_ant\", \"par_ocu\" ],\r\n\r\n          \"tit_cic\": [ \"nav_cas\", \"nav_ond\", \"cro_est\", \"cro_ele\", \"arm_tra\", \"arm_cel\" ],\r\n\r\n          \"det_des\": [ \"des\",\"des_tie\",\"des_umb\" ]\r\n        },\r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":260, \"dat\":\"hol.kin\" },\r\n          \"ene\": { \"min\":1, \"max\":4, \"dat\":\"hol.kin_ene\" },\r\n          \"ene_cam\": { \"min\":1, \"max\":14, \"dat\":\"hol.kin_ene_cam\" },\r\n          \"chi\": { \"min\":1, \"max\":65, \"dat\":\"hol.chi\" },\r\n          \"cro_est\": { \"min\":1, \"max\":4, \"dat\":\"hol.kin_cro_est\" },\r\n          \"cro_est_dia\": { \"min\":1, \"max\":65, \"dat\":\"hol.chi\" },\r\n          \"cro_ele\": { \"min\":1, \"max\":4, \"dat\":\"hol.kin_cro_ele\" },\r\n          \"cro_ele_dia\": { \"min\":1, \"max\":5, \"dat\":\"hol.sel_cro_fam\" },\r\n          \"arm_tra\": { \"min\":1, \"max\":13, \"dat\":\"hol.kin_arm_tra\" },\r\n          \"arm_tra_dia\": { \"min\":1, \"max\":20, \"dat\":\"hol.sel\" },\r\n          \"arm_cel\": { \"min\":1, \"max\":5, \"dat\":\"hol.kin_arm_cel\" },\r\n          \"arm_cel_dia\": { \"min\":1, \"max\":4, \"dat\":\"hol.sel_arm_raz\" },  \r\n          \"gen_enc\": { \"min\":1, \"max\":3, \"dat\":\"hol.kin_gen_enc\" },\r\n          \"gen_enc_dia\": { \"min\":1, \"max\":3, \"max-1\":130, \"max-2\":90, \"max-3\":52 },\r\n          \"gen_cel\": { \"min\":1, \"max\":5, \"dat\":\"hol.kin_gen_cel\" },\r\n          \"gen_cel_dia\": { \"min\":1, \"max\":26 },\r\n          \"nav_cas\": { \"min\":1, \"max\":5, \"dat\":\"hol.kin_nav_cas\" },\r\n          \"nav_cas_dia\": { \"min\":1, \"max\":52, \"dat\":\"hol.cas\" },  \r\n          \"nav_ond\": { \"min\":1, \"max\":20, \"dat\":\"hol.kin_nav_ond\" },\r\n          \"nav_ond_dia\": { \"min\":1, \"max\":13, \"dat\":\"hol.ton\" },\r\n          \"par_ana\": { \"min\":1, \"max\":260, \"dat\":\"hol.kin\" },\r\n          \"par_gui\": { \"min\":1, \"max\":260, \"dat\":\"hol.kin\" },\r\n          \"par_ant\": { \"min\":1, \"max\":260, \"dat\":\"hol.kin\" },\r\n          \"par_ocu\": { \"min\":1, \"max\":260, \"dat\":\"hol.kin\" }\r\n        },\r\n        \"rel\": {\r\n          \"ide\"         : \"hol_kin\",\r\n          \"arm_tra_dia\" : \"hol_sel\",\r\n          \"nav_ond_dia\" : \"hol_ton\",\r\n          \"nav_cas_dia\" : \"hol_cas\"\r\n        },\r\n        \"fic\": {\r\n          \"val\": {\r\n            \"ide\": \"ide\",\r\n            \"atr\": [ \"cro_ele\", \"arm_cel\", \"nav_ond\" ]\r\n          },\r\n          \"ima\" : [\r\n            \"nav_cas\", \"nav_ond\", \"arm_tra\", \"arm_cel\", \"cro_est\", \"cro_ele\"\r\n          ]\r\n        },\r\n        \"opc\": {\r\n          \"ver\": [ \r\n            \"ene\", \"ene_cam\", \"gen_enc\", \"gen_cel\", \"nav_cas\", \"nav_ond\", \r\n            \"cro_est\", \"cro_ele\", \"arm_tra\", \"arm_cel\" \r\n          ],\r\n          \"col\": [\r\n            \"ene\", \r\n            \"gen_enc\", \"gen_cel\", \r\n            \"nav_cas\", \"nav_ond\", \r\n            \"cro_est\", \"cro_ele\", \r\n            \"arm_tra\", \"arm_cel\"\r\n          ],\r\n          \"ima\": [\r\n            \"ide\", \"ene\", \"ene_cam\", \"chi\", \r\n            \"par_ana\", \"par_gui\", \"par_ant\", \"par_ocu\", \r\n            \"nav_cas\", \"nav_ond\", \"nav_ond_dia\", \r\n            \"arm_tra\", \"arm_cel\", \"arm_tra_dia\", \r\n            \"cro_est\", \"cro_ele\"\r\n          ],\r\n          \"num\": [ \r\n            \"ide\", \"psi\", \"ene\", \"ene_cam\", \r\n            \"gen_enc\", \"gen_enc_dia\", \"gen_cel\", \"gen_cel_dia\", \r\n            \"nav_cas\", \"nav_cas_dia\", \"nav_ond\", \"nav_ond_dia\", \r\n            \"cro_est\", \"cro_est_dia\", \"cro_ele\", \"cro_ele_dia\", \r\n            \"arm_tra\", \"arm_tra_dia\", \"arm_cel\", \"arm_cel_dia\"\r\n          ],\r\n          \"tex\": [\r\n            \"nom\",\"des\"\r\n          ]            \r\n        }\r\n    }'),
+('hol', 'kin_ene', '{ \r\n        \"val\": {\r\n          \"nom\": \"Grupo #()($)ide() de ()($)nom() ( ()($)gru() x ()($)gru_uni() = ()($)uni() unidades )\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/kin/ene/()($)ide().png);\",\r\n          \"col\": 4\r\n        }          \r\n    }'),
+('hol', 'kin_ene_cam', '{ \r\n        \"val\": {\r\n          \"nom\": \"Campo #()($)ide() de ()($)nom() unidades\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/kin/ene_cam/()($)ide().png);\"\r\n        }\r\n    }'),
+('hol', 'kin_arm_tra', '{ \r\n        \"val\": {\r\n          \"nom\": \"Trayectoria Armónica #()($)ide() de 13: ()($)nom().\",\r\n          \"des\": \"()($)ton_des() del Giro Galáctico.\",\r\n          \"ima\": \"background: top/75% no-repeat url(http://icpv.com.ar/img/hol/fic/ton/()($)ide().png), center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/sel.png);\",\r\n          \"col\": 7            \r\n        }\r\n    }'),
+('hol', 'kin_arm_cel', '{ \r\n        \"val\": {\r\n          \"nom\": \"Célula del Tiempo #()($)ide() de 65: ()($)nom().\", \r\n          \"des\": \"()($)des().\",\r\n          \"ima\": \"background: top/75% no-repeat url(http://icpv.com.ar/img/hol/fic/ton/()($)ton().png), center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/sel/arm_cel/()($)cel().png);\",\r\n          \"col\": 5            \r\n        }\r\n    }'),
+('hol', 'kin_cro_est', '{\r\n        \"val\": {\r\n          \"nom\": \"Espectro Galáctico #()($)ide() de 4: ()($)col() del ()($)dir().\",\r\n          \"des\": \"Guardían ()($)may(): ()($)cer(), ()($)cer_des()\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/cas/arm/()($)ide().png);\",\r\n          \"col\": 4            \r\n        }\r\n    }'),
+('hol', 'kin_cro_ele', '{ \r\n        \"val\": {\r\n          \"nom\": \"Elemento Cromático #()($)ide() de 52: ()($)nom().\",\r\n          \"des\": \"()($)des(): ()($)cas_des().\",\r\n          \"ima\": \"background: bottom/75% no-repeat url(http://icpv.com.ar/img/hol/fic/ton/()($)ton().png), center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/sel/cro_ele/()($)ele().png);\",\r\n          \"col\": 4            \r\n        }\r\n    }'),
+('hol', 'kin_nav_cas', '{ \r\n        \"val\": {\r\n          \"nom\": \"Castillo #()($)ide() de 5: ()($)nom().\",\r\n          \"des\": \"()($)des().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/kin/nav_cas/()($)ide().png);\",\r\n          \"col\": 5            \r\n        }\r\n    }'),
+('hol', 'kin_nav_ond', '{ \r\n        \"val\": {\r\n          \"nom\": \"Onda Encantada #()($)ide() de 20: ()($)nom().\",\r\n          \"des\": \"()($)enc_des().\", \r\n          \"ima\": \"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/ton/arm/()($)cas_arm().png), center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/sel/()($)sel().png);\",\r\n          \"col\": 4            \r\n        }\r\n    }'),
+('hol', 'kin_gen_enc', '{ \r\n        \"val\": {\r\n          \"nom\": \"()($)ide()° Génesis del Encantamiento del Sueño: ()($)nom().\",\r\n          \"des\": \"()($)des().\",\r\n          \"col\": 3\r\n        }\r\n    }'),
+('hol', 'kin_gen_cel', '{ \r\n        \"val\": {\r\n          \"nom\": \"Célula de la Memoria #()($)ide() de 5: ()($)nom().\",\r\n          \"des\": \"()($)des().\",\r\n          \"col\": 5            \r\n        }\r\n    }'),
+('hol', 'rad', '{\r\n        \"val\": {\r\n          \"nom\": \"Plasma #()($)ide() de 7: ()($)nom().\",\r\n          \"des\": \"()($)pla_pod() ()($)pla_fue().\\n\\\"()($)pla_lec()\\\"\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/rad/()($)ide().png);\",\r\n          \"col\": 7\r\n        },\r\n        \"est\": { \r\n\r\n          \"atr\": [ \"ide\", \"nom\", \"pla_pod\", \"pla_fue\", \"pla_qua\" ]\r\n        },\r\n        \"atr\": {\r\n          \"ide\":         { \"min\":1, \"max\":7, \"dat\":\"hol.rad\" },            \r\n          \"tel_ora\":     { \"min\":1997, \"max\":1999, \"dat\":\"api.fec_año\" },\r\n          \"tel_ora_año\": { \"min\":1, \"max\":260, \"dat\":\"hol.kin\" },\r\n          \"tel_ora_ani\": { \"min\":1, \"max\":260, \"dat\":\"hol.kin\" },\r\n          \"tel_ora_gen\": { \"min\":1, \"max\":260, \"dat\":\"hol.kin\" },\r\n          \"pla_cub\":     { \"min\":1, \"max\":7, \"dat\":\"hol.rad_pla_cub\" },\r\n          \"pla_fue_pre\": { \"min\":1, \"max\":12, \"dat\":\"hol.rad_pla_fue\" },\r\n          \"pla_fue_pos\": { \"min\":1, \"max\":12, \"dat\":\"hol.rad_pla_fue\" },          \r\n          \"hum_cha\":     { \"min\":1, \"max\":7, \"dat\":\"hol.rad_hum_cha\" }\r\n        },\r\n        \"opc\": {\r\n          \"ver\": [ \r\n            \"ide\", \"pla_qua\" \r\n          ],\r\n          \"ima\": [\r\n            \"ide\", \r\n            \"tel_ora_año\", \"tel_ora_ani\", \"tel_ora_gen\", \r\n            \"pla_cub\", \"pla_fue_pre\", \"pla_fue_pos\", \"pla_qua\", \r\n            \"hum_cha\"\r\n          ],\r\n          \"col\": [\r\n            \"pla_qua\"\r\n          ],\r\n          \"num\": [ \r\n            \"ide\", \"pla_qua\" \r\n          ]\r\n        }\r\n    }'),
+('hol', 'rad_pla_cub', '{ \r\n        \"val\": {\r\n          \"nom\": \"Plasma #()($)ide() de 7: ()($)pla()\",\r\n          \"des\": \"()($)nom()\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/rad/pla_cub/()($)ide().png);\",\r\n          \"col\": 4\r\n        }\r\n    }'),
+('hol', 'rad_pla_pol', '{ \r\n        \"val\": {\r\n          \"nom\": \"Carga #()($)ide() de 2: ()($)nom().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/rad/pla_car/()($)ide().png);\"\r\n        }\r\n    }'),
+('hol', 'rad_pla_ele', '{\r\n        \"val\": {\r\n          \"nom\": \"Tipo de Electricidad Cósmica #()($)ide() de 6: ()($)nom() - ()($)cod().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/rad/pla_ele/()($)ide().png);\"                      \r\n        },\r\n        \"opc\": {\r\n          \"ima\": [ \"ide\" ]\r\n        }          \r\n    }'),
+('hol', 'rad_pla_fue', '{\r\n        \"val\": {\r\n          \"nom\": \"Línea de Fuerza #()($)ide() de 12: ()($)nom().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/rad/pla_fue/()($)ide().png);\"\r\n        },\r\n        \"atr\": {\r\n          \"ele_pre\": { \"min\":1, \"max\":6, \"dat\":\"hol.rad_pla_ele\" },\r\n          \"ele_pos\": { \"min\":1, \"max\":6, \"dat\":\"hol.rad_pla_ele\" }\r\n        },\r\n        \"opc\": {\r\n          \"ima\": [ \"ide\", \"ele_pre\", \"ele_pos\" ]            \r\n        }          \r\n    }'),
+('hol', 'rad_pla_qua', '{\r\n        \"val\": {\r\n          \"nom\": \"Quantum #()($)ide() de 3: ()($)nom().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/rad/pla_qua/()($)ide().png);\",\r\n          \"col\": 3\r\n        },\r\n        \"opc\": {\r\n          \"ima\": [ \"ide\" ]            \r\n        }          \r\n    }'),
+('hol', 'rad_hum_cha', '{\r\n        \"val\": {\r\n          \"nom\": \"Chakra #()($)ide() de 7: ()($)nom().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/rad/hum_cha/()($)ide().png);\",\r\n          \"col\": 7\r\n        }\r\n    }'),
+('hol', 'rad_hum_mud', '{ \r\n        \"val\": {\r\n          \"nom\": \"Mudra #()($)ide() de 7: ()($)nom().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/rad/hum_mud/()($)ide().png);\" \r\n        }\r\n    }'),
+('hol', 'psi', '{\r\n        \"val\": {\r\n          \"nom\": \"PSI #()($)ide() de 365, correspondiente al ()($)fec().\",\r\n          \"des\": \"Psi-Cronos: ()($)tzo(). Estación Solar #()($)est() de 4, día ()($)est_dia(). Giro Lunar #()($)lun() de 13, día ()($)lun_dia() de 28. Héptada #()($)hep() de 52, día ()($)hep_dia() de 7.\",\r\n          \"ima\": \"background: top/50% no-repeat url(http://icpv.com.ar/img/hol/fic/ton/()($)kin_ton().png), bottom/60% no-repeat url(http://icpv.com.ar/img/hol/fic/sel/()($)kin_sel().png);\"\r\n        },\r\n        \"est\": {\r\n\r\n          \"atr\": [ \"ide\", \"tzo\", \"est\", \"est_dia\", \"lun\", \"lun_dia\", \"hep\", \"hep_dia\" ],\r\n\r\n          \"atr_ocu\": [ \"est_dia\", \"lun_dia\" ],\r\n\r\n          \"tit_cic\": [ \"est\", \"lun\", \"vin\", \"hep\" ]\r\n        },\r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":365, \"dat\":\"hol.psi\" },\r\n          \"tzo\": { \"min\":1, \"max\":260, \"dat\":\"hol.kin\" },\r\n          \"est\": { \"min\":1, \"max\":4, \"dat\":\"hol.psi_est\" },\r\n          \"est_dia\": { \"min\":1, \"max\":91, \"dat\":\"\" },\r\n          \"lun\": { \"min\":1, \"max\":13, \"dat\":\"hol.psi_lun\" },\r\n          \"lun_dia\": { \"min\":1, \"max\":28, \"dat\":\"hol.lun\" },\r\n          \"hep\": { \"min\":1, \"max\":52, \"dat\":\"hol.psi_hep\" },\r\n          \"hep_dia\": { \"min\":1, \"max\":7, \"dat\":\"hol.rad\" }\r\n        },\r\n        \"rel\": {\r\n          \"ide\"    :\"hol_psi\", \r\n          \"lun_dia\":\"hol_lun\",\r\n          \"hep_dia\":\"hol_rad\"\r\n        },          \r\n        \"fic\": { \r\n          \"val\": {\r\n            \"ide\": \"tzo\", \r\n            \"atr\": [ \"est\", \"lun\", \"hep\" ]\r\n          }            \r\n        },\r\n        \"opc\": {\r\n          \"ver\": [ \r\n            \"est\", \"lun\", \"vin\", \"hep\"\r\n          ],\r\n          \"ima\": [\r\n            \"tzo\", \r\n            \"lun\", \"est\", \r\n            \"hep\", \"hep_dia\"\r\n          ],\r\n          \"col\": [\r\n            \"est\", \r\n            \"lun\", \"lun_dia\", \r\n            \"hep\"\r\n          ],\r\n          \"num\": [ \r\n            \"ide\", \"fec\", \"tzo\", \r\n            \"est\", \"est_dia\", \r\n            \"lun\", \"lun_dia\", \r\n            \"vin\", \"vin_dia\", \r\n            \"hep\", \"hep_dia\", \r\n            \"cro\", \"cro_dia\" \r\n          ],\r\n          \"tex\": [\r\n          ]                  \r\n        }    \r\n    }'),
+('hol', 'psi_est', '{\r\n      \"val\": {\r\n        \"nom\": \"Estación Solar #()($)ide() de 4: ()($)nom().\",\r\n        \"des\": \"()($)des() ( ()($)pol_sur() al sur, ()($)pol_nor() al norte )\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/cas/arm/()($)ide().png);\",\r\n        \"col\": 4          \r\n      }\r\n    }'),
+('hol', 'psi_lun', '{\r\n        \"val\": {\r\n          \"nom\": \"Luna #()($)ide() de 13: tono ()($)ton_nom().\",\r\n          \"des\": \"()($)des() del Giro Solar Anual; Totem ()($)tot(): ()($)tot_pro().\",\r\n          \"ima\": \"background: url(http://icpv.com.ar/img/hol/fic/psi/lun/()($)ide().png) center/contain no-repeat;\",\r\n          \"col\": 7\r\n        },\r\n        \"atr\": {\r\n          \"ide\": { \"min\":1, \"max\":13, \"dat\":\"hol.psi_lun\" },\r\n          \"ond\": { \"min\":1, \"max\":4, \"dat\":\"hol.ton_ond\" }\r\n        },\r\n        \"opc\": {\r\n          \"ima\": [\r\n            \"ide\"\r\n          ]            \r\n        }\r\n    }'),
+('hol', 'psi_hep', '{\r\n        \"val\": {\r\n          \"nom\": \"Heptada #()($)ide() de 52.\",\r\n          \"des\": \"()($)ton_des() del cuadrante ()($)arm_col() en el ()($)arm_dir().\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/sel/cod/()($)ton().png), center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/rad.png), center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/arm/()($)ond().png);\",\r\n          \"col\": 4\r\n        }\r\n    }'),
+('hol', 'psi_vin', '{\r\n        \"val\": {\r\n          \"nom\": \"Vinal #()($)ide() de 19: ()($)nom().\",\r\n          \"des\": \"()($)des().\"\r\n        }\r\n    }'),
+('hol', 'psi_cro', '{\r\n        \"val\": {\r\n          \"nom\": \"Cromática Entonada #()($)ide() de 75.\",\r\n          \"des\": \"\"\r\n        }\r\n    }'),
+('fec', 'dat', '{\r\n        \"val\": {\r\n        },    \r\n        \"rel\": {\r\n          \"val\":\"fec_dat\", \r\n          \"dia\":\"fec_dia\", \r\n          \"sem\":\"fec_sem\", \r\n          \"año\":\"fec_año\"\r\n        },\r\n        \"est\":{\r\n          \"atr\": [ \"val\" ]\r\n        },\r\n        \"_opc\": {\r\n          \"ver\": [ \"dia\", \"sem\", \"mes\" ],\r\n          \"num\": [ \"dia\", \"sem\", \"mes\" ]\r\n        }        \r\n    }');
 
 -- --------------------------------------------------------
 
@@ -207,6 +221,7 @@ INSERT INTO `app_dat` (`esq`, `ide`, `ope`) VALUES
 -- Estructura de tabla para la tabla `app_esq`
 --
 
+DROP TABLE IF EXISTS `app_esq`;
 CREATE TABLE `app_esq` (
   `ide` char(3) NOT NULL COMMENT 'Identificador',
   `pos` smallint(6) NOT NULL COMMENT 'Posición',
@@ -226,35 +241,10 @@ INSERT INTO `app_esq` (`ide`, `pos`, `nom`, `des`, `ope`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `app_est`
---
-
-CREATE TABLE `app_est` (
-  `esq` varchar(7) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Aplicación',
-  `ide` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Estructura',
-  `ope` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL COMMENT 'Valores' CHECK (json_valid(`ope`))
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Tabla';
-
---
--- Volcado de datos para la tabla `app_est`
---
-
-INSERT INTO `app_est` (`esq`, `ide`, `ope`) VALUES
-('api', 'fec', '{\"atr\": [\"val\"], \"ocu\": []}'),
-('api', 'hol_chi', '{\n    }'),
-('api', 'hol_kin', '{\n\n        \"atr\": [\n          \"ide\",\n          \"pag\", \"chi\",\n          \"ene\", \"ene_cam\",\n          \"cro_est\", \"cro_ele\", \n          \"arm_tra\", \"arm_cel\", \n          \"gen_enc\", \"gen_cel\", \n          \"nav_cas\", \"nav_ond\", \n          \"par_ana\", \"par_gui\", \n          \"par_ant\", \"par_ocu\"\n        ],\n        \n        \"atr_ocu\": [       \n          \"pag\", \"chi\",\n          \"ene\", \"ene_cam\",\n          \"gen_enc\", \"gen_cel\", \n          \"par_ana\", \"par_gui\", \"par_ant\", \"par_ocu\"\n        ],\n        \n        \"tit_cic\": [ \n          \"nav_cas\", \"nav_ond\", \"cro_est\", \"cro_ele\", \"arm_tra\", \"arm_cel\"\n        ],\n\n        \"det_des\": [ \n          \"des\",\"des_tie\",\"des_umb\"\n        ]  \n    }'),
-('api', 'hol_lun', '{\n\n        \"atr\": [ \n          \"ide\", \"arm\", \"rad\" \n        ],\n        \n        \"tit_cic\": [ \n          \"arm\" \n        ]\n    }'),
-('api', 'hol_psi', '{\n\n        \"atr\": [ \n          \"ide\", \"tzo\", \"est\", \"est_dia\", \"lun\", \"lun_dia\", \"hep\", \"hep_dia\" \n        ],\n        \n        \"tit_cic\": [ \n          \"est\", \"lun\", \"vin\", \"hep\" \n        ]\n\n    }'),
-('api', 'hol_rad', '{ \n\n        \"atr\": [\n          \"ide\", \"nom\", \"pla_pod\", \"pla_fue\", \"pla_qua\" \n        ]\n\n    }'),
-('api', 'hol_sel', '{\n\n        \"atr\": [ \n          \"ide\", \"cod\", \n          \"nom\", \"car\", \"acc\", \"pod\", \n          \"cro_fam\", \"cro_ele\", \n          \"arm_raz\", \"arm_cel\", \n          \"par_ana\", \"par_ant\", \"par_ocu\", \n          \"res_flu\", \"sol_pla\", \"pla_cen\", \"hum_cen\", \"hum_ded\", \"hum_mer\" \n        ],\n\n        \"atr_ocu\": [ \n          \"cro_fam\", \"cro_ele\", \n          \"arm_raz\", \"arm_cel\", \n          \"par_ana\", \"par_ant\", \"par_ocu\", \n          \"res_flu\", \"sol_pla\", \"pla_cen\", \"hum_mer\", \"hum_cen\", \"hum_ded\" \n        ],\n\n        \"tit_cic\": [ \n          \"cic_ser\", \"cic_luz\", \"cro_ele\", \"arm_cel\", \"res_flu\" \n        ],\n        \"tit_gru\": [ \n          \"cro_fam\", \"arm_raz\", \"sol_pla\", \"sol_cel\", \"sol_cir\", \"pla_cen\", \"hum_cen\", \"hum_ded\", \"hum_mer\" \n        ],\n\n        \"det_des\": [ \n          \"des_pro\", \"des_pal\", \"des_som\" \n        ]\n    }'),
-('api', 'hol_ton', '{\n\n        \"atr\": [\n          \"ide\", \"nom\", \"car\", \"pod\", \"acc\", \"dim\", \"mat\", \"sim\"\n        ],\n        \"atr_ocu\": [\n          \"dim\", \"mat\", \"sim\"\n        ],\n\n        \"tit_cic\": [ \n          \"ond\"\n        ],\n        \"tit_gru\": [ \n          \"dim\", \"mat\", \"sim\"\n        ],\n\n        \"det_des\": [ \n          \"des_pro\", \"des_med\", \"des_pre\", \"ond_man\"\n        ]\n    }');
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `app_ico`
 --
 
+DROP TABLE IF EXISTS `app_ico`;
 CREATE TABLE `app_ico` (
   `ide` varchar(25) NOT NULL COMMENT 'Identificador',
   `val` varchar(80) NOT NULL COMMENT 'Valor: clase o directorio'
@@ -270,7 +260,8 @@ INSERT INTO `app_ico` (`ide`, `val`) VALUES
 ('app_ini', 'login'),
 ('app_fin', 'logout'),
 ('app_ope', 'settings'),
-('app_nav', 'menu'),
+('app_cab', 'menu'),
+('app_nav', 'menu_open'),
 ('app_art', 'article'),
 ('app_val', 'document_scanner'),
 ('usu', 'person'),
@@ -300,12 +291,49 @@ INSERT INTO `app_ico` (`ide`, `val`) VALUES
 ('dat_agr', 'add'),
 ('dat_mod', 'edit'),
 ('dat_eli', 'delete'),
+('val', 'check_box_outline_blank'),
+('val_tex', 'comment'),
+('val_tex-err', 'error'),
+('val_tex-adv', 'warning'),
+('val_tex-opc', 'help'),
+('val_tex-val', 'check_circle'),
+('val_tog', 'arrow_drop_down'),
+('val_tog-tod', 'expand_circle_down'),
+('val_tog-nad', 'expand_circle_down'),
+('val_ver', ''),
+('val_ver-tod', 'visibility'),
+('val_ver-nad', 'visibility_off'),
+('val_sel', ''),
+('val_sel-tod', 'select_all'),
+('val_sel-nad', 'deselect'),
+('val_est', ''),
+('val_est-tod', 'toggle_on'),
+('val_est-nad', 'toggle_off'),
+('val_mov', 'open_with'),
+('val_mov-hor', 'swap_horiz'),
+('val_mov-ver', 'import_export'),
+('val_mov-arr', 'north'),
+('val_mov-aba', 'south'),
+('val_mov-izq', 'west'),
+('val_mov-der', 'east'),
+('val_mov-dyr', 'north_east'),
+('val_mov-dyb', 'north_west'),
+('val_mov-iyr', 'south_east'),
+('val_mov-iyb', 'south_west'),
+('tab', 'dataset'),
+('tab_sec', ''),
+('tab_pos', ''),
+('tab_opc', ''),
+('tab_val', ''),
+('est', 'table_view'),
+('est_dat', ''),
+('est_atr', ''),
+('est_ide', ''),
+('est_ind', ''),
+('est_val', ''),
 ('lis', 'list_alt'),
-('lis_tab', 'dataset'),
-('lis_est', 'table_view'),
 ('lis_ite', 'view_list'),
 ('lis_val', 'list'),
-('lis_nav', 'menu_open'),
 ('lis_opc', 'checklist_rtl'),
 ('lis_ini', 'first_page'),
 ('lis_fin', 'last_page'),
@@ -325,6 +353,7 @@ INSERT INTO `app_ico` (`ide`, `val`) VALUES
 ('opc_bin', 'rule'),
 ('opc_uni', 'radio_button_checked'),
 ('opc_mul', 'check_box'),
+('opc_lis', 'checklist_rtl'),
 ('num', 'calculate'),
 ('num_cod', 'tag'),
 ('num_val', 'pin'),
@@ -383,36 +412,7 @@ INSERT INTO `app_ico` (`ide`, `val`) VALUES
 ('ele', 'code'),
 ('ele_htm', 'html'),
 ('ele_css', 'css'),
-('ele_eje', 'javascript'),
-('val', 'check_box_outline_blank'),
-('val_tex', 'comment'),
-('val_tex-err', 'error'),
-('val_tex-adv', 'warning'),
-('val_tex-opc', 'help'),
-('val_tex-val', 'check_circle'),
-('val_tog', 'arrow_drop_down'),
-('val_tog-tod', 'expand_circle_down'),
-('val_tog-nad', 'expand_circle_down'),
-('val_ver', ''),
-('val_ver-tod', 'visibility'),
-('val_ver-nad', 'visibility_off'),
-('val_sel', ''),
-('val_sel-tod', 'select_all'),
-('val_sel-nad', 'deselect'),
-('val_est', ''),
-('val_est-tod', 'toggle_on'),
-('val_est-nad', 'toggle_off'),
-('val_mov', 'open_with'),
-('val_mov-hor', 'swap_horiz'),
-('val_mov-ver', 'import_export'),
-('val_mov-arr', 'north'),
-('val_mov-aba', 'south'),
-('val_mov-izq', 'west'),
-('val_mov-der', 'east'),
-('val_mov-dyr', 'north_east'),
-('val_mov-dyb', 'north_west'),
-('val_mov-iyr', 'south_east'),
-('val_mov-iyb', 'south_west');
+('ele_eje', 'javascript');
 
 -- --------------------------------------------------------
 
@@ -420,6 +420,7 @@ INSERT INTO `app_ico` (`ide`, `val`) VALUES
 -- Estructura de tabla para la tabla `app_ide`
 --
 
+DROP TABLE IF EXISTS `app_ide`;
 CREATE TABLE `app_ide` (
   `esq` varchar(7) NOT NULL COMMENT 'Esquema',
   `ide` varchar(7) NOT NULL COMMENT 'Artículo',
@@ -720,6 +721,7 @@ INSERT INTO `app_ide` (`esq`, `ide`, `nom`, `des`) VALUES
 -- Estructura de tabla para la tabla `app_nav`
 --
 
+DROP TABLE IF EXISTS `app_nav`;
 CREATE TABLE `app_nav` (
   `esq` char(3) NOT NULL COMMENT 'Aplicación',
   `cab` varchar(7) NOT NULL COMMENT 'Menú',
@@ -1533,12 +1535,6 @@ INSERT INTO `app_nav` (`esq`, `cab`, `ide`, `pos`, `nom`) VALUES
 ('hol', 'dat', 'rad', '03', 'El heptágono de la Mente'),
 ('hol', 'dat', 'rad', '04', 'Autodelcaraciones Diarias'),
 ('hol', 'dat', 'rad', '05', 'Componentes Electrónicos'),
-('hol', 'dat', 'ton', '01', 'Rayos de Pulsación'),
-('hol', 'dat', 'ton', '02', 'Los 7 pares especulares'),
-('hol', 'dat', 'ton', '03', 'Principios de la Creación'),
-('hol', 'dat', 'ton', '04', 'La onda encantada de la aventura'),
-('hol', 'dat', 'ton', '05', 'Los 4 pulsares dimensionales'),
-('hol', 'dat', 'ton', '06', 'Los 5 pulsares matices'),
 ('hol', 'dat', 'lun', '01', 'Las 4 héptadas'),
 ('hol', 'dat', 'cas', '01', 'Los 4 Cuadrantes'),
 ('hol', 'dat', 'cas', '02', 'las 13 Armonías'),
@@ -1599,7 +1595,51 @@ INSERT INTO `app_nav` (`esq`, `cab`, `ide`, `pos`, `nom`) VALUES
 ('hol', 'art', 'tut', '04-02', 'El tablero del Oráculo'),
 ('hol', 'art', 'tut', '04-03', 'Los Oráculos'),
 ('hol', 'art', 'tut', '04-04', 'El Oráculo de Quinta Fuerza y ​​el Tiempo Net '),
-('hol', 'art', 'tut', '05', 'La Firma Galáctica');
+('hol', 'art', 'tut', '05', 'La Firma Galáctica'),
+('hol', 'val', 'kin', '01', 'Encantamiento del Kin'),
+('hol', 'val', 'kin', '01-01', 'Portales de Activación'),
+('hol', 'val', 'kin', '01-02', 'Modelo Energético'),
+('hol', 'val', 'kin', '02', 'Parejas del Oráculo'),
+('hol', 'val', 'kin', '02-01', 'Descripciones'),
+('hol', 'val', 'kin', '02-02', 'Lecturas'),
+('hol', 'val', 'kin', '02-03', 'Posiciones'),
+('hol', 'val', 'kin', '02-04', 'Sincronometría'),
+('hol', 'val', 'kin', '03', 'Nave del Tiempo'),
+('hol', 'val', 'kin', '03-01', 'Castillo Direccional'),
+('hol', 'val', 'kin', '03-02', 'Aventura de la Onda Encantada'),
+('hol', 'val', 'kin', '04', 'Giro Galáctico'),
+('hol', 'val', 'kin', '04-01', 'Trayectoria Armónica'),
+('hol', 'val', 'kin', '04-02', 'Célula del Tiempo'),
+('hol', 'val', 'kin', '05', 'Giro Espectral'),
+('hol', 'val', 'kin', '05-01', 'Estación Galáctica'),
+('hol', 'val', 'kin', '05-02', 'Elemento Cromático'),
+('hol', 'val', 'ton', '01', 'Onda Encantada'),
+('hol', 'val', 'ton', '02', 'Simetría Especular'),
+('hol', 'val', 'ton', '03', 'Pulsar Dimensional'),
+('hol', 'val', 'ton', '04', 'Pulsar Matiz'),
+('hol', 'val', 'sel', '01', 'Colocación Cromática'),
+('hol', 'val', 'sel', '01-01', 'Familia Terrestre'),
+('hol', 'val', 'sel', '01-02', 'Clan Cromático'),
+('hol', 'val', 'sel', '02', 'Colocación Armónica'),
+('hol', 'val', 'sel', '02-01', 'Raza Raiz Cósmica'),
+('hol', 'val', 'sel', '02-02', 'Célula del Tiempo'),
+('hol', 'val', 'sel', '03', 'Holones'),
+('hol', 'val', 'sel', '03-01', 'Solar-interplanetario'),
+('hol', 'val', 'sel', '03-02', 'Terrestre-planetario'),
+('hol', 'val', 'sel', '03-03', 'Humano'),
+('hol', 'val', 'psi', '01', 'Estación Solar'),
+('hol', 'val', 'psi', '02', 'Giro Lunar'),
+('hol', 'val', 'psi', '03', 'Heptada'),
+('hol', 'val', 'lun', '01', 'Día Lunar'),
+('hol', 'val', 'lun', '02', 'Héptada'),
+('hol', 'val', 'rad', '01', 'Sello de la Profecía'),
+('hol', 'val', 'rad', '02', 'Electricidad Cósmica'),
+('hol', 'dat', 'ton', '01', 'Los 13 Rayos de Pulsación'),
+('hol', 'dat', 'ton', '02', 'Los 7 pares especulares'),
+('hol', 'dat', 'ton', '03', 'Los 13 Principios de la Creación'),
+('hol', 'dat', 'ton', '04', 'La Onda Encantada de la Aventura'),
+('hol', 'dat', 'ton', '05', 'Los 4 pulsares dimensionales'),
+('hol', 'dat', 'ton', '06', 'Los 5 pulsares matices');
 
 -- --------------------------------------------------------
 
@@ -1607,6 +1647,7 @@ INSERT INTO `app_nav` (`esq`, `cab`, `ide`, `pos`, `nom`) VALUES
 -- Estructura de tabla para la tabla `app_tab`
 --
 
+DROP TABLE IF EXISTS `app_tab`;
 CREATE TABLE `app_tab` (
   `esq` varchar(25) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Esquema',
   `est` varchar(25) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Estructura',
@@ -1619,39 +1660,39 @@ CREATE TABLE `app_tab` (
 --
 
 INSERT INTO `app_tab` (`esq`, `est`, `ele`, `ope`) VALUES
-('hol', 'uni_sol', '{\r\n\r\n        \"sec\":{ \r\n          \"tab\":\"uni_sol\", \r\n          \"style\":\"grid: repeat(9,1fr)/repeat(9,1fr); width: 37rem; height: 38rem;\" \r\n        },\r\n\r\n        \"fon\":{ \"style\":\"grid-column: 1/sp; grid-row: 1/sp; width: 100%; height: 100%;\" },\r\n        \"fon-map\":{ \"fon\":\"map\", \"style\":\"background: center/contain no-repeat url(http://localhost/img/hol/tab/sol/map.png);\" },\r\n        \"fon-ato\":{ \"fon\":\"ato\", \"style\":\"background: center/contain no-repeat url(http://localhost/img/hol/tab/sol/ato.png);\" },\r\n        \"fon-res\":{ \"fon\":\"res\", \"style\":\"background: center/contain no-repeat url(http://localhost/img/hol/tab/sol/res.png);\" },\r\n        \"fon-cel\":{ \"fon\":\"cel\", \"style\":\"background: center/contain no-repeat url(http://localhost/img/hol/tab/sol/cel.png);\" },\r\n        \"fon-cir\":{ \"fon\":\"cir\", \"style\":\"background: center/contain no-repeat url(http://localhost/img/hol/tab/sol/cir.png);\" },\r\n        \"fon-pla\":{ \"fon\":\"pla\", \"style\":\"background: center/contain no-repeat url(http://localhost/img/hol/tab/sol/pla.png);\" },\r\n\r\n        \"pla\":{ \"style\":\"position: relative; width: 110%; height: 100%;\" },\r\n        \"pla-10\":{ \"pla\":\"10\", \"style\":\"grid-column:3/5; grid-row:2; transform: rotate( 053deg); top: 25%; left: 15%;\" },\r\n        \"pla-09\":{ \"pla\":\"09\", \"style\":\"grid-column:2/4; grid-row:3; transform: rotate( 053deg); left: 17%;\" },\r\n        \"pla-08\":{ \"pla\":\"08\", \"style\":\"grid-column:2/4; grid-row:5; transform: rotate( 340deg); top: 25%; right: 20%;\" },\r\n        \"pla-07\":{ \"pla\":\"07\", \"style\":\"grid-column:2/4; grid-row:6; transform: rotate( 340deg); top: 45%;\" },\r\n        \"pla-06\":{ \"pla\":\"06\", \"style\":\"grid-column:4/6; grid-row:8; transform: rotate( 270deg); bottom: 20%; right: 5%;\" },\r\n        \"pla-05\":{ \"pla\":\"05\", \"style\":\"grid-column:5/7; grid-row:8; transform: rotate( 270deg); bottom: 20%; left: 7%;\" },\r\n        \"pla-04\":{ \"pla\":\"04\", \"style\":\"grid-column:7/9; grid-row:6; transform: rotate( 018deg); top: 35%; left: 3%;\" },\r\n        \"pla-03\":{ \"pla\":\"03\", \"style\":\"grid-column:7/9; grid-row:5; transform: rotate( 018deg); top: 15%; left: 20%;\" },\r\n        \"pla-02\":{ \"pla\":\"02\", \"style\":\"grid-column:6/8; grid-row:3; transform: rotate( 305deg); bottom: 5%; left: 32%;\" },\r\n        \"pla-01\":{ \"pla\":\"01\", \"style\":\"grid-column:6/8; grid-row:2; transform: rotate( 305deg); top: 30%; right: 18%;\" },\r\n\r\n        \"sel\":{ \"style\":\"position: relative; width: 110%; height: 110%; border-radius: 5%;\" },      \r\n        \"sel-20\":{ \"sel\":\"20\", \"style\":\"grid-column:3; grid-row:2; transform: rotate( 053deg); bottom: 22%; left: 45%;\" },\r\n        \"sel-01\":{ \"sel\":\"01\", \"style\":\"grid-column:2; grid-row:3; transform: rotate( 054deg); bottom: 49%; left: 47%;\" },\r\n        \"sel-02\":{ \"sel\":\"02\", \"style\":\"grid-column:1; grid-row:6; transform: rotate( 340deg); bottom: 54%; left: 55%;\" },\r\n        \"sel-03\":{ \"sel\":\"03\", \"style\":\"grid-column:2; grid-row:7; transform: rotate( 340deg); bottom: 39%; right: 5%;\" },\r\n        \"sel-04\":{ \"sel\":\"04\", \"style\":\"grid-column:4; grid-row:8; transform: rotate( 270deg); top: 35%; left: 41%;\" },\r\n        \"sel-05\":{ \"sel\":\"05\", \"style\":\"grid-column:6; grid-row:8; transform: rotate( 270deg); top: 35%; right: 37%;\" },\r\n        \"sel-06\":{ \"sel\":\"06\", \"style\":\"grid-column:8; grid-row:6; transform: rotate( 196deg); top: 50%; left: 13%;\" },\r\n        \"sel-07\":{ \"sel\":\"07\", \"style\":\"grid-column:8; grid-row:5; transform: rotate( 196deg); top: 32%; left: 47%;\" },\r\n        \"sel-08\":{ \"sel\":\"08\", \"style\":\"grid-column:7; grid-row:2; transform: rotate( 125deg); top: 44%; left: 48%;\" },\r\n        \"sel-09\":{ \"sel\":\"09\", \"style\":\"grid-column:6; grid-row:2; transform: rotate( 125deg); bottom: 26%; left: 50%;\" },\r\n        \"sel-10\":{ \"sel\":\"10\", \"style\":\"grid-column:6; grid-row:3; transform: rotate( 306deg); bottom: 28%; right: 20%;\" },\r\n        \"sel-11\":{ \"sel\":\"11\", \"style\":\"grid-column:7; grid-row:3; transform: rotate( 306deg); top: 40%; right: 20%;\" },\r\n        \"sel-12\":{ \"sel\":\"12\", \"style\":\"grid-column:7; grid-row:5; transform: rotate( 017deg); bottom: 2%; left: 32%;\" },\r\n        \"sel-13\":{ \"sel\":\"13\", \"style\":\"grid-column:7; grid-row:6; transform: rotate( 017deg); top: 14%; right: 3%;\" },\r\n        \"sel-14\":{ \"sel\":\"14\", \"style\":\"grid-column:6; grid-row:7; transform: rotate( 090deg); top: 15%; right: 35%;\" },\r\n        \"sel-15\":{ \"sel\":\"15\", \"style\":\"grid-column:4; grid-row:7; transform: rotate( 090deg); top: 15%; left: 40%;\" },\r\n        \"sel-16\":{ \"sel\":\"16\", \"style\":\"grid-column:3; grid-row:6; transform: rotate( 160deg); top: 20%; left: 10%;\" },\r\n        \"sel-17\":{ \"sel\":\"17\", \"style\":\"grid-column:3; grid-row:5; transform: rotate( 160deg); top: 5%; right: 30%;\" },\r\n        \"sel-18\":{ \"sel\":\"18\", \"style\":\"grid-column:3; grid-row:4; transform: rotate( 234deg); bottom: 52%; left: 18%;\" },\r\n        \"sel-19\":{ \"sel\":\"19\", \"style\":\"grid-column:4; grid-row:3; transform: rotate( 234deg); bottom: 25%; left: 15%;\" },\r\n\r\n        \"sel-fic\":{ \"style\":\"width: 75%; height: 75%;\" } \r\n        \r\n      }', NULL),
-('hol', 'uni_pla', '\r\n      { \r\n        \r\n        \"sec\":{ \r\n          \"tab\":\"uni_pla\",\r\n          \"style\":\"grid: repeat(5,1fr)/repeat(9,1fr); width: 40rem; height: 28rem;\" \r\n        },\r\n\r\n        \"fon\":{ \"style\":\"grid-column:2/10; grid-row:1/6; width: 100%; height: 100%;\" },\r\n        \"fon-map\":{ \"fon\":\"map\", \"style\":\"background: center/contain no-repeat url(http://localhost/img/hol/tab/pla/map.png);\" },\r\n        \"fon-sel\":{ \"fon\":\"sel\", \"style\":\"background: center/contain no-repeat url(http://localhost/img/hol/tab/pla/sel.png);\" },\r\n        \"fon-res\":{ \"fon\":\"res\", \"style\":\"background: center/contain no-repeat url(http://localhost/img/hol/tab/pla/res.png);\" },\r\n        \"fon-flu\":{ \"fon\":\"flu\", \"style\":\"background: center/contain no-repeat url(http://localhost/img/hol/tab/pla/flu.png);\" },\r\n\r\n        \"fam\":{ \"style\":\"height: 80%; width: 80%;\" },\r\n        \"fam-1\":{ \"fam\":\"1\", \"style\":\"grid-column:1/2; grid-row:2;\" },\r\n        \"fam-2\":{ \"fam\":\"2\", \"style\":\"grid-column:1/2; grid-row:3;\" },\r\n        \"fam-3\":{ \"fam\":\"3\", \"style\":\"grid-column:1/2; grid-row:4;\" },\r\n        \"fam-4\":{ \"fam\":\"4\", \"style\":\"grid-column:1/2; grid-row:5;\" },\r\n        \"fam-5\":{ \"fam\":\"5\", \"style\":\"grid-column:1/2; grid-row:1;\" },\r\n\r\n        \"sel\":{ \"style\":\"position: relative; width: 150%; height: 115%; border-radius: 50%;\" },\r\n        \"sel-20\":{ \"sel\":\"20\", \"style\":\"grid-column:6; grid-row:1; top: 25%;\" },\r\n        \"sel-05\":{ \"sel\":\"05\", \"style\":\"grid-column:8; grid-row:1; top: 25%;\" },\r\n        \"sel-10\":{ \"sel\":\"10\", \"style\":\"grid-column:2; grid-row:1; top: 25%; left: 20%;\" },\r\n        \"sel-15\":{ \"sel\":\"15\", \"style\":\"grid-column:4; grid-row:1; top: 25%;\" },\r\n        \"sel-01\":{ \"sel\":\"01\", \"style\":\"grid-column:7; grid-row:2; top: 20%;\" },\r\n        \"sel-06\":{ \"sel\":\"06\", \"style\":\"grid-column:9; grid-row:2; top: 20%;\" },\r\n        \"sel-11\":{ \"sel\":\"11\", \"style\":\"grid-column:3; grid-row:2; top: 20%; left: 15%;\" },\r\n        \"sel-16\":{ \"sel\":\"16\", \"style\":\"grid-column:5; grid-row:2; top: 20%; left: 10%;\" },\r\n        \"sel-02\":{ \"sel\":\"02\", \"style\":\"grid-column:8; grid-row:3; bottom: 10%;\" },\r\n        \"sel-07\":{ \"sel\":\"07\", \"style\":\"grid-column:2; grid-row:3; bottom: 10%; left: 25%;\" },\r\n        \"sel-12\":{ \"sel\":\"12\", \"style\":\"grid-column:4; grid-row:3; bottom: 10%; left: 15%;\" },\r\n        \"sel-17\":{ \"sel\":\"17\", \"style\":\"grid-column:6; grid-row:3; bottom: 10%;\" },\r\n        \"sel-03\":{ \"sel\":\"03\", \"style\":\"grid-column:9; grid-row:4; bottom: 20%;\" },\r\n        \"sel-08\":{ \"sel\":\"08\", \"style\":\"grid-column:3; grid-row:4; bottom: 20%; left: 15%;\" },\r\n        \"sel-13\":{ \"sel\":\"13\", \"style\":\"grid-column:5; grid-row:4; bottom: 20%; left: 15%;\" },\r\n        \"sel-18\":{ \"sel\":\"18\", \"style\":\"grid-column:7; grid-row:4; bottom: 20%;\" },\r\n        \"sel-04\":{ \"sel\":\"04\", \"style\":\"grid-column:2; grid-row:5; bottom: 45%; left: 30%;\" },\r\n        \"sel-09\":{ \"sel\":\"09\", \"style\":\"grid-column:4; grid-row:5; bottom: 45%; left: 20%;\" },\r\n        \"sel-14\":{ \"sel\":\"14\", \"style\":\"grid-column:6; grid-row:5; bottom: 45%; left: 8%;\" },\r\n        \"sel-19\":{ \"sel\":\"19\", \"style\":\"grid-column:8; grid-row:5; bottom: 45%; left: 5%;\" },\r\n\r\n        \"sel-fic\":{ \"style\":\"width: 30%;\" }  \r\n\r\n      }', NULL),
-('hol', 'uni_hum', '{\r\n\r\n        \"sec\":{ \r\n          \"tab\":\"uni_hum\",\r\n          \"style\":\"grid: repeat(20,1fr)/repeat(13,1fr); width: 19rem; height: 35rem;\"\r\n        },\r\n\r\n        \"fon\":{ \"style\":\"grid-column: 1/sp; grid-row: 1/sp; width: 100%; height: 100%;\" },\r\n        \"fon-map\":{ \"fon\":\"map\", \"style\":\"background: center/contain no-repeat url(http://localhost/img/hol/tab/hum/map.png);\" },\r\n        \"fon-res\":{ \"fon\":\"res\", \"style\":\"background: center/contain no-repeat url(http://localhost/img/hol/tab/hum/res.png);\" },\r\n        \"fon-cir\":{ \"fon\":\"cir\", \"style\":\"background: center/contain no-repeat url(http://localhost/img/hol/tab/hum/cir.png);\" },\r\n        \"fon-cen\":{ \"fon\":\"cen\", \"style\":\"background: center/contain no-repeat url(http://localhost/img/hol/tab/hum/cen.png);\" },\r\n        \"fon-ext\":{ \"fon\":\"ext\", \"style\":\"background: center/contain no-repeat url(http://localhost/img/hol/tab/hum/ext.png);\" },\r\n\r\n        \"raz\":{ \"style\":\"position: relative;\" },\r\n        \"raz-4\":{ \"raz\":\"4\", \"style\":\"grid-column:2/5; grid-row:10/12; left:5%; top:5%;\" },\r\n        \"raz-1\":{ \"raz\":\"1\", \"style\":\"grid-column:5/7; grid-row:18/20; left: 30%; top:5%; z-index: -1;\" },\r\n        \"raz-2\":{ \"raz\":\"2\", \"style\":\"grid-column:11/13; grid-row:10/12; right:35%; top:5%;\" },\r\n        \"raz-3\":{ \"raz\":\"3\", \"style\":\"grid-column:8/10; grid-row:18/20; right:20%; top:5%; z-index: -1;\" },\r\n\r\n        \"fam\":{ \"style\":\"\" },\r\n        \"fam-5\":{ \"fam\":\"5\", \"style\":\"grid-column:6/9; grid-row:1/3;\" },\r\n        \"fam-1\":{ \"fam\":\"1\", \"style\":\"grid-column:6/9; grid-row:3/6; z-index:1;\" },\r\n        \"fam-2\":{ \"fam\":\"2\", \"style\":\"grid-column:6/9; grid-row:5/8;\" },\r\n        \"fam-3\":{ \"fam\":\"3\", \"style\":\"grid-column:6/9; grid-row:7/10;\" },\r\n        \"fam-4\":{ \"fam\":\"4\", \"style\":\"grid-column:6/9; grid-row:10/12;\" },\r\n\r\n        \"ton\":{ \"style\":\"position:relative; width:20px; height:20px; border-radius: 20%;\" },\r\n        \"ton-01\":{ \"ton\":\"01\", \"style\":\"grid-column:05; grid-row:18; bottom: 30%;\" },\r\n        \"ton-02\":{ \"ton\":\"02\", \"style\":\"grid-column:05; grid-row:15; right: 15%;\" },\r\n        \"ton-03\":{ \"ton\":\"03\", \"style\":\"grid-column:05; grid-row:11; right: 20%;\" },\r\n        \"ton-04\":{ \"ton\":\"04\", \"style\":\"grid-column:03; grid-row:10; bottom: 40%;\" },\r\n        \"ton-05\":{ \"ton\":\"05\", \"style\":\"grid-column:04; grid-row:08; bottom: 35%; right: 40%;\" },\r\n        \"ton-06\":{ \"ton\":\"06\", \"style\":\"grid-column:04; grid-row:05;\" },\r\n        \"ton-07\":{ \"ton\":\"07\", \"style\":\"grid-column:07; grid-row:04; bottom: 35%;\" },\r\n        \"ton-08\":{ \"ton\":\"08\", \"style\":\"grid-column:10; grid-row:05;\" },\r\n        \"ton-09\":{ \"ton\":\"09\", \"style\":\"grid-column:10; grid-row:08; bottom: 35%; left: 40%;\" },\r\n        \"ton-10\":{ \"ton\":\"10\", \"style\":\"grid-column:11; grid-row:10; bottom: 40%;\" },\r\n        \"ton-11\":{ \"ton\":\"11\", \"style\":\"grid-column:09; grid-row:11; left: 20%;\" },\r\n        \"ton-12\":{ \"ton\":\"12\", \"style\":\"grid-column:09; grid-row:15; left: 35%;\" },\r\n        \"ton-13\":{ \"ton\":\"13\", \"style\":\"grid-column:09; grid-row:18; bottom: 30%; left: 30%;\" },\r\n\r\n        \"sel\":{ \"style\":\"width:15px; height:15px; position:relative; \" },\r\n        \"sel-20\":{ \"sel\":\"20\", \"style\":\"grid-column:1;  grid-row:10; top:40%; right:25%;\" },\r\n        \"sel-01\":{ \"sel\":\"01\", \"style\":\"grid-column:1;  grid-row:11; top:30%; right:17%;\" },\r\n        \"sel-02\":{ \"sel\":\"02\", \"style\":\"grid-column:1;  grid-row:12; top:20%; left: 25%;\" },\r\n        \"sel-03\":{ \"sel\":\"03\", \"style\":\"grid-column:2;  grid-row:12; top:40%; left: 28%;\" },\r\n        \"sel-04\":{ \"sel\":\"04\", \"style\":\"grid-column:3;  grid-row:12; top:25%; left: 30%;\" },\r\n        \"sel-10\":{ \"sel\":\"10\", \"style\":\"grid-column:13; grid-row:10; top:35%; left:20%;\" },\r\n        \"sel-11\":{ \"sel\":\"11\", \"style\":\"grid-column:13; grid-row:11; top:30%; left:15%;\" },\r\n        \"sel-12\":{ \"sel\":\"12\", \"style\":\"grid-column:13; grid-row:12; top:20%; right:25%;\" },\r\n        \"sel-13\":{ \"sel\":\"13\", \"style\":\"grid-column:12; grid-row:12; top:43%; right:25%;\" },\r\n        \"sel-14\":{ \"sel\":\"14\", \"style\":\"grid-column:11; grid-row:12; top:30%; right:25%;\" },\r\n        \"sel-05\":{ \"sel\":\"05\", \"style\":\"grid-column:6;  grid-row:20; top:15%; left:25%;\" },\r\n        \"sel-06\":{ \"sel\":\"06\", \"style\":\"grid-column:5;  grid-row:20; top:35%; left:20%;\" },\r\n        \"sel-07\":{ \"sel\":\"07\", \"style\":\"grid-column:4;  grid-row:20; top:25%; left:20%;\" },\r\n        \"sel-08\":{ \"sel\":\"08\", \"style\":\"grid-column:4;  grid-row:19; top:35%; left:5%;\" },\r\n        \"sel-09\":{ \"sel\":\"09\", \"style\":\"grid-column:4;  grid-row:19; bottom:50%; left:20%;\" },\r\n        \"sel-15\":{ \"sel\":\"15\", \"style\":\"grid-column:8;  grid-row:20; top:20%;\" },\r\n        \"sel-16\":{ \"sel\":\"16\", \"style\":\"grid-column:9;  grid-row:20; top:35%;\" },\r\n        \"sel-17\":{ \"sel\":\"17\", \"style\":\"grid-column:10; grid-row:20; top:25%;\" },\r\n        \"sel-18\":{ \"sel\":\"18\", \"style\":\"grid-column:10; grid-row:19; top:35%; left:15%;\" },\r\n        \"sel-19\":{ \"sel\":\"19\", \"style\":\"grid-column:10; grid-row:19; bottom:50%;\" }  \r\n\r\n      }', NULL),
-('hol', 'arm', '{\r\n        \r\n        \"sec\":{ \r\n          \"tab\":\"arm\", \r\n          \"style\":\"grid: repeat(2,1fr)/repeat(2,1fr); border-radius: 15%;\" \r\n        },\r\n\r\n        \"pos-0\":{ \"pos\":\"0\", \"style\":\"grid-column:3/5; grid-row:3/5; border-radius: 50%; padding: .1rem;\" },\r\n        \"pos-1\":{ \"pos\":\"1\", \"style\":\"grid-column:4/7; grid-row:1/4;\" },\r\n        \"pos-2\":{ \"pos\":\"2\", \"style\":\"grid-column:1/4; grid-row:1/4;\" },\r\n        \"pos-3\":{ \"pos\":\"3\", \"style\":\"grid-column:1/4; grid-row:4/8;\" },\r\n        \"pos-4\":{ \"pos\":\"4\", \"style\":\"grid-column:4/7; grid-row:4/8;\" }   \r\n\r\n      }', NULL),
-('hol', 'cro', '{\r\n\r\n        \"sec\":{ \r\n          \"tab\":\"cro\", \r\n          \"style\":\"grid: repeat(3,1fr) / repeat(3,1fr); border-radius: 50%;\" \r\n        },\r\n\r\n        \"pos-0\":{ \"pos\":\"0\", \"style\":\"grid-column:2; grid-row:2;\" },\r\n        \"pos-1\":{ \"pos\":\"1\", \"style\":\"grid-column:3; grid-row:2;\" },\r\n        \"pos-2\":{ \"pos\":\"2\", \"style\":\"grid-column:2; grid-row:1;\" },\r\n        \"pos-3\":{ \"pos\":\"3\", \"style\":\"grid-column:1; grid-row:2;\" },\r\n        \"pos-4\":{ \"pos\":\"4\", \"style\":\"grid-column:2; grid-row:3;\" },\r\n        \"pos-5\":{ \"pos\":\"5\", \"style\":\"grid-column:2; grid-row:2;\" }   \r\n\r\n      }', NULL),
-('hol', 'cro_cir', '{\r\n\r\n        \"sec\":{ \r\n          \"tab\":\"cro_cir\", \r\n          \"style\":\"grid: repeat(3,1fr) / repeat(3,1fr); border-radius: 50%;\" \r\n        },\r\n\r\n        \"pos\":{ \"style\":\"position: relative;\" },\r\n        \"pos-0\":{ \"pos\":\"0\", \"style\":\"grid-column:2/3; grid-row:2/3; align-self: center; justify-self: center; justify-content: center; align-items: center; width: 150%; height: 150%;\" },\r\n        \"pos-1\":{ \"pos\":\"1\", \"style\":\"grid-column:1/2; grid-row:1/2; top: 3%;    left: 28%; transform: rotate(145deg);\" },\r\n        \"pos-2\":{ \"pos\":\"2\", \"style\":\"grid-column:1/2; grid-row:2/3; top: 38%;   left:-13%; transform: rotate(070deg);\" },\r\n        \"pos-3\":{ \"pos\":\"3\", \"style\":\"grid-column:2/3; grid-row:3/4; top: 20%;\" },\r\n        \"pos-4\":{ \"pos\":\"4\", \"style\":\"grid-column:3/4; grid-row:2/3; top: 35.5%; left: 12%; transform: rotate(287deg);\" },\r\n        \"pos-5\":{ \"pos\":\"5\", \"style\":\"grid-column:3/4; grid-row:1/2; top: 3%;    left:-30%; transform: rotate(217deg);\" }      \r\n\r\n      }', NULL),
-('hol', 'rad', '{ \r\n\r\n        \"sec\":{ \r\n          \"tab\": \"rad\", \r\n          \"style\":\"grid: repeat(4,1fr)/repeat(4,1fr); background: center/contain no-repeat url(http://localhost/img/hol/ima/rad.png);\"\r\n        },\r\n\r\n        \"pos\":{ \"style\":\"position: relative;\" },\r\n        \"pos-1\":{ \"pos\":\"1\", \"style\":\"grid-column:2; grid-row:1; top:     15%; left:  50%;\" },\r\n        \"pos-2\":{ \"pos\":\"2\", \"style\":\"grid-column:2; grid-row:4; bottom:  15%; left:  53%; \" },\r\n        \"pos-3\":{ \"pos\":\"3\", \"style\":\"grid-column:1; grid-row:2; bottom:  20%; left:  25%;\" },\r\n        \"pos-4\":{ \"pos\":\"4\", \"style\":\"grid-column:4; grid-row:3; top:     20%; right: 25%;\" },\r\n        \"pos-5\":{ \"pos\":\"5\", \"style\":\"grid-column:1; grid-row:3; top:     20%; left:  30%;\" },\r\n        \"pos-6\":{ \"pos\":\"6\", \"style\":\"grid-column:4; grid-row:2; bottom:  20%; right: 35%;\" },\r\n        \"pos-7\":{ \"pos\":\"7\", \"style\":\"grid-column:2; grid-row:2; top:     50%; left:  50%;\" } \r\n        \r\n      }', NULL),
+('hol', 'uni_sol', '{\r\n        \"sec\":{ \"style\":\"grid:repeat(9,1fr)/repeat(9,1fr);\" },\r\n\r\n        \"fon\":{ \"style\":\"grid-column: 1/sp; grid-row: 1/sp; width: 100%; height: 100%;\" },\r\n        \"fon-map\":{ \"fon\":\"map\", \"style\":\"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/tab/sol/map.png);\" },\r\n        \"fon-ato\":{ \"fon\":\"ato\", \"style\":\"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/tab/sol/ato.png);\" },\r\n        \"fon-res\":{ \"fon\":\"res\", \"style\":\"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/tab/sol/res.png);\" },\r\n        \"fon-cel\":{ \"fon\":\"cel\", \"style\":\"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/tab/sol/cel.png);\" },\r\n        \"fon-cir\":{ \"fon\":\"cir\", \"style\":\"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/tab/sol/cir.png);\" },\r\n        \"fon-pla\":{ \"fon\":\"pla\", \"style\":\"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/tab/sol/pla.png);\" },\r\n\r\n        \"pla\":{ \"style\":\"position: relative; width: 110%; height: 100%;\" },\r\n        \"pla-10\":{ \"pla\":\"10\", \"style\":\"grid-column:3/5; grid-row:2; transform: rotate( 053deg); top: 25%; left: 15%;\" },\r\n        \"pla-09\":{ \"pla\":\"09\", \"style\":\"grid-column:2/4; grid-row:3; transform: rotate( 053deg); left: 17%;\" },\r\n        \"pla-08\":{ \"pla\":\"08\", \"style\":\"grid-column:2/4; grid-row:5; transform: rotate( 340deg); top: 25%; right: 20%;\" },\r\n        \"pla-07\":{ \"pla\":\"07\", \"style\":\"grid-column:2/4; grid-row:6; transform: rotate( 340deg); top: 45%;\" },\r\n        \"pla-06\":{ \"pla\":\"06\", \"style\":\"grid-column:4/6; grid-row:8; transform: rotate( 270deg); bottom: 20%; right: 5%;\" },\r\n        \"pla-05\":{ \"pla\":\"05\", \"style\":\"grid-column:5/7; grid-row:8; transform: rotate( 270deg); bottom: 20%; left: 7%;\" },\r\n        \"pla-04\":{ \"pla\":\"04\", \"style\":\"grid-column:7/9; grid-row:6; transform: rotate( 018deg); top: 35%; left: 3%;\" },\r\n        \"pla-03\":{ \"pla\":\"03\", \"style\":\"grid-column:7/9; grid-row:5; transform: rotate( 018deg); top: 15%; left: 20%;\" },\r\n        \"pla-02\":{ \"pla\":\"02\", \"style\":\"grid-column:6/8; grid-row:3; transform: rotate( 305deg); bottom: 5%; left: 32%;\" },\r\n        \"pla-01\":{ \"pla\":\"01\", \"style\":\"grid-column:6/8; grid-row:2; transform: rotate( 305deg); top: 30%; right: 18%;\" },\r\n\r\n        \"sel\":{ \"style\":\"position: relative; width: 110%; height: 110%; border-radius: 5%;\" },      \r\n        \"sel-20\":{ \"sel\":\"20\", \"style\":\"grid-column:3; grid-row:2; transform: rotate( 053deg); bottom: 22%; left: 45%;\" },\r\n        \"sel-01\":{ \"sel\":\"01\", \"style\":\"grid-column:2; grid-row:3; transform: rotate( 054deg); bottom: 49%; left: 47%;\" },\r\n        \"sel-02\":{ \"sel\":\"02\", \"style\":\"grid-column:1; grid-row:6; transform: rotate( 340deg); bottom: 54%; left: 55%;\" },\r\n        \"sel-03\":{ \"sel\":\"03\", \"style\":\"grid-column:2; grid-row:7; transform: rotate( 340deg); bottom: 39%; right: 5%;\" },\r\n        \"sel-04\":{ \"sel\":\"04\", \"style\":\"grid-column:4; grid-row:8; transform: rotate( 270deg); top: 35%; left: 41%;\" },\r\n        \"sel-05\":{ \"sel\":\"05\", \"style\":\"grid-column:6; grid-row:8; transform: rotate( 270deg); top: 35%; right: 37%;\" },\r\n        \"sel-06\":{ \"sel\":\"06\", \"style\":\"grid-column:8; grid-row:6; transform: rotate( 196deg); top: 50%; left: 13%;\" },\r\n        \"sel-07\":{ \"sel\":\"07\", \"style\":\"grid-column:8; grid-row:5; transform: rotate( 196deg); top: 32%; left: 47%;\" },\r\n        \"sel-08\":{ \"sel\":\"08\", \"style\":\"grid-column:7; grid-row:2; transform: rotate( 125deg); top: 44%; left: 48%;\" },\r\n        \"sel-09\":{ \"sel\":\"09\", \"style\":\"grid-column:6; grid-row:2; transform: rotate( 125deg); bottom: 26%; left: 50%;\" },\r\n        \"sel-10\":{ \"sel\":\"10\", \"style\":\"grid-column:6; grid-row:3; transform: rotate( 306deg); bottom: 28%; right: 20%;\" },\r\n        \"sel-11\":{ \"sel\":\"11\", \"style\":\"grid-column:7; grid-row:3; transform: rotate( 306deg); top: 40%; right: 20%;\" },\r\n        \"sel-12\":{ \"sel\":\"12\", \"style\":\"grid-column:7; grid-row:5; transform: rotate( 017deg); bottom: 2%; left: 32%;\" },\r\n        \"sel-13\":{ \"sel\":\"13\", \"style\":\"grid-column:7; grid-row:6; transform: rotate( 017deg); top: 14%; right: 3%;\" },\r\n        \"sel-14\":{ \"sel\":\"14\", \"style\":\"grid-column:6; grid-row:7; transform: rotate( 090deg); top: 15%; right: 35%;\" },\r\n        \"sel-15\":{ \"sel\":\"15\", \"style\":\"grid-column:4; grid-row:7; transform: rotate( 090deg); top: 15%; left: 40%;\" },\r\n        \"sel-16\":{ \"sel\":\"16\", \"style\":\"grid-column:3; grid-row:6; transform: rotate( 160deg); top: 20%; left: 10%;\" },\r\n        \"sel-17\":{ \"sel\":\"17\", \"style\":\"grid-column:3; grid-row:5; transform: rotate( 160deg); top: 5%; right: 30%;\" },\r\n        \"sel-18\":{ \"sel\":\"18\", \"style\":\"grid-column:3; grid-row:4; transform: rotate( 234deg); bottom: 52%; left: 18%;\" },\r\n        \"sel-19\":{ \"sel\":\"19\", \"style\":\"grid-column:4; grid-row:3; transform: rotate( 234deg); bottom: 25%; left: 15%;\" },\r\n\r\n        \"sel-fic\":{ \"style\":\"width: 75%; height: 75%;\" } \r\n        \r\n      }', NULL),
+('hol', 'uni_pla', '\r\n      {\r\n        \"sec\":{ \"style\":\"grid: repeat(5,1fr)/repeat(9,1fr); },\r\n\r\n        \"fon\":{ \"style\":\"grid-column:2/10; grid-row:1/6; width: 100%; height: 100%;\" },\r\n        \"fon-map\":{ \"fon\":\"map\", \"style\":\"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/tab/pla/map.png);\" },\r\n        \"fon-sel\":{ \"fon\":\"sel\", \"style\":\"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/tab/pla/sel.png);\" },\r\n        \"fon-res\":{ \"fon\":\"res\", \"style\":\"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/tab/pla/res.png);\" },\r\n        \"fon-flu\":{ \"fon\":\"flu\", \"style\":\"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/tab/pla/flu.png);\" },\r\n\r\n        \"fam\":{ \"style\":\"height: 80%; width: 80%;\" },\r\n        \"fam-1\":{ \"fam\":\"1\", \"style\":\"grid-column:1/2; grid-row:2;\" },\r\n        \"fam-2\":{ \"fam\":\"2\", \"style\":\"grid-column:1/2; grid-row:3;\" },\r\n        \"fam-3\":{ \"fam\":\"3\", \"style\":\"grid-column:1/2; grid-row:4;\" },\r\n        \"fam-4\":{ \"fam\":\"4\", \"style\":\"grid-column:1/2; grid-row:5;\" },\r\n        \"fam-5\":{ \"fam\":\"5\", \"style\":\"grid-column:1/2; grid-row:1;\" },\r\n\r\n        \"sel\":{ \"style\":\"position: relative; width: 150%; height: 115%; border-radius: 50%;\" },\r\n        \"sel-20\":{ \"sel\":\"20\", \"style\":\"grid-column:6; grid-row:1; top: 25%;\" },\r\n        \"sel-05\":{ \"sel\":\"05\", \"style\":\"grid-column:8; grid-row:1; top: 25%;\" },\r\n        \"sel-10\":{ \"sel\":\"10\", \"style\":\"grid-column:2; grid-row:1; top: 25%; left: 20%;\" },\r\n        \"sel-15\":{ \"sel\":\"15\", \"style\":\"grid-column:4; grid-row:1; top: 25%;\" },\r\n        \"sel-01\":{ \"sel\":\"01\", \"style\":\"grid-column:7; grid-row:2; top: 20%;\" },\r\n        \"sel-06\":{ \"sel\":\"06\", \"style\":\"grid-column:9; grid-row:2; top: 20%;\" },\r\n        \"sel-11\":{ \"sel\":\"11\", \"style\":\"grid-column:3; grid-row:2; top: 20%; left: 15%;\" },\r\n        \"sel-16\":{ \"sel\":\"16\", \"style\":\"grid-column:5; grid-row:2; top: 20%; left: 10%;\" },\r\n        \"sel-02\":{ \"sel\":\"02\", \"style\":\"grid-column:8; grid-row:3; bottom: 10%;\" },\r\n        \"sel-07\":{ \"sel\":\"07\", \"style\":\"grid-column:2; grid-row:3; bottom: 10%; left: 25%;\" },\r\n        \"sel-12\":{ \"sel\":\"12\", \"style\":\"grid-column:4; grid-row:3; bottom: 10%; left: 15%;\" },\r\n        \"sel-17\":{ \"sel\":\"17\", \"style\":\"grid-column:6; grid-row:3; bottom: 10%;\" },\r\n        \"sel-03\":{ \"sel\":\"03\", \"style\":\"grid-column:9; grid-row:4; bottom: 20%;\" },\r\n        \"sel-08\":{ \"sel\":\"08\", \"style\":\"grid-column:3; grid-row:4; bottom: 20%; left: 15%;\" },\r\n        \"sel-13\":{ \"sel\":\"13\", \"style\":\"grid-column:5; grid-row:4; bottom: 20%; left: 15%;\" },\r\n        \"sel-18\":{ \"sel\":\"18\", \"style\":\"grid-column:7; grid-row:4; bottom: 20%;\" },\r\n        \"sel-04\":{ \"sel\":\"04\", \"style\":\"grid-column:2; grid-row:5; bottom: 45%; left: 30%;\" },\r\n        \"sel-09\":{ \"sel\":\"09\", \"style\":\"grid-column:4; grid-row:5; bottom: 45%; left: 20%;\" },\r\n        \"sel-14\":{ \"sel\":\"14\", \"style\":\"grid-column:6; grid-row:5; bottom: 45%; left: 8%;\" },\r\n        \"sel-19\":{ \"sel\":\"19\", \"style\":\"grid-column:8; grid-row:5; bottom: 45%; left: 5%;\" },\r\n\r\n        \"sel-fic\":{ \"style\":\"width: 30%;\" }  \r\n\r\n      }', NULL),
+('hol', 'uni_hum', '{\r\n        \"sec\":{ \"style\":\"grid: repeat(20,1fr)/repeat(13,1fr);\" },\r\n\r\n        \"fon\":{ \"style\":\"grid-column: 1/sp; grid-row: 1/sp; width: 100%; height: 100%;\" },\r\n        \"fon-map\":{ \"fon\":\"map\", \"style\":\"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/tab/hum/map.png);\" },\r\n        \"fon-res\":{ \"fon\":\"res\", \"style\":\"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/tab/hum/res.png);\" },\r\n        \"fon-cir\":{ \"fon\":\"cir\", \"style\":\"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/tab/hum/cir.png);\" },\r\n        \"fon-cen\":{ \"fon\":\"cen\", \"style\":\"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/tab/hum/cen.png);\" },\r\n        \"fon-ext\":{ \"fon\":\"ext\", \"style\":\"background: center/contain no-repeat url(http://icpv.com.ar/img/hol/tab/hum/ext.png);\" },\r\n\r\n        \"raz\":{ \"style\":\"position: relative;\" },\r\n        \"raz-4\":{ \"raz\":\"4\", \"style\":\"grid-column:2/5; grid-row:10/12; left:5%; top:5%;\" },\r\n        \"raz-1\":{ \"raz\":\"1\", \"style\":\"grid-column:5/7; grid-row:18/20; left: 30%; top:5%; z-index:-1;\" },\r\n        \"raz-2\":{ \"raz\":\"2\", \"style\":\"grid-column:11/13; grid-row:10/12; right:35%; top:5%;\" },\r\n        \"raz-3\":{ \"raz\":\"3\", \"style\":\"grid-column:8/10; grid-row:18/20; right:20%; top:5%; z-index:-1;\" },\r\n\r\n        \"fam\":{ \"style\":\"\" },\r\n        \"fam-5\":{ \"fam\":\"5\", \"style\":\"grid-column:6/9; grid-row:1/3;\" },\r\n        \"fam-1\":{ \"fam\":\"1\", \"style\":\"grid-column:6/9; grid-row:3/6; z-index:1;\" },\r\n        \"fam-2\":{ \"fam\":\"2\", \"style\":\"grid-column:6/9; grid-row:5/8;\" },\r\n        \"fam-3\":{ \"fam\":\"3\", \"style\":\"grid-column:6/9; grid-row:7/10;\" },\r\n        \"fam-4\":{ \"fam\":\"4\", \"style\":\"grid-column:6/9; grid-row:10/12;\" },\r\n\r\n        \"ton\":{ \"style\":\"position:relative; width:20px; height:20px; border-radius: 20%;\" },\r\n        \"ton-01\":{ \"ton\":\"01\", \"style\":\"grid-column:05; grid-row:18; bottom: 30%;\" },\r\n        \"ton-02\":{ \"ton\":\"02\", \"style\":\"grid-column:05; grid-row:15; right: 15%;\" },\r\n        \"ton-03\":{ \"ton\":\"03\", \"style\":\"grid-column:05; grid-row:11; right: 20%;\" },\r\n        \"ton-04\":{ \"ton\":\"04\", \"style\":\"grid-column:03; grid-row:10; bottom: 40%;\" },\r\n        \"ton-05\":{ \"ton\":\"05\", \"style\":\"grid-column:04; grid-row:08; bottom: 35%; right: 40%;\" },\r\n        \"ton-06\":{ \"ton\":\"06\", \"style\":\"grid-column:04; grid-row:05;\" },\r\n        \"ton-07\":{ \"ton\":\"07\", \"style\":\"grid-column:07; grid-row:04; bottom: 35%;\" },\r\n        \"ton-08\":{ \"ton\":\"08\", \"style\":\"grid-column:10; grid-row:05;\" },\r\n        \"ton-09\":{ \"ton\":\"09\", \"style\":\"grid-column:10; grid-row:08; bottom: 35%; left: 40%;\" },\r\n        \"ton-10\":{ \"ton\":\"10\", \"style\":\"grid-column:11; grid-row:10; bottom: 40%;\" },\r\n        \"ton-11\":{ \"ton\":\"11\", \"style\":\"grid-column:09; grid-row:11; left: 20%;\" },\r\n        \"ton-12\":{ \"ton\":\"12\", \"style\":\"grid-column:09; grid-row:15; left: 35%;\" },\r\n        \"ton-13\":{ \"ton\":\"13\", \"style\":\"grid-column:09; grid-row:18; bottom: 30%; left: 30%;\" },\r\n\r\n        \"sel\":{ \"style\":\"width:15px; height:15px; position:relative; \" },\r\n        \"sel-20\":{ \"sel\":\"20\", \"style\":\"grid-column:1;  grid-row:10; top:40%; right:25%;\" },\r\n        \"sel-01\":{ \"sel\":\"01\", \"style\":\"grid-column:1;  grid-row:11; top:30%; right:17%;\" },\r\n        \"sel-02\":{ \"sel\":\"02\", \"style\":\"grid-column:1;  grid-row:12; top:20%; left: 25%;\" },\r\n        \"sel-03\":{ \"sel\":\"03\", \"style\":\"grid-column:2;  grid-row:12; top:40%; left: 28%;\" },\r\n        \"sel-04\":{ \"sel\":\"04\", \"style\":\"grid-column:3;  grid-row:12; top:25%; left: 30%;\" },\r\n        \"sel-10\":{ \"sel\":\"10\", \"style\":\"grid-column:13; grid-row:10; top:35%; left:20%;\" },\r\n        \"sel-11\":{ \"sel\":\"11\", \"style\":\"grid-column:13; grid-row:11; top:30%; left:15%;\" },\r\n        \"sel-12\":{ \"sel\":\"12\", \"style\":\"grid-column:13; grid-row:12; top:20%; right:25%;\" },\r\n        \"sel-13\":{ \"sel\":\"13\", \"style\":\"grid-column:12; grid-row:12; top:43%; right:25%;\" },\r\n        \"sel-14\":{ \"sel\":\"14\", \"style\":\"grid-column:11; grid-row:12; top:30%; right:25%;\" },\r\n        \"sel-05\":{ \"sel\":\"05\", \"style\":\"grid-column:6;  grid-row:20; top:15%; left:25%;\" },\r\n        \"sel-06\":{ \"sel\":\"06\", \"style\":\"grid-column:5;  grid-row:20; top:35%; left:20%;\" },\r\n        \"sel-07\":{ \"sel\":\"07\", \"style\":\"grid-column:4;  grid-row:20; top:25%; left:20%;\" },\r\n        \"sel-08\":{ \"sel\":\"08\", \"style\":\"grid-column:4;  grid-row:19; top:35%; left:5%;\" },\r\n        \"sel-09\":{ \"sel\":\"09\", \"style\":\"grid-column:4;  grid-row:19; bottom:50%; left:20%;\" },\r\n        \"sel-15\":{ \"sel\":\"15\", \"style\":\"grid-column:8;  grid-row:20; top:20%;\" },\r\n        \"sel-16\":{ \"sel\":\"16\", \"style\":\"grid-column:9;  grid-row:20; top:35%;\" },\r\n        \"sel-17\":{ \"sel\":\"17\", \"style\":\"grid-column:10; grid-row:20; top:25%;\" },\r\n        \"sel-18\":{ \"sel\":\"18\", \"style\":\"grid-column:10; grid-row:19; top:35%; left:15%;\" },\r\n        \"sel-19\":{ \"sel\":\"19\", \"style\":\"grid-column:10; grid-row:19; bottom:50%;\" }  \r\n\r\n      }', NULL),
+('hol', 'arm', '{        \r\n        \"sec\":{ \"style\":\"grid: repeat(2,1fr)/repeat(2,1fr); border-radius: 15%;\" },\r\n\r\n        \"pos-0\":{ \"pos\":\"0\", \"style\":\"grid-column:3/5; grid-row:3/5; border-radius: 50%; padding: .1rem;\" },\r\n        \"pos-1\":{ \"pos\":\"1\", \"style\":\"grid-column:4/7; grid-row:1/4;\" },\r\n        \"pos-2\":{ \"pos\":\"2\", \"style\":\"grid-column:1/4; grid-row:1/4;\" },\r\n        \"pos-3\":{ \"pos\":\"3\", \"style\":\"grid-column:1/4; grid-row:4/8;\" },\r\n        \"pos-4\":{ \"pos\":\"4\", \"style\":\"grid-column:4/7; grid-row:4/8;\" }   \r\n\r\n      }', NULL),
+('hol', 'cro', '{\r\n        \"sec\":{ \"style\":\"grid: repeat(3,1fr) / repeat(3,1fr); border-radius: 50%;\" },\r\n\r\n        \"pos-0\":{ \"pos\":\"0\", \"style\":\"grid-column:2; grid-row:2;\" },\r\n        \"pos-1\":{ \"pos\":\"1\", \"style\":\"grid-column:3; grid-row:2;\" },\r\n        \"pos-2\":{ \"pos\":\"2\", \"style\":\"grid-column:2; grid-row:1;\" },\r\n        \"pos-3\":{ \"pos\":\"3\", \"style\":\"grid-column:1; grid-row:2;\" },\r\n        \"pos-4\":{ \"pos\":\"4\", \"style\":\"grid-column:2; grid-row:3;\" },\r\n        \"pos-5\":{ \"pos\":\"5\", \"style\":\"grid-column:2; grid-row:2;\" }   \r\n\r\n      }', NULL),
+('hol', 'cro_cir', '{\r\n        \"sec\":{ \"style\":\"grid:repeat(3,1fr)/repeat(3,1fr); border-radius: 50%;\" },\r\n\r\n        \"pos\":{ \"style\":\"position: relative;\" },\r\n        \"pos-0\":{ \"pos\":\"0\", \"style\":\"grid-column:2/3; grid-row:2/3; align-self: center; justify-self: center; justify-content: center; align-items: center; width: 150%; height: 150%;\" },\r\n        \"pos-1\":{ \"pos\":\"1\", \"style\":\"grid-column:1/2; grid-row:1/2; top: 3%;    left: 28%; transform: rotate(145deg);\" },\r\n        \"pos-2\":{ \"pos\":\"2\", \"style\":\"grid-column:1/2; grid-row:2/3; top: 38%;   left:-13%; transform: rotate(070deg);\" },\r\n        \"pos-3\":{ \"pos\":\"3\", \"style\":\"grid-column:2/3; grid-row:3/4; top: 20%;\" },\r\n        \"pos-4\":{ \"pos\":\"4\", \"style\":\"grid-column:3/4; grid-row:2/3; top: 35.5%; left: 12%; transform: rotate(287deg);\" },\r\n        \"pos-5\":{ \"pos\":\"5\", \"style\":\"grid-column:3/4; grid-row:1/2; top: 3%;    left:-30%; transform: rotate(217deg);\" }      \r\n\r\n      }', NULL),
+('hol', 'rad', '{ \r\n        \"sec\":{ \"style\":\"grid:repeat(4,1fr)/repeat(4,1fr); background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/rad.png);\" },\r\n\r\n        \"pos\":{ \"style\":\"position: relative;\" },\r\n        \"pos-1\":{ \"pos\":\"1\", \"style\":\"grid-column:2; grid-row:1; top:     15%; left:  50%;\" },\r\n        \"pos-2\":{ \"pos\":\"2\", \"style\":\"grid-column:2; grid-row:4; bottom:  15%; left:  53%; \" },\r\n        \"pos-3\":{ \"pos\":\"3\", \"style\":\"grid-column:1; grid-row:2; bottom:  20%; left:  25%;\" },\r\n        \"pos-4\":{ \"pos\":\"4\", \"style\":\"grid-column:4; grid-row:3; top:     20%; right: 25%;\" },\r\n        \"pos-5\":{ \"pos\":\"5\", \"style\":\"grid-column:1; grid-row:3; top:     20%; left:  30%;\" },\r\n        \"pos-6\":{ \"pos\":\"6\", \"style\":\"grid-column:4; grid-row:2; bottom:  20%; right: 35%;\" },\r\n        \"pos-7\":{ \"pos\":\"7\", \"style\":\"grid-column:2; grid-row:2; top:     50%; left:  50%;\" } \r\n        \r\n      }', NULL),
 ('hol', 'rad_ato', '{\r\n      }', NULL),
-('hol', 'ton', '{\r\n        \"sec\":{ \r\n          \"tab\":\"ton\", \r\n          \"style\":\"grid: repeat(5,1fr)/repeat(5,1fr); justify-items: start;\" \r\n        },\r\n        \"ima\":{\r\n          \"sec\":\"ima\",\r\n          \"style\":\"z-index: 1; grid-column:1/sp; grid-row:1/sp; width:100%; height:100%;\" \r\n        },\r\n        \"fon\":{           \r\n          \"sec\":\"fon\", \r\n          \"style\":\"z-index: 2; grid-column:1/sp; grid-row:1/sp; width:95%; height:91%; border-radius:50%;\" \r\n        },\r\n        \"ond\":{ \r\n          \"sec\":\"ond\",\r\n          \"style\":\"z-index: 3; grid-column:1/sp; grid-row:1/sp; width: 100%; height: 100%;\"\r\n        },\r\n        \"pos\":{ \r\n          \"style\":\"z-index : 4;\" \r\n        },\r\n        \"pos-01\":{ \"pos\":\"01\", \"style\":\"grid-column:1/2; grid-row:1/2;\" },\r\n        \"pos-02\":{ \"pos\":\"02\", \"style\":\"grid-column:1/2; grid-row:2/3;\" },\r\n        \"pos-03\":{ \"pos\":\"03\", \"style\":\"grid-column:1/2; grid-row:3/4;\" },\r\n        \"pos-04\":{ \"pos\":\"04\", \"style\":\"grid-column:1/2; grid-row:4/5;\" },\r\n        \"pos-05\":{ \"pos\":\"05\", \"style\":\"grid-column:1/2; grid-row:5/6;\" },\r\n        \"pos-06\":{ \"pos\":\"06\", \"style\":\"grid-column:2/3; grid-row:5/6;\" },\r\n        \"pos-07\":{ \"pos\":\"07\", \"style\":\"grid-column:3/4; grid-row:5/6;\" },\r\n        \"pos-08\":{ \"pos\":\"08\", \"style\":\"grid-column:4/5; grid-row:5/6;\" },\r\n        \"pos-09\":{ \"pos\":\"09\", \"style\":\"grid-column:5/6; grid-row:5/6;\" },\r\n        \"pos-10\":{ \"pos\":\"10\", \"style\":\"grid-column:5/6; grid-row:4/5;\" },\r\n        \"pos-11\":{ \"pos\":\"11\", \"style\":\"grid-column:5/6; grid-row:3/4;\" },\r\n        \"pos-12\":{ \"pos\":\"12\", \"style\":\"grid-column:5/6; grid-row:2/3;\" },\r\n        \"pos-13\":{ \"pos\":\"13\", \"style\":\"grid-column:4/5; grid-row:2/3;\" }   \r\n        \r\n      }', NULL),
-('hol', 'sel', '{ \r\n\r\n        \"sec\":{ \r\n          \"tab\":\"sel\", \r\n          \"style\":\"display: grid; grid: repeat(4,1fr)/repeat(5,1fr); grid-gap: .5rem;\" \r\n        },\r\n\r\n        \"pos\":{ \r\n          \"style\":\"width: 1.9rem; height: 1.9rem;\"\r\n        }    \r\n\r\n      }', NULL),
-('hol', 'sel_par', '{ \r\n\r\n        \"sec\":{ \r\n          \"tab\":\"uni_par-sel\",\r\n          \"style\":\"border: 1px solid var(--col_ver); border-radius: 50%;\"      \r\n        },\r\n\r\n        \"pos\":{ \r\n          \"style\":\"width: 1.9rem; height: 1.9rem;\" \r\n        } \r\n        \r\n      }', NULL),
-('hol', 'sel_arm', '{ \r\n        \"sec\":{ \r\n          \"tab\":\"sel_arm\", \r\n          \"style\":\"grid: repeat(5,1fr)/repeat(6,1fr); grid-auto-flow: column; border-radius: 20%;\" \r\n        },\r\n        \"raz-1\":{ \"raz\":\"1\", \"style\":\"grid-column:1/2; grid-row:2/3;\" },\r\n        \"raz-2\":{ \"raz\":\"2\", \"style\":\"grid-column:1/2; grid-row:3/4;\" },\r\n        \"raz-3\":{ \"raz\":\"3\", \"style\":\"grid-column:1/2; grid-row:4/5;\" },\r\n        \"raz-4\":{ \"raz\":\"4\", \"style\":\"grid-column:1/2; grid-row:5/6;\" },\r\n\r\n        \"cel-1\":{ \"cel\":\"1\", \"style\":\"grid-column:2/3; grid-row:1/2;\" },\r\n        \"cel-2\":{ \"cel\":\"2\", \"style\":\"grid-column:3/4; grid-row:1/2;\" },\r\n        \"cel-3\":{ \"cel\":\"3\", \"style\":\"grid-column:4/5; grid-row:1/2;\" },\r\n        \"cel-4\":{ \"cel\":\"4\", \"style\":\"grid-column:5/6; grid-row:1/2;\" },\r\n        \"cel-5\":{ \"cel\":\"5\", \"style\":\"grid-column:6/7; grid-row:1/2;\" },\r\n\r\n        \"pos\":{ \r\n          \"style\":\"width: 8rem; height: 8rem;\" \r\n        }\r\n        \r\n      }', NULL),
-('hol', 'sel_arm_tra', '{ \r\n          \"sec\":{\r\n            \"tab\":\"sel_arm_tra\"\r\n          },\r\n          \"pos\":{ \r\n            \"style\":\"width: 7.8rem; height: 7.8rem;\" \r\n          }\r\n        }', NULL),
-('hol', 'sel_cro', '{ \r\n\r\n        \"sec\":{ \r\n          \"tab\":\"sel_cro\",\r\n          \"style\":\"grid-auto-flow: column; border-radius: 20%;\" \r\n        },      \r\n\r\n        \"fam-5\":{ \"fam\":\"5\", \"style\":\"grid-column:1/2; grid-row:2/3;\" },\r\n        \"fam-1\":{ \"fam\":\"1\", \"style\":\"grid-column:1/2; grid-row:3/4;\" }, \r\n        \"fam-2\":{ \"fam\":\"2\", \"style\":\"grid-column:1/2; grid-row:4/5;\" }, \r\n        \"fam-3\":{ \"fam\":\"3\", \"style\":\"grid-column:1/2; grid-row:5/6;\" }, \r\n        \"fam-4\":{ \"fam\":\"4\", \"style\":\"grid-column:1/2; grid-row:6/7;\" },\r\n\r\n        \"ele-4\":{ \"ele\":\"4\", \"style\":\"grid-column:2/3; grid-row:1/2;\" },\r\n        \"ele-1\":{ \"ele\":\"1\", \"style\":\"grid-column:3/4; grid-row:1/2;\" }, \r\n        \"ele-2\":{ \"ele\":\"2\", \"style\":\"grid-column:4/5; grid-row:1/2;\" }, \r\n        \"ele-3\":{ \"ele\":\"3\", \"style\":\"grid-column:5/6; grid-row:1/2;\" },\r\n\r\n        \"pos\":{ \r\n          \"style\":\"width: 7rem; height: 7rem;\" \r\n        }  \r\n        \r\n      }', NULL),
-('hol', 'lun', '{ \r\n\r\n        \"sec\":{ \r\n          \"tab\":\"lun\"\r\n        },\r\n\r\n        \"pos\":{ \r\n          \"style\":\"width: 3rem; height: 3rem;\"\r\n        }     \r\n      }', NULL),
-('hol', 'cas', '{ \r\n        \"sec\":{ \r\n          \"tab\":\"cas\",\r\n          \"style\":\"grid: repeat(11,1fr)/repeat(11,1fr); align-items: center; justify-items: center; border-radius: 10%;\" \r\n        },\r\n        \"ima\":{\r\n          \"sec\":\"ima\",\r\n          \"style\":\"z-index: 1; width:100%; height:100%;\"\r\n        },        \r\n        \"fon\":{   \r\n          \"sec\":\"fon\",\r\n          \"style\":\"z-index: 2; width:95%; height:91%; border-radius:50%;\" \r\n        },\r\n        \"orb\":{\r\n          \"sec\":\"orb\",\r\n          \"style\":\"z-index: 3; border-radius: 50%; border: 1px solid green;\" \r\n        },\r\n        \"orb-1\":{ \"sec-orb\":\"1\", \"style\":\"grid-column:5/8;  grid-row:5/8;  width: 70%; height: 70%;\" },\r\n        \"orb-2\":{ \"sec-orb\":\"2\", \"style\":\"grid-column:4/9;  grid-row:4/9;  width: 82%; height: 82%;\" },\r\n        \"orb-3\":{ \"sec-orb\":\"3\", \"style\":\"grid-column:3/10; grid-row:3/10; width: 86%; height: 86%;\" },\r\n        \"orb-4\":{ \"sec-orb\":\"4\", \"style\":\"grid-column:2/11; grid-row:2/11; width: 89%; height: 89%;\" },\r\n        \"orb-5\":{ \"sec-orb\":\"5\", \"style\":\"grid-column:1/12; grid-row:1/12; width: 91%; height: 91%;\" },\r\n\r\n        \"ond\":{\r\n          \"sec\":\"ond\",\r\n          \"style\":\"z-index: 4; width: 100%; height: 100%;\"\r\n        },\r\n        \"ond-1\":{ \"sec-ond\":\"1\", \"style\":\"grid-column:7/12; grid-row:2/7 ; transform: rotate(270deg);\" },\r\n        \"ond-2\":{ \"sec-ond\":\"2\", \"style\":\"grid-column:2/7 ; grid-row:1/6 ; transform: rotate(180deg);\" },\r\n        \"ond-3\":{ \"sec-ond\":\"3\", \"style\":\"grid-column:1/6 ; grid-row:6/11; transform: rotate(090deg);\" },\r\n        \"ond-4\":{ \"sec-ond\":\"4\", \"style\":\"grid-column:6/11; grid-row:7/12;\" },\r\n\r\n        \"pos\":{ \r\n          \"style\":\"z-index: 5;\" \r\n        },  \r\n          \"pos-00\":{ \"pos\":\"00\", \"style\":\"grid-column:06; grid-row:06; width:80%; height:80%; border-radius:50%;\" },\r\n          \"pos-01\":{ \"pos\":\"01\", \"style\":\"grid-column:07; grid-row:06;\" },\r\n          \"pos-02\":{ \"pos\":\"02\", \"style\":\"grid-column:08; grid-row:06;\" },\r\n          \"pos-03\":{ \"pos\":\"03\", \"style\":\"grid-column:09; grid-row:06;\" },\r\n          \"pos-04\":{ \"pos\":\"04\", \"style\":\"grid-column:10; grid-row:06;\" },\r\n          \"pos-05\":{ \"pos\":\"05\", \"style\":\"grid-column:11; grid-row:06;\" },\r\n          \"pos-06\":{ \"pos\":\"06\", \"style\":\"grid-column:11; grid-row:05;\" },\r\n          \"pos-07\":{ \"pos\":\"07\", \"style\":\"grid-column:11; grid-row:04;\" },\r\n          \"pos-08\":{ \"pos\":\"08\", \"style\":\"grid-column:11; grid-row:03;\" },\r\n          \"pos-09\":{ \"pos\":\"09\", \"style\":\"grid-column:11; grid-row:02;\" },\r\n          \"pos-10\":{ \"pos\":\"10\", \"style\":\"grid-column:10; grid-row:02;\" },\r\n          \"pos-11\":{ \"pos\":\"11\", \"style\":\"grid-column:09; grid-row:02;\" },\r\n          \"pos-12\":{ \"pos\":\"12\", \"style\":\"grid-column:08; grid-row:02;\" },\r\n          \"pos-13\":{ \"pos\":\"13\", \"style\":\"grid-column:08; grid-row:03;\" },\r\n          \"pos-14\":{ \"pos\":\"14\", \"style\":\"grid-column:06; grid-row:05;\" },\r\n          \"pos-15\":{ \"pos\":\"15\", \"style\":\"grid-column:06; grid-row:04;\" },\r\n          \"pos-16\":{ \"pos\":\"16\", \"style\":\"grid-column:06; grid-row:03;\" },\r\n          \"pos-17\":{ \"pos\":\"17\", \"style\":\"grid-column:06; grid-row:02;\" },\r\n          \"pos-18\":{ \"pos\":\"18\", \"style\":\"grid-column:06; grid-row:01;\" },\r\n          \"pos-19\":{ \"pos\":\"19\", \"style\":\"grid-column:05; grid-row:01;\" },\r\n          \"pos-20\":{ \"pos\":\"20\", \"style\":\"grid-column:04; grid-row:01;\" },\r\n          \"pos-21\":{ \"pos\":\"21\", \"style\":\"grid-column:03; grid-row:01;\" },\r\n          \"pos-22\":{ \"pos\":\"22\", \"style\":\"grid-column:02; grid-row:01;\" },\r\n          \"pos-23\":{ \"pos\":\"23\", \"style\":\"grid-column:02; grid-row:02;\" },\r\n          \"pos-24\":{ \"pos\":\"24\", \"style\":\"grid-column:02; grid-row:03;\" },\r\n          \"pos-25\":{ \"pos\":\"25\", \"style\":\"grid-column:02; grid-row:04;\" },\r\n          \"pos-26\":{ \"pos\":\"26\", \"style\":\"grid-column:03; grid-row:04;\" },\r\n          \"pos-27\":{ \"pos\":\"27\", \"style\":\"grid-column:05; grid-row:06;\" },\r\n          \"pos-28\":{ \"pos\":\"28\", \"style\":\"grid-column:04; grid-row:06;\" },\r\n          \"pos-29\":{ \"pos\":\"29\", \"style\":\"grid-column:03; grid-row:06;\" },\r\n          \"pos-30\":{ \"pos\":\"30\", \"style\":\"grid-column:02; grid-row:06;\" },\r\n          \"pos-31\":{ \"pos\":\"31\", \"style\":\"grid-column:01; grid-row:06;\" },\r\n          \"pos-32\":{ \"pos\":\"32\", \"style\":\"grid-column:01; grid-row:07;\" },\r\n          \"pos-33\":{ \"pos\":\"33\", \"style\":\"grid-column:01; grid-row:08;\" },\r\n          \"pos-34\":{ \"pos\":\"34\", \"style\":\"grid-column:01; grid-row:09;\" },\r\n          \"pos-35\":{ \"pos\":\"35\", \"style\":\"grid-column:01; grid-row:10;\" },\r\n          \"pos-36\":{ \"pos\":\"36\", \"style\":\"grid-column:02; grid-row:10;\" },\r\n          \"pos-37\":{ \"pos\":\"37\", \"style\":\"grid-column:03; grid-row:10;\" },\r\n          \"pos-38\":{ \"pos\":\"38\", \"style\":\"grid-column:04; grid-row:10;\" },\r\n          \"pos-39\":{ \"pos\":\"39\", \"style\":\"grid-column:04; grid-row:09;\" },\r\n          \"pos-40\":{ \"pos\":\"40\", \"style\":\"grid-column:06; grid-row:07;\" },\r\n          \"pos-41\":{ \"pos\":\"41\", \"style\":\"grid-column:06; grid-row:08;\" },\r\n          \"pos-42\":{ \"pos\":\"42\", \"style\":\"grid-column:06; grid-row:09;\" },\r\n          \"pos-43\":{ \"pos\":\"43\", \"style\":\"grid-column:06; grid-row:10;\" },\r\n          \"pos-44\":{ \"pos\":\"44\", \"style\":\"grid-column:06; grid-row:11;\" },\r\n          \"pos-45\":{ \"pos\":\"45\", \"style\":\"grid-column:07; grid-row:11;\" },\r\n          \"pos-46\":{ \"pos\":\"46\", \"style\":\"grid-column:08; grid-row:11;\" },\r\n          \"pos-47\":{ \"pos\":\"47\", \"style\":\"grid-column:09; grid-row:11;\" },\r\n          \"pos-48\":{ \"pos\":\"48\", \"style\":\"grid-column:10; grid-row:11;\" },\r\n          \"pos-49\":{ \"pos\":\"49\", \"style\":\"grid-column:10; grid-row:10;\" },\r\n          \"pos-50\":{ \"pos\":\"50\", \"style\":\"grid-column:10; grid-row:09;\" },\r\n          \"pos-51\":{ \"pos\":\"51\", \"style\":\"grid-column:10; grid-row:08;\" },\r\n          \"pos-52\":{ \"pos\":\"52\", \"style\":\"grid-column:09; grid-row:08;\" } \r\n\r\n      }', NULL),
-('hol', 'cas_cir', '{ \r\n        \"sec\":{ \r\n          \"tab\":\"cas_cir\", \r\n          \"style\":\"grid: repeat(18,1fr)/repeat(18,1fr); border-radius: 50%;\" \r\n        },\r\n        \"ima\":{\r\n          \"sec\":\"ima\",\r\n          \"style\":\"z-index: 1; width:100%; height:100%;\"\r\n        },\r\n        \"fon\":{   \r\n          \"sec\":\"fon\",\r\n          \"style\":\"z-index: 2; width:95%; height:91%; border-radius:50%;\" \r\n        }, \r\n        \"orb\":{\r\n          \"sec\":\"orb\",\r\n          \"style\":\"z-index: 3; width: 100%; height: 100%; border-radius: 50%;\"\r\n        },\r\n        \"orb-1\":{ \"sec-orb\":\"1\", \"style\":\"grid-column:9/11; grid-row:9/11;\" },\r\n        \"orb-2\":{ \"sec-orb\":\"2\", \"style\":\"grid-column:8/12; grid-row:8/12;\" },\r\n        \"orb-3\":{ \"sec-orb\":\"3\", \"style\":\"grid-column:7/13; grid-row:7/13;\" },\r\n        \"orb-4\":{ \"sec-orb\":\"4\", \"style\":\"grid-column:6/14; grid-row:6/14;\" },\r\n        \"orb-5\":{ \"sec-orb\":\"5\", \"style\":\"grid-column:5/15; grid-row:5/15;\" },\r\n        \"orb-6\":{ \"sec-orb\":\"6\", \"style\":\"grid-column:4/16; grid-row:4/16;\" },\r\n        \"orb-7\":{ \"sec-orb\":\"7\", \"style\":\"grid-column:3/17; grid-row:3/17;\" },\r\n        \"orb-8\":{ \"sec-orb\":\"8\", \"style\":\"grid-column:2/18; grid-row:2/18;\" },\r\n\r\n        \"ond\":{\r\n          \"sec\":\"ond\",\r\n          \"style\":\"z-index: 3; width: 100%; height: 100%; \" \r\n        },\r\n        \"ond-1\":{ \"sec-ond\":\"1\", \"style\":\"grid-column:10/19; grid-row:01/10; border-radius: 0 100% 0 0; border-bottom: 1.5px solid green;\" },\r\n        \"ond-2\":{ \"sec-ond\":\"2\", \"style\":\"grid-column:01/10; grid-row:01/10; border-radius: 100% 0 0 0; border-right:  1.5px solid green;\" },\r\n        \"ond-3\":{ \"sec-ond\":\"3\", \"style\":\"grid-column:01/10; grid-row:10/19; border-radius: 0 0 0 100%; border-top:    1.5px solid green;\" },\r\n        \"ond-4\":{ \"sec-ond\":\"4\", \"style\":\"grid-column:10/19; grid-row:10/19; border-radius: 0 0 100% 0; border-left:   1.5px solid green;\" },\r\n        \r\n        \"pos\":{ \r\n          \"style\":\"z-index: 4; position: relative;\" \r\n        },\r\n          \"pos-00\":{ \"pos\":\"00\", \"style\":\"grid-column:09/11; grid-row:09/11; width: 25%; height: 25%;\" },\r\n          \"pos-01\":{ \"pos\":\"01\", \"style\":\"grid-column:18; grid-row:09; left:  10%;\" },\r\n          \"pos-02\":{ \"pos\":\"02\", \"style\":\"grid-column:18; grid-row:08; left:  05%;\" },\r\n          \"pos-03\":{ \"pos\":\"03\", \"style\":\"grid-column:18; grid-row:07; right: 25%;\" },\r\n          \"pos-04\":{ \"pos\":\"04\", \"style\":\"grid-column:17; grid-row:06; left: 35%;\" },\r\n          \"pos-05\":{ \"pos\":\"05\", \"style\":\"grid-column:17; grid-row:05; right: 20%;  top: 05%;\" },\r\n          \"pos-06\":{ \"pos\":\"06\", \"style\":\"grid-column:16; grid-row:04; left: 15%;   top: 15%;\" },\r\n          \"pos-07\":{ \"pos\":\"07\", \"style\":\"grid-column:16; grid-row:03; right: 47%;  top: 30%;\" },\r\n          \"pos-08\":{ \"pos\":\"08\", \"style\":\"grid-column:15; grid-row:03; right: 20%;  bottom: 30%;\" },\r\n          \"pos-09\":{ \"pos\":\"09\", \"style\":\"grid-column:14; grid-row:02;              top: 22%;\" },\r\n          \"pos-10\":{ \"pos\":\"10\", \"style\":\"grid-column:13; grid-row:02; left: 15%;   bottom: 30%;\" },\r\n          \"pos-11\":{ \"pos\":\"11\", \"style\":\"grid-column:12; grid-row:01; left: 15%;   top: 35%;\" },\r\n          \"pos-12\":{ \"pos\":\"12\", \"style\":\"grid-column:11; grid-row:01; left: 15%;   top: 10%;\" },\r\n          \"pos-13\":{ \"pos\":\"13\", \"style\":\"grid-column:10; grid-row:01; left: 10%;   bottom: 10%;\" },\r\n          \"pos-14\":{ \"pos\":\"14\", \"style\":\"grid-column:09; grid-row:01; bottom: 10%;\" },\r\n          \"pos-15\":{ \"pos\":\"15\", \"style\":\"grid-column:08; grid-row:01;\" },\r\n          \"pos-16\":{ \"pos\":\"16\", \"style\":\"grid-column:07; grid-row:01; top: 30%;\" },\r\n          \"pos-17\":{ \"pos\":\"17\", \"style\":\"grid-column:06; grid-row:02; bottom: 40%;\" },\r\n          \"pos-18\":{ \"pos\":\"18\", \"style\":\"grid-column:05; grid-row:02; top: 15%;\" },\r\n          \"pos-19\":{ \"pos\":\"19\", \"style\":\"grid-column:04; grid-row:03; bottom: 20%; left: 10%;\" },\r\n          \"pos-20\":{ \"pos\":\"20\", \"style\":\"grid-column:03; grid-row:03; top:40%; left: 35%;\" },\r\n          \"pos-21\":{ \"pos\":\"21\", \"style\":\"grid-column:03; grid-row:04; top:15%; right: 30%;\" },\r\n          \"pos-22\":{ \"pos\":\"22\", \"style\":\"grid-column:02; grid-row:05; left: 15%;\" },\r\n          \"pos-23\":{ \"pos\":\"23\", \"style\":\"grid-column:02; grid-row:06; right: 40%;\" },\r\n          \"pos-24\":{ \"pos\":\"24\", \"style\":\"grid-column:01; grid-row:07; left: 30%;\" },\r\n          \"pos-25\":{ \"pos\":\"25\", \"style\":\"grid-column:01; grid-row:08; left: 10%;\" },\r\n          \"pos-26\":{ \"pos\":\"26\", \"style\":\"grid-column:01; grid-row:09;\" },\r\n          \"pos-27\":{ \"pos\":\"27\", \"style\":\"grid-column:01; grid-row:10;\" },\r\n          \"pos-28\":{ \"pos\":\"28\", \"style\":\"grid-column:01; grid-row:11; left: 10%;\" },\r\n          \"pos-29\":{ \"pos\":\"29\", \"style\":\"grid-column:01; grid-row:12; left: 40%;\" },\r\n          \"pos-30\":{ \"pos\":\"30\", \"style\":\"grid-column:02; grid-row:13; right: 20%;\" },\r\n          \"pos-31\":{ \"pos\":\"31\", \"style\":\"grid-column:02; grid-row:14; left: 30%;\" },\r\n          \"pos-32\":{ \"pos\":\"32\", \"style\":\"grid-column:03; grid-row:15; bottom: 15%; right: 5%;\" },\r\n          \"pos-33\":{ \"pos\":\"33\", \"style\":\"grid-column:03; grid-row:16; bottom: 50%; left: 60%;\" },\r\n          \"pos-34\":{ \"pos\":\"34\", \"style\":\"grid-column:04; grid-row:16; top: 15%; left: 30%;\" },\r\n          \"pos-35\":{ \"pos\":\"35\", \"style\":\"grid-column:05; grid-row:17; bottom: 30%; left: 5%;\" },\r\n          \"pos-36\":{ \"pos\":\"36\", \"style\":\"grid-column:06; grid-row:17; top: 20%;\" },\r\n          \"pos-37\":{ \"pos\":\"37\", \"style\":\"grid-column:07; grid-row:18; bottom: 45%;\" },\r\n          \"pos-38\":{ \"pos\":\"38\", \"style\":\"grid-column:08; grid-row:18; bottom: 20%;\" },\r\n          \"pos-39\":{ \"pos\":\"39\", \"style\":\"grid-column:09; grid-row:18; bottom: 5%;\" },\r\n          \"pos-40\":{ \"pos\":\"40\", \"style\":\"grid-column:10; grid-row:18; bottom: 5%;\" },\r\n          \"pos-41\":{ \"pos\":\"41\", \"style\":\"grid-column:11; grid-row:18; bottom: 20%;\" },\r\n          \"pos-42\":{ \"pos\":\"42\", \"style\":\"grid-column:12; grid-row:18; bottom: 45%;\" },\r\n          \"pos-43\":{ \"pos\":\"43\", \"style\":\"grid-column:13; grid-row:17; top: 20%;\" },\r\n          \"pos-44\":{ \"pos\":\"44\", \"style\":\"grid-column:14; grid-row:17; bottom: 30%; right: 5%;\" },\r\n          \"pos-45\":{ \"pos\":\"45\", \"style\":\"grid-column:15; grid-row:16; top: 15%; right: 30%;\" },\r\n          \"pos-46\":{ \"pos\":\"46\", \"style\":\"grid-column:16; grid-row:16; bottom: 50%; right: 60%;\" },\r\n          \"pos-47\":{ \"pos\":\"47\", \"style\":\"grid-column:16; grid-row:15; bottom: 15%; left: 5%;\" },\r\n          \"pos-48\":{ \"pos\":\"48\", \"style\":\"grid-column:17; grid-row:14; right: 30%;\" },\r\n          \"pos-49\":{ \"pos\":\"49\", \"style\":\"grid-column:17; grid-row:13; left: 20%;\" },\r\n          \"pos-50\":{ \"pos\":\"50\", \"style\":\"grid-column:18; grid-row:12; right: 40%;\" },\r\n          \"pos-51\":{ \"pos\":\"51\", \"style\":\"grid-column:18; grid-row:11; right: 10%;\" },\r\n          \"pos-52\":{ \"pos\":\"52\", \"style\":\"grid-column:18; grid-row:10;\" }      \r\n        \r\n      }', NULL),
-('hol', 'kin_tzo', '{ \r\n        \"sec\":{ \r\n          \"tab\":\"kin-tzo\", \r\n          \"style\":\"grid: repeat(20,1fr) / repeat(13,1fr); grid-auto-flow: column;\"\r\n        },        \r\n        \"pos\":{  \r\n          \"style\":\"width: 1.75rem; height: 1.75rem;\" \r\n        }\r\n      }', '{\r\n        \"sec\":{ \"kin-sel\": 1, \"kin-ton\": 0 },\r\n        \"pos\":{ \"ima\": \"api.hol_ton.ide\", \"col\": \"\", \"num\": \"api.hol_kin.ide\" }, \r\n        \"opc\": [ \"pag\", \"par\" ],\r\n        \"pag\": { \"kin\": 1 }\r\n      }'),
-('hol', 'kin_par', '{ \r\n        \"sec\":{ \r\n          \"tab\":\"uni_par-kin\", \r\n          \"style\":\"border: 1px solid var(--col_ver); border-radius: 50%;\" \r\n        }\r\n      }', NULL),
-('hol', 'kin_nav', '{ \r\n          \"sec\":{ \r\n            \"tab\": \"kin_nav\", \r\n            \"style\":\"grid-gap: .15rem;\" \r\n          }, \r\n          \"pos\":{ \r\n            \"style\":\"width: 1.05rem; height: 1.05rem;\" \r\n          },        \r\n          \"pos-00\":{ \r\n            \"style\":\"font-size:.5rem\" \r\n          }\r\n        }', '{\r\n          \"sec\": { \"cas-pos\":1, \"cas-bor\": 0, \"cas-col\": 1, \"cas-orb\": 0, \"ton-col\":0 },\r\n          \"pos\": { \"ima\": \"api.hol_kin.ide\", \"col\": \"\", \"num\": \"\" },\r\n          \"opc\": [ \"par\", \"pul\" ]\r\n        }'),
-('hol', 'kin_nav_cas', '{ \r\n          \"cas\":{ \r\n            \"tab\": \"kin_nav_cas\", \r\n            \"style\":\"padding: .2rem;\" \r\n          },\r\n          \"pos\":{ \r\n            \"style\":\"width: 4rem; height: 4rem;\" \r\n          }      \r\n        }', NULL),
-('hol', 'kin_nav_ond', '{ \r\n          \"ond\":{ \r\n            \"tab\": \"kin_nav_ond\", \r\n            \"style\":\"grid-gap: .2rem;\" \r\n          },         \r\n          \"pos\":{ \r\n            \"style\":\"width: 9rem; height: 9rem;\"\r\n          }\r\n        }', NULL),
-('hol', 'kin_cro', '{ \r\n          \"sec\":{ \r\n            \"tab\": \"kin_cro\", \"style\":\"grid-gap: .3rem;\" \r\n          },\r\n          \"pos\":{ \r\n            \"style\":\"width: 1rem; height: 1rem;\" \r\n          }\r\n        }', '{\r\n          \"sec\": { \"cas-pos\": 1, \"cas-orb\": 1, \"ton-col\":1, \"sel-cro_ele-pos\": 1 },\r\n          \"pos\": { \"ima\": \"api.hol_sel.ide\", \"col\": \"\", \"num\": \"\" },\r\n          \"opc\": [ \"par\", \"pul\" ]\r\n        }'),
-('hol', 'kin_cro_est', '{\r\n          \"est\":{ \r\n            \"tab\": \"kin_cro_est\", \"style\":\"margin: 0 1rem; grid-gap: .2rem\" \r\n          },\r\n          \"pos\":{ \r\n            \"style\":\"width: 2.8rem; height: 2.8rem;\" \r\n          }\r\n        }', NULL),
-('hol', 'kin_cro_ele', '{ \r\n          \"ele\":{ \r\n            \"tab\": \"kin_cro_ele\" \r\n          },\r\n          \"pos\":{ \r\n            \"style\":\"width: 13rem; height: 13rem;\" \r\n          },\r\n          \"pos-0\":{ \"style\":\"width: 150%; height: 150%; color: black;\" },\r\n\r\n          \"rot-ton\":[ \"147\", \"070\", \"074\", \"071\", \"074\", \"330\", \"352\", \"335\", \"350\", \"230\", \"270\", \"240\", \"160\", \"140\", \"070\", \"074\", \"071\", \"074\", \"330\", \"352\", \"335\", \"350\", \"230\", \"270\", \"240\", \"160\", \"140\", \"070\", \"074\", \"071\", \"074\", \"330\", \"352\", \"335\", \"350\", \"230\", \"270\", \"240\", \"160\", \"140\", \"070\", \"074\", \"071\", \"074\", \"330\", \"352\", \"335\", \"350\", \"230\", \"270\", \"240\", \"160\" ],\r\n          \"rot-cas\":[ \"025\", \"000\", \"340\", \"345\", \"340\", \"250\", \"255\", \"250\", \"255\", \"155\", \"170\", \"160\", \"065\", \"290\", \"290\", \"290\", \"290\", \"220\", \"170\", \"160\", \"165\", \"160\", \"070\", \"075\", \"070\", \"335\", \"180\", \"150\", \"170\", \"160\", \"165\", \"070\", \"075\", \"070\", \"073\", \"330\", \"350\", \"340\", \"245\", \"095\", \"070\", \"075\", \"073\", \"073\", \"330\", \"350\", \"340\", \"345\", \"250\", \"255\", \"250\", \"160\" ]\r\n        }', NULL),
-('hol', 'kin_arm', '{ \r\n          \"sec\":{ \r\n            \"tab\": \"kin_arm\", \"style\":\"grid-gap: .3rem;\" \r\n          }, \r\n          \"pos\":{ \r\n            \"style\":\"width: 1.08rem; height: 1.08rem;\" \r\n          }\r\n        }', '{\r\n          \"sec\": { \"sel-arm_tra-bor\": 0, \"sel-arm_cel-pos\": 1, \"sel-arm_cel-bor\": 0, \"sel-arm_cel-col\": 0},\r\n          \"pos\": { \"ima\": \"api.hol_sel.ide\", \"col\": \"\", \"num\": \"\" },\r\n          \"opc\": [ \"par\", \"pul\" ]\r\n        }'),
-('hol', 'kin_arm_tra', '{ \r\n          \"tra\":{ \r\n            \"tab\": \"kin_arm_tra\", \"style\":\"border-radius: 50%;\" \r\n          },\r\n          \"pos\":{ \r\n            \"style\":\"width: 7.8rem; height: 7.8rem;\" \r\n          }\r\n        }', NULL),
-('hol', 'kin_arm_cel', '{\r\n          \"cel\":{ \r\n            \"tab\": \"kin_arm_cel\", \"style\":\"grid-gap: .15rem;\" \r\n          },\r\n          \"pos\":{ \r\n            \"style\":\"width: 18rem; height: 18rem;\" \r\n          }\r\n        }', NULL),
-('hol', 'psi_ban', '{\r\n        \"sec\":{ \r\n          \"tab\": \"psi\", \"style\": \"grid-gap: .5rem;\" \r\n        },\r\n        \"pos\":{ \r\n          \"style\": \"width: 1.15rem; height: 1.15rem;\" \r\n        }\r\n      }', '{\r\n        \"sec\": { \"lun-cab\":1, \"lun-hep\":1 },\r\n        \"pos\": { \"ima\": \"api.hol_kin.ide\", \"col\": \"\", \"num\": \"\" },\r\n        \"opc\": [ \"pag\", \"par\", \"pul\" ]\r\n      }'),
-('hol', 'psi_est', '{ \r\n\r\n        \"sec\":{ \"tab\": \"psi_est\" },\r\n\r\n        \"pos\":{ \"style\": \"width: .855rem; height: .855rem;\" }\r\n\r\n      }', '{\r\n        \"sec\": { \"cas-pos\": 1, \"cas-orb\": 0, \"ton-col\": 0 },\r\n        \"pos\": { \"ima\": \"api.hol_rad.ide\", \"col\": \"\", \"num\": \"\" },\r\n        \"opc\": [ \"par\", \"pul\" ]\r\n      }'),
-('hol', 'psi_lun', '{\r\n\r\n        \"lun\":{ \"tab\": \"psi_lun\" },\r\n\r\n        \"pos\":{ \"style\": \"width: 5rem; height: 5rem; max-height: 5rem;\" }\r\n      \r\n      }', '{\r\n        \"sec\": { \"lun-cab\":1, \"lun-hep\":1, \"lun-rad\": 1 },\r\n        \"pos\": { \"ima\": \"api.hol_kin.ide\", \"col\": \"\", \"num\": \"\" },\r\n        \"opc\": [ \"pul\", \"par\" ]\r\n      }'),
-('hol', 'psi_hep', '{ \r\n\r\n        \"sec\":{ \r\n          \"tab\": \"psi_hep\" \r\n        }\r\n        \r\n      }', NULL),
-('hol', 'psi_tzo', '{\r\n\r\n        \"sec\":{ \"tab\": \"psi_tzo\", \"style\": \"grid-template-columns: repeat(4,1fr);\" },\r\n\r\n        \"tzo-5\":{ \"style\":\"transform: rotate(180deg);\" },\r\n        \"tzo-6\":{ \"style\":\"transform: rotate(180deg);\" },\r\n        \"tzo-7\":{ \"style\":\"transform: rotate(180deg);\" },\r\n        \"tzo-8\":{ \"style\":\"transform: rotate(180deg);\" },\r\n\r\n        \"pos\":{ \"style\":\"width: .95rem; height: .95rem;\" }\r\n        \r\n      }', '{\r\n        \"pos\": { \"ima\": \"api.hol_kin.ide\", \"col\": \"\", \"num\": \"\" },\r\n        \"opc\": [ \"pag\", \"par\" ],\r\n        \"pag\": { \"kin\": 1 }\r\n      }');
+('hol', 'ton', '{\r\n        \"sec\":{ \"style\":\"grid: repeat(5,1fr)/repeat(5,1fr); justify-items: start;\" },\r\n\r\n        \"ima\":{ \"class\":\"sec -ima\", \"style\":\"z-index:1; grid-column:1/sp; grid-row:1/sp; width:100%; height:100%;\" },\r\n\r\n        \"fon\":{ \"class\":\"sec -fon\", \"style\":\"z-index:2; grid-column:1/sp; grid-row:1/sp; width:95%; height:91%; border-radius:50%;\" },\r\n\r\n        \"ond\":{ \"class\":\"sec -ond\", \"style\":\"z-index:3; grid-column:1/sp; grid-row:1/sp; width: 100%; height: 100%;\" },\r\n        \r\n        \"pos\":{ \"style\":\"z-index:4;\" },\r\n        \"pos-01\":{ \"pos\":\"01\", \"style\":\"grid-column:1/2; grid-row:1/2;\" },\r\n        \"pos-02\":{ \"pos\":\"02\", \"style\":\"grid-column:1/2; grid-row:2/3;\" },\r\n        \"pos-03\":{ \"pos\":\"03\", \"style\":\"grid-column:1/2; grid-row:3/4;\" },\r\n        \"pos-04\":{ \"pos\":\"04\", \"style\":\"grid-column:1/2; grid-row:4/5;\" },\r\n        \"pos-05\":{ \"pos\":\"05\", \"style\":\"grid-column:1/2; grid-row:5/6;\" },\r\n        \"pos-06\":{ \"pos\":\"06\", \"style\":\"grid-column:2/3; grid-row:5/6;\" },\r\n        \"pos-07\":{ \"pos\":\"07\", \"style\":\"grid-column:3/4; grid-row:5/6;\" },\r\n        \"pos-08\":{ \"pos\":\"08\", \"style\":\"grid-column:4/5; grid-row:5/6;\" },\r\n        \"pos-09\":{ \"pos\":\"09\", \"style\":\"grid-column:5/6; grid-row:5/6;\" },\r\n        \"pos-10\":{ \"pos\":\"10\", \"style\":\"grid-column:5/6; grid-row:4/5;\" },\r\n        \"pos-11\":{ \"pos\":\"11\", \"style\":\"grid-column:5/6; grid-row:3/4;\" },\r\n        \"pos-12\":{ \"pos\":\"12\", \"style\":\"grid-column:5/6; grid-row:2/3;\" },\r\n        \"pos-13\":{ \"pos\":\"13\", \"style\":\"grid-column:4/5; grid-row:2/3;\" }   \r\n        \r\n      }', NULL),
+('hol', 'sel', '{ \r\n        \"sec\":{ \"style\":\"grid:repeat(4,1fr)/repeat(5,1fr); grid-gap:.5rem;\" }\r\n\r\n      }', NULL),
+('hol', 'sel_par', '{ \r\n        \"sec\":{ \"style\":\"border: 1px solid var(--col_ver); border-radius: 50%;\" }\r\n        \r\n      }', NULL),
+('hol', 'sel_arm', '{ \r\n        \"sec\":{ \"style\":\"grid: repeat(5,1fr)/repeat(6,1fr); grid-auto-flow: column; border-radius: 20%;\" },\r\n\r\n        \"raz-1\":{ \"raz\":\"1\", \"style\":\"grid-column:1/2; grid-row:2/3;\" },\r\n        \"raz-2\":{ \"raz\":\"2\", \"style\":\"grid-column:1/2; grid-row:3/4;\" },\r\n        \"raz-3\":{ \"raz\":\"3\", \"style\":\"grid-column:1/2; grid-row:4/5;\" },\r\n        \"raz-4\":{ \"raz\":\"4\", \"style\":\"grid-column:1/2; grid-row:5/6;\" },\r\n\r\n        \"cel-1\":{ \"cel\":\"1\", \"style\":\"grid-column:2/3; grid-row:1/2;\" },\r\n        \"cel-2\":{ \"cel\":\"2\", \"style\":\"grid-column:3/4; grid-row:1/2;\" },\r\n        \"cel-3\":{ \"cel\":\"3\", \"style\":\"grid-column:4/5; grid-row:1/2;\" },\r\n        \"cel-4\":{ \"cel\":\"4\", \"style\":\"grid-column:5/6; grid-row:1/2;\" },\r\n        \"cel-5\":{ \"cel\":\"5\", \"style\":\"grid-column:6/7; grid-row:1/2;\" }\r\n        \r\n      }', NULL),
+('hol', 'sel_arm_tra', '{\r\n        }', NULL),
+('hol', 'sel_cro', '{ \r\n\r\n        \"sec\":{ \"style\":\"grid-auto-flow: column; border-radius: 20%;\" },\r\n\r\n        \"fam-5\":{ \"fam\":\"5\", \"style\":\"grid-column:1/2; grid-row:2/3;\" },\r\n        \"fam-1\":{ \"fam\":\"1\", \"style\":\"grid-column:1/2; grid-row:3/4;\" }, \r\n        \"fam-2\":{ \"fam\":\"2\", \"style\":\"grid-column:1/2; grid-row:4/5;\" }, \r\n        \"fam-3\":{ \"fam\":\"3\", \"style\":\"grid-column:1/2; grid-row:5/6;\" }, \r\n        \"fam-4\":{ \"fam\":\"4\", \"style\":\"grid-column:1/2; grid-row:6/7;\" },\r\n\r\n        \"ele-4\":{ \"ele\":\"4\", \"style\":\"grid-column:2/3; grid-row:1/2;\" },\r\n        \"ele-1\":{ \"ele\":\"1\", \"style\":\"grid-column:3/4; grid-row:1/2;\" }, \r\n        \"ele-2\":{ \"ele\":\"2\", \"style\":\"grid-column:4/5; grid-row:1/2;\" }, \r\n        \"ele-3\":{ \"ele\":\"3\", \"style\":\"grid-column:5/6; grid-row:1/2;\" },\r\n\r\n        \"pos\":{ \r\n          \"style\":\"width: 7rem; height: 7rem;\" \r\n        }  \r\n        \r\n      }', NULL),
+('hol', 'lun', '{\r\n      }', NULL),
+('hol', 'cas', '{ \r\n        \"sec\":{ \"style\":\"grid: repeat(11,1fr)/repeat(11,1fr); align-items: center; justify-items: center; border-radius: 10%;\" },\r\n\r\n        \"ima\":{ \"class\":\"sec -ima\", \"style\":\"z-index:1; width:100%; height:100%;\" },\r\n        \r\n        \"fon\":{ \"class\":\"sec -fon\", \"style\":\"z-index:2; width:95%; height:91%; border-radius:50%;\" },\r\n\r\n        \"orb\":{ \"class\":\"sec -orb\", \"style\":\"z-index:3; border-radius: 50%; border: 1px solid green;\" },\r\n        \"orb-1\":{ \"sec-orb\":\"1\", \"style\":\"grid-column:5/8;  grid-row:5/8;  width: 70%; height: 70%;\" },\r\n        \"orb-2\":{ \"sec-orb\":\"2\", \"style\":\"grid-column:4/9;  grid-row:4/9;  width: 82%; height: 82%;\" },\r\n        \"orb-3\":{ \"sec-orb\":\"3\", \"style\":\"grid-column:3/10; grid-row:3/10; width: 86%; height: 86%;\" },\r\n        \"orb-4\":{ \"sec-orb\":\"4\", \"style\":\"grid-column:2/11; grid-row:2/11; width: 89%; height: 89%;\" },\r\n        \"orb-5\":{ \"sec-orb\":\"5\", \"style\":\"grid-column:1/12; grid-row:1/12; width: 91%; height: 91%;\" },\r\n\r\n        \"ond\":{ \"class\":\"sec -ond\", \"style\":\"z-index:4; width: 100%; height: 100%;\" },\r\n        \"ond-1\":{ \"sec-ond\":\"1\", \"style\":\"grid-column:7/12; grid-row:2/7 ; transform: rotate(270deg);\" },\r\n        \"ond-2\":{ \"sec-ond\":\"2\", \"style\":\"grid-column:2/7 ; grid-row:1/6 ; transform: rotate(180deg);\" },\r\n        \"ond-3\":{ \"sec-ond\":\"3\", \"style\":\"grid-column:1/6 ; grid-row:6/11; transform: rotate(090deg);\" },\r\n        \"ond-4\":{ \"sec-ond\":\"4\", \"style\":\"grid-column:6/11; grid-row:7/12;\" },\r\n\r\n        \"pos\":{ \"style\":\"z-index:5;\" },\r\n        \"pos-00\":{ \"pos\":\"00\", \"style\":\"grid-column:06; grid-row:06; width:80%; height:80%; border-radius:50%;\" },\r\n        \"pos-01\":{ \"pos\":\"01\", \"style\":\"grid-column:07; grid-row:06;\" },\r\n        \"pos-02\":{ \"pos\":\"02\", \"style\":\"grid-column:08; grid-row:06;\" },\r\n        \"pos-03\":{ \"pos\":\"03\", \"style\":\"grid-column:09; grid-row:06;\" },\r\n        \"pos-04\":{ \"pos\":\"04\", \"style\":\"grid-column:10; grid-row:06;\" },\r\n        \"pos-05\":{ \"pos\":\"05\", \"style\":\"grid-column:11; grid-row:06;\" },\r\n        \"pos-06\":{ \"pos\":\"06\", \"style\":\"grid-column:11; grid-row:05;\" },\r\n        \"pos-07\":{ \"pos\":\"07\", \"style\":\"grid-column:11; grid-row:04;\" },\r\n        \"pos-08\":{ \"pos\":\"08\", \"style\":\"grid-column:11; grid-row:03;\" },\r\n        \"pos-09\":{ \"pos\":\"09\", \"style\":\"grid-column:11; grid-row:02;\" },\r\n        \"pos-10\":{ \"pos\":\"10\", \"style\":\"grid-column:10; grid-row:02;\" },\r\n        \"pos-11\":{ \"pos\":\"11\", \"style\":\"grid-column:09; grid-row:02;\" },\r\n        \"pos-12\":{ \"pos\":\"12\", \"style\":\"grid-column:08; grid-row:02;\" },\r\n        \"pos-13\":{ \"pos\":\"13\", \"style\":\"grid-column:08; grid-row:03;\" },\r\n        \"pos-14\":{ \"pos\":\"14\", \"style\":\"grid-column:06; grid-row:05;\" },\r\n        \"pos-15\":{ \"pos\":\"15\", \"style\":\"grid-column:06; grid-row:04;\" },\r\n        \"pos-16\":{ \"pos\":\"16\", \"style\":\"grid-column:06; grid-row:03;\" },\r\n        \"pos-17\":{ \"pos\":\"17\", \"style\":\"grid-column:06; grid-row:02;\" },\r\n        \"pos-18\":{ \"pos\":\"18\", \"style\":\"grid-column:06; grid-row:01;\" },\r\n        \"pos-19\":{ \"pos\":\"19\", \"style\":\"grid-column:05; grid-row:01;\" },\r\n        \"pos-20\":{ \"pos\":\"20\", \"style\":\"grid-column:04; grid-row:01;\" },\r\n        \"pos-21\":{ \"pos\":\"21\", \"style\":\"grid-column:03; grid-row:01;\" },\r\n        \"pos-22\":{ \"pos\":\"22\", \"style\":\"grid-column:02; grid-row:01;\" },\r\n        \"pos-23\":{ \"pos\":\"23\", \"style\":\"grid-column:02; grid-row:02;\" },\r\n        \"pos-24\":{ \"pos\":\"24\", \"style\":\"grid-column:02; grid-row:03;\" },\r\n        \"pos-25\":{ \"pos\":\"25\", \"style\":\"grid-column:02; grid-row:04;\" },\r\n        \"pos-26\":{ \"pos\":\"26\", \"style\":\"grid-column:03; grid-row:04;\" },\r\n        \"pos-27\":{ \"pos\":\"27\", \"style\":\"grid-column:05; grid-row:06;\" },\r\n        \"pos-28\":{ \"pos\":\"28\", \"style\":\"grid-column:04; grid-row:06;\" },\r\n        \"pos-29\":{ \"pos\":\"29\", \"style\":\"grid-column:03; grid-row:06;\" },\r\n        \"pos-30\":{ \"pos\":\"30\", \"style\":\"grid-column:02; grid-row:06;\" },\r\n        \"pos-31\":{ \"pos\":\"31\", \"style\":\"grid-column:01; grid-row:06;\" },\r\n        \"pos-32\":{ \"pos\":\"32\", \"style\":\"grid-column:01; grid-row:07;\" },\r\n        \"pos-33\":{ \"pos\":\"33\", \"style\":\"grid-column:01; grid-row:08;\" },\r\n        \"pos-34\":{ \"pos\":\"34\", \"style\":\"grid-column:01; grid-row:09;\" },\r\n        \"pos-35\":{ \"pos\":\"35\", \"style\":\"grid-column:01; grid-row:10;\" },\r\n        \"pos-36\":{ \"pos\":\"36\", \"style\":\"grid-column:02; grid-row:10;\" },\r\n        \"pos-37\":{ \"pos\":\"37\", \"style\":\"grid-column:03; grid-row:10;\" },\r\n        \"pos-38\":{ \"pos\":\"38\", \"style\":\"grid-column:04; grid-row:10;\" },\r\n        \"pos-39\":{ \"pos\":\"39\", \"style\":\"grid-column:04; grid-row:09;\" },\r\n        \"pos-40\":{ \"pos\":\"40\", \"style\":\"grid-column:06; grid-row:07;\" },\r\n        \"pos-41\":{ \"pos\":\"41\", \"style\":\"grid-column:06; grid-row:08;\" },\r\n        \"pos-42\":{ \"pos\":\"42\", \"style\":\"grid-column:06; grid-row:09;\" },\r\n        \"pos-43\":{ \"pos\":\"43\", \"style\":\"grid-column:06; grid-row:10;\" },\r\n        \"pos-44\":{ \"pos\":\"44\", \"style\":\"grid-column:06; grid-row:11;\" },\r\n        \"pos-45\":{ \"pos\":\"45\", \"style\":\"grid-column:07; grid-row:11;\" },\r\n        \"pos-46\":{ \"pos\":\"46\", \"style\":\"grid-column:08; grid-row:11;\" },\r\n        \"pos-47\":{ \"pos\":\"47\", \"style\":\"grid-column:09; grid-row:11;\" },\r\n        \"pos-48\":{ \"pos\":\"48\", \"style\":\"grid-column:10; grid-row:11;\" },\r\n        \"pos-49\":{ \"pos\":\"49\", \"style\":\"grid-column:10; grid-row:10;\" },\r\n        \"pos-50\":{ \"pos\":\"50\", \"style\":\"grid-column:10; grid-row:09;\" },\r\n        \"pos-51\":{ \"pos\":\"51\", \"style\":\"grid-column:10; grid-row:08;\" },\r\n        \"pos-52\":{ \"pos\":\"52\", \"style\":\"grid-column:09; grid-row:08;\" } \r\n\r\n      }', NULL),
+('hol', 'cas_cir', '{ \r\n        \"sec\":{ \"style\":\"grid: repeat(18,1fr)/repeat(18,1fr); border-radius: 50%;\" },\r\n\r\n        \"ima\":{ \"class\":\"sec -ima\", \"style\":\"z-index:1; width:100%; height:100%;\" },\r\n\r\n        \"fon\":{ \"class\":\"sec -fon\", \"style\":\"z-index:2; width:95%; height:91%; border-radius:50%;\" },\r\n\r\n        \"orb\":{ \"class\":\"sec -orb\", \"style\":\"z-index:3; width: 100%; height: 100%; border-radius: 50%;\" },\r\n        \"orb-1\":{ \"sec-orb\":\"1\", \"style\":\"grid-column:9/11; grid-row:9/11;\" },\r\n        \"orb-2\":{ \"sec-orb\":\"2\", \"style\":\"grid-column:8/12; grid-row:8/12;\" },\r\n        \"orb-3\":{ \"sec-orb\":\"3\", \"style\":\"grid-column:7/13; grid-row:7/13;\" },\r\n        \"orb-4\":{ \"sec-orb\":\"4\", \"style\":\"grid-column:6/14; grid-row:6/14;\" },\r\n        \"orb-5\":{ \"sec-orb\":\"5\", \"style\":\"grid-column:5/15; grid-row:5/15;\" },\r\n        \"orb-6\":{ \"sec-orb\":\"6\", \"style\":\"grid-column:4/16; grid-row:4/16;\" },\r\n        \"orb-7\":{ \"sec-orb\":\"7\", \"style\":\"grid-column:3/17; grid-row:3/17;\" },\r\n        \"orb-8\":{ \"sec-orb\":\"8\", \"style\":\"grid-column:2/18; grid-row:2/18;\" },\r\n\r\n        \"ond\":{ \"class\":\"sec -ond\", \"style\":\"z-index:3; width: 100%; height: 100%;\" },\r\n        \"ond-1\":{ \"sec-ond\":\"1\", \"style\":\"grid-column:10/19; grid-row:01/10; border-radius: 0 100% 0 0; border-bottom: 1.5px solid green;\" },\r\n        \"ond-2\":{ \"sec-ond\":\"2\", \"style\":\"grid-column:01/10; grid-row:01/10; border-radius: 100% 0 0 0; border-right:  1.5px solid green;\" },\r\n        \"ond-3\":{ \"sec-ond\":\"3\", \"style\":\"grid-column:01/10; grid-row:10/19; border-radius: 0 0 0 100%; border-top:    1.5px solid green;\" },\r\n        \"ond-4\":{ \"sec-ond\":\"4\", \"style\":\"grid-column:10/19; grid-row:10/19; border-radius: 0 0 100% 0; border-left:   1.5px solid green;\" },\r\n        \r\n        \"pos\":{ \"style\":\"z-index:4; position: relative;\" },\r\n        \"pos-00\":{ \"pos\":\"00\", \"style\":\"grid-column:09/11; grid-row:09/11; width: 25%; height: 25%;\" },\r\n        \"pos-01\":{ \"pos\":\"01\", \"style\":\"grid-column:18; grid-row:09; left:  10%;\" },\r\n        \"pos-02\":{ \"pos\":\"02\", \"style\":\"grid-column:18; grid-row:08; left:  05%;\" },\r\n        \"pos-03\":{ \"pos\":\"03\", \"style\":\"grid-column:18; grid-row:07; right: 25%;\" },\r\n        \"pos-04\":{ \"pos\":\"04\", \"style\":\"grid-column:17; grid-row:06; left: 35%;\" },\r\n        \"pos-05\":{ \"pos\":\"05\", \"style\":\"grid-column:17; grid-row:05; right: 20%;  top: 05%;\" },\r\n        \"pos-06\":{ \"pos\":\"06\", \"style\":\"grid-column:16; grid-row:04; left: 15%;   top: 15%;\" },\r\n        \"pos-07\":{ \"pos\":\"07\", \"style\":\"grid-column:16; grid-row:03; right: 47%;  top: 30%;\" },\r\n        \"pos-08\":{ \"pos\":\"08\", \"style\":\"grid-column:15; grid-row:03; right: 20%;  bottom: 30%;\" },\r\n        \"pos-09\":{ \"pos\":\"09\", \"style\":\"grid-column:14; grid-row:02;              top: 22%;\" },\r\n        \"pos-10\":{ \"pos\":\"10\", \"style\":\"grid-column:13; grid-row:02; left: 15%;   bottom: 30%;\" },\r\n        \"pos-11\":{ \"pos\":\"11\", \"style\":\"grid-column:12; grid-row:01; left: 15%;   top: 35%;\" },\r\n        \"pos-12\":{ \"pos\":\"12\", \"style\":\"grid-column:11; grid-row:01; left: 15%;   top: 10%;\" },\r\n        \"pos-13\":{ \"pos\":\"13\", \"style\":\"grid-column:10; grid-row:01; left: 10%;   bottom: 10%;\" },\r\n        \"pos-14\":{ \"pos\":\"14\", \"style\":\"grid-column:09; grid-row:01; bottom: 10%;\" },\r\n        \"pos-15\":{ \"pos\":\"15\", \"style\":\"grid-column:08; grid-row:01;\" },\r\n        \"pos-16\":{ \"pos\":\"16\", \"style\":\"grid-column:07; grid-row:01; top: 30%;\" },\r\n        \"pos-17\":{ \"pos\":\"17\", \"style\":\"grid-column:06; grid-row:02; bottom: 40%;\" },\r\n        \"pos-18\":{ \"pos\":\"18\", \"style\":\"grid-column:05; grid-row:02; top: 15%;\" },\r\n        \"pos-19\":{ \"pos\":\"19\", \"style\":\"grid-column:04; grid-row:03; bottom: 20%; left: 10%;\" },\r\n        \"pos-20\":{ \"pos\":\"20\", \"style\":\"grid-column:03; grid-row:03; top:40%; left: 35%;\" },\r\n        \"pos-21\":{ \"pos\":\"21\", \"style\":\"grid-column:03; grid-row:04; top:15%; right: 30%;\" },\r\n        \"pos-22\":{ \"pos\":\"22\", \"style\":\"grid-column:02; grid-row:05; left: 15%;\" },\r\n        \"pos-23\":{ \"pos\":\"23\", \"style\":\"grid-column:02; grid-row:06; right: 40%;\" },\r\n        \"pos-24\":{ \"pos\":\"24\", \"style\":\"grid-column:01; grid-row:07; left: 30%;\" },\r\n        \"pos-25\":{ \"pos\":\"25\", \"style\":\"grid-column:01; grid-row:08; left: 10%;\" },\r\n        \"pos-26\":{ \"pos\":\"26\", \"style\":\"grid-column:01; grid-row:09;\" },\r\n        \"pos-27\":{ \"pos\":\"27\", \"style\":\"grid-column:01; grid-row:10;\" },\r\n        \"pos-28\":{ \"pos\":\"28\", \"style\":\"grid-column:01; grid-row:11; left: 10%;\" },\r\n        \"pos-29\":{ \"pos\":\"29\", \"style\":\"grid-column:01; grid-row:12; left: 40%;\" },\r\n        \"pos-30\":{ \"pos\":\"30\", \"style\":\"grid-column:02; grid-row:13; right: 20%;\" },\r\n        \"pos-31\":{ \"pos\":\"31\", \"style\":\"grid-column:02; grid-row:14; left: 30%;\" },\r\n        \"pos-32\":{ \"pos\":\"32\", \"style\":\"grid-column:03; grid-row:15; bottom: 15%; right: 5%;\" },\r\n        \"pos-33\":{ \"pos\":\"33\", \"style\":\"grid-column:03; grid-row:16; bottom: 50%; left: 60%;\" },\r\n        \"pos-34\":{ \"pos\":\"34\", \"style\":\"grid-column:04; grid-row:16; top: 15%; left: 30%;\" },\r\n        \"pos-35\":{ \"pos\":\"35\", \"style\":\"grid-column:05; grid-row:17; bottom: 30%; left: 5%;\" },\r\n        \"pos-36\":{ \"pos\":\"36\", \"style\":\"grid-column:06; grid-row:17; top: 20%;\" },\r\n        \"pos-37\":{ \"pos\":\"37\", \"style\":\"grid-column:07; grid-row:18; bottom: 45%;\" },\r\n        \"pos-38\":{ \"pos\":\"38\", \"style\":\"grid-column:08; grid-row:18; bottom: 20%;\" },\r\n        \"pos-39\":{ \"pos\":\"39\", \"style\":\"grid-column:09; grid-row:18; bottom: 5%;\" },\r\n        \"pos-40\":{ \"pos\":\"40\", \"style\":\"grid-column:10; grid-row:18; bottom: 5%;\" },\r\n        \"pos-41\":{ \"pos\":\"41\", \"style\":\"grid-column:11; grid-row:18; bottom: 20%;\" },\r\n        \"pos-42\":{ \"pos\":\"42\", \"style\":\"grid-column:12; grid-row:18; bottom: 45%;\" },\r\n        \"pos-43\":{ \"pos\":\"43\", \"style\":\"grid-column:13; grid-row:17; top: 20%;\" },\r\n        \"pos-44\":{ \"pos\":\"44\", \"style\":\"grid-column:14; grid-row:17; bottom: 30%; right: 5%;\" },\r\n        \"pos-45\":{ \"pos\":\"45\", \"style\":\"grid-column:15; grid-row:16; top: 15%; right: 30%;\" },\r\n        \"pos-46\":{ \"pos\":\"46\", \"style\":\"grid-column:16; grid-row:16; bottom: 50%; right: 60%;\" },\r\n        \"pos-47\":{ \"pos\":\"47\", \"style\":\"grid-column:16; grid-row:15; bottom: 15%; left: 5%;\" },\r\n        \"pos-48\":{ \"pos\":\"48\", \"style\":\"grid-column:17; grid-row:14; right: 30%;\" },\r\n        \"pos-49\":{ \"pos\":\"49\", \"style\":\"grid-column:17; grid-row:13; left: 20%;\" },\r\n        \"pos-50\":{ \"pos\":\"50\", \"style\":\"grid-column:18; grid-row:12; right: 40%;\" },\r\n        \"pos-51\":{ \"pos\":\"51\", \"style\":\"grid-column:18; grid-row:11; right: 10%;\" },\r\n        \"pos-52\":{ \"pos\":\"52\", \"style\":\"grid-column:18; grid-row:10;\" }      \r\n        \r\n      }', NULL),
+('hol', 'kin_tzo', '{ \r\n        \"sec\":{ \"style\":\"grid:repeat(20,1fr)/repeat(13,1fr); grid-auto-flow:column;\" }\r\n\r\n      }', '{\r\n        \"sec\":{ \"kin-sel\": 1, \"kin-ton\": 0 },\r\n        \"pos\":{ \"ima\": \"hol.ton.ide\", \"col\": \"\", \"num\": \"hol.kin.ide\" }, \r\n        \"opc\": [ \"pag\", \"par\" ],\r\n        \"pag\": { \"kin\": 1 }\r\n      }'),
+('hol', 'kin_par', '{ \r\n        \"sec\":{ \"style\":\"border: 1px solid var(--col_ver); border-radius: 50%;\" }\r\n\r\n      }', NULL),
+('hol', 'kin_nav', '{\r\n          \"sec\": {},\r\n\r\n          \"pos-00\":{ \"style\":\"font-size:.5rem\" }\r\n\r\n        }', '{\r\n          \"sec\": { \"cas-pos\":1, \"cas-bor\": 0, \"cas-col\": 1, \"cas-orb\": 0, \"ton-col\":0 },\r\n          \"pos\": { \"ima\": \"hol.kin.ide\", \"col\": \"\", \"num\": \"\" },\r\n          \"opc\": [ \"par\", \"pul\" ]\r\n        }'),
+('hol', 'kin_nav_cas', '{ \r\n          \"cas\":{ \"style\":\"padding: .2rem;\" }\r\n\r\n        }', NULL),
+('hol', 'kin_nav_ond', '{ \r\n          \"ond\":{ \"style\":\"grid-gap: .2rem;\" }\r\n\r\n        }', NULL),
+('hol', 'kin_arm', '{\r\n          \"sec\":{}\r\n\r\n        }', '{\r\n          \"sec\": { \"sel-arm_tra-bor\": 0, \"sel-arm_cel-pos\": 1, \"sel-arm_cel-bor\": 0, \"sel-arm_cel-col\": 0},\r\n          \"pos\": { \"ima\": \"hol.sel.ide\", \"col\": \"\", \"num\": \"\" },\r\n          \"opc\": [ \"par\", \"pul\" ]\r\n        }'),
+('hol', 'kin_arm_tra', '{ \r\n          \"tra\":{ \"style\":\"border-radius: 50%;\" }\r\n\r\n        }', NULL),
+('hol', 'kin_arm_cel', '{\r\n          \"cel\":{ \"style\":\"grid-gap:.15rem;\" }\r\n\r\n        }', NULL),
+('hol', 'kin_cro', '{ \r\n          \"sec\":{}\r\n\r\n        }', '{\r\n          \"sec\": { \"cas-pos\": 1, \"cas-orb\": 1, \"ton-col\":1, \"sel-cro_ele-pos\": 1 },\r\n          \"pos\": { \"ima\": \"hol.sel.ide\", \"col\": \"\", \"num\": \"\" },\r\n          \"opc\": [ \"par\", \"pul\" ]\r\n        }'),
+('hol', 'kin_cro_est', '{\r\n        }', NULL),
+('hol', 'kin_cro_ele', '{\r\n          \"pos-0\":{ \"style\":\"width: 150%; height: 150%; color: black;\" },\r\n\r\n          \"rot-ton\":[ \"147\", \"070\", \"074\", \"071\", \"074\", \"330\", \"352\", \"335\", \"350\", \"230\", \"270\", \"240\", \"160\", \"140\", \"070\", \"074\", \"071\", \"074\", \"330\", \"352\", \"335\", \"350\", \"230\", \"270\", \"240\", \"160\", \"140\", \"070\", \"074\", \"071\", \"074\", \"330\", \"352\", \"335\", \"350\", \"230\", \"270\", \"240\", \"160\", \"140\", \"070\", \"074\", \"071\", \"074\", \"330\", \"352\", \"335\", \"350\", \"230\", \"270\", \"240\", \"160\" ],\r\n          \"rot-cas\":[ \"025\", \"000\", \"340\", \"345\", \"340\", \"250\", \"255\", \"250\", \"255\", \"155\", \"170\", \"160\", \"065\", \"290\", \"290\", \"290\", \"290\", \"220\", \"170\", \"160\", \"165\", \"160\", \"070\", \"075\", \"070\", \"335\", \"180\", \"150\", \"170\", \"160\", \"165\", \"070\", \"075\", \"070\", \"073\", \"330\", \"350\", \"340\", \"245\", \"095\", \"070\", \"075\", \"073\", \"073\", \"330\", \"350\", \"340\", \"345\", \"250\", \"255\", \"250\", \"160\" ]\r\n        }', NULL),
+('hol', 'psi_ban', '{\r\n      }', '{\r\n        \"sec\": { \"lun-cab\":1, \"lun-hep\":1 },\r\n        \"pos\": { \"ima\": \"hol.kin.ide\", \"col\": \"\", \"num\": \"\" },\r\n        \"opc\": [ \"pag\", \"par\", \"pul\" ]\r\n      }'),
+('hol', 'psi_est', '{ \r\n      }', '{\r\n        \"sec\": { \"cas-pos\": 1, \"cas-orb\": 0, \"ton-col\": 0 },\r\n        \"pos\": { \"ima\": \"hol.rad.ide\", \"col\": \"\", \"num\": \"\" },\r\n        \"opc\": [ \"par\", \"pul\" ]\r\n      }'),
+('hol', 'psi_lun', '{\r\n      }', '{\r\n        \"sec\": { \"lun-cab\":1, \"lun-hep\":1, \"lun-rad\": 1 },\r\n        \"pos\": { \"ima\": \"hol.kin.ide\", \"col\": \"\", \"num\": \"\" },\r\n        \"opc\": [ \"pul\", \"par\" ]\r\n      }'),
+('hol', 'psi_hep', '{\r\n      }', NULL),
+('hol', 'psi_tzo', '{\r\n        \"sec\":{ \"style\": \"grid-template-columns: repeat(4,1fr);\" },\r\n        \r\n        \"tzo-5\":{ \"style\":\"transform: rotate(180deg);\" },\r\n        \"tzo-6\":{ \"style\":\"transform: rotate(180deg);\" },\r\n        \"tzo-7\":{ \"style\":\"transform: rotate(180deg);\" },\r\n        \"tzo-8\":{ \"style\":\"transform: rotate(180deg);\" }\r\n        \r\n      }', '{\r\n        \"pos\": { \"ima\": \"hol.kin.ide\", \"col\": \"\", \"num\": \"\" },\r\n        \"opc\": [ \"pag\", \"par\" ],\r\n        \"pag\": { \"kin\": 1 }\r\n      }');
 
 -- --------------------------------------------------------
 
@@ -1659,6 +1700,7 @@ INSERT INTO `app_tab` (`esq`, `est`, `ele`, `ope`) VALUES
 -- Estructura de tabla para la tabla `app_var`
 --
 
+DROP TABLE IF EXISTS `app_var`;
 CREATE TABLE `app_var` (
   `esq` varchar(13) NOT NULL COMMENT 'Esquema',
   `dat` varchar(11) NOT NULL COMMENT 'Tipo de Dato',
@@ -1673,57 +1715,6 @@ CREATE TABLE `app_var` (
 --
 
 INSERT INTO `app_var` (`esq`, `dat`, `val`, `pos`, `ide`, `atr`) VALUES
-('hol', 'atr', 'pag', 1, 'cue', '{\n        \"nom\":\"Total\",\n        \"tit\":\"Cantidad total de elementos pertenecientes a los portales de activación seleccionados...\",\n        \"ope\":{ \"_tip\":\"num\", \"val\":0 }\n      }'),
-('hol', 'atr', 'pag', 2, 'kin', '{\n        \"nom\":\"¿Giro Galáctico?\",\n        \"tit\":\"Activar los Portales de Activación correspondientes al Giro Galáctico de 260 kines...\",\n        \"ope\":{ \"_tip\":\"opc_bin\" },\n        \"htm_fin\":{ \"eti\":\"span\", \"htm\":[ { \"_let\":\"(\" }, { \"_tip\":\"num\", \"val\":\"0\" }, { \"_let\":\")\" } ] }\n      }'),
-('hol', 'atr', 'pag', 3, 'psi', '{\n        \"nom\":\"¿Giro Solar?\",\n        \"tit\":\"Activar los Portales de Activación correspondientes al Giro Solar de 364 + 1 días...\",\n        \"ope\":{ \"_tip\":\"opc_bin\" },\n        \"htm_fin\":{ \"eti\":\"span\", \"htm\":[ { \"_let\":\"(\" }, { \"_tip\":\"num\", \"val\":\"0\" }, { \"_let\":\")\" } ] }\n      }'),
-('hol', 'atr', 'par', 1, 'cue', '{\n        \"nom\":\"Total\",\n        \"tit\":\"Cantidad total de elementos pertenecientes a las distintas parejas del oráculo...\",\n        \"ope\":{ \"_tip\":\"num\", \"val\":0 }\n      }'),
-('hol', 'atr', 'par', 2, 'ana', '{\n        \"nom\":\"¿Análogo?\",\n        \"tit\":\"Activa la Pareja Análoga que Refuerza al Destino...\",\n        \"ope\":{ \"_tip\":\"opc_bin\" },\n        \"htm_fin\":{ \"eti\":\"span\", \"htm\":[ { \"_let\":\"(\" }, { \"_tip\":\"num\", \"val\":\"0\" }, { \"_let\":\")\" } ] }\n      }'),
-('hol', 'atr', 'par', 3, 'gui', '{\n        \"nom\":\"¿Guía?\",\n        \"tit\":\"Activa la Pareja Guía que Orienta al Destino...\",\n        \"ope\":{ \"_tip\":\"opc_bin\" },\n        \"htm_fin\":{ \"eti\":\"span\", \"htm\":[ { \"_let\":\"(\" }, { \"_tip\":\"num\", \"val\":\"0\" }, { \"_let\":\")\" } ] }\n      }'),
-('hol', 'atr', 'par', 4, 'ant', '{\n        \"nom\":\"¿Antípoda?\",\n        \"tit\":\"Activa la Pareja Antípoda que se Opone al Destino...\",\n        \"ope\":{ \"_tip\":\"opc_bin\" },\n        \"htm_fin\":{ \"eti\":\"span\", \"htm\":[ { \"_let\":\"(\" }, { \"_tip\":\"num\", \"val\":\"0\" }, { \"_let\":\")\" } ] }\n      }'),
-('hol', 'atr', 'par', 5, 'ocu', '{\n        \"nom\":\"¿Oculto?\",\n        \"tit\":\"Activa la Pareja Oculta que Revela el Destino...\",\n        \"ope\":{ \"_tip\":\"opc_bin\" },\n        \"htm_fin\":{ \"eti\":\"span\", \"htm\":[ { \"_let\":\"(\" }, { \"_tip\":\"num\", \"val\":\"0\" }, { \"_let\":\")\" } ] }\n      }'),
-('hol', 'atr', 'par', 6, 'ext', '{\n        \"nom\":\"¿Extender Patrones?\",\n        \"tit\":\"Extender las parejas seleccionadas para la posición principal...\",\n        \"ope\":{ \"_tip\":\"opc_bin\" }\n      }'),
-('hol', 'atr', 'pul', 1, 'cue', '{\n        \"nom\":\"Total\",\n        \"tit\":\"Cantidad total de elementos pertenecientes a los distintos pulsares seleccionados...\",\n        \"ope\":{ \"_tip\":\"num\", \"val\":0 }\n      }'),
-('hol', 'atr', 'pul', 2, 'dim', '{\n        \"nom\":\"¿Dimensional?\",\n        \"tit\":\"Activar pulsares dimensionales de la Onda Encantada correspondiente a la posición principal...\",\n        \"ope\":{ \"_tip\":\"opc_bin\" },\n        \"htm_fin\":{ \"eti\":\"span\", \"htm\":[ { \"_let\":\"(\" }, { \"_tip\":\"num\", \"val\":\"0\" }, { \"_let\":\")\" } ] }\n      }'),
-('hol', 'atr', 'pul', 3, 'mat', '{\n        \"nom\":\"¿Matiz?\",\n        \"tit\":\"Activar pulsares matiz de la Onda Encantada correspondiente a la posición principal...\",\n        \"ope\":{ \"_tip\":\"opc_bin\" },\n        \"htm_fin\":{ \"eti\":\"span\", \"htm\":[ { \"_let\":\"(\" }, { \"_tip\":\"num\", \"val\":\"0\" }, { \"_let\":\")\" } ] }\n      }'),
-('hol', 'atr', 'pul', 4, 'sim', '{\n        \"nom\":\"¿Simetría Inversa?\",\n        \"tit\":\"Activar pulsares por simetría inversa correspondiente a la posición principal...\",\n        \"ope\":{ \"_tip\":\"opc_bin\" },\n        \"htm_fin\":{ \"eti\":\"span\", \"htm\":[ { \"_let\":\"(\" }, { \"_tip\":\"num\", \"val\":\"0\" }, { \"_let\":\")\" } ] }\n      }'),
-('hol', 'tab', 'atr', 1, 'pag', '{\n      \"nom\":\"Portales de Activación\"\n    }'),
-('hol', 'tab', 'atr', 2, 'par', '{\n      \"nom\":\"Parejas del Oráculo\"\n    }'),
-('hol', 'tab', 'atr', 3, 'pul', '{\n      \"nom\":\"Pulsares de la Onda Encantada\"\n    }'),
-('hol', 'tab', 'sec', 50, 'par', '{\n      \"nom\":\"¿Oráculo?\",\n      \"tit\":\"Activa el Oráculo...\",\n      \"ope\":{ \"_tip\":\"opc_bin\" }\n      }'),
-('hol', 'tab', 'sec', 70, 'rad', '{\n      \"nom\":\"¿Plasma?\",\n      \"tit\":\"Mostrar Plasmas...\",\n      \"ope\":{ \"_tip\":\"opc_bin\" }\n      }'),
-('hol', 'tab', 'sec', 130, 'ton', '{\n        \"nom\":\"¿Tonos Galácticos?\",\n        \"tit\":\"Mostrar los Tonos...\",\n        \"ope\":{ \"_tip\":\"opc_bin\" }\n      }'),
-('hol', 'tab', 'sec', 131, 'ton-ond', '{\n        \"nom\":\"¿Posiciones de O.E.?\",\n        \"tit\":\"Mostrar las posiciones de la Onda Encantada...\",\n        \"ope\":{ \"_tip\":\"opc_bin\" }\n      }'),
-('hol', 'tab', 'sec', 132, 'ton-col', '{\n        \"nom\":\"¿Fondo de O.E.?\",\n        \"tit\":\"Colorear el Fondo de las Ondas Encantadas...\",\n        \"ope\":{ \"_tip\":\"opc_bin\" }\n      }'),
-('hol', 'tab', 'sec', 200, 'sel', '{\n        \"nom\":\"¿Sellos Solares?\",\n        \"tit\":\"Mostrar los Sellos...\",\n        \"ope\":{ \"_tip\":\"opc_bin\" }\n      }'),
-('hol', 'tab', 'sec', 210, 'sel-arm', '{\n          \"nom\":\"¿Armónica?\",\n          \"tit\":\"\",\n          \"ope\":{}\n        }'),
-('hol', 'tab', 'sec', 211, 'sel-arm_tra-pos', '{\n          \"nom\":\"¿Posición de T.A.?\",\n          \"tit\":\"Mostrar las posiciones de las 13 Trayectorias Armónicas...\",\n          \"ope\":{ \"_tip\":\"opc_bin\" }\n        }'),
-('hol', 'tab', 'sec', 212, 'sel-arm_tra-bor', '{\n          \"nom\":\"¿Borde de T.A.?\",\n          \"tit\":\"Remarcar las bordes de las 13 Trayectorias Armónicas...\",\n          \"ope\":{ \"_tip\":\"opc_bin\" }\n        }'),
-('hol', 'tab', 'sec', 213, 'sel-arm_tra-col', '{\n          \"nom\":\"Fondo de T.A.?\",\n          \"tit\":\"Colorear las fondos de las 13 Trayectorias Armónicas...\",\n          \"ope\":{ \"_tip\":\"opc_bin\" }\n        }'),
-('hol', 'tab', 'sec', 214, 'sel-arm_cel-pos', '{\n          \"nom\":\"¿Posición de C.A.?\",\n          \"tit\":\"Mostrar las posiciones de las 65 Células Armónicas...\",\n          \"ope\":{ \"_tip\":\"opc_bin\" }\n        }'),
-('hol', 'tab', 'sec', 215, 'sel-arm_cel-bor', '{\n          \"nom\":\"¿Borde de C.A.?\",\n          \"tit\":\"Remarcar las 65 Células Armónicas...\",\n          \"ope\":{ \"_tip\":\"opc_bin\" }\n        }'),
-('hol', 'tab', 'sec', 216, 'sel-arm_cel-col', '{\n          \"nom\":\"¿Fondo de C.A.?\",\n          \"tit\":\"Colorear el fondo de las 65 Células Armónicas...\",\n          \"ope\":{ \"_tip\":\"opc_bin\" }\n        }'),
-('hol', 'tab', 'sec', 220, 'sel-cro', '{\n          \"nom\":\"¿Cromática?\",\n          \"tit\":\"\",\n          \"ope\":{}\n        }'),
-('hol', 'tab', 'sec', 221, 'sel-cro_est-pos', '{\n          \"nom\":\"¿Posición del E.E.?\",\n          \"tit\":\"Mostrar las posiciones de las 4 Estaciones Espectrales...\",\n          \"ope\":{ \"_tip\":\"opc_bin\" }\n        }'),
-('hol', 'tab', 'sec', 222, 'sel-cro_est-bor', '{\n          \"nom\":\"¿Borde de E.E.?\",\n          \"tit\":\"Remarcar las bordes de las 4 Estaciones Espectrales...\",\n          \"ope\":{ \"_tip\":\"opc_bin\" }\n        }'),
-('hol', 'tab', 'sec', 223, 'sel-cro_est-col', '{\n          \"nom\":\"Fondo de E.E.?\",\n          \"tit\":\"Colorear las fondos de las 4 Estaciones Espectrales...\",\n          \"ope\":{ \"_tip\":\"opc_bin\" }\n        }'),
-('hol', 'tab', 'sec', 224, 'sel-cro_ele-pos', '{\n          \"nom\":\"¿Posición de E.C.?\",\n          \"tit\":\"Mostrar las posiciones de los 52 Elementos Cromáticos...\",\n          \"ope\":{ \"_tip\":\"opc_bin\" }\n        }'),
-('hol', 'tab', 'sec', 225, 'sel-cro_ele-bor', '{\n          \"nom\":\"¿Borde de E.C.?\",\n          \"tit\":\"Remarcar los 52 Elementos Cromáticos...\",\n          \"ope\":{ \"_tip\":\"opc_bin\" }\n        }'),
-('hol', 'tab', 'sec', 226, 'sel-cro_ele-col', '{\n          \"nom\":\"¿Fondo de E.C.?\",\n          \"tit\":\"Colorear el fondo de los 52 Elementos Cromáticos...\",\n          \"ope\":{ \"_tip\":\"opc_bin\" }\n        }'),
-('hol', 'tab', 'sec', 280, 'lun', '{\n        \"nom\":\"¿Luna?\",\n        \"tit\":\"Mostrar Posiciones de la Luna...\",\n        \"ope\":{ \"_tip\":\"opc_bin\" }\n      }'),
-('hol', 'tab', 'sec', 282, 'lun-cab', '{\n        \"nom\":\"¿Giro Lunar?\",\n        \"tit\":\"Mostrar los datos de cabecera para el Giro Luna...\",\n        \"ope\":{ \"_tip\":\"opc_bin\" }\n      }'),
-('hol', 'tab', 'sec', 283, 'lun-hep', '{\n        \"nom\":\"¿Héptada?\",\n        \"tit\":\"Mostrar las posiciones de las Héptadas Lunares...\",\n        \"ope\":{ \"_tip\":\"opc_bin\" }\n      }'),
-('hol', 'tab', 'sec', 284, 'lun-rad', '{\n        \"nom\":\"¿Plasma?\",\n        \"tit\":\"Mostrar las columnas de los Plasmas Radiales...\",\n        \"ope\":{ \"_tip\":\"opc_bin\" }\n      }'),
-('hol', 'tab', 'sec', 520, 'cas', '{\n        \"nom\":\"¿Castillo?\",\n        \"tit\":\"\",\n        \"ope\":{}\n      }'),
-('hol', 'tab', 'sec', 521, 'cas-pos', '{\n        \"nom\":\"¿Posición del C.D.?\",\n        \"tit\":\"Mostrar las posiciones del Castillo del Destino...\",\n        \"ope\":{ \"_tip\":\"opc_bin\" }\n      }'),
-('hol', 'tab', 'sec', 522, 'cas-bor', '{\n        \"nom\":\"¿Borde del C.D.?\",\n        \"tit\":\"Remarcar el Borde del Castillo del Destino...\",\n        \"ope\":{ \"_tip\":\"opc_bin\" }\n      }'),
-('hol', 'tab', 'sec', 523, 'cas-col', '{\n        \"nom\":\"¿Fondo del C.D.?\",\n        \"tit\":\"Colorear el Fondo del Castillo del Destino...\",\n        \"ope\":{ \"_tip\":\"opc_bin\" }\n      }'),
-('hol', 'tab', 'sec', 524, 'cas-orb', '{\n        \"nom\":\"¿Orbitales del C.D.?\",\n        \"tit\":\"Activar los Orbitales del Castillo del Destino...\",\n        \"ope\":{ \"_tip\":\"opc_bin\" }\n      }'),
-('hol', 'tab', 'sec', 2600, 'kin', '{\n        \"nom\":\"¿?\",\n        \"tit\":\"\",\n        \"ope\":{}\n      }'),
-('hol', 'tab', 'sec', 2610, 'kin-sel', '{\n        \"nom\":\"¿Sellos Solares?\",\n        \"tit\":\"Mostrar Columna de Sellos Solares como los 20 katunes del Baktún\",\n        \"ope\":{ \"_tip\":\"opc_bin\" }\n      }'),
-('hol', 'tab', 'sec', 2620, 'kin-ton', '{\n        \"nom\":\"¿Tonos Galácticos?\",\n        \"tit\":\"Mostrar Cabecera de Tonos Galácticos como las 13 Trayectorias Armónicas - Baktunes\",\n        \"ope\":{ \"_tip\":\"opc_bin\" }\n      }'),
-('hol', 'val', 'sum', 1, 'kin', '{ \n        \"atr\":\"ide\",\n        \"nom\":\"KIN\",\n        \"ope\":{ \"_tip\":\"num\", \"val\":0, \"max\":260 },\n        \"var_fic\":\"api.hol_kin\"\n      }'),
-('hol', 'val', 'sum', 2, 'psi', '{ \n        \"atr\":\"tzo\",\n        \"nom\":\"PSI\",    \n        \"ope\":{ \"_tip\":\"num\", \"val\":0, \"max\":365 },\n        \"var_fic\":\"api.hol_psi\"\n      }'),
-('hol', 'val', 'sum', 3, 'umb', '{ \n        \"atr\":\"ide\",\n        \"nom\":\"UMB\",    \n        \"ope\":{ \"_tip\":\"num\", \"val\":0, \"max\":441 }\n      }'),
 ('app', 'val', 'abm', 1, 'act', '{\r\n        \"ico\":\"dat_act\",\r\n        \"tit\":\"Actualizar...\"        \r\n      }'),
 ('app', 'val', 'abm', 2, 'ver', '{\r\n        \"ico\":\"dat_ver\",\r\n        \"tit\":\"Buscar...\"\r\n      }'),
 ('app', 'val', 'abm', 3, 'agr', '{    \r\n        \"ico\":\"dat_agr\",\r\n        \"tit\":\"Agregar...\"\r\n      }'),
@@ -1794,7 +1785,58 @@ INSERT INTO `app_var` (`esq`, `dat`, `val`, `pos`, `ide`, `atr`) VALUES
 ('app', 'tab', 'pos', 61, 'fec_pos', '{\r\n        \"nom\":\"¿Posición?\",\r\n        \"tit\":\"Mostrar el valor temporal de la posición principal...\",\r\n        \"ope\":{ \"_tip\":\"opc_bin\" }\r\n      }'),
 ('app', 'tab', 'pos', 62, 'fec_mar', '{\r\n        \"nom\":\"¿Marcas?\",\r\n        \"tit\":\"Mostrar el valor temporal de las posiciones marcadas...\",\r\n        \"ope\":{ \"_tip\":\"opc_bin\" }\r\n      }'),
 ('app', 'tab', 'pos', 63, 'fec_ver', '{\r\n        \"nom\":\"¿Selección?\",\r\n        \"tit\":\"Mostrar el valor temporal de las posiciones seleccionadas...\",\r\n        \"ope\":{ \"_tip\":\"opc_bin\" }\r\n      }'),
-('app', 'tab', 'pos', 64, 'fec_opc', '{\r\n        \"nom\":\"¿Opciones?\",\r\n        \"tit\":\"Mostrar el valor temporal de las posiciones por las opciones seleccionadas...\",\r\n        \"ope\":{ \"_tip\":\"opc_bin\" }\r\n      }');
+('app', 'tab', 'pos', 64, 'fec_opc', '{\r\n        \"nom\":\"¿Opciones?\",\r\n        \"tit\":\"Mostrar el valor temporal de las posiciones por las opciones seleccionadas...\",\r\n        \"ope\":{ \"_tip\":\"opc_bin\" }\r\n      }'),
+('hol', 'val', 'sum', 1, 'kin', '{ \r\n        \"atr\":\"ide\",\r\n        \"nom\":\"KIN\",\r\n        \"ope\":{ \"_tip\":\"num\", \"val\":0, \"max\":260 },\r\n        \"var_fic\":\"hol.kin\"\r\n      }'),
+('hol', 'val', 'sum', 2, 'psi', '{ \r\n        \"atr\":\"tzo\",\r\n        \"nom\":\"PSI\",    \r\n        \"ope\":{ \"_tip\":\"num\", \"val\":0, \"max\":365 },\r\n        \"var_fic\":\"hol.psi\"\r\n      }'),
+('hol', 'val', 'sum', 3, 'umb', '{ \r\n        \"atr\":\"ide\",\r\n        \"nom\":\"UMB\",    \r\n        \"ope\":{ \"_tip\":\"num\", \"val\":0, \"max\":441 }\r\n      }'),
+('hol', 'atr', 'pag', 1, 'cue', '{\r\n        \"nom\":\"Total\",\r\n        \"tit\":\"Cantidad total de elementos pertenecientes a los portales de activación seleccionados...\",\r\n        \"ope\":{ \"_tip\":\"num\", \"val\":0 }\r\n      }'),
+('hol', 'atr', 'pag', 2, 'kin', '{\r\n        \"nom\":\"¿Giro Galáctico?\",\r\n        \"tit\":\"Activar los Portales de Activación correspondientes al Giro Galáctico de 260 kines...\",\r\n        \"ope\":{ \"_tip\":\"opc_bin\" },\r\n        \"htm_fin\":{ \"eti\":\"span\", \"htm\":[ { \"_let\":\"(\" }, { \"_tip\":\"num\", \"val\":\"0\" }, { \"_let\":\")\" } ] }\r\n      }'),
+('hol', 'atr', 'pag', 3, 'psi', '{\r\n        \"nom\":\"¿Giro Solar?\",\r\n        \"tit\":\"Activar los Portales de Activación correspondientes al Giro Solar de 364 + 1 días...\",\r\n        \"ope\":{ \"_tip\":\"opc_bin\" },\r\n        \"htm_fin\":{ \"eti\":\"span\", \"htm\":[ { \"_let\":\"(\" }, { \"_tip\":\"num\", \"val\":\"0\" }, { \"_let\":\")\" } ] }\r\n      }'),
+('hol', 'atr', 'par', 1, 'cue', '{\r\n        \"nom\":\"Total\",\r\n        \"tit\":\"Cantidad total de elementos pertenecientes a las distintas parejas del oráculo...\",\r\n        \"ope\":{ \"_tip\":\"num\", \"val\":0 }\r\n      }'),
+('hol', 'atr', 'par', 2, 'ana', '{\r\n        \"nom\":\"¿Análogo?\",\r\n        \"tit\":\"Activa la Pareja Análoga que Refuerza al Destino...\",\r\n        \"ope\":{ \"_tip\":\"opc_bin\" },\r\n        \"htm_fin\":{ \"eti\":\"span\", \"htm\":[ { \"_let\":\"(\" }, { \"_tip\":\"num\", \"val\":\"0\" }, { \"_let\":\")\" } ] }\r\n      }'),
+('hol', 'atr', 'par', 3, 'gui', '{\r\n        \"nom\":\"¿Guía?\",\r\n        \"tit\":\"Activa la Pareja Guía que Orienta al Destino...\",\r\n        \"ope\":{ \"_tip\":\"opc_bin\" },\r\n        \"htm_fin\":{ \"eti\":\"span\", \"htm\":[ { \"_let\":\"(\" }, { \"_tip\":\"num\", \"val\":\"0\" }, { \"_let\":\")\" } ] }\r\n      }'),
+('hol', 'atr', 'par', 4, 'ant', '{\r\n        \"nom\":\"¿Antípoda?\",\r\n        \"tit\":\"Activa la Pareja Antípoda que se Opone al Destino...\",\r\n        \"ope\":{ \"_tip\":\"opc_bin\" },\r\n        \"htm_fin\":{ \"eti\":\"span\", \"htm\":[ { \"_let\":\"(\" }, { \"_tip\":\"num\", \"val\":\"0\" }, { \"_let\":\")\" } ] }\r\n      }'),
+('hol', 'atr', 'par', 5, 'ocu', '{\r\n        \"nom\":\"¿Oculto?\",\r\n        \"tit\":\"Activa la Pareja Oculta que Revela el Destino...\",\r\n        \"ope\":{ \"_tip\":\"opc_bin\" },\r\n        \"htm_fin\":{ \"eti\":\"span\", \"htm\":[ { \"_let\":\"(\" }, { \"_tip\":\"num\", \"val\":\"0\" }, { \"_let\":\")\" } ] }\r\n      }'),
+('hol', 'atr', 'par', 6, 'ext', '{\r\n        \"nom\":\"¿Extender Patrones?\",\r\n        \"tit\":\"Extender las parejas seleccionadas para la posición principal...\",\r\n        \"ope\":{ \"_tip\":\"opc_bin\" }\r\n      }'),
+('hol', 'atr', 'pul', 1, 'cue', '{\r\n        \"nom\":\"Total\",\r\n        \"tit\":\"Cantidad total de elementos pertenecientes a los distintos pulsares seleccionados...\",\r\n        \"ope\":{ \"_tip\":\"num\", \"val\":0 }\r\n      }'),
+('hol', 'atr', 'pul', 2, 'dim', '{\r\n        \"nom\":\"¿Dimensional?\",\r\n        \"tit\":\"Activar pulsares dimensionales de la Onda Encantada correspondiente a la posición principal...\",\r\n        \"ope\":{ \"_tip\":\"opc_bin\" },\r\n        \"htm_fin\":{ \"eti\":\"span\", \"htm\":[ { \"_let\":\"(\" }, { \"_tip\":\"num\", \"val\":\"0\" }, { \"_let\":\")\" } ] }\r\n      }'),
+('hol', 'atr', 'pul', 3, 'mat', '{\r\n        \"nom\":\"¿Matiz?\",\r\n        \"tit\":\"Activar pulsares matiz de la Onda Encantada correspondiente a la posición principal...\",\r\n        \"ope\":{ \"_tip\":\"opc_bin\" },\r\n        \"htm_fin\":{ \"eti\":\"span\", \"htm\":[ { \"_let\":\"(\" }, { \"_tip\":\"num\", \"val\":\"0\" }, { \"_let\":\")\" } ] }\r\n      }'),
+('hol', 'atr', 'pul', 4, 'sim', '{\r\n        \"nom\":\"¿Simetría Inversa?\",\r\n        \"tit\":\"Activar pulsares por simetría inversa correspondiente a la posición principal...\",\r\n        \"ope\":{ \"_tip\":\"opc_bin\" },\r\n        \"htm_fin\":{ \"eti\":\"span\", \"htm\":[ { \"_let\":\"(\" }, { \"_tip\":\"num\", \"val\":\"0\" }, { \"_let\":\")\" } ] }\r\n      }'),
+('hol', 'tab', 'sec', 50, 'par', '{\r\n      \"nom\":\"¿Oráculo?\",\r\n      \"tit\":\"Activa el Oráculo...\",\r\n      \"ope\":{ \"_tip\":\"opc_bin\" }\r\n      }'),
+('hol', 'tab', 'sec', 70, 'rad', '{\r\n      \"nom\":\"¿Plasma?\",\r\n      \"tit\":\"Mostrar Plasmas...\",\r\n      \"ope\":{ \"_tip\":\"opc_bin\" }\r\n      }'),
+('hol', 'tab', 'sec', 130, 'ton', '{\r\n        \"nom\":\"¿Tonos Galácticos?\",\r\n        \"tit\":\"Mostrar los Tonos...\",\r\n        \"ope\":{ \"_tip\":\"opc_bin\" }\r\n      }'),
+('hol', 'tab', 'sec', 131, 'ton-ond', '{\r\n        \"nom\":\"¿Posiciones de O.E.?\",\r\n        \"tit\":\"Mostrar las posiciones de la Onda Encantada...\",\r\n        \"ope\":{ \"_tip\":\"opc_bin\" }\r\n      }'),
+('hol', 'tab', 'sec', 132, 'ton-col', '{\r\n        \"nom\":\"¿Fondo de O.E.?\",\r\n        \"tit\":\"Colorear el Fondo de las Ondas Encantadas...\",\r\n        \"ope\":{ \"_tip\":\"opc_bin\" }\r\n      }'),
+('hol', 'tab', 'sec', 200, 'sel', '{\r\n        \"nom\":\"¿Sellos Solares?\",\r\n        \"tit\":\"Mostrar los Sellos...\",\r\n        \"ope\":{ \"_tip\":\"opc_bin\" }\r\n      }'),
+('hol', 'tab', 'sec', 210, 'sel-arm', '{\r\n          \"nom\":\"¿Armónica?\",\r\n          \"tit\":\"\",\r\n          \"ope\":{}\r\n        }'),
+('hol', 'tab', 'sec', 211, 'sel-arm_tra-pos', '{\r\n          \"nom\":\"¿Posición de T.A.?\",\r\n          \"tit\":\"Mostrar las posiciones de las 13 Trayectorias Armónicas...\",\r\n          \"ope\":{ \"_tip\":\"opc_bin\" }\r\n        }'),
+('hol', 'tab', 'sec', 212, 'sel-arm_tra-bor', '{\r\n          \"nom\":\"¿Borde de T.A.?\",\r\n          \"tit\":\"Remarcar las bordes de las 13 Trayectorias Armónicas...\",\r\n          \"ope\":{ \"_tip\":\"opc_bin\" }\r\n        }'),
+('hol', 'tab', 'sec', 213, 'sel-arm_tra-col', '{\r\n          \"nom\":\"Fondo de T.A.?\",\r\n          \"tit\":\"Colorear las fondos de las 13 Trayectorias Armónicas...\",\r\n          \"ope\":{ \"_tip\":\"opc_bin\" }\r\n        }'),
+('hol', 'tab', 'sec', 214, 'sel-arm_cel-pos', '{\r\n          \"nom\":\"¿Posición de C.A.?\",\r\n          \"tit\":\"Mostrar las posiciones de las 65 Células Armónicas...\",\r\n          \"ope\":{ \"_tip\":\"opc_bin\" }\r\n        }'),
+('hol', 'tab', 'sec', 215, 'sel-arm_cel-bor', '{\r\n          \"nom\":\"¿Borde de C.A.?\",\r\n          \"tit\":\"Remarcar las 65 Células Armónicas...\",\r\n          \"ope\":{ \"_tip\":\"opc_bin\" }\r\n        }'),
+('hol', 'tab', 'sec', 216, 'sel-arm_cel-col', '{\r\n          \"nom\":\"¿Fondo de C.A.?\",\r\n          \"tit\":\"Colorear el fondo de las 65 Células Armónicas...\",\r\n          \"ope\":{ \"_tip\":\"opc_bin\" }\r\n        }'),
+('hol', 'tab', 'sec', 220, 'sel-cro', '{\r\n          \"nom\":\"¿Cromática?\",\r\n          \"tit\":\"\",\r\n          \"ope\":{}\r\n        }'),
+('hol', 'tab', 'sec', 221, 'sel-cro_est-pos', '{\r\n          \"nom\":\"¿Posición del E.E.?\",\r\n          \"tit\":\"Mostrar las posiciones de las 4 Estaciones Espectrales...\",\r\n          \"ope\":{ \"_tip\":\"opc_bin\" }\r\n        }'),
+('hol', 'tab', 'sec', 222, 'sel-cro_est-bor', '{\r\n          \"nom\":\"¿Borde de E.E.?\",\r\n          \"tit\":\"Remarcar las bordes de las 4 Estaciones Espectrales...\",\r\n          \"ope\":{ \"_tip\":\"opc_bin\" }\r\n        }'),
+('hol', 'tab', 'sec', 223, 'sel-cro_est-col', '{\r\n          \"nom\":\"Fondo de E.E.?\",\r\n          \"tit\":\"Colorear las fondos de las 4 Estaciones Espectrales...\",\r\n          \"ope\":{ \"_tip\":\"opc_bin\" }\r\n        }'),
+('hol', 'tab', 'sec', 224, 'sel-cro_ele-pos', '{\r\n          \"nom\":\"¿Posición de E.C.?\",\r\n          \"tit\":\"Mostrar las posiciones de los 52 Elementos Cromáticos...\",\r\n          \"ope\":{ \"_tip\":\"opc_bin\" }\r\n        }'),
+('hol', 'tab', 'sec', 225, 'sel-cro_ele-bor', '{\r\n          \"nom\":\"¿Borde de E.C.?\",\r\n          \"tit\":\"Remarcar los 52 Elementos Cromáticos...\",\r\n          \"ope\":{ \"_tip\":\"opc_bin\" }\r\n        }'),
+('hol', 'tab', 'sec', 226, 'sel-cro_ele-col', '{\r\n          \"nom\":\"¿Fondo de E.C.?\",\r\n          \"tit\":\"Colorear el fondo de los 52 Elementos Cromáticos...\",\r\n          \"ope\":{ \"_tip\":\"opc_bin\" }\r\n        }'),
+('hol', 'tab', 'sec', 280, 'lun', '{\r\n        \"nom\":\"¿Luna?\",\r\n        \"tit\":\"Mostrar Posiciones de la Luna...\",\r\n        \"ope\":{ \"_tip\":\"opc_bin\" }\r\n      }'),
+('hol', 'tab', 'sec', 282, 'lun-cab', '{\r\n        \"nom\":\"¿Giro Lunar?\",\r\n        \"tit\":\"Mostrar los datos de cabecera para el Giro Luna...\",\r\n        \"ope\":{ \"_tip\":\"opc_bin\" }\r\n      }'),
+('hol', 'tab', 'sec', 283, 'lun-hep', '{\r\n        \"nom\":\"¿Héptada?\",\r\n        \"tit\":\"Mostrar las posiciones de las Héptadas Lunares...\",\r\n        \"ope\":{ \"_tip\":\"opc_bin\" }\r\n      }'),
+('hol', 'tab', 'sec', 284, 'lun-rad', '{\r\n        \"nom\":\"¿Plasma?\",\r\n        \"tit\":\"Mostrar las columnas de los Plasmas Radiales...\",\r\n        \"ope\":{ \"_tip\":\"opc_bin\" }\r\n      }'),
+('hol', 'tab', 'sec', 520, 'cas', '{\r\n        \"nom\":\"¿Castillo?\",\r\n        \"tit\":\"\",\r\n        \"ope\":{}\r\n      }'),
+('hol', 'tab', 'sec', 521, 'cas-pos', '{\r\n        \"nom\":\"¿Posición del C.D.?\",\r\n        \"tit\":\"Mostrar las posiciones del Castillo del Destino...\",\r\n        \"ope\":{ \"_tip\":\"opc_bin\" }\r\n      }'),
+('hol', 'tab', 'sec', 522, 'cas-bor', '{\r\n        \"nom\":\"¿Borde del C.D.?\",\r\n        \"tit\":\"Remarcar el Borde del Castillo del Destino...\",\r\n        \"ope\":{ \"_tip\":\"opc_bin\" }\r\n      }'),
+('hol', 'tab', 'sec', 523, 'cas-col', '{\r\n        \"nom\":\"¿Fondo del C.D.?\",\r\n        \"tit\":\"Colorear el Fondo del Castillo del Destino...\",\r\n        \"ope\":{ \"_tip\":\"opc_bin\" }\r\n      }'),
+('hol', 'tab', 'sec', 524, 'cas-orb', '{\r\n        \"nom\":\"¿Orbitales del C.D.?\",\r\n        \"tit\":\"Activar los Orbitales del Castillo del Destino...\",\r\n        \"ope\":{ \"_tip\":\"opc_bin\" }\r\n      }'),
+('hol', 'tab', 'sec', 2600, 'kin', '{\r\n        \"nom\":\"¿?\",\r\n        \"tit\":\"\",\r\n        \"ope\":{}\r\n      }'),
+('hol', 'tab', 'sec', 2610, 'kin-sel', '{\r\n        \"nom\":\"¿Sellos Solares?\",\r\n        \"tit\":\"Mostrar Columna de Sellos Solares como los 20 katunes del Baktún\",\r\n        \"ope\":{ \"_tip\":\"opc_bin\" }\r\n      }'),
+('hol', 'tab', 'sec', 2620, 'kin-ton', '{\r\n        \"nom\":\"¿Tonos Galácticos?\",\r\n        \"tit\":\"Mostrar Cabecera de Tonos Galácticos como las 13 Trayectorias Armónicas - Baktunes\",\r\n        \"ope\":{ \"_tip\":\"opc_bin\" }\r\n      }'),
+('hol', 'tab', 'atr', 1, 'pag', '{\r\n      \"nom\":\"Portales de Activación\"\r\n    }'),
+('hol', 'tab', 'atr', 2, 'par', '{\r\n      \"nom\":\"Parejas del Oráculo\"\r\n    }'),
+('hol', 'tab', 'atr', 3, 'pul', '{\r\n      \"nom\":\"Pulsares de la Onda Encantada\"\r\n    }');
 
 -- --------------------------------------------------------
 
@@ -1802,6 +1844,7 @@ INSERT INTO `app_var` (`esq`, `dat`, `val`, `pos`, `ide`, `atr`) VALUES
 -- Estructura de tabla para la tabla `dat_ope`
 --
 
+DROP TABLE IF EXISTS `dat_ope`;
 CREATE TABLE `dat_ope` (
   `tip` varchar(13) NOT NULL COMMENT 'Dato',
   `dat` varchar(13) NOT NULL COMMENT 'Dato',
@@ -1837,6 +1880,7 @@ INSERT INTO `dat_ope` (`tip`, `dat`, `ide`, `pos`, `nom`, `des`) VALUES
 -- Estructura de tabla para la tabla `dat_tip`
 --
 
+DROP TABLE IF EXISTS `dat_tip`;
 CREATE TABLE `dat_tip` (
   `pos` int(11) NOT NULL COMMENT 'Posición',
   `ide` varchar(15) NOT NULL COMMENT 'Identificador',
@@ -1919,6 +1963,7 @@ INSERT INTO `dat_tip` (`pos`, `ide`, `dat`, `val`, `nom`, `len`, `des`, `ope`) V
 -- Estructura de tabla para la tabla `dat_val`
 --
 
+DROP TABLE IF EXISTS `dat_val`;
 CREATE TABLE `dat_val` (
   `pos` smallint(5) NOT NULL COMMENT 'Orden',
   `dat` varchar(15) NOT NULL COMMENT 'Tipo de Dato',
@@ -1986,6 +2031,7 @@ INSERT INTO `dat_val` (`pos`, `dat`, `ide`, `nom`, `des`, `len`, `ope`) VALUES
 -- Estructura de tabla para la tabla `dat_var`
 --
 
+DROP TABLE IF EXISTS `dat_var`;
 CREATE TABLE `dat_var` (
   `pos` int(11) NOT NULL COMMENT 'Posición',
   `ide` varchar(15) NOT NULL COMMENT 'Identificador',
@@ -2012,10 +2058,29 @@ INSERT INTO `dat_var` (`pos`, `ide`, `nom`, `des`, `ope`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `fec`
+-- Estructura de tabla para la tabla `fec_año`
 --
 
-CREATE TABLE `fec` (
+DROP TABLE IF EXISTS `fec_año`;
+CREATE TABLE `fec_año` (
+  `ide` smallint(4) NOT NULL COMMENT 'Año'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Año';
+
+--
+-- Volcado de datos para la tabla `fec_año`
+--
+
+INSERT INTO `fec_año` (`ide`) VALUES
+(1970);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `fec_dat`
+--
+
+DROP TABLE IF EXISTS `fec_dat`;
+CREATE TABLE `fec_dat` (
   `val` datetime DEFAULT NULL COMMENT 'Fecha',
   `año` smallint(4) UNSIGNED ZEROFILL DEFAULT NULL COMMENT 'Año',
   `mes` tinyint(2) UNSIGNED ZEROFILL DEFAULT NULL COMMENT 'Mes',
@@ -2033,26 +2098,10 @@ CREATE TABLE `fec` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `fec_año`
---
-
-CREATE TABLE `fec_año` (
-  `ide` smallint(4) NOT NULL COMMENT 'Año'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Año';
-
---
--- Volcado de datos para la tabla `fec_año`
---
-
-INSERT INTO `fec_año` (`ide`) VALUES
-(1970);
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `fec_dia`
 --
 
+DROP TABLE IF EXISTS `fec_dia`;
 CREATE TABLE `fec_dia` (
   `ide` tinyint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Día'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Día del Mes';
@@ -2100,6 +2149,7 @@ INSERT INTO `fec_dia` (`ide`) VALUES
 -- Estructura de tabla para la tabla `fec_hor`
 --
 
+DROP TABLE IF EXISTS `fec_hor`;
 CREATE TABLE `fec_hor` (
   `ide` tinyint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Hora'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Hora';
@@ -2140,6 +2190,7 @@ INSERT INTO `fec_hor` (`ide`) VALUES
 -- Estructura de tabla para la tabla `fec_mes`
 --
 
+DROP TABLE IF EXISTS `fec_mes`;
 CREATE TABLE `fec_mes` (
   `ide` tinyint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Mes',
   `nom` varchar(15) NOT NULL COMMENT 'Nombre',
@@ -2170,6 +2221,7 @@ INSERT INTO `fec_mes` (`ide`, `nom`, `dia`) VALUES
 -- Estructura de tabla para la tabla `fec_min`
 --
 
+DROP TABLE IF EXISTS `fec_min`;
 CREATE TABLE `fec_min` (
   `ide` tinyint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Minuto'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Minuto';
@@ -2246,6 +2298,7 @@ INSERT INTO `fec_min` (`ide`) VALUES
 -- Estructura de tabla para la tabla `fec_seg`
 --
 
+DROP TABLE IF EXISTS `fec_seg`;
 CREATE TABLE `fec_seg` (
   `ide` tinyint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Segundo'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Segundo';
@@ -2322,6 +2375,7 @@ INSERT INTO `fec_seg` (`ide`) VALUES
 -- Estructura de tabla para la tabla `fec_sem`
 --
 
+DROP TABLE IF EXISTS `fec_sem`;
 CREATE TABLE `fec_sem` (
   `ide` tinyint(1) UNSIGNED NOT NULL COMMENT 'Semana',
   `cod` char(1) NOT NULL COMMENT 'Código',
@@ -2347,6 +2401,7 @@ INSERT INTO `fec_sem` (`ide`, `cod`, `nom`) VALUES
 -- Estructura de tabla para la tabla `hol_ani`
 --
 
+DROP TABLE IF EXISTS `hol_ani`;
 CREATE TABLE `hol_ani` (
   `ide` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Posición del Castillo',
   `cas` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Posición',
@@ -2420,6 +2475,7 @@ INSERT INTO `hol_ani` (`ide`, `cas`, `fam_2`, `fam_3`, `fam_4`, `año`) VALUES
 -- Estructura de tabla para la tabla `hol_ani_cic`
 --
 
+DROP TABLE IF EXISTS `hol_ani_cic`;
 CREATE TABLE `hol_ani_cic` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Ciclo',
   `nom` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
@@ -2441,6 +2497,7 @@ INSERT INTO `hol_ani_cic` (`ide`, `nom`, `des`, `cue`) VALUES
 -- Estructura de tabla para la tabla `hol_arm`
 --
 
+DROP TABLE IF EXISTS `hol_arm`;
 CREATE TABLE `hol_arm` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Armonía',
   `col` varchar(10) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Color',
@@ -2466,6 +2523,7 @@ INSERT INTO `hol_arm` (`ide`, `col`, `dir`, `pod`, `pol`, `dia`) VALUES
 -- Estructura de tabla para la tabla `hol_cas`
 --
 
+DROP TABLE IF EXISTS `hol_cas`;
 CREATE TABLE `hol_cas` (
   `ide` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Aventura',
   `nom` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
@@ -2541,6 +2599,7 @@ INSERT INTO `hol_cas` (`ide`, `nom`, `des`, `arm`, `ond`, `pos_arm`, `ton`, `ton
 -- Estructura de tabla para la tabla `hol_cas_arm`
 --
 
+DROP TABLE IF EXISTS `hol_cas_arm`;
 CREATE TABLE `hol_cas_arm` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Cuadrante',
   `nom` varchar(15) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
@@ -2567,6 +2626,7 @@ INSERT INTO `hol_cas_arm` (`ide`, `nom`, `col`, `dir`, `pod`, `cas`, `ran`) VALU
 -- Estructura de tabla para la tabla `hol_cas_ond`
 --
 
+DROP TABLE IF EXISTS `hol_cas_ond`;
 CREATE TABLE `hol_cas_ond` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Aventura'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Aventura de la Onda Encantada';
@@ -2587,6 +2647,7 @@ INSERT INTO `hol_cas_ond` (`ide`) VALUES
 -- Estructura de tabla para la tabla `hol_chi`
 --
 
+DROP TABLE IF EXISTS `hol_chi`;
 CREATE TABLE `hol_chi` (
   `ide` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Hexagrama',
   `sup` smallint(1) UNSIGNED DEFAULT NULL COMMENT 'Trigrama Superior',
@@ -2676,6 +2737,7 @@ INSERT INTO `hol_chi` (`ide`, `sup`, `inf`, `his`, `cor`, `nom`, `des`, `tit`, `
 -- Estructura de tabla para la tabla `hol_chi_bin`
 --
 
+DROP TABLE IF EXISTS `hol_chi_bin`;
 CREATE TABLE `hol_chi_bin` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Identificador',
   `nom` varchar(10) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
@@ -2702,6 +2764,7 @@ INSERT INTO `hol_chi_bin` (`ide`, `nom`, `fam`, `dir`, `dia`, `año`, `lun`) VAL
 -- Estructura de tabla para la tabla `hol_chi_mon`
 --
 
+DROP TABLE IF EXISTS `hol_chi_mon`;
 CREATE TABLE `hol_chi_mon` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Identificador',
   `nom` varchar(10) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre'
@@ -2721,6 +2784,7 @@ INSERT INTO `hol_chi_mon` (`ide`, `nom`) VALUES
 -- Estructura de tabla para la tabla `hol_chi_tri`
 --
 
+DROP TABLE IF EXISTS `hol_chi_tri`;
 CREATE TABLE `hol_chi_tri` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Identificador',
   `nom` varchar(10) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
@@ -2752,6 +2816,7 @@ INSERT INTO `hol_chi_tri` (`ide`, `nom`, `cod`, `des`, `cua`, `sig`, `dir`, `fam
 -- Estructura de tabla para la tabla `hol_cro`
 --
 
+DROP TABLE IF EXISTS `hol_cro`;
 CREATE TABLE `hol_cro` (
   `ide` smallint(2) UNSIGNED NOT NULL COMMENT 'Color',
   `cod` varchar(15) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Código Punto-Barra',
@@ -2777,6 +2842,7 @@ INSERT INTO `hol_cro` (`ide`, `cod`, `col`, `lad`, `dir`) VALUES
 -- Estructura de tabla para la tabla `hol_kin`
 --
 
+DROP TABLE IF EXISTS `hol_kin`;
 CREATE TABLE `hol_kin` (
   `ide` smallint(3) UNSIGNED ZEROFILL NOT NULL COMMENT 'Kin',
   `nom` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
@@ -3096,6 +3162,7 @@ INSERT INTO `hol_kin` (`ide`, `nom`, `pod`, `des`, `des_umb`, `des_tie`, `psi`, 
 -- Estructura de tabla para la tabla `hol_kin_arm_cel`
 --
 
+DROP TABLE IF EXISTS `hol_kin_arm_cel`;
 CREATE TABLE `hol_kin_arm_cel` (
   `ide` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Armónica',
   `nom` varchar(30) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Código Encantado',
@@ -3183,6 +3250,7 @@ INSERT INTO `hol_kin_arm_cel` (`ide`, `nom`, `des`, `tra`, `cel`, `ton`, `inv`) 
 -- Estructura de tabla para la tabla `hol_kin_arm_tra`
 --
 
+DROP TABLE IF EXISTS `hol_kin_arm_tra`;
 CREATE TABLE `hol_kin_arm_tra` (
   `ide` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Trayectoria',
   `nom` varchar(80) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Título',
@@ -3218,6 +3286,7 @@ INSERT INTO `hol_kin_arm_tra` (`ide`, `nom`, `ton`, `lec`, `año`, `ran`, `may`)
 -- Estructura de tabla para la tabla `hol_kin_cro_ele`
 --
 
+DROP TABLE IF EXISTS `hol_kin_cro_ele`;
 CREATE TABLE `hol_kin_cro_ele` (
   `ide` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Cromática',
   `nom` varchar(35) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Código Encantado',
@@ -3289,6 +3358,7 @@ INSERT INTO `hol_kin_cro_ele` (`ide`, `nom`, `des`, `ele`) VALUES
 -- Estructura de tabla para la tabla `hol_kin_cro_est`
 --
 
+DROP TABLE IF EXISTS `hol_kin_cro_est`;
 CREATE TABLE `hol_kin_cro_est` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Estación Galáctica',
   `nom` varchar(25) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Aspecto del ser',
@@ -3311,6 +3381,7 @@ INSERT INTO `hol_kin_cro_est` (`ide`, `nom`, `des`) VALUES
 -- Estructura de tabla para la tabla `hol_kin_cro_ond`
 --
 
+DROP TABLE IF EXISTS `hol_kin_cro_ond`;
 CREATE TABLE `hol_kin_cro_ond` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Aventura',
   `ton` int(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Tono Inicial',
@@ -3335,6 +3406,7 @@ INSERT INTO `hol_kin_cro_ond` (`ide`, `ton`, `cue`, `que`, `enc`) VALUES
 -- Estructura de tabla para la tabla `hol_kin_ene`
 --
 
+DROP TABLE IF EXISTS `hol_kin_ene`;
 CREATE TABLE `hol_kin_ene` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Identificador',
   `nom` varchar(25) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Campo',
@@ -3359,6 +3431,7 @@ INSERT INTO `hol_kin_ene` (`ide`, `nom`, `cue`, `gru`, `gru_uni`) VALUES
 -- Estructura de tabla para la tabla `hol_kin_ene_cam`
 --
 
+DROP TABLE IF EXISTS `hol_kin_ene_cam`;
 CREATE TABLE `hol_kin_ene_cam` (
   `ide` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Identificador',
   `gru` smallint(1) NOT NULL COMMENT 'Grupo',
@@ -3391,6 +3464,7 @@ INSERT INTO `hol_kin_ene_cam` (`ide`, `gru`, `nom`) VALUES
 -- Estructura de tabla para la tabla `hol_kin_gen_cel`
 --
 
+DROP TABLE IF EXISTS `hol_kin_gen_cel`;
 CREATE TABLE `hol_kin_gen_cel` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Célula del Génesis',
   `nom` varchar(80) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre'
@@ -3413,6 +3487,7 @@ INSERT INTO `hol_kin_gen_cel` (`ide`, `nom`) VALUES
 -- Estructura de tabla para la tabla `hol_kin_gen_enc`
 --
 
+DROP TABLE IF EXISTS `hol_kin_gen_enc`;
 CREATE TABLE `hol_kin_gen_enc` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Génesis',
   `nom` varchar(10) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
@@ -3437,6 +3512,7 @@ INSERT INTO `hol_kin_gen_enc` (`ide`, `nom`, `lec`, `des`, `año`, `tot`) VALUES
 -- Estructura de tabla para la tabla `hol_kin_nav_cas`
 --
 
+DROP TABLE IF EXISTS `hol_kin_nav_cas`;
 CREATE TABLE `hol_kin_nav_cas` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Castillo',
   `nom` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
@@ -3470,6 +3546,7 @@ INSERT INTO `hol_kin_nav_cas` (`ide`, `nom`, `des`, `dir`, `col`, `cor`, `pod`, 
 -- Estructura de tabla para la tabla `hol_kin_nav_ond`
 --
 
+DROP TABLE IF EXISTS `hol_kin_nav_ond`;
 CREATE TABLE `hol_kin_nav_ond` (
   `ide` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Onda Encantada',
   `nom` varchar(35) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
@@ -3519,6 +3596,7 @@ INSERT INTO `hol_kin_nav_ond` (`ide`, `nom`, `kin`, `sel`, `gen_enc`, `gen_cel`,
 -- Estructura de tabla para la tabla `hol_lun`
 --
 
+DROP TABLE IF EXISTS `hol_lun`;
 CREATE TABLE `hol_lun` (
   `ide` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Día Lunar',
   `arm` smallint(1) UNSIGNED ZEROFILL DEFAULT NULL COMMENT 'Héptada',
@@ -3568,6 +3646,7 @@ INSERT INTO `hol_lun` (`ide`, `arm`, `rad`, `fas`, `sel`, `ato_des`) VALUES
 -- Estructura de tabla para la tabla `hol_lun_arm`
 --
 
+DROP TABLE IF EXISTS `hol_lun_arm`;
 CREATE TABLE `hol_lun_arm` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Héptada',
   `nom` varchar(10) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
@@ -3594,6 +3673,7 @@ INSERT INTO `hol_lun_arm` (`ide`, `nom`, `col`, `dia`, `des`, `tel_des`, `umb_de
 -- Estructura de tabla para la tabla `hol_lun_cub`
 --
 
+DROP TABLE IF EXISTS `hol_lun_cub`;
 CREATE TABLE `hol_lun_cub` (
   `ide` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Cubo del Guerrero',
   `nom` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
@@ -3634,6 +3714,7 @@ INSERT INTO `hol_lun_cub` (`ide`, `nom`, `des`, `tit`, `lec`, `afi`, `sel`, `lun
 -- Estructura de tabla para la tabla `hol_lun_fas`
 --
 
+DROP TABLE IF EXISTS `hol_lun_fas`;
 CREATE TABLE `hol_lun_fas` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Fase',
   `nom` varchar(30) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
@@ -3658,6 +3739,7 @@ INSERT INTO `hol_lun_fas` (`ide`, `nom`, `des`, `lun`, `lun_ini`, `lun_fin`) VAL
 -- Estructura de tabla para la tabla `hol_lun_fue`
 --
 
+DROP TABLE IF EXISTS `hol_lun_fue`;
 CREATE TABLE `hol_lun_fue` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Línea de Fuerza Vertical',
   `nom` varchar(15) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
@@ -3692,6 +3774,7 @@ INSERT INTO `hol_lun_fue` (`ide`, `nom`, `des`, `lun_ini`, `lun_fin`) VALUES
 -- Estructura de tabla para la tabla `hol_lun_pla`
 --
 
+DROP TABLE IF EXISTS `hol_lun_pla`;
 CREATE TABLE `hol_lun_pla` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Línea de Fuerza Vertical',
   `nom` varchar(30) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
@@ -3718,6 +3801,7 @@ INSERT INTO `hol_lun_pla` (`ide`, `nom`, `des`, `dia`) VALUES
 -- Estructura de tabla para la tabla `hol_lun_pla_ato`
 --
 
+DROP TABLE IF EXISTS `hol_lun_pla_ato`;
 CREATE TABLE `hol_lun_pla_ato` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Átomo',
   `nom` varchar(30) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
@@ -3750,6 +3834,7 @@ INSERT INTO `hol_lun_pla_ato` (`ide`, `nom`, `des`, `car`, `car_sec`, `hep`, `he
 -- Estructura de tabla para la tabla `hol_lun_pla_eje`
 --
 
+DROP TABLE IF EXISTS `hol_lun_pla_eje`;
 CREATE TABLE `hol_lun_pla_eje` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Identificador',
   `nom` varchar(30) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
@@ -3772,6 +3857,7 @@ INSERT INTO `hol_lun_pla_eje` (`ide`, `nom`, `des`, `tie`) VALUES
 -- Estructura de tabla para la tabla `hol_lun_pla_tet`
 --
 
+DROP TABLE IF EXISTS `hol_lun_pla_tet`;
 CREATE TABLE `hol_lun_pla_tet` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL,
   `nom` varchar(25) COLLATE utf8mb4_spanish_ci NOT NULL,
@@ -3793,6 +3879,7 @@ INSERT INTO `hol_lun_pla_tet` (`ide`, `nom`, `des`, `dia`) VALUES
 -- Estructura de tabla para la tabla `hol_lun_pla_tie`
 --
 
+DROP TABLE IF EXISTS `hol_lun_pla_tie`;
 CREATE TABLE `hol_lun_pla_tie` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Línea de Fuerza Vertical',
   `nom` varchar(30) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
@@ -3822,6 +3909,7 @@ INSERT INTO `hol_lun_pla_tie` (`ide`, `nom`, `des`, `dia`, `tel`, `rad`, `pos`) 
 -- Estructura de tabla para la tabla `hol_psi`
 --
 
+DROP TABLE IF EXISTS `hol_psi`;
 CREATE TABLE `hol_psi` (
   `ide` smallint(3) UNSIGNED ZEROFILL NOT NULL COMMENT 'Día Anual',
   `des` text COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Cita',
@@ -4221,6 +4309,7 @@ INSERT INTO `hol_psi` (`ide`, `des`, `fec`, `fec_dia`, `fec_mes`, `fec_cod`, `tz
 -- Estructura de tabla para la tabla `hol_psi_ban`
 --
 
+DROP TABLE IF EXISTS `hol_psi_ban`;
 CREATE TABLE `hol_psi_ban` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Banco-Psi',
   `pla` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Placa',
@@ -4247,6 +4336,7 @@ INSERT INTO `hol_psi_ban` (`ide`, `pla`, `dir`) VALUES
 -- Estructura de tabla para la tabla `hol_psi_ban_cor`
 --
 
+DROP TABLE IF EXISTS `hol_psi_ban_cor`;
 CREATE TABLE `hol_psi_ban_cor` (
   `ide` smallint(1) UNSIGNED NOT NULL COMMENT 'Identificador',
   `nom` varchar(35) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Corriente'
@@ -4272,6 +4362,7 @@ INSERT INTO `hol_psi_ban_cor` (`ide`, `nom`) VALUES
 -- Estructura de tabla para la tabla `hol_psi_ban_his`
 --
 
+DROP TABLE IF EXISTS `hol_psi_ban_his`;
 CREATE TABLE `hol_psi_ban_his` (
   `ide` smallint(1) UNSIGNED NOT NULL COMMENT 'Identificador',
   `nom` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Ecuación Historia'
@@ -4292,6 +4383,7 @@ INSERT INTO `hol_psi_ban_his` (`ide`, `nom`) VALUES
 -- Estructura de tabla para la tabla `hol_psi_ban_pla`
 --
 
+DROP TABLE IF EXISTS `hol_psi_ban_pla`;
 CREATE TABLE `hol_psi_ban_pla` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Placa',
   `nom` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
@@ -4315,6 +4407,7 @@ INSERT INTO `hol_psi_ban_pla` (`ide`, `nom`, `nor`, `sur`) VALUES
 -- Estructura de tabla para la tabla `hol_psi_cro`
 --
 
+DROP TABLE IF EXISTS `hol_psi_cro`;
 CREATE TABLE `hol_psi_cro` (
   `ide` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Cromática',
   `nom` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
@@ -4406,6 +4499,7 @@ INSERT INTO `hol_psi_cro` (`ide`, `nom`, `des`) VALUES
 -- Estructura de tabla para la tabla `hol_psi_cro_arm`
 --
 
+DROP TABLE IF EXISTS `hol_psi_cro_arm`;
 CREATE TABLE `hol_psi_cro_arm` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Armónica',
   `col` varchar(10) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Color',
@@ -4429,6 +4523,7 @@ INSERT INTO `hol_psi_cro_arm` (`ide`, `col`, `nom`, `des`) VALUES
 -- Estructura de tabla para la tabla `hol_psi_est`
 --
 
+DROP TABLE IF EXISTS `hol_psi_est`;
 CREATE TABLE `hol_psi_est` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Estación Solar',
   `nom` varchar(10) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
@@ -4453,6 +4548,7 @@ INSERT INTO `hol_psi_est` (`ide`, `nom`, `des`, `pol_sur`, `pol_nor`) VALUES
 -- Estructura de tabla para la tabla `hol_psi_hep`
 --
 
+DROP TABLE IF EXISTS `hol_psi_hep`;
 CREATE TABLE `hol_psi_hep` (
   `ide` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Héptada'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Heptada de la Estación Solar';
@@ -4521,6 +4617,7 @@ INSERT INTO `hol_psi_hep` (`ide`) VALUES
 -- Estructura de tabla para la tabla `hol_psi_lun`
 --
 
+DROP TABLE IF EXISTS `hol_psi_lun`;
 CREATE TABLE `hol_psi_lun` (
   `ide` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Giro Lunar',
   `pos` varchar(15) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Posición',
@@ -4560,6 +4657,7 @@ INSERT INTO `hol_psi_lun` (`ide`, `pos`, `nom`, `tot`, `tot_pro`, `tot_por`, `ki
 -- Estructura de tabla para la tabla `hol_psi_pag`
 --
 
+DROP TABLE IF EXISTS `hol_psi_pag`;
 CREATE TABLE `hol_psi_pag` (
   `ide` tinyint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Portal',
   `nom` varchar(10) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Estado'
@@ -4579,6 +4677,7 @@ INSERT INTO `hol_psi_pag` (`ide`, `nom`) VALUES
 -- Estructura de tabla para la tabla `hol_psi_vin`
 --
 
+DROP TABLE IF EXISTS `hol_psi_vin`;
 CREATE TABLE `hol_psi_vin` (
   `ide` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Vinal',
   `nom` varchar(15) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
@@ -4619,6 +4718,7 @@ INSERT INTO `hol_psi_vin` (`ide`, `nom`, `des`, `fec`, `sin`, `cro`) VALUES
 -- Estructura de tabla para la tabla `hol_rad`
 --
 
+DROP TABLE IF EXISTS `hol_rad`;
 CREATE TABLE `hol_rad` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Plasma',
   `nom` varchar(10) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
@@ -4657,13 +4757,13 @@ CREATE TABLE `hol_rad` (
 --
 
 INSERT INTO `hol_rad` (`ide`, `nom`, `col`, `pod`, `dia`, `tel`, `tel_des`, `tel_año`, `tel_ora_año`, `tel_ora_ani`, `tel_ora_gen`, `rin_des`, `pla_des`, `pla_pod`, `pla_fue`, `pla_fue_pre`, `pla_fue_pos`, `pla_qua`, `pla_man`, `pla_cub`, `pla_cub_pos`, `pla_lec`, `hum_cha`, `umb`, `umb_map`, `umb_pat`, `umb_arc`, `umb_pue`, `umb_esf`, `umb_esf_fun`) VALUES
-(1, 'Dali', 'amarillo', 'Apunta', '01, 08, 15, 22', 'Profecía del Año Uno', 'La Victoria Da en el Blanco', 1993, 144, 248, 194, 'Dalí liberada, capacidad técnica lumínica establecida', 'Focaliza la Fuerza Térmica', 'Focaliza', 'Fuerza Térmica', 01, 02, 1, 'Om', 0, 'Arriba', 'Mi Padre es la Consciencia Intrínseca. Yo Siento el Calor. ', 1, 108, 'Fuente Omnigaláctica', 'Cristo', 'Trono', 'Alfa-Alfa', 'Preconsciente (Hemisferio Derecho Trasero)', 'Samadhi Profundo'),
-(2, 'Seli', 'rojo', 'Fluye', '02, 09, 16, 23', 'Profecía del Año Dos', 'La Victoria Fluye', 1994, 249, 093, 195, 'Seli liberada, capacidad térmica-lumínica ampliada', 'Fluye Fuerza Lumínica', 'Fluye', 'Fuerza Lumínica', 03, 03, 1, 'Hram', 0, 'Abajo', 'Mi Madre es la Esfera última. Yo Veo la Luz. ', 7, 291, 'Tierra Cristal', 'Mahoma', 'Avatar', 'Alfa-Beta', 'Subconsciente (Hemisferio Derecho Frontal)', 'Samadhi Informativo'),
-(3, 'Gama', 'blanco', 'Pacifica', '03, 10, 17, 24', 'Profecía del Año Tres', 'La Victoria Pacifica', 1995, 094, 198, 196, 'Gamma liberada capacidad térmica-lumínica ampliada, alcanza el \"poder extraordinario\"', 'Pacifica la Fuerza de Impácto Térmico-Lumí', 'Pacifica', 'Fuerza Pacificadora', 04, 05, 1, 'Hraha', 0, 'Derecha', 'Mi Linaje es la Unión de la Consciencia Intrínseca y la Esfera Última.', 2, 144, 'Hubab Ku', 'Pacal Votan', 'Misterio', 'Beta-Beta', 'Consciente (Hemisferio Izquierdo Frontal)', 'Mediumnidad del Consciente Des'),
-(4, 'Kali', 'azul', 'Establece', '04, 11, 18, 25', 'Profecía del Año Cuatro', 'La Victoria Establece', 1996, 199, 043, 197, ' Kali liberada, capacidad Normativa de cohesión-distensión catalítica alcanzada', 'Establece la Cohesión-Distensión', 'Establece', 'Agente Catalizador', 06, 06, 2, 'Hrim', 0, 'Izquierda', 'Mi Nombre es el Glorioso Nacido del Loto. Yo Catalizo la Luz-Calor Adentro.', 6, 515, 'Ahau Kin', 'Quetzalcoatl', 'Iniciación', 'Beta-Alta', 'Consciente Contínuo (Hemisferio Izquierdo Trasero)', 'Control de la Mente Superior'),
-(5, 'Alfa', 'amarillo', 'Libera', '05, 12, 19, 26', 'Profecía del Año Cinco', 'La Victoria Libera', 1997, 044, 148, 198, 'Alfa liberado, activación del doble electrón extendido, Cubo de la Ley plásmicamente liberado como experiencia de la Telepatía Universal', 'Libera el Electrón Doble-Extendido', 'Libera', 'Electrón Doble-Extendido', 07, 07, 3, 'Hraum', 0, 'Frente', 'Mi País es la Esfera Última no Nacida. Yo Libero el Electrón Doble Extendido en ', 3, 414, 'Sirio', 'San Juan', 'Tiempo-Espacio', 'Hiper Electrón', 'Superconsciente (Conecta Lobulo Frontal y Trasero Derecho)', 'Superconsciente HiperElectróni'),
-(6, 'Limi', 'rojo', 'Purifica', '06, 13, 20, 27', 'Profecía del Año Seis', 'La Victoria Purifica', 1998, 149, 253, 199, 'Limi liberada generando el electrón mental, la mente galáctica fortalece la mente Telepática de la Tierra con los poderes generativos del electrón', 'Purifica el Electrón Mental', 'Purifica', 'Electrón Metal', 09, 09, 3, 'Hrum', 0, 'Detrás', 'Yo Consumo Pensamientos Dualistas comos si fueran Alimento. Yo Purifico el Elect', 5, 402, 'Estación Intermedia AA', 'Padmasambhava', 'Trascendencia', 'Hiper Neutrón', 'Consciente Subliminal (Conecta Lobulo Frontal y Trasero Izquierdo)', 'Consciente Subliminal HiperNeu'),
-(7, 'Silio', 'blanco', 'Descarga', '07, 14, 21, 28', 'Profecía del Año Siete', 'La Victoria Descarga', 1999, 254, 098, 200, 'Silio liberado, electrón-neutrón generado, completa la creación del Heptágono de la Mente dispara el Puente Arco iris Circumpolar', 'Descarga el Electrón-Neutrón Mental', 'Descarga', 'Electrón-Neutrón Mental', 10, 11, 3, 'Hraim', 0, 'Centro', 'Mi Rol es Cumplir las Acciones del Buda. Yo Descargo el Electrón-Neutrón Mental ', 4, 441, 'Pléyades', 'Buda', 'Cubo', 'Sirio Beta 52-Elemen', 'Perceptor Holomental (Conecta Todas las Dimensiones del Tiempo)', 'Iluminación Hiperplásmica');
+(1, 'Dali', 'amarillo', 'Apunta', '01, 08, 15, 22', 'Profecía del Año Uno', 'La Victoria Da en el Blanco', 1993, 144, 248, 194, 'Dalí liberada, capacidad técnica lumínica establecida', 'Focaliza la Fuerza Térmica', 'Focaliza', 'Fuerza Térmica', 01, 02, 1, 'Om', 1, 'Arriba', 'Mi Padre es la Consciencia Intrínseca. Yo Siento el Calor. ', 1, 108, 'Fuente Omnigaláctica', 'Cristo', 'Trono', 'Alfa-Alfa', 'Preconsciente (Hemisferio Derecho Trasero)', 'Samadhi Profundo'),
+(2, 'Seli', 'rojo', 'Fluye', '02, 09, 16, 23', 'Profecía del Año Dos', 'La Victoria Fluye', 1994, 249, 093, 195, 'Seli liberada, capacidad térmica-lumínica ampliada', 'Fluye Fuerza Lumínica', 'Fluye', 'Fuerza Lumínica', 03, 03, 1, 'Hram', 2, 'Abajo', 'Mi Madre es la Esfera última. Yo Veo la Luz. ', 7, 291, 'Tierra Cristal', 'Mahoma', 'Avatar', 'Alfa-Beta', 'Subconsciente (Hemisferio Derecho Frontal)', 'Samadhi Informativo'),
+(3, 'Gama', 'blanco', 'Pacifica', '03, 10, 17, 24', 'Profecía del Año Tres', 'La Victoria Pacifica', 1995, 094, 198, 196, 'Gamma liberada capacidad térmica-lumínica ampliada, alcanza el \"poder extraordinario\"', 'Pacifica la Fuerza de Impácto Térmico-Lumí', 'Pacifica', 'Fuerza Pacificadora', 04, 05, 1, 'Hraha', 3, 'Derecha', 'Mi Linaje es la Unión de la Consciencia Intrínseca y la Esfera Última.', 2, 144, 'Hubab Ku', 'Pacal Votan', 'Misterio', 'Beta-Beta', 'Consciente (Hemisferio Izquierdo Frontal)', 'Mediumnidad del Consciente Des'),
+(4, 'Kali', 'azul', 'Establece', '04, 11, 18, 25', 'Profecía del Año Cuatro', 'La Victoria Establece', 1996, 199, 043, 197, ' Kali liberada, capacidad Normativa de cohesión-distensión catalítica alcanzada', 'Establece la Cohesión-Distensión', 'Establece', 'Agente Catalizador', 06, 06, 2, 'Hrim', 4, 'Izquierda', 'Mi Nombre es el Glorioso Nacido del Loto. Yo Catalizo la Luz-Calor Adentro.', 6, 515, 'Ahau Kin', 'Quetzalcoatl', 'Iniciación', 'Beta-Alta', 'Consciente Contínuo (Hemisferio Izquierdo Trasero)', 'Control de la Mente Superior'),
+(5, 'Alfa', 'amarillo', 'Libera', '05, 12, 19, 26', 'Profecía del Año Cinco', 'La Victoria Libera', 1997, 044, 148, 198, 'Alfa liberado, activación del doble electrón extendido, Cubo de la Ley plásmicamente liberado como experiencia de la Telepatía Universal', 'Libera el Electrón Doble-Extendido', 'Libera', 'Electrón Doble-Extendido', 07, 07, 3, 'Hraum', 5, 'Frente', 'Mi País es la Esfera Última no Nacida. Yo Libero el Electrón Doble Extendido en ', 3, 414, 'Sirio', 'San Juan', 'Tiempo-Espacio', 'Hiper Electrón', 'Superconsciente (Conecta Lobulo Frontal y Trasero Derecho)', 'Superconsciente HiperElectróni'),
+(6, 'Limi', 'rojo', 'Purifica', '06, 13, 20, 27', 'Profecía del Año Seis', 'La Victoria Purifica', 1998, 149, 253, 199, 'Limi liberada generando el electrón mental, la mente galáctica fortalece la mente Telepática de la Tierra con los poderes generativos del electrón', 'Purifica el Electrón Mental', 'Purifica', 'Electrón Metal', 09, 09, 3, 'Hrum', 6, 'Detrás', 'Yo Consumo Pensamientos Dualistas comos si fueran Alimento. Yo Purifico el Elect', 5, 402, 'Estación Intermedia AA', 'Padmasambhava', 'Trascendencia', 'Hiper Neutrón', 'Consciente Subliminal (Conecta Lobulo Frontal y Trasero Izquierdo)', 'Consciente Subliminal HiperNeu'),
+(7, 'Silio', 'blanco', 'Descarga', '07, 14, 21, 28', 'Profecía del Año Siete', 'La Victoria Descarga', 1999, 254, 098, 200, 'Silio liberado, electrón-neutrón generado, completa la creación del Heptágono de la Mente dispara el Puente Arco iris Circumpolar', 'Descarga el Electrón-Neutrón Mental', 'Descarga', 'Electrón-Neutrón Mental', 10, 11, 3, 'Hraim', 7, 'Centro', 'Mi Rol es Cumplir las Acciones del Buda. Yo Descargo el Electrón-Neutrón Mental ', 4, 441, 'Pléyades', 'Buda', 'Cubo', 'Sirio Beta 52-Elemen', 'Perceptor Holomental (Conecta Todas las Dimensiones del Tiempo)', 'Iluminación Hiperplásmica');
 
 -- --------------------------------------------------------
 
@@ -4671,6 +4771,7 @@ INSERT INTO `hol_rad` (`ide`, `nom`, `col`, `pod`, `dia`, `tel`, `tel_des`, `tel
 -- Estructura de tabla para la tabla `hol_rad_hum_cha`
 --
 
+DROP TABLE IF EXISTS `hol_rad_hum_cha`;
 CREATE TABLE `hol_rad_hum_cha` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Chakra',
   `nom` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
@@ -4707,6 +4808,7 @@ INSERT INTO `hol_rad_hum_cha` (`ide`, `nom`, `cod`, `pos`, `col`, `gla`, `ele`, 
 -- Estructura de tabla para la tabla `hol_rad_hum_mud`
 --
 
+DROP TABLE IF EXISTS `hol_rad_hum_mud`;
 CREATE TABLE `hol_rad_hum_mud` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Mudra',
   `nom` varchar(15) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre'
@@ -4731,6 +4833,7 @@ INSERT INTO `hol_rad_hum_mud` (`ide`, `nom`) VALUES
 -- Estructura de tabla para la tabla `hol_rad_pla_car`
 --
 
+DROP TABLE IF EXISTS `hol_rad_pla_car`;
 CREATE TABLE `hol_rad_pla_car` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Identificador',
   `nom` varchar(15) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
@@ -4753,6 +4856,7 @@ INSERT INTO `hol_rad_pla_car` (`ide`, `nom`, `col`) VALUES
 -- Estructura de tabla para la tabla `hol_rad_pla_cub`
 --
 
+DROP TABLE IF EXISTS `hol_rad_pla_cub`;
 CREATE TABLE `hol_rad_pla_cub` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Heptágono'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Cubo de Plasma';
@@ -4763,6 +4867,7 @@ CREATE TABLE `hol_rad_pla_cub` (
 -- Estructura de tabla para la tabla `hol_rad_pla_ele`
 --
 
+DROP TABLE IF EXISTS `hol_rad_pla_ele`;
 CREATE TABLE `hol_rad_pla_ele` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Tipo de Electricidad',
   `nom` varchar(15) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
@@ -4788,6 +4893,7 @@ INSERT INTO `hol_rad_pla_ele` (`ide`, `nom`, `cod`, `des`) VALUES
 -- Estructura de tabla para la tabla `hol_rad_pla_fue`
 --
 
+DROP TABLE IF EXISTS `hol_rad_pla_fue`;
 CREATE TABLE `hol_rad_pla_fue` (
   `ide` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Línea de Fuerza',
   `nom` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
@@ -4820,6 +4926,7 @@ INSERT INTO `hol_rad_pla_fue` (`ide`, `nom`, `ele_pre`, `ele_ope`, `ele_pos`) VA
 -- Estructura de tabla para la tabla `hol_rad_pla_pol`
 --
 
+DROP TABLE IF EXISTS `hol_rad_pla_pol`;
 CREATE TABLE `hol_rad_pla_pol` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Identificador',
   `nom` varchar(10) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
@@ -4840,6 +4947,7 @@ INSERT INTO `hol_rad_pla_pol` (`ide`, `nom`, `ope`) VALUES
 -- Estructura de tabla para la tabla `hol_rad_pla_qua`
 --
 
+DROP TABLE IF EXISTS `hol_rad_pla_qua`;
 CREATE TABLE `hol_rad_pla_qua` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Quántum',
   `nom` varchar(30) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
@@ -4865,6 +4973,7 @@ INSERT INTO `hol_rad_pla_qua` (`ide`, `nom`, `des`, `arm_des`, `ato_des`, `pla_d
 -- Estructura de tabla para la tabla `hol_sel`
 --
 
+DROP TABLE IF EXISTS `hol_sel`;
 CREATE TABLE `hol_sel` (
   `ide` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Sello',
   `cod` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Código 0-19',
@@ -4953,6 +5062,7 @@ INSERT INTO `hol_sel` (`ide`, `cod`, `ord`, `nom`, `nom_col`, `nom_cod`, `may`, 
 -- Estructura de tabla para la tabla `hol_sel_arm_cel`
 --
 
+DROP TABLE IF EXISTS `hol_sel_arm_cel`;
 CREATE TABLE `hol_sel_arm_cel` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Célula del Tiempo',
   `nom` varchar(10) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
@@ -4981,6 +5091,7 @@ INSERT INTO `hol_sel_arm_cel` (`ide`, `nom`, `fun`, `pod`, `des`, `sel`, `sel_in
 -- Estructura de tabla para la tabla `hol_sel_arm_raz`
 --
 
+DROP TABLE IF EXISTS `hol_sel_arm_raz`;
 CREATE TABLE `hol_sel_arm_raz` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Raza Cósmica',
   `nom` varchar(15) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
@@ -5005,6 +5116,7 @@ INSERT INTO `hol_sel_arm_raz` (`ide`, `nom`, `dir`, `pod`, `sel`) VALUES
 -- Estructura de tabla para la tabla `hol_sel_cic_dir`
 --
 
+DROP TABLE IF EXISTS `hol_sel_cic_dir`;
 CREATE TABLE `hol_sel_cic_dir` (
   `ide` smallint(1) UNSIGNED NOT NULL COMMENT 'Posición',
   `col` varchar(15) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Color',
@@ -5028,6 +5140,7 @@ INSERT INTO `hol_sel_cic_dir` (`ide`, `col`, `nom`, `des`) VALUES
 -- Estructura de tabla para la tabla `hol_sel_cic_luz`
 --
 
+DROP TABLE IF EXISTS `hol_sel_cic_luz`;
 CREATE TABLE `hol_sel_cic_luz` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Grupo Cíclico',
   `nom` varchar(15) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
@@ -5051,6 +5164,7 @@ INSERT INTO `hol_sel_cic_luz` (`ide`, `nom`, `des`) VALUES
 -- Estructura de tabla para la tabla `hol_sel_cic_men`
 --
 
+DROP TABLE IF EXISTS `hol_sel_cic_men`;
 CREATE TABLE `hol_sel_cic_men` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Estación Galáctica',
   `sel` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Sello Solar',
@@ -5075,6 +5189,7 @@ INSERT INTO `hol_sel_cic_men` (`ide`, `sel`, `nom`, `des`, `lec`) VALUES
 -- Estructura de tabla para la tabla `hol_sel_cic_ser`
 --
 
+DROP TABLE IF EXISTS `hol_sel_cic_ser`;
 CREATE TABLE `hol_sel_cic_ser` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Etapa del Desarrollo',
   `nom` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
@@ -5097,6 +5212,7 @@ INSERT INTO `hol_sel_cic_ser` (`ide`, `nom`, `des`, `det`) VALUES
 -- Estructura de tabla para la tabla `hol_sel_cod`
 --
 
+DROP TABLE IF EXISTS `hol_sel_cod`;
 CREATE TABLE `hol_sel_cod` (
   `ide` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Identificador',
   `ord` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Ordenamiento 0-19'
@@ -5108,6 +5224,7 @@ CREATE TABLE `hol_sel_cod` (
 -- Estructura de tabla para la tabla `hol_sel_cro_ele`
 --
 
+DROP TABLE IF EXISTS `hol_sel_cro_ele`;
 CREATE TABLE `hol_sel_cro_ele` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Elemento Galáctico',
   `nom` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
@@ -5138,6 +5255,7 @@ INSERT INTO `hol_sel_cro_ele` (`ide`, `nom`, `col`, `men`, `des`, `des_ini`, `se
 -- Estructura de tabla para la tabla `hol_sel_cro_fam`
 --
 
+DROP TABLE IF EXISTS `hol_sel_cro_fam`;
 CREATE TABLE `hol_sel_cro_fam` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Familia Terrestre',
   `cod` varchar(15) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Código',
@@ -5171,6 +5289,7 @@ INSERT INTO `hol_sel_cro_fam` (`ide`, `cod`, `nom`, `des`, `enc_pod`, `enc_fun`,
 -- Estructura de tabla para la tabla `hol_sel_hum_cen`
 --
 
+DROP TABLE IF EXISTS `hol_sel_hum_cen`;
 CREATE TABLE `hol_sel_hum_cen` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Centro Galáctico',
   `nom` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
@@ -5195,6 +5314,7 @@ INSERT INTO `hol_sel_hum_cen` (`ide`, `nom`, `fun`, `fam`) VALUES
 -- Estructura de tabla para la tabla `hol_sel_hum_ded`
 --
 
+DROP TABLE IF EXISTS `hol_sel_hum_ded`;
 CREATE TABLE `hol_sel_hum_ded` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Dedo',
   `nom` varchar(10) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
@@ -5219,6 +5339,7 @@ INSERT INTO `hol_sel_hum_ded` (`ide`, `nom`, `fun`, `fam`) VALUES
 -- Estructura de tabla para la tabla `hol_sel_hum_ext`
 --
 
+DROP TABLE IF EXISTS `hol_sel_hum_ext`;
 CREATE TABLE `hol_sel_hum_ext` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Extremidad',
   `nom` varchar(15) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
@@ -5241,6 +5362,7 @@ INSERT INTO `hol_sel_hum_ext` (`ide`, `nom`, `ele`) VALUES
 -- Estructura de tabla para la tabla `hol_sel_hum_mer`
 --
 
+DROP TABLE IF EXISTS `hol_sel_hum_mer`;
 CREATE TABLE `hol_sel_hum_mer` (
   `ide` smallint(2) UNSIGNED ZEROFILL NOT NULL,
   `nom` varchar(30) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Meridiano Orgánico',
@@ -5271,6 +5393,7 @@ INSERT INTO `hol_sel_hum_mer` (`ide`, `nom`, `des`, `sel`, `fam`) VALUES
 -- Estructura de tabla para la tabla `hol_sel_hum_res`
 --
 
+DROP TABLE IF EXISTS `hol_sel_hum_res`;
 CREATE TABLE `hol_sel_hum_res` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Respiración S-G',
   `lad` varchar(10) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Lado del Cuerpo'
@@ -5290,6 +5413,7 @@ INSERT INTO `hol_sel_hum_res` (`ide`, `lad`) VALUES
 -- Estructura de tabla para la tabla `hol_sel_par`
 --
 
+DROP TABLE IF EXISTS `hol_sel_par`;
 CREATE TABLE `hol_sel_par` (
   `ide` char(3) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Pareja del Oráculo',
   `pos` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Posición',
@@ -5320,6 +5444,7 @@ INSERT INTO `hol_sel_par` (`ide`, `pos`, `nom`, `des`, `lec`, `mis`, `pod`, `acc
 -- Estructura de tabla para la tabla `hol_sel_par_ana`
 --
 
+DROP TABLE IF EXISTS `hol_sel_par_ana`;
 CREATE TABLE `hol_sel_par_ana` (
   `ide` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Pareja',
   `ini` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Sello 1',
@@ -5348,6 +5473,7 @@ INSERT INTO `hol_sel_par_ana` (`ide`, `ini`, `fin`) VALUES
 -- Estructura de tabla para la tabla `hol_sel_par_ant`
 --
 
+DROP TABLE IF EXISTS `hol_sel_par_ant`;
 CREATE TABLE `hol_sel_par_ant` (
   `ide` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Pareja',
   `ini` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Sello 1',
@@ -5376,6 +5502,7 @@ INSERT INTO `hol_sel_par_ant` (`ide`, `ini`, `fin`) VALUES
 -- Estructura de tabla para la tabla `hol_sel_par_ocu`
 --
 
+DROP TABLE IF EXISTS `hol_sel_par_ocu`;
 CREATE TABLE `hol_sel_par_ocu` (
   `ide` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Pareja',
   `ini` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Sello 1',
@@ -5404,6 +5531,7 @@ INSERT INTO `hol_sel_par_ocu` (`ide`, `ini`, `fin`) VALUES
 -- Estructura de tabla para la tabla `hol_sel_pla_cen`
 --
 
+DROP TABLE IF EXISTS `hol_sel_pla_cen`;
 CREATE TABLE `hol_sel_pla_cen` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Centro Galáctico',
   `nom` varchar(25) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
@@ -5428,6 +5556,7 @@ INSERT INTO `hol_sel_pla_cen` (`ide`, `nom`, `fun`, `fam`) VALUES
 -- Estructura de tabla para la tabla `hol_sel_pla_hem`
 --
 
+DROP TABLE IF EXISTS `hol_sel_pla_hem`;
 CREATE TABLE `hol_sel_pla_hem` (
   `ide` int(11) NOT NULL COMMENT 'Identificador',
   `nom` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre'
@@ -5448,6 +5577,7 @@ INSERT INTO `hol_sel_pla_hem` (`ide`, `nom`) VALUES
 -- Estructura de tabla para la tabla `hol_sel_pla_mer`
 --
 
+DROP TABLE IF EXISTS `hol_sel_pla_mer`;
 CREATE TABLE `hol_sel_pla_mer` (
   `ide` int(11) NOT NULL COMMENT 'Identificador',
   `nom` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre'
@@ -5467,6 +5597,7 @@ INSERT INTO `hol_sel_pla_mer` (`ide`, `nom`) VALUES
 -- Estructura de tabla para la tabla `hol_sel_pla_res`
 --
 
+DROP TABLE IF EXISTS `hol_sel_pla_res`;
 CREATE TABLE `hol_sel_pla_res` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Respiración S-G',
   `nom` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Posición',
@@ -5488,6 +5619,7 @@ INSERT INTO `hol_sel_pla_res` (`ide`, `nom`, `hem`, `fam`) VALUES
 -- Estructura de tabla para la tabla `hol_sel_res`
 --
 
+DROP TABLE IF EXISTS `hol_sel_res`;
 CREATE TABLE `hol_sel_res` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Respiración S-G',
   `nom` varchar(25) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
@@ -5509,6 +5641,7 @@ INSERT INTO `hol_sel_res` (`ide`, `nom`, `tip`, `tel`) VALUES
 -- Estructura de tabla para la tabla `hol_sel_res_flu`
 --
 
+DROP TABLE IF EXISTS `hol_sel_res_flu`;
 CREATE TABLE `hol_sel_res_flu` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Flujo Polar',
   `nom` varchar(25) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
@@ -5532,6 +5665,7 @@ INSERT INTO `hol_sel_res_flu` (`ide`, `nom`, `des`, `fue`) VALUES
 -- Estructura de tabla para la tabla `hol_sel_res_fue`
 --
 
+DROP TABLE IF EXISTS `hol_sel_res_fue`;
 CREATE TABLE `hol_sel_res_fue` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Flujo Polar',
   `nom` varchar(25) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
@@ -5552,6 +5686,7 @@ INSERT INTO `hol_sel_res_fue` (`ide`, `nom`, `des`) VALUES
 -- Estructura de tabla para la tabla `hol_sel_sol_cel`
 --
 
+DROP TABLE IF EXISTS `hol_sel_sol_cel`;
 CREATE TABLE `hol_sel_sol_cel` (
   `ide` smallint(1) UNSIGNED NOT NULL COMMENT 'Célula Solar',
   `nom` varchar(25) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
@@ -5578,6 +5713,7 @@ INSERT INTO `hol_sel_sol_cel` (`ide`, `nom`, `des`, `sel`, `ele`, `fam`) VALUES
 -- Estructura de tabla para la tabla `hol_sel_sol_cir`
 --
 
+DROP TABLE IF EXISTS `hol_sel_sol_cir`;
 CREATE TABLE `hol_sel_sol_cir` (
   `ide` tinyint(3) UNSIGNED NOT NULL COMMENT 'Circuito',
   `cod` tinyint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Unidad',
@@ -5605,6 +5741,7 @@ INSERT INTO `hol_sel_sol_cir` (`ide`, `cod`, `nom`, `des`, `sel`, `fam`, `pla`) 
 -- Estructura de tabla para la tabla `hol_sel_sol_orb`
 --
 
+DROP TABLE IF EXISTS `hol_sel_sol_orb`;
 CREATE TABLE `hol_sel_sol_orb` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Órbital',
   `nom` varchar(10) NOT NULL COMMENT 'Grupo Orbital',
@@ -5626,6 +5763,7 @@ INSERT INTO `hol_sel_sol_orb` (`ide`, `nom`, `des`, `ele`) VALUES
 -- Estructura de tabla para la tabla `hol_sel_sol_pla`
 --
 
+DROP TABLE IF EXISTS `hol_sel_sol_pla`;
 CREATE TABLE `hol_sel_sol_pla` (
   `ide` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Planeta',
   `nom` varchar(10) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
@@ -5660,6 +5798,7 @@ INSERT INTO `hol_sel_sol_pla` (`ide`, `nom`, `cod`, `orb`, `cel`, `cir`, `sel`, 
 -- Estructura de tabla para la tabla `hol_sel_sol_res`
 --
 
+DROP TABLE IF EXISTS `hol_sel_sol_res`;
 CREATE TABLE `hol_sel_sol_res` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Respiración S-G',
   `nom` varchar(25) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre'
@@ -5679,6 +5818,7 @@ INSERT INTO `hol_sel_sol_res` (`ide`, `nom`) VALUES
 -- Estructura de tabla para la tabla `hol_tel`
 --
 
+DROP TABLE IF EXISTS `hol_tel`;
 CREATE TABLE `hol_tel` (
   `ide` smallint(1) NOT NULL COMMENT 'Plano',
   `nom` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
@@ -5701,6 +5841,7 @@ INSERT INTO `hol_tel` (`ide`, `nom`, `des`, `lad`) VALUES
 -- Estructura de tabla para la tabla `hol_tel_cam`
 --
 
+DROP TABLE IF EXISTS `hol_tel_cam`;
 CREATE TABLE `hol_tel_cam` (
   `ide` smallint(1) NOT NULL COMMENT 'Campo',
   `nom` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
@@ -5722,6 +5863,7 @@ INSERT INTO `hol_tel_cam` (`ide`, `nom`, `des`, `lad`) VALUES
 -- Estructura de tabla para la tabla `hol_tel_mov`
 --
 
+DROP TABLE IF EXISTS `hol_tel_mov`;
 CREATE TABLE `hol_tel_mov` (
   `ide` smallint(1) NOT NULL COMMENT 'Plano',
   `nom` varchar(25) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
@@ -5747,6 +5889,7 @@ INSERT INTO `hol_tel_mov` (`ide`, `nom`, `des`, `tip`, `flu`, `pod`, `fun`, `lad
 -- Estructura de tabla para la tabla `hol_tel_pla`
 --
 
+DROP TABLE IF EXISTS `hol_tel_pla`;
 CREATE TABLE `hol_tel_pla` (
   `ide` smallint(1) NOT NULL COMMENT 'Plano',
   `nom` varchar(25) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
@@ -5768,6 +5911,7 @@ INSERT INTO `hol_tel_pla` (`ide`, `nom`, `des`, `lad`) VALUES
 -- Estructura de tabla para la tabla `hol_tel_sub`
 --
 
+DROP TABLE IF EXISTS `hol_tel_sub`;
 CREATE TABLE `hol_tel_sub` (
   `ide` smallint(1) NOT NULL COMMENT 'Campo',
   `nom` varchar(30) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
@@ -5791,6 +5935,7 @@ INSERT INTO `hol_tel_sub` (`ide`, `nom`, `des`, `lad`) VALUES
 -- Estructura de tabla para la tabla `hol_ton`
 --
 
+DROP TABLE IF EXISTS `hol_ton`;
 CREATE TABLE `hol_ton` (
   `ide` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Tono',
   `nom` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
@@ -5847,6 +5992,7 @@ INSERT INTO `hol_ton` (`ide`, `nom`, `may`, `gal`, `car`, `pod`, `pod_lec`, `acc
 -- Estructura de tabla para la tabla `hol_ton_dim`
 --
 
+DROP TABLE IF EXISTS `hol_ton_dim`;
 CREATE TABLE `hol_ton_dim` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Pulsar Dimensional',
   `pos` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Dimensión',
@@ -5872,6 +6018,7 @@ INSERT INTO `hol_ton_dim` (`ide`, `pos`, `nom`, `des`, `ton`, `ond`) VALUES
 -- Estructura de tabla para la tabla `hol_ton_hum_art`
 --
 
+DROP TABLE IF EXISTS `hol_ton_hum_art`;
 CREATE TABLE `hol_ton_hum_art` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Articulación',
   `nom` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre'
@@ -5896,6 +6043,7 @@ INSERT INTO `hol_ton_hum_art` (`ide`, `nom`) VALUES
 -- Estructura de tabla para la tabla `hol_ton_hum_sen`
 --
 
+DROP TABLE IF EXISTS `hol_ton_hum_sen`;
 CREATE TABLE `hol_ton_hum_sen` (
   `ide` smallint(1) UNSIGNED NOT NULL COMMENT 'Identificador',
   `nom` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Sentido'
@@ -5920,6 +6068,7 @@ INSERT INTO `hol_ton_hum_sen` (`ide`, `nom`) VALUES
 -- Estructura de tabla para la tabla `hol_ton_mat`
 --
 
+DROP TABLE IF EXISTS `hol_ton_mat`;
 CREATE TABLE `hol_ton_mat` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Pulsar Matiz',
   `cod` varchar(15) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Código',
@@ -5946,6 +6095,7 @@ INSERT INTO `hol_ton_mat` (`ide`, `cod`, `nom`, `des`, `ton`, `ond`) VALUES
 -- Estructura de tabla para la tabla `hol_ton_ond`
 --
 
+DROP TABLE IF EXISTS `hol_ton_ond`;
 CREATE TABLE `hol_ton_ond` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Aventura',
   `nom` varchar(15) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
@@ -5969,6 +6119,7 @@ INSERT INTO `hol_ton_ond` (`ide`, `nom`, `des`, `ton`) VALUES
 -- Estructura de tabla para la tabla `hol_ton_sim`
 --
 
+DROP TABLE IF EXISTS `hol_ton_sim`;
 CREATE TABLE `hol_ton_sim` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Simetría Especular',
   `nom` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
@@ -5996,6 +6147,7 @@ INSERT INTO `hol_ton_sim` (`ide`, `nom`, `des`, `ton`, `inv`) VALUES
 -- Estructura de tabla para la tabla `num_int`
 --
 
+DROP TABLE IF EXISTS `num_int`;
 CREATE TABLE `num_int` (
   `ide` int(11) NOT NULL COMMENT 'Número',
   `nom` varchar(50) NOT NULL COMMENT 'Nombre',
@@ -6045,6 +6197,7 @@ INSERT INTO `num_int` (`ide`, `nom`, `pos`, `pas`) VALUES
 -- Estructura de tabla para la tabla `tex_let`
 --
 
+DROP TABLE IF EXISTS `tex_let`;
 CREATE TABLE `tex_let` (
   `pos` int(11) NOT NULL COMMENT 'Posición',
   `ide` char(1) NOT NULL COMMENT 'Caracter',
@@ -6100,6 +6253,7 @@ INSERT INTO `tex_let` (`pos`, `ide`, `tip`, `var`) VALUES
 -- Estructura de tabla para la tabla `usu`
 --
 
+DROP TABLE IF EXISTS `usu`;
 CREATE TABLE `usu` (
   `ide` int(11) NOT NULL COMMENT 'Identificador',
   `pas` varchar(15) NOT NULL COMMENT 'Password',
@@ -6127,6 +6281,7 @@ INSERT INTO `usu` (`ide`, `pas`, `nom`, `ape`, `fec`, `sin`, `kin`, `psi`, `mai`
 -- Estructura de tabla para la tabla `usu_cic`
 --
 
+DROP TABLE IF EXISTS `usu_cic`;
 CREATE TABLE `usu_cic` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Cuadrante',
   `nom` varchar(150) NOT NULL COMMENT 'Titulo',
@@ -6149,6 +6304,7 @@ INSERT INTO `usu_cic` (`ide`, `nom`, `des`) VALUES
 -- Estructura de tabla para la tabla `usu_cic_ani`
 --
 
+DROP TABLE IF EXISTS `usu_cic_ani`;
 CREATE TABLE `usu_cic_ani` (
   `usu` int(11) NOT NULL COMMENT 'Usuario',
   `ide` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Ciclo Anual',
@@ -6225,6 +6381,7 @@ INSERT INTO `usu_cic_ani` (`usu`, `ide`, `eda`, `arm`, `ond`, `ton`, `fec`, `sin
 -- Estructura de tabla para la tabla `usu_cic_lun`
 --
 
+DROP TABLE IF EXISTS `usu_cic_lun`;
 CREATE TABLE `usu_cic_lun` (
   `usu` int(11) NOT NULL COMMENT 'Usuario',
   `ani` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Ciclo Anual',
@@ -6922,6 +7079,7 @@ INSERT INTO `usu_cic_lun` (`usu`, `ani`, `ide`, `fec`, `sin`, `kin`) VALUES
 -- Estructura de tabla para la tabla `usu_dat_opc`
 --
 
+DROP TABLE IF EXISTS `usu_dat_opc`;
 CREATE TABLE `usu_dat_opc` (
   `ide` smallint(5) UNSIGNED NOT NULL COMMENT 'Identificador',
   `nom` varchar(80) NOT NULL COMMENT 'Nombre',
@@ -6942,6 +7100,603 @@ INSERT INTO `usu_dat_opc` (`ide`, `nom`, `des`) VALUES
 (7, 'Mental', NULL),
 (8, 'Físico', NULL),
 (9, 'Espiritual', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura Stand-in para la vista `_hol_ani`
+-- (Véase abajo para la vista actual)
+--
+DROP VIEW IF EXISTS `_hol_ani`;
+CREATE TABLE `_hol_ani` (
+`ide` smallint(2) unsigned zerofill
+,`nom` varchar(50)
+,`cas` smallint(2) unsigned zerofill
+,`ton` smallint(2) unsigned zerofill
+,`fam_2` smallint(3) unsigned zerofill
+,`fam_3` smallint(3) unsigned zerofill
+,`fam_4` smallint(3) unsigned zerofill
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura Stand-in para la vista `_hol_cas_ond`
+-- (Véase abajo para la vista actual)
+--
+DROP VIEW IF EXISTS `_hol_cas_ond`;
+CREATE TABLE `_hol_cas_ond` (
+`ide` smallint(1) unsigned zerofill
+,`nom` varchar(15)
+,`des` varchar(35)
+,`ton` varchar(16)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura Stand-in para la vista `_hol_kin_arm_tra`
+-- (Véase abajo para la vista actual)
+--
+DROP VIEW IF EXISTS `_hol_kin_arm_tra`;
+CREATE TABLE `_hol_kin_arm_tra` (
+`ide` smallint(2) unsigned zerofill
+,`nom` varchar(80)
+,`ton` varchar(30)
+,`lec` text
+,`año` varchar(80)
+,`ran` varchar(20)
+,`may` varchar(20)
+,`ton_des` varchar(30)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura Stand-in para la vista `_hol_kin_cro_ele`
+-- (Véase abajo para la vista actual)
+--
+DROP VIEW IF EXISTS `_hol_kin_cro_ele`;
+CREATE TABLE `_hol_kin_cro_ele` (
+`ide` smallint(2) unsigned zerofill
+,`nom` varchar(35)
+,`des` tinytext
+,`ele` smallint(1) unsigned zerofill
+,`cas_des` text
+,`arm` smallint(1) unsigned zerofill
+,`ond` smallint(1) unsigned
+,`ton` smallint(2) unsigned zerofill
+,`ton_des` varchar(30)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura Stand-in para la vista `_hol_kin_cro_est`
+-- (Véase abajo para la vista actual)
+--
+DROP VIEW IF EXISTS `_hol_kin_cro_est`;
+CREATE TABLE `_hol_kin_cro_est` (
+`ide` smallint(1) unsigned zerofill
+,`nom` varchar(25)
+,`des` varchar(200)
+,`cer` varchar(25)
+,`cer_des` varchar(30)
+,`sel` smallint(2) unsigned zerofill
+,`may` varchar(20)
+,`cas` smallint(2) unsigned zerofill
+,`col` varchar(10)
+,`dir` varchar(10)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura Stand-in para la vista `_hol_kin_cro_ond`
+-- (Véase abajo para la vista actual)
+--
+DROP VIEW IF EXISTS `_hol_kin_cro_ond`;
+CREATE TABLE `_hol_kin_cro_ond` (
+`ide` smallint(1) unsigned zerofill
+,`ton` int(2) unsigned zerofill
+,`cue` smallint(1) unsigned zerofill
+,`que` varchar(10)
+,`enc` varchar(10)
+,`nom` varchar(15)
+,`des` varchar(35)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura Stand-in para la vista `_hol_psi`
+-- (Véase abajo para la vista actual)
+--
+DROP VIEW IF EXISTS `_hol_psi`;
+CREATE TABLE `_hol_psi` (
+`ide` smallint(3) unsigned zerofill
+,`des` text
+,`fec` varchar(5)
+,`fec_dia` smallint(2) unsigned zerofill
+,`fec_mes` smallint(2) unsigned zerofill
+,`fec_cod` smallint(3) unsigned zerofill
+,`tzo` smallint(3) unsigned zerofill
+,`est` smallint(1) unsigned zerofill
+,`est_dia` smallint(2) unsigned zerofill
+,`lun` smallint(2) unsigned zerofill
+,`lun_dia` smallint(2) unsigned zerofill
+,`vin` smallint(2) unsigned zerofill
+,`vin_dia` smallint(2) unsigned zerofill
+,`hep` smallint(2) unsigned zerofill
+,`hep_dia` smallint(1) unsigned zerofill
+,`cro` smallint(2) unsigned zerofill
+,`cro_dia` smallint(1) unsigned zerofill
+,`pag` tinyint(1)
+,`kin_sel` smallint(2) unsigned zerofill
+,`kin_ton` smallint(2) unsigned zerofill
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura Stand-in para la vista `_hol_psi_hep`
+-- (Véase abajo para la vista actual)
+--
+DROP VIEW IF EXISTS `_hol_psi_hep`;
+CREATE TABLE `_hol_psi_hep` (
+`ide` smallint(2) unsigned zerofill
+,`ond` smallint(1) unsigned
+,`arm` smallint(1) unsigned zerofill
+,`arm_col` varchar(10)
+,`arm_dir` varchar(10)
+,`ton` smallint(2) unsigned zerofill
+,`ton_nom` varchar(20)
+,`ton_des` varchar(30)
+,`ton_pre` varchar(60)
+,`cas_des` text
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura Stand-in para la vista `_hol_psi_lun`
+-- (Véase abajo para la vista actual)
+--
+DROP VIEW IF EXISTS `_hol_psi_lun`;
+CREATE TABLE `_hol_psi_lun` (
+`ide` smallint(2) unsigned zerofill
+,`pos` varchar(15)
+,`nom` varchar(25)
+,`tot` varchar(25)
+,`tot_pro` tinytext
+,`tot_por` text
+,`kin_pag` char(18)
+,`kin_cub` char(7)
+,`fec_ini` char(5)
+,`fec_fin` char(5)
+,`fec_ran` varchar(40)
+,`ton` smallint(2) unsigned zerofill
+,`ton_nom` varchar(20)
+,`ton_des` varchar(30)
+,`ton_gal` varchar(25)
+,`ton_car` varchar(20)
+,`ton_pod` varchar(20)
+,`ton_acc` varchar(20)
+,`ton_pre` varchar(60)
+,`ton_sim` smallint(1) unsigned zerofill
+,`ton_mat` smallint(1) unsigned zerofill
+,`ton_dim` smallint(1) unsigned zerofill
+,`ond` smallint(1) unsigned zerofill
+,`ond_enc` smallint(1) unsigned
+,`ond_nom` varchar(30)
+,`ond_pos` varchar(20)
+,`ond_pod` varchar(25)
+,`ond_man` varchar(85)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura Stand-in para la vista `_hol_rad`
+-- (Véase abajo para la vista actual)
+--
+DROP VIEW IF EXISTS `_hol_rad`;
+CREATE TABLE `_hol_rad` (
+`ide` smallint(1) unsigned zerofill
+,`nom` varchar(10)
+,`col` varchar(15)
+,`pod` varchar(15)
+,`dia` varchar(14)
+,`tel` varchar(100)
+,`tel_des` tinytext
+,`tel_año` year(4)
+,`tel_ora_año` smallint(3) unsigned zerofill
+,`tel_ora_ani` smallint(3) unsigned zerofill
+,`tel_ora_gen` smallint(3) unsigned zerofill
+,`rin_des` tinytext
+,`pla_des` varchar(50)
+,`pla_pod` varchar(10)
+,`pla_fue` varchar(40)
+,`pla_fue_pre` smallint(2) unsigned zerofill
+,`pla_fue_pos` smallint(2) unsigned zerofill
+,`pla_qua` smallint(1) unsigned zerofill
+,`pla_man` varchar(10)
+,`pla_cub` smallint(1) unsigned zerofill
+,`pla_cub_pos` varchar(15)
+,`pla_lec` varchar(100)
+,`hum_cha` smallint(1) unsigned zerofill
+,`umb` smallint(3) unsigned zerofill
+,`umb_map` varchar(30)
+,`umb_pat` varchar(20)
+,`umb_arc` varchar(20)
+,`umb_pue` varchar(20)
+,`umb_esf` varchar(80)
+,`umb_esf_fun` varchar(30)
+,`cha_nom` varchar(20)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura Stand-in para la vista `_hol_rad_pla_cub`
+-- (Véase abajo para la vista actual)
+--
+DROP VIEW IF EXISTS `_hol_rad_pla_cub`;
+CREATE TABLE `_hol_rad_pla_cub` (
+`ide` smallint(1) unsigned zerofill
+,`nom` varchar(15)
+,`pla` varchar(10)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura Stand-in para la vista `_hol_sel`
+-- (Véase abajo para la vista actual)
+--
+DROP VIEW IF EXISTS `_hol_sel`;
+CREATE TABLE `_hol_sel` (
+`ide` smallint(2) unsigned zerofill
+,`cod` smallint(2) unsigned zerofill
+,`ord` smallint(2) unsigned zerofill
+,`nom` varchar(25)
+,`nom_col` varchar(10)
+,`nom_cod` varchar(35)
+,`may` varchar(20)
+,`car` varchar(20)
+,`acc` varchar(20)
+,`acc_per` varchar(15)
+,`acc_pal` varchar(15)
+,`pod` varchar(20)
+,`pod_tel` varchar(25)
+,`des` varchar(150)
+,`des_pro` text
+,`des_por` text
+,`des_men` text
+,`des_pal` text
+,`des_som` text
+,`cic_ser` smallint(1) unsigned zerofill
+,`cic_ser_des` tinytext
+,`cic_luz` smallint(1) unsigned zerofill
+,`cic_luz_des` tinytext
+,`arm_tra` smallint(1) unsigned zerofill
+,`arm_tra_des` varchar(100)
+,`arm` varchar(30)
+,`arm_raz` smallint(1) unsigned zerofill
+,`arm_raz_fun` tinytext
+,`arm_raz_des` text
+,`arm_cel` smallint(1) unsigned zerofill
+,`arm_cel_fun` tinytext
+,`arm_cel_des` text
+,`cro` varchar(30)
+,`cro_fam` smallint(1) unsigned zerofill
+,`cro_ele` smallint(1) unsigned zerofill
+,`cro_ele_fun` text
+,`cro_ele_des` text
+,`par_ana` smallint(2) unsigned zerofill
+,`par_gui` varchar(20)
+,`par_ant` smallint(2) unsigned zerofill
+,`par_ocu` smallint(2) unsigned zerofill
+,`res_flu` smallint(1) unsigned zerofill
+,`res_flu_des` tinytext
+,`sol_pla` smallint(2) unsigned zerofill
+,`sol_pla_des` text
+,`pla_cen` smallint(1) unsigned zerofill
+,`pla_hem` smallint(1) unsigned
+,`pla_hem_cod` smallint(3) unsigned zerofill
+,`pla_mer` smallint(1) unsigned
+,`pla_mer_cod` smallint(3) unsigned zerofill
+,`hum_mer` smallint(2) unsigned zerofill
+,`cic_dir` varchar(15)
+,`sol_cel` smallint(1) unsigned zerofill
+,`sol_cir` smallint(1) unsigned zerofill
+,`hum_cen` smallint(1) unsigned zerofill
+,`hum_ded` smallint(1) unsigned zerofill
+,`hum_ext` smallint(1) unsigned zerofill
+,`hum_res` smallint(1) unsigned zerofill
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura Stand-in para la vista `_hol_sel_cod`
+-- (Véase abajo para la vista actual)
+--
+DROP VIEW IF EXISTS `_hol_sel_cod`;
+CREATE TABLE `_hol_sel_cod` (
+`ide` smallint(2) unsigned zerofill
+,`cod` smallint(2) unsigned zerofill
+,`ord` smallint(2) unsigned zerofill
+,`nom` varchar(25)
+,`nom_col` varchar(10)
+,`nom_cod` varchar(35)
+,`may` varchar(20)
+,`car` varchar(20)
+,`acc` varchar(20)
+,`acc_per` varchar(15)
+,`acc_pal` varchar(15)
+,`pod` varchar(20)
+,`pod_tel` varchar(25)
+,`des` varchar(150)
+,`des_pro` text
+,`des_por` text
+,`des_men` text
+,`des_pal` text
+,`des_som` text
+,`cic_ser` smallint(1) unsigned zerofill
+,`cic_ser_des` tinytext
+,`cic_luz` smallint(1) unsigned zerofill
+,`cic_luz_des` tinytext
+,`arm_tra` smallint(1) unsigned zerofill
+,`arm_tra_des` varchar(100)
+,`arm` varchar(30)
+,`arm_raz` smallint(1) unsigned zerofill
+,`arm_raz_fun` tinytext
+,`arm_raz_des` text
+,`arm_cel` smallint(1) unsigned zerofill
+,`arm_cel_fun` tinytext
+,`arm_cel_des` text
+,`cro` varchar(30)
+,`cro_fam` smallint(1) unsigned zerofill
+,`cro_ele` smallint(1) unsigned zerofill
+,`cro_ele_fun` text
+,`cro_ele_des` text
+,`par_ana` smallint(2) unsigned zerofill
+,`par_gui` varchar(20)
+,`par_ant` smallint(2) unsigned zerofill
+,`par_ocu` smallint(2) unsigned zerofill
+,`res_flu` smallint(1) unsigned zerofill
+,`res_flu_des` tinytext
+,`sol_pla` smallint(2) unsigned zerofill
+,`sol_pla_des` text
+,`pla_cen` smallint(1) unsigned zerofill
+,`pla_hem` smallint(1) unsigned
+,`pla_hem_cod` smallint(3) unsigned zerofill
+,`pla_mer` smallint(1) unsigned
+,`pla_mer_cod` smallint(3) unsigned zerofill
+,`hum_mer` smallint(2) unsigned zerofill
+,`cic_dir` varchar(15)
+,`sol_cel` smallint(1) unsigned zerofill
+,`sol_cir` smallint(1) unsigned zerofill
+,`hum_cen` smallint(1) unsigned zerofill
+,`hum_ded` smallint(1) unsigned zerofill
+,`hum_ext` smallint(1) unsigned zerofill
+,`hum_res` smallint(1) unsigned zerofill
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura Stand-in para la vista `_hol_sel_par_ana`
+-- (Véase abajo para la vista actual)
+--
+DROP VIEW IF EXISTS `_hol_sel_par_ana`;
+CREATE TABLE `_hol_sel_par_ana` (
+`ini` smallint(2) unsigned zerofill
+,`ini_nom` varchar(25)
+,`ini_car` varchar(20)
+,`ini_des` varchar(150)
+,`fin` smallint(2) unsigned zerofill
+,`fin_nom` varchar(25)
+,`fin_car` varchar(20)
+,`fin_des` varchar(150)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura Stand-in para la vista `_hol_sel_par_ant`
+-- (Véase abajo para la vista actual)
+--
+DROP VIEW IF EXISTS `_hol_sel_par_ant`;
+CREATE TABLE `_hol_sel_par_ant` (
+`ini` smallint(2) unsigned zerofill
+,`ini_nom` varchar(25)
+,`ini_car` varchar(20)
+,`ini_des` varchar(150)
+,`fin` smallint(2) unsigned zerofill
+,`fin_nom` varchar(25)
+,`fin_car` varchar(20)
+,`fin_des` varchar(150)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura Stand-in para la vista `_hol_sel_par_ocu`
+-- (Véase abajo para la vista actual)
+--
+DROP VIEW IF EXISTS `_hol_sel_par_ocu`;
+CREATE TABLE `_hol_sel_par_ocu` (
+`ini` smallint(2) unsigned zerofill
+,`ini_nom` varchar(25)
+,`ini_car` varchar(20)
+,`ini_des` varchar(150)
+,`fin` smallint(2) unsigned zerofill
+,`fin_nom` varchar(25)
+,`fin_car` varchar(20)
+,`fin_des` varchar(150)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura para la vista `_hol_ani`
+--
+DROP TABLE IF EXISTS `_hol_ani`;
+
+DROP VIEW IF EXISTS `_hol_ani`;
+CREATE OR REPLACE VIEW `_hol_ani`  AS SELECT `_ani`.`ide` AS `ide`, `_kin`.`nom` AS `nom`, `_cas`.`ide` AS `cas`, `_cas`.`ton` AS `ton`, `_ani`.`fam_2` AS `fam_2`, `_ani`.`fam_3` AS `fam_3`, `_ani`.`fam_4` AS `fam_4` FROM ((`hol_ani` `_ani` join `hol_kin` `_kin` on(`_kin`.`ide` = `_ani`.`fam_4`)) join `hol_cas` `_cas` on(`_ani`.`ide` + 1 = `_cas`.`ide`)) ORDER BY `_ani`.`ide` ASC  ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura para la vista `_hol_cas_ond`
+--
+DROP TABLE IF EXISTS `_hol_cas_ond`;
+
+DROP VIEW IF EXISTS `_hol_cas_ond`;
+CREATE OR REPLACE VIEW `_hol_cas_ond`  AS SELECT `_ond`.`ide` AS `ide`, `_ond`.`nom` AS `nom`, `_ond`.`des` AS `des`, `_ond`.`ton` AS `ton` FROM (`hol_cas_ond` `_cas` join `hol_ton_ond` `_ond` on(`_cas`.`ide` = `_ond`.`ide`)) ORDER BY `_ond`.`ide` ASC  ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura para la vista `_hol_kin_arm_tra`
+--
+DROP TABLE IF EXISTS `_hol_kin_arm_tra`;
+
+DROP VIEW IF EXISTS `_hol_kin_arm_tra`;
+CREATE OR REPLACE VIEW `_hol_kin_arm_tra`  AS SELECT `_tra`.`ide` AS `ide`, `_tra`.`nom` AS `nom`, `_tra`.`ton` AS `ton`, `_tra`.`lec` AS `lec`, `_tra`.`año` AS `año`, `_tra`.`ran` AS `ran`, `_tra`.`may` AS `may`, `_ton`.`des` AS `ton_des` FROM (`hol_kin_arm_tra` `_tra` join `hol_ton` `_ton` on(`_tra`.`ide` = `_ton`.`ide`)) ORDER BY `_tra`.`ide` ASC  ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura para la vista `_hol_kin_cro_ele`
+--
+DROP TABLE IF EXISTS `_hol_kin_cro_ele`;
+
+DROP VIEW IF EXISTS `_hol_kin_cro_ele`;
+CREATE OR REPLACE VIEW `_hol_kin_cro_ele`  AS SELECT `_ele`.`ide` AS `ide`, `_ele`.`nom` AS `nom`, `_ele`.`des` AS `des`, `_ele`.`ele` AS `ele`, `_cas`.`des` AS `cas_des`, `_cas`.`arm` AS `arm`, `_cas`.`ond` AS `ond`, `_cas`.`ton` AS `ton`, `_ton`.`des` AS `ton_des` FROM ((`hol_kin_cro_ele` `_ele` join `hol_cas` `_cas` on(`_ele`.`ide` = `_cas`.`ide`)) join `hol_ton` `_ton` on(`_cas`.`ton` = `_ton`.`ide`)) ORDER BY `_ele`.`ide` ASC  ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura para la vista `_hol_kin_cro_est`
+--
+DROP TABLE IF EXISTS `_hol_kin_cro_est`;
+
+DROP VIEW IF EXISTS `_hol_kin_cro_est`;
+CREATE OR REPLACE VIEW `_hol_kin_cro_est`  AS SELECT `_est`.`ide` AS `ide`, `_est`.`nom` AS `nom`, `_est`.`des` AS `des`, `_cic`.`nom` AS `cer`, `_cic`.`des` AS `cer_des`, `_cic`.`sel` AS `sel`, `_sel`.`may` AS `may`, `_cas`.`cas` AS `cas`, `_cas`.`col` AS `col`, `_cas`.`dir` AS `dir` FROM (((`hol_kin_cro_est` `_est` join `hol_sel_cic_men` `_cic` on(`_est`.`ide` = `_cic`.`ide`)) join `hol_cas_arm` `_cas` on(`_est`.`ide` = `_cas`.`ide`)) join `hol_sel` `_sel` on(`_cic`.`sel` = `_sel`.`ide`)) ORDER BY `_est`.`ide` ASC  ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura para la vista `_hol_kin_cro_ond`
+--
+DROP TABLE IF EXISTS `_hol_kin_cro_ond`;
+
+DROP VIEW IF EXISTS `_hol_kin_cro_ond`;
+CREATE OR REPLACE VIEW `_hol_kin_cro_ond`  AS SELECT `_cro`.`ide` AS `ide`, `_cro`.`ton` AS `ton`, `_cro`.`cue` AS `cue`, `_cro`.`que` AS `que`, `_cro`.`enc` AS `enc`, `_ond`.`nom` AS `nom`, `_ond`.`des` AS `des` FROM (`hol_kin_cro_ond` `_cro` join `hol_ton_ond` `_ond` on(`_cro`.`ide` = `_ond`.`ide`)) ORDER BY `_cro`.`ide` ASC  ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura para la vista `_hol_psi`
+--
+DROP TABLE IF EXISTS `_hol_psi`;
+
+DROP VIEW IF EXISTS `_hol_psi`;
+CREATE OR REPLACE VIEW `_hol_psi`  AS SELECT `_psi`.`ide` AS `ide`, `_psi`.`des` AS `des`, `_psi`.`fec` AS `fec`, `_psi`.`fec_dia` AS `fec_dia`, `_psi`.`fec_mes` AS `fec_mes`, `_psi`.`fec_cod` AS `fec_cod`, `_psi`.`tzo` AS `tzo`, `_psi`.`est` AS `est`, `_psi`.`est_dia` AS `est_dia`, `_psi`.`lun` AS `lun`, `_psi`.`lun_dia` AS `lun_dia`, `_psi`.`vin` AS `vin`, `_psi`.`vin_dia` AS `vin_dia`, `_psi`.`hep` AS `hep`, `_psi`.`hep_dia` AS `hep_dia`, `_psi`.`cro` AS `cro`, `_psi`.`cro_dia` AS `cro_dia`, `_kin`.`pag` AS `pag`, `_kin`.`arm_tra_dia` AS `kin_sel`, `_kin`.`nav_ond_dia` AS `kin_ton` FROM (`hol_psi` `_psi` join `hol_kin` `_kin` on(`_kin`.`ide` = `_psi`.`tzo`)) ORDER BY `_psi`.`ide` ASC  ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura para la vista `_hol_psi_hep`
+--
+DROP TABLE IF EXISTS `_hol_psi_hep`;
+
+DROP VIEW IF EXISTS `_hol_psi_hep`;
+CREATE OR REPLACE VIEW `_hol_psi_hep`  AS SELECT `_hep`.`ide` AS `ide`, `_cas`.`ond` AS `ond`, `_cas`.`arm` AS `arm`, `_arm`.`col` AS `arm_col`, `_arm`.`dir` AS `arm_dir`, `_cas`.`ton` AS `ton`, `_ton`.`nom` AS `ton_nom`, `_ton`.`des` AS `ton_des`, `_ton`.`pre` AS `ton_pre`, `_cas`.`des` AS `cas_des` FROM (((`hol_psi_hep` `_hep` join `hol_cas` `_cas` on(`_hep`.`ide` = `_cas`.`ide`)) join `hol_cas_arm` `_arm` on(`_cas`.`arm` = `_arm`.`ide`)) join `hol_ton` `_ton` on(`_cas`.`ton` = `_ton`.`ide`)) ORDER BY `_hep`.`ide` ASC  ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura para la vista `_hol_psi_lun`
+--
+DROP TABLE IF EXISTS `_hol_psi_lun`;
+
+DROP VIEW IF EXISTS `_hol_psi_lun`;
+CREATE OR REPLACE VIEW `_hol_psi_lun`  AS SELECT `_lun`.`ide` AS `ide`, `_lun`.`pos` AS `pos`, `_lun`.`nom` AS `nom`, `_lun`.`tot` AS `tot`, `_lun`.`tot_pro` AS `tot_pro`, `_lun`.`tot_por` AS `tot_por`, `_lun`.`kin_pag` AS `kin_pag`, `_lun`.`kin_cub` AS `kin_cub`, `_lun`.`fec_ini` AS `fec_ini`, `_lun`.`fec_fin` AS `fec_fin`, `_lun`.`fec_ran` AS `fec_ran`, `_ton`.`ide` AS `ton`, `_ton`.`nom` AS `ton_nom`, `_ton`.`des` AS `ton_des`, `_ton`.`gal` AS `ton_gal`, `_ton`.`car` AS `ton_car`, `_ton`.`pod` AS `ton_pod`, `_ton`.`acc` AS `ton_acc`, `_ton`.`pre` AS `ton_pre`, `_ton`.`sim` AS `ton_sim`, `_ton`.`mat` AS `ton_mat`, `_ton`.`dim` AS `ton_dim`, `_ton`.`ond` AS `ond`, `_ton`.`ond_enc` AS `ond_enc`, `_ton`.`ond_nom` AS `ond_nom`, `_ton`.`ond_pos` AS `ond_pos`, `_ton`.`ond_pod` AS `ond_pod`, `_ton`.`ond_man` AS `ond_man` FROM (`hol_psi_lun` `_lun` join `hol_ton` `_ton` on(`_lun`.`ide` = `_ton`.`ide`)) ORDER BY `_lun`.`ide` ASC  ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura para la vista `_hol_rad`
+--
+DROP TABLE IF EXISTS `_hol_rad`;
+
+DROP VIEW IF EXISTS `_hol_rad`;
+CREATE OR REPLACE VIEW `_hol_rad`  AS SELECT `_rad`.`ide` AS `ide`, `_rad`.`nom` AS `nom`, `_rad`.`col` AS `col`, `_rad`.`pod` AS `pod`, `_rad`.`dia` AS `dia`, `_rad`.`tel` AS `tel`, `_rad`.`tel_des` AS `tel_des`, `_rad`.`tel_año` AS `tel_año`, `_rad`.`tel_ora_año` AS `tel_ora_año`, `_rad`.`tel_ora_ani` AS `tel_ora_ani`, `_rad`.`tel_ora_gen` AS `tel_ora_gen`, `_rad`.`rin_des` AS `rin_des`, `_rad`.`pla_des` AS `pla_des`, `_rad`.`pla_pod` AS `pla_pod`, `_rad`.`pla_fue` AS `pla_fue`, `_rad`.`pla_fue_pre` AS `pla_fue_pre`, `_rad`.`pla_fue_pos` AS `pla_fue_pos`, `_rad`.`pla_qua` AS `pla_qua`, `_rad`.`pla_man` AS `pla_man`, `_rad`.`pla_cub` AS `pla_cub`, `_rad`.`pla_cub_pos` AS `pla_cub_pos`, `_rad`.`pla_lec` AS `pla_lec`, `_rad`.`hum_cha` AS `hum_cha`, `_rad`.`umb` AS `umb`, `_rad`.`umb_map` AS `umb_map`, `_rad`.`umb_pat` AS `umb_pat`, `_rad`.`umb_arc` AS `umb_arc`, `_rad`.`umb_pue` AS `umb_pue`, `_rad`.`umb_esf` AS `umb_esf`, `_rad`.`umb_esf_fun` AS `umb_esf_fun`, `_cha`.`nom` AS `cha_nom` FROM (`hol_rad` `_rad` join `hol_rad_hum_cha` `_cha` on(`_rad`.`hum_cha` = `_cha`.`ide`)) ORDER BY `_rad`.`ide` ASC  ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura para la vista `_hol_rad_pla_cub`
+--
+DROP TABLE IF EXISTS `_hol_rad_pla_cub`;
+
+DROP VIEW IF EXISTS `_hol_rad_pla_cub`;
+CREATE OR REPLACE VIEW `_hol_rad_pla_cub`  AS SELECT `_rad`.`pla_cub` AS `ide`, `_rad`.`pla_cub_pos` AS `nom`, `_rad`.`nom` AS `pla` FROM `hol_rad` AS `_rad``_rad`  ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura para la vista `_hol_sel`
+--
+DROP TABLE IF EXISTS `_hol_sel`;
+
+DROP VIEW IF EXISTS `_hol_sel`;
+CREATE OR REPLACE VIEW `_hol_sel`  AS SELECT `_sel`.`ide` AS `ide`, `_sel`.`cod` AS `cod`, `_sel`.`ord` AS `ord`, `_sel`.`nom` AS `nom`, `_sel`.`nom_col` AS `nom_col`, `_sel`.`nom_cod` AS `nom_cod`, `_sel`.`may` AS `may`, `_sel`.`car` AS `car`, `_sel`.`acc` AS `acc`, `_sel`.`acc_per` AS `acc_per`, `_sel`.`acc_pal` AS `acc_pal`, `_sel`.`pod` AS `pod`, `_sel`.`pod_tel` AS `pod_tel`, `_sel`.`des` AS `des`, `_sel`.`des_pro` AS `des_pro`, `_sel`.`des_por` AS `des_por`, `_sel`.`des_men` AS `des_men`, `_sel`.`des_pal` AS `des_pal`, `_sel`.`des_som` AS `des_som`, `_sel`.`cic_ser` AS `cic_ser`, `_sel`.`cic_ser_des` AS `cic_ser_des`, `_sel`.`cic_luz` AS `cic_luz`, `_sel`.`cic_luz_des` AS `cic_luz_des`, `_sel`.`arm_tra` AS `arm_tra`, `_sel`.`arm_tra_des` AS `arm_tra_des`, `_sel`.`arm` AS `arm`, `_sel`.`arm_raz` AS `arm_raz`, `_sel`.`arm_raz_fun` AS `arm_raz_fun`, `_sel`.`arm_raz_des` AS `arm_raz_des`, `_sel`.`arm_cel` AS `arm_cel`, `_sel`.`arm_cel_fun` AS `arm_cel_fun`, `_sel`.`arm_cel_des` AS `arm_cel_des`, `_sel`.`cro` AS `cro`, `_sel`.`cro_fam` AS `cro_fam`, `_sel`.`cro_ele` AS `cro_ele`, `_sel`.`cro_ele_fun` AS `cro_ele_fun`, `_sel`.`cro_ele_des` AS `cro_ele_des`, `_sel`.`par_ana` AS `par_ana`, `_sel`.`par_gui` AS `par_gui`, `_sel`.`par_ant` AS `par_ant`, `_sel`.`par_ocu` AS `par_ocu`, `_sel`.`res_flu` AS `res_flu`, `_sel`.`res_flu_des` AS `res_flu_des`, `_sel`.`sol_pla` AS `sol_pla`, `_sel`.`sol_pla_des` AS `sol_pla_des`, `_sel`.`pla_cen` AS `pla_cen`, `_sel`.`pla_hem` AS `pla_hem`, `_sel`.`pla_hem_cod` AS `pla_hem_cod`, `_sel`.`pla_mer` AS `pla_mer`, `_sel`.`pla_mer_cod` AS `pla_mer_cod`, `_sel`.`hum_mer` AS `hum_mer`, `_dir`.`nom` AS `cic_dir`, `_pla`.`cel` AS `sol_cel`, `_pla`.`cir` AS `sol_cir`, `_fam`.`hum_cen` AS `hum_cen`, `_fam`.`hum_ded` AS `hum_ded`, `_ele`.`hum_ext` AS `hum_ext`, `_ele`.`res_flu` AS `hum_res` FROM ((((`hol_sel` `_sel` join `hol_sel_cic_dir` `_dir` on(`_sel`.`arm_raz` = `_dir`.`ide`)) join `hol_sel_sol_pla` `_pla` on(`_sel`.`sol_pla` = `_pla`.`ide`)) join `hol_sel_cro_ele` `_ele` on(`_sel`.`cro_ele` = `_ele`.`ide`)) join `hol_sel_cro_fam` `_fam` on(`_sel`.`cro_fam` = `_fam`.`ide`)) ORDER BY `_sel`.`ide` ASC  ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura para la vista `_hol_sel_cod`
+--
+DROP TABLE IF EXISTS `_hol_sel_cod`;
+
+DROP VIEW IF EXISTS `_hol_sel_cod`;
+CREATE OR REPLACE VIEW `_hol_sel_cod`  AS SELECT `_sel`.`ide` AS `ide`, `_sel`.`cod` AS `cod`, `_sel`.`ord` AS `ord`, `_sel`.`nom` AS `nom`, `_sel`.`nom_col` AS `nom_col`, `_sel`.`nom_cod` AS `nom_cod`, `_sel`.`may` AS `may`, `_sel`.`car` AS `car`, `_sel`.`acc` AS `acc`, `_sel`.`acc_per` AS `acc_per`, `_sel`.`acc_pal` AS `acc_pal`, `_sel`.`pod` AS `pod`, `_sel`.`pod_tel` AS `pod_tel`, `_sel`.`des` AS `des`, `_sel`.`des_pro` AS `des_pro`, `_sel`.`des_por` AS `des_por`, `_sel`.`des_men` AS `des_men`, `_sel`.`des_pal` AS `des_pal`, `_sel`.`des_som` AS `des_som`, `_sel`.`cic_ser` AS `cic_ser`, `_sel`.`cic_ser_des` AS `cic_ser_des`, `_sel`.`cic_luz` AS `cic_luz`, `_sel`.`cic_luz_des` AS `cic_luz_des`, `_sel`.`arm_tra` AS `arm_tra`, `_sel`.`arm_tra_des` AS `arm_tra_des`, `_sel`.`arm` AS `arm`, `_sel`.`arm_raz` AS `arm_raz`, `_sel`.`arm_raz_fun` AS `arm_raz_fun`, `_sel`.`arm_raz_des` AS `arm_raz_des`, `_sel`.`arm_cel` AS `arm_cel`, `_sel`.`arm_cel_fun` AS `arm_cel_fun`, `_sel`.`arm_cel_des` AS `arm_cel_des`, `_sel`.`cro` AS `cro`, `_sel`.`cro_fam` AS `cro_fam`, `_sel`.`cro_ele` AS `cro_ele`, `_sel`.`cro_ele_fun` AS `cro_ele_fun`, `_sel`.`cro_ele_des` AS `cro_ele_des`, `_sel`.`par_ana` AS `par_ana`, `_sel`.`par_gui` AS `par_gui`, `_sel`.`par_ant` AS `par_ant`, `_sel`.`par_ocu` AS `par_ocu`, `_sel`.`res_flu` AS `res_flu`, `_sel`.`res_flu_des` AS `res_flu_des`, `_sel`.`sol_pla` AS `sol_pla`, `_sel`.`sol_pla_des` AS `sol_pla_des`, `_sel`.`pla_cen` AS `pla_cen`, `_sel`.`pla_hem` AS `pla_hem`, `_sel`.`pla_hem_cod` AS `pla_hem_cod`, `_sel`.`pla_mer` AS `pla_mer`, `_sel`.`pla_mer_cod` AS `pla_mer_cod`, `_sel`.`hum_mer` AS `hum_mer`, `_sel`.`cic_dir` AS `cic_dir`, `_sel`.`sol_cel` AS `sol_cel`, `_sel`.`sol_cir` AS `sol_cir`, `_sel`.`hum_cen` AS `hum_cen`, `_sel`.`hum_ded` AS `hum_ded`, `_sel`.`hum_ext` AS `hum_ext`, `_sel`.`hum_res` AS `hum_res` FROM `_hol_sel` AS `_sel` ORDER BY `_sel`.`ord` ASC  ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura para la vista `_hol_sel_par_ana`
+--
+DROP TABLE IF EXISTS `_hol_sel_par_ana`;
+
+DROP VIEW IF EXISTS `_hol_sel_par_ana`;
+CREATE OR REPLACE VIEW `_hol_sel_par_ana`  AS SELECT `_ana`.`ini` AS `ini`, `_ini`.`nom` AS `ini_nom`, `_ini`.`car` AS `ini_car`, `_ini`.`des` AS `ini_des`, `_ana`.`fin` AS `fin`, `_fin`.`nom` AS `fin_nom`, `_fin`.`car` AS `fin_car`, `_fin`.`des` AS `fin_des` FROM ((`hol_sel_par_ana` `_ana` join `hol_sel` `_ini` on(`_ana`.`ini` = `_ini`.`ide`)) join `hol_sel` `_fin` on(`_ana`.`fin` = `_fin`.`ide`)) ORDER BY `_ana`.`ini` ASC  ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura para la vista `_hol_sel_par_ant`
+--
+DROP TABLE IF EXISTS `_hol_sel_par_ant`;
+
+DROP VIEW IF EXISTS `_hol_sel_par_ant`;
+CREATE OR REPLACE VIEW `_hol_sel_par_ant`  AS SELECT `_ant`.`ini` AS `ini`, `_ini`.`nom` AS `ini_nom`, `_ini`.`car` AS `ini_car`, `_ini`.`des` AS `ini_des`, `_ant`.`fin` AS `fin`, `_fin`.`nom` AS `fin_nom`, `_fin`.`car` AS `fin_car`, `_fin`.`des` AS `fin_des` FROM ((`hol_sel_par_ant` `_ant` join `hol_sel` `_ini` on(`_ant`.`ini` = `_ini`.`ide`)) join `hol_sel` `_fin` on(`_ant`.`fin` = `_fin`.`ide`)) ORDER BY `_ant`.`ini` ASC  ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura para la vista `_hol_sel_par_ocu`
+--
+DROP TABLE IF EXISTS `_hol_sel_par_ocu`;
+
+DROP VIEW IF EXISTS `_hol_sel_par_ocu`;
+CREATE OR REPLACE VIEW `_hol_sel_par_ocu`  AS SELECT `_ocu`.`ini` AS `ini`, `_ini`.`nom` AS `ini_nom`, `_ini`.`car` AS `ini_car`, `_ini`.`des` AS `ini_des`, `_ocu`.`fin` AS `fin`, `_fin`.`nom` AS `fin_nom`, `_fin`.`car` AS `fin_car`, `_fin`.`des` AS `fin_des` FROM ((`hol_sel_par_ocu` `_ocu` join `hol_sel` `_ini` on(`_ocu`.`ini` = `_ini`.`ide`)) join `hol_sel` `_fin` on(`_ocu`.`fin` = `_fin`.`ide`)) ORDER BY `_ocu`.`ini` ASC  ;
 
 --
 -- Índices para tablas volcadas
@@ -7520,48 +8275,6 @@ ALTER TABLE `hol_tel_pla`
 -- Indices de la tabla `hol_tel_sub`
 --
 ALTER TABLE `hol_tel_sub`
-  ADD PRIMARY KEY (`ide`);
-
---
--- Indices de la tabla `hol_ton`
---
-ALTER TABLE `hol_ton`
-  ADD PRIMARY KEY (`ide`);
-
---
--- Indices de la tabla `hol_ton_dim`
---
-ALTER TABLE `hol_ton_dim`
-  ADD PRIMARY KEY (`ide`);
-
---
--- Indices de la tabla `hol_ton_hum_art`
---
-ALTER TABLE `hol_ton_hum_art`
-  ADD PRIMARY KEY (`ide`);
-
---
--- Indices de la tabla `hol_ton_hum_sen`
---
-ALTER TABLE `hol_ton_hum_sen`
-  ADD PRIMARY KEY (`ide`);
-
---
--- Indices de la tabla `hol_ton_mat`
---
-ALTER TABLE `hol_ton_mat`
-  ADD PRIMARY KEY (`ide`);
-
---
--- Indices de la tabla `hol_ton_ond`
---
-ALTER TABLE `hol_ton_ond`
-  ADD PRIMARY KEY (`ide`);
-
---
--- Indices de la tabla `hol_ton_sim`
---
-ALTER TABLE `hol_ton_sim`
   ADD PRIMARY KEY (`ide`);
 COMMIT;
 

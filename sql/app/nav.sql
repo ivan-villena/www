@@ -1,9 +1,10 @@
--- Active: 1665550796793@@127.0.0.1@3306@api
+-- Active: 1665550796793@@127.0.0.1@3306@c1461857_api
 
 -- Holon
   --
-  -- Códigos y Cuentas
-    DELETE FROM `app_nav` WHERE `esq`='hol' AND `cab`='dat';
+  -- Códigos
+    DELETE FROM `app_nav` WHERE `esq`='hol' AND `cab`='dat'
+    ;
     DELETE FROM `app_nav` WHERE `esq`='hol' AND `cab`='dat' AND `ide`='rad'; INSERT INTO `app_nav` VALUES 
       ('hol','dat','rad','01','Días del Giro Lunar'),
       ('hol','dat','rad','02','Sellos de la profecía'),
@@ -12,10 +13,10 @@
       ('hol','dat','rad','05','Componentes Electrónicos')
     ;
     DELETE FROM `app_nav` WHERE `esq`='hol' AND `cab`='dat' AND `ide`='ton'; INSERT INTO `app_nav` VALUES 
-      ('hol','dat','ton','01','Rayos de Pulsación'),
+      ('hol','dat','ton','01','Los 13 Rayos de Pulsación'),
       ('hol','dat','ton','02','Los 7 pares especulares'),     
-      ('hol','dat','ton','03','Principios de la Creación'),           
-      ('hol','dat','ton','04','La onda encantada de la aventura'),
+      ('hol','dat','ton','03','Los 13 Principios de la Creación'),           
+      ('hol','dat','ton','04','La Onda Encantada de la Aventura'),
       ('hol','dat','ton','05','Los 4 pulsares dimensionales'),
       ('hol','dat','ton','06','Los 5 pulsares matices')    
     ;
@@ -77,68 +78,6 @@
       ('hol','dat','psi','03','Los 19 vinales del haab'),
       ('hol','dat','psi','04','Las 52 heptadas semanales'),
       ('hol','dat','psi','05','Las 73 cromáticas entonadas')    
-    ;
-  -- 
-  -- Valores - ficha
-    DELETE FROM `app_nav` WHERE `esq`='hol' AND `cab`='val'
-    ;
-    DELETE FROM `app_nav` WHERE `esq`='hol' AND `cab`='val' AND `ide`='kin'; INSERT INTO `app_nav` VALUES
-      
-      ('hol','val','kin','01','Encantamiento del Kin'),
-
-      ('hol','val','kin','02','Parejas del Oráculo'),
-        ('hol','val','kin','02-01','Descripciones'),
-        ('hol','val','kin','02-02','Lecturas'),
-        ('hol','val','kin','02-03','Posiciones'),
-        ('hol','val','kin','02-04','Sincronometría'),
-
-      ('hol','val','kin','03','Nave del Tiempo'),
-        ('hol','val','kin','03-01','Castillo Direccional'),
-        ('hol','val','kin','03-02','Aventura de la Onda Encantada'),
-
-      ('hol','val','kin','04','Giro Galáctico'),
-        ('hol','val','kin','04-01','Trayectoria Armónica'),
-        ('hol','val','kin','04-02','Célula del Tiempo'),        
-
-      ('hol','val','kin','05','Giro Espectral'),
-        ('hol','val','kin','05-01','Estación Galáctica'),
-        ('hol','val','kin','05-02','Elemento Cromático'),
-
-      ('hol','val','kin','06','Módulo Armónico'),
-        ('hol','val','kin','06-01','Portales de Activación'),
-        ('hol','val','kin','06-02','Modelo Energético')
-    ;
-    DELETE FROM `app_nav` WHERE `esq`='hol' AND `cab`='val' AND `ide`='ton'; INSERT INTO `app_nav` VALUES
-      ('hol','val','ton','01','Onda Encantada'),
-      ('hol','val','ton','02','Simetría Especular'),          
-      ('hol','val','ton','03','Pulsar Dimensional'),
-      ('hol','val','ton','04','Pulsar Matiz')
-    ;
-    DELETE FROM `app_nav` WHERE `esq`='hol' AND `cab`='val' AND `ide`='sel'; INSERT INTO `app_nav` VALUES
-
-      ('hol','val','sel','01','Colocación Cromática'),
-        ('hol','val','sel','01-01','Familia Terrestre'),
-        ('hol','val','sel','01-02','Clan Cromático'),
-      ('hol','val','sel','02','Colocación Armónica'),      
-        ('hol','val','sel','02-01','Raza Raiz Cósmica'),
-        ('hol','val','sel','02-02','Célula del Tiempo'),
-      ('hol','val','sel','03','Holones'),
-        ('hol','val','sel','03-01','Solar-interplanetario'),
-        ('hol','val','sel','03-02','Terrestre-planetario'),
-        ('hol','val','sel','03-03','Humano')      
-    ;
-    DELETE FROM `app_nav` WHERE `esq`='hol' AND `cab`='val' AND `ide`='psi'; INSERT INTO `app_nav` VALUES
-      ('hol','val','psi','01','Estación Solar'),
-      ('hol','val','psi','02','Giro Lunar'),
-      ('hol','val','psi','03','Heptada')      
-    ;
-    DELETE FROM `app_nav` WHERE `esq`='hol' AND `cab`='val' AND `ide`='lun'; INSERT INTO `app_nav` VALUES
-      ('hol','val','lun','01','Día Lunar'),
-      ('hol','val','lun','02','Héptada')
-    ;
-    DELETE FROM `app_nav` WHERE `esq`='hol' AND `cab`='val' AND `ide`='rad'; INSERT INTO `app_nav` VALUES
-      ('hol','val','rad','01','Sello de la Profecía'),
-      ('hol','val','rad','02','Electricidad Cósmica')
     ;
   -- 
   -- Artículos

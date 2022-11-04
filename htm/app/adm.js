@@ -4,7 +4,7 @@
 // administrador
 function _adm( $tip, $dat, $val, ...$opc ){
   
-  let $ = _app_dat.var($dat);
+  let $ = _app_ope.var($dat);
   
   // -> desde form : vacío resultados previos
   if( $_app.ope.var && ( $.res = $_app.ope.var.querySelector('.ope_res') ) ){ 
@@ -99,16 +99,20 @@ function _adm( $tip, $dat, $val, ...$opc ){
     }
     break;
   // servidor
-  case 'php':
+  case 'php':    
     $.val = $_app.ope.var.querySelector('pre.ope_res');
-    $.val.innerText = '';        
+    $.val.classList.add(DIS_OCU);
+    $.val.innerText = '';
+    $.res.classList.add(DIS_OCU);
     $.htm = $_app.ope.var.querySelector('[name="htm"]').checked;
-    if( $.ide = $_app.ope.var.querySelector('[name="ide"]').value ){          
+    if( $.ide = $_app.ope.var.querySelector('[name="ide"]').value ){
       _eje.val([ $.ide, eval(`[${$_app.ope.var.querySelector('[name="par"]').value}]`) ], $res => {
         if( $.htm ){
-          $.res.innerHTML = !! $res._ ? $res._ : `${_app.let( JSON.stringify($res) )}`;
+          $.res.innerHTML = $res;
+          $.res.classList.remove(DIS_OCU);
         }else{
-          $.val.innerText = !! $res._ ? $res._ : JSON.stringify($res);
+          $.val.innerText = $res;
+          $.val.classList.remove(DIS_OCU);
         }
       });
     }

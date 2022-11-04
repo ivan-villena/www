@@ -3,7 +3,7 @@
 
 // Aplicacion
 class _app {
-
+  
   // peticion
   uri = {};
   // página
@@ -59,7 +59,6 @@ class _app {
       atr : `aside.app_pan > .ide-opc .ide-atr`
     }
   }
-
   // cargo elementos
   constructor(){
     // cargo eventos de teclado
@@ -72,8 +71,15 @@ class _app {
         if( $.men = document.querySelector(`ul.ope_opc:not(.${DIS_OCU})`) ){
           $.men.classList.add(DIS_OCU);
         }// pantallas
-        else if( document.querySelector(`.app_win:not(.${DIS_OCU}) article header .ico.dat_fin`) ){ 
-          _app_ope.win();
+        else if( document.querySelector(`.app_win > :not(.${DIS_OCU})`) ){
+          $.art = $_app.ope.win.children;
+          for( let $ide = $.art.length-1; $ide >= 0; $ide-- ){
+            const $art = $.art[$ide];
+            if( !$art.classList.contains(DIS_OCU) ){
+              _app_ope.win( $art.querySelector(`:first-child > .ico.dat_fin`) );
+              break;
+            }
+          }
         }// navegacion
         else if( document.querySelector(`.app_pan > [class*="ide-"]:not(.${DIS_OCU})`) ){ 
           _app_ope.pan();
@@ -115,29 +121,26 @@ class _app {
     // articulo
     else{
       // expando menu seleccionado      
-      if( $.cab = $_app.ope.pan.querySelector(`nav.ide-doc_cab p.ide-${$_app.uri.cab}`) ) $.cab.click();
+      if( $.cab = $_app.ope.pan.querySelector(`nav.ide-app_cab p.ide-${$_app.uri.cab}`) ) $.cab.click();
       // inicializo operadores  : sec + pos + atr
       if( $_app.uri.cab == 'ope' ){
-        if( $.cla_app = eval($.cla = `_${$_app.uri.esq}_tab`) ){
+        if( $.cla_app = eval($.cla = `_${$_app.uri.esq}_${$_app.uri.cab}`) ){
           _app_tab.ini();
           _app_est.ini();
           // secciones y posiciones
           ['sec'].forEach( $ope => {
-
             if( $_app.tab.opc[$ope] ){
-              $.eje = `_${$ope}`;
+              $.eje = `tab_${$ope}`;
               $_app.tab.opc[$ope].querySelectorAll(`form[class*="ide-"] [name][onchange*="${$.cla}.${$.eje}"]`).forEach(
                 $inp => $.cla_app[$.eje] && $.cla_app[$.eje]( $inp )
               );
             }
           });
           // + atributos
-          if( $_app.tab.opc.atr ){
-  
+          if( $_app.tab.opc.atr ){  
             $_app.tab.opc.atr.querySelectorAll(`form[class*="ide-"]`).forEach( $for => {
               
-              $.eje = `_${$for.classList[0].split('-')[2]}`;
-              
+              $.eje = `_${$for.classList[0].split('-')[2]}`;              
               $for.querySelectorAll(`[name][onchange*="${$.cla}.${$.eje}"]`).forEach( $inp => {
 
                 if( !!$.cla_app[$.eje] ) $.cla_app[$.eje]( $inp );
@@ -147,16 +150,16 @@ class _app {
         }
       }
       // inicializo indice por artículo
-      else if( $_app.uri.art && ( $.art_nav = $_app.ope.pan.querySelector('nav.ide-doc_nav ul.lis.nav') ) ){
+      else if( $_app.uri.art && ( $.art_nav = $_app.ope.pan.querySelector('nav.ide-app_nav ul.lis.nav') ) ){
         // inicio indice
         _app_nav.art_tog($.art_nav);
         
         // muestro panel
-        _app_ope.pan('doc_nav');
+        _app_ope.pan('app_nav');
       }
     }
   }
-  
+
   // letras : c - n
   static let( $dat, $ele={} ){
 
@@ -180,7 +183,7 @@ class _app {
               $let.push( `<n>${$car}</n>` );
             }
             else if( $_let[$car] ){
-              // ${_htm.atr(_ele.cla($ele,`${$_let[$car].cla}`,'ini'))}
+              // ${_ele.atr(_ele.cla($ele,`${$_let[$car].cla}`,'ini'))}
               $let.push( `<c>${$car}</c>` );
             }
             else{
@@ -197,19 +200,16 @@ class _app {
   // iconos : .app_ico.$ide
   static ico( $ide, $ele = {} ){
 
-    let $_="", $={ _ico : $_api.app_ico };
+    let $_="<span class='ico'></span>", $={ _ico : $_api.app_ico };
 
     if( !!($._ico[$ide]) ){
-      $ele['eti'] = !!($ele['eti']) ? $ele['eti'] : 'span';
-      if( $ele['eti'] == 'button' ){
-        if( !($ele['type']) ) $ele['type'] = "button";
-      }
-      $ele['ide'] = $ide;
-      $htm = $._ico[$ide].val;
-      $_ = `
-      <${$ele['eti']}${_htm.atr(_ele.cla($ele,"ico material-icons-outlined",'ini'))}>
-        ${$htm}
-      </${$ele['eti']}>`;
+      $.eti = 'span';
+      if( $ele['eti'] ){
+        $.eti = $ele['eti'];
+        delete($ele['eti']);
+      }      
+      if( $.eti == 'button' && !($ele['type']) ) $ele['type'] = "button"; 
+      $_ = `<${$.eti}${_ele.atr(_ele.cla($ele,`ico ${$ide} material-icons-outlined`,'ini'))}>${$._ico[$ide].val}</${$.eti}>`;
     }
     return $_;
   }
@@ -219,60 +219,41 @@ class _app {
     let $_="", $={}, $ele={};
     
     if( $dat[2] !== undefined ){
-
-      // if( /_ide$/.test($dat[1]) ){ $dat[1] = $dat[1].replace(/_ide$/,''); }
-
-      $.ele = !!($dat[3]) ? $dat[3] : {};
-
-      $.ele['ima'] = `${$dat[0]}.${$dat[1]}`;
-
+      $.ele = !!($dat[3]) ? $dat[3] : {};      
       $_ = _app_dat.val('ima', `${$dat[0]}.${$dat[1]}`, $dat[2], $.ele);
     }
     else{
-
       $ele = !!$dat[1] ? $dat[1] : {};
-      $.tip = typeof($dat = $dat[0]);      
-      $.fic_ide = '';
-      
+      $.tip = typeof($dat = $dat[0]);
       // por estilos : bkg
       if( $.tip == 'object' ){
-
-        $ele = _ele.jun( $dat, $ele );   
-        if( $ele['ima']){ 
-          $.fic_ide = $ele['ima'];
-          delete($ele['ima']);
-        }
+        $ele = _ele.jun( $dat, $ele );
       }
       // por directorio : localhost/_/esq/ima/...
-      else if( $.tip == 'string' ){
-    
+      else if( $.tip == 'string' ){    
         $.ima = $dat.split('.');
-
         $dat = $.ima[0];
-
         $.tip = !!$.ima[1] ? $.ima[1] : 'png';
-
         $.dir = `img/${$dat}`;
-
-        $.fic_ide = $.dir+"."+$.tip;
-
         _ele.css( $ele, _ele.fon($.dir,{'tip':$.tip}) );
       }
-    
       // etiqueta
-      $.eti = !!($ele['eti']) ? $ele['eti'] : 'span';
-      // codifico botones
-      if( $.eti == 'button' && !$ele['type'] ) $ele['type'] = "button";      
+      $.eti = 'span';
+      if( !!$ele['eti'] ){
+        $.eti = $ele['eti'];
+        delete($ele['eti']);
+      }// codifico botones
+      if( $.eti == 'button' && !$ele['type'] ) $ele['type'] = "button";
       // aseguro identificador
-      _ele.cla($ele,`ima${ $.fic_ide ? " "+$.fic_ide.replaceAll('.','_') : "" }`);
+      _ele.cla($ele,`ima`,'ini');
       // contenido 
       $.htm = '';
       if( !!($ele['htm']) ){
         _ele.cla($ele,'dis-fle dir-ver jus-cen ali-cen');
         $.htm = $ele['htm'];
+        delete($ele['htm']);
       }
-      
-      $_ = `<${$.eti}${_htm.atr($ele)}>${$.htm}</${$.eti}>`;
+      $_ = `<${$.eti}${_ele.atr($ele)}>${$.htm}</${$.eti}>`;
     }
     return $_;
   }
@@ -295,11 +276,11 @@ class _app {
   }
 
 }
-// Peticion
-class _app_uri {
-  
+// Página
+class _app_ope {
+
   // devuelvo enlace desde url
-  static val( ...$opc ) {
+  static uri( ...$opc ) {
 
     let $_ = [];
   
@@ -324,29 +305,41 @@ class _app_uri {
     }        
     return $_.join('/');
   }
-}
-
-// Página
-class _app_ope {
-
   // pantalla : .app_win > article > header + section
-  static win( $ide ){
-    // muestro articulo
-    if( $ide ){
-      // muestro fondo
-      $_app.ope.win.classList.remove(DIS_OCU);
-      // oculto articulos  
-      $_app.ope.win.querySelectorAll(`article[class*="ide-"]:not(.${DIS_OCU})`).forEach( $e => $e.classList.add(DIS_OCU) );        
-      // muestro por valor
-      if( typeof($ide) == 'string' ) $ide=$_app.ope.win.querySelector(`article.ide-${$ide}.${DIS_OCU}`);
+  static win( $ide, $ope ){
+    let $ = {};
+    $.win = ( typeof($ide) == 'string' ) ? $_app.ope.win.querySelector(`article.ide-${$ide}`) : $ide;
+    // cerrar
+    if( $.win.dataset.ope && $.win.dataset.ope == 'win-fin' ){
+      $.win.parentElement.parentElement.classList.add(DIS_OCU);
+    }// mostrar
+    else{
+      // actualizo contenido
+      if( !!$ope ){
+        // icono
+        $.ico = $.win.querySelector(`header:first-of-type > .ico:first-of-type`);
+        $.ico.innerHTML = '';
+        if( $ope.ico !== undefined ){
+          if( typeof($ope.ico) == 'string' ) $ope.ico = _app.ico($ope.ico,{ class:'mar_hor-1' });
+          _ele.mod($ope.ico,$.ico);
+        }
+        // titulo
+        $.tit = $.win.querySelector(`header:first-of-type > h2`);        
+        $.tit.innerHTML = ( $ope.cab !== undefined ) ? _app.let($ope.cab) : '';
 
-      if( $ide ) $ide.classList.remove(DIS_OCU); 
-    }// oculto articulos
-    else{        
-      $_app.ope.win.querySelectorAll(`article[class*="ide-"]:not(.${DIS_OCU})`).forEach( $e => $e.classList.add(DIS_OCU) );
-      // oculto fondo
-      $_app.ope.win.classList.add(DIS_OCU);
+        // contenido
+        _ele.eli( $.htm = $.win.querySelector(`div:first-of-type`) );
+        if( $ope.htm !== undefined ) _ele.agr($ope.htm,$.htm);
+      }// muestro por valor
+      $.win.classList.contains(DIS_OCU) && $.win.classList.remove(DIS_OCU);
     }
+    // pantalla de fondo
+    if( $_app.ope.win.querySelector(`article[class*="ide-"]:not(.${DIS_OCU})`) ){
+      $_app.ope.win.classList.contains(DIS_OCU) && $_app.ope.win.classList.remove(DIS_OCU);
+    }
+    else if( !$_app.ope.win.classList.contains(DIS_OCU) ){
+      $_app.ope.win.classList.add(DIS_OCU);
+    }    
   }
   // navegadores : aside.app_pan
   static pan( $ide ){
@@ -372,16 +365,11 @@ class _app_ope {
     $_app.ope.sec.querySelectorAll(`article.ide-${$ide}.${DIS_OCU}`).forEach( $e => $e.classList.remove(DIS_OCU) );
     $_app.ope.sec.scroll(0, 0);
   }
-  // campos : form > fieldsets
-  static var( $ide ){
-    _lis.val( _ele.ver($dat,{'eti':'fieldset'}).children ).forEach( $e => $e != $dat && $e.classList.toggle(DIS_OCU) );
-  }
-  // bloques 
-  static tog( $dat, $ope ){
+  // Contenido : bloque + visible/oculto  
+  static val( $dat, $ope ){
     let $ = {};
     // elementos del documento
     if( !$ope ){
-      
       $.ite = $dat.parentElement;
       if( 
         ( $.bot = $.ite.querySelector('.ico.val_tog') ) 
@@ -411,6 +399,35 @@ class _app_ope {
       }
     }
   }
+  // campos : form > fieldsets
+  static atr( $ide ){
+    _lis.val( _ele.ver($dat,{'eti':'fieldset'}).children ).forEach( $e => $e != $dat && $e.classList.toggle(DIS_OCU) );
+  }  
+  // .atr > label + (select,input,textarea,button)[name]
+  static var( $tip, $dat, $ope, ...$opc ){
+    let $={};
+    if( $tip && $tip.nodeName ){
+      $dat = $tip;
+      $_app.ope.var = _ele.ver($dat,{'eti':'form'});
+      $.var_ide = $dat.getAttribute('name');
+    }else{
+      switch( $tip ){
+      case 'mar':
+        if( $ope ){
+          $dat.parentElement.parentElement.querySelectorAll(`.${$ope}`).forEach( $e => $e.classList.remove($ope) );
+          $dat.classList.add($ope);
+        }
+        break;
+      case 'tog':
+        if( $ope ){
+          $dat.parentElement.querySelectorAll(`.${$ope}`).forEach( $e => $e != $dat && $e.classList.remove($ope) );
+          $dat.classList.toggle($ope);
+        }
+        break;
+      }
+    }
+    return $;
+  }
 }
 // Navegacion
 class _app_nav {
@@ -436,7 +453,7 @@ class _app_nav {
         &&
         ( $dat.classList.contains('ico') || $.dep.classList.contains(DIS_OCU) ) 
       ){
-        _app_ope.tog($dat);
+        _app_ope.val($dat);
       }
 
       // pinto fondo
@@ -460,7 +477,7 @@ class _app_nav {
         ( $.nav = $.val.querySelector('a[href^="#"]') )
       ){
         if( $.lis.classList.contains(DIS_OCU) && ( $.ico = $.nav.previousElementSibling ) && $.ico.getAttribute('ico') ){                
-          _app_ope.tog($.ico);
+          _app_ope.val($.ico);
         }                
       }
     }
@@ -492,70 +509,54 @@ class _app_nav {
     let $={};
     // capturo contenedor
     $.nav = $dat.parentElement;
+    $.tip = $.nav.classList[0];
+    $.tip_ver = false;
+    // capturo contenido
+    $.lis = $.nav.nextElementSibling;
     // con toggles
     $.val_tog = $opc.includes('tog');
-    // seleccion anterior
+    // elimino fondo por seleccion anterior
     if( $.sel_ant = $.nav.querySelector(`a.${FON_SEL}`) ){
 
       if( !$.val_tog || $.sel_ant != $dat ) $.sel_ant.classList.remove(FON_SEL);
     }
     // contenido
     if( $ope ){
-      // capturo contenido
-      $.lis = $.nav.nextElementSibling;
       // recorro items
       _lis.val( $.lis.children ).forEach( $e => {
         // coincide con el seleccionado
-        if( $e.classList.contains(`ide-${$ope}`) ){
+        if( $e.classList.contains(`ide-${$ope}`) ){          
           // hago toogles
           if( $.val_tog ){
-            
             $e.classList.toggle(DIS_OCU);
             $dat.classList.toggle(FON_SEL);
           }
           // muestro y selecciono
           else if( $e.classList.contains(DIS_OCU) ){
-
             $e.classList.remove(DIS_OCU);
             $dat.classList.add(FON_SEL);
-          }              
+          }
+          $.tip_ver = !$e.classList.contains(DIS_OCU);
+
         }// oculto los no coincidentes
         else if( !$e.classList.contains(DIS_OCU) ){ 
-
           $e.classList.add(DIS_OCU); 
         }
       });
-    }      
+    }
+    // oculto o muestro contenedor
+    if( $.tip != 'pes' ){
+      if( $.tip_ver ){
+        $.lis.classList.contains(DIS_OCU) && $.lis.classList.remove(DIS_OCU);
+      }else{
+        !$.lis.classList.contains(DIS_OCU) && $.lis.classList.add(DIS_OCU);
+      }
+    }  
   }  
 }
 // Dato
 class _app_dat {
 
-  // .atr > label + (select,input,textarea,button)[name]
-  static var( $tip, $dat, $ope, ...$opc ){
-    let $={};
-    if( $tip && $tip.nodeName ){
-      $dat = $tip;
-      $_app.ope.var = _ele.ver($dat,{'eti':'form'});
-      $.var_ide = $dat.getAttribute('name');
-    }else{
-      switch( $tip ){
-      case 'mar':
-        if( $ope ){
-          $dat.parentElement.parentElement.querySelectorAll(`.${$ope}`).forEach( $e => $e.classList.remove($ope) );
-          $dat.classList.add($ope);
-        }
-        break;
-      case 'tog':
-        if( $ope ){
-          $dat.parentElement.querySelectorAll(`.${$ope}`).forEach( $e => $e != $dat && $e.classList.remove($ope) );
-          $dat.classList.toggle($ope);
-        }
-        break;
-      }
-    }
-    return $;
-  }
   // valor : p[tit, nom, des] + ima 
   static val( $tip, $dat, $ope, ...$opc ){
 
@@ -563,44 +564,53 @@ class _app_dat {
     // proceso estructura
     $ = _dat.ide($dat,$);
     // cargo datos
-    $.dat_var = _dat.get($.esq,$.est,$ope);
+    $._dat = _dat.get($.esq,$.est,$ope);
     // cargo valores
-    $.dat_val = _app.dat($.esq,$.est,'val');
+    $._val = _app.dat($.esq,$.est,'val');
     
     // armo titulo : nombre <br> detalle
     if( $tip == 'tit' ){
-      $_ = _obj.val($.dat_var,$.dat_val.nom) + ( $.dat_val.des ? "\n"+_obj.val($.dat_var,$.dat_val.des) : '' );
+      $_ = _obj.val($._dat,$._val.nom) + ( $._val.des ? "\n"+_obj.val($._dat,$._val.des) : '' );
     }
-    else if( !!($.dat_val[$tip]) ){
-      $_ = _obj.val($.dat_var,$.dat_val[$tip]);  
+    else if( !!($._val[$tip]) ){
+      $_ = _obj.val($._dat,$._val[$tip]);  
     }
     // armo ficha
     if( $tip == 'ima' ){
-
       $.ele = !!$opc[0] ? $opc[0] : {};
-
+      // identificador
+      _ele.cla($.ele,`${$.esq}_${$.est} ide-${$._dat.ide}`,'ini');
+      // titulos
       if( $.ele.title === undefined ){
 
-        $.ele.title = _app_dat.val('tit',`${$.esq}.${$.est}`,$.dat_var);
+        $.ele.title = _app_dat.val('tit',`${$.esq}.${$.est}`,$._dat);
       }
-      else if( $.ele.title === false ){
-
+      else if( $.ele.title === false ){        
         delete($.ele.title);
-      }        
+      }
+      // acceso informe
+      if( $.ele.onclick === undefined ){
+        if( _app.dat($.esq,$.est,'inf') ) $.ele.onclick = `_app_dat.inf('${$.esq}','${$.est}',${parseInt($._dat.ide)})`;
+      }
+      else if( $.ele.onclick === false ){
+
+        delete($.ele.onclick);
+      }
+      // informe      
       $_ = _app.ima( { 'style': $_ }, $.ele );
     }
     else if( !!$opc[0] ){
       
       if( !($opc[0]['eti']) ) $opc[0]['eti'] = 'p'; 
       $opc[0]['htm'] = _app.let($_);
-      $_ = _htm.val($opc[0]);
+      $_ = _ele.val($opc[0]);
     }
 
     return $_;
   }
   // opciones : esquema.estructura.atributos.valores
   static opc( $tip, $dat, $ope, ...$opc ){
-    let $_="", $=_app_dat.var($dat);
+    let $_="", $=_app_ope.var($dat);
     // vacio valores y atributos
     $.ini = ( $ide=["val"] ) => {
       $ide.forEach( $i => { if( $.ope = $_app.ope.var.querySelector(`[name="${$i}"]`) ) _ele.eli( $.ope, `option:not([value=""])` ); });
@@ -645,7 +655,7 @@ class _app_dat {
   }
   // ficha : imagenes por valor con relaciones por estructura
   static fic( $dat, $ope, ...$opc ){
-    let $_="", $=_app_dat.var($dat);
+    let $_="", $=_app_ope.var($dat);
     $.dat = {};
 
     // actualizo valores principales
@@ -674,14 +684,21 @@ class _app_dat {
     
     return $_;
   }
+  // informe : 
+  static inf( $esq, $est, $val ){
+    // pido ficha
+    _eje.val([ `_app_dat::inf`, [ $esq, $est, $val ] ], $htm => {
+      // muestro en ventana
+      if( $htm ) _app_ope.win('app_ope',{ ico:"", cab:"", htm:$htm });
+    });
+  }
 }
-
 // Valor
 class _app_val {
 
   // alta, baja, modificacion por tabla-informe
   static abm( $tip, $dat, $ope, ...$opc ){
-    let $ = _app_dat.var($dat);
+    let $ = _app_ope.var($dat);
     switch( $tip ){
     // cargo valores
     case 'var':
@@ -863,7 +880,7 @@ class _app_val {
   // filtros : dato + variables
   static ver( $tip, $dat, $ope, ...$opc ){
 
-    let $ = _app_dat.var($dat);
+    let $ = _app_ope.var($dat);
 
     $._tip = $tip.split('-');
 
@@ -937,7 +954,7 @@ class _app_val {
         
         $dat.forEach( $e => {
           // valor por desde-hasta
-          $.pos_val = $e.getAttribute('pos');
+          $.pos_val = $e.classList[1].split('-')[1];
           if( $.inc_val == 1 && $.pos_val >= $.val.ini && $.pos_val <= $.val.fin ){
             _ele.act('cla_agr',$e,[$.cla_val, $.cla_ide]);
           }
@@ -982,7 +999,7 @@ class _app_val {
   }
   // conteos : valores de estructura relacionada por atributo
   static cue( $tip, $dat, $ope, ...$opc ){
-    let $ = _app_dat.var($dat);
+    let $ = _app_ope.var($dat);
 
     switch( $tip ){
     // actualizo cuentas por valores
@@ -1162,7 +1179,7 @@ class _app_tab {
   // Datos
   static val( $tip, $dat ){
 
-    let $ = _app_dat.var($dat);
+    let $ = _app_ope.var($dat);
 
     switch( $tip ){
     case 'pos': 
@@ -1177,7 +1194,7 @@ class _app_tab {
       }
       break;
     case 'mar':
-      $.pos = $dat.getAttribute('pos') ? $dat : $dat.parentElement;
+      $.pos = $dat.classList.contains('pos') ? $dat : $dat.parentElement;
       // si no es un posicion de tablero
       if( !$.pos.classList.contains('app_tab') ){
 
@@ -1214,9 +1231,9 @@ class _app_tab {
   }// - acumulados( posicion + marcas + seleccion )
   static val_acu( $dat, $ope ){
     
-    let $ = _app_dat.var($dat);
+    let $ = _app_ope.var($dat);
 
-    if( !$.var_ide && $ope ) $ = _app_dat.var( $dat = $_app.tab.val.acu.querySelector(`[name="${$ope}"]`) );
+    if( !$.var_ide && $ope ) $ = _app_ope.var( $dat = $_app.tab.val.acu.querySelector(`[name="${$ope}"]`) );
     
     // busco marcas 
     $.cla_ide = `_val-${$.var_ide}`;
@@ -1251,7 +1268,7 @@ class _app_tab {
   }// - secciones : bordes + colores + imagen + ...
   static opc_sec( $dat ){
 
-    let $ = _app_dat.var($dat); 
+    let $ = _app_ope.var($dat); 
 
     switch( $.var_ide ){
     case 'bor':
@@ -1291,7 +1308,7 @@ class _app_tab {
   }// - posiciones : borde + color + imagen + texto + numero + fecha
   static opc_pos( $dat ){
 
-    let $ = _app_dat.var($dat); 
+    let $ = _app_ope.var($dat); 
     
     if( ( $.var_ide = $.var_ide.split('_')[0] ) != 'bor' ){
       // aseguro selector
@@ -1360,17 +1377,16 @@ class _app_tab {
       });      
       if( $dat.value ){
         // busco identificadores de datos
-        $ = _dat.ide($dat.value,$);
-        
+        $ = _dat.ide($dat.value,$);        
         // busco valores de ficha
-        $.fic = _dat.opc('ima', ...( 
-          ( $.dat = $dat.options[$dat.selectedIndex].getAttribute('dat') ) ? $.dat : $dat.value 
-        ).split('.') );
-
-        // actualizo por opciones        
+        $.fic = _dat.opc('ima', ...( ( $.dat = $dat.options[$dat.selectedIndex].getAttribute('dat') ) ? $.dat : $dat.value ).split('.') );
+        // actualizo por opciones                
         $_app.tab.lis.querySelectorAll($_app.tab.cla).forEach( $e => {
           $.htm = '';
-          $.ele = { 'title' : false };
+          $.ele = { 
+            title : false, 
+            onclick : false 
+          };
           if( $.ima.pos || $.ima.mar || $.ima.ver || $.ima.opc ){
 
             if( $.ima.pos && $e.classList.contains('_val-pos-') ){ 
@@ -1391,7 +1407,9 @@ class _app_tab {
           else{
             $.htm = _dat.ima($e,$);
           }
-          if( $.htm ) _ele.mod($.htm,$e,'.ima','ini');
+          if( $.htm ){
+            ( $.ima_ele = $e.querySelector('.ima') ) ? _ele.mod($.htm,$.ima_ele) : _ele.agr($.htm,$e,'ini');
+          }
         });      
       }
       break;
@@ -1500,7 +1518,7 @@ class _app_est {
   }// - todos ? o por acumulados
   static val_tod( $dat ){
 
-    let $ = _app_dat.var($dat);  
+    let $ = _app_ope.var($dat);  
     
     if( $_app.est.val.acu ){
       // ajusto controles acumulados
@@ -1549,7 +1567,7 @@ class _app_est {
   // filtros : Valores + Fecha + Posicion
   static ver( $tip, $dat, $ope ){
 
-    let $ = _app_dat.var($dat);
+    let $ = _app_ope.var($dat);
 
     // ejecuto filtros
     if( !$tip ){
@@ -1599,7 +1617,7 @@ class _app_est {
   }// - muestro-oculto
   static atr_tog( $dat ){
 
-    let $ = _app_dat.var($dat);      
+    let $ = _app_ope.var($dat);      
 
     $.esq = $dat.dataset.esq;
     $.est = $dat.dataset.est;
@@ -1634,7 +1652,7 @@ class _app_est {
   }// - muestro-oculto
   static des_tog( $dat ){
 
-    let $ = _app_dat.var($dat);
+    let $ = _app_ope.var($dat);
     $.ope  = $_app.ope.var.classList[0].split('-')[1];
     $.esq = $_app.ope.var.dataset.esq;
     $.est = $_app.ope.var.dataset.est;
@@ -1664,7 +1682,7 @@ class _app_est {
   }// - filtro por descripciones
   static des_ver( $dat ){
 
-    let $ = _app_dat.var($dat);    
+    let $ = _app_ope.var($dat);    
 
     // por selectores : titulo + detalle + lectura 
     if( ['tit','det'].includes($.var_ide) ){
@@ -1726,6 +1744,7 @@ class _app_est {
     }
   }
 }
+
 // Listado
 class _app_lis {
 
@@ -1733,7 +1752,7 @@ class _app_lis {
   static ite(){
   }
   static ite_val( $dat, $ope ){
-    let $ = _app_dat.var($dat);
+    let $ = _app_ope.var($dat);
     
     if( !$ope ){
       // toggles
@@ -1754,7 +1773,7 @@ class _app_lis {
   }
   static ite_tog( $dat, $ope ){
 
-    let $ = _app_dat.var($dat);
+    let $ = _app_ope.var($dat);
 
     if( !$dat || !$ope ){
       _ele.act('cla_tog',$.lis.children,DIS_OCU); 
@@ -1778,7 +1797,7 @@ class _app_lis {
     }
   }  
   static ite_ver( $dat, $ope ){
-    let $ = _app_dat.var($dat);
+    let $ = _app_ope.var($dat);
     
     // filtro por valor textual        
     if( !$ope ){
@@ -1839,7 +1858,7 @@ class _app_lis {
   static val(){      
   }
   static val_ver( $dat, $ope = 'p:first-of-type', $cla = 'let-luz' ){
-    let $ = _app_dat.var($dat);
+    let $ = _app_ope.var($dat);
     // busco listado
     if( $_app.ope.var ){
       $.lis = !! $_app.ope.var.nextElementSibling ? $_app.ope.var.nextElementSibling : $_app.ope.var.parentElement;
@@ -1885,7 +1904,7 @@ class _app_lis {
         $.tog = ['ocu','nad'];
       }      
       // actualizo toggle
-      if( $.tog[1] && ( $.ico = $_app.ope.var.querySelector(`.ico.val_tog-${$.tog[1]}`) ) ) _app_ope.tog($.ico,$.tog[1]);
+      if( $.tog[1] && ( $.ico = $_app.ope.var.querySelector(`.ico.val_tog-${$.tog[1]}`) ) ) _app_ope.val($.ico,$.tog[1]);
       
       // actualizo total
       if( $.tot_val = $_app.ope.var.querySelector(`[name="tot"]`) ) $.tot_val.innerHTML = $.tot;           
@@ -1897,7 +1916,7 @@ class _app_lis {
   }
   static bar_ite( $tip, $dat ){
     
-    let $ = _app_dat.var($dat);
+    let $ = _app_ope.var($dat);
 
     if( $tip == 'val' ){
 
@@ -2117,6 +2136,32 @@ class _app_fec {
 
     return $_;      
   }    
+}
+// Holon
+class _app_hol {
+
+  // operadores
+  static val( $tip, $val, $ele ){
+    let $_ = "", $={};
+    switch( $tip ){      
+    }
+    return $_;
+  }
+  // pido Valores
+  static val(){
+    let $_ = "", $={};
+    return $_;
+  }
+  // pido Ficha
+  static fic( $ele, $val, $ope ){
+    let $_ = "", $={};
+    return $_;
+  }
+  // pido tablero
+  static tab( $ide, $ope={} ){
+    let $_ = "", $={};
+    return $_;
+  }
 }
 // Archivo
 class _app_arc {

@@ -26,9 +26,8 @@
   $sis_ini = time();  
   
   // cargo modulos
-  require_once("./php/api.php");
-  require_once("./php/usu.php");
-  require_once("./php/hol.php");
+  require_once("./php/api.php");// entorno  
+  require_once("./php/app.php");// documento
 
   // cargo interface
   $_api = new _api();
@@ -61,12 +60,11 @@
   }
   // cargo página
   else{
-    // cargo aplicacion
-    require_once("./php/app.php");
+    // cargo aplicacion    
     
     $_app = new _app();        
 
     // cargo página
-    $_app->htm();
+    $_app->doc();
   }
 ?>

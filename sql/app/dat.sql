@@ -27,6 +27,268 @@
 -- Holon
   DELETE FROM `app_dat` WHERE `esq`='hol'
   ;
+  DELETE FROM `app_dat` WHERE `esq`='hol' AND `ide` LIKE 'uni%'; INSERT INTO `app_dat` VALUES
+
+    -- holon solar
+    ('hol','uni_sol_res', '{
+        "val": {
+          "nom": "()($)nom()",
+          "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/uni/sol_res/()($)ide().png);",
+          "col": 2
+        },
+        "inf": {
+          "atr": [ ]
+        },
+        "atr": {
+          "ide": { "min":1, "max":2, "dat":"hol.uni_sol_res" }
+        },
+        "opc": {
+          "ima": [ "ide" ]
+        }          
+    }' ),
+    ('hol','uni_sol_orb', '{
+        "val": {
+          "nom": "Grupo Orbital #()($)nom() de 2: ()($)nom().",
+          "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/uni/sol_orb/()($)ide().png);",
+          "col": 2
+        },
+        "atr": {
+          "ide": { "min":1, "max":2, "dat":"hol.uni_sol_orb" }
+        },
+        "opc": {
+          "ima": [ "ide" ]
+        }          
+    }' ),    
+    ('hol','uni_sol_pla', '{
+        "val": {
+          "nom": "Órbita Planetaria #()($)ide() de 10: ()($)nom().",
+          "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/uni/sol_pla/()($)ide().png);",
+          "col": 10
+        },
+        "inf": {
+          "atr": [ ]
+        },
+        "atr": {
+          "ide": { "min":1, "max":10, "dat":"hol.uni_sol_pla" },
+          "orb": { "min":1, "max":5, "dat":"hol.uni_sol_orb" },
+          "cel": { "min":1, "max":5, "dat":"hol.uni_sol_cel" },
+          "cir": { "min":1, "max":5, "dat":"hol.uni_sol_cir" }
+        },
+        "opc": {
+          "ima": [ "ide","orb","cel","cir" ]
+        }          
+    }' ),
+    ('hol','uni_sol_cel', '{
+        "val": {
+          "nom": "Célula Solar #()($)ide() de 5: ()($)nom().",
+          "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/uni/sol_cel/()($)ide().png);",
+          "col": 5
+        },
+        "inf": {
+          "atr": [ ]
+        },
+        "atr": {
+          "ide": { "min":1, "max":5, "dat":"hol.uni_sol_cel" }
+        },
+        "opc": {
+          "ima": [ "ide" ]
+        }          
+    }' ),
+    ('hol','uni_sol_cir', '{
+        "val": {
+          "nom": "Circuito de Telepatía #()($)ide() de 5: ()($)nom().",
+          "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/uni/sol_cir/()($)ide().png);",
+          "col": 5
+        },
+        "inf": {
+          "atr": [ ]
+        },
+        "atr": {
+          "ide": { "min":1, "max":5, "dat":"hol.uni_sol_cir" }
+        },
+        "opc": {
+          "ima": [ "ide" ]
+        }          
+    }' ),
+    -- holon planetario
+    ('hol','uni_pla_res', '{
+        "val": {
+          "nom": "()($)nom()",
+          "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/uni/pla_res/()($)ide().png);",
+          "col": 2
+        },
+        "inf": {
+          "atr": [ ]
+        },
+        "atr": {
+          "ide": { "min":1, "max":2, "dat":"hol.uni_pla_res" },
+          "hem": { "min":1, "max":3, "dat":"hol.uni_pla_hem" },
+          "fam": { "min":1, "max":5, "dat":"hol.sel_cro_fam" }
+        },
+        "opc": {
+          "ima": [ "ide","hem","fam" ]
+        }          
+    }' ),
+    ('hol','uni_pla_cen', '{
+        "val": {
+          "nom": "Centro Planetario #()($)ide() de 5: ()($)nom().",
+          "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/uni/pla_cen/()($)ide().png);",
+          "col": 5
+        },
+        "inf": {
+          "atr": [ ]
+        },
+        "atr": {
+          "ide": { "min":1, "max":5, "dat":"hol.uni_pla_cen" },
+          "fam": { "min":1, "max":5, "dat":"hol.sel_cro_fam" }
+        },
+        "opc": {
+          "ima": [ "ide", "fam" ]            
+        }          
+    }' ),
+    ('hol','uni_pla_hem', '{
+        "val": {
+          "nom": "Hemisferio #()($)ide() de 3: ()($)nom().",
+          "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/uni/pla_hem/()($)ide().png);",
+          "col": 3
+        },
+        "inf": {
+          "atr": [ ]
+        },
+        "atr": {
+          "ide": { "min":1, "max":3, "dat":"hol.uni_pla_hem" }
+        },
+        "opc": {
+          "ima": [ "ide" ]            
+        }          
+    }' ),
+    ('hol','uni_pla_mer', '{
+        "val": {
+          "nom": "Meridiano #()($)ide() de 2: ()($)nom().",
+          "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/uni/pla_mer/()($)ide().png);",
+          "col": 2
+        },
+        "inf": {
+          "atr": [ ]
+        },
+        "atr": {
+          "ide": { "min":1, "max":2, "dat":"hol.uni_pla_mer" }
+        },
+        "opc": {
+          "ima": [ "ide" ]            
+        }          
+    }' ),
+    -- holon humano
+    ('hol','uni_hum_res', '{
+        "val": {
+          "nom": "()($)nom()",
+          "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/uni/hum_res/()($)ide().png);",
+          "col": 2
+        },
+        "inf": {
+          "atr": [ ]
+        },
+        "atr": {
+          "ide": { "min":1, "max":2, "dat":"hol.uni_hum_res" }
+        },
+        "opc": {
+          "ima": [ "ide" ]            
+        }          
+    }' ),
+    ('hol','uni_hum_cen', '{
+        "val": {
+          "nom": "Centro Galáctico #()($)ide() de 5: ()($)nom().",
+          "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/uni/hum_cen/()($)ide().png);",
+          "col": 5
+        },
+        "inf": {
+          "atr": [ ]
+        },
+        "atr": {
+          "ide": { "min":1, "max":5, "dat":"hol.uni_hum_cen" },
+          "fam": { "min":1, "max":5, "dat":"hol.sel_cro_fam" }
+        },
+        "opc": {
+          "ima": [ "ide", "fam" ] 
+        }          
+    }' ),
+    ('hol','uni_hum_ded', '{
+        "val": {
+          "nom": "Dedo #()($)ide() de 5: ()($)nom().",
+          "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/uni/hum_ded/()($)ide().png);",
+          "col": 5
+        },
+        "inf": {
+          "atr": [ ]
+        },
+        "atr": {
+          "ide": { "min":1, "max":5, "dat":"hol.uni_hum_ded" },
+          "fam": { "min":1, "max":5, "dat":"hol.sel_cro_fam" }
+        },
+        "opc": {
+          "ima": [ "ide", "fam" ] 
+        }          
+    }' ),
+    ('hol','uni_hum_ext', '{
+        "val": {
+          "nom": "Extremidad #()($)ide() de 4: ()($)nom().",
+          "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/uni/hum_ext/()($)ide().png);",
+          "col": 4
+        },
+        "inf": {
+          "atr": [ ]
+        },
+        "atr": {
+          "ide": { "min":1, "max":4, "dat":"hol.uni_hum_ext" },
+          "ele": { "min":1, "max":4, "dat":"hol.sel_cro_ele" }
+        },
+        "opc": {
+          "ima": [ "ide", "ele" ] 
+        }          
+    }' ),
+    ('hol','uni_hum_mer', '{
+        "val": {
+          "nom": "Meridiano Orgánico #()($)ide() de 10: ()($)nom().",
+          "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/uni/hum_mer/()($)ide().png);",
+          "col": 10
+        },
+        "inf": {
+          "atr": [ ]
+        },
+        "atr": {
+          "ide": { "min":1, "max":10, "dat":"hol.uni_hum_mer" }
+        },
+        "opc": {
+          "ima": [ "ide" ] 
+        }          
+    }' ),
+    ('hol','uni_hum_art', '{
+        "val": {
+          "nom": "Articulación #()($)ide() de 7: ()($)nom().",
+          "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/uni/hum_art/()($)ide().png);",
+          "col": 7
+        },
+        "inf": {
+          "atr": [ ]
+        }
+    }' ),
+    ('hol','uni_hum_cha', '{
+        "val": {
+          "nom": "Chakra #()($)ide() de 7: ()($)nom().",
+          "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/uni/hum_cha/()($)ide().png);",
+          "col": 7
+        },
+        "inf": {
+          "atr": [ ]
+        }
+    }' ),
+    ('hol','uni_hum_mud', '{ 
+        "val": {
+          "nom": "Mudra #()($)ide() de 7: ()($)nom().",
+          "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/uni/hum_mud/()($)ide().png);" 
+        }
+    }' )
+  ;
   DELETE FROM `app_dat` WHERE `esq`='hol' AND `ide` LIKE 'rad%'; INSERT INTO `app_dat` VALUES
 
     ('hol','rad',     '{
@@ -35,6 +297,9 @@
           "des": "()($)pla_pod() ()($)pla_fue().\\n\\"()($)pla_lec()\\"",
           "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/rad/()($)ide().png);",
           "col": 7
+        },
+        "inf": {
+          "atr": [ ]
         },
         "est": { 
 
@@ -49,7 +314,7 @@
           "pla_cub":     { "min":1, "max":7, "dat":"hol.rad_pla_cub" },
           "pla_fue_pre": { "min":1, "max":12, "dat":"hol.rad_pla_fue" },
           "pla_fue_pos": { "min":1, "max":12, "dat":"hol.rad_pla_fue" },          
-          "hum_cha":     { "min":1, "max":7, "dat":"hol.rad_hum_cha" }
+          "hum_cha":     { "min":1, "max":7, "dat":"hol.uni_hum_cha" }
         },
         "opc": {
           "ver": [ 
@@ -75,6 +340,9 @@
           "des": "()($)nom()",
           "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/rad/pla_cub/()($)ide().png);",
           "col": 4
+        },
+        "inf": {
+          "atr": [ ]
         }
     }' ),
     -- plasma: energía cósmica
@@ -84,16 +352,16 @@
           "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/rad/pla_car/()($)ide().png);"
         }
     }' ),      
-    ('hol','rad_pla_ele',     '{
+    ('hol','rad_pla_ele', '{
         "val": {
           "nom": "Tipo de Electricidad Cósmica #()($)ide() de 6: ()($)nom() - ()($)cod().",
           "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/rad/pla_ele/()($)ide().png);"                      
         },
         "opc": {
           "ima": [ "ide" ]
-        }          
+        }
     }' ),  
-    ('hol','rad_pla_fue',     '{
+    ('hol','rad_pla_fue', '{
         "val": {
           "nom": "Línea de Fuerza #()($)ide() de 12: ()($)nom().",
           "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/rad/pla_fue/()($)ide().png);"
@@ -106,30 +374,19 @@
           "ima": [ "ide", "ele_pre", "ele_pos" ]            
         }          
     }' ),  
-    ('hol','rad_pla_qua',     '{
+    ('hol','rad_pla_qua', '{
         "val": {
           "nom": "Quantum #()($)ide() de 3: ()($)nom().",
           "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/rad/pla_qua/()($)ide().png);",
           "col": 3
         },
+        "inf": {
+          "atr": [ ]
+        },
         "opc": {
           "ima": [ "ide" ]            
         }          
-    }' ),
-    -- holon humano : chakra + mudras
-    ('hol','rad_hum_cha', '{
-        "val": {
-          "nom": "Chakra #()($)ide() de 7: ()($)nom().",
-          "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/rad/hum_cha/()($)ide().png);",
-          "col": 7
-        }
-    }' ),
-    ('hol','rad_hum_mud', '{ 
-        "val": {
-          "nom": "Mudra #()($)ide() de 7: ()($)nom().",
-          "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/rad/hum_mud/()($)ide().png);" 
-        }
-    }' )      
+    }' )  
   ;
   DELETE FROM `app_dat` WHERE `esq`='hol' AND `ide` LIKE 'ton%'; INSERT INTO `app_dat` VALUES
 
@@ -139,6 +396,9 @@
           "des": "()($)des() ()($)acc_lec().",
           "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/ton/()($)ide().png);",
           "col": 7
+        },
+        "inf": {
+          "atr": [ "car", "acc", "pod" ]
         },
         "est": {
 
@@ -157,9 +417,9 @@
           "dim": { "min":1, "max":4, "dat":"hol.ton_dim" },
           "mat": { "min":1, "max":5, "dat":"hol.ton_mat" },
           "sim": { "min":1, "max":7, "dat":"hol.ton_sim" },
-          "hum_lad": { "min":1, "max":3, "dat":"hol.ton_hum_lad" },
-          "hum_art": { "min":1, "max":7, "dat":"hol.ton_hum_art" },
-          "hum_sen": { "min":1, "max":7, "dat":"hol.ton_hum_sen" }
+          "hum_lad": { "min":1, "max":3, "dat":"hol.uni_hum_lad" },
+          "hum_art": { "min":1, "max":7, "dat":"hol.uni_hum_art" },
+          "hum_sen": { "min":1, "max":7, "dat":"hol.uni_hum_sen" }
         },
         "opc": {
           "ver": [ "ide", "ond", "dim", "mat", "sim", "hum_art" ],
@@ -174,6 +434,9 @@
           "nom": "Aventura de la Onda Encantada #()($)ide() de 4: ()($)des().",
           "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/ton/ond/()($)ide().png);",
           "col": 4
+        },
+        "inf": {
+          "atr": [ ]
         },
         "atr": {
           "ide": { "min":1, "max":4, "dat":"hol.ton_ond" }
@@ -190,6 +453,9 @@
           "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/ton/dim/()($)ide().png);",
           "col": 4
         },
+        "inf": {
+          "atr": [ ]
+        },
         "atr":{
           "ide": { "min":1, "max":4, "dat":"hol.ton_dim" }
         },
@@ -204,6 +470,9 @@
           "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/ton/mat/()($)ide().png);",
           "col": 5
         },
+        "inf": {
+          "atr": [ ]
+        },
         "atr":{
           "ide": { "min":1, "max":5, "dat":"hol.ton_mat" }
         },
@@ -217,20 +486,15 @@
           "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/ton/sim/()($)ide().png);",
           "col": 7
         },
+        "inf": {
+          "atr": [ ]
+        },
         "atr":{
           "ide": { "min":1, "max":7, "dat":"hol.ton_sim" },
           "inv": { "min":1, "max":13, "dat":"hol.ton" }
         },
         "opc": {
           "ima": [ "ide" ]
-        }
-    }' ),
-    -- holon humano
-    ('hol','ton_hum_art', '{
-        "val": {
-          "nom": "Articulación #()($)ide() de 7: ()($)nom().",
-          "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/ton/hum_art/()($)ide().png);",
-          "col": 7
         }
     }' )
   ;
@@ -243,6 +507,9 @@
           "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/sel/()($)ide().png);",
           "col": 4
         },
+        "inf": {
+          "atr": [ "car", "acc", "pod" ]
+        },
         "est": {
 
           "atr": [ 
@@ -254,8 +521,8 @@
             "cro_fam", "cro_ele", "arm_raz", "arm_cel", "par_ana", "par_ant", "par_ocu", 
             "res_flu", "sol_pla", "pla_cen", "hum_mer", "hum_cen", "hum_ded" 
           ],
-
           "tit_cic": [ "cic_ser", "cic_luz", "cro_ele", "arm_cel", "res_flu" ],
+
           "tit_gru": [ "cro_fam", "arm_raz", "sol_pla", "sol_cel", "sol_cir", "pla_cen", "hum_cen", "hum_ded", "hum_mer" ],
 
           "det_des": [ "des_pro", "des_pal", "des_som" ]
@@ -275,17 +542,17 @@
           "par_ant":  { "min":1, "max":20, 	"dat":"hol.sel" },
           "par_ocu":  { "min":1, "max":20, 	"dat":"hol.sel" },
           "res_flu":  { "min":1, "max":2, 	"dat":"hol.sel_res_flu" },
-          "sol_pla":  { "min":1, "max":10, 	"dat":"hol.sel_sol_pla" },
-          "sol_cel":  { "min":1, "max":10, 	"dat":"hol.sel_sol_cel" },
-          "sol_cir":  { "min":1, "max":10, 	"dat":"hol.sel_sol_cir" },			
-          "pla_cen":  { "min":1, "max":5, 	"dat":"hol.sel_pla_cen" },
-          "pla_hem":  { "min":1, "max":3, 	"dat":"hol.sel_pla_hem" },
-          "pla_mer":  { "min":1, "max":2, 	"dat":"hol.sel_pla_mer" },
+          "sol_pla":  { "min":1, "max":10, 	"dat":"hol.uni_sol_pla" },
+          "sol_cel":  { "min":1, "max":10, 	"dat":"hol.uni_sol_cel" },
+          "sol_cir":  { "min":1, "max":10, 	"dat":"hol.uni_sol_cir" },			
+          "pla_cen":  { "min":1, "max":5, 	"dat":"hol.uni_pla_cen" },
+          "pla_hem":  { "min":1, "max":3, 	"dat":"hol.uni_pla_hem" },
+          "pla_mer":  { "min":1, "max":2, 	"dat":"hol.uni_pla_mer" },
           "hum_res":  { "min":1, "max":2, 	"dat":"hol.sel_res_flu" },
-          "hum_cen":  { "min":1, "max":5, 	"dat":"hol.sel_hum_cen" },
-          "hum_ext":  { "min":1, "max":5, 	"dat":"hol.sel_hum_ext" },
-          "hum_ded":  { "min":1, "max":5, 	"dat":"hol.sel_hum_ded" },
-          "hum_mer":  { "min":1, "max":10, 	"dat":"hol.sel_hum_mer" }
+          "hum_cen":  { "min":1, "max":5, 	"dat":"hol.uni_hum_cen" },
+          "hum_ext":  { "min":1, "max":5, 	"dat":"hol.uni_hum_ext" },
+          "hum_ded":  { "min":1, "max":5, 	"dat":"hol.uni_hum_ded" },
+          "hum_mer":  { "min":1, "max":10, 	"dat":"hol.uni_hum_mer" }
         },
         "opc": {
           "ver": [ 
@@ -314,6 +581,9 @@
           "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/sel/cod/()($)cod().png);",
           "col": 5
         },
+        "inf": {
+          "atr": [ ]
+        },
         "atr": {
           "ide":     { "min":1, "max":20, "dat":"hol.sel" },
           "cod":     { "min":0, "max":19 },
@@ -321,17 +591,17 @@
           "cro_fam": { "min":1, "max":5, "dat":"hol.sel_cro_fam" },
           "cro_ele": { "min":1, "max":4, "dat":"hol.sel_cro_ele" },
           "res_flu": { "min":1, "max":2, "dat":"hol.sel_res_flu" },
-          "sol_pla": { "min":1, "max":10, "dat":"hol.sel_sol_pla" },
-          "sol_cel": { "min":1, "max":10, "dat":"hol.sel_sol_cel" },
-          "sol_cir": { "min":1, "max":10, "dat":"hol.sel_sol_cir" },
-          "pla_cen": { "min":1, "max":5, "dat":"hol.sel_pla_cen" },
-          "pla_hem": { "min":1, "max":3, "dat":"hol.sel_pla_hem" },
-          "pla_mer": { "min":1, "max":2, "dat":"hol.sel_pla_mer" },
+          "sol_pla": { "min":1, "max":10, "dat":"hol.uni_sol_pla" },
+          "sol_cel": { "min":1, "max":10, "dat":"hol.uni_sol_cel" },
+          "sol_cir": { "min":1, "max":10, "dat":"hol.uni_sol_cir" },
+          "pla_cen": { "min":1, "max":5, "dat":"hol.uni_pla_cen" },
+          "pla_hem": { "min":1, "max":3, "dat":"hol.uni_pla_hem" },
+          "pla_mer": { "min":1, "max":2, "dat":"hol.uni_pla_mer" },
           "hum_res": { "min":1, "max":2, "dat":"hol.sel_res_flu" },
-          "hum_cen": { "min":1, "max":5, "dat":"hol.sel_hum_cen" },
-          "hum_ext": { "min":1, "max":5, "dat":"hol.sel_hum_ext" },
-          "hum_ded": { "min":1, "max":5, "dat":"hol.sel_hum_ded" },
-          "hum_mer": { "min":1, "max":10, "dat":"hol.sel_hum_mer" }
+          "hum_cen": { "min":1, "max":5, "dat":"hol.uni_hum_cen" },
+          "hum_ext": { "min":1, "max":5, "dat":"hol.uni_hum_ext" },
+          "hum_ded": { "min":1, "max":5, "dat":"hol.uni_hum_ded" },
+          "hum_mer": { "min":1, "max":10, "dat":"hol.uni_hum_mer" }
         },
         "opc": {
           "ima": [
@@ -368,15 +638,6 @@
           "des": "()($)des().",
           "col": 5
         }
-    }' ),      
-    ('hol','sel_cic_men', '{
-        "atr": {
-          "ide": { "min":1, "max":4, "dat":"hol.kin_cro_est" },
-          "sel": { "min":1, "max":20, "dat":"hol.sel" }
-        },
-        "opc": {
-          "ima": [ "ide", "sel" ]            
-        }          
     }' ),
     -- parejas
     ('hol','sel_par_ana', '{
@@ -414,6 +675,9 @@
           "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/sel/arm_raz/()($)ide().png);",
           "col": 4            
         },
+        "inf": {
+          "atr": [ ]
+        },
         "opc": {
           "ima": [ "ide" ]
         }          
@@ -424,6 +688,9 @@
           "des": "Poder: ()($)pod(); Función: ()($)fun().", 
           "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/sel/arm_cel/()($)ide().png);",
           "col": 5
+        },
+        "inf": {
+          "atr": [ ]
         },
         "opc": {
           "ima": [ "ide" ]
@@ -442,11 +709,14 @@
           "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/sel/cro_fam/()($)ide().png);",
           "col": 5
         },
+        "inf": {
+          "atr": [ ]
+        },
         "atr": {
           "ide": { "min":1, "max":5, "dat":"hol.sel_cro_fam" },
-          "pla_cen": { "min":1, "max":5, "dat":"hol.sel_pla_cen" },
-          "hum_cen": { "min":1, "max":5, "dat":"hol.sel_hum_cen" },
-          "hum_ded": { "min":1, "max":5, "dat":"hol.sel_hum_ded" }
+          "pla_cen": { "min":1, "max":5, "dat":"hol.uni_pla_cen" },
+          "hum_cen": { "min":1, "max":5, "dat":"hol.uni_hum_cen" },
+          "hum_ded": { "min":1, "max":5, "dat":"hol.uni_hum_ded" }
         },
         "opc": {
           "ima": [ "ide", "pla_cen", "hum_cen", "hum_ded" ]
@@ -459,207 +729,16 @@
           "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/sel/cro_ele/()($)ide().png);",
           "col": 4
         },
+        "inf": {
+          "atr": [ ]
+        },
         "atr": {
           "ide": { "min":1, "max":4, "dat":"hol.sel_cro_ele" },
           "res_flu": { "min":1, "max":2, "dat":"hol.sel_res_flu" },
-          "hum_ext": { "min":1, "max":4, "dat":"hol.sel_hum_ext" }
+          "hum_ext": { "min":1, "max":4, "dat":"hol.uni_hum_ext" }
         },
         "opc": {
           "ima": [ "ide", "res_flu", "hum_ext" ]
-        }          
-    }' ),
-    -- holon solar
-    ('hol','sel_sol_res', '{        
-        "val": {
-          "nom": "()($)nom()",
-          "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/sel/sol_res/()($)ide().png);",
-          "col": 2
-        },
-        "atr": {
-          "ide": { "min":1, "max":2, "dat":"hol.sel_sol_res" }
-        },
-        "opc": {
-          "ima": [ "ide" ]
-        }          
-    }' ),
-    ('hol','sel_sol_orb', '{        
-        "val": {
-          "nom": "Grupo Orbital #()($)nom() de 2: ()($)nom().",
-          "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/sel/sol_orb/()($)ide().png);",
-          "col": 2
-        },
-        "atr": {
-          "ide": { "min":1, "max":2, "dat":"hol.sel_sol_orb" }
-        },
-        "opc": {
-          "ima": [ "ide" ]
-        }          
-    }' ),    
-    ('hol','sel_sol_pla', '{        
-        "val": {
-          "nom": "Órbita Planetaria #()($)ide() de 10: ()($)nom().",
-          "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/sel/sol_pla/()($)ide().png);",
-          "col": 10
-        },
-        "atr": {
-          "ide": { "min":1, "max":10, "dat":"hol.sel_sol_pla" },
-          "orb": { "min":1, "max":5, "dat":"hol.sel_sol_orb" },
-          "cel": { "min":1, "max":5, "dat":"hol.sel_sol_cel" },
-          "cir": { "min":1, "max":5, "dat":"hol.sel_sol_cir" }
-        },
-        "opc": {
-          "ima": [ "ide","orb","cel","cir" ]
-        }          
-    }' ),
-    ('hol','sel_sol_cel', '{        
-        "val": {
-          "nom": "Célula Solar #()($)ide() de 5: ()($)nom().",
-          "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/sel/sol_cel/()($)ide().png);",
-          "col": 5
-        },
-        "atr": {
-          "ide": { "min":1, "max":5, "dat":"hol.sel_sol_cel" }
-        },
-        "opc": {
-          "ima": [ "ide" ]
-        }          
-    }' ),
-    ('hol','sel_sol_cir', '{        
-        "val": {
-          "nom": "Circuito de Telepatía #()($)ide() de 5: ()($)nom().",
-          "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/sel/sol_cir/()($)ide().png);",
-          "col": 5
-        },
-        "atr": {
-          "ide": { "min":1, "max":5, "dat":"hol.sel_sol_cir" }
-        },
-        "opc": {
-          "ima": [ "ide" ]
-        }          
-    }' ),
-    -- holon planetario
-    ('hol','sel_pla_res', '{
-        "val": {
-          "nom": "()($)nom()",
-          "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/sel/pla_res/()($)ide().png);",
-          "col": 2
-        },
-        "atr": {
-          "ide": { "min":1, "max":2, "dat":"hol.sel_pla_res" },
-          "hem": { "min":1, "max":3, "dat":"hol.sel_pla_hem" },
-          "fam": { "min":1, "max":5, "dat":"hol.sel_cro_fam" }
-        },
-        "opc": {
-          "ima": [ "ide","hem","fam" ]
-        }          
-    }' ),
-    ('hol','sel_pla_cen', '{
-        "val": {
-          "nom": "Centro Planetario #()($)ide() de 5: ()($)nom().",
-          "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/sel/pla_cen/()($)ide().png);",
-          "col": 5
-        },
-        "atr": {
-          "ide": { "min":1, "max":5, "dat":"hol.sel_pla_cen" },
-          "fam": { "min":1, "max":5, "dat":"hol.sel_cro_fam" }
-        },
-        "opc": {
-          "ima": [ "ide", "fam" ]            
-        }          
-    }' ),
-    ('hol','sel_pla_hem', '{
-        "val": {
-          "nom": "Hemisferio #()($)ide() de 3: ()($)nom().",
-          "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/sel/pla_hem/()($)ide().png);",
-          "col": 3
-        },
-        "atr": {
-          "ide": { "min":1, "max":3, "dat":"hol.sel_pla_hem" }
-        },
-        "opc": {
-          "ima": [ "ide" ]            
-        }          
-    }' ),
-    ('hol','sel_pla_mer', '{
-        "val": {
-          "nom": "Meridiano #()($)ide() de 2: ()($)nom().",
-          "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/sel/pla_mer/()($)ide().png);",
-          "col": 2
-        },
-        "atr": {
-          "ide": { "min":1, "max":2, "dat":"hol.sel_pla_mer" }
-        },
-        "opc": {
-          "ima": [ "ide" ]            
-        }          
-    }' ),
-    -- holon humano
-    ('hol','sel_hum_res', '{
-        "val": {
-          "nom": "()($)nom()",
-          "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/sel/hum_res/()($)ide().png);",
-          "col": 2
-        },
-        "atr": {
-          "ide": { "min":1, "max":2, "dat":"hol.sel_hum_res" }
-        },
-        "opc": {
-          "ima": [ "ide" ]            
-        }          
-    }' ),
-    ('hol','sel_hum_cen', '{
-        "val": {
-          "nom": "Centro Galáctico #()($)ide() de 5: ()($)nom().",
-          "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/sel/hum_cen/()($)ide().png);",
-          "col": 5
-        },
-        "atr": {
-          "ide": { "min":1, "max":5, "dat":"hol.sel_hum_cen" },
-          "fam": { "min":1, "max":5, "dat":"hol.sel_cro_fam" }
-        },
-        "opc": {
-          "ima": [ "ide", "fam" ] 
-        }          
-    }' ),
-    ('hol','sel_hum_ded', '{
-        "val": {
-          "nom": "Dedo #()($)ide() de 5: ()($)nom().",
-          "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/sel/hum_ded/()($)ide().png);",
-          "col": 5
-        },
-        "atr": {
-          "ide": { "min":1, "max":5, "dat":"hol.sel_hum_ded" },
-          "fam": { "min":1, "max":5, "dat":"hol.sel_cro_fam" }
-        },
-        "opc": {
-          "ima": [ "ide", "fam" ] 
-        }          
-    }' ),
-    ('hol','sel_hum_ext', '{
-        "val": {
-          "nom": "Extremidad #()($)ide() de 4: ()($)nom().",
-          "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/sel/hum_ext/()($)ide().png);",
-          "col": 4
-        },
-        "atr": {
-          "ide": { "min":1, "max":4, "dat":"hol.sel_hum_ext" },
-          "ele": { "min":1, "max":4, "dat":"hol.sel_cro_ele" }
-        },
-        "opc": {
-          "ima": [ "ide", "ele" ] 
-        }          
-    }' ),
-    ('hol','sel_hum_mer', '{
-        "val": {
-          "nom": "Meridiano Orgánico #()($)ide() de 10: ()($)nom().",
-          "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/sel/hum_mer/()($)ide().png);",
-          "col": 10
-        },
-        "atr": {
-          "ide": { "min":1, "max":10, "dat":"hol.sel_hum_mer" }
-        },
-        "opc": {
-          "ima": [ "ide" ] 
         }          
     }' )
   ;
@@ -669,6 +748,9 @@
         "val": {
           "nom": "()($)ide()° Día de 28.",
           "des": ""
+        },
+        "inf": {
+          "atr": [ ]
         },
         "est": {
 
@@ -701,8 +783,11 @@
         "val": {
           "nom": "Armonía lunar ()($)ide()",
           "des": "()($)nom(), ()($)col(). ()($)dia(): ()($)des()",
-          "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/rad.png), center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/arm/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/rad.png), center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/uni/col/()($)ide().png);",
           "col": 4
+        },
+        "inf": {
+          "atr": [ ]
         },
         "atr": {
           "ide": { "min":1, "max":4, "dat":"hol.lun_arm" }
@@ -755,6 +840,9 @@
           "des": "Cuadrante #()($)arm() de 4; Tono Galáctico #()($)ton() de 13; Onda de la Aventura #()($)ond() de 4.",
           "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/ton/arm/()($)arm().png), center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/ton/()($)ton().png);"
         },
+        "inf": {
+          "atr": [ ]
+        },
         "atr": {
           "ide": { "min":1, "max":52, "dat":"hol.cas" },
           "arm": { "min":1, "max":4, "dat":"hol.cas_arm" },
@@ -784,6 +872,9 @@
           "des": "Dirección: ()($)dir(); Poder: ()($)pod(); Color: ()($)col().",
           "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/cas/arm/()($)ide().png);",
           "col": 4
+        },
+        "inf": {
+          "atr": [ ]
         }
     }'),
     ('hol','cas_ond', '{
@@ -792,6 +883,9 @@
           "des": "()($)des().",
           "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/cas/ond/()($)ide().png);",
           "col": 4
+        },
+        "inf": {
+          "atr": [ ]
         }
     }')
   ;
@@ -802,6 +896,9 @@
           "nom": "",
           "des": "",
           "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/chi/()($)ide().png);"
+        },
+        "inf": {
+          "atr": [ ]
         }
     }' ),
     ('hol','chi_mon', '{ 
@@ -832,7 +929,14 @@
         "val": {
           "nom": "Kin #()($)ide() de 260: ()($)nom().",
           "des": "()($)des().",
-          "ima": "background: top/50% no-repeat url(http://icpv.com.ar/img/hol/fic/ton/()($)nav_ond_dia().png), bottom/60% no-repeat url(http://icpv.com.ar/img/hol/fic/sel/()($)arm_tra_dia().png);"            
+          "ima": "background: top/50% no-repeat url(http://icpv.com.ar/img/hol/fic/ton/()($)nav_ond_dia().png), bottom/60% no-repeat url(http://icpv.com.ar/img/hol/fic/sel/()($)arm_tra_dia().png);"
+        },
+        "fic": [
+          "ide", [ "nav_cas", "nav_ond", "arm_tra", "arm_cel", "cro_est", "cro_ele" ]
+        ],
+        "inf": {
+          "cit" : "des",
+          "ima" : [ "nav_cas", "nav_ond", "arm_tra", "arm_cel", "cro_est", "cro_ele" ]
         },
         "est": {
 
@@ -885,15 +989,6 @@
           "nav_ond_dia" : "hol_ton",
           "nav_cas_dia" : "hol_cas"
         },
-        "fic": {
-          "val": {
-            "ide": "ide",
-            "atr": [ "cro_ele", "arm_cel", "nav_ond" ]
-          },
-          "ima" : [
-            "nav_cas", "nav_ond", "arm_tra", "arm_cel", "cro_est", "cro_ele"
-          ]
-        },
         "opc": {
           "ver": [ 
             "ene", "ene_cam", "gen_enc", "gen_cel", "nav_cas", "nav_ond", 
@@ -931,7 +1026,11 @@
           "nom": "Grupo #()($)ide() de ()($)nom() ( ()($)gru() x ()($)gru_uni() = ()($)uni() unidades )",
           "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/kin/ene/()($)ide().png);",
           "col": 4
-        }          
+        },
+        "inf": {
+          "atr": [ "cue", "gru", "gru_uni" ],
+          "tab": [ "hol.kin.tzo", { "sec": { "col":"hol.kin.ene" }, "pos":{ "ima":"hol.ton.ide", "num":"hol.kin.ide" } } ]
+        }      
     }' ),
     ('hol','kin_ene_cam', '{ 
         "val": {
@@ -946,6 +1045,10 @@
           "des": "()($)ton_des() del Giro Galáctico.",
           "ima": "background: top/75% no-repeat url(http://icpv.com.ar/img/hol/fic/ton/()($)ide().png), center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/sel.png);",
           "col": 7            
+        },
+        "inf": {
+          "cit": "des",
+          "tab": [ "hol.kin.arm_tra", { "pos":{ "ima":"hol.kin.ide" } } ]
         }
     }' ),
     ('hol','kin_arm_cel', '{ 
@@ -954,16 +1057,33 @@
           "des": "()($)des().",
           "ima": "background: top/75% no-repeat url(http://icpv.com.ar/img/hol/fic/ton/()($)ton().png), center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/sel/arm_cel/()($)cel().png);",
           "col": 5            
+        },
+        "inf": {          
+          "cit": "des",
+          "tab": [ "hol.kin.arm_cel", { "pos":{ "ima":"hol.kin.ide" } } ]
         }
     }' ),
     -- giro espectral
     ('hol','kin_cro_est', '{
         "val": {
           "nom": "Espectro Galáctico #()($)ide() de 4: ()($)col() del ()($)dir().",
-          "des": "Guardían ()($)may(): ()($)cer(), ()($)cer_des()",
+          "des": "Guardían ()($)nom(): ()($)des(), ()($)det()",
           "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/cas/arm/()($)ide().png);",
           "col": 4            
-        }
+        },
+        "inf": {
+          "atr": [ "nom", "des", "det" ],
+          "lec": "lec",
+          "tab": [ "hol.kin.cro_est", { "pos":{ "ima":"hol.kin.ide" } } ]
+        },
+        "atr": {
+          "ide": { "min":1, "max":4, "dat":"hol.kin_cro_est" },
+          "sel": { "min":1, "max":20, "dat":"hol.sel" },
+          "cas": { "min":1, "max":52, "dat":"hol.cas" }
+        },
+        "opc": {
+          "ima": [ "ide", "sel", "cas" ]            
+        }   
     }' ),
     ('hol','kin_cro_ele', '{ 
         "val": {
@@ -971,6 +1091,11 @@
           "des": "()($)des(): ()($)cas_des().",
           "ima": "background: bottom/75% no-repeat url(http://icpv.com.ar/img/hol/fic/ton/()($)ton().png), center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/sel/cro_ele/()($)ele().png);",
           "col": 4            
+        },
+        "inf": {
+          "cit": "des",
+          "lec": "cas_des",
+          "tab": [ "hol.kin.cro_ele", { "pos":{ "ima":"hol.kin.ide" } } ]
         }
     }' ),
     -- nave del tiempo
@@ -980,6 +1105,10 @@
           "des": "()($)des().",
           "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/kin/nav_cas/()($)ide().png);",
           "col": 5            
+        },
+        "inf": {
+          "lec": "des",
+          "tab": [ "hol.kin.nav_cas", { "pos":{ "ima":"hol.kin.ide" } } ]
         }
     }' ),
     ('hol','kin_nav_ond', '{ 
@@ -988,6 +1117,11 @@
           "des": "()($)enc_des().", 
           "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/ton/arm/()($)cas_arm().png), center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/sel/()($)sel().png);",
           "col": 4            
+        },
+        "inf": {
+          "atr": [ "fac_ran", "fac_des" ],
+          "lec": "enc_des",
+          "tab": [ "hol.kin.nav_ond", { "pos":{ "ima":"hol.kin.ide" } } ]
         }
     }' ),
     ('hol','kin_gen_enc', '{ 
@@ -995,6 +1129,9 @@
           "nom": "()($)ide()° Génesis del Encantamiento del Sueño: ()($)nom().",
           "des": "()($)des().",
           "col": 3
+        },
+        "inf": {
+          "atr": [ ]
         }
     }' ),
     ('hol','kin_gen_cel', '{ 
@@ -1002,6 +1139,9 @@
           "nom": "Célula de la Memoria #()($)ide() de 5: ()($)nom().",
           "des": "()($)des().",
           "col": 5            
+        },
+        "inf": {
+          "atr": [ ]
         }
     }' )
   ;
@@ -1011,7 +1151,13 @@
         "val": {
           "nom": "PSI #()($)ide() de 365, correspondiente al ()($)fec().",
           "des": "Psi-Cronos: ()($)tzo(). Estación Solar #()($)est() de 4, día ()($)est_dia(). Giro Lunar #()($)lun() de 13, día ()($)lun_dia() de 28. Héptada #()($)hep() de 52, día ()($)hep_dia() de 7.",
-          "ima": "background: top/50% no-repeat url(http://icpv.com.ar/img/hol/fic/ton/()($)kin_ton().png), bottom/60% no-repeat url(http://icpv.com.ar/img/hol/fic/sel/()($)kin_sel().png);"
+          "ima": "background: top/50% no-repeat url(http://icpv.com.ar/img/hol/fic/ton/()($)kin_ton().png), bottom/60% no-repeat url(http://icpv.com.ar/img/hol/fic/sel/()($)kin_sel().png);"          
+        },
+        "fic": [ 
+          "tzo", [ "est", "lun", "hep" ] 
+        ],
+        "inf": {
+          "atr": [ ]
         },
         "est": {
 
@@ -1035,12 +1181,6 @@
           "ide"    :"hol_psi", 
           "lun_dia":"hol_lun",
           "hep_dia":"hol_rad"
-        },          
-        "fic": { 
-          "val": {
-            "ide": "tzo", 
-            "atr": [ "est", "lun", "hep" ]
-          }            
         },
         "opc": {
           "ver": [ 
@@ -1069,12 +1209,15 @@
         }    
     }' ),
     ('hol','psi_est', '{
-      "val": {
-        "nom": "Estación Solar #()($)ide() de 4: ()($)nom().",
-        "des": "()($)des() ( ()($)pol_sur() al sur, ()($)pol_nor() al norte )",
-        "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/cas/arm/()($)ide().png);",
-        "col": 4          
-      }
+        "val": {
+          "nom": "Estación Solar #()($)ide() de 4: ()($)nom().",
+          "des": "()($)des() ( ()($)pol_sur() al sur, ()($)pol_nor() al norte )",
+          "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/cas/arm/()($)ide().png);",
+          "col": 4          
+        },
+        "inf": {
+          "atr": [ ]
+        }
     }' ),      
     ('hol','psi_lun', '{
         "val": {
@@ -1082,6 +1225,9 @@
           "des": "()($)des() del Giro Solar Anual; Totem ()($)tot(): ()($)tot_pro().",
           "ima": "background: url(http://icpv.com.ar/img/hol/fic/psi/lun/()($)ide().png) center/contain no-repeat;",
           "col": 7
+        },
+        "inf": {
+          "atr": [ ]
         },
         "atr": {
           "ide": { "min":1, "max":13, "dat":"hol.psi_lun" },
@@ -1097,20 +1243,29 @@
         "val": {
           "nom": "Heptada #()($)ide() de 52.",
           "des": "()($)ton_des() del cuadrante ()($)arm_col() en el ()($)arm_dir().",
-          "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/sel/cod/()($)ton().png), center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/rad.png), center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/arm/()($)ond().png);",
+          "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/sel/cod/()($)ton().png), center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/rad.png), center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/uni/col/()($)ond().png);",
           "col": 4
+        },
+        "inf": {
+          "atr": [ ]
         }
     }' ),
     ('hol','psi_vin', '{
         "val": {
           "nom": "Vinal #()($)ide() de 19: ()($)nom().",
           "des": "()($)des()."
+        },
+        "inf": {
+          "atr": [ ]
         }
     }' ),
     ('hol','psi_cro', '{
         "val": {
           "nom": "Cromática Entonada #()($)ide() de 75.",
           "des": ""
+        },
+        "inf": {
+          "atr": [ ]
         }
     }' )      
   ;

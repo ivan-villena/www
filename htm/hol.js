@@ -23,116 +23,12 @@ class _hol_app {
       // ( $.bot_ini = $_app.ope.bot.querySelector('.ico.fec_val') ) && $.bot_ini.click();
     }
   }
-}
-
-// Bibliografìa
-class _hol_bib {
-
-  // Encantamiento del sueño
-  static enc( $atr, $dat, $ope ){
-
-    let $ = _app_dat.var($dat);
-
-    if( $_app.ope.var ) $.lis = $_app.ope.var.nextElementSibling;
-
-    switch( $atr ){
-    // libro del kin
-    case 'kin': 
-      $.val = _num.val( $_app.ope.var.querySelector('[name="ide"]').value );
-      if( $.val ) $.kin_ide = `#kin-${_num.val($.val,3)}`;
-
-      if( !$ope ){        
-        $.res = $_app.ope.var.querySelector('.hol-kin');
-        if( $.kin_ide ){
-          $.res.innerHTML = $.lis.querySelector(`${$.kin_ide} > .hol-kin`).innerHTML;
-        }else{
-          $.res.innerHTML = '';
-        }
-      }
-      else{
-        switch($ope){
-        case 'nav': 
-          if( $.kin_ide ) location.href = location.href.split('#')[0] + $.kin_ide;
-          break;
-        }
-      }     
-      break;
-    }
-  }
-}
-
-// Artículos
-class _hol_art {
-
-  // glosario
-  static ide( $tip, $dat, $ope ){
-
-    let $ = _app_dat.var($dat);
-
-    switch( $tip ){
-    case 'ver':
-      $.lis = $_app.ope.var.nextElementSibling;
-      $.ope = $_app.ope.var.querySelector(`[name="ope"]`);
-      $.val = $_app.ope.var.querySelector(`[name="val"]`);
-      $.tot = $_app.ope.var.querySelector(`[name="tot"]`);
-
-      if( $.val.value ){
-        // oculto todo
-        $.lis.querySelectorAll(`tbody > tr:not(.${DIS_OCU})`).forEach( $ite => $ite.classList.add(DIS_OCU) );
-        // recorro y ejecuto filtro
-        $.lis.querySelectorAll(`tbody > tr > td[data-atr="nom"]`).forEach( $ite => {
-
-          if( _val.ver($ite.innerText, $.ope.value, $.val.value) ) $ite.parentElement.classList.remove(DIS_OCU);
-        });
-      }// muestro todo
-      else{
-        $.lis.querySelectorAll(`tbody > tr.${DIS_OCU}`).forEach( $ite => $ite.classList.remove(DIS_OCU) );
-      }
-      // actualizo cuenta
-      $.tot.innerHTML = $.lis.querySelectorAll(`tbody > tr:not(.${DIS_OCU})`).length;
-
-      break;
-    }
-
-  }
-}
-
-// Operador - Valores
-class _hol_val {
-
-  // Actualizo acumulados
-  static acu( $ope ){
-
-    let $ = _app_dat.var($ope);
-
-    // portales + parejas + pulsares
-    $.ide = $_app.ope.var.classList[0].split('-')[2];
-    
-    // Actualizo total por item
-    if( $ope.nextElementSibling && ( $.tot = $ope.nextElementSibling.querySelector('n') ) ){
-
-      $.tot.innerHTML = $_app.tab.lis.querySelectorAll(`._hol-${$.ide}_${$.var_ide}`).length;
-    }    
-    // Actualizo total general
-    if( $.tot = $_app.ope.var.querySelector('div.atr > [name="cue"]') ){
-
-      $.tot.innerHTML = $_app.tab.lis.querySelectorAll(`[class*="_hol-${$.ide}_"]`).length;
-    }
-
-    // Actualizo operador de acumulados
-    _app_tab.act('opc');
-  }
-}
-
-// Operador - Tableros
-class _hol_tab {
-
-  // proceso valores
-  static _val( $dat ){
+  // proceso diario
+  static dia( $dat ){
     // operador : fecha + sincronario
-    let $ = _app_dat.var($dat);
+    let $ = _app_ope.var($dat);
     
-    $.uri = _app_uri.val();
+    $.uri = `${$_app.uri.esq}/ope/${ $_app.uri.cab == 'ope' ? $_app.uri.art : 'kin_tzo' }`;
     // calendario gregoriano
     if( $_app.ope.var.classList.contains('fec') ){
       
@@ -170,10 +66,109 @@ class _hol_tab {
     }
     
   }
-  // Secciones por tablero
-  static _sec( $dat, $ope, ...$opc ){
+}
+// Bibliografìa
+class _hol_bib {
 
-    let $ = _app_dat.var($dat);    
+  // Encantamiento del sueño
+  static enc( $atr, $dat, $ope ){
+
+    let $ = _app_ope.var($dat);
+
+    if( $_app.ope.var ) $.lis = $_app.ope.var.nextElementSibling;
+    
+    switch( $atr ){
+    // libro del kin
+    case 'kin':
+      $.res = $_app.ope.var.querySelector('.hol-kin');
+      if( $.val = _num.val( $_app.ope.var.querySelector('[name="ide"]').value ) ) $.kin_ide = `#kin-${_num.val($.val,3)}`;
+      
+      if( !$ope ){                
+        if( $.kin_ide ){
+          $.res.innerHTML = $.lis.querySelector(`${$.kin_ide} > .hol-kin`).innerHTML;
+        }else{
+          $.res.innerHTML = '';
+        }
+      }
+      else{
+        switch($ope){
+        case 'nav': 
+          if( $.kin_ide ) location.href = location.href.split('#')[0] + $.kin_ide;
+          break;
+        case 'fin': 
+          $.res.innerHTML = '';
+          break;
+        }
+      }     
+      break;
+    }
+  }
+}
+// Artículos
+class _hol_art {
+
+  // glosario
+  static ide( $tip, $dat, $ope ){
+
+    let $ = _app_ope.var($dat);
+
+    switch( $tip ){
+    case 'ver':
+      $.lis = $_app.ope.var.nextElementSibling;
+      $.ope = $_app.ope.var.querySelector(`[name="ope"]`);
+      $.val = $_app.ope.var.querySelector(`[name="val"]`);
+      $.tot = $_app.ope.var.querySelector(`[name="tot"]`);
+
+      if( $.val.value ){
+        // oculto todo
+        $.lis.querySelectorAll(`tbody > tr:not(.${DIS_OCU})`).forEach( $ite => $ite.classList.add(DIS_OCU) );
+        // recorro y ejecuto filtro
+        $.lis.querySelectorAll(`tbody > tr > td[data-atr="nom"]`).forEach( $ite => {
+
+          if( _val.ver($ite.innerText, $.ope.value, $.val.value) ) $ite.parentElement.classList.remove(DIS_OCU);
+        });
+      }// muestro todo
+      else{
+        $.lis.querySelectorAll(`tbody > tr.${DIS_OCU}`).forEach( $ite => $ite.classList.remove(DIS_OCU) );
+      }
+      // actualizo cuenta
+      $.tot.innerHTML = $.lis.querySelectorAll(`tbody > tr:not(.${DIS_OCU})`).length;
+
+      break;
+    }
+
+  }
+}
+// Operador
+class _hol_ope {
+
+  // Actualizo acumulados
+  static val_acu( $ope ){
+
+    let $ = _app_ope.var($ope);
+
+    // portales + parejas + pulsares
+    $.ide = $_app.ope.var.classList[0].split('-')[2];
+    
+    // Actualizo total por item
+    if( $ope.nextElementSibling && ( $.tot = $ope.nextElementSibling.querySelector('n') ) ){
+
+      $.tot.innerHTML = $_app.tab.lis.querySelectorAll(`._hol-${$.ide}_${$.var_ide}`).length;
+    }    
+    // Actualizo total general
+    if( $.tot = $_app.ope.var.querySelector('div.atr > [name="cue"]') ){
+
+      $.tot.innerHTML = $_app.tab.lis.querySelectorAll(`[class*="_hol-${$.ide}_"]`).length;
+    }
+
+    // Actualizo operador de acumulados
+    _app_tab.act('opc');
+  }
+
+  // Secciones por tablero
+  static tab_sec( $dat, $ope, ...$opc ){
+
+    let $ = _app_ope.var($dat);    
 
     $.tab = $_app.tab.ide;
 
@@ -401,9 +396,9 @@ class _hol_tab {
     }
   }
   // portales de activacion
-  static _pag( $dat, $ope, ...$opc ){
+  static tab_pag( $dat, $ope, ...$opc ){
 
-    let $ = _app_dat.var($dat);
+    let $ = _app_ope.var($dat);
 
     $.kin = $_hol_app.val.kin;
 
@@ -445,12 +440,12 @@ class _hol_tab {
       });
     }
     // Actualizo acumulados
-    _hol_val.acu($dat);
+    _hol_ope.val_acu($dat);
   }
   // parejas del oráculo
-  static _par( $dat, $ope, ...$opc ){
+  static tab_par( $dat, $ope, ...$opc ){
 
-    let $ = _app_dat.var($dat);
+    let $ = _app_ope.var($dat);
 
     $.kin = $_hol_app.val.kin;
 
@@ -464,7 +459,7 @@ class _hol_tab {
 
       $._par_lis.forEach( $ide => {
 
-        _hol_tab._par( $_app.ope.var.querySelector(`[name="${$ide}"]`) );
+        _hol_ope.tab_par( $_app.ope.var.querySelector(`[name="${$ide}"]`) );
       });
     }// por pareja
     else{
@@ -482,7 +477,7 @@ class _hol_tab {
           })
         }
         // evaluo extensiones
-        _hol_tab._par( $_app.ope.var.querySelector(`[name="ext"]`) );
+        _hol_ope.tab_par( $_app.ope.var.querySelector(`[name="ext"]`) );
       }
       // extiendo oráculo
       else if( $.var_ide == 'ext' ){
@@ -532,9 +527,9 @@ class _hol_tab {
     }
   }
   // pulsares de onda
-  static _pul( $dat, $ope, ...$opc ){
+  static tab_pul( $dat, $ope, ...$opc ){
 
-    let $ = _app_dat.var($dat);
+    let $ = _app_ope.var($dat);
 
     $.kin = $_hol_app.val.kin;
 
@@ -593,6 +588,6 @@ class _hol_tab {
       }
     }
     // actualizo acumulados
-    _hol_val.acu($dat);
+    _hol_ope.val_acu($dat);
   }
 }

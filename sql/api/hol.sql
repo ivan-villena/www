@@ -10,7 +10,7 @@
       FROM 
         `hol_rad` _rad
       INNER JOIN 
-        `hol_rad_hum_cha` _cha ON _rad.hum_cha = _cha.ide
+        `hol_uni_hum_cha` _cha ON _rad.hum_cha = _cha.ide
       ORDER BY
         _rad.ide ASC
     ;
@@ -39,7 +39,7 @@
       INNER JOIN 
         `hol_sel_cic_dir` _dir ON _sel.arm_raz = _dir.ide        
       INNER JOIN 
-        `hol_sel_sol_pla` _pla ON _sel.sol_pla = _pla.ide
+        `hol_uni_sol_pla` _pla ON _sel.sol_pla = _pla.ide
       INNER JOIN 
         `hol_sel_cro_ele` _ele ON _sel.cro_ele = _ele.ide
       INNER JOIN 
@@ -147,21 +147,13 @@
     DROP VIEW IF EXISTS `_hol_kin_cro_est`; CREATE VIEW `_hol_kin_cro_est` AS
       SELECT 
         _est.*,
-        _cic.nom as `cer`,
-        _cic.des as `cer_des`,      
-        _cic.sel,
-        _sel.may,
         _cas.cas,
         _cas.col,
         _cas.dir
       FROM 
-        `hol_kin_cro_est` _est      
-      INNER JOIN 
-        `hol_sel_cic_men` _cic ON _est.ide = _cic.ide
+        `hol_kin_cro_est` _est
       INNER JOIN 
         `hol_cas_arm` _cas ON _est.ide = _cas.ide
-      INNER JOIN 
-        `hol_sel` _sel ON _cic.sel = _sel.ide    
       ORDER BY
         _est.ide        
     ;

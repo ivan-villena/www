@@ -355,8 +355,8 @@ ul.bar {
   margin: 0;
 }
 ul.bar li[data-pos] {
-  overflow: auto;
   width: 100%;
+  overflow: auto;
 }
 
 /* 
@@ -533,11 +533,25 @@ nav:is(.bar,.pes) > a:hover{
 
 /* Contenedor */
 nav:is(.pes,.bar,.ope) + :is(div,section) {
+  width: 100%;
   overflow: auto;
   margin: 0 .5rem;
 }
 nav:is(.pes,.bar,.ope) + :is(div,section) > [class*="ide-"] {
   animation: dis-ver 1s;
+}
+
+/* por operadores */
+nav.ope + :is(div,section) {
+  z-index: 900;
+  position: absolute;
+  top: 6rem;
+  width: 20rem;
+  height: 30rem;  
+  background-color: var(--fon_sec);
+  padding: .25rem 0;
+  border: 1px solid var(--col_azu);
+  margin: 0;
 }
 
 /* por Barra */
@@ -549,6 +563,7 @@ nav.bar > a:not(.ico) {
   border-radius: .25rem;
   font-style: italic;
 }
+
 /* por Pestañas */
 nav.pes {
   margin: 0 .5rem;
@@ -901,6 +916,8 @@ table.app_tab {
 }
 
 ul.app_tab li.pos:not(.app_tab) {
+  width: 3rem;
+  height: 3rem;
   display: flex;
   flex-direction: column;
   align-items: center; 
@@ -936,6 +953,7 @@ ul.app_tab li.pos:not(.app_tab) {
 .app_tab :is(.sec,.pos) > p {
   text-align: center;
 }
+
 
 /*//////////////////////////////////////////////////////////////////////*/
 /*//////////////////////////////////////////////////////////////////////*/
@@ -974,6 +992,28 @@ form.app_dat :is(fieldset,div).atr input:not([type='checkbox']):not([type='radio
   border-bottom: 1px solid;
 }
 
+/*//////////////////////////////////////////////////////////////////////*/
+/*//////////////////////////////////////////////////////////////////////*/
+/* 
+  Artículos
+*/
+
+/* -- Párrafos */
+article > p,
+article section > p {
+  margin-bottom: .5rem;
+}
+/* -- Listados */
+article > ul,
+article section > ul {
+  margin: .5rem auto;
+  max-width: fit-content;  
+}
+/* -- Imagenes */
+article > figure,
+article section > figure {
+  margin: 1rem auto;
+}
 
 /* //////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 /* //////////////////////////////////////////////////////////////////////////////////////////////////////////*/
@@ -1025,10 +1065,11 @@ body > section.app_win {
   animation: dis-ver .5s;
 }
 body > section.app_win > article {  
-  height: 80vh;
+  position: absolute;
+  height: 70vh;
   width: 100%;
   max-width: 50rem;
-  overflow: hidden;
+  overflow: hidden;  
   background-color: var(--fon_sec);
   border: 1px solid var(--col_azu);
   border-radius: .5rem;
@@ -1045,12 +1086,14 @@ body > section.app_win > article > header {
 body > section.app_win > article > header + * {
   max-height: 90%;
   overflow-y: auto;
-  overflow-x: hidden;  
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
 }
 body > section.app_win > article > header + * > section {
-  margin: 1rem;  
+  margin: .5rem;  
 }
-
 /*//////////////////////////////////////////////////////////////////////*/
 /*//////////////////////////////////////////////////////////////////////*/
 /* 
@@ -1149,21 +1192,6 @@ body > main > article {
   border: 1px solid var(--bor_sel);  
   background-color: var(--fon_sec);
 }
-/* -- Párrafos */
-body > main > article > p,
-body > main > article section > p {
-  margin-bottom: .5rem;
-}
-/* -- Listados */
-body > main > article > ul,
-body > main > article section > ul {
-  margin: .5rem auto;
-}
-/* -- Imagenes */
-body > main > article > figure,
-body > main > article section > figure {
-  margin: 1rem auto;
-}
 
 /*//////////////////////////////////////////////////////////////////////*/
 /*//////////////////////////////////////////////////////////////////////*/
@@ -1176,14 +1204,51 @@ body > footer.app_pie {
 }
 
 
+/* //////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/* //////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/* //////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/* //////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+/* 
+  Panel : Menú Principal e indices 
+*/
+body > .app_pan > .ide-doc_cab ul.lis.nav {
+  height: 85vh;
+}
+body > .app_pan > .ide-doc_nav ul.lis.nav {
+  height: 81vh;
+}
+
+/* 
+  Modal : Operador
+*/
+body > .app_win > .ide-app_ope {
+  z-index: 9999;  
+  max-height: 80vh;
+  width: auto;
+}
+body > .app_win > .ide-app_ope > header + * {
+  align-items: center;
+  padding: 1rem;
+}
+
+
 /*//////////////////////////////////////////////////////////////////////*/
 /*//////////////////////////////////////////////////////////////////////*/
 /* 
-  Menú Principal e indices 
+  Tableros por aplicacion
 */
-body > aside.app_pan > nav.ide-doc_cab ul.lis.nav {
-  height: 85vh;
+
+/* Sincronario */
+.app_tab.kin.nav_cas .pos {
+  width: 3rem;
+  height: 3rem;
 }
-body > aside.app_pan > nav.ide-doc_nav ul.lis.nav {
-  height: 81vh;
+
+@media ( max-width: 500px ) {
+
+  .app_tab.kin.nav_cas .pos {
+    width: 2rem;
+    height: 2rem;
+  } 
 }

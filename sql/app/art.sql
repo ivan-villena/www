@@ -1,4 +1,4 @@
--- Active: 1665550796793@@127.0.0.1@3306@api
+-- Active: 1665550796793@@127.0.0.1@3306@c1461857_api
 
 -- Holon-Sincronario
 	DELETE FROM `app_art` WHERE `esq`='hol';
@@ -35,36 +35,36 @@
 		('hol','dat','psi', 365, 'Los 365 Psi-Cronos del Giro Solar',	'' )
 	;
 	-- Diario
-	DELETE FROM `app_art` WHERE `esq`='hol' AND `cab`='dia'; INSERT INTO `app_art` VALUES
+	DELETE FROM `app_art` WHERE `esq`='hol' AND `cab`='val'; INSERT INTO `app_art` VALUES
 		
-		('hol','dia','kin', 				01, 'El Kin',										'' ),
-		('hol','dia','sel', 				02, 'Sello Solar',							'' ),
-		('hol','dia','ton', 				03, 'Tono Galáctico',						'' ),
-		('hol','dia','kin_nav_cas', 11, 'Castillo',									'' ),
-		('hol','dia','kin_nav_ond', 12, 'Onda Encantada',						'' ),
-		('hol','dia','kin_arm_tra', 13, 'Trayectoria Armónica',			'' ),
-		('hol','dia','kin_arm_cel', 14, 'Célula del Tiempo',				'' ),
-		('hol','dia','kin_cro_est', 15, 'Estación Espectral',				'' ),
-		('hol','dia','kin_cro_ele', 16, 'Elemento Cromático',				'' ),
-		('hol','dia','psi', 				21, 'Psi-Cronos',								'' ),
-		('hol','dia','lun', 				22, 'Giro Lunar',								'' ),
-		('hol','dia','rad', 				23, 'Plasma Radial',						'' )
+		('hol','val','kin_ide', 		01, 'El Kin',										'' ),
+		('hol','val','kin_nav_cas', 11, 'Castillo',									'' ),
+		('hol','val','kin_nav_ond', 12, 'Onda Encantada',						'' ),
+		('hol','val','kin_arm_tra', 13, 'Trayectoria Armónica',			'' ),
+		('hol','val','kin_arm_cel', 14, 'Célula del Tiempo',				'' ),
+		('hol','val','kin_cro_est', 15, 'Estación Espectral',				'' ),
+		('hol','val','kin_cro_ele', 16, 'Elemento Cromático',				'' ),
+		('hol','val','sel_ide', 		02, 'Sello Solar',							'' ),
+		('hol','val','ton_ide', 		03, 'Tono Galáctico',						'' ),
+		('hol','val','psi_ide', 		21, 'Psi-Cronos',								'' ),
+		('hol','val','lun_ide', 		22, 'Giro Lunar',								'' ),
+		('hol','val','rad_ide', 		23, 'Plasma Radial',						'' )
 	;	
 	-- Tableros
 	DELETE FROM `app_art` WHERE `esq`='hol' AND `cab`='ope'; INSERT INTO `app_art` VALUES
 
-		('hol','ope','kin-tzo', 1, 'El Tzolkin',							'' ),
-		('hol','ope','kin-nav', 2, 'La Nave del Tiempo', 			'' ),
-		('hol','ope','kin-arm', 3, 'El Giro Galáctico', 			'' ),
-		('hol','ope','kin-cro', 4, 'El Giro Espectral', 			'' ),
-		('hol','ope','psi-ban', 5, 'El Giro Solar', 					'' ),
-		('hol','ope','psi-est', 6, 'Las Estaciones Solares', 	'' ),
-		('hol','ope','psi-lun', 7, 'El Giro Lunar', 					'' ),
-		('hol','ope','psi-tzo', 8, 'El Banco-Psi', 						'' )
+		('hol','ope','kin_tzo', 1, 'El Tzolkin',							'' ),
+		('hol','ope','kin_nav', 2, 'La Nave del Tiempo', 			'' ),
+		('hol','ope','kin_arm', 3, 'El Giro Galáctico', 			'' ),
+		('hol','ope','kin_cro', 4, 'El Giro Espectral', 			'' ),
+		('hol','ope','psi_ban', 5, 'El Giro Solar', 					'' ),
+		('hol','ope','psi_est', 6, 'Las Estaciones Solares', 	'' ),
+		('hol','ope','psi_lun', 7, 'El Giro Lunar', 					'' ),
+		('hol','ope','psi_tzo', 8, 'El Banco-Psi', 						'' )
 	;	
 	-- Usuario
 	DELETE FROM `app_art` WHERE `esq`='hol' AND `cab`='usu'; INSERT INTO `app_art` VALUES
 		
 		('hol','usu','cic', 1, 'Sendero del Destino',					'' ),
-		('hol','usu','dat', 2, 'Firma Galáctica',							'' )
-	;
+		('hol','usu','hum', 2, 'Firma Galáctica',							'' )
+	; 

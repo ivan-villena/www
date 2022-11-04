@@ -13,4 +13,5 @@
 			('hol','dat', 3, 'Códigos', 			'', 'num_cod', 	0, 0, 1, 0 ),
 			('hol','ope', 4, 'Módulos',				'', 'tab', 			0, 0, 0, 0 ),			
 			('hol','usu', 6, 'Usuario', 			'', 'usu', 		 	1, 0, 1, 0 )
+		
 		;
