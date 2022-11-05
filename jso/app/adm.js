@@ -4,7 +4,7 @@
 // administrador
 function _adm( $tip, $dat, $val, ...$opc ){
   
-  let $ = _app_ope.var($dat);
+  let $ = _app.var($dat);
   
   // -> desde form : vacío resultados previos
   if( $_app.ope.var && ( $.res = $_app.ope.var.querySelector('.ope_res') ) ){ 
@@ -64,7 +64,7 @@ function _adm( $tip, $dat, $val, ...$opc ){
       else{
         _lis.val($.lis.children).forEach( $e => {
 
-          if( _val.ver( $e.querySelector('.ide').innerHTML, '^^', $dat.value ) ){
+          if( _dat.ver( $e.querySelector('.ide').innerHTML, '^^', $dat.value ) ){
             $e.classList.contains(DIS_OCU) && $e.classList.remove(DIS_OCU);
           }
           else if( !$e.classList.contains(DIS_OCU) ){
@@ -129,7 +129,7 @@ function _adm( $tip, $dat, $val, ...$opc ){
 
       if( $.dat_tip.dat == 'obj' ){
 
-        $.res.appendChild( _app_obj.ope('val',$.val) );
+        $.res.appendChild( _app_var.obj('val',$.val) );
       }
       else if( $.dat_tip.dat == 'eje' ){
 
@@ -169,7 +169,7 @@ function _adm( $tip, $dat, $val, ...$opc ){
       $.res.appendChild($.tit);
       $.res.appendChild($.tex);
       // genero elemento
-      $.res.appendChild( _app_ele.val($.val)[1] );
+      $.res.appendChild( _app_var.ele_val($.val)[1] );
       break;
     case 'val':
       $dat.parentElement.parentElement.querySelectorAll(`.${FON_SEL}`).forEach( $e => $e.classList.remove(FON_SEL) )
@@ -177,7 +177,7 @@ function _adm( $tip, $dat, $val, ...$opc ){
       $.res = $_app.ope.var.querySelector('div.ele');
       _ele.eli($.res);
       $.ver = $dat.nextElementSibling.innerText.replaceAll('\n','');            
-      $.res.innerHTML = _app_ele.ope('eti',document.querySelector($.ver));
+      $.res.innerHTML = _app_var.ele('eti',document.querySelector($.ver));
       break;
     }
     break;        

@@ -1,151 +1,12 @@
 // WINDOW
 'use strict';
-
-// Sincronario
-class _hol_app {
-
-  constructor( $dat ){
-    
-    if( !!$dat && typeof($dat)=='object' ){
-
-      for( const $atr in $dat ){ this[$atr] = $dat[$atr]; }
-    }
-
-    // inicializo tablero con clase principal
-    if( $_app.uri.cab == 'ope' ){
-
-      $_app.tab.cla = ( $_app.tab.dep = $_app.tab.lis.querySelector('.app_ope > .app_tab.par') ) 
-        ? '.app_ope > .app_tab.par > [class*="pos-"]' 
-        : '.app_ope'
-      ;
-      // muestro diario
-      let $ = {};
-      // ( $.bot_ini = $_app.ope.bot.querySelector('.ico.fec_val') ) && $.bot_ini.click();
-    }
-  }
-  // proceso diario
-  static dia( $dat ){
-    // operador : fecha + sincronario
-    let $ = _app_ope.var($dat);
-    
-    $.uri = `${$_app.uri.esq}/ope/${ $_app.uri.cab == 'ope' ? $_app.uri.art : 'kin_tzo' }`;
-    // calendario gregoriano
-    if( $_app.ope.var.classList.contains('fec') ){
-      
-      if( $.fec = $_app.ope.var.querySelector('[name="fec"]').value ){
-
-        _arc.url(`${$.uri}/fec=${$.fec.replaceAll('/','-')}`);
-      }
-      else{
-        alert('La fecha del calendario es inválida...')
-      }
-    }
-    // sincronario
-    else if( $_app.ope.var.classList.contains('sin') ){
-      $.atr = {};
-      $.hol = [];
-      $.val = true;
-      ['gal','ani','lun','dia'].forEach( $v => {
-
-        $.atr[$v] = $_app.ope.var.querySelector(`[name="${$v}"]`).value;
-
-        if( !$.atr[$v] ){ 
-          return $.val = false;          
-        }
-        else{ 
-          $.hol.push($.atr[$v]) 
-        }
-      });
-      if( !!$.val ){
-
-        _arc.url(`${$.uri}/sin=${$.hol.join('.')}`);
-      }
-      else{
-        alert('La fecha del sincronario es inválida...')
-      }
-    }
-    
-  }
-}
-// Bibliografìa
-class _hol_bib {
-
-  // Encantamiento del sueño
-  static enc( $atr, $dat, $ope ){
-
-    let $ = _app_ope.var($dat);
-
-    if( $_app.ope.var ) $.lis = $_app.ope.var.nextElementSibling;
-    
-    switch( $atr ){
-    // libro del kin
-    case 'kin':
-      $.res = $_app.ope.var.querySelector('.hol-kin');
-      if( $.val = _num.val( $_app.ope.var.querySelector('[name="ide"]').value ) ) $.kin_ide = `#kin-${_num.val($.val,3)}`;
-      
-      if( !$ope ){                
-        if( $.kin_ide ){
-          $.res.innerHTML = $.lis.querySelector(`${$.kin_ide} > .hol-kin`).innerHTML;
-        }else{
-          $.res.innerHTML = '';
-        }
-      }
-      else{
-        switch($ope){
-        case 'nav': 
-          if( $.kin_ide ) location.href = location.href.split('#')[0] + $.kin_ide;
-          break;
-        case 'fin': 
-          $.res.innerHTML = '';
-          break;
-        }
-      }     
-      break;
-    }
-  }
-}
-// Artículos
-class _hol_art {
-
-  // glosario
-  static ide( $tip, $dat, $ope ){
-
-    let $ = _app_ope.var($dat);
-
-    switch( $tip ){
-    case 'ver':
-      $.lis = $_app.ope.var.nextElementSibling;
-      $.ope = $_app.ope.var.querySelector(`[name="ope"]`);
-      $.val = $_app.ope.var.querySelector(`[name="val"]`);
-      $.tot = $_app.ope.var.querySelector(`[name="tot"]`);
-
-      if( $.val.value ){
-        // oculto todo
-        $.lis.querySelectorAll(`tbody > tr:not(.${DIS_OCU})`).forEach( $ite => $ite.classList.add(DIS_OCU) );
-        // recorro y ejecuto filtro
-        $.lis.querySelectorAll(`tbody > tr > td[data-atr="nom"]`).forEach( $ite => {
-
-          if( _val.ver($ite.innerText, $.ope.value, $.val.value) ) $ite.parentElement.classList.remove(DIS_OCU);
-        });
-      }// muestro todo
-      else{
-        $.lis.querySelectorAll(`tbody > tr.${DIS_OCU}`).forEach( $ite => $ite.classList.remove(DIS_OCU) );
-      }
-      // actualizo cuenta
-      $.tot.innerHTML = $.lis.querySelectorAll(`tbody > tr:not(.${DIS_OCU})`).length;
-
-      break;
-    }
-
-  }
-}
 // Operador
 class _hol_ope {
 
   // Actualizo acumulados
   static val_acu( $ope ){
 
-    let $ = _app_ope.var($ope);
+    let $ = _app.var($ope);
 
     // portales + parejas + pulsares
     $.ide = $_app.ope.var.classList[0].split('-')[2];
@@ -168,11 +29,11 @@ class _hol_ope {
   // Secciones por tablero
   static tab_sec( $dat, $ope, ...$opc ){
 
-    let $ = _app_ope.var($dat);    
+    let $ = _app.var($dat);    
 
     $.tab = $_app.tab.ide;
 
-    $.kin = $_hol_app.val.kin;
+    $.kin = $_hol_app.art_kin;
 
     $.tip = $.var_ide.split('-');
 
@@ -398,9 +259,9 @@ class _hol_ope {
   // portales de activacion
   static tab_pag( $dat, $ope, ...$opc ){
 
-    let $ = _app_ope.var($dat);
+    let $ = _app.var($dat);
 
-    $.kin = $_hol_app.val.kin;
+    $.kin = $_hol_app.art_kin;
 
     $.ide = `pag_${$.var_ide}`;
 
@@ -445,9 +306,9 @@ class _hol_ope {
   // parejas del oráculo
   static tab_par( $dat, $ope, ...$opc ){
 
-    let $ = _app_ope.var($dat);
+    let $ = _app.var($dat);
 
-    $.kin = $_hol_app.val.kin;
+    $.kin = $_hol_app.art_kin;
 
     $.ide = `par_${$.var_ide}`;
 
@@ -529,9 +390,9 @@ class _hol_ope {
   // pulsares de onda
   static tab_pul( $dat, $ope, ...$opc ){
 
-    let $ = _app_ope.var($dat);
+    let $ = _app.var($dat);
 
-    $.kin = $_hol_app.val.kin;
+    $.kin = $_hol_app.art_kin;
 
     $.ide = `pul_${$.var_ide}`;
 

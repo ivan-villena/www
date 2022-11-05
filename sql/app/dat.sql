@@ -1048,7 +1048,7 @@
         },
         "inf": {
           "cit": "des",
-          "tab": [ "hol.kin.arm_tra", { "pos":{ "ima":"hol.kin.ide" } } ]
+          "tab": [ "hol.kin.arm_tra", { "sec":{ "par":1 }, "pos":{ "ima":"hol.kin.ide" } } ]
         }
     }' ),
     ('hol','kin_arm_cel', '{ 

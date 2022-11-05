@@ -6,10 +6,10 @@
 
   <form class="ite">
 
-    <?= _app_ope::var('val','ver',[ 
+    <?= _app::var('val','ver',[ 
       'des'=>"Filtrar...",
       'ite'=>[ 'class'=>"tam-cre" ],
-      'htm'=>_app_ope::ver(['cue'=>0, 'eje'=>"_hol_art.ide('ver',this)" ], [ 'class'=>"anc-100" ])
+      'htm'=>_app::val_ver(['cue'=>0, 'eje'=>"_hol_art.ide('ver',this)" ], [ 'class'=>"anc-100" ])
     ]) ?>
 
   </form>

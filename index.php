@@ -26,8 +26,17 @@
   $sis_ini = time();  
   
   // cargo modulos
-  require_once("./php/api.php");// entorno  
-  require_once("./php/app.php");// documento
+  $sis_rec = [ 
+    'api' => [ "sql", "lis", "dat", "eje", "obj", "ele", "arc", "tex", "num", "fec", "hol", "usu" ],
+    'app' => [ "var", "lis", "dat", "val", "est", "tab", "hol" ]
+  ];
+  foreach( $sis_rec as $ide => $cla_lis ){
+    
+    foreach( $cla_lis as $cla ){
+      if( file_exists("./php/$ide/$cla.php") ) require_once("./php/$ide/$cla.php");
+    }
+    if( file_exists("./php/$ide.php") ) require_once("./php/$ide.php");
+  }
 
   // cargo interface
   $_api = new _api();
@@ -65,6 +74,6 @@
     $_app = new _app();        
 
     // cargo página
-    $_app->doc();
+    $_app->ini();
   }
 ?>
