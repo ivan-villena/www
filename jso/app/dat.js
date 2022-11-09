@@ -91,7 +91,7 @@ class app_dat {
           $ = api_dat.ide( $.dat.dataset.ide ? $.dat.dataset.ide : $.dat.value, $ );
           $.opc.dataset.esq = $.esq;
           $.opc.dataset.est = $.est;
-          api_eje.val(['_dat::get', [`${$.esq}_${$.est}`] ], $dat => {
+          api_eje.val(['api::dat', [`${$.esq}_${$.est}`] ], $dat => {
             $.opc = app_var.opc_val( $dat, $.opc, 'ide');
           });
         }
