@@ -2,7 +2,7 @@
 'use strict';
 
 // Usuario
-class _usu {
+class api_usu {
 
   constructor( $dat ){
     

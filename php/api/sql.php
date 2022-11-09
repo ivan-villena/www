@@ -1,6 +1,6 @@
 <?php
 // Código sql 
-class _sql {
+class api_sql {
   
   // ejecuto codigo sql 
   static function dec( ...$val ){  
@@ -50,8 +50,8 @@ class _sql {
       <ul class='lis'>";
       foreach( $err as $i => $v ){ $_['_err'] .= "
         <li>
-          <p class='err'>"._app::let($v)."</p>
-          ".( isset($var_eve[$i]) ? "<c class='sep'>=></c><q>"._app::let($var_eve[$i])."</q>" : "" )."
+          <p class='err'>".app::let($v)."</p>
+          ".( isset($var_eve[$i]) ? "<c class='sep'>=></c><q>".app::let($var_eve[$i])."</q>" : "" )."
         </li>";
       }$_['_err'] .= "
       </ul>";
@@ -85,7 +85,7 @@ class _sql {
     if( $tip=='agr' ){     
       $_['atr'] = [];
       $_['val'] = [];    
-      foreach( _lis::ite($ope['val']) as $pos=>$ite ){
+      foreach( api_lis::ite($ope['val']) as $pos=>$ite ){
         $_['ite'] = [];
         foreach( $ite as $i=>$v  ){
           if( $pos==0 )
@@ -209,7 +209,7 @@ class _sql {
   static function esq( string $ope, string $ide='', ...$opc ) : string | array | object {
     $_ = [];
     if( empty($ope) ){
-      foreach( _sql::dec("SHOW DATABASES") as $esq ){
+      foreach( api_sql::dec("SHOW DATABASES") as $esq ){
         $_[] = $esq->Database;
       }
     }else{
@@ -233,7 +233,7 @@ class _sql {
     if( $ope == 'val' ){
 
       $_ = FALSE;
-      foreach( _sql::dec("SHOW TABLE STATUS FROM `{$esq}` WHERE `Name` = '{$ide}'") as $v ){
+      foreach( api_sql::dec("SHOW TABLE STATUS FROM `{$esq}` WHERE `Name` = '{$ide}'") as $v ){
   
         $_ = ( $v->Comment == 'VIEW' ) ? 'vis' : 'tab';
       }
@@ -257,7 +257,7 @@ class _sql {
     
         $ver = !empty($ver) ? " WHERE ".implode(' AND ',$ver) : '';
     
-        foreach( _sql::dec("SHOW TABLE STATUS FROM `{$esq}`{$ver}") as $v ){
+        foreach( api_sql::dec("SHOW TABLE STATUS FROM `{$esq}`{$ver}") as $v ){
     
           $_[] = $v->Name;
         }
@@ -272,7 +272,7 @@ class _sql {
         }    
         $ver = !empty($ver) ? " WHERE ".implode(' AND ',$ver) : '';
     
-        foreach( _sql::dec("SHOW TABLE STATUS FROM `{$esq}`{$ver}") as $v ){ 
+        foreach( api_sql::dec("SHOW TABLE STATUS FROM `{$esq}`{$ver}") as $v ){ 
           $_est = new stdClass();
           $_est->esq = $esq;
           $_est->ide = $v->Name;
@@ -293,9 +293,9 @@ class _sql {
   static function atr( string $est, string $ope='ver', ...$opc ) : array | object | string {
     $_=[];
     $esq = DAT_ESQ;
-    $dat_lis = _sql::dec("SHOW FULL COLUMNS FROM `{$esq}`.`{$est}`");
+    $dat_lis = api_sql::dec("SHOW FULL COLUMNS FROM `{$esq}`.`{$est}`");
     if( isset($dat_lis['_err']) ){
-      $dat_lis = _sql::dec("SHOW FULL COLUMNS FROM `{$esq}`.`{$est}`");
+      $dat_lis = api_sql::dec("SHOW FULL COLUMNS FROM `{$esq}`.`{$est}`");
     }
     if( $ope == 'lis' ){
       foreach( $dat_lis as $atr ){
@@ -303,7 +303,7 @@ class _sql {
       }
     }
     elseif( $ope == 'ver' ){
-      $_var = _api::_('dat_tip');
+      $_var = api::_('dat_tip');
       $pos = 0;    
       // si existe una vista, veo esas columnas...
       foreach( $dat_lis as $i => $atr ){
@@ -392,7 +392,7 @@ class _sql {
           }
         }
         elseif( $var_dat == 'opc' ){
-          $var['dat'] = $var_cue = _obj::dec($var_cue);
+          $var['dat'] = $var_cue = api_obj::dec($var_cue);
         }
         // valores
         if( !is_null($atr->Default) ){
@@ -436,7 +436,7 @@ class _sql {
     switch( $ope ){
     case 'ver': 
       if( !empty($ide = $opc[0]) ){
-        foreach( _sql::dec("SHOW KEYS FROM `$esq`.`$est` WHERE `Key_name` = '".( $ide == 'pri' ? "PRIMARY" : $ide )."'") as $key ){
+        foreach( api_sql::dec("SHOW KEYS FROM `$esq`.`$est` WHERE `Key_name` = '".( $ide == 'pri' ? "PRIMARY" : $ide )."'") as $key ){
 
           $_[] = $key->Column_name;
         }
@@ -459,14 +459,14 @@ class _sql {
   static function reg( string $tip, string $ide, mixed $ope=[] ) : array | object | string {
     $_ = [];
 
-    $e = _sql::cod($ide,$ope, ( $tip == 'cue' ) ? 'ver' : $tip );
+    $e = api_sql::cod($ide,$ope, ( $tip == 'cue' ) ? 'ver' : $tip );
 
     switch( $tip ){
     case 'ver': 
-      $_ = _sql::dec("SELECT {$e['atr']} FROM {$e['est']}{$e['jun']}{$e['ver']}{$e['ord']}");
+      $_ = api_sql::dec("SELECT {$e['atr']} FROM {$e['est']}{$e['jun']}{$e['ver']}{$e['ord']}");
       break;
     case 'cue':  
-      $_ = _sql::dec("SELECT COUNT( {$e['atr']} ) AS `cue` FROM {$e['est']}{$e['ver']}")[0]['cue'];
+      $_ = api_sql::dec("SELECT COUNT( {$e['atr']} ) AS `cue` FROM {$e['est']}{$e['ver']}")[0]['cue'];
       break;
     case 'agr': 
       $_ = "INSERT INTO {$e['est']} ( {$e['atr']} ) VALUES {$e['val']}";

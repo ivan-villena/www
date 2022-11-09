@@ -39,9 +39,9 @@
   }
 
   // cargo interface
-  $_api = new _api();
+  $_api = new api();
   
-  $_usu = new _usu( $_SESSION['usu'] );
+  $_usu = new api_usu( $_SESSION['usu'] );
    
   // peticion AJAX
   if( isset($_REQUEST['_']) ){  
@@ -54,16 +54,20 @@
       <h2>hola desde php<c>!</c></h2>
       ";
 
-      // recorrer tablas y 
-      foreach( _sql::est(DAT_ESQ,'lis','hol_','tab') as $est ){
+      // recorrer tablas
+      /* 
+      foreach( api_sql::est(DAT_ESQ,'lis','hol_','tab') as $est ){
         $_ .= "";
-      }
-      // ALTER TABLE `api`.`$est` DROP PRIMARY KEY;<br>
+        // ALTER TABLE `api`.`$est` DROP PRIMARY KEY;<br>
+      } 
+      */      
+
+      $_ = api_hol::sql('kin_cro_ele');
 
       return $_;
     }
     
-    echo _obj::cod( !_obj::tip( $eje = _eje::val($_REQUEST['_']) ) ? [ '_' => $eje ] : $eje );  
+    echo api_obj::cod( !api_obj::tip( $eje = api_eje::val($_REQUEST['_']) ) ? [ '_' => $eje ] : $eje );  
 
     exit;
   }
@@ -71,7 +75,7 @@
   else{
     // cargo aplicacion    
     
-    $_app = new _app();        
+    $_app = new app();        
 
     // cargo página
     $_app->ini();

@@ -2,7 +2,7 @@
 'use strict';
 
 // Holon : ns.ani.lun.dia:kin
-class _hol {
+class api_hol {
 
   // getter
   static _( $ide, $val ){
@@ -38,6 +38,6 @@ class _hol {
   // imagen : img/hol
   static ima( $est, $dat, $ele ){
 
-    return _app.ima('hol',`${$est}`,$dat,$ele);
+    return app.ima('hol',`${$est}`,$dat,$ele);
   }
 }

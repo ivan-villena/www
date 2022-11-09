@@ -2,7 +2,7 @@
 'use strict';
 
 // Archivo : fichero + texto + imagen + audio + video + app + ...tipos
-class _arc {  
+class api_arc {  
 
   static dat( $val ){ 
     let $ ={},
@@ -48,7 +48,7 @@ class _arc {
     let $={
       'lis':[]
     };  
-    _lis.ite($arc).forEach( $_arc => {
+    api_lis.ite($arc).forEach( $_arc => {
       if( typeof($_arc)=='object' ){
         $.ima = document.createElement('img');
         $.ima.src = URL.createObjectURL($_arc);
@@ -56,8 +56,8 @@ class _arc {
       }
     });
     if( !!$pad && $pad.nodeName ){
-      _ele.eli($pad);
-      _ele.agr($.lis,$pad);
+      api_ele.eli($pad);
+      api_ele.agr($.lis,$pad);
     }
     return $;
   }

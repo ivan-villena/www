@@ -1,11 +1,11 @@
 <?php
 // Objeto : [ ...val ], [ ...nom => val ], { ...atr : val }
-class _obj {
+class api_obj {
 
   // valor : ()($)atr_ide()
   static function val( object | array $dat, string $val='' ) : string {
     $_ = [];
-    $val_arr = _obj::tip($dat) == 'nom';
+    $val_arr = api_obj::tip($dat) == 'nom';
     foreach( explode(' ',$val) as $pal ){ 
       $let=[];
       foreach( explode('()',$pal) as $cad ){ 
@@ -45,7 +45,7 @@ class _obj {
     if( is_string($dat) ){  
       // busco : ()($)atributo-valor()
       if( !empty($ope) && preg_match("/\(\)\(\$\).+\(\)/",$dat) ){
-        $dat = _obj::val($ope,$dat);
+        $dat = api_obj::val($ope,$dat);
       }
       // json : { "atr": val, ... } || [ val, val, ... ]
       if( preg_match("/^({|\[).*(}|\])$/",$dat) ){ 
@@ -73,36 +73,32 @@ class _obj {
       // esquema.estructura : tabla de la base
       elseif( preg_match("/[A-Za-z0-9_]+\.[A-Za-z0-9_]+$/",$dat) ){
   
-        $_ = _dat::get($dat,$ope);
+        $_ = api::dat($dat,$ope);
         
       }
     }// convierto : {} => []
     elseif( in_array('nom',$opc) && is_object($dat) && get_class($dat)=='stdClass' ){    
-      $_ = _obj::nom($dat);
+      $_ = api_obj::nom($dat);
     }
     return $_;
   }
   
   // combino
-  static function jun( array | object $dat, array | object $ope ) : array | object {
-          
-    $val_obj = is_object($_ = $dat);      
-
-    foreach( $ope as $i => $v ){
-
-      if( $val_obj ? isset($_->$i) : isset($_[$i]) ){
-
-        $val_ite = $val_obj ? $_->$i : $_[$i];
-
-        $val = _obj::tip($v) ? _obj::jun($v,$val_ite) : $val_ite;
-
-        if( $val_obj ){ $_->$i = $val; }else{ $_[$i] = $val; }
-
+  static function jun( array | object $dat, array | object $ope, ...$opc ) : array | object {
+    // devuelvo original  
+    $val_obj = is_object($_ = $dat);
+    $opc_act = in_array('mod',$opc);
+    // recorro y agrego atributos del secundario
+    foreach( $ope as $atr => $val ){
+      // si tienen el mismo atributo
+      if( $opc_act && ( $val_obj ? isset($_->$atr) : isset($_[$atr]) ) ){
+        // valor del original
+        $val_ite = $val_obj ? $_->$atr : $_[$atr];
+        // combino objetos o reemplazo
+        $val = ( api_obj::tip($val) && api_obj::tip($val_ite) ) ? api_obj::jun($val_ite,$val,...$opc) : $val;
       }
-      else{
-
-        if( $val_obj ){ $_->$i = $v; }else{ $_[$i] = $v; }          
-      }
+      // agrego / actualizo atributo
+      if( $val_obj ){ $_->$atr = $val; }else{ $_[$atr] = $val; }
     }
     return $_;
   }
@@ -111,7 +107,7 @@ class _obj {
     
     $_ = FALSE;
 
-    if( _obj::pos($dat) ){
+    if( api_obj::pos($dat) ){
 
       $_ = 'pos';
     }
@@ -153,7 +149,7 @@ class _obj {
       switch( $tip ){
       case 'ver':
         $_ = [];
-        if( empty($ope = _lis::ite($ope)) ){
+        if( empty($ope = api_lis::ite($ope)) ){
 
           foreach( $dat as $atr => $val ){ $_[$atr] = $val; }
         }
@@ -175,7 +171,7 @@ class _obj {
 
     if( !isset($tip) ){
       // listado de objetos
-      if( _obj::pos($dat) ){
+      if( api_obj::pos($dat) ){
         
         $_ = array_map( function($i){ return clone $i; }, $dat );
       }
@@ -195,7 +191,7 @@ class _obj {
       switch( $tip ){
       case 'ver':
         $_ = new stdClass();
-        if( empty($ope = _lis::ite($ope)) ){
+        if( empty($ope = api_lis::ite($ope)) ){
 
           foreach( $dat as $atr => $val ){ $_->$atr = $val; }
         }

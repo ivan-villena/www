@@ -1,6 +1,6 @@
 <?php
 // Ejecucion : ( ...par ) => { ...cod } : val 
-class _eje {
+class api_eje {
 
   // ejecucion del entorno : funcion() |o| [namespace/]clase(...par).objeto->método(...par)
   static function val( mixed $ide, mixed $par=[], array $ini=[] ) : mixed {
@@ -9,7 +9,7 @@ class _eje {
 
       if( preg_match("/^\[.+\]$/",$ide) ){
         // FALSE : convierto en objetos stdClass
-        $var_eve = _obj::dec($ide);
+        $var_eve = api_obj::dec($ide);
         $ide = $var_eve[0];
         if( isset($var_eve[1]) ) $par = $var_eve[1];
       }
@@ -22,14 +22,15 @@ class _eje {
     }
     // metodos de clase
     if( preg_match("/\./",$ide) || preg_match("/::/",$ide) ){
-      $_ = _eje::met( $ide, $par, $ini );
+      $_ = api_eje::met( $ide, $par, $ini );
     }
     // funcion del entorno
     else{
-      $_ = _eje::fun( $ide, ..._lis::ite($par) );      
+      $_ = api_eje::fun( $ide, ...api_lis::ite($par) );      
     }
     return $_;
   }
+
   // ejecuto funciones
   static function fun( string $ide, ...$par ) : mixed {
     $_=FALSE;
@@ -40,6 +41,7 @@ class _eje {
     }
     return $_;
   }
+
   // instancio objeto de clase
   static function cla( string $ide, ...$ini ) : object | array {
 
@@ -75,6 +77,7 @@ class _eje {
     }  
     return $_;
   }
+  
   // ejecuto método de clase
   static function met( string $ide, mixed $par=[], array $ini=[] ) : mixed {
     $_ = FALSE;
@@ -90,7 +93,7 @@ class _eje {
 
           try{
 
-            $_ = empty($par) ? $cla::$met() : $cla::$met( ..._lis::ite($par) ) ;
+            $_ = empty($par) ? $cla::$met() : $cla::$met( ...api_lis::ite($par) ) ;
           }
           catch( Exception $e ){
 
@@ -110,7 +113,7 @@ class _eje {
       $cla = $_ide[0];
       $met = $_ide[1];
       // instancio
-      $obj = _eje::cla( $cla, ...$ini );
+      $obj = api_eje::cla( $cla, ...$ini );
       // ejecuto      
       if( is_object($obj) ){
 
@@ -118,7 +121,7 @@ class _eje {
 
           try{
 
-            $_ = empty($par) ? $obj->$met() : $obj->$met( ..._lis::ite($par) ) ;
+            $_ = empty($par) ? $obj->$met() : $obj->$met( ...api_lis::ite($par) ) ;
           }
           catch( Exception $e ){
 

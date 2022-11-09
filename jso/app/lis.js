@@ -2,13 +2,13 @@
 'use strict';
 
 // Listado
-class _app_lis {
+class app_lis {
 
   // punteos, numeraciones, y términos
   static ite(){
   }
   static ite_val( $dat, $ope ){
-    let $ = _app.var($dat);
+    let $ = app.var($dat);
     
     if( !$ope ){
       // toggles
@@ -29,13 +29,13 @@ class _app_lis {
   }
   static ite_tog( $dat, $ope ){
 
-    let $ = _app.var($dat);
+    let $ = app.var($dat);
 
     if( !$dat || !$ope ){
-      _ele.act('cla_tog',$.lis.children,DIS_OCU); 
+      api_ele.act('cla_tog',$.lis.children,DIS_OCU); 
     }
     else{
-      _lis.val($.lis.children).forEach( $ite => {
+      api_lis.val($.lis.children).forEach( $ite => {
 
         if( $ite.nodeName == 'DT' && !$ite.classList.contains(DIS_OCU) ){
 
@@ -45,7 +45,7 @@ class _app_lis {
               ||
               ( $ope == 'nad' &&  !$ite.nextElementSibling.classList.contains(DIS_OCU) )
             ){
-              _app_lis.ite_val($ite);
+              app_lis.ite_val($ite);
             }
           }
         }
@@ -53,20 +53,20 @@ class _app_lis {
     }
   }  
   static ite_ver( $dat, $ope ){
-    let $ = _app.var($dat);
+    let $ = app.var($dat);
     
     // filtro por valor textual        
     if( !$ope ){
       // muestro por coincidencias
       if( $.val = $_app.ope.var.querySelector('[name="val"]').value ){
         // oculto todos
-        _ele.act('cla_agr',$.lis.children,DIS_OCU); 
+        api_ele.act('cla_agr',$.lis.children,DIS_OCU); 
 
         $.ope = $_app.ope.var.querySelector('[name="ope"]').value;
         
         if( $.lis.nodeName == 'DL' ){
           $.lis.querySelectorAll(`dt`).forEach( $e => {
-            if( $.ope_val = _dat.ver($e.innerHTML,$.ope,$.val) ){
+            if( $.ope_val = api_dat.ver($e.innerHTML,$.ope,$.val) ){
               $e.classList.remove(DIS_OCU);
             }else{
               $e.classList.add(DIS_OCU);                 
@@ -83,29 +83,29 @@ class _app_lis {
           });
         }
         else{
-          _lis.val($.lis.children).forEach( $e => 
-            _dat.ver($e.innerHTML,$.ope,$.val) && $e.classList.remove(DIS_OCU) 
+          api_lis.val($.lis.children).forEach( $e => 
+            api_dat.ver($e.innerHTML,$.ope,$.val) && $e.classList.remove(DIS_OCU) 
           );
         }
       }
       else{
-        _ele.act('cla_eli',$.lis.children,DIS_OCU);
+        api_ele.act('cla_eli',$.lis.children,DIS_OCU);
       }
     }
     // operadores
     else{
       switch( $ope ){
-      case 'tod': _ele.act('cla_eli',$.lis.children,DIS_OCU); break;
-      case 'nad': _ele.act('cla_agr',$.lis.children,DIS_OCU); break;
+      case 'tod': api_ele.act('cla_eli',$.lis.children,DIS_OCU); break;
+      case 'nad': api_ele.act('cla_agr',$.lis.children,DIS_OCU); break;
       }
     }
 
     // actualizo cuenta
     if( $.tot = $_app.ope.var.querySelector('[name="tot"]') ){
       if( $.lis.nodeName == 'DL' ){
-        $.tot.innerHTML = _lis.val($.lis.children).filter( $ite => $ite.nodeName=='DT' && !$ite.classList.contains(DIS_OCU) ).length;
+        $.tot.innerHTML = api_lis.val($.lis.children).filter( $ite => $ite.nodeName=='DT' && !$ite.classList.contains(DIS_OCU) ).length;
       }else{
-        $.tot.innerHTML = _lis.val($.lis.children).filter( $ite => !$ite.classList.contains(DIS_OCU) ).length;
+        $.tot.innerHTML = api_lis.val($.lis.children).filter( $ite => !$ite.classList.contains(DIS_OCU) ).length;
       }
     }    
   }
@@ -114,7 +114,7 @@ class _app_lis {
   static val(){      
   }
   static val_ver( $dat, $ope = 'p:first-of-type', $cla = 'let-luz' ){
-    let $ = _app.var($dat);
+    let $ = app.var($dat);
     // busco listado
     if( $_app.ope.var ){
       $.lis = !! $_app.ope.var.nextElementSibling ? $_app.ope.var.nextElementSibling : $_app.ope.var.parentElement;
@@ -131,9 +131,9 @@ class _app_lis {
       $.lis.querySelectorAll(`li.pos ${$ope}`).forEach( $ite => {
 
         // capturo item : li > [.val] (p / a)
-        $.ite = _ele.ver($ite,{'eti':'li'});
+        $.ite = api_ele.ver($ite,{'eti':'li'});
         // ejecuto comparacion por elemento selector ( p / a )
-        if( !$.val.value || _dat.ver($ite.innerText, $.ope.value, $.val.value) ){
+        if( !$.val.value || api_dat.ver($ite.innerText, $.ope.value, $.val.value) ){
           // oculto/mustro item
           $.ite.classList.contains(DIS_OCU) && $.ite.classList.remove(DIS_OCU);
           // agrego brillo
@@ -160,7 +160,7 @@ class _app_lis {
         $.tog = ['ocu','nad'];
       }      
       // actualizo toggle
-      if( $.tog[1] && ( $.ico = $_app.ope.var.querySelector(`.ico.val_tog-${$.tog[1]}`) ) ) _app.val($.ico,$.tog[1]);
+      if( $.tog[1] && ( $.ico = $_app.ope.var.querySelector(`.ico.val_tog-${$.tog[1]}`) ) ) app.val($.ico,$.tog[1]);
       
       // actualizo total
       if( $.tot_val = $_app.ope.var.querySelector(`[name="tot"]`) ) $.tot_val.innerHTML = $.tot;           
@@ -172,29 +172,29 @@ class _app_lis {
   }
   static bar_ite( $tip, $dat ){
     
-    let $ = _app.var($dat);
+    let $ = app.var($dat);
 
     if( $tip == 'val' ){
 
       $.lis = $_app.ope.var.previousElementSibling;
 
       $.val = $_app.ope.var.querySelector('[name="val"]');
-      $.pos = _num.val($.val.value);
+      $.pos = api_num.val($.val.value);
 
       switch( $dat.getAttribute('name') ){
-      case 'ini': $.pos = _num.val($.val.min);
+      case 'ini': $.pos = api_num.val($.val.min);
         break;
-      case 'pre': $.pos = $.pos > _num.val($.val.min) ? $.pos-1 : $.pos;
+      case 'pre': $.pos = $.pos > api_num.val($.val.min) ? $.pos-1 : $.pos;
         break;
-      case 'pos': $.pos = $.pos < _num.val($.val.max) ? $.pos+1 : $.pos;
+      case 'pos': $.pos = $.pos < api_num.val($.val.max) ? $.pos+1 : $.pos;
         break;
-      case 'fin': $.pos = _num.val($.val.max);
+      case 'fin': $.pos = api_num.val($.val.max);
         break;
       }
       // valido y muestro item
       $.val.value = $.pos;
 
-      _ele.act('cla_agr',$.lis.querySelectorAll(`li.pos:not(.${DIS_OCU})`),DIS_OCU);
+      api_ele.act('cla_agr',$.lis.querySelectorAll(`li.pos:not(.${DIS_OCU})`),DIS_OCU);
 
       if( $.ite = $.lis.querySelector(`li.ide-${$.pos}`) ) $.ite.classList.remove(DIS_OCU);
     }

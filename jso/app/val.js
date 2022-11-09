@@ -2,11 +2,11 @@
 'use strict';
 
 // Valor
-class _app_val {
+class app_val {
 
   // alta, baja, modificacion por tabla-informe
   static abm( $tip, $dat, $ope, ...$opc ){
-    let $ = _app.var($dat);
+    let $ = app.var($dat);
     switch( $tip ){
     // cargo valores
     case 'var':
@@ -103,7 +103,7 @@ class _app_val {
             <li>${_app.let($e)}</li>`
             ); $._tex += `
           </ul>`;
-          _ele.agr( $._tex, $_atr );
+          api_ele.agr( $._tex, $_atr );
         }
 
       });
@@ -127,7 +127,7 @@ class _app_val {
       if( $.tip_eli || ( $._val && !$._tex ) ){        
         // actualizo datos
         if( ( $.esq = $_app.ope.var.dataset.esq ) && ( $.est = $_app.ope.var.dataset.est ) ){
-          _eje.val(['_doc.dat_val', [ $.esq, $.est, $tip, $._val ] ], $e => {            
+          api_eje.val(['app_dat.', [ $.esq, $.est, $tip, $._val ] ], $e => {
             if( !$e._err ){
               // reiniciar formulario
               this.abm('fin',$dat);
@@ -182,20 +182,20 @@ class _app_val {
       $.sum = 0;
       $dat.forEach( $ite => $.sum += parseInt( $ite.dataset[`${$val.dataset.esq}_${$val.dataset.est}`] ) );
 
-      _app_dat.fic( $val, $.sum);
+      app_dat.fic( $val, $.sum);
     });
   }
   // filtros : dato + variables
   static ver( $tip, $dat, $ope, ...$opc ){
 
-    let $ = _app.var($dat);
+    let $ = app.var($dat);
 
     $._tip = $tip.split('-');
 
     $.cla_val = `_val-ver-`;
     $.cla_ide=`${$.cla_val}_${$tip}`;
     
-    _ele.act('cla_eli',$dat,[$.cla_val, $.cla_ide]);
+    api_ele.act('cla_eli',$dat,[$.cla_val, $.cla_ide]);
 
     $_app.ope.var = $ope.querySelector(`form.ide-${$tip}`);
 
@@ -209,13 +209,13 @@ class _app_val {
       // actualizo dependencia
       if( $.dat_ide.value && $.dat_val.value ){
           
-        $ = _dat.ide($.dat_ide.value,$);
+        $ = api_dat.ide($.dat_ide.value,$);
       
         $dat.forEach( $e =>{
 
-          if( ( $.dat = _dat.get($.esq,$.est,$e.dataset[`${$.esq}_${$.est}`]) ) ){
+          if( ( $.dat = api.dat($.esq,$.est,$e.dataset[`${$.esq}_${$.est}`]) ) ){
 
-            if( $.dat[$.atr] == $.dat_val.value ) _ele.act('cla_agr',$e,[$.cla_val, $.cla_ide]);
+            if( $.dat[$.atr] == $.dat_val.value ) api_ele.act('cla_agr',$e,[$.cla_val, $.cla_ide]);
           }
         });
       }
@@ -232,7 +232,7 @@ class _app_val {
         // capturo valores
         if( ( $.ite = $_app.ope.var.querySelector(`[name="${$ide}"]`) ) && !!$.ite.value ){
 
-          $.val[$ide] = ( $.ite.getAttribute('type') == 'number' ) ? _num.val($.ite.value) : $.ite.value;
+          $.val[$ide] = ( $.ite.getAttribute('type') == 'number' ) ? api_num.val($.ite.value) : $.ite.value;
         }
       });
       
@@ -264,7 +264,7 @@ class _app_val {
           // valor por desde-hasta
           $.pos_val = $e.classList[1].split('-')[1];
           if( $.inc_val == 1 && $.pos_val >= $.val.ini && $.pos_val <= $.val.fin ){
-            _ele.act('cla_agr',$e,[$.cla_val, $.cla_ide]);
+            api_ele.act('cla_agr',$e,[$.cla_val, $.cla_ide]);
           }
           // aplico salto
           $.inc_val++;
@@ -279,9 +279,9 @@ class _app_val {
 
         $dat.forEach( $e => {
           // desde-hasta
-          if( $.inc_val == 1 && _fec.ver( $e.dataset['fec_dat'], $.val.ini, $.val.fin ) ){
+          if( $.inc_val == 1 && api_fec.ver( $e.dataset['fec_dat'], $.val.ini, $.val.fin ) ){
 
-            _ele.act('cla_agr',$e,[$.cla_val, $.cla_ide]);
+            api_ele.act('cla_agr',$e,[$.cla_val, $.cla_ide]);
           }
           // aplico salto
           $.inc_val++;
@@ -299,7 +299,7 @@ class _app_val {
         $.lim_cue = 0;
         $.lis.forEach( $e => {
           $.lim_cue ++;
-          if( $.lim_cue > $.val.lim ) _ele.act('cla_eli',$e,[$.cla_val, $.cla_ide]);
+          if( $.lim_cue > $.val.lim ) api_ele.act('cla_eli',$e,[$.cla_val, $.cla_ide]);
         });
       }
     }
@@ -307,7 +307,7 @@ class _app_val {
   }
   // conteos : valores de estructura relacionada por atributo
   static cue( $tip, $dat, $ope, ...$opc ){
-    let $ = _app.var($dat);
+    let $ = app.var($dat);
 
     switch( $tip ){
     // actualizo cuentas por valores
@@ -328,12 +328,12 @@ class _app_val {
 
               if( $.dat = $v.dataset[`${$.esq}_${$.est}`] ){
 
-                if( ( $.dat_val = _dat.get($.esq,$.est,$.dat) ) && ( $.dat_ide=$.dat_val[$.atr] ) && $.dat_ide == $.ide ) $.tot++;
+                if( ( $.dat_val = api.dat($.esq,$.est,$.dat) ) && ( $.dat_ide=$.dat_val[$.atr] ) && $.dat_ide == $.ide ) $.tot++;
               }
             });
 
             $ite.querySelector('td[data-atr="tot"] > n').innerHTML = $.tot;
-            $ite.querySelector('td[data-atr="por"] > n').innerHTML = $.val_tot ? _num.dec( ( $.tot / $.val_tot ) * 100 ) : $.val_tot;
+            $ite.querySelector('td[data-atr="por"] > n').innerHTML = $.val_tot ? api_num.dec( ( $.tot / $.val_tot ) * 100 ) : $.val_tot;
           });
         }
       });
@@ -352,7 +352,7 @@ class _app_val {
         
         $.lis.querySelectorAll('tr').forEach( $e => {
 
-          if( _dat.ver( $e.querySelector('td[data-atr="nom"]').innerHTML, $.ope, $.val ) ){
+          if( api_dat.ver( $e.querySelector('td[data-atr="nom"]').innerHTML, $.ope, $.val ) ){
             $e.classList.contains(DIS_OCU) && $e.classList.remove(DIS_OCU);
           }
           else if( !$e.classList.contains(DIS_OCU) ){

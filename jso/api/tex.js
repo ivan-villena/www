@@ -2,7 +2,7 @@
 'use strict';
 
 // Texto : caracter + letra + oracion + parrafo
-class _tex {  
+class api_tex {  
 
   static cod( $dat ){
     // $& significa toda la cadena coincidente

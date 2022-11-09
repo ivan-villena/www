@@ -10,7 +10,7 @@
 </article>  
 
 <article>
-  <h2 id="_01-"><?=_app::let($_nav[1]['01']->nom)?></h2>
+  <h2 id="_01-"><?=app::let($_nav[1]['01']->nom)?></h2>
 
   <p>El Sincronario de <n>13</n> Lunas se compone de ciclos elegantemente simples<c>.</c> Específicamente<c>:</c> La semana de siete días y la Luna de <n>28</n> días<c>.</c> A diferencia del Sincronario gregoriano<c>,</c> los días de la Luna <c>(</c>mes<c>)</c> y los días de la semana van alineados perfectamente<c>,</c> semana a semana y Luna a Luna<c>.</c> Esto hace del Sincronario de <n>13</n> Lunas de <n>28</n> días un Sincronario perpetuo<c>.</c> Vamos a entrar en detalle y verás lo que queremos decir<c>.</c></p>
 
@@ -27,10 +27,10 @@
 
   <?php 
   $_ = []; 
-  foreach( _hol::_($ide = 'lun_arm') as $_hep ){ $_ []= 
-    _app::let("$_hep->nom (")."<c class='let_col-4-$_hep->ide'>$_hep->col</c>"._app::let("): $_hep->des");
+  foreach( api_hol::_($ide = 'lun_arm') as $_hep ){ $_ []= 
+    app::let("$_hep->nom (")."<c class='let_col-4-$_hep->ide'>$_hep->col</c>".app::let("): $_hep->des");
   }
-  echo _app_dat::lis($_,$ide,"val");
+  echo app_dat::lis($_,$ide,"val");
   ?>
 
   <figure>
@@ -62,7 +62,7 @@
 </article>
 
 <article>
-  <h2 id="_02-"><?=_app::let($_nav[1]['02']->nom)?></h2>
+  <h2 id="_02-"><?=app::let($_nav[1]['02']->nom)?></h2>
 
   <p>Así que ahora has visto la punta del iceberg<c>.</c> El ciclo de <n>28</n> días<c>,</c> hace el cálculo del año extremadamente fácil<c>.</c> Siempre sabes que<c>,</c> por ejemplo<c>,</c> cinco Lunas desde ahora<c>,</c> será el mismo día de la Luna<c>,</c> y el mismo día de la semana<c>.</c> Puedes ver que si fueras a calcular algo en el futuro todavía sería el mismo año del Sincronario<c>.</c> Lo que es más<c>,</c> este Sincronario<c>,</c> como una matriz armónica<c>,</c> es un reflejo perfecto del tiempo dimensional superior<c>.</c></p>
 
@@ -83,11 +83,11 @@
 
   <figure>
     <ul class="ope mar-aut">
-      <li><?=_hol::ima('kin','001',['class'=>"mar_der-1"])?></li>
-      <li><?=_hol::ima('kin','002',['class'=>"mar_der-1"])?></li>
-      <li><?=_hol::ima('kin','003',['class'=>"mar_der-1"])?></li>
-      <li><?=_hol::ima('kin','004',['class'=>"mar_der-1"])?></li>
-      <li><?=_hol::ima('kin','005',['class'=>"mar_der-1"])?></li>
+      <li><?=api_hol::ima('kin','001',['class'=>"mar_der-1"])?></li>
+      <li><?=api_hol::ima('kin','002',['class'=>"mar_der-1"])?></li>
+      <li><?=api_hol::ima('kin','003',['class'=>"mar_der-1"])?></li>
+      <li><?=api_hol::ima('kin','004',['class'=>"mar_der-1"])?></li>
+      <li><?=api_hol::ima('kin','005',['class'=>"mar_der-1"])?></li>
     </ul>
     <figcaption>Aprenderás más acerca de los <n>13</n> Tonos Galácticos y los <n>20</n> Sellos Solares en la siguiente sección</figcaption>
   </figure>
@@ -101,7 +101,7 @@
 </article>
 
 <article>
-  <h2 id="_03-"><?=_app::let($_nav[1]['03']->nom)?></h2>
+  <h2 id="_03-"><?=app::let($_nav[1]['03']->nom)?></h2>
 
   <p class="des">Lo que vemos aquí es una Luna <c>/</c> mes del Sincronario de <n>13</n> Lunas<c>:</c></p>
 
@@ -114,7 +114,7 @@
 
   <p>Vamos paso a paso<c>...</c></p>
 
-  <h3 id="_03-01-"><?=_app::let($_nav[2]['03']['01']->nom)?></h3>
+  <h3 id="_03-01-"><?=app::let($_nav[2]['03']['01']->nom)?></h3>
   <section>
 
     <figure>
@@ -127,7 +127,7 @@
 
     <div class="ite">
 
-      <?=_app_dat::des('hol','rad',['pla_des'])?>
+      <?=app_dat::des('hol','rad',['pla_des'])?>
 
       <img src='<?=$_dir->ima?>03-01-02.png' class='mar-1' style="max-width:20rem;">
 
@@ -137,7 +137,7 @@
 
     <div class="ite">
 
-      <?=_app_dat::des('hol','rad',['pla_ene','pla_pod'])?>
+      <?=app_dat::des('hol','rad',['pla_ene','pla_pod'])?>
 
       <img src='<?=$_dir->ima?>03-01-03.png' class='mar-aut' style="max-width:10rem;">        
 
@@ -147,7 +147,7 @@
 
   </section>
 
-  <h3 id="_03-02-"><?=_app::let($_nav[2]['03']['02']->nom)?></h3>
+  <h3 id="_03-02-"><?=app::let($_nav[2]['03']['02']->nom)?></h3>
   <section>
 
     <figure>
@@ -162,7 +162,7 @@
     
   </section>
   
-  <h3 id="_03-03-"><?=_app::let($_nav[2]['03']['03']->nom)?></h3>
+  <h3 id="_03-03-"><?=app::let($_nav[2]['03']['03']->nom)?></h3>
   <section>
 
     <figure>
@@ -185,7 +185,7 @@
     
   </section>
   
-  <h3 id="_03-04-"><?=_app::let($_nav[2]['03']['04']->nom)?></h3>
+  <h3 id="_03-04-"><?=app::let($_nav[2]['03']['04']->nom)?></h3>
   <section>
 
     <figure>
@@ -200,11 +200,11 @@
 
     <h4>Los <n>13</n> Tonos Galácticos</h4>
 
-    <?=_app_est::lis("hol.ton",['atr'=>['ide','nom','car','pod','acc'],'opc'=>['htm','cab_ocu']])?>
+    <?=app_est::lis("hol.ton",['atr'=>['ide','nom','car','pod','acc'],'opc'=>['htm','cab_ocu']])?>
 
     <h4>Los <n>20</n> Sellos Solares</h4>
 
-    <?=_app_est::lis("hol.sel",['atr'=>['ide','nom','pod','acc','car'],'opc'=>['htm','cab_ocu']])?>
+    <?=app_est::lis("hol.sel",['atr'=>['ide','nom','pod','acc','car'],'opc'=>['htm','cab_ocu']])?>
 
     <p>El portal galáctico siempre se lee <c>"</c>Sello<c>,</c> Tono<c>,</c> Color<c>"</c><c>.</c> Por ejemplo<c>,</c> un día dragón rojo<c>,</c> con el tono magnético se lee<c>:</c> <c>"</c> Dragón Magnético Rojo<c>"</c><c>.</c> Las palabras clave del Dragón Rojo son<c>:</c> nutrir<c>,</c> nacimiento<c>,</c> ser <c>-</c>Las palabras claves para el tono magnético son<c>:</c> unificar<c>,</c> atraer propósito<c>.</c></p>
 
@@ -216,7 +216,7 @@
     
   </section>
   
-  <h3 id="_03-05-"><?=_app::let($_nav[2]['03']['05']->nom)?></h3>
+  <h3 id="_03-05-"><?=app::let($_nav[2]['03']['05']->nom)?></h3>
   <section>
 
     <figure>
@@ -243,14 +243,14 @@
 </article>
 
 <article>
-  <h2 id="_04-"><?=_app::let($_nav[1]['04']->nom)?></h2>
+  <h2 id="_04-"><?=app::let($_nav[1]['04']->nom)?></h2>
 
   <p>Así que ahora que has aprendido a seguir el Sincronario de <n>13</n> Lunas día a día<c>,</c> vamos a ir un poco más adentro de este <c>¡</c>agujero del conejo galáctico<c>!</c></p>
 
   <p>Dentro de la firma galáctica diaria <c>(</c>también llamado mandato galáctico<c>)</c> está también el Oráculo de Quinta Fuerza<c>.</c> Una metáfora para describir el oráculo de Quinta Fuerza es que si la firma galáctica es el brote de la flor cuatridimensional<c>,</c> entonces el Oráculo de Quinta Fuerza es el florecer de la flor brillante<c>.</c></p>
   
   <section>
-    <h3 id="_04-01-"><?=_app::let($_nav[2]['04']['01']->nom)?></h3>
+    <h3 id="_04-01-"><?=app::let($_nav[2]['04']['01']->nom)?></h3>
 
     <p>La ciencia contemporánea describe cuatro grandes fuerzas del universo<c>:</c> fuerte<c>,</c> débil<c>,</c> electromagnética y gravitacional<c>.</c> La Quinta Fuerza<c>,</c> entonces<c>,</c> es la que las aglutina a todas<c>,</c> es la Fuerza<c>-</c>G sincrónica<c>,</c> a veces llamada éter o akasha<c>.</c> <c>¡</c>Es la fuerza que sincroniza el universo<c>!</c></p>
 
@@ -259,7 +259,7 @@
   </section>
   
   <section>
-    <h3 id="_04-02-"><?=_app::let($_nav[2]['04']['02']->nom)?></h3>
+    <h3 id="_04-02-"><?=app::let($_nav[2]['04']['02']->nom)?></h3>
 
     <figure>
       <img src='<?=$_dir->ima?>04-02.png' class='mar-1'>
@@ -280,7 +280,7 @@
   </section>    
   
   <section>
-    <h3 id="_04-03-"><?=_app::let($_nav[2]['04']['03']->nom)?></h3>
+    <h3 id="_04-03-"><?=app::let($_nav[2]['04']['03']->nom)?></h3>
     
     <p>El gráfico siguiente es la clave para la comprensión de los oráculos como se ven en el gráfico del Tablero del Oráculo anterior<c>.</c></p>
     
@@ -347,7 +347,7 @@
   </section>   
       
   <section>
-    <h3 id="_04-04-"><?=_app::let($_nav[2]['04']['04']->nom)?></h3>
+    <h3 id="_04-04-"><?=app::let($_nav[2]['04']['04']->nom)?></h3>
 
     <p>Otra aplicación del Oráculo de Quinta Fuerza es que divide el ciclo diario en cuatro sub-ciclos<c>,</c> llamadas miradas<c>.</c> Esto se llama <dfn>Tiempo NET</dfn> <c>-</c>Tiempo Noosférico de la Tierra<c>.</c></p>
 
@@ -371,7 +371,7 @@
 </article>
   
 <article>
-  <h2 id="_05-"><?=_app::let($_nav[1]['05']->nom)?></h2>
+  <h2 id="_05-"><?=app::let($_nav[1]['05']->nom)?></h2>
 
   <p><c>¡</c>Esperamos que este tutorial te haya ayudado para comenzar a utilizar el Sincronario de <n>13</n> Lunas a diario y así entrar en una nueva experiencia del tiempo<c>!</c> En la parte de <c>"</c><a href="http://www.13lunas.net/inical.htm" target="_blank">Sincronarios</a><c>"</c> puedes descargar el Sincronario de bolsillo de <n>13</n> Lunas del año en curso<c>.</c> </p>
 

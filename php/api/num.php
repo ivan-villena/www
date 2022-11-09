@@ -1,13 +1,13 @@
 <?php
 // Numero : separador + operador + entero + decimal + rango
-class _num {
+class api_num {
 
   // datos del objeto
   static function dat( int | float | string $ide, string $atr='' ) : object | string {
-    $_num_int = _api::_('num_int');
+    $_num_int = api::_('num_int');
     
     // aseguro valor
-    if( is_string($ide) ) $ide = _num::val($ide);
+    if( is_string($ide) ) $ide = api_num::val($ide);
     
     // busco datos
     $_ = isset($_num_int[$ide]) ? $_num_int[$ide] : new stdClass();
@@ -22,7 +22,7 @@ class _num {
     $_ = $dat;
     if( !empty($tot) ){
 
-      $_ = _tex::agr( abs( $dat = _num::val($dat) ), $tot, "0");
+      $_ = api_tex::agr( abs( $dat = api_num::val($dat) ), $tot, "0");
 
       if( $dat < 0 ) $_ = "-".$_;
     }
@@ -80,7 +80,7 @@ class _num {
   // reduzco a valor dentro del rango
   static function ran( string | float | int $num, int | float $max, int | float $min = 1 ) : int | float {
     
-    $_ = is_string($num) ? _num::val($num) : $num;
+    $_ = is_string($num) ? api_num::val($num) : $num;
     
     while( $_ > $max ){ $_ -= $max; } 
     
@@ -97,7 +97,7 @@ class _num {
     
       function( $acu, $ite ){
         
-        return $acu += _num::val($ite); 
+        return $acu += api_num::val($ite); 
       }
     );
   }

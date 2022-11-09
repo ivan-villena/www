@@ -1,12 +1,12 @@
 // WINDOW
 'use strict';
 // Artículos
-class _hol_art {
+class hol_art {
 
   // glosario
   static ide( $tip, $dat, $ope ){
 
-    let $ = _app.var($dat);
+    let $ = app.var($dat);
 
     switch( $tip ){
     case 'ver':
@@ -21,7 +21,7 @@ class _hol_art {
         // recorro y ejecuto filtro
         $.lis.querySelectorAll(`tbody > tr > td[data-atr="nom"]`).forEach( $ite => {
 
-          if( _dat.ver($ite.innerText, $.ope.value, $.val.value) ) $ite.parentElement.classList.remove(DIS_OCU);
+          if( api_dat.ver($ite.innerText, $.ope.value, $.val.value) ) $ite.parentElement.classList.remove(DIS_OCU);
         });
       }// muestro todo
       else{

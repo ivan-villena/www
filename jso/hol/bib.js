@@ -2,12 +2,12 @@
 'use strict';
 
 // Bibliografìa
-class _hol_bib {
+class hol_bib {
 
   // Encantamiento del sueño
   static enc( $atr, $dat, $ope ){
 
-    let $ = _app.var($dat);
+    let $ = app.var($dat);
 
     if( $_app.ope.var ) $.lis = $_app.ope.var.nextElementSibling;
     
@@ -15,7 +15,7 @@ class _hol_bib {
     // libro del kin
     case 'kin':
       $.res = $_app.ope.var.querySelector('.hol-kin');
-      if( $.val = _num.val( $_app.ope.var.querySelector('[name="ide"]').value ) ) $.kin_ide = `#kin-${_num.val($.val,3)}`;
+      if( $.val = api_num.val( $_app.ope.var.querySelector('[name="ide"]').value ) ) $.kin_ide = `#kin-${api_num.val($.val,3)}`;
       
       if( !$ope ){                
         if( $.kin_ide ){

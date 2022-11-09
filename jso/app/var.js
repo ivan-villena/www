@@ -1,7 +1,7 @@
 // WINDOW
 'use strict';
 
-class _app_var {
+class app_var {
 
   static fic( $tip, $dat, $ope, ...$opc ){
 
@@ -26,18 +26,18 @@ class _app_var {
 
     let $={};
 
-    $.val = _num.val($dat.value);
+    $.val = api_num.val($dat.value);
 
     // excluyo bits
     if( $dat.type != 'text' ){
 
       // valido minimos y máximos
-      if( ( $.min = _num.val($dat.min) ) && $dat.value && $.val < $.min ) $dat.value = $.val = $.min;    
+      if( ( $.min = api_num.val($dat.min) ) && $dat.value && $.val < $.min ) $dat.value = $.val = $.min;    
 
-      if( ( $.max = _num.val($dat.max) ) && $dat.value && $.val > $.max ) $dat.value = $.val = $.max;
+      if( ( $.max = api_num.val($dat.max) ) && $dat.value && $.val > $.max ) $dat.value = $.val = $.max;
 
       // relleno con ceros
-      if( $dat.getAttribute('num_pad') && ( $.num_cue = $dat.maxlength ) ) $.num_pad = _num.val($.val,$.num_cue);
+      if( $dat.getAttribute('num_pad') && ( $.num_cue = $dat.maxlength ) ) $.num_pad = api_num.val($.val,$.num_cue);
 
       // actualizo valores por rango
       if( $dat.type == 'range' ){
@@ -99,7 +99,7 @@ class _app_var {
 
     for( const $i in $dat ){ const $v = $dat[$i];
 
-      $.tip = _dat.tip($v);
+      $.tip = api_dat.tip($v);
 
       $.ite = document.createElement('li');
       $.ite.classList.add('mar_ver-1');
@@ -108,7 +108,7 @@ class _app_var {
       `;
       if( ![undefined,NaN,null,true,false].includes($v) ){
 
-        $.ite.innerHTML += _app.let( ( $.tip.dat=='obj' ) ? JSON.stringify($v) : $v.toString() ) ;          
+        $.ite.innerHTML += app.let( ( $.tip.dat=='obj' ) ? JSON.stringify($v) : $v.toString() ) ;          
       }
       else{
         $.ite.innerHTML += `<c>${$v}</c>`;
@@ -159,7 +159,7 @@ class _app_var {
       <c class='lis'>></c>`;
       $.eti_htm=''; 
       if( $dat.childNodes.length>0 ){ 
-        _lis.val($dat.childNodes).forEach( $e =>{
+        api_lis.val($dat.childNodes).forEach( $e =>{
           if( $e.nodeName.toLowerCase() != '#text' ){ $.eti_htm += `
             <li>${this.ele('eti',$e)}</li>`;
           }else{ $.eti_htm += `
@@ -181,14 +181,14 @@ class _app_var {
         <div class='ite ini'>
 
           <c class='lis sep'><</font>
-          <font class='ide' onclick='_app_ele.act(this,'ver');'>${$.nom}</font>
+          <font class='ide' onclick='app_ele.act(this,'ver');'>${$.nom}</font>
           <ul class='val _atr'>
             ${$.eti_atr.join('')}
           </ul>
           <c class='lis sep'>></c>          
 
           <p class='tog dis-ocu'>
-            c onclick='_app_ele.act(this,'ver');' class='tog dis-ocu'>...</>
+            c onclick='app_ele.act(this,'ver');' class='tog dis-ocu'>...</>
             ${$.fin}
           </p>
         </div>`;
@@ -219,7 +219,7 @@ class _app_var {
     // resultado
     $.res = $dat.parentElement.parentElement.previousElementSibling.querySelector('div.ele');
 
-    _ele.eli($.res);
+    api_ele.eli($.res);
 
     $.res.innerHTML = _doc.ele('eti',document.querySelector($.ver));
   }
@@ -235,7 +235,7 @@ class _app_var {
     $dat.forEach( $e => {
       $.ite = document.createElement('li');            
       $.ite.classList.add('mar_ver-2');            
-      $.ite.innerHTML = `${_app.ico('dat_ver',{'class':"tam-1 mar_der-1",'onclick':"_app_ele.act(this);"})}`;
+      $.ite.innerHTML = `${_app.ico('dat_ver',{'class':"tam-1 mar_der-1",'onclick':"app_ele.act(this);"})}`;
       $.tex = document.createElement('p');
       $.tex.innerHTML = _doc.ele('her',$e);
       $.ite.appendChild($.tex);
@@ -301,7 +301,7 @@ class _app_var {
       $.val = $ope.val;
     }
 
-    _app_var.opc_lis($dat,$.val,...$opc).forEach( 
+    app_var.opc_lis($dat,$.val,...$opc).forEach( 
       $e => $_.appendChild($e) 
     );
 
@@ -319,7 +319,7 @@ class _app_var {
 
     $.val_ide = $opc.includes('ide');
 
-    for( const $ide in $dat ){ $.obj_tip = _obj.tip($dat[$ide]); break; }
+    for( const $ide in $dat ){ $.obj_tip = api_obj.tip($dat[$ide]); break; }
     $.obj_pos = $.obj_tip == 'pos';
 
     for( const $ide in $dat ){ const $ite = $dat[$ide];

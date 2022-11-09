@@ -2,14 +2,14 @@
 'use strict';
 
 // administrador
-function _adm( $tip, $dat, $val, ...$opc ){
+function app_adm( $tip, $dat, $val, ...$opc ){
   
-  let $ = _app.var($dat);
+  let $ = app.var($dat);
   
   // -> desde form : vacío resultados previos
   if( $_app.ope.var && ( $.res = $_app.ope.var.querySelector('.ope_res') ) ){ 
 
-    _ele.eli($.res);
+    api_ele.eli($.res);
   }
   // -> desde menu : capturo form
   else if( $dat.nodeName && $dat.nodeName == 'A' ){
@@ -21,11 +21,11 @@ function _adm( $tip, $dat, $val, ...$opc ){
   // peticiones
   case 'aja':
     $.lis = $_app.ope.var.querySelector(`nav.lis`);
-    _ele.eli($.lis);
+    api_ele.eli($.lis);
     $_api.log.php.forEach( $log => {
       $.ver = document.createElement('a'); 
       $.ver.href = $log;
-      $.ver.innerHTML = _app.let($log); 
+      $.ver.innerHTML = app.let($log); 
       $.ver.target='_blank'; 
       $.lis.appendChild($.ver);
     });                          
@@ -35,7 +35,7 @@ function _adm( $tip, $dat, $val, ...$opc ){
     $.lis = $_app.ope.var.querySelector(`ul.lis`);
     if( !$val ){
       // limpio listado
-      _ele.eli($.lis);
+      api_ele.eli($.lis);
       for( let $ico in ( $._api_ico = $_api.app_ico ) ){ 
         $ico = $._api_ico[$ico];
         $.ico = document.createElement('span');
@@ -57,14 +57,14 @@ function _adm( $tip, $dat, $val, ...$opc ){
     }
     else{
       if( !$dat.value ){
-        _lis.val($.lis.children).forEach( $e => 
+        api_lis.val($.lis.children).forEach( $e => 
           $e.classList.contains(DIS_OCU) && $e.classList.remove(DIS_OCU) 
         );
       }
       else{
-        _lis.val($.lis.children).forEach( $e => {
+        api_lis.val($.lis.children).forEach( $e => {
 
-          if( _dat.ver( $e.querySelector('.ide').innerHTML, '^^', $dat.value ) ){
+          if( api_dat.ver( $e.querySelector('.ide').innerHTML, '^^', $dat.value ) ){
             $e.classList.contains(DIS_OCU) && $e.classList.remove(DIS_OCU);
           }
           else if( !$e.classList.contains(DIS_OCU) ){
@@ -79,11 +79,11 @@ function _adm( $tip, $dat, $val, ...$opc ){
     $.cod = $_app.ope.var.querySelector('[name="cod"]').value;
     if( $.cod ){
 
-      _eje.val( ['_sql::dec', [ $.cod ] ], $res => {
+      api_eje.val( ['_sql::dec', [ $.cod ] ], $res => {
         // pido tabla
         if( Array.isArray($res) ){
 
-          $.res.appendChild( _app_est.lis($res) );
+          $.res.appendChild( app_est.lis($res) );
         }// errores: html
         else if( typeof($res)=='object' ){
 
@@ -92,7 +92,7 @@ function _adm( $tip, $dat, $val, ...$opc ){
         else{                        
           $.htm = document.createElement('p');
           $.htm.classList.add('sql');
-          $.htm.innerHTML = _app.let($res);
+          $.htm.innerHTML = app.let($res);
           $.res.appendChild($.htm);
         }  
       });
@@ -106,7 +106,7 @@ function _adm( $tip, $dat, $val, ...$opc ){
     $.res.classList.add(DIS_OCU);
     $.htm = $_app.ope.var.querySelector('[name="htm"]').checked;
     if( $.ide = $_app.ope.var.querySelector('[name="ide"]').value ){
-      _eje.val([ $.ide, eval(`[${$_app.ope.var.querySelector('[name="par"]').value}]`) ], $res => {
+      api_eje.val([ $.ide, eval(`[${$_app.ope.var.querySelector('[name="par"]').value}]`) ], $res => {
         if( $.htm ){
           $.res.innerHTML = $res;
           $.res.classList.remove(DIS_OCU);
@@ -125,19 +125,19 @@ function _adm( $tip, $dat, $val, ...$opc ){
 
       $.val = eval($.cod.value);
 
-      $.dat_tip = _dat.tip($.val);
+      $.dat_tip = api_dat.tip($.val);
 
       if( $.dat_tip.dat == 'obj' ){
 
-        $.res.appendChild( _app_var.obj('val',$.val) );
+        $.res.appendChild( app_var.obj('val',$.val) );
       }
       else if( $.dat_tip.dat == 'eje' ){
 
-        $.res.innerHTML = _app.let( $.val.toString() );
+        $.res.innerHTML = app.let( $.val.toString() );
       }
       else if( ![undefined,NaN,null,true,false].includes($.val) ){
 
-        $.res.innerHTML = _app.let( $.val );
+        $.res.innerHTML = app.let( $.val );
       }
       else{
 
@@ -156,8 +156,8 @@ function _adm( $tip, $dat, $val, ...$opc ){
     switch( $val ){
     case 'cod':
       $.res = $_app.ope.var.querySelector('div.nod');          
-      _ele.eli($_app.ope.var.querySelector('div.ele'));
-      _ele.eli($.res);
+      api_ele.eli($_app.ope.var.querySelector('div.ele'));
+      api_ele.eli($.res);
       $.cod = $_app.ope.var.querySelector('[name="cod"]');
 
       $.val = document.querySelectorAll($.cod.value);
@@ -165,19 +165,19 @@ function _adm( $tip, $dat, $val, ...$opc ){
       $.tit = document.createElement('h4');
       $.tit.innerHTML = 'Listado';
       $.tex = document.createElement('p');
-      $.tex.innerHTML = _app.let(`Total: ${$.val.length}`);        
+      $.tex.innerHTML = app.let(`Total: ${$.val.length}`);        
       $.res.appendChild($.tit);
       $.res.appendChild($.tex);
       // genero elemento
-      $.res.appendChild( _app_var.ele_val($.val)[1] );
+      $.res.appendChild( app_var.ele_val($.val)[1] );
       break;
     case 'val':
       $dat.parentElement.parentElement.querySelectorAll(`.${FON_SEL}`).forEach( $e => $e.classList.remove(FON_SEL) )
       $dat.nextElementSibling.classList.add(FON_SEL);
       $.res = $_app.ope.var.querySelector('div.ele');
-      _ele.eli($.res);
+      api_ele.eli($.res);
       $.ver = $dat.nextElementSibling.innerText.replaceAll('\n','');            
-      $.res.innerHTML = _app_var.ele('eti',document.querySelector($.ver));
+      $.res.innerHTML = app_var.ele('eti',document.querySelector($.ver));
       break;
     }
     break;        

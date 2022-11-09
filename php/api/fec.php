@@ -1,6 +1,6 @@
 <?php
 // Fecha : aaaa-mm-dia hh:mm:ss utc
-class _fec {    
+class api_fec {    
   // get : estructura-objetos
   static function _( string $ide, $val = NULL ) : string | array | object {
     global $_api;
@@ -8,7 +8,7 @@ class _fec {
     // aseguro carga      
     $est = "fec_$ide";
     if( !isset($_api->$est) ){
-      $_api->$est = _dat::ini(DAT_ESQ,$est);
+      $_api->$est = api_dat::ini(DAT_ESQ,$est);
     }// cargo datos
     $_dat = $_api->$est;
     
@@ -17,7 +17,7 @@ class _fec {
       if( !is_object($val) ){
         switch( $ide ){
         case 'dat':
-          $_ = _fec::dat($val);
+          $_ = api_fec::dat($val);
           break;
         default:
           if( is_numeric($val) ){
@@ -74,7 +74,7 @@ class _fec {
       }
       elseif( is_string($dat) ){ 
         try{ 
-          $_ = _fec::dat($dat);
+          $_ = api_fec::dat($dat);
           $_ = !! $_ ? new DateTime( "{$_->año}-{$_->mes}-{$_->dia}" ) : new DateTime('NOW');
         }
         catch( Throwable $_err ){ 
@@ -102,12 +102,12 @@ class _fec {
 
     if( empty($tip) ){
       $_ = $dat;
-      if( is_string($dat) ) $_ = _fec::dat($dat);
+      if( is_string($dat) ) $_ = api_fec::dat($dat);
     }
     else{
       $_fec = $dat;
       // aseguro objeto nativo
-      if( !is_object($dat) || get_class($dat)=='stdClass' ) $_fec = _fec::dec($dat); 
+      if( !is_object($dat) || get_class($dat)=='stdClass' ) $_fec = api_fec::dec($dat); 
       // busco tipo
       switch( $tip ){
       case 'dyh': $_ = $_fec->format('Y/m/d H:i:s');  break;
@@ -151,9 +151,9 @@ class _fec {
           $_->dia = intval($fec[0]);
         }  
         // valido fecha resultante
-        if( $_->val = _fec::val($_,...$opc) ){
+        if( $_->val = api_fec::val($_,...$opc) ){
           // busco valor semanal
-          $_->sem = _fec::tip($_,'sem');
+          $_->sem = api_fec::tip($_,'sem');
           // proceso horario
           if( isset($val[1]) ){
             $hor = explode(':', $_->tie = $val[1]);
@@ -179,7 +179,7 @@ class _fec {
 
     if( checkdate($mes, $dia, $año) ){
       
-      $_ = !in_array('año',$opc) ? _num::val($dia,2).'/'._num::val($mes,2).'/'._num::val($año,4) : _num::val($año,4).'/'._num::val($mes,2).'/'._num::val($dia,2);
+      $_ = !in_array('año',$opc) ? api_num::val($dia,2).'/'.api_num::val($mes,2).'/'.api_num::val($año,4) : api_num::val($año,4).'/'.api_num::val($mes,2).'/'.api_num::val($dia,2);
     }
 
     return $_;
@@ -192,7 +192,7 @@ class _fec {
 
       if( ( $tip == 'dia' || $tip == 'dyh' ) ){
 
-        $_fec = _fec::dat($val,'año');
+        $_fec = api_fec::dat($val,'año');
 
         $val = $_fec->val;
       }
@@ -235,7 +235,7 @@ class _fec {
   // cuento dias pos periodo : mes | año
   static function cue( string $tip, string | object $val ) : mixed {
 
-    $_ = is_string($val) ? _fec::dat($val) : $val;
+    $_ = is_string($val) ? api_fec::dat($val) : $val;
 
     switch( $tip ){
     case 'mes':
@@ -250,7 +250,7 @@ class _fec {
       $mes = 0;
       for( $i = 1; $i <= 12; $i++ ){
 
-        $lis[$i] = _fec::cue('mes',"{$_->año}/$i/1");
+        $lis[$i] = api_fec::cue('mes',"{$_->año}/$i/1");
         $tot += $lis[$i]; 
       }
       if( $_->mes == 1 ){ 
@@ -287,14 +287,14 @@ class _fec {
 
     if( $ini < 0 && $fin < 0  ){
 
-      $_ = _num::int( $ini * - 1 )." - "._num::int( $fin * - 1). " A.C.";
+      $_ = api_num::int( $ini * - 1 )." - ".api_num::int( $fin * - 1). " A.C.";
     }
     elseif( $ini > 0 && $fin > 0 ){
 
-      $_ = _num::int( $ini )." - "._num::int( $fin ). " D.C.";
+      $_ = api_num::int( $ini )." - ".api_num::int( $fin ). " D.C.";
     }
     else{
-      $_ = _num::int( $ini * - 1 )." A.C. - "._num::int( $fin ). " D.C.";
+      $_ = api_num::int( $ini * - 1 )." A.C. - ".api_num::int( $fin ). " D.C.";
     }
 
     return $_;
@@ -302,7 +302,7 @@ class _fec {
   // año bisciesto ?
   static function año_bis( string | object $fec ) : bool {
 
-    if( is_string($fec) ) $fec = _fec::dat($fec);
+    if( is_string($fec) ) $fec = api_fec::dat($fec);
 
     return date('L', strtotime("$fec->año-01-01"));
   }

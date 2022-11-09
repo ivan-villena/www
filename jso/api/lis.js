@@ -2,12 +2,12 @@
 'use strict';
 
 // listado - tabla : []
-class _lis {
+class api_lis {
 
   // aseguro iteracion : []
   static ite( $dat = [] ){
 
-    return _obj.tip($dat) == 'pos' ? $dat : [ $dat ] ;
+    return api_obj.tip($dat) == 'pos' ? $dat : [ $dat ] ;
   }
   // convierto a listado : []
   static val( $dat ){
@@ -17,7 +17,7 @@ class _lis {
     // elemento : armo listado o convierto a iterable
     if( $dat.constructor && /(NodeList|^HTML[a-zA-Z]*(Element|Collection)$)/.test($dat.constructor.name) ){
 
-      $_ = ( /^HTML[a-zA-Z]*Element/.test($dat.constructor.name) ) ? _lis.ite($dat) : Array.from( $dat ) ;
+      $_ = ( /^HTML[a-zA-Z]*Element/.test($dat.constructor.name) ) ? api_lis.ite($dat) : Array.from( $dat ) ;
     }
     // convierto : {} => []
     else if( typeof($dat) == 'object' ){
@@ -35,10 +35,10 @@ class _lis {
   static ope( $dat, $ope ){
     let $_ = $dat;
     // nivelacion por identificador
-    if( !!($ope['niv']) ) $_ = _lis.niv($dat,$ope);
+    if( !!($ope['niv']) ) $_ = api_lis.niv($dat,$ope);
 
     // valor unico : objeto
-    if( !!($ope['opc']) && $ope['opc'].includes('uni')) $_ = _lis.uni($dat);
+    if( !!($ope['opc']) && $ope['opc'].includes('uni')) $_ = api_lis.uni($dat);
 
     return $_;
   }

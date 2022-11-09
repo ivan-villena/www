@@ -29,15 +29,6 @@ body[data-cab="ope"] > .app_pan > .ide-val > .ide-cue > ul {
   height: 40vh;
 }
 
-body[data-cab="ope"] > .app_win > .ide-est {
-  max-width: 60rem;
-  height: 90vh;
-}
-body[data-cab="ope"] > .app_win > .ide-est > div > .app_est {
-  height: 74vh;
-}
-
-
 /* P.A.G. */
 .app_tab.kin_tzo :is(._hol-pag_kin, ._hol-pag_psi) {
   background-color: var(--tra_ver) !important;

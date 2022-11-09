@@ -2,7 +2,7 @@
 'use strict';
 
 // Objeto : [ ...val ], [ ...nom => val ], { ...atr : val }
-class _obj {
+class api_obj {
 
   // valores por atributo : ()($)atr()
   static val( $dat, $val='' ){
@@ -42,7 +42,7 @@ class _obj {
     if( typeof($dat) == 'string' ){
   
       if( !!$ope && /\(\)\(\$\).+\(\)/.test($dat) ){
-        $dat = _obj.val($ope,$dat);
+        $dat = api_obj.val($ope,$dat);
       }
       // json : {} + []
       if( /^({|\[).*(}|\])$/.test($dat) ){ 

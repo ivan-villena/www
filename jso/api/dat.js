@@ -2,41 +2,8 @@
 'use strict';
 
 // Dato : esq.est[ide].atr
-class _dat {
-
-  // getter: estructuras | objetos
-  static get( $dat, $ope, $val='' ){
-
-    let $_=[], $={};
-
-    // por objeto[->propiedad]
-    if( $ope && typeof($ope) == 'string' ){
-
-      $.esq = $dat;
-      $.est = $ope;
-      $_ = $val;
-
-      if( !$val || !_obj.tip($val) ){
-        
-        // por clase : metodo estático
-        if( $.esq && ( $.cla = eval(`_${$.esq}`) ) ){
-
-          if( !!$.cla._ ) $_ = $.cla._($.est,$val);
-        }
-      }
-    }  
-    // de la documento 
-    else if( typeof($dat) == 'string' ){
-      
-      $_ = ( $.ver = _ele.ope($dat) ) ? $.ver : [];
-    }
-    // por estructura : [ {}, [] ]
-    else{
-
-      $_ = _lis.ope('ver',$dat,$ope);
-    }
-    return $_;
-  }  
+class api_dat {
+ 
   // tipo
   static tip( $val ){
     let $_ = false, 
@@ -138,12 +105,12 @@ class _dat {
     case '<<':  $_ = ( $dat  <  $val );  break;
     case '>=':  $_ = ( $dat >=  $val );  break;
     case '<=':  $_ = ( $dat <=  $val );  break;
-    case '^^':  $_ = _tex.dec(`^${_tex.cod($val)}`, $opc.join('') ).test( $dat.toString() ); break;
-    case '!^':  $_ = _tex.dec(`^[^${_tex.cod($val)}]`, $opc.join('') ).test( $dat.toString() ); break;
-    case '$$':  $_ = _tex.dec( `${_tex.cod($val)}$`, $opc.join('') ).test( $dat.toString() ); break;
-    case '!$':  $_ = _tex.dec( `[^${_tex.cod($val)}]$`, $opc.join('') ).test( $dat.toString() ); break;
-    case '**':  $_ = _tex.dec( `${_tex.cod($val)}`, $opc.join('') ).test( $dat.toString() ); break;
-    case '!*':  $_ = _tex.dec( `[^${_tex.cod($val)}]`, $opc.join('') ).test( $dat.toString() ); break;
+    case '^^':  $_ = api_tex.dec(`^${api_tex.cod($val)}`, $opc.join('') ).test( $dat.toString() ); break;
+    case '!^':  $_ = api_tex.dec(`^[^${api_tex.cod($val)}]`, $opc.join('') ).test( $dat.toString() ); break;
+    case '$$':  $_ = api_tex.dec( `${api_tex.cod($val)}$`, $opc.join('') ).test( $dat.toString() ); break;
+    case '!$':  $_ = api_tex.dec( `[^${api_tex.cod($val)}]$`, $opc.join('') ).test( $dat.toString() ); break;
+    case '**':  $_ = api_tex.dec( `${api_tex.cod($val)}`, $opc.join('') ).test( $dat.toString() ); break;
+    case '!*':  $_ = api_tex.dec( `[^${api_tex.cod($val)}]`, $opc.join('') ).test( $dat.toString() ); break;
     }
     return $_;
   }
@@ -167,7 +134,7 @@ class _dat {
     if( !!($atr) ) $_['est'] = $atr == 'ide' ? $est : `${$est}_${$atr}`;
     
     // valido dato
-    if( !!( $.dat_Val = _app.dat($_['esq'],$_['est'],`val.${$tip}`,$dat) ) ){
+    if( !!( $.dat_Val = app.dat($_['esq'],$_['est'],`val.${$tip}`,$dat) ) ){
       $_['ide'] = `${$_['esq']}.${$_['est']}`;
       $_['val'] = $.dat_Val;
     }
@@ -183,9 +150,9 @@ class _dat {
 
     if( $dat.dataset && $ope.esq && $ope.est && $ope.atr && ( $ope.val = $dat.dataset[`${$ope.esq}_${$ope.est}`] ) ){
 
-      if( !$ope.fic ) $ope.fic = _dat.opc('ima', $ope.esq, $ope.est );
+      if( !$ope.fic ) $ope.fic = api_dat.opc('ima', $ope.esq, $ope.est );
 
-      $_ = _app.ima($ope.fic.esq, $ope.fic.est, _dat.get($ope.esq,$ope.est,$ope.val)[$ope.atr], $ope.ele);
+      $_ = app.ima($ope.fic.esq, $ope.fic.est, api.dat($ope.esq,$ope.est,$ope.val)[$ope.atr], $ope.ele);
     }
     return $_;
   }

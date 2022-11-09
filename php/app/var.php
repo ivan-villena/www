@@ -1,9 +1,9 @@
 <?php
 
-class _app_var {
+class app_var {
 
-  static string $IDE = "_app_var-";
-  static string $EJE = "_app_var.";
+  static string $IDE = "app_var-";
+  static string $EJE = "app_var.";
 
   static function fig( string $tip, mixed $dat = NULL, array $ope = [], ...$opc ) : string {
     $_ = "";
@@ -21,7 +21,7 @@ class _app_var {
       break;
     }
     if( empty($_) && !empty($ope['type']) ){
-      $_ = "<input"._ele::atr($ope).">";            
+      $_ = "<input".api_ele::atr($ope).">";            
     }
     return $_;
   }
@@ -35,7 +35,7 @@ class _app_var {
 
       if( !isset($ope['htm']) ) $ope['htm'] = $dat;
 
-      $_ = "<n"._ele::atr($ope).">{$ope['htm']}</n>";
+      $_ = "<n".api_ele::atr($ope).">{$ope['htm']}</n>";
     }
     else{
 
@@ -49,9 +49,9 @@ class _app_var {
       }
 
       // controlo valores al actualizar
-      _ele::eje($ope,'inp',"$_eje"."act(this);",'ini');
+      api_ele::eje($ope,'inp',"$_eje"."act(this);",'ini');
       // seleccion automática
-      _ele::eje($ope,'foc',"this.select();",'ini');        
+      api_ele::eje($ope,'foc',"this.select();",'ini');        
       
       switch( $tip ){
       case 'bit':
@@ -74,10 +74,10 @@ class _app_var {
             }
           }
           if( !empty($tam) ){ 
-            $ope['value'] = _num::val($ope['value'],$tam); 
+            $ope['value'] = api_num::val($ope['value'],$tam); 
           }
           if( !empty($ope['num_sep']) ){ 
-            $ope['value'] = _num::int($ope['value']); 
+            $ope['value'] = api_num::int($ope['value']); 
           }
         }
         break;
@@ -116,11 +116,11 @@ class _app_var {
 
           $ope['num_dec'] = $dec;
 
-          if( !isset($ope['step']) ) $ope['step'] = '0.'._num::val('1',$dec);
+          if( !isset($ope['step']) ) $ope['step'] = '0.'.api_num::val('1',$dec);
 
-          if( !empty($ope['num_pad']) && !empty($tam) ) $ope['value'] = _num::val($ope['value'],$tam);
+          if( !empty($ope['num_pad']) && !empty($tam) ) $ope['value'] = api_num::val($ope['value'],$tam);
 
-          if( !empty($ope['num_sep']) ) $ope['value'] = _num::dec($ope['value']);
+          if( !empty($ope['num_sep']) ) $ope['value'] = api_num::dec($ope['value']);
         }
         break;
       case 'ran':
@@ -136,7 +136,7 @@ class _app_var {
             unset($ope['class']); 
           }
           if( !isset($ope['id']) ){ 
-            $ope['id'] = "_num_ran-"._app::var_ide('_num-ran');
+            $ope['id'] = "_num_ran-".app::var_ide('_num-ran');
           }
           $htm_out = "";
           if( !in_array('val-ocu',$opc) ){ $htm_out = "
@@ -150,7 +150,7 @@ class _app_var {
             <div class='val'>
               <n class='_min'>{$ope['min']}</n>
               <c class='sep'><</c>
-              <input"._ele::atr($ope).">
+              <input".api_ele::atr($ope).">
               <c class='sep'>></c>
               <n class='_max'>{$ope['max']}</n>
             </div>
@@ -163,7 +163,7 @@ class _app_var {
       }
 
       if( empty($_) && !empty($ope['type']) ){
-        $_ = "<input"._ele::atr($ope).">";
+        $_ = "<input".api_ele::atr($ope).">";
       }
     }        
 
@@ -180,14 +180,14 @@ class _app_var {
 
       $ope['eti'] = !empty($ope['eti']) ? $ope['eti'] : 'font';
 
-      $ope['htm'] = _app::let( is_null($dat) ? '' : strval($dat) );
+      $ope['htm'] = app::let( is_null($dat) ? '' : strval($dat) );
 
-      $_ = _ele::val($ope);
+      $_ = api_ele::val($ope);
 
     }// por tipos
     else{
 
-      if( !is_string($dat) ) $dat = strval( is_iterable($dat) ? _obj::cod($dat) : $dat );
+      if( !is_string($dat) ) $dat = strval( is_iterable($dat) ? api_obj::cod($dat) : $dat );
 
       $ope['value'] = str_replace('"','\"',$dat);
 
@@ -202,13 +202,13 @@ class _app_var {
         $lis_htm = "";
         if( isset($ope['lis']) || isset($ope['dat']) ){
           if( isset($ope['lis']) ){
-            $dat_lis = _obj::dec($ope['lis']);
+            $dat_lis = api_obj::dec($ope['lis']);
             unset($ope['lis']);          
           }else{
             $dat_lis = [];
           }        
           if( empty($ope['id']) ){ 
-            $ope['id']="_tex-{$tip}-"._app::var_ide("_tex-{$tip}-");
+            $ope['id']="_tex-{$tip}-".app::var_ide("_tex-{$tip}-");
           }
           $ope['list'] = "{$ope['id']}-lis";
           $lis_htm = "
@@ -219,11 +219,11 @@ class _app_var {
           </datalist>";
         }
         // seleccion automática
-        _ele::eje($ope,'foc',"this.select();",'ini');  
-        $_ = "<input"._ele::atr($ope).">".$lis_htm;
+        api_ele::eje($ope,'foc',"this.select();",'ini');  
+        $_ = "<input".api_ele::atr($ope).">".$lis_htm;
       }
       else{
-        $_ = "<textarea"._ele::atr($ope).">{$dat}</textarea>";
+        $_ = "<textarea".api_ele::atr($ope).">{$dat}</textarea>";
       }
     }      
 
@@ -238,23 +238,23 @@ class _app_var {
     switch( $tip ){
     case 'val':
       $ope['value'] = $dat; $_ = "
-      <time"._ele::atr($ope).">
-        "._app::let(_fec::var($dat))."
+      <time".api_ele::atr($ope).">
+        ".app::let(api_fec::var($dat))."
       </time>";
     case 'tie': 
       $ope['value'] = intval($dat);
       $ope['type']='numeric';
       break;
     case 'dyh': 
-      $ope['value'] = _fec::var($dat,$tip);
+      $ope['value'] = api_fec::var($dat,$tip);
       $ope['type']='datetime-local';
       break;
     case 'hor':
-      $ope['value'] = _fec::var($dat,$tip);
+      $ope['value'] = api_fec::var($dat,$tip);
       $ope['type']='time';
       break;
     case 'dia':
-      $ope['value'] = _fec::var($dat,$tip);
+      $ope['value'] = api_fec::var($dat,$tip);
       $ope['type']='date';
       break;
     case 'sem':
@@ -273,8 +273,8 @@ class _app_var {
 
     if( empty($_) && !empty($ope['type']) ){
       // seleccion automática
-      _ele::eje($ope,'foc',"this.select();",'ini');
-      $_ = "<input"._ele::atr($ope).">";
+      api_ele::eje($ope,'foc',"this.select();",'ini');
+      $_ = "<input".api_ele::atr($ope).">";
     }      
 
     return $_;
@@ -285,7 +285,7 @@ class _app_var {
     $_ide = self::$IDE."$tip";
     $_eje = self::$EJE."$tip";
 
-    if( isset($ope['tip']) ) $ope['accept'] = _arc::tip($ope['tip']);
+    if( isset($ope['tip']) ) $ope['accept'] = api_arc::tip($ope['tip']);
 
     switch( $tip ){
     case 'val':
@@ -302,11 +302,11 @@ class _app_var {
     // ima - vid - mus
     default:
       $ope['type']='file';
-      $ope['accept'] = _arc::tip($tip);
+      $ope['accept'] = api_arc::tip($tip);
       break;      
     }
     if( empty($_) && !empty($ope['type']) ){
-      $_ = "<input"._ele::atr($ope).">";
+      $_ = "<input".api_ele::atr($ope).">";
     }
     return $_;
   }      
@@ -335,10 +335,10 @@ class _app_var {
     // texto : json
     if( !isset($dat) || is_string($dat) ){
       $ope['value'] = strval($dat); $_ = "
-      <textarea"._ele::atr($ope).">{$dat}</textarea>";
+      <textarea".api_ele::atr($ope).">{$dat}</textarea>";
     }
     // por tipos: pos - nom - atr
-    elseif( $tip = _obj::tip($dat) ){
+    elseif( $tip = api_obj::tip($dat) ){
       $cue = 0; 
       $htm = '';
       $cla_agr = ''; 
@@ -356,22 +356,22 @@ class _app_var {
       }
       foreach( $dat as $i=>$v ){ 
         $cue++; 
-        $htm .= _app_var::obj_ite( $i, $v, $tip, ...$opc);
+        $htm .= app_var::obj_ite( $i, $v, $tip, ...$opc);
       }
-      _ele::cla($ope,"app_obj {$tip}",'ini');
+      api_ele::cla($ope,"app_obj {$tip}",'ini');
       $_ = "
-      <div"._ele::atr($ope).">
+      <div".api_ele::atr($ope).">
         <div class='jus-ini mar_ver-1'>
           <p>
             <c>(</c> <n class='sep'>{$cue}</n> <c>)</c> <c class='sep'>=></c> <c class='_lis-ini'>{$ini}</c>
           </p>
-          "._app::ico('dat_ver',['onclick'=>"$_eje.val(this,'tog');"])."
+          ".app::ico('dat_ver',['onclick'=>"$_eje.val(this,'tog');"])."
           <ul class='ope _tog{$cla_agr}'>"; 
             if( empty($atr_agr) ){ $_.="
-            "._app::ico('dat_tod',['eti'=>"li",'onclick'=>"$_eje.val(this,'tod');"])."
-            "._app::ico('dat_nad',['eti'=>"li",'onclick'=>"$_eje.val(this,'nad');"])."
-            "._app::ico('dat_agr',['eti'=>"li",'onclick'=>"$_eje.val(this,'agr');"])."
-            "._app::ico('dat_eli',['eti'=>"li",'onclick'=>"$_eje.val(this,'eli');"])."
+            ".app::ico('dat_tod',['eti'=>"li",'onclick'=>"$_eje.val(this,'tod');"])."
+            ".app::ico('dat_nad',['eti'=>"li",'onclick'=>"$_eje.val(this,'nad');"])."
+            ".app::ico('dat_agr',['eti'=>"li",'onclick'=>"$_eje.val(this,'agr');"])."
+            ".app::ico('dat_eli',['eti'=>"li",'onclick'=>"$_eje.val(this,'eli');"])."
             ";
             }$_.="
           </ul>
@@ -389,7 +389,7 @@ class _app_var {
     }
 
     return $_;
-  }// item por tipo
+  }
   static function obj_ite( mixed $ide, mixed $dat = NULL, string $tip = 'pos', array $ope = [], ...$opc ) : string {
     $_ = "";
 
@@ -405,7 +405,7 @@ class _app_var {
       $_="<input type='radio' disabled>";
     }
     else{ 
-      $tip = _dat::tip($dat); 
+      $tip = api_dat::tip($dat); 
       $tip_dat = $tip['dat']; 
       $tip_val = $tip['val']; 
     }
@@ -415,20 +415,20 @@ class _app_var {
       $ite = "<input type='checkbox'>"; 
     }
     // items de lista -> // reducir dependencias
-    $cla_ide = "_app_{$tip_dat}";
+    $cla_ide = "app_{$tip_dat}";
     if( in_array($tip_dat,[ 'lis' ]) ){
 
       if( $ite != "" ){          
         $_ = $cla_ide::ope( $tip_val, $dat, [ 'ide'=>"{$ope['ent']}.{$ide}", 'eti'=>$ope['ite'] ] );
       }
       else{
-        $_ = _app_var::opc_val( $dat, [ 'eti'=>$ope['eti'], 'ite'=>$ope['ite'] ] );
+        $_ = app_var::opc_val( $dat, [ 'eti'=>$ope['eti'], 'ite'=>$ope['ite'] ] );
       }
     }// controladores
     else{
 
       $dat = is_string($dat) ? $dat : strval($dat); 
-      $_ = !empty($ope) ? $cla_ide::ope( $tip_val, $dat, $ope['ite'] ) : "<p"._ele::atr($ope['ite']).">{$dat}</p>";
+      $_ = !empty($ope) ? $cla_ide::ope( $tip_val, $dat, $ope['ite'] ) : "<p".api_ele::atr($ope['ite']).">{$dat}</p>";
     }
     $ide='';
     if( !empty($ite) ){ 
@@ -514,14 +514,14 @@ class _app_var {
       break;          
     }
     if( empty($_) && !empty($ope['type']) ){
-      $_ = "<input"._ele::atr($ope).">";            
+      $_ = "<input".api_ele::atr($ope).">";            
     }
     return $_;
-  }// opciones : select > ...option[value]
+  }
   static function opc_val( mixed $dat = NULL, array $ope = [], ...$opc ) : string {
     $_ = "";
 
-    $ope_eti = !empty($ope['eti']) ? _obj::dec($ope['eti'],[],'nom') : [];
+    $ope_eti = !empty($ope['eti']) ? api_obj::dec($ope['eti'],[],'nom') : [];
 
     if( isset($ope_eti['data-opc']) ){
       $opc = array_merge($opc,is_array($ope_eti['data-opc']) ? $ope_eti['data-opc'] : explode(',',$ope_eti['data-opc']) );
@@ -541,7 +541,7 @@ class _app_var {
     }
     
     $_ = "
-    <{$eti}"._ele::atr($ope_eti).">";
+    <{$eti}".api_ele::atr($ope_eti).">";
 
       if( in_array('nad',$opc) ){ $_ .= "
         <option default value=''>{-_-}</option>"; 
@@ -554,19 +554,19 @@ class _app_var {
 
           if( isset($dat[$ide]) ){ $_.="
             <optgroup data-ide='{$ide}' label='{$nom}'>
-              "._app_var::opc_lis( $dat[$ide], $val, $ope_ite, ...$opc )."                
+              ".app_var::opc_lis( $dat[$ide], $val, $ope_ite, ...$opc )."                
             </optgroup>";
           }
         }
       }
       else{                        
-        $_ .= _app_var::opc_lis( $dat, $val, $ope_ite, ...$opc );
+        $_ .= app_var::opc_lis( $dat, $val, $ope_ite, ...$opc );
       }
       $_ .= "
     </{$eti}>";
 
     return $_;
-  }// opciones : ...option[value]
+  }
   static function opc_lis( mixed $dat = [], mixed $val = NULL, array $ope = [], ...$opc) : string {
     $_ = "";
     
@@ -576,7 +576,7 @@ class _app_var {
 
     $obj_tip = FALSE;
     foreach( $dat as $i => $v){ 
-      $obj_tip = _obj::tip($v);
+      $obj_tip = api_obj::tip($v);
       break;
     }
 
@@ -589,14 +589,14 @@ class _app_var {
       if( !$obj_tip ){  
         $e['value'] = $i;
         $htm = !!$opc_ide ? "{$i}: ".strval($v) : strval($v) ;
-        $atr = _ele::atr($e);
+        $atr = api_ele::atr($e);
       }
       // elemento
       elseif( $obj_tip == 'nom' ){
-        $e = _ele::jun($e,$v);
+        $e = api_ele::jun($e,$v);
         if( !isset($e['value']) ) $e['value'] = $i;
         $htm = isset($e['htm']) ? $e['htm'] : $i;
-        $atr = _ele::atr($e);
+        $atr = api_ele::atr($e);
       }
       // objeto ( ide + nom + des + tit )
       elseif( $obj_tip == 'atr' ){
@@ -604,7 +604,7 @@ class _app_var {
         $_htm = isset($v->nom) ? $v->nom : FALSE ;
         // valor
         if( isset($e['value']) ){ 
-          $e['value'] = _obj::val($v,$e['value']); 
+          $e['value'] = api_obj::val($v,$e['value']); 
         }else{ 
           $e['value'] = $i;
           if( $_ide ){ $e['value'] = $_ide; }elseif( $_htm ){ $e['value'] = $_htm; }
@@ -619,7 +619,7 @@ class _app_var {
         }
         // contenido
         if( isset($e['htm']) ){
-          $htm = _obj::val($v,$e['htm']);
+          $htm = api_obj::val($v,$e['htm']);
         }else{
           if( !!$opc_ide && $_ide && $_htm ){
             $htm = "{$_ide}: {$_htm}";
@@ -629,11 +629,11 @@ class _app_var {
             $htm = $_ide; 
           }
         }
-        $atr = _ele::atr($e,$v);            
+        $atr = api_ele::atr($e,$v);            
       }// por posiciones
       else{
         $htm = "( \"".implode( '", "', $v )."\" )" ;
-        $atr = _ele::atr($e);
+        $atr = api_ele::atr($e);
       }
       // agrego atributo si está en la lista
       if( $val_ite ){ 

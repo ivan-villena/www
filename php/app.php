@@ -1,9 +1,10 @@
 <?php
-// Página-app
-class _app {
 
-  static string $IDE = "_app-";
-  static string $EJE = "_app.";
+// Página-app
+class app {
+
+  static string $IDE = "app-";
+  static string $EJE = "app.";
 
   public array  $rec;
   public array  $doc;
@@ -52,7 +53,7 @@ class _app {
         'ico'=>"app", 'url'=>SYS_NAV."/".$_uri->esq, 'nom'=>"Página de Inicio"
       ],// menu
       'app_cab'=>[
-        'ico'=>"app_cab", 'tip'=>"pan", 'nom'=>"Menú Principal", 'htm'=>_app::cab($_uri->esq)
+        'ico'=>"app_cab", 'tip'=>"pan", 'nom'=>"Menú Principal", 'htm'=> app::cab($_uri->esq)
       ],// indice
       'app_nav'=>[
         'ico'=>"app_nav", 'tip'=>"pan", 'nom' => "Índice", 'htm'=>""
@@ -84,19 +85,19 @@ class _app {
     ];
 
     // cargo datos de la pagina por peticion : esquema - cabecera - articulo - valor
-    $this->doc['esq'] = _dat::get('app_esq',[ 
+    $this->doc['esq'] = api::dat('app_esq',[ 
       'ver'=>"`ide`='{$_uri->esq}'", 
       'opc'=>'uni' 
     ]);
     if( !empty($_uri->cab) ){
       // cargo datos del menu
-      $this->doc['cab'] = _dat::get('app_cab',[ 
+      $this->doc['cab'] = api::dat('app_cab',[ 
         'ver'=>"`esq`='{$_uri->esq}' AND `ide`='{$_uri->cab}'", 
         'ele'=>'ope', 'opc'=>'uni' 
       ]);
       // cargo datos del artículo
       if( !empty($_uri->art) ){
-        $this->doc['art'] = _dat::get('app_art',[ 
+        $this->doc['art'] = api::dat('app_art',[ 
           'ver'=>"`esq`='{$_uri->esq}' AND `cab`='{$_uri->cab}' AND `ide`='{$_uri->art}'", 
           'ele'=>'ope', 'opc'=>'uni' 
         ]);
@@ -112,14 +113,14 @@ class _app {
       // cargo índice de contenidos
       if( !empty($this->doc['cab']->nav) ){
   
-        $this->doc['nav'] = _dat::get('app_nav',[
+        $this->doc['nav'] = api::dat('app_nav',[
           'ver'=>"`esq` = '{$_uri->esq}' AND `cab` = '{$_uri->cab}' AND `ide` = '{$_uri->art}'", 
           'ord'=>"pos ASC", 
           'nav'=>'pos'
         ]);
         // pido listado por navegacion
         if( !empty($this->doc['nav'][1]) ){
-          $this->ope['app_nav']['htm'] = _app::art($this->doc['nav']);
+          $this->ope['app_nav']['htm'] = app::art($this->doc['nav']);
         }
       }
     }
@@ -190,7 +191,7 @@ class _app {
     global $_api;
     if( !isset($_api->app_dat[$esq][$est]) ){
       
-      $_api->app_dat[$esq][$est] = _dat::get('app_dat',[
+      $_api->app_dat[$esq][$est] = api::dat('app_dat',[
         'ver'=>"`esq`='{$esq}' AND `ide`='{$est}'", 
         'ele'=>"ope",
         'red'=>"ope",
@@ -205,7 +206,7 @@ class _app {
       $_ = is_array($_) && isset($_[$ide]) ? $_[$ide] : FALSE;
     }
     // proceso valores con datos
-    if( $ope_atr[0] == 'val' && isset($dat) ) $_ = _obj::val( _dat::get($esq,$est,$dat), $_ );
+    if( $ope_atr[0] == 'val' && isset($dat) ) $_ = api_obj::val( api::dat($esq,$est,$dat), $_ );
 
     return $_;
   }
@@ -221,7 +222,7 @@ class _app {
 
       require_once($cla_rec);
 
-      if( class_exists( $cla = "_{$_uri->esq}_app" ) ){
+      if( class_exists( $cla = $_uri->esq ) ){
 
         new $cla( $this );
       }                
@@ -229,14 +230,14 @@ class _app {
 
     // usuario + loggin
     // $tip = empty($_usu->ide) ? 'ini' : 'fin';
-    // $this->ope["ses_{$tip}"]['htm'] = _app::usu($tip);
+    // $this->ope["ses_{$tip}"]['htm'] = app::usu($tip);
 
     // consola del sistema
     if( $_usu->ide == 1 ){
       $this->rec['jso']['app'] []= "adm";
       $this->ope['api_adm'] = [ 'ico'=>"eje", 'bot'=>"fin", 'tip'=>"win", 'nom'=>"Consola del Sistema", 
         'art'=> [ 'style'=>"max-width: 55rem;" ],
-        'htm'=>_app::adm()
+        'htm'=> app::adm()
       ]; 
     }
     // agrego ayuda
@@ -249,22 +250,22 @@ class _app {
       // enlaces
       if( isset($ope['url']) ){
         // boton
-        $this->htm['ope'][$ope['bot']] .= _app::ico($ope['ico'],[ 'eti'=>"a", 'title'=>$ope['nom'], 'href'=>$ope['url'] ]);
+        $this->htm['ope'][$ope['bot']] .= app::ico($ope['ico'],[ 'eti'=>"a", 'title'=>$ope['nom'], 'href'=>$ope['url'] ]);
       }
       // paneles y modales
       elseif( ( $ope['tip'] == 'pan' || $ope['tip'] == 'win' ) && !empty($ope['htm']) ){
         // botones          
-        $this->htm['ope'][$ope['bot']] .= _app::bot([ $ide => $ope ]);
+        $this->htm['ope'][$ope['bot']] .= app::bot([ $ide => $ope ]);
         // contenido
-        $this->htm[$ope['tip']] .= _app::{$ope['tip']}($ide,$ope);
+        $this->htm[$ope['tip']] .= app::{$ope['tip']}($ide,$ope);
       }
     }
     // cargo modal de operadores
-    $this->htm['win'] .= _app::win('app_ope',[ 'ico'=>"app_ope", 'nom'=>"Operador" ]);
+    $this->htm['win'] .= app::win('app_ope',[ 'ico'=>"app_ope", 'nom'=>"Operador" ]);
 
     // cargo contenido principal
     $ele = [ 'tit' => $this->rec['ele']['title'] ];
-    $this->htm['sec'] = _app::sec( $this->htm['sec'], $ele );
+    $this->htm['sec'] = app::sec( $this->htm['sec'], $ele );
     
     // ajusto diseño
     $_ver = [];
@@ -311,7 +312,7 @@ class _app {
         <title><?= $this->rec['ele']['title'] ?></title>
       </head>
 
-      <body <?= _ele::atr($this->rec['ele']['body']) ?>>
+      <body <?= api_ele::atr($this->rec['ele']['body']) ?>>
         
         <!-- Botonera -->
         <header class='app_bot'>
@@ -376,10 +377,10 @@ class _app {
         }?>
         <script>
           // cargo datos de la interface
-          var $_api = new _api(<?= _obj::cod( $this->rec['dat'] ) ?>);
+          var $_api = new api(<?= api_obj::cod( $this->rec['dat'] ) ?>);
           
           // cargo aplicacion
-          var $_app = new _app();
+          var $_app = new app();
           
           // ejecuto codigo por aplicacion
           <?= $this->rec['eje'] ?>
@@ -397,9 +398,9 @@ class _app {
   }
   // consola del sistema
   static function adm() : string {
-    $_eje = "_adm";  
-    $_ide = "api-adm";
-    return _app::nav('bar', [
+    $_eje = "app_adm";  
+    $_ide = "app-adm";
+    return app::nav('bar', [
 
       'aja' => [ 'nom'=>"AJAX",
         'nav'=>[ 'onclick'=>"$_eje('aja',this);" ],
@@ -413,11 +414,11 @@ class _app {
         'nav'=>[ 'onclick'=>"$_eje('ico',this);" ],
         'htm'=>"
         
-        "._app::var('val','ver',['nom'=>"Filtrar",'ope'=>[ 
+        ".app::var('val','ver',['nom'=>"Filtrar",'ope'=>[ 
           '_tip'=>"tex_ora", 'id'=>"_adm-ico-ver", 'oninput'=>"$_eje('ico',this,'ver')" 
         ]])."
   
-        <ul class='lis ite mar-2' style='height: 53vh;'>
+        <ul class='lis ite mar-2' style='height: 48vh;'>
         </ul>
         "
       ],
@@ -427,7 +428,7 @@ class _app {
         <fieldset class='inf pad-3'>
           <legend>Ejecutar JavaScript</legend>      
   
-          "._app::var('val','cod',[ 
+          ".app::var('val','cod',[ 
             'ite'=>[ 'class'=>"tam-cre" ], 
             'ope'=>[ '_tip'=>"tex_par", 'rows'=>"10", 'class'=>"anc-100", 'oninput'=>"$_eje('jso',this)" ] 
           ])."
@@ -443,20 +444,20 @@ class _app {
         <fieldset class='inf ite pad-3'>
           <legend>Ejecutar en PHP</legend>
   
-          "._app::var('val','ide',[ 'ope'=>[ '_tip'=>"tex_ora" ] ])."
+          ".app::var('val','ide',[ 'ope'=>[ '_tip'=>"tex_ora" ] ])."
           
-          "._app::var('val','par',[ 
+          ".app::var('val','par',[ 
             'ite'=>['class'=>"tam-cre"], 
             'ope'=>['_tip'=>"tex_ora", 'class'=>"anc-100 mar_hor-1"], 
             'htm_ini'=>"<c>(</c>", 'htm_fin'=>"<c>)</c>"
           ])."
   
-          "._app::var('val','htm',[
+          ".app::var('val','htm',[
             'nom'=>"¿HTML?",
             'ope'=>[ '_tip'=>"opc_bin", 'val'=>1, 'id'=>"_adm-php-htm" ]
           ])."
           
-          "._app::ico('dat_ope',[
+          ".app::ico('dat_ope',[
             'eti'=>"button", 'type'=>"submit", 'onclick'=>"$_eje('php',this)"
           ])."
   
@@ -474,10 +475,10 @@ class _app {
         <fieldset class='inf ite pad-3'>
           <legend>Ejecutar S.Q.L.</legend>
   
-          "._app::var('val','cod',[ 
+          ".app::var('val','cod',[ 
             'ite'=>[ 'class'=>"tam-cre" ], 
             'ope'=>[ '_tip'=>"tex_ora", 'class'=>"anc-100 mar_der-1" ],
-            'htm_fin'=>_app::ico('dat_ope',[ 'eti'=>"button", 'type'=>"submit", 'onclick'=>"$_eje('sql',this,'cod')" ])
+            'htm_fin'=> app::ico('dat_ope',[ 'eti'=>"button", 'type'=>"submit", 'onclick'=>"$_eje('sql',this,'cod')" ])
           ])."
   
         </fieldset>
@@ -490,10 +491,10 @@ class _app {
         <fieldset class='inf ite pad-3'>
           <legend>Ejecutar Selector</legend>
   
-          "._app::var('val','cod',[ 
+          ".app::var('val','cod',[ 
             'ite'=>['class'=>"tam-cre"], 
             'ope'=>['_tip'=>"tex_ora", 'class'=>"anc-100 mar_der-1"],
-            'htm_fin'=>_app::ico('dat_ope',['eti'=>"button", 'type'=>"submit", 'onclick'=>"$_eje('htm',this,'cod')"])
+            'htm_fin'=> app::ico('dat_ope',['eti'=>"button", 'type'=>"submit", 'onclick'=>"$_eje('htm',this,'cod')"])
           ])."
   
         </fieldset>
@@ -517,24 +518,24 @@ class _app {
         $esq = 'api'; 
         $est = 'usu';
         global $_usu;
-        $_kin = _hol::_('kin',$_usu->kin);
-        $_psi = _hol::_('psi',$_usu->psi);
+        $_kin = api_hol::_('kin',$_usu->kin);
+        $_psi = api_hol::_('psi',$_usu->psi);
         $_ = "
         <form class='api_dat' data-esq='{$esq}' data-est='{$est}'>
 
           <fieldset class='ren'>
 
-            "._app::var('atr', [$esq,$est,$atr='nom'], [ 'val'=>$_usu->$atr  ], 'eti')."
+            ".app::var('atr', [$esq,$est,$atr='nom'], [ 'val'=>$_usu->$atr  ], 'eti')."
 
-            "._app::var('atr', [$esq,$est,$atr='ape'], [ 'val'=>$_usu->$atr  ], 'eti')."                        
+            ".app::var('atr', [$esq,$est,$atr='ape'], [ 'val'=>$_usu->$atr  ], 'eti')."                        
           
           </fieldset>
 
           <fieldset class='ren'>
 
-            "._app::var('atr', [$esq,$est,$atr='mai'], [ 'val'=>$_usu->$atr  ],'eti')."
+            ".app::var('atr', [$esq,$est,$atr='mai'], [ 'val'=>$_usu->$atr  ],'eti')."
 
-            "._app::var('atr', [$esq,$est,$atr='fec'], [ 'val'=>$_usu->$atr, 'ite'=>[ 'class'=>"tam-ini" ]  ], 'eti')."
+            ".app::var('atr', [$esq,$est,$atr='fec'], [ 'val'=>$_usu->$atr, 'ite'=>[ 'class'=>"tam-ini" ]  ], 'eti')."
 
           </fieldset>
 
@@ -586,11 +587,11 @@ class _app {
       }// caracteres
       else{
         $let = [];
-        foreach( _tex::let($pal) as $car ){
+        foreach( api_tex::let($pal) as $car ){
           if( is_numeric($car) ){
             $let []= "<n>{$car}</n>";
           }elseif( isset($_let[$car]) ){
-            //_ele::cla($ele_let,"{$_let[$car]->var}",'ini');
+            //api_ele::cla($ele_let,"{$_let[$car]->var}",'ini');
             $let []= "<c>{$car}</c>";        
           }else{
             $let []= $car;
@@ -613,7 +614,7 @@ class _app {
         unset($ele['eti']);
       }
       if( $eti == 'button' && empty($ele['type']) ) $ele['type'] = "button"; $_ = "
-      <{$eti}"._ele::atr(_ele::cla($ele,"ico $ide material-icons-outlined",'ini')).">{$_ico[$ide]->val}</{$eti}>";
+      <{$eti}".api_ele::atr(api_ele::cla($ele,"ico $ide material-icons-outlined",'ini')).">{$_ico[$ide]->val}</{$eti}>";
     }
     return $_;
   }
@@ -623,7 +624,7 @@ class _app {
     // por aplicacion
     if( isset($dat[2]) ){
       $ele = isset($dat[3]) ? $dat[3] : [];
-      $_ = _app_dat::val('ima', "{$dat[0]}.{$dat[1]}", $dat[2], $ele );
+      $_ = app_dat::val('ima', "{$dat[0]}.{$dat[1]}", $dat[2], $ele );
     }
     // por directorio
     else{
@@ -631,7 +632,7 @@ class _app {
       $dat = $dat[0];
       // por estilos : bkg
       if( is_array($dat) ){
-        $ele = _ele::jun( $dat, $ele );          
+        $ele = api_ele::jun( $dat, $ele );          
       }
       // por directorio : localhost/img/esquema/image
       elseif( is_string($dat)){
@@ -639,7 +640,7 @@ class _app {
         $dat = $ima[0];
         $tip = isset($ima[1]) ? $ima[1] : 'png';
         $dir = SYS_NAV."img/{$dat}";
-        _ele::css( $ele, _ele::fon($dir,['tip'=>$tip]) );
+        api_ele::css( $ele, api_ele::fon($dir,['tip'=>$tip]) );
       }
       // etiqueta
       $eti = 'span';
@@ -649,15 +650,15 @@ class _app {
       }// codifico boton
       if( $eti == 'button' && empty($ele['type']) ) $ele['type'] = "button";
       // ide de imagen
-      _ele::cla($ele,"ima",'ini');
+      api_ele::cla($ele,"ima",'ini');
       // contenido
       $htm = "";
       if( !empty($ele['htm']) ){
-        _ele::cla($ele,'dis-fle dir-ver jus-cen ali-cen');
+        api_ele::cla($ele,'dis-fle dir-ver jus-cen ali-cen');
         $htm = $ele['htm'];
         unset($ele['htm']);
       }
-      $_ = "<{$eti}"._ele::atr($ele).">{$htm}</{$eti}>";
+      $_ = "<{$eti}".api_ele::atr($ele).">{$htm}</{$eti}>";
     }
     return $_;
   }
@@ -675,22 +676,22 @@ class _app {
 
       if( is_string($art) ){
 
-        $_ .= _app::ico( $art, [ 'eti'=>"a", 'onclick'=>$eje_tog ]);
+        $_ .= app::ico( $art, [ 'eti'=>"a", 'onclick'=>$eje_tog ]);
       }
       elseif( is_array($art) ){
 
         if( isset($art[0]) ){
 
-          $_ .= _app::ico( $art[0], [ 'eti'=>"a", 'title'=>isset($art[1])?$art[1]:'', 'onclick'=>$eje_tog ]);
+          $_ .= app::ico( $art[0], [ 'eti'=>"a", 'title'=>isset($art[1])?$art[1]:'', 'onclick'=>$eje_tog ]);
         }
         elseif( isset($art['ico']) ){
 
-          $_ .= _app::ico( $art['ico'], [ 'eti'=>"a", 'title'=>isset($art['nom'])?$art['nom']:'', 'onclick'=>$eje_tog ]);
+          $_ .= app::ico( $art['ico'], [ 'eti'=>"a", 'title'=>isset($art['nom'])?$art['nom']:'', 'onclick'=>$eje_tog ]);
         }
       }
       elseif( is_object($art) && isset($art->ico) ){
 
-        $_ .= _app::ico( $art->ico, [ 'eti'=>"a", 'title'=>isset($art->nom)?$art->nom:'', 'onclick'=>$eje_tog ]);
+        $_ .= app::ico( $art->ico, [ 'eti'=>"a", 'title'=>isset($art->nom)?$art->nom:'', 'onclick'=>$eje_tog ]);
       }
     }
     return $_;
@@ -699,42 +700,53 @@ class _app {
   static function win( string $ide, array $ope = [] ) : string {
     foreach( ['art','cab','sec'] as $e ){ if( !isset($ope[$e]) ){ $ope[$e]=[]; } }
     $_eje = self::$EJE."win";
-    $_ = "";      
+    $_ = "";
     // icono de lado izquierdo
     $cab_ico = "";
-    if( isset($ope['ico']) ) $cab_ico = _app::ico($ope['ico'],['class'=>"mar_hor-1"]);
+    if( isset($ope['ico']) ){
+      if( is_string($ope['ico']) ){
+        $cab_ico = app::ico($ope['ico'],['class'=>"mar_hor-1"]);
+      }// con menú
+      else{
+        $_ .= "
+        <div class='ini'>";
+          $_.="
+        </div>";
+      }
+    }
     // titulo al centro
     $cab_tit = "";
     if( isset($ope['nom']) ) $cab_tit = "
-      <h2 style='text-decoration: none; margin:0;'>"._app::let($ope['nom'])."</h2>
+      <h2 style='text-decoration: none; margin:0;'>".( !empty($ope['nom']) ? app::let($ope['nom']) : "" )."</h2>
     ";
+    // botones de flujo
+    $cab_bot = "
+    <div class='ope'>
+      ".app::ico('dat_fin',[ 'title'=>'Cerrar ( tecla "Esc" )', 'data-ope'=>"fin", 'onclick'=>"$_eje(this);" ])."
+    </div>";
     // contenido 
     if( !isset($ope['htm']) ){
       $ope['htm'] = '';
     }
     elseif( is_array($ope['htm']) ){ 
-      $ope['htm'] = _ele::dec( $ope['htm'] );
+      $ope['htm'] = api_ele::dec( $ope['htm'] );
     }      
     // imprimo con identificador
-    _ele::cla($ope['art'],"ide-$ide",'ini');
-    _ele::cla($ope['art'],DIS_OCU);
+    api_ele::cla($ope['art'],"ide-$ide",'ini');
+    api_ele::cla($ope['art'],DIS_OCU);
     $_ = "
-    <article"._ele::atr($ope['art']).">
+    <article".api_ele::atr($ope['art']).">
 
-      <header"._ele::atr($ope['cab']).">
-      
-        {$cab_ico} {$cab_tit} "._app::ico('dat_fin',[ 'title'=>'Cerrar ( tecla "Esc" )', 'data-ope'=>"win-fin", 'onclick'=>"$_eje(this);" ])."
-
+      <header".api_ele::atr($ope['cab']).">      
+        {$cab_ico} 
+        {$cab_tit} 
+        {$cab_bot}
       </header>
 
-      <div"._ele::atr($ope['sec']).">
-
+      <div".api_ele::atr($ope['sec']).">
         {$ope['htm']}
-
       </div>
-
     </article>";
-    
     return $_;
   }
   // Panel : nav|article[ide] > header + section
@@ -743,7 +755,7 @@ class _app {
     $_eje = self::$EJE."pan";
     $_ = "";
     $cab_ico = "";
-    if( !empty($ope['ico']) ) $cab_ico = _app::ico($ope['ico'],['class'=>"mar_hor-1"]);
+    if( !empty($ope['ico']) ) $cab_ico = app::ico($ope['ico'],['class'=>"mar_hor-1"]);
 
     $cab_tit = "";
     if( !empty($ope['nom']) ) $cab_tit = "
@@ -758,22 +770,22 @@ class _app {
       $ope['htm'] = '';
     }
     elseif( is_array($ope['htm']) ){ 
-      $ope['htm'] = _ele::dec( $ope['htm'] );
+      $ope['htm'] = api_ele::dec( $ope['htm'] );
     }
 
     // imprimo con identificador
-    _ele::cla($ope['nav'],"ide-$ide",'ini');
-    _ele::cla($ope['nav'],DIS_OCU);
+    api_ele::cla($ope['nav'],"ide-$ide",'ini');
+    api_ele::cla($ope['nav'],DIS_OCU);
     $_ = "
-    <$eti_nav"._ele::atr($ope['nav']).">
+    <$eti_nav".api_ele::atr($ope['nav']).">
 
-      <header"._ele::atr($ope['cab']).">
+      <header".api_ele::atr($ope['cab']).">
       
-        {$cab_ico} {$cab_tit} "._app::ico('dat_fin',[ 'title'=>'Cerrar ( tecla "Esc" )', 'onclick'=>"$_eje();" ])."
+        {$cab_ico} {$cab_tit} ".app::ico('dat_fin',[ 'title'=>'Cerrar ( tecla "Esc" )', 'onclick'=>"$_eje();" ])."
 
       </header>
 
-      <$eti_sec"._ele::atr($ope['sec']).">
+      <$eti_sec".api_ele::atr($ope['sec']).">
 
         {$ope['htm']}
 
@@ -787,11 +799,11 @@ class _app {
   static function sec( string | array $dat, array $ele = [] ) : string {
     $_ = "";
     if( isset($ele['tit']) ){ $_ .= "
-      <header"._ele::atr( isset($ele['cab']) ? $ele['cab'] : [] ).">";
+      <header".api_ele::atr( isset($ele['cab']) ? $ele['cab'] : [] ).">";
         if( is_string($ele['tit']) ){ $_ .= "
-          <h1 class='mar-0'>"._app::let($ele['tit'])."</h1>";
+          <h1 class='mar-0'>".app::let($ele['tit'])."</h1>";
         }else{
-          $_ .= _ele::dec(...$ele['tit']);
+          $_ .= api_ele::dec(...$ele['tit']);
         }$_ .= "
       </header>";
     }
@@ -804,9 +816,9 @@ class _app {
       foreach( $dat as $ide => $art ){
         
         if( isset($art['htm'])){
-          _ele::cla($art,"ide-$ide",'ini');
+          api_ele::cla($art,"ide-$ide",'ini');
           $_ .= "
-          <article"._ele::atr($art).">
+          <article".api_ele::atr($art).">
             {$art['htm']}
           </article>";
         }
@@ -822,16 +834,16 @@ class _app {
 
     // armo listado de enlaces
     $_lis = [];
-    foreach( _dat::get('app_cab',[ 'ver'=>"`esq`='$esq'", 'ord'=>"`pos` ASC" ]) as $_cab ){
+    foreach( api::dat('app_cab',[ 'ver'=>"`esq`='$esq'", 'ord'=>"`pos` ASC" ]) as $_cab ){
 
       if( !empty($_cab->ocu) || ( !empty($_cab->usu) && empty($_usu->ide) ) ){
         continue;
       }
 
-      $ite_ico = !empty($_cab->ico) ? _app::ico( $_cab->ico, [ 'class'=>"mar_der-1" ] ) : "";
+      $ite_ico = !empty($_cab->ico) ? app::ico( $_cab->ico, [ 'class'=>"mar_der-1" ] ) : "";
 
       $_lis_val = [];
-      foreach( _dat::get('app_art',[ 
+      foreach( api::dat('app_art',[ 
         'ver'=>"`esq`='$esq' AND `cab`='$_cab->ide'", 'ord'=>"`pos` ASC" ]) as $_art 
       ){
 
@@ -842,21 +854,21 @@ class _app {
         $ele_val['href'] = SYS_NAV."/$_art->esq/$_art->cab/$_art->ide";
 
         $_lis_val []= "
-        <a"._ele::atr($ele_val).">"
-          .( !empty($_art->ico) ? _app::ico( $_art->ico, [ 'class'=>"mar_der-1" ] ) : $ite_ico )
-          ."<p>"._app::let($_art->nom)."</p>
+        <a".api_ele::atr($ele_val).">"
+          .( !empty($_art->ico) ? app::ico( $_art->ico, [ 'class'=>"mar_der-1" ] ) : $ite_ico )
+          ."<p>".app::let($_art->nom)."</p>
         </a>";
       }
       $_lis []= [ 
-        'ite'=>[ 'eti'=>"p", 'class'=>"ide-$_cab->ide mar_ver-1 let-tit let-4", 'htm'=>$ite_ico._app::let($_cab->nom) ],
+        'ite'=>[ 'eti'=>"p", 'class'=>"ide-$_cab->ide mar_ver-1 let-tit let-4", 'htm'=>$ite_ico.app::let($_cab->nom) ],
         'lis'=>$_lis_val 
       ];
     }
     // reinicio opciones
-    _ele::cla($ele['lis'],"nav");
-    _ele::cla($ele['dep'],DIS_OCU);
+    api_ele::cla($ele['lis'],"nav");
+    api_ele::cla($ele['dep'],DIS_OCU);
     $ele['opc'] = [ 'tog' ]; // dlt- 'ver', 'cue'
-    return _app_lis::val($_lis,$ele);
+    return app_lis::val($_lis,$ele);
 
   }
   // Indice : a[href] > ...a[href]
@@ -866,74 +878,74 @@ class _app {
     $_ = "";
 
     // operador
-    _ele::cla( $ele['ope'], "ren", 'ini' );
+    api_ele::cla( $ele['ope'], "ren", 'ini' );
     $_ .= "
-    <form"._ele::atr($ele['ope']).">
+    <form".api_ele::atr($ele['ope']).">
 
-      "._app::val_ope()."
+      ".app::val_ope()."
 
-      "._app::val_ver([ 'cue'=>0, 'ele_val'=>['class'=>"anc-100"], 'eje'=>"{$_eje}ver(this);" ])."      
+      ".app::val_ver([ 'cue'=>0, 'ele_val'=>['class'=>"anc-100"], 'eje'=>"{$_eje}ver(this);" ])."      
 
     </form>";
     // dependencias
     $tog_dep = FALSE;
     if( in_array('tog_dep',$opc) ){
-      _ele::cla( $ele['ope_dep'], "ite", 'ini' ); $tog_dep = "
-      <form"._ele::atr($ele['ope_dep']).">
+      api_ele::cla( $ele['ope_dep'], "ite", 'ini' ); $tog_dep = "
+      <form".api_ele::atr($ele['ope_dep']).">
 
-        "._app::val_ope()."
+        ".app::val_ope()."
 
       </form>";
     }
     // armo listado de enlaces
     $_lis = [];
     $opc_ide = in_array('ide',$opc);
-    _ele::cla( $ele['lis'], "nav", 'ini' );
+    api_ele::cla( $ele['lis'], "nav", 'ini' );
     foreach( $dat[1] as $nv1 => $_nv1 ){
       $ide = $opc_ide ? $_nv1->ide : $nv1;
-      $eti_1 = ['eti'=>"a", 'href'=>"#_{$ide}-", 'onclick'=>"{$_eje}val(this);", 'htm'=>_app::let("{$_nv1->nom}") ];
+      $eti_1 = ['eti'=>"a", 'href'=>"#_{$ide}-", 'onclick'=>"{$_eje}val(this);", 'htm'=> app::let("{$_nv1->nom}") ];
       if( !isset($dat[2][$nv1]) ){
-        $_lis []= _ele::val($eti_1);
+        $_lis []= api_ele::val($eti_1);
       }
       else{
         $_lis_2 = [];
         foreach( $dat[2][$nv1] as $nv2 => $_nv2 ){
           $ide = $opc_ide ? $_nv2->ide : "{$nv1}-{$nv2}"; 
-          $eti_2 = [ 'eti'=>"a", 'href'=>"#_{$ide}-", 'onclick'=>"{$_eje}val(this);", 'htm'=>_app::let("{$_nv2->nom}") ];
+          $eti_2 = [ 'eti'=>"a", 'href'=>"#_{$ide}-", 'onclick'=>"{$_eje}val(this);", 'htm'=> app::let("{$_nv2->nom}") ];
           if( !isset($dat[3][$nv1][$nv2])  ){
-            $_lis_2 []= _ele::val($eti_2);
+            $_lis_2 []= api_ele::val($eti_2);
           }
           else{
             $_lis_3 = [];              
             foreach( $dat[3][$nv1][$nv2] as $nv3 => $_nv3 ){
               $ide = $opc_ide ? $_nv3->ide : "{$nv1}-{$nv2}-{$nv3}";
-              $eti_3 = [ 'eti'=>"a", 'href'=>"#_{$ide}-", 'onclick'=>"{$_eje}val(this);", 'htm'=>_app::let("{$_nv3->nom}") ];
+              $eti_3 = [ 'eti'=>"a", 'href'=>"#_{$ide}-", 'onclick'=>"{$_eje}val(this);", 'htm'=> app::let("{$_nv3->nom}") ];
               if( !isset($dat[4][$nv1][$nv2][$nv3]) ){
-                $_lis_3 []= _ele::val($eti_3);
+                $_lis_3 []= api_ele::val($eti_3);
               }
               else{
                 $_lis_4 = [];                  
                 foreach( $dat[4][$nv1][$nv2][$nv3] as $nv4 => $_nv4 ){
                   $ide = $opc_ide ? $_nv4->ide : "{$nv1}-{$nv2}-{$nv3}-{$nv4}"; 
-                  $eti_4 = [ 'eti'=>"a", 'href'=>"#_{$ide}-", 'onclick'=>"{$_eje}val(this);", 'htm'=>_app::let("{$_nv4->nom}") ];
+                  $eti_4 = [ 'eti'=>"a", 'href'=>"#_{$ide}-", 'onclick'=>"{$_eje}val(this);", 'htm'=> app::let("{$_nv4->nom}") ];
                   if( !isset($dat[5][$nv1][$nv2][$nv3][$nv4]) ){
-                    $_lis_4 []= _ele::val($eti_4);
+                    $_lis_4 []= api_ele::val($eti_4);
                   }
                   else{
                     $_lis_5 = [];                      
                     foreach( $dat[5][$nv1][$nv2][$nv3][$nv4] as $nv5 => $_nv5 ){
                       $ide = $opc_ide ? $_nv5->ide : "{$nv1}-{$nv2}-{$nv3}-{$nv4}-{$nv5}"; 
-                      $eti_5 = [ 'eti'=>"a", 'href'=>"#_{$ide}-", 'onclick'=>"{$_eje}val(this);", 'htm'=>_app::let("{$_nv5->nom}") ];
+                      $eti_5 = [ 'eti'=>"a", 'href'=>"#_{$ide}-", 'onclick'=>"{$_eje}val(this);", 'htm'=> app::let("{$_nv5->nom}") ];
                       if( !isset($dat[6][$nv1][$nv2][$nv3][$nv4][$nv5]) ){
-                        $_lis_5 []= _ele::val($eti_5);
+                        $_lis_5 []= api_ele::val($eti_5);
                       }
                       else{
                         $_lis_6 = [];
                         foreach( $dat[6][$nv1][$nv2][$nv3][$nv4][$nv5] as $nv6 => $_nv6 ){
                           $ide = $opc_ide ? $_nv6->ide : "{$nv1}-{$nv2}-{$nv3}-{$nv4}-{$nv5}-{$nv6}"; 
-                          $eti_6 = [ 'eti'=>"a", 'href'=>"#_{$ide}-", 'onclick'=>"{$_eje}val(this);", 'htm'=>_app::let("{$_nv6->nom}") ];
+                          $eti_6 = [ 'eti'=>"a", 'href'=>"#_{$ide}-", 'onclick'=>"{$_eje}val(this);", 'htm'=> app::let("{$_nv6->nom}") ];
                           if( !isset($dat[7][$nv1][$nv2][$nv3][$nv4][$nv5][$nv6]) ){
-                            $_lis_6 []= _ele::val($eti_6);
+                            $_lis_6 []= api_ele::val($eti_6);
                           }
                           else{
                             $_lis_7 = [];
@@ -957,17 +969,17 @@ class _app {
       }
     }
     // pido listado
-    _ele::cla($ele['dep'],DIS_OCU);
+    api_ele::cla($ele['dep'],DIS_OCU);
     $ele['opc'] = [];
-    $_ .= _app_lis::val($_lis,$ele);
+    $_ .= app_lis::val($_lis,$ele);
     return $_;
   }// Articulo : cabecera + ...secciones + pie de página
   static function art_sec( object $nav, string $esq, string $cab ) : string {
     $_ = "";      
 
-    $agr = _ele::htm($nav->ope);
+    $agr = api_ele::htm($nav->ope);
 
-    $_art = _dat::get('app_art',[ 'ver'=>"`esq`='{$esq}' AND `cab`='{$cab}'", 'ord'=>"`pos` ASC", 'ele'=>"ope" ]);
+    $_art = api::dat('app_art',[ 'ver'=>"`esq`='{$esq}' AND `cab`='{$cab}'", 'ord'=>"`pos` ASC", 'ele'=>"ope" ]);
 
     $_ = "
     <article class='inf'>";
@@ -983,15 +995,15 @@ class _app {
 
         <nav class='lis'>";
           foreach( $_art as $art ){
-            $art_url = "<a href='".SYS_NAV."/{$art->esq}/{$art->cab}/{$art->ide}'>"._app::let($art->nom)."</a>";
+            $art_url = "<a href='".SYS_NAV."/{$art->esq}/{$art->cab}/{$art->ide}'>".app::let($art->nom)."</a>";
             if( !empty($art->ope['tex']) ){
               $_ .= "            
               <div class='val nav'>
-                "._app::val_ico()."
+                ".app::val_ico()."
                 {$art_url}
               </div>
               <div class='dat'>
-                "._ele::val($art->ope['tex'])."
+                ".api_ele::val($art->ope['tex'])."
               </div>
               ";
             }else{
@@ -1013,7 +1025,7 @@ class _app {
   static function art_nav( string $ide ) : string {
     $_ = "";
     $_ide = explode('.',$ide);
-    $_nav = _dat::get('app_nav',[ 
+    $_nav = api::dat('app_nav',[ 
       'ver'=>"`esq`='{$_ide[0]}' AND `cab`='{$_ide[1]}' AND `ide`='{$_ide[2]}'", 
       'nav'=>'pos' 
     ]);
@@ -1021,27 +1033,27 @@ class _app {
 
       foreach( $_nav[1] as $nv1 => $_nv1 ){ $_ .= "
         
-        <h2 id='_{$nv1}-'>"._app::let($_nv1->nom)."</h2>
+        <h2 id='_{$nv1}-'>".app::let($_nv1->nom)."</h2>
         <section>";
           if( isset($_nav[2][$nv1]) ){
             foreach( $_nav[2][$nv1] as $nv2 => $_nv2 ){$_ .= "
 
-          <h3 id='_{$nv1}-{$nv2}-'>"._app::let($_nv2->nom)."</h3>
+          <h3 id='_{$nv1}-{$nv2}-'>".app::let($_nv2->nom)."</h3>
           <section>";
             if( isset($_nav[3][$nv1][$nv2]) ){
               foreach( $_nav[3][$nv1][$nv2] as $nv3 => $_nv3 ){$_ .= "
 
-            <h4 id='_{$nv1}-{$nv2}-{$nv3}-'>"._app::let($_nv3->nom)."</h4>
+            <h4 id='_{$nv1}-{$nv2}-{$nv3}-'>".app::let($_nv3->nom)."</h4>
             <section>";
               if( isset($_nav[4][$nv1][$nv2][$nv3]) ){
                 foreach( $_nav[4][$nv1][$nv2][$nv3] as $nv4 => $_nv4 ){ $_ .= "
 
-              <h5 id='_{$nv1}-{$nv2}-{$nv3}-{$nv4}-'>"._app::let($_nv4->nom)."</h5>
+              <h5 id='_{$nv1}-{$nv2}-{$nv3}-{$nv4}-'>".app::let($_nv4->nom)."</h5>
               <section>";
                 if( isset($_nav[5][$nv1][$nv2][$nv3][$nv4]) ){
                   foreach( $_nav[5][$nv1][$nv2][$nv3][$nv4] as $nv5 => $_nv5 ){ $_ .= "
 
-                <h6 id='_{$nv1}-{$nv2}-{$nv3}-{$nv4}-{$nv5}-'>"._app::let($_nv5->nom)."</h6>
+                <h6 id='_{$nv1}-{$nv2}-{$nv3}-{$nv4}-{$nv5}-'>".app::let($_nv5->nom)."</h6>
                 <section>                      
 
                 </section>";
@@ -1069,46 +1081,46 @@ class _app {
     $opc_ico = in_array('ico',$opc);
     $val_sel = isset($ele['sel']) ? $ele['sel'] : FALSE;
     // navegador 
-    _ele::cla($ele['lis'], $tip, 'ini');
+    api_ele::cla($ele['lis'], $tip, 'ini');
     $_ .= "
-    <nav"._ele::atr($ele['lis']).">";    
+    <nav".api_ele::atr($ele['lis']).">";    
     foreach( $dat as $ide => $val ){
 
-      if( is_object($val) ) $val = _obj::nom($val);
+      if( is_object($val) ) $val = api_obj::nom($val);
 
       if( isset($val['ide']) ) $ide = $val['ide'];
 
       $ele_nav = isset($val['nav']) ? $val['nav'] : [];
 
       $ele_nav['eti'] = 'a';
-      _ele::eje($ele_nav,'cli',"{$_eje}(this,'$ide'".( !empty($opc) ? ", '".implode("', '",$opc)."'" : '' ).");",'ini');
+      api_ele::eje($ele_nav,'cli',"{$_eje}(this,'$ide'".( !empty($opc) ? ", '".implode("', '",$opc)."'" : '' ).");",'ini');
 
-      if( $val_sel && $val_sel == $ide ) _ele::cla($ele_nav,FON_SEL);
+      if( $val_sel && $val_sel == $ide ) api_ele::cla($ele_nav,FON_SEL);
 
       if( $opc_ico && isset($val['ico']) ){
         $ele_nav['title'] = $val['nom'];
-        _ele::cla($ele_nav,"mar-0 pad-1 cir-1 tam-4",'ini');
-        $_ .= _app::ico($val['ico'],$ele_nav);
+        api_ele::cla($ele_nav,"mar-0 pad-1 cir-1 tam-4",'ini');
+        $_ .= app::ico($val['ico'],$ele_nav);
       }
       else{
         $ele_nav['htm'] = $val['nom'];
-        $_ .= _ele::val($ele_nav);
+        $_ .= api_ele::val($ele_nav);
       }        
     }$_.="
     </nav>";
     // contenido
     $eti_sec = isset($ele['sec']['eti']) ? $ele['sec']['eti'] : 'div';
     $eti_ite = isset($ele['ite']['eti']) ? $ele['ite']['eti'] : 'section';
-    if( $tip != 'pes' && !$val_sel ) _ele::cla($ele['sec'],DIS_OCU);
+    if( $tip != 'pes' && !$val_sel ) api_ele::cla($ele['sec'],DIS_OCU);
     $_ .= "
-    <$eti_sec"._ele::atr($ele['sec']).">";
+    <$eti_sec".api_ele::atr($ele['sec']).">";
       foreach( $dat as $ide => $val ){
         $ele_ite = $ele['ite'];
-        _ele::cla($ele_ite,"ide-$ide",'ini');
-        if( !$val_sel || $val_sel != $ide ) _ele::cla($ele_ite,DIS_OCU);
+        api_ele::cla($ele_ite,"ide-$ide",'ini');
+        if( !$val_sel || $val_sel != $ide ) api_ele::cla($ele_ite,DIS_OCU);
         $_ .= "
-        <$eti_ite"._ele::atr($ele_ite).">
-          ".( isset($val['htm']) ? ( is_array($val['htm']) ? _ele::dec($val['htm']) : $val['htm'] ) : '' )."
+        <$eti_ite".api_ele::atr($ele_ite).">
+          ".( isset($val['htm']) ? ( is_array($val['htm']) ? api_ele::dec($val['htm']) : $val['htm'] ) : '' )."
         </$eti_ite>";
       }$_.="
     </$eti_sec>";
@@ -1118,16 +1130,16 @@ class _app {
   // Carteles : advertencia + confirmacion
   static function tex( string $tip, string | array $val, array $ope = [] ) : string {
     foreach( ['sec','ico','tex'] as $i ){ if( !isset($ope[$i]) ) $ope[$i] = []; }
-    _ele::cla($ope['sec'],"val_tex".( !empty($tip) ? " -$tip" : "" ),'ini');
+    api_ele::cla($ope['sec'],"val_tex".( !empty($tip) ? " -$tip" : "" ),'ini');
 
     $_ = "
-    <div"._ele::atr($ope['sec']).">";
+    <div".api_ele::atr($ope['sec']).">";
 
       if( !empty($ope['cab']) ){
         $_ .= "
         <div class='ite esp-ara'>
           <span></span>
-          "._app::let($ope['cab'])."
+          ".app::let($ope['cab'])."
           <span></span>
         </div>";
       }
@@ -1139,10 +1151,10 @@ class _app {
         case 'opc': $ope['ico']['title'] = "Consultas..."; break;
         case 'val': $ope['ico']['title'] = "Notificación..."; break;
         }
-        $_ .= _app::ico("val_tex-{$tip}", $ope['ico']);
+        $_ .= app::ico("val_tex-{$tip}", $ope['ico']);
       }
 
-      $_ .= ( is_string($val) ? "<p"._ele::atr($ope['tex']).">"._app::let($val)."</p>" : _ele::dec($val) )."
+      $_ .= ( is_string($val) ? "<p".api_ele::atr($ope['tex']).">".app::let($val)."</p>" : api_ele::dec($val) )."
 
     </div>";
     return $_;
@@ -1176,7 +1188,7 @@ class _app {
     // por atributi de la base
     if( $tip == 'atr' ){
 
-      if( !empty($_atr = _dat::atr($esq,$est,$atr)) ) $_var = [ 
+      if( !empty($_atr = api_dat::atr($esq,$est,$atr)) ) $_var = [ 
         'nom'=>$_atr->nom, 
         'ope'=>$_atr->var 
       ];
@@ -1184,17 +1196,17 @@ class _app {
     // carga operadores: esquema - dato - valor
     elseif( $tip != 'val' ){ 
 
-      $_var = _app::var_dat($tip,$esq,$est,$atr);
+      $_var = app::var_dat($tip,$esq,$est,$atr);
     }
 
     // combino operadores
     if( !empty($_var) ){
 
       if( !empty($_var['ope']) ){
-        $ele['ope'] = _ele::jun($_var['ope'],isset($ele['ope']) ? $ele['ope'] : []);
+        $ele['ope'] = api_ele::jun($_var['ope'],isset($ele['ope']) ? $ele['ope'] : []);
         unset($_var['ope']);
       }
-      $ele = _obj::jun($ele,$_var);
+      $ele = api_obj::jun($ele,$_var);
     }
     // identificadores
     if( empty($ele['ope']['id'])  && !empty($ele['ide']) ){
@@ -1209,21 +1221,21 @@ class _app {
       $ele['ope']['name'] = $atr;
     }      
     // agregados
-    $agr = _ele::htm($ele);
+    $agr = api_ele::htm($ele);
 
     // etiqueta
     if( !isset($ele['eti']) ) $ele['eti'] = [];
     $eti_htm='';
     if( !in_array('eti',$opc) ){
       if( !empty($ele['ico']) ){
-        $eti_htm = _app::ico($ele['ico']);
+        $eti_htm = app::ico($ele['ico']);
       }
       elseif( !empty($ele['nom']) ){    
-        $eti_htm = _app::let( ( !in_array('not_sep',$opc) && preg_match("/[a-zA-Z\d]$/",$ele['nom']) ) ? "{$ele['nom']}:" : $ele['nom']);
+        $eti_htm = app::let( ( !in_array('not_sep',$opc) && preg_match("/[a-zA-Z\d]$/",$ele['nom']) ) ? "{$ele['nom']}:" : $ele['nom']);
       }
       if( !empty($eti_htm) ){    
         if( isset($ele['ope']['id']) ) $ele['eti']['for'] = $ele['ope']['id'];     
-        $eti_htm = "<label"._ele::atr($ele['eti']).">{$eti_htm}</label>";
+        $eti_htm = "<label".api_ele::atr($ele['eti']).">{$eti_htm}</label>";
       }
     }
 
@@ -1246,7 +1258,7 @@ class _app {
       if( empty($ele['ope']['name']) && isset($ele['ide']) ){
         $ele['ope']['name'] = $ele['ide'];
       }
-      $val_htm = _ele::val($ele['ope']);
+      $val_htm = api_ele::val($ele['ope']);
     }
     // contenedor
     if( !isset($ele['ite']) ) $ele['ite']=[];      
@@ -1254,7 +1266,7 @@ class _app {
       $ele['ite']['title'] = isset($ele['tit']) ? $ele['tit'] : '';
     }    
     return "
-    <div"._ele::atr(_ele::cla($ele['ite'],"atr",'ini')).">
+    <div".api_ele::atr(api_ele::cla($ele['ite'],"atr",'ini')).">
       ".( !empty($agr['htm_ini']) ? $agr['htm_ini'] : '' )."
       {$eti_ini}
       {$val_htm}
@@ -1269,19 +1281,19 @@ class _app {
     
     if( empty($dat) ){
       if( !isset($_api->app_var[$esq]) ){
-        $_api->app_var[$esq] = _dat::get('app_var',[
+        $_api->app_var[$esq] = api::dat('app_var',[
           'ver'=>"`esq`='{$esq}'", 'niv'=>['dat','val','ide'], 'ele'=>['atr'], 'red'=>'atr'
         ]);
       }
     }elseif( empty($val) ){
       if( !isset($_api->app_var[$esq][$dat]) ){
-        $_api->app_var[$esq][$dat] = _dat::get('app_var',[
+        $_api->app_var[$esq][$dat] = api::dat('app_var',[
           'ver'=>"`esq`='{$esq}' AND `dat`='{$dat}'", 'niv'=>['val','ide'], 'ele'=>['atr'], 'red'=>'atr'
         ]);
       }
     }else{
       if( !isset($_api->app_var[$esq][$dat][$val]) ){
-        $_api->app_var[$esq][$dat][$val] = _dat::get('app_var',[
+        $_api->app_var[$esq][$dat][$val] = api::dat('app_var',[
           'ver'=>"`esq`='{$esq}' AND `dat`='{$dat}' AND `val`='{$val}'", 'niv'=>['ide'], 'ele'=>['atr'], 'red'=>'atr'
         ]);
       }
@@ -1304,9 +1316,9 @@ class _app {
 
     if( !isset($_api->app_var_ope[$dat[0]][$dat[1]]) ){
 
-      $_dat = _dat::get( $_api->dat_ope, [ 'ver'=>[ ['tip','==',$dat[0]], ['dat','==',$dat[1]] ]] );
+      $_dat = api::dat( $_api->dat_ope, [ 'ver'=>[ ['tip','==',$dat[0]], ['dat','==',$dat[1]] ]] );
 
-      $_api->app_var_ope[$dat[0]][$dat[1]] = _app_var::opc_val( $_dat, $ope, ...$opc);
+      $_api->app_var_ope[$dat[0]][$dat[1]] = app_var::opc_val( $_dat, $ope, ...$opc);
     }
 
     $_ = $_api->app_var_ope[$dat[0]][$dat[1]];
@@ -1332,48 +1344,48 @@ class _app {
     
     // contenido textual
     if( is_string($dat) ) $dat = [
-      'eti'=>"p", 'class'=>"let-enf let-cur", 'htm'=>_app::let($dat) 
+      'eti'=>"p", 'class'=>"let-enf let-cur", 'htm'=> app::let($dat) 
     ];
 
     // contenedor : icono + ...elementos          
-    _ele::eje( $dat,'cli',"$_eje(this);",'ini');
+    api_ele::eje( $dat,'cli',"$_eje(this);",'ini');
 
     return "
-    <div"._ele::atr( _ele::cla( $ele['val'],"val tog",'ini') ).">
+    <div".api_ele::atr( api_ele::cla( $ele['val'],"val tog",'ini') ).">
     
-      "._app::val_ico( isset($ele['ico']) ? $ele['ico'] : [] )."
+      ".app::val_ico( isset($ele['ico']) ? $ele['ico'] : [] )."
 
-      ".( isset($ele['htm_ini']) ? _ele::val($ele['htm_ini']) : '' )."
+      ".( isset($ele['htm_ini']) ? api_ele::val($ele['htm_ini']) : '' )."
       
-      "._ele::val( $dat )."
+      ".api_ele::val( $dat )."
 
-      ".( isset($ele['htm_fin']) ? _ele::val($ele['htm_fin']) : '' )."
+      ".( isset($ele['htm_fin']) ? api_ele::val($ele['htm_fin']) : '' )."
 
     </div>";
   }// - icono de toggle
   static function val_ico( array $ele = [] ) : string {
     $_eje = self::$EJE."val";
-    return _app::ico('val_tog', _ele::eje($ele,'cli',"$_eje(this);",'ini'));
+    return app::ico('val_tog', api_ele::eje($ele,'cli',"$_eje(this);",'ini'));
   }// - expandir / contraer
   static function val_ope( array $ele = [], ...$opc ) : string {
     $_ide = self::$IDE."val";
     $_eje = self::$EJE."val";      
 
     if( !isset($ele['ope']) ) $ele['ope'] = [];
-    _ele::cla($ele['ope'],"ope",'ini');
+    api_ele::cla($ele['ope'],"ope",'ini');
 
     $_eje_val = isset($ele['eje']) ? $ele['eje'] : "$_eje(this,";
     return "
-    <fieldset"._ele::atr($ele['ope']).">
-      "._app::ico('val_tog-tod', [ 'eti'=>"button", 'class'=>"tam-2", 'title'=>"Expandir todos...", 'onclick'=>$_eje_val."'tod');" ] )."
-      "._app::ico('val_tog-nad', [ 'eti'=>"button", 'class'=>"tam-2", 'title'=>"Contraer todos...", 'onclick'=>$_eje_val."'nad');", 'style'=>"transform: rotate(180deg);" ] )."
+    <fieldset".api_ele::atr($ele['ope']).">
+      ".app::ico('val_tog-tod', [ 'eti'=>"button", 'class'=>"tam-2", 'title'=>"Expandir todos...", 'onclick'=>$_eje_val."'tod');" ] )."
+      ".app::ico('val_tog-nad', [ 'eti'=>"button", 'class'=>"tam-2", 'title'=>"Contraer todos...", 'onclick'=>$_eje_val."'nad');", 'style'=>"transform: rotate(180deg);" ] )."
     </fieldset>";
   }// - Filtros : operador + valor textual + ( totales )
   static function val_ver( string | array $dat = [], array $ele = [], ...$opc ) : string {
     $_ = "
     <fieldset class='ite'>";      
     // opciones de filtro por texto
-    $_ .= _app::var_ope(['ver','tex'],[
+    $_ .= app::var_ope(['ver','tex'],[
       'ite'=>[ 
         'dat'=>"()($)dat()" 
       ],
@@ -1383,7 +1395,7 @@ class _app {
       ]
     ]);
     // ingreso de valor a filtrar
-    $_ .= _app_var::tex('ora', isset($dat['val']) ? $dat['val'] : '', [ 
+    $_ .= app_var::tex('ora', isset($dat['val']) ? $dat['val'] : '', [ 
       'id'=>isset($dat['ide']) ? $dat['ide'] : NULL, 
       'name'=>"val",
       'title'=>"Introducir un valor de búsqueda...",

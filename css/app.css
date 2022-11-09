@@ -42,10 +42,12 @@ body > section.app_win {
   text-align: center;
   animation: dis-ver .5s;
 }
-body > section.app_win > article {  
+body > section.app_win > article {
+  display: flex;
+  flex-direction: column;
   position: absolute;
   height: 70vh;
-  width: 100%;
+  width: 95%;
   max-width: 50rem;
   overflow: hidden;  
   background-color: var(--fon_sec);
@@ -58,16 +60,16 @@ body > section.app_win > article > header {
   display: flex;
   flex-wrap: nowrap;  
   justify-content: space-between;
-  padding: .5rem;
-  height: 10%;
+  padding: .25rem;
+  height: 3rem;
 }
 body > section.app_win > article > header + * {
-  max-height: 90%;
+  flex-grow: 2;
   overflow-y: auto;
   overflow-x: hidden;
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
+  padding: 0 .5rem;
 }
 body > section.app_win > article > header + * > section {
   margin: .5rem;  
@@ -146,8 +148,9 @@ body > main {
   flex-direction: column;
   align-items: center;
   height: inherit;
-  overflow: auto;
-  background-color: var(--fon_art);/* por barra de desplazamiento */  
+  overflow: auto;  
+  background-color: var(--fon_art);/* por barra de desplazamiento */
+  padding: 0 .5rem;
   text-align: center;
 }
 /* Titulo */
@@ -197,19 +200,33 @@ body > .app_pan > .ide-app_nav ul.lis.nav {
   height: 81vh;
 }
 
+/*//////////////////////////////////////////////////////////////////////*/
+/*//////////////////////////////////////////////////////////////////////*/
 /* 
   Modal : Operador
 */
 body > .app_win > .ide-app_ope {
-  z-index: 9999;  
-  max-height: 80vh;
-  width: auto;
+  z-index: 9999;
+  height: 95vh;
+  background-color: var(--fon_win);
 }
 body > .app_win > .ide-app_ope > header + * {
   align-items: center;
-  padding: 1rem;
 }
 
+/* 
+  Estructuras
+*/
+body > .app_win > .ide-est {
+  max-width: 60rem;
+  height: 90vh;
+}
+body > .app_win > .ide-est > div {
+  padding: 0;
+}
+body > .app_win > .ide-est > div > .app_est {
+  height: 77vh;
+}
 
 /*//////////////////////////////////////////////////////////////////////*/
 /*//////////////////////////////////////////////////////////////////////*/
@@ -218,15 +235,40 @@ body > .app_win > .ide-app_ope > header + * {
 */
 
 /* Sincronario */
-.app_tab.kin.nav_cas .pos {
+.app_tab.kin.nav_cas .pos:not(.sec_par) {
+  width: 3rem;
+  height: 3rem;
+}
+
+.app_tab.kin.nav_ond .pos:not(.sec_par) {
+  width: 2.25rem;
+  height: 2.25rem;
+}
+
+.app_tab.kin.arm_tra .pos:not(.sec_par) {
+  width: 2rem;
+  height: 2rem;
+}
+
+.app_tab.kin.cro_est .pos:not(.sec_par) {
   width: 3rem;
   height: 3rem;
 }
 
 @media ( max-width: 500px ) {
 
-  .app_tab.kin.nav_cas .pos {
+  .app_tab.kin.nav_cas .pos:not(.sec_par) {
     width: 2rem;
     height: 2rem;
-  } 
+  }
+
+  .app_tab.kin.nav_ond .pos:not(.sec_par) {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .app_tab.kin.arm_tra .pos:not(.sec_par) {
+    width: 1.3rem;
+    height: 1.3rem;
+  }
 }

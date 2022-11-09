@@ -2,7 +2,7 @@
 'use strict';
 
 // Ejecucion : ( ...par ) => { ...cod } : val 
-class _eje {
+class api_eje {
 
   static val( $dat, $val ){
     let $_=[], $={};
@@ -37,7 +37,8 @@ class _eje {
       ;
     }
     return $_;
-  }  
+  }
+
   static cod( $val, $par ){
     let $_=false,$={}; 
     $.par=[];
@@ -63,13 +64,14 @@ class _eje {
   static lis( $dat, $ope ){  
     let $_ = $dat;
     if( !$ope ){
-      $_ =  _obj.tip($dat)=='pos' ? $dat : [ $dat ] ;
+      $_ =  api_obj.tip($dat)=='pos' ? $dat : [ $dat ] ;
     }
     else{
   
     }
     return $_;
   }
+
   static fun( $dat, $val ){
     if( $dat.nodeName ){
       $.pad = $dat.parentElement.parentElement;
@@ -77,7 +79,7 @@ class _eje {
       $.fun = eval(`( ${$.par} ) =>{ ${$.val} return ${$.ini} }`);
       if( $.fun ){// defino un array para desestructurar e invocar
         $_ = !!($.inv) ? $.fun( ...eval(`[${$.inv}]`) ) : $.fun() ;
-        $.tip = _dat.tip($_);// evaluo e imprimo resultado 
+        $.tip = api_dat.tip($_);// evaluo e imprimo resultado 
         // $.pad.querySelector(`[ini]`).innerHTML = ( `${$.tip.dat}_${$.tip.val}`, { 'val':$_ } );
       }else{ 
         $.pad.querySelector(`[ini]`).innerHTML = `<span class="let err">${$.fun._err}</span>`;
@@ -89,6 +91,7 @@ class _eje {
     }
     return $_;
   }
+
   static cla( $val ){
     let $_,$={
       'tip':typeof($val)
@@ -104,6 +107,7 @@ class _eje {
     }
     return $_;
   }
+  
   static eve( $dat, $val  ){
     let $_=[], $={};
     // recivo un evento
@@ -117,11 +121,11 @@ class _eje {
           $._eje = $eje_eve.split('(=>)'); 
     
           // evento(=>)
-          $._eje.shift().split(',').forEach( $eve_tip => {
+          $.api_eje.shift().split(',').forEach( $eve_tip => {
         
             if( $eve_tip == $.eve.type ){
         
-              $._eje.forEach( $eje => {
+              $.api_eje.forEach( $eje => {
                 
                 // [obj].met[-tip](,)ele(,)...par
                 $.par = $eje.split('(,)');

@@ -1,7 +1,7 @@
 <?php
 
 // listado / tabla : [ ... ]
-class _lis {
+class api_lis {
 
   // aseguro iteraciones 
   static function ite( mixed $dat, mixed $ope = NULL ) : array {
@@ -10,7 +10,7 @@ class _lis {
 
     if( empty($ope) ){
 
-      $_ = _obj::pos($dat) ? $dat : [ $dat ];
+      $_ = api_obj::pos($dat) ? $dat : [ $dat ];
     }
     // ejecuto funciones
     elseif( is_array($dat) && is_callable($ope) ){
@@ -27,7 +27,7 @@ class _lis {
 
     $_ = $dat;
 
-    if( _obj::tip($dat) ){
+    if( api_obj::tip($dat) ){
 
       $_ = [];
 
@@ -43,44 +43,44 @@ class _lis {
     
     // junto estructuras
     if( isset($ope['jun']) ){
-      _lis::jun($dat, $ope['jun'], ...$opc);
+      api_lis::jun($dat, $ope['jun'], ...$opc);
     }
     // ejecuto filtro
     if( isset($ope['ver']) ){
-      _lis::ver($dat, $ope['ver'], ...$opc);
+      api_lis::ver($dat, $ope['ver'], ...$opc);
     }      
     // genero elementos
     if( isset($ope['ele']) ){
-      _lis::dec($dat, $ope['ele'], 'nom');
+      api_lis::dec($dat, $ope['ele'], 'nom');
     }
     // genero objetos  
     if( isset($ope['obj']) ){
-      _lis::dec($dat, $ope['obj'] );
+      api_lis::dec($dat, $ope['obj'] );
     }
     // nivelo estructura
     if( isset($ope['niv']) ){
-      _lis::niv($dat, $ope['niv'] );
+      api_lis::niv($dat, $ope['niv'] );
     }// o por indice
     elseif( isset($ope['nav']) && is_string($ope['nav']) ){
-      _lis::nav($dat, $ope['nav'] );
+      api_lis::nav($dat, $ope['nav'] );
     }
     // reduccion por atributo
     if( isset($ope['red']) && is_string($ope['red']) ){
-      _lis::red($dat, $ope['red'] );
+      api_lis::red($dat, $ope['red'] );
     }      
     // devuelvo unico objeto
     if( isset($ope['opc']) ){
 
-      $ope['opc'] = _lis::ite($ope['opc']);
+      $ope['opc'] = api_lis::ite($ope['opc']);
 
-      if( in_array('uni',$ope['opc']) ) _lis::uni($dat, ...$opc );
+      if( in_array('uni',$ope['opc']) ) api_lis::uni($dat, ...$opc );
     }
     return $dat;
   }
   // decodifica : "" => {} , []
   static function dec( array &$dat, string | array $atr, ...$opc ) : array {
 
-    $atr = _lis::ite($atr);
+    $atr = api_lis::ite($atr);
 
     foreach( $dat as &$ite ){
 
@@ -90,7 +90,7 @@ class _lis {
 
           if( isset($ite->$ide) ){
 
-            $ite->$ide = _obj::dec( preg_replace("/\n/", '', $ite->$ide) , $ite, ...$opc);            
+            $ite->$ide = api_obj::dec( preg_replace("/\n/", '', $ite->$ide) , $ite, ...$opc);            
           }
         }
       }
@@ -236,7 +236,7 @@ class _lis {
         foreach( $ope as $ver ){ 
 
           if( $atr == $ver[0] ) 
-            $val_ite []= _dat::ver( $val, $ver[1], $ver[2] );
+            $val_ite []= api_dat::ver( $val, $ver[1], $ver[2] );
         }
       }
       // evaluo resultados
@@ -280,11 +280,11 @@ class _lis {
     $_ = [];
     $pos = 0;
     $opc_ide = in_array('ide',$opc);
-    $lis_tip = _obj::pos($dat);
+    $lis_tip = api_obj::pos($dat);
     
     foreach( $dat as $i => $v ){
 
-      if( !_dat::ver( $opc_ide ? $i : $v, $ope, $val ) ) 
+      if( !api_dat::ver( $opc_ide ? $i : $v, $ope, $val ) ) 
       
         $_[ $lis_tip ? $pos : $i ] = $v;
 

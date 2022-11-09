@@ -6,58 +6,56 @@
   --tam_anc:75rem;
 
   /* fondos */
+  --fon_win:rgba(015, 015, 015, 1);
   --fon_sec:rgba(015, 015, 015, .9);
-  --fon_art:rgba(15, 15, 15, 0.6);
-  --fon_nav:rgba(015, 015, 015, .3);
+  --fon_art:rgba(015, 015, 015, .6);
+  --fon_nav:rgba(020, 005, 005, .3);
   --fon_foc:rgba(049, 134, 245, .3);
-  --fon_sel:rgba(130, 167, 216, .6);  
+  --fon_sel:rgba(130, 167, 216, .6);
 
   /* Bordes */
-  --bor_val:#507DBC;
-  --bor_sel:#051f44;
-  --bor_dat:#7442c8;
+  --bor_val:rgb(080, 125, 188);
+  --bor_sel:rgb(005, 031, 068);
+  --bor_dat:rgb(116, 066, 200);
 
   /* letras */
   --let_ide:#779adc;
   --let_val:#cd5de9;
-  --let_err:#ff0000;  
-  --let_num:#7fff00;  
+  --let_err:#ff0000;
+  --let_num:#7fff00;
   --let_tex:#dfda4c;
+  --let_ope:#b8860b;
   --let_lis:#00eeff;
-
-  /* operativos */
-  --let_ope:#b8860b;  
-  --let_ope_val:#fdb600;
-  --let_ope_num:#2b75c4;
-  --let_ope_tex:#fdb600;
-  --let_ope_lis:#00eeff;
+  --let_obj:#001aff;
   
   /* colores sólidos */    
-  --col_roj:#FC2847;
+  --col_tra:rgba(0,0,0,0);      
   --col_bla:#ffffff;
-  --col_azu:#0f518a;
-  --col_ama:#f0f015;
-  --col_ver:#26a933;
-  --col_nar:#ffa343;
-  --col_vio:#7442c8;
-  --col_cel:#42bdc8;
-  --col_mar:#6b3b08;
-  --col_neg:#000000;
-  --col_tra:rgba(0,0,0,0);
-  --col_gri:#808080;
-  --col_ros:#fb7efd;
-  
-  /* transparencias */
-  --tra_roj:rgba(252,40 ,71 ,.7);
+  --col_neg:rgb(000,000,000);
+  --col_gri:rgb(125,125,125);
+  --col_roj:rgb(252,040,071);
+  --col_ros:rgb(251,124,253);
+  --col_ama:rgb(243,243,026);
+  --col_nar:rgb(255,163,067);
+  --col_mar:rgb(107,059,008);
+  --col_ver:rgb(007,189,025);
+  --col_azu:rgb(015,076,129);
+  --col_vio:rgb(116,066,200);
+  --col_cel:rgb(066,189,200);
+    
+  /* transparencias */  
   --tra_bla:rgba(255,255,255,.7);
-  --tra_azu:rgba(15 ,76 ,129,.7);
-  --tra_ama:rgba(243, 243, 26, 0.7);
-  --tra_ver:rgba(7, 189, 25, 0.7);
-  --tra_nar:rgba(255,163,67 ,.7);
-  --tra_vio:rgba(116,66 ,200,.7);
   --tra_neg:rgba(000,000,000,.7);
-  --tra_gri:rgba(127,127,127,.7);
+  --tra_gri:rgba(125,125,125,.7);
+  --tra_roj:rgba(252,040,071,.7);
   --tra_ros:rgba(251,124,253,.7);
+  --tra_ama:rgba(243,243,026,.7);
+  --tra_nar:rgba(255,163,067,.7);
+  --tra_mar:rgba(107,059,008,.7);
+  --tra_ver:rgba(007,189,025,.7);
+  --tra_azu:rgba(015,076,129,.7);
+  --tra_vio:rgba(116,066,200,.7);
+  --tra_cel:rgba(066,189,200,.7);
 }
 
 *, :before, :after { 
@@ -160,7 +158,6 @@ p.tit {
   font-style: italic;
 }
 p.des {
-  font-weight: bold;
   font-style: italic;
 }
 
@@ -246,12 +243,13 @@ img {
 /*////////////////////////////////////////////////////////////////////////////////////*/
 
 /* 
-Listados 
+  Listados 
 */
 dl,
 ul,
 ol {  
   text-align: left;
+  margin: .5rem 0;
 }
 ul,
 ol {
@@ -532,7 +530,6 @@ nav:is(.bar,.pes) > a:hover{
 
 /* Contenedor */
 nav:is(.pes,.bar,.ope) + :is(div,section) {
-  width: 100%;
   overflow: auto;
   margin: 0 .5rem;
 }
@@ -544,11 +541,11 @@ nav:is(.pes,.bar,.ope) + :is(div,section) > [class*="ide-"] {
 nav.ope + :is(div,section) {
   z-index: 900;
   position: absolute;
-  top: 6rem;
-  width: 20rem;
-  height: 30rem;  
+  top: 5.5rem;
+  width: 100%;
+  max-height: 70vh;  
   background-color: var(--fon_sec);
-  padding: .25rem 0;
+  padding: .25rem .5rem;
   border: 1px solid var(--col_azu);
   margin: 0;
 }
@@ -849,6 +846,7 @@ Tabla por Estructura
 .app_est {  
   width: 100%;
   overflow: auto;
+  padding: 0 .5rem;
 }
 
 .app_est > table {
@@ -860,19 +858,20 @@ Tabla por Estructura
 .app_est > table > thead {
   position: sticky;
   top: 0;
-  background-color: rgba(015, 015, 015, 1);
+  background-color: var(--fon_win);
 }
-.app_est > table > thead > tr > th {
+.app_est > table > thead > tr > th > p {
+  color: var(--let_ide);
   padding: .5rem;
 }
 .app_est > table > thead > tr:not(.gru) > th,
 .app_est > table > tbody > tr:not([data-ope],[data-opc]) > td {
-  border-right: 1px dotted var(--col_vio);
+  border-right: 1px dotted var(--bor_dat);
 }
 
 /* Contenido : titulo + detalle */
 .app_est > table > tbody > tr:is([data-opc="tit"],[data-opc="det"]) {
-  text-align: left; 
+  text-align: left;
   line-height: 1.5;
 }
 .app_est > table > tbody > tr[data-opc="tit"] > td {
@@ -914,7 +913,7 @@ table.app_tab {
   transition: background 1s, border 1s;
 }
 
-ul.app_tab li.pos:not(.app_tab) {
+ul.app_tab li.pos:not([class*="sec_"]) {
   width: 3rem;
   height: 3rem;
   display: flex;

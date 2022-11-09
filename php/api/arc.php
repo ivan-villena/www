@@ -1,6 +1,6 @@
 <?php
 // Archivo : fichero + texto + imagen + audio + video + app + ...tipos
-class _arc {  
+class api_arc {  
 
   static function val( mixed $dat ) : mixed {
     $_=FALSE;

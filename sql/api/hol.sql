@@ -131,18 +131,6 @@
     ;  
   --
   -- x260 : Kin  
-    -- trayectorias armónicas
-    DROP VIEW IF EXISTS `_hol_kin_arm_tra`; CREATE VIEW `_hol_kin_arm_tra` AS
-      SELECT 
-        _tra.*,
-        _ton.des as `ton_des`
-      FROM 
-        `hol_kin_arm_tra` _tra
-      INNER JOIN 
-        `hol_ton` _ton ON _tra.ide = _ton.ide
-      ORDER BY
-        _tra.ide        
-    ;    
     -- estacion galáctica
     DROP VIEW IF EXISTS `_hol_kin_cro_est`; CREATE VIEW `_hol_kin_cro_est` AS
       SELECT 
@@ -216,7 +204,6 @@
         _ton.car AS `ton_car`,
         _ton.pod AS `ton_pod`,
         _ton.acc AS `ton_acc`,
-        _ton.pre AS `ton_pre`,
         _ton.sim AS `ton_sim`,
         _ton.mat AS `ton_mat`,
         _ton.dim AS `ton_dim`,
@@ -244,7 +231,6 @@
         _cas.ton AS `ton`,                 
         _ton.nom AS `ton_nom`,
         _ton.des AS `ton_des`,
-        _ton.pre AS `ton_pre`,
         _cas.des AS `cas_des`
       FROM 
         `hol_psi_hep` _hep

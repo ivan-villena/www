@@ -1,49 +1,7 @@
 <?php
 // Dato : (api).esq.est[ide].atr
-class _dat {
-
-  // getter : estructura - objeto
-  static function get( mixed $dat, mixed $ope = NULL, mixed $val = NULL ) : array | object {
-
-    // objeto->propiedad 
-    if( is_string($dat) && is_string($ope) ){
-
-      $esq = $dat;
-      $est = $ope;        
-      // busco datos por $clase::_($identificador)
-      $_ = isset($val) ? $val : new stdClass;
-      if( ( !isset($val) || !_obj::tip($val) ) && class_exists($_cla = "_$esq") && method_exists($_cla,'_') ){
-
-        $_ = !isset($val) ? $_cla::_($est) : $_cla::_($est,$val);
-      }
-    }// estructuras de la base
-    else{
-      $_ = $dat;
-      // datos de la base 
-      if( is_string($ide = $dat) ){
-
-        // ejecuto consulta
-        $_ = _sql::reg('ver',$ide,isset($ope) ? $ope : []);
-
-        if( isset($ope) ){
-          // elimino marcas
-          foreach( ['ver','jun','gru','ord','lim'] as $i ){
-
-            if( isset($ope[$i]) ) unset($ope[$i]);
-          }
-          // busco clave primaria
-          if( isset($ope['niv']) && ( empty($ope['niv']) || in_array($ope['niv'],['_uni','_mul']) ) ){
-            
-            $ope['niv'] = _sql::ind($ide,'ver','pri');
-          }
-        }
-      }
-      // resultados y operaciones
-      if( isset($ope) && ( is_array($dat) || !isset($_['err']) ) ) _lis::ope($_,$ope);
-
-    }
-    return $_;
-  }  
+class api_dat {
+  
   // tipo : dato + valor
   static function tip( mixed $val ) : bool | object {
     $_ = FALSE;
@@ -180,17 +138,17 @@ class _dat {
   static function ini( string $esq, string $est, array $ope = [] ) : string | array {
     $_ = [];
 
-    $val_est = _sql::est('val',$est);
+    $val_est = api_sql::est('val',$est);
 
     $vis = "_{$est}";
 
-    $val_vis = _sql::est('val',$vis);
+    $val_vis = api_sql::est('val',$vis);
 
     if( $val_est || $val_vis ){
 
       $ide = ( $val_vis == 'vis' ) ? $vis : $est;
 
-      $_ = _dat::get("{$esq}.{$ide}",$ope);
+      $_ = api::dat("{$esq}.{$ide}",$ope);
     }
 
     return $_;
@@ -204,7 +162,7 @@ class _dat {
 
       if( !isset($_api->dat_est[$esq][$ide]) ){
 
-        $_api->dat_est[$esq][$ide] = _sql::est('ver',"{$esq}_{$ide}",'uni');
+        $_api->dat_est[$esq][$ide] = api_sql::est('ver',"{$esq}_{$ide}",'uni');
       }
       $_ = $_api->dat_est[$esq][$ide];
     }
@@ -223,16 +181,16 @@ class _dat {
       
       // busco atributos de una vista ( si existe ) o de una tabla
       $sql_ide = "{$esq}_{$est}";
-      $_api->dat_atr[$esq][$est] = _sql::atr( !empty( _sql::est('lis',"_{$sql_ide}",'uni') )  ? "_{$sql_ide}" : $sql_ide );
+      $_api->dat_atr[$esq][$est] = api_sql::atr( !empty( api_sql::est('lis',"_{$sql_ide}",'uni') )  ? "_{$sql_ide}" : $sql_ide );
 
       // cargo operadores del atributo
       $dat = &$_api->dat_atr[$esq][$est];
 
-      if( $dat_atr = _app::dat($esq,$est,'atr') ){
+      if( $dat_atr = app::dat($esq,$est,'atr') ){
 
         foreach( $dat_atr as $i => $v ){
         
-          if( isset($dat[$i]) ) $dat[$i]->var = _ele::jun($dat[$i]->var, _obj::nom($v));
+          if( isset($dat[$i]) ) $dat[$i]->var = api_ele::jun($dat[$i]->var, api_obj::nom($v));
         }
       }
     }
@@ -267,8 +225,8 @@ class _dat {
     if( empty($ope) ){
       // de la base
       if( is_string($dat) ){        
-        $ide = _dat::ide($dat);
-        $_ = _dat::atr($ide['esq'],$ide['est']);
+        $ide = api_dat::ide($dat);
+        $_ = api_dat::atr($ide['esq'],$ide['est']);
       }
       // listado variable por objeto
       else{
@@ -278,50 +236,11 @@ class _dat {
             $atr = new stdClass;
             $atr->ide = $ide;
             $atr->nom = $ide;
-            $atr->var = _dat::tip($val);
+            $atr->var = api_dat::tip($val);
             $_ [$ide] = $atr;
           }
           break;
         }        
-      }
-    }
-    return $_;
-  }// cuento columnas totales
-  static function atr_cue( string | array $dat, array $ope=[] ) : int {
-    $_ = 0;
-    
-    // atributos
-    if( isset($ope['atr']) ){
-      
-      $_ = count($ope['atr']);
-    }
-    // joins
-    elseif( isset($ope['est']) ){
-      foreach( $ope['est'] as $esq => $est_lis ){  
-        foreach( $est_lis as $est ){
-          $dat_est = _app_est::dat($esq,$est,$ope);
-          $_ += count($dat_est['atr']);
-        }
-      }
-    }// 1 estructura de la base
-    elseif( !( $obj_tip = _obj::tip($dat) ) ){
-
-      $ide = _dat::ide($dat);
-
-      $dat_est = _app_est::dat($ide['esq'],$ide['est']);
-
-      $_ = isset($dat_est['atr']) ? count($dat_est['atr']) : 0;
-
-    }
-    // por listado                    
-    elseif( $obj_tip == 'pos' ){
-
-      foreach( $dat as $ite ){
-
-        foreach( $ite as $val ){ 
-          $_ ++; 
-        }
-        break;
       }
     }
     return $_;
@@ -334,10 +253,10 @@ class _dat {
     $var_eve = [];
     foreach( $_sql as $est => $ope ){ 
 
-      $eje []= _sql::reg( $tip, $est, $ope);
+      $eje []= api_sql::reg( $tip, $est, $ope);
     }
     if( !empty($eje) ){
-      $_ = _sql::dec( ...$eje );
+      $_ = api_sql::dec( ...$eje );
     }
     return $_;
   }
@@ -349,11 +268,11 @@ class _dat {
       $_ = $est;
     }
     // parametrizado en : $_app.dat_atr
-    elseif( ( $_atr = _dat::atr($esq,$est,$atr) ) && !empty($_atr->var['dat']) ){        
+    elseif( ( $_atr = api_dat::atr($esq,$est,$atr) ) && !empty($_atr->var['dat']) ){        
       $_ = explode('.',$_atr->var['dat'])[1];
     }
     // valido existencia de tabla relacional : "_api.esq_est_atr"
-    elseif( !!_sql::est('val',"{$esq}_{$est}_{$atr}") ){ 
+    elseif( !!api_sql::est('val',"{$esq}_{$est}_{$atr}") ){ 
       $_ = "{$est}_{$atr}";
     }
     else{
@@ -369,7 +288,7 @@ class _dat {
       // armo identificador
       $_['est'] = $atr == 'ide' ? $est : "{$est}_{$atr}";  
       // busco dato en atributos
-      $_atr = _dat::atr($esq,$est,$atr);
+      $_atr = api_dat::atr($esq,$est,$atr);
       if( isset($_atr->var['dat']) && !empty($var_dat = $_atr->var['dat']) ){
         $dat = explode('.',$var_dat);
         $_['esq'] = $dat[0];
@@ -377,7 +296,7 @@ class _dat {
       }
     }
     // valido dato
-    if( !empty( $dat_Val = _app::dat($_['esq'],$_['est'],"val.$tip",$dat) ) ){
+    if( !empty( $dat_Val = app::dat($_['esq'],$_['est'],"val.$tip",$dat) ) ){
       $_['ide'] = "{$_['esq']}.{$_['est']}";
       $_['val'] = $dat_Val;
     }

@@ -2,65 +2,65 @@
 'use strict';
 
 // Dato
-class _app_dat {
+class app_dat {
 
   // valor : p[tit, nom, des] + ima 
   static val( $tip, $dat, $ope, ...$opc ){
 
     let $_ = "", $ = {};
     // proceso estructura
-    $ = _dat.ide($dat,$);
+    $ = api_dat.ide($dat,$);
     // cargo datos
-    $._dat = _dat.get($.esq,$.est,$ope);
+    $._dat = api.dat($.esq,$.est,$ope);
     // cargo valores
-    $._val = _app.dat($.esq,$.est,'val');
+    $._val = app.dat($.esq,$.est,'val');
     
     // armo titulo : nombre <br> detalle
     if( $tip == 'tit' ){
-      $_ = _obj.val($._dat,$._val.nom) + ( $._val.des ? "\n"+_obj.val($._dat,$._val.des) : '' );
+      $_ = api_obj.val($._dat,$._val.nom) + ( $._val.des ? "\n"+api_obj.val($._dat,$._val.des) : '' );
     }
     else if( !!($._val[$tip]) ){
-      $_ = _obj.val($._dat,$._val[$tip]);  
+      $_ = api_obj.val($._dat,$._val[$tip]);  
     }
     // armo ficha
     if( $tip == 'ima' ){
       $.ele = !!$opc[0] ? $opc[0] : {};
       // identificador
-      _ele.cla($.ele,`${$.esq}_${$.est} ide-${$._dat.ide}`,'ini');
+      api_ele.cla($.ele,`${$.esq}_${$.est} ide-${$._dat.ide}`,'ini');
       // titulos
       if( $.ele.title === undefined ){
 
-        $.ele.title = _app_dat.val('tit',`${$.esq}.${$.est}`,$._dat);
+        $.ele.title = app_dat.val('tit',`${$.esq}.${$.est}`,$._dat);
       }
       else if( $.ele.title === false ){        
         delete($.ele.title);
       }
       // acceso informe
       if( $.ele.onclick === undefined ){
-        if( _app.dat($.esq,$.est,'inf') ) $.ele.onclick = `_app_dat.inf('${$.esq}','${$.est}',${parseInt($._dat.ide)})`;
+        if( app.dat($.esq,$.est,'inf') ) $.ele.onclick = `app_dat.inf('${$.esq}','${$.est}',${parseInt($._dat.ide)})`;
       }
       else if( $.ele.onclick === false ){
 
         delete($.ele.onclick);
       }
       // informe      
-      $_ = _app.ima( { 'style': $_ }, $.ele );
+      $_ = app.ima( { 'style': $_ }, $.ele );
     }
     else if( !!$opc[0] ){
       
       if( !($opc[0]['eti']) ) $opc[0]['eti'] = 'p'; 
-      $opc[0]['htm'] = _app.let($_);
-      $_ = _ele.val($opc[0]);
+      $opc[0]['htm'] = app.let($_);
+      $_ = api_ele.val($opc[0]);
     }
 
     return $_;
   }
   // opciones : esquema.estructura.atributos.valores
   static opc( $tip, $dat, $ope, ...$opc ){
-    let $_="", $=_app.var($dat);
+    let $_="", $ = app.var($dat);
     // vacio valores y atributos
     $.ini = ( $ide=["val"] ) => {
-      $ide.forEach( $i => { if( $.ope = $_app.ope.var.querySelector(`[name="${$i}"]`) ) _ele.eli( $.ope, `option:not([value=""])` ); });
+      $ide.forEach( $i => { if( $.ope = $_app.ope.var.querySelector(`[name="${$i}"]`) ) api_ele.eli( $.ope, `option:not([value=""])` ); });
     };
     switch( $tip ){
     case 'esq':
@@ -71,9 +71,9 @@ class _app_dat {
       $.val = $dat.value.split('.');
       if( $.ope = $dat.nextElementSibling.nextElementSibling ){
         $.ope.value = "";
-        _ele.act('cla_agr', $.ope.querySelectorAll(`[data-esq][data-est]:not(.${DIS_OCU})`), DIS_OCU );
+        api_ele.act('cla_agr', $.ope.querySelectorAll(`[data-esq][data-est]:not(.${DIS_OCU})`), DIS_OCU );
         if( $.val[1] ){
-          _ele.act('cla_eli', $.ope.querySelectorAll(`[data-esq="${$.val[0]}"][data-est="${$.val[1]}"]`), DIS_OCU );
+          api_ele.act('cla_eli', $.ope.querySelectorAll(`[data-esq="${$.val[0]}"][data-est="${$.val[1]}"]`), DIS_OCU );
         }
       }
       break; 
@@ -81,18 +81,18 @@ class _app_dat {
       $.ini();
       // elimino selector 
       if( $.opc = $dat.nextElementSibling.querySelector('select') ){
-        _ele.eli($.opc,'option:not([value=""])');        
+        api_ele.eli($.opc,'option:not([value=""])');        
         $.opc.dataset.esq = '';
         $.opc.dataset.est = '';
   
         if( $dat.value ){
           $.dat = $dat.options[$dat.selectedIndex];        
           // identificadores
-          $ = _dat.ide( $.dat.dataset.ide ? $.dat.dataset.ide : $.dat.value, $ );
+          $ = api_dat.ide( $.dat.dataset.ide ? $.dat.dataset.ide : $.dat.value, $ );
           $.opc.dataset.esq = $.esq;
           $.opc.dataset.est = $.est;
-          _eje.val(['_dat::get', [`${$.esq}_${$.est}`] ], $dat => {
-            $.opc = _app_var.opc_val( $dat, $.opc, 'ide');
+          api_eje.val(['_dat::get', [`${$.esq}_${$.est}`] ], $dat => {
+            $.opc = app_var.opc_val( $dat, $.opc, 'ide');
           });
         }
       }
@@ -102,7 +102,7 @@ class _app_dat {
   }
   // ficha : imagenes por valor con relaciones por estructura
   static fic( $dat, $ope, ...$opc ){
-    let $_="", $=_app.var($dat);
+    let $_="", $=app.var($dat);
     $.dat = {};
 
     // actualizo valores principales
@@ -111,7 +111,7 @@ class _app_dat {
       $.atr = $ite.querySelector('[name]').getAttribute('name');
       $.num = $ite.querySelector('[max]');
       $.num_max = $.num.getAttribute('max');
-      $.dat[`${$.atr}`] = ( $ope > 0 ) ? _num.ran($ope, $.num_max) : 0;
+      $.dat[`${$.atr}`] = ( $ope > 0 ) ? api_num.ran($ope, $.num_max) : 0;
       $.num.innerHTML = $.dat[`${$.atr}`];
     });    
 
@@ -123,9 +123,9 @@ class _app_dat {
       $.atr = $ite.dataset.atr;
       $.ima = $ite.dataset.ima.split('.');
       // actualizo fichas
-      _ele.eli($ite,'.ima');
+      api_ele.eli($ite,'.ima');
       if( $.val = $.dat[$.est] ){
-        _ele.agr( _app.ima( $.ima[0], $.ima[1], _dat.get($.esq,$.est,$.val)[$.atr], {'class':`tam-4`} ), $ite );
+        api_ele.agr( app.ima( $.ima[0], $.ima[1], api.dat($.esq,$.est,$.val)[$.atr], {'class':`tam-4`} ), $ite );
       }
     });   
     
@@ -134,9 +134,9 @@ class _app_dat {
   // informe : 
   static inf( $esq, $est, $val ){
     // pido ficha
-    _eje.val([ `_app_dat::inf`, [ $esq, $est, $val ] ], $htm => {
+    api_eje.val([ `app_dat::inf`, [ $esq, $est, $val ] ], $htm => {
       // muestro en ventana
-      if( $htm ) _app.win('app_ope',{ ico:"", cab:"", htm:$htm });
+      if( $htm ) app.win('app_ope',{ ico:"", cab:"", htm:$htm, opc:[ "pos" ] });
     });
   }
 }

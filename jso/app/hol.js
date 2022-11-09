@@ -2,7 +2,7 @@
 'use strict';
 
 // Holon
-class _app_hol {
+class app_hol {
 
   // operadores
   static val( $tip, $val, $ele ){

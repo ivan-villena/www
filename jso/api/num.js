@@ -2,7 +2,7 @@
 'use strict';
 
 // Numero : separador + operador + entero + decimal + rango
-class _num {  
+class api_num {  
 
   static val( $dat, $tot ){
 
@@ -10,7 +10,7 @@ class _num {
 
     if( !!$tot ){
 
-      $_ = _tex.agr( $_, $tot, "0" );
+      $_ = api_tex.agr( $_, $tot, "0" );
     }
     // parse-int o parse-float
     else{
@@ -49,7 +49,7 @@ class _num {
   static ran( $dat, $max = 1, $min = 1 ){
     let $_ = $dat;
 
-    if( typeof($_) == 'string' ) $_ = _num.val($_);
+    if( typeof($_) == 'string' ) $_ = api_num.val($_);
 
     while( $_ > $max ){ $_ -= $max; }
 

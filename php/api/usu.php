@@ -1,6 +1,6 @@
 <?php
 // usuario : sesion + tránsitos  
-class _usu {
+class api_usu {
 
   public int    $ide = 0;
   public string $pas = "";
@@ -19,12 +19,12 @@ class _usu {
 
     if( !empty($ide) ){
       // cargo datos
-      foreach( _dat::get('usu', [ 'ver'=>"`ide`='{$ide}'", 'opc'=>'uni' ]) as $atr => $val ){
+      foreach( api::dat('usu', [ 'ver'=>"`ide`='{$ide}'", 'opc'=>'uni' ]) as $atr => $val ){
 
         $this->$atr = $val;
       }
       // calculo edad actual
-      $this->eda = _fec::cue('eda',$this->fec);
+      $this->eda = api_fec::cue('eda',$this->fec);
     }      
   }
 
@@ -43,7 +43,7 @@ class _usu {
         $_ .= "DELETE FROM `_api`.`usu_cic_lun` WHERE usu = $_usu->ide;<br>";
 
         // pido tránsitos
-        foreach( _hol::cic( $_usu->sin, 1, 52, 'not-lun') as $_cic_ani ){
+        foreach( api_hol::cic( $_usu->sin, 1, 52, 'not-lun') as $_cic_ani ){
 
           $_ .= "INSERT INTO `_usu`.`cic_ani` VALUES( 
             $_usu->ide, 
@@ -52,7 +52,7 @@ class _usu {
             $_cic_ani->arm, 
             $_cic_ani->ond, 
             $_cic_ani->ton, 
-            '"._fec::var($_cic_ani->fec,'dia')."', '$_cic_ani->sin', $_cic_ani->kin 
+            '".api_fec::var($_cic_ani->fec,'dia')."', '$_cic_ani->sin', $_cic_ani->kin 
           );<br>";
 
           if( empty($_cic_ani->lun) ) continue;
@@ -63,7 +63,7 @@ class _usu {
               $_usu->ide, 
               $_cic_lun->ani, 
               $_cic_lun->ide, 
-              '"._fec::var($_cic_lun->fec,'dia')."', 
+              '".api_fec::var($_cic_lun->fec,'dia')."', 
               '$_cic_lun->sin', $_cic_lun->kin 
             );<br>";
           }
@@ -86,21 +86,21 @@ class _usu {
     if( empty($fec) ) $fec = date( 'Y/m/d' );
 
     // cargo holon por fecha
-    $_['hol'] = _hol::val( $fec );
+    $_['hol'] = api_hol::val( $fec );
 
     // busco anillo actual
-    $_['ani'] = _dat::get('usu_cic_ani',[ 
-      'ver'=>"`usu` = '{$_usu->ide}' AND `fec` <= '"._fec::var( $_['hol']['fec'] )."'", 'ord'=>"`ide` DESC", 'lim'=>1, 'opc'=>"uni"
+    $_['ani'] = api::dat('usu_cic_ani',[ 
+      'ver'=>"`usu` = '{$_usu->ide}' AND `fec` <= '".api_fec::var( $_['hol']['fec'] )."'", 'ord'=>"`ide` DESC", 'lim'=>1, 'opc'=>"uni"
     ]);
 
     // busco transito lunar
-    $_['lun'] = _dat::get('usu_cic_lun',[ 
-      'ver'=>"`usu` = '{$_usu->ide}' AND `ani` = {$_['ani']->ide} AND `fec` <= '"._fec::var( $_['hol']['fec'] )."'", 'ord'=>"`ani`, `ide` DESC", 'lim'=>1, 'opc'=>"uni" 
+    $_['lun'] = api::dat('usu_cic_lun',[ 
+      'ver'=>"`usu` = '{$_usu->ide}' AND `ani` = {$_['ani']->ide} AND `fec` <= '".api_fec::var( $_['hol']['fec'] )."'", 'ord'=>"`ani`, `ide` DESC", 'lim'=>1, 'opc'=>"uni" 
     ]);
 
     // calculo diario
     $_['dia'] = new stdClass;
-    $_['dia']->kin = _hol::_('kin', intval($_['hol']['kin']) + intval($_usu->kin) );
+    $_['dia']->kin = api_hol::_('kin', intval($_['hol']['kin']) + intval($_usu->kin) );
 
     return $_;
   }

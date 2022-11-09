@@ -1,6 +1,6 @@
 <?php
 // Texto : caracter + letra + oracion + parrafo
-class _tex {
+class api_tex {
   
   // salvo caracteres con "\"
   static function cod( string $val, string $cod = ".*+\-?^{}()|[\]\$\\", string $opc = "g" ) : string {
@@ -47,15 +47,15 @@ class _tex {
 
     return mb_strtoupper($val, $cod);
   }
-  // capitalizar todas las palabras
-  static function let_pal( string $val, string $cod = "UTF-8" ) : string {    
-
-    return ucwords( mb_strtolower($val, $cod) );
-  }
   // Capitalizar primer palabra
-  static function let_ora( string $val, string $cod = "UTF-8" ) : string {
+  static function let_pal( string $val, string $cod = "UTF-8" ) : string {
   
     return ucfirst( mb_strtolower($val, $cod) );
+  }
+  // capitalizar todas las palabras
+  static function let_or( string $val, string $cod = "UTF-8" ) : string {    
+
+    return ucwords( mb_strtolower($val, $cod) );
   }
   // extraigo : de - el/a
   static function art( string $val ) : string {
