@@ -478,8 +478,8 @@ class app_dat {
         if( !empty($_val['ima']) || ( !empty($_inf['atr']) || !empty($_inf['cit']) ) )
         $_ .= "
         <div class='val jus-cen'>";
-          if( !empty($_val['ima']) ){
-            $_ .= app::ima($esq,$est,$_dat,[ 'class'=>"mar_der-2", 'onclick'=>FALSE ]);
+          if( !empty($_val['ima']) ){ // 'onclick'=>FALSE
+            $_ .= app::ima($esq,$est,$_dat,[ 'class'=>"mar_der-2" ]);
           }
           if( !empty($_inf['atr']) ){
             $_ .= app_dat::atr($esq,$est,$_inf['atr'],$_dat);

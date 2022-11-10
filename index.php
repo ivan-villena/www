@@ -60,9 +60,7 @@
         $_ .= "";
         // ALTER TABLE `api`.`$est` DROP PRIMARY KEY;<br>
       } 
-      */      
-
-      $_ = api_hol::sql('kin_cro_ele');
+      */
 
       return $_;
     }

@@ -59,8 +59,10 @@ class app_dat {
   static opc( $tip, $dat, $ope, ...$opc ){
     let $_="", $ = app.var($dat);
     // vacio valores y atributos
-    $.ini = ( $ide=["val"] ) => {
-      $ide.forEach( $i => { if( $.ope = $_app.ope.var.querySelector(`[name="${$i}"]`) ) api_ele.eli( $.ope, `option:not([value=""])` ); });
+    $.ini = ( $ide = ["val"] ) => {
+      $ide.forEach( $i => { 
+        if( $.ope = $_app.ope.var.querySelector(`[name="${$i}"]`) ) api_ele.eli( $.ope, `option:not([value=""])` ); 
+      });
     };
     switch( $tip ){
     case 'esq':
@@ -79,8 +81,8 @@ class app_dat {
       break; 
     case 'atr':
       $.ini();
-      // elimino selector 
-      if( $.opc = $dat.nextElementSibling.querySelector('select') ){
+      // elimino selector
+      if( $.opc = $dat.parentElement.querySelector('select[name="val"]') ){
         api_ele.eli($.opc,'option:not([value=""])');        
         $.opc.dataset.esq = '';
         $.opc.dataset.est = '';
