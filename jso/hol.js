@@ -519,3 +519,77 @@ class hol {
     hol.val_acu($dat);
   }
 }
+
+// Artículos
+class hol_art {
+
+  // glosario
+  static ide( $tip, $dat, $ope ){
+
+    let $ = app.var($dat);
+
+    switch( $tip ){
+    case 'ver':
+      $.lis = $_app.ope.var.nextElementSibling;
+      $.ope = $_app.ope.var.querySelector(`[name="ope"]`);
+      $.val = $_app.ope.var.querySelector(`[name="val"]`);
+      $.tot = $_app.ope.var.querySelector(`[name="tot"]`);
+
+      if( $.val.value ){
+        // oculto todo
+        $.lis.querySelectorAll(`tbody > tr:not(.${DIS_OCU})`).forEach( $ite => $ite.classList.add(DIS_OCU) );
+        // recorro y ejecuto filtro
+        $.lis.querySelectorAll(`tbody > tr > td[data-atr="nom"]`).forEach( $ite => {
+
+          if( api_dat.ver($ite.innerText, $.ope.value, $.val.value) ) $ite.parentElement.classList.remove(DIS_OCU);
+        });
+      }// muestro todo
+      else{
+        $.lis.querySelectorAll(`tbody > tr.${DIS_OCU}`).forEach( $ite => $ite.classList.remove(DIS_OCU) );
+      }
+      // actualizo cuenta
+      $.tot.innerHTML = $.lis.querySelectorAll(`tbody > tr:not(.${DIS_OCU})`).length;
+
+      break;
+    }
+
+  }
+}
+
+// Bibliografìa
+class hol_bib {
+
+  // Encantamiento del sueño
+  static enc( $atr, $dat, $ope ){
+
+    let $ = app.var($dat);
+
+    if( $_app.ope.var ) $.lis = $_app.ope.var.nextElementSibling;
+    
+    switch( $atr ){
+    // libro del kin
+    case 'kin':
+      $.res = $_app.ope.var.querySelector('.hol-kin');
+      if( $.val = api_num.val( $_app.ope.var.querySelector('[name="ide"]').value ) ) $.kin_ide = `#kin-${api_num.val($.val,3)}`;
+      
+      if( !$ope ){                
+        if( $.kin_ide ){
+          $.res.innerHTML = $.lis.querySelector(`${$.kin_ide} > .hol-kin`).innerHTML;
+        }else{
+          $.res.innerHTML = '';
+        }
+      }
+      else{
+        switch($ope){
+        case 'nav': 
+          if( $.kin_ide ) location.href = location.href.split('#')[0] + $.kin_ide;
+          break;
+        case 'fin': 
+          $.res.innerHTML = '';
+          break;
+        }
+      }     
+      break;
+    }
+  }
+}

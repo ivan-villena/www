@@ -5,14 +5,6 @@ class app_hol {
 
   static string $IDE = "app_hol-";
   static string $EJE = "app_hol.";
-  
-  // operadores
-  static function ope( string $tip, mixed $dat = NULL, array $ope = [], ...$opc ) : string {
-    $_ = "";
-    switch( $tip ){
-    }
-    return $_;
-  }
 
   // Valor : Fecha + ns:kin
   static function val( array $dat, array $ope ) : string {
@@ -49,17 +41,17 @@ class app_hol {
         'maxlength'=>2, 'name'=>"gal", 'title'=>"Portales Galácticos, Ciclos NS de 52 años..."
       ])."
       <c>.</c>
-      ".app_var::opc_val( api_hol::_('ani'), [
+      ".app_lis::opc( api_hol::_('ani'), [
         'eti'=>[ 'name'=>"ani", 'title'=>"Anillo Solar (año): los 52 ciclos anuales de 364+1 días...", 'val'=>$_sin[1] ], 
         'ite'=>[ 'title'=>'($)nom','htm'=>'($)ide' ]
       ])."
       <c>.</c>
-      ".app_var::opc_val( api_hol::_('psi_lun'), [
+      ".app_lis::opc( api_hol::_('psi_lun'), [
         'eti'=>[ 'name'=>"lun", 'title'=>"Giro Lunar (mes): los 13 ciclos mensuales de 28 días...", 'val'=>$_sin[2] ],
         'ite'=>[ 'title'=>'()($)nom(): ()($)des()','htm'=>'($)ide' ]
       ])."
       <c>.</c>
-      ".app_var::opc_val( api_hol::_('lun'), [ 
+      ".app_lis::opc( api_hol::_('lun'), [ 
         'eti'=>[ 'name'=>"dia", 'title'=>"Día Lunar : los 28 días del Giro Lunar...", 'val'=>$_sin[3] ], 
         'ite'=>[ 'title'=>'($)des','htm'=>'($)ide' ]
       ])."          
@@ -76,8 +68,8 @@ class app_hol {
     return $_;
   }
 
-  // Ficha
-  static function fic( string $est, string $atr, mixed $val, array $ope = [] ) : string {
+  // Informe
+  static function inf( string $est, string $atr, mixed $val, array $ope = [] ) : string {
     $_ = "";            
     switch( $est ){
     case 'kin':
@@ -85,16 +77,15 @@ class app_hol {
       switch( $atr ){
       // parejas del oráculo
       case 'par':
-        $_ ="
+        $_ = "
         <div class='lis'>";
         foreach( api_hol::_('sel_par') as $_par ){
-          $ide = $_par->ide;
-          $par_ide = "par_{$ide}";
-          $atr_ide = ( $ide=='des' ) ? 'ide' : $par_ide;
+          $ide = $_par->ide;          
+          if( $ide == 'des' ) continue;
           // busco datos de parejas
           $_par = api::dat(api_hol::_('sel_par'),[ 'ver'=>[ ['ide','==',$ide] ], 'opc'=>'uni' ]);
-          $kin = api_hol::_('kin',$dat->$atr_ide);
-          $_ .= "    
+          $kin = api_hol::_('kin',$dat->{"par_{$ide}"});
+          $_ .= "
           <p class='mar_arr-2 tex_ali-izq'>
             <b class='ide let-sub'>{$_par->nom}</b><c>:</c>
             <br><q>".app::let($_par->des)."</q>
@@ -107,105 +98,13 @@ class app_hol {
         } $_ .= "
         </div>";
         break;
-      // lecturas por parejas
-      case 'par-lec':
-
-        $_lis = [];
-        $_des_sel = api_hol::_('sel',$dat->arm_tra_dia);
-
-        foreach( api_hol::_('sel_par') as $_par ){
-
-          if( $_par->ide == 'des' ) continue;
-
-          $_kin = api_hol::_('kin',$dat->{"par_{$_par->ide}"});
-          $_sel = api_hol::_('sel',$_kin->arm_tra_dia);
-
-          $_lis []=
-            api_hol::ima("kin",$_kin)."
-
-            <div>
-              <p><b class='tit'>{$_kin->nom}</b> <c>(</c> ".app::let($_par->dia)." <c>)</c></p>
-              <p>".app::let("{$_sel->acc} {$_par->pod} {$_sel->car}, que {$_par->mis} {$_des_sel->car}, {$_par->acc} {$_sel->pod}.")."</p>
-            </div>";
-        }
-        
-        if( !isset($ope['lis']) ) $ope['lis']=[];
-
-        api_ele::cla($ope['lis'],'ite');
-        
-        $_ = app_lis::val($_lis,$ope);          
-        break;
-      // Propiedades : palabras clave del kin + sello + tono
-      case 'par-pro':
-
-        $_par_atr = !empty($ope['par']) ? $ope['par'] : ['fun','acc','mis'];
-  
-        $_ton_atr = !empty($ope['ton']) ? $ope['ton'] : ['acc'];
-  
-        $_sel_atr = !empty($ope['sel']) ? $ope['sel'] : ['car','des'];
-  
-        foreach( api_hol::_('sel_par') as $_par ){
-          
-          $_kin = $_par->ide == 'des' ? $dat : api_hol::_('kin',$dat->{"par_{$_par->ide}"});
-  
-          $ite = [ api_hol::ima("kin",$_kin) ];
-  
-          foreach( $_par_atr as $atr ){ if( isset($_par->$atr) ) $ite []= app::let($_par->$atr); }
-  
-          $_ton = api_hol::_('ton',$_kin->nav_ond_dia);
-          foreach( $_ton_atr as $atr ){ if( isset($_ton->$atr) ) $ite []= app::let($_ton->$atr); }
-  
-          $_sel = api_hol::_('sel',$_kin->arm_tra_dia);            
-          foreach( $_sel_atr as $atr ){  if( isset($_sel->$atr) ) $ite []= app::let($_sel->$atr); }
-  
-          $_ []= $ite;
-        }
-        break;
-      // Ciclos : posiciones en ciclos del kin
-      case 'par-cic':
-        $_atr = [ 'ene_cam', 'cro_est', 'cro_ele', 'arm_tra', 'arm_cel', 'nav_cas', 'nav_ond' ];
-  
-        foreach( api_hol::_('sel_par') as $_par ){
-          
-          $_kin = $_par->ide == 'des' ? $dat : api_hol::_('kin',$dat->{"par_{$_par->ide}"});
-  
-          $ite = [ api_hol::ima("kin",$_kin) ];
-  
-          foreach( $_atr as $atr ){
-            $ite []= api_hol::ima("kin_{$atr}",$_kin->$atr,[ 'class'=>"tam-5" ]);
-          }
-          
-          $_ []= $ite;
-        }
-        break;
-      // Grupos : sincronometría del holon por sellos
-      case 'par-gru':
-        $_atr = [ 'sol_pla', 'sol_cel', 'sol_cir', 'pla_hem', 'pla_mer', 'hum_cen', 'hum_ext', 'hum_mer' ];
-  
-        foreach( api_hol::_('sel_par') as $_par ){
-          
-          $_kin = $_par->ide == 'des' ? $dat : api_hol::_('kin',$dat->{"par_{$_par->ide}"});                            
-  
-          $_sel = api_hol::_('sel',$_kin->arm_tra_dia);
-  
-          $ite = [ api_hol::ima("kin",$_kin), $_par->nom, $_sel->pod ];
-  
-          foreach( $_atr as $atr ){
-            $ite []= api_hol::ima("sel_{$atr}",$_sel->$atr,[ 'class'=>"tam-5" ]);
-          }
-          
-          $_ []= $ite;
-        }
-        break;
-        // castillo de la nave  
       }
-      if( is_array($_) ) $_ = app_est::lis( $_, [ 'opc'=>['htm','cab_ocu'] ], $ope);
       break;
     }
     return $_;
   }
   
-  // tablero
+  // Tablero
   static function tab( string $est, string $atr, array $ope = [], array $ele = [] ) : string {
     extract( app_hol::tab_dat($est,$atr,$ope,$ele) );
     $_ = "";

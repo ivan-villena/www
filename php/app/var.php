@@ -5,26 +5,67 @@ class app_var {
   static string $IDE = "app_var-";
   static string $EJE = "app_var.";
 
-  static function fig( string $tip, mixed $dat = NULL, array $ope = [], ...$opc ) : string {
+  static function opc( string $tip, mixed $dat = NULL, array $ope = [], ...$opc ) : string {
     $_ = "";
-    $_ide = self::$IDE."fig";
-    $_eje = self::$EJE."fig";
+    $_ide = self::$IDE."opc";
+    $_eje = self::$EJE."opc";
     
     switch( $tip ){
-    case 'ima': 
-      $_ = "<img src=''>";
+    // vacío : null
+    case 'vac':
+      $ope['type'] = 'radio'; 
+      $ope['disabled'] = '1';
+      if( is_nan($dat) ){ 
+        $ope['val']="non";
+      }elseif( is_null($dat) ){ 
+        $ope['val']="nov";
+      }                    
       break;
-    // color
-    case 'col':
-      $ope['type']='color';
-      $ope['value'] = empty($dat) ? $dat : '#000000';
+    // binario : input[checkbox]
+    case 'bin':
+      $ope['type']='checkbox';
+      if( !empty($dat) ){ $ope['checked']='checked'; }
       break;
+    // único : div > input[radio]
+    case 'uni':
+      if( isset($ope['dat']) ){
+        $_dat = $ope['dat'];
+        unset($ope['dat']); 
+        $_ .= "
+        <div var='opc_uni'>";
+        $ope_ide = isset($ope['ide']) ? $ope['ide'] : '_doc-opc-'.count($_dat);
+        foreach( $_dat as $ide => $val ){ $_ .= "
+          <div class='val'>
+            <label for='{$ope_ide}-{$ide}'>{$val}<c>:</c></label>
+            <input id='{$ope_ide}-{$ide}' type='radio' name='{$ide}' value='{$ide}'>
+          </div>";
+        }$_ .= "
+        </div>";
+      }
+      break;
+    // múltiple : div > ...input[checkbox]
+    case 'mul':
+      if( isset($ope['dat']) ){
+        $_dat = $ope['dat'];
+        unset($ope['dat']); 
+        $_ .= "
+        <div var='opc_mul'>";
+        $ope_ide = isset($ope['ide']) ? $ope['ide'] : '_doc-opc-'.count($_dat);
+        foreach( $_dat as $ide => $val ){ $_ .= "
+          <div class='val'>
+            <label for='{$ope_ide}-{$ide}'>{$val}<c>:</c></label>
+            <input id='{$ope_ide}-{$ide}' type='checkbox' name='{$ide}' value='{$ide}'>
+          </div>";
+        }$_ .= "
+        </div>";
+      }
+      break;          
     }
     if( empty($_) && !empty($ope['type']) ){
       $_ = "<input".api_ele::atr($ope).">";            
     }
     return $_;
-  }
+  }  
 
   static function num( string $tip, mixed $dat = NULL, array $ope = [], ...$opc ) : string {      
     $_ = "";
@@ -279,6 +320,27 @@ class app_var {
 
     return $_;
   }
+
+  static function fig( string $tip, mixed $dat = NULL, array $ope = [], ...$opc ) : string {
+    $_ = "";
+    $_ide = self::$IDE."fig";
+    $_eje = self::$EJE."fig";
+    
+    switch( $tip ){
+    case 'ima': 
+      $_ = "<img src=''>";
+      break;
+    // color
+    case 'col':
+      $ope['type']='color';
+      $ope['value'] = empty($dat) ? $dat : '#000000';
+      break;
+    }
+    if( empty($_) && !empty($ope['type']) ){
+      $_ = "<input".api_ele::atr($ope).">";            
+    }
+    return $_;
+  }  
   
   static function arc( string $tip, mixed $dat = NULL, array $ope = [], ...$opc ) : string {
     $_ = "";
@@ -329,9 +391,74 @@ class app_var {
 
   static function obj( string $tip, mixed $dat = NULL, array $ope = [], ...$opc ) : string {
     $_ = "";
-    $_ide = self::$IDE."obj";
     $_eje = self::$EJE."obj";
 
+    $_ite = function( mixed $ide, mixed $dat = NULL, string $tip = 'pos', array $ope = [], ...$opc ) : string {
+      $_ = "";
+  
+      $ope['ent']=isset($ope['ent'])?$ope['ent']:'alm';
+      
+      $ope['eti']=isset($ope['eti'])?$ope['eti']:[]; 
+      $ope['ite']=isset($ope['ite'])?$ope['ite']:[];      
+  
+      if( is_null($dat) ){ 
+        $dat=''; 
+        $tip_dat='val'; 
+        $tip_val='vac'; 
+        $_="<input type='radio' disabled>";
+      }
+      else{ 
+        $tip = api_dat::tip($dat); 
+        $tip_dat = $tip['dat']; 
+        $tip_val = $tip['val']; 
+      }
+  
+      $ite = "";
+      if( in_array('dat',$opc) && $tip != 'val' ){ 
+        $ite = "<input type='checkbox'>"; 
+      }
+      // items de lista -> // reducir dependencias
+      $cla_ide = "app_{$tip_dat}";
+      if( in_array($tip_dat,[ 'lis' ]) ){
+  
+        if( $ite != "" ){          
+          $_ = $cla_ide::ope( $tip_val, $dat, [ 'ide'=>"{$ope['ent']}.{$ide}", 'eti'=>$ope['ite'] ] );
+        }
+        else{
+          $_ = app_lis::opc( $dat, [ 'eti'=>$ope['eti'], 'ite'=>$ope['ite'] ] );
+        }
+      }// controladores
+      else{
+  
+        $dat = is_string($dat) ? $dat : strval($dat); 
+        $_ = !empty($ope) ? $cla_ide::ope( $tip_val, $dat, $ope['ite'] ) : "<p".api_ele::atr($ope['ite']).">{$dat}</p>";
+      }
+      $ide='';
+      if( !empty($ite) ){ 
+        $agr = "";
+        if( $tip == 'pos' ){
+          $agr = " tam='2'";
+          $tip = "number";
+        }else{
+          $tip = "text";
+        }
+        $ide="<input class='ide' type='{$tip}'{$agr} value='{$ide}' title='{$ide}'>";
+      }
+      else{ 
+        $ide="<c class='sep'>[</c><n>{$ide}</n><c class='sep'>]</c>";
+      }
+      if( $tip == 'pos' ){
+        $sep='='; 
+      }else{ 
+        $sep=( $tip == 'nom' ) ? '=>' : ':' ; 
+      }  
+      $sep = "<c class='sep'>{$sep}</c>"; 
+  
+      return "
+      <li class='atr' data-ide='{$ide}'>
+        {$ite}{$ide}{$sep}{$_}
+      </li>";  
+    };
     // texto : json
     if( !isset($dat) || is_string($dat) ){
       $ope['value'] = strval($dat); $_ = "
@@ -356,7 +483,7 @@ class app_var {
       }
       foreach( $dat as $i=>$v ){ 
         $cue++; 
-        $htm .= app_var::obj_ite( $i, $v, $tip, ...$opc);
+        $htm .= $_ite($i,$v,$tip,...$opc);
       }
       api_ele::cla($ope,"app_obj {$tip}",'ini');
       $_ = "
@@ -390,264 +517,4 @@ class app_var {
 
     return $_;
   }
-  static function obj_ite( mixed $ide, mixed $dat = NULL, string $tip = 'pos', array $ope = [], ...$opc ) : string {
-    $_ = "";
-
-    $ope['ent']=isset($ope['ent'])?$ope['ent']:'alm';
-    
-    $ope['eti']=isset($ope['eti'])?$ope['eti']:[]; 
-    $ope['ite']=isset($ope['ite'])?$ope['ite']:[];      
-
-    if( is_null($dat) ){ 
-      $dat=''; 
-      $tip_dat='val'; 
-      $tip_val='vac'; 
-      $_="<input type='radio' disabled>";
-    }
-    else{ 
-      $tip = api_dat::tip($dat); 
-      $tip_dat = $tip['dat']; 
-      $tip_val = $tip['val']; 
-    }
-
-    $ite = "";
-    if( in_array('dat',$opc) && $tip != 'val' ){ 
-      $ite = "<input type='checkbox'>"; 
-    }
-    // items de lista -> // reducir dependencias
-    $cla_ide = "app_{$tip_dat}";
-    if( in_array($tip_dat,[ 'lis' ]) ){
-
-      if( $ite != "" ){          
-        $_ = $cla_ide::ope( $tip_val, $dat, [ 'ide'=>"{$ope['ent']}.{$ide}", 'eti'=>$ope['ite'] ] );
-      }
-      else{
-        $_ = app_var::opc_val( $dat, [ 'eti'=>$ope['eti'], 'ite'=>$ope['ite'] ] );
-      }
-    }// controladores
-    else{
-
-      $dat = is_string($dat) ? $dat : strval($dat); 
-      $_ = !empty($ope) ? $cla_ide::ope( $tip_val, $dat, $ope['ite'] ) : "<p".api_ele::atr($ope['ite']).">{$dat}</p>";
-    }
-    $ide='';
-    if( !empty($ite) ){ 
-      $agr = "";
-      if( $tip == 'pos' ){
-        $agr = " tam='2'";
-        $tip = "number";
-      }else{
-        $tip = "text";
-      }
-      $ide="<input class='ide' type='{$tip}'{$agr} value='{$ide}' title='{$ide}'>";
-    }
-    else{ 
-      $ide="<c class='sep'>[</c><n>{$ide}</n><c class='sep'>]</c>";
-    }
-    if( $tip == 'pos' ){
-      $sep='='; 
-    }else{ 
-      $sep=( $tip == 'nom' ) ? '=>' : ':' ; 
-    }  
-    $sep = "<c class='sep'>{$sep}</c>"; 
-
-    return "
-    <li class='atr' data-ide='{$ide}'>
-      {$ite}{$ide}{$sep}{$_}
-    </li>";  
-  }
-
-  static function opc( string $tip, mixed $dat = NULL, array $ope = [], ...$opc ) : string {
-    $_ = "";
-    $_ide = self::$IDE."opc";
-    $_eje = self::$EJE."opc";
-    
-    switch( $tip ){
-    // vacío : null
-    case 'vac':
-      $ope['type'] = 'radio'; 
-      $ope['disabled'] = '1';
-      if( is_nan($dat) ){ 
-        $ope['val']="non";
-      }elseif( is_null($dat) ){ 
-        $ope['val']="nov";
-      }                    
-      break;
-    // binario : input[checkbox]
-    case 'bin':
-      $ope['type']='checkbox';
-      if( !empty($dat) ){ $ope['checked']='checked'; }
-      break;
-    // único : div > input[radio]
-    case 'uni':
-      if( isset($ope['dat']) ){
-        $_dat = $ope['dat'];
-        unset($ope['dat']); 
-        $_ .= "
-        <div var='opc_uni'>";
-        $ope_ide = isset($ope['ide']) ? $ope['ide'] : '_doc-opc-'.count($_dat);
-        foreach( $_dat as $ide => $val ){ $_ .= "
-          <div class='val'>
-            <label for='{$ope_ide}-{$ide}'>{$val}<c>:</c></label>
-            <input id='{$ope_ide}-{$ide}' type='radio' name='{$ide}' value='{$ide}'>
-          </div>";
-        }$_ .= "
-        </div>";
-      }
-      break;
-    // múltiple : div > ...input[checkbox]
-    case 'mul':
-      if( isset($ope['dat']) ){
-        $_dat = $ope['dat'];
-        unset($ope['dat']); 
-        $_ .= "
-        <div var='opc_mul'>";
-        $ope_ide = isset($ope['ide']) ? $ope['ide'] : '_doc-opc-'.count($_dat);
-        foreach( $_dat as $ide => $val ){ $_ .= "
-          <div class='val'>
-            <label for='{$ope_ide}-{$ide}'>{$val}<c>:</c></label>
-            <input id='{$ope_ide}-{$ide}' type='checkbox' name='{$ide}' value='{$ide}'>
-          </div>";
-        }$_ .= "
-        </div>";
-      }
-      break;          
-    }
-    if( empty($_) && !empty($ope['type']) ){
-      $_ = "<input".api_ele::atr($ope).">";            
-    }
-    return $_;
-  }
-  static function opc_val( mixed $dat = NULL, array $ope = [], ...$opc ) : string {
-    $_ = "";
-
-    $ope_eti = !empty($ope['eti']) ? api_obj::dec($ope['eti'],[],'nom') : [];
-
-    if( isset($ope_eti['data-opc']) ){
-      $opc = array_merge($opc,is_array($ope_eti['data-opc']) ? $ope_eti['data-opc'] : explode(',',$ope_eti['data-opc']) );
-    }
-
-    // etiqueta del contenedor
-    $eti = isset($ope_eti['eti']) ? $ope_eti['eti'] : 'select';
-
-    // aseguro valor
-    $val = NULL;
-    if( isset($ope['val']) ){
-      $val = $ope['val'];
-    }
-    elseif( isset($ope_eti['val']) ){
-      $val = $ope_eti['val'];
-      unset($ope_eti['val']);
-    }
-    
-    $_ = "
-    <{$eti}".api_ele::atr($ope_eti).">";
-
-      if( in_array('nad',$opc) ){ $_ .= "
-        <option default value=''>{-_-}</option>"; 
-      }
-      // items
-      $ope_ite = isset($ope['ite']) ? $ope['ite'] : [];
-      if( !empty($ope['gru']) ){
-
-        foreach( $ope['gru'] as $ide => $nom ){ 
-
-          if( isset($dat[$ide]) ){ $_.="
-            <optgroup data-ide='{$ide}' label='{$nom}'>
-              ".app_var::opc_lis( $dat[$ide], $val, $ope_ite, ...$opc )."                
-            </optgroup>";
-          }
-        }
-      }
-      else{                        
-        $_ .= app_var::opc_lis( $dat, $val, $ope_ite, ...$opc );
-      }
-      $_ .= "
-    </{$eti}>";
-
-    return $_;
-  }
-  static function opc_lis( mixed $dat = [], mixed $val = NULL, array $ope = [], ...$opc) : string {
-    $_ = "";
-    
-    $val_ite = !empty($val);
-    $val_arr = $val_ite && is_array($val);
-    $opc_ide = in_array('ide',$opc);
-
-    $obj_tip = FALSE;
-    foreach( $dat as $i => $v){ 
-      $obj_tip = api_obj::tip($v);
-      break;
-    }
-
-    foreach( $dat as $i => $v){ 
-      $atr=''; 
-      $htm=''; 
-      $e = $ope;
-
-      // literal
-      if( !$obj_tip ){  
-        $e['value'] = $i;
-        $htm = !!$opc_ide ? "{$i}: ".strval($v) : strval($v) ;
-        $atr = api_ele::atr($e);
-      }
-      // elemento
-      elseif( $obj_tip == 'nom' ){
-        $e = api_ele::jun($e,$v);
-        if( !isset($e['value']) ) $e['value'] = $i;
-        $htm = isset($e['htm']) ? $e['htm'] : $i;
-        $atr = api_ele::atr($e);
-      }
-      // objeto ( ide + nom + des + tit )
-      elseif( $obj_tip == 'atr' ){
-        $_ide = isset($v->ide) ? $v->ide : FALSE ;
-        $_htm = isset($v->nom) ? $v->nom : FALSE ;
-        // valor
-        if( isset($e['value']) ){ 
-          $e['value'] = api_obj::val($v,$e['value']); 
-        }else{ 
-          $e['value'] = $i;
-          if( $_ide ){ $e['value'] = $_ide; }elseif( $_htm ){ $e['value'] = $_htm; }
-        }
-        // titulo con descripcion
-        if( !isset($e['title']) ){ 
-          if( isset($v->des) ){ 
-            $e['title'] = $v->des; 
-          }elseif( isset($v->tit) ){ 
-            $e['title'] = $v->tit; 
-          }
-        }
-        // contenido
-        if( isset($e['htm']) ){
-          $htm = api_obj::val($v,$e['htm']);
-        }else{
-          if( !!$opc_ide && $_ide && $_htm ){
-            $htm = "{$_ide}: {$_htm}";
-          }elseif( $_htm ){
-            $htm = $_htm;
-          }else{
-            $htm = $_ide; 
-          }
-        }
-        $atr = api_ele::atr($e,$v);            
-      }// por posiciones
-      else{
-        $htm = "( \"".implode( '", "', $v )."\" )" ;
-        $atr = api_ele::atr($e);
-      }
-      // agrego atributo si está en la lista
-      if( $val_ite ){ 
-        if( $val_arr ){
-          if( in_array($e['value'],$val) ) $atr .= " selected";
-        }
-        elseif( $val == $e['value'] ){
-
-          $atr .= " selected";
-        }
-      }
-      $_ .= "<option{$atr}>{$htm}</option>";
-    }   
-    return $_;
-  }
- 
 }

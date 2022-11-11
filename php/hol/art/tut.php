@@ -1,6 +1,6 @@
 
 
-<article>    
+<article>
   <p>Fuente<c>:</c> <a href="https://www.13lunas.net/tutorial/tutorial.html">página de <n>13</n> lunas</a></p>
 
   <h2>Introducción</h2>

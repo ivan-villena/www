@@ -576,31 +576,34 @@ class app {
   // letra : ( n, c )
   static function let( string $dat, array $ele=[] ) : string {
     global $_api;
+    $_ = [];
     $_let = $_api->tex_let;
     $_pal = [];
-    foreach( explode(' ',$dat) as $pal ){
-      // numero completo
-      if( is_numeric($pal) ){
-        //if( preg_match("/,/",$pal) ) $pal = str_replace(",","<c>,</c>",$pal);
-        //if( preg_match("/\./",$pal) ) $pal = str_replace(".","<c>.</c>",$pal);
-        $_pal []= "<n>{$pal}</n>";
-      }// caracteres
-      else{
-        $let = [];
-        foreach( api_tex::let($pal) as $car ){
-          if( is_numeric($car) ){
-            $let []= "<n>{$car}</n>";
-          }elseif( isset($_let[$car]) ){
-            //api_ele::cla($ele_let,"{$_let[$car]->var}",'ini');
-            $let []= "<c>{$car}</c>";        
-          }else{
-            $let []= $car;
+    // saltos de linea
+    foreach( explode("\n",$dat) as $dat_pal ){
+      // espacios
+      foreach( explode(' ',$dat_pal) as $pal ){
+        // numero completo
+        if( is_numeric($pal) ){
+          $_pal []= "<n>{$pal}</n>";
+        }// caracteres
+        else{
+          $let = [];
+          foreach( api_tex::let($pal) as $car ){
+            if( is_numeric($car) ){
+              $let []= "<n>{$car}</n>";
+            }elseif( isset($_let[$car]) ){
+              $let []= "<c>{$car}</c>";        
+            }else{
+              $let []= $car;
+            }
           }
+          $_pal []= implode('',$let);
         }
-        $_pal []= implode('',$let);
       }
+      $_ []= implode(' ',$_pal);
     }
-    return implode(' ',$_pal);
+    return implode('<br>',$_);    
   }
   // icono : .ico.$ide
   static function ico( string $ide, array $ele=[] ) : string {
@@ -1318,7 +1321,7 @@ class app {
 
       $_dat = api::dat( $_api->dat_ope, [ 'ver'=>[ ['tip','==',$dat[0]], ['dat','==',$dat[1]] ]] );
 
-      $_api->app_var_ope[$dat[0]][$dat[1]] = app_var::opc_val( $_dat, $ope, ...$opc);
+      $_api->app_var_ope[$dat[0]][$dat[1]] = app_lis::opc( $_dat, $ope, ...$opc);
     }
 
     $_ = $_api->app_var_ope[$dat[0]][$dat[1]];

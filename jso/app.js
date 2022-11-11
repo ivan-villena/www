@@ -213,39 +213,39 @@ class app {
   // letras : c - n
   static let( $dat, $ele={} ){
 
-    let $_="", $pal, $_pal=[], $let=[], $_let = $_api.tex_let, $num = 0;
-    
-    if( $dat !== null && $dat !== undefined && $dat !== NaN ){      
+    let $_ = [], $pal, $_pal=[], $let=[], $_let = $_api.tex_let, $num = 0;
 
-      $dat.toString().split(' ').forEach( $pal => {
-        
-        $num = api_num.val($pal);
-        if( !!$num || $num == 0 ){
-          // if( /,/.test($pal) ) $pal.replaceAll(",","<c>,</c>");
-          // if( /\./.test($pal) ) $pal.replaceAll(".","<c>.</c>");
-          $_pal.push( `<n>${$pal}</n>` );
-        }
-        else{
-          $let = [];
-          $pal.split('').forEach( $car =>{
-            $num = api_num.val($car);
-            if( !!$num || $num == 0 ){
-              $let.push( `<n>${$car}</n>` );
-            }
-            else if( $_let[$car] ){
-              // ${api_ele.atr(api_ele.cla($ele,`${$_let[$car].cla}`,'ini'))}
-              $let.push( `<c>${$car}</c>` );
-            }
-            else{
-              $let.push( $car );
-            }
-          });
-          $_pal.push( $let.join('') );
-        }
+    if( $dat !== null && $dat !== undefined && $dat !== NaN ){
+
+      $dat.toString().split("\n").forEach( $dat_pal => {
+
+        $dat_pal.split(' ').forEach( $pal => {
+          
+          $num = api_num.val($pal);
+          if( !!$num || $num == 0 ){
+            $_pal.push( `<n>${$pal}</n>` );
+          }
+          else{
+            $let = [];
+            $pal.split('').forEach( $car =>{
+              $num = api_num.val($car);
+              if( !!$num || $num == 0 ){
+                $let.push( `<n>${$car}</n>` );
+              }
+              else if( $_let[$car] ){
+                $let.push( `<c>${$car}</c>` );
+              }
+              else{
+                $let.push( $car );
+              }
+            });
+            $_pal.push( $let.join('') );
+          }
+        });
+        $_.push($_pal.join(' '));
       });
-      $_ = $_pal.join(' ');
     }
-    return $_;
+    return $_.join('<br>');
   }
   // iconos : .app_ico.$ide
   static ico( $ide, $ele = {} ){
@@ -513,6 +513,7 @@ class app {
       }
     }  
   }
+
   // indice 
   // - click en item
   static art_val( $dat, $cla = FON_SEL ){
