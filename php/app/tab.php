@@ -450,48 +450,46 @@ class app_tab {
       // holon solar por flujo vertical ( T.K. )
       case 'sol': 
         $ocu = []; 
-        foreach( ['res','cla','cel','cir','pla','sel'] as $i ){ 
+        foreach( ['ele','cel','cir','sel'] as $i ){ 
           $ocu[$i] = isset($ope['sec'][$i]) ? '' : ' dis-ocu'; 
         }$_ = "
         <ul".api_ele::atr($ele['sec']).">";
-          // imagenes:
-          foreach( ['gal','sol'] as $i ){ $_ .= "
-            <li".api_ele::atr(isset($ele["ima-$i"]) ? $ele["ima-$i"] : [] )."></li>";
+          // imágenes: galaxia + sol
+          foreach( ['gal'=>[ 'Galaxia' ],'sol'=>[ 'Sol' ] ] as $i=>$v ){
+            $_ .= app::ima("hol/tab/$i",[ 'eti'=>"li", 'class'=>"tab_sec $i" ]);
           }
-          // fondos :
-          foreach( api_hol::_('sel_pol_flu') as $v ){ 
-            $_ .= api_hol::ima("sel_pol_flu",$v,[ 'eti'=>"li",
-              'class'=>"tab_sec flu-{$v->ide}{$ocu['res']}",'title'=>app_dat::val('tit',"hol.sel_pol_flu",$v)
-            ]); 
-          }
+          // 2 respiraciones
           foreach( api_hol::_('uni_sol_res') as $v ){ 
-            $_ .= api_hol::ima("uni_sol_res",$v,[ 'eti'=>"li",
-              'class'=>"tab_sec res-{$v->ide}{$ocu['res']}",'title'=>app_dat::val('tit',"hol.res_flu",$v)
-            ]);
-          }          
-          foreach( api_hol::_('uni_sol_pla') as $v ){
-            $_ .= api_hol::ima("sol_pla",$v,[ 'eti'=>"li",
-              'class'=>"tab_sec pla-{$v->ide}{$ocu['pla']}",'title'=>app_dat::val('tit',"hol.sol_pla",$v)
-            ]);
+            for( $i = 1; $i <= 10; $i++ ){
+              $_ .= api_hol::ima("uni_sol_res",$v,[ 'eti'=>"li", 'class'=>"tab_sec res-{$v->ide} ide-$i" ]);
+            }
+          }// 4 flujos
+          foreach( api_hol::_('uni_flu') as $v ){
+            $_ .= api_hol::ima("uni_flu_pod",$v->pod,[ 'eti'=>"li", 'class'=>"tab_sec flu-{$v->ide} pod-{$v->pod}" ]); 
           }
+          // 10 planetas
+          foreach( api_hol::_('uni_sol_pla') as $v ){ 
+            $_ .= api_hol::ima("uni_sol_pla",$v,[ 'eti'=>"li", 'class'=>"tab_sec pla-{$v->ide}" ]);
+          }
+          // bordes: 
+          // - 4 elementos/clanes
           foreach( api_hol::_('sel_cro_ele') as $v ){ $_ .= "
-            <li class='tab_sec ele-{$v->ide}{$ocu['cla']}' title='".app_dat::val('tit',"hol.sel_cro_ele",$v)."'></li>";
-          }
+            <li class='tab_sec ele-{$v->ide}{$ocu['ele']}' title='".app_dat::val('tit',"hol.sel_cro_ele",$v)."'></li>";
+          }// - 5 células del tiempo
           foreach( api_hol::_('uni_sol_cel') as $v ){ $_ .= "
-            <li class='tab_sec cel-{$v->ide}{$ocu['cel']}' title='".app_dat::val('tit',"hol.sol_cel",$v)."'></li>";
-          }
+            <li class='tab_sec cel-{$v->ide}{$ocu['cel']}' title='".app_dat::val('tit',"hol.uni_sol_cel",$v)."'></li>";
+          }// - 5 circuitos de telepatía
           foreach( api_hol::_('uni_sol_cir') as $v ){ $_ .= "
-            <li class='tab_sec cir-{$v->ide}{$ocu['cir']}' title='".app_dat::val('tit',"hol.sol_cir",$v)."'></li>";
+            <li class='tab_sec cir-{$v->ide}{$ocu['cir']}' title='".app_dat::val('tit',"hol.uni_sol_cir",$v)."'></li>";
           }
+          // posicion: 20 sellos solares
           if( !isset($ele['sel']) ) $ele['sel'] = [];
           foreach( api_hol::_('sel') as $v ){            
-            $ele_ite = $ele['sel'];
-            api_ele::cla($ele_ite,"pos sel-{$v->ide}"); $_ .= "
+            $ele_ite = $ele['sel']; api_ele::cla($ele_ite,"tab_pos sel-{$v->ide}"); $_ .= "
             <li".api_ele::atr($ele_ite).">
               ".api_hol::ima("sel_cod",$v)."
             </li>";
-          }
-          $_ .= " 
+          }$_ .= " 
         </ul>";        
         break;
       // holon solar por flujo circular ( E.S. )
@@ -521,7 +519,7 @@ class app_tab {
           if( !isset($ele['pos']) ) $ele['pos'] = [];        
           foreach( api_hol::_('sel') as $v ){
             $ele_ite = $ele['pos'];
-            api_ele::cla($ele_ite,"pos sel-$v->ide",'ini'); $_ .= "
+            api_ele::cla($ele_ite,"tab_pos sel-$v->ide",'ini'); $_ .= "
             <li".api_ele::atr($ele_ite).">
               ".api_hol::ima('sel_cod',$v)."
             </li>";
@@ -573,13 +571,13 @@ class app_tab {
           if( !isset($ele['sel']) ) $ele['sel'] = [];
           foreach( api_hol::_('sel') as $v ){
             $ele_ite = $ele['sel'];
-            api_ele::cla($ele_ite,"pos sel-".intval($_sel->ide),'ini'); $_ .= "
+            api_ele::cla($ele_ite,"tab_pos sel-".intval($_sel->ide),'ini'); $_ .= "
             <li".api_ele::atr($ele_ite).">".api_hol::ima("sel",$v)."</li>";
           }
           if( !isset($ele['ton']) ) $ele['ton'] = [];
           foreach( api_hol::_('ton') as $v ){
             $ele_ite = $ele['ton'];
-            api_ele::cla($ele_ite,"pos ton-".intval($_sel->ide),'ini'); $_ .= "
+            api_ele::cla($ele_ite,"tab_pos ton-".intval($_sel->ide),'ini'); $_ .= "
             <li".api_ele::atr($ele_ite).">".api_hol::ima("ton",$v)."</li>";
           }
           $_ .= "

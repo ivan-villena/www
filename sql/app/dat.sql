@@ -28,12 +28,13 @@
   DELETE FROM `app_dat` WHERE `esq`='hol'
   ;
   DELETE FROM `app_dat` WHERE `esq`='hol' AND `ide` LIKE 'uni%'; INSERT INTO `app_dat` VALUES
-
-    -- holon solar
-      ('hol','uni_sol_res', '{
+    -- colores
+    -- direcciones
+    -- flujos: respiraciones y poderes
+      ('hol','uni_flu_res', '{
           "val": {
-            "nom": "Respiración Solar #()($)ide() de 2: ()($)nom()",
-            "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/uni/sol_res/()($)ide().png);",
+            "nom": "Respiración de flujo polar #()($)ide() de 2: ()($)nom()",
+            "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/uni/flu_res/()($)ide().png);",
             "col": 2
           },
           "inf": {
@@ -44,21 +45,25 @@
           },
           "opc": {
             "ima": [ "ide" ]
-          }          
+          }
       }' ),
-      ('hol','uni_sol_orb', '{
+      ('hol','uni_flu_pod', '{
           "val": {
-            "nom": "Grupo Orbital #()($)nom() de 2: ()($)nom().",
-            "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/uni/sol_orb/()($)ide().png);",
+            "nom": "Poder de flujo polar #()($)ide() de 2: ()($)nom()",
+            "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/uni/flu_pod/()($)ide().png);",
             "col": 2
           },
+          "inf": {
+            "atr": [ ]
+          },
           "atr": {
-            "ide": { "min":1, "max":2, "dat":"hol.uni_sol_orb" }
+            "ide": { "min":1, "max":2, "dat":"hol.uni_sol_res" }
           },
           "opc": {
             "ima": [ "ide" ]
-          }          
-      }' ),    
+          }
+      }' ),
+    -- holon solar
       ('hol','uni_sol_pla', '{
           "val": {
             "nom": "Órbita Planetaria #()($)ide() de 10: ()($)nom().",
@@ -68,8 +73,8 @@
           },
           "inf": {
             "atr": [ "cod" ],
-            "tab": [ "hol.uni.sol", { "pos":{ "ima":"hol.sel.ide" } } ],
-            "fic": [ "cel", "cir" ],
+            "fic": [ "orb", "cel", "cir" ],
+            "tab": [ "hol.uni.sol", { "pos":{ "ima":"hol.sel.ide" } } ],            
             "htm-1": [ { "eti":"p", "class":"tit", "htm":"Sellos Solares" } ],
             "fic-1": [ "sel" ],
             "htm-2": [ { "eti":"p", "class":"tit", "htm":"Clanes" } ],
@@ -88,6 +93,40 @@
           },
           "opc": {
             "ima": [ "ide","orb","cel","cir" ]
+          }          
+      }' ),
+      ('hol','uni_sol_res', '{
+          "val": {
+            "nom": "Respiración del Holon Solar #()($)ide() de 2: ()($)nom()",
+            "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/uni/flu_res/()($)ide().png);",
+            "col": 2
+          },
+          "inf": {
+            "atr": [ ]
+          },
+          "atr": {
+            "ide": { "min":1, "max":2, "dat":"hol.uni_sol_res" }
+          },
+          "opc": {
+            "ima": [ "ide" ]
+          }
+      }' ),      
+      ('hol','uni_sol_orb', '{
+          "val": {
+            "nom": "Grupo Orbital #()($)ide() de 2: ()($)nom().",
+            "des": "",
+            "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/uni/sol_orb/()($)ide().png);",
+            "col": 2
+          },
+          "inf": {
+            "atr": [
+            ]
+          },
+          "atr": {
+            "ide": { "min":1, "max":2, "dat":"hol.uni_sol_orb" }
+          },
+          "opc": {
+            "ima": [ "ide" ]
           }          
       }' ),
       ('hol','uni_sol_cel', '{
@@ -148,22 +187,20 @@
     -- holon planetario
       ('hol','uni_pla_res', '{
           "val": {
-            "nom": "Flujo de la Respiración Planetaria #()($)ide() de 2: ()($)nom()",
-            "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/uni/pla_res/()($)ide().png);",
+            "nom": "Respiración del Holon Planetario #()($)ide() de 2: ()($)nom()",
+            "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/uni/flu_res/()($)ide().png);",
             "col": 2
           },
           "inf": {
             "atr": [ ]
           },
           "atr": {
-            "ide": { "min":1, "max":2, "dat":"hol.uni_pla_res" },
-            "hem": { "min":1, "max":3, "dat":"hol.uni_pla_hem" },
-            "fam": { "min":1, "max":5, "dat":"hol.sel_cro_fam" }
+            "ide": { "min":1, "max":2, "dat":"hol.uni_sol_res" }
           },
           "opc": {
-            "ima": [ "ide","hem","fam" ]
-          }          
-      }' ),
+            "ima": [ "ide" ]
+          }
+      }' ),     
       ('hol','uni_pla_cen', '{
           "val": {
             "nom": "Centro Planetario #()($)ide() de 5: ()($)nom().",
@@ -219,19 +256,19 @@
     -- holon humano
       ('hol','uni_hum_res', '{
           "val": {
-            "nom": "Flujo de la Respiración del Holon Humano #()($)ide() de 2: ()($)nom()",
-            "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/uni/hum_res/()($)ide().png);",
+            "nom": "Respiración del Holon Humano #()($)ide() de 2: ()($)nom()",
+            "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/uni/flu_res/()($)ide().png);",
             "col": 2
           },
           "inf": {
             "atr": [ ]
           },
           "atr": {
-            "ide": { "min":1, "max":2, "dat":"hol.uni_hum_res" }
+            "ide": { "min":1, "max":2, "dat":"hol.uni_sol_res" }
           },
           "opc": {
-            "ima": [ "ide" ]            
-          }          
+            "ima": [ "ide" ]
+          }
       }' ),
       ('hol','uni_hum_cen', '{
           "val": {
@@ -336,10 +373,10 @@
   ;
   DELETE FROM `app_dat` WHERE `esq`='hol' AND `ide` LIKE 'rad%'; INSERT INTO `app_dat` VALUES
 
-    ('hol','rad',     '{
+    ('hol','rad', '{
         "val": {
           "nom": "Plasma #()($)ide() de 7: ()($)nom().",
-          "des": "()($)pla_pod() ()($)pla_fue().\\n\\"()($)pla_lec()\\"",
+          "des": "\\"()($)pla_lec()\\"",
           "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/rad/()($)ide().png);",
           "col": 7,
           "num": 7
@@ -590,13 +627,13 @@
           "atr": [ 
             "ide", "cod", "nom", "car", "acc", "pod", 
             "cro_fam", "cro_ele", "arm_raz", "arm_cel", "par_ana", "par_ant", "par_ocu", 
-            "res_flu", "sol_pla", "pla_cen", "hum_cen", "hum_ded", "hum_mer" 
+            "flu_res", "sol_pla", "pla_cen", "hum_cen", "hum_ded", "hum_mer" 
           ],
           "atr_ocu": [ 
             "cro_fam", "cro_ele", "arm_raz", "arm_cel", "par_ana", "par_ant", "par_ocu", 
-            "res_flu", "sol_pla", "pla_cen", "hum_mer", "hum_cen", "hum_ded" 
+            "flu_res", "sol_pla", "pla_cen", "hum_mer", "hum_cen", "hum_ded" 
           ],
-          "tit_cic": [ "cic_ser", "cic_luz", "cro_ele", "arm_cel", "res_flu" ],
+          "tit_cic": [ "cic_ser", "cic_luz", "cro_ele", "arm_cel", "flu_res" ],
 
           "tit_gru": [ "cro_fam", "arm_raz", "sol_pla", "sol_cel", "sol_cir", "pla_cen", "hum_cen", "hum_ded", "hum_mer" ],
 
@@ -616,14 +653,14 @@
           "par_ana":  { "min":1, "max":20, 	"dat":"hol.sel" },
           "par_ant":  { "min":1, "max":20, 	"dat":"hol.sel" },
           "par_ocu":  { "min":1, "max":20, 	"dat":"hol.sel" },
-          "res_flu":  { "min":1, "max":2, 	"dat":"hol.sel_res_flu" },
+          "flu_res":  { "min":1, "max":2, 	"dat":"hol.uni_flu_pod" },
           "sol_pla":  { "min":1, "max":10, 	"dat":"hol.uni_sol_pla" },
           "sol_cel":  { "min":1, "max":10, 	"dat":"hol.uni_sol_cel" },
           "sol_cir":  { "min":1, "max":10, 	"dat":"hol.uni_sol_cir" },			
           "pla_cen":  { "min":1, "max":5, 	"dat":"hol.uni_pla_cen" },
           "pla_hem":  { "min":1, "max":3, 	"dat":"hol.uni_pla_hem" },
           "pla_mer":  { "min":1, "max":2, 	"dat":"hol.uni_pla_mer" },
-          "hum_res":  { "min":1, "max":2, 	"dat":"hol.sel_res_flu" },
+          "hum_res":  { "min":1, "max":2, 	"dat":"hol.uni_flu_res" },
           "hum_cen":  { "min":1, "max":5, 	"dat":"hol.uni_hum_cen" },
           "hum_ext":  { "min":1, "max":5, 	"dat":"hol.uni_hum_ext" },
           "hum_ded":  { "min":1, "max":5, 	"dat":"hol.uni_hum_ded" },
@@ -632,20 +669,20 @@
         "opc": {
           "ver": [ 
             "ide", "cic_luz", "cro_fam", "cro_ele", "arm_raz", "arm_cel",
-            "res_flu", "sol_pla", "sol_cel", "sol_cir", "pla_cen", "hum_ext", "hum_cen", "hum_ded", "hum_mer" 
+            "flu_res", "sol_pla", "sol_cel", "sol_cir", "pla_cen", "hum_ext", "hum_cen", "hum_ded", "hum_mer" 
           ],
           "ima": [
             "ide", "ord", "par_ana", "par_ant", "par_ocu", "cro_fam", "cro_ele", 
-            "res_flu", "sol_pla", "sol_cel", "sol_cir", "pla_cen", "pla_hem", "pla_mer", "hum_res", "hum_mer", "hum_cen", "hum_ext", "hum_ded"
+            "flu_res", "sol_pla", "sol_cel", "sol_cir", "pla_cen", "pla_hem", "pla_mer", "hum_res", "hum_mer", "hum_cen", "hum_ext", "hum_ded"
           ],
           "col": [
             "ide", "ord", "par_ana", "par_ant", "par_ocu", "cic_ser", "cic_luz", "cro_fam", "cro_ele", "arm_raz", "arm_cel",
-            "res_flu", "sol_pla", "sol_cel", "sol_cir", "pla_cen", "pla_hem", "pla_mer", "hum_mer"
+            "flu_res", "sol_pla", "sol_cel", "sol_cir", "pla_cen", "pla_hem", "pla_mer", "hum_mer"
           ],
           "num": [ 
             "ide", "cod", "cic_ser", "cic_luz", 
             "cro_fam", "cro_ele", "arm_tra", "arm_raz", "arm_cel", "par_ana", "par_ant", "par_ocu", 
-            "res_flu", "sol_pla", "sol_cel", "sol_cir", "pla_cen", "hum_ext", "hum_cen", "hum_ded", "hum_mer"
+            "flu_res", "sol_pla", "sol_cel", "sol_cir", "pla_cen", "hum_ext", "hum_cen", "hum_ded", "hum_mer"
           ]            
         }          
     }' ),
@@ -666,14 +703,14 @@
           "ord":     { "min":1, "max":20, "dat":"hol.sel_cod" },
           "cro_fam": { "min":1, "max":5, "dat":"hol.sel_cro_fam" },
           "cro_ele": { "min":1, "max":4, "dat":"hol.sel_cro_ele" },
-          "res_flu": { "min":1, "max":2, "dat":"hol.sel_res_flu" },
+          "flu_res": { "min":1, "max":2, "dat":"hol.uni_flu_res" },
           "sol_pla": { "min":1, "max":10, "dat":"hol.uni_sol_pla" },
           "sol_cel": { "min":1, "max":10, "dat":"hol.uni_sol_cel" },
           "sol_cir": { "min":1, "max":10, "dat":"hol.uni_sol_cir" },
           "pla_cen": { "min":1, "max":5, "dat":"hol.uni_pla_cen" },
           "pla_hem": { "min":1, "max":3, "dat":"hol.uni_pla_hem" },
           "pla_mer": { "min":1, "max":2, "dat":"hol.uni_pla_mer" },
-          "hum_res": { "min":1, "max":2, "dat":"hol.sel_res_flu" },
+          "hum_res": { "min":1, "max":2, "dat":"hol.uni_flu_res" },
           "hum_cen": { "min":1, "max":5, "dat":"hol.uni_hum_cen" },
           "hum_ext": { "min":1, "max":5, "dat":"hol.uni_hum_ext" },
           "hum_ded": { "min":1, "max":5, "dat":"hol.uni_hum_ded" },
@@ -682,7 +719,7 @@
         "opc": {
           "ima": [
             "ide", "ord", "par_ana", "par_ant", "par_ocu", "cro_fam", "cro_ele", 
-            "res_flu", "sol_pla", "sol_cel", "sol_cir", "pla_cen", "pla_hem", "pla_mer", "hum_res", "hum_mer", "hum_cen", "hum_ext", "hum_ded"
+            "flu_res", "sol_pla", "sol_cel", "sol_cir", "pla_cen", "pla_hem", "pla_mer", "hum_res", "hum_mer", "hum_cen", "hum_ext", "hum_ded"
           ]            
         }
     }' ),
@@ -826,11 +863,11 @@
           },
           "atr": {
             "ide": { "min":1, "max":4, "dat":"hol.sel_cro_ele" },
-            "res_flu": { "min":1, "max":2, "dat":"hol.sel_res_flu" },
+            "flu_res": { "min":1, "max":2, "dat":"hol.uni_flu_res" },
             "hum_ext": { "min":1, "max":4, "dat":"hol.uni_hum_ext" }
           },
           "opc": {
-            "ima": [ "ide", "res_flu", "hum_ext" ]
+            "ima": [ "ide", "flu_res", "hum_ext" ]
           }          
       }' )
   ;
@@ -1513,5 +1550,10 @@
           "atr": [ ]
         }
     }' )      
+  ;
+  DELETE FROM `app_dat` WHERE `esq`='hol' AND `ide` LIKE 'ani%'; INSERT INTO `app_dat` VALUES
+
+    ('hol','ani', '{
+    }' )
   ;
 --

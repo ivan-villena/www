@@ -818,7 +818,7 @@ class hol_bib {
     case 'kin':
       $_kin = api_hol::_('kin',$ope['ide']);
       $_sel = api_hol::_('sel',$_kin->arm_tra_dia);
-      $_pol = api_hol::_('sel_res',$_sel->res_flu);
+      $_pol = api_hol::_('uni_flu_res',$_sel->flu_res);
       $_pla = api_hol::_('uni_sol_pla',$_sel->sol_pla);
       $_ond = api_hol::_('kin_nav_ond',$_kin->nav_ond);
       $_arq = api_hol::_('sel',$_ond->sel);

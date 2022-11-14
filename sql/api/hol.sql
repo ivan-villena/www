@@ -3,6 +3,7 @@
 -- HOLON
   --
   -- x7 : plasma radial
+
     DROP VIEW IF EXISTS `_hol_rad`; CREATE VIEW `_hol_rad` AS
       SELECT 
         _rad.*,
@@ -14,8 +15,9 @@
       ORDER BY
         _rad.ide ASC
     ;
+    -- cubo
     DROP VIEW IF EXISTS `_hol_rad_pla_cub`; CREATE VIEW `_hol_rad_pla_cub` AS
-      SELECT         
+      SELECT
         _rad.pla_cub      AS `ide`,
         _rad.pla_cub_pos  AS `nom`,
         _rad.nom          AS `pla`
@@ -24,6 +26,7 @@
     ;
   --
   -- x20 : sello solar
+
     DROP VIEW IF EXISTS `_hol_sel`; CREATE VIEW `_hol_sel` AS
       SELECT 
         _sel.*,
@@ -32,8 +35,8 @@
         _pla.cir     AS `sol_cir`,
         _fam.hum_cen AS `hum_cen`,
         _fam.hum_ded AS `hum_ded`,
-        _ele.hum_ext AS `hum_ext`,        
-        _ele.res_flu AS `hum_res`
+        _ele.hum_ext AS `hum_ext`,
+        _ele.flu_res AS `hum_res`
       FROM 
         `hol_sel` _sel
       INNER JOIN 
@@ -75,8 +78,7 @@
         `hol_sel` _fin ON _ana.fin = _fin.ide
       ORDER BY
         _ana.ini
-    ;
-    -- parejas antípodas
+    ;-- parejas antípodas
     DROP VIEW IF EXISTS `_hol_sel_par_ant`;CREATE VIEW `_hol_sel_par_ant` AS
       SELECT
         _ant.ini,
@@ -95,8 +97,7 @@
         `hol_sel` _fin ON _ant.fin = _fin.ide
       ORDER BY
         _ant.ini
-    ;
-    -- parejas oculas
+    ;-- parejas oculas
     DROP VIEW IF EXISTS `_hol_sel_par_ocu`;CREATE VIEW `_hol_sel_par_ocu` AS
       SELECT
         _ocu.ini,
@@ -118,6 +119,7 @@
     ;
   --
   -- x52 : Castillo fractal-galactico
+
     -- onda de la aventura
     DROP VIEW IF EXISTS `_hol_cas_ond`; CREATE VIEW `_hol_cas_ond` AS
       SELECT 
@@ -130,7 +132,8 @@
         _ond.ide
     ;  
   --
-  -- x260 : Kin  
+  -- x260 : Kin
+  
     -- estacion galáctica
     DROP VIEW IF EXISTS `_hol_kin_cro_est`; CREATE VIEW `_hol_kin_cro_est` AS
       SELECT 
@@ -144,8 +147,7 @@
         `hol_cas_arm` _cas ON _est.ide = _cas.ide
       ORDER BY
         _est.ide        
-    ;
-    -- ondas de las estaciones galácticas
+    ;-- ondas de las estaciones galácticas
     DROP VIEW IF EXISTS `_hol_kin_cro_ond`; CREATE VIEW `_hol_kin_cro_ond` AS
       SELECT 
         _cro.*, 
@@ -157,8 +159,7 @@
         `hol_ton_ond` _ond ON _cro.ide = _ond.ide
       ORDER BY
         _cro.ide
-    ;
-    -- elemento galáctico
+    ;-- elemento galáctico
     DROP VIEW IF EXISTS `_hol_kin_cro_ele`; CREATE VIEW `_hol_kin_cro_ele` AS
       SELECT 
         _ele.*,

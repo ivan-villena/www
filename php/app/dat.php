@@ -533,7 +533,7 @@ class app_dat {
       </section>";
       foreach( $_inf as $inf_ide => $inf_val ){ 
         $inf_ide_pri = explode('-',$inf_ide)[0];
-        if( $inf_sep = !in_array($inf_ide_pri,['tab','htm','eje']) ){ $_ .= "
+        if( $inf_sep = !in_array($inf_ide_pri,['tab','htm']) ){ $_ .= "
           <section class='ali_pro-cre'>";
         }
         switch( $inf_ide_pri ){
