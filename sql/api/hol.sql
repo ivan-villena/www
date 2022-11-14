@@ -162,7 +162,7 @@
     DROP VIEW IF EXISTS `_hol_kin_cro_ele`; CREATE VIEW `_hol_kin_cro_ele` AS
       SELECT 
         _ele.*,
-        _cas.des AS `cas_des`,
+        _cas.lec AS `cas_lec`,
         _cas.arm AS `arm`,
         _cas.ond AS `ond`,
         _cas.ton AS `ton`,
@@ -175,6 +175,20 @@
         `hol_ton` _ton ON _cas.ton = _ton.ide
       ORDER BY
         _ele.ide ASC
+    ;
+    -- célula de tiempo
+    DROP VIEW IF EXISTS `_hol_kin_arm_cel`; CREATE VIEW `_hol_kin_arm_cel` AS
+      SELECT 
+        _cel.*,
+        _arm.nom AS `cel_nom`,
+        _arm.fun AS `cel_fun`,
+        _arm.pod AS `cel_pod`
+      FROM 
+        `hol_kin_arm_cel` _cel
+      INNER JOIN
+        `hol_sel_arm_cel` _arm ON _cel.cel = _arm.ide
+      ORDER BY
+        _cel.ide ASC
     ;
 
   --

@@ -61,8 +61,7 @@ class api_arc {
     }
     return $_;  
   }
-
-  // contenido html : valido archivo
+  // include html : valido archivos
   static function ide( string $ide, array $arc = [ 'html', 'php' ] ) : string {
 
     $_ = '';

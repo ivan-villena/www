@@ -154,7 +154,7 @@ class api_dat {
     return $_;
   }
   // estructura : datos + operadores
-  static function est( string $esq, string $ide, mixed $tip = NULL, mixed $ope = NULL ) : mixed {
+  static function est( string $esq, string $ide, mixed $tip = NULL, mixed $dat = NULL ) : mixed {
     $_ = [];
     global $_api;
     // cargo una estructura

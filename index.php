@@ -28,7 +28,7 @@
   // cargo modulos
   $sis_rec = [ 
     'api' => [ "sql", "lis", "dat", "eje", "obj", "ele", "arc", "tex", "num", "fec", "hol", "usu" ],
-    'app' => [ "var", "lis", "dat", "val", "est", "tab", "hol" ]
+    'app' => [ "var", "lis", "dat", "val", "est", "tab" ]
   ];
   foreach( $sis_rec as $ide => $cla_lis ){
     

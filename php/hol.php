@@ -194,7 +194,7 @@ class hol {
 
       <section class='mar_aba-1'>
 
-        ".app_hol::val($this->_val,[ 'eje'=>"hol_app.dia" ])."
+        ".app_var::hol('fec',$this->_val,[ 'eje'=>"hol_app.dia" ])."
 
         <div class='mar-1'>
           ".app_dat::inf('hol','kin',$this->_val['kin'],['opc'=>"nom",'cit'=>"des"])."
@@ -580,10 +580,8 @@ class hol {
     }
 
     // operadores del tablero
-    $_tab =  app_tab::dat('hol',$_uri->art);
-    $tab_ide = "hol.{$_ide[0]}";
-    $tab_ope = !empty($_tab->ope) ? $_tab->ope : [];
-    $tab_ele = [];
+    $tab_ide = "hol.{$_ide[0]}";  
+    if( !( $tab_ope =  app::dat('hol',$_uri->art,'tab') ) ) $tab_ope = [];    
 
     // inicializo valores
     $tab_ope['val'] = [];
@@ -611,7 +609,7 @@ class hol {
     $ope = api_obj::nom(app_tab::$OPE,'ver',['ver','opc','val']);
     foreach( $ope as $ope_ide => $ope_tab ){
 
-      if( !empty( $htm = app_tab::ope($ope_ide, $tab_ide, $tab_ope, $tab_ele ) ) ){
+      if( !empty( $htm = app_tab::ope($ope_ide, $tab_ide, $tab_ope) ) ){
 
         $_app->ope[$ope_ide] = [ 'ico'=>$ope_tab['ico'], 'tip'=>"pan", 'nom'=>$ope_tab['nom'], 'htm'=>$htm];
       }
@@ -622,7 +620,7 @@ class hol {
     // imprimo tablero en página principal
     echo "
     <article>
-      ".app_hol::tab($_ide[0], $_ide[1], $tab_ope, [
+      ".app_tab::hol($_ide[0], $_ide[1], $tab_ope, [
         'pos'=>[ 'onclick'=>"app_tab.val('mar',this);" ], 
         'ima'=>[ 'onclick'=>FALSE ]
       ])."
@@ -1160,7 +1158,7 @@ class hol_bib {
         $htm = 
         api_hol::ima("uni_pla_cen",$_pla,['class'=>"mar_der-2",'style'=>"min-width: 9rem; height:7rem;"])."
         <div>
-          <p><b class='ide'>Kin {$_fam->nom}</b><c>:</c> {$_fam->enc_fun}</p>
+          <p><b class='ide'>Kin {$_fam->nom}</b><c>:</c> {$_fam->mis}</p>
           <div class='val fic mar-2'>
             ".api_hol::ima("uni_hum_cen",$_hum)."
             <c class='sep'>=></c>
@@ -1255,7 +1253,7 @@ class hol_bib {
         </div>
         <p>
           <n>{$_dat->ide}</n><c>.</c> El Kin <b class='ide'>{$_fam->nom}</b><c>:</c>
-          <br><q>{$_fam->pla} desde el {$_dat->nom}</q>
+          <br><q>{$_dat->fun} desde el {$_dat->nom}</q>
         </p>";
         $_ []= $htm;
       }        
@@ -1383,12 +1381,14 @@ class hol_bib {
       $ope['lis'] = ['class'=>"ite"];
 
       foreach( api_hol::_($ide) as $_dat ){
-        $_fam = api_hol::_('sel_cro_fam',$_dat->fam); $_ []= "
+        $_fam = api_hol::_('sel_cro_fam',$_dat->fam); 
+        $_hum = api_hol::_('uni_hum_cen',$_fam->hum_cen);
+        $_ []= "
 
         ".api_hol::ima("uni_hum_cen",$_dat,['class'=>"mar_der-1"])."
 
         <p><b class='ide'>Kin {$_fam->nom}</b><c>:</c> <b class='val'>{$_fam->cod}</b>
-          <br>".api_tex::art($_dat->nom)." <c>-></c> {$_fam->hum}
+          <br>".api_tex::art($_dat->nom)." <c>-></c> {$_hum->fun}
         </p>";
       }            
       break;
@@ -2379,7 +2379,7 @@ class hol_val {
     <article>
       <h2></h2>
 
-      <?= app_hol::tab('kin','par',[ 'ide'=>$_kin->ide, 'sec'=>[ 'par'=>1 ], 'pos'=>[ 'ima'=>'hol.kin.ide' ] ],[
+      <?= app_tab::hol('kin','par',[ 'ide'=>$_kin->ide, 'sec'=>[ 'par'=>1 ], 'pos'=>[ 'ima'=>'hol.kin.ide' ] ],[
         'sec'=>[ 'class'=>"mar_ver-2 mar_hor-aut" ], 'pos'=>[ 'style'=>"width:5rem; height:5rem;" ]
       ])?>
       <!-- Descripciones -->      
@@ -2388,7 +2388,7 @@ class hol_val {
 
         <p>Para realizar una lectura del oráculo<c>,</c> consulta la <a href='<?=$_bib?>enc#_02-03-06-01-' target='_blank'>Guía del Oráculo</a> en el Encantamiento del Sueño<c>...</c></p>            
 
-        <?= app_hol::fic('kin','par',$_kin) ?>
+        <?= app_var::hol('kin-par',$_kin) ?>
 
       </section>
       <!-- Lecturas diarias -->      
@@ -2519,7 +2519,7 @@ class hol_val {
 
         <?= app_dat::inf('hol','kin_nav_cas',$_cas) ?>
         
-        <?= app_hol::tab('kin','nav_cas',[ 'ide'=>$_cas->ide, 'val'=>[ 'pos'=>$_kin->ide ], 'pos'=>[ 'ima'=>'hol.kin.ide' ] ], [
+        <?= app_tab::hol('kin','nav_cas',[ 'ide'=>$_cas->ide, 'val'=>[ 'pos'=>$_kin->ide ], 'pos'=>[ 'ima'=>'hol.kin.ide' ] ], [
           'cas'=>['class'=>"mar-2 mar_hor-aut pad-3 ali_pro-cen"], 
           'pos'=>['style'=>"width:2.5rem; height:2.5rem;"]  
         ]) ?>
@@ -2539,7 +2539,7 @@ class hol_val {
 
         <p>Ver <a href='<?=$_bib?>enc#_03-12-' target='_blank'>la Onda Encantada de la Aventura</a> en el Encantamiento del Sueño</p>
 
-        <?= app_hol::tab('kin','nav_ond', [ 'ide'=>$_ond, 'sec'=>[ 'par'=>1 ], 'pos'=>[ 'ima'=>'hol.kin.ide' ] ], [
+        <?= app_tab::hol('kin','nav_ond', [ 'ide'=>$_ond, 'sec'=>[ 'par'=>1 ], 'pos'=>[ 'ima'=>'hol.kin.ide' ] ], [
           'ond'=>[ 'class'=>"mar-2 mar_hor-aut pad-3 ali_pro-cen" ],
           'pos'=>[ 'style'=>"width:6rem; height:6rem;" ]
         ]) ?>
@@ -2559,7 +2559,7 @@ class hol_val {
 
         <p><?= app::let($_tra->lec) ?></p>
 
-        <?= app_hol::tab('kin','arm_tra', [ 'ide'=>$_tra, 'sec'=>[ 'par'=>1 ], 'pos'=>[ 'ima'=>'hol.kin.ide' ] ], [
+        <?= app_tab::hol('kin','arm_tra', [ 'ide'=>$_tra, 'sec'=>[ 'par'=>1 ], 'pos'=>[ 'ima'=>'hol.kin.ide' ] ], [
           'tra'=>[ 'class'=>"mar-2 mar_hor-aut pad-3 ali_pro-cen" ],
           'pos'=>[ 'style'=>"width:5rem; height:5rem;" ],
           'pos-0'=>[ 'style'=>"width:4rem; height:4rem;" ]

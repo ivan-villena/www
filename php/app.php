@@ -22,10 +22,10 @@ class app {
     $this->rec = [
       // clases de sistema
       'jso' => $sis_rec,
-      'css' => array_keys($sis_rec),
+      'css' => [ ...array_keys($sis_rec), "app/hol" ],
       'css-fin' => [
         'https://fonts.googleapis.com/css?family=Material+Icons+Outlined',
-        'api/ope'
+        'app/ope'
       ],
       // elementos      
       'ele' => [

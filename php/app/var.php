@@ -271,10 +271,31 @@ class app_var {
     return $_;
   }
 
+  static function fig( string $tip, mixed $dat = NULL, array $ope = [], ...$opc ) : string {
+    $_ = "";
+    $_ide = self::$IDE."fig";
+    $_eje = self::$EJE."fig";
+    
+    switch( $tip ){
+    case 'ima': 
+      $_ = "<img src=''>";
+      break;
+    // color
+    case 'col':
+      $ope['type']='color';
+      $ope['value'] = empty($dat) ? $dat : '#000000';
+      break;
+    }
+    if( empty($_) && !empty($ope['type']) ){
+      $_ = "<input".api_ele::atr($ope).">";            
+    }
+    return $_;
+  }  
+
   static function fec( string $tip, mixed $dat = NULL, array $ope = [], ...$opc ) : string {
     $_ = "";
     $_ide = self::$IDE."$tip";
-    $_eje = self::$EJE."$tip";      
+    $_eje = self::$EJE."$tip";  
 
     switch( $tip ){
     case 'val':
@@ -321,41 +342,136 @@ class app_var {
     return $_;
   }
 
-  static function fig( string $tip, mixed $dat = NULL, array $ope = [], ...$opc ) : string {
+  static function hol( string $tip, mixed $dat = NULL, array $ope = [], ...$opc ) : string {
     $_ = "";
-    $_ide = self::$IDE."fig";
-    $_eje = self::$EJE."fig";
+    $_ide = self::$IDE."$tip";
+    $_eje = self::$EJE."$tip";
+    $_tip = explode('-',$tip);    
+    $atr = isset($_tip[1]) ? $_tip[1] : '';
+    switch( $est = $_tip[0] ){
+    case 'fec':
+      $_eje =  !empty($ope['eje']) ? $ope['eje'] : self::$EJE."val";
+      $_kin = isset($dat['kin']) ? ( is_object($dat['kin']) ? $dat['kin'] : api_hol::_('kin',$dat['kin']) ) : [];
+      $_psi = isset($dat['psi']) ? ( is_object($dat['psi']) ? $dat['psi'] : api_hol::_('psi',$dat['psi']) ) : [];
+      $_sin = isset($dat['sin']) ? explode('.',$dat['sin']) : [];
+      $_fec = isset($dat['fec']) ? $dat['fec'] : [];      
+  
+      $_ = "
+      <!-- Fecha del Calendario -->
+      <form class='val fec mar-1'>
+  
+        ".app::ico('fec_dia',[ 'eti'=>"label", 'for'=>"hol_val-fec", 'class'=>"mar_hor-1", 
+          'title'=>"Desde aquí puedes cambiar la fecha..." 
+        ])."
+        ".app_var::fec('dia', $_fec, [ 'id'=>"hol_val-fec", 'name'=>"fec", 
+          'title'=>"Selecciona o escribe una fecha del Calendario Gregoriano para buscarla..."
+        ])."
+        ".app::ico('dat_ini',[ 'eti'=>"button", 'type'=>"submit", 'class'=>"mar_hor-1", 'onclick'=>"$_eje(this);", 
+          'title'=>'Haz click para buscar esta fecha del Calendario Gregoriano...'
+        ])."
+  
+      </form>
+  
+      <!-- Fecha del Sincronario -->
+      <form class='val sin mar-1'>
+        
+        <label>N<c>.</c>S<c>.</c></label>
+  
+        ".app_var::num('int', $_sin[0], [ 
+          'maxlength'=>2, 'name'=>"gal", 'title'=>"Portales Galácticos, Ciclos NS de 52 años..."
+        ])."
+        <c>.</c>
+        ".app_lis::opc( api_hol::_('ani'), [
+          'eti'=>[ 'name'=>"ani", 'title'=>"Anillo Solar (año): los 52 ciclos anuales de 364+1 días...", 'val'=>$_sin[1] ], 
+          'ite'=>[ 'title'=>'($)nom','htm'=>'($)ide' ]
+        ])."
+        <c>.</c>
+        ".app_lis::opc( api_hol::_('psi_lun'), [
+          'eti'=>[ 'name'=>"lun", 'title'=>"Giro Lunar (mes): los 13 ciclos mensuales de 28 días...", 'val'=>$_sin[2] ],
+          'ite'=>[ 'title'=>'()($)nom(): ()($)des()','htm'=>'($)ide' ]
+        ])."
+        <c>.</c>
+        ".app_lis::opc( api_hol::_('lun'), [ 
+          'eti'=>[ 'name'=>"dia", 'title'=>"Día Lunar : los 28 días del Giro Lunar...", 'val'=>$_sin[3] ], 
+          'ite'=>[ 'title'=>'($)des','htm'=>'($)ide' ]
+        ])."          
+        <c class='sep'>:</c>
     
-    switch( $tip ){
-    case 'ima': 
-      $_ = "<img src=''>";
+        <n name='kin'>$_kin->ide</n>
+  
+        ".app::ico('dat_ini',[ 'eti'=>"button", 'type'=>"submit", 'class'=>"mar_hor-1", 'onclick'=>"$_eje(this);",
+          'title'=>"Haz Click para buscar esta fecha en el Sincronario de 13 Lunas..."
+        ])."
+  
+      </form>";
       break;
-    // color
-    case 'col':
-      $ope['type']='color';
-      $ope['value'] = empty($dat) ? $dat : '#000000';
+    case 'kin':
+      $dat = api_hol::_($est,$dat);
+      switch( $atr ){
+      // parejas del oráculo
+      case 'par':
+        $_ = "
+        <div class='lis'>";
+        foreach( api_hol::_('sel_par') as $_par ){
+          // salteo el destino
+          if( ( $ide = $_par->cod ) == 'des' ) continue;
+          // busco datos de parejas
+          $_par = api::dat( api_hol::_('sel_par'), [ 'ver'=>[ ['cod','==',$ide] ], 'opc'=>'uni' ]);
+          $kin = api_hol::_('kin',$dat->{"par_{$ide}"});
+          $_ .= "
+          <p class='mar_arr-2 tex_ali-izq'>
+            <b class='ide let-sub'>{$_par->nom}</b><c>:</c>
+            <br><q>".app::let($_par->des)."</q>
+            ".( !empty($_par->lec) ? "<br><q>".app::let($_par->lec)."</q>" : "" )."
+          </p>
+          
+          ".app_dat::inf('hol','kin',$kin,['cit'=>"des"])
+          ;
+        } $_ .= "
+        </div>";
+        break;
+      }
       break;
-    }
-    if( empty($_) && !empty($ope['type']) ){
-      $_ = "<input".api_ele::atr($ope).">";            
     }
     return $_;
-  }  
+  }
   
   static function arc( string $tip, mixed $dat = NULL, array $ope = [], ...$opc ) : string {
     $_ = "";
     $_ide = self::$IDE."$tip";
     $_eje = self::$EJE."$tip";
-
-    if( isset($ope['tip']) ) $ope['accept'] = api_arc::tip($ope['tip']);
-
     switch( $tip ){
-    case 'val':
-      $ope['type']='file';
+    case 'lis': 
+      if( is_dir($dat) ){
+        if( !isset($ope['lis']) ) $ope['lis'] = [];
+        if( !isset($ope['ite']) ) $ope['ite'] = [];
+  
+        api_ele::cla($ope['lis'],"app_arc-dir",'ini');
+        $_ .= "
+        <ul".api_ele::atr($ope['lis']).">";
+        foreach( api_arc::dir($dat) as $arc ){
+          $ele_ite = $ope['ite'];
+          api_ele::cla($ele_ite,"{$arc['tip']}",'ini'); $_ .= "
+          <li".api_ele::atr($ele_ite).">
+            {$arc['nom']}";
+            if( $arc['tip'] == 'dir' ){
+              $_ .= app_var::arc('lis', $dat."\\".$arc['nom'], [ 'lis'=>[ 'data-pos'=>isset($ope['lis']['data-pos']) ? $ope['lis']['data-pos']+1 : 1 ] ] );
+            }
+            $_ .= "
+          </li>";
+        }
+        $_ .= "
+        </ul>";
+      }      
+      break;
+    case 'fic':
+      $ope['type'] = 'file';
+      if( isset($ope['tip']) ) $ope['accept'] = api_arc::tip($ope['tip']);
       if( isset($ope['multiple']) ) unset($ope['multiple']);
       break;
-    case 'lis':
-      $ope['type']='file';
+    case 'dir':
+      $ope['type'] = 'file';
+      if( isset($ope['tip']) ) $ope['accept'] = api_arc::tip($ope['tip']);
       $ope['multiple'] = '1';
       break;
     case 'url':
