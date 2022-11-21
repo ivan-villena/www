@@ -281,7 +281,7 @@ class api_fec {
     return $_;
   }
   // defino valor por rangos : AC - DC
-  static function ran( $ini, $fin ){
+  static function ran( int $ini, int $fin ) : string {
 
     $_ = "";
 

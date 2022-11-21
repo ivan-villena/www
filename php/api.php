@@ -3,6 +3,7 @@
 // Interfaces
 class api {
   
+  // entornos
   public array
     // Dato
     $dat_tip = [],
@@ -19,11 +20,8 @@ class api {
     // Holon
     $hol = []
   ;
-  public object 
-    // peticion : esq/cab/art/val -
-    $app_uri;
-
-    public array
+  // aplicacion  
+  public array
     // iconos      
     $app_ico = [],
     // formularios
@@ -37,14 +35,12 @@ class api {
     // tablas
     $app_est = [],
     // tableros
-    $app_tab = []
+    $app_tab = [];
+    // peticion : esq/cab/art/val -
+    public object $app_dir
   ;
-
+  
   function __construct(){
-
-    // aplicacion
-    $this->app_uri = new stdClass;
-    $this->app_ico = api::dat('app_ico', [ 'niv'=>['ide'] ]);
     
     // variable: tipos + operaciones
     $this->dat_tip = api::dat('dat_tip', [ 'niv'=>['ide'], 'ele'=>['ope'] ]);
@@ -58,6 +54,11 @@ class api {
 
       $this->{"fec_$ide"} = api::dat("fec_$ide");
     }
+
+    // aplicacion
+    $this->app_dir = new stdClass;
+    $this->app_ico = api::dat('app_ico', [ 'niv'=>['ide'] ]);
+
   }
   // getter por estructura en memoria
   static function _( string $ide, $val = NULL ) : string | array | object {
@@ -133,5 +134,184 @@ class api {
 
     }
     return $_;
-  }  
+  }
+
+  // consola del sistema
+  static function adm() : string {
+    $_eje = "api_adm";  
+    $_ide = "api-adm";
+    return app::nav('bar', [
+
+      'aja' => [ 'nom'=>"AJAX",
+        'nav'=>[ 'onclick'=>"$_eje('aja',this);" ],
+        'htm'=>"
+  
+        <nav class='lis'>
+        </nav>
+        "
+      ],
+      'ico' => [ 'nom'=>"Íconos", 
+        'nav'=>[ 'onclick'=>"$_eje('ico',this);" ],
+        'htm'=>"
+        
+        ".app::var('val','ver',['nom'=>"Filtrar",'ope'=>[ 
+          '_tip'=>"tex_ora", 'id'=>"_adm-ico-ver", 'oninput'=>"$_eje('ico',this,'ver')" 
+        ]])."
+  
+        <ul class='lis ite mar-2' style='height: 48vh;'>
+        </ul>
+        "
+      ],
+      'jso' => [ 'nom'=>"J.S.", 
+        'htm'=>"
+  
+        <fieldset class='inf pad-3'>
+          <legend>Ejecutar JavaScript</legend>      
+  
+          ".app::var('val','cod',[ 
+            'ite'=>[ 'class'=>"tam-cre" ], 
+            'ope'=>[ '_tip'=>"tex_par", 'rows'=>"10", 'class'=>"anc-100", 'oninput'=>"$_eje('jso',this)" ] 
+          ])."
+  
+        </fieldset>
+  
+        <div class='ope_res mar-1'>
+        </div>"
+      ],  
+      'php' => [ 'nom'=>"P.H.P.",
+        'htm'=>"
+  
+        <fieldset class='inf ite pad-3'>
+          <legend>Ejecutar en PHP</legend>
+  
+          ".app::var('val','ide',[ 'ope'=>[ '_tip'=>"tex_ora" ] ])."
+          
+          ".app::var('val','par',[ 
+            'ite'=>['class'=>"tam-cre"], 
+            'ope'=>['_tip'=>"tex_ora", 'class'=>"anc-100 mar_hor-1"], 
+            'htm_ini'=>"<c>(</c>", 'htm_fin'=>"<c>)</c>"
+          ])."
+  
+          ".app::var('val','htm',[
+            'nom'=>"¿HTML?",
+            'ope'=>[ '_tip'=>"opc_bin", 'val'=>1, 'id'=>"_adm-php-htm" ]
+          ])."
+          
+          ".app::ico('dat_ope',[
+            'eti'=>"button", 'type'=>"submit", 'onclick'=>"$_eje('php',this)"
+          ])."
+  
+        </fieldset>
+  
+        <div class='ope_res mar-1' style='height: 40vh; overflow: auto;'>
+        </div>
+  
+        <pre class='ope_res' style='height: 40vh; overflow: auto;'>
+        </pre>
+        "
+      ],
+      'sql' => [ 'nom'=>"S.Q.L",
+        'htm'=>"
+        <fieldset class='inf ite pad-3'>
+          <legend>Ejecutar S.Q.L.</legend>
+  
+          ".app::var('val','cod',[ 
+            'ite'=>[ 'class'=>"tam-cre" ], 
+            'ope'=>[ '_tip'=>"tex_ora", 'class'=>"anc-100 mar_der-1" ],
+            'htm_fin'=> app::ico('dat_ope',[ 'eti'=>"button", 'type'=>"submit", 'onclick'=>"$_eje('sql',this,'cod')" ])
+          ])."
+  
+        </fieldset>
+  
+        <div class='ope_res mar-1' var='est' style='height: 47vh;'>
+        </div>"
+      ],
+      'htm' => [ 'nom'=>"D.O.M.",
+        'htm'=>"
+        <fieldset class='inf ite pad-3'>
+          <legend>Ejecutar Selector</legend>
+  
+          ".app::var('val','cod',[ 
+            'ite'=>['class'=>"tam-cre"], 
+            'ope'=>['_tip'=>"tex_ora", 'class'=>"anc-100 mar_der-1"],
+            'htm_fin'=> app::ico('dat_ope',['eti'=>"button", 'type'=>"submit", 'onclick'=>"$_eje('htm',this,'cod')"])
+          ])."
+  
+        </fieldset>
+  
+        <div class='ele'>
+        </div>
+  
+        <div class='nod mar-1'>
+        </div>"
+      ] 
+    ], [
+      'sel' => "php",
+      'ite' => [ 'eti'=>"form" ]
+    ]);
+  }
+
+  // sesion del usuario
+  static function usu( string $tip ) : string {
+    switch( $tip ){
+      // datos del usuario
+      case 'ses':
+        $esq = 'api'; 
+        $est = 'usu';
+        global $_usu;
+        $_kin = api_hol::_('kin',$_usu->kin);
+        $_psi = api_hol::_('psi',$_usu->psi);
+        $_ = "
+        <form class='api_dat' data-esq='{$esq}' data-est='{$est}'>
+
+          <fieldset class='ren'>
+
+            ".app::var('atr', [$esq,$est,$atr='nom'], [ 'val'=>$_usu->$atr  ], 'eti')."
+
+            ".app::var('atr', [$esq,$est,$atr='ape'], [ 'val'=>$_usu->$atr  ], 'eti')."                        
+          
+          </fieldset>
+
+          <fieldset class='ren'>
+
+            ".app::var('atr', [$esq,$est,$atr='mai'], [ 'val'=>$_usu->$atr  ],'eti')."
+
+            ".app::var('atr', [$esq,$est,$atr='fec'], [ 'val'=>$_usu->$atr, 'ite'=>[ 'class'=>"tam-ini" ]  ], 'eti')."
+
+          </fieldset>
+
+        </form>";
+        break;
+      // inicio de sesion por usuario
+      case 'ini':
+        $_ = "
+        <form class='api_dat' action=''>
+
+          <fieldset>
+
+            <label for=''>Email</label>
+            <input type='mail'>
+
+          </fieldset>
+
+          <fieldset>
+
+            <label for=''>Password</label>
+            <input type='password'>
+
+          </fieldset>
+
+        </form>";
+        break;
+      // finalizo sesion del usuario
+      case 'fin': 
+        $_ = "    
+        <form class='api_dat' action=''>
+
+        </form>";
+        break;
+    }  
+    return $_;
+  }
+  
 }

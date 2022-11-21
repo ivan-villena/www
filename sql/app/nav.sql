@@ -79,30 +79,26 @@
       ('hol','dat','psi','04','Las 52 heptadas semanales'),
       ('hol','dat','psi','05','Las 73 cromáticas entonadas')    
     ;
-  -- 
-  -- Artículos
-    DELETE FROM `app_nav` WHERE `esq`='hol' AND `cab`='art';
-    -- tutorial : Sincronario de 13 lunas
-    DELETE FROM `app_nav` WHERE `esq`='hol' AND `cab`='art' AND `ide`='tut'; INSERT INTO `app_nav` VALUES 
-      ('hol','art','tut','01','Ciclos Simples'),
-      ('hol','art','tut','02','Cada día es un Portal Galáctico'),
-      ('hol','art','tut','03','Incorporándolo todo'),
-        ('hol','art','tut','03-01','Los días de la semana'),
-        ('hol','art','tut','03-02','La Fecha en 13 Lunas'),
-        ('hol','art','tut','03-03','La fecha gregoriana'),
-        ('hol','art','tut','03-04','La Firma Galáctica diaria'),
-        ('hol','art','tut','03-05','Las Fases Lunares'),
-      ('hol','art','tut','04','El Oráculo de Quinta Fuerza'),
-        ('hol','art','tut','04-01','¿Qué es la Quinta Fuerza?'),
-        ('hol','art','tut','04-02','El tablero del Oráculo'),
-        ('hol','art','tut','04-03','Los Oráculos'),
-        ('hol','art','tut','04-04','El Oráculo de Quinta Fuerza y ​​el Tiempo Net '),
-      ('hol','art','tut','05','La Firma Galáctica')
-    ;
   --
   -- Bibliografía 
     DELETE FROM `app_nav` WHERE `esq`='hol' AND `cab`='bib'
     ;
+    DELETE FROM `app_nav` WHERE `esq`='hol' AND `cab`='bib' AND `ide`='tut'; INSERT INTO `app_nav` VALUES 
+      ('hol','bib','tut','01','Ciclos Simples'),
+      ('hol','bib','tut','02','Cada día es un Portal Galáctico'),
+      ('hol','bib','tut','03','Incorporándolo todo'),
+        ('hol','bib','tut','03-01','Los días de la semana'),
+        ('hol','bib','tut','03-02','La Fecha en 13 Lunas'),
+        ('hol','bib','tut','03-03','La fecha gregoriana'),
+        ('hol','bib','tut','03-04','La Firma Galáctica diaria'),
+        ('hol','bib','tut','03-05','Las Fases Lunares'),
+      ('hol','bib','tut','04','El Oráculo de Quinta Fuerza'),
+        ('hol','bib','tut','04-01','¿Qué es la Quinta Fuerza?'),
+        ('hol','bib','tut','04-02','El tablero del Oráculo'),
+        ('hol','bib','tut','04-03','Los Oráculos'),
+        ('hol','bib','tut','04-04','El Oráculo de Quinta Fuerza y ​​el Tiempo Net '),
+      ('hol','bib','tut','05','La Firma Galáctica')
+    ;    
     -- 1984 - la tierra en ascenso
     DELETE FROM `app_nav` WHERE `esq`='hol' AND `cab`='bib' AND `ide`='asc'; INSERT INTO `app_nav` VALUES 
       ('hol','bib','asc','01','Parte 1. La Geomancia es a la Historia, lo que la Gramática es al Lenguaje. Dos ensayos introductorios.'),
@@ -950,3 +946,4 @@
         ('hol','bib','cro','04-11','Las 48 Runas Ur Armónicas de La Segunda Creación y otros elementos del Arbol De La Vida Telepático Parlan')              
     ;
   --
+--

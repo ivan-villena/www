@@ -25,7 +25,6 @@ class api_obj {
     $_ = implode(' ',$_);
     return $_;
   }
-
   // convierto a string: {} => ""
   static function cod( object | array | string $dat ) : string {
     $_ = [];
@@ -37,7 +36,6 @@ class api_obj {
     }
     return $_;
   }
-
   // convierto a objeto : "" => {}/[]
   static function dec( object | array | string $dat, array | object $ope = NULL, ...$opc ){
     $_ = $dat;
@@ -82,8 +80,28 @@ class api_obj {
     }
     return $_;
   }
-  
-  // combino
+  // recorro atributos y convierto valor en caso de tener alguno
+  static function var( array | object $obj, array | object $dat ) : array | object {
+    // iteraciones
+    foreach( $obj as &$val ){
+      $val = api_obj::var_ite($val,$dat);
+    }
+    return $obj;
+  }
+  static function var_ite( mixed $val, array | object $dat ) : mixed {
+
+    if( is_array($val) || is_object($val) ){
+      foreach( $val as $var_ide => $val_atr ){
+        $val[$var_ide] = api_obj::var_ite($val_atr,$dat);
+      }
+    }
+    elseif( is_string($val) ){ // && preg_match("/\(\)\(\$\).+\(\)/",$val)      
+      $val = api_obj::val($dat,$val);
+    }
+
+    return $val;
+  }
+  // combino por contenido
   static function jun( array | object $dat, array | object $ope, ...$opc ) : array | object {
     // devuelvo original  
     $val_obj = is_object($_ = $dat);
@@ -121,7 +139,7 @@ class api_obj {
     }
 
     return $_;
-  }
+  }  
   // posicion : [ # => $$ ]
   static function pos( mixed $dat, string $tip = NULL, mixed $ope = NULL ) : bool | array {
     $_ = [];

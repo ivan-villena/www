@@ -9,9 +9,7 @@
 			
 		VALUES
 			('hol','bib', 1, 'Bibliografía', 	'', 'tex_lib', 	0, 0, 1, 0 ),
-			('hol','art', 2, 'Artículos', 		'', 'tex_inf', 	0, 0, 1, 0 ),
-			('hol','dat', 3, 'Códigos', 			'', 'num_cod', 	0, 0, 1, 0 ),
-			('hol','ope', 4, 'Módulos',				'', 'tab', 			0, 0, 0, 0 ),			
-			('hol','usu', 6, 'Usuario', 			'', 'usu', 		 	1, 0, 1, 0 )
-		
+			('hol','dat', 2, 'Códigos', 			'', 'num_cod', 	0, 0, 1, 0 ),
+			('hol','ope', 3, 'Módulos',				'', 'tab', 			0, 0, 0, 0 ),
+			('hol','usu', 4, 'Usuario', 			'', 'usu', 		 	1, 0, 1, 0 )
 		;

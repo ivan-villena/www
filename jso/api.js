@@ -79,5 +79,5 @@ class api {
       $_ = api_lis.ope('ver',$dat,$ope);
     }
     return $_;
-  } 
+  }
 }

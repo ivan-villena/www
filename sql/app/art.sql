@@ -5,6 +5,7 @@
 	
 	-- Libros
 	DELETE FROM `app_art` WHERE `esq`='hol' AND `cab`='bib'; INSERT INTO `app_art` VALUES
+		('hol','bib','tut',		2, 'Tutorial del Sincronario de 13 Lunas',	'' ),
 		('hol','bib','asc',	1984, '1984 - La Tierra en Ascenso', 				'' ),
 		('hol','bib','fac',	1987, '1987 - El Factor Maya',            	'' ), 
 		('hol','bib','enc',	1990, '1990 - El Encantamiento del Sueño',	'' ),
@@ -18,13 +19,9 @@
 		('hol','bib','ato',	1999, '1999 - El Átomo del Tiempo', 				'' ),
 		('hol','bib','cro',	2009, '2009 - El Sincronotrón', 						'' )
 	;
-	-- Artículos
-	DELETE FROM `app_art` WHERE `esq`='hol' AND `cab`='art'; INSERT INTO `app_art` VALUES
-		('hol','art','ide',  	1, 'Glosarios', 														'' ),
-		('hol','art','tut',		2, 'Tutorial del Sincronario de 13 Lunas',	'' )
-	;
-	-- Codigos y cuentas
+	-- Codigos
 	DELETE FROM `app_art` WHERE `esq`='hol' AND `cab`='dat'; INSERT INTO `app_art` VALUES
+		('hol','dat','ide',  	0, 'Glosarios', 												'' ),
 		('hol','dat','rad',   7, 'Los 7 Plasmas Radiales', 						'' ),
 		('hol','dat','ton',  13, 'Los 13 Tonos Galácticos', 					'' ),
 		('hol','dat','sel',  20, 'Los 20 Sellos Solares', 						'' ),
@@ -34,23 +31,7 @@
 		('hol','dat','kin', 260, 'Los 260 Kines del Giro Galáctico', 	'' ),
 		('hol','dat','psi', 365, 'Los 365 Psi-Cronos del Giro Solar',	'' )
 	;
-	-- Diario
-	DELETE FROM `app_art` WHERE `esq`='hol' AND `cab`='val'; INSERT INTO `app_art` VALUES
-		
-		('hol','val','kin_ide', 		01, 'El Kin',										'' ),
-		('hol','val','kin_nav_cas', 11, 'Castillo',									'' ),
-		('hol','val','kin_nav_ond', 12, 'Onda Encantada',						'' ),
-		('hol','val','kin_arm_tra', 13, 'Trayectoria Armónica',			'' ),
-		('hol','val','kin_arm_cel', 14, 'Célula del Tiempo',				'' ),
-		('hol','val','kin_cro_est', 15, 'Estación Espectral',				'' ),
-		('hol','val','kin_cro_ele', 16, 'Elemento Cromático',				'' ),
-		('hol','val','sel_ide', 		02, 'Sello Solar',							'' ),
-		('hol','val','ton_ide', 		03, 'Tono Galáctico',						'' ),
-		('hol','val','psi_ide', 		21, 'Psi-Cronos',								'' ),
-		('hol','val','lun_ide', 		22, 'Giro Lunar',								'' ),
-		('hol','val','rad_ide', 		23, 'Plasma Radial',						'' )
-	;	
-	-- Tableros
+	-- Modulos
 	DELETE FROM `app_art` WHERE `esq`='hol' AND `cab`='ope'; INSERT INTO `app_art` VALUES
 
 		('hol','ope','kin_tzo', 1, 'El Tzolkin',							'' ),

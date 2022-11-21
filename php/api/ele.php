@@ -6,14 +6,15 @@ class api_ele {
   // {} => "<>"
   static function val( ...$ele ) : string {
     $_ = "";
-    foreach( $ele as $ele ){
+    $ele_lis = $ele;
+    foreach( $ele_lis as &$ele ){
         
       if( is_string($ele) ){
   
         $_ .= $ele;
       }
       else{
-        $ele = api_obj::dec($ele,[],'nom');
+        $ele = api_obj::dec($ele,[],'nom');        
         // operador
         if( isset($ele['_let']) ){
           $htm = $ele['_let'];
@@ -22,11 +23,14 @@ class api_ele {
         }
         // por icono
         elseif( isset($ele['ico']) ){
-          $_ .= app::ico($ele['ico'],$ele);
+          $ico_ide = $ele['ico'];
+          unset($ele['ico']);
+          $_ .= app::ico($ico_ide,$ele);
         }
         // por imagen
         elseif( isset($ele['ima']) ){
           $est = explode('.',$ele['ima']);
+          unset($ele['ima']);
           array_push($est,!empty($ele['ide'])?$ele['ide']:0,$ele);
           $_ .= app::ima(...$est);
         }
@@ -111,6 +115,30 @@ class api_ele {
     }
     return $_;
   }
+  // armo etiqueta : <eti atr="val" >...htm</eti>
+  static function eti( array $ele ) : string {
+    $_ = "";
+    $eti = 'span';
+    if( isset($ele['eti']) ){
+      $eti = $ele['eti'];
+      unset($ele['eti']);
+    }
+    $htm = '';
+    if( isset($ele['htm']) ){
+      $htm = $ele['htm'];
+      unset($ele['htm']);
+    }
+    if( !is_string($htm) ){
+      $htm_lis = "";
+      foreach( api_lis::ite($htm) as $e ){ $htm_lis .= is_string($e) ? $e : api_ele::val($e); }
+      $htm = $htm_lis;
+    }
+    $_ = "
+    <{$eti}".api_ele::atr($ele).">
+      ".( !in_array($eti,['input','img','br','hr']) ? "{$htm}
+    </{$eti}>" : '' );
+    return $_;
+  }
   // devuelvo atributos : "< ...atr="">"
   static function atr( array $ele, array | object $dat = NULL ) : string {
     $_ = '';
@@ -140,32 +168,6 @@ class api_ele {
         $_ .= " {$i} = \"".str_replace('"','\'',strval($v))."\"";
       }
     }
-    return $_;
-  }
-  // armo etiqueta : <eti atr="val" >...htm</eti>
-  static function eti( array $ele ) : string {
-    $_ = "";
-    $eti = 'span';
-    if( isset($ele['eti']) ){
-      $eti = $ele['eti'];
-      unset($ele['eti']);
-    }
-    $htm = '';
-    if( isset($ele['htm']) ){
-      $htm = $ele['htm'];
-      unset($ele['htm']);
-    }
-    if( !is_string($htm) ){
-      $_htm = "";
-      foreach( api_lis::ite($htm) as $ele ){
-        $_htm .= is_string($ele) ? $ele : api_ele::val($ele);
-      }
-      $htm = $_htm;
-    }
-    $_ = "
-    <{$eti}".api_ele::atr($ele).">
-      ".( !in_array($eti,['input','img','br','hr']) ? "{$htm}
-    </{$eti}>" : '' );
     return $_;
   }
   // contenido: htm + htm_ini + htm_med + htm_fin

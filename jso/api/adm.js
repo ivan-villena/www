@@ -2,7 +2,7 @@
 'use strict';
 
 // administrador
-function app_adm( $tip, $dat, $val, ...$opc ){
+function api_adm( $tip, $dat, $val, ...$opc ){
   
   let $ = app.var($dat);
   

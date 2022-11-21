@@ -74,7 +74,7 @@
           "inf": {
             "atr": [ "cod" ],
             "fic": [ "orb", "cel", "cir" ],
-            "tab": [ "hol.uni.sol", { "pos":{ "ima":"hol.sel.ide" } } ],            
+            "tab": [ "hol.uni.sol", { } ],
             "htm-1": [ { "eti":"p", "class":"tit", "htm":"Sellos Solares" } ],
             "fic-1": [ "sel" ],
             "htm-2": [ { "eti":"p", "class":"tit", "htm":"Clanes" } ],
@@ -116,14 +116,19 @@
             "nom": "Grupo Orbital #()($)ide() de 2: ()($)nom().",
             "des": "",
             "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/uni/sol_orb/()($)ide().png);",
-            "col": 2
+            "col": 2,
+            "num": 2
           },
           "inf": {
-            "atr": [
-            ]
+            "htm-1": [ { "eti":"p", "class":"tit", "htm":"Planetas" } ],
+            "fic-1": [ "pla" ],
+            "htm-2": [ { "eti":"p", "class":"tit", "htm":"Clanes" } ],
+            "fic-2": [ "ele" ]
           },
           "atr": {
-            "ide": { "min":1, "max":2, "dat":"hol.uni_sol_orb" }
+            "ide": { "min":1, "max":2, "dat":"hol.uni_sol_orb" },
+            "pla": { "dat":"hol.uni_sol_pla" },
+            "ele": { "dat":"hol.sel_cro_ele" }            
           },
           "opc": {
             "ima": [ "ide" ]
@@ -209,11 +214,15 @@
             "num": 5
           },
           "inf": {
-            "atr": [ ]
+            "fic": [ "fam" ],
+            "tab": [ "hol.uni.pla", { } ],
+            "htm-1": [ { "eti":"p", "class":"tit", "htm":"Sellos Solares" } ],
+            "fic-1": [ "sel" ]
           },
           "atr": {
             "ide": { "min":1, "max":5, "dat":"hol.uni_pla_cen" },
-            "fam": { "min":1, "max":5, "dat":"hol.sel_cro_fam" }
+            "fam": { "min":1, "max":5, "dat":"hol.sel_cro_fam" },            
+            "sel": { "dat":"hol.sel" }
           },
           "opc": {
             "ima": [ "ide", "fam" ]            
@@ -227,10 +236,11 @@
             "num": 3
           },
           "inf": {
-            "atr": [ ]
+            "fic": [ "sel" ]
           },
           "atr": {
-            "ide": { "min":1, "max":3, "dat":"hol.uni_pla_hem" }
+            "ide": { "min":1, "max":3, "dat":"hol.uni_pla_hem" },
+            "sel": { "dat":"hol.sel" }
           },
           "opc": {
             "ima": [ "ide" ]            
@@ -244,10 +254,11 @@
             "num": 2
           },
           "inf": {
-            "atr": [ ]
+            "fic": [ "sel" ]
           },
           "atr": {
-            "ide": { "min":1, "max":2, "dat":"hol.uni_pla_mer" }
+            "ide": { "min":1, "max":2, "dat":"hol.uni_pla_mer" },
+            "sel": { "dat":"hol.sel" }
           },
           "opc": {
             "ima": [ "ide" ]            
@@ -278,11 +289,15 @@
             "num": 5
           },
           "inf": {
-            "atr": [ ]
+            "fic": [ "fam" ],
+            "tab": [ "hol.uni.hum", { } ],
+            "htm-1": [ { "eti":"p", "class":"tit", "htm":"Sellos Solares" } ],
+            "fic-1": [ "sel" ]
           },
           "atr": {
             "ide": { "min":1, "max":5, "dat":"hol.uni_hum_cen" },
-            "fam": { "min":1, "max":5, "dat":"hol.sel_cro_fam" }
+            "fam": { "min":1, "max":5, "dat":"hol.sel_cro_fam" },
+            "sel": { "dat":"hol.sel" }
           },
           "opc": {
             "ima": [ "ide", "fam" ] 
@@ -296,11 +311,14 @@
             "num": 5
           },
           "inf": {
-            "atr": [ ]
+            "fic": [ "fam" ],
+            "htm-1": [ { "eti":"p", "class":"tit", "htm":"Sellos Solares" } ],
+            "fic-1": [ "sel" ]
           },
           "atr": {
             "ide": { "min":1, "max":5, "dat":"hol.uni_hum_ded" },
-            "fam": { "min":1, "max":5, "dat":"hol.sel_cro_fam" }
+            "fam": { "min":1, "max":5, "dat":"hol.sel_cro_fam" },
+            "sel": { "dat":"hol.sel" }
           },
           "opc": {
             "ima": [ "ide", "fam" ] 
@@ -314,11 +332,14 @@
             "num": 4
           },
           "inf": {
-            "atr": [ ]
+            "fic": [ "ele" ],
+            "htm-1": [ { "eti":"p", "class":"tit", "htm":"Sellos Solares" } ],
+            "fic-1": [ "sel" ]
           },
           "atr": {
             "ide": { "min":1, "max":4, "dat":"hol.uni_hum_ext" },
-            "ele": { "min":1, "max":4, "dat":"hol.sel_cro_ele" }
+            "ele": { "min":1, "max":4, "dat":"hol.sel_cro_ele" },
+            "sel": { "dat":"hol.sel" }
           },
           "opc": {
             "ima": [ "ide", "ele" ] 
@@ -332,10 +353,17 @@
             "num": 10
           },
           "inf": {
-            "atr": [ ]
+            "fic": [ "fam" ],
+            "htm-1": [ { "eti":"p", "class":"tit", "htm":"Clanes Galácticos" } ],
+            "fic-1": [ "ele" ],
+            "htm-2": [ { "eti":"p", "class":"tit", "htm":"Sellos Solares" } ],
+            "fic-2": [ "sel" ]
           },
           "atr": {
-            "ide": { "min":1, "max":10, "dat":"hol.uni_hum_mer" }
+            "ide": { "min":1, "max":10, "dat":"hol.uni_hum_mer" },
+            "fam": { "min":1, "max":5, "dat":"hol.sel_cro_fam" },
+            "ele": { "dat":"hol.sel_cro_ele" },
+            "sel": { "dat":"hol.sel" }
           },
           "opc": {
             "ima": [ "ide" ] 
@@ -349,7 +377,12 @@
             "num": 7
           },
           "inf": {
-            "atr": [ ]
+            "htm-1": [ { "eti":"p", "class":"tit", "htm":"Tonos Galácticos" } ],
+            "fic-1": [ "ton" ]
+          },
+          "atr": {
+            "ide": { "min":1, "max":7, "dat":"hol.uni_hum_art" },
+            "ton": { "dat":"hol.ton" }
           }
       }' ),
       ('hol','uni_hum_cha', '{
@@ -359,8 +392,12 @@
             "col": 7,
             "num": 7
           },
-          "inf": {
-            "atr": [ ]
+          "inf": {            
+            "fic": [ "rad" ]
+          },
+          "atr": {
+            "ide": { "min":1, "max":7, "dat":"hol.uni_hum_cha" },
+            "rad": { "dat":"hol.rad" }
           }
       }' ),
       ('hol','uni_hum_mud', '{ 
@@ -370,6 +407,14 @@
             "num": 7
           }
       }' )
+  ;
+  DELETE FROM `app_dat` WHERE `esq`='hol' AND `ide` LIKE 'arm%'; INSERT INTO `app_dat` VALUES
+    ('hol','arm', '{
+      "val": {
+        "col": 4,
+        "num": 4
+      }
+    }' )
   ;
   DELETE FROM `app_dat` WHERE `esq`='hol' AND `ide` LIKE 'rad%'; INSERT INTO `app_dat` VALUES
 
@@ -485,7 +530,16 @@
         },
         "inf": {
           "atr": [ "car", "acc", "pod" ],
-          "tab": [ "hol.ton.ond", { "pos": { "ima":"hol.ton.ide", "tex":"hol.ton.des" } }, { "pos": { "class":"bor-1 pad-1", "style":"width: 5rem; height: 5rem;" } } ],
+          "tab": [ "hol.ton.ond", 
+            { 
+              "val": { "pos":"()($)ide()" }, 
+              "pos": { "ima":"hol.ton.ide", "tex":"hol.ton.des" }, 
+              "opc": { "pul_dim":1, "pul_mat":1, "pul_sim":1 } 
+            }, 
+            { 
+              "pos": { "class":"bor-1 pad-1", "style":"width: 5rem; height: 5rem;" } 
+            } 
+          ],
           "fic": [ "ond", "dim", "mat", "sim" ],
           "lec": [ "des_med", "des_pro", "des_pre", "des_por", "des_men" ],
           "htm": [
@@ -608,8 +662,20 @@
         },
         "inf": {
           "atr": [ "car", "acc", "pod" ],
-          "fic": [ "arm_cel", "arm_raz", "cro_ele", "cro_fam" ],
-          "lec-lis": [ "cic_ser_des", "cic_luz_des", "arm_tra_des", "arm_raz_des", "arm_cel_des", "cro_ele_des", "sol_pla_des" ],
+          "htm-1": [ { "eti":"p", "class":"tit", "htm":[ { "eti":"a", "href":"hol/bib/fac", "target":"_blank", "htm":"Clasificaciones del Factor Maya" }]} ],
+          "lec-lis-1": [ "cic_ser_des", "cic_luz_des", "arm_tra_des" ],
+          "htm-2": [ { "eti":"p", "class":"tit", "htm":[ {"eti":"a", "href":"hol/bib/enc#_03-04-", "target":"_blank", "htm":"Colocación Armónica del Encantamiento del Sueño"} ] } ],
+          "tab-2": [ "hol.sel.arm", { "val":{ "pos":"()($)ide()" }, "pos":{ "ima":"hol.sel.ide" } } ],
+          "fic-21": [ "arm_cel" ],
+          "lec-lis-21": [ "arm_cel_des" ],
+          "fic-22": [ "arm_raz" ],
+          "lec-lis-22": [ "arm_raz_des" ],
+          "htm-3": [ { "eti":"p", "class":"tit", "htm":[ {"eti":"a", "href":"hol/bib/enc#_03-02-", "target":"_blank", "htm":"Colocación Cromática del Encantamiento del Sueño"} ] } ],
+          "tab-3": [ "hol.sel.cro", { "val":{ "pos":"()($)ide()" }, "pos": { "ima":"hol.sel.ide" } } ],
+          "fic-31": [ "cro_ele" ],
+          "lec-lis-31": [ "cro_ele_des" ],
+          "fic-32": [ "cro_fam" ],
+          "lec-lis-32": [ "sol_pla_des" ],
           "lec-1": [ "des_pro", "des_por", "des_som" ],
           "lis-1": [ "des_rec" ],
           "lec-2": [ "des_men", "des_afi" ],
@@ -643,23 +709,34 @@
           "ide":      { "min":1, "max":20, "dat":"hol.sel" },
           "cod":      { "min":0, "max":19 },
           "ord":      { "min":1, "max":20,  "dat":"hol.sel_cod" },
+
           "cic_ser":  { "min":1, "max":3, 	"dat":"hol.sel_cic_ser" },
           "cic_luz":  { "min":1, "max":5, 	"dat":"hol.sel_cic_luz" },
+
           "arm_tra":  { "min":1, "max":20, 	"dat":"hol.sel.arm_tra" },
           "arm_raz":  { "min":1, "max":4, 	"dat":"hol.sel_arm_raz" },
           "arm_cel":  { "min":1, "max":5, 	"dat":"hol.sel_arm_cel" },
+
           "cro_fam":  { "min":1, "max":5, 	"dat":"hol.sel_cro_fam" },
           "cro_ele":  { "min":1, "max":4, 	"dat":"hol.sel_cro_ele" },
+
           "par_ana":  { "min":1, "max":20, 	"dat":"hol.sel" },
           "par_ant":  { "min":1, "max":20, 	"dat":"hol.sel" },
           "par_ocu":  { "min":1, "max":20, 	"dat":"hol.sel" },
+
           "flu_res":  { "min":1, "max":2, 	"dat":"hol.uni_flu_pod" },
+          
           "sol_pla":  { "min":1, "max":10, 	"dat":"hol.uni_sol_pla" },
-          "sol_cel":  { "min":1, "max":10, 	"dat":"hol.uni_sol_cel" },
-          "sol_cir":  { "min":1, "max":10, 	"dat":"hol.uni_sol_cir" },			
-          "pla_cen":  { "min":1, "max":5, 	"dat":"hol.uni_pla_cen" },
-          "pla_hem":  { "min":1, "max":3, 	"dat":"hol.uni_pla_hem" },
+          "sol_res":  { "min":1, "max":2, 	"dat":"hol.uni_sol_res" },
+          "sol_orb":  { "min":1, "max":2, 	"dat":"hol.uni_sol_orb" },
+          "sol_cel":  { "min":1, "max":5, 	"dat":"hol.uni_sol_cel" },
+          "sol_cir":  { "min":1, "max":5, 	"dat":"hol.uni_sol_cir" },
+
+          "pla_res":  { "min":1, "max":2, 	"dat":"hol.uni_pla_res" },
           "pla_mer":  { "min":1, "max":2, 	"dat":"hol.uni_pla_mer" },
+          "pla_hem":  { "min":1, "max":3, 	"dat":"hol.uni_pla_hem" },
+          "pla_cen":  { "min":1, "max":5, 	"dat":"hol.uni_pla_cen" },
+
           "hum_res":  { "min":1, "max":2, 	"dat":"hol.uni_flu_res" },
           "hum_cen":  { "min":1, "max":5, 	"dat":"hol.uni_hum_cen" },
           "hum_ext":  { "min":1, "max":5, 	"dat":"hol.uni_hum_ext" },
@@ -698,23 +775,42 @@
           "atr": [ ]
         },
         "atr": {
-          "ide":     { "min":1, "max":20, "dat":"hol.sel" },
-          "cod":     { "min":0, "max":19 },
-          "ord":     { "min":1, "max":20, "dat":"hol.sel_cod" },
-          "cro_fam": { "min":1, "max":5, "dat":"hol.sel_cro_fam" },
-          "cro_ele": { "min":1, "max":4, "dat":"hol.sel_cro_ele" },
-          "flu_res": { "min":1, "max":2, "dat":"hol.uni_flu_res" },
-          "sol_pla": { "min":1, "max":10, "dat":"hol.uni_sol_pla" },
-          "sol_cel": { "min":1, "max":10, "dat":"hol.uni_sol_cel" },
-          "sol_cir": { "min":1, "max":10, "dat":"hol.uni_sol_cir" },
-          "pla_cen": { "min":1, "max":5, "dat":"hol.uni_pla_cen" },
-          "pla_hem": { "min":1, "max":3, "dat":"hol.uni_pla_hem" },
-          "pla_mer": { "min":1, "max":2, "dat":"hol.uni_pla_mer" },
-          "hum_res": { "min":1, "max":2, "dat":"hol.uni_flu_res" },
-          "hum_cen": { "min":1, "max":5, "dat":"hol.uni_hum_cen" },
-          "hum_ext": { "min":1, "max":5, "dat":"hol.uni_hum_ext" },
-          "hum_ded": { "min":1, "max":5, "dat":"hol.uni_hum_ded" },
-          "hum_mer": { "min":1, "max":10, "dat":"hol.uni_hum_mer" }
+          "ide":      { "min":1, "max":20, "dat":"hol.sel" },
+          "cod":      { "min":0, "max":19 },
+          "ord":      { "min":1, "max":20,  "dat":"hol.sel_cod" },
+          
+          "cic_ser":  { "min":1, "max":3, 	"dat":"hol.sel_cic_ser" },
+          "cic_luz":  { "min":1, "max":5, 	"dat":"hol.sel_cic_luz" },
+
+          "arm_tra":  { "min":1, "max":20, 	"dat":"hol.sel.arm_tra" },
+          "arm_raz":  { "min":1, "max":4, 	"dat":"hol.sel_arm_raz" },
+          "arm_cel":  { "min":1, "max":5, 	"dat":"hol.sel_arm_cel" },
+
+          "cro_fam":  { "min":1, "max":5, 	"dat":"hol.sel_cro_fam" },
+          "cro_ele":  { "min":1, "max":4, 	"dat":"hol.sel_cro_ele" },
+
+          "par_ana":  { "min":1, "max":20, 	"dat":"hol.sel" },
+          "par_ant":  { "min":1, "max":20, 	"dat":"hol.sel" },
+          "par_ocu":  { "min":1, "max":20, 	"dat":"hol.sel" },
+
+          "flu_res":  { "min":1, "max":2, 	"dat":"hol.uni_flu_pod" },
+          
+          "sol_pla":  { "min":1, "max":10, 	"dat":"hol.uni_sol_pla" },
+          "sol_res":  { "min":1, "max":2, 	"dat":"hol.uni_sol_res" },
+          "sol_orb":  { "min":1, "max":2, 	"dat":"hol.uni_sol_orb" },
+          "sol_cel":  { "min":1, "max":5, 	"dat":"hol.uni_sol_cel" },
+          "sol_cir":  { "min":1, "max":5, 	"dat":"hol.uni_sol_cir" },
+
+          "pla_res":  { "min":1, "max":2, 	"dat":"hol.uni_pla_res" },
+          "pla_mer":  { "min":1, "max":2, 	"dat":"hol.uni_pla_mer" },
+          "pla_hem":  { "min":1, "max":3, 	"dat":"hol.uni_pla_hem" },
+          "pla_cen":  { "min":1, "max":5, 	"dat":"hol.uni_pla_cen" },
+
+          "hum_res":  { "min":1, "max":2, 	"dat":"hol.uni_flu_res" },
+          "hum_cen":  { "min":1, "max":5, 	"dat":"hol.uni_hum_cen" },
+          "hum_ext":  { "min":1, "max":5, 	"dat":"hol.uni_hum_ext" },
+          "hum_ded":  { "min":1, "max":5, 	"dat":"hol.uni_hum_ded" },
+          "hum_mer":  { "min":1, "max":10, 	"dat":"hol.uni_hum_mer" }
         },
         "opc": {
           "ima": [
@@ -805,7 +901,7 @@
       ('hol','sel_arm_cel', '{
           "val": {
             "nom": "Célula del Tiempo #()($)ide() de 5: ()($)nom().",
-            "des": "Poder: ()($)pod(); Función: ()($)fun().", 
+            "des": "()($)des().", 
             "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/sel/arm_cel/()($)ide().png);",
             "col": 5,
             "num": 5
@@ -826,7 +922,7 @@
       ('hol','sel_cro_fam', '{
           "val": {
             "nom": "Familia Terrestre #()($)ide() de 5: ()($)nom().",
-            "des": "Función: ()($)pla(); Centro-G: ()($)hum(); Misión: ()($)des();",
+            "des": "()($)des().",
             "ima": "background: center/contain no-repeat url(http://icpv.com.ar/img/hol/fic/sel/cro_fam/()($)ide().png);",
             "col": 5,
             "num": 5
@@ -859,10 +955,17 @@
             "num": 4
           },
           "inf": {
-            "atr": [ ]
+            "atr": [ "col", "men" ],
+            "lec": [ "des" ],
+            "htm-1": [ { "eti":"p", "class":"tit", "htm":"Sellos Solares" } ],
+            "fic-1": [ "sel" ],
+            "htm-2": [ { "eti":"p", "class":"tit", "htm":"Células del Tiempo" } ],
+            "fic-2": [ "arm_cel" ]
           },
           "atr": {
             "ide": { "min":1, "max":4, "dat":"hol.sel_cro_ele" },
+            "sel": { "dat":"hol.sel" },
+            "arm_cel": { "dat":"hol.sel_arm_cel" },
             "flu_res": { "min":1, "max":2, "dat":"hol.uni_flu_res" },
             "hum_ext": { "min":1, "max":4, "dat":"hol.uni_hum_ext" }
           },
@@ -978,6 +1081,11 @@
           "num": 52
         },
         "inf": {          
+          "tab": [ "hol.cas.ond", { 
+            "val": { "pos":"()($)ide()" }, 
+            "pos": { "bor":1, "ima":"hol.cas.ton", "num":"hol.cas.ide", "col":"hol.cas.pos_arm" },
+            "opc": { "pul_dim":1, "pul_mat":1, "pul_sim":1 }
+          }],
           "fic": [ "arm", "ond", "ton" ],
           "lec": [ "lec" ]
         },
@@ -992,8 +1100,8 @@
         "opc": {
           "ver": [ "ide", "arm" ],    
           "ima": [ "arm", "ond" ],
-          "col": [ "arm", "ond", "ton_arm" ],
-          "num": [ "ide", "arm", "ton_arm" ]
+          "col": [ "arm", "pos_arm", "ond", "ton_arm" ],
+          "num": [ "ide", "arm", "pos_arm", "ton_arm" ]
         }
     }' ),
     ('hol','cas_arm', '{
@@ -1060,7 +1168,6 @@
     }' )     
   ;
   DELETE FROM `app_dat` WHERE `esq`='hol' AND `ide` LIKE 'kin%'; INSERT INTO `app_dat` VALUES
-
     ('hol','kin', '{
         "val": {
           "nom": "Kin #()($)ide() de 260: ()($)nom().",
@@ -1073,8 +1180,8 @@
         ],
         "inf": {
           "cit" : "des",
-          "tab" : [ "hol.kin.par", { "sec":{}, "pos":{ "ima":"hol.kin.ide" } } ],          
           "fic" : [ "nav_cas", "nav_ond", "nav_ond_dia", "cro_est", "cro_ele", "arm_tra", "arm_cel", "arm_tra_dia" ],
+          "tab" : [ "hol.kin.par", { "sec":{}, "pos":{ "ima":"hol.kin.ide" } } ],          
           "eje" : { "ide": "app_var::hol", "par": [ "kin-par", "()($)ide()" ] }
         },
         "pos": {
@@ -1092,7 +1199,7 @@
           },
           "sol": { 
             "nom": "Holon Solar",   
-            "ide": "hol.sel", "atr": [ "sol_pla", "sol_res", "sol_cel", "sol_cir" ] 
+            "ide": "hol.sel", "atr": [ "sol_pla", "sol_res", "sol_orb", "sol_cel", "sol_cir" ] 
           },
           "pla": { 
             "nom": "Holon Planetario",
@@ -1227,9 +1334,9 @@
           },
           "inf": {
             "opc": [ "des" ],
-            "atr": [ "fac", "may" ],
-            "lec": [ "lec" ],
-            "tab": [ "hol.kin.arm_tra", { "sec":{ "par":1 }, "pos":{ "ima":"hol.kin.ide" } } ]
+            "atr": [ "fac", "may" ],            
+            "tab": [ "hol.kin.arm_tra", { "sec":{ "par":1 }, "pos":{ "ima":"hol.kin.ide" } } ],
+            "lec": [ "lec" ]
           }
       }' ),
       ('hol','kin_arm_cel', '{ 
@@ -1242,8 +1349,8 @@
           },        
           "inf": {
             "opc": [ "des", "des-cit" ],
-            "fic": [ "tra", "cel", "ton", "chi" ],
-            "tab": [ "hol.kin.arm_cel", { "sec":{ "par":1 }, "pos":{ "ima":"hol.kin.ide" } } ]
+            "tab": [ "hol.kin.arm_cel", { "sec":{ "par":1 }, "pos":{ "ima":"hol.kin.ide" } } ],
+            "fic": [ "tra", "cel", "ton", "chi" ]
           },
           "atr": {
             "tra": { "min":1, "max":13, "dat":"hol.kin_arm_tra" },            
@@ -1329,9 +1436,9 @@
             "col": 5            
           },
           "inf": {
-            "atr": [ "cor", "pod", "acc" ],
-            "lec": [ "fun" ],            
-            "tab": [ "hol.kin.nav_cas", { "pos":{ "ima":"hol.kin.ide" } } ],
+            "atr": [ "cor", "pod", "acc" ],            
+            "tab": [ "hol.kin.nav_cas", { "pos":{ "ima":"hol.kin.ide" } }],
+            "lec": [ "fun" ],
             "fic": [ "nav_ond" ]
           },
           "atr": {
@@ -1347,9 +1454,13 @@
             "col": 4
           },
           "inf": {
-            "atr": [ "fac", "enc" ],
+            "atr": [ "fac", "enc" ],            
+            "tab": [ "hol.kin.nav_ond", { "sec":{ "par":1 }, "pos":{ "ima":"hol.kin.ide" } } ],
             "lec": [ "fac_des", "enc_des"],
-            "tab": [ "hol.kin.nav_ond", { "sec":{ "par":1 }, "pos":{ "ima":"hol.kin.ide" } } ]
+            "fic": [ "kin_lis" ]
+          },
+          "atr": {
+            "kin_lis": { "dat":"hol.kin" }
           }
       }' ),
       ('hol','kin_gen_enc', '{ 

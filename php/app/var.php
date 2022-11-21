@@ -90,7 +90,7 @@ class app_var {
       }
 
       // controlo valores al actualizar
-      api_ele::eje($ope,'inp',"$_eje"."act(this);",'ini');
+      api_ele::eje($ope,'inp',"$_eje"."_act(this);",'ini');
       // seleccion automática
       api_ele::eje($ope,'foc',"this.select();",'ini');        
       
@@ -343,10 +343,10 @@ class app_var {
   }
 
   static function hol( string $tip, mixed $dat = NULL, array $ope = [], ...$opc ) : string {
-    $_ = "";
+    $_ = "";    
     $_ide = self::$IDE."$tip";
     $_eje = self::$EJE."$tip";
-    $_tip = explode('-',$tip);    
+    $_tip = explode('-',$tip);
     $atr = isset($_tip[1]) ? $_tip[1] : '';
     switch( $est = $_tip[0] ){
     case 'fec':
@@ -407,28 +407,137 @@ class app_var {
       break;
     case 'kin':
       $dat = api_hol::_($est,$dat);
+      $_bib = SYS_NAV."hol/bib/";
       switch( $atr ){
       // parejas del oráculo
-      case 'par':
-        $_ = "
-        <div class='lis'>";
-        foreach( api_hol::_('sel_par') as $_par ){
-          // salteo el destino
-          if( ( $ide = $_par->cod ) == 'des' ) continue;
-          // busco datos de parejas
-          $_par = api::dat( api_hol::_('sel_par'), [ 'ver'=>[ ['cod','==',$ide] ], 'opc'=>'uni' ]);
-          $kin = api_hol::_('kin',$dat->{"par_{$ide}"});
-          $_ .= "
-          <p class='mar_arr-2 tex_ali-izq'>
-            <b class='ide let-sub'>{$_par->nom}</b><c>:</c>
-            <br><q>".app::let($_par->des)."</q>
-            ".( !empty($_par->lec) ? "<br><q>".app::let($_par->lec)."</q>" : "" )."
-          </p>
-          
-          ".app_dat::inf('hol','kin',$kin,['cit'=>"des"])
-          ;
-        } $_ .= "
-        </div>";
+      case 'par':        
+        if( !isset($_tip[2]) ){          
+          $_ = "
+          <p>Para realizar una lectura del oráculo<c>,</c> consulta la <a href='{$_bib}enc#_02-03-06-01-' target='_blank'>Guía del Oráculo</a> en el Encantamiento del Sueño<c>...</c></p>
+
+          <div class='lis'>";
+          foreach( api_hol::_('sel_par') as $_par ){
+            // salteo el destino
+            if( ( $ide = $_par->cod ) == 'des' ) continue;
+            // busco datos de parejas
+            $_par = api::dat( api_hol::_('sel_par'), [ 'ver'=>[ ['cod','==',$ide] ], 'opc'=>'uni' ]);
+            $kin = api_hol::_('kin',$dat->{"par_{$ide}"});
+            $_ .= "
+            <p class='mar_arr-2 tex_ali-izq'>
+              <b class='ide let-sub'>{$_par->nom}</b><c>:</c>
+              <br><q>".app::let($_par->des)."</q>
+              ".( !empty($_par->lec) ? "<br><q>".app::let($_par->lec)."</q>" : "" )."
+            </p>
+            
+            ".app_dat::inf('hol','kin',$kin,['cit'=>"des"])
+            ;
+          } $_ .= "
+          </div>";
+        }
+        else{          
+          $_ = [];          
+          $_kin = $dat;          
+          $_sel = api_hol::_('sel',$dat->arm_tra_dia);
+          $ope['lis'] = ['class'=>"anc-100 mar_aba-2"];
+          $htm = "";
+          switch( $_tip[2] ){
+          // Propiedades : palabras clave del kin + sello + tono
+          case 'des':
+            $htm = "
+            <p>Puedes descubrir formas de relacionar las energías utilizando las palabras clave<c>,</c> que representan las funciones de cada pareja respecto al destino<c>.</c> Al compararlas<c>,</c> podrás ir incorporando información y comprendimiento sobre los distintos roles que cumplen<c>.</c></p>
+
+            <p>En la siguiente tabla se muestran las principales propiedades y claves para cada pareja del oráculo<c>:</c></p>";
+
+            $_par_atr = ['fun','acc','mis'];
+            $_ton_atr = ['acc'];  
+            $_sel_atr = ['car','des'];  
+            foreach( api_hol::_('sel_par') as $_par ){
+              
+              $_kin_par = $_par->ide == 'des' ? $_kin : api_hol::_('kin',$_kin->{"par_{$_par->ide}"});
+      
+              $ite = [ api_hol::ima("kin",$_kin_par) ];
+      
+              foreach( $_par_atr as $atr ){ if( isset($_par->$atr) ) $ite []= app::let($_par->$atr); }
+      
+              $_ton_par = api_hol::_('ton',$_kin_par->nav_ond_dia);
+              foreach( $_ton_atr as $atr ){ if( isset($_ton_par->$atr) ) $ite []= app::let($_ton_par->$atr); }
+      
+              $_sel_par = api_hol::_('sel',$_kin_par->arm_tra_dia);            
+              foreach( $_sel_atr as $atr ){  if( isset($_sel_par->$atr) ) $ite []= app::let($_sel_par->$atr); }
+      
+              $_ []= $ite;
+            }
+            break;
+          // lecturas por parejas
+          case 'lec':
+            $htm = "
+            <p>En <a href='{$_bib}tut#_04-04-' target='_blank'>este tutorial</a> puedes encontrar las referencias sobre las aplicaciones de los oráculos y el tiempo net<c>.</c></p>
+
+            <p>Puedes armar lecturas conjugando las palabras clave<c>,</c> y ordenarlas según las miradas del oráculo<c>;</c> por ejemplo<c>:</c></p>";
+            
+            foreach( api_hol::_('sel_par') as $_par ){
+  
+              if( $_par->ide == 'des' ) continue;
+              $_kin_par = api_hol::_('kin',$_kin->{"par_{$_par->ide}"});
+              $_sel_par = api_hol::_('sel',$_kin_par->arm_tra_dia);
+              $_ []=
+              api_hol::ima("kin",$_kin_par)."
+  
+              <div>
+                <p><b class='tit'>{$_kin_par->nom}</b> <c>(</c> ".app::let($_par->dia)." <c>)</c></p>
+                <p>".app::let("{$_sel_par->acc} {$_par->pod} {$_sel_par->car}, que {$_par->mis} {$_sel->car}, {$_par->acc} {$_sel_par->pod}.")."</p>
+              </div>";
+            }
+            api_ele::cla($ope['lis'],'ite');
+            break;
+          // Ciclos : posiciones en ciclos del kin
+          case 'cic': 
+            $htm = "
+            <p>Puedes buscar <dfn title='Cuando dos kines pertenecen a un mismo grupo comparten propiedades, por lo que su nivel de sincronización aumenta...'>sincronías posicionales</dfn> relacionando las ubicaciones de cada pareja en los ciclos del tzolkin<c>:</c></p>        
+
+            <p>Dos o más kines pueden pertenecer un mismo grupo<c>.</c> Utiliza la siguente tabla para detectar cuáles son esas coincidencias y hacia dónde te llevan<c>...</c></p>";
+
+            $_atr = [ 'ene_cam', 'cro_est', 'cro_ele', 'arm_tra', 'arm_cel', 'nav_cas', 'nav_ond' ];
+      
+            foreach( api_hol::_('sel_par') as $_par ){
+              
+              $_kin_par = $_par->ide == 'des' ? $_kin : api_hol::_('kin',$_kin->{"par_{$_par->ide}"});
+  
+              $ite = [ api_hol::ima("kin",$_kin_par) ];
+  
+              foreach( $_atr as $atr ){
+                $ite []= api_hol::ima("kin_{$atr}",$_kin_par->$atr,[ 'class'=>"tam-5" ]);
+              }
+              
+              $_ []= $ite;
+            }
+            break;
+          // Grupos : sincronometría del holon por sellos      
+          case 'gru': 
+            $htm = "
+            <p>Puedes determinar la sincronometría en los flujos del oráculo<c>,</c> practicando <a href='{$_bib}tel#_02-03-04-' target='_blank'>el <n>4</n><c>°</c> nivel<c>,</c> juego del oráculo</a> en el tablero del Telektonon<c>...</c></p>
+
+            <p>En la siguiente tabla se muestran los valores respectivos para cada posición del oráculo<c>:</c></p>";
+
+            $_atr = [ 'sol_pla', 'sol_cel', 'sol_cir', 'pla_hem', 'pla_mer', 'hum_cen', 'hum_ext', 'hum_mer' ];  
+
+            foreach( api_hol::_('sel_par') as $_par ){
+              
+              $_kin_par = $_par->ide == 'des' ? $_kin : api_hol::_('kin',$_kin->{"par_{$_par->ide}"});                            
+      
+              $_sel_par = api_hol::_('sel',$_kin_par->arm_tra_dia);
+      
+              $ite = [ api_hol::ima("kin",$_kin_par), $_par->nom, $_sel_par->pod ];
+      
+              foreach( $_atr as $atr ){
+                $ite []= api_hol::ima("sel_{$atr}",$_sel_par->$atr,[ 'class'=>"tam-5" ]);
+              }            
+              $_ []= $ite;
+            }            
+            break;
+          }
+          $_ = $htm.app_est::lis( $_, [ 'opc'=>['htm','cab_ocu'] ], $ope);
+        }
         break;
       }
       break;

@@ -1,6 +1,5 @@
 
 -- Holon
-
   -- del factor maya 
   DELETE FROM `app_ide` WHERE `esq`='hol' AND `ide`='fac';
   INSERT INTO `app_ide` VALUES 

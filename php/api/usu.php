@@ -28,6 +28,7 @@ class api_usu {
     }      
   }
 
+  
   // genero transitos
   static function cic_act( string $tip = NULL, mixed $val = NULL ) : string {
     global $_usu;

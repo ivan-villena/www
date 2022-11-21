@@ -14,12 +14,13 @@ class api_ele {
       else{      
         // por ícono
         if( $ele['ico'] ){
-          $.ico = $ele['ico'];
+          $.ico_ide = $ele['ico'];
           delete($ele['ico']);
-          $_ += app.ico($.ico,$ele);
+          $_ += app.ico($.ico_ide,$ele);
         }// por ficha
         else if( $ele['ima'] ){
           $.est = $ele['ima'].split('.');
+          delete($ele['ima']);
           $.est.push( !!($ele['ide']) ? $ele['ide'] : 0, $ele);
           $_ += app.ima(...$.est);
         }// por variable
@@ -45,7 +46,8 @@ class api_ele {
       }
     });
     return $_;
-  }// "<>" / {dom} => {}
+  }
+  // "<>" / {dom} => {}
   static dec( $ele, $dat ){
 
     let $_ = $ele, $={ tip : typeof($ele) };
@@ -58,7 +60,8 @@ class api_ele {
 
     }
     return $_;
-  }// {} / "" => {dom}
+  }
+  // {} / "" => {dom}
   static cod( $ele, ...$opc ){
     let $_ = false, $={ 'tip':typeof($ele) };
     // desde texto : <> 
@@ -97,7 +100,8 @@ class api_ele {
       }
     }
     return $_;
-  }// combino
+  }
+  // combino
   static jun( $ele, $mod, $ope = {} ){
     let $_ = $ele, $={};
     $.dat = ( $ope['dat'] !== undefined ) ? $ope['dat'] : null;
@@ -123,11 +127,33 @@ class api_ele {
       }
     });
     return $_;
-  }// atributos : "< ...atr="">"
+  }
+  // armo etiqueta : <eti atr="">...htm</eti>
+  static eti( $ele ){
+    let $_="",$={};
+    $.eti = 'span'; 
+    if( $ele['eti'] !== undefined ){
+      $.eti = $ele['eti'];
+      delete($ele['eti']);
+    }
+    $.htm = ''; 
+    if( $ele['htm'] !== undefined ){
+      $.htm = $ele['htm'];
+      delete($ele['htm']);
+      if( typeof($.htm) != 'string' ){
+        $._htm_val = '';
+        api_lis.ite($.htm).forEach( $e => $._htm_val =+ ( typeof($e) == 'string' ) ? $e : api_ele.val($e) );
+      }
+    }
+    $_ = `
+    <${$.eti}${api_ele.atr($ele)}>
+      ${!['input','img','br','hr'].includes($.eti) ? `${$.htm}
+    </${$.eti}>` : ''}`;
+    return $_;
+  }
+  // atributos : "< ...atr="">"
   static atr( $ele, $dat ){
-    let $_='',$={};
-    if( $ele['htm'] !== undefined ) delete($ele['htm']);
-
+    let $_='', $={};
     if( !!$dat ){
       for( const $i in $ele ){ 
         $.tex=[];
@@ -154,31 +180,8 @@ class api_ele {
       }
     }
     return $_;
-  }// armo etiqueta : <eti atr="">...htm</eti>
-  static eti( $ele ){
-    let $_="",$={};
-    $.eti = 'span'; 
-    if( $ele['eti'] !== undefined ){
-      $.eti = $ele['eti'];
-      delete($ele['eti']);
-    }
-    $.htm = ''; 
-    if( $ele['htm'] !== undefined ){
-      $.htm = $ele['htm'];
-      delete($ele['htm']);
-      if( typeof($.htm)!='string' ){
-        $._htm_val = '';
-        api_lis.ite($.htm).forEach( $e => 
-          $._htm_val =+ ( typeof($e) == 'string' ) ? $e : api_ele.val($e)
-        );
-      }
-    }
-    $_ = `
-    <${$.eti}${api_ele.atr($ele)}>
-      ${!['input','img','br','hr'].includes($.eti) ? `${$.htm}
-    </${$.eti}>` : ''}`;
-    return $_;
-  }// - fondo : background
+  }
+  // - fondo : background
   static fon( $val, $ope={} ){
     if( !$ope['tip'] ) $ope['tip']='png';
     if( !$ope['ali'] ) $ope['ali']='center';
@@ -236,7 +239,8 @@ class api_ele {
       }
     }
     return $ele;
-  }// clases
+  }
+  // clases
   static cla( $ele, $val, ...$opc ){
     let $_=$ele,$={};
 
@@ -286,7 +290,8 @@ class api_ele {
       }
     }
     return $_;
-  }// estilos
+  }
+  // estilos
   static css( $ele, $val, ...$opc ){
     let $_=$ele, $={};
 
@@ -345,7 +350,8 @@ class api_ele {
       $_ = $_[0]; 
     }
     return $_;
-  }// actualizo propiedades
+  }
+  // actualizo propiedades
   static act( $tip, $ele, $val, $ope ){
     let $_ = [], $={ 
       tip : $tip.split('_') 
@@ -408,7 +414,8 @@ class api_ele {
       break;
     }
     return $_;
-  }// busco nodos
+  }
+  // busco nodos
   static ver( $ele, $ope={} ){
 
     let $_ = false, $ = {};
@@ -464,7 +471,8 @@ class api_ele {
       $_ = $.val.length == 1 ? $.val[0] : $.val;
     }
     return $_;
-  }// agrego nodo/s al inicio o al final
+  }
+  // agrego nodo/s al inicio o al final
   static agr( $ele, $pad, ...$opc ){
     let $_=[], $={};
     $.opc_ini = $opc.includes('ini');
@@ -491,7 +499,8 @@ class api_ele {
 
     }
     return ( $.val_uni && $_[0] ) ? $_[0] : $_;
-  }// modifico nodo : si no encuentro anterior, puedo agregar
+  }
+  // modifico nodo : si no encuentro anterior, puedo agregar
   static mod( $ele, $mod = {}, ...$opc ){
     let $_={},$={};
     $.opc_agr = !$opc.includes('-agr');
@@ -501,7 +510,8 @@ class api_ele {
       if( $mod.nodeName ) $mod.parentElement.replaceChild( $.eti, $mod );
     }
     return $_;
-  }// elimino nodo/s : todos o por seleccion, y los devuelvo
+  }
+  // elimino nodo/s : todos o por seleccion, y los devuelvo
   static eli( $pad, $nod ){
     let $_ = [];
     // elimino todos

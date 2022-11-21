@@ -14,7 +14,7 @@
         "ico":"dat_ver",
         "tit":"Buscar..."
       }'),    
-      ('app','val','abm', 3, 'agr', '{    
+      ('app','val','abm', 3, 'agr', '{
         "ico":"dat_agr",
         "tit":"Agregar..."
       }'),

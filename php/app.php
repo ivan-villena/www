@@ -12,11 +12,9 @@ class app {
   public array  $htm;
 
   // cargo aplicacion ( por defecto: sincronario )
-  function __construct( string $esq = 'hol' ){
+  function __construct( object $_uri ){
 
     global $sis_rec;
-
-    $_uri = $this->uri($esq);
 
     // Recursos : css + jso + eje + dat + obj
     $this->rec = [
@@ -40,7 +38,7 @@ class app {
       'eje' => "",
       // datos de la base
       'dat' => [
-        'app'=>[ 'ico', 'uri', 'dat' ],
+        'app'=>[ 'ico', 'dir', 'dat' ],
         'dat'=>[ 'tip' ],
         'tex'=>[ 'let' ],
         'fec'=>[ 'mes','sem','dia' ]
@@ -136,55 +134,6 @@ class app {
       $this->rec['ele']['title'] = $this->doc['esq']->nom; 
     }
   }
-  // peticion
-  public function uri( string $esq = "" ) : object {
-    global $_api;      
-
-    if( empty($_api->app_uri->esq) ){
-
-      $uri = explode('/', !empty($_REQUEST['uri']) ? $_REQUEST['uri'] : '');
-
-      $_uri = new stdClass;
-      $_uri->esq = !empty($uri[0]) ? $uri[0] : $esq;
-      $_uri->cab = !empty($uri[1]) ? $uri[1] : FALSE;
-      $_uri->art = !empty($uri[2]) ? $uri[2] : FALSE;
-
-      if( $_uri->art ) $_val = explode('#',$_uri->art);
-
-      if( isset($_val[1]) ){
-        $_uri->art = $_val[0];
-        $_uri->val = $_val[1];  
-      }
-      else{          
-        $_uri->val = !empty($uri[3]) ? $uri[3] : FALSE;
-      }
-
-      $_api->app_uri = $_uri;
-    }
-    return $_api->app_uri;
-  }
-  // directorios
-  public function dir() : object {
-
-    $_ = new stdClass();
-    
-    $_uri = $this->uri();
-    
-    $_->esq = SYS_NAV."{$_uri->esq}";
-      
-    $_->cab = "{$_uri->esq}/{$_uri->cab}";
-
-    $_->ima = SYS_NAV."img/{$_->cab}/";
-
-    if( !empty($_uri->art) ){
-
-      $_->art = $_->cab."/{$_uri->art}";
-    
-      $_->ima .= "{$_uri->art}/";
-    }
-
-    return $_;
-  }
   // cargo datos de la base
   static function dat( string $esq, string $est, string $ope, mixed $dat = NULL ) : mixed {
     
@@ -211,368 +160,6 @@ class app {
     return $_;
   }
 
-  // cargo página
-  public function ini() : void {
-
-    global $sis_ini, $_usu;
-
-    $_uri = $this->uri();
-    // pido contenido por aplicacion
-    if( file_exists($cla_rec = "./php/{$_uri->esq}.php") ){
-
-      require_once($cla_rec);
-
-      if( class_exists( $cla = $_uri->esq ) ){
-
-        new $cla( $this );
-      }                
-    }
-
-    // usuario + loggin
-    // $tip = empty($_usu->ide) ? 'ini' : 'fin';
-    // $this->ope["ses_{$tip}"]['htm'] = app::usu($tip);
-
-    // consola del sistema
-    if( $_usu->ide == 1 ){
-      $this->rec['jso']['app'] []= "adm";
-      $this->ope['api_adm'] = [ 'ico'=>"eje", 'bot'=>"fin", 'tip'=>"win", 'nom'=>"Consola del Sistema", 
-        'art'=> [ 'style'=>"max-width: 55rem;" ],
-        'htm'=> app::adm()
-      ]; 
-    }
-    // agrego ayuda
-    if( !empty($this->htm['dat']) ) $this->ope['app_dat'] = [ 
-      'ico'=>"dat_des", 'tip'=>"win", 'nom'=>"Ayuda", 'htm'=>$this->htm['dat'] 
-    ];
-    // cargo documento
-    foreach( $this->ope as $ide => $ope ){
-      if( !isset($ope['bot']) ) $ope['bot'] = "ini";
-      // enlaces
-      if( isset($ope['url']) ){
-        // boton
-        $this->htm['ope'][$ope['bot']] .= app::ico($ope['ico'],[ 'eti'=>"a", 'title'=>$ope['nom'], 'href'=>$ope['url'] ]);
-      }
-      // paneles y modales
-      elseif( ( $ope['tip'] == 'pan' || $ope['tip'] == 'win' ) && !empty($ope['htm']) ){
-        // botones          
-        $this->htm['ope'][$ope['bot']] .= app::bot([ $ide => $ope ]);
-        // contenido
-        $this->htm[$ope['tip']] .= app::{$ope['tip']}($ide,$ope);
-      }
-    }
-    // cargo modal de operadores
-    $this->htm['win'] .= app::win('app_ope',[ 'ico'=>"app_ope", 'nom'=>"Operador" ]);
-
-    // cargo contenido principal
-    $ele = [ 'tit' => $this->rec['ele']['title'] ];
-    $this->htm['sec'] = app::sec( $this->htm['sec'], $ele );
-    
-    // ajusto diseño
-    $_ver = [];
-    foreach( ['bar','pie'] as $ide ){
-      if( !empty($this->htm[$ide]) ) $_ver []= $ide; 
-    }
-    if( !empty($_ver) ) $this->rec['ele']['body']['data-ver'] = implode(',',$_ver);
-
-    // cargo datos por esquemas
-    global $_api;
-    $_dat = [];
-    foreach( $this->rec['dat'] as $esq => $est ){
-      // cargo todas las estructuras de la base que empiecen por "api.$esq_"
-      if( empty($est) ){
-        foreach( $_api as $i => $v ){
-          if( preg_match("/^{$esq}_/",$i) ) $_dat[$i] = $v;
-        }
-      }// cargo estructuras por identificador
-      else{
-        foreach( $est as $ide ){
-          $_dat["{$esq}_{$ide}"] = $_api->{"{$esq}_{$ide}"};
-        }          
-      }
-    }
-    $this->rec['dat'] = $_dat;
-    ?>
-    <!DOCTYPE html>
-    <html lang="es">
-        
-      <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width = device-width, initial-scale = 1, maximum-scale = 1">
-        <?php // hojas de estilo
-        foreach( [ $this->rec['css'], $this->rec['css-fin'] ] as $css ){ 
-          foreach( $css as $ide ){
-            if( preg_match("/^http/", $ide) ){ echo "
-              <link rel='stylesheet' href='$ide' >";
-            }
-            elseif( file_exists( $rec = "css/{$ide}.css" ) ){ echo "
-              <link rel='stylesheet' href='".SYS_NAV.$rec."' >";
-            }
-          }
-        }?>
-        <title><?= $this->rec['ele']['title'] ?></title>
-      </head>
-
-      <body <?= api_ele::atr($this->rec['ele']['body']) ?>>
-        
-        <!-- Botonera -->
-        <header class='app_bot'>
-          
-          <nav class="ope">
-            <?= $this->htm['ope']['ini']; ?>
-          </nav>
-
-          <nav class="ope">
-            <?= $this->htm['ope']['fin']; ?>
-          </nav>
-          
-        </header>
-
-        <?php if( !empty($this->htm['pan']) ){ ?>
-          <!-- Panel -->
-          <aside class='app_pan dis-ocu'>
-            <?= $this->htm['pan'] ?>
-          </aside>
-        <?php } ?>
-        <!-- Contenido -->
-        <main class="app_sec">
-          <?= $this->htm['sec'] ?>
-        </main>
-        
-        <?php if( !empty($this->htm['bar']) ){ ?>
-          <!-- sidebar -->
-          <aside class="app_bar">
-            <?= $this->htm['bar'] ?>
-          </aside>
-        <?php } ?>
-
-        <?php if( !empty($this->htm['pie']) ){  ?>
-          <!-- pie de página -->
-          <footer class="app_pie">
-            <?= $this->htm['pie'] ?>
-          </footer>
-        <?php } ?>
-        <!-- Modales -->
-        <section class='app_win dis-ocu'>
-          <?= $this->htm['win'] ?>
-        </section>
-        <!-- Programas -->
-        <script>
-          // sistema
-          const SYS_NAV = "<?=SYS_NAV?>";
-          // operativas
-          const DIS_OCU = "<?=DIS_OCU?>";
-          const FON_SEL = "<?=FON_SEL?>";
-          const BOR_SEL = "<?=BOR_SEL?>";
-        </script>
-        <?php
-        foreach( $this->rec['jso'] as $app => $cla_lis ){
-          if( file_exists( $rec = "jso/{$app}.js" ) ){ echo "
-          <script src='".SYS_NAV.$rec."'></script>";
-          }
-          foreach( $cla_lis as $cla ){
-            if( file_exists( $rec = "jso/{$app}/{$cla}.js" ) ){ echo "
-            <script src='".SYS_NAV.$rec."'></script>";
-            }
-          }
-        }?>
-        <script>
-          // cargo datos de la interface
-          var $_api = new api(<?= api_obj::cod( $this->rec['dat'] ) ?>);
-          
-          // cargo aplicacion
-          var $_app = new app();
-          
-          // ejecuto codigo por aplicacion
-          <?= $this->rec['eje'] ?>
-
-          // inicializo página
-          $_app.ini();
-
-          console.log(`{-_-}.ini: en ${( ( Date.now() - (  <?= $sis_ini ?> * 1000 ) ) / 1000 ).toFixed(2)} segundos...`);
-
-        </script>
-      </body>
-
-    </html>      
-    <?php
-  }
-  // consola del sistema
-  static function adm() : string {
-    $_eje = "app_adm";  
-    $_ide = "app-adm";
-    return app::nav('bar', [
-
-      'aja' => [ 'nom'=>"AJAX",
-        'nav'=>[ 'onclick'=>"$_eje('aja',this);" ],
-        'htm'=>"
-  
-        <nav class='lis'>
-        </nav>
-        "
-      ],
-      'ico' => [ 'nom'=>"Íconos", 
-        'nav'=>[ 'onclick'=>"$_eje('ico',this);" ],
-        'htm'=>"
-        
-        ".app::var('val','ver',['nom'=>"Filtrar",'ope'=>[ 
-          '_tip'=>"tex_ora", 'id'=>"_adm-ico-ver", 'oninput'=>"$_eje('ico',this,'ver')" 
-        ]])."
-  
-        <ul class='lis ite mar-2' style='height: 48vh;'>
-        </ul>
-        "
-      ],
-      'jso' => [ 'nom'=>"J.S.", 
-        'htm'=>"
-  
-        <fieldset class='inf pad-3'>
-          <legend>Ejecutar JavaScript</legend>      
-  
-          ".app::var('val','cod',[ 
-            'ite'=>[ 'class'=>"tam-cre" ], 
-            'ope'=>[ '_tip'=>"tex_par", 'rows'=>"10", 'class'=>"anc-100", 'oninput'=>"$_eje('jso',this)" ] 
-          ])."
-  
-        </fieldset>
-  
-        <div class='ope_res mar-1'>
-        </div>"
-      ],  
-      'php' => [ 'nom'=>"P.H.P.",
-        'htm'=>"
-  
-        <fieldset class='inf ite pad-3'>
-          <legend>Ejecutar en PHP</legend>
-  
-          ".app::var('val','ide',[ 'ope'=>[ '_tip'=>"tex_ora" ] ])."
-          
-          ".app::var('val','par',[ 
-            'ite'=>['class'=>"tam-cre"], 
-            'ope'=>['_tip'=>"tex_ora", 'class'=>"anc-100 mar_hor-1"], 
-            'htm_ini'=>"<c>(</c>", 'htm_fin'=>"<c>)</c>"
-          ])."
-  
-          ".app::var('val','htm',[
-            'nom'=>"¿HTML?",
-            'ope'=>[ '_tip'=>"opc_bin", 'val'=>1, 'id'=>"_adm-php-htm" ]
-          ])."
-          
-          ".app::ico('dat_ope',[
-            'eti'=>"button", 'type'=>"submit", 'onclick'=>"$_eje('php',this)"
-          ])."
-  
-        </fieldset>
-  
-        <div class='ope_res mar-1' style='height: 40vh; overflow: auto;'>
-        </div>
-  
-        <pre class='ope_res' style='height: 40vh; overflow: auto;'>
-        </pre>
-        "
-      ],
-      'sql' => [ 'nom'=>"S.Q.L",
-        'htm'=>"
-        <fieldset class='inf ite pad-3'>
-          <legend>Ejecutar S.Q.L.</legend>
-  
-          ".app::var('val','cod',[ 
-            'ite'=>[ 'class'=>"tam-cre" ], 
-            'ope'=>[ '_tip'=>"tex_ora", 'class'=>"anc-100 mar_der-1" ],
-            'htm_fin'=> app::ico('dat_ope',[ 'eti'=>"button", 'type'=>"submit", 'onclick'=>"$_eje('sql',this,'cod')" ])
-          ])."
-  
-        </fieldset>
-  
-        <div class='ope_res mar-1' var='est' style='height: 47vh;'>
-        </div>"
-      ],
-      'htm' => [ 'nom'=>"D.O.M.",
-        'htm'=>"
-        <fieldset class='inf ite pad-3'>
-          <legend>Ejecutar Selector</legend>
-  
-          ".app::var('val','cod',[ 
-            'ite'=>['class'=>"tam-cre"], 
-            'ope'=>['_tip'=>"tex_ora", 'class'=>"anc-100 mar_der-1"],
-            'htm_fin'=> app::ico('dat_ope',['eti'=>"button", 'type'=>"submit", 'onclick'=>"$_eje('htm',this,'cod')"])
-          ])."
-  
-        </fieldset>
-  
-        <div class='ele'>
-        </div>
-  
-        <div class='nod mar-1'>
-        </div>"
-      ] 
-    ], [
-      'sel' => "php",
-      'ite' => [ 'eti'=>"form" ]
-    ]);
-  }
-  // sesion del usuario
-  static function usu( string $tip ) : string {
-    switch( $tip ){
-      // datos del usuario
-      case 'ses':
-        $esq = 'api'; 
-        $est = 'usu';
-        global $_usu;
-        $_kin = api_hol::_('kin',$_usu->kin);
-        $_psi = api_hol::_('psi',$_usu->psi);
-        $_ = "
-        <form class='api_dat' data-esq='{$esq}' data-est='{$est}'>
-
-          <fieldset class='ren'>
-
-            ".app::var('atr', [$esq,$est,$atr='nom'], [ 'val'=>$_usu->$atr  ], 'eti')."
-
-            ".app::var('atr', [$esq,$est,$atr='ape'], [ 'val'=>$_usu->$atr  ], 'eti')."                        
-          
-          </fieldset>
-
-          <fieldset class='ren'>
-
-            ".app::var('atr', [$esq,$est,$atr='mai'], [ 'val'=>$_usu->$atr  ],'eti')."
-
-            ".app::var('atr', [$esq,$est,$atr='fec'], [ 'val'=>$_usu->$atr, 'ite'=>[ 'class'=>"tam-ini" ]  ], 'eti')."
-
-          </fieldset>
-
-        </form>";
-        break;
-      // inicio de sesion por usuario
-      case 'ini':
-        $_ = "
-        <form class='api_dat' action=''>
-
-          <fieldset>
-
-            <label for=''>Email</label>
-            <input type='mail'>
-
-          </fieldset>
-
-          <fieldset>
-
-            <label for=''>Password</label>
-            <input type='password'>
-
-          </fieldset>
-
-        </form>";
-        break;
-      // finalizo sesion del usuario
-      case 'fin': 
-        $_ = "    
-        <form class='api_dat' action=''>
-
-        </form>";
-        break;
-    }  
-    return $_;
-  }
-  
   // letra : ( n, c )
   static function let( string $dat, array $ele=[] ) : string {
     global $_api;
@@ -873,7 +460,7 @@ class app {
     $ele['opc'] = [ 'tog' ]; // dlt- 'ver', 'cue'
     return app_lis::val($_lis,$ele);
 
-  }
+  }  
   // Indice : a[href] > ...a[href]
   static function art( array $dat, array $ele = [], ...$opc ) : string {
     foreach( ['ope','ope_dep','lis','dep'] as $i ){ if( !isset($ele[$i]) ) $ele[$i] = []; }
@@ -1130,6 +717,7 @@ class app {
 
     return $_;
   }
+
   // Carteles : advertencia + confirmacion
   static function tex( string $tip, string | array $val, array $ope = [] ) : string {
     foreach( ['sec','ico','tex'] as $i ){ if( !isset($ope[$i]) ) $ope[$i] = []; }
@@ -1162,8 +750,27 @@ class app {
     </div>";
     return $_;
   }
+
   // Menú de opciones
   static function opc(){
+  }
+
+  // glosarios : definiciones por esquema
+  static function ide( string | array $ide, array $ele = [] ) : string {
+
+    $_ = [];
+    $_ide = explode('.',$ide);
+    
+    if( is_array( $tex = api::dat('app_ide',['ver'=>"`esq`='{$_ide[0]}' AND `ide`='{$_ide[1]}'"]) ) ){
+
+      foreach( $tex as $pal ){
+        $_[ $pal->nom ] = $pal->des;
+      }
+    }
+    // operadores : toggle + filtro
+    if( !isset($ele['opc']) ) $ele['opc'] = [];
+
+    return app_lis::ite($_,$ele);
   }
 
   // Variable : div.atr > label + (input,textarea,select,button)[name]

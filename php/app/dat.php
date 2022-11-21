@@ -311,24 +311,6 @@ class app_dat {
 
     return $_;
   }
-  // glosarios : definiciones por esquema
-  static function ide( string | array $ide, array $ele = [] ) : string {
-
-    $_ = [];
-    $_ide = explode('.',$ide);
-    
-    if( is_array( $tex = api::dat('app_ide',['ver'=>"`esq`='{$_ide[0]}' AND `ide`='{$_ide[1]}'"]) ) ){
-
-      foreach( $tex as $pal ){
-        $_[ $pal->nom ] = $pal->des;
-      }
-    }
-
-    // operadores : toggle + filtro
-    if( !isset($ele['opc']) ) $ele['opc'] = [];
-
-    return app_lis::ite($_,$ele);
-  }
   // Descripciones : imagen + nombre > ...atributos
   static function des( string $esq, string $est, string | array $atr, array $ele = [], ...$opc ) : string {
     
@@ -450,7 +432,7 @@ class app_dat {
       $_val = app::dat($esq,$est,'val');
       $_dat = api::_("{$esq}_{$est}",$val);
       $_ .= "
-      <div class='val mar-1 '>";
+      <div class='val'>";
       if( isset($_val['ima']) ){
         $_ .= app::ima($esq,$est,$_dat,[ 'class'=>"mar_der-2" ]);
       }
@@ -524,7 +506,8 @@ class app_dat {
             unset($_inf['atr']);
           }
           elseif( !empty($_inf['cit']) ){
-            if( isset($_dat->{$_inf['cit']}) ) $_ .= "<q>".app::let($_dat->{$_inf['cit']})."</q>";
+            if( isset($_dat->{$_inf['cit']}) ) $_ .= "
+            <q class='mar-1'>".app::let($_dat->{$_inf['cit']})."</q>";
             unset($_inf['cit']);
           }
           $_ .= "
@@ -533,15 +516,15 @@ class app_dat {
       </section>";
       foreach( $_inf as $inf_ide => $inf_val ){ 
         $inf_ide_pri = explode('-',$inf_ide)[0];
-        if( $inf_sep = !in_array($inf_ide_pri,['tab','htm']) ){ $_ .= "
-          <section class='ali_pro-cre'>";
+        if( $inf_sep = !in_array($inf_ide_pri,['htm']) ){ $_ .= "
+          <section class='".( $inf_ide_pri != 'tab' ? 'ali_pro-cre' : '' )."'>";
         }
         switch( $inf_ide_pri ){
         // detalles : por atributos o por valor
         case 'det':
           if( is_array($inf_val) ){
             foreach( $inf_val as $det ){
-              if( isset($_dat->$det) ){                 
+              if( isset($_dat->$det) ){
                 foreach( explode("\n",$_dat->$det) as $tex_par ){
                   $_ .= "<p>".app::let($tex_par)."</p>";
                 }
@@ -566,27 +549,22 @@ class app_dat {
             }
           }
           break;                       
-        // lecturas con "" 
+        // lecturas con "" , alineado, con/sin titulo por atributo
         case 'lec':
           if( is_array($inf_val) ){
-            $agr = $inf_ide == 'lec-lis' ? " tex_ali-izq" : "";
+            $agr_cla = preg_match("/-lis/",$inf_ide) ? " tex_ali-izq" : "";
+            $agr_tit = !preg_match("/-tit/",$inf_ide);
             foreach( $inf_val as $lec ){
-              if( isset($_atr[$lec]) && isset($_dat->$lec) ) $_ .= "
-              <p class='tit{$agr}'>{$_atr[$lec]->nom}</p>
-              <p class='cit{$agr}'><q>".app::let($_dat->$lec)."</q></p>";
+              if( isset($_atr[$lec]) && isset($_dat->$lec) ) 
+              if( $agr_tit ) $_ .= "
+              <p class='tit{$agr_cla}'>{$_atr[$lec]->nom}</p>";
+              $_ .= "
+              <p class='cit{$agr_cla}'><q>".app::let($_dat->$lec)."</q></p>";
             }
           }else{
             $_ .= "<p class='cit'><q>".app::let(api_obj::val($_dat,$inf_val))."</q></p>";
           }
           break;
-        // Texto por valor
-        case 'tex':
-          foreach( api_lis::ite($inf_val) as $tex ){
-            foreach( explode("\n",$tex) as $tex_val ){
-              $_ .= "<p>".app::let(api_obj::val($_dat,$tex_val))."</p>";
-            }
-          }
-          break;          
         // Fichas : por atributos con Relaciones
         case 'fic':
           if( is_array($inf_val) ){
@@ -597,8 +575,8 @@ class app_dat {
                 }// listado de imagenes por valor
                 elseif( is_string($_dat->$ide) ){
                   if( !isset($sep) ){
-                    $sep = ( preg_match("/, /",$_dat->$ide) ) ? ", " : (  preg_match("/\s*-\s*/",$_dat->$ide) ? " - " : FALSE );
-                  }
+                    $sep = ( preg_match("/, /",$_dat->$ide) ) ? ", " : (  preg_match("/\s*\-\s*/",$_dat->$ide) ? " - " : FALSE );
+                  }                  
                   if( $sep ){
                     // valores
                     $ran_lis = [];
@@ -619,14 +597,14 @@ class app_dat {
             }
           }
           break;
-        // listado por atributo con titulo
+        // listado por atributo(\n) con titulo
         case 'lis': 
           if( is_array($inf_val) ){
             foreach( $inf_val as $lis ){
               if( isset($_atr[$lis]) && isset($_dat->$lis) ){ 
                 $_ .= "
                 <p class='tit'>{$_atr[$lis]->nom}</p>
-                <ul class='tex_ali-izq'>";
+                <ul class='tex_ali-izq mar-0 mar_ver-2'>";
                 foreach( explode("\n",$_dat->$lis) as $tex_par ){ $_ .= "
                   <li>".app::let($tex_par)."</li>";
                 }$_ .= "
@@ -637,34 +615,39 @@ class app_dat {
           break;
         // Tablero por identificador
         case 'tab':
-          $inf_val[1]['ide'] = isset($_dat->ide) ? $_dat->ide : FALSE;
-          extract( api_dat::ide($inf_val[0]) );          
+          // convierto posibles valores ($)          
+          if( isset($inf_val[1]) ) $inf_val[1] = api_obj::var($inf_val[1],$_dat);
+          // defino identificador del tablero
+          if( !isset($inf_val[1]['ide']) ) $inf_val[1]['ide'] = isset($_dat->ide) ? $_dat->ide : FALSE;
+          // armo tablero
+          extract( api_dat::ide($inf_val[0]) );
           if( $atr && method_exists("app_tab",$esq) ){
             $_ .= app_tab::$esq( $est, $atr, $inf_val[1], isset($inf_val[2]) ? $inf_val[2] : [] );
           }
           break;
+        // Texto por valor: parrafos por \n
+        case 'tex':
+          foreach( api_lis::ite($inf_val) as $tex ){
+            foreach( explode("\n",$tex) as $tex_val ){
+              $_ .= "<p>".app::let(api_obj::val($_dat,$tex_val))."</p>";
+            }
+          }
+          break;          
         // Contenido HTML : textual o con objetos
         case 'htm':
           if( is_string($inf_val) ){
             $_ .= api_obj::val($_dat,$inf_val);
           }else{
             foreach( api_lis::ite($inf_val) as $ele ){
-              // convierto texto 
-              foreach( $ele as &$ele_val ){ 
-                if( is_string($ele_val) ){ $ele_val = api_obj::val($_dat,$ele_val); }
-              }// genero elemento
-              $_ .= api_ele::val($ele);
+              // convierto texto ($), y genero elemento/s
+              $_ .= api_ele::val( api_obj::var($ele,$_dat) );
             }
           }
           break;
         // Ejecuciones : por clase::metodo([...parametros])
         case 'eje':
-          $eje_ide = $inf_val['ide'];            
-          $eje_par = isset($inf_val['par']) ? $inf_val['par'] : [];
-          foreach( $eje_par as &$par_val ){
-            $par_val = api_obj::val($_dat,$par_val);
-          }
-          $_ .= api_eje::val( $eje_ide, $eje_par );
+          // convierto valores ($), y ejecuto por identificador
+          $_ .= api_eje::val( $inf_val['ide'], isset($inf_val['par']) ? api_obj::var($inf_val['par'],$_dat) : [] );
           break;
         }
         if( $inf_sep ){ $_ .= "

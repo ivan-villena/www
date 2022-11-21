@@ -12,7 +12,7 @@ class hol {
     }
 
     // inicializo tablero con clase principal
-    if( $_app.uri.cab == 'ope' ){
+    if( $_api.app_dir.cab == 'ope' ){
 
       $_app.tab.cla = ( $_app.tab.dep = $_app.tab.lis.querySelector('.pos.app_ope.sec_par') ) 
         ? '.pos.app_ope.sec_par > .app_tab[class*="_par"] > .pos[class*="ide-"]' 
@@ -31,7 +31,7 @@ class hol {
     // operador : fecha + sincronario
     let $ = app.var($dat);
     
-    $.uri = `${$_app.uri.esq}/ope/${ $_app.uri.cab == 'ope' ? $_app.uri.art : 'kin_tzo' }`;
+    $.uri = `${$_api.app_dir.esq}/ope/${ $_api.app_dir.cab == 'ope' ? $_api.app_dir.art : 'kin_tzo' }`;
     // calendario gregoriano
     if( $_app.ope.var.classList.contains('fec') ){
       

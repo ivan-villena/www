@@ -122,16 +122,16 @@ class app {
   // inicializo aplicacion : tablero + indices
   ini( $ = {} ){
     // inicio : muestro menu
-    if( !$_app.uri.cab ){       
+    if( !$_api.app_dir.cab ){       
       ( $.bot_ini = $_app.ope.bot.querySelector('.ico.app_cab') ) && $.bot_ini.click();
     }
     // articulo
     else{
       // expando menu seleccionado      
-      if( $.cab = $_app.ope.pan.querySelector(`nav.ide-app_cab p.ide-${$_app.uri.cab}`) ) $.cab.click();
+      if( $.cab = $_app.ope.pan.querySelector(`nav.ide-app_cab p.ide-${$_api.app_dir.cab}`) ) $.cab.click();
       // inicializo operadores  : sec + pos + atr
-      if( $_app.uri.cab == 'ope' ){
-        if( $.cla_app = eval($.cla = `${$_app.uri.esq}`) ){
+      if( $_api.app_dir.cab == 'ope' ){
+        if( $.cla_app = eval($.cla = `${$_api.app_dir.esq}`) ){
           app_tab.ini();
           app_est.ini();
           // secciones y posiciones
@@ -158,7 +158,7 @@ class app {
         }
       }
       // inicializo indice por artículo
-      else if( $_app.uri.art && ( $.art_nav = $_app.ope.pan.querySelector('nav.ide-app_nav ul.lis.nav') ) ){
+      else if( $_api.app_dir.art && ( $.art_nav = $_app.ope.pan.querySelector('nav.ide-app_nav ul.lis.nav') ) ){
         // inicio indice
         app.art_tog($.art_nav);        
         // muestro panel
@@ -167,32 +167,6 @@ class app {
     }
   }
 
-  // devuelvo enlace desde url
-  static uri( ...$opc ) {
-
-    let $_ = [];
-  
-    if( $_app.uri && $_app.uri.esq ){
-      
-      $_.push($_app.uri.esq);
-  
-      if( !!$_app.uri.cab ){
-  
-        $_.push($_app.uri.cab);
-  
-        if( !!$_app.uri.art ){
-  
-          $_.push($_app.uri.art);
-  
-          if( $opc.includes('val') && $_app.uri.val ){
-  
-            $_.push($_app.uri.val);
-          }
-        }
-      }
-    }        
-    return $_.join('/');
-  }
   // datos : nombre, descripcion, titulo, imagen, color...
   static dat( $esq, $est, $ope, $dat ) {
 

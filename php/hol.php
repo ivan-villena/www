@@ -8,10 +8,10 @@ class hol {
   public array $_dat = [];
   public array $_ide = [];
 
-  // main : app.cab.art/val
-  public function __construct( app $_app ){
-    // inicializo datos    
-    $_uri = $_app->uri();
+  // página
+  public function __construct( app $_app ){ 
+    
+    $_uri = app_dir::uri();
 
     // Diario : Fecha del Sistema => valor por peticion : hol/$cab/$art/"ide=val"      
     $this->_val = api_hol::val( !empty($_SESSION['hol-val']) ? api_hol::cod($_SESSION['hol-val']) : date('Y/m/d') );
@@ -105,25 +105,6 @@ class hol {
         <p>En la página de cada libro hay un índice en el panel izquierdo<c>,</c> que puedes ocultar o mostrar haciendo click en el botón Correspondiente<c>.</c> Los items del índice que figuran en el libro son los mismos<c>,</c> pero se agregaron nuevos para segmentar la información y poder acceder desde enlaces<c>.</c></p>
 
       </section>
-      <!-- Artículos -->
-      <section>          
-        <h3>Los Artículos</h3>
-
-        <div class="val jus-cen">
-          <?= app::ico('app_cab',['class'=>"mar_hor-1"]) ?>
-          <c>-></c>
-          <?= app::ico('tex_inf',['class'=>"mar_hor-1"]) ?>
-        </div>
-
-        <p>En esta sección se publican Artículos con información relacionada a los temas del Sincronario<c>.</c></p>
-
-        <p>El <a href="<?=SYS_NAV."hol/art/ide"?>" target="_blank">glosario</a> es un rejunte de todos los que aparecen en los distintos libros<c>,</c> al cual se agregó un filtro para buscar entre sus términos y accesos al libro donde se encuentra<c>.</c></p>
-
-        <p>El <a href="<?=SYS_NAV."hol/art/tut"?>" target="_blank">Tutorial de <n>13</n> Lunas</a> es una introducción a los códigos y cuentas del Sincronario para su aplicación Diaria<c>.</c></p>
-
-        <p>A medida que este sitio crezca se irán agregando nuevos artículos<c>.</c></p>
-
-      </section>
       <!-- Códigos -->
       <section>
         <h3>Códigos y Cuentas</h3>
@@ -161,7 +142,7 @@ class hol {
   }
   // Diario
   public function dia( app $_app ) : void {
-    $_uri = $_app->uri();
+    $_uri = app_dir::uri();
     if( !empty($_uri->val) ){
       
       if( isset($_uri->val[1]) ){
@@ -178,12 +159,12 @@ class hol {
     }
     // panel con operadores
     $ope = [
-      'kin' => [ 'ide'=>"kin", 'ico'=>"", 'nom'=>"Sincrónico",   'des'=>"", 'htm'=>app_dat::pos("hol","kin",[ 
+      'kin' => [ 'ide'=>"kin", 'ico'=>"", 'nom'=>"Sincrónico", 'des'=>"", 'htm'=>app_dat::pos("hol","kin",[ 
         'kin'=>$_kin = api_hol::_('kin',$this->_val['kin']),
         'sel'=>api_hol::_('sel',$_kin->arm_tra_dia),
         'ton'=>api_hol::_('ton',$_kin->nav_ond_dia)
       ])],
-      'psi' => [ 'ide'=>"psi", 'ico'=>"", 'nom'=>"Cíclico",      'des'=>"", 'htm'=>app_dat::pos("hol","psi",[ 
+      'psi' => [ 'ide'=>"psi", 'ico'=>"", 'nom'=>"Cíclico", 'des'=>"", 'htm'=>app_dat::pos("hol","psi",[ 
         'psi'=>$_psi = api_hol::_('psi',$this->_val['psi']),
         'est'=>api_hol::_('est',$_psi->est),
         'lun'=>api_hol::_('lun',$_psi->lun),
@@ -208,8 +189,8 @@ class hol {
   // Bibliografía
   public function bib( app $_app ) : void {
     $_nav = $_app->doc['nav'];
-    $_uri = $_app->uri();
-    $_dir = $_app->dir();
+    $_uri = app_dir::uri();
+    $_dir = app_dir::uri_arc();
     $_bib = SYS_NAV."hol/bib/";
     // busco archivos : html-php
     if( !empty( $rec = api_arc::ide($val = "php/$_uri->esq/$_uri->cab/$_uri->art") ) ){
@@ -219,27 +200,67 @@ class hol {
       echo app::tex('err',"No existe el archivo '$val'");
     }
   }
-  // Artículos
-  public function art( app $_app ) : void {
-    $_nav = $_app->doc['nav'];
-    $_uri = $_app->uri();
-    $_dir = $_app->dir();
-    $_bib = SYS_NAV."hol/bib/";
-    // busco archivos : html-php
-    if( !empty( $rec = api_arc::ide($val = "php/$_uri->esq/$_uri->cab/$_uri->art") ) ){
-      include( $rec );
-    }
-    else{
-      echo app::tex('err',"No existe el archivo '$val'");
-    }
-  }    
-  // Cuentas
+  // Códigos
   public function dat( app $_app ) : void {
     $_nav = $_app->doc['nav'];
-    $_uri = $_app->uri();
+    $_uri = app_dir::uri();
     $_bib = SYS_NAV."hol/bib/";
     $_art = SYS_NAV."hol/art/";
     switch( $_uri->art ){
+    case 'ide': ?>
+      <article>
+        <h2>Buscar</h2>
+
+        <p>En el siguiente listado podés encontrar los términos y sus significados por Libro.</p>
+
+        <form class="ite">
+
+          <?= app::var('val','ver',[ 
+            'des'=> "Filtrar...",
+            'ite'=> [ 'class'=>"tam-cre" ],
+            'htm'=> app::val_ver(['cue'=>0, 'eje'=>"_hol_art.ide('ver',this)" ], [ 'class'=>"anc-100" ])
+          ]) ?>
+
+        </form>
+
+        <div style="height: 75vh; overflow: auto;">
+          <table>
+
+            <thead>
+              <tr>
+                <th scope="col" data-atr="ide" >Libro</th>
+                <th scope="col" data-atr="nom" >Término</th>
+                <th scope="col" data-atr="des" >Definicion</th>
+              </tr>
+            </thead>
+
+            <tbody>
+            <?php
+            $_lib = FALSE;
+            foreach( api::dat("app_ide",[
+              'ver'=>"`esq` = 'hol'", 
+              'ord'=>"`ide` ASC, `nom` ASC"
+            ]) as $i => $v ){ 
+              if( !$_lib || $_lib->ide != explode('_',$v->ide)[0] ){
+                $_lib = api::dat("app_art",[ 
+                  'ver'=>"esq = 'hol' AND cab = 'bib' AND ide = '$v->ide'", 
+                  'opc'=>"uni" 
+                ]);
+              }echo "
+              <tr>
+                <td data-atr='ide'><a href='$_bib/$_lib->ide' target='_blank'>".app::let($_lib->nom)."</a></td>
+                <td data-atr='nom'>".app::let($v->nom)."</td>
+                <td data-atr='des'>".app::let($v->des)."</td>            
+              </tr>";
+            }?>
+            </tbody>
+
+          </table>
+        </div>
+
+      </article>    
+      <?php
+      break;
     case 'rad': ?>
       <!-- dìas de la semana -->
       <article>          
@@ -567,9 +588,9 @@ class hol {
     <?php
     $_app->htm['dat'] = ob_get_clean();
   }
-  // Operadores : Módulos
+  // Módulos
   public function ope( app $_app ) : void {
-    $_uri = $_app->uri();
+    $_uri = app_dir::uri();
     $_val = $this->_val;
     $_ide = $this->_ide;
 
@@ -714,16 +735,16 @@ class hol {
     <?php
     $_app->htm['dat'] = ob_get_clean();
   }
-  // Kin Planetario
+  // Usuario
   public function usu( app $_app ) : void {
     global $_usu;
     $_nav = $_app->doc['nav'];
-    $_uri = $_app->uri();
+    $_uri = app_dir::uri();
 
   }
 }
 
-// Bibliografía : libros
+// Bibliografía
 class hol_bib {
   static string $IDE = "hol_bib-";
   static string $EJE = "hol_bib.";
@@ -1509,7 +1530,7 @@ class hol_bib {
           <a class='tex' href='#kin_arm_cel-{$_cel->ide}-'>
             <n>{$_cel->ide}</n><c>.</c> <b class='ide'>{$_cel->nom}</b>".app::let(": {$_cel->des}")."
           </a>";
-        }
+        }        
         $_lis []= [
           'ite'=>"Trayectoria $_tra->ide: Tono $_tra->ton, $_tra->ton_des",
           'lis'=>$_lis_cel
@@ -2293,312 +2314,6 @@ class hol_bib {
     switch( $ide ){
     }
     return is_array($_) ? app_dat::lis( $_, $ide, $lis_tip, $ope ) : $_;
-  }
-}
-
-// Ficha-Valores
-class hol_val {
-
-  static function ton( mixed $val ) : void {
-    $_bib = SYS_NAV."hol/bib/";
-    $_art = SYS_NAV."hol/art/";
-    $_ton = api_hol::_('ton',$val); ?>
-    <!-- Ficha -->
-    <article>
-
-      <?= app_dat::inf('hol','ton',$_ton,[ 'opc'=>["atr"] ]) ?>
-
-      <p>Ver <a href='<?=$_bib?>enc#_03-11-' target='_blank'>los 13 tonos Galácticos de la Onda Encantada</a> en el Encantamiento del Sueño<c>...</c></p>    
-
-    </article>
-    <!-- Aventura de la Onda Encantada -->
-
-    <!-- Simetría Especular -->
-
-    <!-- Pulsares Dimensionales -->
-
-    <!-- Pulsares Matiz Entonado -->             
-    <?php          
-  }
-
-  static function sel( mixed $val ) : void {
-    $_bib = SYS_NAV."hol/bib/";
-    $_art = SYS_NAV."hol/art/";
-    $_sel = api_hol::_('sel',$val); ?>
-    <!-- Ficha -->
-    <article>
-
-      <?= app_dat::inf('hol','sel',$_sel,[ 'opc'=>[ "atr" ] ]) ?>
-
-      <p><?= app::let($_sel->des_pro) ?></p>
-
-      <p>Ver <a href='<?=$_bib?>enc#_03-11-' target='_blank'></a> en </p>
-
-    </article>
-    <!-- Desarrollo del ser -->
-
-    <!-- Colocacion Cromática -->
-
-    <!-- Colocacion Armónica -->
-
-    <!-- Holon Solar -->
-
-    <!-- Holon Planetario -->
-
-    <!-- Holon Humano -->
-    <?php
-  }
-
-  static function kin( int | string | object $val ) : void {    
-    $_bib = SYS_NAV."hol/bib/";
-    $_art = SYS_NAV."hol/art/";
-    $_kin = api_hol::_('kin',$val); 
-    $_cas = api_hol::_('kin_nav_cas',$_kin->nav_cas);
-    $_ond = api_hol::_('kin_nav_ond',$_kin->nav_ond);
-    $_ton = api_hol::_('ton',$_kin->nav_ond_dia);  
-    $_tra = api_hol::_('kin_arm_tra',$_kin->arm_tra);
-    $_cel = api_hol::_('kin_arm_cel',$_kin->arm_cel);    
-    $_est = api_hol::_('kin_cro_est',$_kin->cro_est);    
-    $_ele = api_hol::_('kin_cro_ele',$_kin->cro_ele);
-    $_sel = api_hol::_('sel',$_kin->arm_tra_dia);
-    ?>
-    <!-- ficha del encantamiento -->
-    <article>
-      <h2></h2>
-
-      <?= app_dat::inf('hol','kin',$_kin,['cit'=>"des"]) ?>
-
-      <br>
-
-      <p>Para tener una idea más clara sobre el significado de los encantamientos del kin<c>,</c> ver <a href='<?=$_bib?>enc#_03-17-' target='_blank'>el Libro del Kin</a> en el Encantamiento del Sueño<c>...</c></p>
-
-      <p>Para navegar entre las trayectorias armónicas<c>,</c> génesis de los castillos<c>,</c> ondas encantadas y células del tiempo<c>,</c> ver los <a href='<?=$_bib?>enc#_04-' target='_blank'>Índices del Libro del Kin</a> en el Encantamiento del Sueño<c>...</c></p>
-
-    </article>
-    <!-- parejas -->
-    <article>
-      <h2></h2>
-
-      <?= app_tab::hol('kin','par',[ 'ide'=>$_kin->ide, 'sec'=>[ 'par'=>1 ], 'pos'=>[ 'ima'=>'hol.kin.ide' ] ],[
-        'sec'=>[ 'class'=>"mar_ver-2 mar_hor-aut" ], 'pos'=>[ 'style'=>"width:5rem; height:5rem;" ]
-      ])?>
-      <!-- Descripciones -->      
-      <section>
-        <h3></h3>
-
-        <p>Para realizar una lectura del oráculo<c>,</c> consulta la <a href='<?=$_bib?>enc#_02-03-06-01-' target='_blank'>Guía del Oráculo</a> en el Encantamiento del Sueño<c>...</c></p>            
-
-        <?= app_var::hol('kin-par',$_kin) ?>
-
-      </section>
-      <!-- Lecturas diarias -->      
-      <section>
-        <h3></h3>
-
-        <p>Puedes descubrir formas de relacionar las energías utilizando las palabras clave<c>,</c> que representan las funciones de cada pareja respecto al destino<c>.</c> Al compararlas<c>,</c> podrás ir incorporando información y comprendimiento sobre los distintos roles que cumplen<c>.</c></p>
-
-        <p>En la siguiente tabla se muestran las principales propiedades y claves para cada pareja del oráculo<c>:</c></p>
-
-        <?php // Propiedades : palabras clave del kin + sello + tono
-          $_par_atr = ['fun','acc','mis'];
-          $_ton_atr = ['acc'];  
-          $_sel_atr = ['car','des'];  
-          foreach( api_hol::_('sel_par') as $_par ){
-            
-            $_kin_par = $_par->ide == 'des' ? $_kin : api_hol::_('kin',$_kin->{"par_{$_par->ide}"});
-    
-            $ite = [ api_hol::ima("kin",$_kin_par) ];
-    
-            foreach( $_par_atr as $atr ){ if( isset($_par->$atr) ) $ite []= app::let($_par->$atr); }
-    
-            $_ton_par = api_hol::_('ton',$_kin_par->nav_ond_dia);
-            foreach( $_ton_atr as $atr ){ if( isset($_ton_par->$atr) ) $ite []= app::let($_ton_par->$atr); }
-    
-            $_sel_par = api_hol::_('sel',$_kin_par->arm_tra_dia);            
-            foreach( $_sel_atr as $atr ){  if( isset($_sel_par->$atr) ) $ite []= app::let($_sel_par->$atr); }
-    
-            $_ []= $ite;
-          }
-          $ope['lis'] = ['class'=>"anc-100 mar_aba-2"];
-          echo app_est::lis( $_, [ 'opc'=>['htm','cab_ocu'] ], $ope);
-        ?>
-        
-        <p>En <a href="<?=$_art?>tut#_04-04-" target="_blank">este tutorial</a> puedes encontrar las referencias sobre las aplicaciones de los oráculos y el tiempo net<c>.</c></p>
-
-        <p>De esta manera<c>,</c> puedes armar lecturas conjugando las palabras clave<c>,</c> y ordenarlas según las miradas del oráculo<c>;</c> por ejemplo<c>:</c></p>
-
-        <?php // lecturas por parejas          
-          $_ = [];
-          foreach( api_hol::_('sel_par') as $_par ){
-
-            if( $_par->ide == 'des' ) continue;
-            $_kin_par = api_hol::_('kin',$_kin->{"par_{$_par->ide}"});
-            $_sel_par = api_hol::_('sel',$_kin_par->arm_tra_dia);
-            $_ []=
-            api_hol::ima("kin",$_kin_par)."
-
-            <div>
-              <p><b class='tit'>{$_kin_par->nom}</b> <c>(</c> ".app::let($_par->dia)." <c>)</c></p>
-              <p>".app::let("{$_sel_par->acc} {$_par->pod} {$_sel_par->car}, que {$_par->mis} {$_sel->car}, {$_par->acc} {$_sel_par->pod}.")."</p>
-            </div>";
-          }          
-          $ope['lis']=[];  
-          api_ele::cla($ope['lis'],'ite');
-          echo app_lis::val($_,$ope);
-        ?>
-
-      </section>  
-      <!-- Posiciones en el tzolkin -->        
-      <section>
-        <h3></h3>
-
-        <p>Puedes buscar <dfn title='Cuando dos kines pertenecen a un mismo grupo comparten propiedades, por lo que su nivel de sincronización aumenta...'>sincronías posicionales</dfn> relacionando las ubicaciones de cada pareja en los ciclos del tzolkin<c>:</c></p>        
-
-        <p>Dos o más kines pueden pertenecer un mismo grupo<c>.</c> Utiliza la siguente tabla para detectar cuáles son esas coincidencias y hacia dónde te llevan<c>...</c></p>
-
-        <?php // Ciclos : posiciones en ciclos del kin
-          $_atr = [ 'ene_cam', 'cro_est', 'cro_ele', 'arm_tra', 'arm_cel', 'nav_cas', 'nav_ond' ];
-      
-          foreach( api_hol::_('sel_par') as $_par ){
-            
-            $_kin_par = $_par->ide == 'des' ? $_kin : api_hol::_('kin',$_kin->{"par_{$_par->ide}"});
-
-            $ite = [ api_hol::ima("kin",$_kin_par) ];
-
-            foreach( $_atr as $atr ){
-              $ite []= api_hol::ima("kin_{$atr}",$_kin_par->$atr,[ 'class'=>"tam-5" ]);
-            }
-            
-            $_ []= $ite;
-          }
-          $ope['lis'] = ['class'=>"anc-100"];
-          echo app_est::lis( $_, [ 'opc'=>['htm','cab_ocu'] ], $ope);
-        ?>
-
-      </section>  
-      <!-- Sincronometría del holon -->      
-      <section>
-        <h3></h3>
-
-        <p>También puedes determinar la sincronometría en los flujos del oráculo<c>,</c> practicando <a href='<?=$_bib?>tel#_02-03-04-' target='_blank'>el <n>4</n><c>°</c> nivel<c>,</c> juego del oráculo</a> en el tablero del Telektonon<c>...</c></p>
-
-        <p>En la siguiente tabla se muestran los valores respectivos para cada posición del oráculo<c>:</c></p>
-
-        <?php // Grupos : sincronometría del holon por sellos      
-
-          $_atr = [ 'sol_pla', 'sol_cel', 'sol_cir', 'pla_hem', 'pla_mer', 'hum_cen', 'hum_ext', 'hum_mer' ];  
-
-          foreach( api_hol::_('sel_par') as $_par ){
-            
-            $_kin_par = $_par->ide == 'des' ? $_kin : api_hol::_('kin',$_kin->{"par_{$_par->ide}"});                            
-    
-            $_sel_par = api_hol::_('sel',$_kin_par->arm_tra_dia);
-    
-            $ite = [ api_hol::ima("kin",$_kin_par), $_par->nom, $_sel_par->pod ];
-    
-            foreach( $_atr as $atr ){
-              $ite []= api_hol::ima("sel_{$atr}",$_sel_par->$atr,[ 'class'=>"tam-5" ]);
-            }            
-            $_ []= $ite;
-          }
-          $ope['lis'] = ['class'=>"anc-100"];
-          echo app_est::lis( $_, [ 'opc'=>['htm','cab_ocu'] ], $ope);
-        ?>
-
-      </section>
-      
-    </article>
-    <!-- Nave del tiempo -->
-    <article>
-      <h2></h2>
-      <!-- x52 : Castillo Fractal -->        
-      <section>
-        <h3></h3>
-
-        <p>Ver el <a href='<?=$_bib?>enc#_01-01-' target='_blank'>Génesis del Encantamiento del Sueño</a> en el encantamiento del sueño<c>...</c></p>
-
-        <?= app_dat::inf('hol','kin_nav_cas',$_cas) ?>
-        
-        <?= app_tab::hol('kin','nav_cas',[ 'ide'=>$_cas->ide, 'val'=>[ 'pos'=>$_kin->ide ], 'pos'=>[ 'ima'=>'hol.kin.ide' ] ], [
-          'cas'=>['class'=>"mar-2 mar_hor-aut pad-3 ali_pro-cen"], 
-          'pos'=>['style'=>"width:2.5rem; height:2.5rem;"]  
-        ]) ?>
-
-        <h3>En los <n>26.000</n> años del <a href='<?=$_bib?>enc#_01-' target='_blank'>Génesis del Encantamiento del Sueño</a></h3>
-
-        <p>Ver <a href='<?=$_bib?>enc#_03-06-' target='_blank'>el Índice de los castillos</a> en el Encantamiento del Sueño</p>
-
-        <h3>En los <n>5.200</n> años del <a href='<?=$_bib?>fac#_01-'> Rayo de Sincronización Galáctica</a></h3>
-
-        <p>Ver <a href='<?=$_bib?>fac#' target='_blank'>los 20 ciclos AHAU</a> en el Factor Maya</p>
-
-      </section>
-      <!-- x13 : Onda Encantada -->        
-      <section>
-        <h3></h3>
-
-        <p>Ver <a href='<?=$_bib?>enc#_03-12-' target='_blank'>la Onda Encantada de la Aventura</a> en el Encantamiento del Sueño</p>
-
-        <?= app_tab::hol('kin','nav_ond', [ 'ide'=>$_ond, 'sec'=>[ 'par'=>1 ], 'pos'=>[ 'ima'=>'hol.kin.ide' ] ], [
-          'ond'=>[ 'class'=>"mar-2 mar_hor-aut pad-3 ali_pro-cen" ],
-          'pos'=>[ 'style'=>"width:6rem; height:6rem;" ]
-        ]) ?>
-
-      </section>  
-    </article>
-    <!-- Giro Galáctico -->
-    <article>
-      <h2></h2>
-      <!-- x20 : Trayectoria Armónica -->        
-      <section>
-        <h3></h3>
-
-        <p>Ver <a href='<?=$_bib?>fac#_04-' target='_blank'>el Gran Ciclo</a> en el <cite>Factor Maya</cite><c>...</c></p>
-
-        <?= app_dat::inf('hol','kin_arm_tra',$_tra) ?>
-
-        <p><?= app::let($_tra->lec) ?></p>
-
-        <?= app_tab::hol('kin','arm_tra', [ 'ide'=>$_tra, 'sec'=>[ 'par'=>1 ], 'pos'=>[ 'ima'=>'hol.kin.ide' ] ], [
-          'tra'=>[ 'class'=>"mar-2 mar_hor-aut pad-3 ali_pro-cen" ],
-          'pos'=>[ 'style'=>"width:5rem; height:5rem;" ],
-          'pos-0'=>[ 'style'=>"width:4rem; height:4rem;" ]
-        ]) ?>
-
-        <p class='tit let-4'>Codificado por el tono <?= $_ton->nom ?></p>
-
-        <p><?= $_ton->des ?> del Giro Galáctico<c>.</c></p>
-
-        <p>Ver <a href='<?=$_bib?>enc#_03-05-' target='_blank'>Colocación Armónica: Células del Tiempo</a> en el Encantamiento del Sueño<c>...</c></p>
-
-      </section>
-      <!-- x4 : Célula del Tiempo -->        
-      <section>
-        <h3></h3>
-        
-        <p>Ver <a href='<?=$_bib?>enc#_03-05-' target='_blank'>Colocación Armónica: Razas Raíz Cósmicas</a> en el Encantamiento del Sueño</p>
-
-      </section>  
-    </article>
-    <!-- Giro Espectral -->
-    <article>
-      <h2></h2>
-      <!-- x65 : Estación Galáctica -->      
-      <section>
-        <h3></h3>
-
-        <p>Ver <a href='<?=$_bib?>fac#_04-' target='_blank'>Guardianes Direccionales Evolutivos</a> en el Factor Maya</p>
-
-      </section>
-      <!-- x5 : Elemento Cromático -->        
-      <section>
-        <h3></h3>
-        
-        <p>Ver <a href='<?=$_bib?>enc#_03-16-' target='_blank'>Colocación Cromática</a> en el Encantamiento del Sueño</p>
-
-      </section>
-    </article>
-    <?php          
   }
 }
 

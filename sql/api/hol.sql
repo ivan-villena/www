@@ -1,4 +1,4 @@
--- Active: 1665550796793@@127.0.0.1@3306@api
+-- Active: 1665550796793@@127.0.0.1@3306@c1461857_api
 
 -- HOLON
   --
@@ -31,22 +31,18 @@
       SELECT 
         _sel.*,
         _dir.nom     AS `cic_dir`,
+        _pla.orb     AS `sol_orb`,
         _pla.cel     AS `sol_cel`,
         _pla.cir     AS `sol_cir`,
         _fam.hum_cen AS `hum_cen`,
         _fam.hum_ded AS `hum_ded`,
         _ele.hum_ext AS `hum_ext`,
         _ele.flu_res AS `hum_res`
-      FROM 
-        `hol_sel` _sel
-      INNER JOIN 
-        `hol_sel_cic_dir` _dir ON _sel.arm_raz = _dir.ide        
-      INNER JOIN 
-        `hol_uni_sol_pla` _pla ON _sel.sol_pla = _pla.ide
-      INNER JOIN 
-        `hol_sel_cro_ele` _ele ON _sel.cro_ele = _ele.ide
-      INNER JOIN 
-        `hol_sel_cro_fam` _fam ON _sel.cro_fam = _fam.ide
+      FROM `hol_sel` _sel
+        INNER JOIN `hol_sel_cic_dir` _dir ON _sel.arm_raz = _dir.ide        
+        INNER JOIN `hol_uni_sol_pla` _pla ON _sel.sol_pla = _pla.ide
+        INNER JOIN `hol_sel_cro_ele` _ele ON _sel.cro_ele = _ele.ide
+        INNER JOIN `hol_sel_cro_fam` _fam ON _sel.cro_fam = _fam.ide
       ORDER BY
         _sel.ide ASC
     ;
@@ -73,8 +69,7 @@
       FROM 
         `hol_sel_par_ana` _ana
       INNER JOIN
-        `hol_sel` _ini ON _ana.ini = _ini.ide
-      INNER JOIN
+        `hol_sel` _ini ON _ana.ini = _ini.ide INNER JOIN
         `hol_sel` _fin ON _ana.fin = _fin.ide
       ORDER BY
         _ana.ini
@@ -130,7 +125,7 @@
         `hol_ton_ond` _ond ON _cas.ide = _ond.ide
       ORDER BY
         _ond.ide
-    ;  
+    ;
   --
   -- x260 : Kin
   
@@ -177,6 +172,18 @@
       ORDER BY
         _ele.ide ASC
     ;
+    -- Trayectoria Armónica
+    DROP VIEW IF EXISTS `_hol_kin_arm_tra`; CREATE VIEW `_hol_kin_arm_tra` AS
+      SELECT 
+        _tra.*,
+        _ton.nom AS `ton`,
+        _ton.des AS `ton_des`
+      FROM 
+        `hol_kin_arm_tra` _tra
+        INNER JOIN `hol_ton` _ton ON _tra.ide = _ton.ide
+      ORDER BY 
+        _tra.ide ASC
+    ;    
     -- célula de tiempo
     DROP VIEW IF EXISTS `_hol_kin_arm_cel`; CREATE VIEW `_hol_kin_arm_cel` AS
       SELECT 
@@ -186,8 +193,7 @@
         _arm.pod AS `cel_pod`
       FROM 
         `hol_kin_arm_cel` _cel
-      INNER JOIN
-        `hol_sel_arm_cel` _arm ON _cel.cel = _arm.ide
+        INNER JOIN `hol_sel_arm_cel` _arm ON _cel.cel = _arm.ide
       ORDER BY
         _cel.ide ASC
     ;
