@@ -1,0 +1,10 @@
+/* 
+  Objeto 
+*/
+
+div.obj > .dat > .atr {
+  margin: .2rem;
+}
+div.obj > .dat > .atr > .val {
+  margin: .1rem;
+}

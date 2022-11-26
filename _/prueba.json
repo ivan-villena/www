@@ -1,12 +1,2 @@
-[
-  {
-    "atr": [ "car", "acc", "pod" ],
-    "ima": [ "arm_cel", "arm_raz", "cro_ele", "cro_fam" ],
-    "lec-lis": [ "cic_ser_des", "cic_luz_des", "arm_tra_des", "arm_raz_des", "arm_cel_des", "cro_ele_des", "sol_pla_des" ],
-    "tit": [ "des_pro", "des_por", "des_som" ],
-    "lis-1": [ "des_rec" ],
-    "lec": [ "des_men", "des_afi" ],
-    "lec-2": [ "pal", "pal_som" ],
-    "htm": "<p class=\"tit\">Fuentes</p><ul><li>Libro<c>:<c> El Kin<c>,<c> tu Signo Maya<c>.<c></li><li>Página<c>:<c> ...</li></ul>"
-  }
-]
+{
+}

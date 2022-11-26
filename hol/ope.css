@@ -1,0 +1,169 @@
+/* 
+  Articulo: Tableros 
+*/
+
+.app_sec > article {
+  max-width: fit-content;
+  padding: 0;
+  border: initial;
+  margin: auto;
+  line-height: initial;
+}
+
+.app_sec > article > .app_tab {
+  margin: auto;
+}
+
+/* 
+  Panel: cuentas
+*/
+.app_pan > .ide-val > .ide-cue > ul {
+  height: 40vh;
+}
+
+/*///////////////////////////////////////*/
+/*///////////////////////////////////////*/
+
+/* Extensiones */
+.app_tab ._hol-par_ana-ext { border: 1px solid var(--col_roj) !important; }
+.app_tab ._hol-par_gui-ext { border: 1px solid var(--col_bla) !important; }
+.app_tab ._hol-par_ant-ext { border: 1px solid var(--col_azu) !important; }
+.app_tab ._hol-par_ocu-ext { border: 1px solid var(--col_ama) !important; }
+
+/* Parejas */
+.app_tab ._hol-par_ana { border: 1px solid var(--col_roj) !important; }
+.app_tab ._hol-par_gui { border: 1px solid var(--col_bla) !important; }
+.app_tab ._hol-par_ant { border: 1px solid var(--col_azu) !important; }
+.app_tab ._hol-par_ocu { border: 1px solid var(--col_ama) !important; }
+
+/*///////////////////////////////////////*/
+/*///////////////////////////////////////*/
+
+
+/* Tzolkin */
+main > article > .app_tab.kin_tzo > :is(.app_ope,.sec) {
+  width: 1.9rem; 
+  height: 1.9rem;
+}
+/* Nave del Tiempo */
+main > article > .app_tab.kin_nav {
+  grid-gap: .15rem;
+}
+main > article > .app_tab.kin_nav .app_ope {
+  width: 1.10rem; 
+  height: 1.10rem;  
+}
+/* Giro Galáctico */
+main > article > .app_tab.kin_arm {
+  grid-gap: .3rem;
+}
+main > article > .app_tab.kin_arm .app_ope {
+  width: 1.08rem; 
+  height: 1.08rem;
+}
+/* Giro Espectral */
+main > article > .app_tab.kin_cro {
+  grid-gap: .3rem;
+}
+main > article > .app_tab.kin_cro .app_ope {
+  width: 1rem; 
+  height: 1rem;
+}
+
+/* Giro Solar */
+main > article > .app_tab.psi_ban :is(.app_ope,.sec) {
+  width: 1.4rem;
+  height: 1.4rem;
+}
+/* Estacion Solar */
+main > article > .app_tab.psi_est .app_ope {
+  width: .9rem; 
+  height: .9rem;
+}
+/* Giro Lunar */
+main > article > .app_tab.psi_lun :is(.app_ope,.sec) {
+  width: 5rem; 
+  height: 5rem;
+}
+/* Banco-Psi */
+main > article > .app_tab.psi_tzo .app_ope {
+  width: 1rem; 
+  height: 1rem;
+}
+
+@media ( max-width: 790px ){
+  
+  main > article > .app_tab.psi_ban :is(.app_ope,.sec) {
+    width: 1rem; 
+    height: 1rem;
+  }
+  main > article > .app_tab.psi_tzo .app_ope {
+    width: .85rem; 
+    height: .85rem;
+  }
+}
+
+@media ( max-width: 550px ){
+  
+  main > article > .app_tab.kin_nav .app_ope {
+    width: .75rem; 
+    height: .75rem;
+  }  
+  
+  main > article > .app_tab.kin_arm .app_ope {
+    width: .65rem; 
+    height: .65rem;
+  }
+
+  main > article > .app_tab.kin_cro {
+    grid-gap: 0;
+  }
+  main > article > .app_tab.kin_cro .app_ope {
+    width: .8rem; 
+    height: .8rem;    
+  }
+
+  main > article > .app_tab.psi_ban :is(.app_ope,.sec) {
+    width: .8rem; 
+    height: .8rem;
+  }
+  main > article > .app_tab.psi_est .app_ope {
+    width: .7rem; 
+    height: .7rem;
+  }
+  main > article > .app_tab.psi_lun :is(.app_ope,.sec) {
+    width: 4rem; 
+    height: 4rem;
+  }
+  main > article > .app_tab.psi_tzo .app_ope {
+    width: .65rem; 
+    height: .65rem;
+  }
+}
+
+@media ( max-width: 400px ){
+  
+  main > article > .app_tab.kin_tzo > :is(.app_ope,.sec) {
+    width: 1.5rem; 
+    height: 1.5rem;
+    font-size: .5rem;
+  }
+
+  main > article > .app_tab.psi_ban :is(.app_ope,.sec) {
+    width: .6rem; 
+    height: .6rem;
+    font-size: .5rem;
+  }
+  main > article > .app_tab.psi_est .app_ope {
+    width: .55rem; 
+    height: .55rem;
+  }
+  main > article > .app_tab.psi_lun :is(.app_ope,.sec) {
+    width: 2.8rem; 
+    height: 2.8rem;
+  }  
+  main > article > .app_tab.psi_tzo .app_ope {
+    width: .45rem; 
+    height: .45rem;
+  }
+}

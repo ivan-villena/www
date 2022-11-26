@@ -1,0 +1,154 @@
+
+/* 
+  Listados 
+*/
+dl, 
+ul, 
+ol {  
+  text-align: left;
+  margin: .5rem 0;
+}
+
+ul, 
+ol {
+  padding-left: 1rem;
+}
+
+/* de términos */
+dl dt {
+  margin-top: .5rem;
+}
+dl dd { 
+  margin-left: 1rem;  
+}
+
+/* 
+  por estilos 
+*/
+ol.ite-let {
+  list-style-type: lower-latin;
+}
+ol.ite-rom {
+  list-style-type: lower-roman;
+}
+ol.ite-let_may {
+  list-style-type: upper-latin;
+}
+ol.ite-rom_may {
+  list-style-type: upper-roman;
+}
+
+ul.ite-pun {
+  list-style: disc;
+}
+ul.ite-cir {
+  list-style: circle;
+}
+ul.ite-cua {
+  list-style: square;
+}
+
+/* items de lista */
+ul:is(.lis,.val,.ope,.bar) {
+  list-style: none;
+}
+
+/* 
+anidadas
+*/
+ul.lis {
+  overflow: auto;
+  padding: 0;
+  margin: .5rem 0;
+}
+ul.lis ul.lis {
+  overflow: initial;  
+  margin-left: 1rem;
+  margin-top: .25rem;
+}
+ul.lis.sep > li {
+  margin-bottom: .5rem;
+}
+ul.lis:not(.dir-hor) > li.sep  {
+  margin-left: 1.5rem;
+}
+ul.lis li > .val {
+  border-radius: .2rem;
+  padding: .25rem;
+}
+
+/* 
+valores horizontales 
+*/
+ul:is(.val,.bar) {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+/* 
+item horizontal 
+*/
+ul.ite > li {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  margin: .2rem 0;
+}
+
+/* 
+horizontal
+*/
+ul.val {
+  justify-content: space-around;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+}
+
+/* 
+horizontal con desplazamiento por item
+*/
+ul.bar { 
+  margin: 0;
+}
+ul.bar li[data-pos] {
+  width: 100%;
+  overflow: auto;
+}
+
+/* 
+Tabla-Estructura 
+*/
+table {
+  width: max-content;
+  max-width: 100%;
+  border-collapse: separate; /* espaciado aplica cuando el collapse es separate // not:: collapse: collapse */  
+  border-spacing: .2rem .1rem; /* => horizontal-izquierda vertical-superior */
+}
+table th {
+  color: var(--let_ide);
+}
+table th p {
+  color: var(--let_tex);
+}
+
+/* 
+  Indices
+*/
+ul.lis a {
+  display: inline-block;
+  width: 100%;
+  text-decoration: none;
+  color: var(--let_tex);
+}
+ul.lis.nav li.pos.sep,
+ul.lis.nav li.pos:not(.sep) > div.val {
+  margin-top: .1rem;
+  margin-bottom: .1rem;
+  padding: .25rem;
+}
+ul.lis.nav li.pos.sep:hover,  
+ul.lis.nav li.pos:not(.sep) > div.val:hover {
+  background-color: var(--fon_foc);
+  border-radius: .25rem;
+}

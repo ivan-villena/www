@@ -1,0 +1,22 @@
+/* 
+  Opciones
+*/
+input:is([type='radio'],[type='checkbox']) {
+  cursor: pointer;
+}
+
+select, 
+datalist, 
+option, 
+optgroup {
+  cursor: pointer;  
+  font-family: var(--tex);
+  color: var(--let_tex);
+}
+optgroup {
+  color: var(--let_opc);
+}
+
+input[type='color']{
+  width: 2rem;
+}

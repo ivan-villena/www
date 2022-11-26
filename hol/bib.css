@@ -1,0 +1,10 @@
+/* 
+  Libros 
+*/
+main section {
+  padding: 0 2rem;
+}
+
+body[data-art="asc"] > main figure {
+  margin: 1em 0;
+}
