@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora');
+
+:root { 
+  /* 
+    colores:
+  */
+
+  /* fondos */
+  --fon_win:rgba(015, 015, 015, 1);
+  --fon_sec:rgba(015, 015, 015, .9);
+  --fon_art:rgba(015, 015, 015, .6);
+  --fon_nav:rgba(020, 005, 005, .3);
+  --fon_foc:rgba(049, 134, 245, .3);
+  --fon_sel:rgba(130, 167, 216, .6);
+
+  /* Bordes */
+  --bor_val:rgb(080, 125, 188);
+  --bor_sel:rgb(005, 031, 068);
+  --bor_dat:rgb(116, 066, 200);
+
+  /* letras */
+  --let_ide:#779adc;
+  --let_val:#cd5de9;
+  --let_err:#ff0000;
+  --let_num:#7fff00;
+  --let_tex:#dfda4c;
+  --let_ope:#b8860b;
+  --let_lis:#00eeff;
+  --let_obj:#001aff;
+  
+  /* colores sólidos */    
+  --col_tra:rgba(0,0,0,0);      
+  --col_bla:#ffffff;
+  --col_neg:rgb(000,000,000);
+  --col_gri:rgb(125,125,125);
+  --col_roj:rgb(252,040,071);
+  --col_ros:rgb(251,124,253);
+  --col_ama:rgb(243,243,026);
+  --col_nar:rgb(255,163,067);
+  --col_mar:rgb(107,059,008);
+  --col_ver:rgb(007,189,025);
+  --col_azu:rgb(015,076,129);
+  --col_vio:rgb(116,066,200);
+  --col_cel:rgb(066,189,200);
+    
+  /* transparencias */  
+  --tra_bla:rgba(255,255,255,.7);
+  --tra_neg:rgba(000,000,000,.7);
+  --tra_gri:rgba(125,125,125,.7);
+  --tra_roj:rgba(252,040,071,.7);
+  --tra_ros:rgba(251,124,253,.7);
+  --tra_ama:rgba(243,243,026,.7);
+  --tra_nar:rgba(255,163,067,.7);
+  --tra_mar:rgba(107,059,008,.7);
+  --tra_ver:rgba(007,189,025,.7);
+  --tra_azu:rgba(015,076,129,.7);
+  --tra_vio:rgba(116,066,200,.7);
+  --tra_cel:rgba(066,189,200,.7);
+}
+
+*, :before, :after { 
+  box-sizing: border-box;
+}
+
+html {
+  font-family: 'Lora', 'Book Antiqua', 'Georgia';  
+  font-size: 14px;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  background: center/cover no-repeat url('../../img/app/fon/01.jpg');
+  color: var(--let_tex);
+  margin: 0;
+}
+
+/*//////////////////////////////////////////////////////////////////////*/
+/*//////////////////////////////////////////////////////////////////////*/
+
+/* 
+  Modal : Operador
+*/
+body > .doc_win > .ide-app_ope {
+  z-index: 9999;
+  height: 95vh;
+  background-color: var(--fon_win);
+}
+body > .doc_win > .ide-app_ope > header + * {
+  align-items: center;
+}
+body > .doc_win > .ide-app_ope > header + * > section {
+  margin: .5rem;
+}
+/* -- Estructuras */
+body > .doc_win > .ide-est {
+  max-width: 60rem;
+  height: 90vh;
+}
+body > .doc_win > .ide-est > div {
+  padding: 0;
+}
+body > .doc_win > .ide-est > div > .app_est {
+  height: 77vh;
+}
+
+/*//////////////////////////////////////////////////////////////////////*/
+/*//////////////////////////////////////////////////////////////////////*/
+
+/* 
+  Panel : Menú Principal e indices 
+*/
+body > .doc_pan > .ide-app_cab ul.lis.nav {
+  height: 85vh;
+}
+body > .doc_pan > .ide-app_nav ul.lis.nav {
+  height: 81vh;
+}

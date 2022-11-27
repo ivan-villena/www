@@ -1,0 +1,142 @@
+/* 
+ Textos
+*/
+
+/* 
+  Separador 
+*/
+hr{   
+  margin: 2rem;
+}
+
+/* 
+  Títulos 
+*/
+h1, h2, h3, h4, h5, h6 {
+  margin: 1rem 0 .3rem;
+  text-decoration: underline;
+  font-style: italic;
+  font-weight: bold;
+}
+
+h1 { font-size: 1.8rem; } 
+h2 { font-size: 1.5rem; }
+h3 { font-size: 1.3rem; } 
+h4 { font-size: 1.2rem; } 
+h5 { font-size: 1.1rem; }
+h6 { font-size: 1rem; }
+
+/* 
+  Enlaces
+*/
+a:not(.fig_ico,.tex) {
+  text-decoration: underline;
+  font-style: italic;
+  color: var(--let_ide);
+}
+a.tex {
+  text-decoration: none;
+}
+
+/* 
+  letra
+*/
+c {
+  display: inline;  
+  font-weight: bold; 
+  color: var(--let_ope);
+  text-shadow: 0 0 5px;  
+}
+c.sep { 
+  margin: .3rem;
+}
+/* 
+  Numeros 
+*/
+n {
+  display: inline;
+}
+
+n, sup, sub {
+  text-shadow: 0 0 5px;
+  color: var(--let_num);
+}
+
+/* 
+  textos
+*/
+p {
+  margin: 0;
+}
+q, blockquote { 
+  quotes: "\"" "\"" "'" "'";
+}
+:is(q,blockquote)::after, 
+:is(q,blockquote)::before {
+  color: var(--let_ope);
+  text-shadow: 0 0 5px;
+}
+
+/* 
+  párrafo
+*/
+p.cit {
+  margin: .75rem auto;
+  font-style: italic;
+}
+p.tit {
+  margin-top: .5rem;
+  text-decoration: underline; 
+  font-weight: bold; 
+  font-style: italic;
+}
+p.des {
+  font-style: italic;
+}
+
+/* 
+  colores  
+*/
+dfn, /* Definiciones */
+abbr, /* Abreviaturas */
+dl dt, /* Términos */
+:is(b,i).ide { 
+  color: var(--let_ide); 
+}
+:is(b,i).val { 
+  color: var(--let_val); 
+}
+:is(b,i).tex { 
+  color: var(--let_tex); 
+}
+:is(b,i).num { 
+  color: var(--let_num); 
+}
+:is(p,b,i).err { 
+  color: var(--let_err); 
+}
+
+/* 
+  Artículos
+*/
+article > p,
+article section > p {
+  margin-bottom: .5rem;
+}
+article > ul,
+article section > ul {
+  margin: .5rem auto;
+  max-width: fit-content;  
+}
+article > figure,
+article section > figure {
+  margin: 1rem auto;
+}
+
+/* 
+  controladores
+*/
+textarea {
+  padding: .6rem;
+  resize: vertical;
+}

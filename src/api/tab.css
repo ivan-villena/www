@@ -1,0 +1,87 @@
+/* 
+  Tablero
+*/
+.tab:is(ul,table) {
+  min-width: max-content;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;  
+  text-align: center;
+  font-size: .7rem;
+  transition: background 1s, border 1s;  
+}
+
+ul.tab {
+  list-style: none;
+  display: grid;
+  width: fit-content;
+  align-self: center;
+  margin: 0;
+  padding: 0;
+}
+
+table.tab {
+  border-collapse: collapse;
+}
+
+/* 
+  posiciones y secciones 
+*/
+.tab:is(ul,table) .pos,
+.tab:is(ul,table) .sec {
+  transition: background 1s, border 1s;
+}
+
+ul.tab > li.pos:not(.dep) {
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  align-content: center; 
+  justify-content: center;
+}
+
+/* 
+  Bordes 
+*/
+.tab:is(ul,table) .pos.bor-1 {
+  border-color: #008000;
+}
+/* por seleccion */
+.tab:is(ul,table) .pos[class*="_val-"][class*="_bor"] {
+  border: 1px solid #991d99;
+}
+
+/* 
+  Fondos 
+*/
+.tab:is(ul,table) > .sec.fon { 
+  grid-column: 1/sp; grid-row: 1/sp;
+  width: 100%; height: 100%;
+  z-index: -1;
+}
+
+/* Efectos */
+.tab:is(ul,table) .pos[onclick]:not(.dep):hover {
+  background-color:var(--tra_ros);
+  color:black;
+}
+
+/* 
+  Fichas 
+*/
+.tab:is(ul,table) :is(.sec,.pos) > .arc_ima {
+  min-width: 100%;
+  height: 100%;
+}
+.tab:is(ul,table) td:is(.sec,.pos) > .arc_ima {
+  min-height: 100%;
+}
+
+/* 
+  textos 
+*/
+.tab:is(ul,table) :is(.sec,.pos) > p {
+  text-align: center;
+}

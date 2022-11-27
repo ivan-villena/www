@@ -1,0 +1,199 @@
+
+/* 
+campos
+*/
+form {
+  max-height: 100%;
+}
+
+fieldset {
+  border-radius: .5rem;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+form:is(.lis,.ren,.ite,.dat,.val), 
+fieldset:is(.lis,.ren,.ite,.dat,.val) {
+  display: flex;
+  flex-direction: column;  
+  align-items: center;
+}
+
+/* horizontales */
+form:is(.ren,.ite,.val), 
+fieldset:is(.ren,.ite,.val) {  
+  flex-flow: row wrap;
+  justify-content: start;
+}
+form:is(.ite,.val),
+fieldset:is(.ite,.val) {
+  flex-wrap: nowrap;
+}
+
+form:is(.ren,.ite),
+fieldset:is(.ren,.ite) {
+  flex-grow: 2;
+  align-self: stretch;
+}
+/* grupos */
+fieldset:is(.ren,.ite) {
+  margin: .4rem 0;
+}
+fieldset.ren {
+  justify-content: space-evenly;
+}
+/* renglones */
+:is(form,fieldset) > :is(.ren,.ite) {
+  justify-content: space-evenly;
+  margin: .5rem .5rem;
+}
+
+/*//////////////////////////////////////////////////////////////////////*/
+/*//////////////////////////////////////////////////////////////////////*/
+
+/* 
+  Etiquetas 
+*/
+label, 
+legend {
+  display: flex;  
+  flex-flow: row nowrap;
+  align-items: center;
+}
+label {
+  min-width: fit-content; 
+  min-width: -moz-fit-content;
+  margin: .25rem;
+}
+legend {
+  overflow: hidden;
+  padding: .3rem 1rem;
+  border-radius: 10px;
+  border: 1px solid var(--bor_dat);
+  font-size: medium;
+}
+
+/* 
+  valores
+*/
+input, 
+textarea,
+select,
+datalist,
+button {
+  background-color: var(--fon_art);
+  padding: .2rem;
+  border: 1px solid var(--col_azu);
+  border-radius: .5rem;
+  font-family: var(--tex);
+  color: var(--let_tex);
+}
+
+/* Focos */
+:is(input,select,button:not(.fig_ico)):focus {
+  background-color: var(--tra_azu);
+}
+:is(input,select,textarea):focus {
+  outline: none;
+}
+/* Acciones */
+*[onclick], label[for] {
+  cursor: pointer;
+}
+
+/* Tamaños */
+input:is([type="text"]) {
+  width: 100%;
+  max-width: 80vw;
+}
+input[maxlength='1'] { width: 2.5rem; }
+input[maxlength='2'] { width: 3rem; }
+input[maxlength='3'] { width: 3.5rem; }
+input[maxlength='4'] { width: 4rem; }
+input[maxlength='5'] { width: 4.5rem; }
+input[maxlength='6'] { width: 5rem; }
+input[maxlength='7'] { width: 5.5rem; }
+input[maxlength='8'] { width: 6rem; }
+input[maxlength='9'] { width: 6.5rem; }
+input[maxlength='10']{ width: 7rem; }
+input[maxlength='11']{ width: 7.5rem; }
+input[maxlength='12']{ width: 8rem; }
+input[maxlength='13']{ width: 8.5rem; }
+input[maxlength='14']{ width: 9rem; }
+input[maxlength='15']{ width: 9.5rem; }
+input[maxlength='16']{ width: 10rem; }
+input[maxlength='17']{ width: 10.5rem; }
+input[maxlength='18']{ width: 11rem; }
+input[maxlength='19']{ width: 11.5rem; }
+input[maxlength='20']{ width: 12rem; }
+input[maxlength='25']{ width: 15rem; }
+
+/*//////////////////////////////////////////////////////////////////////*/
+/*//////////////////////////////////////////////////////////////////////*/
+/* 
+Informe
+*/
+:is(form,fieldset,article,section,div).inf {
+  display: flex;
+  flex-direction: column;
+  padding: .25rem;
+  border: 1px solid var(--bor_dat);
+  border-radius: .5rem;
+  margin: .5rem;  
+}
+
+:is(fieldset,div).inf {
+  flex-grow: 2;
+  align-items: center;
+}
+:is(form,fieldset,div).inf.ren {
+  flex-flow: row wrap;
+}
+:is(form,fieldset,div).inf.ite {
+  flex-flow: row nowrap;
+}
+
+:is(article).inf {
+  margin-left: auto;
+  margin-right: auto;
+}
+:is(article).inf > * {
+  margin: .5rem;
+}
+
+/*//////////////////////////////////////////////////////////////////////*/
+/*//////////////////////////////////////////////////////////////////////*/
+/* 
+  ABM de la base
+*/
+form.dat {
+  width: 100%;
+  max-width: 40rem;
+  background-color: var(--fon_nav);
+  border-radius: .5rem;
+  padding: 0 .5rem;   
+  margin: auto;
+}
+
+form.dat :is(fieldset,div).var {
+  flex-grow: 2;
+  flex-direction: column;
+  align-items: start;
+  margin: .5rem;
+}
+
+form.dat :is(fieldset,div).var label[for] {
+  margin: 0;
+  color: var(--let_ide);
+  padding: .5rem;
+}
+
+form.dat :is(fieldset,div).var select,
+form.dat :is(fieldset,div).var textarea,
+form.dat :is(fieldset,div).var input:not([type='checkbox']):not([type='radio']) {
+  width: 100%; width:-webkit-fill-available; width:-moz-available;  
+  border: 0;
+  border-radius: 0;
+  border-bottom: 1px solid;
+}

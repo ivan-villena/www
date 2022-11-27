@@ -1,0 +1,11 @@
+/* 
+  Libros 
+*/
+main.doc_sec section {
+  padding: 0 2rem;
+}
+
+/* Tierra en Ascenso */
+body[data-art="asc"] > main.doc_sec figure {
+  margin: 1em 0;
+}
