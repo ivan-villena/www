@@ -16,7 +16,7 @@ ul.tab {
   display: grid;
   width: fit-content;
   align-self: center;
-  margin: 0;
+  margin: auto;
   padding: 0;
 }
 

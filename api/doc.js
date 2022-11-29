@@ -105,7 +105,7 @@ class doc {
     $api_app.doc.sec.scroll(0, 0);
   }
 
-  // indice
+  // indice por artículos
   static art( $dat, $cla = FON_SEL ){
 
     let $ = { lis : ele.val_ver($dat,{'eti':'nav'}) };
@@ -138,7 +138,7 @@ class doc {
 
     let $={};
 
-    if( $.nav = $lis ? app.art_mar($lis) : false ){
+    if( $.nav = $lis ? doc.art_mar($lis) : false ){
       // hago toogles ascendentes
       while( 
         ( $.lis = ele.val_ver($.nav,{'eti':'ul'}) ) 
@@ -160,7 +160,7 @@ class doc {
     // hago toogle por item
     if( $val && ( $nav = $lis.querySelector(`a[href="#${$val}"]`) ) ){
         
-      app.art($nav);
+      doc.art($nav);
     }
 
     return $nav;
@@ -171,7 +171,7 @@ class doc {
     lis.ite_ver($dat, $ope);
 
     // volver a marcar el fondo del elemento seleccionado
-    app.art_tog($api_app.var.nextElementSibling);
+    doc.art_tog($api_app.var.nextElementSibling);
 
   }  
 

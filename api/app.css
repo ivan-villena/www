@@ -72,8 +72,6 @@ body {
   flex-direction: column;
   width: 100vw;
   height: 100vh;
-  background: center/cover no-repeat url('../../img/app/fon/01.jpg');
-  color: var(--let_tex);
   margin: 0;
 }
 

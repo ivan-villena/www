@@ -37,12 +37,14 @@ class hol {
     return $_;
   }
 
-  // imagen : img/hol
+  // imagen 
   static ima( $est, $dat, $ele ){
 
     return arc.ima('hol',`${$est}`,$dat,$ele);
   }
 
+  // tablero
+  // ...
   // Valores acumulados
   static tab_val( $ope ){
 
@@ -64,8 +66,7 @@ class hol {
 
     // Actualizo operador de acumulados
     app_tab.act('opc');
-  }
-  // Secciones
+  }// Secciones
   static tab_sec( $dat, $ope, ...$opc ){
 
     let $ = doc.var($dat);    
@@ -294,8 +295,7 @@ class hol {
       }
       break;
     }
-  }
-  // portales de activacion
+  }// portales de activacion
   static tab_pag( $dat, $ope, ...$opc ){
 
     let $ = doc.var($dat);
@@ -341,8 +341,7 @@ class hol {
     }
     // Actualizo acumulados
     hol.tab_val($dat);
-  }
-  // parejas del oráculo
+  }// parejas del oráculo
   static tab_par( $dat, $ope, ...$opc ){
 
     let $ = doc.var($dat);
@@ -425,8 +424,7 @@ class hol {
         app_tab.act('opc');        
       }
     }
-  }
-  // pulsares de onda
+  }// pulsares de onda
   static tab_pul( $dat, $ope, ...$opc ){
 
     let $ = doc.var($dat);
@@ -489,6 +487,5 @@ class hol {
     }
     // actualizo acumulados
     hol.tab_val($dat);
-  }  
-  
+  }    
 }

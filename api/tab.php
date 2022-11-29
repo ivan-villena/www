@@ -296,13 +296,10 @@ class tab {
     // listado : Valores + Columnas + Descripciones
     case 'lis':
       // cargo operador con datos del tablero
-      $_ = est::lis($dat,[ 
-        'est' => isset($ope['est']) ? $ope['est'] : NULL,
-        'dat' => isset($ope['dat']) ? $ope['dat'] : NULL,
-        'val' => isset($ope['val']) ? $ope['val'] : NULL,
-        'ope' => [ "val", "ver", "atr", "des" ],
-        'opc' => [ "ite_ocu" ] 
-      ],$ele);    
+      if( !isset($ope['ope']) ) $ope['ope'] = [ "val", "ver", "atr", "des" ];
+      if( !isset($ope['opc']) ) $ope['opc'] = [];
+      array_push($ope['opc'],"ite_ocu");
+      $_ = est::lis($dat,$ope,$ele);
       break;
     }
     return $_;
@@ -394,7 +391,7 @@ class tab {
       }
     }// por dependencias estructura
     else{
-      if( !empty( $dat_est = dat::ope($esq,$est,'rel') ) ){
+      if( !empty( $dat_est = dat::est_ope($esq,$est,'rel') ) ){
 
         foreach( $dat_est as $atr => $ref ){
 

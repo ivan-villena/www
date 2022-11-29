@@ -31,7 +31,7 @@ class app {
   };
   // Estructura
   est = {
-    lis : `article.ide-est .app_est`,
+    lis : `article.ide-est div.est`,
     // Valores
     val : {
       acu : `article.ide-est .ide-val .ide-acu`,      
@@ -131,12 +131,12 @@ class app {
     // inicio : muestro menu
     if( !$api_app.uri.cab ){
 
-      ( $.bot_ini = $api_app.doc.bot.querySelector('.fig_ico.app_cab') ) && $.bot_ini.click();
+      ( $.bot_ini = $api_app.doc.bot.querySelector('.fig_ico.doc_cab') ) && $.bot_ini.click();
     }
     // articulo
     else{
       // menu: expando seleccionado
-      if( $.cab = $api_app.doc.pan.querySelector(`nav.ide-app_cab p.ide-${$api_app.uri.cab}`) ) 
+      if( $.cab = $api_app.doc.pan.querySelector(`nav.ide-doc_cab p.ide-${$api_app.uri.cab}`) ) 
         $.cab.click();
 
       // operadores
@@ -149,11 +149,11 @@ class app {
       }
       // indice por artículo
       else if( $api_app.uri.art ){
-        if( $.art_nav = $api_app.doc.pan.querySelector('nav.ide-app_nav ul.lis.nav') ){
+        if( $.art_nav = $api_app.doc.pan.querySelector('nav.ide-doc_art ul.lis.nav') ){
           // inicio indice
-          app.art_tog($.art_nav);
+          doc.art_tog($.art_nav);
           // muestro panel
-          doc.pan('app_nav');
+          doc.pan('doc_art');
         }
       }
     }

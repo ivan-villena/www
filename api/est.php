@@ -415,7 +415,7 @@ class est {
               foreach( self::$DAT as $esq => $est_lis ){
                 foreach( $est_lis as $est => $est_ope ){
                   // recorro por relaciones
-                  if( $dat_rel = dat::ope($esq,$est,'rel') ){
+                  if( $dat_rel = dat::est_ope($esq,$est,'rel') ){
                     foreach( $dat_rel as $atr => $ref ){
                       $ele['ite']["data-{$ref}"] = $_val_obj ? $val->$atr : $val["{$ref}"];
                     }
@@ -720,7 +720,8 @@ class est {
 
     $_ite = function( string $esq, string $est, array $ope = [] ) : array {
       
-      if( !( $_ = dat::ope($esq,$est,'est') ) ) $_ = [];      
+      // inicializo atributos de lista
+      $_ = [];
               
       // reemplazo atributos por defecto
       if( isset($ope['atr']) ){
@@ -764,11 +765,12 @@ class est {
         if( is_string($est_pos) ){
           $_[$esq_ide][$est_pos] = $_ite($esq_ide,$est_pos,$est_dat);
         }
-        else{          
+        else{
           $_[$esq_ide][$est_dat] = $_ite($esq_ide,$est_dat);
         }
       }
     }
+
     return $_;
   }// columnas : por atributos
   static function lis_atr( string | array $dat, array $ope = [], array $ele = [] ) : string {
@@ -904,7 +906,7 @@ class est {
       $_atr = dat::atr($esq,$est);
       $ele['dat_val']['data-esq'] = $esq;
       $ele['dat_val']['data-est'] = $est;
-      $est_ima = dat::ope($esq,$est,'opc.ima');
+      $est_ima = dat::est_ope($esq,$est,'opc.ima');
       // recorro atributos y cargo campos
       foreach( $ope['atr'] as $atr ){
         $ele_dat = $ele['dat_val'];
@@ -915,7 +917,7 @@ class est {
         $ele_val = $ele['val'];
         
         if( $opc_ima && ( !empty($est_ima) && in_array($atr,$est_ima) ) ){
-          ele::cla($ele_val,"tam-5");
+          ele::cla($ele_val,"tam-5 mar-1");
           $ide = 'ima';
         }
         // variables

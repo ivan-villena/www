@@ -60,11 +60,11 @@
       SELECT
         _ana.ini,
         _ini.nom AS `ini_nom`,
-        _ini.car AS `ini_car`,
+        _ini.des_car AS `ini_car`,
         _ini.des AS `ini_des`,
         _ana.fin,
         _fin.nom AS `fin_nom`,
-        _fin.car AS `fin_car`,
+        _fin.des_car AS `fin_car`,
         _fin.des AS `fin_des`
       FROM 
         `hol_sel_par_ana` _ana
@@ -78,11 +78,11 @@
       SELECT
         _ant.ini,
         _ini.nom AS `ini_nom`,
-        _ini.car AS `ini_car`,
+        _ini.des_car AS `ini_car`,
         _ini.des AS `ini_des`,
         _ant.fin,
         _fin.nom AS `fin_nom`,
-        _fin.car AS `fin_car`,
+        _fin.des_car AS `fin_car`,
         _fin.des AS `fin_des`
       FROM 
         `hol_sel_par_ant` _ant
@@ -97,11 +97,11 @@
       SELECT
         _ocu.ini,
         _ini.nom AS `ini_nom`,
-        _ini.car AS `ini_car`,
+        _ini.des_car AS `ini_car`,
         _ini.des AS `ini_des`,
         _ocu.fin,
         _fin.nom AS `fin_nom`,
-        _fin.car AS `fin_car`,
+        _fin.des_car AS `fin_car`,
         _fin.des AS `fin_des`
       FROM 
         `hol_sel_par_ocu` _ocu
@@ -115,6 +115,22 @@
   --
   -- x52 : Castillo fractal-galactico
 
+    -- Cuadrantes
+    DROP VIEW IF EXISTS `_hol_cas_arm`; CREATE VIEW `_hol_cas_arm` AS
+      SELECT 
+        _cas.*,
+        _arm.col,
+        _arm.dir,
+        _arm.pod,
+        _arm.pol,
+        _arm.dia
+      FROM 
+        `hol_cas_arm` _cas
+      INNER JOIN 
+        `hol_arm` _arm ON _arm.ide = _cas.ide
+      ORDER BY
+        _cas.ide
+    ;
     -- onda de la aventura
     DROP VIEW IF EXISTS `_hol_cas_ond`; CREATE VIEW `_hol_cas_ond` AS
       SELECT 
@@ -139,7 +155,7 @@
       FROM 
         `hol_kin_cro_est` _est
       INNER JOIN 
-        `hol_cas_arm` _cas ON _est.ide = _cas.ide
+        `_hol_cas_arm` _cas ON _est.ide = _cas.ide
       ORDER BY
         _est.ide        
     ;-- días estacionales
@@ -238,9 +254,9 @@
         _ton.nom AS `ton_nom`,
         _ton.des AS `ton_des`,
         _ton.gal AS `ton_gal`,
-        _ton.car AS `ton_car`,
-        _ton.pod AS `ton_pod`,
-        _ton.acc AS `ton_acc`,
+        _ton.des_car AS `ton_car`,
+        _ton.des_pod AS `ton_pod`,
+        _ton.des_acc AS `ton_acc`,
         _ton.sim AS `ton_sim`,
         _ton.mat AS `ton_mat`,
         _ton.dim AS `ton_dim`,
@@ -274,7 +290,7 @@
       INNER JOIN 
         `hol_cas` _cas ON _hep.ide = _cas.ide
       INNER JOIN 
-        `hol_cas_arm` _arm ON _cas.arm = _arm.ide        
+        `hol_arm` _arm ON _cas.arm = _arm.ide        
       INNER JOIN 
         `hol_ton` _ton ON _cas.ton = _ton.ide
       ORDER BY

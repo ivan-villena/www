@@ -10,6 +10,7 @@ class hol_ope {
     let $ = doc.var($dat);
     
     $.uri = `${$api_app.uri.esq}/ope/${ $api_app.uri.cab == 'ope' ? $api_app.uri.art : 'kin_tzo' }`;
+    
     // calendario gregoriano
     if( $api_app.var.classList.contains('fec') ){
       

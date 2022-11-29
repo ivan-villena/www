@@ -149,7 +149,32 @@ class dat {
     }
 
     return $_;
+  }// cargo operador: valores + relaciones + atributos + informe + listado + opciones
+  static function est_ope( string $esq, string $est, string $ope, mixed $dat = NULL ) : mixed {
+    global $api_dat;
+    if( !isset($api_dat->_est_ope[$esq][$est]) ){
+      
+      $api_dat->_est_ope[$esq][$est] = dat::get('app_dat',[
+        'ver'=>"`esq`='{$esq}' AND `ide`='{$est}'", 
+        'ele'=>"ope",
+        'red'=>"ope",
+        'opc'=>"uni"
+      ]);
+    }
+    $_ = $api_dat->_est_ope[$esq][$est];
+
+    // cargo atributo
+    foreach( ( $ope_atr = explode('.',$ope) ) as $ide ){
+
+      $_ = ( is_array($_) && isset($_[$ide]) ) ? $_[$ide] : FALSE;
+    }
+
+    // proceso valores con datos
+    if( $ope_atr[0] == 'val' && isset($dat) ) $_ = obj::val( dat::get($esq,$est,$dat), $_ );
+
+    return $_;
   }
+
   // atributo : datos + tipo + variable
   static function atr( string $esq, string $est, mixed $ide = NULL, string $tip = NULL, mixed $ope = NULL ) : mixed {
     $_ = [];
@@ -164,7 +189,7 @@ class dat {
       // cargo operadores del atributo
       $dat = &$api_dat->_atr[$esq][$est];
 
-      if( $dat_atr = dat::ope($esq,$est,'atr') ){
+      if( $dat_atr = dat::est_ope($esq,$est,'atr') ){
 
         foreach( $dat_atr as $i => $v ){
         
@@ -239,33 +264,6 @@ class dat {
     return $_;
   }
 
-  // cargo operadores de la estructura
-  static function ope( string $esq, string $est, string $ope, mixed $dat = NULL ) : mixed {
-    
-    global $api_dat;
-    if( !isset($api_dat->_ope[$esq][$est]) ){
-      
-      $api_dat->_ope[$esq][$est] = dat::get('app_dat',[
-        'ver'=>"`esq`='{$esq}' AND `ide`='{$est}'", 
-        'ele'=>"ope",
-        'red'=>"ope",
-        'opc'=>"uni"
-      ]);
-    }
-    $_ = $api_dat->_ope[$esq][$est];
-
-    // cargo atributo
-    foreach( ( $ope_atr = explode('.',$ope) ) as $ide ){
-
-      $_ = ( is_array($_) && isset($_[$ide]) ) ? $_[$ide] : FALSE;
-    }
-
-    // proceso valores con datos
-    if( $ope_atr[0] == 'val' && isset($dat) ) $_ = obj::val( dat::get($esq,$est,$dat), $_ );
-
-    return $_;
-  }
-
   // armo valores ( esq.est ): nombre, descripcion, imagen
   static function val( string $tip, string $ide, mixed $dat, array $ele = [] ) : string {
     $_ = "";
@@ -274,7 +272,7 @@ class dat {
     // cargo datos/registros
     $_dat = dat::get($esq,$est,$dat);
     // cargo valores
-    $_val = dat::ope($esq,$est,'val');
+    $_val = dat::est_ope($esq,$est,'val');
 
     // armo titulo : nombre <br> detalle
     if( $tip == 'tit' ){
@@ -304,7 +302,7 @@ class dat {
       
       // acceso a informe
       if( !isset($ele['onclick']) ){
-        if( dat::ope($esq,$est,'inf') ) ele::eje($ele,'cli',"dat.inf('$esq','$est',".intval($_dat->ide).")");
+        if( dat::est_ope($esq,$est,'inf') ) ele::eje($ele,'cli',"dat.inf('$esq','$est',".intval($_dat->ide).")");
       }
       elseif( $ele['onclick'] === FALSE ){
         unset($ele['onclick']);
@@ -483,7 +481,7 @@ class dat {
     $_opc_ite = function( string $esq, string $est, string $ide, string $cla = NULL ) : array {
       $_ = [];
       // atributos parametrizados
-      if( ( $dat_opc_ide = dat::ope($esq,$est,"opc.$ide") ) && is_array($dat_opc_ide) ){
+      if( ( $dat_opc_ide = dat::est_ope($esq,$est,"opc.$ide") ) && is_array($dat_opc_ide) ){
         // recorro atributos + si tiene el operador, agrego la opcion      
         foreach( $dat_opc_ide as $atr ){
           // cargo atributo
@@ -514,7 +512,7 @@ class dat {
       foreach( $est_lis as $est_ide ){
         // busco estructuras dependientes
         
-        if( $dat_opc_est = dat::ope($esq_ide,$est_ide,'rel') ){
+        if( $dat_opc_est = dat::est_ope($esq_ide,$est_ide,'rel') ){
 
           // recorro dependencias de la estructura
           foreach( $dat_opc_est as $dep_ide ){
@@ -587,7 +585,7 @@ class dat {
       }
     }
     // valido dato
-    if( !empty( $dat_Val = dat::ope($_['esq'],$_['est'],"val.$tip",$dat) ) ){
+    if( !empty( $dat_Val = dat::est_ope($_['esq'],$_['est'],"val.$tip",$dat) ) ){
       $_['ide'] = "{$_['esq']}.{$_['est']}";
       $_['val'] = $dat_Val;
     }
@@ -598,11 +596,17 @@ class dat {
   }
 
   // Listado
-  static function lis( string | array $dat, string $ide, string $tip, array $ele = [] ) : string {
+  static function lis( string | array $dat, string $ide, array $ele = [] ) : string {
     $_ = $dat;
     if( is_array($dat) ){
       if( !isset($ele['lis']) ) $ele['lis'] = [];
-      ele::cla($ele['lis'], "ide-{$ide}",'ini');
+      $ele['lis']['data-dat'] = $ide;
+      // tipos: pos + ite + tab
+      $tip = "ite";
+      if( isset($ele['lis_tip']) ){
+        $tip = $ele['lis_tip'];
+        unset($ele['lis_tip']);
+      }
       $_ = lis::$tip($dat, $ele);
     }
     return $_;
@@ -639,7 +643,7 @@ class dat {
         if( is_numeric($val) && isset($_atr->var['dat']) ){
           // busco nombres /o/ iconos
           $atr_ide = explode('.',$_atr->var['dat']);
-          $atr_dat = dat::ope( $atr_ide[0], $atr_ide[1], 'val');
+          $atr_dat = dat::est_ope( $atr_ide[0], $atr_ide[1], 'val');
           $atr_obj = [];
           if( class_exists($atr_cla = $atr_ide[0]) && method_exists($atr_cla,'_') ){
             $atr_obj = $atr_cla::_("{$atr_ide[1]}", $val);
@@ -700,7 +704,7 @@ class dat {
   }// Posiciones : listado de atributos con ficha + nombre ~ descripcion ~ posicion
   static function lis_pos( string $esq, string $est, array $dat, array $ele = [] ) : string {
     $_ = [];
-    foreach( dat::ope($esq,$est,'pos') as $ite ){
+    foreach( dat::est_ope($esq,$est,'pos') as $ite ){
       $var = [ 'ite'=>$ite['nom'], 'lis'=>[] ];
       extract( dat::ide($ite['ide']) );
       $ope_atr = dat::atr($esq,$est);
@@ -711,7 +715,7 @@ class dat {
         $_atr = isset($ope_atr[$atr]->var) ? $ope_atr[$atr]->var : [];
         $_ide = explode('.', $ide = isset($_atr['dat']) ?  $_atr['dat'] : "{$esq}.{$est}_{$atr}" );                
         $_dat = hol::_($_ide[1],$val);        
-        $_val = dat::ope($_ide[0],$_ide[1],'val');
+        $_val = dat::est_ope($_ide[0],$_ide[1],'val');
         
         $htm = "";
         if( isset($_val['ima']) ) $htm .=
@@ -741,7 +745,7 @@ class dat {
     // proceso estructura
     extract( dat::ide($ide) );
     if( !in_array('det',$opc) ){
-      if( ( $_fic = dat::ope($esq,$est,'fic') ) && isset($_fic[0]) ){ $_ .= 
+      if( ( $_fic = dat::est_ope($esq,$est,'fic') ) && isset($_fic[0]) ){ $_ .= 
 
         "<div class='val' data-esq='$esq' data-est='$est' data-atr='{$_fic[0]}' data-ima='$esq.$est'>".
         
@@ -756,7 +760,7 @@ class dat {
       }
     }// con titulo y detalle
     else{
-      $_val = dat::ope($esq,$est,'val');
+      $_val = dat::est_ope($esq,$est,'val');
       $_dat = [];
       if( class_exists($esq) && method_exists($esq,'_')){
         $_dat = $esq::_("{$est}",$val);
@@ -788,7 +792,7 @@ class dat {
     // busco valores
     if( isset($val) ) $val = dat::get($esq,$est,$val);
     // busco atributos 
-    if( empty($atr) ) $atr = dat::ope($esq,$est,'fic.ima');
+    if( empty($atr) ) $atr = dat::est_ope($esq,$est,'fic.ima');
     // Elementos
     if( !isset($ope['ima']) ) $ope['ima'] = [];
     if( empty($ope['ima']['class']) ) ele::cla($ope['ima'],"tam-4");
@@ -809,13 +813,13 @@ class dat {
   // Reporte : nombre + descripcion > imagen + atributos | lectura > detalle > tablero > ...
   static function inf( string $esq, string $est, mixed $dat = NULL, array $ope = NULL ) : string {
     $_ = "";      
-    if( $_inf = isset($ope) ? $ope : dat::ope($esq,$est,'inf') ){
+    if( $_inf = isset($ope) ? $ope : dat::est_ope($esq,$est,'inf') ){
       // cargo atributos
       $_atr = dat::atr($esq,$est);
       // cargo datos
       $_dat = dat::get($esq,$est,$dat);
       // cargo valores
-      $_val = dat::ope($esq,$est,'val');
+      $_val = dat::est_ope($esq,$est,'val');
       // opciones
       $opc = [];
       if( isset($_inf['opc']) ){ $opc = lis::val($_inf['opc']); unset($_inf['opc']); }
@@ -895,8 +899,8 @@ class dat {
             foreach( $inf_val as $tit ){
               if( isset($_atr[$tit]) && isset($_dat->$tit) ){ $_ .= "
                 <p class='tit'>{$_atr[$tit]->nom}</p>";
-                foreach( explode("\n",$_dat->$tit) as $tex_par ){                
-                  $_ .= "<p class='des'>".tex::let($tex_par)."</p>";
+                foreach( explode("\n",$_dat->$tit) as $tex_par ){ $_ .= "
+                  <p class='des'>".tex::let($tex_par)."</p>";
                 }
               }
             }
@@ -910,12 +914,12 @@ class dat {
             foreach( $inf_val as $lec ){
               if( isset($_atr[$lec]) && isset($_dat->$lec) ) 
               if( $agr_tit ) $_ .= "
-              <p class='tit{$agr_cla}'>{$_atr[$lec]->nom}</p>";
+                <p class='tit{$agr_cla}'>{$_atr[$lec]->nom}</p>";
               $_ .= "
-              <p class='cit{$agr_cla}'><q>".tex::let($_dat->$lec)."</q></p>";
+              <p class='cit mar-0{$agr_cla}'><q>".tex::let($_dat->$lec)."</q></p>";
             }
           }else{
-            $_ .= "<p class='cit'><q>".tex::let(obj::val($_dat,$inf_val))."</q></p>";
+            $_ .= "<p class='cit mar-0'><q>".tex::let(obj::val($_dat,$inf_val))."</q></p>";
           }
           break;
         // Fichas : por atributos con Relaciones
@@ -948,13 +952,23 @@ class dat {
             }
           }
           break;
-        // listado por atributo(\n) con titulo
+        // listado por atributo(\n) con titulo / punteo
         case 'lis': 
           if( is_array($inf_val) ){
-            foreach( $inf_val as $lis ){
-              if( isset($_atr[$lis]) && isset($_dat->$lis) ){ $_ .= "
-                <p class='tit'>{$_atr[$lis]->nom}</p>
-                ".lis::pos($_dat->$lis);
+            if( preg_match("/-atr/",$inf_ide) ){ $_ .= "
+              <ul class='mar_ver-0'>";
+              foreach( $inf_val as $lis ){
+                if( isset($_atr[$lis]) && isset($_dat->$lis) ){ $_ .= "
+                  <li><b class='ide'>{$_atr[$lis]->nom}</b>".tex::let(": {$_dat->$lis}")."</li>";
+                }
+              }$_ .= "
+              </ul>";
+            }else{
+              foreach( $inf_val as $lis ){
+                if( isset($_atr[$lis]) && isset($_dat->$lis) ){ $_ .= "
+                  <p class='tit'>".tex::let($_atr[$lis]->nom)."</p>
+                  ".lis::pos($_dat->$lis);
+                }
               }
             }
           }

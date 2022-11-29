@@ -15,12 +15,9 @@ ul.tab:not(.kin.tzo) li.pos:is(._hol-pag_kin, ._hol-pag_psi) {
 Oráculo
 */
 ul.tab .tab.par {
-  border-radius: 50%;
-}
-ul.tab .tab.par,
-ul.tab .tab.par > li.pos {
   width: 100%; 
   height: 100%;
+  border-radius: 50%;
 }
 
 /* 
@@ -120,7 +117,8 @@ ul.tab.hol_arm {
 }
 ul.tab.hol_arm > .pos.ide-0 { 
   grid-column:3/5; grid-row:3/5; 
-  justify-self: center; align-self: center; padding: 50%;
+  justify-self: center; align-self: center; 
+  padding: 150%;
 }
 ul.tab.hol_arm > .pos.ide-1 { grid-column:4/7; grid-row:1/4; }
 ul.tab.hol_arm > .pos.ide-2 { grid-column:1/4; grid-row:1/4; }

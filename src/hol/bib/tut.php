@@ -30,7 +30,7 @@
   foreach( hol::_($ide = 'lun_arm') as $_hep ){ $_ []= 
     tex::let("$_hep->nom (")."<c class='col-4-$_hep->ide'>$_hep->col</c>".tex::let("): $_hep->des");
   }
-  echo dat::lis($_,$ide,"val");
+  echo dat::lis($_,$ide);
   ?>
 
   <figure>

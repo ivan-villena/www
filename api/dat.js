@@ -79,8 +79,10 @@ class dat {
     return $val;
   }
 
-  // datos : nombre, descripcion, titulo, imagen, color...
-  static ope( $esq, $est, $ope, $dat ) {
+  // Estructura
+  // ...
+  // Cargo operador
+  static est_ope( $esq, $est, $ope, $dat ) {
 
     let $={}, $_ = $api_dat._ope[$esq][$est];
 
@@ -105,7 +107,7 @@ class dat {
     // cargo datos
     $._dat = dat.get($.esq,$.est,$ope);
     // cargo valores
-    $._val = dat.ope($.esq,$.est,'val');
+    $._val = dat.est_ope($.esq,$.est,'val');
     
     // armo titulo : nombre <br> detalle
     if( $tip == 'tit' ){
@@ -133,7 +135,7 @@ class dat {
       }
       // acceso informe
       if( $.ele.onclick === undefined ){
-        if( dat.ope($.esq,$.est,'inf') ) $.ele.onclick = `dat.inf('${$.esq}','${$.est}',${parseInt($._dat.ide)})`;
+        if( dat.est_ope($.esq,$.est,'inf') ) $.ele.onclick = `dat.inf('${$.esq}','${$.est}',${parseInt($._dat.ide)})`;
       }
       else if( $.ele.onclick === false ){
 
@@ -206,7 +208,7 @@ class dat {
     if( !!($atr) ) $_['est'] = $atr == 'ide' ? $est : `${$est}_${$atr}`;
     
     // valido dato
-    if( !!( $.dat_Val = dat.ope($_['esq'],$_['est'],`val.${$tip}`,$dat) ) ){
+    if( !!( $.dat_Val = dat.est_ope($_['esq'],$_['est'],`val.${$tip}`,$dat) ) ){
       $_['ide'] = `${$_['esq']}.${$_['est']}`;
       $_['val'] = $.dat_Val;
     }

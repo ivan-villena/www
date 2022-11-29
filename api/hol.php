@@ -702,8 +702,11 @@ class hol {
       switch( $atr ){
       // parejas del oráculo
       case 'par':
-        if( !isset($_tip[2]) ){          
+        if( !isset($_tip[2]) ){
           $_ = "
+          
+          ".hol::tab("kin","par",[ 'ide'=>$dat, 'pos'=>[ 'ima'=>"hol.kin.ide"  ] ], [ 'sec'=>[ 'class'=>"mar_aba-1" ] ])."
+
           <p>Para realizar una lectura del oráculo<c>,</c> consulta la <a href='{$_bib}enc#_02-03-06-01-' target='_blank'>Guía del Oráculo</a> en el Encantamiento del Sueño<c>...</c></p>
 
           <div class='lis'>";
@@ -725,7 +728,7 @@ class hol {
           } $_ .= "
           </div>";
         }
-        else{          
+        else{
           $_ = [];          
           $_kin = $dat;          
           $_sel = hol::_('sel',$dat->arm_tra_dia);
@@ -1345,7 +1348,7 @@ class hol {
           ".hol::tab_sec('ton',$ope)
           ;
           $_est = hol::_('kin_cro_est',$ide); 
-          $cas = $_est->cas;
+          $cas = explode(' - ',$_est->cas)[0];
           $ele_ele = $ele['ele'];
           foreach( hol::_('ton') as $_ton ){
             $ope['ide'] = $cas;

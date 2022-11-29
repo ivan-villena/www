@@ -33,7 +33,7 @@ body > section.doc_win > article {
   display: flex;
   flex-direction: column;
   position: absolute;
-  height: 70vh;
+  height: 90vh;
   width: 95%;
   max-width: 50rem;
   overflow: hidden;  
