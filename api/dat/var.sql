@@ -1,9 +1,9 @@
 --
 -- Aplicacion
-  DELETE FROM `app_var` WHERE `esq`='app';
+  DELETE FROM `dat_var` WHERE `esq`='app';
   -- Valores
-  DELETE FROM `app_var` WHERE `esq`='app' AND `dat`='val';
-  INSERT INTO `app_var` VALUES 
+  DELETE FROM `dat_var` WHERE `esq`='app' AND `dat`='val';
+  INSERT INTO `dat_var` VALUES 
     -- 
     -- abm : contar, ver, agregar, modificar, eliminar      
       ('app','val','abm', 1, 'act', '{
@@ -167,8 +167,8 @@
     --
   ;
   -- Estructura
-  DELETE FROM `app_var` WHERE `esq`='app' AND `dat`='est';
-  INSERT INTO `app_var` VALUES
+  DELETE FROM `dat_var` WHERE `esq`='app' AND `dat`='est';
+  INSERT INTO `dat_var` VALUES
     --
     -- filtro por conjuntos
       ('app','est','ver', 1, 'cic', '{
@@ -203,8 +203,8 @@
     --   
   ;
   -- Tablero
-  DELETE FROM `app_var` WHERE `esq`='app' AND `dat`='tab';
-  INSERT INTO `app_var` VALUES
+  DELETE FROM `dat_var` WHERE `esq`='app' AND `dat`='tab';
+  INSERT INTO `dat_var` VALUES
     --
     -- secciones : borde + imagen + color
 
@@ -384,10 +384,10 @@
   ;
 --
 -- Holon
-  DELETE FROM `app_var` WHERE `esq`='hol';
+  DELETE FROM `dat_var` WHERE `esq`='hol';
   -- Valores
-  DELETE FROM `app_var` WHERE `esq`='hol' AND `dat` = 'val';
-  INSERT INTO `app_var` VALUES
+  DELETE FROM `dat_var` WHERE `esq`='hol' AND `dat` = 'val';
+  INSERT INTO `dat_var` VALUES
 
     -- sumatoria 
       ('hol','val','sum', 1, 'kin', '{ 
@@ -410,8 +410,8 @@
     --
   ;
   -- Atributos : oraculo + pulsares
-  DELETE FROM `app_var` WHERE `esq`='hol' AND `dat` = 'atr';
-  INSERT INTO `app_var` VALUES
+  DELETE FROM `dat_var` WHERE `esq`='hol' AND `dat` = 'atr';
+  INSERT INTO `dat_var` VALUES
 
     -- Portales de Activación
       ('hol','atr','pag', 1, 'cue', '{
@@ -497,10 +497,10 @@
     --
   ;
   -- Tablero : seccion + posicion + valores + seleccion
-  DELETE FROM `app_var` WHERE `esq`='hol' AND `dat` = 'tab'
+  DELETE FROM `dat_var` WHERE `esq`='hol' AND `dat` = 'tab'
   ;-- por secciones
-  DELETE FROM `app_var` WHERE `esq`='hol' AND `dat` = 'tab' AND `val` = 'sec';
-  INSERT INTO `app_var` VALUES
+  DELETE FROM `dat_var` WHERE `esq`='hol' AND `dat` = 'tab' AND `val` = 'sec';
+  INSERT INTO `dat_var` VALUES
     
     ('hol','tab','sec', 50, 'par', '{
       "nom":"¿Oráculo?",
@@ -670,8 +670,8 @@
         "ope":{ "_tip":"opc_bin" }
       }')
   ;-- por opciones
-  DELETE FROM `app_var` WHERE `esq`='hol' AND `dat` = 'tab' AND `val` = 'atr';
-  INSERT INTO `app_var` VALUES
+  DELETE FROM `dat_var` WHERE `esq`='hol' AND `dat` = 'tab' AND `val` = 'atr';
+  INSERT INTO `dat_var` VALUES
 
     ('hol','tab','atr', 1, 'pag', '{
       "nom":"Portales de Activación"

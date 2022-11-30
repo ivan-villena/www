@@ -124,7 +124,7 @@ class est {
     // actualizo cuentas
     if( $api_app.est.val.cue ){
 
-      val.cue('act', $api_app.est.lis.querySelectorAll(`tr.pos:not(.${DIS_OCU})`), $api_app.est.val.cue);
+      dat.ope_cue('act', $api_app.est.lis.querySelectorAll(`tr.pos:not(.${DIS_OCU})`), $api_app.est.val.cue);
     }
     // actualizo descripciones
     if( $api_app.est.des ){
@@ -150,7 +150,7 @@ class est {
   }// - todos ? o por acumulados
   static lis_val_tod( $dat ){
 
-    let $ = doc.var($dat);  
+    let $ = dat.var($dat);  
     
     if( $api_app.est.val.acu ){
       // ajusto controles acumulados
@@ -199,7 +199,7 @@ class est {
   // filtros : Valores + Fecha + Posicion
   static lis_ver( $tip, $dat, $ope ){
 
-    let $ = doc.var($dat);
+    let $ = dat.var($dat);
 
     // ejecuto filtros
     if( !$tip ){
@@ -214,9 +214,9 @@ class est {
       }
       // 2º - cargo filtros : - dato(val) -fecha(ini) -posicion(ini)
       $.eje = [];
-      for( const $ope_ide in $api_app.val.ope_ver ){
+      for( const $ope_ide in $api_app.dat.ver ){
         // tomo solo los que tienen valor
-        if( ( $.val = $api_app.est.ver.querySelector(`${$api_app.val.ope_ver[$ope_ide]}`) ) && !!$.val.value ){
+        if( ( $.val = $api_app.est.ver.querySelector(`${$api_app.dat.ver[$ope_ide]}`) ) && !!$.val.value ){
           $.eje.push($ope_ide);
         }
       }
@@ -225,7 +225,7 @@ class est {
 
         $.eje.forEach( $ope_ide => {
 
-          val.ver($ope_ide, lis.val_dec( $api_app.est.lis.querySelectorAll(`tr.pos:not(.${DIS_OCU})`) ), $api_app.est.ver);
+          dat.ope_ver($ope_ide, lis.val_dec( $api_app.est.lis.querySelectorAll(`tr.pos:not(.${DIS_OCU})`) ), $api_app.est.ver);
           // oculto valores no seleccionados
           ele.act('cla_agr',$api_app.est.lis.querySelectorAll(`tr.pos:not(._val-ver-, .${DIS_OCU})`),DIS_OCU);
         });
@@ -249,7 +249,7 @@ class est {
   }// - muestro-oculto
   static lis_atr_tog( $dat ){
 
-    let $ = doc.var($dat);      
+    let $ = dat.var($dat);      
 
     $.esq = $dat.dataset.esq;
     $.est = $dat.dataset.est;
@@ -284,7 +284,7 @@ class est {
   }// - muestro-oculto
   static lis_des_tog( $dat ){
 
-    let $ = doc.var($dat);
+    let $ = dat.var($dat);
     $.ope  = $api_app.var.classList[0].split('-')[1];
     $.esq = $api_app.var.dataset.esq;
     $.est = $api_app.var.dataset.est;
@@ -314,7 +314,7 @@ class est {
   }// - filtro por descripciones
   static lis_des_ver( $dat ){
 
-    let $ = doc.var($dat);    
+    let $ = dat.var($dat);    
 
     // por selectores : titulo + detalle + lectura 
     if( ['tit','det'].includes($.var_ide) ){

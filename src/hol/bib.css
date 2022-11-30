@@ -1,11 +1,13 @@
 /* 
   Libros 
 */
-main section {
+main article section {
   padding: 0 2rem;
 }
 
-/* Tierra en Ascenso */
+/* 
+  Tierra en Ascenso 
+*/
 body[data-art="asc"] > main figure {
   margin: 1em 0;
 }

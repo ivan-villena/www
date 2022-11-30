@@ -34,9 +34,23 @@ class fec {
     }
     return $_;
   }
+  
+  // validor de fecha : "año/mes/dia" | "dia/mes/año"
+  static function val( object $dat, ...$opc ) : bool | string {
+    $_ = FALSE;
+  
+    $año = !empty($dat->año) ? $dat->año : 1900;
+    $mes = !empty($dat->mes) ? $dat->mes : 1;
+    $dia = !empty($dat->dia) ? $dat->dia : 1;
 
-  // codifico fecha : [ año, mes, dia ]
-  static function cod( string $val, string $sep = NULL ) : array {
+    if( checkdate($mes, $dia, $año) ){
+      
+      $_ = !in_array('año',$opc) ? num::val($dia,2).'/'.num::val($mes,2).'/'.num::val($año,4) : num::val($año,4).'/'.num::val($mes,2).'/'.num::val($dia,2);
+    }
+
+    return $_;
+  }// codifico fecha : [ año, mes, dia ]
+  static function val_cod( string $val, string $sep = NULL ) : array {
     $_ = [];
 
     $val = explode(' ',str_replace('T','',$val))[0];
@@ -55,9 +69,8 @@ class fec {
       $_ = [ $dat[2], $dat[1], $dat[0] ];
     }
     return $_;
-  }
-  // objeto: DateTime
-  static function dec( int | string | object | array $dat = NULL ) : DateTime | string {
+  }// objeto: DateTime
+  static function val_dec( int | string | object | array $dat = NULL ) : DateTime | string {
     $_ = $dat;
     if( empty($dat) ){
       $_ = new DateTime('NOW');
@@ -94,9 +107,8 @@ class fec {
       }
     }
     return $_;
-  }
-  // devuelvo por tipo
-  static function tip( mixed $dat, $tip = NULL ) : bool | string {
+  }// devuelvo por tipo
+  static function val_tip( mixed $dat, $tip = NULL ) : bool | string {
     $_ = FALSE;
 
     if( empty($tip) ){
@@ -106,7 +118,7 @@ class fec {
     else{
       $_fec = $dat;
       // aseguro objeto nativo
-      if( !is_object($dat) || get_class($dat)=='stdClass' ) $_fec = fec::dec($dat); 
+      if( !is_object($dat) || get_class($dat)=='stdClass' ) $_fec = fec::val_dec($dat); 
       // busco tipo
       switch( $tip ){
       case 'dyh': $_ = $_fec->format('Y/m/d H:i:s');  break;
@@ -116,7 +128,108 @@ class fec {
       }
     }
     return $_;
+  }// operaciones numericas por tipos
+  static function val_ope( string | object $dat, int $val = 0, string $ope = '+', string $tip = 'dia' ){
+    $_ = $dat;
+    
+    if( is_object($dat) ){
+
+      $_ = "{$dat->año}-{$dat->mes}-{$dat->dia}";
+    }
+    elseif( is_string($dat) ){
+
+      $_ = str_replace('/','-',$dat);
+    }
+
+    if( !!$_ ){
+      $tie = '';
+      switch( $tip ){
+      case 'seg': $tie = 'second'; break;
+      case 'min': $tie = 'minute'; break;
+      case 'hor': $tie = 'hour';   break;
+      case 'dia': $tie = 'day';    break;
+      case 'sem': $tie = 'week';   break;
+      case 'mes': $tie = 'month';  break;
+      case 'año': $tie = 'year';   break;
+      } 
+      if( $val > 1 ) $tie .= "s";
+      // strtotime devuelve un timestamp        
+      $_ = date( 'd-m-Y', strtotime( $ope.strval($val)." $tie", strtotime($_) ) );
+    }
+    return $_;
+  }// cuento dias pos periodo : mes | año
+  static function val_cue( string $tip, string | object $val ) : mixed {
+
+    $_ = is_string($val) ? fec::dat($val) : $val;
+
+    switch( $tip ){
+    case 'mes':
+      if( !!$_ ){
+        $_ = cal_days_in_month( CAL_GREGORIAN, $_->mes, $_->año );
+      }
+      break;
+    case 'año':
+      $lis = [];
+      $tot = 0; 
+      $num = 0; 
+      $mes = 0;
+      for( $i = 1; $i <= 12; $i++ ){
+
+        $lis[$i] = fec::val_cue('mes',"{$_->año}/$i/1");
+        $tot += $lis[$i]; 
+      }
+      if( $_->mes == 1 ){ 
+        $num = $_->dia;
+      }
+      else{
+        $mes++;
+        while( $mes < $_->mes ){ 
+          $num += $lis[$mes]; 
+          $mes++; 
+        }
+        $num += $_->dia;
+      }
+      $_=[ 
+        'tex'=>"{$num} de {$tot}", 
+        'val'=>$num, 
+        'cue'=>$tot
+      ];
+      break;    
+    case 'eda':
+      $ano_dif = date("Y") - $_->año;
+      $mes_dif = date("m") - $_->mes;
+      $dia_dif = date("d") - $_->dia;
+      if( $dia_dif < 0 || $mes_dif < 0 ) $ano_dif--;
+      $_ = $ano_dif;
+      break;
+    }
+    return $_;
+  }// defino valor por rangos : AC - DC
+  static function val_ran( int $ini, int $fin ) : string {
+
+    $_ = "";
+
+    if( $ini < 0 && $fin < 0  ){
+
+      $_ = num::int( $ini * - 1 )." - ".num::int( $fin * - 1). " A.C.";
+    }
+    elseif( $ini > 0 && $fin > 0 ){
+
+      $_ = num::int( $ini )." - ".num::int( $fin ). " D.C.";
+    }
+    else{
+      $_ = num::int( $ini * - 1 )." A.C. - ".num::int( $fin ). " D.C.";
+    }
+
+    return $_;
+  }// año bisciesto ?
+  static function val_año_bis( string | object $fec ) : bool {
+
+    if( is_string($fec) ) $fec = fec::dat($fec);
+
+    return date('L', strtotime("$fec->año-01-01"));
   }
+  
   // objeto fecha: { val, año, mes, dia, sem, hor, min, seg, ubi }
   static function dat( string $val, ...$opc ) : object {
 
@@ -152,7 +265,7 @@ class fec {
         // valido fecha resultante
         if( $_->val = fec::val($_,...$opc) ){
           // busco valor semanal
-          $_->sem = fec::tip($_,'sem');
+          $_->sem = fec::val_tip($_,'sem');
           // proceso horario
           if( isset($val[1]) ){
             $hor = explode(':', $_->tie = $val[1]);
@@ -167,125 +280,6 @@ class fec {
       }
     }    
     return $_;
-  }
-  // validor de fecha : "año/mes/dia" | "dia/mes/año"
-  static function val( object $dat, ...$opc ) : bool | string {
-    $_ = FALSE;
-  
-    $año = !empty($dat->año) ? $dat->año : 1900;
-    $mes = !empty($dat->mes) ? $dat->mes : 1;
-    $dia = !empty($dat->dia) ? $dat->dia : 1;
-
-    if( checkdate($mes, $dia, $año) ){
-      
-      $_ = !in_array('año',$opc) ? num::val($dia,2).'/'.num::val($mes,2).'/'.num::val($año,4) : num::val($año,4).'/'.num::val($mes,2).'/'.num::val($dia,2);
-    }
-
-    return $_;
-  }
-  // operaciones numericas por tipos
-  static function ope( string | object $dat, int $val = 0, string $ope = '+', string $tip = 'dia' ){
-    $_ = $dat;
-    
-    if( is_object($dat) ){
-
-      $_ = "{$dat->año}-{$dat->mes}-{$dat->dia}";
-    }
-    elseif( is_string($dat) ){
-
-      $_ = str_replace('/','-',$dat);
-    }
-
-    if( !!$_ ){
-      $tie = '';
-      switch( $tip ){
-      case 'seg': $tie = 'second'; break;
-      case 'min': $tie = 'minute'; break;
-      case 'hor': $tie = 'hour';   break;
-      case 'dia': $tie = 'day';    break;
-      case 'sem': $tie = 'week';   break;
-      case 'mes': $tie = 'month';  break;
-      case 'año': $tie = 'year';   break;
-      } 
-      if( $val > 1 ) $tie .= "s";
-      // strtotime devuelve un timestamp        
-      $_ = date( 'd-m-Y', strtotime( $ope.strval($val)." $tie", strtotime($_) ) );
-    }
-    return $_;
-  }
-  // cuento dias pos periodo : mes | año
-  static function cue( string $tip, string | object $val ) : mixed {
-
-    $_ = is_string($val) ? fec::dat($val) : $val;
-
-    switch( $tip ){
-    case 'mes':
-      if( !!$_ ){
-        $_ = cal_days_in_month( CAL_GREGORIAN, $_->mes, $_->año );
-      }
-      break;
-    case 'año':
-      $lis = [];
-      $tot = 0; 
-      $num = 0; 
-      $mes = 0;
-      for( $i = 1; $i <= 12; $i++ ){
-
-        $lis[$i] = fec::cue('mes',"{$_->año}/$i/1");
-        $tot += $lis[$i]; 
-      }
-      if( $_->mes == 1 ){ 
-        $num = $_->dia;
-      }
-      else{
-        $mes++;
-        while( $mes < $_->mes ){ 
-          $num += $lis[$mes]; 
-          $mes++; 
-        }
-        $num += $_->dia;
-      }
-      $_=[ 
-        'tex'=>"{$num} de {$tot}", 
-        'val'=>$num, 
-        'cue'=>$tot
-      ];
-      break;    
-    case 'eda':
-      $ano_dif = date("Y") - $_->año;
-      $mes_dif = date("m") - $_->mes;
-      $dia_dif = date("d") - $_->dia;
-      if( $dia_dif < 0 || $mes_dif < 0 ) $ano_dif--;
-      $_ = $ano_dif;
-      break;
-    }
-    return $_;
-  }
-  // defino valor por rangos : AC - DC
-  static function ran( int $ini, int $fin ) : string {
-
-    $_ = "";
-
-    if( $ini < 0 && $fin < 0  ){
-
-      $_ = num::int( $ini * - 1 )." - ".num::int( $fin * - 1). " A.C.";
-    }
-    elseif( $ini > 0 && $fin > 0 ){
-
-      $_ = num::int( $ini )." - ".num::int( $fin ). " D.C.";
-    }
-    else{
-      $_ = num::int( $ini * - 1 )." A.C. - ".num::int( $fin ). " D.C.";
-    }
-
-    return $_;
-  }
-  // año bisciesto ?
-  static function año_bis( string | object $fec ) : bool {
-
-    if( is_string($fec) ) $fec = fec::dat($fec);
-
-    return date('L', strtotime("$fec->año-01-01"));
   }
 
   // controladores

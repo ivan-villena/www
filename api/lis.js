@@ -66,7 +66,7 @@ class lis {
   static pos(){
   }
   static pos_val( $dat, $ope ){
-    let $ = doc.var($dat);
+    let $ = dat.var($dat);
     
     if( !$ope ){
       // toggles
@@ -87,7 +87,7 @@ class lis {
   }
   static pos_tog( $dat, $ope ){
 
-    let $ = doc.var($dat);
+    let $ = dat.var($dat);
 
     if( !$dat || !$ope ){
       ele.act('cla_tog',$.lis.children,DIS_OCU); 
@@ -111,7 +111,7 @@ class lis {
     }
   }  
   static pos_ver( $dat, $ope ){
-    let $ = doc.var($dat);
+    let $ = dat.var($dat);
     
     // filtro por valor textual        
     if( !$ope ){
@@ -124,7 +124,7 @@ class lis {
         
         if( $.lis.nodeName == 'DL' ){
           $.lis.querySelectorAll(`dt`).forEach( $e => {
-            if( $.ope_val = val.ope_ver($e.innerHTML,$.ope,$.val) ){
+            if( $.ope_val = dat.ver($e.innerHTML,$.ope,$.val) ){
               $e.classList.remove(DIS_OCU);
             }else{
               $e.classList.add(DIS_OCU);                 
@@ -142,7 +142,7 @@ class lis {
         }
         else{
           lis.val_dec($.lis.children).forEach( $e => 
-            val.ope_ver($e.innerHTML,$.ope,$.val) && $e.classList.remove(DIS_OCU) 
+            dat.ver($e.innerHTML,$.ope,$.val) && $e.classList.remove(DIS_OCU) 
           );
         }
       }
@@ -172,7 +172,7 @@ class lis {
   static ite(){      
   }
   static ite_ver( $dat, $ope = 'p:first-of-type', $cla = 'tex-luz' ){
-    let $ = doc.var($dat);
+    let $ = dat.var($dat);
     // busco listado
     if( $api_app.var ){
       $.lis = !! $api_app.var.nextElementSibling ? $api_app.var.nextElementSibling : $api_app.var.parentElement;
@@ -191,7 +191,7 @@ class lis {
         // capturo item : li > [.val] (p / a)
         $.ite = ele.val_ver($ite,{'eti':'li'});
         // ejecuto comparacion por elemento selector ( p / a )
-        if( !$.val.value || val.ope_ver($ite.innerText, $.ope.value, $.val.value) ){
+        if( !$.val.value || dat.ver($ite.innerText, $.ope.value, $.val.value) ){
           // oculto/mustro item
           $.ite.classList.contains(DIS_OCU) && $.ite.classList.remove(DIS_OCU);
           // agrego brillo
@@ -230,7 +230,7 @@ class lis {
   }
   static bar_ite( $tip, $dat ){
     
-    let $ = doc.var($dat);
+    let $ = dat.var($dat);
 
     if( $tip == 'val' ){
 

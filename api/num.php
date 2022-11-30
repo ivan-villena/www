@@ -250,7 +250,7 @@ class num {
             unset($ope['class']); 
           }
           if( !isset($ope['id']) ){ 
-            $ope['id'] = "_num_ran-".doc::var_ide('_num-ran');
+            $ope['id'] = "_num_ran-".dat::var_ide('_num-ran');
           }
           $htm_out = "";
           if( !in_array('val-ocu',$opc) ){ $htm_out = "

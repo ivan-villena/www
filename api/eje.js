@@ -98,7 +98,7 @@ class eje {
       $.fun = eval(`( ${$.par} ) =>{ ${$.val} return ${$.ini} }`);
       if( $.fun ){// defino un array para desestructurar e invocar
         $_ = !!($.inv) ? $.fun( ...eval(`[${$.inv}]`) ) : $.fun() ;
-        $.tip = val.tip_ver($_);// evaluo e imprimo resultado 
+        $.tip = dat.tip($_);// evaluo e imprimo resultado 
         // $.pad.querySelector(`[ini]`).innerHTML = ( `${$.tip.dat}_${$.tip.val}`, { 'val':$_ } );
       }else{ 
         $.pad.querySelector(`[ini]`).innerHTML = `<span class="let err">${$.fun._err}</span>`;

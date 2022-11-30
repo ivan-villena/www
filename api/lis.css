@@ -133,6 +133,18 @@ table th p {
 }
 
 /* 
+  Navegadores
+*/
+nav.lis {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+nav.lis > :is(p,a) {
+  margin: .5rem;  
+}
+
+/* 
   Indices
 */
 ul.lis a {
@@ -142,13 +154,13 @@ ul.lis a {
   color: var(--let_tex);
 }
 ul.lis.nav li.pos.sep,
-ul.lis.nav li.pos:not(.sep) > div.val {
+ul.lis.nav li.pos:not(.sep) > div.doc_val {
   margin-top: .1rem;
   margin-bottom: .1rem;
   padding: .25rem;
 }
 ul.lis.nav li.pos.sep:hover,  
-ul.lis.nav li.pos:not(.sep) > div.val:hover {
+ul.lis.nav li.pos:not(.sep) > div.doc_val:hover {
   background-color: var(--fon_foc);
   border-radius: .25rem;
 }

@@ -74,11 +74,90 @@ body {
   height: 100vh;
   margin: 0;
 }
-
 /*//////////////////////////////////////////////////////////////////////*/
 /*//////////////////////////////////////////////////////////////////////*/
-
 /* 
+  contenedores : renglon, item, valor
+*/
+div:is(.ren,.ite,.val){
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+div.ren {
+  flex-wrap: wrap;
+}
+div:is(.ren,.ite) {
+  flex-grow: 2;  
+  align-self: stretch;
+}
+
+/*//////////////////////////////////////////////////////////////////////*/
+/*//////////////////////////////////////////////////////////////////////*/
+/* 
+  botonera : inicio + paneles + pantallas 
+*/
+body > .doc_bot {
+  display: flex;
+  justify-content: space-between;
+  height: 4vh;
+  background-color: var(--fon_sec);
+}
+
+
+/*//////////////////////////////////////////////////////////////////////*/
+/*//////////////////////////////////////////////////////////////////////*/
+/*
+  Pantallas
+*/
+body > .doc_win {  
+  z-index: 99999;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  background-color: rgba(0,0,0,.8);  
+  text-align: center;
+  animation: dis-ver .5s;
+}
+body > .doc_win > article {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  height: 90vh;
+  width: 95%;
+  max-width: 50rem;
+  overflow: hidden;  
+  background-color: var(--fon_sec);
+  border: 1px solid var(--col_azu);
+  border-radius: .5rem;
+  line-height: 1.5;
+  animation: dis-ver 1s, dis-ver-tam .5s;
+}
+body > .doc_win > article > header {    
+  display: flex;
+  flex-wrap: nowrap;  
+  justify-content: space-between;
+  padding: .25rem;
+  height: 3rem;
+}
+body > .doc_win > article > header + * {
+  flex-grow: 2;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 0 .5rem;
+}
+body > .doc_win > article > header + * > section {
+  margin: .5rem;  
+}
+
+/*
   Modal : Operador
 */
 body > .doc_win > .ide-app_ope {
@@ -104,8 +183,64 @@ body > .doc_win > .ide-est > div > .app_est {
   height: 77vh;
 }
 
+
+
 /*//////////////////////////////////////////////////////////////////////*/
 /*//////////////////////////////////////////////////////////////////////*/
+/* 
+  Laterales
+*/
+body > aside {
+  z-index: 9999;
+  position: fixed;
+  top: 3.9vh;
+  display: flex;  
+  height: 96.1vh;
+  width: 450px;
+  background-color: var(--fon_sec);  
+}
+/* 
+  paneles
+*/
+body > aside.doc_pan {
+  max-width: 100%;
+  overflow: hidden;
+  border: 1px solid var(--col_azu);
+  border-left: 0;
+  border-radius: 0 1rem 1rem 0;    
+  transition: all 1s;
+  animation: doc_pan-ver 1s, dis-ver 1s;
+}
+body > aside.doc_pan.dis-ocu {  
+  animation: doc_pan-ocu 1s;
+  display: flex !important;
+  width: 0 !important;
+  height: 0 !important;   
+  border: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+@keyframes doc_pan-ver {
+  from { transform: translate(-5rem); } to { transform: translate(0rem); }
+}
+@keyframes doc_pan-ocu {
+  from { transform: translate(0rem); } to { transform: translate(-5rem); }
+}
+/* Contenido */
+body > aside.doc_pan > [class*="ide-"] {
+  width: 100%;
+  animation: dis-ver 1s;
+}
+body > aside.doc_pan > [class*="ide-"] > header {
+  display: flex;
+  justify-content: space-between;  
+  padding: .5rem;
+  text-align: center;
+}
+body > aside.doc_pan > [class*="ide-"] > header + * {
+  max-height: 90vh;
+  overflow: auto;
+}
 
 /* 
   Panel : Menú Principal e indices 
@@ -115,4 +250,62 @@ body > .doc_pan > .ide-app_cab ul.lis.nav {
 }
 body > .doc_pan > .ide-app_nav ul.lis.nav {
   height: 81vh;
+}
+
+/*//////////////////////////////////////////////////////////////////////*/
+/*//////////////////////////////////////////////////////////////////////*/
+/* 
+  sidebar
+*/
+body > aside.doc_bar {
+  max-width: 100%;
+}
+
+
+/*//////////////////////////////////////////////////////////////////////*/
+/*//////////////////////////////////////////////////////////////////////*/
+/* 
+  Seccion Principal
+*/
+body > main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: inherit;
+  overflow: auto;  
+  background-color: var(--fon_art);/* por barra de desplazamiento */
+  padding: 0 .5rem;
+  text-align: center;
+}
+/* Titulo */
+body > main > header {
+  width: 100%;
+  background-color: var(--fon_sec);
+}
+/* Contenido */
+body > main > *:not(header,footer) {
+  width: 100%;
+  max-width: 55rem;
+  line-height: 1.5;
+}
+/* 
+  por articulo 
+*/
+body > main article {
+  height: max-content;
+  margin: .5rem auto;
+  padding: 0 1rem;
+  border-radius: 1rem;
+  border: 1px solid var(--bor_sel);
+  background-color: var(--fon_sec);
+}
+
+/*//////////////////////////////////////////////////////////////////////*/
+/*//////////////////////////////////////////////////////////////////////*/
+/* 
+  pie de página
+*/
+body > footer.doc_pie {
+  padding: .5rem;
+  text-align: center;
 }

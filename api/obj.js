@@ -118,7 +118,7 @@ class obj {
 
     for( const $i in $dat ){ const $v = $dat[$i];
 
-      $.tip = val.tip_ver($v);
+      $.tip = dat.tip($v);
 
       $.ite = document.createElement('li');
       $.ite.classList.add('mar_ver-1');

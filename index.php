@@ -10,36 +10,36 @@
     define('SYS_NAV', "http://{$_SERVER['HTTP_HOST']}/" );
 
     // Base de datos: local / produccion
-    define('DAT_SER',"localhost");
-    define('DAT_USU',"c1461857_api");
-    define('DAT_PAS',"lu51zakoWA");
-    define('DAT_ESQ',"c1461857_api");
+    define('DAT_SER', $_SERVER['HTTP_HOST']);
+    define('DAT_USU', "c1461857_api");
+    define('DAT_PAS', "lu51zakoWA");
+    define('DAT_ESQ', "c1461857_api");
 
     // OPERACIONES : clases
-    define('DIS_OCU', "dis-ocu" );
-    define('BOR_SEL', "bor-sel" );
-    define('FON_SEL', "fon-sel" );
+    define('DIS_OCU', "dis-ocu");
+    define('BOR_SEL', "bor-sel");
+    define('FON_SEL', "fon-sel");
 
     
     $_SESSION['ubi'] = "America/Argentina/Buenos_Aires";  
     if( !isset($_SESSION['usu']) ) $_SESSION['usu'] = 1;
     date_default_timezone_set( $_SESSION['ubi'] );
-    $sis_ini = time();  
-  
+    $sis_ini = time();    
   //
   // cargo modulos
   $sis_cla = [
     'sis/sql',
-    'val', 'opc', 'num', 'tex', 'fig', 'fec', 'hol', 'obj', 'lis', 'est', 'tab', 'eje', 'ele', 'arc',
-    'doc', 'dat', 'app', 'usu'
-    ];    
-
-    foreach( $sis_cla as $mod_ide => $mod_lis ){
+    'app', 'doc', 'dat', 'usu', 
+    'arc', 'eje', 'obj', 'ele',
+    'opc', 'num', 'tex', 'fig', 'fec', 'hol', 
+    'lis', 'est', 'tab'
+    ];
+    
+    foreach( $sis_cla as $cla_ide ){
 
       if( file_exists($rec = "./api/{$cla_ide}.php") ) require_once($rec);
     }
     // cargo variables
-    $api_val = new val();
     $api_opc = new opc();
     $api_num = new num();
     $api_tex = new tex();
@@ -54,6 +54,7 @@
     $api_ele = new ele();
     $api_arc = new arc();
     $api_dat = new dat();
+    $api_doc = new doc();
     $api_usu = new usu( $_SESSION['usu'] );
   //
   // peticion AJAX
@@ -86,21 +87,12 @@
   ////////////////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////////
 
-  // cargo documento y aplicacion  
-  $api_doc = new doc();
-  $api_app = new app("hol");
-
-  // pido listado por navegacion
-  if( !empty($api_app->rec['dat']['nav'][1]) ) 
-    $api_app->ope['doc_art']['htm'] = doc::art($api_app->rec['dat']['nav']);
-  
-  // pido contenido por aplicacion
-  $_uri = $api_app->uri;
-  if( file_exists($rec = "./src/{$_uri->esq}/index.php") ) require_once( $rec );
+  // cargo documento y aplicacion
+  $api_app = new app( isset($_REQUEST['uri']) ? $_REQUEST['uri'] : "hol" );
   
   // usuario + loggin
   $tip = empty($api_usu->ide) ? 'ini' : 'fin';
-  // $api_app->ope["ses_{$tip}"]['htm'] = api::usu($tip);
+  // $api_app->rec['ope']['fin']["ses_{$tip}"]['htm'] = api::usu($tip);
 
   // consola del sistema
   if( $api_usu->ide == 1 ){
@@ -108,32 +100,33 @@
     $api_app->rec['cla']['api'] []= "sis/adm";
 
     ob_start();
-    include("./src/api/sis/adm.php");
-    $api_app->ope['sis_adm']['htm'] = ob_get_clean();
+    include("./api/sis/adm.php");
+    $api_app->rec['ope']['fin']['sis_adm']['htm'] = ob_get_clean();
   }
 
-  // agrego ayuda
-  if( !empty($api_app->htm['dat']) ) $api_app->ope['app_dat'] = [ 
-    'ico'=>"dat_des", 'tip'=>"win", 'nom'=>"Ayuda", 'htm'=>$api_app->htm['dat'] 
-  ];
+  // cargo ruteo
+  $_uri = $api_app->uri;
 
-  // cargo documento
-  foreach( $api_app->ope as $ide => $ope ){
+  // pido contenido por aplicacion
+  if( file_exists($rec = "./src/{$_uri->esq}/index.php") ) require_once( $rec );
+  
+  // cargo operadores del documento ( botones + contenidos )
+  foreach( $api_app->rec['ope'] as $tip => $tip_lis ){
 
-    if( !isset($ope['bot']) ) $ope['bot'] = "ini";
-
-    // enlaces
-    if( isset($ope['url']) ){
-      // boton
-      $api_app->htm['ope'][$ope['bot']] .= fig::ico($ope['ico'],[ 'eti'=>"a", 'title'=>$ope['nom'], 'href'=>$ope['url'] ]);
-    }
-    // paneles y modales
-    elseif( ( $ope['tip'] == 'pan' || $ope['tip'] == 'win' ) && !empty($ope['htm']) ){
-      // botones          
-      $api_app->htm['ope'][$ope['bot']] .= doc::bot([ $ide => $ope ]);
-      // contenido
-      $api_app->htm[$ope['tip']] .= doc::{$ope['tip']}($ide,$ope);
-    }
+    foreach( $tip_lis as $ide => $ope ){
+      // enlaces
+      if( isset($ope['url']) ){
+        // boton
+        $api_app->htm['ope'][$tip] .= fig::ico($ope['ico'],[ 'eti'=>"a", 'title'=>$ope['nom'], 'href'=>$ope['url'] ]);
+      }
+      // paneles y modales
+      elseif( ( $ope['tip'] == 'pan' || $ope['tip'] == 'win' ) && !empty($ope['htm']) ){
+        // botones          
+        $api_app->htm['ope'][$tip] .= doc::bot([ $ide => $ope ]);
+        // contenido
+        $api_app->htm[$ope['tip']] .= doc::{$ope['tip']}($ide,$ope);
+      }
+    }  
   }
 
   // cargo modal de operadores
@@ -146,15 +139,16 @@
 
   // titulo
   $doc_tit = "{-_-}";
-  if( !empty($api_app->rec['dat']['art']->nom) ){
-    $doc_tit = $api_app->rec['dat']['art']->nom;
-  }
-  elseif( !empty($api_app->rec['dat']['cab']->nom) ){
-    $doc_tit = $api_app->rec['dat']['cab']->nom;
-  }
-  elseif( !empty($api_app->rec['dat']['esq']->nom) ){
-    $doc_tit = $api_app->rec['dat']['esq']->nom; 
-  }  
+    if( !empty($api_app->rec['dat']['art']->nom) ){
+      $doc_tit = $api_app->rec['dat']['art']->nom;
+    }
+    elseif( !empty($api_app->rec['dat']['cab']->nom) ){
+      $doc_tit = $api_app->rec['dat']['cab']->nom;
+    }
+    elseif( !empty($api_app->rec['dat']['esq']->nom) ){
+      $doc_tit = $api_app->rec['dat']['esq']->nom; 
+    }
+  //
   ?>
   <!DOCTYPE html>
   <html lang="es">
@@ -164,10 +158,9 @@
       <meta name="viewport" content="width = device-width, initial-scale = 1, maximum-scale = 1">
       
       <!-- hojas de estilo -->
-      <link rel='stylesheet' href='<?=SYS_NAV?>index.css'>
       <?=$api_app->rec_cla('css')?>
       <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Material+Icons+Outlined'>
-      <link rel='stylesheet' href='<?=SYS_NAV?>api/sis/ope.css'>
+      <link rel='stylesheet' href='<?=SYS_NAV?>api/sis/css.css'>
 
       <title><?=$doc_tit?></title>
     </head>
@@ -177,11 +170,11 @@
       <!-- Botonera -->
       <header class='doc_bot'>
         
-        <nav class="ope">
+        <nav class="doc_ope">
           <?= $api_app->htm['ope']['ini']; ?>
         </nav>
 
-        <nav class="ope">
+        <nav class="doc_ope">
           <?= $api_app->htm['ope']['fin']; ?>
         </nav>
         
@@ -232,8 +225,19 @@
       <?=$api_app->rec_cla('jso')?>
       <script>
         // cargo objetos
-        <?=$api_app->rec_cla('jso-obj',$api_app->rec['obj']['api'],'api')?>
-        var $api_dat = new dat({ _est_ope: <?= obj::val_cod( get_object_vars($api_dat)['_est_ope'] ) ?> });
+        <?php 
+        $var = get_defined_vars();
+        foreach( $api_app->rec['obj']['api'] as $cla ){
+          if( isset($var[$obj = "api_{$cla}"]) && is_object($var[$obj]) ){ echo "
+            var \${$obj} = new $cla(".( !empty($atr = get_object_vars($var[$obj])) ? obj::val_cod($atr) : "" ).");\n";
+          }          
+        }
+        $dat_api = [];
+        foreach( ['_tip','_ope','_est_ope'] as $atr ){
+          $dat_api[$atr] = $api_dat->$atr;
+        }
+        ?>
+        var $api_dat = new dat(<?= obj::val_cod($dat_api) ?>);
         var $api_app = new app({ uri : <?= obj::val_cod( $api_app->uri ) ?> });      
         // ejecuto codigo por aplicacion
         <?= $api_app->rec['eje'] ?>

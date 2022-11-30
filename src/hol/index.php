@@ -19,11 +19,13 @@
     }
   }
   // imrpimo panel con operadores
-  $api_app->ope['dia'] = [ 'ico'=>"fec_val", 'tip'=>"pan", 'nom'=>"Diario", 'htm'=>"
+  $api_app->rec['ope']['ini']['dia'] = [ 
+
+    'ico'=>"fec_val", 'tip'=>"pan", 'nom'=>"Diario", 'htm'=>"
 
     <section class='mar_aba-1'>
 
-      ".hol::var('fec',$_hol->val,[ 'eje'=>"hol_app.dia" ])."
+      ".hol::var('fec',$_hol->val,[ 'eje'=>"dia" ])."
 
       <div class='mar-1'>
         ".dat::inf('hol','kin',$_hol->val['kin'],['opc'=>"nom",'cit'=>"des"])."
@@ -32,12 +34,12 @@
     </section>
 
     ".doc::nav('bar',[
-      'kin' => [ 'ide'=>"kin", 'ico'=>"", 'nom'=>"Sincrónico", 'des'=>"", 'htm'=>dat::lis_pos("hol","kin",[ 
+      'kin' => [ 'ide'=>"kin", 'ico'=>"", 'nom'=>"Sincrónico", 'des'=>"", 'htm'=>dat::pos("hol","kin",[ 
         'kin'=>$_kin = hol::_('kin',$_hol->val['kin']),
         'sel'=>hol::_('sel',$_kin->arm_tra_dia),
         'ton'=>hol::_('ton',$_kin->nav_ond_dia)
       ])],
-      'psi' => [ 'ide'=>"psi", 'ico'=>"", 'nom'=>"Cíclico", 'des'=>"", 'htm'=>dat::lis_pos("hol","psi",[ 
+      'psi' => [ 'ide'=>"psi", 'ico'=>"", 'nom'=>"Cíclico", 'des'=>"", 'htm'=>dat::pos("hol","psi",[ 
         'psi'=>$_psi = hol::_('psi',$_hol->val['psi']),
         'est'=>hol::_('est',$_psi->est),
         'lun'=>hol::_('lun',$_psi->lun),
@@ -131,7 +133,7 @@
         
       </section>
     <?php
-    $api_app->htm['dat'] = ob_get_clean();
+    $api_app->rec['ope']['ini']['app_dat']['htm'] = ob_get_clean();
 
   }
   // por articulo 
@@ -181,7 +183,7 @@
 
         if( !empty( $htm = tab::ope($ope_ide, $tab_ide, $tab_ope) ) ){
 
-          $api_app->ope[$ope_ide] = [ 'ico'=>$ope_tab['ico'], 'tip'=>"pan", 'nom'=>$ope_tab['nom'], 'htm'=>$htm];
+          $api_app->rec['ope']['ini'][$ope_ide] = [ 'ico'=>$ope_tab['ico'], 'tip'=>"pan", 'nom'=>$ope_tab['nom'], 'htm'=>$htm];
         }
       }
       // imprimo operador de lista
@@ -192,7 +194,7 @@
         $lis_ope['dat'] = $tab_ope['dat'];
       }
       $ope = tab::$OPE['lis'];
-      $api_app->ope['est'] = [ 'ico'=>$ope['ico'], 'tip'=>"win", 'nom'=>$ope['nom'], 
+      $api_app->rec['ope']['ini']['est'] = [ 'ico'=>$ope['ico'], 'tip'=>"win", 'nom'=>$ope['nom'], 
         'htm'=>tab::ope('lis',"hol.{$_ide[0]}",$lis_ope) 
       ];
       // imprimo tablero en página principal
@@ -292,12 +294,12 @@
 
         </section>        
       <?php
-      $api_app->htm['dat'] = ob_get_clean();     
+      $api_app->rec['ope']['ini']['app_dat']['htm'] = ob_get_clean();     
     }
     // contenido : bibliografía + articulos
     else{      
       // cargo indice, directorio y enlaces
-      $_nav = $api_app->doc['nav'];
+      $_nav = $api_app->rec['dat']['nav'];
       $_dir = $api_app->uri_dir();
       $_bib = SYS_NAV."hol/bib/";
       

@@ -38,94 +38,6 @@ class fec {
     return $_;
   }
 
-  // objeto Date : por actual, numero, string u objeto propio
-  static dec( $dat ){ 
-    let $={},$_;
-    $.tip = typeof($dat);
-    if( !$dat ){
-      $_ = new Date();
-    }// por timestamp
-    else if( $.tip == 'number' || ( $.tip == 'string' && /^\d+$/g.test($dat) ) ){ 
-      $_ = new Date( parseInt($dat) );
-    }// formateo e instancio
-    else if( $.tip == 'string' ){ 
-      $.fec = fec.dat($dat);
-      if( $.fec.año && $.fec.mes && $.fec.dia ){ 
-        $_ = new Date( $.fec.año, $.fec.mes, $.fec.dia ); 
-      }else{
-        $_ = $.fec;
-      }
-    }// {}: objeto vacío
-    else if( $.tip=='object' ){
-      if( $dat.año && $dat.mes && $dat.dia ){
-        $_ = new Date( $dat.año, $dat.mes, $dat.dia );
-      }else{
-        $_ = $dat;
-      }
-    }
-    return $_;
-  }
-  // codifico : "año/-mes/-dia" => [ año, mes, dia ]
-  static cod( $val, $sep ){
-    let $_ = [], $ = {};
-    $.val = $val;
-    if( typeof($val) == 'string' ){
-      if( !$sep ){
-        $sep = /-/.test($val) ? '-' : ( /\//.test($val) ? '/' : '.' );
-      }
-      $.val = $val.split($sep).map( ite => parseInt(ite) );
-    }
-    if( $.val[0].length > 2 ){
-      $_ = [ $.val[0], $.val[1], $.val[2] ];
-    }else{
-      $_ = [ $.val[2], $.val[1], $.val[0] ];
-    }
-    return $_;
-  }
-  // armo objeto : val + año + mes + sem + dia + tie + hor + min + seg + ubi
-  static dat( $val, $sep='/' ){
-    let $_={}, $={};
-  
-    if( typeof($val) != 'string' ){
-      $val = fec.val($val);
-      if( !$val ){
-        return $val;
-      }
-    }
-  
-    $.tie = $val.replace('T',' ').split(' ');  
-    $.fec = $.tie[0].replace($sep,'-').split('-');
-    $.hor = !!($.tie[1]) ? $.tie[1] : false;
-  
-    $_.mes = parseInt($.fec[1]);  
-    if( $.fec[0].length==4){ 
-      $_.año = parseInt($.fec[0]);
-      $_.dia = parseInt($.fec[2]);
-    }else{
-      $_.año = parseInt($.fec[2]);
-      $_.dia = parseInt($.fec[1]);
-    }
-  
-    if( $.hor ){
-      $_.tie = $.hor;
-      $.hor = $.hor.split(':');
-      if( !!($.hor[2]) ){
-        $_.seg = parseInt($.hor[2]);
-      }
-      if( !!($.hor[1]) ){
-        $_.min = parseInt($.hor[1]);
-      }
-      $_.hor = parseInt($.hor[0]);
-    }
-    $_.val = [$_.dia,$_.mes,$_.año].join($sep);
-    if( fec.val($_.val) ){
-      $_.sem = fec.tip($_,'sem');
-    }else{
-      $_ = false;
-    }
-    
-    return $_;  
-  }
   // valido una fecha y devuelvo => "año/mes/dia" o "dia/mes/año"
   static val( $dat, ...$opc ){
     let $_=$dat, $={};
@@ -181,9 +93,50 @@ class fec {
       } 
     }
     return $_;
-  }
-  // formato por tipos : dyh + hor + dia + sem
-  static tip( $dat, $tip='' ){
+  }// objeto Date : por actual, numero, string u objeto propio
+  static val_dec( $dat ){ 
+    let $={},$_;
+    $.tip = typeof($dat);
+    if( !$dat ){
+      $_ = new Date();
+    }// por timestamp
+    else if( $.tip == 'number' || ( $.tip == 'string' && /^\d+$/g.test($dat) ) ){ 
+      $_ = new Date( parseInt($dat) );
+    }// formateo e instancio
+    else if( $.tip == 'string' ){ 
+      $.fec = fec.dat($dat);
+      if( $.fec.año && $.fec.mes && $.fec.dia ){ 
+        $_ = new Date( $.fec.año, $.fec.mes, $.fec.dia ); 
+      }else{
+        $_ = $.fec;
+      }
+    }// {}: objeto vacío
+    else if( $.tip=='object' ){
+      if( $dat.año && $dat.mes && $dat.dia ){
+        $_ = new Date( $dat.año, $dat.mes, $dat.dia );
+      }else{
+        $_ = $dat;
+      }
+    }
+    return $_;
+  }// codifico : "año/-mes/-dia" => [ año, mes, dia ]
+  static val_cod( $val, $sep ){
+    let $_ = [], $ = {};
+    $.val = $val;
+    if( typeof($val) == 'string' ){
+      if( !$sep ){
+        $sep = /-/.test($val) ? '-' : ( /\//.test($val) ? '/' : '.' );
+      }
+      $.val = $val.split($sep).map( ite => parseInt(ite) );
+    }
+    if( $.val[0].length > 2 ){
+      $_ = [ $.val[0], $.val[1], $.val[2] ];
+    }else{
+      $_ = [ $.val[2], $.val[1], $.val[0] ];
+    }
+    return $_;
+  }// formato por tipos : dyh + hor + dia + sem
+  static val_tip( $dat, $tip='' ){
     let $_,$={};
     if( !$tip ){
       $_ = false;
@@ -191,7 +144,7 @@ class fec {
         $dat = fec.dat($dat);
       }
     }else{
-      $ = fec.dec($dat);
+      $ = fec.val_dec($dat);
       switch( $tip ){
       case 'dyh':       
         $_ = `${$.getFullYear()}/${$.getMonth()+1}/${$.getDate()} ${$.getHours()}:${$.getMinutes()}:${$.getSeconds()}`;  
@@ -208,9 +161,8 @@ class fec {
       }
     }
     return $_;
-  }
-  // cantidades :  de dias en el mes, año...
-  static cue( $tip, $dat ){
+  }// cantidades :  de dias en el mes, año...
+  static val_cue( $tip, $dat ){
     let $={},$_ = fec.dat($dat)
     switch( $tip ){
       case 'mes':
@@ -219,7 +171,7 @@ class fec {
       case 'año':
         $.tab=[]; $.tot=0; $.num=0; $.mes=0;
         for( let $i = 1; $i <= 12 ; $i++ ){ 
-          $.tab[$i] = fec.cue('mes',`${$_['año']}/${$i}/1`); 
+          $.tab[$i] = fec.val_cue('mes',`${$_['año']}/${$i}/1`); 
           $.tot += $.tab[$i]; 
         }
         if( $_['mes'] == 1 ){ 
@@ -237,15 +189,14 @@ class fec {
         break;
     }
     return $_;
-  }
-  // valido fehcas : desde - hasta
-  static ver( $val, $ini, $fin ){
+  }// valido fehcas : desde - hasta
+  static val_ver( $val, $ini, $fin ){
     let $_ = true, $ = {};
     if( !!$val ){
-      $.val = Array.isArray($val) ? $val : fec.cod($val);
+      $.val = Array.isArray($val) ? $val : fec.val_cod($val);
       // fecha desde
       if( !!$ini ){
-        $.ini = Array.isArray($ini) ? $ini : fec.cod($ini);
+        $.ini = Array.isArray($ini) ? $ini : fec.val_cod($ini);
         if( $.val[0] < $.ini[0] ){// el año es menor, oculto
           $_ = false;
         }else if( $.val[0] == $.ini[0] ){// mismo año
@@ -260,7 +211,7 @@ class fec {
       }
       // fecha hasta
       if( !!$fin && !!$_ ){
-        $.fin = Array.isArray($fin) ? $fin : fec.cod($fin);
+        $.fin = Array.isArray($fin) ? $fin : fec.val_cod($fin);
         if( $.val[0] > $.fin[0] ){// si el año es mayor, oculto
           $_ = false;
         }else if( $.val[0] == $.fin[0] ){// mismo año
@@ -275,6 +226,50 @@ class fec {
       }
     }  
     return $_;
-  }  
-
+  }
+  
+  // armo objeto : val + año + mes + sem + dia + tie + hor + min + seg + ubi
+  static dat( $val, $sep='/' ){
+    let $_={}, $={};
+  
+    if( typeof($val) != 'string' ){
+      $val = fec.val($val);
+      if( !$val ){
+        return $val;
+      }
+    }
+  
+    $.tie = $val.replace('T',' ').split(' ');  
+    $.fec = $.tie[0].replace($sep,'-').split('-');
+    $.hor = !!($.tie[1]) ? $.tie[1] : false;
+  
+    $_.mes = parseInt($.fec[1]);  
+    if( $.fec[0].length==4){ 
+      $_.año = parseInt($.fec[0]);
+      $_.dia = parseInt($.fec[2]);
+    }else{
+      $_.año = parseInt($.fec[2]);
+      $_.dia = parseInt($.fec[1]);
+    }
+  
+    if( $.hor ){
+      $_.tie = $.hor;
+      $.hor = $.hor.split(':');
+      if( !!($.hor[2]) ){
+        $_.seg = parseInt($.hor[2]);
+      }
+      if( !!($.hor[1]) ){
+        $_.min = parseInt($.hor[1]);
+      }
+      $_.hor = parseInt($.hor[0]);
+    }
+    $_.val = [$_.dia,$_.mes,$_.año].join($sep);
+    if( fec.val($_.val) ){
+      $_.sem = fec.val_tip($_,'sem');
+    }else{
+      $_ = false;
+    }
+    
+    return $_;  
+  }
 }

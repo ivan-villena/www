@@ -2,87 +2,131 @@
 // Página-app
 class app {
 
-  function __construct( $esq ){
+  // inicializo aplicacion
+  function __construct( string $uri, string $ini = "hol" ){
 
+    // Recursos : modulos del sistema
     global $sis_cla;
-    $_uri = $this->uri_val($esq);
+    $this->rec['cla']['api'] = $sis_cla;
 
-    // Recursos : css + jso + eje + dat + obj
-    $this->rec = [
-      // clases de sistema
-      'cla' => [
-        'api'=>$sis_cla
-      ],
-      // objetos de sistema
-      'obj'=>[
-        'api'=>[ 'val','opc','num','tex','fig','fec','hol','obj','lis','est','tab','eje','ele','arc','doc' ]
-      ],
-      // datos de la aplicacion
-      'dat'=> [
-      ],      
-      // elementos del documento
-      'ele' => [
-      ],
-      // ejecuciones por aplicacion
-      'eje' => ""
+    // armo peticion
+    $uri = explode('/',$uri);
+    $this->uri = new stdClass;
+    $this->uri->esq = !empty($uri[0]) ? $uri[0] : $ini;
+    $this->uri->cab = !empty($uri[1]) ? $uri[1] : FALSE;
+    $this->uri->val = FALSE;
+    if( $this->uri->art = !empty($uri[2]) ? $uri[2] : FALSE ){
+      $_val = explode('#',$this->uri->art);
+      if( isset($_val[1]) ){
+        $this->uri->art = $_val[0];
+        $this->uri->val = $_val[1];  
+      }
+      elseif( !empty($uri[3]) ){
+        $this->uri->val = $uri[3];
+      }
+    }
+
+    // ajusto enlace de inicio
+    $this->rec['ope']['ini']['app_ini']['url'] .= $this->uri->esq;
+
+    // cargo menú principal
+    $this->rec['ope']['ini']['app_cab']['htm'] = $this->cab();
+
+    // cargo datos de la pagina por peticion : esquema - cabecera - articulo - valor
+    $this->rec['ele']['body'] = [
+      'data-doc'=>$this->uri->esq, 
+      'data-cab'=>!!$this->uri->cab ? $this->uri->cab : NULL, 
+      'data-art'=>!!$this->uri->art ? $this->uri->art : NULL 
     ];
-    // Operadores : boton + panel + pantalla
-    $this->ope = [
-      // inicio
-      'app_ini'=>[
-        'ico'=>"app", 'url'=>SYS_NAV, 'nom'=>"Página de Inicio"
-      ],// menu
-      'app_cab'=>[
-        'ico'=>"app_cab", 'tip'=>"pan", 'nom'=>"Menú Principal"
-      ],// indice
-      'doc_art'=>[
-        'ico'=>"app_nav", 'tip'=>"pan", 'nom'=>"Índice", 'htm'=>""
-      ],// login
-      'ses_ini'=>[ 
-        'ico'=>"app_ini", 'bot'=>"fin", 'tip'=>"win", 'nom'=>"Iniciar Sesión..." 
-      ],// logout
-      'ses_fin'=>[ 
-        'ico'=>"app_fin", 'bot'=>"fin", 'tip'=>"win", 'nom'=>"Cerrar Sesión..."
-      ],// consola
-      'sis_adm'=>[ 
-        'ico'=>"eje", 'bot'=>"fin", 'tip'=>"win", 'nom'=>"Consola del Sistema", 'art'=>[ 'style'=>"max-width: 55rem;" ]
-      ]
-    ];
-    // Contenido html
-    $this->htm = [
-      // botones
-      'ope'=>[ 'ini'=>"", 'fin'=>"" ],
-      // paneles
-      'pan'=>"",
-      // main
-      'sec'=>"",
-      // modales
-      'win'=>"",
-      // barra lateral
-      'bar'=>"",
-      // barra inferior
-      'pie'=>""
-    ];
+    $this->rec['dat']['esq'] = dat::get('app_esq',[ 'ver'=>"`ide`='{$this->uri->esq}'", 'opc'=>'uni' ]);
+
+    if( !empty($this->uri->cab) ){
+      
+      // cargo datos del menu
+      $this->rec['dat']['cab'] = dat::get('app_cab',[ 'ver'=>"`esq`='{$this->uri->esq}' AND `ide`='{$this->uri->cab}'", 
+        'ele'=>'ope', 'opc'=>'uni'
+      ]);
+
+      // cargo datos del artículo
+      if( !empty($this->uri->art) ){
+        $this->rec['dat']['art'] = dat::get('app_art',[ 'ver'=>"`esq`='{$this->uri->esq}' AND `cab`='{$this->uri->cab}' AND `ide`='{$this->uri->art}'", 
+          'ele'=>'ope', 'opc'=>'uni' 
+        ]);
+
+        // cargo índice de contenidos
+        if( !empty($this->rec['dat']['cab']->nav) ){
+
+          $this->rec['dat']['nav'] = dat::get('app_nav',[ 'ver'=>"`esq`='{$this->uri->esq}' AND `cab`='{$this->uri->cab}' AND `ide`='{$this->uri->art}'", 
+            'ord'=>"pos ASC", 
+            'nav'=>'pos'
+          ]);
+
+          // pido listado por navegacion
+          if( !empty($this->rec['dat']['nav'][1]) ) $this->rec['ope']['ini']['doc_art']['htm'] = doc::art($this->rec['dat']['nav']);
+        }          
+      }
+    }
   }
 
-  // accesos
-  public array  $ope;
-
   // contenido
-  public array  $htm;
+  public array  $htm = [
+    // botones
+    'ope'=>[ 'ini'=>"", 'fin'=>"" ],
+    // paneles
+    'pan'=>"",
+    // main
+    'sec'=>"",
+    // modales
+    'win'=>"",
+    // barra lateral
+    'bar'=>"",
+    // barra inferior
+    'pie'=>""
+  ];  
 
   // recursos
-  public array $rec;
-  // cargo contenido
-  public function rec_cla( string $tip = "", array $dat = [], string $ide = "api" ) : string {
+  public array $rec = [
+    // clases de sistema
+    'cla' => [
+      'api'=>[]
+    ],
+    // objetos de sistema
+    'obj'=>[
+      'api'=>[ 'opc','num','tex','fig','fec','hol','obj','lis','est','tab','eje','ele','arc','doc' ]
+    ],
+    // datos de la aplicacion
+    'dat'=> [
+    ],      
+    // elementos del documento
+    'ele' => [
+    ],
+    // ejecuciones por aplicacion
+    'eje' => "",
+    // operadores: botones de la cabecera
+    'ope' => [
+      'ini'=>[
+        'app_ini'=>[ 'ico'=>"app", 'url'=>SYS_NAV, 'nom'=>"Página de Inicio" ],
+        'app_dat'=>[ 'ico'=>"dat_des", 'tip'=>"win", 'nom'=>"Ayuda", ],
+        'app_cab'=>[ 'ico'=>"app_cab", 'tip'=>"pan", 'nom'=>"Menú Principal" ],
+        'doc_art'=>[ 'ico'=>"app_nav", 'tip'=>"pan", 'nom'=>"Índice", 'htm'=>"" ]
+      ],
+      'fin'=>[
+        'ses_ini'=>[  'ico'=>"app_ini", 'tip'=>"win", 'nom'=>"Iniciar Sesión..."  ],
+        'ses_fin'=>[  'ico'=>"app_fin", 'tip'=>"win", 'nom'=>"Cerrar Sesión..." ],
+        'sis_adm'=>[  'ico'=>"eje", 'tip'=>"win", 'nom'=>"Consola del Sistema" ]
+      ]
+    ]
+  ];
+  // recursos: cargo contenido
+  public function rec_cla( string $tip = "", array $dat = [] ) : string {
     $_ = "";
     if( empty($dat) ) $dat = $this->rec['cla'];
     // estilos
     if( $tip == 'css' ){
 
       foreach( $dat as $mod_ide => $mod_lis ){
+        $rec_ide = ( $mod_ide == "api" ) ? $mod_ide : "src/{$mod_ide}";
         // por módulos
-        $rec_ide = ( $mod_ide == $ide ) ? $mod_ide : "src/{$mod_ide}";
         foreach( $mod_lis as $cla_ide ){
           if( file_exists( "./".($rec = "{$rec_ide}/{$cla_ide}.css") ) ) $_ .= "
           <link rel='stylesheet' href='".SYS_NAV."$rec' >";
@@ -94,95 +138,23 @@ class app {
     }// prorama : clases 
     elseif( $tip == 'jso' ){
       foreach( $dat as $mod_ide => $mod_lis ){
-        // por modulos
-        $rec_ide = ( $mod_ide == $ide ) ? $mod_ide : "src/{$mod_ide}";
+        $rec_ide = ( $mod_ide == "api" ) ? $mod_ide : "src/{$mod_ide}";
+        // por página
+        if( file_exists( "./".($rec = "{$rec_ide}/index.js") ) ) $_ .= "
+          <script src='".SYS_NAV."$rec'></script>";        
+        // por modulos        
         foreach( $mod_lis as $cla_ide ){ 
           if( file_exists( "./".($rec = "{$rec_ide}/{$cla_ide}.js") ) ) $_ .= "
             <script src='".SYS_NAV."$rec'></script>";
-        }
-        // por página
-        if( file_exists( "./".($rec = "{$rec_ide}/index.js") ) ) $_ .= "
-        <script src='".SYS_NAV."$rec'></script>";
-      }
-    }// programa : objetos
-    elseif( $tip == 'jso-obj' ){
-      $var = get_defined_vars();
-      foreach( $dat as $cla ){
-        if( isset($var[$obj = !empty($ide) ? "{$ide}_{$cla}" : $cla]) && is_object($var[$obj]) ){ $_ .= "
-          var \${$obj} = new $cla(".( !empty($atr = get_object_vars($var[$obj])) ? obj::val_cod($atr) : "" ).")";
         }
       }
     }
     return $_;
   }
 
-  // peticion http://
-  public object $uri;
-  // cargo peticion
-  public function uri_val( string $uri, string $esq = "hol" ) : object {
-    
-    if( !isset($this->uri) ){
-
-      $this->uri = new stdClass;
-
-      $uri = explode('/', !empty($_REQUEST['uri']) ? $_REQUEST['uri'] : '');      
-
-      $_uri = &$this->uri;
-      $_uri->esq = !empty($uri[0]) ? $uri[0] : $esq;
-      $_uri->cab = !empty($uri[1]) ? $uri[1] : FALSE;
-      if( $_uri->art = !empty($uri[2]) ? $uri[2] : FALSE ){
-        $_val = explode('#',$_uri->art);
-        if( isset($_val[1]) ){
-          $_uri->art = $_val[0];
-          $_uri->val = $_val[1];  
-        }
-        else{
-          $_uri->val = !empty($uri[3]) ? $uri[3] : FALSE;
-        }
-      }
-
-      // ajusto enlace de inicio
-      $this->rec['ope']['app_ini']['url'] .= "$_uri->esq";
-
-      // cargo menú principal
-      $this->rec['ope']['app_cab']['htm'] = $this->cab($_uri->esq);
-
-      // cargo datos de la pagina por peticion : esquema - cabecera - articulo - valor
-      $this->rec['ele']['body'] = [
-        'data-doc'=>$_uri->esq, 
-        'data-cab'=>!!$_uri->cab ? $_uri->cab : NULL, 
-        'data-art'=>!!$_uri->art ? $_uri->art : NULL 
-      ];
-      $this->rec['dat']['esq'] = dat::get('app_esq',[ 'ver'=>"`ide`='{$_uri->esq}'", 'opc'=>'uni' ]);
-      if( !empty($_uri->cab) ){
-        
-        // cargo datos del menu
-        $this->rec['dat']['cab'] = dat::get('app_cab',[ 'ver'=>"`esq`='{$_uri->esq}' AND `ide`='{$_uri->cab}'", 
-          'ele'=>'ope', 'opc'=>'uni'
-        ]);
-
-        // cargo datos del artículo
-        if( !empty($_uri->art) ){
-          $this->rec['dat']['art'] = dat::get('app_art',[ 'ver'=>"`esq`='{$_uri->esq}' AND `cab`='{$_uri->cab}' AND `ide`='{$_uri->art}'", 
-            'ele'=>'ope', 'opc'=>'uni' 
-          ]);
-
-          // cargo índice de contenidos
-          if( !empty($this->rec['dat']['cab']->nav) ){
-
-            $this->rec['dat']['nav'] = dat::get('app_nav',[ 'ver'=>"`esq`='{$_uri->esq}' AND `cab`='{$_uri->cab}' AND `ide`='{$_uri->art}'", 
-              'ord'=>"pos ASC", 
-              'nav'=>'pos'
-            ]);
-
-            // pido listado por navegacion
-            if( !empty($this->rec['dat']['nav'][1]) ) $this->ope['doc_art']['htm'] = doc::art($this->rec['dat']['nav']);
-          }          
-        }
-      }      
-    }
-    return $this->uri;
-  }
+  // peticion
+  public object $uri
+  ;
   // armo directorios
   public function uri_dir( object $uri = NULL ) : object {
 
@@ -207,9 +179,9 @@ class app {
   }
 
   // Menu principal : titulo + descripcion + listado > item = [icono] + enlace
-  public function cab( string $esq = "", array $ele = [] ) : string {
+  public function cab( array $ele = [] ) : string {
     global $api_usu;      
-    if( empty($esq) ) $esq = $this->uri->esq;
+    $esq = $this->uri->esq;
     foreach( ['ope','lis','dep'] as $i ){ if( !isset($ele[$i]) ) $ele[$i] = []; }
 
     // armo listado de enlaces
@@ -248,7 +220,6 @@ class app {
     ele::cla($ele['dep'],DIS_OCU);
     $ele['opc'] = [ 'tog' ]; // dlt- 'ver', 'cue'
     return lis::ite($_lis,$ele);
-
   }
 
   // Articulo por contenido + ...secciones + pie de página

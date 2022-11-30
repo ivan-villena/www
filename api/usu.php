@@ -9,11 +9,8 @@ class usu {
   public string $eda = "";
   public string $fec = "";
   public string $sin = "";
-  public string $kin = "";    
+  public string $kin = "";
   public string $psi = "";
-  public string $mai = "";
-  public string $tel = "";
-  public string $ubi = "";
 
   public function __construct( int $ide = NULL ){
 
@@ -24,36 +21,35 @@ class usu {
         $this->$atr = $val;
       }
       // calculo edad actual
-      $this->eda = fec::cue('eda',$this->fec);
+      if( !empty($this->fec) ) $this->eda = fec::val_cue('eda',$this->fec);
     }      
   }
 
   // sesion
-  static function ses( string $tip ) : string {
+  public function ses( string $tip ) : string {
     switch( $tip ){
       // datos del usuario
       case 'dat':
         $esq = 'api'; 
         $est = 'usu';
-        global $_usu;
-        $_kin = hol::_('kin',$_usu->kin);
-        $_psi = hol::_('psi',$_usu->psi);
+        $_kin = hol::_('kin',$this->kin);
+        $_psi = hol::_('psi',$this->psi);
         $_ = "
         <form class='dat' data-esq='{$esq}' data-est='{$est}'>
 
           <fieldset class='ren'>
 
-            ".doc::var('atr', [$esq,$est,$atr='nom'], [ 'val'=>$_usu->$atr  ], 'eti')."
+            ".dat::var('atr', [$esq,$est,$atr='nom'], [ 'val'=>$this->$atr  ], 'eti')."
 
-            ".doc::var('atr', [$esq,$est,$atr='ape'], [ 'val'=>$_usu->$atr  ], 'eti')."                        
+            ".dat::var('atr', [$esq,$est,$atr='ape'], [ 'val'=>$this->$atr  ], 'eti')."                        
           
           </fieldset>
 
           <fieldset class='ren'>
 
-            ".doc::var('atr', [$esq,$est,$atr='mai'], [ 'val'=>$_usu->$atr  ],'eti')."
+            ".dat::var('atr', [$esq,$est,$atr='mai'], [ 'val'=>$this->$atr  ],'eti')."
 
-            ".doc::var('atr', [$esq,$est,$atr='fec'], [ 'val'=>$_usu->$atr, 'ite'=>[ 'class'=>"tam-ini" ]  ], 'eti')."
+            ".dat::var('atr', [$esq,$est,$atr='fec'], [ 'val'=>$this->$atr, 'ite'=>[ 'class'=>"tam-ini" ]  ], 'eti')."
 
           </fieldset>
 
@@ -94,10 +90,9 @@ class usu {
   // ficha
   public function fic( array $ope = [], ...$opc ) : string {
     $_ = "";
-    global $_usu;      
-    $_fec = fec::_('dat',$_usu->fec);
-    $_kin = hol::_('kin',$_usu->kin);
-    $_psi = hol::_('psi',$_usu->psi);
+    $_fec = fec::_('dat',$this->fec);
+    $_kin = hol::_('kin',$this->kin);
+    $_psi = hol::_('psi',$this->psi);
     // sumatoria : kin + psi
     $sum = $_kin->ide + $_psi->tzo;
 
@@ -106,8 +101,8 @@ class usu {
     <section class='inf ren esp-ara'>
 
       <div>
-        <p class='tex-tit tex-3 mar_aba-1'>".tex::let("$_usu->nom $_usu->ape")."</p>
-        <p>".tex::let($_fec->val." ( $_usu->eda años )")."</p>
+        <p class='tex-tit tex-3 mar_aba-1'>".tex::let("$this->nom $this->ape")."</p>
+        <p>".tex::let($_fec->val." ( $this->eda años )")."</p>
       </div>        
 
       <div class='val'>
@@ -194,11 +189,10 @@ class usu {
     $_['dia']->kin = hol::_('kin', intval($_['hol']['kin']) + intval($this->kin) );
 
     return $_;
-  }
+  }  
   // - listado
   public function cic_nav( array $ope = [], ...$opc ) : string {
     $_ = "";
-    global $_usu;
     foreach(['nav','lis','dep','opc'] as $eti ){ if( !isset($ope["$eti"]) ) $ope["$eti"] = []; }
     $opc_des = !in_array('not-des',$opc);
     // descripciones
@@ -211,10 +205,10 @@ class usu {
     $_lis = [];
     foreach( dat::get("usu_cic") as $_arm ){
       $_lis_cic = [];
-      foreach( dat::get('usu_cic_ani',[ 'ver'=>"`usu`='{$_usu->ide}' AND `arm`=$_arm->ide", 'ord'=>"`ide` ASC" ]) as $_cic ){
+      foreach( dat::get('usu_cic_ani',[ 'ver'=>"`usu`='{$this->ide}' AND `arm`=$_arm->ide", 'ord'=>"`ide` ASC" ]) as $_cic ){
         // ciclos lunares
         $_lis_lun = [];
-        foreach( dat::get('usu_cic_lun',[ 'ver'=>"`usu`='{$_usu->ide}' AND `ani`=$_cic->ide", 'ord'=>"`ide` ASC" ]) as $_lun ){                            
+        foreach( dat::get('usu_cic_lun',[ 'ver'=>"`usu`='{$this->ide}' AND `ani`=$_cic->ide", 'ord'=>"`ide` ASC" ]) as $_lun ){                            
           $_fec = fec::_('dat',$_lun->fec);
           $_lun_ton = hol::_('ton',$_lun->ide);
           $_kin = hol::_('kin',$_lun->kin);
@@ -267,7 +261,7 @@ class usu {
       ".$this->cic_inf_dia( $dat, $ele, ...$opc )."
     </section>"; 
     return $_;
-  }// - anual
+  }// -- anual
   public function cic_inf_ani( array $dat, array $ele = [], ...$opc ) : string {
     $_ani = $dat['ani'];
     $_cas_arm = hol::_('cas_arm',$dat['ani']->arm);
@@ -296,9 +290,8 @@ class usu {
 
     ";
     return $_;
-  }// - lunar
+  }// -- lunar
   public function cic_inf_lun( array $dat, array $ele = [], ...$opc ) : string {
-    global $_usu;
     $_lun = $dat['lun'];
     $_lun_fec = fec::_('dat',$_lun->fec);
     $_lun_ton = hol::_('ton',$_lun->ide);
@@ -322,9 +315,8 @@ class usu {
 
     ";
     return $_;
-  }// - diario
+  }// -- diario
   public function cic_inf_dia( array $dat, array $ele = [], ...$opc ) : string {
-    global $_usu;
     $_dat = hol::val( date('Y/m/d') );
     $_kin = hol::_('kin',$dat['dia']->kin);
 

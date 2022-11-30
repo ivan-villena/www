@@ -48,7 +48,7 @@ class hol {
   // Valores acumulados
   static tab_val( $ope ){
 
-    let $ = doc.var($ope);
+    let $ = dat.var($ope);
 
     // portales + parejas + pulsares
     $.ide = $api_app.var.classList[0].split('-')[2];
@@ -69,7 +69,7 @@ class hol {
   }// Secciones
   static tab_sec( $dat, $ope, ...$opc ){
 
-    let $ = doc.var($dat);    
+    let $ = dat.var($dat);    
 
     $.tab = $api_app.tab.ide;
 
@@ -298,7 +298,7 @@ class hol {
   }// portales de activacion
   static tab_pag( $dat, $ope, ...$opc ){
 
-    let $ = doc.var($dat);
+    let $ = dat.var($dat);
 
     $.kin = $_hol_val.kin;
 
@@ -344,7 +344,7 @@ class hol {
   }// parejas del oráculo
   static tab_par( $dat, $ope, ...$opc ){
 
-    let $ = doc.var($dat);
+    let $ = dat.var($dat);
 
     $.kin = $_hol_val.kin;
 
@@ -427,7 +427,7 @@ class hol {
   }// pulsares de onda
   static tab_pul( $dat, $ope, ...$opc ){
 
-    let $ = doc.var($dat);
+    let $ = dat.var($dat);
 
     $.kin = $_hol_val.kin;
 

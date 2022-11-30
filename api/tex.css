@@ -38,21 +38,19 @@ a.tex {
   text-decoration: none;
 }
 
-/* 
-  letra
-*/
+/* letra */
 c {
   display: inline;  
   font-weight: bold; 
   color: var(--let_ope);
   text-shadow: 0 0 5px;  
 }
+
 c.sep { 
   margin: .3rem;
 }
-/* 
-  Numeros 
-*/
+
+/* Numeros */
 n {
   display: inline;
 }
@@ -62,11 +60,9 @@ n, sup, sub {
   color: var(--let_num);
 }
 
-/* 
-  textos
-*/
-p {
-  margin: 0;
+/* citas */
+cite {
+  font-style: italic;
 }
 q, blockquote { 
   quotes: "\"" "\"" "'" "'";
@@ -77,9 +73,11 @@ q, blockquote {
   text-shadow: 0 0 5px;
 }
 
-/* 
-  párrafo
-*/
+/* párrafos */
+p {
+  margin: 0;
+}
+
 p.cit {
   margin: .75rem auto;
   font-style: italic;
@@ -94,8 +92,8 @@ p.des {
   font-style: italic;
 }
 
-/* 
-  colores  
+/*  
+  tipografías
 */
 dfn, /* Definiciones */
 abbr, /* Abreviaturas */
@@ -106,14 +104,16 @@ dl dt, /* Términos */
 :is(b,i).val { 
   color: var(--let_val); 
 }
-:is(b,i).tex { 
-  color: var(--let_tex); 
-}
-:is(b,i).num { 
-  color: var(--let_num); 
-}
 :is(p,b,i).err { 
   color: var(--let_err); 
+}
+
+/* 
+  controladores
+*/
+textarea {
+  padding: .6rem;
+  resize: vertical;
 }
 
 /* 
@@ -133,10 +133,3 @@ article section > figure {
   margin: 1rem auto;
 }
 
-/* 
-  controladores
-*/
-textarea {
-  padding: .6rem;
-  resize: vertical;
-}

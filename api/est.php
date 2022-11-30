@@ -1,6 +1,6 @@
 <?php
 // Valores
-class est {
+class est { 
 
   static string $IDE = "est-";
   static string $EJE = "est.";  
@@ -274,7 +274,7 @@ class est {
         foreach( $ope as $ver ){ 
 
           if( $atr == $ver[0] ) 
-            $val_ite []= val::ope_ver( $val, $ver[1], $ver[2] );
+            $val_ite []= dat::ver( $val, $ver[1], $ver[2] );
         }
       }
       // evaluo resultados
@@ -506,7 +506,7 @@ class est {
           ".fig::ico('val_ver-tod',['eti'=>"button",'title'=>"Mostrar todas las Columnas", 'onclick'=>"{$_eje}_val(this,'ver');"])."
         </fieldset>
 
-        ".doc::var('val','ver',[ 
+        ".dat::var('val','ver',[ 
           'nom'=>"Filtrar", 'htm'=> doc::val_ver([ 'eje'=>"{$_eje}_ver(this);" ]) 
         ])."
 
@@ -538,7 +538,7 @@ class est {
         $htm = "
         <form class='ren esp-bet'>
         
-          ".val::ver('lis', isset($_cue[$dat_tip][2]) ? $_cue[$dat_tip][2] : [], [ 'ope'=>$_var ] )."
+          ".dat::ope_ver('lis', isset($_cue[$dat_tip][2]) ? $_cue[$dat_tip][2] : [], [ 'ope'=>$_var ] )."
 
         </form>";
         $_ .= "
@@ -572,11 +572,11 @@ class est {
           <fieldset class='inf ren'>
             <legend>Acumulados</legend>
 
-            ".doc::var('app',"val.ver.tot", [ 'ope'=>[ 'id'=>"{$_ide}-tot" ] ])."
+            ".dat::var('app',"val.ver.tot", [ 'ope'=>[ 'id'=>"{$_ide}-tot" ] ])."
             
-            ".doc::var('app',"val.ver.tod", [ 'ope'=>[ 'id'=>"{$_ide}-tod", 'onchange'=>"{$_eje}_tod(this);" ] ])."
+            ".dat::var('app',"val.ver.tod", [ 'ope'=>[ 'id'=>"{$_ide}-tod", 'onchange'=>"{$_eje}_tod(this);" ] ])."
             
-            ".val::acu($ope['val']['acu'],[
+            ".dat::ope_acu($ope['val']['acu'],[
               'ide'=>$_ide, // agrego evento para ejecutar todos los filtros
               'eje'=>"{$_eje}_acu(this); ".self::$EJE."ver();",
               'ope'=>[ 'htm_fin'=>"<span class='mar_izq-1'><c>(</c> <n>0</n> <c>)</c></span>" ]
@@ -598,7 +598,7 @@ class est {
           <fieldset class='inf ren'>
             <legend>por Datos</legend>
 
-            ".val::ver('dat', $ope['est'], [
+            ".dat::ope_ver('dat', $ope['est'], [
               'ope'=>[ 'id'=>"{$_ide}-val", 'max'=>$dat_tot, 'onchange'=>"$_eje();" ] 
             ])."
           </fieldset>
@@ -608,7 +608,7 @@ class est {
           <fieldset class='inf ren'>
             <legend>por Fechas</legend>
 
-            ".val::ver('lis', [ 'ini'=>[], 'fin'=>[], 'inc'=>[], 'lim'=>[] ], [ 
+            ".dat::ope_ver('lis', [ 'ini'=>[], 'fin'=>[], 'inc'=>[], 'lim'=>[] ], [ 
               'ope'=>[ 'id'=>"{$_ide}-fec", 'tip'=>"fec_dia", 'onchange'=>"$_eje();" ] 
             ])."            
           </fieldset>          
@@ -618,7 +618,7 @@ class est {
           <fieldset class='inf ren'>
             <legend>por Posiciones</legend>
 
-            ".val::ver('lis', [ 'ini'=>[], 'fin'=>[], 'inc'=>[], 'lim'=>[] ], [                  
+            ".dat::ope_ver('lis', [ 'ini'=>[], 'fin'=>[], 'inc'=>[], 'lim'=>[] ], [                  
               'ope'=>[ 'id'=>"{$_ide}-pos", 
                 'tip'=>"num_int", 'min'=>"1", 'max'=>$dat_tot, 'onchange'=>"$_eje();" 
               ]
@@ -649,7 +649,7 @@ class est {
             foreach( $est_ope['atr'] as $atr ){
               $_atr = dat::atr($esq,$est,$atr);
               $atr_nom = empty($_atr->nom) && $atr=='ide' ? dat::atr($esq,$est,'nom')->nom : $_atr->nom ;
-              $htm .= doc::var('val',$atr,[
+              $htm .= dat::var('val',$atr,[
                 'nom'=>"¿{$atr_nom}?", 
                 'val'=>!isset($est_ope['atr_ocu']) || !in_array($atr,$est_ope['atr_ocu']),
                 'ope'=>[ 'tip'=>'opc_bin', 'id'=>"{$_ide} _{$esq}-{$est}-{$atr}", 
@@ -680,14 +680,14 @@ class est {
               if( !empty($est_ope["{$pre}_{$ide}"]) ){ $htm = "
                 <form class='ide-{$ide} ren ali-ini mar_izq-2' data-esq='{$esq}' data-est='{$est}'>";
                 foreach( $est_ope["{$pre}_{$ide}"] as $atr ){
-                  $htm .= doc::var('val',$atr,[ 
+                  $htm .= dat::var('val',$atr,[ 
                     'nom'=>"¿".dat::atr($esq,$est,$atr)->nom."?",
                     'ope'=>[ 'tip'=>'opc_bin', 'id'=>"{$_ide}-{$atr}-{$ide}", 'onchange'=>"{$_eje}_tog(this);" ] 
                   ]);
                 }$htm .= "
                 </form>";
                 $lis_dep[] = [ 
-                  'ite'=> doc::var_dat('app','est','ver',$ide)['nom'], 
+                  'ite'=> dat::var_dat('app','est','ver',$ide)['nom'], 
                   'htm'=> $htm
                 ];
               }
@@ -709,7 +709,7 @@ class est {
     case 'cue':
       $_ = "
       <h3 class='mar_arr-0 tex_ali-izq'>Cuentas</h3>
-      ".lis::ite( val::cue('dat', $ope['est'], [ 'ide'=>$_ide ]), [ 'dep'=>[], 'opc'=>['tog','ver','cue'] ]);
+      ".lis::ite( dat::ope_cue('dat', $ope['est'], [ 'ide'=>$_ide ]), [ 'dep'=>[], 'opc'=>['tog','ver','cue'] ]);
 
       break;
     }
@@ -864,7 +864,7 @@ class est {
           // actualizo ultimo titulo para no repetir por cada item
           foreach( $ope['cic_val'] as $atr => &$pos ){
             
-            if( !empty($ide = dat::ide_rel($esq,$est,$atr) ) && $pos != $val->$atr ){
+            if( !empty($ide = dat::est_rel($esq,$est,$atr) ) && $pos != $val->$atr ){
 
               if( !empty($val->$atr) ){
                 
@@ -881,7 +881,7 @@ class est {
 
           foreach( $ope["tit_$tip"] as $atr ){
 
-            if( !empty($ide = dat::ide_rel($esq,$est,$atr)) ){
+            if( !empty($ide = dat::est_rel($esq,$est,$atr)) ){
 
               foreach( dat::get($esq,$ide) as $val ){
 
@@ -928,7 +928,7 @@ class est {
             $var_dat = $_atr[$atr]->var_dat;
             $var_val = $_atr[$atr]->var_val;
           }
-          elseif( !empty( $_var = val::tip_ver( $val ) ) ){
+          elseif( !empty( $_var = dat::tip( $val ) ) ){
             $var_dat = $_var->dat;
             $var_val = $_var->val;
           }

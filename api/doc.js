@@ -113,7 +113,7 @@ class doc {
     if( $.lis ){
       // elimino marcas previas
       $.lis.querySelectorAll(
-        `ul.lis.nav :is( li.pos.sep, li.pos:not(.sep) > div.val ).${$cla}`
+        `ul.lis.nav :is( li.pos.sep, li.pos:not(.sep) > div.doc_val ).${$cla}`
       ).forEach( 
         $e => $e.classList.remove($cla) 
       );
@@ -255,39 +255,8 @@ class doc {
 
         $.cla = ( $ope == 'tod' ) ? `.ocu` : `:not(.ocu)`;
               
-        $.lis.querySelectorAll(`.val > .fig_ico.val_tog${$.cla}`).forEach( $e => $e.click() );
+        $.lis.querySelectorAll(`.doc_val > .fig_ico.val_tog${$.cla}`).forEach( $e => $e.click() );
       }
     }
-  }
-
-  // variable : .atr > label + (select,input,textarea,button)[name]
-  static var( $tip, $dat, $ope, ...$opc ){
-    let $={};
-
-    if( $tip && $tip.nodeName ){
-      $dat = $tip;
-      $api_app.var = ele.val_ver($dat,{'eti':'form'});
-      $.var_ide = $dat.getAttribute('name');
-    }
-    else{
-      switch( $tip ){
-      case 'mar':
-        if( $ope ){
-          $dat.parentElement.parentElement.querySelectorAll(`.${$ope}`).forEach( $e => $e.classList.remove($ope) );
-          $dat.classList.add($ope);
-        }
-        break;
-      case 'tog':
-        if( $ope ){
-          $dat.parentElement.querySelectorAll(`.${$ope}`).forEach( $e => $e != $dat && $e.classList.remove($ope) );
-          $dat.classList.toggle($ope);
-        }
-        break;
-      }
-    }
-    return $;
-  }// toggles por : form > fieldsets > ...
-  static var_tog( $ide ){
-    lis.val_dec( ele.val_ver($dat,{'eti':'fieldset'}).children ).forEach( $e => $e != $dat && $e.classList.toggle(DIS_OCU) );
   }
 }

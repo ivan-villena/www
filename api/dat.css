@@ -13,8 +13,14 @@ fieldset {
   margin: 0;
 }
 
-form:is(.lis,.ren,.ite,.dat,.val), 
-fieldset:is(.lis,.ren,.ite,.dat,.val) {
+/*//////////////////////////////////////////////////////////////////////*/
+/*//////////////////////////////////////////////////////////////////////*/
+
+/* 
+  contenedores 
+*/
+form:is(.lis,.ren,.ite,.val), 
+fieldset:is(.lis,.ren,.ite,.val) {
   display: flex;
   flex-direction: column;  
   align-items: center;
@@ -36,17 +42,90 @@ fieldset:is(.ren,.ite) {
   flex-grow: 2;
   align-self: stretch;
 }
-/* grupos */
+
+/* renglones */
 fieldset:is(.ren,.ite) {
   margin: .4rem 0;
 }
-fieldset.ren {
-  justify-content: space-evenly;
-}
-/* renglones */
 :is(form,fieldset) > :is(.ren,.ite) {
   justify-content: space-evenly;
   margin: .5rem .5rem;
+}
+
+/* 
+Informe
+*/
+.inf {
+  display: flex;
+  flex-direction: column;
+  padding: .25rem;
+  border: 1px solid var(--bor_dat);
+  border-radius: .5rem;
+  margin: .5rem;
+}
+.inf:is(.ren,.ite) {
+  flex-grow: 2;
+  align-items: center;
+}
+.inf.ren {
+  flex-flow: row wrap;
+}
+.inf.ite {
+  flex-flow: row nowrap;
+}
+
+article.inf {
+  margin-left: auto;
+  margin-right: auto;
+}
+article.inf > * {
+  margin: .5rem;
+}
+
+/* 
+  ABM de la base
+*/
+form.dat {
+  width: 100%;
+  max-width: 40rem;
+  background-color: var(--fon_nav);
+  border-radius: .5rem;
+  padding: 0 .5rem;   
+  margin: auto;
+}
+
+form.dat :is(fieldset,div).var {
+  flex-grow: 2;
+  flex-direction: column;
+  align-items: start;
+  margin: .5rem;
+}
+
+form.dat :is(fieldset,div).var label[for] {
+  margin: 0;
+  color: var(--let_ide);
+  padding: .5rem;
+}
+
+form.dat :is(fieldset,div).var select,
+form.dat :is(fieldset,div).var textarea,
+form.dat :is(fieldset,div).var input:not([type='checkbox']):not([type='radio']) {
+  width: 100%; width:-webkit-fill-available; width:-moz-available;  
+  border: 0;
+  border-radius: 0;
+  border-bottom: 1px solid;
+}
+
+/*//////////////////////////////////////////////////////////////////////*/
+/*//////////////////////////////////////////////////////////////////////*/
+/* 
+variable > label + input
+*/
+form :is(fieldset,div).var {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  margin:.15rem;
 }
 
 /*//////////////////////////////////////////////////////////////////////*/
@@ -128,72 +207,3 @@ input[maxlength='18']{ width: 11rem; }
 input[maxlength='19']{ width: 11.5rem; }
 input[maxlength='20']{ width: 12rem; }
 input[maxlength='25']{ width: 15rem; }
-
-/*//////////////////////////////////////////////////////////////////////*/
-/*//////////////////////////////////////////////////////////////////////*/
-/* 
-Informe
-*/
-:is(form,fieldset,article,section,div).inf {
-  display: flex;
-  flex-direction: column;
-  padding: .25rem;
-  border: 1px solid var(--bor_dat);
-  border-radius: .5rem;
-  margin: .5rem;  
-}
-
-:is(fieldset,div).inf {
-  flex-grow: 2;
-  align-items: center;
-}
-:is(form,fieldset,div).inf.ren {
-  flex-flow: row wrap;
-}
-:is(form,fieldset,div).inf.ite {
-  flex-flow: row nowrap;
-}
-
-:is(article).inf {
-  margin-left: auto;
-  margin-right: auto;
-}
-:is(article).inf > * {
-  margin: .5rem;
-}
-
-/*//////////////////////////////////////////////////////////////////////*/
-/*//////////////////////////////////////////////////////////////////////*/
-/* 
-  ABM de la base
-*/
-form.dat {
-  width: 100%;
-  max-width: 40rem;
-  background-color: var(--fon_nav);
-  border-radius: .5rem;
-  padding: 0 .5rem;   
-  margin: auto;
-}
-
-form.dat :is(fieldset,div).var {
-  flex-grow: 2;
-  flex-direction: column;
-  align-items: start;
-  margin: .5rem;
-}
-
-form.dat :is(fieldset,div).var label[for] {
-  margin: 0;
-  color: var(--let_ide);
-  padding: .5rem;
-}
-
-form.dat :is(fieldset,div).var select,
-form.dat :is(fieldset,div).var textarea,
-form.dat :is(fieldset,div).var input:not([type='checkbox']):not([type='radio']) {
-  width: 100%; width:-webkit-fill-available; width:-moz-available;  
-  border: 0;
-  border-radius: 0;
-  border-bottom: 1px solid;
-}

@@ -683,7 +683,7 @@ class hol_bib {
 
             ".doc::val_ope()."
 
-            ".doc::var('atr',"hol.kin.ide",[ 'nom'=>"ver el kin", 'ope'=>[ 
+            ".dat::var('atr',"hol.kin.ide",[ 'nom'=>"ver el kin", 'ope'=>[ 
               'title'=>"Introduce un número de kin...", 'oninput'=>"{$_eje}this);" 
             ]])."
           </fieldset>

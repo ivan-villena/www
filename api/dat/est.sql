@@ -1,9 +1,9 @@
 -- Active: 1665550796793@@127.0.0.1@3306@c1461857_api
 --
 -- Calendario
-  DELETE FROM `app_dat` WHERE `esq` = 'api'
+  DELETE FROM `dat_est` WHERE `esq` = 'fec'
   ;
-  DELETE FROM `app_dat` WHERE `esq` = 'fec'; INSERT INTO `app_dat` VALUES
+  DELETE FROM `dat_est` WHERE `esq` = 'fec'; INSERT INTO `dat_est` VALUES
     -- fecha
     ( 'fec', 'dat', '{
         "val":{ 
@@ -25,9 +25,9 @@
   ;
 --
 -- Holon
-  DELETE FROM `app_dat` WHERE `esq`='hol'
+  DELETE FROM `dat_est` WHERE `esq`='hol'
   ;
-  DELETE FROM `app_dat` WHERE `esq`='hol' AND `ide` LIKE 'uni%'; INSERT INTO `app_dat` VALUES
+  DELETE FROM `dat_est` WHERE `esq`='hol' AND `ide` LIKE 'uni%'; INSERT INTO `dat_est` VALUES
     -- colores
     -- direcciones
     -- flujos: respiraciones y poderes
@@ -412,7 +412,7 @@
           }
       }' )
   ;
-  DELETE FROM `app_dat` WHERE `esq`='hol' AND `ide` LIKE 'arm%'; INSERT INTO `app_dat` VALUES
+  DELETE FROM `dat_est` WHERE `esq`='hol' AND `ide` LIKE 'arm%'; INSERT INTO `dat_est` VALUES
 
     ('hol','arm', '{
       "atr":{ 
@@ -424,7 +424,7 @@
       }
     }' )
   ;
-  DELETE FROM `app_dat` WHERE `esq`='hol' AND `ide` LIKE 'rad%'; INSERT INTO `app_dat` VALUES
+  DELETE FROM `dat_est` WHERE `esq`='hol' AND `ide` LIKE 'rad%'; INSERT INTO `dat_est` VALUES
 
     ('hol','rad', '{
         "atr":{ 
@@ -539,7 +539,7 @@
         }          
     }' )  
   ;
-  DELETE FROM `app_dat` WHERE `esq`='hol' AND `ide` LIKE 'ton%'; INSERT INTO `app_dat` VALUES
+  DELETE FROM `dat_est` WHERE `esq`='hol' AND `ide` LIKE 'ton%'; INSERT INTO `dat_est` VALUES
 
     ('hol','ton', '{
         "atr":{
@@ -697,7 +697,7 @@
         }
     }' )
   ;
-  DELETE FROM `app_dat` WHERE `esq`='hol' AND `ide` LIKE 'sel%'; INSERT INTO `app_dat` VALUES
+  DELETE FROM `dat_est` WHERE `esq`='hol' AND `ide` LIKE 'sel%'; INSERT INTO `dat_est` VALUES
 
     ('hol','sel', '{
       "atr":{ 
@@ -1040,7 +1040,7 @@
         }          
       }' )
   ;
-  DELETE FROM `app_dat` WHERE `esq`='hol' AND `ide` LIKE 'lun%'; INSERT INTO `app_dat` VALUES
+  DELETE FROM `dat_est` WHERE `esq`='hol' AND `ide` LIKE 'lun%'; INSERT INTO `dat_est` VALUES
 
     ('hol','lun', '{  
         "atr":{ 
@@ -1142,7 +1142,7 @@
       }
     }' )
   ;
-  DELETE FROM `app_dat` WHERE `esq`='hol' AND `ide` LIKE 'cas%'; INSERT INTO `app_dat` VALUES
+  DELETE FROM `dat_est` WHERE `esq`='hol' AND `ide` LIKE 'cas%'; INSERT INTO `dat_est` VALUES
 
     ('hol','cas', '{
         "atr":{ 
@@ -1213,7 +1213,7 @@
         }
     }')
   ;
-  DELETE FROM `app_dat` WHERE `esq`='hol' AND `ide` LIKE 'chi%'; INSERT INTO `app_dat` VALUES
+  DELETE FROM `dat_est` WHERE `esq`='hol' AND `ide` LIKE 'chi%'; INSERT INTO `dat_est` VALUES
 
     ('hol','chi', '{
         "atr":{
@@ -1261,7 +1261,7 @@
         }
     }' )     
   ;
-  DELETE FROM `app_dat` WHERE `esq`='hol' AND `ide` LIKE 'kin%'; INSERT INTO `app_dat` VALUES
+  DELETE FROM `dat_est` WHERE `esq`='hol' AND `ide` LIKE 'kin%'; INSERT INTO `dat_est` VALUES
     ('hol','kin', '{
         "atr":{ 
           "ide":{ "min":1, "max":260, "dat":"hol.kin" },
@@ -1637,7 +1637,7 @@
         }
       }' )
   ;
-  DELETE FROM `app_dat` WHERE `esq`='hol' AND `ide` LIKE 'psi%'; INSERT INTO `app_dat` VALUES
+  DELETE FROM `dat_est` WHERE `esq`='hol' AND `ide` LIKE 'psi%'; INSERT INTO `dat_est` VALUES
 
     ('hol','psi', '{
       "atr":{ 
@@ -1828,7 +1828,7 @@
       }
     }' )      
   ;
-  DELETE FROM `app_dat` WHERE `esq`='hol' AND `ide` LIKE 'ani%'; INSERT INTO `app_dat` VALUES
+  DELETE FROM `dat_est` WHERE `esq`='hol' AND `ide` LIKE 'ani%'; INSERT INTO `dat_est` VALUES
 
     ('hol','ani', '{
     }' )

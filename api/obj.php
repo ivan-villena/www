@@ -274,7 +274,7 @@ class obj {
         $_="<input type='radio' disabled>";
       }
       else{ 
-        $tip = val::tip_ver($dat); 
+        $tip = dat::tip($dat); 
         $tip_dat = $tip['dat']; 
         $tip_val = $tip['val']; 
       }

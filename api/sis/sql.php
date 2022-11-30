@@ -26,11 +26,10 @@ class sis_sql {
       foreach( $val as $dat ){
   
         if( $sql_res = $_sql->query($dat) ){
-          
+
           if( is_object($sql_res) ){
 
             while( $row = $sql_res->fetch_object() ){ 
-
               $_ []= $row; 
             }
           }
@@ -55,6 +54,7 @@ class sis_sql {
         </li>";
       }$_['_err'] .= "
       </ul>";
+      echo $_['_err'];
     }// resultados
     elseif( isset($sql_res) && is_object($sql_res) ){
       unset($sql_res);
@@ -64,7 +64,6 @@ class sis_sql {
 
     return $_;
   }
-
   // codifica instrucciones de consultas
   static function cod( string $ide = '', array $ope = [], string $tip='ver' ) : array {
     $ide = explode('.',$ide);
@@ -204,7 +203,6 @@ class sis_sql {
     }
     return $_;
   }
-
   // esquemas
   static function esq( string $ope, string $ide='', ...$opc ) : string | array | object {
     $_ = [];
@@ -224,7 +222,6 @@ class sis_sql {
     }
     return $_;
   }
-
   // estructuras
   static function est( string $ope, $ide='', ...$opc ) : bool | string | array | object {
     $_=[];      
@@ -288,7 +285,6 @@ class sis_sql {
     }
     return $_;
   }
-
   // atributos
   static function atr( string $est, string $ope='ver', ...$opc ) : array | object | string {
     $_=[];
@@ -303,7 +299,7 @@ class sis_sql {
       }
     }
     elseif( $ope == 'ver' ){
-      $_var = val::_('tip');
+      $_var = dat::_('tip');
       $pos = 0;    
       // si existe una vista, veo esas columnas...
       foreach( $dat_lis as $i => $atr ){
@@ -425,7 +421,6 @@ class sis_sql {
     }
     return $_;
   }
-
   // indice
   static function ind( string $ide, string $ope = 'ver', ...$opc ) : array | object | string {
     $_ = [];
@@ -453,8 +448,7 @@ class sis_sql {
     }
 
     return $_;
-  }
-  
+  }  
   // registros
   static function reg( string $tip, string $ide, mixed $ope=[] ) : array | object | string {
     $_ = [];

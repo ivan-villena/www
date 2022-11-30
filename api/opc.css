@@ -1,12 +1,12 @@
 /* 
   Opciones
 */
-input:is([type='radio'],[type='checkbox']) {
+input:is([type='radio'], [type='checkbox']) {
   cursor: pointer;
 }
 
 select, 
-datalist, 
+datalist,
 option, 
 optgroup {
   cursor: pointer;  

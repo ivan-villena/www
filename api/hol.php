@@ -1,6 +1,6 @@
 <?php
 // holon : ns.ani.lun.dia:kin
-class hol {
+class hol { 
 
   static string $IDE = "hol-";
   static string $EJE = "hol.";
@@ -75,12 +75,11 @@ class hol {
     
           $_ .= "
           UPDATE `_hol`.`_kin` SET 
-            `fac` = '".fec::ran($ini,$fin)."'
+            `fac` = '".fec::val_ran($ini,$fin)."'
           WHERE `ide`='$_kin->ide'; 
           <br>";
     
           $ini = $fin;
-    
         }
         break;
       case 'enc':
@@ -92,7 +91,7 @@ class hol {
     
           $_ .= "
           UPDATE `_hol`.`_kin` 
-            SET `enc_ini` = $enc_ini, `enc_fin` = $enc_fin, `enc_ran` = '".fec::ran($enc_ini,$enc_fin)."' 
+            SET `enc_ini` = $enc_ini, `enc_fin` = $enc_fin, `enc_ran` = '".fec::val_ran($enc_ini,$enc_fin)."' 
             WHERE `ide`='$_kin->ide'; 
           <br>";
     
@@ -531,14 +530,14 @@ class hol {
 
       $cue = 260;
 
-      $fec = fec::ope( $dat['fec'], intval( is_object($dat['kin']) ? $dat['kin']->ide : $dat['kin'] ) - 1, '-');
+      $fec = fec::val_ope( $dat['fec'], intval( is_object($dat['kin']) ? $dat['kin']->ide : $dat['kin'] ) - 1, '-');
     }
     // x 364+1 dias por psi-cronos
     elseif( $est == 'psi' && isset($dat['psi']) && isset($dat['fec']) ){
 
       $cue = 364;
 
-      $fec = fec::ope( $dat['fec'], intval( is_object($dat['psi']) ? $dat['psi']->ide : $dat['psi'] ) - 1, '-');
+      $fec = fec::val_ope( $dat['fec'], intval( is_object($dat['psi']) ? $dat['psi']->ide : $dat['psi'] ) - 1, '-');
     }
 
     if( isset($fec) ){
@@ -547,7 +546,7 @@ class hol {
 
         $_dat = hol::val($fec);
 
-        $_ []= val::dat([
+        $_ []= dat::ope_val([
           'fec'=>[ 
             'dat'=>fec::_('dat',$fec),
           ],
@@ -557,7 +556,7 @@ class hol {
           ]
         ]);
 
-        $fec = fec::ope($fec, $inc, $val);
+        $fec = fec::val_ope($fec, $inc, $val);
       }      
 
     }
@@ -613,6 +612,8 @@ class hol {
 
     return $_;
   }
+
+
 
   // imagen
   static function ima( string $est, mixed $dat, array $ele = [] ) : string {

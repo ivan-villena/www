@@ -7,7 +7,7 @@ class hol_bib {
   // Encantamiento del sueño
   static enc( $atr, $dat, $ope ){
 
-    let $ = doc.var($dat);
+    let $ = dat.var($dat);
 
     if( $api_app.var ) $.lis = $api_app.var.nextElementSibling;
     

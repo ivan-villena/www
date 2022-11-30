@@ -87,7 +87,7 @@ class lis {
       $_ .= doc::val_ope( $tip == 'ite' ? ['eje'=>"{$_eje}_tog(this,"] : [] );
     }
     if( $tod || in_array('ver',$opc) ){ 
-      $_ .= doc::var('val','ver',[ 
+      $_ .= dat::var('val','ver',[ 
         'des'=> "Filtrar...",
         'htm'=> doc::val_ver([ 'cue'=>in_array('cue',$opc) ? 0 : NULL, 'eje'=>"{$_eje}_ver(this);" ])
       ]);

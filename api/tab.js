@@ -138,7 +138,7 @@ class tab {
     if( $api_app.tab.val.acu ){ 
 
       // actualizo toales acumulados
-      val.acu($api_app.tab.lis, $api_app.tab.val.acu, ...$dat);
+      dat.ope_acu($api_app.tab.lis, $api_app.tab.val.acu, ...$dat);
             
       // actualizo sumatorias por acumulados
       if( $api_app.tab.val.sum ){
@@ -150,7 +150,7 @@ class tab {
             $.tot.push( ...$api_app.tab.lis.querySelectorAll(`[class*="_val-${$acu_ide}-"]`) );
           }
         });
-        val.sum($.tot, $api_app.tab.val.sum);
+        dat.ope_sum($.tot, $api_app.tab.val.sum);
       }
 
       // listado asociado:
@@ -173,13 +173,13 @@ class tab {
     // actualizo cuentas
     if( $api_app.tab.val.cue ){
 
-      val.cue('act', $api_app.tab.lis.querySelectorAll(`${$api_app.tab.cla}[class*=_val-]:is([class*=_bor],[class*=_act])`), $api_app.tab.val.cue );
+      dat.ope_cue('act', $api_app.tab.lis.querySelectorAll(`${$api_app.tab.cla}[class*=_val-]:is([class*=_bor],[class*=_act])`), $api_app.tab.val.cue );
     }
   }  
   // Valores
   static val( $tip, $dat ){
 
-    let $ = doc.var($dat);
+    let $ = dat.var($dat);
 
     switch( $tip ){
     case 'pos': 
@@ -231,9 +231,9 @@ class tab {
   }// - acumulados( posicion + marcas + seleccion )
   static val_acu( $dat, $ope ){
     
-    let $ = doc.var($dat);
+    let $ = dat.var($dat);
 
-    if( !$.var_ide && $ope ) $ = doc.var( $dat = $api_app.tab.val.acu.querySelector(`[name="${$ope}"]`) );
+    if( !$.var_ide && $ope ) $ = dat.var( $dat = $api_app.tab.val.acu.querySelector(`[name="${$ope}"]`) );
     
     // busco marcas 
     $.cla_ide = `_val-${$.var_ide}`;
@@ -244,7 +244,7 @@ class tab {
         // recorro clases de la posicion
         $ite.classList.forEach( $cla => {
           // si tiene alguna opcion activa
-          if( val.ope_ver($cla,'^^',`${$.cla_ide}-`) ){
+          if( dat.ver($cla,'^^',`${$.cla_ide}-`) ){
             $.ite_ide = `${$.cla_ide}_act-${$cla.split('-')[2]}`;
             if( $dat.checked ){
               !$ite.classList.contains($.ite_ide) && $ite.classList.add($.ite_ide);
@@ -267,7 +267,7 @@ class tab {
   static ver( $tip ){
 
     // ejecuto filtros por tipo : pos, fec      
-    val.ver($tip, lis.val_dec($api_app.tab.lis.querySelectorAll(`${$api_app.tab.cla}`)), $api_app.tab.ver );
+    dat.ope_ver($tip, lis.val_dec($api_app.tab.lis.querySelectorAll(`${$api_app.tab.cla}`)), $api_app.tab.ver );
 
     // marco seleccionados
     ele.act('cla_eli',$api_app.tab.lis.querySelectorAll('._val-ver_bor'),'_val-ver_bor');
@@ -281,7 +281,7 @@ class tab {
   // Secciones : bordes + colores + imagen + ...
   static sec( $dat ){
 
-    let $ = doc.var($dat); 
+    let $ = dat.var($dat); 
 
     switch( $.var_ide ){
     case 'bor':
@@ -322,7 +322,7 @@ class tab {
   // Posiciones : borde + color + imagen + texto + numero + fecha
   static pos( $dat ){
 
-    let $ = doc.var($dat); 
+    let $ = dat.var($dat); 
     
     if( ( $.var_ide = $.var_ide.split('_')[0] ) != 'bor' ){
       // aseguro selector
