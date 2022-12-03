@@ -29,13 +29,14 @@ h6 { font-size: 1rem; }
 /* 
   Enlaces
 */
-a:not(.fig_ico,.tex) {
+a:not(.dat_ico,.tex) {
   text-decoration: underline;
-  font-style: italic;
+  font-style: italic; 
   color: var(--let_ide);
 }
 a.tex {
   text-decoration: none;
+  color: var(--let_tex);
 }
 
 /* letra */
@@ -123,8 +124,8 @@ article > p,
 article section > p {
   margin-bottom: .5rem;
 }
-article > ul,
-article section > ul {
+article > ul.lis,
+article section > ul.lis {
   margin: .5rem auto;
   max-width: fit-content;  
 }

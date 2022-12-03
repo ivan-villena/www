@@ -1,9 +1,9 @@
 -- Active: 1665550796793@@127.0.0.1@3306@c1461857_api
 --
 -- estilo 
-  DELETE FROM `fig_ico_gru`
+  DELETE FROM `dat_ico_gru`
   ;
-  INSERT INTO `fig_ico_gru` VALUES
+  INSERT INTO `dat_ico_gru` VALUES
     (NULL,'material-icons',					 'https://fonts.googleapis.com/css?family=Material+Icons'),
     (NULL,'material-icons-outlined', 'https://fonts.googleapis.com/css?family=Material+Icons+Outlined'),
     (NULL,'material-icons-two-tone', 'https://fonts.googleapis.com/css?family=Material+Icons+Two+Tone'),
@@ -12,12 +12,12 @@
   ;
 --
 -- icono 
-  DELETE FROM `fig_ico`
+  DELETE FROM `dat_ico`
   ;
   -- 
   -- por aplicacion
-    DELETE FROM `fig_ico` WHERE `ide` LIKE 'app%';
-    INSERT INTO `fig_ico` VALUES  
+    DELETE FROM `dat_ico` WHERE `ide` LIKE 'app%';
+    INSERT INTO `dat_ico` VALUES  
       ('app',         'home'),      
       ('app_ses',	    'manage_accounts'),
       ('app_ini',	    'login'),
@@ -28,8 +28,8 @@
       ('app_art',     'article'),
       ('app_val',     'document_scanner')
     ;
-    DELETE FROM `fig_ico` WHERE `ide` LIKE 'usu%';
-    INSERT INTO `fig_ico` VALUES
+    DELETE FROM `dat_ico` WHERE `ide` LIKE 'usu%';
+    INSERT INTO `dat_ico` VALUES
       ('usu',	    'person'),      
       ('usu_pas',	'password'),
       ('usu_ubi',	'share_location'),
@@ -39,8 +39,8 @@
       ('usu_gru',	'group'),
       ('usu_age',	'menu_book')
     ;
-    DELETE FROM `fig_ico` WHERE `ide` LIKE 'dat%';
-    INSERT INTO `fig_ico` VALUES
+    DELETE FROM `dat_ico` WHERE `ide` LIKE 'dat%';
+    INSERT INTO `dat_ico` VALUES
 
       ('dat',			'database'),
       -- atributos
@@ -64,8 +64,8 @@
       ('dat_mod',	'edit'),
       ('dat_eli',	'delete')
     ;    
-    DELETE FROM `fig_ico` WHERE `ide` LIKE 'val%';
-    INSERT INTO `fig_ico` VALUES
+    DELETE FROM `dat_ico` WHERE `ide` LIKE 'val%';
+    INSERT INTO `dat_ico` VALUES
 
       ('val',	    'check_box_outline_blank'),
       -- carteles :
@@ -105,16 +105,16 @@
     ;  
   --
   -- por tipos
-    DELETE FROM `fig_ico` WHERE `ide` LIKE 'tab%';
-    INSERT INTO `fig_ico` VALUES
+    DELETE FROM `dat_ico` WHERE `ide` LIKE 'tab%';
+    INSERT INTO `dat_ico` VALUES
       ('tab',  'dataset'),
       ('tab_sec',  ''),
       ('tab_pos',  ''),
       ('tab_opc',  ''),
       ('tab_val',  '')
     ;    
-    DELETE FROM `fig_ico` WHERE `ide` LIKE 'est%';
-    INSERT INTO `fig_ico` VALUES
+    DELETE FROM `dat_ico` WHERE `ide` LIKE 'est%';
+    INSERT INTO `dat_ico` VALUES
       ('est',	     'table_view'),
       ('est_dat',	 ''),
       ('est_atr',	 ''),
@@ -122,8 +122,8 @@
       ('est_ind',	 ''),
       ('est_val',	 '')
     ;    
-    DELETE FROM `fig_ico` WHERE `ide` LIKE 'lis%';
-    INSERT INTO `fig_ico` VALUES
+    DELETE FROM `dat_ico` WHERE `ide` LIKE 'lis%';
+    INSERT INTO `dat_ico` VALUES
 
       ('lis',			'list_alt'),
       -- tipos
@@ -146,8 +146,8 @@
       ('lis_lim',	'segment'),
       ('lis_mov',	'unfold_more')
     ;
-    DELETE FROM `fig_ico` WHERE `ide` LIKE 'opc%';
-    INSERT INTO `fig_ico` VALUES
+    DELETE FROM `dat_ico` WHERE `ide` LIKE 'opc%';
+    INSERT INTO `dat_ico` VALUES
 
       ('opc',			'fact_check'),
       -- tipos          
@@ -158,8 +158,8 @@
       -- listado
       ('opc_lis',  'checklist_rtl')
     ;    
-    DELETE FROM `fig_ico` WHERE `ide` LIKE 'num%';
-    INSERT INTO `fig_ico` VALUES
+    DELETE FROM `dat_ico` WHERE `ide` LIKE 'num%';
+    INSERT INTO `dat_ico` VALUES
 
       ('num',			'calculate'),
       -- valores
@@ -182,8 +182,8 @@
       ('num_fun',	'function'),
       ('num_adi',	'functions')
     ;
-    DELETE FROM `fig_ico` WHERE `ide` LIKE 'tex%';
-    INSERT INTO `fig_ico` VALUES    
+    DELETE FROM `dat_ico` WHERE `ide` LIKE 'tex%';
+    INSERT INTO `dat_ico` VALUES    
 
       ('tex',			'edit_note'),
       -- tipos
@@ -199,8 +199,8 @@
       ('tex_mov',	'wrap_text'),
       ('tex_rot',	'text_rotation_down')
     ;
-    DELETE FROM `fig_ico` WHERE `ide` LIKE 'fec%';
-    INSERT INTO `fig_ico` VALUES
+    DELETE FROM `dat_ico` WHERE `ide` LIKE 'fec%';
+    INSERT INTO `dat_ico` VALUES
 
       ('fec',			'calendar_today'),      
 
@@ -215,8 +215,8 @@
       ('fec_val', 'edit_calendar')
 
     ;
-    DELETE FROM `fig_ico` WHERE `ide` LIKE 'fig%';
-    INSERT INTO `fig_ico` VALUES
+    DELETE FROM `dat_ico` WHERE `ide` LIKE 'fig%';
+    INSERT INTO `dat_ico` VALUES
       ('fig',	'auto_graph'),      
       -- valores
       ('fig_col',	'palette'),
@@ -227,8 +227,8 @@
       ('fig_lin',	'trending_down'),
       ('fig_pol',	'polyline')
     ;
-    DELETE FROM `fig_ico` WHERE `ide` LIKE 'arc%';
-    INSERT INTO `fig_ico` VALUES  
+    DELETE FROM `dat_ico` WHERE `ide` LIKE 'arc%';
+    INSERT INTO `dat_ico` VALUES  
 
       ('arc',			'attach_file'),
       -- tipos
@@ -242,13 +242,13 @@
       ('arc_eje',	'play_circle')
 
     ;
-    DELETE FROM `fig_ico` WHERE `ide` LIKE 'eje%';
-    INSERT INTO `fig_ico` VALUES
+    DELETE FROM `dat_ico` WHERE `ide` LIKE 'eje%';
+    INSERT INTO `dat_ico` VALUES
 
       ('eje',	    'terminal')
     ;
-    DELETE FROM `fig_ico` WHERE `ide` LIKE 'obj%';
-    INSERT INTO `fig_ico` VALUES
+    DELETE FROM `dat_ico` WHERE `ide` LIKE 'obj%';
+    INSERT INTO `dat_ico` VALUES
 
       ('obj',	'widgets'),
       -- tipos      
@@ -256,8 +256,8 @@
       ('obj_nom',	'data_array'),
       ('obj_atr',	'data_object')
     ;
-    DELETE FROM `fig_ico` WHERE `ide` LIKE 'ele%';
-    INSERT INTO `fig_ico` VALUES      
+    DELETE FROM `dat_ico` WHERE `ide` LIKE 'ele%';
+    INSERT INTO `dat_ico` VALUES      
       ('ele', 'code'),
       -- valores
       ('ele_htm', 'html'),

@@ -12,7 +12,7 @@
 
       <p>Posteriormente<c>,</c> en el libro de <a href="<?=$_bib?>lun#_02-07-" target="_blank">Las <n>13</n> lunas en movimiento</a>, se mencionan los plasmas para nombrar a cada uno de los días de la semana<c>-</c>heptada<c>.</c></p>
 
-      <?=est::lis('hol.rad',[ 'atr'=>['ide','nom','pod'] ])?>
+      <?=est::lis('hol.rad',[ 'atr'=>['ide','nom','des_pod'] ])?>
 
     </article>
     <!-- sellos de la profecia -->
@@ -86,7 +86,7 @@
       <h3 id="<?="_{$_nav[2]['13']['03']->pos}-"?>"><?=tex::let($_nav[2]['13']['03']->nom)?></h3>
       <p>En <cite>el Encantamiento del sueño</cite> se introduce el concepto de <a href="<?=$_bib?>enc#_03-10-" target="_blank">onda encantdada</a><c>,</c> y se definenen los <n>13</n> números como los <a href="<?=$_bib?>enc#_03-11-" target="_blank">tonos galácticos de la creación</a><c>.</c></p>
       <p>De esta manera se crea el <a href="<?=$_bib?>enc#_03-09-" target="_blank">Módulo de Sincronización Galáctica</a> que sincroniza tanto las <a href="<?=$_bib?>enc#_02-03-09-" target="_blank">lunaciones del ciclo anual</a><c>,</c> como el movimiento a través de <a href="<?=$_bib?>enc#_02-03-10-" target="_blank">los castillos de la nave</a><c>,</c> las <a href="<?=$_bib?>enc#_02-03-07-" target="_blank">trayectorias armónicas</a> y las <a href="<?=$_bib?>enc#_03-16-" target="_blank">estaciones galácticas</a><c>.</c></p>
-      <?=est::lis('hol.ton',[ 'atr'=>['ide','nom','des','acc'] ])?>
+      <?=est::lis('hol.ton',[ 'atr'=>['ide','nom','des','des_acc'] ])?>
     </article>
     <!-- O.E. de la Aventura -->
     <article>
@@ -129,7 +129,7 @@
     <article>
       <h3 id="<?="_{$_nav[2]['20']['03']->pos}-"?>"><?=tex::let($_nav[2]['20']['03']->nom)?></h3>
       <p>En <a href="<?=$_bib?>fac#_04-04-02-06-" target="_blank">el Factor maya</a><c>.</c></p>
-      <?=est::lis('hol.kin_cro_est',[ 'atr'=>['sel','nom','des','det','lec'] ])?>
+      <?=est::lis('hol.kin_cro_est',[ 'atr'=>['sel','nom','des','des_det','fac_lec'] ])?>
     </article>
     <!-- 5 familias ciclicas -->
     <article>
@@ -165,13 +165,13 @@
     <article>
       <h3 id="<?="_{$_nav[2]['20']['09']->pos}-"?>"><?=tex::let($_nav[2]['20']['09']->nom)?></h3>
       <p>En <a href="<?=$_bib?>enc#_03-04-" target="_blank">el Encantamiento del Sueño</a><c>.</c></p>
-      <?=est::lis('hol.sel_arm_raz',[ 'atr'=>['ide','nom','pod','dir','sel'] ])?>
+      <?=est::lis('hol.sel_arm_raz',[ 'atr'=>['ide','nom','des_pod','des_dir','sel'] ])?>
     </article>
     <!-- células del tiempo-->
     <article>
       <h3 id="<?="_{$_nav[2]['20']['10']->pos}-"?>"><?=tex::let($_nav[2]['20']['10']->nom)?></h3>
       <p>En <a href="<?=$_bib?>enc#_03-05-" target="_blank">el Encantamiento del Sueño</a><c>.</c></p>
-      <?=est::lis('hol.sel_arm_cel',[ 'atr'=>['ide','nom','fun','pod','des','sel'] ])?>
+      <?=est::lis('hol.sel_arm_cel',[ 'atr'=>['ide','nom','des_fun','des_pod','des','sel'] ])?>
     </article>
     <!-- parejas del oráculo -->
     <article>

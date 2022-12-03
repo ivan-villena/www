@@ -170,7 +170,7 @@ button {
 }
 
 /* Focos */
-:is(input,select,button:not(.fig_ico)):focus {
+:is(input,select,button:not(.dat_ico)):focus {
   background-color: var(--tra_azu);
 }
 :is(input,select,textarea):focus {
@@ -207,3 +207,28 @@ input[maxlength='18']{ width: 11rem; }
 input[maxlength='19']{ width: 11.5rem; }
 input[maxlength='20']{ width: 12rem; }
 input[maxlength='25']{ width: 15rem; }
+
+/* 
+  Iconos
+*/
+.dat_ico[class*='material-icons-']{
+  color: #ccc0b0;
+  font-size: 1.5rem;
+  text-decoration: none;
+  background-color: var(--col_tra);
+  padding: 0;
+  border: 0;
+  margin: 0;
+}
+.dat_ico.tam-0 { font-size: .5rem; }
+.dat_ico.tam-1 { font-size: 1rem; }
+.dat_ico.tam-2 { font-size: 1.25rem; }
+.dat_ico.tam-3 { font-size: 1.5rem; }
+.dat_ico.tam-4 { font-size: 1.75rem; }
+.dat_ico.tam-5 { font-size: 2rem; }
+.dat_ico.tam-6 { font-size: 2.25rem; }
+.dat_ico.tam-7 { font-size: 2.5rem; }
+
+.dat_ico:is([href],[onclick]):hover {
+  text-shadow: 0 0 5px;
+}

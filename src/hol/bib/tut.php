@@ -29,7 +29,7 @@
     <?php 
     $_ = []; 
     foreach( hol::_($ide = 'lun_arm') as $_hep ){ $_ []= 
-      tex::let("$_hep->nom (")."<c class='col-4-$_hep->ide'>$_hep->col</c>".tex::let("): $_hep->des");
+      tex::let("$_hep->nom (")."<c class='col-4-$_hep->ide'>$_hep->des_col</c>".tex::let("): $_hep->des");
     }
     echo dat::lis($_,$ide);
     ?>
@@ -201,11 +201,11 @@
 
       <h4>Los <n>13</n> Tonos Galácticos</h4>
 
-      <?=est::lis("hol.ton",['atr'=>['ide','nom','car','pod','acc'],'opc'=>['htm','cab_ocu']])?>
+      <?=est::lis("hol.ton",['atr'=>['ide','nom','des_car','des_pod','des_acc'],'opc'=>['htm','cab_ocu']])?>
 
       <h4>Los <n>20</n> Sellos Solares</h4>
 
-      <?=est::lis("hol.sel",['atr'=>['ide','nom','pod','acc','car'],'opc'=>['htm','cab_ocu']])?>
+      <?=est::lis("hol.sel",['atr'=>['ide','nom','des_pod','des_acc','des_car'],'opc'=>['htm','cab_ocu']])?>
 
       <p>El portal galáctico siempre se lee <c>"</c>Sello<c>,</c> Tono<c>,</c> Color<c>"</c><c>.</c> Por ejemplo<c>,</c> un día dragón rojo<c>,</c> con el tono magnético se lee<c>:</c> <c>"</c> Dragón Magnético Rojo<c>"</c><c>.</c> Las palabras clave del Dragón Rojo son<c>:</c> nutrir<c>,</c> nacimiento<c>,</c> ser <c>-</c>Las palabras claves para el tono magnético son<c>:</c> unificar<c>,</c> atraer propósito<c>.</c></p>
 

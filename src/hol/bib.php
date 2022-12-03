@@ -43,7 +43,7 @@ class hol_bib {
           <p><b class='ide'>".explode(' ',$_dir->nom)[1]."</b><c>:</c></p>
           <ul>
             <li><p><c>-></c> ".tex::let($_dir->des)."</p></li>
-            <li><p><c>-></c> Color<c>:</c> <c class='col-4-{$_dir->ide}'>{$_dir->col}</c></p></li>
+            <li><p><c>-></c> Color<c>:</c> <c class='col-4-{$_dir->ide}'>{$_dir->des_col}</c></p></li>
           </ul>
         </div>";
       }
@@ -55,12 +55,14 @@ class hol_bib {
         if( $lis_pos != $_sel->cic_ser ){
           $lis_pos = $_sel->cic_ser;
           $_ser = hol::_($ide,$lis_pos);
+          $des_val = explode(', ',$_ser->des);
+          $des = !empty($des_val[1]) ? " <c>-</c> Etapa {$des_val[1]}" : "";
           $_ []= "
           <p class='tit'>
-            DESARROLLO".( tex::let_may( tex::art_del($_ser->nom) ) ).( !empty($_ser->det) ? " <c>-</c> Etapa {$_ser->det}" : '' )."
+            Desarrollo".tex::art_del($_ser->nom)."{$des}
           </p>";
         }                
-        $_dir = hol::_('sel_cic_dir',$_sel->arm_raz); $_ []= 
+        $_dir = hol::_('sel_cic_dir',$_sel->arm_raz); $_ []=
 
         hol::ima("sel",$_sel,['class'=>"mar_der-1"])."
 
@@ -111,7 +113,7 @@ class hol_bib {
       
       </div>
       <ul>
-        <li>Regente Planetario<c>:</c> $_pla->nom $_pol->tip<c>.</c></li>
+        <li>Regente Planetario<c>:</c> $_pla->nom $_pol->des_flu<c>.</c></li>
         <li>Etapa <n>$ton</n><c>,</c> Ciclo $_arq->nom_may<c>.</c></li>
         <li>Índice Armónico <n>".num::int($_kin->fac)."</n><c>:</c> período ".tex::let($_kin->fac)."</li>
         <li><q>".tex::let($_sel->arm_tra_des)."</q></li>
@@ -130,7 +132,7 @@ class hol_bib {
 
           ".hol::ima("ton",$arm_tra,['class'=>"mar_der-1"])."
 
-          <p class='tit'>".tex::let(tex::let_may("CICLO ".($num = intval($_tra->ide)).", Baktún ".( $num-1 )))."</p>";
+          <p class='tit'>".tex::let("Ciclo ".($num = intval($_tra->ide)).", Baktún ".( $num-1 ))."</p>";
         }
         $_ []= "
 
@@ -138,7 +140,7 @@ class hol_bib {
 
         <p>
           <n>{$lis_pos}</n><c>.</c> <b class='ide'>{$_sel->nom_may}</b> <n>".intval($_kin->nav_ond_dia)."</n>
-          <br>".tex::let($_kin->fac)."
+          <br>".tex::let(num::int($_kin->fac))."
         </p>";
       }          
       break;
@@ -248,7 +250,7 @@ class hol_bib {
         <div class='val'>
           ".hol::ima("sel",$_sel,['class'=>"mar_der-2"])."
           <p>
-            <b class='tit'>ESTACIÓN ".tex::let_may(tex::art_del("el {$_est->dir}"))."</b>
+            <b class='tit'>ESTACIÓN ".tex::let_may(tex::art_del("el {$_est->des_dir}"))."</b>
             <br>Guardían<c>:</c> <b class='ide'>{$_sel->nom_may}</b> <c>(</c> {$_sel->nom} <c>)</c>
           </p>
         </div>";
@@ -290,7 +292,7 @@ class hol_bib {
     switch( $ide ){
     // tonos : descripciones
     case 'ton':
-      $est_ope['atr'] = ['ide','nom','des','acc'];
+      $est_ope['atr'] = ['ide','nom','des','des_acc'];
       $_ = est::lis("hol.ton", $est_ope, $ope );
       break;
     // tonos : aventura de la onda encantada 
@@ -322,8 +324,8 @@ class hol_bib {
     case 'ton_dim':
       foreach( hol::_('ton_dim') as $_dat ){ $htm = "
         <p>
-          <n>{$_dat->ide}</n><c>.</c> <b class='ide'>Pulsar de la {$_dat->pos} dimensión</b><c>:</c> <b class='val'>Dimensión {$_dat->nom}</b>
-          <br>Tonos ".tex::let("{$_dat->ton}: {$_dat->ond}")."
+          <n>{$_dat->ide}</n><c>.</c> <b class='ide'>Pulsar de la {$_dat->des_dim} dimensión</b><c>:</c> <b class='val'>Dimensión {$_dat->nom}</b>
+          <br>Tonos ".tex::let("{$_dat->ton}: {$_dat->des_ond}")."
         </p>
         <div class='fic ite'>
           ".hol::ima("ton_dim",$_dat,['class'=>"mar_der-1",'style'=>"min-width: 5rem; height: 5rem"])."
@@ -339,14 +341,16 @@ class hol_bib {
     // tonos : pulsares matiz
     case 'ton_mat':
       foreach( hol::_('ton_mat') as $_dat ){ $htm = "
-        <p><n>{$_dat->ide}</n><c>.</c> <b class='ide'>Matiz {$_dat->nom}</b><c>,</c> <b class='val'>".tex::let($_dat->cod)."</b><c>:</c>
-          <br>Tonos ".tex::let("{$_dat->ton}: {$_dat->ond}")."
+        <p><n>{$_dat->ide}</n><c>.</c> <b class='ide'>Matiz {$_dat->nom}</b><c>,</c> <b class='val'>".tex::let($_dat->des_cod)."</b><c>:</c>
+          <br>Tonos ".tex::let("{$_dat->ton}: {$_dat->des_ond}")."
         </p>
         <div class='fic ite'>
           ".hol::ima("ton_mat",$_dat,['class'=>"mar_der-1",'style'=>"min-width: 5rem; height: 5rem"])."
           <c class='sep'>=></c>
           <c class='_lis ini'>{</c>";
-            foreach( explode(', ',$_dat->ton) as $ton ){ $htm .= hol::ima("ton",$ton,['class'=>"mar_hor-2"]); } $htm .= "              
+            foreach( explode(', ',$_dat->ton) as $ton ){ 
+              $htm .= hol::ima("ton",$ton,['class'=>"mar_hor-2"]); 
+            } $htm .= "
           <c class='_lis fin'>}</c>
         </div>";
         $_ []= $htm;
@@ -359,7 +363,7 @@ class hol_bib {
         $_raz_pod = hol::_('sel',$_dat->ide)->des_pod; 
         $htm = "
         <p class='tit'>Familia <b class='col-4-{$_dat->ide}'>{$_dat->nom}</b><c>:</c> de la <b class='ide'>Raza Raíz ".tex::let_min($_dat->nom)."</b></p>
-        <p>Los {$_dat->pod}dores<c>.</c> Nota clave<c>:</c> ".explode(' ',$_raz_pod)[1]."</p>
+        <p>Los {$_dat->des_pod}dores<c>.</c> Nota clave<c>:</c> ".explode(' ',$_raz_pod)[1]."</p>
         <ul class='ite'>";
         foreach( hol::_('sel_arm_cel') as $lis_pos ){
           $_sel = hol::_('sel',$sel); $htm .= "
@@ -407,7 +411,7 @@ class hol_bib {
       $sel = 20;      
       foreach( hol::_($ide) as $_dat ){
         $ele_nom = explode(' ',$_dat->nom)[1]; $htm = "
-        <p class='tit'><b class='ide'>Clan ".tex::art_del($_dat->nom)."</b>".tex::let(": Cromática {$_dat->col}.")."</p>
+        <p class='tit'><b class='ide'>Clan ".tex::art_del($_dat->nom)."</b>".tex::let(": Cromática {$_dat->des_col}.")."</p>
         ".( !empty($_dat->des_ini) ? "<p>".tex::let($_dat->des_ini)."</p>" : '' )."
         <ul class='ite'>";
         for( $fam=1; $fam<=5; $fam++ ){ 
@@ -437,7 +441,7 @@ class hol_bib {
         $htm = 
         hol::ima("uni_pla_cen",$_pla,['class'=>"mar_der-2",'style'=>"min-width: 9rem; height:7rem;"])."
         <div>
-          <p><b class='ide'>Kin {$_fam->nom}</b><c>:</c> {$_fam->mis}</p>
+          <p><b class='ide'>Kin {$_fam->nom}</b><c>:</c> {$_fam->des_mis}</p>
           <div class='val fic mar-2'>
             ".hol::ima("uni_hum_cen",$_hum)."
             <c class='sep'>=></c>
@@ -509,22 +513,14 @@ class hol_bib {
     // sello : holon planetario => centros planetarios
     case 'uni_pla_cen': 
       $ope['lis'] = ['class'=>"ite"];
-
-      $_fam_sel = [
-        1=>[  5, 10, 15, 20 ],
-        2=>[  1,  6, 11, 16 ],
-        3=>[ 17,  2,  7, 12 ],
-        4=>[ 13, 18,  3,  8 ],
-        5=>[  9, 14, 19,  4 ]
-      ]; 
       $lis_pos = 1;
-      foreach( hol::_('uni_pla_cen') as $_dat ){
+      foreach( hol::_($ide) as $_dat ){
         $_fam = hol::_('sel_cro_fam',$_dat->fam); $htm= "
         <div class='val'>
           ".hol::ima("sel_cro_fam",$_fam,['class'=>"mar_der-1"])."
           <c class='sep'>=></c>
           <c class='_lis ini'>{</c>";
-          foreach( $_fam_sel[$_dat->ide] as $sel ){
+          foreach( explode(', ',$_dat->sel) as $sel ){
             $htm .= hol::ima("sel",$sel,['class'=>"mar_hor-1"]);
           }$htm.="
           <c class='_lis fin'>}</c>
@@ -532,13 +528,14 @@ class hol_bib {
         </div>
         <p>
           <n>{$_dat->ide}</n><c>.</c> El Kin <b class='ide'>{$_fam->nom}</b><c>:</c>
-          <br><q>{$_dat->fun} desde el {$_dat->nom}</q>
+          <br><q>{$_dat->des_fun} desde el {$_dat->nom}</q>
         </p>";
         $_ []= $htm;
       }        
       break;
     // sello : holon planetario => rol de familias terrestres
     case 'uni_pla_pos':
+      $ope['lis'] = ['class'=>"ite"];
       $_fam_sel = [
         1=>[ 20,  5, 10, 15 ],
         2=>[  1,  6, 11, 16 ],
@@ -580,7 +577,7 @@ class hol_bib {
         $ele_tit[$lis_pos] = [ 
           'eti'=>"div", 'class'=>"ite", 'htm'=> hol::ima("uni_hum_ext",$_ext,['class'=>"mar_der-1"])."                  
           <p class='tit tex_ali-izq'><b class='ide'>$_ext->nom</b><c>:</c>
-            <br>Clan {$nom} <c class='col-4-$col'>{$cla} $_ele->col</c></p>" 
+            <br>Clan {$nom} <c class='col-4-$col'>{$cla} $_ele->des_col</c></p>" 
         ];
         $lis_pos += 5; 
         $col = num::ran($col+1,4);
@@ -591,9 +588,9 @@ class hol_bib {
         $_hum_ded = hol::_('uni_hum_ded',$_fam->hum_ded);
         $sel_lis []= obj::atr([ 
           'hum_ded'=>$_hum_ded->nom, 
-          'nom'=>"Tribu ".tex::art_del($_sel->nom)." $_sel->nom_col", 
+          'nom'=>"Tribu ".tex::art_del($_sel->nom)." $_sel->des_col", 
           'ima_nom'=>[ 'htm'=>hol::ima("sel",$_sel,['class'=>"mar-1"]) ],
-          'nom_cod'=>$_sel->nom_cod,
+          'des_cod'=>$_sel->des_cod,
           'ima_cod'=>[ 'htm'=>hol::ima("sel_cod",$_sel,['class'=>"mar-1"]) ]
         ]);
       }
@@ -609,16 +606,16 @@ class hol_bib {
         $fam_tit[$lis_pos] = [
           'eti'=>"div", 'class'=>"ite", 'htm'=> hol::ima("uni_hum_ded",$_ded,['class'=>"mar_der-1"])."                  
           <p class='tit tex_ali-izq'><b class='ide'>Familia Terrestre $_fam->nom</b><c>:</c>
-            <br>Familia de $_fam->cod<c>:</c> Dedos {$_ded->nom}".( in_array($_ded->nom,['Anular','Pulgar']) ? "es" : "s" )." </p>" 
+            <br>Familia de $_fam->des_cod<c>:</c> Dedos {$_ded->nom}".( in_array($_ded->nom,['Anular','Pulgar']) ? "es" : "s" )." </p>" 
         ];
         $lis_pos += 4;
         foreach( explode(', ',$_fam->sel) as $_sel ){
           $_sel = hol::_('sel',$_sel);
           $_hum_ext = hol::_('uni_hum_ext',$_sel->hum_ext);
           $sel_lis []= obj::atr([
-            'nom'=>"Tribu ".tex::art_del($_sel->nom)." $_sel->nom_col", 
+            'nom'=>"Tribu ".tex::art_del($_sel->nom)." $_sel->des_col", 
             'ima_nom'=>[ 'htm'=>hol::ima("sel",$_sel,['class'=>"mar-1"]) ],
-            'nom_cod'=>$_sel->nom_cod,
+            'des_cod'=>$_sel->des_cod,
             'ima_cod'=>[ 'htm'=>hol::ima("sel_cod",$_sel,['class'=>"mar-1"]) ],
             'hum_ext'=>$_hum_ext->nom
           ]);
@@ -650,7 +647,7 @@ class hol_bib {
 
           ".hol::ima("uni_hum_ded",$_dat,['class'=>"mar_der-1"])."
 
-          <p><b class='ide'>Kin {$_fam->nom}</b><c>:</c> <b class='val'>{$_fam->cod}</b>
+          <p><b class='ide'>Kin {$_fam->nom}</b><c>:</c> <b class='val'>{$_fam->des_cod}</b>
             <br>{$_dat->nom}
           </p>";
       }        
@@ -666,8 +663,8 @@ class hol_bib {
 
         ".hol::ima("uni_hum_cen",$_dat,['class'=>"mar_der-1"])."
 
-        <p><b class='ide'>Kin {$_fam->nom}</b><c>:</c> <b class='val'>{$_fam->cod}</b>
-          <br>".tex::art($_dat->nom)." <c>-></c> {$_hum->fun}
+        <p><b class='ide'>Kin {$_fam->nom}</b><c>:</c> <b class='val'>{$_fam->des_cod}</b>
+          <br>".tex::art($_dat->nom)." <c>-></c> {$_hum->des_pod}
         </p>";
       }            
       break;
@@ -689,8 +686,8 @@ class hol_bib {
           </fieldset>
 
           <fieldset class='ope'>
-            ".fig::ico('dat_fin',[ 'eti'=>"button", 'type'=>"reset", 'title'=>"Vaciar Casillero...", 'onclick'=>"{$_eje}this,'fin');" ])."
-            ".fig::ico('lis_fin',[ 'eti'=>"button", 'title'=>"Ir al Kin...", 'onclick'=>"{$_eje}this,'nav');" ])."
+            ".dat::ico('dat_fin',[ 'eti'=>"button", 'type'=>"reset", 'title'=>"Vaciar Casillero...", 'onclick'=>"{$_eje}this,'fin');" ])."
+            ".dat::ico('lis_fin',[ 'eti'=>"button", 'title'=>"Ir al Kin...", 'onclick'=>"{$_eje}this,'nav');" ])."
           </fieldset>
 
         </div>
@@ -718,7 +715,7 @@ class hol_bib {
             }$_ .= "
             ".doc::val(['eti'=>'h3','id'=>"_04-0{$_cas->ide}-",'cas'=>$_cas->ide,'htm'=>"Castillo {$_cas->nom}"])."
             <section data-kin_nav_cas='{$_cas->ide}' class='pad_izq-3'>
-              <p cas='{$_cas->ide}'>".tex::let("Corte {$_cas->cor}: {$_cas->fun}")."</p>
+              <p cas='{$_cas->ide}'>".tex::let("Corte {$_cas->des_cor}: {$_cas->des_mis}")."</p>
             ";
           }
           // génesis
@@ -815,7 +812,7 @@ class hol_bib {
         $_sel = hol::_('sel',$_est->sel); $_ []= "
         ".hol::ima("sel",$_sel,['class'=>"mar_der-2"])."
         <p>
-          <n>{$_est->ide}</n><c>.</c> El espectro galáctico <b class='col-4-{$_est->ide}'>{$_est->col}</b><c>:</c> 
+          <n>{$_est->ide}</n><c>.</c> El espectro galáctico <b class='col-4-{$_est->ide}'>{$_est->des_col}</b><c>:</c> 
           Estación ".tex::art_del($_sel->nom)."
         </p>";
       }          
@@ -870,7 +867,7 @@ class hol_bib {
         if( $cas != $_ond->nav_cas ){ 
           $_cas = hol::_('kin_nav_cas',$cas = $_ond->nav_cas); $_[]="
           <p class='tit'>
-            El Castillo <b class='col-5-{$_cas->ide}'>".str_replace('del ','',$_cas->nom)."</b> ".tex::art_del($_cas->acc)."<c>:</c> La corte ".tex::art_del($_cas->cor)."<c>,</c> poder {$_cas->pod}
+            El Castillo <b class='col-5-{$_cas->ide}'>".str_replace('del ','',$_cas->nom)."</b> ".tex::art_del($_cas->des_acc)."<c>:</c> La corte ".tex::art_del($_cas->des_cor)."<c>,</c> poder {$_cas->des_pod}
           </p>";
         }              
         $_ []= hol::ima("kin_nav_ond",$_ond,['class'=>"mar_der-1"])."              
@@ -921,12 +918,12 @@ class hol_bib {
         // descripcion
         case 'des': 
           foreach( hol::_('lun_arm') as $_hep ){
-            $_ []= tex::let("$_hep->nom (")."<c class='col-4-$_hep->ide'>$_hep->col</c>".tex::let("): $_hep->des");
+            $_ []= tex::let("$_hep->nom (")."<c class='col-4-$_hep->ide'>$_hep->des_col</c>".tex::let("): $_hep->des");
           }
           break;
         case 'pod':
           foreach( hol::_('lun_arm') as $_hep ){
-            $_ []= tex::let("$_hep->nom: ")."<c class='col-4-$_hep->ide'>$_hep->col</c>".tex::let(", $_hep->pod $_hep->car");
+            $_ []= tex::let("$_hep->nom: ")."<c class='col-4-$_hep->ide'>$_hep->des_col</c>".tex::let(", $_hep->des_pod $_hep->des_car");
           }        
           break;            
         }
@@ -947,7 +944,7 @@ class hol_bib {
         hol::ima($ide,$_cas,['class'=>"mar_der-2"])."
 
         <p>
-          <b class='ide'>Castillo $_cas->col $_cas->dir ".tex::art_del($_cas->acc)."</b><c>:</c>
+          <b class='ide'>Castillo $_cas->des_col $_cas->des_dir ".tex::art_del($_cas->des_acc)."</b><c>:</c>
           <br>Ondas Encantadas ".tex::let($_cas->nav_ond)."
         </p>";
       }          
@@ -1138,22 +1135,22 @@ class hol_bib {
       $ope['lis'] = ['class'=>"ite"];
 
       foreach( hol::_($ide) as $_cir ){
-        $pla = explode('-',$_cir->pla);
-        $_pla_ini = hol::_('uni_sol_pla',$pla[0]);
-        $_pla_fin = hol::_('uni_sol_pla',$pla[1]);
+        $pla = explode(', ',$_cir->pla);
+        $pla_ini = hol::_('uni_sol_pla',$pla[0]);
+        $pla_fin = hol::_('uni_sol_pla',$pla[1]);
         $htm = 
         hol::ima($ide,$_cir,['class'=>""])."
         <div>
-          <p class='tit'>Circuito <n>$_cir->ide</n><c>:</c> <b class='ide'>$_pla_ini->nom <c>-</c> $_pla_fin->nom</b></p>
+          <p class='tit'>Circuito <n>$_cir->ide</n><c>:</c> <b class='ide'>$pla_ini->nom <c>-</c> $pla_fin->nom</b></p>
           <ul>
             <li>Circuito ".tex::let($_cir->nom)."</li>
-            <li><p>".tex::let("$_cir->cod unidades - $_cir->des")."</p></li>
+            <li><p>".tex::let("$_cir->cue unidades - $_cir->des")."</p></li>
             <li><p>Notación Galáctica<c>,</c> números de código ".tex::let("{$_cir->sel}: ");
             $lis_pos = 0;
             foreach( explode(', ',$_cir->sel) as $sel ){ 
               $lis_pos++; 
               $_sel = hol::_('sel', $sel == 00 ? 20 : $sel);                      
-              $htm .= tex::let( $_sel->pod_tel.( $lis_pos == 3 ? " y " : ( $lis_pos == 4 ? "." : ", " ) ) );
+              $htm .= tex::let( $_sel->des_pod_tel.( $lis_pos == 3 ? " y " : ( $lis_pos == 4 ? "." : ", " ) ) );
             } $htm .= "
             </p></li>
           </ul>
@@ -1165,7 +1162,7 @@ class hol_bib {
     // luna : por poderes
     case 'lun_arm': 
       foreach( hol::_($ide) as $_hep ){
-        $_ []= tex::let("$_hep->nom: ")."<c class='col-4-$_hep->ide'>$_hep->col</c>".tex::let(", $_hep->pod $_hep->car");
+        $_ []= tex::let("$_hep->nom: ")."<c class='col-4-$_hep->ide'>$_hep->des_col</c>".tex::let(", $_hep->des_pod $_hep->des_car");
       }        
       break;              
     // luna : lines de fuerza
@@ -1288,7 +1285,7 @@ class hol_bib {
       
         $cro_arm = hol::_('psi_cro_arm',$arm);
 
-        $_ []= "Cromática <c class='col-4-$arm'>$cro_arm->col</c><br>".tex::let("$cro_arm->nom: $cro_arm->des");
+        $_ []= "Cromática <c class='col-4-$arm'>$cro_arm->des_col</c><br>".tex::let("$cro_arm->nom: $cro_arm->des");
       }        
       break;      
     }
@@ -1344,25 +1341,26 @@ class hol_bib {
       break;        
     // 7 plasmas radiales
     case 'rad_pla':
-      $ide = "rad";
+      $dat_ide = "rad";
+      $dat_rel = "{$dat_ide}_pla_fue";
       $pla_qua = [3,4,7];
       ele::cla($ope['lis'],'ite');
       switch( $_ide[1] ){
       // lineas de fuerza + quantums
       case 'fue':
-        foreach( hol::_($ide) as $rad ){
-          $fue_pre = hol::_('rad_pla_fue',$rad->pla_fue_pre);
-          $fue_pos = hol::_('rad_pla_fue',$rad->pla_fue_pos);
+        foreach( hol::_($dat_ide) as $rad ){
+          $fue_pre = hol::_($dat_rel,$rad->pla_fue_pre);
+          $fue_pos = hol::_($dat_rel,$rad->pla_fue_pos);
           $_ []= 
-          hol::ima($ide,$rad,['class'=>"mar_der-2"])."
+          hol::ima($dat_ide,$rad,['class'=>"mar_der-2"])."
           <div>        
-            <p><b class='ide'>$rad->nom</b> <b class='col-".substr($rad->col,0,3)."'>$rad->col</b></p>
+            <p><b class='ide'>$rad->nom</b> <b class='col-".substr($rad->des_col,0,3)."'>$rad->des_col</b></p>
             <div class='ite'>
               $fue_pre->nom
-              ".hol::ima("rad_pla_fue",$fue_pre)."
+              ".hol::ima($dat_rel,$fue_pre)."
               <c class='sep'>+</c>
               $fue_pos->nom
-              ".hol::ima("rad_pla_fue",$fue_pos)."
+              ".hol::ima($dat_rel,$fue_pos)."
               
               <p><c class='sep'>:</c> ".tex::let($rad->pla_fue)." <c>(</c>Días ".tex::let($rad->dia)."<c>)</c></p>
             </div>
@@ -1412,7 +1410,7 @@ class hol_bib {
             hol::ima('rad_pla_cub',$cub,['class'=>"mar_der-2"])."
           </div>
           <div>
-            <p>".tex::let("$rad->nom (Días $rad->dia): $cha->pos Chakra, $cha->cod o $cha->nom")."</p>
+            <p>".tex::let("$rad->nom (Días $rad->dia): $cha->pos Chakra, $cha->des_cod o $cha->nom")."</p>
             <p>".tex::let("Cubo del Radión - $cub->nom")."</p>
           </div>
           ";
@@ -1432,7 +1430,7 @@ class hol_bib {
         $_ []= 
         hol::ima($ide,$pla_ele,['class'=>"mar_der-2"])."
         <p>
-          <b class='ide'>$pla_ele->nom</b> o <b class='ide'>$pla_ele->cod</b>
+          <b class='ide'>$pla_ele->nom</b> o <b class='ide'>$pla_ele->nom_cod</b>
           <br>
           ".tex::let($pla_ele->des)."
         </p>";
@@ -1449,10 +1447,10 @@ class hol_bib {
         <div>
           <p><b class='ide'>$pla_fue->nom</b></p>
           <div class='val'>
-            <b class='mar_hor-1'>$ele_pre->cod</b>
+            <b class='mar_hor-1'>$ele_pre->nom_cod</b>
             ".hol::ima("rad_pla_ele",$ele_pre)."
             <c class='ope sep'>$pla_fue->ele_ope</c>
-            <b class='mar_hor-1'>$ele_pos->cod</b>              
+            <b class='mar_hor-1'>$ele_pos->nom_cod</b>              
             ".hol::ima("rad_pla_ele",$ele_pos)."
           </div>                        
         </div>";
@@ -1486,7 +1484,7 @@ class hol_bib {
       case 'car':
         ele::cla($ope['lis'],'ite');
         foreach( hol::_($ide) as $ato ){
-          $col = hol::_('lun_arm',$ato->ide)->col;                        
+          $col = hol::_('lun_arm',$ato->ide)->des_col;                        
           $_ []= 
           hol::ima($ide,$ato,['class'=>"mar_der-2"])."
           <p>
@@ -1517,7 +1515,7 @@ class hol_bib {
       foreach( hol::_($ide) as $arm ){
         $ato = hol::_('lun_pla_ato',$arm->ide);          
         $_[]="
-        <p class='tit'>$arm->nom<c>,</c> <b class='col-".substr($arm->col,0,3)."'>$arm->col</b><c>:</c></p>          
+        <p class='tit'>$arm->nom<c>,</c> <b class='col-".substr($arm->des_col,0,3)."'>$arm->des_col</b><c>:</c></p>          
         <div class='ite'>            
           ".hol::ima($ide,$arm,['class'=>"mar_der-2"])."
           <ul>

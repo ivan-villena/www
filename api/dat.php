@@ -31,8 +31,9 @@ class dat {
   ];
 
   function __construct(){
-    $this->_tip = dat::get('dat_tip', [ 'niv'=>['ide'], 'ele'=>['ope'] ]);
+    $this->_ico = dat::get('dat_ico', [ 'niv'=>['ide'] ]);
     $this->_ope = dat::get('dat_ope', [ 'niv'=>['ide'] ]);
+    $this->_tip = dat::get('dat_tip', [ 'niv'=>['ide'], 'ele'=>['ope'] ]);
     $this->_est = [];
     $this->_atr = [];
     $this->_var = [];
@@ -724,7 +725,25 @@ class dat {
     return $_;
   }
 
-  // Variable : div.var > label + (select,input,textarea,button)[name]  
+  // icono : .dat_ico.$ide
+  static function ico( string $ide, array $ele=[] ) : string {
+    $_ = "<span class='dat_ico'></span>";
+    $dat_ico = dat::_('ico');
+    if( isset($dat_ico[$ide]) ){
+      $eti = 'span';      
+      if( isset($ele['eti']) ){
+        $eti = $ele['eti'];
+        unset($ele['eti']);
+      }
+      if( $eti == 'button' && empty($ele['type']) ) $ele['type'] = "button"; $_ = "
+      <{$eti}".ele::atr(ele::cla($ele,"dat_ico $ide material-icons-outlined",'ini')).">
+        {$dat_ico[$ide]->val}
+      </{$eti}>";
+    }
+    return $_;
+  }  
+
+  // Variable : div.dat_var > label + (select,input,textarea,button)[name]  
   static function var( string $tip, string | array $ide, array $ele=[], ...$opc ) : string {
     // identificadores
     $dat_ide = is_string($ide) ? explode('.',$ide) : $ide;
@@ -784,7 +803,7 @@ class dat {
     $eti_htm='';
     if( !in_array('eti',$opc) ){
       if( !empty($ele['ico']) ){
-        $eti_htm = fig::ico($ele['ico']);
+        $eti_htm = dat::ico($ele['ico']);
       }
       elseif( !empty($ele['nom']) ){    
         $eti_htm = tex::let( ( !in_array('not_sep',$opc) && preg_match("/[a-zA-Z\d]$/",$ele['nom']) ) ? "{$ele['nom']}:" : $ele['nom']);
@@ -888,7 +907,7 @@ class dat {
     $api_dat->_var_ide[$ope]++;
 
     return $api_dat->_var_ide[$ope];
-  }
+  }  
 
   // Listado
   static function lis( string | array $dat, string $ide, array $ele = [] ) : string {
@@ -966,7 +985,7 @@ class dat {
     
     $_ = [];
     // tipos de lista
-    $tip = !empty($ele['tip']) ? $ele['tip'] : 'val';
+    $tip = !empty($ele['tip']) ? $ele['tip'] : 'ite';
     // atributos de la estructura
     $atr = lis::val($atr);
     // descripciones : cadena con " ()($)atr() "
@@ -1128,45 +1147,44 @@ class dat {
       elseif( isset($_val['nom'])  ){ $_ .= "
         <p class='tit mar-0'>".tex::let(obj::val($_dat,$_val['nom']))."</p>";
       }
+
       // descripciones
+      $opc_cit = in_array('des-cit',$opc);
+      if( isset($_inf['des']) ){
+        if( is_array(($_inf['des'])) ){
+          foreach( $_inf['des'] as $des ){
+            if( isset($_dat->$des) ) 
+              $_ .= $opc_cit ? "<p class='des'><q>".tex::let($_dat->$des)."</q></p>" : "<p class='des'>".tex::let($_dat->$des)."</p>";
+          }
+        }else{
+          foreach( explode("\n",$_inf['des']) as $des ){ $_ .= "
+            <p class='des'>".tex::let(obj::val($_dat,$des))."</p>";
+          }
+        }
+      }
+      if( in_array('des',$opc) && isset($_dat->des) ){
+        $_ .= $opc_cit ? "<p class='des'><q>".tex::let($_dat->des)."</q></p>" : "<p class='des'>".tex::let($_dat->des)."</p>";
+      }
+
+      // imagen + atributos | lectura
+      if( !empty($_val['ima']) || ( !empty($_inf['atr']) || !empty($_inf['cit']) ) )
       $_ .= "
-      <section>";
-        $opc_cit = in_array('des-cit',$opc);
-        if( isset($_inf['des']) ){
-          if( is_array(($_inf['des'])) ){
-            foreach( $_inf['des'] as $des ){
-              if( isset($_dat->$des) ) 
-                $_ .= $opc_cit ? "<p class='des'><q>".tex::let($_dat->$des)."</q></p>" : "<p class='des'>".tex::let($_dat->$des)."</p>";
-            }
-          }else{
-            foreach( explode("\n",$_inf['des']) as $des ){ $_ .= "
-              <p class='des'>".tex::let(obj::val($_dat,$des))."</p>";
-            }
-          }
+      <div class='val jus-cen'>";
+        if( !empty($_val['ima']) ){ // 'onclick'=>FALSE
+          $_ .= arc::ima($esq,$est,$_dat,[ 'class'=>"mar_der-2" ]);
         }
-        if( in_array('des',$opc) && isset($_dat->des) ){
-          $_ .= $opc_cit ? "<p class='des'><q>".tex::let($_dat->des)."</q></p>" : "<p class='des'>".tex::let($_dat->des)."</p>";
+        if( !empty($_inf['atr']) ){
+          $_ .= dat::lis_atr($esq,$est,$_inf['atr'],$_dat);
+          unset($_inf['atr']);
         }
-        // imagen + atributos | lectura
-        if( !empty($_val['ima']) || ( !empty($_inf['atr']) || !empty($_inf['cit']) ) )
+        elseif( !empty($_inf['cit']) ){
+          if( isset($_dat->{$_inf['cit']}) ) $_ .= "
+          <q class='mar-1'>".tex::let($_dat->{$_inf['cit']})."</q>";
+          unset($_inf['cit']);
+        }
         $_ .= "
-        <div class='val jus-cen'>";
-          if( !empty($_val['ima']) ){ // 'onclick'=>FALSE
-            $_ .= arc::ima($esq,$est,$_dat,[ 'class'=>"mar_der-2" ]);
-          }
-          if( !empty($_inf['atr']) ){
-            $_ .= dat::lis_atr($esq,$est,$_inf['atr'],$_dat);
-            unset($_inf['atr']);
-          }
-          elseif( !empty($_inf['cit']) ){
-            if( isset($_dat->{$_inf['cit']}) ) $_ .= "
-            <q class='mar-1'>".tex::let($_dat->{$_inf['cit']})."</q>";
-            unset($_inf['cit']);
-          }
-          $_ .= "
-        </div>";
-        $_ .= "
-      </section>";
+      </div>";
+      
       // componentes
       foreach( $_inf as $inf_ide => $inf_val ){ 
         $inf_ide_pri = explode('-',$inf_ide)[0];
@@ -1330,11 +1348,11 @@ class dat {
       }
       $_ .= "
       <fieldset class='ope' abm='{$tip}'>    
-        ".fig::ico('dat_ver', ['eti'=>"a", 'title'=>$_ope['ver']['nom'], 'onclick'=>"{$_eje}('ver');"])."
+        ".dat::ico('dat_ver', ['eti'=>"a", 'title'=>$_ope['ver']['nom'], 'onclick'=>"{$_eje}('ver');"])."
 
-        ".fig::ico('dat_agr', ['eti'=>"a", 'title'=>$_ope['agr']['nom'], 'href'=>!empty($url) ? $url_agr : NULL, 'onclick'=>empty($url) ? "{$_eje}('agr');" : NULL])."
+        ".dat::ico('dat_agr', ['eti'=>"a", 'title'=>$_ope['agr']['nom'], 'href'=>!empty($url) ? $url_agr : NULL, 'onclick'=>empty($url) ? "{$_eje}('agr');" : NULL])."
 
-        ".fig::ico('dat_eli', ['eti'=>"a", 'title'=>$_ope['eli']['nom'], 'onclick'=>"{$_eje}('eli');"])."
+        ".dat::ico('dat_eli', ['eti'=>"a", 'title'=>$_ope['eli']['nom'], 'onclick'=>"{$_eje}('eli');"])."
       </fieldset>";
       break;
     case 'abm':
@@ -1342,23 +1360,23 @@ class dat {
       $_ = "
       <fieldset class='ope mar-2 esp-ara'>
 
-        ".fig::ico('dat_ini', [ 'eti'=>"button", 'title'=>$_ope[$tip]['nom'], 'type'=>"submit", 'onclick'=>"{$_eje}('{$tip}');" ]);
+        ".dat::ico('dat_ini', [ 'eti'=>"button", 'title'=>$_ope[$tip]['nom'], 'type'=>"submit", 'onclick'=>"{$_eje}('{$tip}');" ]);
 
         if( in_array('eli',$ope['opc']) ){
 
-          $_ .= fig::ico('dat_eli', [ 'eti'=>"button", 'type'=>"button", 'title'=>$_ope['eli']['nom'], 'onclick'=>"{$_eje}('eli');" ]);
+          $_ .= dat::ico('dat_eli', [ 'eti'=>"button", 'type'=>"button", 'title'=>$_ope['eli']['nom'], 'onclick'=>"{$_eje}('eli');" ]);
         }$_ .= "
 
-        ".fig::ico('dat_fin', [ 'eti'=>"button", 'title'=>$_ope['fin']['nom'], 'type'=>"reset", 'onclick'=>"{$_eje}('fin');" ])."    
+        ".dat::ico('dat_fin', [ 'eti'=>"button", 'title'=>$_ope['fin']['nom'], 'type'=>"reset", 'onclick'=>"{$_eje}('fin');" ])."    
 
       </fieldset>";
       break;              
     case 'est':
       $_ .= "
       <fieldset class='ope'>    
-        ".fig::ico('dat_agr',['eti'=>"button", 'type'=>"button", 'title'=>"Agregar", 'onclick'=>""])."
+        ".dat::ico('dat_agr',['eti'=>"button", 'type'=>"button", 'title'=>"Agregar", 'onclick'=>""])."
         
-        ".fig::ico('dat_eli',['eti'=>"button", 'type'=>"button", 'title'=>"Eliminar", 'onclick'=>""])."    
+        ".dat::ico('dat_eli',['eti'=>"button", 'type'=>"button", 'title'=>"Eliminar", 'onclick'=>""])."    
       </fieldset>";                  
       break;                
     }
@@ -1472,8 +1490,8 @@ class dat {
             $_eje = "dat.var('mar',this,'bor-sel');".( isset($ele['ope']['onchange']) ? " {$ele['ope']['onchange']}" : "" );
             $ele['htm_fin'] = "
             <fieldset class='ope'>
-              ".fig::ico('lis_ini',[ 'eti'=>"button", 'title'=>"Los primeros...", 'class'=>"bor-sel", 'onclick'=>$_eje ])."
-              ".fig::ico('lis_fin',[ 'eti'=>"button", 'title'=>"Los primeros...", 'onclick'=>$_eje ])."
+              ".dat::ico('lis_ini',[ 'eti'=>"button", 'title'=>"Los primeros...", 'class'=>"bor-sel", 'onclick'=>$_eje ])."
+              ".dat::ico('lis_fin',[ 'eti'=>"button", 'title'=>"Los primeros...", 'onclick'=>$_eje ])."
             </fieldset>"; 
             $_ .=
             dat::var('app',"val.ver.lim", $_ite('lim',$dat,$ele) );

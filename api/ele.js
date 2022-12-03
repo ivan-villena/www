@@ -46,7 +46,7 @@ class ele {
         if( $ele['ico'] ){
           $.ico_ide = $ele['ico'];
           delete($ele['ico']);
-          $_ += fig.ico($.ico_ide,$ele);
+          $_ += dat.ico($.ico_ide,$ele);
         }// por ficha
         else if( $ele['ima'] ){
           $.est = $ele['ima'].split('.');
@@ -559,87 +559,75 @@ class ele {
     let $_ = ""; $={};
 
     switch( $tip ){
-    case 'her':
-      $.her = [];
-      $.ele = $dat; 
-      while( $.ele ){ 
-        $.nom = $.ele.nodeName.toLowerCase();
-        if( $.nom=='#document' || $.nom=='html' ){
-          break;
-        }
-        $.tex=`<font class='ide'>${$.nom}</font>`; 
-        if( $.ele.id ){ 
-          $.tex += `<c>#</c><font class='val'>${$.ele.id}</font>`; 
-        }
-        else if( $.ele.name ){ 
-          $.tex += `<c>[</c><font class='val'>${$.ele.name}</font><c>]</c>`; 
-        }
-        if( $.ele.className){
-          $.cla_lis = $.ele.className.split(' ').map( $ite => `<c>.</c><font class='val'>${$ite}</font>` );
-          $.tex += `${$.cla_lis.join('')}`;
-        }
-        $.her.push($.tex);
-        $.ele = ( $.ele.parentNode) ? $.ele.parentNode : false;
-      }
-      $_ = $.her.reverse().join(`<c class='sep'>></c>`);
-      break;            
+    // elemento por etiqueta      
     case 'eti':
       $.nom = $dat.nodeName.toLowerCase();
-      $.fin=`
-      <c class='lis'><</font>
-      <c>/</c>
-      <font class='ide'>${$.nom}</font>
-      <c class='lis'>></c>`;
-      $.eti_htm=''; 
+      $.fin=`<c></</c>/<b class='ide'>${$.nom}</b><c>></c>`;
+      $.eti_htm = '';
       if( $dat.childNodes.length>0 ){ 
         lis.val_dec($dat.childNodes).forEach( $e =>{
           if( $e.nodeName.toLowerCase() != '#text' ){ $.eti_htm += `
-            <li>${this.ele('eti',$e)}</li>`;
+            <li>${ele.var('eti',$e)}</li>`;
           }else{ $.eti_htm += `
-            <li>${_tex.let($e.textContent)}</li>`;
+            <li>${tex.let($e.textContent)}</li>`;
           }
         });
       }
       $.eti_atr=[];
       $dat.getAttributeNames().forEach( $atr => $.eti_atr.push(`
         <li class='mar_hor-1'>
-          <font class='val'>${$atr}</font>
-          <c class='sep'>=</c>
-          <q>${$dat.getAttribute($atr)}</q>
+          <p><b class='val'>${$atr}</b><c class='sep'>=</c><q>${$dat.getAttribute($atr)}</q></p>
         </li>`)
       );
       $_ =`
-      <div var='ele_eti' class='dat'>
-
-        <div class='ite ini'>
-
-          <c class='lis sep'><</font>
-          <font class='ide' onclick='ele.act(this,'ver');'>${$.nom}</font>
-          <ul class='val _atr'>
-            ${$.eti_atr.join('')}
-          </ul>
-          <c class='lis sep'>></c>          
-
-          <p class='tog dis-ocu'>
-            c onclick='ele.act(this,'ver');' class='tog dis-ocu'>...</>
+      <div class='ele_eti dat'>
+        <p class='ini'>  
+          <c class='sep'><</c>
+          <b class='ide' onclick='ele.var_act(this,'ver');'>${$.nom}</b>
+          <ul class='lis val -atr'>${$.eti_atr.join('')}</ul>
+          <c class='sep'>></c>
+          <span class='tog dis-ocu'>
+            <c onclick='ele.var_act(this,'ver');' class='tog dis-ocu'>...</c>
             ${$.fin}
-          </p>
-        </div>`;
-        if( !['input','img','br','hr'].includes($.nom) ){
-          $_ += `
-          <ul class='val _nod mar_hor-3'>
+          </span>
+        </p>`;
+        if( !['input','img','br','hr'].includes($.nom) ){ $_ += `
+          <ul class='lis mar_hor-3'>
             ${$.eti_htm}
           </ul>
-
-          <div class='ite tog fin'>
+          <p class='tog fin'>
             ${$.fin}
-          </div>  `;
+          </p>`;
         }$_ += `
       </div>`;
+      break;      
+    // herencia: body > ...
+    case 'her':
+      $.her = [];
+      $.ele = $dat; 
+      while( $.ele ){ 
+        $.nom = $.ele.nodeName.toLowerCase();
+        if( $.nom == '#document' || $.nom == 'html' ) break;
+
+        $.tex = `<b class='ide'>${$.nom}</b>`;
+        if( $.ele.id ){ 
+          $.tex += `<c>#</c><b class='val'>${$.ele.id}</b>`;
+        }
+        else if( $.ele.name ){
+          $.tex += `<c>[</c><b class='val'>${$.ele.name}</b><c>]</c>`;
+        }
+        if( $.ele.className){
+          $.cla_lis = $.ele.className.split(' ').map( $ite => `<c>.</c><b class='val'>${$ite}</b>` );
+          $.tex += `${$.cla_lis.join('')}`;
+        }
+        $.her.push($.tex);
+        $.ele = ( $.ele.parentNode) ? $.ele.parentNode : false;
+      }
+      $_ = $.her.reverse().join(`<c class='sep'>></c>`);
       break;
     }
     return $_;      
-  }
+  }// ejecuto selector
   static var_act( $dat ){
     let $={};
 
@@ -648,32 +636,27 @@ class ele {
     $dat.nextElementSibling.classList.add(FON_SEL);
 
     $.ver = $dat.nextElementSibling.innerText.replaceAll('\n','');
+    
     // resultado
     $.res = $dat.parentElement.parentElement.previousElementSibling.querySelector('div.ele');
-
     ele.val_eli($.res);
-
     $.res.innerHTML = ele.var('eti',document.querySelector($.ver));
-  }
+
+  }// listado de nodos
   static var_val( $dat ){
     let $={};
-
     $.ope = document.createElement('form');
-
     $.lis = document.createElement('ul');
-
     $.lis.classList.add('lis');
-
     $dat.forEach( $e => {
       $.ite = document.createElement('li');
       $.ite.classList.add('mar_ver-2');
-      $.ite.innerHTML = `${fig.ico('dat_ver',{'class':"tam-1 mar_der-1",'onclick':"ele.act(this);"})}`;
+      $.ite.innerHTML = `${dat.ico('dat_ver',{'class':"tam-1 mar_der-1",'onclick':"ele.var_act(this);"})}`;
       $.tex = document.createElement('p');
       $.tex.innerHTML = ele.var('her',$e);
       $.ite.appendChild($.tex);
       $.lis.appendChild($.ite);
     });
-
     return [ $.ope, $.lis ];     
   }
 }

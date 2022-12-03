@@ -22,7 +22,7 @@
           "num": [ "dia", "sem", "mes" ]
         }        
     }')
-  ;
+  ; 
 --
 -- Holon
   DELETE FROM `dat_est` WHERE `esq`='hol'
@@ -76,14 +76,15 @@
           },
           "val":{ 
             "nom": "Órbita Planetaria #()($)ide() de 10: ()($)nom().",
+            "des": "Código ()($)nom_cod()",
             "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/uni/sol_pla/()($)ide().png);",
             "col": 10,
             "num": 10
           },
           "inf":{ 
-            "atr": [ "cod" ],
+            "atr": [ "nom_cod" ],
             "fic": [ "orb", "cel", "cir" ],
-            "tab": [ "hol.uni.sol", { } ],
+            "tab": [ "hol.uni.sol", { "sec":{ "pla":1 } } ],
             "htm-1": [ { "eti":"p", "class":"tit", "htm":"Sellos Solares" } ],
             "fic-1": [ "sel" ],
             "htm-2": [ { "eti":"p", "class":"tit", "htm":"Clanes" } ],
@@ -101,6 +102,7 @@
           },
           "val":{ 
             "nom": "Respiración del Holon Solar #()($)ide() de 2: ()($)nom()",
+            "des": "()($)des()",
             "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/uni/flu_res/()($)ide().png);",
             "col": 2
           },
@@ -196,6 +198,7 @@
           },
           "val":{ 
             "nom": "Respiración del Holon Planetario #()($)ide() de 2: ()($)nom()",
+            "des": "()($)des()",
             "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/uni/flu_res/()($)ide().png);",
             "col": 2
           },
@@ -271,6 +274,7 @@
           },
           "val":{ 
             "nom": "Respiración del Holon Humano #()($)ide() de 2: ()($)nom()",
+            "des": "()($)des()",
             "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/uni/flu_res/()($)ide().png);",
             "col": 2
           },
@@ -289,18 +293,19 @@
           },
           "val":{ 
             "nom": "Centro Galáctico #()($)ide() de 5: ()($)nom().",
+            "des": "()($)des()",
             "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/uni/hum_cen/()($)ide().png);",
             "col": 5,
             "num": 5
           },
           "inf":{ 
             "fic": [ "fam" ],
-            "tab": [ "hol.uni.hum", { } ],
-            "htm-1": [ { "eti":"p", "class":"tit", "htm":"Sellos Solares" } ],
+            "tab": [ "hol.uni.hum", { "sec":{ "cen":1 } } ],
+            "htm-1": { "eti":"p", "class":"tit", "htm":"Sellos Solares" },
             "fic-1": [ "sel" ]
           },
           "opc":{ 
-            "ima": [ "ide", "fam" ] 
+            "ima": [ "ide", "fam" ]
           }          
       }' ),
       ('hol','uni_hum_ded', '{
@@ -317,7 +322,7 @@
           },
           "inf":{ 
             "fic": [ "fam" ],
-            "htm-1": [ { "eti":"p", "class":"tit", "htm":"Sellos Solares" } ],
+            "htm-1": { "eti":"p", "class":"tit", "htm":"Sellos Solares" },
             "fic-1": [ "sel" ]
           },
           "opc":{ 
@@ -424,6 +429,18 @@
       }
     }' )
   ;
+  DELETE FROM `dat_est` WHERE `esq`='hol' AND `ide` LIKE 'cro%'; INSERT INTO `dat_est` VALUES
+
+    ('hol','cro', '{
+      "atr":{ 
+        "ide":{ "min":1, "max":4, "dat":"hol.cro" }
+      },      
+      "val":{ 
+        "col": 5,
+        "num": 5
+      }
+    }' )
+  ;
   DELETE FROM `dat_est` WHERE `esq`='hol' AND `ide` LIKE 'rad%'; INSERT INTO `dat_est` VALUES
 
     ('hol','rad', '{
@@ -500,7 +517,7 @@
           "ide":{ "min":1, "max":6, "dat":"hol.rad_pla_ele" }
         },      
         "val":{ 
-          "nom": "Tipo de Electricidad Cósmica #()($)ide() de 6: ()($)nom() - ()($)cod().",
+          "nom": "Tipo de Electricidad Cósmica #()($)ide() de 6: ()($)nom() - ()($)nom_cod().",
           "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/rad/pla_ele/()($)ide().png);"                      
         },
         "opc":{ 
@@ -640,14 +657,14 @@
         },
         "val":{ 
           "nom": "Pulsar Dimensional #()($)ide() de 4: ()($)nom().",
-          "des": "Campo de aplicación ()($)des().", 
+          "des": "()($)des_ond(). ()($)des_dim() dimensión, Campo de aplicación ()($)des_cam().", 
           "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/ton/dim/()($)ide().png);",
           "col": 4
         },
         "inf":{ 
-          "atr": [ "pos", "des" ],
+          "atr": [ "des_dim", "des_cam" ],
           "htm" :{ "eti":"p", "class":"tit", "htm":"El <a target=\'_blank\' href=\'http://localhost//hol/bib/enc#_03-13-\'>Código pulsar</a> en el Encantamiento del Sueño" },
-          "lec-tit": [ "ond" ],
+          "lec-tit": [ "des_ond" ],
           "fic": [ "ton" ]
         },
         "opc":{ 
@@ -665,9 +682,9 @@
           "col": 5
         },
         "inf":{ 
-          "atr": [ "cod", "des" ],
+          "atr": [ "des_cod", "des_dim" ],
           "htm" :{ "eti":"p", "class":"tit", "htm":"El <a target=\'_blank\' href=\'http://localhost//hol/bib/enc#_03-13-\'> Código pulsar</a> en el Encantamiento del Sueño" },
-          "lec-tit": [ "ond" ],
+          "lec-tit": [ "des_ond" ],
           "fic": [ "ton" ]
         },
         "opc":{ 
@@ -689,7 +706,7 @@
         "inf":{ 
           "opc": [ "des" ],
           "htm" :{ "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost//hol/bib/fac#_04-04-01-02-\'>Simetría Especular</a> en el Factor Maya" },
-          "lec-tit": [ "lec" ],
+          "lec-tit": [ "fac_lec" ],
           "fic": [ "ton" ]
         },
         "opc":{ 
@@ -1001,7 +1018,7 @@
           "num": 5
         },
         "inf":{ 
-          "atr": [ "fun", "mis", "pod", "acc" ],
+          "atr": [ "des_fun", "des_mis", "des_pod", "des_acc" ],
           "fic-0": [ "sel" ],
           "htm-1": [ { "eti":"p", "class":"tit mar-0", "htm":"Holon Planetario" } ],
           "fic-1": [ "pla_cen" ], 
@@ -1578,10 +1595,10 @@
           "num": 5,
           "col": 5            
         },
-        "inf":{ 
-          "atr": [ "cor", "pod", "acc" ],
+        "inf":{
+          "atr": [ "des_cor", "des_pod", "des_acc" ],
           "htm-1" :{ "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost//hol/bib/enc#_03-06-\'>Castillos de la Nave del Tiempo</a> en el Encantamiento del Sueño" },
-          "lec-tit": [ "fun" ],
+          "lec-tit": [ "des_mis" ],
           "fic": [ "nav_ond" ],
           "tab": [ "hol.kin.nav_cas", { "pos":{ "ima":"hol.kin.ide" } }]
         }

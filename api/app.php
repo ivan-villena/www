@@ -62,7 +62,7 @@ class app {
           ]);
 
           // pido listado por navegacion
-          if( !empty($this->rec['dat']['nav'][1]) ) $this->rec['ope']['ini']['doc_art']['htm'] = doc::art($this->rec['dat']['nav']);
+          if( !empty($this->rec['dat']['nav'][1]) ) $this->rec['ope']['ini']['app_nav']['htm'] = lis::nav($this->rec['dat']['nav']);
         }          
       }
     }
@@ -70,6 +70,8 @@ class app {
 
   // contenido
   public array  $htm = [
+    // titulo
+    'tit'=>"{-_-}",
     // botones
     'ope'=>[ 'ini'=>"", 'fin'=>"" ],
     // paneles
@@ -82,7 +84,65 @@ class app {
     'bar'=>"",
     // barra inferior
     'pie'=>""
-  ];  
+  ];// inicializo pagina
+  public function htm_ini() : void {
+
+    global $api_usu;
+
+    // loggin
+    $tip = empty($api_usu->ide) ? 'ini' : 'fin';
+    // $api_app->rec['ope']['fin']["ses_{$tip}"]['htm'] = api::usu($tip);
+
+    // consola del sistema
+    if( $api_usu->ide == 1 ){
+
+      $this->rec['cla']['api'] []= "sis/adm";
+
+      ob_start();
+      include("./api/sis/adm.php");
+      $this->rec['ope']['fin']['sis_adm']['htm'] = ob_get_clean();
+    }    
+
+    // cargo operadores del documento ( botones + contenidos )
+    foreach( $this->rec['ope'] as $tip => $tip_lis ){
+
+      foreach( $tip_lis as $ide => $ope ){
+        // enlaces
+        if( isset($ope['url']) ){
+          // boton
+          $this->htm['ope'][$tip] .= dat::ico($ope['ico'],[ 'eti'=>"a", 'title'=>$ope['nom'], 'href'=>$ope['url'] ]);
+        }
+        // paneles y modales
+        elseif( ( $ope['tip'] == 'pan' || $ope['tip'] == 'win' ) && !empty($ope['htm']) ){
+          // botones          
+          $this->htm['ope'][$tip] .= doc::bot([ $ide => $ope ]);
+          // contenido
+          $this->htm[$ope['tip']] .= doc::{$ope['tip']}($ide,$ope);
+        }
+      }  
+    }
+
+    // cargo modal de operadores
+    $this->htm['win'] .= doc::win('app_ope',[ 'ico'=>"app_ope", 'nom'=>"Operador" ]);  
+    
+    // ajusto diseño
+    $_ver = [];
+    foreach( ['bar','pie'] as $ide ){ 
+      if( !empty($this->htm[$ide]) ) $_ver []= $ide; 
+    }
+    if( !empty($_ver) ) $this->rec['ele']['body']['data-ver'] = implode(',',$_ver);
+
+    // titulo
+    if( !empty($this->rec['dat']['art']->nom) ){
+      $this->htm['tit'] = $this->rec['dat']['art']->nom;
+    }
+    elseif( !empty($this->rec['dat']['cab']->nom) ){
+      $this->htm['tit'] = $this->rec['dat']['cab']->nom;
+    }
+    elseif( !empty($this->rec['dat']['esq']->nom) ){
+      $this->htm['tit'] = $this->rec['dat']['esq']->nom; 
+    }
+  }
 
   // recursos
   public array $rec = [
@@ -108,7 +168,7 @@ class app {
         'app_ini'=>[ 'ico'=>"app", 'url'=>SYS_NAV, 'nom'=>"Página de Inicio" ],
         'app_dat'=>[ 'ico'=>"dat_des", 'tip'=>"win", 'nom'=>"Ayuda", ],
         'app_cab'=>[ 'ico'=>"app_cab", 'tip'=>"pan", 'nom'=>"Menú Principal" ],
-        'doc_art'=>[ 'ico'=>"app_nav", 'tip'=>"pan", 'nom'=>"Índice", 'htm'=>"" ]
+        'app_nav'=>[ 'ico'=>"app_nav", 'tip'=>"pan", 'nom'=>"Índice", 'htm'=>"" ]
       ],
       'fin'=>[
         'ses_ini'=>[  'ico'=>"app_ini", 'tip'=>"win", 'nom'=>"Iniciar Sesión..."  ],
@@ -116,8 +176,7 @@ class app {
         'sis_adm'=>[  'ico'=>"eje", 'tip'=>"win", 'nom'=>"Consola del Sistema" ]
       ]
     ]
-  ];
-  // recursos: cargo contenido
+  ];// recursos: cargo contenido
   public function rec_cla( string $tip = "", array $dat = [] ) : string {
     $_ = "";
     if( empty($dat) ) $dat = $this->rec['cla'];
@@ -154,8 +213,7 @@ class app {
 
   // peticion
   public object $uri
-  ;
-  // armo directorios
+  ;// armo directorios
   public function uri_dir( object $uri = NULL ) : object {
 
     if( !isset($uri) ) $uri = $this->uri;
@@ -192,7 +250,7 @@ class app {
         continue;
       }
 
-      $ite_ico = !empty($_cab->ico) ? fig::ico( $_cab->ico, [ 'class'=>"mar_der-1" ] ) : "";
+      $ite_ico = !empty($_cab->ico) ? dat::ico( $_cab->ico, [ 'class'=>"mar_der-1" ] ) : "";
 
       $_lis_val = [];
       foreach( dat::get('app_art',[ 
@@ -206,7 +264,7 @@ class app {
 
         $_lis_val []= "
         <a".ele::atr($ele_val).">"
-          .( !empty($_art->ico) ? fig::ico( $_art->ico, [ 'class'=>"mar_der-1" ] ) : $ite_ico )
+          .( !empty($_art->ico) ? dat::ico( $_art->ico, [ 'class'=>"mar_der-1" ] ) : $ite_ico )
           ."<p>".tex::let($_art->nom)."</p>
         </a>";
       }

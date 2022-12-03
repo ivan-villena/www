@@ -338,6 +338,25 @@ class dat {
     }
     return $_;
   }
+  
+  // iconos : .dat_ico.$ide
+  static ico( $ide, $ele = {} ){
+    let $_="<span class='dat_ico'></span>", $ = {};
+    $.dat_ico = dat._('ico');
+    if( !!($.dat_ico[$ide]) ){
+      $.eti = 'span';
+      if( $ele['eti'] ){
+        $.eti = $ele['eti'];
+        delete($ele['eti']);
+      }      
+      if( $.eti == 'button' && !($ele['type']) ) $ele['type'] = "button"; 
+      $_ = `
+      <${$.eti}${ele.atr(ele.cla($ele,`dat_ico ${$ide} material-icons-outlined`,'ini'))}>
+        ${$.dat_ico[$ide].val}
+      </${$.eti}>`;
+    }
+    return $_;
+  }    
 
   // Variable : div.var > label + (select,input,textarea,button)[name]
   static var( $tip, $dat, $ope, ...$opc ){
@@ -368,7 +387,7 @@ class dat {
   }// toggles por : form > fieldsets > ...
   static var_tog( $ide ){
     lis.val_dec( ele.val_ver($dat,{'eti':'fieldset'}).children ).forEach( $e => $e != $dat && $e.classList.toggle(DIS_OCU) );
-  }  
+  }
 
   // ficha : imagenes por valor con relaciones por estructura
   static fic( $dat, $ope, ...$opc ){
@@ -699,7 +718,7 @@ class dat {
 
         $.lis = $dat.filter( $e => $e.classList.contains($.cla_ide) );
         // ultimos
-        if( $api_app.var.querySelector(`.fig_ico.lis_fin.bor-sel`) ) $.lis = $.lis.reverse();
+        if( $api_app.var.querySelector(`.dat_ico.lis_fin.bor-sel`) ) $.lis = $.lis.reverse();
 
         $.lim_cue = 0;
         $.lis.forEach( $e => {

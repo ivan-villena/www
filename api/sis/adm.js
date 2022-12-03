@@ -36,10 +36,10 @@ function sis_adm( $tip, $dat, $val, ...$opc ){
     if( !$val ){
       // limpio listado
       ele.val_eli($.lis);
-      for( let $ico in ( $._ico = fig._('ico') ) ){ 
+      for( let $ico in ( $._ico = dat._('ico') ) ){ 
         $ico = $._ico[$ico];
         $.ico = document.createElement('span');
-        $.ico.classList.add('fig_ico');
+        $.ico.classList.add('dat_ico');
         $.ico.classList.add('material-icons-outlined');
         $.ico.classList.add($ico.ide);
         $.ico.classList.add('mar_der-1');
@@ -154,8 +154,16 @@ function sis_adm( $tip, $dat, $val, ...$opc ){
   // documento
   case 'htm':
     switch( $val ){
+    case 'val':
+      $dat.parentElement.parentElement.querySelectorAll(`.${FON_SEL}`).forEach( $e => $e.classList.remove(FON_SEL) );
+      $dat.nextElementSibling.classList.add(FON_SEL);
+      $.res = $api_app.var.querySelector('div.ele');
+      ele.val_eli($.res);
+      $.ver = $dat.nextElementSibling.innerText.replaceAll('\n','');
+      $.res.innerHTML = ele.var('eti',document.querySelector($.ver));
+      break;      
     case 'cod':
-      $.res = $api_app.var.querySelector('div.nod');          
+      $.res = $api_app.var.querySelector('div.ele_nod');          
       ele.val_eli($api_app.var.querySelector('div.ele'));
       ele.val_eli($.res);
       $.cod = $api_app.var.querySelector('[name="cod"]');
@@ -169,15 +177,7 @@ function sis_adm( $tip, $dat, $val, ...$opc ){
       $.res.appendChild($.tit);
       $.res.appendChild($.tex);
       // genero elemento
-      $.res.appendChild( app_var.ele_val($.val)[1] );
-      break;
-    case 'val':
-      $dat.parentElement.parentElement.querySelectorAll(`.${FON_SEL}`).forEach( $e => $e.classList.remove(FON_SEL) )
-      $dat.nextElementSibling.classList.add(FON_SEL);
-      $.res = $api_app.var.querySelector('div.ele');
-      ele.val_eli($.res);
-      $.ver = $dat.nextElementSibling.innerText.replaceAll('\n','');            
-      $.res.innerHTML = app_var.ele('eti',document.querySelector($.ver));
+      $.res.appendChild( ele.var_val($.val)[1] );
       break;
     }
     break;        

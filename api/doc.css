@@ -8,10 +8,10 @@ div.doc_val {
   flex-flow: row nowrap;
   align-items: center;
 }
-div.doc_val > .fig_ico.val_tog {
+div.doc_val > .dat_ico.val_tog {
   text-shadow: 0 0 5px;
 }
-div.doc_val > .fig_ico.val_tog.ocu {
+div.doc_val > .dat_ico.val_tog.ocu {
   transform: rotate(270deg);
 }
 
@@ -32,6 +32,18 @@ div.doc_tex {
 /*//////////////////////////////////////////////////////////////////////*/
 /*//////////////////////////////////////////////////////////////////////*/
 
+/* 
+  Navegadores
+*/
+nav.lis {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+nav.lis > :is(p,a) {
+  padding-left: .5rem;
+  margin: .5rem;
+}
 
 /* por Contenido */
 nav.doc_nav:is(.pes,.bar,.ope) {
@@ -41,7 +53,7 @@ nav.doc_nav:is(.pes,.bar,.ope) {
   margin: 0;
   padding: 0;
 }
-nav.doc_nav:is(.pes,.bar) > a:not(.fig_ico) {  
+nav.doc_nav:is(.pes,.bar) > a:not(.dat_ico) {  
   display: flex;
   flex-wrap: nowrap;
   justify-content: center;
@@ -69,7 +81,7 @@ nav.doc_nav:is(.pes,.bar,.ope) + :is(div,section) > [class*="ide-"] {
 nav.doc_nav.bar {
   justify-content: space-around;
 }
-nav.doc_nav.bar > a:not(.fig_ico) {
+nav.doc_nav.bar > a:not(.dat_ico) {
   padding: .5rem 1rem;
   border-radius: .25rem;
   font-style: italic;
@@ -79,7 +91,7 @@ nav.doc_nav.bar > a:not(.fig_ico) {
 nav.doc_nav.pes {
   margin: 0 .5rem;
 }
-nav.doc_nav.pes > a:not(.fig_ico) {    
+nav.doc_nav.pes > a:not(.dat_ico) {    
   min-height: 3rem;
   border-radius: 1rem 1rem 0 0;
   text-decoration: none;  
@@ -121,10 +133,10 @@ nav.doc_nav.ope + :is(div,section) {
   margin: 0;
   padding: 0;
 }
-:is(ul,nav,fieldset).doc_ope:not(.dir-ver) > .fig_ico {
+:is(ul,nav,fieldset).doc_ope:not(.dir-ver) > .dat_ico {
   margin: 0 .3rem;
 }
-:is(ul,nav,fieldset).doc_ope.dir-ver > .fig_ico {
+:is(ul,nav,fieldset).doc_ope.dir-ver > .dat_ico {
   margin: .2rem 0;
 }
 

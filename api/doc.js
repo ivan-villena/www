@@ -13,7 +13,7 @@ class doc {
   static win( $ide, $ope ){
     let $ = {};    
     // botones
-    if( $ide.nodeName && $ide.classList.contains('fig_ico') ){
+    if( $ide.nodeName && $ide.classList.contains('dat_ico') ){
       // cierro pantalla
       $.art = $ide.parentElement.parentElement.parentElement;
       if( $ide.dataset.ope == 'fin' || $ide.dataset.ope == 'pre' ){        
@@ -44,17 +44,17 @@ class doc {
           // agrego icono : retroceder
           if( $.art.dataset.pos > 1 ){
             $.ope = $.art.querySelector('header:first-child > .ope');
-            $.ope.insertBefore( ele.val_cod( fig.ico('val_mov-izq',{ 
+            $.ope.insertBefore( ele.val_cod( dat.ico('val_mov-izq',{ 
               'title': "Volver a la pantalla anterior", 'data-ope':"pre", 'onclick':"doc.win(this)" 
-            })), $.ope.querySelector('.fig_ico.dat_fin') );
+            })), $.ope.querySelector('.dat_ico.dat_fin') );
           }
           $.htm = $.art.querySelector(`div:nth-child(2)`);
         }
         // icono
-        if( $.ico = $.art.querySelector(`header:first-child > .fig_ico:first-of-type`) ){
+        if( $.ico = $.art.querySelector(`header:first-child > .dat_ico:first-of-type`) ){
           $.ico.innerHTML = '';
           if( $ope.ico !== undefined ){
-            if( typeof($ope.ico) == 'string' ) $ope.ico = fig.ico($ope.ico,{ class:'mar_hor-1' });
+            if( typeof($ope.ico) == 'string' ) $ope.ico = dat.ico($ope.ico,{ class:'mar_hor-1' });
             ele.val_mod($ope.ico,$.ico);
           }
         }
@@ -104,76 +104,6 @@ class doc {
     $api_app.doc.sec.querySelectorAll(`article.ide-${$ide}.${DIS_OCU}`).forEach( $e => $e.classList.remove(DIS_OCU) );
     $api_app.doc.sec.scroll(0, 0);
   }
-
-  // indice por artículos
-  static art( $dat, $cla = FON_SEL ){
-
-    let $ = { lis : ele.val_ver($dat,{'eti':'nav'}) };
-
-    if( $.lis ){
-      // elimino marcas previas
-      $.lis.querySelectorAll(
-        `ul.lis.nav :is( li.pos.sep, li.pos:not(.sep) > div.doc_val ).${$cla}`
-      ).forEach( 
-        $e => $e.classList.remove($cla) 
-      );
-
-      // controlo el toggle automatico por dependencias
-      if( 
-        ( $.dep = $dat.parentElement.parentElement.querySelector('ul.lis') ) 
-        &&
-        ( $dat.classList.contains('fig_ico') || $.dep.classList.contains(DIS_OCU) ) 
-      ){
-        doc.val($dat);
-      }
-
-      // pinto fondo
-      if( !( $.bot = $dat.parentElement.querySelector('.fig_ico') ) || !$.bot.classList.contains('ocu') ){
-
-        $dat.parentElement.classList.add($cla);
-      }
-    }
-  }// - hago toogle por item
-  static art_tog( $lis ){
-
-    let $={};
-
-    if( $.nav = $lis ? doc.art_mar($lis) : false ){
-      // hago toogles ascendentes
-      while( 
-        ( $.lis = ele.val_ver($.nav,{'eti':'ul'}) ) 
-        && 
-        ( $.val = $.lis.previousElementSibling ) && $.val.nodeName == 'DIV' &&  $.val.classList.contains('val')
-        && 
-        ( $.nav = $.val.querySelector('a[href^="#"]') )
-      ){
-        if( $.lis.classList.contains(DIS_OCU) && ( $.ico = $.nav.previousElementSibling ) && $.ico.classList.contains('fig_ico') ){                
-          doc.val($.ico);
-        }                
-      }
-    }
-  }// - marco valor seleccionado
-  static art_mar( $lis ){
-
-    let $nav, $val = location.href.split('#')[1];
-
-    // hago toogle por item
-    if( $val && ( $nav = $lis.querySelector(`a[href="#${$val}"]`) ) ){
-        
-      doc.art($nav);
-    }
-
-    return $nav;
-  }// - ejecuto filtros
-  static art_ver( $dat, $ope = 'a[href]' ){
-
-    // ejecuto filtros
-    lis.ite_ver($dat, $ope);
-
-    // volver a marcar el fondo del elemento seleccionado
-    doc.art_tog($api_app.var.nextElementSibling);
-
-  }  
 
   // navegacion de contenido : pestaña-barra-operador
   static nav( $dat, $ope, ...$opc ){
@@ -232,7 +162,7 @@ class doc {
     if( !$ope ){
       $.ite = $dat.parentElement;
       if( 
-        ( $.bot = $.ite.querySelector('.fig_ico.val_tog') ) 
+        ( $.bot = $.ite.querySelector('.dat_ico.val_tog') ) 
         && ( $.sec = $.ite.nextElementSibling )
       ){        
       
@@ -255,7 +185,7 @@ class doc {
 
         $.cla = ( $ope == 'tod' ) ? `.ocu` : `:not(.ocu)`;
               
-        $.lis.querySelectorAll(`.doc_val > .fig_ico.val_tog${$.cla}`).forEach( $e => $e.click() );
+        $.lis.querySelectorAll(`.doc_val > .dat_ico.val_tog${$.cla}`).forEach( $e => $e.click() );
       }
     }
   }

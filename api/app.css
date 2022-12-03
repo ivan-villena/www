@@ -57,7 +57,7 @@
   --tra_vio:rgba(116,066,200,.7);
   --tra_cel:rgba(066,189,200,.7);
 }
-
+ 
 *, :before, :after { 
   box-sizing: border-box;
 }

@@ -78,7 +78,7 @@ class app {
         // operadores
         else if( $dat.ope = document.querySelector(`nav.ope ~ div > section[class*="ide-"]:not(.${DIS_OCU})`) ){
           $dat.nav = $dat.ope.parentElement.previousElementSibling;
-          if( $dat.ico = $dat.nav.querySelector(`.fig_ico.fon-sel`) ) $dat.ico.click();
+          if( $dat.ico = $dat.nav.querySelector(`.dat_ico.fon-sel`) ) $dat.ico.click();
         }
         // pantallas
         else if( document.querySelector(`.doc_win > :not(.${DIS_OCU})`) ){
@@ -87,7 +87,7 @@ class app {
           for( let $ide = $dat.art.length-1; $ide >= 0; $ide-- ){
             const $art = $dat.art[$ide];
             if( !$art.classList.contains(DIS_OCU) ){
-              doc.win( $art.querySelector(`header:first-child .fig_ico[data-ope="fin"]`) );
+              doc.win( $art.querySelector(`header:first-child .dat_ico[data-ope="fin"]`) );
               break;
             }
           }
@@ -131,13 +131,12 @@ class app {
     // inicio : muestro menu
     if( !$api_app.uri.cab ){
 
-      ( $.bot_ini = $api_app.doc.bot.querySelector('.fig_ico.doc_cab') ) && $.bot_ini.click();
+      ( $.bot_ini = $api_app.doc.bot.querySelector('.dat_ico.app_cab') ) && $.bot_ini.click();
     }
     // articulo
     else{
       // menu: expando seleccionado
-      if( $.cab = $api_app.doc.pan.querySelector(`nav.ide-doc_cab p.ide-${$api_app.uri.cab}`) ) 
-        $.cab.click();
+      if( $.cab = $api_app.doc.pan.querySelector(`nav.ide-app_cab p.ide-${$api_app.uri.cab}`) )  $.cab.click();
 
       // operadores
       if( $api_app.uri.cab == 'ope' ){
@@ -149,11 +148,11 @@ class app {
       }
       // indice por artículo
       else if( $api_app.uri.art ){
-        if( $.art_nav = $api_app.doc.pan.querySelector('nav.ide-doc_art ul.lis.nav') ){
+        if( $.art_nav = $api_app.doc.pan.querySelector('nav.ide-app_nav ul.lis.nav') ){
           // inicio indice
-          doc.art_tog($.art_nav);
+          lis.nav_tog($.art_nav);
           // muestro panel
-          doc.pan('doc_art');
+          doc.pan('app_nav');
         }
       }
     }

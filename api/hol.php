@@ -54,7 +54,7 @@ class hol {
           $_ton = hol::_('ton',$_cas->ton);
           $_ .= "
           UPDATE `hol_cas` SET 
-            `nom` = '".tex::let_pal($_arm->col)." $_ton->nom'
+            `nom` = '".tex::let_pal($_arm->des_col)." $_ton->nom'
           WHERE 
             `ide` = $_cas->ide;<br>";
         }
@@ -108,7 +108,7 @@ class hol {
           $_est = hol::_('kin_cro_est',$_cas->arm);
           $_ .= "
           UPDATE `hol_kin_cro_ele` SET
-            `des` = '$_ton->des del Espectro Galáctico ".tex::let_pal($_est->col)."',
+            `des` = '$_ton->des del Espectro Galáctico ".tex::let_pal($_est->des_col)."',
             `est` = $_est->ide,
             `kin` = '$kin_lis'
           WHERE 
@@ -140,7 +140,7 @@ class hol {
           $_cas_arm = hol::_('cas_arm',$_ond->cas_arm);
           $_ .= "
           UPDATE `hol_kin_nav_ond` SET
-            `des` = 'Se ".substr($_cas_arm->pod,0,-1)." el cuadrante $_cas_arm->col ".tex::art_del($_cas_arm->dir)." $_sel->acc_pal $_sel->car con el poder ".tex::art_del($_sel->pod)." '
+            `des` = 'Se ".substr($_cas_arm->des_pod,0,-1)." el cuadrante $_cas_arm->des_col ".tex::art_del($_cas_arm->dir)." $_sel->acc_pal $_sel->des_car con el poder ".tex::art_del($_sel->des_pod)." '
           WHERE 
             `ide` = $_ond->ide;<br>";
         }
@@ -160,30 +160,30 @@ class hol {
           $ton = hol::_('ton',$_kin->nav_ond_dia);      
           // poder del sello x poder del tono
           if( preg_match("/(o|a)$/i",$ton->nom) ){
-            $pod = explode(' ',$sel->pod);
+            $pod = explode(' ',$sel->des_pod);
             $art = $pod[0];
             if( preg_match("/agua/i",$pod[1]) ){ 
               $art = 'la';
             }
-            $pod = "{$sel->pod} ".( ( strtolower($art) == 'la' ) ? substr($ton->nom,0,-1).'a' : substr($ton->nom,0,-1).'o' );
+            $pod = "{$sel->des_pod} ".( ( strtolower($art) == 'la' ) ? substr($ton->nom,0,-1).'a' : substr($ton->nom,0,-1).'o' );
           }else{
-            $pod = "{$sel->pod} {$ton->nom}";
+            $pod = "{$sel->des_pod} {$ton->nom}";
           }
           // encantamiento del kin
-          $enc = "Yo ".($ton->pod_lec)." con el fin de ".ucfirst($sel->acc).", \n".($ton->acc_lec)." {$sel->car}. 
-            \nSello {$cel->nom} ".tex::art_del($sel->pod)." con el tono {$ton->nom} ".tex::art_del($ton->pod).". ";
+          $enc = "Yo ".($ton->pod_lec)." con el fin de ".ucfirst($sel->acc).", \n".($ton->acc_lec)." {$sel->des_car}. 
+            \nSello {$cel->nom} ".tex::art_del($sel->des_pod)." con el tono {$ton->nom} ".tex::art_del($ton->des_pod).". ";
           $enc .= "\nMe guía ";
           if( $ton->pul_mat == 1 ){
             $enc .= "mi propio Poder duplicado. ";
           }else{
             $gui = hol::_('sel', hol::_('kin',$_kin->par_gui)->arm_tra_dia );
-            $enc .= " el poder ".tex::art_del($gui->pod).".";
+            $enc .= " el poder ".tex::art_del($gui->des_pod).".";
           }
           if( in_array($kin+1, $_kin->val_est) ){
             $_est = hol::_('kin_cro_est',$_kin->cro_est);
             $_ele = hol::_('kin_cro_ele',$_kin->cro_ele);
             $_arm = hol::_('kin_cro_ond',hol::_('ton',$_ele['ton'])->ond_arm);
-            $enc .= "\nSoy un Kin Polar, {$_arm->enc} {$_est->col}. ";
+            $enc .= "\nSoy un Kin Polar, {$_arm->enc} {$_est->des_col}. ";
           }
           if( in_array($kin+1, $_kin->val_pag) ){
             $enc .= "\nSoy un Portal de Activación Galáctica, entra en mí.";
@@ -640,13 +640,13 @@ class hol {
       <!-- Fecha del Calendario -->
       <form class='val fec mar-1'>
   
-        ".fig::ico('fec_dia',[ 'eti'=>"label", 'for'=>"hol_val-fec", 'class'=>"mar_hor-1", 
+        ".dat::ico('fec_dia',[ 'eti'=>"label", 'for'=>"hol_val-fec", 'class'=>"mar_hor-1", 
           'title'=>"Desde aquí puedes cambiar la fecha..." 
         ])."
         ".fec::var('dia', $_fec, [ 'id'=>"hol_val-fec", 'name'=>"fec", 
           'title'=>"Selecciona o escribe una fecha del Calendario Gregoriano para buscarla..."
         ])."
-        ".fig::ico('dat_ini',[ 'eti'=>"button", 'type'=>"submit", 'class'=>"mar_hor-1", 'onclick'=>"$_eje(this);", 
+        ".dat::ico('dat_ini',[ 'eti'=>"button", 'type'=>"submit", 'class'=>"mar_hor-1", 'onclick'=>"$_eje(this);", 
           'title'=>'Haz click para buscar esta fecha del Calendario Gregoriano...'
         ])."
   
@@ -679,7 +679,7 @@ class hol {
     
         <n name='kin'>$_kin->ide</n>
   
-        ".fig::ico('dat_ini',[ 'eti'=>"button", 'type'=>"submit", 'class'=>"mar_hor-1", 'onclick'=>"$_eje(this);",
+        ".dat::ico('dat_ini',[ 'eti'=>"button", 'type'=>"submit", 'class'=>"mar_hor-1", 'onclick'=>"$_eje(this);",
           'title'=>"Haz Click para buscar esta fecha en el Sincronario de 13 Lunas..."
         ])."
   
@@ -743,9 +743,9 @@ class hol {
 
             <p>En la siguiente tabla se muestran las principales propiedades y claves para cada pareja del oráculo<c>:</c></p>";
 
-            $_par_atr = ['fun','acc','mis'];
-            $_ton_atr = ['acc'];  
-            $_sel_atr = ['car','des'];  
+            $_par_atr = ['des_fun','des_acc','des_mis'];
+            $_ton_atr = ['des_acc'];  
+            $_sel_atr = ['des_car','des_des'];  
             foreach( hol::_('sel_par') as $_par ){
               
               $_kin_par = $_par->ide == 'des' ? $_kin : hol::_('kin',$_kin->{"par_{$_par->ide}"});
@@ -780,7 +780,7 @@ class hol {
   
               <div>
                 <p><b class='tit'>{$_kin_par->nom}</b> <c>(</c> ".tex::let($_par->dia)." <c>)</c></p>
-                <p>".tex::let("{$_sel_par->acc} {$_par->pod} {$_sel_par->car}, que {$_par->mis} {$_sel->car}, {$_par->acc} {$_sel_par->pod}.")."</p>
+                <p>".tex::let("{$_sel_par->acc} {$_par->des_pod} {$_sel_par->des_car}, que {$_par->mis} {$_sel->des_car}, {$_par->acc} {$_sel_par->des_pod}.")."</p>
               </div>";
             }
             ele::cla($ope['lis'],'ite');
@@ -822,7 +822,7 @@ class hol {
       
               $_sel_par = hol::_('sel',$_kin_par->arm_tra_dia);
       
-              $ite = [ hol::ima("kin",$_kin_par), $_par->nom, $_sel_par->pod ];
+              $ite = [ hol::ima("kin",$_kin_par), $_par->nom, $_sel_par->des_pod ];
       
               foreach( $_atr as $atr ){
                 $ite []= hol::ima("sel_{$atr}",$_sel_par->$atr,[ 'class'=>"tam-5" ]);
@@ -865,7 +865,7 @@ class hol {
             }
           }// x 4 flujos
           foreach( hol::_('uni_flu') as $v ){
-            $_ .= hol::ima("uni_flu_pod",$v->pod,[ 'eti'=>"li", 'class'=>"sec flu-{$v->ide} pod-{$v->pod}" ]); 
+            $_ .= hol::ima("uni_flu_pod",$v->des_pod,[ 'eti'=>"li", 'class'=>"sec flu-{$v->ide} pod-{$v->des_pod}" ]); 
           }
           // 10 planetas
           foreach( hol::_('uni_sol_pla') as $v ){ 
@@ -1030,7 +1030,7 @@ class hol {
               <p class='mar-0 ali_pro-cen'>
                 {$_sel->arm}
                 <br>{$_sel->acc}
-                <br>{$_sel->pod}
+                <br>{$_sel->des_pod}
               </p>
             </li>";
           } $_ .= "

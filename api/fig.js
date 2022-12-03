@@ -32,27 +32,7 @@ class fig {
       $_ = $_dat ? $_dat : [];
     }
     return $_;
-  }  
-
-  // iconos : .ico.$ide
-  static ico( $ide, $ele = {} ){
-
-    let $_="<span class='fig_ico'></span>", $ = { fig_ico : fig._('ico') };
-
-    if( !!($.fig_ico[$ide]) ){
-      $.eti = 'span';
-      if( $ele['eti'] ){
-        $.eti = $ele['eti'];
-        delete($ele['eti']);
-      }      
-      if( $.eti == 'button' && !($ele['type']) ) $ele['type'] = "button"; 
-      $_ = `
-      <${$.eti}${ele.atr(ele.cla($ele,`fig_ico ${$ide} material-icons-outlined`,'ini'))}>
-        ${$.fig_ico[$ide].val}
-      </${$.eti}>`;
-    }
-    return $_;
-  }  
+  }
 
   // controladres
   static var( $tip, $dat, $ope, ...$opc ){

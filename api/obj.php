@@ -358,13 +358,13 @@ class obj {
           <p>
             <c>(</c> <n class='sep'>{$cue}</n> <c>)</c> <c class='sep'>=></c> <c class='_lis-ini'>{$ini}</c>
           </p>
-          ".fig::ico('dat_ver',['onclick'=>"$_eje.val(this,'tog');"])."
+          ".dat::ico('dat_ver',['onclick'=>"$_eje.val(this,'tog');"])."
           <ul class='ope _tog{$cla_agr}'>"; 
             if( empty($atr_agr) ){ $_.="
-            ".fig::ico('dat_tod',['eti'=>"li",'onclick'=>"$_eje.val(this,'tod');"])."
-            ".fig::ico('dat_nad',['eti'=>"li",'onclick'=>"$_eje.val(this,'nad');"])."
-            ".fig::ico('dat_agr',['eti'=>"li",'onclick'=>"$_eje.val(this,'agr');"])."
-            ".fig::ico('dat_eli',['eti'=>"li",'onclick'=>"$_eje.val(this,'eli');"])."
+            ".dat::ico('dat_tod',['eti'=>"li",'onclick'=>"$_eje.val(this,'tod');"])."
+            ".dat::ico('dat_nad',['eti'=>"li",'onclick'=>"$_eje.val(this,'nad');"])."
+            ".dat::ico('dat_agr',['eti'=>"li",'onclick'=>"$_eje.val(this,'agr');"])."
+            ".dat::ico('dat_eli',['eti'=>"li",'onclick'=>"$_eje.val(this,'eli');"])."
             ";
             }$_.="
           </ul>

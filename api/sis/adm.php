@@ -28,7 +28,7 @@ ob_start();
     'tip'=>"tex_ora", 'id'=>"_adm-ico-ver", 'oninput'=>"$_eje('ico',this,'ver')"  
   ]])?>
 
-  <ul class='lis ite mar-2' style='height: 48vh;'>
+  <ul class='lis ite mar-2'>
   </ul>
 
 <?php
@@ -71,17 +71,15 @@ $_ope['jso']['htm'] = ob_get_clean();
         'ope'=>[ 'tip'=>"opc_bin", 'val'=>1, 'id'=>"_adm-php-htm" ]
       ])?>
       
-      <?=fig::ico('dat_ope',[
+      <?=dat::ico('dat_ope',[
         'eti'=>"button", 'type'=>"submit", 'onclick'=>"$_eje('php',this)"
       ])?>
 
     </fieldset>
 
-    <div class='ope_res mar-1' style='height: 40vh; overflow: auto;'>
-    </div>
+    <div class='ope_res mar-1'></div>
 
-    <pre class='ope_res' style='height: 40vh; overflow: auto;'>
-    </pre>
+    <pre class='ope_res'></pre>
 
   <?php
   $_ope['php']['htm'] = ob_get_clean();
@@ -95,13 +93,12 @@ $_ope['jso']['htm'] = ob_get_clean();
       <?=dat::var('val','cod',[ 
         'ite'=>[ 'class'=>"tam-cre" ], 
         'ope'=>[ 'tip'=>"tex_ora", 'class'=>"anc-100 mar_der-1" ],
-        'htm_fin'=> fig::ico('dat_ope',[ 'eti'=>"button", 'type'=>"submit", 'onclick'=>"$_eje('sql',this,'cod')" ])
+        'htm_fin'=> dat::ico('dat_ope',[ 'eti'=>"button", 'type'=>"submit", 'onclick'=>"$_eje('sql',this,'cod')" ])
       ])?>
 
     </fieldset>
 
-    <div class='ope_res mar-1' var='est' style='height: 47vh;'>
-    </div>  
+    <div class='est ope_res mar-1'></div>
   <?php
   $_ope['sql']['htm'] = ob_get_clean();
 
@@ -114,16 +111,15 @@ $_ope['jso']['htm'] = ob_get_clean();
       <?=dat::var('val','cod',[ 
         'ite'=>['class'=>"tam-cre"], 
         'ope'=>['tip'=>"tex_ora", 'class'=>"anc-100 mar_der-1"],
-        'htm_fin'=> fig::ico('dat_ope',['eti'=>"button", 'type'=>"submit", 'onclick'=>"$_eje('htm',this,'cod')"])
+        'htm_fin'=> dat::ico('dat_ope',['eti'=>"button", 'type'=>"submit", 'onclick'=>"$_eje('htm',this,'cod')"])
       ])?>
 
     </fieldset>
 
-    <div class='ele'>
-    </div>
+    <div class='ele'></div>
 
-    <div class='nod mar-1'>
-    </div>
+    <div class='ele_nod mar-1'></div>
+
   <?php
   $_ope['htm']['htm'] = ob_get_clean();
 

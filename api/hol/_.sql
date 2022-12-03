@@ -55,6 +55,46 @@
       ORDER BY 
         _sel.ord ASC
     ;
+    -- ciclos
+    DROP VIEW IF EXISTS `_hol_sel_cic_dir`; CREATE VIEW `_hol_sel_cic_dir` AS
+      SELECT
+        _dir.*,
+        _arm.des_col
+      FROM 
+        `hol_sel_cic_dir` _dir
+      INNER JOIN
+        `hol_arm` _arm ON _arm.ide = _dir.ide
+      ORDER BY 
+        _dir.ide ASC
+    ;
+    -- colocacion armónica
+    DROP VIEW IF EXISTS `_hol_sel_arm_raz`; CREATE VIEW `_hol_sel_arm_raz` AS
+      SELECT
+        _raz.*,
+        _arm.des_col,
+        _arm.des_dir,
+        _arm.des_pod,
+        _arm.des_dia
+      FROM 
+        `hol_sel_arm_raz` _raz
+      INNER JOIN
+        `hol_arm` _arm ON _arm.ide = _raz.ide
+      ORDER BY 
+        _raz.ide ASC
+    ;
+    -- colocacion cromática
+    DROP VIEW IF EXISTS `_hol_sel_cro_fam`; CREATE VIEW `_hol_sel_cro_fam` AS
+      SELECT
+        _fam.*,
+        _cro.des_cod,
+        _cro.des_fun      
+      FROM 
+        `hol_sel_cro_fam` _fam
+      INNER JOIN
+        `hol_cro` _cro ON _cro.ide = _fam.ide
+      ORDER BY 
+        _fam.ide ASC
+    ;
     -- parejas analogas
     DROP VIEW IF EXISTS `_hol_sel_par_ana`;CREATE VIEW `_hol_sel_par_ana` AS
       SELECT
@@ -119,11 +159,11 @@
     DROP VIEW IF EXISTS `_hol_cas_arm`; CREATE VIEW `_hol_cas_arm` AS
       SELECT 
         _cas.*,
-        _arm.col,
-        _arm.dir,
-        _arm.pod,
-        _arm.pol,
-        _arm.dia
+        _arm.des_col,
+        _arm.des_dir,
+        _arm.des_pod,
+        _arm.des_pol,
+        _arm.des_dia
       FROM 
         `hol_cas_arm` _cas
       INNER JOIN 
@@ -150,8 +190,8 @@
       SELECT 
         _est.*,
         _cas.cas,
-        _cas.col,
-        _cas.dir
+        _cas.des_col,
+        _cas.des_dir
       FROM 
         `hol_kin_cro_est` _est
       INNER JOIN 
@@ -222,8 +262,8 @@
       SELECT 
         _cel.*,
         _arm.nom AS `cel_nom`,
-        _arm.fun AS `cel_fun`,
-        _arm.pod AS `cel_pod`
+        _arm.des_fun AS `cel_fun`,
+        _arm.des_pod AS `cel_pod`
       FROM 
         `hol_kin_arm_cel` _cel
         INNER JOIN `hol_sel_arm_cel` _arm ON _cel.cel = _arm.ide
@@ -277,11 +317,11 @@
     DROP VIEW IF EXISTS `_hol_psi_hep`; CREATE VIEW `_hol_psi_hep` AS
       SELECT 
         _hep.*, 
-        _cas.ond AS `ond`, 
-        _cas.arm AS `arm`,
-        _arm.col AS `arm_col`,
-        _arm.dir AS `arm_dir`,
-        _cas.ton AS `ton`,                 
+        _cas.ond, 
+        _cas.arm,
+        _arm.des_col,
+        _arm.des_dir,
+        _cas.ton,
         _ton.nom AS `ton_nom`,
         _ton.des AS `ton_des`,
         _cas.des AS `cas_des`
@@ -317,4 +357,44 @@
         _ani.ide
     ;
   --
+  -- solar:
+  -- 
+  -- planetario:
+    DROP VIEW IF EXISTS `_hol_uni_pla_cen`; CREATE VIEW `_hol_uni_pla_cen` AS
+      SELECT
+        _cen.*,
+        _cro.des_fun
+      FROM 
+        `hol_uni_pla_cen` _cen
+      INNER JOIN
+        `_hol_sel_cro_fam` _cro ON _cro.ide = _cen.ide
+      ORDER BY 
+        _cen.ide ASC
+    ;
+  -- 
+  -- humano
+    DROP VIEW IF EXISTS `_hol_uni_hum_cen`; CREATE VIEW `_hol_uni_hum_cen` AS
+      SELECT
+        _cen.*,
+        _cro.des_pod
+      FROM 
+        `hol_uni_hum_cen` _cen
+      INNER JOIN
+        `_hol_sel_cro_fam` _cro ON _cro.ide = _cen.ide
+      ORDER BY 
+        _cen.ide ASC
+    ;
+    DROP VIEW IF EXISTS `_hol_uni_hum_ded`; CREATE VIEW `_hol_uni_hum_ded` AS
+      SELECT
+        _ded.*,
+        _cro.des_acc
+      FROM 
+        `hol_uni_hum_ded` _ded
+      INNER JOIN
+        `_hol_sel_cro_fam` _cro ON _cro.ide = _ded.ide
+      ORDER BY 
+        _ded.ide ASC
+    ;      
 --
+--
+

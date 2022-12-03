@@ -48,7 +48,7 @@ class ele {
         if( isset($ele['ico']) ){
           $ico_ide = $ele['ico'];
           unset($ele['ico']);
-          $_ .= fig::ico($ico_ide,$ele);
+          $_ .= dat::ico($ico_ide,$ele);
         }
         // por imagen
         elseif( isset($ele['ima']) ){

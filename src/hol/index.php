@@ -1,4 +1,5 @@
-<?php  
+<?php
+
   // cargo página 
   $_hol = new stdClass;
   // Diario : Fecha del Sistema => valor por peticion : hol/$cab/$art/"ide=val"      
@@ -66,7 +67,7 @@
       <!-- Diario -->
       <section>
         <h3>Fecha del Sistema</h3>
-        <?= fig::ico('fec_val',['class'=>"mar_hor-1"]) ?>
+        <?= dat::ico('fec_val',['class'=>"mar_hor-1"]) ?>
 
         <p>Desde este panel podrás buscar fechas en el Calendario Gregoriano o en El sincronario<c>.</c></p>
 
@@ -88,9 +89,9 @@
         <h3>La bibliografía</h3>
 
         <div class="val jus-cen">
-          <?= fig::ico('app_cab',['class'=>"mar_hor-1"]) ?>
+          <?= dat::ico('app_cab',['class'=>"mar_hor-1"]) ?>
           <c>-></c>
-          <?= fig::ico('tex_lib',['class'=>"mar_hor-1"]) ?>
+          <?= dat::ico('tex_lib',['class'=>"mar_hor-1"]) ?>
         </div>
 
         <p>Aquí podrás encontrar la mayoría de los libros en los cuales se basa la teoría del Sincronario<c>:</c> <q>La ley del Tiempo</q><c>.</c> Esta fué desarrollada por <a href="https://es.wikipedia.org/wiki/Jos%C3%A9_Arg%C3%BCelles" target="_blank">José Argüelles</a> quien organizó una fundación con el mismo nombre <c>(</c><a href="http://www.lawoftime.org" target="_blank">The Law of Time</a><c>)</c><c>.</c> Todos sus libros y materiales se pueden descargar gratuitamente desde <a href="https://13lunas.net/mapa.htm#biblioteca" target="_blank">La Biblioteca de <n>13</n> Lunas</a><c>.</c></p>
@@ -105,9 +106,9 @@
         <h3>Códigos y Cuentas</h3>
 
         <div class="val jus-cen">
-          <?= fig::ico('app_cab',['class'=>"mar_hor-1"]) ?>
+          <?= dat::ico('app_cab',['class'=>"mar_hor-1"]) ?>
           <c>-></c>
-          <?= fig::ico('num_cod',['class'=>"mar_hor-1"]) ?>
+          <?= dat::ico('num_cod',['class'=>"mar_hor-1"]) ?>
         </div>
 
         <p>En esta sección podrás encontrar datos que van apareciendo en los distintos libros y están relacionados a cada código y cuenta<c>,</c> junto con sus respectivas agrupaciones y subciclos<c>.</c></p>
@@ -120,9 +121,9 @@
         <h3>Los Módulos</h3>
 
         <div class="val jus-cen">
-          <?= fig::ico('app_cab',['class'=>"mar_hor-1"]) ?>
+          <?= dat::ico('app_cab',['class'=>"mar_hor-1"]) ?>
           <c>-></c>
-          <?= fig::ico('tab',['class'=>"mar_hor-1"]) ?>
+          <?= dat::ico('tab',['class'=>"mar_hor-1"]) ?>
         </div>
         
         <p>Desde el menú principal puedes acceder a un listado de tableros que representan las cuentas principales del sincronario<c>,</c> a estos los llamaremos módulos<c>.</c></p>
@@ -229,7 +230,7 @@
         <!-- Diario -->
         <section>
           <h3>Diario</h3>
-          <?= fig::ico('fec_val',['class'=>"mar_hor-1"]) ?>          
+          <?= dat::ico('fec_val',['class'=>"mar_hor-1"]) ?>          
 
           <p>Desde esta sección podrás cambiar la fecha para la posición principal del tablero<c>,</c> y ver un detalle de cada código correspondiente<c>.</c></p>
 
@@ -239,7 +240,7 @@
         <!-- Seleccion -->
         <section>          
           <h3>Selección por Valores</h3>
-          <?= fig::ico('dat_ver',['class'=>"mar_hor-1"]) ?>
+          <?= dat::ico('dat_ver',['class'=>"mar_hor-1"]) ?>
 
           <p>Accede a esta sección para seleccionar múltiples posiciones y luego comparar sus datos<c>.</c> Puedes aplicar criterios de selección por estructuras de datos<c>,</c> fechas<c>,</c> o posiciones<c>.</c></p>
 
@@ -253,7 +254,7 @@
         <!-- Opciones -->
         <section>          
           <h3>Opciones del Tablero</h3>
-          <?= fig::ico('opc_bin',['class'=>"mar_hor-1"]) ?>
+          <?= dat::ico('opc_bin',['class'=>"mar_hor-1"]) ?>
 
           <p>Desde aquí puedes cambiar los colores de fondo<c>,</c> seleccionar el tipo de ficha y ver contenido numérico o textual para cada posición<c>.</c></p>
 
@@ -265,7 +266,7 @@
         <!-- Operador -->
         <section>
           <h3>Datos y Valores</h3>
-          <?= fig::ico('est',['class'=>"mar_hor-1"]) ?>
+          <?= dat::ico('est',['class'=>"mar_hor-1"]) ?>
 
           <p>En la parte de acumulados se carga la posición principal por fecha<c>,</c> las posiciones marcadas<c>,</c> seleccionadas y las correspondientes a las opciones del tablero activadas<c>.</c></p>
 
@@ -282,7 +283,7 @@
         <!-- Listado -->
         <section>
           <h3>Listado</h3>
-          <?= fig::ico('lis_ite',['class'=>"mar_hor-1"]) ?>
+          <?= dat::ico('lis_ite',['class'=>"mar_hor-1"]) ?>
 
           <p>Se arma con los datos de todas las posiciones acumuladas de los distintos operadores<c>:</c> <b class="ide">Fecha del diario</b><c>,</c> <b class="ide">Marca directa</b><c>,</c> <b class="ide">Selección por Valores</b> y <b class="ide">Opciones del Tablero</b><c>.</c> Puedes elegir entre los distintos critrios de acumulación o ver todas las posiciones<c>.</c></p>
 
@@ -337,7 +338,7 @@
       
       // muestro diario
       /*
-      let $bot_ini = $api_doc.bot.querySelector(`.fig_ico.fec_val`);
+      let $bot_ini = $api_doc.bot.querySelector(`.dat_ico.fec_val`);
       if( $bot_ini ) $bot_ini.click();
       */
     }'

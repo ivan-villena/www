@@ -218,12 +218,82 @@ class lis {
         $.tog = ['ocu','nad'];
       }      
       // actualizo toggle
-      if( $.tog[1] && ( $.ico = $api_app.var.querySelector(`.fig_ico.val_tog-${$.tog[1]}`) ) ) doc.val($.ico,$.tog[1]);
+      if( $.tog[1] && ( $.ico = $api_app.var.querySelector(`.dat_ico.val_tog-${$.tog[1]}`) ) ) doc.val($.ico,$.tog[1]);
       
       // actualizo total
       if( $.tot_val = $api_app.var.querySelector(`[name="tot"]`) ) $.tot_val.innerHTML = $.tot;           
     }      
   }
+
+  // indice por artículos
+  static nav( $dat, $cla = FON_SEL ){
+
+    let $ = { lis : ele.val_ver($dat,{'eti':'nav'}) };
+
+    if( $.lis ){
+      // elimino marcas previas
+      $.lis.querySelectorAll(
+        `ul.lis.nav :is( li.pos.sep, li.pos:not(.sep) > div.doc_val ).${$cla}`
+      ).forEach( 
+        $e => $e.classList.remove($cla) 
+      );
+
+      // controlo el toggle automatico por dependencias
+      if( 
+        ( $.dep = $dat.parentElement.parentElement.querySelector('ul.lis') ) 
+        &&
+        ( $dat.classList.contains('dat_ico') || $.dep.classList.contains(DIS_OCU) ) 
+      ){
+        doc.val($dat);
+      }
+
+      // pinto fondo
+      if( !( $.bot = $dat.parentElement.querySelector('.dat_ico') ) || !$.bot.classList.contains('ocu') ){
+
+        $dat.parentElement.classList.add($cla);
+      }
+    }
+  }// - hago toogle por item
+  static nav_tog( $lis ){
+
+    let $={};
+
+    if( $.nav = $lis ? lis.nav_mar($lis) : false ){
+      // hago toogles ascendentes
+      while( 
+        ( $.lis = ele.val_ver($.nav,{'eti':'ul'}) ) 
+        && 
+        ( $.val = $.lis.previousElementSibling ) && $.val.nodeName == 'DIV' &&  $.val.classList.contains('doc_val')
+        && 
+        ( $.nav = $.val.querySelector('a[href^="#"]') )
+      ){
+        if( $.lis.classList.contains(DIS_OCU) && ( $.ico = $.nav.previousElementSibling ) && $.ico.classList.contains('dat_ico') ){                
+          doc.val($.ico);
+        }                
+      }
+    }
+  }// - marco valor seleccionado
+  static nav_mar( $lis ){
+
+    let $nav, $val = location.href.split('#')[1];
+
+    // hago toogle por item
+    if( $val && ( $nav = $lis.querySelector(`a[href="#${$val}"]`) ) ){
+        
+      lis.nav($nav);
+    }
+
+    return $nav;
+  }// - ejecuto filtros
+  static nav_ver( $dat, $ope = 'a[href]' ){
+
+    // ejecuto filtros
+    lis.ite_ver($dat, $ope);
+
+    // volver a marcar el fondo del elemento seleccionado
+    lis.nav_tog($api_app.var.nextElementSibling);
+
+  }    
 
   // desplazamiento horizontal x item
   static bar(){

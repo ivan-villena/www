@@ -6,11 +6,7 @@ class fig {
   static string $EJE = "fig.";
 
   function __construct(){
-
-    $this->_ico = dat::get('fig_ico', [ 'niv'=>['ide'] ]);
-    
-  }
-  // getter
+  }// getter
   static function _( string $ide, $val = NULL ) : string | array | object {
     $_ = [];    
     global $api_fig;
@@ -31,24 +27,6 @@ class fig {
     }// toda la lista
     elseif( isset($_dat) ){
       $_ = $_dat;
-    }
-    return $_;
-  }
-
-  // icono : .fig_ico.$ide
-  static function ico( string $ide, array $ele=[] ) : string {
-    $_ = "<span class='fig_ico'></span>";
-    $fig_ico = fig::_('ico');
-    if( isset($fig_ico[$ide]) ){
-      $eti = 'span';      
-      if( isset($ele['eti']) ){
-        $eti = $ele['eti'];
-        unset($ele['eti']);
-      }
-      if( $eti == 'button' && empty($ele['type']) ) $ele['type'] = "button"; $_ = "
-      <{$eti}".ele::atr(ele::cla($ele,"fig_ico $ide material-icons-outlined",'ini')).">
-        {$fig_ico[$ide]->val}
-      </{$eti}>";
     }
     return $_;
   }

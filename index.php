@@ -73,8 +73,14 @@
         $_ .= "ALTER TABLE `api`.`$est` DROP PRIMARY KEY;<br>";
       } 
       */
-
-      $_ = hol::sql('psi_est_dia');
+      
+      foreach( [ 'ton', 'sel', 'kin'] as $ide ){
+        foreach( hol::_($ide) as $dat ){
+          $img = str_replace("localhost","www.icpv.com.ar",dat::est_ope('hol',$ide,'val.ima',$dat));
+          $img = str_replace("background: ","",$img);
+          $_ .= "UPDATE `cac_react`.`$ide` SET `img`='$img' WHERE ide='$dat->ide';<br>";
+        }
+      }
 
       return $_;
     }
@@ -89,66 +95,13 @@
 
   // cargo documento y aplicacion
   $api_app = new app( isset($_REQUEST['uri']) ? $_REQUEST['uri'] : "hol" );
-  
-  // usuario + loggin
-  $tip = empty($api_usu->ide) ? 'ini' : 'fin';
-  // $api_app->rec['ope']['fin']["ses_{$tip}"]['htm'] = api::usu($tip);
-
-  // consola del sistema
-  if( $api_usu->ide == 1 ){
-
-    $api_app->rec['cla']['api'] []= "sis/adm";
-
-    ob_start();
-    include("./api/sis/adm.php");
-    $api_app->rec['ope']['fin']['sis_adm']['htm'] = ob_get_clean();
-  }
-
-  // cargo ruteo
-  $_uri = $api_app->uri;
 
   // pido contenido por aplicacion
+  $_uri = $api_app->uri;
   if( file_exists($rec = "./src/{$_uri->esq}/index.php") ) require_once( $rec );
   
-  // cargo operadores del documento ( botones + contenidos )
-  foreach( $api_app->rec['ope'] as $tip => $tip_lis ){
-
-    foreach( $tip_lis as $ide => $ope ){
-      // enlaces
-      if( isset($ope['url']) ){
-        // boton
-        $api_app->htm['ope'][$tip] .= fig::ico($ope['ico'],[ 'eti'=>"a", 'title'=>$ope['nom'], 'href'=>$ope['url'] ]);
-      }
-      // paneles y modales
-      elseif( ( $ope['tip'] == 'pan' || $ope['tip'] == 'win' ) && !empty($ope['htm']) ){
-        // botones          
-        $api_app->htm['ope'][$tip] .= doc::bot([ $ide => $ope ]);
-        // contenido
-        $api_app->htm[$ope['tip']] .= doc::{$ope['tip']}($ide,$ope);
-      }
-    }  
-  }
-
-  // cargo modal de operadores
-  $api_app->htm['win'] .= doc::win('app_ope',[ 'ico'=>"app_ope", 'nom'=>"Operador" ]);  
-  
-  // ajusto diseño
-  $_ver = [];
-  foreach( ['bar','pie'] as $ide ){ if( !empty($api_app->htm[$ide]) ) $_ver []= $ide; }
-  if( !empty($_ver) ) $api_app->rec['ele']['body']['data-ver'] = implode(',',$_ver);
-
-  // titulo
-  $doc_tit = "{-_-}";
-    if( !empty($api_app->rec['dat']['art']->nom) ){
-      $doc_tit = $api_app->rec['dat']['art']->nom;
-    }
-    elseif( !empty($api_app->rec['dat']['cab']->nom) ){
-      $doc_tit = $api_app->rec['dat']['cab']->nom;
-    }
-    elseif( !empty($api_app->rec['dat']['esq']->nom) ){
-      $doc_tit = $api_app->rec['dat']['esq']->nom; 
-    }
-  //
+  // inicializo contenido
+  $api_app->htm_ini();
   ?>
   <!DOCTYPE html>
   <html lang="es">
@@ -162,7 +115,7 @@
       <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Material+Icons+Outlined'>
       <link rel='stylesheet' href='<?=SYS_NAV?>api/sis/css.css'>
 
-      <title><?=$doc_tit?></title>
+      <title><?=$api_app->htm['tit']?></title>
     </head>
 
     <body <?=ele::atr($api_app->rec['ele']['body'])?>>
@@ -189,7 +142,7 @@
       
       <!-- Contenido -->
       <main class="doc_sec">
-        <?= doc::sec( $api_app->htm['sec'], [ 'tit'=>$doc_tit ] ) ?>
+        <?= doc::sec( $api_app->htm['sec'], [ 'tit'=>$api_app->htm['tit'] ] ) ?>
       </main>
       
       <?php if( !empty($api_app->htm['bar']) ){ ?>
@@ -233,7 +186,7 @@
           }          
         }
         $dat_api = [];
-        foreach( ['_tip','_ope','_est_ope'] as $atr ){
+        foreach( ['_ico','_ope','_tip','_est_ope'] as $atr ){
           $dat_api[$atr] = $api_dat->$atr;
         }
         ?>
