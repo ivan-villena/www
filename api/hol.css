@@ -385,19 +385,18 @@ ul.tab.hol_cas-cir > .pos.ide-52 { grid-column:18; grid-row:10; }
   x20 - Sellos Solares
 */
 
-ul.tab.sel {
-  grid : repeat(4,1fr) / repeat(5,1fr); 
-  grid-gap:.5rem;
-}
-
 ul.tab.sel.par {
   border: 1px solid var(--col_ver);
 }
 
-ul.tab.sel.arm {
-  grid: repeat(5,1fr) / repeat(6,1fr); 
+ul.tab.sel:is(.arm,.cro){
   grid-auto-flow: column; 
+  grid-gap: .5rem;
   border-radius: 20%;
+}
+
+ul.tab.sel.arm {
+  grid: repeat(5,1fr) / repeat(6,1fr);   
 }
 ul.tab.sel.arm > li.sec.raz-1 { grid-column:1/2; grid-row:2/3; }
 ul.tab.sel.arm > li.sec.raz-2 { grid-column:1/2; grid-row:3/4; }
@@ -411,8 +410,7 @@ ul.tab.sel.arm > li.sec.cel-4 { grid-column:5/6; grid-row:1/2; }
 ul.tab.sel.arm > li.sec.cel-5 { grid-column:6/7; grid-row:1/2; }
 
 ul.tab.sel.cro {
-  grid-auto-flow: column; 
-  border-radius: 20%;
+  grid : repeat(4,1fr) / repeat(5,1fr);
 }
 
 ul.tab.sel.cro > li.sec.ele-1 { grid-column:2/3; grid-row:1/2; }
