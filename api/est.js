@@ -214,9 +214,9 @@ class est {
       }
       // 2º - cargo filtros : - dato(val) -fecha(ini) -posicion(ini)
       $.eje = [];
-      for( const $ope_ide in $api_app.dat.ver ){
+      for( const $ope_ide in $api_app.val.ver ){
         // tomo solo los que tienen valor
-        if( ( $.val = $api_app.est.ver.querySelector(`${$api_app.dat.ver[$ope_ide]}`) ) && !!$.val.value ){
+        if( ( $.val = $api_app.est.ver.querySelector(`${$api_app.val.ver[$ope_ide]}`) ) && !!$.val.value ){
           $.eje.push($ope_ide);
         }
       }

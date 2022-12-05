@@ -184,8 +184,8 @@ class lis {
     foreach( ['lis','ite','val','ico','dep','ope'] as $e ){ if( !isset($ope[$e]) ){ $ope[$e]=[]; } }
     $_ = "";
     // elementos        
-    ele::cla($ope['lis'],"lis",'ini');
-    ele::cla($ope['dep'],"lis",'ini');
+    ele::cla($ope['lis'],"lis mar_hor-0",'ini');
+    ele::cla($ope['dep'],"lis mar_hor-0",'ini');
     ele::cla($ope['ope'],"ite",'ini');      
     // operadores
     if( isset($ope['opc']) ) $_ .= lis::ope('val', lis::val($ope['opc']), $ope);

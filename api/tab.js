@@ -80,12 +80,11 @@ class tab {
 
     // inicializo opciones
     ['sec','pos'].forEach( $ope => {
-      
       if( $api_app.tab[$ope] ){
-
-        $api_app.tab[$ope].querySelectorAll(`form[class*="ide-"] [onchange*="tab."]:is( input:checked, select:not([value=""]) )`).forEach( 
-
-          $inp => tab[`opc_${$ope}`]( $inp )
+        $api_app.tab[$ope].querySelectorAll(
+          `form[class*="ide-"] [onchange*="tab."]:is( input:checked, select:not([value=""]) )`
+        ).forEach( 
+          $inp => tab[$ope]( $inp )
         );
       }
     });

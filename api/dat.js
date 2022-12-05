@@ -193,7 +193,7 @@ class dat {
   // Cargo operador
   static est_ope( $esq, $est, $ope, $dat ) {
 
-    let $={}, $_ = $api_dat._ope[$esq][$est];
+    let $={}, $_ = $api_dat._est_ope[$esq][$est];
 
     // cargo atributo
     $.ope_atr = $ope.split('.');

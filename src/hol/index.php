@@ -138,8 +138,8 @@
 
   }
   // por articulo 
-  else{
-    ob_start();
+  else{  
+    ob_start();  
     // operador : modulos
     if( $_uri->cab == 'ope' ){
       // genero datos
@@ -206,7 +206,6 @@
           'ima'=>[ 'onclick'=>FALSE ]
         ])."
       </article>";
-      $api_app->htm['sec'] = ob_get_clean();
       
       // cargo tutorial    
       ob_start(); ?>
@@ -315,8 +314,7 @@
       else{
         echo doc::tex('err',"No existe el archivo '$val'");
       }
-    }
-    // imprimo secciones
+    }// imprimo secciones
     $api_app->htm['sec'] = ob_get_clean();
   }
 

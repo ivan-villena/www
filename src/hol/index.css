@@ -1,6 +1,4 @@
 
-
-
 body {
   background: center/cover no-repeat url('../../img/app/fon/01.jpg');
   color: var(--let_tex);
@@ -11,4 +9,38 @@ body {
 */
 aside.doc_pan > .ide-dia > div > div {
   max-width: fit-content;
+}
+
+/* 
+  Libros 
+*/
+main article section {
+  padding: 0 2rem;
+}
+
+/* Tierra en Ascenso */
+body[data-art="asc"] > main figure {
+  margin: 1em 0;
+}
+
+/* 
+  Operador 
+*/
+
+/* Panel: cuentas */
+aside.doc_pan > .ide-val > .ide-cue > ul {
+  height: 40vh;
+}
+
+/* Articulo: Tableros */
+main > article {
+  max-width: fit-content;
+  padding: 0;
+  border: initial;
+  margin: auto;
+  line-height: initial;
+}
+
+main > article > .tab {
+  margin: auto;
 }

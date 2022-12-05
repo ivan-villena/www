@@ -1,4 +1,4 @@
--- Active: 1665550796793@@127.0.0.1@3306@c1461857_api
+-- Active: 1670107173962@@127.0.0.1@3306@c1461857_api
 --
 -- Calendario
   DELETE FROM `dat_est` WHERE `esq` = 'fec'
@@ -37,7 +37,7 @@
           },        
           "val":{ 
             "nom": "Respiración de flujo polar #()($)ide() de 2: ()($)nom()",
-            "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/uni/flu_res/()($)ide().png);",
+            "ima": "background: center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/uni/flu_res/()($)ide().png);",
             "col": 2
           },
           "inf":{ 
@@ -53,7 +53,7 @@
           },
           "val":{ 
             "nom": "Poder de flujo polar #()($)ide() de 2: ()($)nom()",
-            "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/uni/flu_pod/()($)ide().png);",
+            "ima": "background: center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/uni/flu_pod/()($)ide().png);",
             "col": 2
           },
           "inf":{ 
@@ -77,7 +77,7 @@
           "val":{ 
             "nom": "Órbita Planetaria #()($)ide() de 10: ()($)nom().",
             "des": "Código ()($)nom_cod()",
-            "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/uni/sol_pla/()($)ide().png);",
+            "ima": "background: center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/uni/sol_pla/()($)ide().png);",
             "col": 10,
             "num": 10
           },
@@ -103,7 +103,7 @@
           "val":{ 
             "nom": "Respiración del Holon Solar #()($)ide() de 2: ()($)nom()",
             "des": "()($)des()",
-            "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/uni/flu_res/()($)ide().png);",
+            "ima": "background: center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/uni/flu_res/()($)ide().png);",
             "col": 2
           },
           "inf":{ 
@@ -122,7 +122,7 @@
           "val":{ 
             "nom": "Grupo Orbital #()($)ide() de 2: ()($)nom().",
             "des": "",
-            "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/uni/sol_orb/()($)ide().png);",
+            "ima": "background: center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/uni/sol_orb/()($)ide().png);",
             "col": 2,
             "num": 2
           },
@@ -146,7 +146,7 @@
           },
           "val":{ 
             "nom": "Célula Solar #()($)ide() de 5: ()($)nom().",
-            "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/uni/sol_cel/()($)ide().png);",
+            "ima": "background: center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/uni/sol_cel/()($)ide().png);",
             "col": 5, 
             "num": 5
           },
@@ -174,7 +174,7 @@
           },
           "val":{ 
             "nom": "Circuito de Telepatía #()($)ide() de 5: ()($)nom().",
-            "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/uni/sol_cir/()($)ide().png);",
+            "ima": "background: center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/uni/sol_cir/()($)ide().png);",
             "col": 5,
             "num": 5
           },
@@ -199,7 +199,7 @@
           "val":{ 
             "nom": "Respiración del Holon Planetario #()($)ide() de 2: ()($)nom()",
             "des": "()($)des()",
-            "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/uni/flu_res/()($)ide().png);",
+            "ima": "background: center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/uni/flu_res/()($)ide().png);",
             "col": 2
           },
           "inf":{ 
@@ -217,7 +217,7 @@
           },
           "val":{ 
             "nom": "Centro Planetario #()($)ide() de 5: ()($)nom().",
-            "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/uni/pla_cen/()($)ide().png);",
+            "ima": "background: center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/uni/pla_cen/()($)ide().png);",
             "col": 5,
             "num": 5
           },
@@ -238,7 +238,7 @@
           },
           "val":{ 
             "nom": "Hemisferio #()($)ide() de 3: ()($)nom().",
-            "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/uni/pla_hem/()($)ide().png);",
+            "ima": "background: center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/uni/pla_hem/()($)ide().png);",
             "col": 3,
             "num": 3
           },
@@ -256,7 +256,7 @@
           },
           "val":{ 
             "nom": "Meridiano #()($)ide() de 2: ()($)nom().",
-            "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/uni/pla_mer/()($)ide().png);",
+            "ima": "background: center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/uni/pla_mer/()($)ide().png);",
             "col": 2,
             "num": 2
           },
@@ -275,7 +275,7 @@
           "val":{ 
             "nom": "Respiración del Holon Humano #()($)ide() de 2: ()($)nom()",
             "des": "()($)des()",
-            "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/uni/flu_res/()($)ide().png);",
+            "ima": "background: center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/uni/flu_res/()($)ide().png);",
             "col": 2
           },
           "inf":{ 
@@ -294,7 +294,7 @@
           "val":{ 
             "nom": "Centro Galáctico #()($)ide() de 5: ()($)nom().",
             "des": "()($)des()",
-            "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/uni/hum_cen/()($)ide().png);",
+            "ima": "background: center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/uni/hum_cen/()($)ide().png);",
             "col": 5,
             "num": 5
           },
@@ -316,7 +316,7 @@
           },
           "val":{ 
             "nom": "Dedo #()($)ide() de 5: ()($)nom().",
-            "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/uni/hum_ded/()($)ide().png);",
+            "ima": "background: center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/uni/hum_ded/()($)ide().png);",
             "col": 5,
             "num": 5
           },
@@ -337,7 +337,7 @@
           },
           "val":{ 
             "nom": "Extremidad #()($)ide() de 4: ()($)nom().",
-            "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/uni/hum_ext/()($)ide().png);",
+            "ima": "background: center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/uni/hum_ext/()($)ide().png);",
             "col": 4,
             "num": 4
           },
@@ -359,7 +359,7 @@
           },
           "val":{ 
             "nom": "Meridiano Orgánico #()($)ide() de 10: ()($)nom().",
-            "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/uni/hum_mer/()($)ide().png);",
+            "ima": "background: center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/uni/hum_mer/()($)ide().png);",
             "col": 10,
             "num": 10
           },
@@ -381,7 +381,7 @@
           },
           "val":{ 
             "nom": "Articulación #()($)ide() de 7: ()($)nom().",
-            "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/uni/hum_art/()($)ide().png);",
+            "ima": "background: center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/uni/hum_art/()($)ide().png);",
             "col": 7,
             "num": 7
           },
@@ -397,7 +397,7 @@
           },
           "val":{ 
             "nom": "Chakra #()($)ide() de 7: ()($)nom().",
-            "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/uni/hum_cha/()($)ide().png);",
+            "ima": "background: center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/uni/hum_cha/()($)ide().png);",
             "col": 7,
             "num": 7
           },
@@ -412,7 +412,7 @@
           },
           "val":{ 
             "nom": "Mudra #()($)ide() de 7: ()($)nom().",
-            "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/uni/hum_mud/()($)ide().png);",
+            "ima": "background: center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/uni/hum_mud/()($)ide().png);",
             "num": 7
           }
       }' )
@@ -458,7 +458,7 @@
         "val":{ 
           "nom": "Plasma #()($)ide() de 7: ()($)nom().",
           "des": "\'()($)pla_lec()\'",
-          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/rad/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/rad/()($)ide().png);",
           "col": 7,
           "num": 7
         },
@@ -494,7 +494,7 @@
         "val":{ 
           "nom": "Plasma #()($)ide() de 7: ()($)pla()",
           "des": "()($)nom()",
-          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/rad/pla_cub/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/rad/pla_cub/()($)ide().png);",
           "col": 4,
           "num": 7
         },
@@ -509,7 +509,7 @@
         },      
         "val":{ 
           "nom": "Carga #()($)ide() de 2: ()($)nom().",
-          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/rad/pla_car/()($)ide().png);"
+          "ima": "background: center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/rad/pla_car/()($)ide().png);"
         }
     }' ),      
     ('hol','rad_pla_ele', '{
@@ -518,7 +518,7 @@
         },      
         "val":{ 
           "nom": "Tipo de Electricidad Cósmica #()($)ide() de 6: ()($)nom() - ()($)nom_cod().",
-          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/rad/pla_ele/()($)ide().png);"                      
+          "ima": "background: center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/rad/pla_ele/()($)ide().png);"                      
         },
         "opc":{ 
           "ima": [ "ide" ]
@@ -532,7 +532,7 @@
         },
         "val":{ 
           "nom": "Línea de Fuerza #()($)ide() de 12: ()($)nom().",
-          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/rad/pla_fue/()($)ide().png);"
+          "ima": "background: center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/rad/pla_fue/()($)ide().png);"
         },
         "opc":{ 
           "ima": [ "ide", "ele_pre", "ele_pos" ]            
@@ -544,7 +544,7 @@
         },      
         "val":{ 
           "nom": "Quantum #()($)ide() de 3: ()($)nom().",
-          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/rad/pla_qua/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/rad/pla_qua/()($)ide().png);",
           "col": 3,
           "num": 3
         },
@@ -576,7 +576,7 @@
         "val":{ 
           "nom": "Tono Galáctico #()($)ide() de 13: ()($)nom().",
           "des": "()($)des() ()($)des_acc_lec()... ()($)ond_man().",
-          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/ton/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/()($)ide().png);",
           "col": 7,
           "num": 13
         },
@@ -584,13 +584,13 @@
           "atr": [ "des_car", "des_acc", "des_pod" ],
           "fic": [ "ond", "dim", "mat", "sim" ],
 
-          "htm-1":{ "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost//hol/bib/fac#_04-04-01-01-\'>Rayos de Pulsación</a> en el Factor Maya" },
+          "htm-1":{ "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://www.icpv.com.ar//hol/bib/fac#_04-04-01-01-\'>Rayos de Pulsación</a> en el Factor Maya" },
           "lec-1-tit": [ "gal" ],
 
-          "htm-2":{ "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost//hol/bib/enc#_03-11-\'>Tonos Galácticos de la Creación</a> en el Encantamiento del Sueño" },
+          "htm-2":{ "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://www.icpv.com.ar//hol/bib/enc#_03-11-\'>Tonos Galácticos de la Creación</a> en el Encantamiento del Sueño" },
           "lec-2-tit": "()($)des(), ()($)des_acc_lec().",
 
-          "htm-3":{ "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost//hol/bib/enc#_03-12-\'>Onda Encantada de la Aventura</a> en el Encantamiento del Sueño" },
+          "htm-3":{ "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://www.icpv.com.ar//hol/bib/enc#_03-12-\'>Onda Encantada de la Aventura</a> en el Encantamiento del Sueño" },
           "lec-3-tit": "()($)ond_nom(): ()($)ond_pos().\\n()($)ond_man().",
 
           "tab": [ "hol.ton.ond", 
@@ -636,13 +636,13 @@
         "val":{ 
           "nom": "Aventura de la Onda Encantada #()($)ide() de 4.",
           "des": "()($)des().",
-          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/ton/ond/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/ond/()($)ide().png);",
           "col": 4,
           "num": 4
         },
         "inf":{ 
           "opc": [ "des" ],
-          "htm" :{ "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost//hol/bib/enc#_03-12-\'>Onda Encantada de la Aventura</a> en el Encantamiento del Sueño" },
+          "htm" :{ "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://www.icpv.com.ar//hol/bib/enc#_03-12-\'>Onda Encantada de la Aventura</a> en el Encantamiento del Sueño" },
           "fic": [ "ton" ]
         },
         "opc":{ 
@@ -658,12 +658,12 @@
         "val":{ 
           "nom": "Pulsar Dimensional #()($)ide() de 4: ()($)nom().",
           "des": "()($)des_ond(). ()($)des_dim() dimensión, Campo de aplicación ()($)des_cam().", 
-          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/ton/dim/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/dim/()($)ide().png);",
           "col": 4
         },
         "inf":{ 
           "atr": [ "des_dim", "des_cam" ],
-          "htm" :{ "eti":"p", "class":"tit", "htm":"El <a target=\'_blank\' href=\'http://localhost//hol/bib/enc#_03-13-\'>Código pulsar</a> en el Encantamiento del Sueño" },
+          "htm" :{ "eti":"p", "class":"tit", "htm":"El <a target=\'_blank\' href=\'http://www.icpv.com.ar//hol/bib/enc#_03-13-\'>Código pulsar</a> en el Encantamiento del Sueño" },
           "lec-tit": [ "des_ond" ],
           "fic": [ "ton" ]
         },
@@ -673,17 +673,18 @@
     }' ),
     ('hol','ton_mat', '{
         "atr":{ 
-          "ide":{ "min":1, "max":7, "dat":"hol.ton_mat" }
+          "ide":{ "min":1, "max":5, "dat":"hol.ton_mat" },
+          "ton":{ "dat":"hol.ton" }
         },      
         "val":{ 
           "nom": "Pulsar Matiz #()($)ide() de 5: ()($)nom().",
-          "des": "()($)des().", 
-          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/ton/mat/()($)ide().png);",
+          "des": "Código: ()($)des_cod(). Pulsares Dimensionales: ()($)des_dim().", 
+          "ima": "background: center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/mat/()($)ide().png);",
           "col": 5
         },
         "inf":{ 
           "atr": [ "des_cod", "des_dim" ],
-          "htm" :{ "eti":"p", "class":"tit", "htm":"El <a target=\'_blank\' href=\'http://localhost//hol/bib/enc#_03-13-\'> Código pulsar</a> en el Encantamiento del Sueño" },
+          "htm" :{ "eti":"p", "class":"tit", "htm":"El <a target=\'_blank\' href=\'http://www.icpv.com.ar//hol/bib/enc#_03-13-\'> Código pulsar</a> en el Encantamiento del Sueño" },
           "lec-tit": [ "des_ond" ],
           "fic": [ "ton" ]
         },
@@ -700,13 +701,13 @@
         "val":{ 
           "nom": "Simetría Especular #()($)ide() de 7: ()($)nom().",
           "des": "()($)des()",
-          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/ton/sim/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/sim/()($)ide().png);",
           "col": 7
         },
         "inf":{ 
           "opc": [ "des" ],
-          "htm" :{ "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost//hol/bib/fac#_04-04-01-02-\'>Simetría Especular</a> en el Factor Maya" },
-          "lec-tit": [ "fac_lec" ],
+          "htm" :{ "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://www.icpv.com.ar//hol/bib/fac#_04-04-01-02-\'>Simetría Especular</a> en el Factor Maya" },
+          "lec-tit": [ "fac_des" ],
           "fic": [ "ton" ]
         },
         "opc":{ 
@@ -758,7 +759,7 @@
       "val":{ 
         "nom": "Sello Solar #()($)ide() de 20, ()($)arm().",
         "des": "()($)des_car() ()($)des().",
-        "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/sel/()($)ide().png);",
+        "ima": "background: center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/sel/()($)ide().png);",
         "col": 4,
         "num": 20
       },
@@ -772,14 +773,14 @@
         "htm-1-3":{ "eti":"p", "class":"tit", "htm":"El <a target=\'_blank\' href=\'hol/bib/fac#_05-06-03-\'>Modelo Morfogenético</a> en el Factor Maya" },
         "lec-1-3-tit": [ "arm_tra_des" ],
         
-        "htm-2":{ "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-04-\'>Colocación Armónica</a> en el Encantamiento del Sueño" },
+        "htm-2":{ "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://www.icpv.com.ar/hol/bib/enc#_03-04-\'>Colocación Armónica</a> en el Encantamiento del Sueño" },
         "tab-2": [ "hol.sel.arm", { "val":{ "pos":"()($)ide()" }, "pos":{ "ima":"hol.sel.ide" } } ],
         "fic-2-1": [ "arm_cel" ],
         "lec-2-1-tit": [ "arm_cel_des" ],
         "fic-2-2": [ "arm_raz" ],
         "lec-2-2-tit": [ "arm_raz_des" ],
 
-        "htm-3":{ "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-02-\'>Colocación Cromática</a> en el Encantamiento del Sueño" },
+        "htm-3":{ "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://www.icpv.com.ar/hol/bib/enc#_03-02-\'>Colocación Cromática</a> en el Encantamiento del Sueño" },
         "tab-3": [ "hol.sel.cro", { "val":{ "pos":"()($)ide()" }, "pos":{ "ima":"hol.sel.ide" } } ],
         "fic-3-1": [ "cro_ele" ],
         "lec-3-1-tit": [ "cro_ele_des" ],
@@ -867,14 +868,14 @@
       "val":{ 
         "nom": "Código #()($)cod()",
         "des": "()($)car() ()($)des().",
-        "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/sel/cod/()($)cod().png);",
+        "ima": "background: center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/sel/cod/()($)cod().png);",
         "col": 5,
         "num": 20
       },
       "inf":{ 
         "atr": [ "des_car", "des_acc", "des_pod" ],
 
-        "htm-3":{ "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-02-\'>Colocación Cromática</a> en el Encantamiento del Sueño" },
+        "htm-3":{ "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://www.icpv.com.ar/hol/bib/enc#_03-02-\'>Colocación Cromática</a> en el Encantamiento del Sueño" },
         "tab-3": [ "hol.sel.cro", { "val":{ "pos":"()($)ide()" }, "pos":{ "ima":"hol.sel.ide" } } ],
         "fic-3-1": [ "cro_ele" ],
         "lec-3-1-tit": [ "cro_ele_des" ],
@@ -897,7 +898,7 @@
         "val":{ 
           "nom": "Ciclo Direccional #()($)ide() de 4: ()($)nom()",
           "des": "()($)des().", 
-          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/sel/cic_dir/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/sel/cic_dir/()($)ide().png);",
           "col": 4
         },
         "opc":{ 
@@ -963,7 +964,7 @@
         "val":{ 
           "nom": "Raza Raiz Cósmica #()($)ide() de 4: ()($)nom().",
           "des": "()($)des().",
-          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/sel/arm_raz/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/sel/arm_raz/()($)ide().png);",
           "col": 4,
           "num": 4
         },
@@ -982,7 +983,7 @@
         "val":{ 
           "nom": "Célula del Tiempo #()($)ide() de 5: ()($)nom().",
           "des": "()($)des().", 
-          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/sel/arm_cel/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/sel/arm_cel/()($)ide().png);",
           "col": 5,
           "num": 5
         },
@@ -998,7 +999,7 @@
           "ide":{ "min":1, "max":20, "dat":"hol.sel_arm_tra" }
         },        
         "val":{ 
-          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/sel.png), center/contain no-repeat url(http://localhost/img/hol/fic/sel/()($)ide().png);"
+          "ima": "background: center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/sel.png), center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/sel/()($)ide().png);"
         }          
       }' ),
     -- cromaticas
@@ -1013,7 +1014,7 @@
         "val":{ 
           "nom": "Familia Terrestre #()($)ide() de 5: ()($)nom().",
           "des": "()($)des().",
-          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/sel/cro_fam/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/sel/cro_fam/()($)ide().png);",
           "col": 5,
           "num": 5
         },
@@ -1040,7 +1041,7 @@
         "val":{ 
           "nom": "Clan #()($)ide() de 4: ()($)nom() ()($)col().",
           "des": "()($)des().",
-          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/sel/cro_ele/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/sel/cro_ele/()($)ide().png);",
           "col": 4,
           "num": 4
         },
@@ -1068,7 +1069,7 @@
         "val":{ 
           "nom": "Día Lunar #()($)ide() de 28",
           "des": "()($)ato_des()",
-          "ima": "background: center/60% no-repeat url(http://localhost/img/hol/fic/rad/()($)rad().png), center/contain no-repeat url(http://localhost/img/hol/fic/rad.png), center/contain no-repeat url(http://localhost/img/hol/fic/uni/col/()($)arm().png);",
+          "ima": "background: center/60% no-repeat url(http://www.icpv.com.ar/img/hol/fic/rad/()($)rad().png), center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/rad.png), center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/uni/col/()($)arm().png);",
           "col": 4,
           "num": 28
         },
@@ -1104,7 +1105,7 @@
         "val":{ 
           "nom": "Armonía lunar ()($)ide()",
           "des": "()($)nom(), ()($)col(). ()($)dia(): ()($)des()",
-          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/rad.png), center/contain no-repeat url(http://localhost/img/hol/fic/uni/col/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/rad.png), center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/uni/col/()($)ide().png);",
           "col": 4,
           "num": 4
         },
@@ -1141,7 +1142,7 @@
       "val":{ 
         "nom": "Atomo del Tiempo #()($)ide() de 4. ()($)nom()",
         "des": "()($)des()",
-        "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/lun/pla_ato/()($)ide().png);",
+        "ima": "background: center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/lun/pla_ato/()($)ide().png);",
         "col": 4,
         "num": 4
       }
@@ -1153,7 +1154,7 @@
       "val":{ 
         "nom": "Tetraedro #()($)ide() de 2. ()($)nom()",
         "des": "()($)des()",
-        "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/lun/pla_tet/()($)ide().png);",
+        "ima": "background: center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/lun/pla_tet/()($)ide().png);",
         "col": 2,
         "num": 2
       }
@@ -1173,7 +1174,7 @@
         "val":{ 
           "nom": "Posicion #()($)ide() de 52: ()($)nom().",
           "des": "Cuadrante #()($)arm() de 4; Tono Galáctico #()($)ton() de 13; Onda de la Aventura #()($)ond() de 4.",
-          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/ton/()($)ton().png), center/contain no-repeat url(http://localhost/img/hol/fic/ton/arm/()($)arm().png), center/70% no-repeat url(http://localhost/img/hol/fic/uni/col/()($)pos_arm().png);",
+          "ima": "background: center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/()($)ton().png), center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/arm/()($)arm().png), center/70% no-repeat url(http://www.icpv.com.ar/img/hol/fic/uni/col/()($)pos_arm().png);",
           "col": 4,
           "num": 52
         },
@@ -1202,7 +1203,7 @@
         "val":{ 
           "nom": "Cuadrante #()($)ide() de 4: ()($)nom().",
           "des": "()($)des().",
-          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/cas/arm/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/cas/arm/()($)ide().png);",
           "col": 4,
           "num": 4
         },
@@ -1220,7 +1221,7 @@
         "val":{ 
           "nom": "Aventura de la Onda Encantada #()($)ide() de 4: ()($)nom().",
           "des": "()($)des().",
-          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/cas/ond/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/cas/ond/()($)ide().png);",
           "col": 4,
           "num": 4
         },
@@ -1241,7 +1242,7 @@
         "val":{ 
           "nom": "Hexagrama #()($)ide() de 64: ()($)nom().",
           "des": "()($)des().",
-          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/chi/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/chi/()($)ide().png);",
           "num": 64
         },
         "inf":{ 
@@ -1256,7 +1257,7 @@
         },
         "val":{ 
           "nom": "Monograma #()($)ide() de 2",
-          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/chi/mon/()($)ide().png);"
+          "ima": "background: center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/chi/mon/()($)ide().png);"
         }
     }' ),
     ('hol','chi_bin', '{ 
@@ -1265,7 +1266,7 @@
         },
         "val":{ 
           "nom": "Bigrama #()($)ide() de 4",
-          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/chi/bin/()($)ide().png);"
+          "ima": "background: center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/chi/bin/()($)ide().png);"
         }
     }' ),
     ('hol','chi_tri', '{ 
@@ -1274,7 +1275,7 @@
         },
         "val":{ 
           "nom": "Trigrama #()($)ide() de 8",
-          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/chi/tri/()($)ide().png);"
+          "ima": "background: center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/chi/tri/()($)ide().png);"
         }
     }' )     
   ;
@@ -1309,7 +1310,7 @@
         "val":{ 
           "nom": "Kin #()($)ide() de 260: ()($)nom().",
           "des": "()($)des().",
-          "ima": "background: top/50% no-repeat url(http://localhost/img/hol/fic/ton/()($)nav_ond_dia().png), bottom/60% no-repeat url(http://localhost/img/hol/fic/sel/()($)arm_tra_dia().png);",
+          "ima": "background: top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/()($)nav_ond_dia().png), bottom/60% no-repeat url(http://www.icpv.com.ar/img/hol/fic/sel/()($)arm_tra_dia().png);",
           "num": 260
         },
         "fic": [
@@ -1318,16 +1319,16 @@
         "inf":{ 
           "cit" : "des",
 
-          "htm-1" :{ "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost//hol/bib/fac#_05-07-\'>Ciclos Ahau</a> en el Factor Maya y la <a target=\'_blank\' href=\'http://localhost//hol/bib/enc#_02-03-10-\'>Nave del Tiempo</a> en elEncantamiento del Sueño" },
+          "htm-1" :{ "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://www.icpv.com.ar//hol/bib/fac#_05-07-\'>Ciclos Ahau</a> en el Factor Maya y la <a target=\'_blank\' href=\'http://www.icpv.com.ar//hol/bib/enc#_02-03-10-\'>Nave del Tiempo</a> en elEncantamiento del Sueño" },
           "fic-1" : [ "nav_cas", "nav_ond", "nav_ond_dia" ],
 
-          "htm-2" :{ "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost//hol/bib/fac#_04-04-02-06-\'>Ciclos evolutivos en el Factor Maya</a> y el <a target=\'_blank\' href=\'http://localhost//hol/bib/enc#_03-16-\'>Giro Espectral</a> en el Encantamiento del Sueño" },
+          "htm-2" :{ "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://www.icpv.com.ar//hol/bib/fac#_04-04-02-06-\'>Ciclos evolutivos en el Factor Maya</a> y el <a target=\'_blank\' href=\'http://www.icpv.com.ar//hol/bib/enc#_03-16-\'>Giro Espectral</a> en el Encantamiento del Sueño" },
           "fic-2" : [ "cro_est", "cro_ele" ],
 
-          "htm-3" :{ "eti":"p", "class":"tit", "htm":"El <a target=\'_blank\' href=\'http://localhost//hol/bib/fac#_05-04-\'>Rayo de Sincronización Galáctica</a> en el Factor Maya, y las <a target=\'_blank\' href=\'http://localhost//hol/bib/enc#_04-\'>Trayectorias del Giro Galáctico</a> en el Encantamiento del Sueño" },
+          "htm-3" :{ "eti":"p", "class":"tit", "htm":"El <a target=\'_blank\' href=\'http://www.icpv.com.ar//hol/bib/fac#_05-04-\'>Rayo de Sincronización Galáctica</a> en el Factor Maya, y las <a target=\'_blank\' href=\'http://www.icpv.com.ar//hol/bib/enc#_04-\'>Trayectorias del Giro Galáctico</a> en el Encantamiento del Sueño" },
           "fic-3" : [ "arm_tra", "arm_cel", "arm_tra_dia" ],
 
-          "htm-4" :{ "eti":"p", "class":"tit", "htm":"El <a target=\'_blank\' href=\'http://localhost//hol/bib/enc#_02-03-06-\'>Oráculo del Destino</a> en el Encantamiento del Sueño" },
+          "htm-4" :{ "eti":"p", "class":"tit", "htm":"El <a target=\'_blank\' href=\'http://www.icpv.com.ar//hol/bib/enc#_02-03-06-\'>Oráculo del Destino</a> en el Encantamiento del Sueño" },
           "eje" :{ "ide": "hol::inf", "par": [ "kin-par", "()($)ide()" ] }
           
         },
@@ -1426,7 +1427,7 @@
         "val":{ 
           "nom": "Grupo #()($)ide() de ()($)nom()",
           "des": "()($)gru() x ()($)gru_uni() = ()($)uni() unidades",
-          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/kin/ene/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/kin/ene/()($)ide().png);",
           "col": 4
         },
         "inf":{ 
@@ -1440,7 +1441,7 @@
         },        
         "val":{ 
           "nom": "Campo #()($)ide() de ()($)nom() unidades",
-          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/kin/ene_cam/()($)ide().png);"
+          "ima": "background: center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/kin/ene_cam/()($)ide().png);"
         }
       }' ),
     -- giro galáctico
@@ -1459,7 +1460,7 @@
           "val":{ 
             "nom": "Trayectoria Armónica #()($)ide() de 13: ()($)nom().",
             "des": "()($)des() ()($)tit().",
-            "ima": "background: top/75% no-repeat url(http://localhost/img/hol/fic/ton/()($)ide().png), center/contain no-repeat url(http://localhost/img/hol/fic/sel.png);",
+            "ima": "background: top/75% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/()($)ide().png), center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/sel.png);",
             "num": 13,
             "col": 7
           },
@@ -1489,7 +1490,7 @@
           "val":{ 
             "nom": "Célula del Tiempo #()($)ide() de 65: ()($)nom().", 
             "des": "()($)des().",
-            "ima": "background: top/75% no-repeat url(http://localhost/img/hol/fic/ton/()($)ton().png), center/contain no-repeat url(http://localhost/img/hol/fic/sel/arm_cel/()($)cel().png);",
+            "ima": "background: top/75% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/()($)ton().png), center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/sel/arm_cel/()($)cel().png);",
             "num": 65,
             "col": 5
           },        
@@ -1519,13 +1520,13 @@
         "val":{ 
           "nom": "Espectro Galáctico #()($)ide() de 4: ()($)col() d()($)dir().",
           "des": "Guardían ()($)nom(): ()($)des(), ()($)det()",
-          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/cas/arm/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/cas/arm/()($)ide().png);",
           "num": 4,
           "col": 4            
         },
         "inf":{ 
           "atr": [ "nom", "des", "det" ],
-          "lec": [ "lec" ],
+          "lec": [ "fac_des" ],
           "tab": [ "hol.kin.cro_est", { "pos":{ "ima":"hol.kin.ide" } } ],
           "htm-1": [ { "eti":"p", "class":"tit", "htm":"Elementos Galácticos" } ],
           "fic-1": [ "ele" ]
@@ -1541,7 +1542,7 @@
         },
         "val":{ 
           "nom": "Día estacional #()($)ide() de 65.",
-          "ima": "background: center/80% no-repeat url(http://localhost/img/hol/fic/ton/()($)ton().png), center/contain no-repeat url(http://localhost/img/hol/fic/ton.png);",
+          "ima": "background: center/80% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/()($)ton().png), center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton.png);",
           "num": 65
         },
         "inf":{ 
@@ -1562,7 +1563,7 @@
         "val":{ 
           "nom": "Elemento Cromático #()($)ide() de 52: ()($)nom().",
           "des": "()($)des().",
-          "ima": "background: center/75% no-repeat url(http://localhost/img/hol/fic/ton/()($)ton().png), center/contain no-repeat url(http://localhost/img/hol/fic/sel/cro_ele/()($)ele().png);",
+          "ima": "background: center/75% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/()($)ton().png), center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/sel/cro_ele/()($)ele().png);",
           "num": 52,
           "col": 4            
         },
@@ -1591,13 +1592,13 @@
         "val":{ 
           "nom": "Castillo #()($)ide() de 5: ()($)nom().",
           "des": "()($)des()",
-          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/kin/nav_cas/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/kin/nav_cas/()($)ide().png);",
           "num": 5,
           "col": 5            
         },
         "inf":{
           "atr": [ "des_cor", "des_pod", "des_acc" ],
-          "htm-1" :{ "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost//hol/bib/enc#_03-06-\'>Castillos de la Nave del Tiempo</a> en el Encantamiento del Sueño" },
+          "htm-1" :{ "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://www.icpv.com.ar//hol/bib/enc#_03-06-\'>Castillos de la Nave del Tiempo</a> en el Encantamiento del Sueño" },
           "lec-tit": [ "des_mis" ],
           "fic": [ "nav_ond" ],
           "tab": [ "hol.kin.nav_cas", { "pos":{ "ima":"hol.kin.ide" } }]
@@ -1611,15 +1612,15 @@
         "val":{ 
           "nom": "Onda Encantada #()($)ide() de 20: ()($)nom().",
           "des": "()($)enc_des().", 
-          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/ton/arm/()($)cas_arm().png), center/contain no-repeat url(http://localhost/img/hol/fic/sel/()($)sel().png);",
+          "ima": "background: center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/arm/()($)cas_arm().png), center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/sel/()($)sel().png);",
           "num": 20,
           "col": 4
         },
         "inf":{ 
           "atr": [ "fac", "enc" ],
-          "htm-1" :{ "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost//hol/bib/fac#_05-07-01-\'>Ciclos Ahau</a> en el Factor Maya" },
+          "htm-1" :{ "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://www.icpv.com.ar//hol/bib/fac#_05-07-01-\'>Ciclos Ahau</a> en el Factor Maya" },
           "lec-1-tit": [ "fac_des" ],
-          "htm-2" :{ "eti":"p", "class":"tit", "htm":"Las <a target=\'_blank\' href=\'http://localhost//hol/bib/enc#_03-06-\'>Ondas Encantadas de la Nave del Tiempo</a> en el Encantamiento del Sueño" },
+          "htm-2" :{ "eti":"p", "class":"tit", "htm":"Las <a target=\'_blank\' href=\'http://www.icpv.com.ar//hol/bib/enc#_03-06-\'>Ondas Encantadas de la Nave del Tiempo</a> en el Encantamiento del Sueño" },
           "lec-2-tit": [ "enc_des" ],
           "tab": [ "hol.kin.nav_ond", { "sec":{ "par":1 }, "pos":{ "ima":"hol.kin.ide" } } ],          
           "fic": [ "kin_lis" ]
@@ -1670,7 +1671,7 @@
       "val":{ 
         "nom": "PSI #()($)ide() de 365, correspondiente al ()($)fec().",
         "des": "Psi-Cronos: ()($)tzo(). Estación Solar #()($)est() de 4, día ()($)est_dia(). Giro Lunar #()($)lun() de 13, día ()($)lun_dia() de 28. Héptada #()($)hep() de 52, día ()($)hep_dia() de 7.",
-        "ima": "background: top/50% no-repeat url(http://localhost/img/hol/fic/ton/()($)kin_ton().png), bottom/60% no-repeat url(http://localhost/img/hol/fic/sel/()($)kin_sel().png);",
+        "ima": "background: top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/()($)kin_ton().png), bottom/60% no-repeat url(http://www.icpv.com.ar/img/hol/fic/sel/()($)kin_sel().png);",
         "num": 365
       },
       "fic": [ 
@@ -1753,7 +1754,7 @@
       "val":{ 
         "nom": "Estación Solar #()($)ide() de 4: ()($)nom().",
         "des": "()($)des() ( ()($)pol_sur() al sur, ()($)pol_nor() al norte )",
-        "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/cas/arm/()($)ide().png);",
+        "ima": "background: center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/cas/arm/()($)ide().png);",
         "num": 4,
         "col": 4          
       },
@@ -1772,7 +1773,7 @@
       },      
       "val":{ 
         "nom": "Día estacional #()($)ide() de 91",
-        "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/psi/est_dia/()($)ide().png);",
+        "ima": "background: center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/psi/est_dia/()($)ide().png);",
         "num": 91
       }
     }' ),
@@ -1784,7 +1785,7 @@
       "val":{ 
         "nom": "Luna #()($)ide() de 13: tono ()($)ton_nom().",
         "des": "()($)des() del Giro Solar Anual; Totem ()($)tot(): ()($)tot_pro().",
-        "ima": "background: url(http://localhost/img/hol/fic/psi/lun/()($)ide().png) center/contain no-repeat;",
+        "ima": "background: url(http://www.icpv.com.ar/img/hol/fic/psi/lun/()($)ide().png) center/contain no-repeat;",
         "num": 13,
         "col": 7
       },
@@ -1809,7 +1810,7 @@
       "val":{ 
         "nom": "Heptada #()($)ide() de 52.",
         "des": "()($)ton_des() del cuadrante ()($)arm_col() en el ()($)arm_dir().",
-        "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/sel/cod/()($)ton().png), center/contain no-repeat url(http://localhost/img/hol/fic/rad.png), center/contain no-repeat url(http://localhost/img/hol/fic/uni/col/()($)ond().png);",
+        "ima": "background: center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/sel/cod/()($)ton().png), center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/rad.png), center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/uni/col/()($)ond().png);",
         "num": 52,
         "col": 4
       },

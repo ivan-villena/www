@@ -102,7 +102,7 @@ class dat {
         }
       }
       // resultados y operaciones
-      if( isset($ope) && ( is_array($dat) || !isset($_['err']) ) ) est::val($_,$ope);
+      if( isset($ope) && ( is_array($dat) || !isset($_['err']) ) ) est::val($_,$ope);      
 
     }
     return $_;
@@ -321,7 +321,7 @@ class dat {
   }
 
   // atributo : datos + tipo + variable
-  static function atr( string $esq, string $est, mixed $ide = NULL, string $tip = NULL, mixed $ope = NULL ) : mixed {
+  static function atr( string $esq, string $est, mixed $ide = NULL ) : mixed {
     $_ = [];
     global $api_dat;
     // cargo atributos de la estructura
@@ -341,28 +341,21 @@ class dat {
           if( isset($dat[$i]) ) $dat[$i]->var = ele::val_jun($dat[$i]->var, obj::nom($v));
         }
       }
-    }
+    }// devuelvo todos los atributos
     $_ = $api_dat->_atr[$esq][$est];
-    // devuelvo todos los atributos
+    // buscar por identificador/es
     if( isset($ide) ){
-      $_atr = $_;
-      $_ = [];
-      // devuelvo 1-n atributos
-      if( !isset($tip) ){
-        // uno
-        if( is_string($ide) ){
-
-          if( isset($_atr[$ide]) ) $_ = $_atr[$ide];
-        }// muchos
-        else{
-          foreach( $ide as $atr ){ 
-
-            if( isset($_atr[$atr]) ) $_[$atr] = $_atr[$atr];
-          }
-        }
-      }
+      $atr_lis = $_;
+      // devuelvo 1
+      if( is_string($ide) ){
+        $_ = new stdClass;
+        if( isset($atr_lis[$ide]) ) $_ = $atr_lis[$ide];
+      }// muchos
       else{
-        switch( $tip ){
+        $_ = [];
+        foreach( $ide as $atr ){
+
+          if( isset($atr_lis[$atr]) ) $_[$atr] = $atr_lis[$atr];
         }
       }
     }
@@ -372,7 +365,7 @@ class dat {
     $_ = [];
     if( empty($ope) ){
       // de la base
-      if( is_string($dat) ){        
+      if( is_string($dat) ){
         $ide = dat::ide($dat);
         $_ = dat::atr($ide['esq'],$ide['est']);
       }
@@ -616,6 +609,10 @@ class dat {
         foreach( $dat_opc_ide as $atr ){
           // cargo atributo
           $_atr = dat::atr($esq,$est,$atr);
+          if( empty($_atr) ){
+            var_dump(dat::atr($esq,$est));
+            var_dump($esq,$est,$atr);
+          }
           $atr_nom = $_atr->nom;
           if( $_atr->ide == 'ide' && empty($_atr->nom) && !empty($_atr_nom = dat::atr($esq,$est,'nom')) ){
             $atr_nom = $_atr_nom->nom;

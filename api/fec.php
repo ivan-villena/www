@@ -243,14 +243,18 @@ class fec {
     $_->min = 0;
     $_->seg = 0;
     $_->ubi = "";
+    // extension: sincronario
+    $_->kin = "";
+    $_->psi = "";
+    $_->ani = "";
+    $_->sir = "";
 
     // separo valores
     $val = explode( preg_match("/T/i",$val) ? 'T' : ' ', $val );
-
+    
+    // proceso fecha
     if( isset($val[0]) ){
-
-      $fec = explode( preg_match("/-/",$val[0]) ? '-' : '/', $val[0] );
-
+      $fec = explode( preg_match("/-/",$val[0]) ? '-' : '/', $val[0] );      
       if( isset($fec[2]) ){
         // mes
         $_->mes = intval($fec[1]);
@@ -277,6 +281,8 @@ class fec {
             $_->hor = intval($hor[0]);
           }        
         }
+        // cargo sincronario
+        // ...
       }
     }    
     return $_;

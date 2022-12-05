@@ -396,7 +396,7 @@ class hol {
     }
     return $_;
   }// sumo o resto dias de un fecha dada
-  static function val_ope( string $tip, string $val, int $cue = 1, string $opc = 'dia' ) : string {
+  static function val_fec( string $tip, string $val, int $cue = 1, string $opc = 'dia' ) : string {
 
     $_ = $val;
 
@@ -602,18 +602,16 @@ class hol {
           
           $_cic_año->lun []= $_cic_lun;
           // incremento 1 luna
-          $val_lun = hol::val_ope('+',$val_lun,1,'lun');            
+          $val_lun = hol::val_fec('+',$val_lun,1,'lun');            
         }
       }        
       $_ []= $_cic_año;
       // incremento 1 anillo      
-      $val = hol::val_ope('+',$val,1,'ani');
+      $val = hol::val_fec('+',$val,1,'ani');
     }
 
     return $_;
   }
-
-
 
   // imagen
   static function ima( string $est, mixed $dat, array $ele = [] ) : string {
@@ -865,7 +863,7 @@ class hol {
             }
           }// x 4 flujos
           foreach( hol::_('uni_flu') as $v ){
-            $_ .= hol::ima("uni_flu_pod",$v->des_pod,[ 'eti'=>"li", 'class'=>"sec flu-{$v->ide} pod-{$v->des_pod}" ]); 
+            $_ .= hol::ima("uni_flu_pod",$v->pod,[ 'eti'=>"li", 'class'=>"sec flu-{$v->ide} pod-{$v->pod}" ]); 
           }
           // 10 planetas
           foreach( hol::_('uni_sol_pla') as $v ){ 
@@ -1151,8 +1149,8 @@ class hol {
           }
           // filas por sellos
           if( $sel_htm ){
-            foreach( hol::_('sel') as $v ){ 
-              $_ .= hol::ima("sel",$v,[ 'eti'=>"li", 'class'=>"sec sel-{$v->ide}".( $sel_val ? "" : " dis-ocu" ) ]);
+            foreach( hol::_('sel') as $v ){ $_ .= "
+              <li class='sec sel-{$v->ide}".( $sel_val ? "" : " dis-ocu" )."'>".hol::ima("sel",$v)."</li>";
             }
           }
           // 260 kines por 13 columnas 
@@ -1162,7 +1160,9 @@ class hol {
             // columnas por tono          
             $kin_arm_tra = intval($_kin->arm_tra);
             if( $ton_htm && $kin_arm != $kin_arm_tra ){ $_ .= 
-              hol::ima("kin_arm_tra",$_kin->arm_tra,['eti'=>"li",'class'=>"sec ton-{$_kin->arm_tra}".( $ton_val ? "" : " dis-ocu" )]);
+              "<li class='sec ton-{$_kin->arm_tra}".( $ton_val ? "" : " dis-ocu" )."'>
+                ".hol::ima("kin_arm_tra",$_kin->arm_tra)."
+              </li>";
               $kin_arm = $kin_arm_tra;
             }
             // posicion

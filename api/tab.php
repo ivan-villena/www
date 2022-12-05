@@ -26,8 +26,7 @@ class tab {
   ];
 
   function __construct(){
-  }
-  // getter
+  }// getter
   static function _( string $ide, $val = NULL ) : string | array | object {
     $_ = [];    
     global $api_tab;

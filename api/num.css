@@ -11,8 +11,9 @@ div.num {
 /* 
   rangos 
 */
-input[type='range'] {
-  /* -webkit-appearance: none; */
+input[type='range'],
+input[type='range']::-ms-thumb {  
+  -webkit-appearance: none;
   cursor: pointer;
   background-color: transparent;
   border:0;

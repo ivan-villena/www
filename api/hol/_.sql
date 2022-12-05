@@ -209,7 +209,7 @@
       FROM 
         `hol_kin_cro_est_dia` _dia
       INNER JOIN 
-        `hol_ton` _ton ON _ton.ide = _dia.ide
+        `hol_ton` _ton ON _ton.ide = _dia.ton
       INNER JOIN 
         `hol_kin_cro_ond` _ond ON _ond.ide = _ton.ond
       ORDER BY

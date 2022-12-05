@@ -10,7 +10,7 @@
     define('SYS_NAV', "http://{$_SERVER['HTTP_HOST']}/" );
 
     // Base de datos: local / produccion
-    define('DAT_SER', $_SERVER['HTTP_HOST']);
+    define('DAT_SER', 'localhost');
     define('DAT_USU', "c1461857_api");
     define('DAT_PAS', "lu51zakoWA");
     define('DAT_ESQ', "c1461857_api");
@@ -89,17 +89,15 @@
 
     exit;
   }
-
-  ////////////////////////////////////////////////////////////////////////////////////////////
-  ////////////////////////////////////////////////////////////////////////////////////////////
-
+  
+  ////////////////////////////////
   // cargo documento y aplicacion
   $api_app = new app( isset($_REQUEST['uri']) ? $_REQUEST['uri'] : "hol" );
 
   // pido contenido por aplicacion
   $_uri = $api_app->uri;
   if( file_exists($rec = "./src/{$_uri->esq}/index.php") ) require_once( $rec );
-  
+    
   // inicializo contenido
   $api_app->htm_ini();
   ?>

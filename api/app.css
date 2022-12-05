@@ -92,18 +92,6 @@ div:is(.ren,.ite) {
   align-self: stretch;
 }
 
-/*//////////////////////////////////////////////////////////////////////*/
-/*//////////////////////////////////////////////////////////////////////*/
-/* 
-  botonera : inicio + paneles + pantallas 
-*/
-body > .doc_bot {
-  display: flex;
-  justify-content: space-between;
-  height: 4vh;
-  background-color: var(--fon_sec);
-}
-
 
 /*//////////////////////////////////////////////////////////////////////*/
 /*//////////////////////////////////////////////////////////////////////*/
@@ -183,7 +171,59 @@ body > .doc_win > .ide-est > div > .app_est {
   height: 77vh;
 }
 
+/*//////////////////////////////////////////////////////////////////////*/
+/*//////////////////////////////////////////////////////////////////////*/
+/* 
+  botonera : inicio + paneles + pantallas 
+*/
+body > .doc_bot {
+  display: flex;
+  justify-content: space-between;
+  height: 5vh;
+  background-color: var(--fon_win);
+}
+body > .doc_bot h1 {
+  margin: .25rem;
+}
 
+
+/*//////////////////////////////////////////////////////////////////////*/
+/*//////////////////////////////////////////////////////////////////////*/
+/* 
+  Seccion Principal
+*/
+body > main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 95vh;
+  overflow: auto;  
+  background-color: var(--fon_art);/* por barra de desplazamiento */
+  padding: 0 .5rem;
+  text-align: center;
+}
+/* Titulo */
+body > main > header {
+  width: 100%;
+  background-color: var(--fon_sec);
+}
+/* Contenido */
+body > main > *:not(header,footer) {
+  width: 100%;
+  max-width: 55rem;
+  line-height: 1.5;
+}
+/* 
+  por articulo 
+*/
+body > main article {
+  height: max-content;
+  margin: .5rem auto;
+  padding: 0 1rem;
+  border-radius: 1rem;
+  border: 1px solid var(--bor_sel);
+  background-color: var(--fon_sec);
+}
 
 /*//////////////////////////////////////////////////////////////////////*/
 /*//////////////////////////////////////////////////////////////////////*/
@@ -192,10 +232,10 @@ body > .doc_win > .ide-est > div > .app_est {
 */
 body > aside {
   z-index: 9999;
+  display: flex;
   position: fixed;
-  top: 3.9vh;
-  display: flex;  
-  height: 96.1vh;
+  top: 5vh;
+  height: 95vh;
   width: 450px;
   background-color: var(--fon_sec);  
 }
@@ -259,45 +299,6 @@ body > .doc_pan > .ide-app_nav ul.lis.nav {
 */
 body > aside.doc_bar {
   max-width: 100%;
-}
-
-
-/*//////////////////////////////////////////////////////////////////////*/
-/*//////////////////////////////////////////////////////////////////////*/
-/* 
-  Seccion Principal
-*/
-body > main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: inherit;
-  overflow: auto;  
-  background-color: var(--fon_art);/* por barra de desplazamiento */
-  padding: 0 .5rem;
-  text-align: center;
-}
-/* Titulo */
-body > main > header {
-  width: 100%;
-  background-color: var(--fon_sec);
-}
-/* Contenido */
-body > main > *:not(header,footer) {
-  width: 100%;
-  max-width: 55rem;
-  line-height: 1.5;
-}
-/* 
-  por articulo 
-*/
-body > main article {
-  height: max-content;
-  margin: .5rem auto;
-  padding: 0 1rem;
-  border-radius: 1rem;
-  border: 1px solid var(--bor_sel);
-  background-color: var(--fon_sec);
 }
 
 /*//////////////////////////////////////////////////////////////////////*/
