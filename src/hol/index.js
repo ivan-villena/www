@@ -2,14 +2,14 @@
 // proceso diario
 function dia( $dat ){
   // operador : fecha + sincronario
-  let $ = dat.var($dat);
+  let $ = doc.var($dat);
   
   $.uri = `${$api_app.uri.esq}/ope/${ $api_app.uri.cab == 'ope' ? $api_app.uri.art : 'kin_tzo' }`;
   
   // calendario gregoriano
-  if( $api_app.var.classList.contains('fec') ){
+  if( $api_doc._var.classList.contains('fec') ){
     
-    if( $.fec = $api_app.var.querySelector('[name="fec"]').value ){
+    if( $.fec = $api_doc._var.querySelector('[name="fec"]').value ){
 
       arc.url(`${$.uri}/fec=${$.fec.replaceAll('/','-')}`);
     }
@@ -18,13 +18,13 @@ function dia( $dat ){
     }
   }
   // sincronario
-  else if( $api_app.var.classList.contains('sin') ){
+  else if( $api_doc._var.classList.contains('sin') ){
     $.atr = {};
     $.hol = [];
     $.val = true;
     ['gal','ani','lun','dia'].forEach( $v => {
 
-      $.atr[$v] = $api_app.var.querySelector(`[name="${$v}"]`).value;
+      $.atr[$v] = $api_doc._var.querySelector(`[name="${$v}"]`).value;
 
       if( !$.atr[$v] ){ 
         return $.val = false;          

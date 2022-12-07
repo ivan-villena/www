@@ -69,7 +69,7 @@ class app {
   }
 
   // contenido
-  public array  $htm = [
+  public array $htm = [
     // titulo
     'tit'=>"{-_-}",
     // botones
@@ -110,7 +110,7 @@ class app {
         // enlaces
         if( isset($ope['url']) ){
           // boton
-          $this->htm['ope'][$tip] .= dat::ico($ope['ico'],[ 'eti'=>"a", 'title'=>$ope['nom'], 'href'=>$ope['url'] ]);
+          $this->htm['ope'][$tip] .= doc::ico($ope['ico'],[ 'eti'=>"a", 'title'=>$ope['nom'], 'href'=>$ope['url'] ]);
         }
         // paneles y modales
         elseif( ( $ope['tip'] == 'pan' || $ope['tip'] == 'win' ) && !empty($ope['htm']) ){
@@ -152,7 +152,7 @@ class app {
     ],
     // objetos de sistema
     'obj'=>[
-      'api'=>[ 'opc','num','tex','fig','fec','hol','obj','lis','est','tab','eje','ele','arc','doc' ]
+      'api'=>[ 'opc','num','tex','fig','fec','hol','lis','obj','eje','ele','arc','doc' ]
     ],
     // datos de la aplicacion
     'dat'=> [
@@ -250,7 +250,7 @@ class app {
         continue;
       }
 
-      $ite_ico = !empty($_cab->ico) ? dat::ico( $_cab->ico, [ 'class'=>"mar_der-1" ] ) : "";
+      $ite_ico = !empty($_cab->ico) ? doc::ico( $_cab->ico, [ 'class'=>"mar_der-1" ] ) : "";
 
       $_lis_val = [];
       foreach( dat::get('app_art',[ 
@@ -264,7 +264,7 @@ class app {
 
         $_lis_val []= "
         <a".ele::atr($ele_val).">"
-          .( !empty($_art->ico) ? dat::ico( $_art->ico, [ 'class'=>"mar_der-1" ] ) : $ite_ico )
+          .( !empty($_art->ico) ? doc::ico( $_art->ico, [ 'class'=>"mar_der-1" ] ) : $ite_ico )
           ."<p>".tex::let($_art->nom)."</p>
         </a>";
       }

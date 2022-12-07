@@ -24,7 +24,7 @@ $_ope['aja']['htm'] = ob_get_clean();
 // iconos del sistema
 ob_start();
 ?>
-  <?=dat::var('val','ver',['nom'=>"Filtrar",'ope'=>[ 
+  <?=doc::var('val','ver',['nom'=>"Filtrar",'ope'=>[ 
     'tip'=>"tex_ora", 'id'=>"_adm-ico-ver", 'oninput'=>"$_eje('ico',this,'ver')"  
   ]])?>
 
@@ -40,7 +40,7 @@ ob_start();
   <fieldset class='inf pad-3'>
     <legend>Ejecutar JavaScript</legend>      
 
-    <?=dat::var('val','cod',[ 
+    <?=doc::var('val','cod',[ 
       'ite'=>[ 'class'=>"tam-cre" ], 
       'ope'=>[ 'tip'=>"tex_par", 'rows'=>"10", 'class'=>"anc-100", 'oninput'=>"$_eje('jso',this)" ] 
     ])?>
@@ -58,20 +58,20 @@ $_ope['jso']['htm'] = ob_get_clean();
     <fieldset class='inf ite pad-3'>
       <legend>Ejecutar en PHP</legend>
 
-      <?=dat::var('val','ide',[ 'ope'=>[ 'tip'=>"tex_ora" ] ])?>
+      <?=doc::var('val','ide',[ 'ope'=>[ 'tip'=>"tex_ora" ] ])?>
       
-      <?=dat::var('val','par',[ 
+      <?=doc::var('val','par',[ 
         'ite'=>['class'=>"tam-cre"], 
         'ope'=>['tip'=>"tex_ora", 'class'=>"anc-100 mar_hor-1"], 
         'htm_ini'=>"<c>(</c>", 'htm_fin'=>"<c>)</c>"
       ])?>
 
-      <?=dat::var('val','htm',[
+      <?=doc::var('val','htm',[
         'nom'=>"¿HTML?",
         'ope'=>[ 'tip'=>"opc_bin", 'val'=>1, 'id'=>"_adm-php-htm" ]
       ])?>
       
-      <?=dat::ico('dat_ope',[
+      <?=doc::ico('dat_ope',[
         'eti'=>"button", 'type'=>"submit", 'onclick'=>"$_eje('php',this)"
       ])?>
 
@@ -90,10 +90,10 @@ $_ope['jso']['htm'] = ob_get_clean();
     <fieldset class='inf ite pad-3'>
       <legend>Ejecutar S.Q.L.</legend>
 
-      <?=dat::var('val','cod',[ 
+      <?=doc::var('val','cod',[ 
         'ite'=>[ 'class'=>"tam-cre" ], 
         'ope'=>[ 'tip'=>"tex_ora", 'class'=>"anc-100 mar_der-1" ],
-        'htm_fin'=> dat::ico('dat_ope',[ 'eti'=>"button", 'type'=>"submit", 'onclick'=>"$_eje('sql',this,'cod')" ])
+        'htm_fin'=> doc::ico('dat_ope',[ 'eti'=>"button", 'type'=>"submit", 'onclick'=>"$_eje('sql',this,'cod')" ])
       ])?>
 
     </fieldset>
@@ -108,10 +108,10 @@ $_ope['jso']['htm'] = ob_get_clean();
     <fieldset class='inf ite pad-3'>
       <legend>Ejecutar Selector</legend>
 
-      <?=dat::var('val','cod',[ 
+      <?=doc::var('val','cod',[ 
         'ite'=>['class'=>"tam-cre"], 
         'ope'=>['tip'=>"tex_ora", 'class'=>"anc-100 mar_der-1"],
-        'htm_fin'=> dat::ico('dat_ope',['eti'=>"button", 'type'=>"submit", 'onclick'=>"$_eje('htm',this,'cod')"])
+        'htm_fin'=> doc::ico('dat_ope',['eti'=>"button", 'type'=>"submit", 'onclick'=>"$_eje('htm',this,'cod')"])
       ])?>
 
     </fieldset>

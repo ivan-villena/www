@@ -7,7 +7,7 @@ class obj {
 
   function __construct(){
   }
-  // getter
+  // getter 
   static function _( string $ide, $val = NULL ) : string | array | object {
     $_ = [];    
     global $api_obj;
@@ -124,7 +124,7 @@ class obj {
       }
     }// convierto : {} => []
     elseif( in_array('nom',$opc) && is_object($dat) && get_class($dat)=='stdClass' ){    
-      $_ = obj::nom($dat);
+      $_ = obj::val_nom($dat);
     }
     return $_;
   }// combino por contenido
@@ -150,7 +150,7 @@ class obj {
     
     $_ = FALSE;
 
-    if( obj::pos($dat) ){
+    if( lis::val($dat) ){
 
       $_ = 'pos';
     }
@@ -164,24 +164,8 @@ class obj {
     }
 
     return $_;
-  }
-  
-  // posicion : [ # => $$ ]
-  static function pos( mixed $dat, string $tip = NULL, mixed $ope = NULL ) : bool | array {
-    $_ = [];
-    if( !isset($tip) ){
-      // valido tipo : []
-      $_ = is_array($dat) && array_keys($dat) === range( 0, count( array_values($dat) ) - 1 );
-    }
-    else{
-      switch( $tip ){
-      }
-    }
-    return $_;
-  }
-  
-  // nombre : [ ..."" => $$ ]
-  static function nom( array | object $dat, string $tip = NULL, array $ope=[] ) : array | object {
+  }// nombre : [ ..."" => $$ ]
+  static function val_nom( array | object $dat, string $tip = NULL, array $ope=[] ) : array | object {
     $_ = $dat;
     if( empty($tip) ){
       if( is_object($dat) && get_class($dat)=='stdClass' ){
@@ -194,7 +178,7 @@ class obj {
       switch( $tip ){
       case 'ver':
         $_ = [];
-        if( empty($ope = lis::val($ope)) ){
+        if( empty($ope = lis::val_ite($ope)) ){
 
           foreach( $dat as $atr => $val ){ $_[$atr] = $val; }
         }
@@ -209,15 +193,13 @@ class obj {
       }
     }
     return $_;
-  }
-  
-  // objeto : { ..."" : $$ }
-  static function atr( array | object $dat, string $tip = NULL, array $ope=[] ) : array | object {
+  }// objeto : { ..."" : $$ }
+  static function val_atr( array | object $dat, string $tip = NULL, array $ope=[] ) : array | object {
     $_ = $dat;
 
     if( !isset($tip) ){
       // listado de objetos
-      if( obj::pos($dat) ){
+      if( lis::val($dat) ){
         
         $_ = array_map( function($i){ return clone $i; }, $dat );
       }
@@ -237,7 +219,7 @@ class obj {
       switch( $tip ){
       case 'ver':
         $_ = new stdClass();
-        if( empty($ope = lis::val($ope)) ){
+        if( empty($ope = lis::val_ite($ope)) ){
 
           foreach( $dat as $atr => $val ){ $_->$atr = $val; }
         }
@@ -358,13 +340,13 @@ class obj {
           <p>
             <c>(</c> <n class='sep'>{$cue}</n> <c>)</c> <c class='sep'>=></c> <c class='_lis-ini'>{$ini}</c>
           </p>
-          ".dat::ico('dat_ver',['onclick'=>"$_eje.val(this,'tog');"])."
+          ".doc::ico('dat_ver',['onclick'=>"$_eje.val(this,'tog');"])."
           <ul class='ope _tog{$cla_agr}'>"; 
             if( empty($atr_agr) ){ $_.="
-            ".dat::ico('dat_tod',['eti'=>"li",'onclick'=>"$_eje.val(this,'tod');"])."
-            ".dat::ico('dat_nad',['eti'=>"li",'onclick'=>"$_eje.val(this,'nad');"])."
-            ".dat::ico('dat_agr',['eti'=>"li",'onclick'=>"$_eje.val(this,'agr');"])."
-            ".dat::ico('dat_eli',['eti'=>"li",'onclick'=>"$_eje.val(this,'eli');"])."
+            ".doc::ico('dat_tod',['eti'=>"li",'onclick'=>"$_eje.val(this,'tod');"])."
+            ".doc::ico('dat_nad',['eti'=>"li",'onclick'=>"$_eje.val(this,'nad');"])."
+            ".doc::ico('dat_agr',['eti'=>"li",'onclick'=>"$_eje.val(this,'agr');"])."
+            ".doc::ico('dat_eli',['eti'=>"li",'onclick'=>"$_eje.val(this,'eli');"])."
             ";
             }$_.="
           </ul>

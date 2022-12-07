@@ -39,17 +39,17 @@ class usu {
 
           <fieldset class='ren'>
 
-            ".dat::var('atr', [$esq,$est,$atr='nom'], [ 'val'=>$this->$atr  ], 'eti')."
+            ".doc::var('atr', [$esq,$est,$atr='nom'], [ 'val'=>$this->$atr  ], 'eti')."
 
-            ".dat::var('atr', [$esq,$est,$atr='ape'], [ 'val'=>$this->$atr  ], 'eti')."                        
+            ".doc::var('atr', [$esq,$est,$atr='ape'], [ 'val'=>$this->$atr  ], 'eti')."                        
           
           </fieldset>
 
           <fieldset class='ren'>
 
-            ".dat::var('atr', [$esq,$est,$atr='mai'], [ 'val'=>$this->$atr  ],'eti')."
+            ".doc::var('atr', [$esq,$est,$atr='mai'], [ 'val'=>$this->$atr  ],'eti')."
 
-            ".dat::var('atr', [$esq,$est,$atr='fec'], [ 'val'=>$this->$atr, 'ite'=>[ 'class'=>"tam-ini" ]  ], 'eti')."
+            ".doc::var('atr', [$esq,$est,$atr='fec'], [ 'val'=>$this->$atr, 'ite'=>[ 'class'=>"tam-ini" ]  ], 'eti')."
 
           </fieldset>
 

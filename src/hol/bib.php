@@ -293,18 +293,18 @@ class hol_bib {
     // tonos : descripciones
     case 'ton':
       $est_ope['atr'] = ['ide','nom','des','des_acc'];
-      $_ = est::lis("hol.ton", $est_ope, $ope );
+      $_ = lis::est("hol.ton", $est_ope, $ope );
       break;
     // tonos : aventura de la onda encantada 
     case 'ton_ond':
       $_atr = array_merge(
         [ 
-          'ima'=>obj::atr(['ide'=>'ima','nom'=>''])
+          'ima'=>obj::val_atr(['ide'=>'ima','nom'=>''])
         ], 
         dat::atr('hol',"ton", [ 'ide', 'ond_pos', 'ond_pod', 'ond_man' ])
       );
       // cargo valores
-      foreach( ( $_dat = obj::atr(hol::_('ton')) ) as $_ton ){
+      foreach( ( $_dat = obj::val_atr(hol::_('ton')) ) as $_ton ){
         $_ton->ima = [ 'htm'=>hol::ima("ton",$_ton,[ 'class'=>"tam-5 mar-1" ]) ];
         $_ton->ide = "Tono {$_ton->ide}";
       }
@@ -317,7 +317,7 @@ class hol_bib {
           $_tit[$lis_pos] = $_ond->des;
         }
       }
-      $_ = est::lis($_dat,[ 'atr_dat'=>$_atr, 'tit'=>$_tit, 'opc'=>['cab_ocu'] ], $ope);              
+      $_ = lis::est($_dat,[ 'atr_dat'=>$_atr, 'tit'=>$_tit, 'opc'=>['cab_ocu'] ], $ope);              
       break;
           
     // tonos : pulsares dimensionales
@@ -580,13 +580,13 @@ class hol_bib {
             <br>Clan {$nom} <c class='col-4-$col'>{$cla} $_ele->des_col</c></p>" 
         ];
         $lis_pos += 5; 
-        $col = num::ran($col+1,4);
+        $col = num::val_ran($col+1,4);
       }
       $sel_lis = [];
       foreach( hol::_('sel_cod') as $_sel ){
         $_fam = hol::_('sel_cro_fam',$_sel->cro_fam);
         $_hum_ded = hol::_('uni_hum_ded',$_fam->hum_ded);
-        $sel_lis []= obj::atr([ 
+        $sel_lis []= obj::val_atr([ 
           'hum_ded'=>$_hum_ded->nom, 
           'nom'=>"Tribu ".tex::art_del($_sel->nom)." $_sel->des_col", 
           'ima_nom'=>[ 'htm'=>hol::ima("sel",$_sel,['class'=>"mar-1"]) ],
@@ -594,7 +594,7 @@ class hol_bib {
           'ima_cod'=>[ 'htm'=>hol::ima("sel_cod",$_sel,['class'=>"mar-1"]) ]
         ]);
       }
-      $_ = est::lis($sel_lis,[ 'tit'=>$ele_tit, 'opc'=>['cab_ocu'] ]);
+      $_ = lis::est($sel_lis,[ 'tit'=>$ele_tit, 'opc'=>['cab_ocu'] ]);
       break;
     // sello : holon humano => rol de familias terrestres
     case 'uni_hum_fam':
@@ -612,7 +612,7 @@ class hol_bib {
         foreach( explode(', ',$_fam->sel) as $_sel ){
           $_sel = hol::_('sel',$_sel);
           $_hum_ext = hol::_('uni_hum_ext',$_sel->hum_ext);
-          $sel_lis []= obj::atr([
+          $sel_lis []= obj::val_atr([
             'nom'=>"Tribu ".tex::art_del($_sel->nom)." $_sel->des_col", 
             'ima_nom'=>[ 'htm'=>hol::ima("sel",$_sel,['class'=>"mar-1"]) ],
             'des_cod'=>$_sel->des_cod,
@@ -622,7 +622,7 @@ class hol_bib {
         }
       }
 
-      $_ = est::lis($sel_lis,[ 'tit'=>$fam_tit, 'opc'=>['cab_ocu'] ]);
+      $_ = lis::est($sel_lis,[ 'tit'=>$fam_tit, 'opc'=>['cab_ocu'] ]);
       break;
     // sello : holon humano => extremidades del humano
     case 'uni_hum_ext':
@@ -680,14 +680,14 @@ class hol_bib {
 
             ".doc::val_ope()."
 
-            ".dat::var('atr',"hol.kin.ide",[ 'nom'=>"ver el kin", 'ope'=>[ 
+            ".doc::var('atr',"hol.kin.ide",[ 'nom'=>"ver el kin", 'ope'=>[ 
               'title'=>"Introduce un número de kin...", 'oninput'=>"{$_eje}this);" 
             ]])."
           </fieldset>
 
           <fieldset class='ope'>
-            ".dat::ico('dat_fin',[ 'eti'=>"button", 'type'=>"reset", 'title'=>"Vaciar Casillero...", 'onclick'=>"{$_eje}this,'fin');" ])."
-            ".dat::ico('lis_fin',[ 'eti'=>"button", 'title'=>"Ir al Kin...", 'onclick'=>"{$_eje}this,'nav');" ])."
+            ".doc::ico('dat_fin',[ 'eti'=>"button", 'type'=>"reset", 'title'=>"Vaciar Casillero...", 'onclick'=>"{$_eje}this,'fin');" ])."
+            ".doc::ico('lis_fin',[ 'eti'=>"button", 'title'=>"Ir al Kin...", 'onclick'=>"{$_eje}this,'nav');" ])."
           </fieldset>
 
         </div>
@@ -729,7 +729,7 @@ class hol_bib {
             $_nav_ond = $_kin->nav_ond;
             $_ond = hol::_('kin_nav_ond',$_kin->nav_ond);
             $_sel = hol::_('sel',$_ond->sel); 
-            $ond = num::ran($_ond->ide,4);
+            $ond = num::val_ran($_ond->ide,4);
 
             if( $_nav_ond != 1 && $ond != 1 ){ $_ .= "
               </section>";
@@ -933,7 +933,7 @@ class hol_bib {
     case 'lun_arm_col':
       $est_ope['atr'] = [ 'ide','nom','col','dia','pod' ];
       $est_ope['opc'] []= 'cab_ocu';
-      $_ = est::lis("hol.lun_arm", $est_ope, $ope );
+      $_ = lis::est("hol.lun_arm", $est_ope, $ope );
       break;
     // kin : castillos del encantamiento
     case 'kin_nav_cas':
@@ -1093,7 +1093,7 @@ class hol_bib {
       $est_ope['atr'] = ['ide','nom','fec','sin','cro'];
       $est_ope['det_des'] = ['des'];
       //$ope['lis']['class'] = "anc-100 mar-2";
-      $_ = est::lis("hol.{$ide}", $est_ope, $ope);
+      $_ = lis::est("hol.{$ide}", $est_ope, $ope);
 
       break;
     }
@@ -1276,7 +1276,7 @@ class hol_bib {
       }
       elseif( empty($est_ope['atr']) ){
         $est_ope['atr'] = [];
-        $_ = est::lis("hol.lun", $est_ope, $ope );
+        $_ = lis::est("hol.lun", $est_ope, $ope );
       }
       break;
     // psi-cronos : cromaticas entonadas

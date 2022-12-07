@@ -42,9 +42,6 @@ ANCHO //////////////////////////////////////////////////////////////////////////
 .anc-0 { 
   width: 0% !important; 
 }
-.anc-fit { 
-  width: fit-content !important; 
-}
 .anc-ini { 
   width: initial !important; 
 }
@@ -64,9 +61,6 @@ ANCHO //////////////////////////////////////////////////////////////////////////
 .anc_max-0 { 
   max-width: 0% !important; 
 }
-.anc_max-fit { 
-  max-width: fit-content !important; 
-}
 .anc_max-ini { 
   max-width: initial !important; 
 }
@@ -85,9 +79,6 @@ ANCHO //////////////////////////////////////////////////////////////////////////
 }
 .anc_min-0 { 
   min-width: 0% !important; 
-}
-.anc_min-fit { 
-  min-width: fit-content !important; 
 }
 .anc_min-ini { 
   min-width: initial !important; 
@@ -117,9 +108,6 @@ ALTO ///////////////////////////////////////////////////////////////////////////
 .alt-ini { 
   height: initial !important; 
 }
-.alt-fit { 
-  height: fit-content !important; 
-}
 
 .alt_max-100 { 
   max-height: 100% !important; 
@@ -139,9 +127,6 @@ ALTO ///////////////////////////////////////////////////////////////////////////
 .alt_max-ini { 
   max-height: initial !important; 
 }
-.alt_max-fit { 
-  max-height: fit-content !important; 
-}
 
 .alt_min-100 { 
   min-height: 100% !important; 
@@ -160,9 +145,6 @@ ALTO ///////////////////////////////////////////////////////////////////////////
 }
 .alt_min-ini { 
   min-height: initial !important; 
-}
-.alt_min-fit { 
-  min-height: fit-content !important; 
 }
 
 /* ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

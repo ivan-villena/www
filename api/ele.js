@@ -46,7 +46,7 @@ class ele {
         if( $ele['ico'] ){
           $.ico_ide = $ele['ico'];
           delete($ele['ico']);
-          $_ += dat.ico($.ico_ide,$ele);
+          $_ += doc.ico($.ico_ide,$ele);
         }// por ficha
         else if( $ele['ima'] ){
           $.est = $ele['ima'].split('.');
@@ -98,7 +98,7 @@ class ele {
       $_.innerHTML = $ele;
       // devuelvo nodos: todos o el 1°
       if( $_.children[0] ){
-        $_ = $opc.includes('nod') ? lis.val_dec($_.children) : $_.children[0];
+        $_ = $opc.includes('nod') ? lis.val_cod($_.children) : $_.children[0];
       }
     }// desde 1 objeto : {}
     else if( $.tip == 'object' && !$ele.nodeName ){
@@ -117,7 +117,7 @@ class ele {
           $.ele_doc.innerHTML = $.ele.htm; 
           $.ele.htm = $.ele_doc.children;
         }
-        lis.val_dec($.ele.htm).forEach( 
+        lis.val_cod($.ele.htm).forEach( 
           $htm => $_.appendChild($htm)
         );
         delete($.ele.htm);
@@ -143,10 +143,10 @@ class ele {
     $.res = $val;
     if( $ope ){
       $.res = [];
-      lis.val($ope).forEach( $ope_ite => $.res.push( ele.act( $ope_ite, $val, ...$opc ) ) );
+      lis.val_ite($ope).forEach( $ope_ite => $.res.push( ele.act( $ope_ite, $val, ...$opc ) ) );
     }
     // resultados: [<>] => <> // si hay 1 solo, devuelvo único elemento
-    $_ = lis.val_dec($.res);
+    $_ = lis.val_cod($.res);
     if( !$_.length ){ 
       $_ = false; 
     }else if( $_.length == 1 ){ 
@@ -160,7 +160,7 @@ class ele {
     // aseguo elemento
     $ele = ele.val_dec($ele,$.dat);
     // recorro 2°dos elemento...
-    lis.val($mod).forEach( $mod => {
+    lis.val_ite($mod).forEach( $mod => {
       for( const $atr in ( $.lis_atr = ele.val_dec($mod,$.dat) ) ){ const $v = $.lis_atr[$atr];
         // si no tiene el atributo, lo agrego
         if( !($_[$atr]) ){ 
@@ -211,7 +211,7 @@ class ele {
     // por nodos descendentes
     if( $.opc.includes('nod') ){
 
-      lis.val_dec($ele.children).forEach( $ele => {
+      lis.val_cod($ele.children).forEach( $ele => {
 
         if( $._ele_ver($ele,$ope) ){           
           $.val.push($ele);
@@ -241,7 +241,7 @@ class ele {
     $.opc_ini = $opc.includes('ini');
     $.val_uni = !Array.isArray($ele);
     // recibo 1 o muchos    
-    lis.val($ele).forEach( $ele => {
+    lis.val_ite($ele).forEach( $ele => {
       if( typeof($ele) == 'string' ){
         $_.push( ...ele.val_cod($ele,'nod') );
       }else{
@@ -286,7 +286,7 @@ class ele {
       $nod = false;
     }
     if( !!$nod ){
-      lis.val_dec($nod).forEach( $ele => $_.push( $pad.removeChild($ele) ) );
+      lis.val_cod($nod).forEach( $ele => $_.push( $pad.removeChild($ele) ) );
     }
     return $_;
   }
@@ -305,7 +305,7 @@ class ele {
       delete($ele['htm']);
       if( typeof($.htm) != 'string' ){
         $._htm_val = '';
-        lis.val($.htm).forEach( $e => $._htm_val =+ ( typeof($e) == 'string' ) ? $e : ele.val($e) );
+        lis.val_ite($.htm).forEach( $e => $._htm_val =+ ( typeof($e) == 'string' ) ? $e : ele.val($e) );
       }
     }
     $_ = `
@@ -351,7 +351,7 @@ class ele {
       tip : $tip.split('_') 
     };
     if( typeof($ele) == 'string' ) $ele = document.querySelectorAll($ele);
-    $.lis = lis.val_dec($ele);
+    $.lis = lis.val_cod($ele);
     switch( $.tip[0] ){
     case 'nod':
       if( !$.tip[1] ){             
@@ -372,7 +372,7 @@ class ele {
       switch( $.tip[1] ){
       // actualizacion creando elemento
       case 'val': $.lis.forEach( $v => $_.push( $v.innerHTML = $val ) ); break;
-      case 'eli': $.lis.forEach( $v => { lis.val_dec($v.children).forEach( $v_2 => $_.push($v.removeChild($v_2)) ) } ); break;
+      case 'eli': $.lis.forEach( $v => { lis.val_cod($v.children).forEach( $v_2 => $_.push($v.removeChild($v_2)) ) } ); break;
       }
       break;
     case 'atr': 
@@ -386,9 +386,9 @@ class ele {
       case 'val': $.lis.forEach( $v => $_.push( $v.classList.contains($val) ) ); break;
       case 'pos': $.lis.forEach( $v => $_.push( $v.classList.item($val) ) ); break;
       case 'tog': $.lis.forEach( $v => $_.push( $v.classList.toggle($val) ) ); break;
-      case 'agr': $.lis.forEach( $v => lis.val($val).forEach( $val_cla => $_.push( $v.classList.add($val_cla) ) ) ); break;
+      case 'agr': $.lis.forEach( $v => lis.val_ite($val).forEach( $val_cla => $_.push( $v.classList.add($val_cla) ) ) ); break;
       case 'mod': $.lis.forEach( $v => $_.push( $v.classList.replace($val, $ope) ) ); break;
-      case 'eli': $.lis.forEach( $v => lis.val($val).forEach( $val_cla => $_.push( $v.classList.remove($val_cla) ) ) );break;    
+      case 'eli': $.lis.forEach( $v => lis.val_ite($val).forEach( $val_cla => $_.push( $v.classList.remove($val_cla) ) ) );break;    
       }
       break;
     case 'eje':
@@ -565,7 +565,7 @@ class ele {
       $.fin=`<c></</c>/<b class='ide'>${$.nom}</b><c>></c>`;
       $.eti_htm = '';
       if( $dat.childNodes.length>0 ){ 
-        lis.val_dec($dat.childNodes).forEach( $e =>{
+        lis.val_cod($dat.childNodes).forEach( $e =>{
           if( $e.nodeName.toLowerCase() != '#text' ){ $.eti_htm += `
             <li>${ele.var('eti',$e)}</li>`;
           }else{ $.eti_htm += `
@@ -651,7 +651,7 @@ class ele {
     $dat.forEach( $e => {
       $.ite = document.createElement('li');
       $.ite.classList.add('mar_ver-2');
-      $.ite.innerHTML = `${dat.ico('dat_ver',{'class':"tam-1 mar_der-1",'onclick':"ele.var_act(this);"})}`;
+      $.ite.innerHTML = `${doc.ico('dat_ver',{'class':"tam-1 mar_der-1",'onclick':"ele.var_act(this);"})}`;
       $.tex = document.createElement('p');
       $.tex.innerHTML = ele.var('her',$e);
       $.ite.appendChild($.tex);

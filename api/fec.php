@@ -34,6 +34,64 @@ class fec {
     }
     return $_;
   }
+
+  // objeto fecha: { val, año, mes, dia, sem, hor, min, seg, ubi }
+  static function dat( string $val, ...$opc ) : object {
+
+    $_ = new stdClass();
+    $_->val = "";
+    $_->dia = 0;
+    $_->mes = 0;
+    $_->año = 0;
+    $_->tie = "";
+    $_->hor = 0;
+    $_->min = 0;
+    $_->seg = 0;
+    $_->ubi = "";
+    // extension: sincronario
+    $_->kin = "";
+    $_->psi = "";
+    $_->ani = "";
+    $_->sir = "";
+
+    // separo valores
+    $val = explode( preg_match("/T/i",$val) ? 'T' : ' ', $val );
+    
+    // proceso fecha
+    if( isset($val[0]) ){
+      $fec = explode( preg_match("/-/",$val[0]) ? '-' : '/', $val[0] );      
+      if( isset($fec[2]) ){
+        // mes
+        $_->mes = intval($fec[1]);
+        // año
+        if( strlen($fec[0]) > 2 ){
+          $_->año = intval($fec[0]);    
+          $_->dia = intval($fec[2]);    
+        }else{
+          $_->año = intval($fec[2]);    
+          $_->dia = intval($fec[0]);
+        }  
+        // valido fecha resultante
+        if( $_->val = fec::val($_,...$opc) ){
+          // busco valor semanal
+          $_->sem = fec::val_tip($_,'sem');
+          // proceso horario
+          if( isset($val[1]) ){
+            $hor = explode(':', $_->tie = $val[1]);
+            // segundos
+            if( isset($hor[2]) ) $_->seg = intval($hor[2]);
+            // minutos
+            if( isset($hor[1]) ) $_->min = intval($hor[1]);
+            // horas
+            $_->hor = intval($hor[0]);
+          }        
+        }
+        // cargo sincronario
+        // ...
+      }
+    }    
+    return $_;
+  }  
   
   // validor de fecha : "año/mes/dia" | "dia/mes/año"
   static function val( object $dat, ...$opc ) : bool | string {
@@ -49,26 +107,6 @@ class fec {
     }
 
     return $_;
-  }// codifico fecha : [ año, mes, dia ]
-  static function val_cod( string $val, string $sep = NULL ) : array {
-    $_ = [];
-
-    $val = explode(' ',str_replace('T','',$val))[0];
-
-    if( empty($sep) ){
-      $sep = preg_match("/-/",$val) ? '-' : ( preg_match("/\//",$val) ? '/' : '.' );
-    }
-
-    $dat = array_map( function($v){ return intval($v); }, explode($sep,$val) );
-
-    if( strlen( strval($dat[0]) ) == 4 || $dat[0] > 31 ){
-
-      $_ = [ $dat[0], $dat[1], $dat[2] ];
-    }
-    else{        
-      $_ = [ $dat[2], $dat[1], $dat[0] ];
-    }
-    return $_;
   }// objeto: DateTime
   static function val_dec( int | string | object | array $dat = NULL ) : DateTime | string {
     $_ = $dat;
@@ -81,7 +119,7 @@ class fec {
           $_ = new DateTime( intval($dat) );
         }
         catch( Throwable $_err ){ 
-          $_ = "<p class='err'>{$_err}</p>"; 
+          echo "<p class='err'>{$_err}</p>";
         }
       }
       elseif( is_string($dat) ){ 
@@ -90,7 +128,7 @@ class fec {
           $_ = !! $_ ? new DateTime( "{$_->año}-{$_->mes}-{$_->dia}" ) : new DateTime('NOW');
         }
         catch( Throwable $_err ){ 
-          $_ = "<p class='err'>{$_err}</p>"; 
+          echo "<p class='err'>{$_err}</p>"; 
         }
       }
       elseif( is_object($dat) ){
@@ -105,6 +143,24 @@ class fec {
       elseif( is_array($dat) ){
         $_ = new DateTime( "{$dat[0]}-{$dat[1]}-{$dat[2]}" );
       }
+    }
+    return $_;
+  }// codifico fecha : [ año, mes, dia ]
+  static function val_cod( string $val, string $sep = NULL ) : array {
+    $_ = [];
+
+    $val = explode(' ',str_replace('T','',$val))[0];
+
+    if( empty($sep) ) $sep = preg_match("/-/",$val) ? '-' : ( preg_match("/\//",$val) ? '/' : '.' );
+
+    $dat = array_map( function($v){ return intval($v); }, explode($sep,$val) );
+
+    if( strlen( strval($dat[0]) ) == 4 || $dat[0] > 31 ){
+
+      $_ = [ $dat[0], $dat[1], $dat[2] ];
+    }
+    else{        
+      $_ = [ $dat[2], $dat[1], $dat[0] ];
     }
     return $_;
   }// devuelvo por tipo
@@ -204,8 +260,16 @@ class fec {
       break;
     }
     return $_;
+  }
+  
+  // año bisciesto ?
+  static function año_bis( string | object $fec ) : bool {
+
+    if( is_string($fec) ) $fec = fec::dat($fec);
+
+    return date('L', strtotime("$fec->año-01-01"));
   }// defino valor por rangos : AC - DC
-  static function val_ran( int $ini, int $fin ) : string {
+  static function año_ran( int $ini, int $fin ) : string {
 
     $_ = "";
 
@@ -221,70 +285,6 @@ class fec {
       $_ = num::int( $ini * - 1 )." A.C. - ".num::int( $fin ). " D.C.";
     }
 
-    return $_;
-  }// año bisciesto ?
-  static function val_año_bis( string | object $fec ) : bool {
-
-    if( is_string($fec) ) $fec = fec::dat($fec);
-
-    return date('L', strtotime("$fec->año-01-01"));
-  }
-  
-  // objeto fecha: { val, año, mes, dia, sem, hor, min, seg, ubi }
-  static function dat( string $val, ...$opc ) : object {
-
-    $_ = new stdClass();
-    $_->val = "";
-    $_->dia = 0;
-    $_->mes = 0;
-    $_->año = 0;
-    $_->tie = "";
-    $_->hor = 0;
-    $_->min = 0;
-    $_->seg = 0;
-    $_->ubi = "";
-    // extension: sincronario
-    $_->kin = "";
-    $_->psi = "";
-    $_->ani = "";
-    $_->sir = "";
-
-    // separo valores
-    $val = explode( preg_match("/T/i",$val) ? 'T' : ' ', $val );
-    
-    // proceso fecha
-    if( isset($val[0]) ){
-      $fec = explode( preg_match("/-/",$val[0]) ? '-' : '/', $val[0] );      
-      if( isset($fec[2]) ){
-        // mes
-        $_->mes = intval($fec[1]);
-        // año
-        if( strlen($fec[0]) > 2 ){
-          $_->año = intval($fec[0]);    
-          $_->dia = intval($fec[2]);    
-        }else{
-          $_->año = intval($fec[2]);    
-          $_->dia = intval($fec[0]);
-        }  
-        // valido fecha resultante
-        if( $_->val = fec::val($_,...$opc) ){
-          // busco valor semanal
-          $_->sem = fec::val_tip($_,'sem');
-          // proceso horario
-          if( isset($val[1]) ){
-            $hor = explode(':', $_->tie = $val[1]);
-            // segundos
-            if( isset($hor[2]) ) $_->seg = intval($hor[2]);
-            // minutos
-            if( isset($hor[1]) ) $_->min = intval($hor[1]);
-            // horas
-            $_->hor = intval($hor[0]);
-          }        
-        }
-        // cargo sincronario
-        // ...
-      }
-    }    
     return $_;
   }
 

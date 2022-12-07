@@ -78,6 +78,16 @@ class num {
   static function val_red( mixed $val, int $dec = 0, string $tip = 'min' ) : mixed {
     // https://www.php.net/manual/es/function.round.php
     return round($val, $dec, $tip == 'min' ? PHP_ROUND_HALF_DOWN : PHP_ROUND_HALF_UP );
+  }// reduzco a valor dentro del rango
+  static function val_ran( string | float | int $num, int | float $max, int | float $min = 1 ) : int | float {
+    
+    $_ = is_string($num) ? num::val($num) : $num;
+    
+    while( $_ > $max ){ $_ -= $max; } 
+    
+    while( $_ < $min ){ $_ += $max; } 
+    
+    return $_;
   }
 
   // formato de bits
@@ -114,30 +124,16 @@ class num {
     }
     return $_;
   }
-
   // formato entero : ...mil.num
   static function int( string | float | int $dat, string $mil = '.' ) : string {
     
     return number_format( intval($dat), 0, ( $mil == '.' ) ? ',' : '.', $mil );
   }
-
   // formato decimal : ...num,dec
   static function dec( string | float | int $val, int $dec = 2, string $sep = ',' ) : string {
     
     return number_format( floatval($val), intval($dec), $sep, ( $sep == ',' ) ? '.' : ','  );
   }
-
-  // reduzco a valor dentro del rango
-  static function ran( string | float | int $num, int | float $max, int | float $min = 1 ) : int | float {
-    
-    $_ = is_string($num) ? num::val($num) : $num;
-    
-    while( $_ > $max ){ $_ -= $max; } 
-    
-    while( $_ < $min ){ $_ += $max; } 
-    
-    return $_;
-  }  
 
   // controlador
   static function var( string $tip, mixed $dat = NULL, array $ope = [], ...$opc ) : string {      
@@ -250,7 +246,7 @@ class num {
             unset($ope['class']); 
           }
           if( !isset($ope['id']) ){ 
-            $ope['id'] = "_num_ran-".dat::var_ide('_num-ran');
+            $ope['id'] = "_num_ran-".doc::var_ide('_num-ran');
           }
           $htm_out = "";
           if( !in_array('val-ocu',$opc) ){ $htm_out = "

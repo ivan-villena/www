@@ -48,25 +48,32 @@ ul.ite-cua {
   list-style: square;
 }
 
-/* items de lista */
-ul:is(.lis,.val,.ope,.bar) {
-  list-style: none;
+/* 
+item
+*/
+ul.ite > li {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  margin: .2rem 0;
 }
 
+/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 /* 
 anidadas
 */
 ul.lis {
+  list-style: none;
   overflow: auto;
   padding: 0;
-  margin: .5rem auto;
 }
 ul.lis ul.lis {
   overflow: initial;  
-  margin-left: 1rem;
-  margin-top: .25rem;
+  padding-left: 1rem;
+  padding-top: .25rem;
 }
-ul.lis.sep > li {
+ul.lis > li.pos {
   margin-bottom: .5rem;
 }
 ul.lis:not(.dir-hor) > li.sep  {
@@ -76,45 +83,8 @@ ul.lis li > .doc_val {
   border-radius: .2rem;
 }
 
-/* 
-valores horizontales 
-*/
-ul:is(.val,.bar) {
-  display: flex;
-  flex-flow: row nowrap;
-}
-
-/* 
-item horizontal 
-*/
-ul.ite > li {
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-  margin: .2rem 0;
-}
-
-/* 
-horizontal
-*/
-ul.val {
-  justify-content: space-around;
-  align-items: center;
-  padding: 0;
-  margin: 0;
-}
-
-/* 
-horizontal con desplazamiento por item
-*/
-ul.lis_bar { 
-  margin: 0;
-}
-ul.lis_bar li[data-pos] {
-  width: 100%;
-  overflow: auto;
-}
-
+/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 /* 
   Indices
 */
@@ -136,8 +106,43 @@ ul.lis.nav li.pos:not(.sep) > div.doc_val:hover {
   border-radius: .25rem;
 }
 
+
+/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 /* 
-Tabla-Estructura 
+valores horizontales 
+*/
+ul.val {
+  list-style: none;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+}
+
+/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* 
+Barra: con desplazamiento
+*/
+ul.lis.bar {   
+  list-style: none;
+  display: flex;
+  flex-flow: row nowrap;
+  padding: 0;
+  margin: 0;
+}
+ul.lis.bar li[data-pos] {
+  width: 100%;
+  overflow: auto;
+}
+
+/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+/*  
+  Tabla
 */
 table {
   width: max-content;
@@ -150,4 +155,132 @@ table th {
 }
 table th p {
   color: var(--let_tex);
+}
+
+/* 
+  Estructura
+*/
+div.lis.est {  
+  width: 100%;
+  overflow: auto;
+  padding: 0 .5rem;
+}
+
+div.lis.est > table {
+  margin: 0 auto;
+  line-height: 1.3;
+  text-align: center;  
+}
+
+/* Cabecera */
+div.lis.est > table > thead {
+  position: sticky;
+  top: 0;
+  background-color: var(--fon_win);
+}
+
+div.lis.est > table > thead > tr > th > p {
+  color: var(--let_ide);
+  padding: .5rem;
+}
+
+div.lis.est > table > thead > tr:not(.gru) > th,
+div.lis.est > table > tbody > tr:not([data-ope],[data-opc]) > td {
+  border-right: 1px dotted var(--bor_dat);
+}
+
+/* titulo + detalle */
+div.lis.est > table > tbody > tr:is([data-opc="tit"],[data-opc="det"]) {
+  text-align: left;
+  line-height: 1.5;
+}
+div.lis.est > table > tbody > tr[data-opc="tit"] > td {
+  padding: 0 .5rem;
+}
+div.lis.est > table > tbody > tr[data-ope="lec"][data-opc="det"] > td {
+  padding-top: .25rem;
+}
+
+/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* 
+  Tablero
+*/
+ul.lis.tab {
+  list-style: none;
+  display: grid;
+  width: fit-content;
+  align-self: center;
+  margin: auto;
+  padding: 0;
+}
+
+table.lis.tab {
+  border-collapse: collapse;
+}
+
+:is(ul,table).lis.tab {
+  overflow: initial;
+  min-width: max-content;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;  
+  text-align: center;
+  font-size: .7rem;
+  transition: background 1s, border 1s;  
+}
+
+/* posiciones y secciones */
+:is(ul,table).lis.tab .pos,
+:is(ul,table).lis.tab .sec {
+  margin: 0;
+  transition: background 1s, border 1s;
+}
+
+ul.lis.tab > li.pos:not(.dep) {
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  align-content: center; 
+  justify-content: center;
+}
+
+/* Bordes */
+:is(ul,table).lis.tab .pos.bor-1 {
+  border-color: #008000;
+}
+/* - por seleccion */
+:is(ul,table).lis.tab .pos[class*="_val-"][class*="_bor"] {
+  border: 1px solid #991d99;
+}
+
+/* Fondos */
+:is(ul,table).lis.tab > .sec.fon { 
+  z-index: 0;
+  width: 100%; 
+  height: 100%;
+  grid-column: 1/sp; 
+  grid-row: 1/sp;  
+}
+
+/* Efectos */
+:is(ul,table).lis.tab .pos[onclick]:not(.dep):hover {
+  background-color:var(--tra_ros);
+  color:black;
+}
+
+/* Imágenes */
+:is(ul,table).lis.tab :is(.sec,.pos) > .arc_ima {
+  min-width: 100%;
+  height: 100%;
+}
+:is(ul,table).lis.tab td:is(.sec,.pos) > .arc_ima {
+  min-height: 100%;
+}
+
+/* Textos */
+:is(ul,table).lis.tab :is(.sec,.pos) > p {
+  text-align: center;
 }

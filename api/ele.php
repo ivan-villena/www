@@ -48,7 +48,7 @@ class ele {
         if( isset($ele['ico']) ){
           $ico_ide = $ele['ico'];
           unset($ele['ico']);
-          $_ .= dat::ico($ico_ide,$ele);
+          $_ .= doc::ico($ico_ide,$ele);
         }
         // por imagen
         elseif( isset($ele['ima']) ){
@@ -93,7 +93,7 @@ class ele {
     }
     // convierto {} => []
     elseif( is_object($ele) ){
-      $_ = obj::nom($ele);
+      $_ = obj::val_nom($ele);
     }
     // proceso atributos con variables : ()($)nom()
     elseif( is_array($_) && isset($dat) ){
@@ -114,7 +114,7 @@ class ele {
     // si es "", convierto a []
     $_ = ele::val_dec($ele,$dat);
     // recorro 2ºs elementos
-    foreach( lis::val($lis) as $ele ){
+    foreach( lis::val_ite($lis) as $ele ){
       // recorro atributos
       foreach( ele::val_dec($ele,$dat) as $atr => $val ){
         // agrego
@@ -152,7 +152,7 @@ class ele {
     }
     if( !is_string($htm) ){
       $htm_lis = "";
-      foreach( lis::val($htm) as $e ){ $htm_lis .= is_string($e) ? $e : ele::val($e); }
+      foreach( lis::val_ite($htm) as $e ){ $htm_lis .= is_string($e) ? $e : ele::val($e); }
       $htm = $htm_lis;
     }
     $_ = "
@@ -277,7 +277,7 @@ class ele {
       
       if( in_array('eli',$opc) ){
 
-        foreach( lis::val($val) as $v ){
+        foreach( lis::val_ite($val) as $v ){
           
         }    
       }

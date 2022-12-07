@@ -123,7 +123,7 @@ class arc {
     let $={
       'lis':[]
     };  
-    lis.val($arc).forEach( $_arc => {
+    lis.val_ite($arc).forEach( $_arc => {
       if( typeof($_arc)=='object' ){
         $.ima = document.createElement('img');
         $.ima.src = URL.createObjectURL($_arc);

@@ -7,14 +7,14 @@ class hol_dat {
   // glosario
   static ide( $tip, $dat, $ope ){
 
-    let $ = dat.var($dat);
+    let $ = doc.var($dat);
 
     switch( $tip ){
     case 'ver':
-      $.lis = $api_app.var.nextElementSibling;
-      $.ope = $api_app.var.querySelector(`[name="ope"]`);
-      $.val = $api_app.var.querySelector(`[name="val"]`);
-      $.tot = $api_app.var.querySelector(`[name="tot"]`);
+      $.lis = $api_doc._var.nextElementSibling;
+      $.ope = $api_doc._var.querySelector(`[name="ope"]`);
+      $.val = $api_doc._var.querySelector(`[name="val"]`);
+      $.tot = $api_doc._var.querySelector(`[name="tot"]`);
 
       if( $.val.value ){
         // oculto todo

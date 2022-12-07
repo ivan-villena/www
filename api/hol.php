@@ -22,12 +22,12 @@ class hol {
         case 'fec':
           $fec = fec::_('dat',$val);
           if( isset($fec->dia)  ) $_ = dat::get( hol::_('psi'), [ 
-            'ver'=>[ ['fec_dia','==',$fec->dia], ['fec_mes','==',$fec->mes] ], 
+            'ver'=>[ ['fec_dia','==',$fec->dia], ['fec_mes','==',$fec->mes] ],
             'opc'=>['uni'] 
           ]);
           break;
         case 'kin':
-          $_ = $_dat[ num::ran( num::val_sum($val), 260 ) - 1 ];
+          $_ = $_dat[ num::val_ran( num::val_sum($val), 260 ) - 1 ];
           break;
         default:
           if( is_numeric($val) ) $val = intval($val) - 1;
@@ -75,7 +75,7 @@ class hol {
     
           $_ .= "
           UPDATE `_hol`.`_kin` SET 
-            `fac` = '".fec::val_ran($ini,$fin)."'
+            `fac` = '".fec::año_ran($ini,$fin)."'
           WHERE `ide`='$_kin->ide'; 
           <br>";
     
@@ -91,7 +91,7 @@ class hol {
     
           $_ .= "
           UPDATE `_hol`.`_kin` 
-            SET `enc_ini` = $enc_ini, `enc_fin` = $enc_fin, `enc_ran` = '".fec::val_ran($enc_ini,$enc_fin)."' 
+            SET `enc_ini` = $enc_ini, `enc_fin` = $enc_fin, `enc_ran` = '".fec::año_ran($enc_ini,$enc_fin)."' 
             WHERE `ide`='$_kin->ide'; 
           <br>";
     
@@ -114,8 +114,8 @@ class hol {
           WHERE 
             `ide` = $_ele->ide;<br>";
           // contadores
-          $kin = num::ran($kin + 5, 260);
-          $kin_lis = num::val($kin,3)." - ".num::val(num::ran($kin + 4,260),3);
+          $kin = num::val_ran($kin + 5, 260);
+          $kin_lis = num::val($kin,3)." - ".num::val(num::val_ran($kin + 4,260),3);
         }
         break;
       case 'cro_est_dia': 
@@ -256,7 +256,7 @@ class hol {
       // giro solar => año
       $_['fec'] = $fec->val;
 
-      $_fec = hol::val_dec($fec);
+      $_fec = hol::val_dec( $fec );
 
       // giro lunar => mes + día
       if( $_psi = hol::_('fec',$_['fec']) ){
@@ -281,8 +281,7 @@ class hol {
       }
     }
     // error
-    else{ 
-      $_ = "{-_-} la Fecha {$val} no es Válida"; 
+    else{ $_ = "{-_-} la Fecha {$val} no es Válida"; 
     }
     return $_;
   }// convierto NS => d/m/a
@@ -350,7 +349,7 @@ class hol {
 
           foreach( ['fam_2','fam_3','fam_4'] as $atr ){ 
 
-            $_->$atr = num::ran($_->$atr+105, 260); 
+            $_->$atr = num::val_ran($_->$atr+105, 260); 
           }
 
           if ($_->ani > 51){ 
@@ -370,7 +369,7 @@ class hol {
 
           foreach( ['fam_2','fam_3','fam_4'] as $atr ){ 
             
-            $_->$atr = num::ran($_->$atr-105, 260); 
+            $_->$atr = num::val_ran($_->$atr-105, 260); 
           }
 
           if ($_->ani < 0){ 
@@ -387,7 +386,7 @@ class hol {
         
         foreach( ['fam_3','fam_4'] as $atr ){ 
 
-          $_->$atr = num::ran($_->$atr-105, 260); 
+          $_->$atr = num::val_ran($_->$atr-105, 260); 
         }
       }
     }
@@ -416,15 +415,15 @@ class hol {
   
           if( $dia > 28 ){
             $lun += num::val_red($cue / 28);
-            $dia = num::ran($dia, 28);
+            $dia = num::val_ran($dia, 28);
             
             if( $lun > 13 ){
               $ani += num::val_red($lun / 13);
-              $lun = num::ran($lun, 13);
+              $lun = num::val_ran($lun, 13);
   
               if( $ani > 51 ){
                 $sir += num::val_red($ani / 51);
-                $ani = num::ran($ani, 51, 0);
+                $ani = num::val_ran($ani, 51, 0);
               }
             }
           }
@@ -435,15 +434,15 @@ class hol {
   
           if( $dia < 1 ){
             $lun -= num::val_red($cue / 28);
-            $dia = num::ran($dia, 28);
+            $dia = num::val_ran($dia, 28);
             
             if( $lun < 1 ){    
               $ani -= num::val_red($lun / 13);
-              $lun = num::ran($lun, 13);
+              $lun = num::val_ran($lun, 13);
   
               if( $ani < 0 ){    
                 $sir -= num::val_red($ani / 51);
-                $ani = num::ran($ani, 51, 0);
+                $ani = num::val_ran($ani, 51, 0);
               }
             }
           }
@@ -456,11 +455,11 @@ class hol {
             
           if( $lun > 13 ){
             $ani += num::val_red($lun / 13);
-            $lun = num::ran($lun, 13);
+            $lun = num::val_ran($lun, 13);
 
             if( $ani > 51 ){  
               $sir += num::val_red($ani / 51);
-              $ani = num::ran($ani, 51, 0);                
+              $ani = num::val_ran($ani, 51, 0);                
             }
           }
         }
@@ -470,11 +469,11 @@ class hol {
             
           if( $lun < 1 ){  
             $ani -= num::val_red($lun / 13);
-            $lun = num::ran($lun, 13);
+            $lun = num::val_ran($lun, 13);
 
             if( $ani < 0 ){
               $sir -= num::val_red($ani / 51);
-              $ani = num::ran($ani, 51, 0);
+              $ani = num::val_ran($ani, 51, 0);
             }
           }
         }        
@@ -486,7 +485,7 @@ class hol {
 
           if( $ani > 51 ){
             $sir += num::val_red($ani / 51);
-            $ani = num::ran($ani, 51, 0);
+            $ani = num::val_ran($ani, 51, 0);
           }
         }
         elseif( $tip == '-' ){
@@ -495,7 +494,7 @@ class hol {
 
           if( $ani < 0 ){
             $sir -= num::val_red($ani / 51);
-            $ani = num::ran($ani, 51, 0);
+            $ani = num::val_ran($ani, 51, 0);
           }
         }
         break;
@@ -546,7 +545,7 @@ class hol {
 
         $_dat = hol::val($fec);
 
-        $_ []= dat::ope_val([
+        $_ []= lis::ope([
           'fec'=>[ 
             'dat'=>fec::_('dat',$fec),
           ],
@@ -638,13 +637,13 @@ class hol {
       <!-- Fecha del Calendario -->
       <form class='val fec mar-1'>
   
-        ".dat::ico('fec_dia',[ 'eti'=>"label", 'for'=>"hol_val-fec", 'class'=>"mar_hor-1", 
+        ".doc::ico('fec_dia',[ 'eti'=>"label", 'for'=>"hol_val-fec", 'class'=>"mar_hor-1", 
           'title'=>"Desde aquí puedes cambiar la fecha..." 
         ])."
         ".fec::var('dia', $_fec, [ 'id'=>"hol_val-fec", 'name'=>"fec", 
           'title'=>"Selecciona o escribe una fecha del Calendario Gregoriano para buscarla..."
         ])."
-        ".dat::ico('dat_ini',[ 'eti'=>"button", 'type'=>"submit", 'class'=>"mar_hor-1", 'onclick'=>"$_eje(this);", 
+        ".doc::ico('dat_ini',[ 'eti'=>"button", 'type'=>"submit", 'class'=>"mar_hor-1", 'onclick'=>"$_eje(this);", 
           'title'=>'Haz click para buscar esta fecha del Calendario Gregoriano...'
         ])."
   
@@ -660,24 +659,24 @@ class hol {
         ])."
         <c>.</c>
         ".opc::lis( hol::_('ani'), [
-          'eti'=>[ 'name'=>"ani", 'title'=>"Anillo Solar (año): los 52 ciclos anuales de 364+1 días...", 'val'=>$_sin[1] ], 
+          'eti'=>[ 'name'=>"ani", 'class'=>"num", 'title'=>"Anillo Solar (año): los 52 ciclos anuales de 364+1 días...", 'val'=>$_sin[1] ], 
           'ite'=>[ 'title'=>'($)nom','htm'=>'($)ide' ]
         ])."
         <c>.</c>
         ".opc::lis( hol::_('psi_lun'), [
-          'eti'=>[ 'name'=>"lun", 'title'=>"Giro Lunar (mes): los 13 ciclos mensuales de 28 días...", 'val'=>$_sin[2] ],
+          'eti'=>[ 'name'=>"lun", 'class'=>"num", 'title'=>"Giro Lunar (mes): los 13 ciclos mensuales de 28 días...", 'val'=>$_sin[2] ],
           'ite'=>[ 'title'=>'()($)nom(): ()($)des()','htm'=>'($)ide' ]
         ])."
         <c>.</c>
         ".opc::lis( hol::_('lun'), [ 
-          'eti'=>[ 'name'=>"dia", 'title'=>"Día Lunar : los 28 días del Giro Lunar...", 'val'=>$_sin[3] ], 
+          'eti'=>[ 'name'=>"dia", 'class'=>"num", 'title'=>"Día Lunar : los 28 días del Giro Lunar...", 'val'=>$_sin[3] ], 
           'ite'=>[ 'title'=>'($)des','htm'=>'($)ide' ]
         ])."          
         <c class='sep'>:</c>
     
         <n name='kin'>$_kin->ide</n>
   
-        ".dat::ico('dat_ini',[ 'eti'=>"button", 'type'=>"submit", 'class'=>"mar_hor-1", 'onclick'=>"$_eje(this);",
+        ".doc::ico('dat_ini',[ 'eti'=>"button", 'type'=>"submit", 'class'=>"mar_hor-1", 'onclick'=>"$_eje(this);",
           'title'=>"Haz Click para buscar esta fecha en el Sincronario de 13 Lunas..."
         ])."
   
@@ -829,7 +828,7 @@ class hol {
             }            
             break;
           }
-          $_ = $htm.est::lis( $_, [ 'opc'=>['htm','cab_ocu'] ], $ope);
+          $_ = $htm.lis::est( $_, [ 'opc'=>['htm','cab_ocu'] ], $ope);
         }
         break;
       }
@@ -840,7 +839,7 @@ class hol {
 
   // tablero
   static function tab( string $est, string $atr, array $ope = [], array $ele = [] ) : string {
-    extract( tab::dat("hol",$est,$atr,$ope,$ele) );
+    extract( lis::tab_dat("hol",$est,$atr,$ope,$ele) );
     $_ = "";
     switch( $tab ){
     case 'uni':
@@ -1005,7 +1004,7 @@ class hol {
           ".hol::tab_sec('ton',$ope)
           ;
           foreach( hol::_('ton') as $_ton ){            
-            $_ .= tab::pos('hol','ton',$_ton,$ope,$ele);
+            $_ .= lis::tab_pos('hol','ton',$_ton,$ope,$ele);
           } $_ .= "
         </ul>";
         break;
@@ -1051,7 +1050,7 @@ class hol {
             $agr = ( !empty($ide) && $v->ide == $ide ) ? ' _val-pos' : '' ;
             $ele['pos'] = $ele_pos;
             ele::cla($ele['pos'],"{$agr}");
-            $_ .= tab::pos('hol','sel',$v,$ope,$ele);
+            $_ .= lis::tab_pos('hol','sel',$v,$ope,$ele);
           } $_ .= "
         </ul>";
         break;
@@ -1072,7 +1071,7 @@ class hol {
             $agr = ( !empty($ide) && $v->ide == $ide ) ? ' _val-pos' : '' ;
             $ele['pos'] = $ele_pos;
             ele::cla($ele['pos'],"{$agr}");
-            $_ .= tab::pos('hol','sel',$v,$ope,$ele);
+            $_ .= lis::tab_pos('hol','sel',$v,$ope,$ele);
           }
           $_ .= "
         </ul>";        
@@ -1096,7 +1095,7 @@ class hol {
         <ul".ele::atr($ele['cel']).">
           ".hol::ima("sel_arm_cel", $_arm, ['eti'=>"li", 'class'=>"pos ide-0", 'htm'=>$_arm->ide ] );
           foreach( hol::_('sel_arm_raz') as $_raz ){
-            $_ .= tab::pos('hol','sel',$sel,$ope,$ele);
+            $_ .= lis::tab_pos('hol','sel',$sel,$ope,$ele);
             $sel++;
           } $_ .= "
         </ul>";        
@@ -1123,7 +1122,7 @@ class hol {
           ".hol::tab_sec('cas',$ope)
           ;
           foreach( hol::_('cas') as $_cas ){
-            $_ .= tab::pos('hol','cas',$_cas,$ope,$ele);
+            $_ .= lis::tab_pos('hol','cas',$_cas,$ope,$ele);
           } $_ .= "
         </ul>";
         break;
@@ -1166,7 +1165,7 @@ class hol {
               $kin_arm = $kin_arm_tra;
             }
             // posicion
-            $_ .= tab::pos('hol','kin',$_kin,$ope,$ele);
+            $_ .= lis::tab_pos('hol','kin',$_kin,$ope,$ele);
             $ele['pos'] = $ele_pos;
           } $_ .= "
         </ul>";        
@@ -1185,7 +1184,7 @@ class hol {
             // combino elementos :
             $ele['pos'] = isset($ele["par-{$par_ide}"]) ? ele::val_jun($ele_pos,$ele["par-{$par_ide}"]) : $ele_pos;
             ele::cla($ele['pos'],"par-{$par_ide}");
-            $_ .= tab::pos('hol','kin',$par_kin,$ope,$ele);
+            $_ .= lis::tab_pos('hol','kin',$par_kin,$ope,$ele);
           }$_ .= "
         </ul>";
         break;
@@ -1202,8 +1201,8 @@ class hol {
           $kin = intval($_fam['kin']);
           foreach( hol::_('cas') as $_cas ){
             $_kin = hol::_('kin',$kin);
-            $_ .= tab::pos('hol','kin',$kin,$ope,$ele);
-            $kin = num::ran($kin + 105, 260);
+            $_ .= lis::tab_pos('hol','kin',$kin,$ope,$ele);
+            $kin = num::val_ran($kin + 105, 260);
           } $_ .= "
         </ul>";          
         break;
@@ -1243,7 +1242,7 @@ class hol {
           ;
           $kin = ( ( $ide - 1 ) * 52 ) + 1;
           foreach( hol::_('cas') as $_cas ){
-            $_ .= tab::pos('hol','kin',$kin,$ope,$ele);
+            $_ .= lis::tab_pos('hol','kin',$kin,$ope,$ele);
             $kin++;
           } $_ .= "
         </ul>";        
@@ -1260,7 +1259,7 @@ class hol {
           ;
           $kin = ( ( $ide - 1 ) * 13 ) + 1;
           foreach( hol::_('ton') as $_ton ){
-            $_ .= tab::pos('hol','kin',$kin,$ope,$ele);
+            $_ .= lis::tab_pos('hol','kin',$kin,$ope,$ele);
             $kin++;
           } $_ .= "
         </ul>";        
@@ -1294,7 +1293,7 @@ class hol {
           for( $cel = $cel_ini; $cel < $cel_fin; $cel++ ){
             $ope['ide'] = $cel;
             $ele['cel'] = $ele_pos;
-            ele::cla($ele['cel'],"pos ide-".num::ran($cel,5));
+            ele::cla($ele['cel'],"pos ide-".num::val_ran($cel,5));
             $_ .= hol::tab('kin','arm_cel',$ope,$ele);
           } $_ .= "
         </ul>";
@@ -1312,7 +1311,7 @@ class hol {
           $_ .= hol::ima("sel_arm_cel",$_arm->cel,$ele_ite);
           $kin = ( ( $ide - 1 ) * 4 ) + 1;
           for( $arm = 1; $arm <= 4; $arm++ ){
-            $_ .= tab::pos('hol','kin',$kin,$ope,$ele);
+            $_ .= lis::tab_pos('hol','kin',$kin,$ope,$ele);
             $kin++;
           } $_ .= "
         </ul>";
@@ -1356,7 +1355,7 @@ class hol {
             $ele['ele'] = $ele_ele;
             ele::cla($ele['ele'],"pos ide-".intval($_ton->ide));
             $_ .= hol::tab('kin','cro_ele',$ope,$ele);
-            $cas = num::ran($cas + 1, 52);
+            $cas = num::val_ran($cas + 1, 52);
           } $_ .= "
         </ul>";
         break;
@@ -1381,9 +1380,9 @@ class hol {
           ele::cla($ele_ite,"pos ide-0",'ini'); $_ .= "
           <li".ele::atr($ele_ite).">".hol::ima('kin_cro_ele',$_ele->ide)."</li>";
 
-          $kin = num::ran($kin_ini + ( ( $ide - 1 ) * 5 ), 260);
+          $kin = num::val_ran($kin_ini + ( ( $ide - 1 ) * 5 ), 260);
           foreach( hol::_('sel_cro_fam') as $cro_fam ){
-            $_ .= tab::pos('hol','kin',$kin,$ope,$ele);
+            $_ .= lis::tab_pos('hol','kin',$kin,$ope,$ele);
             $kin++;// por verdad eléctrica
             if( $kin > 260 ) $kin = 1;
           }$_ .= "
@@ -1525,7 +1524,7 @@ class hol {
                 }$_ .= "
               </td>";
               for( $rad=1; $rad<=7; $rad++ ){
-                $_ .= tab::pos('hol','psi',$psi,$ope,$ele);
+                $_ .= lis::tab_pos('hol','psi',$psi,$ope,$ele);
                 $dia++;
                 $psi++;
               }
@@ -1547,7 +1546,7 @@ class hol {
         <ul".ele::atr($ele['hep']).">";
           $psi = ( ( intval($_hep->ide) - 1 ) * 7 ) + 1;
           foreach( hol::_('rad') as $_rad ){
-            $_ .= tab::pos('hol','psi',$psi,$ope,$ele);
+            $_ .= lis::tab_pos('hol','psi',$psi,$ope,$ele);
             $psi++;
           } $_ .= "
         </ul>";        
@@ -1588,7 +1587,7 @@ class hol {
         $_val = $ope['val']['pos'];
         if( ( is_array($_val) && isset($_val['kin']->nav_ond_dia) ) || is_numeric($_val) ||( is_object($_val) && isset($_val->ide) ) ){
           if( is_numeric($_val) ){
-            $_ton = hol::_('ton',num::ran($_val,13));
+            $_ton = hol::_('ton',num::val_ran($_val,13));
           }else{
             $_ton = hol::_('ton', is_object($_val) ? intval($_val->ide) : intval($_val['kin']->nav_ond_dia) );
           }

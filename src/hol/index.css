@@ -5,13 +5,6 @@ body {
 }
 
 /* 
-  Diario 
-*/
-aside.doc_pan > .ide-dia > div > div {
-  max-width: fit-content;
-}
-
-/* 
   Libros 
 */
 main article section {
@@ -33,7 +26,7 @@ aside.doc_pan > .ide-val > .ide-cue > ul {
 }
 
 /* Articulo: Tableros */
-main > article {
+main.doc_sec > article {
   max-width: fit-content;
   padding: 0;
   border: initial;
@@ -41,6 +34,6 @@ main > article {
   line-height: initial;
 }
 
-main > article > .tab {
+main.doc_sec > article > .tab {
   margin: auto;
 }

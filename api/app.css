@@ -98,7 +98,7 @@ div:is(.ren,.ite) {
 /*
   Pantallas
 */
-body > .doc_win {  
+div.doc_win {  
   z-index: 99999;
   width: 100vw;
   height: 100vh;
@@ -112,7 +112,7 @@ body > .doc_win {
   text-align: center;
   animation: dis-ver .5s;
 }
-body > .doc_win > article {
+div.doc_win > article {
   display: flex;
   flex-direction: column;
   position: absolute;
@@ -126,14 +126,14 @@ body > .doc_win > article {
   line-height: 1.5;
   animation: dis-ver 1s, dis-ver-tam .5s;
 }
-body > .doc_win > article > header {    
+div.doc_win > article > header {    
   display: flex;
   flex-wrap: nowrap;  
   justify-content: space-between;
   padding: .25rem;
   height: 3rem;
 }
-body > .doc_win > article > header + * {
+div.doc_win > article > header + * {
   flex-grow: 2;
   overflow-y: auto;
   overflow-x: hidden;
@@ -141,33 +141,33 @@ body > .doc_win > article > header + * {
   flex-direction: column;
   padding: 0 .5rem;
 }
-body > .doc_win > article > header + * > section {
+div.doc_win > article > header + * > section {
   margin: .5rem;  
 }
 
 /*
   Modal : Operador
 */
-body > .doc_win > .ide-app_ope {
+div.doc_win > .ide-app_ope {
   z-index: 9999;
   height: 95vh;
   background-color: var(--fon_win);
 }
-body > .doc_win > .ide-app_ope > header + * {
+div.doc_win > .ide-app_ope > header + * {
   align-items: center;
 }
-body > .doc_win > .ide-app_ope > header + * > section {
+div.doc_win > .ide-app_ope > header + * > section {
   margin: .5rem;
 }
 /* -- Estructuras */
-body > .doc_win > .ide-est {
+div.doc_win > .ide-est {
   max-width: 60rem;
   height: 90vh;
 }
-body > .doc_win > .ide-est > div {
+div.doc_win > .ide-est > div {
   padding: 0;
 }
-body > .doc_win > .ide-est > div > .app_est {
+div.doc_win > .ide-est > div > .app_est {
   height: 77vh;
 }
 
@@ -176,13 +176,13 @@ body > .doc_win > .ide-est > div > .app_est {
 /* 
   botonera : inicio + paneles + pantallas 
 */
-body > .doc_bot {
+header.doc_bot {
   display: flex;
   justify-content: space-between;
   height: 5vh;
   background-color: var(--fon_win);
 }
-body > .doc_bot h1 {
+header.doc_bot h1 {
   margin: .25rem;
 }
 
@@ -192,7 +192,7 @@ body > .doc_bot h1 {
 /* 
   Seccion Principal
 */
-body > main {
+main {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -203,12 +203,12 @@ body > main {
   text-align: center;
 }
 /* Titulo */
-body > main > header {
+main > header {
   width: 100%;
   background-color: var(--fon_sec);
 }
 /* Contenido */
-body > main > *:not(header,footer) {
+main > *:not(header,footer) {
   width: 100%;
   max-width: 55rem;
   line-height: 1.5;
@@ -216,7 +216,7 @@ body > main > *:not(header,footer) {
 /* 
   por articulo 
 */
-body > main article {
+main article {
   height: max-content;
   margin: .5rem auto;
   padding: 0 1rem;
@@ -230,7 +230,7 @@ body > main article {
 /* 
   Laterales
 */
-body > aside {
+aside:is(.doc_pan,.doc_bar) {
   z-index: 9999;
   display: flex;
   position: fixed;
@@ -240,9 +240,9 @@ body > aside {
   background-color: var(--fon_sec);  
 }
 /* 
-  paneles
+  izquierda: panel movil
 */
-body > aside.doc_pan {
+aside.doc_pan {
   max-width: 100%;
   overflow: hidden;
   border: 1px solid var(--col_azu);
@@ -251,7 +251,7 @@ body > aside.doc_pan {
   transition: all 1s;
   animation: doc_pan-ver 1s, dis-ver 1s;
 }
-body > aside.doc_pan.dis-ocu {  
+aside.doc_pan.dis-ocu {  
   animation: doc_pan-ocu 1s;
   display: flex !important;
   width: 0 !important;
@@ -267,37 +267,25 @@ body > aside.doc_pan.dis-ocu {
   from { transform: translate(0rem); } to { transform: translate(-5rem); }
 }
 /* Contenido */
-body > aside.doc_pan > [class*="ide-"] {
+aside.doc_pan > [class*="ide-"] {
   width: 100%;
   animation: dis-ver 1s;
 }
-body > aside.doc_pan > [class*="ide-"] > header {
+aside.doc_pan > [class*="ide-"] > header {
   display: flex;
   justify-content: space-between;  
   padding: .5rem;
   text-align: center;
 }
-body > aside.doc_pan > [class*="ide-"] > header + * {
+aside.doc_pan > [class*="ide-"] > header + * {
   max-height: 90vh;
   overflow: auto;
 }
 
 /* 
-  Panel : Menú Principal e indices 
+  derehca: sidebar
 */
-body > .doc_pan > .ide-app_cab ul.lis.nav {
-  height: 85vh;
-}
-body > .doc_pan > .ide-app_nav ul.lis.nav {
-  height: 81vh;
-}
-
-/*//////////////////////////////////////////////////////////////////////*/
-/*//////////////////////////////////////////////////////////////////////*/
-/* 
-  sidebar
-*/
-body > aside.doc_bar {
+aside.doc_bar {
   max-width: 100%;
 }
 
@@ -306,7 +294,21 @@ body > aside.doc_bar {
 /* 
   pie de página
 */
-body > footer.doc_pie {
+footer.doc_pie {
   padding: .5rem;
   text-align: center;
+}
+
+
+/*//////////////////////////////////////////////////////////////////////*/
+/*//////////////////////////////////////////////////////////////////////*/
+
+/* Página Base
+  Panel : Menú Principal e indices 
+*/
+aside.doc_pan > .ide-app_cab ul.lis.nav {
+  height: 85vh;
+}
+aside.doc_pan > .ide-app_nav ul.lis.nav {
+  height: 81vh;
 }

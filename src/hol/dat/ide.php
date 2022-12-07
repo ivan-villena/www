@@ -6,7 +6,7 @@
 
   <form class="ite">
 
-    <?= dat::var('val','ver',[ 
+    <?= doc::var('val','ver',[ 
       'des'=> "Filtrar...",
       'ite'=> [ 'class'=>"tam-cre" ],
       'htm'=> doc::val_ver(['cue'=>0, 'eje'=>"dat_ide('ver',this)" ], [ 'class'=>"anc-100" ])

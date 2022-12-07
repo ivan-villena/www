@@ -12,6 +12,9 @@ fieldset {
   padding: 0;
   margin: 0;
 }
+fieldset > legend {
+  text-align: left;
+}
 
 /*//////////////////////////////////////////////////////////////////////*/
 /*//////////////////////////////////////////////////////////////////////*/
@@ -114,121 +117,4 @@ form.dat :is(fieldset,div).var input:not([type='checkbox']):not([type='radio']) 
   border: 0;
   border-radius: 0;
   border-bottom: 1px solid;
-}
-
-/*//////////////////////////////////////////////////////////////////////*/
-/*//////////////////////////////////////////////////////////////////////*/
-/* 
-variable > label + input
-*/
-form :is(fieldset,div).var {
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-  margin:.15rem;
-}
-
-/*//////////////////////////////////////////////////////////////////////*/
-/*//////////////////////////////////////////////////////////////////////*/
-
-/* 
-  Etiquetas 
-*/
-label, 
-legend {
-  display: flex;  
-  flex-flow: row nowrap;
-  align-items: center;
-}
-label {
-  min-width: fit-content; 
-  min-width: -moz-fit-content;
-  margin: .25rem;
-}
-legend {
-  overflow: hidden;
-  padding: .3rem 1rem;
-  border-radius: 10px;
-  border: 1px solid var(--bor_dat);
-  font-size: medium;
-}
-
-/* 
-  valores
-*/
-input, 
-textarea,
-select,
-datalist,
-button {
-  background-color: var(--fon_art);
-  padding: .2rem;
-  border: 1px solid var(--col_azu);
-  border-radius: .5rem;
-  font-family: var(--tex);
-  color: var(--let_tex);
-}
-
-/* Focos */
-:is(input,select,button:not(.dat_ico)):focus {
-  background-color: var(--tra_azu);
-}
-:is(input,select,textarea):focus {
-  outline: none;
-}
-/* Acciones */
-*[onclick], label[for] {
-  cursor: pointer;
-}
-
-/* Tamaños */
-input:is([type="text"]) {
-  width: 100%;
-  max-width: 80vw;
-}
-input[maxlength='1'] { width: 2.5rem; }
-input[maxlength='2'] { width: 3rem; }
-input[maxlength='3'] { width: 3.5rem; }
-input[maxlength='4'] { width: 4rem; }
-input[maxlength='5'] { width: 4.5rem; }
-input[maxlength='6'] { width: 5rem; }
-input[maxlength='7'] { width: 5.5rem; }
-input[maxlength='8'] { width: 6rem; }
-input[maxlength='9'] { width: 6.5rem; }
-input[maxlength='10']{ width: 7rem; }
-input[maxlength='11']{ width: 7.5rem; }
-input[maxlength='12']{ width: 8rem; }
-input[maxlength='13']{ width: 8.5rem; }
-input[maxlength='14']{ width: 9rem; }
-input[maxlength='15']{ width: 9.5rem; }
-input[maxlength='16']{ width: 10rem; }
-input[maxlength='17']{ width: 10.5rem; }
-input[maxlength='18']{ width: 11rem; }
-input[maxlength='19']{ width: 11.5rem; }
-input[maxlength='20']{ width: 12rem; }
-input[maxlength='25']{ width: 15rem; }
-
-/* 
-  Iconos
-*/
-.dat_ico[class*='material-icons-']{
-  color: #ccc0b0;
-  font-size: 1.5rem;
-  text-decoration: none;
-  background-color: var(--col_tra);
-  padding: 0;
-  border: 0;
-  margin: 0;
-}
-.dat_ico.tam-0 { font-size: .5rem; }
-.dat_ico.tam-1 { font-size: 1rem; }
-.dat_ico.tam-2 { font-size: 1.25rem; }
-.dat_ico.tam-3 { font-size: 1.5rem; }
-.dat_ico.tam-4 { font-size: 1.75rem; }
-.dat_ico.tam-5 { font-size: 2rem; }
-.dat_ico.tam-6 { font-size: 2.25rem; }
-.dat_ico.tam-7 { font-size: 2.5rem; }
-
-.dat_ico:is([href],[onclick]):hover {
-  text-shadow: 0 0 5px;
 }

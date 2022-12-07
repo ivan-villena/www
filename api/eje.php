@@ -56,7 +56,7 @@ class eje {
     }
     // funcion del entorno
     else{
-      $_ = eje::fun( $ide, ...lis::val($par) );      
+      $_ = eje::fun( $ide, ...lis::val_ite($par) );      
     }
     return $_;
   }
@@ -133,7 +133,7 @@ class eje {
 
           try{
 
-            $_ = empty($par) ? $cla::$met() : $cla::$met( ...lis::val($par) ) ;
+            $_ = empty($par) ? $cla::$met() : $cla::$met( ...lis::val_ite($par) ) ;
           }
           catch( Exception $e ){
 
@@ -161,7 +161,7 @@ class eje {
 
           try{
 
-            $_ = empty($par) ? $obj->$met() : $obj->$met( ...lis::val($par) ) ;
+            $_ = empty($par) ? $obj->$met() : $obj->$met( ...lis::val_ite($par) ) ;
           }
           catch( Exception $e ){
 

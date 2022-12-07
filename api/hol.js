@@ -37,43 +37,45 @@ class hol {
     return $_;
   }
 
-  // imagen 
+  /* Imagen 
+  */ 
   static ima( $est, $dat, $ele ){
 
     return arc.ima('hol',`${$est}`,$dat,$ele);
   }
 
-  // tablero
-  // ...
+  /* Tablero
+  */
   // Valores acumulados
   static tab_val( $ope ){
 
-    let $ = dat.var($ope);
+    let $ = doc.var($ope);
 
     // portales + parejas + pulsares
-    $.ide = $api_app.var.classList[0].split('-')[2];
+    $.ide = $api_doc._var.classList[0].split('-')[2];
     
     // Actualizo total por item
     if( $ope.nextElementSibling && ( $.tot = $ope.nextElementSibling.querySelector('n') ) ){
 
-      $.tot.innerHTML = $api_app.tab.lis.querySelectorAll(`._hol-${$.ide}_${$.var_ide}`).length;
+      $.tot.innerHTML = $api_lis._tab.val.querySelectorAll(`._hol-${$.ide}_${$.var_ide}`).length;
     }    
     // Actualizo total general
-    if( $.tot = $api_app.var.querySelector('div.atr > [name="cue"]') ){
+    if( $.tot = $api_doc._var.querySelector('div.atr > [name="cue"]') ){
 
-      $.tot.innerHTML = $api_app.tab.lis.querySelectorAll(`[class*="_hol-${$.ide}_"]`).length;
+      $.tot.innerHTML = $api_lis._tab.val.querySelectorAll(`[class*="_hol-${$.ide}_"]`).length;
     }
 
     // Actualizo operador de acumulados
     app_tab.act('opc');
-  }// Secciones
+  }
+  // Secciones
   static tab_sec( $dat, $ope, ...$opc ){
 
-    let $ = dat.var($dat);    
+    let $ = doc.var($dat);    
 
-    $.tab = $api_app.tab.ide;
+    $.tab = $api_lis._tab.ide;
 
-    $.kin = $_hol_val.kin;
+    $.kin = $_hol.val.kin;
 
     $.tip = $.var_ide.split('-');
 
@@ -93,9 +95,9 @@ class hol {
       case 'col':
         $.cla = 'fon-0';
         if( $dat.checked ){
-          ele.act('cla_eli',$api_app.tab.lis.querySelectorAll(`.sec.-fon[class*="fon_col-"].${$.cla}`),$.cla);
+          ele.act('cla_eli',$api_lis._tab.val.querySelectorAll(`.sec.-fon[class*="fon_col-"].${$.cla}`),$.cla);
         }else{
-          ele.act('cla_agr',$api_app.tab.lis.querySelectorAll(`.sec.-fon[class*="fon_col-"]:not(.${$.cla})`),$.cla);
+          ele.act('cla_agr',$api_lis._tab.val.querySelectorAll(`.sec.-fon[class*="fon_col-"]:not(.${$.cla})`),$.cla);
         }             
         break;
       }
@@ -108,25 +110,25 @@ class hol {
         switch( $.tip[2] ){
         case 'pos': 
           if( $dat.checked ){
-            ele.act('cla_eli',$api_app.tab.lis.querySelectorAll(`.app_tab[class*="_arm_tra"] > .pos-0.${DIS_OCU}`),DIS_OCU);
+            ele.act('cla_eli',$api_lis._tab.val.querySelectorAll(`.app_tab[class*="_arm_tra"] > .pos-0.${DIS_OCU}`),DIS_OCU);
           }else{
-            ele.act('cla_agr',$api_app.tab.lis.querySelectorAll(`.app_tab[class*="_arm_tra"] > .pos-0:not(.${DIS_OCU})`),DIS_OCU);
+            ele.act('cla_agr',$api_lis._tab.val.querySelectorAll(`.app_tab[class*="_arm_tra"] > .pos-0:not(.${DIS_OCU})`),DIS_OCU);
           }
           break;
         case 'bor':
           $.cla = 'bor-1';
           if( $dat.checked ){ 
-            ele.act('cla_agr',$api_app.tab.lis.querySelectorAll(`.app_tab[class*="_arm_tra"]`),$.cla);
+            ele.act('cla_agr',$api_lis._tab.val.querySelectorAll(`.app_tab[class*="_arm_tra"]`),$.cla);
           }else{
-            ele.act('cla_eli',$api_app.tab.lis.querySelectorAll(`.app_tab[class*="_arm_tra"]`),$.cla);
+            ele.act('cla_eli',$api_lis._tab.val.querySelectorAll(`.app_tab[class*="_arm_tra"]`),$.cla);
           }            
           break;
         case 'col':
           $.cla = 'fon-0';
           if( $dat.checked ){ 
-            ele.act('cla_eli',$api_app.tab.lis.querySelectorAll(`.app_tab[class*="_arm_tra"]`),$.cla);
+            ele.act('cla_eli',$api_lis._tab.val.querySelectorAll(`.app_tab[class*="_arm_tra"]`),$.cla);
           }else{
-            ele.act('cla_agr',$api_app.tab.lis.querySelectorAll(`.app_tab[class*="_arm_tra"]`),$.cla);
+            ele.act('cla_agr',$api_lis._tab.val.querySelectorAll(`.app_tab[class*="_arm_tra"]`),$.cla);
           }            
           break;
         }
@@ -136,25 +138,25 @@ class hol {
         switch( $.tip[2] ){
         case 'pos': 
           if( $dat.checked ){
-            ele.act('cla_eli',$api_app.tab.lis.querySelectorAll(`.app_tab[class*="_arm_cel"] > .pos-0.${DIS_OCU}`),DIS_OCU);
+            ele.act('cla_eli',$api_lis._tab.val.querySelectorAll(`.app_tab[class*="_arm_cel"] > .pos-0.${DIS_OCU}`),DIS_OCU);
           }else{
-            ele.act('cla_agr',$api_app.tab.lis.querySelectorAll(`.app_tab[class*="_arm_cel"] > .pos-0:not(.${DIS_OCU})`),DIS_OCU);
+            ele.act('cla_agr',$api_lis._tab.val.querySelectorAll(`.app_tab[class*="_arm_cel"] > .pos-0:not(.${DIS_OCU})`),DIS_OCU);
           }          
           break;
         case 'bor': 
           $.cla = 'bor-1'; 
           if( $dat.checked ){
-            ele.act('cla_agr',$api_app.tab.lis.querySelectorAll(`.app_tab[class*="_arm_cel"]`),$.cla);
+            ele.act('cla_agr',$api_lis._tab.val.querySelectorAll(`.app_tab[class*="_arm_cel"]`),$.cla);
           }else{
-            ele.act('cla_eli',$api_app.tab.lis.querySelectorAll(`.app_tab[class*="_arm_cel"]`),$.cla);
+            ele.act('cla_eli',$api_lis._tab.val.querySelectorAll(`.app_tab[class*="_arm_cel"]`),$.cla);
           }              
           break;
         case 'col': 
           $.cla = 'fon-0'; 
           if( $dat.checked ){
-            ele.act('cla_eli',$api_app.tab.lis.querySelectorAll(`.app_tab[class*="_arm_cel"]`),$.cla);
+            ele.act('cla_eli',$api_lis._tab.val.querySelectorAll(`.app_tab[class*="_arm_cel"]`),$.cla);
           }else{
-            ele.act('cla_agr',$api_app.tab.lis.querySelectorAll(`.app_tab[class*="_arm_cel"]`),$.cla);
+            ele.act('cla_agr',$api_lis._tab.val.querySelectorAll(`.app_tab[class*="_arm_cel"]`),$.cla);
           }              
           break;
         }
@@ -164,9 +166,9 @@ class hol {
         switch( $.tip[2] ){
         case 'pos': 
           if( $dat.checked ){
-            ele.act('cla_eli',$api_app.tab.lis.querySelectorAll(`.app_tab[class*="_cro"] > .pos-0.${DIS_OCU}`),DIS_OCU);
+            ele.act('cla_eli',$api_lis._tab.val.querySelectorAll(`.app_tab[class*="_cro"] > .pos-0.${DIS_OCU}`),DIS_OCU);
           }else{
-            ele.act('cla_agr',$api_app.tab.lis.querySelectorAll(`.app_tab[class*="_cro"] > .pos-0:not(.${DIS_OCU})`),DIS_OCU);
+            ele.act('cla_agr',$api_lis._tab.val.querySelectorAll(`.app_tab[class*="_cro"] > .pos-0:not(.${DIS_OCU})`),DIS_OCU);
           }          
           break;
         }
@@ -179,25 +181,25 @@ class hol {
       // cabecera
       case 'cab':
         if( $dat.checked ){
-          ele.act('cla_eli',$api_app.tab.lis.querySelectorAll(`[data-cab="ton"].${DIS_OCU}`),DIS_OCU);
+          ele.act('cla_eli',$api_lis._tab.val.querySelectorAll(`[data-cab="ton"].${DIS_OCU}`),DIS_OCU);
         }else{
-          ele.act('cla_agr',$api_app.tab.lis.querySelectorAll(`[data-cab="ton"]:not(.${DIS_OCU})`),DIS_OCU);
+          ele.act('cla_agr',$api_lis._tab.val.querySelectorAll(`[data-cab="ton"]:not(.${DIS_OCU})`),DIS_OCU);
         }        
         break;
       // columas: plasma radial
       case 'rad': 
         if( $dat.checked ){
-          ele.act('cla_eli',$api_app.tab.lis.querySelectorAll(`[data-cab="rad"].${DIS_OCU}`),DIS_OCU);
+          ele.act('cla_eli',$api_lis._tab.val.querySelectorAll(`[data-cab="rad"].${DIS_OCU}`),DIS_OCU);
         }else{
-          ele.act('cla_agr',$api_app.tab.lis.querySelectorAll(`[data-cab="rad"]:not(.${DIS_OCU})`),DIS_OCU);
+          ele.act('cla_agr',$api_lis._tab.val.querySelectorAll(`[data-cab="rad"]:not(.${DIS_OCU})`),DIS_OCU);
         }      
         break;
       // filas: heptadas
       case 'hep':
         if( $dat.checked ){
-          ele.act('cla_eli',$api_app.tab.lis.querySelectorAll(`.sec-hep.${DIS_OCU}`),DIS_OCU);
+          ele.act('cla_eli',$api_lis._tab.val.querySelectorAll(`.sec-hep.${DIS_OCU}`),DIS_OCU);
         }else{
-          ele.act('cla_agr',$api_app.tab.lis.querySelectorAll(`.sec-hep:not(.${DIS_OCU})`),DIS_OCU);
+          ele.act('cla_agr',$api_lis._tab.val.querySelectorAll(`.sec-hep:not(.${DIS_OCU})`),DIS_OCU);
         }
         break;            
       } 
@@ -205,28 +207,28 @@ class hol {
     // castillo
     case 'cas':
       if( !$.tip[1] ){
-        if( $api_app.tab.lis.classList[1] == 'cas' ){
-          $api_app.tab.lis.querySelectorAll('.app_ope').forEach( $v => $v.classList.toggle('bor-1') );
+        if( $api_lis._tab.val.classList[1] == 'cas' ){
+          $api_lis._tab.val.querySelectorAll('.app_ope').forEach( $v => $v.classList.toggle('bor-1') );
         }
         else{
           if( $dat.checked ){
-            $api_app.tab.lis.querySelectorAll(`.pos-0.${DIS_OCU}`).forEach( $v => $v.classList.remove(DIS_OCU) );
+            $api_lis._tab.val.querySelectorAll(`.pos-0.${DIS_OCU}`).forEach( $v => $v.classList.remove(DIS_OCU) );
           }else{
-            $api_app.tab.lis.querySelectorAll(`.pos-0:not(.${DIS_OCU})`).forEach( $v => $v.classList.add(DIS_OCU) );
+            $api_lis._tab.val.querySelectorAll(`.pos-0:not(.${DIS_OCU})`).forEach( $v => $v.classList.add(DIS_OCU) );
           }        
         }
       }else{
         switch( $.tip[1] ){
         // posicion
         case 'pos': 
-          if( $api_app.tab.lis.classList[1] == 'cas' ){
-            $api_app.tab.lis.querySelectorAll(`.pos`).forEach( $v => $v.classList.toggle('bor-1') );
+          if( $api_lis._tab.val.classList[1] == 'cas' ){
+            $api_lis._tab.val.querySelectorAll(`.pos`).forEach( $v => $v.classList.toggle('bor-1') );
           }
           else{
             if( $dat.checked ){
-              $api_app.tab.lis.querySelectorAll(`.pos-0.${DIS_OCU}`).forEach( $v => $v.classList.remove(DIS_OCU) );
+              $api_lis._tab.val.querySelectorAll(`.pos-0.${DIS_OCU}`).forEach( $v => $v.classList.remove(DIS_OCU) );
             }else{
-              $api_app.tab.lis.querySelectorAll(`.pos-0:not(.${DIS_OCU})`).forEach( $v => $v.classList.add(DIS_OCU) );
+              $api_lis._tab.val.querySelectorAll(`.pos-0:not(.${DIS_OCU})`).forEach( $v => $v.classList.add(DIS_OCU) );
             }        
           }        
           break;
@@ -234,26 +236,26 @@ class hol {
         case 'bor': 
           $.cla = "bor-1";
           if( $dat.checked ){
-            ele.act('cla_agr',$api_app.tab.lis.querySelectorAll(`.app_tab[class*="_cas"]:not(.${$.cla})`),$.cla);
+            ele.act('cla_agr',$api_lis._tab.val.querySelectorAll(`.app_tab[class*="_cas"]:not(.${$.cla})`),$.cla);
           }else{
-            ele.act('cla_eli',$api_app.tab.lis.querySelectorAll(`.app_tab[class*="_cas"].${$.cla}`),$.cla);
+            ele.act('cla_eli',$api_lis._tab.val.querySelectorAll(`.app_tab[class*="_cas"].${$.cla}`),$.cla);
           }
           break;          
         // color de fondo : 1-5
         case 'col':
           $.cla = "fon-0";
           if( $dat.checked ){
-            ele.act('cla_eli',$api_app.tab.lis.querySelectorAll(`.app_tab[class*="_cas"][class*="fon_col-"].${$.cla}`),$.cla);
+            ele.act('cla_eli',$api_lis._tab.val.querySelectorAll(`.app_tab[class*="_cas"][class*="fon_col-"].${$.cla}`),$.cla);
           }else{
-            ele.act('cla_agr',$api_app.tab.lis.querySelectorAll(`.app_tab[class*="_cas"][class*="fon_col-"]:not(.${$.cla})`),$.cla);
+            ele.act('cla_agr',$api_lis._tab.val.querySelectorAll(`.app_tab[class*="_cas"][class*="fon_col-"]:not(.${$.cla})`),$.cla);
           }             
           break;
         // tog: orbitales
         case 'orb':
           if( $dat.checked ){
-            ele.act('cla_eli',$api_app.tab.lis.querySelectorAll(`.sec.-orb.${DIS_OCU}`),DIS_OCU);            
+            ele.act('cla_eli',$api_lis._tab.val.querySelectorAll(`.sec.-orb.${DIS_OCU}`),DIS_OCU);            
           }else{
-            ele.act('cla_agr',$api_app.tab.lis.querySelectorAll(`.sec.-orb:not(.${DIS_OCU})`),DIS_OCU);
+            ele.act('cla_agr',$api_lis._tab.val.querySelectorAll(`.sec.-orb:not(.${DIS_OCU})`),DIS_OCU);
           }
           break;
         }
@@ -264,54 +266,55 @@ class hol {
       switch( $.tip[1] ){
       // cabecera
       case 'ton':
-        $.sec_ini = $api_app.tab.lis.querySelector('.sec.-ini');
+        $.sec_ini = $api_lis._tab.val.querySelector('.sec.-ini');
         ele.act('cla_agr',$.sec_ini,DIS_OCU);
         if( $dat.checked ){
-          $api_app.tab.lis.style.gridTemplateRows = 'repeat(21,1fr)';
-          ele.act('cla_eli',$api_app.tab.lis.querySelectorAll(`.sec.-ton.${DIS_OCU}`),DIS_OCU);
+          $api_lis._tab.val.style.gridTemplateRows = 'repeat(21,1fr)';
+          ele.act('cla_eli',$api_lis._tab.val.querySelectorAll(`.sec.-ton.${DIS_OCU}`),DIS_OCU);
           // muestro seccion
-          if( $api_app.tab.lis.querySelector(`.sec.-sel:not(.${DIS_OCU})`) ){ 
+          if( $api_lis._tab.val.querySelector(`.sec.-sel:not(.${DIS_OCU})`) ){ 
             ele.act('cla_eli',$.sec_ini,DIS_OCU);
           }
         }else{
-          $api_app.tab.lis.style.gridTemplateRows = 'repeat(20,1fr)';
-          ele.act('cla_agr',$api_app.tab.lis.querySelectorAll(`.sec.-ton:not(.${DIS_OCU})`),DIS_OCU);
+          $api_lis._tab.val.style.gridTemplateRows = 'repeat(20,1fr)';
+          ele.act('cla_agr',$api_lis._tab.val.querySelectorAll(`.sec.-ton:not(.${DIS_OCU})`),DIS_OCU);
         }        
         break;
       // lateral izquierdo
       case 'sel':
-        $.sec_ini = $api_app.tab.lis.querySelector('.sec.-ini');
+        $.sec_ini = $api_lis._tab.val.querySelector('.sec.-ini');
         ele.act('cla_agr',$.sec_ini,DIS_OCU);
         if( $dat.checked ){
-          ele.act('cla_eli',$api_app.tab.lis.querySelectorAll(`.sec.-sel.${DIS_OCU}`),DIS_OCU);
+          ele.act('cla_eli',$api_lis._tab.val.querySelectorAll(`.sec.-sel.${DIS_OCU}`),DIS_OCU);
           // muestro seccion
-          if( $api_app.tab.lis.querySelector(`.sec.-ton:not(.${DIS_OCU})`) ){ 
+          if( $api_lis._tab.val.querySelector(`.sec.-ton:not(.${DIS_OCU})`) ){ 
             ele.act('cla_eli',$.sec_ini,DIS_OCU);
           }
         }else{
-          ele.act('cla_agr',$api_app.tab.lis.querySelectorAll(`.sec.-sel:not(.${DIS_OCU})`),DIS_OCU);
+          ele.act('cla_agr',$api_lis._tab.val.querySelectorAll(`.sec.-sel:not(.${DIS_OCU})`),DIS_OCU);
         }
         break;
       }
       break;
     }
-  }// portales de activacion
+  }
+  // portales de activacion
   static tab_pag( $dat, $ope, ...$opc ){
 
-    let $ = dat.var($dat);
+    let $ = doc.var($dat);
 
-    $.kin = $_hol_val.kin;
+    $.kin = $_hol.val.kin;
 
     $.ide = `pag_${$.var_ide}`;
 
     $.cla = [`_hol-${$.ide}`, `_val-opc-${$.ide}`, `_val-opc_act-${$.ide}`];
 
-    $.tab = $api_app.tab.ide;
+    $.tab = $api_lis._tab.ide;
 
     // galácticos
     if( $.var_ide == 'kin' ){
 
-      $api_app.tab.lis.querySelectorAll(`${$api_app.tab.cla}[data-hol_kin]`).forEach( $pos => {
+      $api_lis._tab.val.querySelectorAll(`${$api_lis._tab.cla}[data-hol_kin]`).forEach( $pos => {
 
         $.kin = hol._('kin',$pos.dataset['hol_kin']);      
 
@@ -323,7 +326,7 @@ class hol {
     // solares
     else if( $.var_ide == 'psi' ){
 
-      $api_app.tab.lis.querySelectorAll(`${$api_app.tab.cla}[data-hol_psi]`).forEach( $pos => {
+      $api_lis._tab.val.querySelectorAll(`${$api_lis._tab.cla}[data-hol_psi]`).forEach( $pos => {
 
         $.psi = hol._('psi',$pos.dataset['hol_psi']);
 
@@ -344,9 +347,9 @@ class hol {
   }// parejas del oráculo
   static tab_par( $dat, $ope, ...$opc ){
 
-    let $ = dat.var($dat);
+    let $ = doc.var($dat);
 
-    $.kin = $_hol_val.kin;
+    $.kin = $_hol.val.kin;
 
     $.ide = `par_${$.var_ide}`;
 
@@ -358,25 +361,25 @@ class hol {
 
       $._par_lis.forEach( $ide => {
 
-        hol.tab_par( $api_app.var.querySelector(`[name="${$ide}"]`) );
+        hol.tab_par( $api_doc._var.querySelector(`[name="${$ide}"]`) );
       });
     }// por pareja
     else{
       // marco pareja
       if( $._par_lis.includes($.var_ide) ){
         // desmarco todos los anteriores
-        ele.act('cla_eli',$api_app.tab.lis.querySelectorAll(`.${$.cla[0]}`),$.cla);
+        ele.act('cla_eli',$api_lis._tab.val.querySelectorAll(`.${$.cla[0]}`),$.cla);
         // marco correspondientes
         if( $dat.checked ){
-          $api_app.tab.lis.querySelectorAll(
-            `${$api_app.tab.cla}[data-hol_kin="${hol._('kin',$.kin)[`par_${$.var_ide}`]}"]:not(.${$.cla})`
+          $api_lis._tab.val.querySelectorAll(
+            `${$api_lis._tab.cla}[data-hol_kin="${hol._('kin',$.kin)[`par_${$.var_ide}`]}"]:not(.${$.cla})`
           ).forEach( $ele =>{ 
             
             ele.act('cla_agr',$ele,$.cla);
           })
         }
         // evaluo extensiones
-        hol.tab_par( $api_app.var.querySelector(`[name="ext"]`) );
+        hol.tab_par( $api_doc._var.querySelector(`[name="ext"]`) );
       }
       // extiendo oráculo
       else if( $.var_ide == 'ext' ){
@@ -389,18 +392,18 @@ class hol {
           // elimino marcas previas + marco extensiones por pareja
           $.cla[0] = `_hol-par_${$i}-ext`;                    
           // agrgo 3 clases : -ext , _val-opc, _val-opc_act
-          ele.act('cla_eli',$api_app.tab.lis.querySelectorAll(`.${$.cla[0]}`),$.cla);
+          ele.act('cla_eli',$api_lis._tab.val.querySelectorAll(`.${$.cla[0]}`),$.cla);
 
           // marco extensiones
           if( 
-            $dat.checked && $api_app.var.querySelector(`[name="${$i}"]`).checked && 
-            ( $.ele = $api_app.tab.lis.querySelector(`${$api_app.tab.cla}[data-hol_kin="${hol._('kin',$.kin)[`par_${$i}`]}"]:not(.${$.cla[0]})`) ) 
+            $dat.checked && $api_doc._var.querySelector(`[name="${$i}"]`).checked && 
+            ( $.ele = $api_lis._tab.val.querySelector(`${$api_lis._tab.cla}[data-hol_kin="${hol._('kin',$.kin)[`par_${$i}`]}"]:not(.${$.cla[0]})`) ) 
           ){
             $._kin = hol._('kin',$.ele.dataset['hol_kin']);
 
             $._par_lis.map( $ide => `par_${$ide}` ).forEach( $ide_ext => {
 
-              $api_app.tab.lis.querySelectorAll(`${$api_app.tab.cla}[data-hol_kin="${$._kin[$ide_ext]}"]`).forEach( $ext => {
+              $api_lis._tab.val.querySelectorAll(`${$api_lis._tab.cla}[data-hol_kin="${$._kin[$ide_ext]}"]`).forEach( $ext => {
                 $.val_tot++;                
                 ele.act('cla_agr',$ext,$.cla);
               })
@@ -410,15 +413,15 @@ class hol {
         // actualizo cantidades
         $._par_lis.forEach( $ide => {
 
-          if( $.tot = $api_app.var.querySelector(`div.atr > [name="${$ide}"] ~ span > n`) ){
+          if( $.tot = $api_doc._var.querySelector(`div.atr > [name="${$ide}"] ~ span > n`) ){
 
-            $.tot.innerHTML = $api_app.tab.lis.querySelectorAll(`[class*="_hol-par_${$ide}"]`).length;
+            $.tot.innerHTML = $api_lis._tab.val.querySelectorAll(`[class*="_hol-par_${$ide}"]`).length;
           }
         });
         // total general
-        if( $.tot = $api_app.var.querySelector('div.atr > [name="cue"]') ){
+        if( $.tot = $api_doc._var.querySelector('div.atr > [name="cue"]') ){
 
-          $.tot.innerHTML = $api_app.tab.lis.querySelectorAll(`[class*="_hol-par_"]`).length;
+          $.tot.innerHTML = $api_lis._tab.val.querySelectorAll(`[class*="_hol-par_"]`).length;
         }
         // actualizo acumulado por opciones
         app_tab.act('opc');        
@@ -427,28 +430,28 @@ class hol {
   }// pulsares de onda
   static tab_pul( $dat, $ope, ...$opc ){
 
-    let $ = dat.var($dat);
+    let $ = doc.var($dat);
 
-    $.kin = $_hol_val.kin;
+    $.kin = $_hol.val.kin;
 
     $.ide = `pul_${$.var_ide}`;
 
     $.cla = [`_hol-${$.ide}`,"_val-opc-pul","_val-opc_act-pul"];
 
-    $.tab = $api_app.tab.ide;
+    $.tab = $api_lis._tab.ide;
 
     // elimino todos los pulsares anteriores
-    ele.act('htm_eli',$api_app.tab.lis.querySelectorAll(`.sec.-ond[data-pul="${$.var_ide}"]`));
+    ele.act('htm_eli',$api_lis._tab.val.querySelectorAll(`.sec.-ond[data-pul="${$.var_ide}"]`));
     
     // inicializo acumulados
-    ele.act('cla_eli',$api_app.tab.lis.querySelectorAll(`.${$.cla[0]}`),$.cla);
+    ele.act('cla_eli',$api_lis._tab.val.querySelectorAll(`.${$.cla[0]}`),$.cla);
     
     // posicion principal por kin      
-    if( $dat.checked && ( $.pos = $api_app.tab.lis.querySelector(`${$api_app.tab.cla}[data-hol_kin="${$.kin}"]`) ) ){
+    if( $dat.checked && ( $.pos = $api_lis._tab.val.querySelector(`${$api_lis._tab.cla}[data-hol_kin="${$.kin}"]`) ) ){
       switch( $.tab ){
       // estaciones cromáticas : 1 x 5
       case 'kin_cro': 
-        $.val = num.ran($.pos.parentElement.getAttribute('pos'),13);
+        $.val = num.val_ran($.pos.parentElement.getAttribute('pos'),13);
         break;
       // trayectorias armónicas : 1 x 20
       case 'kin_arm': 
@@ -471,7 +474,7 @@ class hol {
         $.ton_pul = $.ton[ $.pul_ide = $.ide.split('_')[1] ];
         
         // marco acumulos
-        $api_app.tab.lis.querySelectorAll(`${$api_app.tab.cla}[data-hol_kin]`).forEach( $e => {
+        $api_lis._tab.val.querySelectorAll(`${$api_lis._tab.cla}[data-hol_kin]`).forEach( $e => {
 
           $.ton = hol._('ton',$e.dataset['hol_ton']);
 
@@ -479,7 +482,7 @@ class hol {
           
         });
         // muestro pulsares de la o.e.
-        $api_app.tab.lis.querySelectorAll(`.sec.-ond[data-pul="${$.var_ide}"]`).forEach( $e => {
+        $api_lis._tab.val.querySelectorAll(`.sec.-ond[data-pul="${$.var_ide}"]`).forEach( $e => {
           
           $e.innerHTML += hol.ima(`ton_${$.var_ide}`, $.ton_pul, {'class':'fon'} );
         });

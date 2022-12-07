@@ -2,18 +2,55 @@
 'use strict';
 
 class doc {
+  
+  _bot = 'body > .doc_bot';
+  _win = 'body > .doc_win';
+  _pan = 'body > .doc_pan';
+  _sec = 'body > .doc_sec';
+  _bar = 'body > .doc_bar';
+  _pie = 'body > .doc_pie';
+  _var = {};
+  _ico = [];
 
   constructor( $dat = {} ){
 
-    for( const $atr in $dat ){ this[$atr] = $dat[$atr]; }
+    for( const $atr in this ){
+      if( typeof(this[$atr]) == 'string' ) this[$atr] = document.querySelector(this[$atr]);
+    }
+
+    for( const $atr in $dat ){ this[$atr] = $dat[$atr]; };    
     
+  }// getter
+  static _( $ide, $val ){
+    let $_ = [], $_dat, $est = `_${$ide}`;
+    
+    if( !$api_doc || $api_doc[$est] === undefined ){
+      // ...pido datos
+    }
+    $_dat = $api_doc[$est];
+
+    if( !!($val) ){
+      $_ = $val;
+      if( typeof($val) != 'object' ){
+        switch( $ide ){
+        default:        
+          if( Number($val) ) $val = parseInt($val)-1;
+          if( $_dat && !!$_dat[$val] ) $_ = $_dat[$val];        
+          break;
+        }        
+      }
+    }
+    else{
+      $_ = $_dat ? $_dat : [];
+    }
+    return $_;
   }
 
   // pantalla modal : .doc_win > article > header + section
   static win( $ide, $ope ){
     let $ = {};    
     // botones
-    if( $ide.nodeName && $ide.classList.contains('dat_ico') ){
+    if( $ide.nodeName && $ide.classList.contains('doc_ico') ){
       // cierro pantalla
       $.art = $ide.parentElement.parentElement.parentElement;
       if( $ide.dataset.ope == 'fin' || $ide.dataset.ope == 'pre' ){        
@@ -32,29 +69,29 @@ class doc {
       }
     }// articulos
     else{
-      $.art = typeof($ide) == 'string' ?  $api_app.doc.win.querySelector(`article.ide-${$ide}`) : $ide;
+      $.art = typeof($ide) == 'string' ?  $api_doc._win.querySelector(`article.ide-${$ide}`) : $ide;
       $.htm = $.art.querySelector(`div:nth-child(2)`);
       // actualizo contenido
       if( !!$ope ){
-        $.opc = $ope.opc ? lis.val($ope.opc) : [];
+        $.opc = $ope.opc ? lis.val_ite($ope.opc) : [];
         // creo nueva ventana con mismo identificador
         if( $.opc.includes('pos') ){
-          $api_app.doc.win.appendChild( $.art = $.art.cloneNode(true) );
-          $.art.dataset.pos = $api_app.doc.win.querySelectorAll(`article[data-pos]`).length + 1;
+          $api_doc._win.appendChild( $.art = $.art.cloneNode(true) );
+          $.art.dataset.pos = $api_doc._win.querySelectorAll(`article[data-pos]`).length + 1;
           // agrego icono : retroceder
           if( $.art.dataset.pos > 1 ){
             $.ope = $.art.querySelector('header:first-child > .ope');
-            $.ope.insertBefore( ele.val_cod( dat.ico('val_mov-izq',{ 
+            $.ope.insertBefore( ele.val_cod( doc.ico('val_mov-izq',{ 
               'title': "Volver a la pantalla anterior", 'data-ope':"pre", 'onclick':"doc.win(this)" 
-            })), $.ope.querySelector('.dat_ico.dat_fin') );
+            })), $.ope.querySelector('.doc_ico.dat_fin') );
           }
           $.htm = $.art.querySelector(`div:nth-child(2)`);
         }
         // icono
-        if( $.ico = $.art.querySelector(`header:first-child > .dat_ico:first-of-type`) ){
+        if( $.ico = $.art.querySelector(`header:first-child > .doc_ico:first-of-type`) ){
           $.ico.innerHTML = '';
           if( $ope.ico !== undefined ){
-            if( typeof($ope.ico) == 'string' ) $ope.ico = dat.ico($ope.ico,{ class:'mar_hor-1' });
+            if( typeof($ope.ico) == 'string' ) $ope.ico = doc.ico($ope.ico,{ class:'mar_hor-1' });
             ele.val_mod($ope.ico,$.ico);
           }
         }
@@ -71,11 +108,11 @@ class doc {
       $.htm.scroll(0,0);// scroll
     }
     // pantalla de fondo
-    if( $api_app.doc.win.querySelector(`article[class*="ide-"]:not(.${DIS_OCU})`) ){
-      $api_app.doc.win.classList.contains(DIS_OCU) && $api_app.doc.win.classList.remove(DIS_OCU);
+    if( $api_doc._win.querySelector(`article[class*="ide-"]:not(.${DIS_OCU})`) ){
+      $api_doc._win.classList.contains(DIS_OCU) && $api_doc._win.classList.remove(DIS_OCU);
     }
-    else if( !$api_app.doc.win.classList.contains(DIS_OCU) ){
-      $api_app.doc.win.classList.add(DIS_OCU);
+    else if( !$api_doc._win.classList.contains(DIS_OCU) ){
+      $api_doc._win.classList.add(DIS_OCU);
     }    
   }
 
@@ -84,25 +121,23 @@ class doc {
 
     if( $ide && $ide.nodeName ) $ide = $ide.classList[0].split('-')[1];
 
-    $api_app.doc.pan.querySelectorAll(`:is(nav,article)[class*="ide-"]:not( .ide-${$ide}, .${DIS_OCU} )`).forEach( $e => $e.classList.add(DIS_OCU) );
-    $api_app.doc.pan.querySelectorAll(`:is(nav,article).ide-${$ide}`).forEach( $e => $e.classList.toggle(DIS_OCU) );
+    $api_doc._pan.querySelectorAll(`:is(nav,article)[class*="ide-"]:not( .ide-${$ide}, .${DIS_OCU} )`).forEach( $e => $e.classList.add(DIS_OCU) );
+    $api_doc._pan.querySelectorAll(`:is(nav,article).ide-${$ide}`).forEach( $e => $e.classList.toggle(DIS_OCU) );
 
     // aculto-muestro contenedor
-    if( $api_app.doc.pan.querySelector(`:is(nav,article)[class*="ide-"]:not(.${DIS_OCU})`) ){
-      $api_app.doc.pan.classList.contains(DIS_OCU) && $api_app.doc.pan.classList.remove(DIS_OCU);
-     // $api_app.doc.sec.style.gridColumn = "2/sp";
+    if( $api_doc._pan.querySelector(`:is(nav,article)[class*="ide-"]:not(.${DIS_OCU})`) ){
+      $api_doc._pan.classList.contains(DIS_OCU) && $api_doc._pan.classList.remove(DIS_OCU);
     }
-    else if( !$api_app.doc.pan.classList.contains(DIS_OCU) ){
-      $api_app.doc.pan.classList.add(DIS_OCU);
-      //$api_app.doc.sec.style.gridColumn = "1/sp";
+    else if( !$api_doc._pan.classList.contains(DIS_OCU) ){
+      $api_doc._pan.classList.add(DIS_OCU);
     }    
   }
 
   // seccion central : main.doc_sec > article
   static sec( $ide ){
-    $api_app.doc.sec.querySelectorAll(`article[class*="ide-"]:not(.${DIS_OCU})`).forEach( $e => $e.classList.add(DIS_OCU) );
-    $api_app.doc.sec.querySelectorAll(`article.ide-${$ide}.${DIS_OCU}`).forEach( $e => $e.classList.remove(DIS_OCU) );
-    $api_app.doc.sec.scroll(0, 0);
+    $api_doc._sec.querySelectorAll(`article[class*="ide-"]:not(.${DIS_OCU})`).forEach( $e => $e.classList.add(DIS_OCU) );
+    $api_doc._sec.querySelectorAll(`article.ide-${$ide}.${DIS_OCU}`).forEach( $e => $e.classList.remove(DIS_OCU) );
+    $api_doc._sec.scroll(0, 0);
   }
 
   // navegacion de contenido : pestaña-barra-operador
@@ -124,7 +159,7 @@ class doc {
     // contenido
     if( $ope ){
       // recorro items
-      lis.val_dec( $.lis.children ).forEach( $e => {
+      lis.val_cod( $.lis.children ).forEach( $e => {
         // coincide con el seleccionado
         if( $e.classList.contains(`ide-${$ope}`) ){          
           // hago toogles
@@ -155,6 +190,59 @@ class doc {
     }  
   }
 
+  /* Icono : .doc_ico.$ide 
+  */
+  static ico( $ide, $ele = {} ){
+    let $_="<span class='doc_ico'></span>", $ = {};
+    $.doc_ico = doc._('ico');
+    if( !!($.doc_ico[$ide]) ){
+      $.eti = 'span';
+      if( $ele['eti'] ){
+        $.eti = $ele['eti'];
+        delete($ele['eti']);
+      }      
+      if( $.eti == 'button' && !($ele['type']) ) $ele['type'] = "button"; 
+      $_ = `
+      <${$.eti}${ele.atr(ele.cla($ele,`doc_ico ${$ide} material-icons-outlined`,'ini'))}>
+        ${$.doc_ico[$ide].val}
+      </${$.eti}>`;
+    }
+    return $_;
+  }  
+
+  /* Variable :
+  */
+  // form > .var > label + (select,input,textarea,button)[name]
+  static var( $tip, $dat, $ope, ...$opc ){
+    let $={};
+
+    if( $tip && $tip.nodeName ){
+      $dat = $tip;
+      $api_doc._var = ele.val_ver($dat,{'eti':'form'});
+      $.var_ide = $dat.getAttribute('name');
+    }
+    else{
+      switch( $tip ){
+      case 'mar':
+        if( $ope ){
+          $dat.parentElement.parentElement.querySelectorAll(`.${$ope}`).forEach( $e => $e.classList.remove($ope) );
+          $dat.classList.add($ope);
+        }
+        break;
+      case 'tog':
+        if( $ope ){
+          $dat.parentElement.querySelectorAll(`.${$ope}`).forEach( $e => $e != $dat && $e.classList.remove($ope) );
+          $dat.classList.toggle($ope);
+        }
+        break;
+      }
+    }
+    return $;
+  }// toggles por : form > fieldsets > ...
+  static var_tog( $ide ){
+    lis.val_cod( ele.val_ver($dat,{'eti':'fieldset'}).children ).forEach( $e => $e != $dat && $e.classList.toggle(DIS_OCU) );
+  }
+
   // contenedor : bloque + visible/oculto  
   static val( $dat, $ope ){
     let $ = {};
@@ -162,7 +250,7 @@ class doc {
     if( !$ope ){
       $.ite = $dat.parentElement;
       if( 
-        ( $.bot = $.ite.querySelector('.dat_ico.val_tog') ) 
+        ( $.bot = $.ite.querySelector('.doc_ico.val_tog') ) 
         && ( $.sec = $.ite.nextElementSibling )
       ){        
       
@@ -179,14 +267,16 @@ class doc {
     // por opciones
     else if( ['tod','nad'].includes($ope) ){
 
-      if( $api_app.var = ele.val_ver($dat,{'eti':"form"}) ){
+      if( $api_doc._var = ele.val_ver($dat,{'eti':"form"}) ){
 
-        $.lis = !!$api_app.var.nextElementSibling ? $api_app.var.nextElementSibling : $api_app.var.parentElement.parentElement;
+        $.lis = !!$api_doc._var.nextElementSibling ? $api_doc._var.nextElementSibling : $api_doc._var.parentElement.parentElement;
 
         $.cla = ( $ope == 'tod' ) ? `.ocu` : `:not(.ocu)`;
               
-        $.lis.querySelectorAll(`.doc_val > .dat_ico.val_tog${$.cla}`).forEach( $e => $e.click() );
+        $.lis.querySelectorAll(`.doc_val > .doc_ico.val_tog${$.cla}`).forEach( $e => $e.click() );
       }
     }
   }
+
+  
 }

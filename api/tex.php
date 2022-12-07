@@ -212,7 +212,7 @@ class tex {
             $dat_lis = [];
           }        
           if( empty($ope['id']) ){ 
-            $ope['id']="_tex-{$tip}-".dat::var_ide("_tex-{$tip}-");
+            $ope['id']="_tex-{$tip}-".doc::var_ide("_tex-{$tip}-");
           }
           $ope['list'] = "{$ope['id']}-lis";
           $lis_htm = "

@@ -17,6 +17,10 @@ optgroup {
   color: var(--let_opc);
 }
 
+select.num {
+  color: var(--let_num);
+}
+
 input[type='color']{
   width: 2rem;
 }

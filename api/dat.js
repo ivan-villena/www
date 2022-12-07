@@ -3,6 +3,8 @@
 
 // Dato : esq.est[ide].atr
 class dat {
+
+  _var = {};
  
   constructor( $dat = {} ){
     
@@ -63,12 +65,10 @@ class dat {
     // por estructura : [ {}, [] ]
     else{
 
-      $_ = est.val('ver',$dat,$ope);
+      $_ = lis.val_est('ver',$dat,$ope);
     }
     return $_;
-  }  
-
-  // tipo
+  }// tipo
   static tip( $val ){
     let $tam = 0, $ide = typeof($val);
     
@@ -151,9 +151,7 @@ class dat {
     // busco
     $.tip_lis = dat._('tip');
     return !!$.tip_lis[$ide] ? $.tip_lis[$ide] : false;     
-  }
-
-  // comparacion de valores
+  }// comparacion de valores
   static ver( $dat, $ide, $val, $opc=['g','i'] ){
     let $_ = false;
     switch($ide){
@@ -175,9 +173,7 @@ class dat {
     case '!*':  $_ = tex.val_dec( `[^${tex.val_cod($val)}]`, $opc.join('') ).test( $dat.toString() ); break;
     }
     return $_;
-  }  
-
-  // identificador: esq.est[...atr]
+  }// identificador: esq.est[...atr]
   static ide( $dat='', $val={} ){
     
     $val.ide = $dat.split('.');
@@ -188,8 +184,8 @@ class dat {
     return $val;
   }
 
-  // Estructura
-  // ...
+  /* Estructura
+  */
   // Cargo operador
   static est_ope( $esq, $est, $ope, $dat ) {
 
@@ -207,7 +203,9 @@ class dat {
     return $_;
   }  
 
-  // valor : p[tit, nom, des] + ima 
+  /* Valor
+  */
+  // p[tit, nom, des] + ima 
   static val( $tip, $dat, $ope, ...$opc ){
 
     let $_ = "", $ = {};
@@ -263,11 +261,11 @@ class dat {
     return $_;
   }// opciones : esquema.estructura.atributos.valores
   static val_opc( $tip, $dat, $ope, ...$opc ){
-    let $_="", $ = dat.var($dat);
+    let $_="", $ = doc.var($dat);
     // vacio valores y atributos
     $.ini = ( $ide = ["val"] ) => {
       $ide.forEach( $i => { 
-        if( $.ope = $api_app.var.querySelector(`[name="${$i}"]`) ) ele.val_eli( $.ope, `option:not([value=""])` ); 
+        if( $.ope = $api_doc._var.querySelector(`[name="${$i}"]`) ) ele.val_eli( $.ope, `option:not([value=""])` ); 
       });
     };
     switch( $tip ){
@@ -339,59 +337,10 @@ class dat {
     return $_;
   }
   
-  // iconos : .dat_ico.$ide
-  static ico( $ide, $ele = {} ){
-    let $_="<span class='dat_ico'></span>", $ = {};
-    $.dat_ico = dat._('ico');
-    if( !!($.dat_ico[$ide]) ){
-      $.eti = 'span';
-      if( $ele['eti'] ){
-        $.eti = $ele['eti'];
-        delete($ele['eti']);
-      }      
-      if( $.eti == 'button' && !($ele['type']) ) $ele['type'] = "button"; 
-      $_ = `
-      <${$.eti}${ele.atr(ele.cla($ele,`dat_ico ${$ide} material-icons-outlined`,'ini'))}>
-        ${$.dat_ico[$ide].val}
-      </${$.eti}>`;
-    }
-    return $_;
-  }    
-
-  // Variable : div.var > label + (select,input,textarea,button)[name]
-  static var( $tip, $dat, $ope, ...$opc ){
-    let $={};
-
-    if( $tip && $tip.nodeName ){
-      $dat = $tip;
-      $api_app.var = ele.val_ver($dat,{'eti':'form'});
-      $.var_ide = $dat.getAttribute('name');
-    }
-    else{
-      switch( $tip ){
-      case 'mar':
-        if( $ope ){
-          $dat.parentElement.parentElement.querySelectorAll(`.${$ope}`).forEach( $e => $e.classList.remove($ope) );
-          $dat.classList.add($ope);
-        }
-        break;
-      case 'tog':
-        if( $ope ){
-          $dat.parentElement.querySelectorAll(`.${$ope}`).forEach( $e => $e != $dat && $e.classList.remove($ope) );
-          $dat.classList.toggle($ope);
-        }
-        break;
-      }
-    }
-    return $;
-  }// toggles por : form > fieldsets > ...
-  static var_tog( $ide ){
-    lis.val_dec( ele.val_ver($dat,{'eti':'fieldset'}).children ).forEach( $e => $e != $dat && $e.classList.toggle(DIS_OCU) );
-  }
-
-  // ficha : imagenes por valor con relaciones por estructura
+  /* Ficha : imagenes por valor ( relaciones por estructura ) 
+  */
   static fic( $dat, $ope, ...$opc ){
-    let $_="", $=dat.var($dat);
+    let $_="", $=doc.var($dat);
     $.dat = {};
 
     // actualizo valores principales
@@ -400,7 +349,7 @@ class dat {
       $.atr = $ite.querySelector('[name]').getAttribute('name');
       $.num = $ite.querySelector('[max]');
       $.num_max = $.num.getAttribute('max');
-      $.dat[`${$.atr}`] = ( $ope > 0 ) ? num.ran($ope, $.num_max) : 0;
+      $.dat[`${$.atr}`] = ( $ope > 0 ) ? num.val_ran($ope, $.num_max) : 0;
       $.num.innerHTML = $.dat[`${$.atr}`];
     });    
 
@@ -421,7 +370,8 @@ class dat {
     return $_;
   }
 
-  // informe : 
+  /* Informe : 
+  */
   static inf( $esq, $est, $val ){
     // pido ficha
     eje.val([ `dat::inf`, [ $esq, $est, $val ] ], $htm => {
@@ -430,21 +380,20 @@ class dat {
     });
   }
 
-  // operador:  
   // alta, baja, modificacion por tabla-informe
-  static ope_abm( $tip, $dat, $ope, ...$opc ){
-    let $ = dat.var($dat);
+  static abm( $tip, $dat, $ope, ...$opc ){
+    let $ = doc.var($dat);
     switch( $tip ){
     // cargo valores
     case 'var':
       $._val = {};
-      $api_app.var.querySelectorAll(`[id][name]`).forEach( $atr => {          
+      $api_doc._var.querySelectorAll(`[id][name]`).forEach( $atr => {          
         $._val[ $atr.name ] = $.atr.value;
       });      
     // inicializo valores
     case 'ope':
-      $api_app.var.querySelectorAll(`.atr > :is(select,input,textarea).fon-roj`).forEach( $e => $e.classList.remove('fon-roj') );
-      $api_app.var.querySelectorAll(`.atr > ul.col-roj`).forEach( $e => $e.parentElement.removeChild($e) );
+      $api_doc._var.querySelectorAll(`.atr > :is(select,input,textarea).fon-roj`).forEach( $e => $e.classList.remove('fon-roj') );
+      $api_doc._var.querySelectorAll(`.atr > ul.col-roj`).forEach( $e => $e.parentElement.removeChild($e) );
       break;
     // proceso errores
     case 'err':
@@ -453,7 +402,7 @@ class dat {
 
       this.abm('ope', $dat);
 
-      $api_app.var.querySelectorAll(`[id][name]`).forEach( $atr => {
+      $api_doc._var.querySelectorAll(`[id][name]`).forEach( $atr => {
         
         $.ide=$atr.name;
 
@@ -538,7 +487,7 @@ class dat {
     // reinicio formulario
     case 'fin':
       this.abm('ope', $dat );
-      $api_app.var.reset();
+      $api_doc._var.reset();
       break;  
     // proceso ABM : ini - agr - mod - eli
     default:
@@ -546,19 +495,19 @@ class dat {
       // cargo datos
       if( $.tip_eli ){
         if( !confirm('¿Confirmar Eliminación?') ){ return $; }
-        $ = this.abm('var',$api_app.var);
+        $ = this.abm('var',$api_doc._var);
       }else{
         $ = this.abm('err', $dat);
       }        
       // ejecuto proceso
       if( $.tip_eli || ( $._val && !$._tex ) ){        
         // actualizo datos
-        if( ( $.esq = $api_app.var.dataset.esq ) && ( $.est = $api_app.var.dataset.est ) ){
+        if( ( $.esq = $api_doc._var.dataset.esq ) && ( $.est = $api_doc._var.dataset.est ) ){
           eje.val(['dat::abm', [ $.esq, $.est, $tip, $._val ] ], $e => {
             if( !$e._err ){
               // reiniciar formulario
               this.abm('fin',$dat);
-              $api_app.var.reset();              
+              $api_doc._var.reset();              
               // reiniciar página
               window.location.href = ( $.tip_eli ) ? window.location.href.split('/').slice(0,-1).join('/') : window.location.href;
             }
@@ -571,219 +520,5 @@ class dat {
       break;    
     }
     return $;
-  }// acumulados : posicion + marca + seleccion
-  static ope_acu( $dat, $ope, ...$opc ){
-    let $ = {};
-
-    // actualizo acumulados
-    $.acu_val = {};
-    ( $opc.length == 0 ? $api_app.val_ope.acu : $opc ).forEach( $ide => {
-
-      // acumulo elementos del listado
-      $.acu_val[$ide] = $dat.querySelectorAll(`[class*="_val-${$ide}-"]`);
-
-      // actualizo total del operador
-      if( $.tot = $ope.querySelector(`[name="${$ide}"] ~ span > n`) ){
-
-        $.tot.innerHTML = $.acu_val[$ide].length;
-      }
-    });
-
-    // calculo el total grupal    
-    if( $.tot = $ope.querySelector(`[name="tot"]`) ){
-      $.tot.innerHTML = $dat.querySelectorAll(`[class*=_val-]:is([class*="_bor"],[class*="_act"])`).length;
-    }
-
-    // devuelvo seleccion
-    return $.acu_val;
-  }// sumatorias
-  static ope_sum( $dat, $ope ){
-
-    let $ = {};
-    
-    // actualizo: sumatorias + fichas
-    $ope.querySelectorAll('fieldset[data-esq][data-est]').forEach( $val => {
-
-      $.sum = 0;
-      $dat.forEach( $ite => $.sum += parseInt( $ite.dataset[`${$val.dataset.esq}_${$val.dataset.est}`] ) );
-
-      dat.fic( $val, $.sum);
-    });
-  }// filtros : dato + variables
-  static ope_ver( $tip, $dat, $ope, ...$opc ){
-
-    let $ = dat.var($dat);
-
-    $._tip = $tip.split('-');
-
-    $.cla_val = `_val-ver-`;
-    $.cla_ide=`${$.cla_val}_${$tip}`;
-    
-    ele.act('cla_eli',$dat,[$.cla_val, $.cla_ide]);
-
-    $api_app.var = $ope.querySelector(`form.ide-${$tip}`);
-
-    // datos de la base : estructura > valores [+ima]
-    if( $tip == 'val' ){
-
-      $.dat_est = $api_app.var.querySelector(`[name="est"]`);
-      $.dat_ide=$api_app.var.querySelector(`[name="ver"]`);
-      $.dat_val = $api_app.var.querySelector(`[name="val"]`);     
-
-      // actualizo dependencia
-      if( $.dat_ide.value && $.dat_val.value ){
-          
-        $ = dat.ide($.dat_ide.value,$);
-      
-        $dat.forEach( $e =>{
-
-          if( ( $.dat = dat.get($.esq,$.est,$e.dataset[`${$.esq}_${$.est}`]) ) ){
-
-            if( $.dat[$.atr] == $.dat_val.value ) ele.act('cla_agr',$e,[$.cla_val, $.cla_ide]);
-          }
-        });
-      }
-    }
-    // listado : posicion + fecja
-    else if( $tip == 'pos' || $tip == 'fec' ){
-      
-      // elimino valor de dato por seleccion
-      if( ( $.ver = $ope.querySelector(`form.ide-dat select[name="val"]`) ) && !!$.ver.value ) $.ver.value = '';
-            
-      // valores
-      $.val = {};
-      ['ini','fin','inc','lim'].forEach( $ide => {
-        // capturo valores
-        if( ( $.ite = $api_app.var.querySelector(`[name="${$ide}"]`) ) && !!$.ite.value ){
-
-          $.val[$ide] = ( $.ite.getAttribute('type') == 'number' ) ? num.val($.ite.value) : $.ite.value;
-        }
-      });
-      
-      // valido: si el inicio es mayor que el final
-      if( $.val.ini && $.val.ini > $.val.fin ){
-
-        $api_app.var.querySelector(`[name="ini"]`).value = $.val.ini = $.val.fin;
-      }
-      // si el final es mejor que el inicio
-      if( $.val.fin && $.val.fin < $.val.ini ){
-
-        $api_app.var.querySelector(`[name="fin"]`).value = $.val.fin = $.val.ini;
-      }    
-      // inicializo incremento
-      $.inc_val = 1;
-      if( ( !$.val.inc || $.val.inc <= 0 ) && ( $.ite = $api_app.var.querySelector(`[name="inc"]`) ) ){
-        $.ite.value = $.val.inc = 1;
-      }
-      // inicializo limites desde
-      if( !$.val.fin 
-        && ( $.ite = $api_app.var.querySelector(`[name="fin"]`) ) && ( $.max = $.ite.getAttribute('max') ) 
-      ){
-        $.val.fin = $.max;
-      }
-      // filtro por posicion de lista      
-      if( $tip == 'pos' ){
-        
-        $dat.forEach( $e => {
-          // valor por desde-hasta
-          $.pos_val = $e.classList[1].split('-')[1];
-          if( $.inc_val == 1 && $.pos_val >= $.val.ini && $.pos_val <= $.val.fin ){
-            ele.act('cla_agr',$e,[$.cla_val, $.cla_ide]);
-          }
-          // aplico salto
-          $.inc_val++;
-          if( $.inc_val > $.val.inc ) $.inc_val = 1;
-        });
-      }
-      // filtro por valor de fecha
-      else if( $tip == 'fec' ){
-
-        $.val.ini = $.val.ini ? $.val.ini.split('-') : '';
-        $.val.fin = $.val.fin ? $.val.fin.split('-') : '';
-
-        $dat.forEach( $e => {
-          // desde-hasta
-          if( $.inc_val == 1 && fec.val_ver( $e.dataset['fec_dat'], $.val.ini, $.val.fin ) ){
-
-            ele.act('cla_agr',$e,[$.cla_val, $.cla_ide]);
-          }
-          // aplico salto
-          $.inc_val++;
-          if( $.inc_val > $.val.inc ) $.inc_val = 1;
-        });
-      }
-
-      // limito resultado
-      if( $.val.lim ){
-
-        $.lis = $dat.filter( $e => $e.classList.contains($.cla_ide) );
-        // ultimos
-        if( $api_app.var.querySelector(`.dat_ico.lis_fin.bor-sel`) ) $.lis = $.lis.reverse();
-
-        $.lim_cue = 0;
-        $.lis.forEach( $e => {
-          $.lim_cue ++;
-          if( $.lim_cue > $.val.lim ) ele.act('cla_eli',$e,[$.cla_val, $.cla_ide]);
-        });
-      }
-    }
-    
-  }// conteos : valores de estructura relacionada por atributo
-  static ope_cue( $tip, $dat, $ope, ...$opc ){
-    let $ = dat.var($dat);
-
-    switch( $tip ){
-    // actualizo cuentas por valores
-    case 'act':
-      $.val_tot = $dat.length;
-
-      $ope.querySelectorAll(`table[data-esq][data-est]`).forEach( $tab => {
-
-        $.esq = $tab.dataset.esq;
-        $.est = $tab.dataset.est;
-                  
-        if( $.atr = $tab.dataset.atr ){
-
-          $tab.querySelectorAll(`tr[data-ide]`).forEach( $ite => {
-            $.ide = $ite.dataset.ide;
-            $.tot = 0;            
-            $dat.forEach( $v => {
-
-              if( $.dat = $v.dataset[`${$.esq}_${$.est}`] ){
-
-                if( ( $.dat_val = dat.get($.esq,$.est,$.dat) ) && ( $.dat_ide=$.dat_val[$.atr] ) && $.dat_ide == $.ide ) $.tot++;
-              }
-            });
-
-            $ite.querySelector('td[data-atr="tot"] > n').innerHTML = $.tot;
-            $ite.querySelector('td[data-atr="por"] > n').innerHTML = $.val_tot ? num.val_dec( ( $.tot / $.val_tot ) * 100 ) : $.val_tot;
-          });
-        }
-      });
-      break;
-    // filtro por valor textual
-    case 'ver':
-
-      $.ope = $api_app.var.querySelector('[name="ope"]').value;
-      $.val = $api_app.var.querySelector('[name="val"]').value;
-      $.lis = $api_app.var.nextElementSibling.querySelector('tbody');
-      if( !$.val ){
-
-        $.lis.querySelectorAll(`tr.${DIS_OCU}`).forEach( $e => $e.classList.remove(DIS_OCU) );
-      }
-      else{
-        
-        $.lis.querySelectorAll('tr').forEach( $e => {
-
-          if( dat.ver( $e.querySelector('td[data-atr="nom"]').innerHTML, $.ope, $.val ) ){
-            $e.classList.contains(DIS_OCU) && $e.classList.remove(DIS_OCU);
-          }
-          else if( !$e.classList.contains(DIS_OCU) ){
-            $e.classList.add(DIS_OCU);
-          }
-        });
-      }
-      break;              
-    }    
-  }  
+  }
 }

@@ -3,10 +3,10 @@
   error_reporting(E_ALL);
   ini_set('display_errors', '1');
   
-  // cargo sesion
+  // Inicio Sesion
   session_start();
 
-    // directorios :: localhost / icpv.com.ar  
+    // Rutas :: localhost / icpv.com.ar  
     define('SYS_NAV', "http://{$_SERVER['HTTP_HOST']}/" );
 
     // Base de datos: local / produccion
@@ -15,45 +15,45 @@
     define('DAT_PAS', "lu51zakoWA");
     define('DAT_ESQ', "c1461857_api");
 
-    // OPERACIONES : clases
+    // Elementos : Clases
     define('DIS_OCU', "dis-ocu");
     define('BOR_SEL', "bor-sel");
     define('FON_SEL', "fon-sel");
 
-    
+    // Sesion
     $_SESSION['ubi'] = "America/Argentina/Buenos_Aires";  
     if( !isset($_SESSION['usu']) ) $_SESSION['usu'] = 1;
     date_default_timezone_set( $_SESSION['ubi'] );
-    $sis_ini = time();    
+
+    // Inicio
+    $sis_ini = time();
+
   //
   // cargo modulos
-  $sis_cla = [
-    'sis/sql',
-    'app', 'doc', 'dat', 'usu', 
-    'arc', 'eje', 'obj', 'ele',
-    'opc', 'num', 'tex', 'fig', 'fec', 'hol', 
-    'lis', 'est', 'tab'
+  $sis_cla = [ 
+    'sis/sql', 
+    'dat', 'hol', 'usu', 'app', 'doc',
+    'ele', 'arc', 'eje', 'obj', 'lis', 
+    'opc', 'num', 'tex', 'fig', 'fec'
     ];
     
     foreach( $sis_cla as $cla_ide ){
 
       if( file_exists($rec = "./api/{$cla_ide}.php") ) require_once($rec);
     }
-    // cargo variables
+    // cargo variables        
     $api_opc = new opc();
     $api_num = new num();
     $api_tex = new tex();
     $api_fig = new fig();
     $api_fec = new fec();
     $api_hol = new hol();
-    $api_obj = new obj();
-    $api_lis = new lis();
-    $api_est = new est();
-    $api_tab = new tab();
-    $api_eje = new eje();
     $api_ele = new ele();
     $api_arc = new arc();
-    $api_dat = new dat();
+    $api_eje = new eje();
+    $api_obj = new obj();
+    $api_lis = new lis();
+    $api_dat = new dat();    
     $api_doc = new doc();
     $api_usu = new usu( $_SESSION['usu'] );
   //
@@ -76,9 +76,10 @@
       
       foreach( [ 'ton', 'sel', 'kin'] as $ide ){
         foreach( hol::_($ide) as $dat ){
-          $img = str_replace("localhost","www.icpv.com.ar",dat::est_ope('hol',$ide,'val.ima',$dat));
-          $img = str_replace("background: ","",$img);
-          $_ .= "UPDATE `cac_react`.`$ide` SET `img`='$img' WHERE ide='$dat->ide';<br>";
+          $img = dat::est_ope('hol',$ide,'val.ima',$dat);
+          $_ .= "UPDATE `cac_react`.`$ide` SET 
+            `img`='$img' 
+          WHERE `ide` = $dat->ide;<br>";
         }
       }
 
@@ -89,21 +90,23 @@
 
     exit;
   }
-  
-  ////////////////////////////////
+
+  ////////////////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////
+
   // cargo documento y aplicacion
   $api_app = new app( isset($_REQUEST['uri']) ? $_REQUEST['uri'] : "hol" );
 
   // pido contenido por aplicacion
   $_uri = $api_app->uri;
   if( file_exists($rec = "./src/{$_uri->esq}/index.php") ) require_once( $rec );
-    
+  
   // inicializo contenido
   $api_app->htm_ini();
   ?>
   <!DOCTYPE html>
   <html lang="es">
-      
+       
     <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width = device-width, initial-scale = 1, maximum-scale = 1">
@@ -140,7 +143,7 @@
       
       <!-- Contenido -->
       <main class="doc_sec">
-        <?= doc::sec( $api_app->htm['sec'], [ 'tit'=>$api_app->htm['tit'] ] ) ?>
+        <?= doc::sec( $api_app->htm['sec'] ) ?>
       </main>
       
       <?php if( !empty($api_app->htm['bar']) ){ ?>
@@ -158,19 +161,19 @@
       <?php } ?>
       
       <!-- Modales -->
-      <section class='doc_win dis-ocu'>
+      <div class='doc_win dis-ocu'>
         <?= $api_app->htm['win'] ?>
-      </section>
+      </div>
       
       <!-- Programas -->
-      <script>        
-        // sistema
+      <script>
+        // Rutas
         const SYS_NAV = "<?=SYS_NAV?>";        
-        // operativas
+        // Clases
         const DIS_OCU = "<?=DIS_OCU?>";
         const FON_SEL = "<?=FON_SEL?>";
         const BOR_SEL = "<?=BOR_SEL?>";        
-        // inicio log
+        // Peticiones
         const $sis_log = { 'php':[], 'jso':[] };
       </script>
       <?=$api_app->rec_cla('jso')?>
@@ -184,9 +187,7 @@
           }          
         }
         $dat_api = [];
-        foreach( ['_ico','_ope','_tip','_est_ope'] as $atr ){
-          $dat_api[$atr] = $api_dat->$atr;
-        }
+        foreach( ['_ope','_tip','_est_ope'] as $atr ){ $dat_api[$atr] = $api_dat->$atr; }
         ?>
         var $api_dat = new dat(<?= obj::val_cod($dat_api) ?>);
         var $api_app = new app({ uri : <?= obj::val_cod( $api_app->uri ) ?> });      

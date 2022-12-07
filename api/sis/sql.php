@@ -84,7 +84,7 @@ class sis_sql {
     if( $tip=='agr' ){     
       $_['atr'] = [];
       $_['val'] = [];    
-      foreach( lis::val($ope['val']) as $pos=>$ite ){
+      foreach( lis::val_ite($ope['val']) as $pos=>$ite ){
         $_['ite'] = [];
         foreach( $ite as $i=>$v  ){
           if( $pos==0 )
@@ -289,7 +289,7 @@ class sis_sql {
   static function atr( string $est, string $ope='ver', ...$opc ) : array | object | string {
     $_=[];
     $esq = DAT_ESQ;
-    $dat_lis = sis_sql::dec("SHOW FULL COLUMNS FROM `{$esq}`.`{$est}`");
+    $dat_lis = sis_sql::dec("SHOW FULL COLUMNS FROM `{$esq}`.`{$est}`");    
     if( isset($dat_lis['_err']) ){
       $dat_lis = sis_sql::dec("SHOW FULL COLUMNS FROM `{$esq}`.`{$est}`");
     }
@@ -432,7 +432,6 @@ class sis_sql {
     case 'ver': 
       if( !empty($ide = $opc[0]) ){
         foreach( sis_sql::dec("SHOW KEYS FROM `$esq`.`$est` WHERE `Key_name` = '".( $ide == 'pri' ? "PRIMARY" : $ide )."'") as $key ){
-
           $_[] = $key->Column_name;
         }
       }      
