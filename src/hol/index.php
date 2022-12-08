@@ -191,6 +191,7 @@
       }
       // imprimo operador de lista
       $lis_ope = dat::est_ope("hol",$_ide[0],'lis');
+      
       $lis_ope['val'] = $tab_ope['val'];
       if( isset($tab_ope['est']) ){
         $lis_ope['est'] = $tab_ope['est'];
@@ -326,17 +327,7 @@
 
   $api_app->rec['eje'] .= '
 
-    var $_hol = { 
-      val : '.obj::val_cod( $_hol->val ).' 
-    };
-
-    if( $api_app.uri.cab == "ope" ){
-
-      // actualizo clase del tablero
-
-      if( $api_lis._tab.dep = $api_lis._tab.val.querySelector(`.pos.ope.sec_par`) ){
-
-        $api_lis._tab.cla = `.pos.ope.sec_par > .lis.tab[class*="_par"] > .pos[class*="ide-"]`;
-      }
-    }'
+    var $_hol = { val : '.obj::val_cod( $_hol->val ).' };
+    
+    hol_ini();';
   ;

@@ -610,55 +610,55 @@ BORDES /////////////////////////////////////////////////////////////////////////
 
 /* Colores */
 .bor-sel {
-  border-width: 1px;
-  border-color: var(--col_azu);
-  border-radius: .3rem;
+  border-width: 1px !important;
+  border-color: var(--col_azu) !important;
+  border-radius: .3rem !important; 
 }
 .bor-val { 
-  border-width: 1px;
-  border-color: var(--col_ros); 
-  border-radius: .3rem;
+  border-width: 1px !important;
+  border-color: var(--col_ros) !important; 
+  border-radius: .3rem !important;
 }
 
 /* Espaciado */
 [class*="bor_esp-"] {
-  border-collapse: separate;
+  border-collapse: separate !important;
 }
 .bor_esp-1 {
-  border-spacing: .5rem .5rem;
+  border-spacing: .5rem .5rem !important;
 }
 .bor_esp-2 {
-  border-spacing: 1rem 1rem;
+  border-spacing: 1rem 1rem !important;
 }
 .bor_esp-1 {
-  border-spacing: 1.5rem 1.5rem;
+  border-spacing: 1.5rem 1.5rem !important;
 }
 
 /* 
 bordes - color 
 */
 [class*='bor_col-'] {
-  border-width: 2px;
-  border-style: double;
+  border-width: 2px !important;
+  border-style: double !important;
 }
 /* de 3*/
-.bor_col-3-1 { border-color: var(--col_roj); }
-.bor_col-3-2 { border-color: var(--col_azu); }
-.bor_col-3-3 { border-color: var(--col_ver); }
+.bor_col-3-1 { border-color: var(--col_roj) !important; }
+.bor_col-3-2 { border-color: var(--col_azu) !important; }
+.bor_col-3-3 { border-color: var(--col_ver) !important; }
 /* de 4 - 5*/
-.bor_col-5-1, .bor_col-4-1 { border-color: var(--col_roj); }
-.bor_col-5-2, .bor_col-4-2 { border-color: var(--col_bla); }
-.bor_col-5-3, .bor_col-4-3 { border-color: var(--col_azu); }
-.bor_col-5-4, .bor_col-4-4 { border-color: var(--col_ama); }
-.bor_col-5-5, .bor_col-5-0, .bor_col-4-0 { border-color: var(--col_ver); }
+.bor_col-5-1, .bor_col-4-1 { border-color: var(--col_roj) !important; }
+.bor_col-5-2, .bor_col-4-2 { border-color: var(--col_bla) !important; }
+.bor_col-5-3, .bor_col-4-3 { border-color: var(--col_azu) !important; }
+.bor_col-5-4, .bor_col-4-4 { border-color: var(--col_ama) !important; }
+.bor_col-5-5, .bor_col-5-0, .bor_col-4-0 { border-color: var(--col_ver) !important; }
 /* de 7 */
-.bor_col-7-1 { border-color: var(--col_ros); }
-.bor_col-7-2 { border-color: var(--col_roj); }
-.bor_col-7-3 { border-color: var(--col_vio); }
-.bor_col-7-4 { border-color: var(--col_nar); }
-.bor_col-7-5 { border-color: var(--col_azu); }
-.bor_col-7-6 { border-color: var(--col_ama); }
-.bor_col-7-7 { border-color: var(--col_ver); }
+.bor_col-7-1 { border-color: var(--col_ros) !important; }
+.bor_col-7-2 { border-color: var(--col_roj) !important; }
+.bor_col-7-3 { border-color: var(--col_vio) !important; }
+.bor_col-7-4 { border-color: var(--col_nar) !important; }
+.bor_col-7-5 { border-color: var(--col_azu) !important; }
+.bor_col-7-6 { border-color: var(--col_ama) !important; }
+.bor_col-7-7 { border-color: var(--col_ver) !important; }
 
 /* ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Circunferencia ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

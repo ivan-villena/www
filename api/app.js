@@ -65,10 +65,12 @@ class app {
 
       // operadores
       if( $api_app.uri.cab == 'ope' ){
+
         if( $.cla_app = eval($.cla = `${$api_app.uri.esq}`) ){
           // inicializo: tablero + listado
-          lis.tab_ini( $.cla_app );
+          lis.tab_ini( $.cla );
           lis.est_ini();
+          // 
         }
       }
       // indice por artículo

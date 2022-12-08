@@ -1149,7 +1149,7 @@ class hol {
           // filas por sellos
           if( $sel_htm ){
             foreach( hol::_('sel') as $v ){ $_ .= "
-              <li class='sec sel-{$v->ide}".( $sel_val ? "" : " dis-ocu" )."'>".hol::ima("sel",$v)."</li>";
+              <li class='sec sel ide-{$v->ide}".( $sel_val ? "" : " dis-ocu" )."'>".hol::ima("sel",$v)."</li>";
             }
           }
           // 260 kines por 13 columnas 
@@ -1159,7 +1159,7 @@ class hol {
             // columnas por tono          
             $kin_arm_tra = intval($_kin->arm_tra);
             if( $ton_htm && $kin_arm != $kin_arm_tra ){ $_ .= 
-              "<li class='sec ton-{$_kin->arm_tra}".( $ton_val ? "" : " dis-ocu" )."'>
+              "<li class='sec ton ide-{$_kin->arm_tra}".( $ton_val ? "" : " dis-ocu" )."'>
                 ".hol::ima("kin_arm_tra",$_kin->arm_tra)."
               </li>";
               $kin_arm = $kin_arm_tra;

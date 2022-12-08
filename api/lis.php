@@ -764,7 +764,7 @@ class lis {
           }
           // cuántos
           if( isset($dat['lim']) ){
-            $_eje = "dat.var('mar',this,'bor-sel');".( isset($ele['ope']['onchange']) ? " {$ele['ope']['onchange']}" : "" );
+            $_eje = "doc.var('mar',this,'bor-sel');".( isset($ele['ope']['onchange']) ? " {$ele['ope']['onchange']}" : "" );
             $ele['htm_fin'] = "
             <fieldset class='ope'>
               ".doc::ico('lis_ini',[ 'eti'=>"button", 'title'=>"Los primeros...", 'class'=>"bor-sel", 'onclick'=>$_eje ])."
@@ -1026,7 +1026,7 @@ class lis {
     </div>";
     return $_;
   }// armo Listado-Tabla 
-  static function est_dat( string $esq, string $est, array $ope = [] ) : array {    
+  static function est_dat( string $esq, string $est, array $ope = [] ) : array {     
     $_ = [];
 
     $_ite = function( string $esq, string $est, array $ope = [] ) : array {
@@ -1869,6 +1869,7 @@ class lis {
       if( !isset($ope['ope']) ) $ope['ope'] = [ "val", "ver", "atr", "des" ];
       if( !isset($ope['opc']) ) $ope['opc'] = [];
       array_push($ope['opc'],"ite_ocu");
+      var_dump($ope);
       $_ = lis::est($dat,$ope,$ele);
       break;
     }

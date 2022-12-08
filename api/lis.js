@@ -28,6 +28,7 @@ class lis {
   };
 
   _tab = {
+    ide : null,
     dep : null,
     cla : null,
     // Valores
@@ -547,39 +548,40 @@ class lis {
     else if( $tip == 'pos' || $tip == 'fec' ){
       
       // elimino valor de dato por seleccion
-      if( ( $.ver = $ope.querySelector(`form.ide-dat select[name="val"]`) ) && !!$.ver.value ) $.ver.value = '';
+      if( ( $.ver = $ope.querySelector(`form.ide-dat select[name="val"]`) ) && $.ver.value ) $.ver.value = '';
             
       // valores
       $.val = {};
+      $.var = {};
       ['ini','fin','inc','lim'].forEach( $ide => {
         // capturo valores
-        if( ( $.ite = $api_doc._var.querySelector(`[name="${$ide}"]`) ) && !!$.ite.value ){
-
-          $.val[$ide] = ( $.ite.getAttribute('type') == 'number' ) ? num.val($.ite.value) : $.ite.value;
+        if( ( $.ite = $api_doc._var.querySelector(`[name="${$ide}"]`) ) ){
+          $.var[$ide] = $.ite;
+          if( !!$.ite.value ) $.val[$ide] = ( $.ite.getAttribute('type') == 'number' ) ? num.val($.ite.value) : $.ite.value;
         }
       });
       
-      // valido: si el inicio es mayor que el final
-      if( $.val.ini && $.val.ini > $.val.fin ){
-
-        $api_doc._var.querySelector(`[name="ini"]`).value = $.val.ini = $.val.fin;
+      // valido inicial: si es mayor que el final      
+      if( $.val.ini && $.val.fin && $.val.ini > $.val.fin){
+        $.var.ini.value = $.val.ini = $.val.fin;
       }
-      // si el final es mejor que el inicio
-      if( $.val.fin && $.val.fin < $.val.ini ){
-
-        $api_doc._var.querySelector(`[name="fin"]`).value = $.val.fin = $.val.ini;
-      }    
-      // inicializo incremento
-      $.inc_val = 1;
-      if( ( !$.val.inc || $.val.inc <= 0 ) && ( $.ite = $api_doc._var.querySelector(`[name="inc"]`) ) ){
-        $.ite.value = $.val.inc = 1;
+      // valido final
+      if( $.val.fin ){
+        // si es mayor que el inicio
+        if( $.val.fin < $.val.ini ) $.var.fin.value = $.val.ini;
       }
-      // inicializo limites desde
-      if( !$.val.fin 
-        && ( $.ite = $api_doc._var.querySelector(`[name="fin"]`) ) && ( $.max = $.ite.getAttribute('max') ) 
-      ){
+      // inicializo valor final
+      else if( $.val.ini && $.var.fin ){
+        $.max = $.var.fin.getAttribute('max');
         $.val.fin = $.max;
       }
+
+      // inicializo incremento
+      $.inc_val = 1;
+      if( $.var.inc && ( !$.val.inc || $.val.inc <= 0 ) ){
+        $.var.inc.value = $.val.inc = 1;
+      }
+
       // filtro por posicion de lista      
       if( $tip == 'pos' ){
         
@@ -1002,19 +1004,19 @@ class lis {
     return $.tab;
   }// - Inicio : opciones, posicion, filtros
   static tab_ini( $cla ){
-    let $={};
+    let $={ cla : !!$cla ? eval($cla) : false };
 
     // clase por posicion
-    $api_lis._tab.cla = '.pos.ope';
-    $api_lis._tab.ide = $api_lis._tab.val.classList[1];
-
+    $api_lis._tab.cla = '.pos.ope'; 
+    $api_lis._tab.ide = $api_lis._tab.val.classList[3];
+    
     // inicializo opciones
     ['sec','pos'].forEach( $ope => {
       if( $api_lis._tab[$ope] ){
         $api_lis._tab[$ope].querySelectorAll(
-          `form[class*="ide-"] [onchange*="tab."]:is( input:checked, select:not([value=""]) )`
+          `form[class*="ide-"] [onchange*=".tab_"]:is( input:checked, select:not([value=""]) )`
         ).forEach( 
-          $inp => tab[$ope]( $inp )
+          $inp => lis[`tab_${$ope}`]( $inp )
         );
       }
     });
@@ -1023,20 +1025,19 @@ class lis {
     lis.tab_val('pos');
 
     // actualizo opciones
-    $api_lis._ope.acu.forEach( 
-      $ite => ( $.ele = $api_lis._tab.val_acu.querySelector(`[name="${$ite}"]:checked`) ) && lis.tab_val_acu($.ele) 
+    $api_lis._ope.acu.forEach( $ite => 
+      ( $.ele = $api_lis._tab.val_acu.querySelector(`[name="${$ite}"]:checked`) ) && lis.tab_val_acu($.ele) 
     );
 
     // inicializo operador por aplicacion
-    if( !!$cla ){
-
+    if( $.cla ){
       // secciones y posiciones por aplicacion
       ['sec','pos'].forEach( $ope => {
         if( $api_lis._tab[$ope] ){
           $.eje = `tab_${$ope}`;
-          $api_lis._tab[$ope].querySelectorAll(`form[class*="ide-"] [name][onchange*="${$.cla}.${$.eje}"]`).forEach(
+          $api_lis._tab[$ope].querySelectorAll(`form[class*="ide-"] [name][onchange*="${$cla}.${$.eje}"]`).forEach(
 
-            $inp => $cla[$.eje] && $cla[$.eje]( $inp )
+            $inp => $.cla[$.eje] && $.cla[$.eje]( $inp )
           );
         }
       });
@@ -1047,9 +1048,9 @@ class lis {
           
           $.eje = `tab_${$for.classList[0].split('-')[2]}`;
 
-          $for.querySelectorAll(`[name][onchange*="${$.cla}.${$.eje}"]`).forEach( 
+          $for.querySelectorAll(`[name][onchange*="${$cla}.${$.eje}"]`).forEach( 
 
-            $inp => !!$cla[$.eje] && $cla[$.eje]( $inp )
+            $inp => !!$.cla[$.eje] && $.cla[$.eje]( $inp )
           );
         });
       }

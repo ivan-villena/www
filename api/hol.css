@@ -632,8 +632,8 @@ ul.lis.tab.kin.tzo {
   grid-auto-flow:column;
 }
 ul.lis.tab.kin.tzo > :is(.ope,.sec) {
-  width: 1.9rem; 
-  height: 1.9rem;
+  width: 2rem; 
+  height: 2rem;
 }
 
 /* Nave del Tiempo */

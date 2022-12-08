@@ -143,7 +143,7 @@
       
       <!-- Contenido -->
       <main class="doc_sec">
-        <?= doc::sec( $api_app->htm['sec'] ) ?>
+        <?= doc::sec( $api_app->htm['sec'], [ 'tit'=>$api_app->htm['tit'] ] ) ?>
       </main>
       
       <?php if( !empty($api_app->htm['bar']) ){ ?>

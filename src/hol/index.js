@@ -1,4 +1,17 @@
 
+
+function hol_ini(){
+
+  if( $api_app.uri.cab == "ope" ){
+
+    // actualizo clase del tablero
+    if( $api_lis._tab.dep = $api_lis._tab.val.querySelector(`.pos.ope.sec_par`) ){
+  
+      $api_lis._tab.cla = `.pos.ope.sec_par > .lis.tab[class*="_par"] > .pos[class*="ide-"]`;
+    }
+  }
+}
+
 // proceso diario
 function dia( $dat ){
   // operador : fecha + sincronario

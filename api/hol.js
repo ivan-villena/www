@@ -58,15 +58,17 @@ class hol {
     if( $ope.nextElementSibling && ( $.tot = $ope.nextElementSibling.querySelector('n') ) ){
 
       $.tot.innerHTML = $api_lis._tab.val.querySelectorAll(`._hol-${$.ide}_${$.var_ide}`).length;
-    }    
+    }
+
     // Actualizo total general
-    if( $.tot = $api_doc._var.querySelector('div.atr > [name="cue"]') ){
+    if( $.tot = $api_doc._var.querySelector('div.var > [name="cue"]') ){
 
       $.tot.innerHTML = $api_lis._tab.val.querySelectorAll(`[class*="_hol-${$.ide}_"]`).length;
     }
 
     // Actualizo operador de acumulados
-    app_tab.act('opc');
+    lis.tab_act('opc');
+
   }
   // Secciones
   static tab_sec( $dat, $ope, ...$opc ){
@@ -110,25 +112,25 @@ class hol {
         switch( $.tip[2] ){
         case 'pos': 
           if( $dat.checked ){
-            ele.act('cla_eli',$api_lis._tab.val.querySelectorAll(`.app_tab[class*="_arm_tra"] > .pos-0.${DIS_OCU}`),DIS_OCU);
+            ele.act('cla_eli',$api_lis._tab.val.querySelectorAll(`.lis.tab[class*="_arm_tra"] > .pos-0.${DIS_OCU}`),DIS_OCU);
           }else{
-            ele.act('cla_agr',$api_lis._tab.val.querySelectorAll(`.app_tab[class*="_arm_tra"] > .pos-0:not(.${DIS_OCU})`),DIS_OCU);
+            ele.act('cla_agr',$api_lis._tab.val.querySelectorAll(`.lis.tab[class*="_arm_tra"] > .pos-0:not(.${DIS_OCU})`),DIS_OCU);
           }
           break;
         case 'bor':
           $.cla = 'bor-1';
           if( $dat.checked ){ 
-            ele.act('cla_agr',$api_lis._tab.val.querySelectorAll(`.app_tab[class*="_arm_tra"]`),$.cla);
+            ele.act('cla_agr',$api_lis._tab.val.querySelectorAll(`.lis.tab[class*="_arm_tra"]`),$.cla);
           }else{
-            ele.act('cla_eli',$api_lis._tab.val.querySelectorAll(`.app_tab[class*="_arm_tra"]`),$.cla);
+            ele.act('cla_eli',$api_lis._tab.val.querySelectorAll(`.lis.tab[class*="_arm_tra"]`),$.cla);
           }            
           break;
         case 'col':
           $.cla = 'fon-0';
           if( $dat.checked ){ 
-            ele.act('cla_eli',$api_lis._tab.val.querySelectorAll(`.app_tab[class*="_arm_tra"]`),$.cla);
+            ele.act('cla_eli',$api_lis._tab.val.querySelectorAll(`.lis.tab[class*="_arm_tra"]`),$.cla);
           }else{
-            ele.act('cla_agr',$api_lis._tab.val.querySelectorAll(`.app_tab[class*="_arm_tra"]`),$.cla);
+            ele.act('cla_agr',$api_lis._tab.val.querySelectorAll(`.lis.tab[class*="_arm_tra"]`),$.cla);
           }            
           break;
         }
@@ -138,25 +140,25 @@ class hol {
         switch( $.tip[2] ){
         case 'pos': 
           if( $dat.checked ){
-            ele.act('cla_eli',$api_lis._tab.val.querySelectorAll(`.app_tab[class*="_arm_cel"] > .pos-0.${DIS_OCU}`),DIS_OCU);
+            ele.act('cla_eli',$api_lis._tab.val.querySelectorAll(`.lis.tab[class*="_arm_cel"] > .pos-0.${DIS_OCU}`),DIS_OCU);
           }else{
-            ele.act('cla_agr',$api_lis._tab.val.querySelectorAll(`.app_tab[class*="_arm_cel"] > .pos-0:not(.${DIS_OCU})`),DIS_OCU);
+            ele.act('cla_agr',$api_lis._tab.val.querySelectorAll(`.lis.tab[class*="_arm_cel"] > .pos-0:not(.${DIS_OCU})`),DIS_OCU);
           }          
           break;
         case 'bor': 
           $.cla = 'bor-1'; 
           if( $dat.checked ){
-            ele.act('cla_agr',$api_lis._tab.val.querySelectorAll(`.app_tab[class*="_arm_cel"]`),$.cla);
+            ele.act('cla_agr',$api_lis._tab.val.querySelectorAll(`.lis.tab[class*="_arm_cel"]`),$.cla);
           }else{
-            ele.act('cla_eli',$api_lis._tab.val.querySelectorAll(`.app_tab[class*="_arm_cel"]`),$.cla);
+            ele.act('cla_eli',$api_lis._tab.val.querySelectorAll(`.lis.tab[class*="_arm_cel"]`),$.cla);
           }              
           break;
         case 'col': 
           $.cla = 'fon-0'; 
           if( $dat.checked ){
-            ele.act('cla_eli',$api_lis._tab.val.querySelectorAll(`.app_tab[class*="_arm_cel"]`),$.cla);
+            ele.act('cla_eli',$api_lis._tab.val.querySelectorAll(`.lis.tab[class*="_arm_cel"]`),$.cla);
           }else{
-            ele.act('cla_agr',$api_lis._tab.val.querySelectorAll(`.app_tab[class*="_arm_cel"]`),$.cla);
+            ele.act('cla_agr',$api_lis._tab.val.querySelectorAll(`.lis.tab[class*="_arm_cel"]`),$.cla);
           }              
           break;
         }
@@ -166,9 +168,9 @@ class hol {
         switch( $.tip[2] ){
         case 'pos': 
           if( $dat.checked ){
-            ele.act('cla_eli',$api_lis._tab.val.querySelectorAll(`.app_tab[class*="_cro"] > .pos-0.${DIS_OCU}`),DIS_OCU);
+            ele.act('cla_eli',$api_lis._tab.val.querySelectorAll(`.lis.tab[class*="_cro"] > .pos-0.${DIS_OCU}`),DIS_OCU);
           }else{
-            ele.act('cla_agr',$api_lis._tab.val.querySelectorAll(`.app_tab[class*="_cro"] > .pos-0:not(.${DIS_OCU})`),DIS_OCU);
+            ele.act('cla_agr',$api_lis._tab.val.querySelectorAll(`.lis.tab[class*="_cro"] > .pos-0:not(.${DIS_OCU})`),DIS_OCU);
           }          
           break;
         }
@@ -236,18 +238,18 @@ class hol {
         case 'bor': 
           $.cla = "bor-1";
           if( $dat.checked ){
-            ele.act('cla_agr',$api_lis._tab.val.querySelectorAll(`.app_tab[class*="_cas"]:not(.${$.cla})`),$.cla);
+            ele.act('cla_agr',$api_lis._tab.val.querySelectorAll(`.lis.tab[class*="_cas"]:not(.${$.cla})`),$.cla);
           }else{
-            ele.act('cla_eli',$api_lis._tab.val.querySelectorAll(`.app_tab[class*="_cas"].${$.cla}`),$.cla);
+            ele.act('cla_eli',$api_lis._tab.val.querySelectorAll(`.lis.tab[class*="_cas"].${$.cla}`),$.cla);
           }
           break;          
         // color de fondo : 1-5
         case 'col':
           $.cla = "fon-0";
           if( $dat.checked ){
-            ele.act('cla_eli',$api_lis._tab.val.querySelectorAll(`.app_tab[class*="_cas"][class*="fon_col-"].${$.cla}`),$.cla);
+            ele.act('cla_eli',$api_lis._tab.val.querySelectorAll(`.lis.tab[class*="_cas"][class*="fon_col-"].${$.cla}`),$.cla);
           }else{
-            ele.act('cla_agr',$api_lis._tab.val.querySelectorAll(`.app_tab[class*="_cas"][class*="fon_col-"]:not(.${$.cla})`),$.cla);
+            ele.act('cla_agr',$api_lis._tab.val.querySelectorAll(`.lis.tab[class*="_cas"][class*="fon_col-"]:not(.${$.cla})`),$.cla);
           }             
           break;
         // tog: orbitales
@@ -266,32 +268,32 @@ class hol {
       switch( $.tip[1] ){
       // cabecera
       case 'ton':
-        $.sec_ini = $api_lis._tab.val.querySelector('.sec.-ini');
+        $.sec_ini = $api_lis._tab.val.querySelector('.sec.ini');
         ele.act('cla_agr',$.sec_ini,DIS_OCU);
         if( $dat.checked ){
           $api_lis._tab.val.style.gridTemplateRows = 'repeat(21,1fr)';
-          ele.act('cla_eli',$api_lis._tab.val.querySelectorAll(`.sec.-ton.${DIS_OCU}`),DIS_OCU);
+          ele.act('cla_eli',$api_lis._tab.val.querySelectorAll(`.sec.ton.${DIS_OCU}`),DIS_OCU);
           // muestro seccion
-          if( $api_lis._tab.val.querySelector(`.sec.-sel:not(.${DIS_OCU})`) ){ 
+          if( $api_lis._tab.val.querySelector(`.sec.sel:not(.${DIS_OCU})`) ){ 
             ele.act('cla_eli',$.sec_ini,DIS_OCU);
           }
         }else{
           $api_lis._tab.val.style.gridTemplateRows = 'repeat(20,1fr)';
-          ele.act('cla_agr',$api_lis._tab.val.querySelectorAll(`.sec.-ton:not(.${DIS_OCU})`),DIS_OCU);
+          ele.act('cla_agr',$api_lis._tab.val.querySelectorAll(`.sec.ton:not(.${DIS_OCU})`),DIS_OCU);
         }        
         break;
       // lateral izquierdo
       case 'sel':
-        $.sec_ini = $api_lis._tab.val.querySelector('.sec.-ini');
+        $.sec_ini = $api_lis._tab.val.querySelector('.sec.ini');
         ele.act('cla_agr',$.sec_ini,DIS_OCU);
         if( $dat.checked ){
-          ele.act('cla_eli',$api_lis._tab.val.querySelectorAll(`.sec.-sel.${DIS_OCU}`),DIS_OCU);
+          ele.act('cla_eli',$api_lis._tab.val.querySelectorAll(`.sec.sel.${DIS_OCU}`),DIS_OCU);
           // muestro seccion
-          if( $api_lis._tab.val.querySelector(`.sec.-ton:not(.${DIS_OCU})`) ){ 
+          if( $api_lis._tab.val.querySelector(`.sec.ton:not(.${DIS_OCU})`) ){ 
             ele.act('cla_eli',$.sec_ini,DIS_OCU);
           }
         }else{
-          ele.act('cla_agr',$api_lis._tab.val.querySelectorAll(`.sec.-sel:not(.${DIS_OCU})`),DIS_OCU);
+          ele.act('cla_agr',$api_lis._tab.val.querySelectorAll(`.sec.sel:not(.${DIS_OCU})`),DIS_OCU);
         }
         break;
       }
@@ -318,9 +320,8 @@ class hol {
 
         $.kin = hol._('kin',$pos.dataset['hol_kin']);      
 
-        if( $.kin.pag != 0 ){
-          $dat.checked ? ele.act('cla_agr',$pos,$.cla) : ele.act('cla_eli',$pos,$.cla);
-        }
+        if( $.kin.pag != 0 ) $dat.checked ? ele.act('cla_agr',$pos,$.cla) : ele.act('cla_eli',$pos,$.cla);
+
       });
     }
     // solares
@@ -332,14 +333,7 @@ class hol {
 
         $.kin = hol._('kin',$.psi.tzo);
 
-        if( $.kin.pag != 0 ){          
-
-          if( $dat.checked ){ 
-            ele.act('cla_agr',$pos,$.cla);
-          }else{
-            ele.act('cla_eli',$pos,$.cla);
-          }
-        }
+        if( $.kin.pag != 0 ) $dat.checked ? ele.act('cla_agr',$pos,$.cla) : ele.act('cla_eli',$pos,$.cla);
       });
     }
     // Actualizo acumulados
@@ -413,18 +407,18 @@ class hol {
         // actualizo cantidades
         $._par_lis.forEach( $ide => {
 
-          if( $.tot = $api_doc._var.querySelector(`div.atr > [name="${$ide}"] ~ span > n`) ){
+          if( $.tot = $api_doc._var.querySelector(`div.var > [name="${$ide}"] ~ span > n`) ){
 
             $.tot.innerHTML = $api_lis._tab.val.querySelectorAll(`[class*="_hol-par_${$ide}"]`).length;
           }
         });
         // total general
-        if( $.tot = $api_doc._var.querySelector('div.atr > [name="cue"]') ){
+        if( $.tot = $api_doc._var.querySelector('div.var > [name="cue"]') ){
 
           $.tot.innerHTML = $api_lis._tab.val.querySelectorAll(`[class*="_hol-par_"]`).length;
         }
         // actualizo acumulado por opciones
-        app_tab.act('opc');        
+        lis.tab_act('opc');        
       }
     }
   }// pulsares de onda
