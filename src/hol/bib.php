@@ -103,7 +103,7 @@ class hol_bib {
       $_arq = hol::_('sel',$_ond->sel);
       $ton = intval($_kin->nav_ond_dia);
       $_ = "
-      <div class='val'>
+      <div class='doc_val'>
 
         ".hol::ima("kin",$_kin)."
 
@@ -201,7 +201,7 @@ class hol_bib {
 
       foreach( hol::_($ide) as $_tra ){
         $htm = "
-        <div class='val'>
+        <div class='doc_val'>
           ".hol::ima("ton",$_tra->ide,['class'=>"mar_der-1"])."
           <p>
             <b class='tit'>Baktún <n>".(intval($_tra->ide)-1)."</n><c>.</c> Baktún ".tex::art_del($_tra->tit)."</b>
@@ -247,7 +247,7 @@ class hol_bib {
     case 'kin_cro_sel':
       foreach( hol::_($ide) as $_est ){
         $_sel = hol::_('sel',$_est->sel); $htm = "
-        <div class='val'>
+        <div class='doc_val'>
           ".hol::ima("sel",$_sel,['class'=>"mar_der-2"])."
           <p>
             <b class='tit'>ESTACIÓN ".tex::let_may(tex::art_del("el {$_est->des_dir}"))."</b>
@@ -442,7 +442,7 @@ class hol_bib {
         hol::ima("uni_pla_cen",$_pla,['class'=>"mar_der-2",'style'=>"min-width: 9rem; height:7rem;"])."
         <div>
           <p><b class='ide'>Kin {$_fam->nom}</b><c>:</c> {$_fam->des_mis}</p>
-          <div class='val fic mar-2'>
+          <div class='doc_val fic mar-2'>
             ".hol::ima("uni_hum_cen",$_hum)."
             <c class='sep'>=></c>
             <c class='_lis ini'>{</c>";
@@ -479,7 +479,7 @@ class hol_bib {
             $htm .= "
             <li>
               <p><b class='ide'>{$_pla->nom}</b><c>,</c> <n>{$pla}</n><c>°</c> órbita<c>:</c></p>
-              <div class='ite'>
+              <div class='doc_ite'>
 
                 ".hol::ima("uni_sol_pla",$_pla,['class'=>"mar_der-1"])."
 
@@ -516,7 +516,7 @@ class hol_bib {
       $lis_pos = 1;
       foreach( hol::_($ide) as $_dat ){
         $_fam = hol::_('sel_cro_fam',$_dat->fam); $htm= "
-        <div class='val'>
+        <div class='doc_val'>
           ".hol::ima("sel_cro_fam",$_fam,['class'=>"mar_der-1"])."
           <c class='sep'>=></c>
           <c class='_lis ini'>{</c>";
@@ -672,11 +672,11 @@ class hol_bib {
     case 'kin':
       $_ = "
       <!-- libro del kin -->
-      <form class='inf' esq='hol' est='$ide'>
+      <form class='doc_inf' esq='hol' est='$ide'>
 
-        <div class = 'val'>
+        <div class='doc_val'>
 
-          <fieldset class='val'>
+          <fieldset class='doc_val'>
 
             ".doc::val_ope()."
 
@@ -685,7 +685,7 @@ class hol_bib {
             ]])."
           </fieldset>
 
-          <fieldset class='ope'>
+          <fieldset class='doc_ope'>
             ".doc::ico('dat_fin',[ 'eti'=>"button", 'type'=>"reset", 'title'=>"Vaciar Casillero...", 'onclick'=>"{$_eje}this,'fin');" ])."
             ".doc::ico('lis_fin',[ 'eti'=>"button", 'title'=>"Ir al Kin...", 'onclick'=>"{$_eje}this,'nav');" ])."
           </fieldset>
@@ -987,42 +987,42 @@ class hol_bib {
       $cue = 8;
       $_[] = "
       <b class='ide'>Año Uno</b>
-      <div class='ite'>
+      <div class='doc_ite'>
         ".hol::ima("kin",$_kin = hol::_('kin',39),['class'=>"mar_der-1"])."
         <p>$_kin->nom<c>:</c><br><n>26</n> de Julio  <n>1.992</n> <c>-</c> <n>25</n> Julio <n>1.993</n><c>.</c></p>
       </div>"; $_[] = "
       <b class='ide'>Año Dos</b>
-      <div class='ite'>
+      <div class='doc_ite'>
         ".hol::ima("kin",$_kin = hol::_('kin',144),['class'=>"mar_der-1"])."
         <p>$_kin->nom<c>:</c><br><n>26</n> de Julio <n>1.993</n> <c>-</c> <n>25</n> Julio <n>1.994</n><c>.</c></p>
       </div>"; $_[] = "
       <b class='ide'>Año Tres</b>
-      <div class='ite'>
+      <div class='doc_ite'>
         ".hol::ima("kin",$_kin = hol::_('kin',249),['class'=>"mar_der-1"])."
         <p>$_kin->nom<c>:</c><br><n>26</n> de Julio <n>1.994</n> <c>-</c> <n>25</n> Julio <n>1.995</n><c>.</c></p>
       </div>"; $_[] = "
       <b class='ide'>Año Cuatro</b>
-      <div class='ite'>
+      <div class='doc_ite'>
         ".hol::ima("kin",$_kin = hol::_('kin',94),['class'=>"mar_der-1"])."
         <p>$_kin->nom<c>:</c><br><n>26</n> de Julio <n>1.995</n> <c>-</c> <n>25</n> Julio <n>1.996</n><c>.</c></p>
       </div>"; $_[] = "
       <b class='ide'>Año Cinco</b>
-      <div class='ite'>
+      <div class='doc_ite'>
         ".hol::ima("kin",$_kin = hol::_('kin',199),['class'=>"mar_der-1"])."
         <p>$_kin->nom<c>:</c><br><n>26</n> de Julio <n>1.996</n> <c>-</c> <n>25</n> Julio <n>1.997</n><c>.</c></p>
       </div>"; $_[] = "
       <b class='ide'>Año Seis</b>
-      <div class='ite'>
+      <div class='doc_ite'>
         ".hol::ima("kin",$_kin = hol::_('kin',44),['class'=>"mar_der-1"])."
         <p>$_kin->nom<c>:</c><br><n>26</n> de Julio <n>1.997</n> <c>-</c> <n>25</n> Julio <n>1.998</n><c>.</c></p>
       </div>"; $_[] = "
       <b class='ide'>Año Siete</b>
-      <div class='ite'>
+      <div class='doc_ite'>
         ".hol::ima("kin",$_kin = hol::_('kin',149),['class'=>"mar_der-1"])."
         <p>$_kin->nom<c>:</c><br><n>26</n> de Julio <n>1.998</n> <c>-</c> <n>25</n> Julio <n>1.999</n><c>.</c></p>
       </div>"; $_[] = "
       <b class='ide'>Año Ocho</b>
-      <div class='ite'>
+      <div class='doc_ite'>
         ".hol::ima("kin",$_kin = hol::_('kin',254),['class'=>"mar_der-1"])."
         <p>$_kin->nom<c>:</c><br><n>26</n> de Julio <n>1.999</n> <c>-</c> <n>25</n> Julio <n>2.000</n><c>.</c></p>
       </div>";
@@ -1119,7 +1119,7 @@ class hol_bib {
       if( !$opc_ini && !$opc_fin ) $opc_ini = $opc_fin = TRUE;
       foreach( ( isset($ope['lis']) && is_array($ope['lis']) ? $ope['lis'] : range(1,$ide) ) as $pos ){ 
         $htm = "
-        <div class='ite jus-cen'>";
+        <div class='doc_ite jus-cen'>";
           if( $opc_ini ) $htm .= "
           <img src='".SYS_NAV."img/hol/bib/tel/{$ide}/{$pos}-1.jpg' alt='Carta {$pos}-1' class='mar_der-1' style='width:24rem;'>";
           if( $opc_fin ) $htm .= "
@@ -1197,7 +1197,7 @@ class hol_bib {
     case 'lun_cub':
       foreach( hol::_($ide) as $_cub ){
         $_ []= 
-        "<div class='ite'>
+        "<div class='doc_ite'>
           ".hol::ima("sel",$_cub->sel,['class'=>"mar_der-1"])."              
           <div>
             <p class='tit'>Día <n>$_cub->lun</n><c>,</c> CUBO <n>$_cub->ide</n><c>:</c> $_cub->nom</p>
@@ -1326,7 +1326,7 @@ class hol_bib {
         foreach( $ide as $pos ){ 
           $cod = num::val($pos,2);
           $htm = "
-          <div class='ite jus-cen'>";
+          <div class='doc_ite jus-cen'>";
             if( $opc_ini ) $htm .= "
             <img src='".SYS_NAV."img/hol/bib/ato/fic/{$cod}-1.gif' alt='Carta {$cod}-1' class='mar_der-1' style='width:20rem;'>";
             if( $opc_fin ) $htm .= "
@@ -1355,7 +1355,7 @@ class hol_bib {
           hol::ima($dat_ide,$rad,['class'=>"mar_der-2"])."
           <div>        
             <p><b class='ide'>$rad->nom</b> <b class='col-".substr($rad->des_col,0,3)."'>$rad->des_col</b></p>
-            <div class='ite'>
+            <div class='doc_ite'>
               $fue_pre->nom
               ".hol::ima($dat_rel,$fue_pre)."
               <c class='sep'>+</c>
@@ -1446,10 +1446,10 @@ class hol_bib {
         hol::ima($ide,$pla_fue,['class'=>"mar_der-2"])."
         <div>
           <p><b class='ide'>$pla_fue->nom</b></p>
-          <div class='val'>
+          <div class='doc_val'>
             <b class='mar_hor-1'>$ele_pre->nom_cod</b>
             ".hol::ima("rad_pla_ele",$ele_pre)."
-            <c class='ope sep'>$pla_fue->ele_ope</c>
+            <c class='sep'>$pla_fue->ele_ope</c>
             <b class='mar_hor-1'>$ele_pos->nom_cod</b>              
             ".hol::ima("rad_pla_ele",$ele_pos)."
           </div>                        
@@ -1499,7 +1499,7 @@ class hol_bib {
         $ato = hol::_($ide,$ope['ide']);
         $_ = "
         <p class='tit tex_ali-izq'>".tex::let("Semana $ato->ide, Heptágono de la Mente ".tex::art_del($ato->hep))."</p>
-        <div class='ite'>
+        <div class='doc_ite'>
           ".hol::ima($ide, $ato, ['class'=>'mar_der-2'])."
           <ul class='mar_arr-0'>
             <li>".tex::let("Un día = $ato->val.")."</li>
@@ -1516,7 +1516,7 @@ class hol_bib {
         $ato = hol::_('lun_pla_ato',$arm->ide);          
         $_[]="
         <p class='tit'>$arm->nom<c>,</c> <b class='col-".substr($arm->des_col,0,3)."'>$arm->des_col</b><c>:</c></p>          
-        <div class='ite'>            
+        <div class='doc_ite'>            
           ".hol::ima($ide,$arm,['class'=>"mar_der-2"])."
           <ul>
             <li>".tex::let($arm->des)."</li>
@@ -1532,7 +1532,7 @@ class hol_bib {
         $rad = hol::_('rad',$tie->rad);
         $_[]="
         <p class='tit tex_ali-izq'>".tex::let("$tie->nom, Tierra de UR $tie->ide")."</p>
-        <div class='ite'>
+        <div class='doc_ite'>
           ".hol::ima('rad',$tie->rad,['class'=>"mar_der-2"])."
           <p>
             <q>$tie->des</q>

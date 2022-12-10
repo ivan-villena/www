@@ -16,74 +16,20 @@ fieldset > legend {
   text-align: left;
 }
 
-/*//////////////////////////////////////////////////////////////////////*/
-/*//////////////////////////////////////////////////////////////////////*/
-
 /* 
-  contenedores 
+Renglones 
 */
-form:is(.lis,.ren,.ite,.val), 
-fieldset:is(.lis,.ren,.ite,.val) {
-  display: flex;
-  flex-direction: column;  
-  align-items: center;
-}
-
-/* horizontales */
-form:is(.ren,.ite,.val), 
-fieldset:is(.ren,.ite,.val) {  
-  flex-flow: row wrap;
-  justify-content: start;
-}
-form:is(.ite,.val),
-fieldset:is(.ite,.val) {
-  flex-wrap: nowrap;
-}
-
-form:is(.ren,.ite),
-fieldset:is(.ren,.ite) {
-  flex-grow: 2;
-  align-self: stretch;
-}
-
-/* renglones */
-fieldset:is(.ren,.ite) {
+fieldset:is(.doc_ren,.doc_ite) {
   margin: .4rem 0;
 }
-:is(form,fieldset) > :is(.ren,.ite) {
+:is(form,fieldset) > :is(.doc_ren,.doc_ite) {
   justify-content: space-evenly;
   margin: .5rem .5rem;
 }
 
-/* 
-Informe
-*/
-.inf {
-  display: flex;
-  flex-direction: column;
-  padding: .25rem;
-  border: 1px solid var(--bor_dat);
-  border-radius: .5rem;
-  margin: .5rem;
-}
-.inf:is(.ren,.ite) {
-  flex-grow: 2;
-  align-items: center;
-}
-.inf.ren {
-  flex-flow: row wrap;
-}
-.inf.ite {
-  flex-flow: row nowrap;
-}
+/*//////////////////////////////////////////////////////////////////////*/
+/*//////////////////////////////////////////////////////////////////////*/
 
-article.inf {
-  margin-left: auto;
-  margin-right: auto;
-}
-article.inf > * {
-  margin: .5rem;
-}
 
 /* 
   ABM de la base

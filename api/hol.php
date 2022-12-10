@@ -635,7 +635,7 @@ class hol {
   
       $_ = "
       <!-- Fecha del Calendario -->
-      <form class='val fec mar-1'>
+      <form class='doc_val fec mar-1'>
   
         ".doc::ico('fec_dia',[ 'eti'=>"label", 'for'=>"hol_val-fec", 'class'=>"mar_hor-1", 
           'title'=>"Desde aquí puedes cambiar la fecha..." 
@@ -650,7 +650,7 @@ class hol {
       </form>
   
       <!-- Fecha del Sincronario -->
-      <form class='val sin mar-1'>
+      <form class='doc_val sin mar-1'>
         
         <label>N<c>.</c>S<c>.</c></label>
   
@@ -1020,7 +1020,7 @@ class hol {
             $agr = ( !!$ide && $_sel->ide == $ide ) ? ' _val-pos' : '';
             $_ .= "
             <li class='sec{$agr}'>
-              <ul class='val jus-cen'>
+              <ul class='doc_val jus-cen'>
                 ".hol::ima("sel",$_sel,['eti'=>"li"])."
                 ".hol::ima("sel_cod",$_sel->cod,['eti'=>"li",'class'=>'tam-2'])."
               </ul>
@@ -1090,7 +1090,7 @@ class hol {
       case 'arm_cel':
         $_arm = hol::_('sel_arm_cel',$ide);        
         $ele['cel']['title'] = dat::val('tit',"hol.{$est}",$_arm); 
-        ele::cla($ele['cel'],"tab sel {$atr}",'ini');
+        ele::cla($ele['cel'],"lis tab sel {$atr}",'ini');
         $_ = "
         <ul".ele::atr($ele['cel']).">
           ".hol::ima("sel_arm_cel", $_arm, ['eti'=>"li", 'class'=>"pos ide-0", 'htm'=>$_arm->ide ] );
@@ -1231,7 +1231,7 @@ class hol {
           $_ond = hol::_('kin_nav_ond',$ond);
           $ele['cas']['title'] .= "\n".$_ond->enc_des;
         }
-        ele::cla($ele['cas'],"tab kin {$atr} hol_cas fon_col-5-{$ide}".( empty($ope['sec']['cas-col']) ? ' fon-0' : '' ),'ini');
+        ele::cla($ele['cas'],"lis tab kin {$atr} hol_cas fon_col-5-{$ide}".( empty($ope['sec']['cas-col']) ? ' fon-0' : '' ),'ini');
         $_ = "
         <ul".ele::atr($ele['cas']).">";
           $ele_ite = isset($ele['pos-00']) ? $ele['pos-00'] : [];
@@ -1252,7 +1252,7 @@ class hol {
         $_ond = hol::_($est,$ide); 
         $_cas = hol::_('kin_nav_cas',$_ond->nav_cas);
         $ele['ond']['title'] = dat::val('tit',"hol.kin_nav_cas",$_cas)." .\n{$_ond->enc_des}"; 
-        ele::cla($ele['ond'],"tab kin {$atr} hol_ton",'ini');
+        ele::cla($ele['ond'],"lis tab kin {$atr} hol_ton",'ini');
         $_ = "
         <ul".ele::atr($ele['ond']).">
           ".hol::tab_sec('ton',$ope)
@@ -1283,7 +1283,7 @@ class hol {
         break;
       case 'arm_tra':
         foreach(['tra','cel'] as $i ){ if( !isset($ele[$i]) ){ $ele[$i]=[]; } }
-        ele::cla($ele['tra'],"tab kin {$atr} hol_cro",'ini');
+        ele::cla($ele['tra'],"lis tab kin {$atr} hol_cro",'ini');
         $_ = "
         <ul".ele::atr($ele['tra']).">";
           $_tra = hol::_('kin',$ide);
@@ -1301,7 +1301,7 @@ class hol {
       case 'arm_cel': 
         foreach(['tra','cel'] as $i ){ if( !isset($ele[$i]) ){ $ele[$i]=[]; } }         
         $_arm = hol::_($est,$ide);
-        ele::cla($ele['cel'],"tab kin {$atr} hol_arm fon_col-5-$_arm->cel fon-0");
+        ele::cla($ele['cel'],"lis tab kin {$atr} hol_arm fon_col-5-$_arm->cel fon-0");
         $_ = "
         <ul".ele::atr($ele['cel']).">";
           $ele_ite = isset($ele['pos-0']) ? $ele['pos-0'] : []; 
@@ -1342,7 +1342,7 @@ class hol {
         foreach(['est','ele'] as $i ){ if( !isset($ele[$i]) ){ $ele[$i]=[]; } }
         if( !in_array('fic_cas',$ope['opc']) ) $ope['opc'] []= 'fic_ond';
 
-        ele::cla($ele['est'],"tab kin {$atr} hol_ton",'ini');
+        ele::cla($ele['est'],"lis tab kin {$atr} hol_ton",'ini');
         $_ = "
         <ul".ele::atr($ele['est']).">
           ".hol::tab_sec('ton',$ope)
@@ -1373,7 +1373,7 @@ class hol {
         if( in_array('fic_cas',$opc) || in_array('fic_ond',$opc) ){ ele::css($ele['ele'],
           "transform: rotate(".(in_array('fic_cas',$opc) ? $ELE['rot-cas'][$ide-1] : $ELE['rot-ton'][$ide-1])."deg)");
         }
-        ele::cla($ele['ele'],"tab kin {$atr} hol_cro-cir",'ini');
+        ele::cla($ele['ele'],"lis tab kin {$atr} hol_cro-cir",'ini');
         $_ .= "
         <ul".ele::atr($ele['ele']).">";
           $ele_ite = isset($ele['pos-00']) ? $ele['pos-00'] : [];
@@ -1461,13 +1461,13 @@ class hol {
         $cab_ocu = in_array('cab_ocu',$opc);
         $cab_nom = in_array('cab_nom',$opc);
 
-        ele::cla($ele['lun'],"tab psi {$atr}",'ini'); $_ = "
+        ele::cla($ele['lun'],"lis tab psi {$atr}",'ini'); $_ = "
         <table".ele::atr($ele['lun']).">";
           if( !$cab_ocu ){ $_ .= "
             <thead>
               <tr data-cab='ton'>
                 <th colspan='8'>
-                  <div class='val tex_ali-izq' title='{$_lun->nom}: {$_lun->tot}'>
+                  <div class='doc_val tex_ali-izq' title='{$_lun->nom}: {$_lun->tot}'>
 
                     ".hol::ima("{$est}",$_lun,['class'=>( $cab_nom ? "tam-1 mar_der-1" : "tam-16 mar-1" )])."
 
@@ -1513,7 +1513,7 @@ class hol {
           <tbody>";
           for( $arm = 1; $arm <= 4; $arm++ ){
             $_ .= "
-            <tr class='ite-$arm'>
+            <tr class='arm-$arm'>
               <td".ele::atr(ele::val_jun([ 'data-arm'=>$arm, 'data-hep'=>$hep, 'class'=>"sec -hep fon_col-4-{$arm}" ], 
                   isset($ele[$ide = "hep-{$arm}"]) ? $ele[$ide] : []
                 )).">";
@@ -1541,7 +1541,7 @@ class hol {
         if( empty($ide) && is_array($val) && isset($val['psi'])) $ide = hol::_('psi',$val['psi'])->hep;
         
         $_hep = hol::_('psi_hep',$ide);
-        ele::cla($ele['hep'],"tab psi {$atr}",'ini');
+        ele::cla($ele['hep'],"lis tab psi {$atr}",'ini');
         $_ = "
         <ul".ele::atr($ele['hep']).">";
           $psi = ( ( intval($_hep->ide) - 1 ) * 7 ) + 1;
@@ -1574,11 +1574,13 @@ class hol {
     // fondos: imagen y color
     $ele_ite = isset($ele['fon-ima']) ? $ele['fon-ima'] : [];
     ele::cla($ele_ite,"sec fon ima ".DIS_OCU,'ini'); $_ .= "
-    <{$ope['eti']}".ele::atr($ele_ite)."></{$ope['eti']}>";
+    <{$ope['eti']}".ele::atr($ele_ite).">
+    </{$ope['eti']}>";
 
     $ele_ite = isset($ele['fon-col']) ? $ele['fon-col'] : [];
     ele::cla($ele_ite,"sec fon col ".DIS_OCU,'ini'); $_ .= "
-    <{$ope['eti']}".ele::atr($ele_ite)."></{$ope['eti']}>";
+    <{$ope['eti']}".ele::atr($ele_ite).">
+    </{$ope['eti']}>";
 
     // pulsares
     if( in_array($_tip[0],['ton','cas']) ){
@@ -1603,8 +1605,11 @@ class hol {
       // pulsares
       foreach( $_pul as $ide => $val ){ 
         $ele_ite = isset($ele["pul-$ide"]) ? $ele["pul-$ide"] : [];
-        ele::cla($ele_ite,"sec fon pul-$ide",'ini'); $_ .= "
-        <{$ope['eti']}".ele::atr($ele_ite).">{$val}</{$ope['eti']}>";
+        ele::cla($ele_ite,"sec fon ond pul-$ide",'ini');
+        $_ .= "
+        <{$ope['eti']}".ele::atr($ele_ite).">
+          {$val}
+        </{$ope['eti']}>";
       }
       break;
     // castillo
@@ -1616,14 +1621,15 @@ class hol {
       $ele_pos = isset($ele["fon-ima"]) ? $ele["fon-ima"] : [];
       for( $i = 1; $i <= 4; $i++ ){ 
         $ele_ite = $ele_pos;
-        ele::cla($ele_ite,"sec fon-ima ond-$i ".DIS_OCU,'ini'); $_ .= "
-        <{$ope['eti']}".ele::atr($ele_ite)."></{$ope['eti']}>";
+        ele::cla($ele_ite,"sec fon ima ond-$i ".DIS_OCU,'ini'); $_ .= "
+        <{$ope['eti']}".ele::atr($ele_ite).">
+        </{$ope['eti']}>";
       }
       // fondos: color
       $ele_pos = isset($ele["fon-col"]) ? $ele["fon-col"] : [];
       for( $i = 1; $i <= 4; $i++ ){ 
         $ele_ite = $ele_pos;
-        ele::cla($ele_ite,"sec fon-col ond-$i fon_col-4-{$i}{$col_ocu}",'ini'); $_ .= "
+        ele::cla($ele_ite,"sec fon col ond-$i fon_col-4-{$i}{$col_ocu}",'ini'); $_ .= "
         <{$ope['eti']}".ele::atr($ele_ite)."></{$ope['eti']}>";
       }        
       // bordes: orbitales
@@ -1638,8 +1644,10 @@ class hol {
         $ele_pos = isset($ele["pul-$ide"]) ? $ele["pul-$ide"] : [];
         for( $i = 1; $i <= 4; $i++ ){
           $ele_ite = $ele_pos;
-          ele::cla($ele_ite,"sec fon ond-$i pul-{$ide}",'ini'); $_ .= "
-          <{$ope['eti']}".ele::atr($ele_ite).">{$val}</{$ope['eti']}>";
+          ele::cla($ele_ite,"sec fon ond-{$i} pul-{$ide}",'ini'); $_ .= "
+          <{$ope['eti']}".ele::atr($ele_ite).">
+            {$val}
+          </{$ope['eti']}>";
         }
       }
       break;      

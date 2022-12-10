@@ -37,7 +37,7 @@ $_ope['ico']['htm'] = ob_get_clean();
 // javascript: consola
 ob_start();
 ?>
-  <fieldset class='inf pad-3'>
+  <fieldset class='doc_inf pad-3'>
     <legend>Ejecutar JavaScript</legend>      
 
     <?=doc::var('val','cod',[ 
@@ -55,7 +55,7 @@ $_ope['jso']['htm'] = ob_get_clean();
 // php: ejecucion
   ob_start();
   ?>
-    <fieldset class='inf ite pad-3'>
+    <fieldset class='doc_inf dir-hor pad-3'>
       <legend>Ejecutar en PHP</legend>
 
       <?=doc::var('val','ide',[ 'ope'=>[ 'tip'=>"tex_ora" ] ])?>
@@ -87,7 +87,7 @@ $_ope['jso']['htm'] = ob_get_clean();
   // sql: consultas
   ob_start();
   ?>
-    <fieldset class='inf ite pad-3'>
+    <fieldset class='doc_inf dir-hor pad-3'>
       <legend>Ejecutar S.Q.L.</legend>
 
       <?=doc::var('val','cod',[ 
@@ -98,14 +98,14 @@ $_ope['jso']['htm'] = ob_get_clean();
 
     </fieldset>
 
-    <div class='est ope_res mar-1'></div>
+    <div class='lis est ope_res mar-1'></div>
   <?php
   $_ope['sql']['htm'] = ob_get_clean();
 
   // html: consultas dom
   ob_start();
   ?>
-    <fieldset class='inf ite pad-3'>
+    <fieldset class='doc_inf dir-hor pad-3'>
       <legend>Ejecutar Selector</legend>
 
       <?=doc::var('val','cod',[ 

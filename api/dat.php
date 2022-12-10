@@ -466,10 +466,11 @@ class dat {
       }// color en atributo
       elseif( $tip == 'col' ){
         
-        if( $col = dat::val_ide('col',$esq,$est,$atr) ){
-          $_ = "<div".ele::atr(ele::cla($ele,"fon-{$col}-{$dat->$atr} alt-100 anc-100",'ini'))."></div>";
+        if( $col = dat::val_ide('col',$esq,$est,$atr) ){ $_ = "
+          <div".ele::atr(ele::cla($ele,"fon-{$col}-{$dat->$atr} alt-100 anc-100",'ini')).">
+          </div>";
         }else{
-          $_ = "<div class='err fon-roj' title='No existe el color para el atributo : _{$esq}-{$est}-{$atr}'>{$dat->$atr}</div>";
+          $_ = "<div class='err' title='No existe el color para el atributo : _{$esq}-{$est}-{$atr}'>{$dat->$atr}</div>";
         }
       }// imagen en atributo
       elseif( $tip == 'ima' ){
@@ -484,7 +485,7 @@ class dat {
           $_ = arc::ima($_ima['esq'],$_ima['est'],$dat->$atr,$ele);
         }
         else{
-          $_ = "<div class='err fon-roj' title='No existe la imagen para el atributo : _{$esq}-{$est}-{$atr}'>{$dat->$atr}</div>";
+          $_ = "<div class='err' title='No existe la imagen para el atributo : _{$esq}-{$est}-{$atr}'>{$dat->$atr}</div>";
         }
       }// por tipos de dato
       elseif( $tip == 'tip' || in_array($tip,['num','tex','fec']) ){
@@ -515,7 +516,7 @@ class dat {
       if( is_null($dat->$atr) ){
         $_ = "<p title='Valor nulo para el objeto _{$esq}.{$est}[{$ide}].{$atr}'></p>";
       }else{
-        $_ = "<div class='err fon-roj' title='No existe el atributo {$atr} para el objeto _{$esq}.{$est}[{$ide}]'>{-_-}</div>";
+        $_ = "<div class='err' title='No existe el atributo {$atr} para el objeto _{$esq}.{$est}[{$ide}]'>{-_-}</div>";
       }      
     }      
 
@@ -699,7 +700,7 @@ class dat {
       if( $ele_eje ) $ele_val['eti'] = ele::eje($ele_val['eti'],'cam',$ele_eje);
       $_ .= "
       <c class='sep'>:</c>
-      <div class='val'>
+      <div class='doc_val'>
         ".opc::lis( isset($dat_val) ? $dat_val : [], $ele_val, 'nad')."
         <span class='ico'></span>
       </div>";
@@ -861,7 +862,7 @@ class dat {
     if( !in_array('det',$opc) ){
       if( ( $_fic = dat::est_ope($esq,$est,'fic') ) && isset($_fic[0]) ){ $_ .= 
 
-        "<div class='val' data-esq='$esq' data-est='$est' data-atr='{$_fic[0]}' data-ima='$esq.$est'>".
+        "<div class='doc_val' data-esq='$esq' data-est='$est' data-atr='{$_fic[0]}' data-ima='$esq.$est'>".
         
           ( !empty($val) ? arc::ima($esq,$est,$val,['class'=>"tam-4"]) : "" )."
   
@@ -880,7 +881,7 @@ class dat {
         $_dat = $esq::_("{$est}",$val);
       }
       $_ .= "
-      <div class='val'>";
+      <div class='doc_val'>";
       if( isset($_val['ima']) ){
         $_ .= arc::ima($esq,$est,$_dat,[ 'class'=>"mar_der-2" ]);
       }
@@ -911,7 +912,7 @@ class dat {
     if( !isset($ope['ima']) ) $ope['ima'] = [];
     if( empty($ope['ima']['class']) ) ele::cla($ope['ima'],"tam-4");
     $_ = "
-    <ul class='val'>
+    <ul class='doc_val'>
       <li><c>{</c></li>";        
       foreach( $atr as $atr ){
         $_ima = dat::val_ide('ima',$esq,$est,$atr); $_ .= "
@@ -967,7 +968,7 @@ class dat {
       // imagen + atributos | lectura
       if( !empty($_val['ima']) || ( !empty($_inf['atr']) || !empty($_inf['cit']) ) )
       $_ .= "
-      <div class='val jus-cen'>";
+      <div class='doc_val jus-cen'>";
         if( !empty($_val['ima']) ){ // 'onclick'=>FALSE
           $_ .= arc::ima($esq,$est,$_dat,[ 'class'=>"mar_der-2" ]);
         }
@@ -1006,20 +1007,27 @@ class dat {
             }
           }
           break;
-        // titulos con descripcion
+        // titulos con descripcion / atributos
         case 'tit':
           if( is_array($inf_val) ){
-            foreach( $inf_val as $tit ){
-              if( isset($_atr[$tit]) && isset($_dat->$tit) ){ $_ .= "
-                <p class='tit'>{$_atr[$tit]->nom}</p>";
-                foreach( explode("\n",$_dat->$tit) as $tex_par ){ $_ .= "
-                  <p class='des'>".tex::let($tex_par)."</p>";
+            if( preg_match("/-atr/",$inf_ide) ){
+              if( isset($inf_val[1]) && is_array($inf_val[1]) ){ $_ .= "
+                <p class='tit'>".tex::let($inf_val[0])."</p>
+                ".dat::lis_atr($esq,$est,$inf_val[1],$_dat);
+              }
+            }else{
+              foreach( $inf_val as $tit ){
+                if( isset($_atr[$tit]) && isset($_dat->$tit) ){ $_ .= "
+                  <p class='tit'>{$_atr[$tit]->nom}</p>";
+                  foreach( explode("\n",$_dat->$tit) as $tex_par ){ $_ .= "
+                    <p class='des'>".tex::let($tex_par)."</p>";
+                  }
                 }
               }
             }
           }
           break;                       
-        // lecturas con "" , alineado, con/sin titulo por atributo
+        // lecturas con "", con/sin titulo por atributo
         case 'lec':
           if( is_array($inf_val) ){
             $agr_cla = preg_match("/-lis/",$inf_ide) ? " tex_ali-izq" : "";
@@ -1033,6 +1041,35 @@ class dat {
             }
           }else{
             $_ .= "<p class='cit mar-0'><q>".tex::let(obj::val($_dat,$inf_val))."</q></p>";
+          }
+          break;
+        // listado por atributo(\n) con titulo / punteo
+        case 'lis': 
+          if( is_array($inf_val) ){
+            // atributos
+            if( preg_match("/-atr/",$inf_ide) ){ 
+              $_ .= dat::lis_atr($esq,$est,$inf_val,$_dat);
+            }// titulo > ...valores
+            else{
+              foreach( $inf_val as $lis ){
+                if( isset($_atr[$lis]) && isset($_dat->$lis) ){ $_ .= "
+                  <p class='tit'>".tex::let($_atr[$lis]->nom)."</p>
+                  ".lis::pos($_dat->$lis);
+                }
+              }
+            }
+          }
+          break;
+        // Tablero por identificador
+        case 'tab':
+          // convierto parametros por valores ($)          
+          if( isset($inf_val[1]) ) $inf_val[1] = obj::val_lis($inf_val[1],$_dat);
+          // defino identificador del tablero
+          if( !isset($inf_val[1]['ide']) ) $inf_val[1]['ide'] = isset($_dat->ide) ? $_dat->ide : FALSE;
+          // armo tablero por aplicacion
+          extract( dat::ide($inf_val[0]) );
+          if( $atr && class_exists($esq) && method_exists($esq,"tab") ){
+            $_ .= $esq::tab( $est, $atr, $inf_val[1], isset($inf_val[2]) ? $inf_val[2] : [] );
           }
           break;
         // Fichas : por atributos con Relaciones
@@ -1063,39 +1100,6 @@ class dat {
                 }
               }                
             }
-          }
-          break;
-        // listado por atributo(\n) con titulo / punteo
-        case 'lis': 
-          if( is_array($inf_val) ){
-            if( preg_match("/-atr/",$inf_ide) ){ $_ .= "
-              <ul class='mar_ver-0'>";
-              foreach( $inf_val as $lis ){
-                if( isset($_atr[$lis]) && isset($_dat->$lis) ){ $_ .= "
-                  <li><b class='ide'>{$_atr[$lis]->nom}</b>".tex::let(": {$_dat->$lis}")."</li>";
-                }
-              }$_ .= "
-              </ul>";
-            }else{
-              foreach( $inf_val as $lis ){
-                if( isset($_atr[$lis]) && isset($_dat->$lis) ){ $_ .= "
-                  <p class='tit'>".tex::let($_atr[$lis]->nom)."</p>
-                  ".lis::pos($_dat->$lis);
-                }
-              }
-            }
-          }
-          break;
-        // Tablero por identificador
-        case 'tab':
-          // convierto parametros por valores ($)          
-          if( isset($inf_val[1]) ) $inf_val[1] = obj::val_lis($inf_val[1],$_dat);
-          // defino identificador del tablero
-          if( !isset($inf_val[1]['ide']) ) $inf_val[1]['ide'] = isset($_dat->ide) ? $_dat->ide : FALSE;
-          // armo tablero por aplicacion
-          extract( dat::ide($inf_val[0]) );
-          if( $atr && class_exists($esq) && method_exists($esq,"tab") ){
-            $_ .= $esq::tab( $est, $atr, $inf_val[1], isset($inf_val[2]) ? $inf_val[2] : [] );
           }
           break;
         // Texto por valor: parrafos por \n
@@ -1145,7 +1149,7 @@ class dat {
         $url_ver = in_array('lis',$opc) ? "{$url}/lis" : "{$url}/tab";
       }
       $_ .= "
-      <fieldset class='ope' abm='{$tip}'>    
+      <fieldset class='doc_ope' abm='{$tip}'>    
         ".doc::ico('dat_ver', ['eti'=>"a", 'title'=>$_ope['ver']['nom'], 'onclick'=>"{$_eje}('ver');"])."
 
         ".doc::ico('dat_agr', ['eti'=>"a", 'title'=>$_ope['agr']['nom'], 'href'=>!empty($url) ? $url_agr : NULL, 'onclick'=>empty($url) ? "{$_eje}('agr');" : NULL])."
@@ -1156,7 +1160,7 @@ class dat {
     case 'abm':
       $tip = isset($ope['tip']) ? $ope['tip'] : 'ini';
       $_ = "
-      <fieldset class='ope mar-2 esp-ara'>
+      <fieldset class='doc_ope mar-2 esp-ara'>
 
         ".doc::ico('dat_ini', [ 'eti'=>"button", 'title'=>$_ope[$tip]['nom'], 'type'=>"submit", 'onclick'=>"{$_eje}('{$tip}');" ]);
 
@@ -1171,7 +1175,7 @@ class dat {
       break;              
     case 'est':
       $_ .= "
-      <fieldset class='ope'>    
+      <fieldset class='doc_ope'>    
         ".doc::ico('dat_agr',['eti'=>"button", 'type'=>"button", 'title'=>"Agregar", 'onclick'=>""])."
         
         ".doc::ico('dat_eli',['eti'=>"button", 'type'=>"button", 'title'=>"Eliminar", 'onclick'=>""])."    

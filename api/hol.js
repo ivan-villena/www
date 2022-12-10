@@ -61,7 +61,7 @@ class hol {
     }
 
     // Actualizo total general
-    if( $.tot = $api_doc._var.querySelector('div.var > [name="cue"]') ){
+    if( $.tot = $api_doc._var.querySelector('.doc_var > [name="cue"]') ){
 
       $.tot.innerHTML = $api_lis._tab.val.querySelectorAll(`[class*="_hol-${$.ide}_"]`).length;
     }
@@ -97,9 +97,9 @@ class hol {
       case 'col':
         $.cla = 'fon-0';
         if( $dat.checked ){
-          ele.act('cla_eli',$api_lis._tab.val.querySelectorAll(`.sec.-fon[class*="fon_col-"].${$.cla}`),$.cla);
+          ele.act('cla_eli',$api_lis._tab.val.querySelectorAll(`.sec.fon[class*="fon_col-"].${$.cla}`),$.cla);
         }else{
-          ele.act('cla_agr',$api_lis._tab.val.querySelectorAll(`.sec.-fon[class*="fon_col-"]:not(.${$.cla})`),$.cla);
+          ele.act('cla_agr',$api_lis._tab.val.querySelectorAll(`.sec.fon[class*="fon_col-"]:not(.${$.cla})`),$.cla);
         }             
         break;
       }
@@ -255,9 +255,9 @@ class hol {
         // tog: orbitales
         case 'orb':
           if( $dat.checked ){
-            ele.act('cla_eli',$api_lis._tab.val.querySelectorAll(`.sec.-orb.${DIS_OCU}`),DIS_OCU);            
+            ele.act('cla_eli',$api_lis._tab.val.querySelectorAll(`.sec.orb.${DIS_OCU}`),DIS_OCU);            
           }else{
-            ele.act('cla_agr',$api_lis._tab.val.querySelectorAll(`.sec.-orb:not(.${DIS_OCU})`),DIS_OCU);
+            ele.act('cla_agr',$api_lis._tab.val.querySelectorAll(`.sec.orb:not(.${DIS_OCU})`),DIS_OCU);
           }
           break;
         }
@@ -338,7 +338,8 @@ class hol {
     }
     // Actualizo acumulados
     hol.tab_val($dat);
-  }// parejas del oráculo
+  }
+  // parejas del oráculo
   static tab_par( $dat, $ope, ...$opc ){
 
     let $ = doc.var($dat);
@@ -407,13 +408,13 @@ class hol {
         // actualizo cantidades
         $._par_lis.forEach( $ide => {
 
-          if( $.tot = $api_doc._var.querySelector(`div.var > [name="${$ide}"] ~ span > n`) ){
+          if( $.tot = $api_doc._var.querySelector(`.doc_var > [name="${$ide}"] ~ span > n`) ){
 
             $.tot.innerHTML = $api_lis._tab.val.querySelectorAll(`[class*="_hol-par_${$ide}"]`).length;
           }
         });
         // total general
-        if( $.tot = $api_doc._var.querySelector('div.var > [name="cue"]') ){
+        if( $.tot = $api_doc._var.querySelector('.doc_var > [name="cue"]') ){
 
           $.tot.innerHTML = $api_lis._tab.val.querySelectorAll(`[class*="_hol-par_"]`).length;
         }
@@ -421,7 +422,8 @@ class hol {
         lis.tab_act('opc');        
       }
     }
-  }// pulsares de onda
+  }
+  // pulsares de onda
   static tab_pul( $dat, $ope, ...$opc ){
 
     let $ = doc.var($dat);
@@ -435,7 +437,7 @@ class hol {
     $.tab = $api_lis._tab.ide;
 
     // elimino todos los pulsares anteriores
-    ele.act('htm_eli',$api_lis._tab.val.querySelectorAll(`.sec.-ond[data-pul="${$.var_ide}"]`));
+    ele.act('htm_eli',$api_lis._tab.val.querySelectorAll(`.sec[class*="ond"].pul-${$.var_ide}`));
     
     // inicializo acumulados
     ele.act('cla_eli',$api_lis._tab.val.querySelectorAll(`.${$.cla[0]}`),$.cla);
@@ -476,7 +478,7 @@ class hol {
           
         });
         // muestro pulsares de la o.e.
-        $api_lis._tab.val.querySelectorAll(`.sec.-ond[data-pul="${$.var_ide}"]`).forEach( $e => {
+        $api_lis._tab.val.querySelectorAll(`.sec[class*="ond"].pul-${$.var_ide}`).forEach( $e => {
           
           $e.innerHTML += hol.ima(`ton_${$.var_ide}`, $.ton_pul, {'class':'fon'} );
         });

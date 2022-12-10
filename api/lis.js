@@ -9,7 +9,7 @@ class lis {
     acu : [ "pos", "mar", "ver", "opc" ],
     // filtros
     ver : {
-      val : `form.ide-val select[name="val"]`,
+      dat : `form.ide-dat select[name="val"]`,
       fec : `form.ide-fec input[name="ini"]`,
       pos : `form.ide-pos input[name="ini"]`
     }    
@@ -18,9 +18,10 @@ class lis {
   _est = {
     // Valores
     val :     `.ide-est div.lis.est`,
-    val_acu : `.ide-est .ide-val .ide-acu`,      
-    val_sum : `.ide-est .ide-val .ide-sum`,
-    val_cue : `.ide-est .ide-val .ide-cue`,
+    // Operador
+    val_acu : `.ide-est .ide-ver .ide-acu`,      
+    val_sum : `.ide-est .ide-ver .ide-sum`,
+    val_cue : `.ide-est .ide-ver .ide-cue`,    
     // filtros
     ver : `.ide-est .ide-ver`,
     // Descripciones
@@ -33,6 +34,7 @@ class lis {
     cla : null,
     // Valores
     val : `main > article > .lis.tab`,
+    // operador
     val_acu : `.doc_pan > .ide-val .ide-acu`,
     val_sum : `.doc_pan > .ide-val .ide-sum`,
     val_cue : `.doc_pan > .ide-val .ide-cue`,
@@ -45,7 +47,7 @@ class lis {
     atr : `.doc_pan > .ide-opc .ide-atr`
   };
 
-  constructor( $dat = {} ){      
+  constructor( $dat = {} ){
     
     ['_est','_tab'].forEach( $ope => {
       for( const $ide in this[$ope] ){
@@ -524,7 +526,7 @@ class lis {
     $api_doc._var = $ope.querySelector(`form.ide-${$tip}`);
 
     // datos de la base : estructura > valores [+ima]
-    if( $tip == 'val' ){
+    if( $tip == 'dat' ){
 
       $.dat_est = $api_doc._var.querySelector(`[name="est"]`);
       $.dat_ide=$api_doc._var.querySelector(`[name="ver"]`);
@@ -700,7 +702,7 @@ class lis {
 
       if( $.ele = $api_lis._est.val_acu.querySelector(`[name="tod"]`) ){
 
-        lis.est_val_tod($.ele);
+        lis.est_val('tod',$.ele);
       }
     }
 
@@ -723,70 +725,65 @@ class lis {
 
       $api_lis._est.des.querySelectorAll(`[name]:checked`).forEach( $e => lis.est_des_tog($e) );
     }
-  }// - Valores : todos | acumulados
-  static est_val( $tip ){
-
+  }// Valores: totales + acumulados
+  static est_val( $tip, $dat ){
+    let $_, $ = {};
     switch( $tip ){
-    // cuento items en pantalla
-    case 'tot':
+    case 'tot': 
+      $_ = 0;
       if( $api_lis._est.val ){
-      
-        return $api_lis._est.val.querySelectorAll(`tr.pos:not(.${DIS_OCU})`).length;
+        $_ = $api_lis._est.val.querySelectorAll(`tr.pos:not(.${DIS_OCU})`).length;
       }
       else{
-        return 'err: no hay tabla relacionada';
-      }      
+        console.error('No hay tabla relacionada...');
+      }
+      break;
+    case 'tod': 
+      $ = doc.var($dat);  
+      
+      if( $api_lis._est.val_acu ){
+        // ajusto controles acumulados
+        $api_lis._ope.acu.forEach( $i => {
+
+          if( $.val = $api_lis._est.val_acu.querySelector(`[name='${$i}']`) ) $.val.disabled = $dat.checked;
+        });
+      }
+      // ejecuto todos los filtros y actualizo totales
+      lis.est_ver();    
+      break;
+    case 'acu':
+      if( ( $.esq = $api_lis._est.val.dataset.esq ) && ( $.est = $api_lis._est.val.dataset.est ) ){
+        
+        // oculto todos los items de la tabla
+        ele.act('cla_agr',$api_lis._est.val.querySelectorAll(`tr.pos:not(.${DIS_OCU})`),DIS_OCU);
+
+        // actualizo por acumulado
+        $api_lis._ope.acu.forEach( $ide => {
+
+          if( $.val = $api_lis._est.val_acu.querySelector(`[name='${$ide}']`) ){
+
+            $.tot = 0;
+            if( $.val.checked ){
+              // recorro seleccionados
+              $api_lis._tab.val.querySelectorAll(`.pos[class*="_val-${$ide}-"]`).forEach( $e =>{
+                
+                if( $.ele = $api_lis._est.val.querySelector(`tr.pos[data-${$.esq}_${$.est}="${$e.dataset[`${$.esq}_${$.est}`]}"].${DIS_OCU}`) ){
+                  $.tot++;
+                  $.ele.classList.remove(DIS_OCU);
+                }
+              });            
+            }
+            // actualizo total
+            if( $.val.nextElementSibling && ( $.ele = $.val.nextElementSibling.querySelector('n') ) ){
+              $.ele.innerHTML = $.tot;
+            }
+          }
+        });
+      }    
       break;
     }
-  }// -- todos ? o por acumulados
-  static est_val_tod( $dat ){
-
-    let $ = doc.var($dat);  
-    
-    if( $api_lis._est.val_acu ){
-      // ajusto controles acumulados
-      $api_lis._ope.acu.forEach( $i => {
-
-        if( $.val = $api_lis._est.val_acu.querySelector(`[name='${$i}']`) ) $.val.disabled = $dat.checked;
-      });
-    }
-    // ejecuto todos los filtros y actualizo totales
-    lis.est_ver();
-
-  }// -- acumulados : posicion - marcas - seleccion
-  static est_val_acu(){
-
-    let $={};
-    
-    if( ( $.esq = $api_lis._est.val.dataset.esq ) && ( $.est = $api_lis._est.val.dataset.est ) ){
-      
-      // oculto todos los items de la tabla
-      ele.act('cla_agr',$api_lis._est.val.querySelectorAll(`tr.pos:not(.${DIS_OCU})`),DIS_OCU);
-
-      // actualizo por acumulado
-      $api_lis._ope.acu.forEach( $ide => {
-
-        if( $.val = $api_lis._est.val_acu.querySelector(`[name='${$ide}']`) ){
-
-          $.tot = 0;
-          if( $.val.checked ){
-            // recorro seleccionados
-            $api_lis._tab.val.querySelectorAll(`.pos[class*="_val-${$ide}-"]`).forEach( $e =>{
-              
-              if( $.ele = $api_lis._est.val.querySelector(`tr.pos[data-${$.esq}_${$.est}="${$e.dataset[`${$.esq}_${$.est}`]}"].${DIS_OCU}`) ){
-                $.tot++;
-                $.ele.classList.remove(DIS_OCU);
-              }
-            });            
-          }
-          // actualizo total
-          if( $.val.nextElementSibling && ( $.ele = $.val.nextElementSibling.querySelector('n') ) ){
-            $.ele.innerHTML = $.tot;
-          }
-        }
-      });
-    }
-  }// - Filtros : Valores + Fecha + Posicion
+    return $_;
+  }// Filtros : Valores + Fecha + Posicion
   static est_ver( $tip, $dat, $ope ){
 
     let $ = doc.var($dat);
@@ -800,7 +797,7 @@ class lis {
         ele.act('cla_eli',$api_lis._est.val.querySelectorAll(`tr.pos.${DIS_OCU}`),DIS_OCU);
       }// o muestro solo acumulados
       else{
-        lis.est_val_acu();
+        lis.est_val('acu');
       }
       // 2º - cargo filtros : - dato(val) -fecha(ini) -posicion(ini)
       $.eje = [];
@@ -833,9 +830,9 @@ class lis {
     }
     // actualizo total, cuentas y descripciones
     lis.est_act();
-  }// - Columnas : toggles + atributos
+  }// Columnas : toggles + atributos
   static est_atr(){
-  }// -- muestro-oculto
+  }// - muestro-oculto
   static est_atr_tog( $dat ){
 
     let $ = doc.var($dat);      
@@ -867,9 +864,9 @@ class lis {
         lis.est_atr_tog($e);
       });
     }
-  }// - Descripcion : titulo ( posicion + ciclos + agrupaciones) + detalle ( descripciones, lecturas )
+  }// Descripcion : titulo ( posicion + ciclos + agrupaciones) + detalle ( descripciones, lecturas )
   static est_des(){
-  }// -- muestro-oculto
+  }// - muestro-oculto
   static est_des_tog( $dat ){
 
     let $ = doc.var($dat);
@@ -899,7 +896,7 @@ class lis {
       });
     }   
 
-  }// -- filtro por descripciones
+  }// - filtro por descripciones
   static est_des_ver( $dat ){
 
     let $ = doc.var($dat);    
@@ -1002,7 +999,7 @@ class lis {
     $.tab.appendChild($.tab_dat);
 
     return $.tab;
-  }// - Inicio : opciones, posicion, filtros
+  }// Inicio : opciones, posicion, filtros
   static tab_ini( $cla ){
     let $={ cla : !!$cla ? eval($cla) : false };
 
@@ -1055,7 +1052,7 @@ class lis {
         });
       }
     }
-  }// - Actualizo : acumulados, sumatorias, cuentas, fichas, listado
+  }// Actualizo : acumulados, sumatorias, cuentas, fichas, listado
   static tab_act( $dat ){
     
     let $={};
@@ -1086,7 +1083,7 @@ class lis {
       // listado asociado:
 
       // -> actualizo acumulados
-      if( !$api_lis._est.val_acu.querySelector(`[name="tod"]:checked`) ) lis.est_val_acu();
+      if( !$api_lis._est.val_acu.querySelector(`[name="tod"]:checked`) ) lis.est_val('acu');
 
       // -> ejecuto filtros + actualizo totales
       if( $api_lis._est.ver ) lis.est_ver();
@@ -1105,7 +1102,7 @@ class lis {
 
       lis.ope_cue('act', $api_lis._tab.val.querySelectorAll(`${$api_lis._tab.cla}[class*=_val-]:is([class*=_bor],[class*=_act])`), $api_lis._tab.val_cue );
     }
-  }// - Valores
+  }// Valores
   static tab_val( $tip, $dat ){
 
     let $ = doc.var($dat);
@@ -1157,7 +1154,7 @@ class lis {
     // actualizo totales
     lis.tab_act($tip);
     
-  }// -- acumulados( posicion + marcas + seleccion )
+  }// - acumulados( posicion + marcas + seleccion )
   static tab_val_acu( $dat, $ope ){
     
     let $ = doc.var($dat);
@@ -1191,14 +1188,11 @@ class lis {
     // actualizo calculos + vistas( fichas + items )        
     lis.tab_act($.var_ide);
 
-  }// - Seleccion : datos, posicion, fecha
+  }// Seleccion : datos, posicion, fecha
   static tab_ver( $tip ){
 
     // ejecuto filtros por tipo : pos, fec      
-    lis.ope_ver( $tip, 
-      lis.val_cod($api_lis._tab.val.querySelectorAll(`${$api_lis._tab.cla}`)), 
-      $api_lis._tab.ver 
-    );
+    lis.ope_ver( $tip, lis.val_cod($api_lis._tab.val.querySelectorAll(`${$api_lis._tab.cla}`)), $api_lis._tab.ver );
 
     // marco seleccionados
     ele.act('cla_eli',$api_lis._tab.val.querySelectorAll('._val-ver_bor'),'_val-ver_bor');
@@ -1209,7 +1203,7 @@ class lis {
     // actualizo calculos + vistas( fichas + items )
     lis.tab_act('ver');
     
-  }// - Secciones : bordes + colores + imagen + ...
+  }// Secciones : bordes + colores + imagen + ...
   static tab_sec( $dat ){
 
     let $ = doc.var($dat); 
@@ -1249,7 +1243,7 @@ class lis {
       }
       break;      
     }     
-  }// - Posiciones : borde + color + imagen + texto + numero + fecha
+  }// Posiciones : borde + color + imagen + texto + numero + fecha
   static tab_pos( $dat ){
 
     let $ = doc.var($dat); 
@@ -1390,6 +1384,5 @@ class lis {
       }
       break;
     }
-  }   
-
+  }
 }

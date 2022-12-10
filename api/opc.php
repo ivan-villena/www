@@ -63,7 +63,7 @@ class opc {
         <div var='opc_uni'>";
         $ope_ide = isset($ope['ide']) ? $ope['ide'] : '_doc-opc-'.count($_dat);
         foreach( $_dat as $ide => $val ){ $_ .= "
-          <div class='val'>
+          <div class='doc_val'>
             <label for='{$ope_ide}-{$ide}'>{$val}<c>:</c></label>
             <input id='{$ope_ide}-{$ide}' type='radio' name='{$ide}' value='{$ide}'>
           </div>";
@@ -80,7 +80,7 @@ class opc {
         <div var='opc_mul'>";
         $ope_ide = isset($ope['ide']) ? $ope['ide'] : '_doc-opc-'.count($_dat);
         foreach( $_dat as $ide => $val ){ $_ .= "
-          <div class='val'>
+          <div class='doc_val'>
             <label for='{$ope_ide}-{$ide}'>{$val}<c>:</c></label>
             <input id='{$ope_ide}-{$ide}' type='checkbox' name='{$ide}' value='{$ide}'>
           </div>";

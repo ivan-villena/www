@@ -46,6 +46,26 @@ class doc {
     return $_;
   }
 
+  /* Icono : .doc_ico.$ide 
+  */
+  static ico( $ide, $ele = {} ){
+    let $_="<span class='doc_ico'></span>", $ = {};
+    $.doc_ico = doc._('ico');
+    if( !!($.doc_ico[$ide]) ){
+      $.eti = 'span';
+      if( $ele['eti'] ){
+        $.eti = $ele['eti'];
+        delete($ele['eti']);
+      }      
+      if( $.eti == 'button' && !($ele['type']) ) $ele['type'] = "button"; 
+      $_ = `
+      <${$.eti}${ele.atr(ele.cla($ele,`doc_ico ${$ide}`,'ini'))}>
+        ${$.doc_ico[$ide].val}
+      </${$.eti}>`;
+    }
+    return $_;
+  }    
+
   // pantalla modal : .doc_win > article > header + section
   static win( $ide, $ope ){
     let $ = {};    
@@ -190,29 +210,9 @@ class doc {
     }  
   }
 
-  /* Icono : .doc_ico.$ide 
-  */
-  static ico( $ide, $ele = {} ){
-    let $_="<span class='doc_ico'></span>", $ = {};
-    $.doc_ico = doc._('ico');
-    if( !!($.doc_ico[$ide]) ){
-      $.eti = 'span';
-      if( $ele['eti'] ){
-        $.eti = $ele['eti'];
-        delete($ele['eti']);
-      }      
-      if( $.eti == 'button' && !($ele['type']) ) $ele['type'] = "button"; 
-      $_ = `
-      <${$.eti}${ele.atr(ele.cla($ele,`doc_ico ${$ide} material-icons-outlined`,'ini'))}>
-        ${$.doc_ico[$ide].val}
-      </${$.eti}>`;
-    }
-    return $_;
-  }  
-
   /* Variable :
   */
-  // form > .var > label + (select,input,textarea,button)[name]
+  // form > .dov_var > label + (select,input,textarea,button)[name]
   static var( $tip, $dat, $ope, ...$opc ){
     let $={};
 

@@ -84,8 +84,7 @@ class arc {
       if( !isset($ope['lis']) ) $ope['lis'] = [];
       if( !isset($ope['ite']) ) $ope['ite'] = [];
 
-      ele::cla($ope['lis'],"app_arc-dir",'ini');
-      $_ .= "
+      ele::cla($ope['lis'],"lis arc dir mar-1",'ini'); $_ .= "
       <ul".ele::atr($ope['lis']).">";
       foreach( arc::dir($dat) as $arc ){
         $ele_ite = $ope['ite'];

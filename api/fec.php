@@ -119,7 +119,7 @@ class fec {
           $_ = new DateTime( intval($dat) );
         }
         catch( Throwable $_err ){ 
-          echo "<p class='err'>{$_err}</p>";
+          $_ .= "<p class='err'>{$_err}</p>";
         }
       }
       elseif( is_string($dat) ){ 
@@ -128,7 +128,7 @@ class fec {
           $_ = !! $_ ? new DateTime( "{$_->año}-{$_->mes}-{$_->dia}" ) : new DateTime('NOW');
         }
         catch( Throwable $_err ){ 
-          echo "<p class='err'>{$_err}</p>"; 
+          $_ .= "<p class='err'>{$_err}</p>"; 
         }
       }
       elseif( is_object($dat) ){

@@ -37,7 +37,7 @@ class usu {
         $_ = "
         <form class='dat' data-esq='{$esq}' data-est='{$est}'>
 
-          <fieldset class='ren'>
+          <fieldset class='doc_ren'>
 
             ".doc::var('atr', [$esq,$est,$atr='nom'], [ 'val'=>$this->$atr  ], 'eti')."
 
@@ -45,7 +45,7 @@ class usu {
           
           </fieldset>
 
-          <fieldset class='ren'>
+          <fieldset class='doc_ren'>
 
             ".doc::var('atr', [$esq,$est,$atr='mai'], [ 'val'=>$this->$atr  ],'eti')."
 
@@ -98,14 +98,14 @@ class usu {
 
     // nombre + fecha : kin + psi
     $_ = "
-    <section class='inf ren esp-ara'>
+    <section class='doc_inf ren esp-ara'>
 
       <div>
         <p class='tex-tit tex-3 mar_aba-1'>".tex::let("$this->nom $this->ape")."</p>
         <p>".tex::let($_fec->val." ( $this->eda años )")."</p>
       </div>        
 
-      <div class='val'>
+      <div class='doc_val'>
         ".hol::ima("kin",$_kin,['class'=>"mar_hor-1"])."
         <c>+</c>
         ".hol::ima("psi",$_psi,['class'=>"mar_hor-1"])."
@@ -214,7 +214,7 @@ class usu {
           $_kin = hol::_('kin',$_lun->kin);
           $_nav = "<a href='http://localhost/hol/tab/kin-tzo/sin=$_lun->sin' target='_blank' title='Ver en Tableros...'>".tex::let($_lun->sin)."</a>";
           $_lis_lun []= 
-          "<div class='ite'>
+          "<div class='doc_ite'>
             ".hol::ima("kin",$_kin,['class'=>"tam-6 mar_der-1"])."
             <p>
               ".tex::let(intval($_lun_ton->ide)."° ciclo, ").$_nav.tex::let(" ( $_fec->val ).")."
@@ -231,7 +231,7 @@ class usu {
         $_kin = hol::_('kin',$_cic->kin);            
         $_lis_cic []= [
           'ite'=>[ 'eti'=>"div", 'class'=>"lis", 'htm'=> 
-            "<div class='ite'>
+            "<div class='doc_ite'>
               ".hol::ima("kin",$_kin,['class'=>"tam-6 mar_der-1"])."
               <p title = '$_cas->des'>
                 ".tex::let("$_cic->eda año".( $_cic->eda != 1 ? 's' : '' ).", $_cic->sin ( $_fec->val ):")."
@@ -276,7 +276,7 @@ class usu {
 
     ".num::var('ran',$_ani->eda,[ 'min'=>0, 'max'=>51, 'class'=>"anc-100", 'disabled'=>1 ],'ver')."
 
-    <div class='ite mar_ver-1'>
+    <div class='doc_ite mar_ver-1'>
       ".hol::ima("cas_arm",$_cas_arm,[ 'class'=>"tam-7 mar_der-2" ])."
       <div class='tex-3'>
         <p class='tex-tit'>".tex::let($_ani_arm->nom)."</p>
@@ -303,7 +303,7 @@ class usu {
 
     ".num::var('ran',$_lun->ide,[ 'min'=>1, 'max'=>13, 'class'=>"anc-100", 'disabled'=>1 ],'ver')."
 
-    <div class='ite mar_ver-1'>
+    <div class='doc_ite mar_ver-1'>
       ".hol::ima("ton",$_lun_ton,[ 'class'=>"tam-7 mar_der-2" ])."
       <div class='tex-3'>
         <p>$_lun_ton->ond_nom<c>:</c> $_lun_ton->ond_pod</p>          

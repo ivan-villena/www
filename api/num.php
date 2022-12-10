@@ -257,7 +257,7 @@ class num {
           $_ = "
           <div class='num ran {$cla}'>
           
-            <div class='val'>
+            <div class='doc_val'>
               <n class='_min'>{$ope['min']}</n>
               <c class='sep'><</c>
               <input".ele::atr($ope).">

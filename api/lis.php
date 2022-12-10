@@ -40,7 +40,8 @@ class lis {
         'det_cic'=>[],
         'det_gru'=>[],
         'det_des'=>[]
-      ]
+      ],
+      "est-2" => []
     ]
   ];    
   static array $EST_OPE = [
@@ -415,14 +416,14 @@ class lis {
   }
 
   /* 
-  Contenedor : ul > ...li > .val(.ico + tex-tit) + lis/htm
+  Sublistados : ul.lis > ...li > .val(.doc_ico + tex-tit) + lis/htm
   */
   static function ite( array $dat, array $ope = [] ) : string {
     foreach( ['lis','ite','val','ico','dep','ope'] as $e ){ if( !isset($ope[$e]) ){ $ope[$e]=[]; } }
     $_ = "";
     // elementos        
-    ele::cla($ope['lis'],"lis mar_hor-0",'ini');
-    ele::cla($ope['dep'],"lis mar_hor-0",'ini');
+    ele::cla($ope['lis'],"lis dep",'ini');
+    ele::cla($ope['dep'],"lis",'ini');
     ele::cla($ope['ope'],"ite",'ini');      
     // operadores
     if( isset($ope['opc']) ) $_ .= lis::var_ope('val', lis::val_ite($ope['opc']), $ope);
@@ -640,7 +641,7 @@ class lis {
     $max = $pos;
     $_eje .= "_ite";
     $_ .= "
-    <form class='ope anc-100 jus-cen mar_ver-2'>
+    <form class='doc_ope anc-100 jus-cen mar_ver-2'>
 
       ".num::var('val',$min,['name'=>"ini", 'title'=>"Ir al primero...", 'class'=>"mar_hor-1", 'onclick'=>"$_eje('val',this);" ])."
               
@@ -689,7 +690,7 @@ class lis {
     if( !empty($ope['ide']) ) $_ide = $ope['ide'];
 
     $_ .= "
-    <div class='ren'>";
+    <div class='doc_ren'>";
       foreach( $opc as $ide ){        
         $_ .= doc::var('app',"val.acu.$ide", [
           'ope'=> [ 
@@ -721,30 +722,34 @@ class lis {
   }// filtros : texto + listado + datos
   static function ope_ver( string $tip, string | array $dat = [], array $ele = [], ...$opc ) : string {
     $_ = "";
-    $_ite = function( $ide, $dat=[], $ele=[] ){
-
-      if( !empty($ele['ope']['id']) ) $ele['ope']['id'] .= "-{$ide}"; 
-
-      // impido tipos ( para fechas )
-      if( ( $ide == 'inc' || $ide == 'lim' ) && isset($ele['ope']['tip']) ) unset($ele['ope']['tip']);
-      
-      // combino elementos
-      if( !empty($dat[$ide]) && is_array($dat[$ide]) ) $ele['ope'] = ele::val_jun($ele['ope'],$dat[$ide]);
-
-      return $ele;
-    };
     switch( $tip ){
     // dato : estructura => valores 
     case 'dat':
+      // aseguro estructuras
+      $ope_dat = [];
+      foreach( $dat as $esq_ide => $est_lis ){
+        $ope_dat[$esq_ide] = lis::val($est_lis) ? $est_lis : array_keys($est_lis);
+      }
       // selector de estructura.relaciones para filtros
       array_push($opc,'est','val');
-      $_ .= doc::var('app',"val.ver.dat",[ 
-        'ite'=>[ 'class'=>"tam-mov" ],
-        'htm'=>dat::val_opc('ver',$dat,$ele,...$opc)
-      ]);
+      $_ .= doc::var('app',"val.ver.dat",[ 'ite'=>[ 'class'=>"tam-mov" ], 'htm'=>dat::val_opc('ver',$ope_dat,$ele,...$opc) ]);
       break;
-    // listado : desde + hasta + cada + cuantos
+    // listado : desde + hasta + cada + cuanto
+    case 'pos':
+    case 'fec':
     case 'lis': 
+      $_ite = function( $ide, $dat=[], $ele=[] ){
+
+        if( !empty($ele['ope']['id']) ) $ele['ope']['id'] .= "-{$ide}";
+  
+        // impido tipos ( para fechas )
+        if( ( $ide == 'inc' || $ide == 'lim' ) && isset($ele['ope']['tip']) ) unset($ele['ope']['tip']);
+        
+        // combino elementos
+        if( !empty($dat[$ide]) && is_array($dat[$ide]) ) $ele['ope'] = ele::val_jun($ele['ope'],$dat[$ide]);
+  
+        return $ele;
+      };      
       // por defecto
       if( empty($dat) ) $dat = [ 'ini'=>[], 'fin'=>[] ];
 
@@ -757,7 +762,7 @@ class lis {
       // limites : incremento + cuantos ? del inicio | del final
       if( isset($dat['inc']) || isset($dat['lim']) ){
         $_ .= "
-        <div class='ren'>";
+        <div class='doc_ren'>";
           // cada
           if( isset($dat['inc']) ){
             $_ .= doc::var('app',"val.ver.inc", $_ite('inc',$dat,$ele));
@@ -766,7 +771,7 @@ class lis {
           if( isset($dat['lim']) ){
             $_eje = "doc.var('mar',this,'bor-sel');".( isset($ele['ope']['onchange']) ? " {$ele['ope']['onchange']}" : "" );
             $ele['htm_fin'] = "
-            <fieldset class='ope'>
+            <fieldset class='doc_ope'>
               ".doc::ico('lis_ini',[ 'eti'=>"button", 'title'=>"Los primeros...", 'class'=>"bor-sel", 'onclick'=>$_eje ])."
               ".doc::ico('lis_fin',[ 'eti'=>"button", 'title'=>"Los primeros...", 'onclick'=>$_eje ])."
             </fieldset>"; 
@@ -812,7 +817,7 @@ class lis {
                 // armo listado : form + table por estructura
                 $htm_lis []= [ 
                   'ite'=>$rel_nom, 'htm'=>"
-                  <div class='var mar_izq-2 dis-ocu'>
+                  <div class='doc_var mar_izq-2 dis-ocu'>
                     ".lis::ope_cue('est',"{$esq}.{$est}.{$atr}",$ope)."
                   </div>"
                 ];
@@ -829,7 +834,7 @@ class lis {
       $ide = !empty($atr) ? dat::est_rel($esq,$est,$atr) : $est;
       $_ = "
       <!-- filtros -->
-      <form class='val'>
+      <form class='doc_val'>
 
         ".doc::var('val','ver',[ 
           'nom'=>"Filtrar", 
@@ -878,7 +883,8 @@ class lis {
     self::$EST_DAT = [];
     if( !isset($ope['opc']) ) $ope['opc']=[];
     foreach( ['lis','tit_ite','tit_val','ite','dat_val','det_ite','det_val','val'] as $i ){ if( !isset($ele[$i]) ) $ele[$i]=[]; }
-    // proceso estructura de la base
+    /////////////////////////////////////////
+    // 1- proceso estructura de la base /////
     if( $_val_dat = is_string($dat) ){
       extract( dat::ide($dat) );
       $_ide = "_$esq-$est $_ide";
@@ -921,17 +927,22 @@ class lis {
       // total de columnas
       $ope['atr_tot'] = count($ope['atr']);
     }
-    // imprimo operador
+    /////////////////////////////////////////
+    // 2- imprimo operador //////////////////
     if( isset($ope['ope']) ){
+
       if( empty($ope['ope']) ) $ope['ope'] = [ "dat" ];
+
       if( !empty( $_ope = obj::val_nom(lis::$EST_OPE,'ver',lis::val_ite($ope['ope'])) ) ){
+
         foreach( $_ope as $ope_ide => &$ope_lis ){
           $ope_lis['htm'] = lis::est_ope($ope_ide,$dat,$ope,$ele);
         }
-        $_ = doc::nav('ope', $_ope,[ 'lis'=>['class'=>"mar_hor-1"] ],'ico','tog');
+        $_ .= doc::nav('ope', $_ope,[ 'lis'=>['class'=>"mar_hor-1"] ],'ico','tog');
       }    
     }
-    // imprimo listado
+    /////////////////////////////////////////
+    // 3- imprimo listado ///////////////////
     ele::cla($ele['lis'],"lis est",'ini'); 
     $_ .= "
     <div".ele::atr($ele['lis']).">
@@ -950,7 +961,13 @@ class lis {
           $pos_val = 0;   
           // recorro: por listado $dat = []                     
           if( !$_val_dat ){
-            $_ .= lis::est_ite( $dat, $ope, $ele );
+            foreach( $dat as $ite => $val ){ 
+              $ele_pos = $ele['ite'];
+              ele::cla($ele_pos,"pos ide-$ite",'ini'); $_ .= "
+              <tr".ele::atr($ele_pos).">
+                ".lis::est_ite( $dat, $val, $ope, $ele )."
+              </tr>";
+            }
           }
           // estructuras de la base esquema
           else{
@@ -1005,7 +1022,8 @@ class lis {
                 } 
               }                    
             }
-          }$_ .= "              
+          }
+          $_ .= "              
         </tbody>";
         // pie
         if( !empty($ope['pie']) ){
@@ -1032,23 +1050,17 @@ class lis {
     $_ite = function( string $esq, string $est, array $ope = [] ) : array {
       
       // inicializo atributos de lista
-      $_ = [];
-              
-      // reemplazo atributos por defecto
-      if( isset($ope['atr']) ){
-        $_['atr'] = lis::val_ite($ope['atr']);
-        if( isset($_['atr_ocu']) ) unset($_['atr_ocu']);
-      }
-      $_ = obj::val_jun($_,$ope);
+      $_ = $ope;
 
-      // columnas
+      /* columnas 
+      */
       if( empty($_['atr']) ) $_['atr'] = !empty( $_atr = dat::atr($esq,$est) ) ? array_keys($_atr) : [];
-      // ocultas
-      if( isset($ope['atr_ocu']) ) $_['atr_ocu'] = lis::val_ite($ope['atr_ocu']);
       // totales
       $_['atr_tot'] = count($_['atr']);
       
-      // ciclos y agrupaciones: busco descripciones + inicio de operadores      
+      /* ciclos y agrupaciones 
+      */
+      // busco descripciones + inicio de operadores      
       foreach( ['cic','gru'] as $ide ){
 
         if( isset($_["tit_{$ide}"]) ){
@@ -1068,17 +1080,13 @@ class lis {
       }
       return $_;
     };
+
     // carga inicial
     foreach( ( isset($ope['est']) ? $ope['est'] : [ $esq => [ $est => $ope ] ] ) as $esq_ide => $est_lis ){
 
-      foreach( $est_lis as $est_pos => $est_dat ){
-        
-        if( is_string($est_pos) ){
-          $_[$esq_ide][$est_pos] = $_ite($esq_ide,$est_pos,$est_dat);
-        }
-        else{
-          $_[$esq_ide][$est_dat] = $_ite($esq_ide,$est_dat);
-        }
+      foreach( $est_lis as $est_ide => $est_ope ){
+
+        $_[$esq_ide][$est_ide] = $_ite($esq_ide,$est_ide,$est_ope);
       }
     }
 
@@ -1095,7 +1103,7 @@ class lis {
     }
     switch( $tip ){
     // Dato : abm por columnas
-    case 'dat':
+    case 'abm':
       foreach( ['lis'] as $e ){ if( !isset($ele[$e]) ) $ele[$e]=[]; }
       $est_ope = self::$EST_DAT;
       // tipos de dato
@@ -1113,9 +1121,9 @@ class lis {
       }
       // operador : toggles + filtros
       $_ .= "
-      <form class='val ide-dat jus-ini'>
+      <form class='doc_val ide-dat jus-ini'>
 
-        <fieldset class='ope'>
+        <fieldset class='doc_ope'>
           ".doc::ico('val_ver-nad',['eti'=>"button",'title'=>"Ocultar todas las Columnas", 'onclick'=>"{$_eje}_val(this,'ocu');"])."
           ".doc::ico('val_ver-tod',['eti'=>"button",'title'=>"Mostrar todas las Columnas", 'onclick'=>"{$_eje}_val(this,'ver');"])."
         </fieldset>
@@ -1124,9 +1132,9 @@ class lis {
           'nom'=>"Filtrar", 'htm'=> doc::val_ver([ 'eje'=>"{$_eje}_ver(this);" ]) 
         ])."
 
-        <fieldset class='ite'>";
+        <fieldset class='doc_ite'>";
         foreach( $_cue as $atr => $val ){ $_ .= "
-          <div class='val'>
+          <div class='doc_val'>
             ".doc::ico($atr,[
               'eti'=>"button", 'title'=>"Mostrar las Columnas de {$val[0]}...", 'onclick'=>"{$_eje}_ver(this,'$atr');"
             ])."
@@ -1150,7 +1158,7 @@ class lis {
         if( isset($_atr->ope['step']) ){ $_var['step'] = $_atr->ope['step']; }
         if( isset($_atr->ope['tam']) ){ $_var['tam'] = $_atr->ope['tam']; }
         $htm = "
-        <form class='ren esp-bet'>
+        <form class='doc_ren esp-bet'>
         
           ".lis::ope_ver('lis', isset($_cue[$dat_tip][2]) ? $_cue[$dat_tip][2] : [], [ 'ope'=>$_var ] )."
 
@@ -1175,51 +1183,48 @@ class lis {
       }$_ .= "
       </table>";            
       break;
-    // Valores : cantidad + acumulado + filtros
-    case 'val': 
-      $_ = "
-      <h3 class='mar_arr-0 tex_ali-izq'>Valores</h3>";
-      // acumulados
-      if( isset($ope['val']['acu']) ){
-        $_ .= "
-        <form class='ide-acu'>
-          <fieldset class='inf ren'>
-            <legend>Acumulados</legend>
-
-            ".doc::var('app',"val.ver.tot", [ 'ope'=>[ 'id'=>"{$_ide}-tot" ] ])."
-            
-            ".doc::var('app',"val.ver.tod", [ 'ope'=>[ 'id'=>"{$_ide}-tod", 'onchange'=>"{$_eje}_tod(this);" ] ])."
-            
-            ".lis::ope_acu($ope['val']['acu'],[
-              'ide'=>$_ide, // agrego evento para ejecutar todos los filtros
-              'eje'=>"{$_eje}_acu(this); ".self::$EJE."ver();",
-              'ope'=>[ 'htm_fin'=>"<span class='mar_izq-1'><c>(</c> <n>0</n> <c>)</c></span>" ]
-            ]); 
-            $_ .= "
-          </fieldset>
-        </form>";
-      }
-      break;
     // Filtros :
     case 'ver': 
       $_ = "
       <h3 class='mar_arr-0 tex_ali-izq'>Filtros</h3>";
       // filtros : datos + posicion + atributos
       if( isset($ope['val']) ){
-        $dat_tot = count($ope['dat']);
+        // acumulados
+        if( isset($ope['val']['acu']) ){ 
+
+          $eje_val = self::$EJE."est_val";
+          $_ .= "
+          <form class='ide-acu'>
+            <fieldset class='doc_inf doc_ren'>
+              <legend>Acumulados</legend>
+
+              ".doc::var('app',"val.ver.tot", [ 'ope'=>[ 'id'=>"{$_ide}-tot" ] ])."
+              
+              ".doc::var('app',"val.ver.tod", [ 'ope'=>[ 'id'=>"{$_ide}-tod", 'onchange'=>"{$eje_val}('tod',this);" ] ])."
+              
+              ".lis::ope_acu($ope['val']['acu'],[
+                'ide'=>$_ide, 
+                'eje'=>"{$eje_val}('acu'); lis.est_ver();",// agrego evento para ejecutar todos los filtros
+                'ope'=>[ 'htm_fin'=>"<span class='mar_izq-1'><c>(</c> <n>0</n> <c>)</c></span>" ]
+              ]); 
+              $_ .= "
+            </fieldset>
+          </form>";
+        }        
+        // dato + fecha + posicion
         $_ .= "
-        <form class='ide-val'>
-          <fieldset class='inf ren'>
+        <form class='ide-dat'>
+          <fieldset class='doc_inf doc_ren'>
             <legend>por Datos</legend>
 
             ".lis::ope_ver('dat', $ope['est'], [
-              'ope'=>[ 'id'=>"{$_ide}-val", 'max'=>$dat_tot, 'onchange'=>"$_eje();" ] 
+              'ope'=>[ 'id'=>"{$_ide}-val", 'onchange'=>"$_eje();" ] 
             ])."
           </fieldset>
         </form>  
 
         <form class='ide-fec'>
-          <fieldset class='inf ren'>
+          <fieldset class='doc_inf doc_ren'>
             <legend>por Fechas</legend>
 
             ".lis::ope_ver('lis', [ 'ini'=>[], 'fin'=>[], 'inc'=>[], 'lim'=>[] ], [ 
@@ -1229,12 +1234,12 @@ class lis {
         </form>
         <!--
         <form class='ide-pos'>
-          <fieldset class='inf ren'>
+          <fieldset class='doc_inf doc_ren'>
             <legend>por Posiciones</legend>
 
             ".lis::ope_ver('lis', [ 'ini'=>[], 'fin'=>[], 'inc'=>[], 'lim'=>[] ], [                  
               'ope'=>[ 'id'=>"{$_ide}-pos", 
-                'tip'=>"num_int", 'min'=>"1", 'max'=>$dat_tot, 'onchange'=>"$_eje();" 
+                'tip'=>"num_int", 'min'=>"1", 'max'=>count($ope['dat']), 'onchange'=>"$_eje();" 
               ]
             ])."
           </fieldset>
@@ -1253,8 +1258,8 @@ class lis {
           $est_dat = dat::est($esq,$est);
           // contenido : listado de checkbox en formulario
           $htm = "
-          <form class='ide-$tip ren jus-ini mar_izq-2'>
-            <fieldset class='ope'>
+          <form class='ide-$tip doc_ren jus-ini mar_izq-2'>
+            <fieldset class='doc_ope'>
               ".doc::ico('val_ver-tod',['eti'=>"button", 'title'=>"Mostrar todas las Columnas", 'class'=>"tam-2",
               'data-val'=>"ver", 'data-esq'=>$esq, 'data-est'=>$est, 'onclick'=>"{$_eje}_tog(this);"])."
               ".doc::ico('val_ver-nad',['eti'=>"button", 'title'=>"Ocultar todas las Columnas", 'class'=>"tam-2",
@@ -1292,7 +1297,7 @@ class lis {
             foreach( ['cic','gru','des'] as $ide ){
               $pre = $ide == 'des' ? 'det' : 'tit';
               if( !empty($est_ope["{$pre}_{$ide}"]) ){ $htm = "
-                <form class='ide-{$ide} ren ali-ini mar_izq-2' data-esq='{$esq}' data-est='{$est}'>";
+                <form class='ide-{$ide} doc_ren ali-ini mar_izq-2' data-esq='{$esq}' data-est='{$est}'>";
                 foreach( $est_ope["{$pre}_{$ide}"] as $atr ){
                   $htm .= doc::var('val',$atr,[ 
                     'nom'=>"¿".dat::atr($esq,$est,$atr)->nom."?",
@@ -1333,6 +1338,7 @@ class lis {
     $_ = "";
     // por muchos      
     if( isset($ope['est']) ){
+      
       foreach( self::$EST_DAT as $esq => $est_lis ){
         foreach( $est_lis as $est => $est_ope ){
           if( isset($est_ope['est']) ) unset($est_ope['est']);
@@ -1643,7 +1649,7 @@ class lis {
       // por acumulados
       $_ .= "
       <form class='ide-acu'>
-        <fieldset class='inf ren'>
+        <fieldset class='doc_inf doc_ren'>
           <legend>Acumulados</legend>";
 
           $_ .= doc::var('app',"val.ver.tot", [ 'ope'=>[ 'id'=>"{$_ide}-tot" ] ]);
@@ -1660,7 +1666,7 @@ class lis {
       if( isset($ope['val']['pos']['kin']) ){ $_ .= "
         <form class='ide-sum'>
   
-          <fieldset class='inf ren' data-esq='hol' data-est='kin'>
+          <fieldset class='doc_inf doc_ren' data-esq='hol' data-est='kin'>
             <legend>Sumatorias del Kin</legend>
 
             ".lis::ope_sum('hol.kin',$ope['val']['pos']['kin'])."
@@ -1670,7 +1676,7 @@ class lis {
       }
       // cuentas por estructura
       $_ .= "
-      <section class='ide-cue inf'>
+      <section class='ide-cue inf pad_hor-2'>
         <h3>Totales por Estructura</h3>
 
         ".lis::ite( lis::ope_cue('dat',$ope['est'],['ide'=>$_ide]), [ 'dep'=>['class'=>DIS_OCU], 'opc'=>['tog','ver','cue'] ])."
@@ -1713,11 +1719,11 @@ class lis {
         $ele_ope = $ele['ope'];
         ele::cla($ele_ope,"ide-$tip_opc",'ini'); $_ .= "
         <form".ele::atr($ele_ope).">
-          <fieldset class='inf ren'>
+          <fieldset class='doc_inf doc_ren'>
             <legend>Secciones</legend>";
             // operadores globales
             if( !empty($tab_sec = doc::var_dat('app','tab',$tip_opc)) ){ $_ .= "
-              <div class='val'>";
+              <div class='doc_val'>";
               foreach( doc::var_dat('app','tab',$tip_opc) as $ide => $ite ){
                 if( isset($ope[$tip_opc][$ide]) ){ 
                   $_ .= doc::var('app',"tab.$tip_opc.$ide", [ 
@@ -1741,7 +1747,7 @@ class lis {
         $ele_ope = $ele['ope'];
         ele::cla($ele_ope,"ide-$tip_opc",'ini'); $_ .= "
         <form".ele::atr($ele_ope).">
-          <fieldset class='inf ren'>
+          <fieldset class='doc_inf doc_ren'>
             <legend>Posiciones</legend>";
             // bordes            
             $ide = 'bor';
@@ -1764,7 +1770,7 @@ class lis {
             // con acumulados : imagen de fondo - ( ficha )
             foreach( ['ima'] as $ide ){
               if( isset($ope[$tip_opc][$ide]) ){ $_ .= "
-                <div class='ren'>";
+                <div class='doc_ren'>";
                   // vistas por acumulados
                   $_ .= doc::var('app',"tab.{$tip_opc}.{$ide}",[
                     'id'=>"{$ele_ide}-{$ide}",
@@ -1813,7 +1819,7 @@ class lis {
             $ele_ope = $ele['ope'];
             ele::cla($ele_ope,"ide-$tip_opc-$atr",'ini'); $_ .= "
             <form".ele::atr($ele_ope).">
-              <fieldset class='inf ren'>
+              <fieldset class='doc_inf doc_ren'>
                 <legend>{$_ope['nom']}</legend>
                   {$htm}
               </fieldset>
@@ -1827,7 +1833,7 @@ class lis {
     case 'ver':
       $_ .= "
       <form class='ide-val'>
-        <fieldset class='inf ren'>
+        <fieldset class='doc_inf doc_ren'>
           <legend>Seleccionar por Datos</legend>
 
           ".lis::ope_ver('dat', $ope['est'], [ 
@@ -1838,7 +1844,7 @@ class lis {
       </form>
 
       <form class='ide-pos'>
-        <fieldset class='inf ren'>
+        <fieldset class='doc_inf doc_ren'>
           <legend>Seleccionar por Posiciones</legend>
 
           ".lis::ope_ver('lis', [ 'ini'=>[], 'fin'=>[], 'inc'=>[], 'lim'=>[] ], [
@@ -1851,7 +1857,7 @@ class lis {
       </form>
 
       <form class='ide-fec'>
-        <fieldset class='inf ren'>
+        <fieldset class='doc_inf doc_ren'>
           <legend>Seleccionar por Fechas</legend>
 
           ".lis::ope_ver('lis', [ 'ini'=>[], 'fin'=>[], 'inc'=>[], 'lim'=>[] ], [ 
@@ -1866,10 +1872,9 @@ class lis {
     // listado : Valores + Columnas + Descripciones
     case 'lis':
       // cargo operador con datos del tablero
-      if( !isset($ope['ope']) ) $ope['ope'] = [ "val", "ver", "atr", "des" ];
+      if( !isset($ope['ope']) ) $ope['ope'] = [ "ver", "atr", "des" ];
       if( !isset($ope['opc']) ) $ope['opc'] = [];
       array_push($ope['opc'],"ite_ocu");
-      var_dump($ope);
       $_ = lis::est($dat,$ope,$ele);
       break;
     }

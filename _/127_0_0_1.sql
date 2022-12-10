@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-12-2022 a las 19:55:09
+-- Tiempo de generación: 08-12-2022 a las 21:17:25
 -- Versión del servidor: 10.4.25-MariaDB
 -- Versión de PHP: 8.1.10
 
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `c1461857_api`
 --
+CREATE DATABASE IF NOT EXISTS `c1461857_api` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci;
+USE `c1461857_api`;
 
 -- --------------------------------------------------------
 
@@ -1330,7 +1332,7 @@ CREATE TABLE `dat_est` (
 --
 
 INSERT INTO `dat_est` (`esq`, `ide`, `ope`) VALUES
-('fec', 'dat', '{\r\n        \"val\":{ \r\n        },    \r\n        \"rel\":{ \r\n          \"val\":\"fec_dat\", \r\n          \"dia\":\"fec_dia\", \r\n          \"sem\":\"fec_sem\", \r\n          \"año\":\"fec_año\"\r\n        },\r\n        \"lis\":{\r\n          \"atr\": [ \"val\" ]\r\n        },\r\n        \"opc\":{ \r\n          \"ver\": [ \"dia\", \"sem\", \"mes\" ],\r\n          \"num\": [ \"dia\", \"sem\", \"mes\" ]\r\n        }        \r\n    }'),
+('fec', 'dat', '{\r\n        \"val\":{ \r\n        },    \r\n        \"rel\":{ \r\n          \"val\":\"fec_dat\", \r\n          \"dia\":\"fec_dia\", \r\n          \"sem\":\"fec_sem\", \r\n          \"año\":\"fec_año\"\r\n        },\r\n        \"est\":{\r\n          \"atr\": [ \"val\" ]\r\n        },\r\n        \"opc\":{ \r\n          \"ver\": [ \"dia\", \"sem\", \"mes\" ],\r\n          \"num\": [ \"dia\", \"sem\", \"mes\" ]\r\n        }        \r\n    }'),
 ('hol', 'ani', '{\r\n    }'),
 ('hol', 'arm', '{\r\n      \"atr\":{ \r\n        \"ide\":{ \"min\":1, \"max\":4, \"dat\":\"hol.arm\" }\r\n      },      \r\n      \"val\":{ \r\n        \"col\": 4,\r\n        \"num\": 4\r\n      }\r\n    }'),
 ('hol', 'cas', '{\r\n        \"atr\":{ \r\n          \"ide\":{ \"min\":1, \"max\":52, \"dat\":\"hol.cas\" },\r\n          \"arm\":{ \"min\":1, \"max\":4, \"dat\":\"hol.cas_arm\" },\r\n          \"ond\":{ \"min\":1, \"max\":4, \"dat\":\"hol.cas_ond\" },\r\n          \"pos_arm\":{ \"min\":1, \"max\":4, \"dat\":\"hol.arm\" },\r\n          \"ton\":{ \"min\":1, \"max\":13, \"dat\":\"hol.ton\" },\r\n          \"ton_arm\":{ \"min\":1, \"max\":13, \"dat\":\"hol.ton\" }\r\n        },\r\n        \"val\":{ \r\n          \"nom\": \"Posicion #()($)ide() de 52: ()($)nom().\",\r\n          \"des\": \"Cuadrante #()($)arm() de 4; Tono Galáctico #()($)ton() de 13; Onda de la Aventura #()($)ond() de 4.\",\r\n          \"ima\": \"background: center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/()($)ton().png), center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/arm/()($)arm().png), center/70% no-repeat url(http://www.icpv.com.ar/img/hol/fic/uni/col/()($)pos_arm().png);\",\r\n          \"col\": 4,\r\n          \"num\": 52\r\n        },\r\n        \"inf\":{ \r\n          \"fic\": [ \"arm\", \"ond\", \"ton\" ],          \r\n          \"htm\":{ \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Los Preceptos del Recorrido por el Castillo\" },\r\n          \"lec-tit\": [ \"lec\" ],\r\n          \"tab\": [ \"hol.cas.ond\", { \r\n            \"val\":{ \"pos\":\"()($)ide()\" }, \r\n            \"pos\":{ \"bor\":1, \"ima\":\"hol.cas.ton\", \"num\":\"hol.cas.ide\", \"col\":\"hol.cas.pos_arm\" },\r\n            \"opc\":{ \"pul_dim\":1, \"pul_mat\":1, \"pul_sim\":1 }\r\n          }]          \r\n        },\r\n        \"opc\":{ \r\n          \"ver\": [ \"ide\", \"arm\" ],    \r\n          \"ima\": [ \"arm\", \"ond\" ],\r\n          \"col\": [ \"arm\", \"pos_arm\", \"ond\", \"ton_arm\" ],\r\n          \"num\": [ \"ide\", \"arm\", \"pos_arm\", \"ton_arm\" ]\r\n        }\r\n    }'),
@@ -7057,6 +7059,809 @@ INSERT INTO `usu_rel` (`ide`, `nom`, `des`) VALUES
 (8, 'Físico', NULL),
 (9, 'Espiritual', NULL);
 
+-- --------------------------------------------------------
+
+--
+-- Estructura Stand-in para la vista `_hol_ani`
+-- (Véase abajo para la vista actual)
+--
+CREATE TABLE `_hol_ani` (
+`ide` smallint(2) unsigned zerofill
+,`nom` varchar(50)
+,`cas` smallint(2) unsigned zerofill
+,`ton` smallint(2) unsigned zerofill
+,`fam_2` smallint(3) unsigned zerofill
+,`fam_3` smallint(3) unsigned zerofill
+,`fam_4` smallint(3) unsigned zerofill
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura Stand-in para la vista `_hol_cas_arm`
+-- (Véase abajo para la vista actual)
+--
+CREATE TABLE `_hol_cas_arm` (
+`ide` smallint(1) unsigned zerofill
+,`nom` varchar(25)
+,`des` varchar(150)
+,`cas` varchar(7)
+,`des_col` varchar(10)
+,`des_dir` varchar(15)
+,`des_pod` varchar(10)
+,`des_pol` varchar(50)
+,`des_dia` varchar(20)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura Stand-in para la vista `_hol_cas_ond`
+-- (Véase abajo para la vista actual)
+--
+CREATE TABLE `_hol_cas_ond` (
+`ide` smallint(1) unsigned zerofill
+,`nom` varchar(15)
+,`des` varchar(35)
+,`ton` varchar(16)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura Stand-in para la vista `_hol_kin_arm_cel`
+-- (Véase abajo para la vista actual)
+--
+CREATE TABLE `_hol_kin_arm_cel` (
+`ide` smallint(2) unsigned zerofill
+,`nom` varchar(30)
+,`des` text
+,`tra` smallint(2) unsigned zerofill
+,`cel` smallint(1) unsigned zerofill
+,`ton` smallint(2) unsigned zerofill
+,`inv` smallint(2) unsigned zerofill
+,`chi` smallint(2) unsigned zerofill
+,`kin` char(9)
+,`cel_nom` varchar(10)
+,`cel_fun` varchar(20)
+,`cel_pod` varchar(20)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura Stand-in para la vista `_hol_kin_arm_tra`
+-- (Véase abajo para la vista actual)
+--
+CREATE TABLE `_hol_kin_arm_tra` (
+`ide` smallint(2) unsigned zerofill
+,`nom` varchar(30)
+,`des` varchar(200)
+,`tit` varchar(80)
+,`lec` text
+,`fac` varchar(25)
+,`may` varchar(20)
+,`cel` char(7)
+,`ton` varchar(20)
+,`ton_des` varchar(30)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura Stand-in para la vista `_hol_kin_cro_ele`
+-- (Véase abajo para la vista actual)
+--
+CREATE TABLE `_hol_kin_cro_ele` (
+`ide` smallint(2) unsigned zerofill
+,`nom` varchar(35)
+,`des` tinytext
+,`ele` smallint(1) unsigned zerofill
+,`est` smallint(1) unsigned zerofill
+,`kin` char(9)
+,`cas_lec` text
+,`arm` smallint(1) unsigned zerofill
+,`ond` smallint(1) unsigned
+,`ton` smallint(2) unsigned zerofill
+,`ton_des` varchar(30)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura Stand-in para la vista `_hol_kin_cro_est`
+-- (Véase abajo para la vista actual)
+--
+CREATE TABLE `_hol_kin_cro_est` (
+`ide` smallint(1) unsigned zerofill
+,`pos` varchar(15)
+,`nom` varchar(15)
+,`des` varchar(25)
+,`des_det` varchar(30)
+,`fac_des` text
+,`sel` smallint(2) unsigned zerofill
+,`ele` char(7)
+,`cas` varchar(7)
+,`des_col` varchar(10)
+,`des_dir` varchar(15)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura Stand-in para la vista `_hol_kin_cro_est_dia`
+-- (Véase abajo para la vista actual)
+--
+CREATE TABLE `_hol_kin_cro_est_dia` (
+`ide` smallint(2)
+,`ton` smallint(2) unsigned zerofill
+,`fac` varchar(50)
+,`enc` varchar(50)
+,`ond` smallint(1) unsigned zerofill
+,`ond_man` varchar(85)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura Stand-in para la vista `_hol_kin_cro_ond`
+-- (Véase abajo para la vista actual)
+--
+CREATE TABLE `_hol_kin_cro_ond` (
+`ide` smallint(1) unsigned zerofill
+,`ton` int(2) unsigned zerofill
+,`cue` smallint(1) unsigned zerofill
+,`fac` varchar(50)
+,`enc` varchar(50)
+,`nom` varchar(15)
+,`des` varchar(35)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura Stand-in para la vista `_hol_psi`
+-- (Véase abajo para la vista actual)
+--
+CREATE TABLE `_hol_psi` (
+`ide` smallint(3) unsigned zerofill
+,`des` text
+,`fec` varchar(5)
+,`fec_dia` smallint(2) unsigned zerofill
+,`fec_mes` smallint(2) unsigned zerofill
+,`fec_cod` smallint(3) unsigned zerofill
+,`tzo` smallint(3) unsigned zerofill
+,`est` smallint(1) unsigned zerofill
+,`est_dia` smallint(2) unsigned zerofill
+,`lun` smallint(2) unsigned zerofill
+,`lun_dia` smallint(2) unsigned zerofill
+,`vin` smallint(2) unsigned zerofill
+,`vin_dia` smallint(2) unsigned zerofill
+,`hep` smallint(2) unsigned zerofill
+,`hep_dia` smallint(1) unsigned zerofill
+,`cro` smallint(2) unsigned zerofill
+,`cro_dia` smallint(1) unsigned zerofill
+,`pag` tinyint(1)
+,`kin_sel` smallint(2) unsigned zerofill
+,`kin_ton` smallint(2) unsigned zerofill
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura Stand-in para la vista `_hol_psi_hep`
+-- (Véase abajo para la vista actual)
+--
+CREATE TABLE `_hol_psi_hep` (
+`ide` smallint(2) unsigned zerofill
+,`ond` smallint(1) unsigned
+,`arm` smallint(1) unsigned zerofill
+,`des_col` varchar(10)
+,`des_dir` varchar(15)
+,`ton` smallint(2) unsigned zerofill
+,`ton_nom` varchar(20)
+,`ton_des` varchar(30)
+,`cas_des` varchar(150)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura Stand-in para la vista `_hol_psi_lun`
+-- (Véase abajo para la vista actual)
+--
+CREATE TABLE `_hol_psi_lun` (
+`ide` smallint(2) unsigned zerofill
+,`pos` varchar(15)
+,`nom` varchar(25)
+,`tot` varchar(25)
+,`tot_pro` tinytext
+,`tot_por` text
+,`kin_pag` char(18)
+,`kin_cub` char(7)
+,`fec_ini` char(5)
+,`fec_fin` char(5)
+,`fec_ran` varchar(40)
+,`ton` smallint(2) unsigned zerofill
+,`ton_nom` varchar(20)
+,`ton_des` varchar(30)
+,`ton_gal` varchar(25)
+,`ton_car` varchar(20)
+,`ton_pod` varchar(20)
+,`ton_acc` varchar(20)
+,`ton_sim` smallint(1) unsigned zerofill
+,`ton_mat` smallint(1) unsigned zerofill
+,`ton_dim` smallint(1) unsigned zerofill
+,`ond` smallint(1) unsigned zerofill
+,`ond_enc` smallint(1) unsigned
+,`ond_nom` varchar(30)
+,`ond_pos` varchar(20)
+,`ond_pod` varchar(25)
+,`ond_man` varchar(85)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura Stand-in para la vista `_hol_rad`
+-- (Véase abajo para la vista actual)
+--
+CREATE TABLE `_hol_rad` (
+`ide` smallint(1) unsigned zerofill
+,`nom` varchar(10)
+,`des_col` varchar(15)
+,`des_pod` varchar(15)
+,`dia` varchar(14)
+,`tel` varchar(100)
+,`tel_des` tinytext
+,`tel_año` year(4)
+,`tel_ora_año` smallint(3) unsigned zerofill
+,`tel_ora_ani` smallint(3) unsigned zerofill
+,`tel_ora_gen` smallint(3) unsigned zerofill
+,`rin_des` tinytext
+,`pla_des` varchar(50)
+,`pla_pod` varchar(10)
+,`pla_fue` varchar(40)
+,`pla_fue_pre` smallint(2) unsigned zerofill
+,`pla_fue_pos` smallint(2) unsigned zerofill
+,`pla_qua` smallint(1) unsigned zerofill
+,`pla_man` varchar(10)
+,`pla_cub` smallint(1) unsigned zerofill
+,`pla_cub_pos` varchar(15)
+,`pla_lec` varchar(100)
+,`hum_cha` smallint(1) unsigned zerofill
+,`umb` smallint(3) unsigned zerofill
+,`umb_map` varchar(30)
+,`umb_pat` varchar(20)
+,`umb_arc` varchar(20)
+,`umb_pue` varchar(20)
+,`umb_esf` varchar(80)
+,`umb_esf_fun` varchar(30)
+,`cha_nom` varchar(20)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura Stand-in para la vista `_hol_rad_pla_cub`
+-- (Véase abajo para la vista actual)
+--
+CREATE TABLE `_hol_rad_pla_cub` (
+`ide` smallint(1) unsigned zerofill
+,`nom` varchar(15)
+,`pla` varchar(10)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura Stand-in para la vista `_hol_sel`
+-- (Véase abajo para la vista actual)
+--
+CREATE TABLE `_hol_sel` (
+`ide` smallint(2) unsigned zerofill
+,`cod` smallint(2) unsigned zerofill
+,`ord` smallint(2) unsigned zerofill
+,`nom` varchar(25)
+,`nom_may` varchar(20)
+,`des` varchar(150)
+,`des_col` varchar(10)
+,`des_cod` varchar(35)
+,`des_car` varchar(20)
+,`des_acc` varchar(20)
+,`des_acc_per` varchar(15)
+,`des_acc_pal` varchar(15)
+,`des_pod` varchar(20)
+,`des_pod_tel` varchar(25)
+,`cit_des` text
+,`cit_lis_pal` text
+,`cit_lis_som` text
+,`cit_por` text
+,`cit_por_som` text
+,`cit_por_rec` text
+,`cic_ser` smallint(1) unsigned zerofill
+,`cic_ser_des` varchar(255)
+,`cic_luz` smallint(1) unsigned zerofill
+,`cic_luz_des` tinytext
+,`arm_tra` smallint(1) unsigned zerofill
+,`arm_tra_des` varchar(100)
+,`arm` varchar(30)
+,`arm_raz` smallint(1) unsigned zerofill
+,`arm_raz_fun` tinytext
+,`arm_raz_des` text
+,`arm_cel` smallint(1) unsigned zerofill
+,`arm_cel_fun` tinytext
+,`arm_cel_des` text
+,`cro` varchar(30)
+,`cro_fam` smallint(1) unsigned zerofill
+,`cro_ele` smallint(1) unsigned zerofill
+,`cro_ele_fun` text
+,`cro_ele_des` text
+,`par_ana` smallint(2) unsigned zerofill
+,`par_gui` varchar(20)
+,`par_ant` smallint(2) unsigned zerofill
+,`par_ocu` smallint(2) unsigned zerofill
+,`flu_res` smallint(1) unsigned zerofill
+,`flu_res_des` tinytext
+,`sol_pla` smallint(2) unsigned zerofill
+,`sol_pla_des` text
+,`pla_cen` smallint(1) unsigned zerofill
+,`pla_hem` smallint(1) unsigned
+,`pla_hem_cod` smallint(3) unsigned zerofill
+,`pla_mer` smallint(1) unsigned
+,`pla_mer_cod` smallint(3) unsigned zerofill
+,`hum_mer` smallint(2) unsigned zerofill
+,`cic_dir` varchar(15)
+,`sol_orb` smallint(1) unsigned zerofill
+,`sol_cel` smallint(1) unsigned zerofill
+,`sol_cir` smallint(1) unsigned zerofill
+,`hum_cen` smallint(1) unsigned zerofill
+,`hum_ded` smallint(1) unsigned zerofill
+,`hum_ext` smallint(1) unsigned zerofill
+,`hum_res` smallint(1) unsigned zerofill
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura Stand-in para la vista `_hol_sel_arm_raz`
+-- (Véase abajo para la vista actual)
+--
+CREATE TABLE `_hol_sel_arm_raz` (
+`ide` smallint(1) unsigned zerofill
+,`nom` varchar(15)
+,`des` varchar(150)
+,`sel` varchar(20)
+,`des_col` varchar(10)
+,`des_dir` varchar(15)
+,`des_pod` varchar(10)
+,`des_dia` varchar(20)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura Stand-in para la vista `_hol_sel_cic_dir`
+-- (Véase abajo para la vista actual)
+--
+CREATE TABLE `_hol_sel_cic_dir` (
+`ide` smallint(1) unsigned
+,`nom` varchar(15)
+,`des` varchar(150)
+,`sel` char(20)
+,`des_col` varchar(10)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura Stand-in para la vista `_hol_sel_cod`
+-- (Véase abajo para la vista actual)
+--
+CREATE TABLE `_hol_sel_cod` (
+`ide` smallint(2) unsigned zerofill
+,`cod` smallint(2) unsigned zerofill
+,`ord` smallint(2) unsigned zerofill
+,`nom` varchar(25)
+,`nom_may` varchar(20)
+,`des` varchar(150)
+,`des_col` varchar(10)
+,`des_cod` varchar(35)
+,`des_car` varchar(20)
+,`des_acc` varchar(20)
+,`des_acc_per` varchar(15)
+,`des_acc_pal` varchar(15)
+,`des_pod` varchar(20)
+,`des_pod_tel` varchar(25)
+,`cit_des` text
+,`cit_lis_pal` text
+,`cit_lis_som` text
+,`cit_por` text
+,`cit_por_som` text
+,`cit_por_rec` text
+,`cic_ser` smallint(1) unsigned zerofill
+,`cic_ser_des` varchar(255)
+,`cic_luz` smallint(1) unsigned zerofill
+,`cic_luz_des` tinytext
+,`arm_tra` smallint(1) unsigned zerofill
+,`arm_tra_des` varchar(100)
+,`arm` varchar(30)
+,`arm_raz` smallint(1) unsigned zerofill
+,`arm_raz_fun` tinytext
+,`arm_raz_des` text
+,`arm_cel` smallint(1) unsigned zerofill
+,`arm_cel_fun` tinytext
+,`arm_cel_des` text
+,`cro` varchar(30)
+,`cro_fam` smallint(1) unsigned zerofill
+,`cro_ele` smallint(1) unsigned zerofill
+,`cro_ele_fun` text
+,`cro_ele_des` text
+,`par_ana` smallint(2) unsigned zerofill
+,`par_gui` varchar(20)
+,`par_ant` smallint(2) unsigned zerofill
+,`par_ocu` smallint(2) unsigned zerofill
+,`flu_res` smallint(1) unsigned zerofill
+,`flu_res_des` tinytext
+,`sol_pla` smallint(2) unsigned zerofill
+,`sol_pla_des` text
+,`pla_cen` smallint(1) unsigned zerofill
+,`pla_hem` smallint(1) unsigned
+,`pla_hem_cod` smallint(3) unsigned zerofill
+,`pla_mer` smallint(1) unsigned
+,`pla_mer_cod` smallint(3) unsigned zerofill
+,`hum_mer` smallint(2) unsigned zerofill
+,`cic_dir` varchar(15)
+,`sol_orb` smallint(1) unsigned zerofill
+,`sol_cel` smallint(1) unsigned zerofill
+,`sol_cir` smallint(1) unsigned zerofill
+,`hum_cen` smallint(1) unsigned zerofill
+,`hum_ded` smallint(1) unsigned zerofill
+,`hum_ext` smallint(1) unsigned zerofill
+,`hum_res` smallint(1) unsigned zerofill
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura Stand-in para la vista `_hol_sel_cro_fam`
+-- (Véase abajo para la vista actual)
+--
+CREATE TABLE `_hol_sel_cro_fam` (
+`ide` smallint(1) unsigned zerofill
+,`nom` varchar(10)
+,`des` tinytext
+,`des_mis` varchar(50)
+,`des_pod` varchar(50)
+,`des_acc` varchar(70)
+,`sel` varchar(16)
+,`pla_cen` smallint(1) unsigned zerofill
+,`hum_cen` smallint(1) unsigned zerofill
+,`hum_ded` smallint(1) unsigned zerofill
+,`des_cod` varchar(15)
+,`des_fun` varchar(15)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura Stand-in para la vista `_hol_sel_par_ana`
+-- (Véase abajo para la vista actual)
+--
+CREATE TABLE `_hol_sel_par_ana` (
+`ini` smallint(2) unsigned zerofill
+,`ini_nom` varchar(25)
+,`ini_car` varchar(20)
+,`ini_des` varchar(150)
+,`fin` smallint(2) unsigned zerofill
+,`fin_nom` varchar(25)
+,`fin_car` varchar(20)
+,`fin_des` varchar(150)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura Stand-in para la vista `_hol_sel_par_ant`
+-- (Véase abajo para la vista actual)
+--
+CREATE TABLE `_hol_sel_par_ant` (
+`ini` smallint(2) unsigned zerofill
+,`ini_nom` varchar(25)
+,`ini_car` varchar(20)
+,`ini_des` varchar(150)
+,`fin` smallint(2) unsigned zerofill
+,`fin_nom` varchar(25)
+,`fin_car` varchar(20)
+,`fin_des` varchar(150)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura Stand-in para la vista `_hol_sel_par_ocu`
+-- (Véase abajo para la vista actual)
+--
+CREATE TABLE `_hol_sel_par_ocu` (
+`ini` smallint(2) unsigned zerofill
+,`ini_nom` varchar(25)
+,`ini_car` varchar(20)
+,`ini_des` varchar(150)
+,`fin` smallint(2) unsigned zerofill
+,`fin_nom` varchar(25)
+,`fin_car` varchar(20)
+,`fin_des` varchar(150)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura Stand-in para la vista `_hol_uni_hum_cen`
+-- (Véase abajo para la vista actual)
+--
+CREATE TABLE `_hol_uni_hum_cen` (
+`ide` smallint(1) unsigned zerofill
+,`nom` varchar(20)
+,`des` varchar(100)
+,`sel` varchar(16)
+,`fam` smallint(1)
+,`des_pod` varchar(50)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura Stand-in para la vista `_hol_uni_hum_ded`
+-- (Véase abajo para la vista actual)
+--
+CREATE TABLE `_hol_uni_hum_ded` (
+`ide` smallint(1) unsigned zerofill
+,`nom` varchar(10)
+,`sel` varchar(15)
+,`fam` smallint(1)
+,`des_acc` varchar(70)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura Stand-in para la vista `_hol_uni_pla_cen`
+-- (Véase abajo para la vista actual)
+--
+CREATE TABLE `_hol_uni_pla_cen` (
+`ide` smallint(1) unsigned zerofill
+,`nom` varchar(25)
+,`des` varchar(100)
+,`fam` smallint(1) unsigned zerofill
+,`sel` varchar(16)
+,`des_fun` varchar(15)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura para la vista `_hol_ani`
+--
+DROP TABLE IF EXISTS `_hol_ani`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `_hol_ani`  AS SELECT `_ani`.`ide` AS `ide`, `_kin`.`nom` AS `nom`, `_cas`.`ide` AS `cas`, `_cas`.`ton` AS `ton`, `_ani`.`fam_2` AS `fam_2`, `_ani`.`fam_3` AS `fam_3`, `_ani`.`fam_4` AS `fam_4` FROM ((`hol_ani` `_ani` join `hol_kin` `_kin` on(`_kin`.`ide` = `_ani`.`fam_4`)) join `hol_cas` `_cas` on(`_ani`.`ide` + 1 = `_cas`.`ide`)) ORDER BY `_ani`.`ide` ASC  ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura para la vista `_hol_cas_arm`
+--
+DROP TABLE IF EXISTS `_hol_cas_arm`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `_hol_cas_arm`  AS SELECT `_cas`.`ide` AS `ide`, `_cas`.`nom` AS `nom`, `_cas`.`des` AS `des`, `_cas`.`cas` AS `cas`, `_arm`.`des_col` AS `des_col`, `_arm`.`des_dir` AS `des_dir`, `_arm`.`des_pod` AS `des_pod`, `_arm`.`des_pol` AS `des_pol`, `_arm`.`des_dia` AS `des_dia` FROM (`hol_cas_arm` `_cas` join `hol_arm` `_arm` on(`_arm`.`ide` = `_cas`.`ide`)) ORDER BY `_cas`.`ide` ASC  ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura para la vista `_hol_cas_ond`
+--
+DROP TABLE IF EXISTS `_hol_cas_ond`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `_hol_cas_ond`  AS SELECT `_ond`.`ide` AS `ide`, `_ond`.`nom` AS `nom`, `_ond`.`des` AS `des`, `_ond`.`ton` AS `ton` FROM (`hol_cas_ond` `_cas` join `hol_ton_ond` `_ond` on(`_cas`.`ide` = `_ond`.`ide`)) ORDER BY `_ond`.`ide` ASC  ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura para la vista `_hol_kin_arm_cel`
+--
+DROP TABLE IF EXISTS `_hol_kin_arm_cel`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `_hol_kin_arm_cel`  AS SELECT `_cel`.`ide` AS `ide`, `_cel`.`nom` AS `nom`, `_cel`.`des` AS `des`, `_cel`.`tra` AS `tra`, `_cel`.`cel` AS `cel`, `_cel`.`ton` AS `ton`, `_cel`.`inv` AS `inv`, `_cel`.`chi` AS `chi`, `_cel`.`kin` AS `kin`, `_arm`.`nom` AS `cel_nom`, `_arm`.`des_fun` AS `cel_fun`, `_arm`.`des_pod` AS `cel_pod` FROM (`hol_kin_arm_cel` `_cel` join `hol_sel_arm_cel` `_arm` on(`_cel`.`cel` = `_arm`.`ide`)) ORDER BY `_cel`.`ide` ASC  ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura para la vista `_hol_kin_arm_tra`
+--
+DROP TABLE IF EXISTS `_hol_kin_arm_tra`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `_hol_kin_arm_tra`  AS SELECT `_tra`.`ide` AS `ide`, `_tra`.`nom` AS `nom`, `_tra`.`des` AS `des`, `_tra`.`tit` AS `tit`, `_tra`.`lec` AS `lec`, `_tra`.`fac` AS `fac`, `_tra`.`may` AS `may`, `_tra`.`cel` AS `cel`, `_ton`.`nom` AS `ton`, `_ton`.`des` AS `ton_des` FROM (`hol_kin_arm_tra` `_tra` join `hol_ton` `_ton` on(`_tra`.`ide` = `_ton`.`ide`)) ORDER BY `_tra`.`ide` ASC  ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura para la vista `_hol_kin_cro_ele`
+--
+DROP TABLE IF EXISTS `_hol_kin_cro_ele`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `_hol_kin_cro_ele`  AS SELECT `_ele`.`ide` AS `ide`, `_ele`.`nom` AS `nom`, `_ele`.`des` AS `des`, `_ele`.`ele` AS `ele`, `_ele`.`est` AS `est`, `_ele`.`kin` AS `kin`, `_cas`.`lec` AS `cas_lec`, `_cas`.`arm` AS `arm`, `_cas`.`ond` AS `ond`, `_cas`.`ton` AS `ton`, `_ton`.`des` AS `ton_des` FROM ((`hol_kin_cro_ele` `_ele` join `hol_cas` `_cas` on(`_ele`.`ide` = `_cas`.`ide`)) join `hol_ton` `_ton` on(`_cas`.`ton` = `_ton`.`ide`)) ORDER BY `_ele`.`ide` ASC  ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura para la vista `_hol_kin_cro_est`
+--
+DROP TABLE IF EXISTS `_hol_kin_cro_est`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `_hol_kin_cro_est`  AS SELECT `_est`.`ide` AS `ide`, `_est`.`pos` AS `pos`, `_est`.`nom` AS `nom`, `_est`.`des` AS `des`, `_est`.`des_det` AS `des_det`, `_est`.`fac_des` AS `fac_des`, `_est`.`sel` AS `sel`, `_est`.`ele` AS `ele`, `_cas`.`cas` AS `cas`, `_cas`.`des_col` AS `des_col`, `_cas`.`des_dir` AS `des_dir` FROM (`hol_kin_cro_est` `_est` join `_hol_cas_arm` `_cas` on(`_est`.`ide` = `_cas`.`ide`)) ORDER BY `_est`.`ide` ASC  ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura para la vista `_hol_kin_cro_est_dia`
+--
+DROP TABLE IF EXISTS `_hol_kin_cro_est_dia`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `_hol_kin_cro_est_dia`  AS SELECT `_dia`.`ide` AS `ide`, `_dia`.`ton` AS `ton`, `_ond`.`fac` AS `fac`, `_ond`.`enc` AS `enc`, `_ton`.`ond` AS `ond`, `_ton`.`ond_man` AS `ond_man` FROM ((`hol_kin_cro_est_dia` `_dia` join `hol_ton` `_ton` on(`_ton`.`ide` = `_dia`.`ton`)) join `hol_kin_cro_ond` `_ond` on(`_ond`.`ide` = `_ton`.`ond`)) ORDER BY `_dia`.`ide` ASC  ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura para la vista `_hol_kin_cro_ond`
+--
+DROP TABLE IF EXISTS `_hol_kin_cro_ond`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `_hol_kin_cro_ond`  AS SELECT `_cro`.`ide` AS `ide`, `_cro`.`ton` AS `ton`, `_cro`.`cue` AS `cue`, `_cro`.`fac` AS `fac`, `_cro`.`enc` AS `enc`, `_ond`.`nom` AS `nom`, `_ond`.`des` AS `des` FROM (`hol_kin_cro_ond` `_cro` join `hol_ton_ond` `_ond` on(`_cro`.`ide` = `_ond`.`ide`)) ORDER BY `_cro`.`ide` ASC  ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura para la vista `_hol_psi`
+--
+DROP TABLE IF EXISTS `_hol_psi`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `_hol_psi`  AS SELECT `_psi`.`ide` AS `ide`, `_psi`.`des` AS `des`, `_psi`.`fec` AS `fec`, `_psi`.`fec_dia` AS `fec_dia`, `_psi`.`fec_mes` AS `fec_mes`, `_psi`.`fec_cod` AS `fec_cod`, `_psi`.`tzo` AS `tzo`, `_psi`.`est` AS `est`, `_psi`.`est_dia` AS `est_dia`, `_psi`.`lun` AS `lun`, `_psi`.`lun_dia` AS `lun_dia`, `_psi`.`vin` AS `vin`, `_psi`.`vin_dia` AS `vin_dia`, `_psi`.`hep` AS `hep`, `_psi`.`hep_dia` AS `hep_dia`, `_psi`.`cro` AS `cro`, `_psi`.`cro_dia` AS `cro_dia`, `_kin`.`pag` AS `pag`, `_kin`.`arm_tra_dia` AS `kin_sel`, `_kin`.`nav_ond_dia` AS `kin_ton` FROM (`hol_psi` `_psi` join `hol_kin` `_kin` on(`_kin`.`ide` = `_psi`.`tzo`)) ORDER BY `_psi`.`ide` ASC  ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura para la vista `_hol_psi_hep`
+--
+DROP TABLE IF EXISTS `_hol_psi_hep`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `_hol_psi_hep`  AS SELECT `_hep`.`ide` AS `ide`, `_cas`.`ond` AS `ond`, `_cas`.`arm` AS `arm`, `_arm`.`des_col` AS `des_col`, `_arm`.`des_dir` AS `des_dir`, `_cas`.`ton` AS `ton`, `_ton`.`nom` AS `ton_nom`, `_ton`.`des` AS `ton_des`, `_cas`.`des` AS `cas_des` FROM (((`hol_psi_hep` `_hep` join `hol_cas` `_cas` on(`_hep`.`ide` = `_cas`.`ide`)) join `hol_arm` `_arm` on(`_cas`.`arm` = `_arm`.`ide`)) join `hol_ton` `_ton` on(`_cas`.`ton` = `_ton`.`ide`)) ORDER BY `_hep`.`ide` ASC  ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura para la vista `_hol_psi_lun`
+--
+DROP TABLE IF EXISTS `_hol_psi_lun`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `_hol_psi_lun`  AS SELECT `_lun`.`ide` AS `ide`, `_lun`.`pos` AS `pos`, `_lun`.`nom` AS `nom`, `_lun`.`tot` AS `tot`, `_lun`.`tot_pro` AS `tot_pro`, `_lun`.`tot_por` AS `tot_por`, `_lun`.`kin_pag` AS `kin_pag`, `_lun`.`kin_cub` AS `kin_cub`, `_lun`.`fec_ini` AS `fec_ini`, `_lun`.`fec_fin` AS `fec_fin`, `_lun`.`fec_ran` AS `fec_ran`, `_ton`.`ide` AS `ton`, `_ton`.`nom` AS `ton_nom`, `_ton`.`des` AS `ton_des`, `_ton`.`gal` AS `ton_gal`, `_ton`.`des_car` AS `ton_car`, `_ton`.`des_pod` AS `ton_pod`, `_ton`.`des_acc` AS `ton_acc`, `_ton`.`sim` AS `ton_sim`, `_ton`.`mat` AS `ton_mat`, `_ton`.`dim` AS `ton_dim`, `_ton`.`ond` AS `ond`, `_ton`.`ond_enc` AS `ond_enc`, `_ton`.`ond_nom` AS `ond_nom`, `_ton`.`ond_pos` AS `ond_pos`, `_ton`.`ond_pod` AS `ond_pod`, `_ton`.`ond_man` AS `ond_man` FROM (`hol_psi_lun` `_lun` join `hol_ton` `_ton` on(`_lun`.`ide` = `_ton`.`ide`)) ORDER BY `_lun`.`ide` ASC  ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura para la vista `_hol_rad`
+--
+DROP TABLE IF EXISTS `_hol_rad`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `_hol_rad`  AS SELECT `_rad`.`ide` AS `ide`, `_rad`.`nom` AS `nom`, `_rad`.`des_col` AS `des_col`, `_rad`.`des_pod` AS `des_pod`, `_rad`.`dia` AS `dia`, `_rad`.`tel` AS `tel`, `_rad`.`tel_des` AS `tel_des`, `_rad`.`tel_año` AS `tel_año`, `_rad`.`tel_ora_año` AS `tel_ora_año`, `_rad`.`tel_ora_ani` AS `tel_ora_ani`, `_rad`.`tel_ora_gen` AS `tel_ora_gen`, `_rad`.`rin_des` AS `rin_des`, `_rad`.`pla_des` AS `pla_des`, `_rad`.`pla_pod` AS `pla_pod`, `_rad`.`pla_fue` AS `pla_fue`, `_rad`.`pla_fue_pre` AS `pla_fue_pre`, `_rad`.`pla_fue_pos` AS `pla_fue_pos`, `_rad`.`pla_qua` AS `pla_qua`, `_rad`.`pla_man` AS `pla_man`, `_rad`.`pla_cub` AS `pla_cub`, `_rad`.`pla_cub_pos` AS `pla_cub_pos`, `_rad`.`pla_lec` AS `pla_lec`, `_rad`.`hum_cha` AS `hum_cha`, `_rad`.`umb` AS `umb`, `_rad`.`umb_map` AS `umb_map`, `_rad`.`umb_pat` AS `umb_pat`, `_rad`.`umb_arc` AS `umb_arc`, `_rad`.`umb_pue` AS `umb_pue`, `_rad`.`umb_esf` AS `umb_esf`, `_rad`.`umb_esf_fun` AS `umb_esf_fun`, `_cha`.`nom` AS `cha_nom` FROM (`hol_rad` `_rad` join `hol_uni_hum_cha` `_cha` on(`_rad`.`hum_cha` = `_cha`.`ide`)) ORDER BY `_rad`.`ide` ASC  ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura para la vista `_hol_rad_pla_cub`
+--
+DROP TABLE IF EXISTS `_hol_rad_pla_cub`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `_hol_rad_pla_cub`  AS SELECT `_rad`.`pla_cub` AS `ide`, `_rad`.`pla_cub_pos` AS `nom`, `_rad`.`nom` AS `pla` FROM `hol_rad` AS `_rad``_rad`  ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura para la vista `_hol_sel`
+--
+DROP TABLE IF EXISTS `_hol_sel`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `_hol_sel`  AS SELECT `_sel`.`ide` AS `ide`, `_sel`.`cod` AS `cod`, `_sel`.`ord` AS `ord`, `_sel`.`nom` AS `nom`, `_sel`.`nom_may` AS `nom_may`, `_sel`.`des` AS `des`, `_sel`.`des_col` AS `des_col`, `_sel`.`des_cod` AS `des_cod`, `_sel`.`des_car` AS `des_car`, `_sel`.`des_acc` AS `des_acc`, `_sel`.`des_acc_per` AS `des_acc_per`, `_sel`.`des_acc_pal` AS `des_acc_pal`, `_sel`.`des_pod` AS `des_pod`, `_sel`.`des_pod_tel` AS `des_pod_tel`, `_sel`.`cit_des` AS `cit_des`, `_sel`.`cit_lis_pal` AS `cit_lis_pal`, `_sel`.`cit_lis_som` AS `cit_lis_som`, `_sel`.`cit_por` AS `cit_por`, `_sel`.`cit_por_som` AS `cit_por_som`, `_sel`.`cit_por_rec` AS `cit_por_rec`, `_sel`.`cic_ser` AS `cic_ser`, `_sel`.`cic_ser_des` AS `cic_ser_des`, `_sel`.`cic_luz` AS `cic_luz`, `_sel`.`cic_luz_des` AS `cic_luz_des`, `_sel`.`arm_tra` AS `arm_tra`, `_sel`.`arm_tra_des` AS `arm_tra_des`, `_sel`.`arm` AS `arm`, `_sel`.`arm_raz` AS `arm_raz`, `_sel`.`arm_raz_fun` AS `arm_raz_fun`, `_sel`.`arm_raz_des` AS `arm_raz_des`, `_sel`.`arm_cel` AS `arm_cel`, `_sel`.`arm_cel_fun` AS `arm_cel_fun`, `_sel`.`arm_cel_des` AS `arm_cel_des`, `_sel`.`cro` AS `cro`, `_sel`.`cro_fam` AS `cro_fam`, `_sel`.`cro_ele` AS `cro_ele`, `_sel`.`cro_ele_fun` AS `cro_ele_fun`, `_sel`.`cro_ele_des` AS `cro_ele_des`, `_sel`.`par_ana` AS `par_ana`, `_sel`.`par_gui` AS `par_gui`, `_sel`.`par_ant` AS `par_ant`, `_sel`.`par_ocu` AS `par_ocu`, `_sel`.`flu_res` AS `flu_res`, `_sel`.`flu_res_des` AS `flu_res_des`, `_sel`.`sol_pla` AS `sol_pla`, `_sel`.`sol_pla_des` AS `sol_pla_des`, `_sel`.`pla_cen` AS `pla_cen`, `_sel`.`pla_hem` AS `pla_hem`, `_sel`.`pla_hem_cod` AS `pla_hem_cod`, `_sel`.`pla_mer` AS `pla_mer`, `_sel`.`pla_mer_cod` AS `pla_mer_cod`, `_sel`.`hum_mer` AS `hum_mer`, `_dir`.`nom` AS `cic_dir`, `_pla`.`orb` AS `sol_orb`, `_pla`.`cel` AS `sol_cel`, `_pla`.`cir` AS `sol_cir`, `_fam`.`hum_cen` AS `hum_cen`, `_fam`.`hum_ded` AS `hum_ded`, `_ele`.`hum_ext` AS `hum_ext`, `_ele`.`flu_res` AS `hum_res` FROM ((((`hol_sel` `_sel` join `hol_sel_cic_dir` `_dir` on(`_sel`.`arm_raz` = `_dir`.`ide`)) join `hol_uni_sol_pla` `_pla` on(`_sel`.`sol_pla` = `_pla`.`ide`)) join `hol_sel_cro_ele` `_ele` on(`_sel`.`cro_ele` = `_ele`.`ide`)) join `hol_sel_cro_fam` `_fam` on(`_sel`.`cro_fam` = `_fam`.`ide`)) ORDER BY `_sel`.`ide` ASC  ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura para la vista `_hol_sel_arm_raz`
+--
+DROP TABLE IF EXISTS `_hol_sel_arm_raz`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `_hol_sel_arm_raz`  AS SELECT `_raz`.`ide` AS `ide`, `_raz`.`nom` AS `nom`, `_raz`.`des` AS `des`, `_raz`.`sel` AS `sel`, `_arm`.`des_col` AS `des_col`, `_arm`.`des_dir` AS `des_dir`, `_arm`.`des_pod` AS `des_pod`, `_arm`.`des_dia` AS `des_dia` FROM (`hol_sel_arm_raz` `_raz` join `hol_arm` `_arm` on(`_arm`.`ide` = `_raz`.`ide`)) ORDER BY `_raz`.`ide` ASC  ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura para la vista `_hol_sel_cic_dir`
+--
+DROP TABLE IF EXISTS `_hol_sel_cic_dir`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `_hol_sel_cic_dir`  AS SELECT `_dir`.`ide` AS `ide`, `_dir`.`nom` AS `nom`, `_dir`.`des` AS `des`, `_dir`.`sel` AS `sel`, `_arm`.`des_col` AS `des_col` FROM (`hol_sel_cic_dir` `_dir` join `hol_arm` `_arm` on(`_arm`.`ide` = `_dir`.`ide`)) ORDER BY `_dir`.`ide` ASC  ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura para la vista `_hol_sel_cod`
+--
+DROP TABLE IF EXISTS `_hol_sel_cod`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `_hol_sel_cod`  AS SELECT `_sel`.`ide` AS `ide`, `_sel`.`cod` AS `cod`, `_sel`.`ord` AS `ord`, `_sel`.`nom` AS `nom`, `_sel`.`nom_may` AS `nom_may`, `_sel`.`des` AS `des`, `_sel`.`des_col` AS `des_col`, `_sel`.`des_cod` AS `des_cod`, `_sel`.`des_car` AS `des_car`, `_sel`.`des_acc` AS `des_acc`, `_sel`.`des_acc_per` AS `des_acc_per`, `_sel`.`des_acc_pal` AS `des_acc_pal`, `_sel`.`des_pod` AS `des_pod`, `_sel`.`des_pod_tel` AS `des_pod_tel`, `_sel`.`cit_des` AS `cit_des`, `_sel`.`cit_lis_pal` AS `cit_lis_pal`, `_sel`.`cit_lis_som` AS `cit_lis_som`, `_sel`.`cit_por` AS `cit_por`, `_sel`.`cit_por_som` AS `cit_por_som`, `_sel`.`cit_por_rec` AS `cit_por_rec`, `_sel`.`cic_ser` AS `cic_ser`, `_sel`.`cic_ser_des` AS `cic_ser_des`, `_sel`.`cic_luz` AS `cic_luz`, `_sel`.`cic_luz_des` AS `cic_luz_des`, `_sel`.`arm_tra` AS `arm_tra`, `_sel`.`arm_tra_des` AS `arm_tra_des`, `_sel`.`arm` AS `arm`, `_sel`.`arm_raz` AS `arm_raz`, `_sel`.`arm_raz_fun` AS `arm_raz_fun`, `_sel`.`arm_raz_des` AS `arm_raz_des`, `_sel`.`arm_cel` AS `arm_cel`, `_sel`.`arm_cel_fun` AS `arm_cel_fun`, `_sel`.`arm_cel_des` AS `arm_cel_des`, `_sel`.`cro` AS `cro`, `_sel`.`cro_fam` AS `cro_fam`, `_sel`.`cro_ele` AS `cro_ele`, `_sel`.`cro_ele_fun` AS `cro_ele_fun`, `_sel`.`cro_ele_des` AS `cro_ele_des`, `_sel`.`par_ana` AS `par_ana`, `_sel`.`par_gui` AS `par_gui`, `_sel`.`par_ant` AS `par_ant`, `_sel`.`par_ocu` AS `par_ocu`, `_sel`.`flu_res` AS `flu_res`, `_sel`.`flu_res_des` AS `flu_res_des`, `_sel`.`sol_pla` AS `sol_pla`, `_sel`.`sol_pla_des` AS `sol_pla_des`, `_sel`.`pla_cen` AS `pla_cen`, `_sel`.`pla_hem` AS `pla_hem`, `_sel`.`pla_hem_cod` AS `pla_hem_cod`, `_sel`.`pla_mer` AS `pla_mer`, `_sel`.`pla_mer_cod` AS `pla_mer_cod`, `_sel`.`hum_mer` AS `hum_mer`, `_sel`.`cic_dir` AS `cic_dir`, `_sel`.`sol_orb` AS `sol_orb`, `_sel`.`sol_cel` AS `sol_cel`, `_sel`.`sol_cir` AS `sol_cir`, `_sel`.`hum_cen` AS `hum_cen`, `_sel`.`hum_ded` AS `hum_ded`, `_sel`.`hum_ext` AS `hum_ext`, `_sel`.`hum_res` AS `hum_res` FROM `_hol_sel` AS `_sel` ORDER BY `_sel`.`ord` ASC  ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura para la vista `_hol_sel_cro_fam`
+--
+DROP TABLE IF EXISTS `_hol_sel_cro_fam`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `_hol_sel_cro_fam`  AS SELECT `_fam`.`ide` AS `ide`, `_fam`.`nom` AS `nom`, `_fam`.`des` AS `des`, `_fam`.`des_mis` AS `des_mis`, `_fam`.`des_pod` AS `des_pod`, `_fam`.`des_acc` AS `des_acc`, `_fam`.`sel` AS `sel`, `_fam`.`pla_cen` AS `pla_cen`, `_fam`.`hum_cen` AS `hum_cen`, `_fam`.`hum_ded` AS `hum_ded`, `_cro`.`des_cod` AS `des_cod`, `_cro`.`des_fun` AS `des_fun` FROM (`hol_sel_cro_fam` `_fam` join `hol_cro` `_cro` on(`_cro`.`ide` = `_fam`.`ide`)) ORDER BY `_fam`.`ide` ASC  ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura para la vista `_hol_sel_par_ana`
+--
+DROP TABLE IF EXISTS `_hol_sel_par_ana`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `_hol_sel_par_ana`  AS SELECT `_ana`.`ini` AS `ini`, `_ini`.`nom` AS `ini_nom`, `_ini`.`des_car` AS `ini_car`, `_ini`.`des` AS `ini_des`, `_ana`.`fin` AS `fin`, `_fin`.`nom` AS `fin_nom`, `_fin`.`des_car` AS `fin_car`, `_fin`.`des` AS `fin_des` FROM ((`hol_sel_par_ana` `_ana` join `hol_sel` `_ini` on(`_ana`.`ini` = `_ini`.`ide`)) join `hol_sel` `_fin` on(`_ana`.`fin` = `_fin`.`ide`)) ORDER BY `_ana`.`ini` ASC  ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura para la vista `_hol_sel_par_ant`
+--
+DROP TABLE IF EXISTS `_hol_sel_par_ant`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `_hol_sel_par_ant`  AS SELECT `_ant`.`ini` AS `ini`, `_ini`.`nom` AS `ini_nom`, `_ini`.`des_car` AS `ini_car`, `_ini`.`des` AS `ini_des`, `_ant`.`fin` AS `fin`, `_fin`.`nom` AS `fin_nom`, `_fin`.`des_car` AS `fin_car`, `_fin`.`des` AS `fin_des` FROM ((`hol_sel_par_ant` `_ant` join `hol_sel` `_ini` on(`_ant`.`ini` = `_ini`.`ide`)) join `hol_sel` `_fin` on(`_ant`.`fin` = `_fin`.`ide`)) ORDER BY `_ant`.`ini` ASC  ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura para la vista `_hol_sel_par_ocu`
+--
+DROP TABLE IF EXISTS `_hol_sel_par_ocu`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `_hol_sel_par_ocu`  AS SELECT `_ocu`.`ini` AS `ini`, `_ini`.`nom` AS `ini_nom`, `_ini`.`des_car` AS `ini_car`, `_ini`.`des` AS `ini_des`, `_ocu`.`fin` AS `fin`, `_fin`.`nom` AS `fin_nom`, `_fin`.`des_car` AS `fin_car`, `_fin`.`des` AS `fin_des` FROM ((`hol_sel_par_ocu` `_ocu` join `hol_sel` `_ini` on(`_ocu`.`ini` = `_ini`.`ide`)) join `hol_sel` `_fin` on(`_ocu`.`fin` = `_fin`.`ide`)) ORDER BY `_ocu`.`ini` ASC  ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura para la vista `_hol_uni_hum_cen`
+--
+DROP TABLE IF EXISTS `_hol_uni_hum_cen`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `_hol_uni_hum_cen`  AS SELECT `_cen`.`ide` AS `ide`, `_cen`.`nom` AS `nom`, `_cen`.`des` AS `des`, `_cen`.`sel` AS `sel`, `_cen`.`fam` AS `fam`, `_cro`.`des_pod` AS `des_pod` FROM (`hol_uni_hum_cen` `_cen` join `_hol_sel_cro_fam` `_cro` on(`_cro`.`ide` = `_cen`.`ide`)) ORDER BY `_cen`.`ide` ASC  ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura para la vista `_hol_uni_hum_ded`
+--
+DROP TABLE IF EXISTS `_hol_uni_hum_ded`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `_hol_uni_hum_ded`  AS SELECT `_ded`.`ide` AS `ide`, `_ded`.`nom` AS `nom`, `_ded`.`sel` AS `sel`, `_ded`.`fam` AS `fam`, `_cro`.`des_acc` AS `des_acc` FROM (`hol_uni_hum_ded` `_ded` join `_hol_sel_cro_fam` `_cro` on(`_cro`.`ide` = `_ded`.`ide`)) ORDER BY `_ded`.`ide` ASC  ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura para la vista `_hol_uni_pla_cen`
+--
+DROP TABLE IF EXISTS `_hol_uni_pla_cen`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `_hol_uni_pla_cen`  AS SELECT `_cen`.`ide` AS `ide`, `_cen`.`nom` AS `nom`, `_cen`.`des` AS `des`, `_cen`.`fam` AS `fam`, `_cen`.`sel` AS `sel`, `_cro`.`des_fun` AS `des_fun` FROM (`hol_uni_pla_cen` `_cen` join `_hol_sel_cro_fam` `_cro` on(`_cro`.`ide` = `_cen`.`ide`)) ORDER BY `_cen`.`ide` ASC  ;
+
 --
 -- Índices para tablas volcadas
 --
@@ -7825,6 +8630,540 @@ ALTER TABLE `usu_cic_lun`
 --
 ALTER TABLE `usu_rel`
   ADD PRIMARY KEY (`ide`);
+--
+-- Base de datos: `cac`
+--
+CREATE DATABASE IF NOT EXISTS `cac` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `cac`;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `blog`
+--
+
+CREATE TABLE `blog` (
+  `id` int(11) NOT NULL COMMENT 'Identificador',
+  `fecha_creacion` datetime DEFAULT NULL COMMENT 'Fecha de Creacion',
+  `titulo` varchar(100) NOT NULL COMMENT 'Título',
+  `contenido` varchar(255) NOT NULL COMMENT 'Contenido',
+  `createdAt` date DEFAULT NULL,
+  `updatedAt` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Blog';
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `kin`
+--
+
+CREATE TABLE `kin` (
+  `id` smallint(3) UNSIGNED ZEROFILL NOT NULL,
+  `nombre` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `descripcion` text COLLATE utf8mb4_spanish_ci NOT NULL,
+  `imagen` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `poder` varchar(35) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `es_portal` tinyint(1) NOT NULL,
+  `sello` smallint(2) UNSIGNED ZEROFILL NOT NULL,
+  `tono` smallint(2) UNSIGNED ZEROFILL NOT NULL,
+  `onda_encantada` smallint(2) UNSIGNED ZEROFILL NOT NULL,
+  `createdAt` date DEFAULT NULL,
+  `updatedAt` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Tzolkin';
+
+--
+-- Volcado de datos para la tabla `kin`
+--
+
+INSERT INTO `kin` (`id`, `nombre`, `descripcion`, `imagen`, `poder`, `es_portal`, `sello`, `tono`, `onda_encantada`, `createdAt`, `updatedAt`) VALUES
+(001, 'Dragón Magnético Rojo', 'Yo unifico con el fin de Nutrir, atrayendo el Ser. Sello la Entrada del Nacimiento con el tono Magnético del Propósito. Me guía mi propio Poder duplicado. Soy un Portal de Activación Galáctica, entra en mí.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/01.png), bottom/60% no-repeat url(http:', 'el Nacimiento Magnético', 1, 01, 01, 00, NULL, NULL),
+(002, 'Viento Lunar Blanco', 'Yo polarizo con el fin de Comunicar, estabilizando el Aliento. Sello la Entrada del Espíritu con el tono Lunar del Desafío. Me guía el poder de la Atemporalidad.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/02.png), bottom/60% no-repeat url(http:', 'el Espíritu Lunar', 0, 01, 02, 00, NULL, NULL),
+(003, 'Noche Eléctrica Azul', 'Yo activo con el fin de Soñar, vinculando la Intuición. Sello la Entrada de la Abundancia con el tono Eléctrico del Servicio. Me guía el poder de la Realización.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/03.png), bottom/60% no-repeat url(http:', 'la Abundancia Eléctrica', 0, 01, 03, 00, NULL, NULL),
+(004, 'Semilla Autoexistente Amarilla', 'Yo defino con el fin de Atinar, midiendo la Atención. Sello la Entrada del Florecimiento con el tono Autoexistente de la Forma. Me guía el poder del Fuego Universal.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/04.png), bottom/60% no-repeat url(http:', 'el Florecimiento Autoexistente', 0, 01, 04, 00, NULL, NULL),
+(005, 'Serpiente Entonada Roja', 'Yo confiero poder con el fin de Sobrevivir, comandando el Instinto. Sello el Almacén de la Fuerza Vital con el tono Entonado de la Radiancia. Me guía el poder del Espacio.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/05.png), bottom/60% no-repeat url(http:', 'la Fuerza Vital Entonada', 0, 01, 05, 00, NULL, NULL),
+(006, 'Enlazador de Mundos Rítmico Blanco', 'Yo organizo con el fin de Igualar, equilibrando la Oportunidad. Sello el Almacén de la Muerte con el tono Rítmico de la Igualdad. Me guía mi propio Poder duplicado. ', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/06.png), bottom/60% no-repeat url(http:', 'la Muerte Rítmica', 0, 01, 06, 00, NULL, NULL),
+(007, 'Mano Resonante Azul', 'Yo canalizo con el fin de Conocer, inspirando la Curación. Sello el Almacén de la Realización con el tono Resonante de la Sintonización. Me guía el poder de la Autogeneración.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/07.png), bottom/60% no-repeat url(http:', 'la Realización Resonante', 0, 01, 07, 00, NULL, NULL),
+(008, 'Estrella Galáctica Amarilla', 'Yo armonizo con el fin de Embellecer, modelando el Arte. Sello el Almacén de la Elegancia con el tono Galáctico de la Integridad. Me guía el poder de la Libre Voluntad.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/08.png), bottom/60% no-repeat url(http:', 'la Elegancia Galáctica', 0, 01, 08, 00, NULL, NULL),
+(009, 'Luna Solar Roja', 'Yo pulso con el fin de Purificar, realizando el Flujo. Sello el Proceso del Agua Universal con el tono Solar de la Intención. Me guía el poder de la Fuerza Vital.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/09.png), bottom/60% no-repeat url(http:', 'el Agua Universal Solar', 0, 01, 09, 00, NULL, NULL),
+(010, 'Perro Planetario Blanco', 'Yo perfecciono con el fin de Amar, produciendo la Lealtad. Sello el Proceso del Corazón con el tono Planetario de la Manifestación. Me guía el poder del Sin-Fín. Soy un Kin Polar, extiendo el Espectro Galáctico Blanco. ', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/10.png), bottom/60% no-repeat url(http:', 'el Corazón Planetario', 0, 01, 10, 00, NULL, NULL),
+(011, 'Mono Espectral Azul', 'Yo disuelvo con el fin de Jugar, divulgando la Ilusión. Sello el Proceso de la Magia con el tono Espectral de la Liberación. Me guía mi propio Poder duplicado. ', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/11.png), bottom/60% no-repeat url(http:', 'la Magia Espectral', 0, 01, 11, 00, NULL, NULL),
+(012, 'Humano Cristal Amarillo', 'Yo me dedico a con el fin de Influenciar, universalizando la Sabiduría. Sello el Proceso de la Libre Voluntad con el tono Cristal de la Cooperación. Me guía el poder del Florecimiento.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/12.png), bottom/60% no-repeat url(http:', 'la Libre Voluntad Cristal', 0, 01, 12, 00, NULL, NULL),
+(013, 'Caminante del Cielo Cósmico Rojo', 'Yo perduro con el fin de Explorar, trascendiendo la Vigilancia. Sello la Salida del Espacio con el tono Cósmico de la Presencia. Me guía el poder de la Navegación.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/13.png), bottom/60% no-repeat url(http:', 'el Espacio Cósmico', 0, 01, 13, 00, NULL, NULL),
+(014, 'Mago Magnético Blanco', 'Yo unifico con el fin de Encantar, atrayendo la Receptividad. Sello la Salida de la Atemporalidad con el tono Magnético del Propósito. Me guía mi propio Poder duplicado. ', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/01.png), bottom/60% no-repeat url(http:', 'la Atemporalidad Magnética', 0, 02, 01, 00, NULL, NULL),
+(015, 'Águila Lunar Azul', 'Yo polarizo con el fin de Crear, estabilizando la Mente. Sello la Salida de la Visión con el tono Lunar del Desafío. Me guía el poder de la Realización.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/02.png), bottom/60% no-repeat url(http:', 'la Visión Lunar', 0, 02, 02, 00, NULL, NULL),
+(016, 'Guerrero Eléctrico Amarillo', 'Yo activo con el fin de Cuestionar, vinculando la Intrepidez. Sello la Salida de la Inteligencia con el tono Eléctrico del Servicio. Me guía el poder del Fuego Universal.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/03.png), bottom/60% no-repeat url(http:', 'la Inteligencia Eléctrica', 0, 02, 03, 00, NULL, NULL),
+(017, 'Tierra Autoexistente Roja', 'Yo defino con el fin de Evolucionar, midiendo la Sincronía. Sello la Matriz de la Navegación con el tono Autoexistente de la Forma. Me guía el poder del Espacio.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/04.png), bottom/60% no-repeat url(http:', 'la Navegación Autoexistente', 0, 02, 04, 00, NULL, NULL),
+(018, 'Espejo Entonado Blanco', 'Yo confiero poder con el fin de Reflejar, comandando el Orden. Sello la Matriz del Sin-Fín con el tono Entonado de la Radiancia. Me guía el poder de la Muerte.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/05.png), bottom/60% no-repeat url(http:', 'el Sin-Fín Entonado', 0, 02, 05, 00, NULL, NULL),
+(019, 'Tormenta Rítmica Azul', 'Yo organizo con el fin de Catalizar, equilibrando la Energía. Sello la Matriz de la Autogeneración con el tono Rítmico de la Igualdad. Me guía mi propio Poder duplicado. ', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/06.png), bottom/60% no-repeat url(http:', 'la Autogeneración Rítmica', 0, 02, 06, 00, NULL, NULL),
+(020, 'Sol Resonante Amarillo', 'Yo canalizo con el fin de Iluminar, inspirando la Vida. Sello la Matriz del Fuego Universal con el tono Resonante de la Sintonización. Me guía el poder de la Libre Voluntad. Soy un Portal de Activación Galáctica, entra en mí.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/07.png), bottom/60% no-repeat url(http:', 'el Fuego Universal Resonante', 1, 02, 07, 00, NULL, NULL),
+(021, 'Dragón Galáctico Rojo', 'Yo armonizo con el fin de Nutrir, modelando el Ser. Sello la Entrada del Nacimiento con el tono Galáctico de la Integridad. Me guía el poder de la Fuerza Vital.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/08.png), bottom/60% no-repeat url(http:', 'el Nacimiento Galáctico', 0, 02, 08, 00, NULL, NULL),
+(022, 'Viento Solar Blanco', 'Yo pulso con el fin de Comunicar, realizando el Aliento. Sello la Entrada del Espíritu con el tono Solar de la Intención. Me guía el poder del Sin-Fín. Soy un Portal de Activación Galáctica, entra en mí.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/09.png), bottom/60% no-repeat url(http:', 'el Espíritu Solar', 1, 02, 09, 00, NULL, NULL),
+(023, 'Noche Planetaria Azul', 'Yo perfecciono con el fin de Soñar, produciendo la Intuición. Sello la Entrada de la Abundancia con el tono Planetario de la Manifestación. Me guía el poder de la Magia.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/10.png), bottom/60% no-repeat url(http:', 'la Abundancia Planetaria', 0, 02, 10, 00, NULL, NULL),
+(024, 'Semilla Espectral Amarilla', 'Yo disuelvo con el fin de Atinar, divulgando la Atención. Sello la Entrada del Florecimiento con el tono Espectral de la Liberación. Me guía mi propio Poder duplicado. ', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/11.png), bottom/60% no-repeat url(http:', 'el Florecimiento Espectral', 0, 02, 11, 00, NULL, NULL),
+(025, 'Serpiente Cristal Roja', 'Yo me dedico a con el fin de Sobrevivir, universalizando el Instinto. Sello el Almacén de la Fuerza Vital con el tono Cristal de la Cooperación. Me guía el poder de la Navegación.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/12.png), bottom/60% no-repeat url(http:', 'la Fuerza Vital Cristal', 0, 02, 12, 00, NULL, NULL),
+(026, 'Enlazador de Mundos Cósmico Blanco', 'Yo perduro con el fin de Igualar, trascendiendo la Oportunidad. Sello el Almacén de la Muerte con el tono Cósmico de la Presencia. Me guía el poder del Corazón.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/13.png), bottom/60% no-repeat url(http:', 'la Muerte Cósmica', 0, 02, 13, 00, NULL, NULL),
+(027, 'Mano Magnética Azul', 'Yo unifico con el fin de Conocer, atrayendo la Curación. Sello el Almacén de la Realización con el tono Magnético del Propósito. Me guía mi propio Poder duplicado. ', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/01.png), bottom/60% no-repeat url(http:', 'la Realización Magnética', 0, 03, 01, 00, NULL, NULL),
+(028, 'Estrella Lunar Amarilla', 'Yo polarizo con el fin de Embellecer, estabilizando el Arte. Sello el Almacén de la Elegancia con el tono Lunar del Desafío. Me guía el poder del Fuego Universal.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/02.png), bottom/60% no-repeat url(http:', 'la Elegancia Lunar', 0, 03, 02, 00, NULL, NULL),
+(029, 'Luna Eléctrica Roja', 'Yo activo con el fin de Purificar, vinculando el Flujo. Sello el Proceso del Agua Universal con el tono Eléctrico del Servicio. Me guía el poder del Espacio.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/03.png), bottom/60% no-repeat url(http:', 'el Agua Universal Eléctrica', 0, 03, 03, 00, NULL, NULL),
+(030, 'Perro Autoexistente Blanco', 'Yo defino con el fin de Amar, midiendo la Lealtad. Sello el Proceso del Corazón con el tono Autoexistente de la Forma. Me guía el poder de la Muerte. Soy un Kin Polar, convierto el Espectro Galáctico Blanco. ', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/04.png), bottom/60% no-repeat url(http:', 'el Corazón Autoexistente', 0, 03, 04, 00, NULL, NULL),
+(031, 'Mono Entonado Azul', 'Yo confiero poder con el fin de Jugar, comandando la Ilusión. Sello el Proceso de la Magia con el tono Entonado de la Radiancia. Me guía el poder de la Autogeneración.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/05.png), bottom/60% no-repeat url(http:', 'la Magia Entonada', 0, 03, 05, 00, NULL, NULL),
+(032, 'Humano Rítmico Amarillo', 'Yo organizo con el fin de Influenciar, equilibrando la Sabiduría. Sello el Proceso de la Libre Voluntad con el tono Rítmico de la Igualdad. Me guía mi propio Poder duplicado. ', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/06.png), bottom/60% no-repeat url(http:', 'la Libre Voluntad Rítmica', 0, 03, 06, 00, NULL, NULL),
+(033, 'Caminante del Cielo Resonante Rojo', 'Yo canalizo con el fin de Explorar, inspirando la Vigilancia. Sello la Salida del Espacio con el tono Resonante de la Sintonización. Me guía el poder de la Fuerza Vital.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/07.png), bottom/60% no-repeat url(http:', 'el Espacio Resonante', 0, 03, 07, 00, NULL, NULL),
+(034, 'Mago Galáctico Blanco', 'Yo armonizo con el fin de Encantar, modelando la Receptividad. Sello la Salida de la Atemporalidad con el tono Galáctico de la Integridad. Me guía el poder del Sin-Fín.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/08.png), bottom/60% no-repeat url(http:', 'la Atemporalidad Galáctica', 0, 03, 08, 00, NULL, NULL),
+(035, 'Águila Solar Azul', 'Yo pulso con el fin de Crear, realizando la Mente. Sello la Salida de la Visión con el tono Solar de la Intención. Me guía el poder de la Magia.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/09.png), bottom/60% no-repeat url(http:', 'la Visión Solar', 0, 03, 09, 00, NULL, NULL),
+(036, 'Guerrero Planetario Amarillo', 'Yo perfecciono con el fin de Cuestionar, produciendo la Intrepidez. Sello la Salida de la Inteligencia con el tono Planetario de la Manifestación. Me guía el poder del Florecimiento.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/10.png), bottom/60% no-repeat url(http:', 'la Inteligencia Planetaria', 0, 03, 10, 00, NULL, NULL),
+(037, 'Tierra Espectral Roja', 'Yo disuelvo con el fin de Evolucionar, divulgando la Sincronía. Sello la Matriz de la Navegación con el tono Espectral de la Liberación. Me guía mi propio Poder duplicado. ', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/11.png), bottom/60% no-repeat url(http:', 'la Navegación Espectral', 0, 03, 11, 00, NULL, NULL),
+(038, 'Espejo Cristal Blanco', 'Yo me dedico a con el fin de Reflejar, universalizando el Orden. Sello la Matriz del Sin-Fín con el tono Cristal de la Cooperación. Me guía el poder del Corazón.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/12.png), bottom/60% no-repeat url(http:', 'el Sin-Fín Cristal', 0, 03, 12, 00, NULL, NULL),
+(039, 'Tormenta Cósmica Azul', 'Yo perduro con el fin de Catalizar, trascendiendo la Energía. Sello la Matriz de la Autogeneración con el tono Cósmico de la Presencia. Me guía el poder de la Abundancia. Soy un Portal de Activación Galáctica, entra en mí.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/13.png), bottom/60% no-repeat url(http:', 'la Autogeneración Cósmica', 1, 03, 13, 00, NULL, NULL),
+(040, 'Sol Magnético Amarillo', 'Yo unifico con el fin de Iluminar, atrayendo la Vida. Sello la Matriz del Fuego Universal con el tono Magnético del Propósito. Me guía mi propio Poder duplicado. ', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/01.png), bottom/60% no-repeat url(http:', 'el Fuego Universal Magnético', 0, 04, 01, 00, NULL, NULL),
+(041, 'Dragón Lunar Rojo', 'Yo polarizo con el fin de Nutrir, estabilizando el Ser. Sello la Entrada del Nacimiento con el tono Lunar del Desafío. Me guía el poder del Espacio.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/02.png), bottom/60% no-repeat url(http:', 'el Nacimiento Lunar', 0, 04, 02, 00, NULL, NULL),
+(042, 'Viento Eléctrico Blanco', 'Yo activo con el fin de Comunicar, vinculando el Aliento. Sello la Entrada del Espíritu con el tono Eléctrico del Servicio. Me guía el poder de la Muerte.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/03.png), bottom/60% no-repeat url(http:', 'el Espíritu Eléctrico', 0, 04, 03, 00, NULL, NULL),
+(043, 'Noche Autoexistente Azul', 'Yo defino con el fin de Soñar, midiendo la Intuición. Sello la Entrada de la Abundancia con el tono Autoexistente de la Forma. Me guía el poder de la Autogeneración. Soy un Portal de Activación Galáctica, entra en mí.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/04.png), bottom/60% no-repeat url(http:', 'la Abundancia Autoexistente', 1, 04, 04, 00, NULL, NULL),
+(044, 'Semilla Entonada Amarilla', 'Yo confiero poder con el fin de Atinar, comandando la Atención. Sello la Entrada del Florecimiento con el tono Entonado de la Radiancia. Me guía el poder de la Libre Voluntad.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/05.png), bottom/60% no-repeat url(http:', 'el Florecimiento Entonado', 0, 04, 05, 00, NULL, NULL),
+(045, 'Serpiente Rítmica Roja', 'Yo organizo con el fin de Sobrevivir, equilibrando el Instinto. Sello el Almacén de la Fuerza Vital con el tono Rítmico de la Igualdad. Me guía mi propio Poder duplicado. ', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/06.png), bottom/60% no-repeat url(http:', 'la Fuerza Vital Rítmica', 0, 04, 06, 00, NULL, NULL),
+(046, 'Enlazador de Mundos Resonante Blanco', 'Yo canalizo con el fin de Igualar, inspirando la Oportunidad. Sello el Almacén de la Muerte con el tono Resonante de la Sintonización. Me guía el poder del Sin-Fín.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/07.png), bottom/60% no-repeat url(http:', 'la Muerte Resonante', 0, 04, 07, 00, NULL, NULL),
+(047, 'Mano Galáctica Azul', 'Yo armonizo con el fin de Conocer, modelando la Curación. Sello el Almacén de la Realización con el tono Galáctico de la Integridad. Me guía el poder de la Magia.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/08.png), bottom/60% no-repeat url(http:', 'la Realización Galáctica', 0, 04, 08, 00, NULL, NULL),
+(048, 'Estrella Solar Amarilla', 'Yo pulso con el fin de Embellecer, realizando el Arte. Sello el Almacén de la Elegancia con el tono Solar de la Intención. Me guía el poder del Florecimiento.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/09.png), bottom/60% no-repeat url(http:', 'la Elegancia Solar', 0, 04, 09, 00, NULL, NULL),
+(049, 'Luna Planetaria Roja', 'Yo perfecciono con el fin de Purificar, produciendo el Flujo. Sello el Proceso del Agua Universal con el tono Planetario de la Manifestación. Me guía el poder de la Navegación.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/10.png), bottom/60% no-repeat url(http:', 'el Agua Universal Planetaria', 0, 04, 10, 00, NULL, NULL),
+(050, 'Perro Espectral Blanco', 'Yo disuelvo con el fin de Amar, divulgando la Lealtad. Sello el Proceso del Corazón con el tono Espectral de la Liberación. Me guía mi propio Poder duplicado. Soy un Kin Polar, transporto el Espectro Galáctico Blanco. Soy un Portal de Activación Galáctica, entra en mí.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/11.png), bottom/60% no-repeat url(http:', 'el Corazón Espectral', 1, 04, 11, 00, NULL, NULL),
+(051, 'Mono Cristal Azul', 'Yo me dedico a con el fin de Jugar, universalizando la Ilusión. Sello el Proceso de la Magia con el tono Cristal de la Cooperación. Me guía el poder de la Abundancia. Soy un Portal de Activación Galáctica, entra en mí.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/12.png), bottom/60% no-repeat url(http:', 'la Magia Cristal', 1, 04, 12, 00, NULL, NULL),
+(052, 'Humano Cósmico Amarillo', 'Yo perduro con el fin de Influenciar, trascendiendo la Sabiduría. Sello el Proceso de la Libre Voluntad con el tono Cósmico de la Presencia. Me guía el poder de la Inteligencia.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/13.png), bottom/60% no-repeat url(http:', 'la Libre Voluntad Cósmica', 0, 04, 13, 00, NULL, NULL),
+(053, 'Caminante del Cielo Magnético Rojo', 'Yo unifico con el fin de Explorar, atrayendo la Vigilancia. Sello la Salida del Espacio con el tono Magnético del Propósito. Me guía mi propio Poder duplicado. ', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/01.png), bottom/60% no-repeat url(http:', 'el Espacio Magnético', 0, 05, 01, 00, NULL, NULL),
+(054, 'Mago Lunar Blanco', 'Yo polarizo con el fin de Encantar, estabilizando la Receptividad. Sello la Salida de la Atemporalidad con el tono Lunar del Desafío. Me guía el poder de la Muerte.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/02.png), bottom/60% no-repeat url(http:', 'la Atemporalidad Lunar', 0, 05, 02, 00, NULL, NULL),
+(055, 'Águila Eléctrico Azul', 'Yo activo con el fin de Crear, vinculando la Mente. Sello la Salida de la Visión con el tono Eléctrico del Servicio. Me guía el poder de la Autogeneración. Soy un Kin Polar, establezco el Espectro Galáctico Azul. ', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/03.png), bottom/60% no-repeat url(http:', 'la Visión Eléctrica', 0, 05, 03, 00, NULL, NULL),
+(056, 'Guerrero Autoexistente Amarillo', 'Yo defino con el fin de Cuestionar, midiendo la Intrepidez. Sello la Salida de la Inteligencia con el tono Autoexistente de la Forma. Me guía el poder de la Libre Voluntad.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/04.png), bottom/60% no-repeat url(http:', 'la Inteligencia Autoexistente', 0, 05, 04, 00, NULL, NULL),
+(057, 'Tierra Entonada Roja', 'Yo confiero poder con el fin de Evolucionar, comandando la Sincronía. Sello la Matriz de la Navegación con el tono Entonado de la Radiancia. Me guía el poder de la Fuerza Vital.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/05.png), bottom/60% no-repeat url(http:', 'la Navegación Entonada', 0, 05, 05, 00, NULL, NULL),
+(058, 'Espejo Rítmico Blanco', 'Yo organizo con el fin de Reflejar, equilibrando el Orden. Sello la Matriz del Sin-Fín con el tono Rítmico de la Igualdad. Me guía mi propio Poder duplicado. Soy un Portal de Activación Galáctica, entra en mí.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/06.png), bottom/60% no-repeat url(http:', 'el Sin-Fín Rítmico', 1, 05, 06, 00, NULL, NULL),
+(059, 'Tormenta Resonante Azul', 'Yo canalizo con el fin de Catalizar, inspirando la Energía. Sello la Matriz de la Autogeneración con el tono Resonante de la Sintonización. Me guía el poder de la Magia.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/07.png), bottom/60% no-repeat url(http:', 'la Autogeneración Resonante', 0, 05, 07, 00, NULL, NULL),
+(060, 'Sol Galáctico Amarillo', 'Yo armonizo con el fin de Iluminar, modelando la Vida. Sello la Matriz del Fuego Universal con el tono Galáctico de la Integridad. Me guía el poder del Florecimiento.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/08.png), bottom/60% no-repeat url(http:', 'el Fuego Universal Galáctico', 0, 05, 08, 00, NULL, NULL),
+(061, 'Dragón Solar Rojo', 'Yo pulso con el fin de Nutrir, realizando el Ser. Sello la Entrada del Nacimiento con el tono Solar de la Intención. Me guía el poder de la Navegación.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/09.png), bottom/60% no-repeat url(http:', 'el Nacimiento Solar', 0, 05, 09, 00, NULL, NULL),
+(062, 'Viento Planetario Blanco', 'Yo perfecciono con el fin de Comunicar, produciendo el Aliento. Sello la Entrada del Espíritu con el tono Planetario de la Manifestación. Me guía el poder del Corazón.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/10.png), bottom/60% no-repeat url(http:', 'el Espíritu Planetario', 0, 05, 10, 00, NULL, NULL),
+(063, 'Noche Espectral Azul', 'Yo disuelvo con el fin de Soñar, divulgando la Intuición. Sello la Entrada de la Abundancia con el tono Espectral de la Liberación. Me guía mi propio Poder duplicado. ', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/11.png), bottom/60% no-repeat url(http:', 'la Abundancia Espectral', 0, 05, 11, 00, NULL, NULL),
+(064, 'Semilla Cristal Amarilla', 'Yo me dedico a con el fin de Atinar, universalizando la Atención. Sello la Entrada del Florecimiento con el tono Cristal de la Cooperación. Me guía el poder de la Inteligencia. Soy un Portal de Activación Galáctica, entra en mí.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/12.png), bottom/60% no-repeat url(http:', 'el Florecimiento Cristal', 1, 05, 12, 00, NULL, NULL),
+(065, 'Serpiente Cósmica Roja', 'Yo perduro con el fin de Sobrevivir, trascendiendo el Instinto. Sello el Almacén de la Fuerza Vital con el tono Cósmico de la Presencia. Me guía el poder del Agua Universal.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/13.png), bottom/60% no-repeat url(http:', 'la Fuerza Vital Cósmica', 0, 05, 13, 00, NULL, NULL),
+(066, 'Enlazador de Mundos Magnético Blanco', 'Yo unifico con el fin de Igualar, atrayendo la Oportunidad. Sello el Almacén de la Muerte con el tono Magnético del Propósito. Me guía mi propio Poder duplicado. ', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/01.png), bottom/60% no-repeat url(http:', 'la Muerte Magnética', 0, 06, 01, 00, NULL, NULL),
+(067, 'Mano Lunar Azul', 'Yo polarizo con el fin de Conocer, estabilizando la Curación. Sello el Almacén de la Realización con el tono Lunar del Desafío. Me guía el poder de la Autogeneración.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/02.png), bottom/60% no-repeat url(http:', 'la Realización Lunar', 0, 06, 02, 00, NULL, NULL),
+(068, 'Estrella Eléctrica Amarilla', 'Yo activo con el fin de Embellecer, vinculando el Arte. Sello el Almacén de la Elegancia con el tono Eléctrico del Servicio. Me guía el poder de la Libre Voluntad.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/03.png), bottom/60% no-repeat url(http:', 'la Elegancia Eléctrica', 0, 06, 03, 00, NULL, NULL),
+(069, 'Luna Autoexistente Roja', 'Yo defino con el fin de Purificar, midiendo el Flujo. Sello el Proceso del Agua Universal con el tono Autoexistente de la Forma. Me guía el poder de la Fuerza Vital. Soy un Portal de Activación Galáctica, entra en mí.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/04.png), bottom/60% no-repeat url(http:', 'el Agua Universal Autoexistente', 1, 06, 04, 00, NULL, NULL),
+(070, 'Perro Entonado Blanco', 'Yo confiero poder con el fin de Amar, comandando la Lealtad. Sello el Proceso del Corazón con el tono Entonado de la Radiancia. Me guía el poder del Sin-Fín.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/05.png), bottom/60% no-repeat url(http:', 'el Corazón Entonado', 0, 06, 05, 00, NULL, NULL),
+(071, 'Mono Rítmico Azul', 'Yo organizo con el fin de Jugar, equilibrando la Ilusión. Sello el Proceso de la Magia con el tono Rítmico de la Igualdad. Me guía mi propio Poder duplicado. ', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/06.png), bottom/60% no-repeat url(http:', 'la Magia Rítmica', 0, 06, 06, 00, NULL, NULL),
+(072, 'Humano Resonante Amarillo', 'Yo canalizo con el fin de Influenciar, inspirando la Sabiduría. Sello el Proceso de la Libre Voluntad con el tono Resonante de la Sintonización. Me guía el poder del Florecimiento. Soy un Portal de Activación Galáctica, entra en mí.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/07.png), bottom/60% no-repeat url(http:', 'la Libre Voluntad Resonante', 1, 06, 07, 00, NULL, NULL),
+(073, 'Caminante del Cielo Galáctico Rojo', 'Yo armonizo con el fin de Explorar, modelando la Vigilancia. Sello la Salida del Espacio con el tono Galáctico de la Integridad. Me guía el poder de la Navegación.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/08.png), bottom/60% no-repeat url(http:', 'el Espacio Galáctico', 0, 06, 08, 00, NULL, NULL),
+(074, 'Mago Solar Blanco', 'Yo pulso con el fin de Encantar, realizando la Receptividad. Sello la Salida de la Atemporalidad con el tono Solar de la Intención. Me guía el poder del Corazón.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/09.png), bottom/60% no-repeat url(http:', 'la Atemporalidad Solar', 0, 06, 09, 00, NULL, NULL),
+(075, 'Águila Planetario Azul', 'Yo perfecciono con el fin de Crear, produciendo la Mente. Sello la Salida de la Visión con el tono Planetario de la Manifestación. Me guía el poder de la Abundancia. Soy un Kin Polar, extiendo el Espectro Galáctico Azul. ', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/10.png), bottom/60% no-repeat url(http:', 'la Visión Planetaria', 0, 06, 10, 00, NULL, NULL),
+(076, 'Guerrero Espectral Amarillo', 'Yo disuelvo con el fin de Cuestionar, divulgando la Intrepidez. Sello la Salida de la Inteligencia con el tono Espectral de la Liberación. Me guía mi propio Poder duplicado. ', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/11.png), bottom/60% no-repeat url(http:', 'la Inteligencia Espectral', 0, 06, 11, 00, NULL, NULL),
+(077, 'Tierra Cristal Roja', 'Yo me dedico a con el fin de Evolucionar, universalizando la Sincronía. Sello la Matriz de la Navegación con el tono Cristal de la Cooperación. Me guía el poder del Agua Universal. Soy un Portal de Activación Galáctica, entra en mí.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/12.png), bottom/60% no-repeat url(http:', 'la Navegación Cristal', 1, 06, 12, 00, NULL, NULL),
+(078, 'Espejo Cósmico Blanco', 'Yo perduro con el fin de Reflejar, trascendiendo el Orden. Sello la Matriz del Sin-Fín con el tono Cósmico de la Presencia. Me guía el poder del Espíritu.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/13.png), bottom/60% no-repeat url(http:', 'el Sin-Fín Cósmico', 0, 06, 13, 00, NULL, NULL),
+(079, 'Tormenta Magnética Azul', 'Yo unifico con el fin de Catalizar, atrayendo la Energía. Sello la Matriz de la Autogeneración con el tono Magnético del Propósito. Me guía mi propio Poder duplicado. ', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/01.png), bottom/60% no-repeat url(http:', 'la Autogeneración Magnética', 0, 07, 01, 00, NULL, NULL),
+(080, 'Sol Lunar Amarillo', 'Yo polarizo con el fin de Iluminar, estabilizando la Vida. Sello la Matriz del Fuego Universal con el tono Lunar del Desafío. Me guía el poder de la Libre Voluntad.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/02.png), bottom/60% no-repeat url(http:', 'el Fuego Universal Lunar', 0, 07, 02, 00, NULL, NULL),
+(081, 'Dragón Eléctrico Rojo', 'Yo activo con el fin de Nutrir, vinculando el Ser. Sello la Entrada del Nacimiento con el tono Eléctrico del Servicio. Me guía el poder de la Fuerza Vital.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/03.png), bottom/60% no-repeat url(http:', 'el Nacimiento Eléctrico', 0, 07, 03, 00, NULL, NULL),
+(082, 'Viento Autoexistente Blanco', 'Yo defino con el fin de Comunicar, midiendo el Aliento. Sello la Entrada del Espíritu con el tono Autoexistente de la Forma. Me guía el poder del Sin-Fín.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/04.png), bottom/60% no-repeat url(http:', 'el Espíritu Autoexistente', 0, 07, 04, 00, NULL, NULL),
+(083, 'Noche Entonada Azul', 'Yo confiero poder con el fin de Soñar, comandando la Intuición. Sello la Entrada de la Abundancia con el tono Entonado de la Radiancia. Me guía el poder de la Magia.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/05.png), bottom/60% no-repeat url(http:', 'la Abundancia Entonada', 0, 07, 05, 00, NULL, NULL),
+(084, 'Semilla Rítmica Amarilla', 'Yo organizo con el fin de Atinar, equilibrando la Atención. Sello la Entrada del Florecimiento con el tono Rítmico de la Igualdad. Me guía mi propio Poder duplicado. ', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/06.png), bottom/60% no-repeat url(http:', 'el Florecimiento Rítmico', 0, 07, 06, 00, NULL, NULL),
+(085, 'Serpiente Resonante Roja', 'Yo canalizo con el fin de Sobrevivir, inspirando el Instinto. Sello el Almacén de la Fuerza Vital con el tono Resonante de la Sintonización. Me guía el poder de la Navegación. Soy un Portal de Activación Galáctica, entra en mí.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/07.png), bottom/60% no-repeat url(http:', 'la Fuerza Vital Resonante', 1, 07, 07, 00, NULL, NULL),
+(086, 'Enlazador de Mundos Galáctico Blanco', 'Yo armonizo con el fin de Igualar, modelando la Oportunidad. Sello el Almacén de la Muerte con el tono Galáctico de la Integridad. Me guía el poder del Corazón.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/08.png), bottom/60% no-repeat url(http:', 'la Muerte Galáctica', 0, 07, 08, 00, NULL, NULL),
+(087, 'Mano Solar Azul', 'Yo pulso con el fin de Conocer, realizando la Curación. Sello el Almacén de la Realización con el tono Solar de la Intención. Me guía el poder de la Abundancia.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/09.png), bottom/60% no-repeat url(http:', 'la Realización Solar', 0, 07, 09, 00, NULL, NULL),
+(088, 'Estrella Planetaria Amarilla', 'Yo perfecciono con el fin de Embellecer, produciendo el Arte. Sello el Almacén de la Elegancia con el tono Planetario de la Manifestación. Me guía el poder de la Inteligencia. Soy un Portal de Activación Galáctica, entra en mí.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/10.png), bottom/60% no-repeat url(http:', 'la Elegancia Planetaria', 1, 07, 10, 00, NULL, NULL),
+(089, 'Luna Espectral Roja', 'Yo disuelvo con el fin de Purificar, divulgando el Flujo. Sello el Proceso del Agua Universal con el tono Espectral de la Liberación. Me guía mi propio Poder duplicado. ', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/11.png), bottom/60% no-repeat url(http:', 'el Agua Universal Espectral', 0, 07, 11, 00, NULL, NULL),
+(090, 'Perro Cristal Blanco', 'Yo me dedico a con el fin de Amar, universalizando la Lealtad. Sello el Proceso del Corazón con el tono Cristal de la Cooperación. Me guía el poder del Espíritu.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/12.png), bottom/60% no-repeat url(http:', 'el Corazón Cristal', 0, 07, 12, 00, NULL, NULL),
+(091, 'Mono Cósmico Azul', 'Yo perduro con el fin de Jugar, trascendiendo la Ilusión. Sello el Proceso de la Magia con el tono Cósmico de la Presencia. Me guía el poder de la Visión.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/13.png), bottom/60% no-repeat url(http:', 'la Magia Cósmica', 0, 07, 13, 00, NULL, NULL),
+(092, 'Humano Magnético Amarillo', 'Yo unifico con el fin de Influenciar, atrayendo la Sabiduría. Sello el Proceso de la Libre Voluntad con el tono Magnético del Propósito. Me guía mi propio Poder duplicado. ', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/01.png), bottom/60% no-repeat url(http:', 'la Libre Voluntad Magnética', 0, 08, 01, 00, NULL, NULL),
+(093, 'Caminante del Cielo Lunar Rojo', 'Yo polarizo con el fin de Explorar, estabilizando la Vigilancia. Sello la Salida del Espacio con el tono Lunar del Desafío. Me guía el poder de la Fuerza Vital. Soy un Portal de Activación Galáctica, entra en mí.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/02.png), bottom/60% no-repeat url(http:', 'el Espacio Lunar', 1, 08, 02, 00, NULL, NULL),
+(094, 'Mago Eléctrico Blanco', 'Yo activo con el fin de Encantar, vinculando la Receptividad. Sello la Salida de la Atemporalidad con el tono Eléctrico del Servicio. Me guía el poder del Sin-Fín.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/03.png), bottom/60% no-repeat url(http:', 'la Atemporalidad Eléctrica', 0, 08, 03, 00, NULL, NULL),
+(095, 'Águila Autoexistente Azul', 'Yo defino con el fin de Crear, midiendo la Mente. Sello la Salida de la Visión con el tono Autoexistente de la Forma. Me guía el poder de la Magia. Soy un Kin Polar, convierto el Espectro Galáctico Azul. ', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/04.png), bottom/60% no-repeat url(http:', 'la Visión Autoexistente', 0, 08, 04, 00, NULL, NULL),
+(096, 'Guerrero Entonado Amarillo', 'Yo confiero poder con el fin de Cuestionar, comandando la Intrepidez. Sello la Salida de la Inteligencia con el tono Entonado de la Radiancia. Me guía el poder del Florecimiento. Soy un Portal de Activación Galáctica, entra en mí.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/05.png), bottom/60% no-repeat url(http:', 'la Inteligencia Entonada', 1, 08, 05, 00, NULL, NULL),
+(097, 'Tierra Rítmica Roja', 'Yo organizo con el fin de Evolucionar, equilibrando la Sincronía. Sello la Matriz de la Navegación con el tono Rítmico de la Igualdad. Me guía mi propio Poder duplicado. ', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/06.png), bottom/60% no-repeat url(http:', 'la Navegación Rítmica', 0, 08, 06, 00, NULL, NULL),
+(098, 'Espejo Resonante Blanco', 'Yo canalizo con el fin de Reflejar, inspirando el Orden. Sello la Matriz del Sin-Fín con el tono Resonante de la Sintonización. Me guía el poder del Corazón.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/07.png), bottom/60% no-repeat url(http:', 'el Sin-Fín Resonante', 0, 08, 07, 00, NULL, NULL),
+(099, 'Tormenta Galáctica Azul', 'Yo armonizo con el fin de Catalizar, modelando la Energía. Sello la Matriz de la Autogeneración con el tono Galáctico de la Integridad. Me guía el poder de la Abundancia.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/08.png), bottom/60% no-repeat url(http:', 'la Autogeneración Galáctica', 0, 08, 08, 00, NULL, NULL),
+(100, 'Sol Solar Amarillo', 'Yo pulso con el fin de Iluminar, realizando la Vida. Sello la Matriz del Fuego Universal con el tono Solar de la Intención. Me guía el poder de la Inteligencia.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/09.png), bottom/60% no-repeat url(http:', 'el Fuego Universal Solar', 0, 08, 09, 00, NULL, NULL),
+(101, 'Dragón Planetario Rojo', 'Yo perfecciono con el fin de Nutrir, produciendo el Ser. Sello la Entrada del Nacimiento con el tono Planetario de la Manifestación. Me guía el poder del Agua Universal.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/10.png), bottom/60% no-repeat url(http:', 'el Nacimiento Planetario', 0, 08, 10, 00, NULL, NULL),
+(102, 'Viento Espectral Blanco', 'Yo disuelvo con el fin de Comunicar, divulgando el Aliento. Sello la Entrada del Espíritu con el tono Espectral de la Liberación. Me guía mi propio Poder duplicado. ', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/11.png), bottom/60% no-repeat url(http:', 'el Espíritu Espectral', 0, 08, 11, 00, NULL, NULL),
+(103, 'Noche Cristal Azul', 'Yo me dedico a con el fin de Soñar, universalizando la Intuición. Sello la Entrada de la Abundancia con el tono Cristal de la Cooperación. Me guía el poder de la Visión.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/12.png), bottom/60% no-repeat url(http:', 'la Abundancia Cristal', 0, 08, 12, 00, NULL, NULL),
+(104, 'Semilla Cósmica Amarilla', 'Yo perduro con el fin de Atinar, trascendiendo la Atención. Sello la Entrada del Florecimiento con el tono Cósmico de la Presencia. Me guía el poder de la Elegancia.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/13.png), bottom/60% no-repeat url(http:', 'el Florecimiento Cósmico', 0, 08, 13, 00, NULL, NULL),
+(105, 'Serpiente Magnética Roja', 'Yo unifico con el fin de Sobrevivir, atrayendo el Instinto. Sello el Almacén de la Fuerza Vital con el tono Magnético del Propósito. Me guía mi propio Poder duplicado. ', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/01.png), bottom/60% no-repeat url(http:', 'la Fuerza Vital Magnética', 0, 09, 01, 00, NULL, NULL),
+(106, 'Enlazador de Mundos Lunar Blanco', 'Yo polarizo con el fin de Igualar, estabilizando la Oportunidad. Sello el Almacén de la Muerte con el tono Lunar del Desafío. Me guía el poder del Sin-Fín. Soy un Portal de Activación Galáctica, entra en mí.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/02.png), bottom/60% no-repeat url(http:', 'la Muerte Lunar', 1, 09, 02, 00, NULL, NULL),
+(107, 'Mano Eléctrica Azul', 'Yo activo con el fin de Conocer, vinculando la Curación. Sello el Almacén de la Realización con el tono Eléctrico del Servicio. Me guía el poder de la Magia. Soy un Portal de Activación Galáctica, entra en mí.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/03.png), bottom/60% no-repeat url(http:', 'la Realización Eléctrica', 1, 09, 03, 00, NULL, NULL),
+(108, 'Estrella Autoexistente Amarilla', 'Yo defino con el fin de Embellecer, midiendo el Arte. Sello el Almacén de la Elegancia con el tono Autoexistente de la Forma. Me guía el poder del Florecimiento. Soy un Portal de Activación Galáctica, entra en mí.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/04.png), bottom/60% no-repeat url(http:', 'la Elegancia Autoexistente', 1, 09, 04, 00, NULL, NULL),
+(109, 'Luna Entonada Roja', 'Yo confiero poder con el fin de Purificar, comandando el Flujo. Sello el Proceso del Agua Universal con el tono Entonado de la Radiancia. Me guía el poder de la Navegación. Soy un Portal de Activación Galáctica, entra en mí.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/05.png), bottom/60% no-repeat url(http:', 'el Agua Universal Entonada', 1, 09, 05, 00, NULL, NULL),
+(110, 'Perro Rítmico Blanco', 'Yo organizo con el fin de Amar, equilibrando la Lealtad. Sello el Proceso del Corazón con el tono Rítmico de la Igualdad. Me guía mi propio Poder duplicado. Soy un Portal de Activación Galáctica, entra en mí.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/06.png), bottom/60% no-repeat url(http:', 'el Corazón Rítmico', 1, 09, 06, 00, NULL, NULL),
+(111, 'Mono Resonante Azul', 'Yo canalizo con el fin de Jugar, inspirando la Ilusión. Sello el Proceso de la Magia con el tono Resonante de la Sintonización. Me guía el poder de la Abundancia. Soy un Portal de Activación Galáctica, entra en mí.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/07.png), bottom/60% no-repeat url(http:', 'la Magia Resonante', 1, 09, 07, 00, NULL, NULL),
+(112, 'Humano Galáctico Amarillo', 'Yo armonizo con el fin de Influenciar, modelando la Sabiduría. Sello el Proceso de la Libre Voluntad con el tono Galáctico de la Integridad. Me guía el poder de la Inteligencia. Soy un Portal de Activación Galáctica, entra en mí.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/08.png), bottom/60% no-repeat url(http:', 'la Libre Voluntad Galáctica', 1, 09, 08, 00, NULL, NULL),
+(113, 'Caminante del Cielo Solar Rojo', 'Yo pulso con el fin de Explorar, realizando la Vigilancia. Sello la Salida del Espacio con el tono Solar de la Intención. Me guía el poder del Agua Universal. Soy un Portal de Activación Galáctica, entra en mí.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/09.png), bottom/60% no-repeat url(http:', 'el Espacio Solar', 1, 09, 09, 00, NULL, NULL),
+(114, 'Mago Planetario Blanco', 'Yo perfecciono con el fin de Encantar, produciendo la Receptividad. Sello la Salida de la Atemporalidad con el tono Planetario de la Manifestación. Me guía el poder del Espíritu. Soy un Portal de Activación Galáctica, entra en mí.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/10.png), bottom/60% no-repeat url(http:', 'la Atemporalidad Planetaria', 1, 09, 10, 00, NULL, NULL),
+(115, 'Águila Espectral Azul', 'Yo disuelvo con el fin de Crear, divulgando la Mente. Sello la Salida de la Visión con el tono Espectral de la Liberación. Me guía mi propio Poder duplicado. Soy un Kin Polar, transporto el Espectro Galáctico Azul. Soy un Portal de Activación Galáctica, entra en mí.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/11.png), bottom/60% no-repeat url(http:', 'la Visión Espectral', 1, 09, 11, 00, NULL, NULL),
+(116, 'Guerrero Cristal Amarillo', 'Yo me dedico a con el fin de Cuestionar, universalizando la Intrepidez. Sello la Salida de la Inteligencia con el tono Cristal de la Cooperación. Me guía el poder de la Elegancia.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/12.png), bottom/60% no-repeat url(http:', 'la Inteligencia Cristal', 0, 09, 12, 00, NULL, NULL),
+(117, 'Tierra Cósmica Roja', 'Yo perduro con el fin de Evolucionar, trascendiendo la Sincronía. Sello la Matriz de la Navegación con el tono Cósmico de la Presencia. Me guía el poder del Nacimiento.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/13.png), bottom/60% no-repeat url(http:', 'la Navegación Cósmica', 0, 09, 13, 00, NULL, NULL),
+(118, 'Espejo Magnético Blanco', 'Yo unifico con el fin de Reflejar, atrayendo el Orden. Sello la Matriz del Sin-Fín con el tono Magnético del Propósito. Me guía mi propio Poder duplicado. ', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/01.png), bottom/60% no-repeat url(http:', 'el Sin-Fín Magnético', 0, 10, 01, 00, NULL, NULL),
+(119, 'Tormenta Lunar Azul', 'Yo polarizo con el fin de Catalizar, estabilizando la Energía. Sello la Matriz de la Autogeneración con el tono Lunar del Desafío. Me guía el poder de la Magia.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/02.png), bottom/60% no-repeat url(http:', 'la Autogeneración Lunar', 0, 10, 02, 00, NULL, NULL),
+(120, 'Sol Eléctrico Amarillo', 'Yo activo con el fin de Iluminar, vinculando la Vida. Sello la Matriz del Fuego Universal con el tono Eléctrico del Servicio. Me guía el poder del Florecimiento. Soy un Kin Polar, establezco el Espectro Galáctico Amarillo. ', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/03.png), bottom/60% no-repeat url(http:', 'el Fuego Universal Eléctrico', 0, 10, 03, 00, NULL, NULL),
+(121, 'Dragón Autoexistente Rojo', 'Yo defino con el fin de Nutrir, midiendo el Ser. Sello la Entrada del Nacimiento con el tono Autoexistente de la Forma. Me guía el poder de la Navegación.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/04.png), bottom/60% no-repeat url(http:', 'el Nacimiento Autoexistente', 0, 10, 04, 00, NULL, NULL),
+(122, 'Viento Entonado Blanco', 'Yo confiero poder con el fin de Comunicar, comandando el Aliento. Sello la Entrada del Espíritu con el tono Entonado de la Radiancia. Me guía el poder del Corazón.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/05.png), bottom/60% no-repeat url(http:', 'el Espíritu Entonado', 0, 10, 05, 00, NULL, NULL),
+(123, 'Noche Rítmica Azul', 'Yo organizo con el fin de Soñar, equilibrando la Intuición. Sello la Entrada de la Abundancia con el tono Rítmico de la Igualdad. Me guía mi propio Poder duplicado. ', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/06.png), bottom/60% no-repeat url(http:', 'la Abundancia Rítmica', 0, 10, 06, 00, NULL, NULL),
+(124, 'Semilla Resonante Amarilla', 'Yo canalizo con el fin de Atinar, inspirando la Atención. Sello la Entrada del Florecimiento con el tono Resonante de la Sintonización. Me guía el poder de la Inteligencia.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/07.png), bottom/60% no-repeat url(http:', 'el Florecimiento Resonante', 0, 10, 07, 00, NULL, NULL),
+(125, 'Serpiente Galáctica Roja', 'Yo armonizo con el fin de Sobrevivir, modelando el Instinto. Sello el Almacén de la Fuerza Vital con el tono Galáctico de la Integridad. Me guía el poder del Agua Universal.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/08.png), bottom/60% no-repeat url(http:', 'la Fuerza Vital Galáctica', 0, 10, 08, 00, NULL, NULL),
+(126, 'Enlazador de Mundos Solar Blanco', 'Yo pulso con el fin de Igualar, realizando la Oportunidad. Sello el Almacén de la Muerte con el tono Solar de la Intención. Me guía el poder del Espíritu.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/09.png), bottom/60% no-repeat url(http:', 'la Muerte Solar', 0, 10, 09, 00, NULL, NULL),
+(127, 'Mano Planetaria Azul', 'Yo perfecciono con el fin de Conocer, produciendo la Curación. Sello el Almacén de la Realización con el tono Planetario de la Manifestación. Me guía el poder de la Visión.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/10.png), bottom/60% no-repeat url(http:', 'la Realización Planetaria', 0, 10, 10, 00, NULL, NULL),
+(128, 'Estrella Espectral Amarilla', 'Yo disuelvo con el fin de Embellecer, divulgando el Arte. Sello el Almacén de la Elegancia con el tono Espectral de la Liberación. Me guía mi propio Poder duplicado. ', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/11.png), bottom/60% no-repeat url(http:', 'la Elegancia Espectral', 0, 10, 11, 00, NULL, NULL),
+(129, 'Luna Cristal Roja', 'Yo me dedico a con el fin de Purificar, universalizando el Flujo. Sello el Proceso del Agua Universal con el tono Cristal de la Cooperación. Me guía el poder del Nacimiento.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/12.png), bottom/60% no-repeat url(http:', 'el Agua Universal Cristal', 0, 10, 12, 00, NULL, NULL),
+(130, 'Perro Cósmico Blanco', 'Yo perduro con el fin de Amar, trascendiendo la Lealtad. Sello el Proceso del Corazón con el tono Cósmico de la Presencia. Me guía el poder de la Atemporalidad.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/13.png), bottom/60% no-repeat url(http:', 'el Corazón Cósmico', 0, 10, 13, 00, NULL, NULL),
+(131, 'Mono Magnético Azul', 'Yo unifico con el fin de Jugar, atrayendo la Ilusión. Sello el Proceso de la Magia con el tono Magnético del Propósito. Me guía mi propio Poder duplicado. ', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/01.png), bottom/60% no-repeat url(http:', 'la Magia Magnética', 0, 11, 01, 00, NULL, NULL),
+(132, 'Humano Lunar Amarillo', 'Yo polarizo con el fin de Influenciar, estabilizando la Sabiduría. Sello el Proceso de la Libre Voluntad con el tono Lunar del Desafío. Me guía el poder del Florecimiento.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/02.png), bottom/60% no-repeat url(http:', 'la Libre Voluntad Lunar', 0, 11, 02, 00, NULL, NULL),
+(133, 'Caminante del Cielo Eléctrico Rojo', 'Yo activo con el fin de Explorar, vinculando la Vigilancia. Sello la Salida del Espacio con el tono Eléctrico del Servicio. Me guía el poder de la Navegación.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/03.png), bottom/60% no-repeat url(http:', 'el Espacio Eléctrico', 0, 11, 03, 00, NULL, NULL),
+(134, 'Mago Autoexistente Blanco', 'Yo defino con el fin de Encantar, midiendo la Receptividad. Sello la Salida de la Atemporalidad con el tono Autoexistente de la Forma. Me guía el poder del Corazón.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/04.png), bottom/60% no-repeat url(http:', 'la Atemporalidad Autoexistente', 0, 11, 04, 00, NULL, NULL);
+INSERT INTO `kin` (`id`, `nombre`, `descripcion`, `imagen`, `poder`, `es_portal`, `sello`, `tono`, `onda_encantada`, `createdAt`, `updatedAt`) VALUES
+(135, 'Águila Entonado Azul', 'Yo confiero poder con el fin de Crear, comandando la Mente. Sello la Salida de la Visión con el tono Entonado de la Radiancia. Me guía el poder de la Abundancia.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/05.png), bottom/60% no-repeat url(http:', 'la Visión Entonada', 0, 11, 05, 00, NULL, NULL),
+(136, 'Guerrero Rítmico Amarillo', 'Yo organizo con el fin de Cuestionar, equilibrando la Intrepidez. Sello la Salida de la Inteligencia con el tono Rítmico de la Igualdad. Me guía mi propio Poder duplicado. ', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/06.png), bottom/60% no-repeat url(http:', 'la Inteligencia Rítmica', 0, 11, 06, 00, NULL, NULL),
+(137, 'Tierra Resonante Roja', 'Yo canalizo con el fin de Evolucionar, inspirando la Sincronía. Sello la Matriz de la Navegación con el tono Resonante de la Sintonización. Me guía el poder del Agua Universal.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/07.png), bottom/60% no-repeat url(http:', 'la Navegación Resonante', 0, 11, 07, 00, NULL, NULL),
+(138, 'Espejo Galáctico Blanco', 'Yo armonizo con el fin de Reflejar, modelando el Orden. Sello la Matriz del Sin-Fín con el tono Galáctico de la Integridad. Me guía el poder del Espíritu.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/08.png), bottom/60% no-repeat url(http:', 'el Sin-Fín Galáctico', 0, 11, 08, 00, NULL, NULL),
+(139, 'Tormenta Solar Azul', 'Yo pulso con el fin de Catalizar, realizando la Energía. Sello la Matriz de la Autogeneración con el tono Solar de la Intención. Me guía el poder de la Visión.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/09.png), bottom/60% no-repeat url(http:', 'la Autogeneración Solar', 0, 11, 09, 00, NULL, NULL),
+(140, 'Sol Planetario Amarillo', 'Yo perfecciono con el fin de Iluminar, produciendo la Vida. Sello la Matriz del Fuego Universal con el tono Planetario de la Manifestación. Me guía el poder de la Elegancia. Soy un Kin Polar, extiendo el Espectro Galáctico Amarillo. ', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/10.png), bottom/60% no-repeat url(http:', 'el Fuego Universal Planetario', 0, 11, 10, 00, NULL, NULL),
+(141, 'Dragón Espectral Rojo', 'Yo disuelvo con el fin de Nutrir, divulgando el Ser. Sello la Entrada del Nacimiento con el tono Espectral de la Liberación. Me guía mi propio Poder duplicado. ', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/11.png), bottom/60% no-repeat url(http:', 'el Nacimiento Espectral', 0, 11, 11, 00, NULL, NULL),
+(142, 'Viento Cristal Blanco', 'Yo me dedico a con el fin de Comunicar, universalizando el Aliento. Sello la Entrada del Espíritu con el tono Cristal de la Cooperación. Me guía el poder de la Atemporalidad.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/12.png), bottom/60% no-repeat url(http:', 'el Espíritu Cristal', 0, 11, 12, 00, NULL, NULL),
+(143, 'Noche Cósmica Azul', 'Yo perduro con el fin de Soñar, trascendiendo la Intuición. Sello la Entrada de la Abundancia con el tono Cósmico de la Presencia. Me guía el poder de la Realización.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/13.png), bottom/60% no-repeat url(http:', 'la Abundancia Cósmica', 0, 11, 13, 00, NULL, NULL),
+(144, 'Semilla Magnética Amarilla', 'Yo unifico con el fin de Atinar, atrayendo la Atención. Sello la Entrada del Florecimiento con el tono Magnético del Propósito. Me guía mi propio Poder duplicado. ', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/01.png), bottom/60% no-repeat url(http:', 'el Florecimiento Magnético', 0, 12, 01, 00, NULL, NULL),
+(145, 'Serpiente Lunar Roja', 'Yo polarizo con el fin de Sobrevivir, estabilizando el Instinto. Sello el Almacén de la Fuerza Vital con el tono Lunar del Desafío. Me guía el poder de la Navegación.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/02.png), bottom/60% no-repeat url(http:', 'la Fuerza Vital Lunar', 0, 12, 02, 00, NULL, NULL),
+(146, 'Enlazador de Mundos Eléctrico Blanco', 'Yo activo con el fin de Igualar, vinculando la Oportunidad. Sello el Almacén de la Muerte con el tono Eléctrico del Servicio. Me guía el poder del Corazón. Soy un Portal de Activación Galáctica, entra en mí.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/03.png), bottom/60% no-repeat url(http:', 'la Muerte Eléctrica', 1, 12, 03, 00, NULL, NULL),
+(147, 'Mano Autoexistente Azul', 'Yo defino con el fin de Conocer, midiendo la Curación. Sello el Almacén de la Realización con el tono Autoexistente de la Forma. Me guía el poder de la Abundancia. Soy un Portal de Activación Galáctica, entra en mí.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/04.png), bottom/60% no-repeat url(http:', 'la Realización Autoexistente', 1, 12, 04, 00, NULL, NULL),
+(148, 'Estrella Entonada Amarilla', 'Yo confiero poder con el fin de Embellecer, comandando el Arte. Sello el Almacén de la Elegancia con el tono Entonado de la Radiancia. Me guía el poder de la Inteligencia. Soy un Portal de Activación Galáctica, entra en mí.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/05.png), bottom/60% no-repeat url(http:', 'la Elegancia Entonada', 1, 12, 05, 00, NULL, NULL),
+(149, 'Luna Rítmica Roja', 'Yo organizo con el fin de Purificar, equilibrando el Flujo. Sello el Proceso del Agua Universal con el tono Rítmico de la Igualdad. Me guía mi propio Poder duplicado. Soy un Portal de Activación Galáctica, entra en mí.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/06.png), bottom/60% no-repeat url(http:', 'el Agua Universal Rítmica', 1, 12, 06, 00, NULL, NULL),
+(150, 'Perro Resonante Blanco', 'Yo canalizo con el fin de Amar, inspirando la Lealtad. Sello el Proceso del Corazón con el tono Resonante de la Sintonización. Me guía el poder del Espíritu. Soy un Portal de Activación Galáctica, entra en mí.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/07.png), bottom/60% no-repeat url(http:', 'el Corazón Resonante', 1, 12, 07, 00, NULL, NULL),
+(151, 'Mono Galáctico Azul', 'Yo armonizo con el fin de Jugar, modelando la Ilusión. Sello el Proceso de la Magia con el tono Galáctico de la Integridad. Me guía el poder de la Visión. Soy un Portal de Activación Galáctica, entra en mí.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/08.png), bottom/60% no-repeat url(http:', 'la Magia Galáctica', 1, 12, 08, 00, NULL, NULL),
+(152, 'Humano Solar Amarillo', 'Yo pulso con el fin de Influenciar, realizando la Sabiduría. Sello el Proceso de la Libre Voluntad con el tono Solar de la Intención. Me guía el poder de la Elegancia. Soy un Portal de Activación Galáctica, entra en mí.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/09.png), bottom/60% no-repeat url(http:', 'la Libre Voluntad Solar', 1, 12, 09, 00, NULL, NULL),
+(153, 'Caminante del Cielo Planetario Rojo', 'Yo perfecciono con el fin de Explorar, produciendo la Vigilancia. Sello la Salida del Espacio con el tono Planetario de la Manifestación. Me guía el poder del Nacimiento. Soy un Portal de Activación Galáctica, entra en mí.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/10.png), bottom/60% no-repeat url(http:', 'el Espacio Planetario', 1, 12, 10, 00, NULL, NULL),
+(154, 'Mago Espectral Blanco', 'Yo disuelvo con el fin de Encantar, divulgando la Receptividad. Sello la Salida de la Atemporalidad con el tono Espectral de la Liberación. Me guía mi propio Poder duplicado. Soy un Portal de Activación Galáctica, entra en mí.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/11.png), bottom/60% no-repeat url(http:', 'la Atemporalidad Espectral', 1, 12, 11, 00, NULL, NULL),
+(155, 'Águila Cristal Azul', 'Yo me dedico a con el fin de Crear, universalizando la Mente. Sello la Salida de la Visión con el tono Cristal de la Cooperación. Me guía el poder de la Realización. Soy un Portal de Activación Galáctica, entra en mí.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/12.png), bottom/60% no-repeat url(http:', 'la Visión Cristal', 1, 12, 12, 00, NULL, NULL),
+(156, 'Guerrero Cósmico Amarillo', 'Yo perduro con el fin de Cuestionar, trascendiendo la Intrepidez. Sello la Salida de la Inteligencia con el tono Cósmico de la Presencia. Me guía el poder del Fuego Universal.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/13.png), bottom/60% no-repeat url(http:', 'la Inteligencia Cósmica', 0, 12, 13, 00, NULL, NULL),
+(157, 'Tierra Magnética Roja', 'Yo unifico con el fin de Evolucionar, atrayendo la Sincronía. Sello la Matriz de la Navegación con el tono Magnético del Propósito. Me guía mi propio Poder duplicado. ', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/01.png), bottom/60% no-repeat url(http:', 'la Navegación Magnética', 0, 13, 01, 00, NULL, NULL),
+(158, 'Espejo Lunar Blanco', 'Yo polarizo con el fin de Reflejar, estabilizando el Orden. Sello la Matriz del Sin-Fín con el tono Lunar del Desafío. Me guía el poder del Corazón.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/02.png), bottom/60% no-repeat url(http:', 'el Sin-Fín Lunar', 0, 13, 02, 00, NULL, NULL),
+(159, 'Tormenta Eléctrica Azul', 'Yo activo con el fin de Catalizar, vinculando la Energía. Sello la Matriz de la Autogeneración con el tono Eléctrico del Servicio. Me guía el poder de la Abundancia.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/03.png), bottom/60% no-repeat url(http:', 'la Autogeneración Eléctrica', 0, 13, 03, 00, NULL, NULL),
+(160, 'Sol Autoexistente Amarillo', 'Yo defino con el fin de Iluminar, midiendo la Vida. Sello la Matriz del Fuego Universal con el tono Autoexistente de la Forma. Me guía el poder de la Inteligencia. Soy un Kin Polar, convierto el Espectro Galáctico Amarillo. ', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/04.png), bottom/60% no-repeat url(http:', 'el Fuego Universal Autoexistente', 0, 13, 04, 00, NULL, NULL),
+(161, 'Dragón Entonado Rojo', 'Yo confiero poder con el fin de Nutrir, comandando el Ser. Sello la Entrada del Nacimiento con el tono Entonado de la Radiancia. Me guía el poder del Agua Universal.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/05.png), bottom/60% no-repeat url(http:', 'el Nacimiento Entonado', 0, 13, 05, 00, NULL, NULL),
+(162, 'Viento Rítmico Blanco', 'Yo organizo con el fin de Comunicar, equilibrando el Aliento. Sello la Entrada del Espíritu con el tono Rítmico de la Igualdad. Me guía mi propio Poder duplicado. ', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/06.png), bottom/60% no-repeat url(http:', 'el Espíritu Rítmico', 0, 13, 06, 00, NULL, NULL),
+(163, 'Noche Resonante Azul', 'Yo canalizo con el fin de Soñar, inspirando la Intuición. Sello la Entrada de la Abundancia con el tono Resonante de la Sintonización. Me guía el poder de la Visión.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/07.png), bottom/60% no-repeat url(http:', 'la Abundancia Resonante', 0, 13, 07, 00, NULL, NULL),
+(164, 'Semilla Galáctica Amarilla', 'Yo armonizo con el fin de Atinar, modelando la Atención. Sello la Entrada del Florecimiento con el tono Galáctico de la Integridad. Me guía el poder de la Elegancia.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/08.png), bottom/60% no-repeat url(http:', 'el Florecimiento Galáctico', 0, 13, 08, 00, NULL, NULL),
+(165, 'Serpiente Solar Roja', 'Yo pulso con el fin de Sobrevivir, realizando el Instinto. Sello el Almacén de la Fuerza Vital con el tono Solar de la Intención. Me guía el poder del Nacimiento. Soy un Portal de Activación Galáctica, entra en mí.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/09.png), bottom/60% no-repeat url(http:', 'la Fuerza Vital Solar', 1, 13, 09, 00, NULL, NULL),
+(166, 'Enlazador de Mundos Planetario Blanco', 'Yo perfecciono con el fin de Igualar, produciendo la Oportunidad. Sello el Almacén de la Muerte con el tono Planetario de la Manifestación. Me guía el poder de la Atemporalidad.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/10.png), bottom/60% no-repeat url(http:', 'la Muerte Planetaria', 0, 13, 10, 00, NULL, NULL),
+(167, 'Mano Espectral Azul', 'Yo disuelvo con el fin de Conocer, divulgando la Curación. Sello el Almacén de la Realización con el tono Espectral de la Liberación. Me guía mi propio Poder duplicado. ', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/11.png), bottom/60% no-repeat url(http:', 'la Realización Espectral', 0, 13, 11, 00, NULL, NULL),
+(168, 'Estrella Cristal Amarilla', 'Yo me dedico a con el fin de Embellecer, universalizando el Arte. Sello el Almacén de la Elegancia con el tono Cristal de la Cooperación. Me guía el poder del Fuego Universal. Soy un Portal de Activación Galáctica, entra en mí.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/12.png), bottom/60% no-repeat url(http:', 'la Elegancia Cristal', 1, 13, 12, 00, NULL, NULL),
+(169, 'Luna Cósmica Roja', 'Yo perduro con el fin de Purificar, trascendiendo el Flujo. Sello el Proceso del Agua Universal con el tono Cósmico de la Presencia. Me guía el poder del Espacio.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/13.png), bottom/60% no-repeat url(http:', 'el Agua Universal Cósmica', 0, 13, 13, 00, NULL, NULL),
+(170, 'Perro Magnético Blanco', 'Yo unifico con el fin de Amar, atrayendo la Lealtad. Sello el Proceso del Corazón con el tono Magnético del Propósito. Me guía mi propio Poder duplicado. ', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/01.png), bottom/60% no-repeat url(http:', 'el Corazón Magnético', 0, 14, 01, 00, NULL, NULL),
+(171, 'Mono Lunar Azul', 'Yo polarizo con el fin de Jugar, estabilizando la Ilusión. Sello el Proceso de la Magia con el tono Lunar del Desafío. Me guía el poder de la Abundancia.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/02.png), bottom/60% no-repeat url(http:', 'la Magia Lunar', 0, 14, 02, 00, NULL, NULL),
+(172, 'Humano Eléctrico Amarillo', 'Yo activo con el fin de Influenciar, vinculando la Sabiduría. Sello el Proceso de la Libre Voluntad con el tono Eléctrico del Servicio. Me guía el poder de la Inteligencia.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/03.png), bottom/60% no-repeat url(http:', 'la Libre Voluntad Eléctrica', 0, 14, 03, 00, NULL, NULL),
+(173, 'Caminante del Cielo Autoexistente Rojo', 'Yo defino con el fin de Explorar, midiendo la Vigilancia. Sello la Salida del Espacio con el tono Autoexistente de la Forma. Me guía el poder del Agua Universal. Soy un Portal de Activación Galáctica, entra en mí.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/04.png), bottom/60% no-repeat url(http:', 'el Espacio Autoexistente', 1, 14, 04, 00, NULL, NULL),
+(174, 'Mago Entonado Blanco', 'Yo confiero poder con el fin de Encantar, comandando la Receptividad. Sello la Salida de la Atemporalidad con el tono Entonado de la Radiancia. Me guía el poder del Espíritu.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/05.png), bottom/60% no-repeat url(http:', 'la Atemporalidad Entonada', 0, 14, 05, 00, NULL, NULL),
+(175, 'Águila Rítmico Azul', 'Yo organizo con el fin de Crear, equilibrando la Mente. Sello la Salida de la Visión con el tono Rítmico de la Igualdad. Me guía mi propio Poder duplicado. ', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/06.png), bottom/60% no-repeat url(http:', 'la Visión Rítmica', 0, 14, 06, 00, NULL, NULL),
+(176, 'Guerrero Resonante Amarillo', 'Yo canalizo con el fin de Cuestionar, inspirando la Intrepidez. Sello la Salida de la Inteligencia con el tono Resonante de la Sintonización. Me guía el poder de la Elegancia. Soy un Portal de Activación Galáctica, entra en mí.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/07.png), bottom/60% no-repeat url(http:', 'la Inteligencia Resonante', 1, 14, 07, 00, NULL, NULL),
+(177, 'Tierra Galáctica Roja', 'Yo armonizo con el fin de Evolucionar, modelando la Sincronía. Sello la Matriz de la Navegación con el tono Galáctico de la Integridad. Me guía el poder del Nacimiento.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/08.png), bottom/60% no-repeat url(http:', 'la Navegación Galáctica', 0, 14, 08, 00, NULL, NULL),
+(178, 'Espejo Solar Blanco', 'Yo pulso con el fin de Reflejar, realizando el Orden. Sello la Matriz del Sin-Fín con el tono Solar de la Intención. Me guía el poder de la Atemporalidad.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/09.png), bottom/60% no-repeat url(http:', 'el Sin-Fín Solar', 0, 14, 09, 00, NULL, NULL),
+(179, 'Tormenta Planetaria Azul', 'Yo perfecciono con el fin de Catalizar, produciendo la Energía. Sello la Matriz de la Autogeneración con el tono Planetario de la Manifestación. Me guía el poder de la Realización.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/10.png), bottom/60% no-repeat url(http:', 'la Autogeneración Planetaria', 0, 14, 10, 00, NULL, NULL),
+(180, 'Sol Espectral Amarillo', 'Yo disuelvo con el fin de Iluminar, divulgando la Vida. Sello la Matriz del Fuego Universal con el tono Espectral de la Liberación. Me guía mi propio Poder duplicado. Soy un Kin Polar, transporto el Espectro Galáctico Amarillo. ', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/11.png), bottom/60% no-repeat url(http:', 'el Fuego Universal Espectral', 0, 14, 11, 00, NULL, NULL),
+(181, 'Dragón Cristal Rojo', 'Yo me dedico a con el fin de Nutrir, universalizando el Ser. Sello la Entrada del Nacimiento con el tono Cristal de la Cooperación. Me guía el poder del Espacio.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/12.png), bottom/60% no-repeat url(http:', 'el Nacimiento Cristal', 0, 14, 12, 00, NULL, NULL),
+(182, 'Viento Cósmico Blanco', 'Yo perduro con el fin de Comunicar, trascendiendo el Aliento. Sello la Entrada del Espíritu con el tono Cósmico de la Presencia. Me guía el poder de la Muerte.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/13.png), bottom/60% no-repeat url(http:', 'el Espíritu Cósmico', 0, 14, 13, 00, NULL, NULL),
+(183, 'Noche Magnética Azul', 'Yo unifico con el fin de Soñar, atrayendo la Intuición. Sello la Entrada de la Abundancia con el tono Magnético del Propósito. Me guía mi propio Poder duplicado. ', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/01.png), bottom/60% no-repeat url(http:', 'la Abundancia Magnética', 0, 15, 01, 00, NULL, NULL),
+(184, 'Semilla Lunar Amarilla', 'Yo polarizo con el fin de Atinar, estabilizando la Atención. Sello la Entrada del Florecimiento con el tono Lunar del Desafío. Me guía el poder de la Inteligencia. Soy un Portal de Activación Galáctica, entra en mí.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/02.png), bottom/60% no-repeat url(http:', 'el Florecimiento Lunar', 1, 15, 02, 00, NULL, NULL),
+(185, 'Serpiente Eléctrica Roja', 'Yo activo con el fin de Sobrevivir, vinculando el Instinto. Sello el Almacén de la Fuerza Vital con el tono Eléctrico del Servicio. Me guía el poder del Agua Universal. Soy un Kin Polar, establezco el Espectro Galáctico Rojo. ', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/03.png), bottom/60% no-repeat url(http:', 'la Fuerza Vital Eléctrica', 0, 15, 03, 00, NULL, NULL),
+(186, 'Enlazador de Mundos Autoexistente Blanco', 'Yo defino con el fin de Igualar, midiendo la Oportunidad. Sello el Almacén de la Muerte con el tono Autoexistente de la Forma. Me guía el poder del Espíritu.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/04.png), bottom/60% no-repeat url(http:', 'la Muerte Autoexistente', 0, 15, 04, 00, NULL, NULL),
+(187, 'Mano Entonada Azul', 'Yo confiero poder con el fin de Conocer, comandando la Curación. Sello el Almacén de la Realización con el tono Entonado de la Radiancia. Me guía el poder de la Visión.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/05.png), bottom/60% no-repeat url(http:', 'la Realización Entonada', 0, 15, 05, 00, NULL, NULL),
+(188, 'Estrella Rítmica Amarilla', 'Yo organizo con el fin de Embellecer, equilibrando el Arte. Sello el Almacén de la Elegancia con el tono Rítmico de la Igualdad. Me guía mi propio Poder duplicado. ', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/06.png), bottom/60% no-repeat url(http:', 'la Elegancia Rítmica', 0, 15, 06, 00, NULL, NULL),
+(189, 'Luna Resonante Roja', 'Yo canalizo con el fin de Purificar, inspirando el Flujo. Sello el Proceso del Agua Universal con el tono Resonante de la Sintonización. Me guía el poder del Nacimiento. Soy un Portal de Activación Galáctica, entra en mí.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/07.png), bottom/60% no-repeat url(http:', 'el Agua Universal Resonante', 1, 15, 07, 00, NULL, NULL),
+(190, 'Perro Galáctico Blanco', 'Yo armonizo con el fin de Amar, modelando la Lealtad. Sello el Proceso del Corazón con el tono Galáctico de la Integridad. Me guía el poder de la Atemporalidad.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/08.png), bottom/60% no-repeat url(http:', 'el Corazón Galáctico', 0, 15, 08, 00, NULL, NULL),
+(191, 'Mono Solar Azul', 'Yo pulso con el fin de Jugar, realizando la Ilusión. Sello el Proceso de la Magia con el tono Solar de la Intención. Me guía el poder de la Realización.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/09.png), bottom/60% no-repeat url(http:', 'la Magia Solar', 0, 15, 09, 00, NULL, NULL),
+(192, 'Humano Planetario Amarillo', 'Yo perfecciono con el fin de Influenciar, produciendo la Sabiduría. Sello el Proceso de la Libre Voluntad con el tono Planetario de la Manifestación. Me guía el poder del Fuego Universal. Soy un Portal de Activación Galáctica, entra en mí.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/10.png), bottom/60% no-repeat url(http:', 'la Libre Voluntad Planetaria', 1, 15, 10, 00, NULL, NULL),
+(193, 'Caminante del Cielo Espectral Rojo', 'Yo disuelvo con el fin de Explorar, divulgando la Vigilancia. Sello la Salida del Espacio con el tono Espectral de la Liberación. Me guía mi propio Poder duplicado. ', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/11.png), bottom/60% no-repeat url(http:', 'el Espacio Espectral', 0, 15, 11, 00, NULL, NULL),
+(194, 'Mago Cristal Blanco', 'Yo me dedico a con el fin de Encantar, universalizando la Receptividad. Sello la Salida de la Atemporalidad con el tono Cristal de la Cooperación. Me guía el poder de la Muerte.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/12.png), bottom/60% no-repeat url(http:', 'la Atemporalidad Cristal', 0, 15, 12, 00, NULL, NULL),
+(195, 'Águila Cósmico Azul', 'Yo perduro con el fin de Crear, trascendiendo la Mente. Sello la Salida de la Visión con el tono Cósmico de la Presencia. Me guía el poder de la Autogeneración.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/13.png), bottom/60% no-repeat url(http:', 'la Visión Cósmica', 0, 15, 13, 00, NULL, NULL),
+(196, 'Guerrero Magnético Amarillo', 'Yo unifico con el fin de Cuestionar, atrayendo la Intrepidez. Sello la Salida de la Inteligencia con el tono Magnético del Propósito. Me guía mi propio Poder duplicado. ', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/01.png), bottom/60% no-repeat url(http:', 'la Inteligencia Magnética', 0, 16, 01, 00, NULL, NULL),
+(197, 'Tierra Lunar Roja', 'Yo polarizo con el fin de Evolucionar, estabilizando la Sincronía. Sello la Matriz de la Navegación con el tono Lunar del Desafío. Me guía el poder del Agua Universal. Soy un Portal de Activación Galáctica, entra en mí.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/02.png), bottom/60% no-repeat url(http:', 'la Navegación Lunar', 1, 16, 02, 00, NULL, NULL),
+(198, 'Espejo Eléctrico Blanco', 'Yo activo con el fin de Reflejar, vinculando el Orden. Sello la Matriz del Sin-Fín con el tono Eléctrico del Servicio. Me guía el poder del Espíritu.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/03.png), bottom/60% no-repeat url(http:', 'el Sin-Fín Eléctrico', 0, 16, 03, 00, NULL, NULL),
+(199, 'Tormenta Autoexistente Azul', 'Yo defino con el fin de Catalizar, midiendo la Energía. Sello la Matriz de la Autogeneración con el tono Autoexistente de la Forma. Me guía el poder de la Visión.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/04.png), bottom/60% no-repeat url(http:', 'la Autogeneración Autoexistente', 0, 16, 04, 00, NULL, NULL),
+(200, 'Sol Entonado Amarillo', 'Yo confiero poder con el fin de Iluminar, comandando la Vida. Sello la Matriz del Fuego Universal con el tono Entonado de la Radiancia. Me guía el poder de la Elegancia.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/05.png), bottom/60% no-repeat url(http:', 'el Fuego Universal Entonado', 0, 16, 05, 00, NULL, NULL),
+(201, 'Dragón Rítmico Rojo', 'Yo organizo con el fin de Nutrir, equilibrando el Ser. Sello la Entrada del Nacimiento con el tono Rítmico de la Igualdad. Me guía mi propio Poder duplicado. ', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/06.png), bottom/60% no-repeat url(http:', 'el Nacimiento Rítmico', 0, 16, 06, 00, NULL, NULL),
+(202, 'Viento Resonante Blanco', 'Yo canalizo con el fin de Comunicar, inspirando el Aliento. Sello la Entrada del Espíritu con el tono Resonante de la Sintonización. Me guía el poder de la Atemporalidad.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/07.png), bottom/60% no-repeat url(http:', 'el Espíritu Resonante', 0, 16, 07, 00, NULL, NULL),
+(203, 'Noche Galáctica Azul', 'Yo armonizo con el fin de Soñar, modelando la Intuición. Sello la Entrada de la Abundancia con el tono Galáctico de la Integridad. Me guía el poder de la Realización. Soy un Portal de Activación Galáctica, entra en mí.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/08.png), bottom/60% no-repeat url(http:', 'la Abundancia Galáctica', 1, 16, 08, 00, NULL, NULL),
+(204, 'Semilla Solar Amarilla', 'Yo pulso con el fin de Atinar, realizando la Atención. Sello la Entrada del Florecimiento con el tono Solar de la Intención. Me guía el poder del Fuego Universal.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/09.png), bottom/60% no-repeat url(http:', 'el Florecimiento Solar', 0, 16, 09, 00, NULL, NULL),
+(205, 'Serpiente Planetaria Roja', 'Yo perfecciono con el fin de Sobrevivir, produciendo el Instinto. Sello el Almacén de la Fuerza Vital con el tono Planetario de la Manifestación. Me guía el poder del Espacio. Soy un Kin Polar, extiendo el Espectro Galáctico Rojo. ', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/10.png), bottom/60% no-repeat url(http:', 'la Fuerza Vital Planetaria', 0, 16, 10, 00, NULL, NULL),
+(206, 'Enlazador de Mundos Espectral Blanco', 'Yo disuelvo con el fin de Igualar, divulgando la Oportunidad. Sello el Almacén de la Muerte con el tono Espectral de la Liberación. Me guía mi propio Poder duplicado. ', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/11.png), bottom/60% no-repeat url(http:', 'la Muerte Espectral', 0, 16, 11, 00, NULL, NULL),
+(207, 'Mano Cristal Azul', 'Yo me dedico a con el fin de Conocer, universalizando la Curación. Sello el Almacén de la Realización con el tono Cristal de la Cooperación. Me guía el poder de la Autogeneración.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/12.png), bottom/60% no-repeat url(http:', 'la Realización Cristal', 0, 16, 12, 00, NULL, NULL),
+(208, 'Estrella Cósmica Amarilla', 'Yo perduro con el fin de Embellecer, trascendiendo el Arte. Sello el Almacén de la Elegancia con el tono Cósmico de la Presencia. Me guía el poder de la Libre Voluntad.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/13.png), bottom/60% no-repeat url(http:', 'la Elegancia Cósmica', 0, 16, 13, 00, NULL, NULL),
+(209, 'Luna Magnética Roja', 'Yo unifico con el fin de Purificar, atrayendo el Flujo. Sello el Proceso del Agua Universal con el tono Magnético del Propósito. Me guía mi propio Poder duplicado. ', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/01.png), bottom/60% no-repeat url(http:', 'el Agua Universal Magnética', 0, 17, 01, 00, NULL, NULL),
+(210, 'Perro Lunar Blanco', 'Yo polarizo con el fin de Amar, estabilizando la Lealtad. Sello el Proceso del Corazón con el tono Lunar del Desafío. Me guía el poder del Espíritu. Soy un Portal de Activación Galáctica, entra en mí.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/02.png), bottom/60% no-repeat url(http:', 'el Corazón Lunar', 1, 17, 02, 00, NULL, NULL),
+(211, 'Mono Eléctrico Azul', 'Yo activo con el fin de Jugar, vinculando la Ilusión. Sello el Proceso de la Magia con el tono Eléctrico del Servicio. Me guía el poder de la Visión. Soy un Portal de Activación Galáctica, entra en mí.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/03.png), bottom/60% no-repeat url(http:', 'la Magia Eléctrica', 1, 17, 03, 00, NULL, NULL),
+(212, 'Humano Autoexistente Amarillo', 'Yo defino con el fin de Influenciar, midiendo la Sabiduría. Sello el Proceso de la Libre Voluntad con el tono Autoexistente de la Forma. Me guía el poder de la Elegancia.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/04.png), bottom/60% no-repeat url(http:', 'la Libre Voluntad Autoexistente', 0, 17, 04, 00, NULL, NULL),
+(213, 'Caminante del Cielo Entonado Rojo', 'Yo confiero poder con el fin de Explorar, comandando la Vigilancia. Sello la Salida del Espacio con el tono Entonado de la Radiancia. Me guía el poder del Nacimiento.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/05.png), bottom/60% no-repeat url(http:', 'el Espacio Entonado', 0, 17, 05, 00, NULL, NULL),
+(214, 'Mago Rítmico Blanco', 'Yo organizo con el fin de Encantar, equilibrando la Receptividad. Sello la Salida de la Atemporalidad con el tono Rítmico de la Igualdad. Me guía mi propio Poder duplicado. ', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/06.png), bottom/60% no-repeat url(http:', 'la Atemporalidad Rítmica', 0, 17, 06, 00, NULL, NULL),
+(215, 'Águila Resonante Azul', 'Yo canalizo con el fin de Crear, inspirando la Mente. Sello la Salida de la Visión con el tono Resonante de la Sintonización. Me guía el poder de la Realización.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/07.png), bottom/60% no-repeat url(http:', 'la Visión Resonante', 0, 17, 07, 00, NULL, NULL),
+(216, 'Guerrero Galáctico Amarillo', 'Yo armonizo con el fin de Cuestionar, modelando la Intrepidez. Sello la Salida de la Inteligencia con el tono Galáctico de la Integridad. Me guía el poder del Fuego Universal.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/08.png), bottom/60% no-repeat url(http:', 'la Inteligencia Galáctica', 0, 17, 08, 00, NULL, NULL),
+(217, 'Tierra Solar Roja', 'Yo pulso con el fin de Evolucionar, realizando la Sincronía. Sello la Matriz de la Navegación con el tono Solar de la Intención. Me guía el poder del Espacio.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/09.png), bottom/60% no-repeat url(http:', 'la Navegación Solar', 0, 17, 09, 00, NULL, NULL),
+(218, 'Espejo Planetario Blanco', 'Yo perfecciono con el fin de Reflejar, produciendo el Orden. Sello la Matriz del Sin-Fín con el tono Planetario de la Manifestación. Me guía el poder de la Muerte. Soy un Portal de Activación Galáctica, entra en mí.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/10.png), bottom/60% no-repeat url(http:', 'el Sin-Fín Planetario', 1, 17, 10, 00, NULL, NULL),
+(219, 'Tormenta Espectral Azul', 'Yo disuelvo con el fin de Catalizar, divulgando la Energía. Sello la Matriz de la Autogeneración con el tono Espectral de la Liberación. Me guía mi propio Poder duplicado. ', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/11.png), bottom/60% no-repeat url(http:', 'la Autogeneración Espectral', 0, 17, 11, 00, NULL, NULL),
+(220, 'Sol Cristal Amarillo', 'Yo me dedico a con el fin de Iluminar, universalizando la Vida. Sello la Matriz del Fuego Universal con el tono Cristal de la Cooperación. Me guía el poder de la Libre Voluntad.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/12.png), bottom/60% no-repeat url(http:', 'el Fuego Universal Cristal', 0, 17, 12, 00, NULL, NULL),
+(221, 'Dragón Cósmico Rojo', 'Yo perduro con el fin de Nutrir, trascendiendo el Ser. Sello la Entrada del Nacimiento con el tono Cósmico de la Presencia. Me guía el poder de la Fuerza Vital.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/13.png), bottom/60% no-repeat url(http:', 'el Nacimiento Cósmico', 0, 17, 13, 00, NULL, NULL),
+(222, 'Viento Magnético Blanco', 'Yo unifico con el fin de Comunicar, atrayendo el Aliento. Sello la Entrada del Espíritu con el tono Magnético del Propósito. Me guía mi propio Poder duplicado. Soy un Portal de Activación Galáctica, entra en mí.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/01.png), bottom/60% no-repeat url(http:', 'el Espíritu Magnético', 1, 18, 01, 00, NULL, NULL),
+(223, 'Noche Lunar Azul', 'Yo polarizo con el fin de Soñar, estabilizando la Intuición. Sello la Entrada de la Abundancia con el tono Lunar del Desafío. Me guía el poder de la Visión.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/02.png), bottom/60% no-repeat url(http:', 'la Abundancia Lunar', 0, 18, 02, 00, NULL, NULL),
+(224, 'Semilla Eléctrica Amarilla', 'Yo activo con el fin de Atinar, vinculando la Atención. Sello la Entrada del Florecimiento con el tono Eléctrico del Servicio. Me guía el poder de la Elegancia.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/03.png), bottom/60% no-repeat url(http:', 'el Florecimiento Eléctrico', 0, 18, 03, 00, NULL, NULL),
+(225, 'Serpiente Autoexistente Roja', 'Yo defino con el fin de Sobrevivir, midiendo el Instinto. Sello el Almacén de la Fuerza Vital con el tono Autoexistente de la Forma. Me guía el poder del Nacimiento. Soy un Kin Polar, convierto el Espectro Galáctico Rojo. ', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/04.png), bottom/60% no-repeat url(http:', 'la Fuerza Vital Autoexistente', 0, 18, 04, 00, NULL, NULL),
+(226, 'Enlazador de Mundos Entonado Blanco', 'Yo confiero poder con el fin de Igualar, comandando la Oportunidad. Sello el Almacén de la Muerte con el tono Entonado de la Radiancia. Me guía el poder de la Atemporalidad.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/05.png), bottom/60% no-repeat url(http:', 'la Muerte Entonada', 0, 18, 05, 00, NULL, NULL),
+(227, 'Mano Rítmica Azul', 'Yo organizo con el fin de Conocer, equilibrando la Curación. Sello el Almacén de la Realización con el tono Rítmico de la Igualdad. Me guía mi propio Poder duplicado. ', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/06.png), bottom/60% no-repeat url(http:', 'la Realización Rítmica', 0, 18, 06, 00, NULL, NULL),
+(228, 'Estrella Resonante Amarilla', 'Yo canalizo con el fin de Embellecer, inspirando el Arte. Sello el Almacén de la Elegancia con el tono Resonante de la Sintonización. Me guía el poder del Fuego Universal.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/07.png), bottom/60% no-repeat url(http:', 'la Elegancia Resonante', 0, 18, 07, 00, NULL, NULL),
+(229, 'Luna Galáctica Roja', 'Yo armonizo con el fin de Purificar, modelando el Flujo. Sello el Proceso del Agua Universal con el tono Galáctico de la Integridad. Me guía el poder del Espacio.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/08.png), bottom/60% no-repeat url(http:', 'el Agua Universal Galáctica', 0, 18, 08, 00, NULL, NULL),
+(230, 'Perro Solar Blanco', 'Yo pulso con el fin de Amar, realizando la Lealtad. Sello el Proceso del Corazón con el tono Solar de la Intención. Me guía el poder de la Muerte.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/09.png), bottom/60% no-repeat url(http:', 'el Corazón Solar', 0, 18, 09, 00, NULL, NULL),
+(231, 'Mono Planetario Azul', 'Yo perfecciono con el fin de Jugar, produciendo la Ilusión. Sello el Proceso de la Magia con el tono Planetario de la Manifestación. Me guía el poder de la Autogeneración.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/10.png), bottom/60% no-repeat url(http:', 'la Magia Planetaria', 0, 18, 10, 00, NULL, NULL),
+(232, 'Humano Espectral Amarillo', 'Yo disuelvo con el fin de Influenciar, divulgando la Sabiduría. Sello el Proceso de la Libre Voluntad con el tono Espectral de la Liberación. Me guía mi propio Poder duplicado. ', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/11.png), bottom/60% no-repeat url(http:', 'la Libre Voluntad Espectral', 0, 18, 11, 00, NULL, NULL),
+(233, 'Caminante del Cielo Cristal Rojo', 'Yo me dedico a con el fin de Explorar, universalizando la Vigilancia. Sello la Salida del Espacio con el tono Cristal de la Cooperación. Me guía el poder de la Fuerza Vital.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/12.png), bottom/60% no-repeat url(http:', 'el Espacio Cristal', 0, 18, 12, 00, NULL, NULL),
+(234, 'Mago Cósmico Blanco', 'Yo perduro con el fin de Encantar, trascendiendo la Receptividad. Sello la Salida de la Atemporalidad con el tono Cósmico de la Presencia. Me guía el poder del Sin-Fín.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/13.png), bottom/60% no-repeat url(http:', 'la Atemporalidad Cósmica', 0, 18, 13, 00, NULL, NULL),
+(235, 'Águila Magnético Azul', 'Yo unifico con el fin de Crear, atrayendo la Mente. Sello la Salida de la Visión con el tono Magnético del Propósito. Me guía mi propio Poder duplicado. ', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/01.png), bottom/60% no-repeat url(http:', 'la Visión Magnética', 0, 19, 01, 00, NULL, NULL),
+(236, 'Guerrero Lunar Amarillo', 'Yo polarizo con el fin de Cuestionar, estabilizando la Intrepidez. Sello la Salida de la Inteligencia con el tono Lunar del Desafío. Me guía el poder de la Elegancia.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/02.png), bottom/60% no-repeat url(http:', 'la Inteligencia Lunar', 0, 19, 02, 00, NULL, NULL),
+(237, 'Tierra Eléctrica Roja', 'Yo activo con el fin de Evolucionar, vinculando la Sincronía. Sello la Matriz de la Navegación con el tono Eléctrico del Servicio. Me guía el poder del Nacimiento.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/03.png), bottom/60% no-repeat url(http:', 'la Navegación Eléctrica', 0, 19, 03, 00, NULL, NULL),
+(238, 'Espejo Autoexistente Blanco', 'Yo defino con el fin de Reflejar, midiendo el Orden. Sello la Matriz del Sin-Fín con el tono Autoexistente de la Forma. Me guía el poder de la Atemporalidad.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/04.png), bottom/60% no-repeat url(http:', 'el Sin-Fín Autoexistente', 0, 19, 04, 00, NULL, NULL),
+(239, 'Tormenta Entonada Azul', 'Yo confiero poder con el fin de Catalizar, comandando la Energía. Sello la Matriz de la Autogeneración con el tono Entonado de la Radiancia. Me guía el poder de la Realización. Soy un Portal de Activación Galáctica, entra en mí.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/05.png), bottom/60% no-repeat url(http:', 'la Autogeneración Entonada', 1, 19, 05, 00, NULL, NULL),
+(240, 'Sol Rítmico Amarillo', 'Yo organizo con el fin de Iluminar, equilibrando la Vida. Sello la Matriz del Fuego Universal con el tono Rítmico de la Igualdad. Me guía mi propio Poder duplicado. ', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/06.png), bottom/60% no-repeat url(http:', 'el Fuego Universal Rítmico', 0, 19, 06, 00, NULL, NULL),
+(241, 'Dragón Resonante Rojo', 'Yo canalizo con el fin de Nutrir, inspirando el Ser. Sello la Entrada del Nacimiento con el tono Resonante de la Sintonización. Me guía el poder del Espacio. Soy un Portal de Activación Galáctica, entra en mí.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/07.png), bottom/60% no-repeat url(http:', 'el Nacimiento Resonante', 1, 19, 07, 00, NULL, NULL),
+(242, 'Viento Galáctico Blanco', 'Yo armonizo con el fin de Comunicar, modelando el Aliento. Sello la Entrada del Espíritu con el tono Galáctico de la Integridad. Me guía el poder de la Muerte.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/08.png), bottom/60% no-repeat url(http:', 'el Espíritu Galáctico', 0, 19, 08, 00, NULL, NULL),
+(243, 'Noche Solar Azul', 'Yo pulso con el fin de Soñar, realizando la Intuición. Sello la Entrada de la Abundancia con el tono Solar de la Intención. Me guía el poder de la Autogeneración.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/09.png), bottom/60% no-repeat url(http:', 'la Abundancia Solar', 0, 19, 09, 00, NULL, NULL),
+(244, 'Semilla Planetaria Amarilla', 'Yo perfecciono con el fin de Atinar, produciendo la Atención. Sello la Entrada del Florecimiento con el tono Planetario de la Manifestación. Me guía el poder de la Libre Voluntad.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/10.png), bottom/60% no-repeat url(http:', 'el Florecimiento Planetario', 0, 19, 10, 00, NULL, NULL),
+(245, 'Serpiente Espectral Roja', 'Yo disuelvo con el fin de Sobrevivir, divulgando el Instinto. Sello el Almacén de la Fuerza Vital con el tono Espectral de la Liberación. Me guía mi propio Poder duplicado. Soy un Kin Polar, transporto el Espectro Galáctico Rojo. ', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/11.png), bottom/60% no-repeat url(http:', 'la Fuerza Vital Espectral', 0, 19, 11, 00, NULL, NULL),
+(246, 'Enlazador de Mundos Cristal Blanco', 'Yo me dedico a con el fin de Igualar, universalizando la Oportunidad. Sello el Almacén de la Muerte con el tono Cristal de la Cooperación. Me guía el poder del Sin-Fín.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/12.png), bottom/60% no-repeat url(http:', 'la Muerte Cristal', 0, 19, 12, 00, NULL, NULL),
+(247, 'Mano Cósmica Azul', 'Yo perduro con el fin de Conocer, trascendiendo la Curación. Sello el Almacén de la Realización con el tono Cósmico de la Presencia. Me guía el poder de la Magia.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/13.png), bottom/60% no-repeat url(http:', 'la Realización Cósmica', 0, 19, 13, 00, NULL, NULL),
+(248, 'Estrella Magnética Amarilla', 'Yo unifico con el fin de Embellecer, atrayendo el Arte. Sello el Almacén de la Elegancia con el tono Magnético del Propósito. Me guía mi propio Poder duplicado. ', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/01.png), bottom/60% no-repeat url(http:', 'la Elegancia Magnética', 0, 20, 01, 00, NULL, NULL),
+(249, 'Luna Lunar Roja', 'Yo polarizo con el fin de Purificar, estabilizando el Flujo. Sello el Proceso del Agua Universal con el tono Lunar del Desafío. Me guía el poder del Nacimiento.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/02.png), bottom/60% no-repeat url(http:', 'el Agua Universal Lunar', 0, 20, 02, 00, NULL, NULL),
+(250, 'Perro Eléctrico Blanco', 'Yo activo con el fin de Amar, vinculando la Lealtad. Sello el Proceso del Corazón con el tono Eléctrico del Servicio. Me guía el poder de la Atemporalidad. Soy un Kin Polar, establezco el Espectro Galáctico Blanco. ', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/03.png), bottom/60% no-repeat url(http:', 'el Corazón Eléctrico', 0, 20, 03, 00, NULL, NULL),
+(251, 'Mono Autoexistente Azul', 'Yo defino con el fin de Jugar, midiendo la Ilusión. Sello el Proceso de la Magia con el tono Autoexistente de la Forma. Me guía el poder de la Realización.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/04.png), bottom/60% no-repeat url(http:', 'la Magia Autoexistente', 0, 20, 04, 00, NULL, NULL),
+(252, 'Humano Entonado Amarillo', 'Yo confiero poder con el fin de Influenciar, comandando la Sabiduría. Sello el Proceso de la Libre Voluntad con el tono Entonado de la Radiancia. Me guía el poder del Fuego Universal.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/05.png), bottom/60% no-repeat url(http:', 'la Libre Voluntad Entonada', 0, 20, 05, 00, NULL, NULL),
+(253, 'Caminante del Cielo Rítmico Rojo', 'Yo organizo con el fin de Explorar, equilibrando la Vigilancia. Sello la Salida del Espacio con el tono Rítmico de la Igualdad. Me guía mi propio Poder duplicado. ', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/06.png), bottom/60% no-repeat url(http:', 'el Espacio Rítmico', 0, 20, 06, 00, NULL, NULL),
+(254, 'Mago Resonante Blanco', 'Yo canalizo con el fin de Encantar, inspirando la Receptividad. Sello la Salida de la Atemporalidad con el tono Resonante de la Sintonización. Me guía el poder de la Muerte.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/07.png), bottom/60% no-repeat url(http:', 'la Atemporalidad Resonante', 0, 20, 07, 00, NULL, NULL),
+(255, 'Águila Galáctico Azul', 'Yo armonizo con el fin de Crear, modelando la Mente. Sello la Salida de la Visión con el tono Galáctico de la Integridad. Me guía el poder de la Autogeneración.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/08.png), bottom/60% no-repeat url(http:', 'la Visión Galáctica', 0, 20, 08, 00, NULL, NULL),
+(256, 'Guerrero Solar Amarillo', 'Yo pulso con el fin de Cuestionar, realizando la Intrepidez. Sello la Salida de la Inteligencia con el tono Solar de la Intención. Me guía el poder de la Libre Voluntad.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/09.png), bottom/60% no-repeat url(http:', 'la Inteligencia Solar', 0, 20, 09, 00, NULL, NULL),
+(257, 'Tierra Planetaria Roja', 'Yo perfecciono con el fin de Evolucionar, produciendo la Sincronía. Sello la Matriz de la Navegación con el tono Planetario de la Manifestación. Me guía el poder de la Fuerza Vital.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/10.png), bottom/60% no-repeat url(http:', 'la Navegación Planetaria', 0, 20, 10, 00, NULL, NULL),
+(258, 'Espejo Espectral Blanco', 'Yo disuelvo con el fin de Reflejar, divulgando el Orden. Sello la Matriz del Sin-Fín con el tono Espectral de la Liberación. Me guía mi propio Poder duplicado. ', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/11.png), bottom/60% no-repeat url(http:', 'el Sin-Fín Espectral', 0, 20, 11, 00, NULL, NULL),
+(259, 'Tormenta Cristal Azul', 'Yo me dedico a con el fin de Catalizar, universalizando la Energía. Sello la Matriz de la Autogeneración con el tono Cristal de la Cooperación. Me guía el poder de la Magia.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/12.png), bottom/60% no-repeat url(http:', 'la Autogeneración Cristal', 0, 20, 12, 00, NULL, NULL),
+(260, 'Sol Cósmico Amarillo', 'Yo perduro con el fin de Iluminar, trascendiendo la Vida. Sello la Matriz del Fuego Universal con el tono Cósmico de la Presencia. Me guía el poder del Florecimiento. Soy un Portal de Activación Galáctica, entra en mí.', 'top/50% no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/13.png), bottom/60% no-repeat url(http:', 'el Fuego Universal Cósmico', 1, 20, 13, 00, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `post`
+--
+
+CREATE TABLE `post` (
+  `id` int(11) NOT NULL,
+  `fecha` datetime DEFAULT NULL,
+  `nombre` varchar(30) NOT NULL,
+  `apellido` varchar(30) NOT NULL,
+  `kin` int(3) UNSIGNED ZEROFILL NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `contenido` text NOT NULL,
+  `createdAt` date DEFAULT NULL,
+  `updatedAt` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Posteos de un Kin';
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `post_respuesta`
+--
+
+CREATE TABLE `post_respuesta` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(100) NOT NULL,
+  `kin` smallint(3) NOT NULL,
+  `email` varchar(150) NOT NULL,
+  `contenido` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `sello`
+--
+
+CREATE TABLE `sello` (
+  `id` smallint(2) UNSIGNED ZEROFILL NOT NULL,
+  `nombre` varchar(25) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `nombre_maya` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `descripcion` varchar(150) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `color` varchar(10) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `codigo` varchar(35) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `caracteristica` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `accion` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `poder` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `imagen` varchar(255) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `significado` text COLLATE utf8mb4_spanish_ci NOT NULL,
+  `sinonimos` text COLLATE utf8mb4_spanish_ci NOT NULL,
+  `sombras` text COLLATE utf8mb4_spanish_ci NOT NULL,
+  `portador` text COLLATE utf8mb4_spanish_ci NOT NULL,
+  `sombra` text COLLATE utf8mb4_spanish_ci NOT NULL,
+  `recomendaciones` text COLLATE utf8mb4_spanish_ci NOT NULL,
+  `onda_encantada` smallint(2) UNSIGNED ZEROFILL NOT NULL,
+  `createdAt` date DEFAULT NULL,
+  `updatedAt` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Sello Solar';
+
+--
+-- Volcado de datos para la tabla `sello`
+--
+
+INSERT INTO `sello` (`id`, `nombre`, `nombre_maya`, `descripcion`, `color`, `codigo`, `caracteristica`, `accion`, `poder`, `imagen`, `significado`, `sinonimos`, `sombras`, `portador`, `sombra`, `recomendaciones`, `onda_encantada`, `createdAt`, `updatedAt`) VALUES
+(01, 'el Dragón', 'IMIX', 'nutre el nacimiento', 'Rojo', 'un punto', 'el Ser', 'Nutrir', 'el Nacimiento', 'center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/sel/01.png);', 'Dragón simboliza la Esencia Divina, el Agua Primordial que todo lo inicia y Nutre, el rostro Materno de Dios, la Madre Cósmica, el Alimento espiritual que moviliza la vida. Responde al concepto que en realidad la Divinidad está dentro de cada uno de nosotros, que nuestra esencia es eterna y divina, chispas de un mismo Fuego. Es el Signo Iniciador por Excelencia, el que comienza el camino del conocimiento, que lleva a su vez a recuperar la memoria cósmica, a revelar de dónde venimos. En el plano espiritual habla de caminos iniciáticos, iniciaciones realizadas por maestros en distintas disciplinas o prácticas energéticas.', 'Esencia Divina, Madre Cósmica, Rostro Materno de Dios\nAgua Primordial, Fuente de Vida\nPrincipio Creador, Causa Primera\nUnidad, Origen,\nMaternidad, Partos, Natalidad\nDescendencia Numerosa\nAlimentación\nCrianza\nEnseñanza Materna, Figura Materna\nMandatos Maternos o de la Infancia\nProtección, Sobreprotección\nSeguridad, Confianza\nNecesidades Básicas\nEspacio Propio\nIniciación Espiritual, Nuevos Comienzos\nMemoria Cósmica\nNutricionismo\nGinecología\nMatriz Femenina, Pecho Materno\nSangre.', 'Rencores\nEgoísmo\nDesmotivación \nDesvaloración\nestá a la Defensiva\nObsesiones\nTemor a Ser\nImposibles\nDependencias\nDesconfianzas Invasivos\nNo puede\nAbandono\nSobreprotección\nLimites del EGO\nPoca Asimilación de lo Propio', 'Los portadores de este Sello demuestran poseer fuerza de voluntad, independencia, seguridad en sí mismos, confianza. Su fuerza nutre el ser o esencia que hay en uno mismo, y después de entregarse hasta consumirse renacen en un nuevo ciclo existencial. Contienen ímpetu, fuego para sortear todos los obstáculos y llegar primeros. La pauta de la protección suele proponerles situaciones donde ponen en juego cómo son como padres y madres, o amigos que vienen a proteger a modo de hermanos mayores. Poseen una fuerza Gestora y son Canales naturales de energía que moviliza el comienzo de un camino para los demás. A nivel psicológico, su clave está en cómo manejan en su vida la imagen materna, punto de partida para lo que será el manejo de su confianza y de los espacios propios y ajenos.', 'Mientras no vibran en total luz, y van aprendiendo de la vivencia de la Sombra, los portadores de este Sello pueden enfrentar sus eventuales rencores, y observar con excesiva puntillosidad la relación con los demás. Si pueden descubrirse como no respetuosos de tiempos y espacios de los otros, es porque en realidad les cuesta asimilar todavía los propios. Cuando están a la defensiva, es que están con temor a ser demasiado invasivos. Si se tornan excesivamente desconfiados, aún de los amigos, deben revisar la falta de fe en sí mismos o su autovaloración. Su eventual dependencia de los demás, o egoísmo, los llama a revisar cómo tratan las estructuras de su ego (creencias personales, valores, etc.) para crecer espiritualmente.', 'Reconocer en tu Interior la Divinidad que es parte de tu esencia.\nEstar atento a los inicios nuevos que se te ofrecen (que estás atrayendo a tu vida).\nAbrirte a descubrir cuándo estás en condiciones de impulsar a otros por caminos nuevos.\nRevisar la imagen y los conceptos de Madre que se formaron en tu interior desde la infancia.\nDescubrir tu capacidad maternal, de protección y seguridad para otros.\nAprender a hacer respetar tu propio espacio, respetando los espacios de los demás.\nReflexionar acerca del tipo y calidad de tu alimentación.', 01, NULL, NULL),
+(02, 'el Viento', 'IK', 'comunica el espíritu', 'Blanco', 'dos puntos', 'el Aliento', 'Comunicar', 'el Espíritu', 'center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/sel/02.png);', 'Viento tiene que ver con el aliento divino de la naturaleza, el espíritu, la palabra, las emociones expresadas a través de la palabra, las ideas exteriorizadas. Indica el movimiento continuo y las dualidades de la existencia, que están llamadas a ser superadas en un tercer punto. La Comunicación tiene que ver con el Resolver las dualidades personales entre el TÚ y el YO, a través del concepto de la unidad de todo. El comunicar (sea hablada, por miradas, por pensamientos) implica poner en común dos puntos de vista y entre ellos, construir una realidad total a través de la aceptación de ambos puntos de vista.', 'Aliento Divino, Espíritu (santo)\nEnergía Cósmica, Movimiento Interior, Fluir Energético\nPersona de la Verdad\nPoder (creador) de la palabra\nEspiritualidad\nInmortalidad\nLibertad interior\nBúsqueda de sinceridad\nDualidad, Principio de polaridad y Superación o Integración de dualidades\nElección entre opuestos\nComunicación, Telepatía, Información, Noticia\nTransmisión de conocimientos\nLocualidad\nCultura\nInspiración\nOratoria\nPeriodismo\nPoder de la Respiración, Sistema Respiratorio\nCanto, Arte de la Palabra.', 'Chismoso\nSe deja llevar\nHipócrita\nFalsedades\nCharlatán\nIndecisiones\nMentiras\nMezquino\nNo dice nada\nFalta a la palabra\nImpositor\nHabla de mas\nOculta información\nDiscusión\nRuidosos', 'Los que tienen de nacimiento se inclinan por el periodismo y la comunicación, o bien el canto o la política; siempre comunicativos, nunca callados. Tienen habilidad para ser Excelentes Oradores, y se transforman en redes de comunicación entre distintas personas, cuando aprenden a escuchar y a dar información verdadera de las realidades que acceden o la que viene inspirada de un nivel más alto de conciencia. La Realidad siempre ofrece enfoques que a veces pueden ser opuestas y extremas, y desde este Sello se Aprende a enfrentarlas con la conciencia de que todos los opuestos percibidos fuera de uno se reconcilian en la propia persona, en uno mismo cuando integra otra visión y amplía su campo de la realidad, ya que es Uno quien puede conciliar las divergencias (o puntos de vista) en uno central y unificador.', 'En Sombra, el estado de Conciencia que no es luz pero que lleva al aprendizaje, los portadores de este sello pueden parecer ante otros como Chismosos, Charlatanes, Hipócritas, Mentirosos, Mezquinos a la hora de tener que dar información porque todavía no valoran el tesoro de la Verdad que conocen y la responsabilidad de Comunicarla a los demás. Todavía se dejan llevar por falsas opciones de una realidad de dualidades, que presenta sus dos opuestos, sus extremos, y mientras no superan esa idea de Dualidad, se desbordan en un ruido externo, que aún no les permite descubrir que el Espíritu se Comunica de Corazón a Corazón, cada vez con menos necesidad de Palabras.', 'Reconocer la porción inmortal de tu ser, es decir, tu espíritu.\nUsar la Comunicación como un puente entre tu persona y los otros.\nSuperar la tentación de los extremos, transitando por el camino del medio.\nEncontrar la palabra impecable en la comunicación con los otros.\nEntender que para entenderse dos personas, no necesariamente se necesitan palabras.\nRevisar la información recibida, los mensajes que nos llegan por distintos medios, y cómo estás preparado/a para trasmitirla.\nReconocerte como el tercer punto donde se resuelven todas las dualidades que se te plantean.', 00, NULL, NULL),
+(03, 'la Noche', 'AKBAL', 'sueña la abundancia', 'Azul', 'tres puntos', 'la Intuición', 'Soñar', 'la Abundancia', 'center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/sel/03.png);', 'Noche Simboliza la Introspección, el Silencio, la Meditación, la Conexión con el Inconsciente, el Pasaje por la Noche del Alma. Enseña que la Abundancia está en nuestro Interior, Reconoce nuestra capacidad Interna de Conectarnos con todo lo que nos es necesario, y que parece oculto (aquello que necesitamos está ahí, esperando ser reconocido por nuestra propia forma de ver). Desde la meditación Desarrolla la Intuición y la Percepción de tipo Femenino. Es la Casa de los Sueños, el lugar Profundo del Inconsciente donde se esconde la Abundancia, la que está por llegar a la Realidad Externa a través de la concreción de los Sueños Internos. Es una Fuerza Amiga de la Oscuridad porque sabe que hay tres piedras de Luz escondidas para revelarse y superar la Dualidad Planteada por el Viento\"', 'Conexión con el incosnciente (individual y colectivo)\nAbundancia (material o espiritual)\nNoche del alma, velo de la verdad\nCasa del Sol (donde se pone y muere)\ncaverna del inconsciente\nTriangulo superador de las dualidades\nsueño, poder de los sueños, proyección de los sueños en la realidad\nEnsoñason, lo desconocido, lugar de los misterios\nluz escondida, poder de las tres piedras de luz ocultas\nmanifestación de lo oculto\nfuerza femenina humana\nintuición espiritual\nmeditación, introspección, silencio\nrecogimiento, soledad, profundidad\npsicología, parapsicología, hechicería\ngenitales femeninos, corazón y órganos internos.', 'Negativo\nIrrealidad\nPerdida de Fe\nIncomprensivo\nSuicidas\nPesimista\nMala Conexión\nIncrédulo\nEncerrado en si\nTraumado\nDestructivo\nImpaciente\nNo se Entiende\nPoco Sociable\nAngustias\nDepresiones', 'Los portadores de este Sello tienen una Vibración que les permite ser Reservados, Introspectivos, Cautelosos, Medidos y tan Intuitivos como Analíticos. Tienden a Ocultar o no poner todas sus Capacidades en Juego, como reservándolas o preservándolas. Tienen la paciencia para esperar la luz del día desde las sombras; y observan desde lo oculto, lo que los lleva a poder ver las Capacidades de los demás a través de sus Intuiciones. Pueden Concretar aquello que deseen con la fuerza de su pensamiento; según su fe en sí mismos, en sus Sueños, resultan Exitosos. Tienen gran Memoria Visual, guardan las imágenes vistas en el día en sus archivos ocultos de la noche (el Inconsciente). Suelen gustar del Campo y de su Silenciosa Soledad; se conectan con la Naturaleza, lo Verde, los Pájaros (como si guardaran dentro un gran Chamán, de los que prefieren el aislamiento para conectarse con el mundo visible y no visible). Como generalmente no recuerdan sus sueños, deberían intentar hacerlo, pues allí tienen información Valiosa, la que viene del Inconsciente, el verdadero Interior\"', 'En Sombra (El estado de conciencia que todavía no es luz y moviliza el aprendizaje personal), los portadores de este sello deben revisar su Negatividad o Pesimismo, su pérdida de Fe, el cerrarse en sí mismos o las actitudes de poca sociabilidad. Su poder Mental de concretar lo que desean es una responsabilidad para no volverse destructivos. Para hallar su adecuada conexión con su Existencia, deben comprender sus eventuales Depresiones, auto-desvalorizaciones e Ideas Suicidas, producto de un Desfasaje entre la Ilusoria Realidad Externa y los llamados Interiores todavía aún no comprendidos. En ese mismo nivel pueden desarrollar Miedos, hacer Surgir Traumas de la Infancia, Angustias, Intranquilidad e Impaciencia. En estos casos, no debería dejar que lo mental, la Racionalidad del hemisferio cerebral izquierdo, boicoteara su natural Intuición\"', 'Buscar el silencio en medio del ruido cotidiano.\nBuscar en tu Inconsciente, en tus Sueños, para encontrar Verdades.\nValorar la Oscuridad como el camino necesario para esperar la Luz del Día.\nMeditar, del modo o con el método que te sea mas provechoso.\nConectarte con la Abundancia que está escondida y que te reserva tu parte correspondiente.\nUsar más la Intuición, natural en las mujeres, pero también presente en los varones.\nSuperar la tentación de usar la oscuridad como un Poder, porque todo camina tarde o temprano hacia la Luz.', 00, NULL, NULL),
+(04, 'la Semilla', 'KAN', 'atina el florecimiento', 'Amarilla', 'cuatro puntos', 'la Atención', 'Atinar', 'el Florecimiento', 'center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/sel/04.png);', 'Semilla hace referencia a la Capacidad humana de Madurar y Florecer, es decir, de Crecer en su Personalidad para Recoger luego, en el momento adecuado, los Frutos de tu labor. Simbólicamente, la Tierra representa los pensamientos, y la idea o Intención está en la Semilla. Toda la Información, todas las Posibilidades toda la Esperanza está Contenida en ella. Solo es Cuestión de Fe: Al tener la Semilla en la mano, el poder ver ya el Árbol crecido y aprovechar ya mismo la frescura de su sombra, sus Frutos, el Canto de sus Aves. Solo es cuestión de Percepción (cómo ver las cosas) saber reconocer cuándo es el momento de Romper la Estructura Rígida Externa, la Coraza Protectora, y que la Información Salga a la Luz. La Semilla Representa el momento oportuno para que podamos expresar aquello que sabemos o necesitamos sacar para ir rompiendo las estructuras que nos limitan y no nos permiten madurar y florecer.', 'Poder del florecimiento Espiritual, Poder del sagrado 4, (auto)gestación\nautogeneración, procreación, reproducción\nfertilidad, crecimiento, madurez\nbuena simiente, tierra fértil, (tiempo de) siembra y cosecha\nFrutos esperados\ncelula iniciadora\ntodas las posibilidades contenidas, lo potencial\nesperanza\nacción acertada y precisa\nequilibrio de emisferios cerebrales\nliderazgo\nestructura personal, esquemas mentales\ninformación encapsulada\nmanejo de lo oculto, esoterismo\nautoprotección, escudo personal, coraza externa a quebrar\nsexo, virilidad\npoder masculino humano, genitales masculinos, esperma.', 'Incoherente\nTradicionalista\nInaceptable\nSobreprotegido\nMandatario\nNo permite\nReceloso\nJuez Lapidario\nImposiciones\nManipulador\nPropias Reglas\nMente Dura\nCómodos\nse creen Dueños de la Verdad\nactúa con segunda intención\nAtado a lo Viejo y no Florecen', 'Los Portadores de este Sello se muestran como personas buscadoras de Verdades trascendentales y del Fondo de la cuestión. Son muy consultados por otros por ser los “Brujos”, los muy Intuitivos, los de Natural Espiritualidad. Se Manifiestan como Protectores sin Quitar la Libertad del otro. Serviciales, buscan cómo ayudar, en la medida que generan confianza en la otra Persona. Se Organizan, una vez Encontrada y Formada en su Interior o en la realidad concreta una Estructura Adecuada. Siembran en Positivo, con optimismo y esperanza. En general se muestran dulces con el trato y muy sociales, con la capacidad de llevarse armónicamente con todas las Edades. Tras el Cascarón de Autosuficiencia y Autoridad preservan Ternura y Vulnerabilidad. Se les da la Habilidad de Atinar, de Acertar en el Blanco, descubrir la Tierra más propicia para colocar la Semilla de la buena siembra, entendiendo esto como Ocasiones Oportunas o Personas que a su alrededor necesitan ser “Cultivadas”.', 'En Sombra (el nivel de conciencia que todavía no ha entrado en luz y que les enseña con cada caída) los portadores de este Sello van Experimentando una Incoherencia entre lo que Predican y su Acción Personal, o bien se dan permisos que no aceptan para los Demás. Deben entonces Revisar sus Actitudes de Jueces Lapidarios, de Imposición de sus Propias Reglas del Juego, o de Creerse dueños de la Verdad. Hasta Romper Estructuras (prefieren lo malo conocido, se apegan a viejas creencias, mandatos y Tradiciones). Otras Actitudes, derivadas el Excesivo Celo por lo valioso que Guardan, se Relacionan con la Sobreprotección asfixiante, la Manipulación de los otros para salvar su propia Comodidad o Seguridad. Mientras encuentran el terreno fértil Adecuado, les cuesta “Caer en Tierra y Morir”, y cambian solo por golpes bruscos de la Vida.', 'Prepararte para romper tu Coreza Externa, porque este es el momento de Germinar y Florecer.\nBuscar el Terreno mas propicio para tu Siembra Personal.\nAguardar con paciencia y esperanza el fruto de tus esfuerzos, el tiempo de la cosecha.\nBuscar el Equilibrio de tus dos hemisferios cerebrales, señal de tu madurez.\nHacer Visible lo que está oculto y es necesario para los demás.\nConjugar tu dureza, adecuada para ciertas circunstancias, con la ternura que se esconde en tu interior.\nLeer o Releer la parábola bíblica del sembrador y la buena Semilla.', 00, NULL, NULL),
+(05, 'la Serpiente', 'CHICCHAN', 'sobrevive la fuerza vital', 'Roja', 'una barra', 'el Instinto', 'Sobrevivir', 'la Fuerza Vital', 'center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/sel/05.png);', 'Serpiente es el Animal Sagrado para los Mayas, pues evoca a Kukulkán (Quetzalcóatl para los Aztecas), la Serpiente Emplumada, símbolo de la Elevación Espiritual realizada desde la Materia. Tiene la capacidad de la Supervivencia, a través de la Fuerza Vital, pues el Cuerpo es Energía tanto como el Espíritu, y ambos aspectos solo se diferencian por una mera cuestión de perspectiva, de percepción de la realidad. Desde el autocontrol de su cuerpo la Serpiente busca la Satisfacción y la Vivencia de plena de los Sentidos. Significa Aprendizaje, Constancia, Voluntad, Prudencia. Al Reptar para poder Avanzar, le queda la piel enganchada y va dando nacimiento a una nueva Serpiente con cada muda de Pieles, hasta el día en que en lugar de Escamas crezcan Plumas y se concrete el Vuelo. Serpiente Implica el Éxtasis de lo Sexual para sublimar desde allí lo Espiritual. Ayuda a derribar tabúes sexuales del Ser Humano. Enseña que nada se logra sin Esfuerzo, sin poner el Cuerpo a las cosas, enseña a no Camuflar los Cambios.', 'Serpiente Emplumada, Elevación Espiritual desde la Materia\nCerebro de Reptil, Lo Físico, Preocupación por el cuidado del cuerpo\nPoder Vital, Capacidad del crecimiento corpóreo\ncapacidad de supervivencia, Regeneración Física\nLa Sexualidad, Tabúes, la Sensualidad\nuso de los sentidos, Instintos primarios\nla intuición física, inteligencia intuitiva\npasionalidad, aPasionamiento\nla experiencia, Sabiduría de lo experimentado en carne propia\nponer el cuerpo a las cosas, conocer por el tacto\ncambiar de pieles, trasmutación progresiva o cíclica\nencarnación, evolución humana\ncapacidad para Comerciar, astucia\nenergía kundalini\nFlexibilidad, Adaptabilidad, interacción con el entorno\nbúsqueda del cielo.', 'Represiones\nCelosos\nVergüenzas\nVenenosos\nQuerer no es amar\nInadaptado\nRencoroso\nAbsorbente\nMaterialista\nPosesivos\nSumiso Obsecuente\nTabúes\nObsesiones sexuales\nRígidos\nAferrados\nInhibidos y Enroscados. No se supera, ni tiene limites', 'Los Portadores de este Sello están llamados a Adaptarse a todas las circunstancias gracias a su Flexibilidad Interior. Con Conciencia del Valor de la Vida, la Experimentan con todos los Sentidos, con Placer, con Sensualidad. Esto los Inclina a Cuidar su Cuerpo y a potenciar la Percepción Sensorial desde la Piel, el Abrazo, el Contacto. La Adaptabilidad al Medio les permite ser hábiles en los Negocios, en las Ventas, en las Relaciones Diplomáticas. Su tipo de Inteligencia tiene que ver con una Astucia Intuitiva, del tipo Animal o Físico. Suelen Manifestarse como sensuales y valoradores del Erotismo, cuando superan los tabúes impuestos social o culturalmente. Si se apoyan en lo Material se sienten bien, Seguros, pues perciben un mundo palpable y no abstracto. Su Experiencia Personal, Integrada a su Espíritu, es la que Finalmente los lleva a la Sabiduría que se les Atribuye.', 'En Sombra (El Lado Oscuro del cual tiene que Aprender para Integrar todo a la Luz), deben revisar sus represiones, su no aceptación o vergüenza relacionada con su Cuerpo o el Punto de Vista Sexual. Mientras no levantan la Cabeza por Encima de la Materialidad, se vuelven eventualmente aferrados al Dinero, posesivos con la Familia y los Amigos, alrededor de los cuales se “enroscan”. En ese Sentido tienden más a querer que a Amar, desarrollan Celos, incluso del tipo rencoroso o “venenoso”. Hasta que aprenden a ser Flexibles, o bien se vuelven rígidos ante las circunstancias o bien terminan siendo obsecuentes ante las influencias externas.', 'Cuidar tu cuerpo físico tanto como tus cuerpos sutiles.\nValorar tu instinto, que desde lo mas animal de tu ser te lleva a niveles más elevados.\nHacer uso adecuado pero sin tabúes de tu sexualidad, según tu aprendizaje en esta vida.\nBuscar Flexibilidad ante las circunstancias externas, en lugar de Rigidez o de Obsecuencia (ser Sumiso ante todo).\nMirar siempre hacia lo alto aunque te sientas arrastrar por los niveles más terrenales de tu existencia.\nValorar tu experiencia como el mayor tesoro para forjar tu sabiduría personal.\nAnimarte a cambiar tus pieles, porque solo así se llega a la tan ansiada trasmutación ( de escamas en plumas... ).', 00, NULL, NULL),
+(06, 'el Enlazador de Mundos', 'CIMI', 'iguala a la muerte', 'Blanco', 'una barra y un punto', 'la Oportunidad', 'Igualar', 'la Muerte', 'center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/sel/06.png);', 'Enlazador de Mundos conecta Cielo y Tierra, Vida y Muerte. Su nombre en Maya Significa Muerte, y es todo un desafío para las culturas donde esa palabra es sinónimo de Miedo, Tragedia, Pérdida, y Dolor. En realidad este Sello Implica la Conexión con Planos Superiores de Conciencia o con Distintas Dimensiones del Ser; Habla de Sueños y Premoniciones, de Percibir Energías, de Canalizar con Fuerzas Mediumnímica. Pero para Llegar a hacer Fluida esa Conexión propone Superar Miedos y Apegos, Trabajar la Humildad, el Perdón y la Paciencia.', 'Poder de la Muerte, Manifestación o Anuncio de la Muerte, Conexión con el mas allá\npoder sobre la muerte, Reencarnación, comprensión de la inmortalidad\nsimultaneidad o confluencia de la vida y muerte, integración de la vida y muerte, puerta dimensional\nmultidimensionalidad, columna mística, comunicación con dimensiones superiores, mediumnidad\npaciencia, perdón, humildad, trabajo de superación de los miedos\nalineamiento del ego con el yo superior, desapegos\npurificación o depuración personal, dejar ir lo que no es esencial\nmuertes simbólicas, muerte mística del iniciado esotérico, fines de etapa\ntrabajo con las adicciones personales, auto-sacrificio\nconexión entre las personas, conciencia de comunidad\nfuerza liberadora, igualdad social.', 'Controlador\nAnclado en lo Malo\nApegado\nNo perdona\nMiedoso\nAtrae Negatividad\nManeja todo\nPesimistas\nEncadenado\nAdicciones\nNo Disfruta\nNo Acepta el Fin\nTodo no\nCarga el peso Ajeno\nno hace cortes\nRetrasa el avance de los demás y el propio', 'Los portadores de este Sello son Capaces de percibir cosas y energías que hay “en el aire”, con una sensibilidad fuera de lo común. Al Tomar conciencia de esas capacidades se ven movilizados a ayudar a los demás y tener lazos relacionales (“mundos” son también las distintas realidades personales, que necesitan un conector de “”puentes” para salvar las distancias). Su trabajo personal implica la superación de Miedos, sobre todo a la Muerte (Real o Simbólica), a la que llegan a ver como la otra cara de la Vida. En el proceso de Purificación que están llamados a hacer, aprenden a dejar ir, a soltar lo que no es esencial; de esa manera se ven Libres de Ataduras y Potencian su Capacidad de conexión Extrasensorial y Extradimensional.', 'En Sombra (Mientras Trabajan el Exigente Camino hacia la Luz que se les Propone), los portadores de este Sello Tienden a Manejar la Vida de los Otros, a retenerlos con Apegos y Negación de Perdones, hasta que descubren que esa retención solo sirve para Encadenarse a sí mismos, para quitarse la propia Libertad. En esa Línea Pueden tardar en Disfrutar el presente por cargar con el pasado, y retrasan sus Avances hacia Adelante. Al ser Perceptivos de lo Negativo y no Manejarse todavía en Luz, lo Atraen como un Imán, Hasta que su trabajo de Purificación Personal los pone en Condiciones de revertir Dicha Negatividad. Se Aferran a sus Miedos, y pueden caer en adicciones de cualquier tipo, que en todo caso se Resuelven cuando descubren que el verdadero Motor del Apego es el miedo a Superar. Y hasta que no superen todos los miedos no aceptarán las Muertes, los Finales de Etapas, el Dejar lo que ya ha Cumplido su Ciclo.', 'Revisar constantemente tus apegos y adicciones de cualquier tipo.\nEjercer el Perdón como medio de liberación de tu persona.\nAsumir tus miedos para Vivirlos y Sanarlos en el momento adecuado.\nAnimarte a dejar ir lo te es esencial en esta Vida.\nConsiderar la Muerte como una Ilusión más, o como la puerta abierta a otra realidad.\nPotenciar adecuadamente tu natural conexión con seres de otras dimensiones o niveles espirituales.\nReconocerte como un Constructor de puentes entre este mundo y el Más Allá, para el beneficio de los demás.', 00, NULL, NULL),
+(07, 'la Mano', 'MANIK', 'conoce la realización', 'Azul', 'una barra y dos puntos', 'la Curación', 'Conocer', 'la Realización', 'center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/sel/07.png);', 'Mano Representa Sanación, la Realización y el Conocimiento. Es la Energía que abre puertas, es la Actitud Personal de Apertura mística, que permite Alcanzar lo que todavía no se percibe como Real. Implica una Gran Habilidad Manual, y la Utilización del Tacto (la Imposición de Manos, el Apretón Cálido, las Caricias) para Conocer el Interior de los Otros y conectarse con su esencia. Enseña que no Necesitamos depender de Herramientas Externas, porque ya Somos Instrumentos Divinos.', 'Poder de (auto)sanación, armonización personal\ncura física, apertura mística, Manos tendidas al cielo\nApertura de puertas para acceso a otra realidad\ncapacidad de concreción, acopio de conocimientos\nmanos abiertas, solidaridad, cooperacion, altruismo, servicialidad\ncomprension, capacidad de completar, accion concreta, modelar\ntrabajo con las manos, habialidad manual, destreza, herramientas\nconciencia de uno mismo como herramienta (espiritual y social)\nperfeccion de un material\ntrabajo por la paz, autoridad\nmedico, sanador, curador, enfermero, curandero, masajista, reikista, artesano, artista plástico', 'Sacude\nno Valora\nAutoritario\nPone Frenos\nArrebatador\nNo Sirve\nAgresiones Verbales Físicas y Psicologicas\nCierran Caminos\nAutoCastigos\nNo Ayuda\nDistanciado\nPerdedores\nLastiman\nRígidos y Duros', 'Los portadores de Este Sello están dispuestos a la Ayuda, la Solidaridad y el Servicio; pues son la Mano Tendida al Prójimo, al Igual, al Compañero de Viaje, al Hermano de la Gran Familia Humana. La Luz de sus Logros y Concreciones les Ofrece la Oportunidad de Fomentar una alta Autoestima, fundamentada en la Creatividad y Laboriosidad. En Función de sí mismos, y Particularmente con los demás, Actúan como Portales Energético Canalizadores para la Sanación, por lo cual Resultan Excelentes Médicos, Enfermeros o Curadores; en particular pueden Manifestarse como Madres que Sanan con el Solo Contacto de sus manos, su Caricia Poderosa. Son los que Abren las Puertas a las distintas posibilidades, dan a los otros la oportunidad de Hacer o Conseguir algo Necesario para su Aprendizaje. En General Suelen ser Hábiles manejadores de todo tipo de Herramientas, Creativos con sus Manos.', 'En Sombra (el Nivel de Conciencia que espera llegar a la Luz), se ven sacudiendo y lastimando a los demás, se vuelven Autoritarios, Arrebatan Cosas; porque no comprenden todavía que esa Mano tiene Vocación de Servicio al Otro; que Quitar Acarrea la consecuencia de Perder. Mientras se Enfrentan Consigo Mismos se Autocastigan, se vuelven Rígidos y psicológicamente agresivos. Generan una Sobervia que en Realidad oculta la Poca Valoración de Sí mismos. La Mano se Cierra en un puño o en un Gesto que detiene el Avance del otro hacia uno, manteniendo una Distancia, Cerrando los Caminos, porque todavía no llegan a ver que ellos son la puerta a abrir.', 'Reconocer tu Capacidad innata de autosanarte y acompañar la sanación de otros.\nValorar tus manos como instrumento natural de creatividad (y por qué no, medio para ganarte la vida).\nConcentrarte en tu capacidad de concretar tus proyectos y sueños.\nDescubrirte como una suerte de Instrumento Divino en medio de la realidad Terrena.\nAnimarte a imponer las manos, iniciarte en Reiki, o cualquier otro método de canalización de energía.\nBuscar en el Conocimiento la posibilidad de abrir puertas para tu mente y para los demás.\nAprovechar toda ocasión de ejercer tu solidaridad, tus manos abiertas al prójimo.', 00, NULL, NULL),
+(08, 'la Estrella', 'LAMAT', 'embellece la elegancia', 'Amarilla', 'una barra y tres puntos', 'el Arte', 'Embellecer', 'la Elegancia', 'center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/sel/08.png);', 'Estrella Representa la Belleza, el Arte, la Creatividad y el Buen Gusto. Estrella es el Lucero que se manifiesta en el cielo Matutino o Vespertino, el Planeta Venus con toda su Carga Energética de Amor y Belleza, una de las Claves Astronómicas y Astrológicas en la Cosmovisión Maya respecto de nuestro propio planeta. A nivel Personal, cada ser Humano tiene la Capacidad de Brillar con Luz Propia, todos como chispas de un mismo Fuego. Al Conectarse con esa Luz Alcanza Armonía, su Vida se Vuelve Arte en el Sentido más Amplio, y ese Estado Personal Mueve Naturalmente a Servir a los Demás, a Guiarlos en las Noches donde se Pierde la Ruta, a compartir esa Conciencia Armónica.', 'Belleza del plano cósmico, armonía, belleza humana, proporción de formas\nsemilla del cielo, planeta venus o lucero\nla octava musical, el cálculo perfecto\nelegancia, brillo\nchispa de inteligencia, uso de luz personal\nexpansión de la propia consciencia, comprensión intuitiva de patrones de vida superior\nservicio al prójimo, guía para los demás\nlo artístico (creativo y estético), vida hecha arte, esteticismo\nfeng shui, alcanzar las estrellas, altura espiritual\nmístico, visionario, más allá de lo cotidiano\nintegración del infinito con la realidad, la mirada al cielo\nconsciencia de la propia meta, prosperidad, buena estrella.', 'Depresivo\nDependiente\nCritico negativo\nAngustioso\nvive por el otro\nPesimista\nNo se Luce\nJuez critico\nDestructivo\nTapa Agresiones\nPremeditador\nCentro\nEsconde Ira\nAlevoso\nEufórico\nSin Orden\ncentro del EGO', 'Los Portadores de este Sello parecen ser Detallistas por su Natural Esteticismo, y se Manifiestan desde la Armonía Personal como Bondadosos, Serviciales, Graciosos e Inteligentes. Los que lo Conocen los consideran de “Buena Onda”, pues se muestran Esperanzados y Optimista. Son en General Emprendedores de Caminos Espirituales o propensos a aquellos que impliquen poner en juego la Sensibilidad del Espíritu. Se sienten con el Brillo de una Estrella donde sea que estén, y sus estados armónicos se conjugan con una Servicialidad que los lleva a Correr detrás de los más desvalidos y Necesitados, a quienes brindan consejo Guiador y Ayuda Correcta. A nivel Personal, cada ser Humano tiene la Capacidad de Brillar con Luz Propia, todos como chispas de un mismo Fuego. Al Conectarse con esa Luz Alcanza Armonía, su Vida se Vuelve Arte en el Sentido más Amplio, y ese Estado Personal Mueve Naturalmente a Servir a los Demás, a Guiarlos en las Noches donde se Pierde la Ruta, a compartir esa Conciencia Armónica.', 'En Sombra, el nivel de conciencia en el que todavía no terminan de conectarse con su propia Luz, se vuelven Depresivos y Pesimistas, y Critican y Juzgan a los demás como Proyección de la Visión Negativa de Sí mismos. Pueden Llegar a Transformarse en personas Destructivas con Premeditación y Alevosía pues asumen en sombra el poder de su propia Luz, y proyectan así su temporaria falta de Armonía. En ese Estado Viven por los Otros, en excesiva Dependencia, pues no Comprenden el Valor de Brillar por Sí mismos. Se vuelven personas Angustiadas que esconden Ira y Agresividad, hasta que pueden Canalizar la Desarmonía e ir Creando su propio Espacio de Brillo y Luz. En Estado Eufórico, se creen centro de todo y quieren atraer la Atención de Todos hacia Sí y la propia Voluntad, por temporaria falta de Alineación del Ego con su Ser Superior.', 'Buscar la Armonía en cada aspecto de tu vida.\nConectarte con el Arte en cualquiera de sus manifestaciones.\nDescubrir la perfecta Belleza de tu Ser.\nEntender que no hay Armonía Individual sin servicio a los otros.\nPotenciar tu Capacidad para ser un guía para el camino de los demás.\nHacer Brillar tu propia luz Personal, en lugar de intentar reflejar la de otros.\nCuida que a tus gestos no les falte un toque de elegancia y delicadeza.', 00, NULL, NULL),
+(09, 'la Luna', 'MULUC', 'purifica el agua universal', 'Roja', 'una barra y cuatro puntos', 'el Flujo', 'Purificar', 'el Agua Universal', 'center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/sel/09.png);', 'Luna Representa la Purificación de las Emociones, lo Fluctuante, lo Mutable, los Cambios de Ánimo, y Simboliza el Agua Universal, la Faz Femenina de la Divinidad (La Diosa Mítica). Es el Fluir del Tao, que desde la Preeminencia de lo Femenino (YIN) Moviliza hacia lo Masculino (YANG). Es el Correr de los Ciclos Existenciales y Naturales, su Renovación y su Reinicio Permanente. Permite una mirada hacia lo Vivido, como Memoria donde los Recuerdos vienen a servir de Experiencia en el Aquí y Ahora. Marca el Inicio de la Apertura del Tercer Ojo o Visión del Corazón.', 'Agua como elemento universal\nla Diosa, Fuerza YIN superior, Rostro Femenino de Dios\nPuerta cosmica, Umbral de consciencia despierta\nEmociones, Purificacion de la emocionalidad, (aprendizaje de los) recuerdos\nfluir eterno, el Tao\nFluidos, gotas de lluvia, Mareas, contacto y relacion personal el agua\nhumores del cuerpo humano, ciclos, repeticiones ciclicas\nreflejo de la luz divina\napertura del tercer ojo, fantasia o escape de la realidad\nmutabilidad, sensibilidad, sentimientos fuertes\narea de los afectos, lo familiar\nlo psiquico exteriorizado\ndejar correr las aguas.', 'Manipulador\nRencoroso\nAferrado\nSe descarga con todos\nTestarudo\nCaprichoso\nCiclotímico\nAhogado en Emoción\nRetiene\nGota que Rebalsa\nImpaciente\nBipolar\nContiene Agresión\nNerviosismos\nLlorón\nInadecuada proporción ', 'Los que de Nacimiento portan este Sello, suelen pasarlo todo primero por las Aguas de la Emotividad; por eso se los suele ver como Sensibles y Románticos, o parecen tener la Impulsividad de las Emociones a Flor de Piel. Con su Natural Percepción notan algo que no les Agrada y de Inmediato lo Manifiestan en el Semblante y hasta en el Organismo. Aprenden a Trasmutar la pura Emotividad en Sentimientos Positivos. En Luz no se traban en los momentos Negativos; todo lo Perdonan, lo dejan Pasar como un Ciclo, y tratan de Volver a la Normalidad, a que las Aguas Reencuentren su Cauce Natural. Deben Manejar la Intuición para aprender a concretar sus Deseos, y a usar los Recuerdos como Evocaciones que traen una Enseñanza al Presente. En todos los casos es notable la Influencia del Agua para los portadores de este Sello, ya sea por la presencia Externa de Agua en los Paisajes o lugares que les toca vivir.', 'En Sombra, estado de Conciencia donde la Luz todavía no es Plena, Suelen verse como Manipuladores y Caprichosos, aferrados sus Emociones y Ahogados por la Carga de los Recuerdos. Desarrollan Testarudez y Rencor, son Ciclotímicos, y se Descargan con la Persona Menos Indicada, hasta que Empiezan a Comprender que el Agua, la Emocionalidad, no puede ser Retenida por más Tiempo. Si se dejan ganar por los Nervios y la Impaciencia, lloran innecesariamente ante la primera Contrariedad, con Mucha Agresión Contenida, por razones ajenas a la circunstancia Actual que detona la Descarga Emocional. Los Varones suelen usar su porción Femenina de manera Desequilibrada, hasta Asumir la Armonía Interna entre las polaridades naturales del Ser Humano.', 'Purificarte de la mera emocionalidad, que obnubila tu comprensión de las cosas.\nTrasmutar tus emociones en sentimientos positivos.\nDescubrir que la Divinidad tiene un poderoso aspecto Femenino.\nVivir con naturalidad los ciclos de inicio y fin de tu existencia.\nUsar tus recuerdos para darle sentido al Presente, no para quedarte en el pasado.\nHabitar en un lugar donde haya agua que fluya, en la casa o en el paisaje circundante.\nRevisar cuánto y de que calidad es el líquido que tu cuerpo incorpora.', 00, NULL, NULL),
+(10, 'el Perro', 'OC', 'ama el corazón', 'Blanco', 'dos barras', 'la Lealtad', 'Amar', 'el Corazón', 'center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/sel/10.png);', 'Perro es el Sello central de los 20 y la Suma Energética y Matemática de todos ellos. Simboliza el Amor Universal, Vibración del Todo que se plantea a los humanos como aprendizaje Individual, el más Relevante. Representa Amor Incondicional, la Lealtad hacia uno mismo y hacia los demás, Los Verdaderos Sentimientos, la Domesticación de los Instintos o Desvíos del Ego, el Camino del Corazón, es un Trabajo personal que conecta a cada Individuo con su Prójimo y con el Todo. Un aprendizaje tal pasa indefectiblemente por la escuela del Amor condicionado, Egoico, Demandante y Emocional para purificarse poco a poco y lograr el Ideal pregonado por los grandes maestros y propuesto por todos los caminos de Luz.', 'Amor universal\naprendizaje del Amor incondicional, sentimientos purificados\nfuerza del corazón\ncerebro mamífero, domino del egoísmo\nbondad, lealtad, fidelidad, nobleza\nintegridad personal, honestidad\ncompañerismo, afectividad, dulzura\ntrabajo en equipo, servicialidad desinteresada\nguardián, guía desde el corazón, unificador\nfortalecedor, protector, defensor, valiente\nconvocador de grupos Kármicos, compañero de viajes espirituales\nsíntesis numérica de los 20 sellos.', ' Manipula el Sentir\nPosesivo\nManejador\nApartado\nCeloso\nFinge lo que Siente\nInseguro\nCínico\nInteresados\nCelosos\nAmor Egoico\nRabiosos\nInfieles\nBulling\nEgocentrico\nSolo piensa en sí mismo\nNo se pone en el otro lugar', 'Los portadores de este Sello son considerados Fieles y Bondadosos, Gentiles, Protectores, Conservadores de Afectos y Amistades, Incluso reconocidos como buenos Padres y Madres. Es común Declararlos Sinceros, Respetuosos, Serviciales, Bien Intencionados. Cuando logran verse Sentimentalmente Seguros de Sí Mismos, Comienzan a Manejar Adecuadamente el Amor a los Demás y la Confianza. Viven armoniosamente en familia, comprendiendo los espacios de otros sin invadirlos. Son Compañeros ideales porque trabajan muy bien en equipo, donde suelen funcionar como el Corazón. Desde la perspectiva espiritual de las almas en su recorrido kármico por las distintas experiencias, se dice que este “guardián de almas” convoca al grupo kármico, es decir, naturalmente va llamando y agrupando a almas afines que vienen a compartir un determinado aprendizaje. Un aprendizaje tal pasa indefectiblemente por la escuela del Amor condicionado, Egoico, Demandante y Emocional para purificarse poco a poco y lograr el Ideal pregonado por los grandes maestros y propuesto por todos los caminos de Luz.', 'En Sombra (Mientras el Aprendizaje no se ha completado para vibrar totalmente en Luz), deben revisar la Capacidad de Manipular desde los Sentimientos, la Actitud de Fingir Sufrimiento o manejar la vida de los demás en propio beneficio, Aprender de los Celos y la Posesividad Afectiva. Mientras están Inseguros de Sí Mismos, pueden cerrarse en la soledad, lejos del grupo, para “roer su propio hueso” o “ponerse rabiosos”. Su eventual Cinismo es otra Pauta para revisar el propio Corazón y el nivel de Amor hacia el Otro. Mientras Aprenden el Amor Incondicional en la escuela cotidiana del amor condicionado o egoico, Invaden Espacios Ajenos, Experimentan la Infelicidad, hacen de la Amistad y de las relaciones en general un espacio donde prima el intereses personal.', 'Aprender el Amor incondicional en la escuela cotidiana del amor con condiciones.\nRecordar que nunca es mucha la bondad que podamos brindar.\nRevisar las actitudes y manifestaciones que conforman tu compañerismo.\nDescubrir la riqueza de tu individualidad en el trabajo en equipo.\nPoner más dulzura en cada Gesto y en cada palabra.\nAsumirte en tu circulo más íntimo como encargado de reunir las almas afines.', 00, NULL, NULL),
+(11, 'el Mono', 'CHUEN', 'juega con la magia', 'Azul', 'dos barras y un punto', 'la Ilusión', 'Jugar', 'la Magia', 'center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/sel/11.png);', 'Mono nos ayuda a conectarnos con nuestro Niño Interior, que tenemos que autosanar. Representa la Magia, el Juego, la Alegría, la Creatividad. Nos devuelve la Inocencia, para disfrutar la Vida. Enseña a no ser Estricto con uno mismo, a romper con los patrones de la Infancia. Como sabe que la realidad es ilusoria, el Mono ríe y no se deja Atar por Estructuras y Dogmas.', 'Niño divino, trasmutador de consciencia\ncreador de vida superior, punto de pasaje entre etapas evolutivas, factor psicológico del niño interior\nmaestría interior, romper estructuras, más allá de los dogmatismos\nlo extraordinario, capacidad artística, consciencia de la realidad como ilusión\nmente matemática, genialidad\nalegría, risa, humor, jovialidad\njuego, diversión\nmagia divina, creatividad, danza\ninocencia, picardía, gracia, agilidad, desenfado\ncarencia de pudor, espontaneidad, curiosidad\nmúsico, bailarín, actor, científico, matemático, bufón, imitador.', 'Mal Humor\nAburridos\nInsatisfecho\nSolemne\nIntolerante\nNegativos\nEstructurados\nInconstante\nAmargado\nPerezoso\nNo Disfruta\nDemandante\nIndolente que no siente\nFrustrado\nIrrespetuoso\nIluso\nno se Vale', 'Los portadores de este Sello son reconocidos por su buen humor y sociabilidad; se muestran amenos y divertidos, y viven intensamente como si cada día fuese el último. Están abiertos al Conocimiento, especialmente si acceden jugando. Se muestran Simples, Sencillos, Adaptables, al tiempo que no transigen con formas impuestas (aceptar el punto del otro que puede parecer en contra al propio). Encuentran el lado humorístico de las situaciones dramáticas y muestran la mezcla de picardía e inocencia propia de los niños. Su Inteligencia es la Matemática y su sensibilidad es la Artística. El punto de referencia, desde la infancia o fuera de ella, es la figura de la Madre que se internaliza y que sigue a lo largo de su vida con su juego de reflejos recíprocos, conformando lo que se da en llamar el Niño Interior. Enseña a no ser Estricto con uno mismo, a romper con los patrones de la Infancia. Como sabe que la realidad es ilusoria, el Mono ríe y no se deja Atar por Estructuras y Dogmas.', 'En Sombra, antes de lograr una conciencia plena de luz, la Desconexión con la natural alegría se manifiesta en eventual mal humor, negatividad, insatisfacción, inconstancia, y hasta aburrimiento. Las Estructuras aún no disueltas hacen parecer al Mono como muy solemnes, amargados, frustrados, incapaces de disfrutar la vida. En el otro Extremo, mientras no asumen cuán Ilusoria es la Realidad que los rodea, usan el desenfado o desinhibición para manifestarse indolentes (falto de voluntad), perezosos, excedidos en la Diversión, irrespetuosos. Su Niño Interior necesita llamar la atención y demandar ayuda, hasta lograr un equilibrio que viene por la vía de la autosanación.', 'Tratar de expandir tu natural alegría en cada aspecto de la vida.\nPoner en juego tu natural creatividad, en el arte o en la ciencia.\nSospechar que la realidad tiene Estructuras Internas que necesitan ser quebradas o renovadas.\nProcurar que tu Niño Interior este sano y armonioso.\nMovilizar las Sombras de tu entorno con tu desenfado y humor.\nComprender que la realidad es más ilusoria que lo que nos quieren hacer ver.\nUtilizar tu Ingenuidad y Pureza de niño para simplificar la comprensión de las cosas.', 00, NULL, NULL),
+(12, 'el Humano', 'EB', 'influencia la libre voluntad', 'Amarillo', 'dos barras y dos puntos', 'la Sabiduría', 'Influenciar', 'la Libre Voluntad', 'center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/sel/12.png);', 'Humano viene a resaltar el valor del libre albedrío o libre voluntad, la toma de conciencia de que todos somos parte de un todo. Simboliza el grial abierto a recibir la sabiduría desde lo Alto. Muestra el Ideal del Ser Humano llevado a su plenitud máxima de Madurez y Conciencia.', 'Libre albedrio, voluntad, libertad, capacidad de elegir\nplenitud del ser humano, madurez de la evolución humana\nsabiduría canalizada, receptividad\ncáliz receptivo, santo grial, vasija de gran poder\ncanalizador de la consciencia divina hacia la consciencia terrena\nantena de sintonías\nvivencia de la caducidad terrena\nconexión entre conciencia humana y planetaria\nel azar en la vida, la buena o mala suerte\nel trabajo, responsabilidad, sentido de justicia\nFactor social, trabajador arduo, cosechador\nafrontar las piedras del camino, el que (busca) supera las limitaciones humanas o de la materia, búsqueda del éxito.', 'Criticones\nCabeza Dura\nExtremista\nImpone lo suyo\nNo Resuelve\nDiscrimina\nCaprichosos\nDefiende lo imposible\nDice que hacer\nDudosos\nPesimista\nNo Trabaja\nFracasado\nSolo sabe mandar\nProblemático y Mal Pensado', 'Los portadores de este Sello manifiestan esta característica tan propia del ser humano, la libre Voluntad, a través de la actitud con la cual tratan de evaluar siempre las cosas, pesando el pro y el contra para realizar sus elecciones correctamente. En Luz suelen mostrar Respeto por la Voluntad de los demás, de la opinión ajena, sin crítica ni competitividad, pues han trabajado en sí la valoración de la propia libertad de pensamiento, elección y expresión. En la misma línea se muestran concientes de sus limitaciones personales, que tratarán de expandir a un punto de no limitación. La Prudencia los lleva a ser reservados pero sin perder optimismo. Su sentido humanitario, su actitud de militantes de la vida los embarca tarde o temprano en Aventuras, Trabajos y Amistades Nuevos. En general se los considera Inteligentes, capaces, responsables, objetivos, rápidos en las soluciones. Tienen un profundo sentido de la justicia u la responsabilidad del trabajo a realizar. Responden a la idea de que el trabajo a nivel planetario es la tarea por la cual los humanos vamos completando la Creación.', 'En Sombra, mientras buscan la plenitud en Luz, usan su libre albedrio para el juicio, la crítica y la Discriminación, y van a los extremos por defender lo indefendible, pues aún no han aprendido a superar las dualidades. El Camino que lleva a la Asunción de su sabiduría pasa por la cerrazón de mente, el capricho, la imposición de Ideas y Elecciones. En la medida en que fracasan en el vaivén de sus decisiones, pueden tomarse Pesimistas o Mal Pensados. Después de tomar decisiones viven en la duda de si hicieron bien, si no hubiese sido mejor haber tomado los caminos descartados en la elección, hasta que se les revela que ellos mismos son la solución a toda dualidad. Mientras no Resuelven la Valoración del trabajo como dignificación de la presencia humana en el planeta, se resisten respecto de esta actividad humana y entran en conflictos en su mundo laboral.', 'Entender que no hay libertad posible sin una conciencia que conozca la verdad.\nUsar con más sabiduría tu libre albedrío.\nHacerte Cargo de las decisiones que has tomado con Responsabilidad.\nBuscar la Plenitud Humana a la que se está llamando.\nTomar conciencia de que estamos todos tejidos en una misma red: la humanidad.\nValorar la dignidad de cualquier trabajo como modo de comprender la Creación.\nPoner en juego tu íntimo sentido de Justicia', 00, NULL, NULL);
+INSERT INTO `sello` (`id`, `nombre`, `nombre_maya`, `descripcion`, `color`, `codigo`, `caracteristica`, `accion`, `poder`, `imagen`, `significado`, `sinonimos`, `sombras`, `portador`, `sombra`, `recomendaciones`, `onda_encantada`, `createdAt`, `updatedAt`) VALUES
+(13, 'el Caminante del Cielo', 'BEN', 'explora el espacio', 'Rojo', 'dos barras y tres puntos', 'la Vigilancia', 'Explorar', 'el Espacio', 'center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/sel/13.png);', 'Caminante del Cielo señala el equilibrio entre materia y espíritu, donde se comprende que todo es Energía y que tal diferencia es solo una cuestión de percepción. Es la Caña que está enraizada en tierra y que se eleva vertical hacia el cielo, como puente entre ambas dimensiones, y hueca para llenarse de conocimientos. Y una vez hallada la información en niveles superiores, a la manera de un Ángel Mensajero para compartirla con los demás.', 'Conexión Espiritual, (búsqueda de) equilibrio entre cielo y tierra\nintegración de materia y espíritu, pies en la tierra y mirada en el cielo\npuente entre ambos mundos, pilar de cielo y tierra\nexploración\ncaña vacía para llenarse de conocimientos, crecimiento vertical\nmovimiento en búsqueda de información\nmensajero del cielo, ángel que baja a tierra\nviajero del espacio y el tiempo\nla eterna búsqueda\ncomienzo de actividades múltiples, actividades simultaneas que suelen no completarse\ninquietud por principios sociales, experto popular\npreocupación por carencias materiales\nidealización, aventuras, aventurero.', 'Aferrado\nNo se Concentra\nSin Metas\nMaterialista\nSuperficial\nAnclado al Pasado\nAtado a Extremos\nInconstante\nIncompleto\nDesconectado\nPerdido en misticismos\nAferrado información Librito\nDespreocupado', 'Los Portadores de este Sello son Eternos Buscadores, Inquietos, Ávidos de querer saber cosas. Comienzan muchos caminos, que suelen recorrer y profundizar hasta el Fin, o bien que dejan como puerta abierta para futuras exploraciones propias o de los demás. En Luz, Valorada la fuerza del conocimiento y su Capacidad de transformar la conciencia personal, son capaces de desechar cualquier tipo de superficialidad. Se Conectan con todo el Mundo y así surgen posibilidades y oportunidades (en trabajos, amistades, etc.). Aprenden también que nadie es Profeta en su Tierra y que hay que escuchar la voz Interior. Tarde o Temprano Comprenden que solo algo hueco o vacío tiene la capacidad de llenarse con información nueva.', 'En Sombra, mientras no llegan a la plenitud en Luz, se quedan explorando y navegando sobre el pasado, la infancia o vidas anteriores. Hasta asumir una meta clara, rara vez terminan lo que empiezan, todo lo cual es aprendizaje de la constancia. La Superficialidad y la falta de concentración son atributos del Explorador aún novato. El equilibrio ideal pasa primero por la oscilación entre los extremos: o se preocupan demasiado por las problemáticas económicas y los desafíos de la vida cotidiana, alejados de su condición espiritual; o bien se pierden en misticismos y por dedicarse a temáticas más elevadas se desconectan de sus obligaciones y necesidades personales, hasta que chocan consigo mismos y deben regresar bruscamente a la cotidianidad. Hasta que comprenden la necesidad de vaciarse para comenzar a llenar la medida de la propia conciencia, ponen la información enciclopédica a la que han accedido como un obstáculo para lo nuevo que todavía tienen que aprender.', 'Buscar en todo el Equilibrio Necesario.\nEntender que Materia y Espíritu son manifestaciones de lo mismo: Energía.\nMantener los pies en la tierra, y la mirada en el cielo.\nPropiciar en tu interior el vacío, necesario para poder llenarte de nuevos conocimientos.\nFomentar esa actitud innata de querer explorar todo.\nAsumirte como un mensajero que viene a traer información celestial para los terráqueos.\nConjugar tu respetable preocupación material con tu sincera búsqueda de lo espiritual.', 00, NULL, NULL),
+(14, 'el Mago', 'IX', 'encanta la atemporalidad', 'Blanco', 'dos barras y cuatro puntos', 'la Receptividad', 'Encantar', 'la Atemporalidad', 'center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/sel/14.png);', 'Mago hace referencia simbólica a los sacerdotes jaguares mayas, de poder chamánico. Enseña a trascender el pasado viviendo el Aquí y el Ahora, en sintonía con cada circunstancia presente, con la idea de que el pasado no sirve, ya paso o en realidad no existe, el tampoco el futuro, que es la consecuencia del presente. Trabaja el desarrollo del tercer Ojo como visión interior de sí mismo y que atraviesa la Materia (porque mira desde el corazón) para conocer más a los demás. Suele no trabajar para el afuera, porque se concentra en lo más profundo de su poder interior, en búsqueda de la Seguridad que la Esencia Interna. No tiene tiempo ni lugar, le late el tiempo en sí mismo y va más allá de la materia.', 'Señor del tiempo, Atemporalidad\nAquí y Ahora, Manejo del Tiempo Personal\nSacerdote jaguar, Mago portador de la antorcha\ncompañero de la guia que proteje a los guerreros\nEnergia Felina, Chaman, Magia Blanca\nObtenedor de los poderes magicos\nespiritismo, tercer ojo abierto\nvision del corazon, vision que atraviesa la materia\nprofeta, vidente nocturno\nalineacion con la voluntad divina\npoder espiritual, manejo del propio poder\nprogreso de la consciencia individual hasta el nivel mas alto\nconocimiento de los ciclos\nmanejo de las ilusiones, ilusionista\naparicion y desaparicion inesperada\npsiquico, sensitivo, sigiloso\nencantador, seductor, incitador de los sentidos.', 'Rebelde\nOculta Miedo\nEnfrentado a si mismo\nAutodesvalorización\nNo Se Entiende\nEmpecinado\nIncapaz\nEnojado con Todo\nDesconfiado\nNo Ve Nada de si\nSin Paciencia\nNegativo\nDueño de los Tiempos\nAbusa de poder\nManipula\nSe pierde en los vicios que encantan su vida', 'Los portadores de este Sello se muestran con mucha Paz Interior, Carismáticos, Encantadores que hacen encantador el lugar donde están. Cuando aparecen o irrumpen inesperadamente, vienen a mostrarnos algo de nuestra Vida, para luego desaparecer rápido (como por arte de magia). No se preocupan por el tiempo, y se centran en la percepción del Aquí y Ahora, donde y cuando se activa su receptividad Natural y su conexión con otros niveles de conciencia. Son Chamanes naturales, descubridores del poder espiritual que tienen, como un don que viene a ser un tesoro para los demás. Trabaja el desarrollo del tercer Ojo como visión interior de sí mismo y que atraviesa la Materia (porque mira desde el corazón) para conocer más a los demás. Suele no trabajar para el afuera, porque se concentra en lo más profundo de su poder interior, en búsqueda de la Seguridad que la Esencia Interna. No tiene tiempo ni lugar, le late el tiempo en sí mismo y va más allá de la materia.', 'En Sombra, estado de conciencia donde se va aprendiendo a llegar a la Luz, pueden mostrarse Rebeldes o Empecinados, Enfrentados y Enojados consigo mismos, pues todavía no entienden su propio poder interior. En la misma Línea de Aprendizaje, a veces se muestran autosuficientes para ocultar su miedo o su autodesvaloraciorización. Hasta que aprenden a dominar su encanto natural, pueden volverse muy desconfiados, sin paciencia, o como si fuesen dueños del mundo y del tiempo. Antes de aprender a abrir su tercer ojo manifiestan el síntoma de no poder ver nada de sí mismos. Deben observar que, mientras la negatividad los ciega, manejan inadecuadamente su gran poder espiritual en detrimento de los que están a su lado.', 'Manejar de Manera Luminosa tu innato poder Espiritual.\nCentrarte en el Aquí y Ahora para tus acciones y decisiones.\nComprender el pasado como bagaje de información para el presente.\nEnseñar a tu prójimo que nunca es tarde, que siempre hay tiempo.\nExpandir tu mirada interior, la que viene del corazón.\nUsar tu encanto para iluminar la vida de otros, resistiendo la tentación de manipularlos.', 00, NULL, NULL),
+(15, 'el Águila', 'MEN', 'crea la visión', 'Azul', 'tres barras', 'la Mente', 'Crear', 'la Visión', 'center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/sel/15.png);', 'Águila representa la Función Racional, la Creación de la Mente, la Capacidad de Visión Más Lejos o más allá de lo Evidente. Es imagen del Vuelo Espiritual, de la Imaginación, del Conocimiento Superior, a lo que se llega por la Elevación Personal, que permite una posición privilegiada de Visión global de la Realidad. Se lo conoce como Servidor Planetario, en la medida que se da a sí mismo y “sube hacia el sol” ayuda a salvar a la humanidad, que se eleva en cada Águila.', 'Elevación espiritual\nvuelo de la mente, el poder de la mente, la mente que crea la realidad\nmente superior colectiva, consciencia que se mantiene en un nivel mas alto\ncerebro humano\nservidor planetario, símbolos de los guerreros muertos en combate\nvisión global de la realidd\nimaginacion, ideales elevados\nrepresentante del sol, busqueda del sol\nindependencia o autonomía, autoridad natural\npuntería\ncompromiso con la sociedad\ncompasión, visionario, videncia\ncreer en si mismo, optimismo\ncritico, exigente, osadia\namplitud de miras, los ojos o la vista.', 'Recelosos\nEgocéntrico\nse Exede de mente\nAutoritario\nAlejado de la Realidad\nFrio\nCalculador\nMaterialista\nCarece Ideas\nDuros Juicios\nSe fija en los Otros\nPerdido\nCreído\nNo Valora\nNo ve Nada, Aprovecha', 'Los Portadores de este Sello tienden a mostrar capacidad de liderazgo, inspiran respeto y ejercen poder, sobre individuos o incluso sobre grupos. Para llegar allí donde “ponen el ojo” hacen uso de su gran paciencia, de Perspicacia y de una Frialdad mental que parece libre de sentimientos, de hecho, si son protectores de su familia lo hacen generalmente más desde la perspectiva material que la emocional. Suelen actuar motivados por una visión moral de la realidad, con la que se conectan desde el análisis racional. Su seriedad e Independencia les hace tender a la relativa soledad, posición desde la cual pueden ir y volver libremente y con más energía a los grupos humanos de referencia. En lo Personal, elaboran un mundo imaginativo propio, más o menos conectado con la realidad cotidiana, que los libera muchas veces de las ataduras materiales o las exigencias terrenas. En todo caso, su nivel de Luz tiene que ver con la actitud de mantenerse “allá arriba”, con perspectiva superior de las cosas.', 'En sombra (la posición interior que guarda en potencia a sabiduría del cambio en Luz), los Águila se manifiestan como recelosos de todo, sospechan y no sienten confianza en las cosas. Se muestran muy calculadores con uso excesivo de su racionalidad. En esta situación les cuesta concretar, y deben cuidar su vuelo para no chocar o alejarse definitivamente de la realidad que no deben perder de vista. Mientras aprenden el Valor de su Visión Privilegiada pasan por el Egocentrismo, el Materialismo, el Autoritarismo o el Duro Juicio a los demás. En el Extremo se tornan “aves de rapiña”, y pierden la visión global de las cosas, la perspectiva privilegiada, por bajar a tierra abandonando su eterno vuelo, muchas veces por creer que deben salvar el mundo, en lugar de salvarse a sí mismos para beneficiar de ese modo a la humanidad. La manifestación más clara de su sombra está relacionada con el no ver o la visión distorsionada, ya sea en el plano interior como en el físico, síntoma de la mirada interna que aún no obtiene iluminación.', 'Fomentar en cada situación tu propia elevación personal.\nHacer uso libre y poderoso de tu innata imaginación.\nComprender que todo es parte de la mente total, la Mente Divina.\nAsumirte como uno de los Servidores Planetarios que están obrando ahora en el mundo.\nPotenciar tu visión privilegiada de la realidad para comprender, descubrir, supervisar.\nMantener siempre en lo más alto tu vuelo para no perder la perspectiva Global.\nEntender tu Autoridad natural como un servicio para los que oyen tus órdenes.', 00, NULL, NULL),
+(16, 'el Guerrero', 'KIB', 'cuestiona la inteligencia', 'Amarillo', 'tres barras y un punto', 'la Intrepidez', 'Cuestionar', 'la Inteligencia', 'center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/sel/16.png);', 'Guerrero representa la Inteligencia Divina (no la mera racionalidad humana, sino la iluminada), la canalización hecha para que otros tengan luz. Sus características son la Intrepidez (hacer frente sin temor a una situación de peligro), la audacia (hacer cosas poco comunes sin temer a las dificultades), la Inteligencia Práctica (resolver los problemas de forma rápida y completa), la Capacidad Estratégica. Viene a Trabajar Estrategias para altos objetivos, incluso Heroicos. Es la Imagen Bíblica del Hombre Nuevo “Revestido de la Armadura de Dios”. Enseña a Cuestionar la Realidad (la impuesta como verdadera), a hacer las preguntas pertinentes, que son las vías de apertura para hallar la verdad en las respuestas.', 'Guerrero de la paz, guerrero del arcoíris\npilar de la comunidad, comunicador divino\nhabilidad de contactar y comunicar con la consciencia galáctica\ninteligencia iluminada\ndispensador de fuego, bastón del sabio\nhombre nuevo revestido de la armadura de dios\nmadurez de la humanidad, larga vida\nvalentía, superación de todos los miedos\nliderazgo natural, capacidad de armonizar las masas\nheroísmo, virtudes\ncapacidad de cuestionar la realidad, el que pregunta\nlucha, confrontación, manejo de los conflictos\nvida metódica o disciplinada, estrategias\npersona confiable, realista, pragmático, estratega.', 'Testarudo\nNo hace Caso\nNo se Convence\nDiscutidor\nLleva la Contra\nSe da golpes\nInvade\nExcesivos\nDudosos\nSin Limites\nLucha Interior proyectada\nMiedoso\nExige\nCobarde\nQuiere Abarcar todo\nEmperador', 'Los portadores de este Sello suele ser buenos Organizadores y Administradores de la Energía o la Abundancia. Están llamados a convertirse en Guerreros Espirituales, los que ayudan a que los otros levanten los brazos, maduren y tomen conciencia de lo Divino. Pierden sabiamente la batalla de lo superfluo para poder ganar en lo esencial. Se vuelven cuestionadores para Aprender, y de las respuestas obtenidas y el Razonamiento Iluminado logran aciertos (difícilmente comenten dos veces el mismo error). Plantean discusiones sin Violencia, usan la Astucia Argumental sin ser Desconsiderados con su interlocutor, son Luchadores hasta el Fin en todos los planos. Logran hacer una Alquimia Interior que va elevando su condición humana a una conciencia de mayor Luz. Se dice que son los Líderes Naturales que vendrán a guiar a todos los demás en los tiempos de cambios evolutivos y saltos dimensionales que estamos experimentando.', 'En Sombra (mientras retardan su iluminación) aprender a Usar su Inteligencia luego de pasar por la Testarudez, después de darse la Cabeza contra la realidad para convencerse. En el Combate Interno consigo mismos se quedan sin fuerzas y necesitan comenzar de nuevo. Van Aprendiendo a cuestionar adecuadamente la realidad a través de la actitud de discutir por discutir, en la agresividad verbal, psicológica y hasta física. Pasar por la excesiva autoexigencia y consecuentemente actitud de exigir a los demás. No tienen límites y pretenden abarcar demasiado, cuando todavía no han resuelto sus miedos dudas. La Cobardía (quizás la excesiva prudencia) es síntoma de la fuerza y el coraje que todavía no se ha asumido como natural y real en ellos.', 'Usar Adecuadamente tu Inteligencia para el Bien Común.\nAsumir tu Liderazgo Natural como una Responsabilidad que se te está otorgando.\nAfrontar con Valentía los Desafíos de la Vida.\nCuestionar todo Aquello que te parece Impuesto falsamente desde afuera.\nConseguir con tus Preguntas Oportunas las Respuestas Necesarias para comprenderlo todo.\nRevestirte de una armadura divina para librar tu gran combate.\nLlevar todas tus Luchas a una búsqueda de la paz, personal y social.', 00, NULL, NULL),
+(17, 'la Tierra', 'KABAN', 'evoluciona la navegación', 'Roja', 'tres barras y dos puntos', 'la Sincronía', 'Evolucionar', 'la Navegación', 'center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/sel/17.png);', 'Tierra Representa la evolución del planeta, la naturaleza que debe ser cuidada desde una ecología que parte de una conciencia planetaria. Esa Evolución abarca toda la creación y en especial a los humanos, que piloteamos la enorme nave que es nuestro mundo hacia un nivel superior. Concentra el poder del chamanismo, con un llamado a conectarse con todo lo natural, a comunicarse con los animales y las plantas. En un Nivel Simbólico muy alto, es la fuerza receptiva de la tierra en contraposición a la del cielo (Yin y Yang respectivamente, desde la perspectiva oriental), la divinidad de la tierra, la Pachamama de los Incas, la Virgen que se une al espíritu santo.Nos habla también de las sincronías o aparentes coincidencias, las energías que confluyen hacia un mismo punto, las conexiones superiores que tejen a las personas en la trama de la existencia tanto física como espiritual, la comunicación telepática. Se relaciona, por otra parte, con los viajes, el movimiento hacia realidades distintas que van marcando el camino progresivo de una evolución.', 'Movimiento Perpetuo\nconciencia planetaria\nla naturaleza, comunion con lo natural\nnuestro planeta tierra, guardian de la tierra\npunto central, las fuerzas teluricas y sus movimientos\nalineador galactico, alineamiento de las fuerzas planetarias\nsincronias, sincronizar\npoder de la sincronizacion inteligente\nmanejo de las aparentes coincidencias\ninterpretar las claves\nuso de la telepatia\nempatia con animales, ecologia, chamanismo\nviajes, mudanzas\ncapacidad evolutiva, capacidad de movimiento y cambio\nprogreso, desarrollo y desenvolvimiento\ndestino impresiso\nsanacion con gemas y cristales.', 'Lento Crecimiento\nDisconforme\nObsecado\nDesequilibrio\nNO se Sincroniza\nInmovilidad\nNo Comprende\nInseguro\nDesconectado\nNo Reorganiza\nInconciente Planetario\nNo sabe Adaptarse\nViaja de mas\nno crece\nNi se desarrolla\nQuedados y Compulsivos', 'Los portadores de este Sello suelen ser correctas, respetuosas del espacio de los otros, pero libres e independientes. Aman la naturaleza, el campo, la lluvia, los pájaros, las plantas; encuentran respuestas a lo cotidiano en la naturaleza. Su intuición va de la mano de la capacidad sincrónica o telepática, que en ocasiones les permite traer al ahora visiones de lo que muy probablemente esté por venir. En ese sentido, parecen estar moviéndose desde aquí a un nivel que está siempre más allá. Una clave de sus vidas está es los viajes (mejor todavía si los hacen solos), donde movilizan la energía de un lugar hacia otro para luego traer de vuelta energías renovadoras. La Sincronía en el tiempo les otorga la capacidad de hacerse entender por la gente de distintas edades. Experimentan frecuentemente los encuentros “casuales”, una de las manifestaciones más comunes de la sincronía.', 'En Sombra, mientras se van abriendo hacia la Luz, conocen la Lenta Evolución Personal en la dificultad de entenderse a sí mismos, y se observan en constante desequilibrio o desarmonía. Aprenden a Sincronizarse después de manifestar falta de seguridad, la disconformidad con el mundo interior o con el entorno. La inmovilidad y la obcecación (Dificultad que impide a una persona razonar las cosas o darse cuenta de ellas.), la eventual desconexión con la naturaleza, son puntos de partida para el Movimiento y el Desarrollo que aún están por llegar, para despertar su íntima relación con la conciencia planetaria. La compulsión por viajar, moverse, mudar de casa, tarde o temprano deberá dejar lugar a un estado de conciencia donde descubran el verdadero sentido de los viajes y el continuo movimiento que reorganiza las energías del mundo.', 'Unir tu conciencia humana con la del planeta todo.\nViajar y Conocer tu gran Casa, Nuestra Tierra .\nAbrirte a Experimentar cada vez más Sincronías.\nPotenciar tu natural Telepatía.\nEntender que estás en el Mundo para evolucionar con los demás.\nRevisar Constantemente tu conciencia ecológica.', 00, NULL, NULL),
+(18, 'el Espejo', 'ETZNAB', 'refleja el sin fín', 'Blanco', 'tres barras y tres puntos', 'el Orden', 'Reflejar', 'el Sin-Fín', 'center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/sel/18.png);', 'Espejo, entre los veinte Sellos solares, es quizás el más notable de todos, dado que él resume las otras energías y en el Confluyen los Aprendizajes hechos por los demás sellos de su Raza, la Blanca (color que señala a su vez la suma de toda Luz). En efecto es el sello que más detalla en las descripciones o que más significaciones simbólicas ofrece. En ese sentido, puede verse en su diseño la estilización de una pirámide escalonada vista desde arriba; el espejo nos invita a subir cada peldaño y llegar a la cúspide, donde hay un altar de sacrificio y sobre él un cuchillo de pedernal (ETZNAB en maya), allí descubrimos que estamos revestidos de sacerdotes, pero falta la víctima propiciatoria: es que sobre el altar somos llamados a sacrificar el propio ego. El ESPEJO habla de Reflejos, los de las imágenes de los demás, de quienes podemos aprender experiencia de caídas y aciertos, o los generados por nuestros defectos o virtudes, que encontramos en aquello que detestamos o en lo que amamos, hasta descubrir que no son más que la proyección en los demás de nuestro propio interior. De allí que el espejo quiere prevenirnos de los espejismos, las ilusiones que nos hacemos acerca de nuestra realidad o condición. Él está allí delante, para vernos con claridad, conocernos en la justa medida. El Espejo es una Luz, es Transparencia para ver la realidad sin sombras, para poder discernir y juzgar en la medida precisa. Más todavía: es una espada de Luz, para cortar las tinieblas, para cortar por lo sano en situaciones críticas. Es diseño de su glifo nos habla también de un rompecabezas que hay que armar, de imágenes que están para ser ordenadas, porque el espejo asimismo nos señala el orden universal, la íntima conexión de todas las cosas que se integran perfectamente en un cosmos. En cuanto a lo que Sintetiza de los otros sellos de su misma raza, como el VIENTO BLANCO plantea las polaridades o dualidades de la existencia, para resolverlas en la comprensión de que uno y su reflejo no son más que las imágenes repetidas de una unidad en la que ambas se integran complementándose, al tiempo que la inmortalidad de ese Sello queda representada la idea del Sin Fin del Espejo. Como el ENLAZADOR DE MUNDOS BLANCO, nos indica el modo de superar el Ego, pues al vernos tal cual somos encontramos el camino de la humildad, y podemos cortar con las falsas ataduras de la realidad. Como el PERRO BLANCO, nos permite reconocer en el otro una imagen de nosotros mismos, para amarlo sin Condiciones porque también existimos en él. Como el MAGO BLANCO, por último, el ESPEJO corta con la ilusión del pasado o el miedo al futuro, y refleja sin fin el perfecto presente, mientras hace cada vez más clara la visión del corazón para discernir más allá de los límites de la Materia.', 'Orden divino\npiramide escalonada, cuchillo de sacrificio (ego)\naltar de sacrificio, golpe ritualistico\nlaberinto de espejos\nmanifestacion del infinito, lo eterno\nreflejo de la luz divina en la tierra\nespada de luz, espada de sabiduria y purificacion\nmundo de verdad donde se confunden imágenes reales y virtuales\ncamino directo\nsensacion de eternidad\nponer en orden\nautodisiplina, coordinar, discernir\ncortar por lo sano, disipacion de las sombras, cortar las ilusiones\nconsciencia verdadera de si mismo, y de los seres de luz\nproyeccion de uno mismo, aprendizaje de los reflejos, manejo de los espejismos\nautosacrifio del ego, estrategias para enfrentar la vida, lucha interna\nclarividencia, transparencia personal, luz personal, pureza\naclarador, ritualista, cirujano.', 'Desconectado de La Luz\nNo Ordena\nDestruye sin Sentido\nProyecta en otros\nNo hace Cortes\nDesaciertos\nSe Confunde\nPerdido en la Imagen\nNo Perdona\nEgo alto\nEcha Culpas\nNo Disierne\nNo se reconoce así mismo', 'Los portadores de este Sello tienen un potencial de Luz extraordinario. Buscan el orden de todas las cosas, por lo cual suelen ser buenos administradores y contadores. Tienen claridad de discernimiento, sabem cuándo y cómo hacer los cortes si es necesario, usan un juicio claro y objetivo. Al manejar su Ego, aceleran su alineación con el Yo Superior. Desarrollan distintos grados de clarividencia. Gustan de ser transparentes y que las demás personas y situaciones lo sean. Aprenden especialmente de las experiencias y de la sabiduría de todo lo que los rodea, porque se sienten reflejados allí. Corta con la ilusión del pasado o el miedo al futuro, y refleja sin fin el perfecto presente, mientras hace cada vez más clara la visión del corazón para discernir más allá de los límites de la Materia. De allí que el espejo quiere prevenirnos de los espejismos, las ilusiones que nos hacemos acerca de nuestra realidad o condición. Él está allí delante, para vernos con claridad, conocernos en la justa medida. El Espejo es una Luz, es Transparencia para ver la realidad sin sombras, para poder discernir y juzgar en la medida precisa.', 'En Sombra, mientras no se conectan plenamente con su gran Luz interior, pueden usar inadecuadamente el cuchillo de sacrificio que tienen a mano, y no aciertan a hacer los cortes necesarios, o bien destruyen vínculos que todavía debían perdurar. Todavía desconectados de la fuente divina, no comprenden el orden del Cosmos, y lo reflejan como caos alrededor. En ese sentido pueden volverse jueces implacables de los demás y de sí mismos. Deben observar la actitud de proyectar en los demás sus propios desaciertos y aspectos que todavía estén en sombra. Se pierden en el laberinto de las imágenes externas hasta no saber cuál es su verdadero reflejo, o van creyendo más en los espejismos que en su propia capacidad interna de discernir.', 'Entender en lo que te atrae y lo que te molesta el reflejo de tu propio interior.\nPotenciar tu innata clarividencia.\nDisipar con Luz las ilusiones creadas a tu alrededor.\nDecidirte a armar el rompecabezas de tu persona o de la vida.\nRevisar tu alineación con el Ego y el Yo Superior.\nHacer proyección de tu Luz y tu Orden interno en el entorno.\nCortar por lo sano cada vez que te sea necesario.', 00, NULL, NULL),
+(19, 'la Tormenta', 'CAUAC', 'cataliza la autogeneración', 'Azul', 'tres barras y cuatro puntos', 'la Energía', 'Catalizar', 'la Autogeneración', 'center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/sel/19.png);', 'Tormenta Trabaja los Cambios, las Metamorfosis, para autogenerarse y autoabastecerse de energía, con el ritmo de un Catalizador, es decir, de un acelerador de procesos. No permite ser Transformada, sino que se transforma a sí misma. Trae la imagen mítica del Ave Fénix, que resurge de sus propias cenizas en una secuencia perenne de ciclos. Representa la suma final de todas las energías, dado que en la secuencia 0-19 la tormenta aparece al final como síntesis, preparando el salto a un nuevo ciclo; su número 19 evoca simbólicamente la “Misericordia de Alá”. Contiene la idea de una tormenta donde todos los elementos están en movimiento, revolución y transformación, mientras que en el centro (el “Ojo de la Tormenta”) hay serenidad, quietud y paz perfecta.', 'Autogeneración\nAve fénix, resurrección\nrevolución, limpieza interior purificadora\ntransmutación, transformación antes de la realización o madurez completa\nsuma de todas las energías\nla lluvia, (como bendición y fertilidad)\npreparación para el sol\ncatalizador (acelerador) de procesos, vientos de cambio\nrenovación, transición\nfuerza que todo arrasa y renueva\ncentro de paz en el ojo de la tormenta\ninquietud exteriorizada, multifacético\nactivador para la asunción, ser del trueno, liberador de la mente\nefectos de la humedad en el cuerpo\nfortuna incierta, humor variable, agudizador de contradicciones.', 'Peligrosos\nSin PAZ\nDesbordados\nHiper Ansiosos\nCiegos\nDestructivos\nSin Quietud\nArrasador\nObsesivos\nAcelerados\nNo Reonoce\nLimpieza obsesiva\nNo Reconstruye\nMiedo al Cambio\nDañan Entornos\nFallas y Persecuciones', 'Los portadores de este Sello son personas que movilizan a los demás, desplegando paciencia, serenidad, armonía, paz interior. Cuando se vuelven alborotadores de su entorno lo hacen buscando un relativo bien de los otros. Si entran en crisis, lo hacen para sacar su Luz del sol que los Acompaña y resurgir con toda la energía. A veces parecen derrotados, consumidos, pero solo están preparando la disolución que permite dar espacio a la transformación y resurrección Personal, en un nuevo ciclo existencia. En cualquier Grupo humano, aportan el aceleramiento de los procesos iniciados, con una fuerte pauta de transformación propia y del entorno. Contiene la idea de una tormenta donde todos los elementos están en movimiento, revolución y transformación, mientras que en el centro (el “Ojo de la Tormenta”) hay serenidad, quietud y paz perfecta.', 'En Sombra, antes de que la Luz complete su aprendizaje, se vuelven peligrosos para su entorno cuando se desbordan; arrasan con todo, lo positivo y lo negativo, como fuerza destructiva y ciega, hasta que pueden encontrar el punto de paz y quietud en el centro de la tormenta. Para aprender a manejar su fuerza renovadora manifiestan primero la obsesión por la limpieza y se aceleran a un ritmo que no es fácil seguir sin dañarse. Si destruyen, no reacomodan sus energías para reconstruir o reconstruirse, porque están aprendiendo a superar los miedos a cambiar. Sienten que la vida es una tormenta externa, donde todavía creen que falta o se hace imposible hallar un punto de paz.', 'Transformar periódicamente cada aspecto renovable de tu vida.\nLimpiar profundamente procesos internos, relaciones, situaciones externas.\nReconocer en tu Vida el poder de un Ave Fénix, que se consume a sí mismo y luego resurge.\nDescubrir que tú debes preparar la esperada salida del sol tras la tormenta.\nEncontrar un punto de Paz en medio de la vorágine cotidiana.\nRegenerar cada ciclo muerto, cada proceso que deja lugar a otro nuevo.\nEntender que tu poder emana de la conciencia de que todo es energía.', 00, NULL, NULL),
+(20, 'el Sol', 'AHAU', 'ilumina el fuego universal', 'Amarillo', 'Cero/Sin Barra', 'la Vida', 'Iluminar', 'el Fuego Universal', 'center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/sel/20.png);', 'Sol es la Vida, la plenitud manifestada del todo, la fuerza de la Vida Espiritual, la iluminación humana, el fuego universal, la energía Yang del Cielo, el poder Galáctico del centro Hunab Ku a través del Kinich Ahau (Nuestro Sol), la FE en lo Divino, la Conciencia Crística, la Maestría Espiritual. El Signo del fin y del inicio al mismo tiempo, la bisagra energética que numerológicamente implica el número cero. Es un punto de Madurez Absoluta, Fuente de Vida y a la vez meta de todas las cosas.', 'Fuego como elemento universal\nflor Blanca, Manifestación masculina de Dios, Energía Yang, principio activo\nConsciencia Espiritual Superior, Consciencia del Cristo interno\nExpansión total de la consciencia, Ascensión final de la consciencia a niveles más altos\nsabiduría suprema, el ser Crucificado e iluminado o ascendido, el Maestro Espiritual, Madurez Suprema\nLa Luz y la Vida\nRespiración Solar, Mente Solar, Realización del cuerpo solar, brillo total, lo ilimitado\nla esencia de todo\nfelicidad personal, éxito alcanzado\namor a la vida\nalfa y omega\nalineación del ego con el yo superior\nautoridad suprema\niluminación para los demás, dador de vida, fuerza rejuvenecedora\nhabilidad para avanzar, y girar un ciclo entero.', 'Soberbios\nCentro de todo\nInvasivos\nEgocéntrico\nQuiere homenajes\nSabelotodos\nDesmedidos\nReclama\nPosesivo\nEncandila\nno ve claramente o se enfoca en lo negativo\nAchicharra\nno tiene Fe\nno cree en nada mas que él', 'Los portadores de este Sello son vistos como personas de buena presencia y personalidad atrayente, con mucha sabiduría que irradian a los demás. Suelen ser muy maduras para su edad (maduran más rápido que otros). Vienen a trabajar la maestría espiritual, la conciencia del todo en uno mismo. Son una bendición para los demás seres humanos, entre los que se destacan como una luminaria constante, fuente de calor y claridad. Todo lo procesan como el fuego para dar lugar a un nuevo comienzo. Tan natural es su espiritualidad o Conciencia Interna que les cuesta pensar en algo Divino que esté fuera del Ser Humano, independiente de él. Eres un punto de Madurez Absoluta, Fuente de Vida y a la vez meta de todas las cosas.', 'En Sombra, antes de asumir la plenitud de su Luz, aprenden de actitudes como la Soberbia o un Desmedido Ego, la Invasividad o posesividad, la idea que son sabelotodos. Todavía no saben usar la Responsabilidad de ser el Centro del Mundo y Reclaman Atención y homenaje a los demás. Mientras no manejan su poder con equilibrio, el fuego que tienen encandila o achicharra a los que tiene a su alrededor. Sin conciencia de su propia Divinidad, llegan a negar toda existencia de algo superior a lo humano, se vuelven escépticos y oscurecen su propia Radiación de Energía; toda una verdadera sombra para preparar la llegada de la Verdadera Luz Total.', 'Iluminar cada día tus pasos y el de los otros: ver donde antes había oscuridad.\nDevelar aquellos aspectos que hacen falta madurar para lograr la realización.\nComprenderte como dispensador especial de la Vida Verdadera.\nExpandir tu conexión con el Cristo Interno.\nHacer Evidente a tu Alrededor la presencia de una conciencia superior.\nRevisar tu comunicación con los Maestros.\nSer Cálido, Poderoso y Luminoso como el Fuego. Demostrar la fuerza, sin quemar.\nEncontrar la conciencia superior en cada aspecto de nuestra vida.\nOír siempre las indicaciones de tu Yo SUPERIOR ( Yo superior como ese aspecto en el cual dejamos de ser YO -Ego- para ser ELLO -el todo- ).', 00, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tono`
+--
+
+CREATE TABLE `tono` (
+  `id` smallint(2) UNSIGNED ZEROFILL NOT NULL,
+  `nombre` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `nombre_maya` varchar(10) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `descripcion` varchar(30) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `esencia` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `poder` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `accion` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `imagen` varchar(255) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `preguntas` varchar(255) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `portador` text COLLATE utf8mb4_spanish_ci NOT NULL,
+  `principio` varchar(25) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `aventura` varchar(30) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `posicion` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `funcion` varchar(25) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `mandato` varchar(85) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `createdAt` date DEFAULT NULL,
+  `updatedAt` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Tono Galáctico';
+
+--
+-- Volcado de datos para la tabla `tono`
+--
+
+INSERT INTO `tono` (`id`, `nombre`, `nombre_maya`, `descripcion`, `esencia`, `poder`, `accion`, `imagen`, `preguntas`, `portador`, `principio`, `aventura`, `posicion`, `funcion`, `mandato`, `createdAt`, `updatedAt`) VALUES
+(01, 'Magnético', 'HUN', 'Unifica el Propósito', 'el Propósito', 'Unificar', 'Atraer', 'center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/01.png);', '¿Cómo puedo identificar mis propósitos? ¿Cómo Trabajo los inicios de mis procesos? ¿Cómo Encuentro Unidad en la Multiplicidad de la vida?', ' El que nace con este tono está llamado a que responda a los más profundo y verdadero de su vibración energética, como si necesitara despertar a una vida nueva, dónde comprende que en él se encuentra ya no solo el inicio sino también, y simultáneamente, el final de cualquier proceso. \r\nSu misión es la del iniciador, la del que abre el camino para sí y para otros. Si en su conciencia personal todavía se percibe como solo, o separado de la Esencia Divina, su trabajo consiste en reconocer la unidad profunda de todas las cosas y centrarse en su corazón, donde ya está la sabiduría necesaria para ese fin. \r\nEn su función, el uno establece el propósito u objetivo para cualquier acción. Es un pequeño escalón, un pequeño gran paso, que quizás todavía no determine como seguir adelante, pero ya está tomando conciencia de que hay algún sentido, algún para qué que moviliza de la quietud inicial al movimiento inmediato posterior. \r\nEn el primer escalón está contenida toda la escalera, por eso su energía y su propuesta e la de todos los demás, que la expanden. \r\n', 'la Unidad', 'Pórtico Magnético', 'Punto de Entrada', 'Identifica el propósito', '¿Cuál es mi meta?', NULL, NULL),
+(02, 'Lunar', 'KA', 'Polariza el Desafío', 'el Desafío', 'Polarizar', 'Estabilizar', 'center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/02.png);', '¿Cómo identifico los obstáculos o mis desafíos? ¿Cómo trabajo y supero las dualidades de la vida? ¿Cómo me movilizo luego de comenzar un proceso? ', 'El portador de este tono debe revisar sus conflictos personales, y esa sensación ilusoria de sentirse separado del Todo, simplemente porque se pone a creer demasiado en la dualidad de las cosas. \r\nDebe observar aquello que le atrae y lo que le produce rechazo, hallar una conexión entre los extremos, apreciar lo que cada aspecto de la polaridad puede enseñarle. \r\nUna de las manifestaciones más claras de esta dualidad tiene que ver con lo masculino y femenino, que debe examinarse en el interior de la misma persona, incluso en los distintos aspectos de la divinidad; desde allí construye su propia identidad y da sentido a los flujos energéticos a su alrededor a su alrededor, los vaivenes del destino.\r\n\r\n', 'la Polaridad', 'Cámara Lunar', '1° Cámara', 'Identifica el desafío', '¿Cuáles son los obstáculos?', NULL, NULL),
+(03, 'Eléctrico', 'OX', 'Activa el Servicio', 'el Servicio', 'Activar', 'Unir', 'center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/03.png);', '¿Qué servicios o permisos debo darme? ¿Cómo puedo brindar un mejor servicio a los demás? ¿Cómo conecto una realidad con otra? ', 'Este tono sugiere al que lo lleva que es hora de salir de estancamientos en el flujo de la vida. \r\nDebe convertirse en el tercer punto entre las polaridades y generar una realidad nueva unificadora, que integre o redescubra los los aspectos de la existencia que parecían perdidos o desconectados de la verdad. \r\nLas personas portadoras de este tono deben comprender que es eso que se llama \"servicio\". Necesitan plantearse qué pueden permitirse a si mismas, para tener las manos llenas a la hora de ofrecer su servicio a los demás. Una vez que resuelven esto, que comprenden que deben primero darse un servicio a sí mismas (uno es el primer prójimo), nunca se sienten vacías por estar diciendo siempre que sí, por estar corriendo primero para socorrer a las necesidades ajenas, muchas veces sin retribución por su valioso servicio. \r\nPoseen una amplia capacidad para conectar o vincular personas; y también la de ayudar a las personas a superar sus diferencias.\r\n', 'el Ritmo', 'Cámara Eléctrica', '2° Cámara', 'Identifica el servicio', '¿Cuál es el servicio?', NULL, NULL),
+(04, 'Autoexistente', 'KAN', 'Define la Forma', 'la Forma', 'Definir', 'Medir', 'center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/04.png);', '¿Cómo llevo a cabo mis propósitos? ¿Cuál es la forma y la medida que diseña la base de mi vida? ¿Cuál es la Estructura más adecuada para hacer más sólida mi misión?', 'El portador del tono autoexistente debe medir, calcular, sopesar, diseñar, moldear la realidad en cualquiera de sus niveles, mas materiales o mas sutiles. Para eso se conecta con la Idea, el Proyecto de lo que todavía no es visible, para ir plasmando en la realidad externa, usando al mismo tiempo discernimiento y coherencia, creatividad y practicidad en todos los órdenes de la existencia. \r\nDeben descubrir que las estructuras no son para encerrarse en ellas, sino para construir y finalizar esta construcción para soltar esa estructura y diseñar la próxima. \r\nSon buenos diseñadores, arquitectos, estrategas, gente que se manifiesta como sólida. Se descubren preguntandose el cómo, cuál es la receta la fórmula más o menos adecuada para resolver todo.\r\n', 'la Medida', 'Cámara Autoexistente', '3° Cámara', 'Identifica la forma', '¿Cuál es la forma de acción?', NULL, NULL),
+(05, 'Entonado', 'HO', 'Empodera la Radiancia', 'la Radiancia', 'Conferir Poder', 'Mandar', 'center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/05.png);', '¿Cómo asumo mi autoridad natural o trabajo mi autoestima? ¿Como puedo reunir los recursos para llevar a cabo mi propósito? ¿Cómo me reconozco en el centro de todas las cosas? ', 'El portador del tono entonado, desde el centro de todo, puede observar con visión privilegiada la realidad externa e interna. Si el universo es infinito, un circulo o una esfera sin fin, entonces su centro puede estar en cualquier punto, y cada humano puede reclamar con derecho su condición de centro del universo, posición desde la cuál pueden empezar a entender y construir su existencia, su misión, su mundo interno.\\n El portador del tono entonado descubre entonces su sabiduría interna, su condición íntimamente sagrada, y así va expandiendo su ser. En la escalera energética de 13 peldaños, el tono 5 se llama \'Torre de mando\', el centro donde confluyen los pasos anteriores, donde se puede decir \'YO SOY\' y \'YO PUEDO\'.\\n Los portadores de este tono tienen el don natural del mando, porque saben cómo se hacen las cosas. Suelen ser líderes o jefes natos. Trabajar su autoestima en la medida adecuada, saberse poderosos y con autoridad innata, son las claves para su accionar y para ser el centro de la acción de los demás.', 'el Centro', 'Torre Entonada', 'Puesto de Mando', 'Toma el mando', ' Reúne los recursos', NULL, NULL),
+(06, 'Rítmico', 'UAK', 'Organiza la Igualdad', 'la Igualdad', 'Organizar', 'Equilibrar', 'center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/06.png);', '¿Cómo puedo equilibrarme? ¿Cómo me organizo según mi ritmo interno? ¿Cómo armonizo los propósitos con sus desafíos?', 'El portador de este tono siente que debe trabajar y ponerse en movimiento en búsqueda de un equilibrio entre su persona, centro de todas las cosas, y la unidad del todo expresada en la forma externa. \r\nEs movimiento rítmico que va desde lo más profundo hacia la realidad cotidiana, donde se mezcla lo divino con lo humano, donde se hacen elecciones más sabias, donde se viven con amor e iluminacion superior de los ritmos (de los ciclos) de la existencia. \r\nSe conoce a este tono como el equilibrio organico, que se entiende como la tendencia de todo lo natural hacia su evolucion, su crecimiento, que va de una etapa a la siguiente. El ser humano organiza su vida y se prepara para ir dando pequeños o grandes saltos evolutivos en su misión a la vez terrena y espiritual. \r\nLos portadores del tono se muestran autosuficientes, autónomos, porque siguen su propio ritmo interno, una música propia, que invita a los demás a ser respetada como tal, y que eventualmente dejara mezclar con otros ritmos, sin perder el propio. \r\nVan así buscando y realizando su propio equilibrio personal, para su beneficio y de los que saben escucharlos.\r\n', 'el Equilibrio Orgánico', 'Cámara Rítmica', '4° Cámara', 'Manda la igualdad', 'Administrar el desafío', NULL, NULL),
+(07, 'Resonante', 'UUK', 'Canaliza la Entonación', 'la Sintonización', 'Canalizar', 'Inspirar', 'center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/07.png);', '¿Cómo me relaciono con los demás? ¿Cómo puedo armonizar mi servicio? ¿Cómo me resuena lo que percibo a mi alrededor?', 'El portador del tono resonante debe descubrir el poder que se activa a través de los 7 chakras o puntos energéticos, la fuerza lumínica que pasa por su espina dorsal, de manera tal que pueda transformar su visión material en una conciencia espiritual o más sutil, y todo logrado a partir de su auto-aceptación, el reconocimiento incondicional de condición sagrada. \r\nEste tono es el central en el proceso de toda escalera energética de 13 escalones, es donde resuenan los pasos de los que se vienen (los primeros 6 tonos) y los pasos siguientes (los siguientes 6). Es un punto medio para abrirse místicamente y tener la percepción de toda la escalera. \r\nLos portadores de este tono vienen a trabajar su relación con los demás, a aprender del eco de todo lo que resuena en su conexión con el entorno. \r\nDe esta manera, a la mitad del río, deciden continuar andando hacia el final, la otra orilla, en búsqueda de la trascendencia.\r\n', 'el Poder Místico', 'Cámara Resonante', '5° Cámara', 'Manda la sintonización', 'Sintonizar el servicio con la acción', NULL, NULL),
+(08, 'Galáctico', 'UAXAK', 'Sintoniza la Integridad', 'la Integridad', 'Armonizar', 'Modelar', 'center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/08.png);', '¿Vivo lo que creo? ¿Cómo bajo lo teórico y abstracto a la realidad? ¿Cómo integro en un todo los distintos aspectos de mi ser?', 'Los portadores de este tono deben llevar armonía a cada nivel de su vida, manejar las sincronías con las demás energías o personas, reconocerse como un punto en el que esta confluyendo constantemente el infinito y lo terreno. \r\nVienen a traer cada vez más armonía a su entorno, en consonancia con las energías que en estos tiempos de la humanidad y del planeta están elevando el nivel de consciencia y la vibración. Y toda esta acción hacia afuera parte del trabajo en luz de su propia integración personal, de movilizar los distintos aspectos del ego y darles una coherencia y una unidad en el ser de uno. \r\nSe les otorga la habilidad de dar forma definitiva a todo propósito, a disponer de vibración inmediatamente superior. Pueden poner los pies en la tierra, y elevar la mirada al objetivo final. \r\nSon los que necesitamos para hacer realidad los proyectos postergados, los que están allí en el momento adecuado para que dejemos de especular y nos dediquemos a la acción inmediata, los que enseñan que hay que ser coherentes con uno mismo, entre lo que se cree y lo que se vive.\r\n', 'la Resonancia Armónica', 'Cámara Galáctica', '6° Cámara', 'Manda la integridad', 'La acción alcanza la forma', NULL, NULL),
+(09, 'Solar', 'BOLON', 'Pulsa la Intención', 'la Intención', 'Pulsar', 'Realizar', 'center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/09.png);', '¿Cómo actúo y concreto? ¿Cómo pulso mis intenciones? ¿Cómo hago realidad un propósito?', 'Al portador de este tono se lo invita a concretar sus sueños y a encontrar la plenitud dentro de los límites de su misión y su condición terrena. De la simple intención de ser debe pasar a ser Realmente, usando su sabiduría y su experiencia iluminadora. De esa manera en la realización individual se va logrando la elevación espiritual. A este escalón se lo llama torre de acción, donde se concreta desde la guía del tono 5 o torre de mando. \r\nLos portadores de este tono suelen mostrarse como personas realizadoras, que concretan o ejecutan proyectos propios o ajenos. Ya han dejado atrás las especulaciones, las dudas, los planteos previos, etapa de preparación para la acción. \r\nConcretar, hacer, todo el tiempo, parece la consigna natural de los portadores del tono solar, aún en los momentos en que el llamado es a la relativa quietud, la que precede a un nuevo ciclo de preparación acción.\r\n', 'la Periodicidad Cíclica', 'Torre Solar', 'Poste de Movilizació', 'Formaliza la acción', 'La acción puesta en movimiento', NULL, NULL),
+(10, 'Planetario', 'LAHUN', 'Perfecciona la Manifestación', 'la Manifestación', 'Perfeccionar', 'Producir', 'center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/10.png);', '¿Cómo puedo perfeccionar mi acción? ¿Cómo Trabajo mi modo de manifestarme? ¿Cómo completo los procesos iniciados?', 'Los Portadores de este tono suelen mostrarse como proteccionistas, con una natural tendencia a no dejar las cosas inconclusas, a buscar la mejor manera de terminar lo que ellos u otros empezaron. \r\nPerfecto significa totalmente hecho, no necesariamente sin defecto. De esta manera, los portadores del tono planetario se preocupan más bien por concluir procesos, intuyendo que de esta manera se da espacio para el comienzo de algo nuevo. Y cuando la tarea esta hecha, es normal que que deseen hacerla visible a los demás, porque al fin y al cabo, el logro de uno es el logro de todos, el triunfo individual es el triunfo de la humanidad. \r\nEste tono habla dela verdadera identidad de las personas y las cosas, la manifestación en un nivel mas alto de conciencia, la vibración de la esencia que se logra cuando se han dejado de lado las creencias limitadoras o rígidas.\r\n', 'la Manifestación', 'Cámara Planetaria', '7° Cámara', 'Manifiesta el Desafío', 'La acción y el desafío se encuentran', NULL, NULL),
+(11, 'Espectral', 'BULUK', 'Disuelve la Liberación', 'la Liberación', 'Disolver', 'Divulgar', 'center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/11.png);', '¿Cómo puedo liberarme o dejarme ir? ¿Qué tengo que dejar Fluir en mi Vida? ¿Cómo Disuelvo las estructuras rígidas para revelar lo esencial? ', 'Este tono propone a su portador (y enseña a los que están cerca de él) un proceso de simplificación de la compleja red en la que nos vemos envueltos cada día, para no perder de vista la unidad de todas las cosas, lo simple que es síntesis del aprendizaje ya realizado y que es a su vez comienzo de un nuevo proceso más o menos complejo y temporario. \r\nEs una invitación a la liberación personal (de estructuras impuestas solidificadas en el Ego) y de esa actitud que nos lleva a buscar la liberación del prójimo que percibido como perdido en sus estructuras (creencias personales heredadas o autoimpuestas), desconectado de su esencia. \r\nEs la oportunidad de Oír lo que suena mal, lo disonante, que es síntoma de lo que esta gritando en nuestro interior para generar un cambio, una liberación. \r\nSuele manifestarse como autosuficiente, capaz de liberarse de la influencia ajena para guiar sus propios pasos, para tomar sus propias decisiones, moverse entre ilusiones o imposiciones externas e ir más allá. \r\nY lo que se aprende a nivel individual se divulga, se hace fluir entre los otros humanos para que el asenso se haga como grupo. \r\n', 'la Estructura Disonante', 'Cámara Espectral', '8° Cámara', 'Liberación del Servicio', 'La acción disuelve el servicio', NULL, NULL),
+(12, 'Cristal', 'LAHAK', 'Dedica la Cooperación', 'la Cooperación', 'Dedicar', 'Universalizar', 'center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/12.png);', '¿Cómo puedo dedicarme a lo que tiene Vida? ¿Cómo Trabajo mi capacidad de cooperar con los demás? ¿Cómo hago Universal Mi Experiencia Individual?', 'Los que nacen con este tono cristal valoran el trabajo en equipo, porque está activado en ellos el espíritu de cooperación y colaboración; entienden que en los grupos que conforman, codo a codo, aprovechan la riqueza de lo que cada uno aporta como individuo y así todo se hace más fácil y los logros son mayores. \r\nComprenden que si han experimentado algo positivo en su individualidad, eso puede ser útil para el crecimiento o la felicidad de otros, mostrándose siempre gustoso de compartirlo, en una reunión donde todos evalúan los logros conseguidos y vislumbran los desafíos que se vienen. \r\nEste tono invita a comprender la complejidad de todas las cosas como un tejido o red con una coherencia que debe ser interpretada, comprendida y valorada. \r\nPara llegar a esta comprensión los portadores de este tono deben pasar por todo tipo de complicaciones, hacer un esfuerzo de apertura mental, de disponer de su corazón, flexibilidad del alma, hasta que se asumen como miembros virtuales de un consejo donde se reúnen los que han aprendido, los que integran sus conocimientos y experiencias y los están transformando, en sabiduría final. \r\n', 'la Estabilidad Compleja', 'Cámara Cristal', '9° Cámara', 'Cooperación de la Forma', 'Reúne la Mesa Redonda para formalizar la acción del pasado y preparar la del futuro', NULL, NULL),
+(13, 'Cósmico', 'OXLAHUN', 'Perdura la Presencia', 'la Presencia', 'Perdurar', 'Trascender', 'center/contain no-repeat url(http://www.icpv.com.ar/img/hol/fic/ton/13.png);', '¿Cómo puedo trascender mi propósito?  ¿Cómo puedo elevarme en vuelo a un nivel superior? ¿Cómo supero todos los límites de la existencia? ', 'Este tono cósmico coloca a su portador en un sistema dimensional distinta a los demás, como en dos mundos, el que está trascendiendo y el que sigue. En esa posición relativamente privilegiada puede entender la realidad de una manera diferente y es por eso que las llamadas fuerzas ocultas se hacen presente en su camino. \r\nPor esto, necesitan revisar su resistencia a los cambios, a las aperturas cósmicas que se va materializando constantemente a cada paso consiente, o no, que dé en su camino. Entra en una dinámica que lo tironea entre lo viejo y lo nuevo, lo más bajo y elevado. \r\nEn la medida que atiende a las sincronías, en la medida que se deja sintonizar por nuevas frecuencias vibraciones, consigue conexiones sin límite. \r\nEn otras palabras, los portadores de este tono están más allá del bien y del mal. Se sienten con un pie en esta realidad y el otro en la otra que están intuyendo o ya vislumbrando, a modo de \"caminantes del cielo\". \r\nSon difíciles de comprender, inclasificables, a menudo extraordinarios, nadie puede atraparlos o limitarlos. \r\nSiempre van más allá buscando el salto definitivo, el vuelo que los coloque por encima de todo propósito, que los ubique en una dimensión más allá del ser. \r\nNos enseñan que volar sí es posible, que como ellos podemos trascender. \r\n', 'el Movimiento Universal', 'Pórtico Cósmico', 'Punto de Salida', 'Toma el vuelo mágico', 'Retorno Magnético', NULL, NULL);
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `blog`
+--
+ALTER TABLE `blog`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `kin`
+--
+ALTER TABLE `kin`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `sel` (`sello`),
+  ADD KEY `ton` (`tono`),
+  ADD KEY `ond` (`onda_encantada`);
+
+--
+-- Indices de la tabla `post`
+--
+ALTER TABLE `post`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `post_respuesta`
+--
+ALTER TABLE `post_respuesta`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `sello`
+--
+ALTER TABLE `sello`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `onda_encantada` (`onda_encantada`);
+
+--
+-- Indices de la tabla `tono`
+--
+ALTER TABLE `tono`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `blog`
+--
+ALTER TABLE `blog`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Identificador';
+
+--
+-- AUTO_INCREMENT de la tabla `kin`
+--
+ALTER TABLE `kin`
+  MODIFY `id` smallint(3) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=261;
+
+--
+-- AUTO_INCREMENT de la tabla `post`
+--
+ALTER TABLE `post`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `post_respuesta`
+--
+ALTER TABLE `post_respuesta`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `sello`
+--
+ALTER TABLE `sello`
+  MODIFY `id` smallint(2) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT de la tabla `tono`
+--
+ALTER TABLE `tono`
+  MODIFY `id` smallint(2) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `kin`
+--
+ALTER TABLE `kin`
+  ADD CONSTRAINT `kin-sello` FOREIGN KEY (`sello`) REFERENCES `sello` (`id`),
+  ADD CONSTRAINT `kin-tono` FOREIGN KEY (`tono`) REFERENCES `tono` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

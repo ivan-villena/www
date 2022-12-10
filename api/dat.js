@@ -376,7 +376,12 @@ class dat {
     // pido ficha
     eje.val([ `dat::inf`, [ $esq, $est, $val ] ], $htm => {
       // muestro en ventana
-      if( $htm ) doc.win('app_ope',{ ico:"", cab:"", htm:$htm, opc:[ "pos" ] });
+      if( $htm ) doc.win('doc_ope',{ 
+        ico: "", 
+        cab: "", 
+        htm: $htm, 
+        opc: [ "pos" ] 
+      });
     });
   }
 

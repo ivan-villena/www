@@ -8,15 +8,17 @@
   $_hol->ide = !empty($_uri->art) ? explode('_',$_uri->art) : [ "kin" ];
 
   // proceso fecha
-  if( isset($_uri->val[1]) ){
+  if( !empty($_uri->val) ){    
 
-    if( in_array($_uri->val[0],[ 'fec', 'sin' ])  ){
-      $_hol->val = hol::val($_uri->val[1],$_uri->val[0]);
+    $uri_val = explode('=',$_uri->val);
+
+    if( in_array($uri_val[0],[ 'fec', 'sin' ])  ){
+      $_hol->val = hol::val($uri_val[1],$uri_val[0]);
       // actualizo fecha del sistema
-      $_SESSION['hol-val'] = $_uri->val[1];
+      $_SESSION['hol-val'] = $uri_val[1];
     }
     else{
-      $_hol->val[ $_uri->val[0] ] = $_uri->val[1];
+      $_hol->val[ $uri_val[0] ] = $uri_val[1];
     }
   }
   // imrpimo panel con operadores
@@ -28,8 +30,10 @@
 
       ".hol::var('fec',$_hol->val,[ 'eje'=>"dia" ])."
 
-      <div class='mar-1'>
+      <div class='mar-2 tex_ali-cen'>
+
         ".dat::inf('hol','kin',$_hol->val['kin'],['opc'=>"nom",'cit'=>"des"])."
+
       </div>
 
     </section>
@@ -147,69 +151,75 @@
       // cargo todos los datos utilizados por esquema
       $api_app->rec['dat']['hol'] = [];
 
-      $_val = $_hol->val;
-      $_ide = $_hol->ide;
-      // valido tablero      
-      if( !isset($_ide[1]) ){
+      // valido uri tablero      
+      if( !isset($_hol->ide[1]) ){
         echo doc::tex('err',"No existe el tablero '$_uri->art'");
-        return;
       }
-      // operadores del tablero
-      $tab_ide = "hol.{$_ide[0]}";  
-      if( !( $tab_ope =  dat::est_ope('hol',$_uri->art,'tab') ) ) $tab_ope = [];    
-      // inicializo valores
-      $tab_ope['val'] = [];
-      $ope_atr = ['kin','psi'];
-      // fecha => muestro listado por ciclos
-      if( !empty( $_val['fec'] ) ){
-        // joins
-        $tab_ope['est'] = [ 
-          'fec'=>["dat"],
-          'hol'=>$ope_atr
-        ];
-        // cargo datos
-        $tab_ope['dat'] = $_hol->dat;
-        // kin + psi : activo acumulados
-        if( in_array($_ide[0],$ope_atr) ){
-          $tab_ope['val']['acu'] = [ 'pos'=>1, 'mar'=>1, 'ver'=>1 ];
-          // agrego opciones
-          if( !empty($tab_ope['opc']) ) $tab_ope['val']['acu']['opc'] = 1;
-        }
-        // valor seleccionado
-        $tab_ope['val']['pos'] = $_val;
-      }
-      // imprimo operadores del tablero
-      $ope = obj::val_nom(lis::$TAB_OPE,'ver',['ver','opc','val']);
-      foreach( $ope as $ope_ide => $ope_tab ){
-
-        if( !empty( $htm = lis::tab_ope($ope_ide, $tab_ide, $tab_ope) ) ){
-
-          $api_app->rec['ope']['ini'][$ope_ide] = [ 
-            'ico'=>$ope_tab['ico'], 'tip'=>"pan", 'nom'=>$ope_tab['nom'], 'nav'=>[ 'eti'=>"article" ], 'htm'=>$htm
+      else{
+        // operadores del tablero
+        $tab_ide = "hol.{$_hol->ide[0]}";  
+        if( !( $tab_ope =  dat::est_ope('hol',$_uri->art,'tab') ) ) $tab_ope = [];    
+        // inicializo valores
+        $tab_ope['val'] = [];
+        $ope_atr = ['kin','psi'];
+        // fecha => muestro listado por ciclos
+        if( !empty( $_hol->val['fec'] ) ){
+          // joins
+          $tab_ope['est'] = [ 
+            'fec'=>["dat"],
+            'hol'=>$ope_atr
           ];
+          // cargo datos
+          $tab_ope['dat'] = $_hol->dat;
+          // kin + psi : activo acumulados
+          if( in_array($_hol->ide[0],$ope_atr) ){
+            $tab_ope['val']['acu'] = [ 'pos'=>1, 'mar'=>1, 'ver'=>1 ];
+            // agrego opciones
+            if( !empty($tab_ope['opc']) ) $tab_ope['val']['acu']['opc'] = 1;
+          }
+          // valor seleccionado
+          $tab_ope['val']['pos'] = $_hol->val;
         }
+        // imprimo operadores del tablero
+        $ope = obj::val_nom(lis::$TAB_OPE,'ver',['ver','opc','val']);
+        foreach( $ope as $ope_ide => $ope_tab ){
+          if( !empty( $htm = lis::tab_ope($ope_ide, $tab_ide, $tab_ope) ) ){
+            $api_app->rec['ope']['ini'][$ope_ide] = [ 
+              'ico'=>$ope_tab['ico'], 'tip'=>"pan", 'nom'=>$ope_tab['nom'], 'nav'=>[ 'eti'=>"article" ], 'htm'=>$htm
+            ];
+          }
+        }
+        // imprimo operador de lista
+        $lis_ope = dat::est_ope("hol",$_hol->ide[0],'lis');
+        $lis_ope['val'] = $tab_ope['val'];
+        // cargo operadores
+        if( isset($tab_ope['est']) ){        
+          $lis_ope['dat'] = $tab_ope['dat'];
+          // busco operadores de lista por : esquema_estructura
+          $lis_ope['est'] = [];
+          foreach( $tab_ope['est'] as $esq_ide => $esq_lis ){
+            $lis_ope['est'][$esq_ide] = [];
+            foreach( $esq_lis as $est_ide ){
+              $lis_ope['est'][$esq_ide][$est_ide] = [];
+              if( $est_ope = dat::est_ope($esq_ide,$est_ide,'lis') ){
+                $lis_ope['est'][$esq_ide][$est_ide] = $est_ope;
+              }
+            }
+          }
+        }
+        $ope = lis::$TAB_OPE['lis'];
+        $api_app->rec['ope']['ini']['est'] = [ 'ico'=>$ope['ico'], 'tip'=>"win", 'nom'=>$ope['nom'], 
+          'htm'=>lis::tab_ope('lis',"hol.{$_hol->ide[0]}",$lis_ope) 
+        ];
+        // imprimo tablero en página principal
+        echo "
+        <article>
+          ".hol::tab($_hol->ide[0], $_hol->ide[1], $tab_ope, [
+            'pos'=>[ 'onclick'=>"lis.tab_val('mar',this);" ], 
+            'ima'=>[ 'onclick'=>FALSE ]
+          ])."
+        </article>";
       }
-      // imprimo operador de lista
-      $lis_ope = dat::est_ope("hol",$_ide[0],'lis');
-      
-      $lis_ope['val'] = $tab_ope['val'];
-      if( isset($tab_ope['est']) ){
-        $lis_ope['est'] = $tab_ope['est'];
-        $lis_ope['dat'] = $tab_ope['dat'];
-      }
-      $ope = lis::$TAB_OPE['lis'];
-      $api_app->rec['ope']['ini']['est'] = [ 'ico'=>$ope['ico'], 'tip'=>"win", 'nom'=>$ope['nom'], 
-        'htm'=>lis::tab_ope('lis',"hol.{$_ide[0]}",$lis_ope) 
-      ];
-      // imprimo tablero en página principal
-      echo "
-      <article>
-        ".hol::tab($_ide[0], $_ide[1], $tab_ope, [
-          'pos'=>[ 'onclick'=>"tab.val('mar',this);" ], 
-          'ima'=>[ 'onclick'=>FALSE ]
-        ])."
-      </article>";
-      
       // cargo tutorial    
       ob_start(); ?>
         <!-- Introducción --> 

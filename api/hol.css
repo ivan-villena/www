@@ -35,7 +35,8 @@ ul.lis.tab.hol_cro-cir > li.pos {
 }
 ul.lis.tab.hol_cro-cir > .pos.ide-0 { grid-column:2/3; grid-row:2/3; 
   align-self: center; justify-self: center; justify-content: center; align-items: center; 
-  width: 150%; height: 150%; color: black 
+  width: 150%; height: 150%; 
+  clor: black 
 }
 ul.lis.tab.hol_cro-cir > .pos.ide-1 { grid-column:1/2; grid-row:1/2; top: 3%;    left: 28%; transform: rotate(145deg); }
 ul.lis.tab.hol_cro-cir > .pos.ide-2 { grid-column:1/2; grid-row:2/3; top: 38%;   left:-13%; transform: rotate(070deg); }
@@ -94,8 +95,11 @@ ul.lis.tab.hol_cas {
   border-radius: 10%;
 }
 
-ul.lis.tab.hol_cas > li.sec.fon-col { 
-  z-index:2; width:95%; height:91%; border-radius:50%;
+ul.lis.tab.hol_cas > li.sec.fon.col { 
+  z-index:2; 
+  width:95%; 
+  height:91%; 
+  border-radius:50%;
 }
 
 ul.lis.tab.hol_cas > li.sec[class*="orb-"] {
@@ -179,11 +183,14 @@ ul.lis.tab.hol_cas-cir {
   grid: repeat(18,1fr)/repeat(18,1fr); border-radius: 50%;
 }
 
-ul.lis.tab.hol_cas-cir > li.sec.fon-ima { 
+ul.lis.tab.hol_cas-cir > li.sec.fon.ima { 
   z-index:1;
 }
-ul.lis.tab.hol_cas-cir > li.sec.fon-col { 
-  z-index:2; width:95%; height:91%; border-radius:50%;
+ul.lis.tab.hol_cas-cir > li.sec.fon.col { 
+  z-index:2; 
+  width:95%; 
+  height:91%; 
+  border-radius:50%;
 }
 
 ul.lis.tab.hol_cas-cir > li.sec[class*="orb-"] {  
@@ -604,11 +611,14 @@ ul.lis.tab:not(.kin.tzo) li.pos:is(._hol-pag_kin, ._hol-pag_psi) {
 /* 
   Patrones del Oráculo : kines + sellos
 */
+ul.lis.tab.par { 
+  border-radius: 50%;
+  border: 1px solid var(--col_ver);
+}
+
 ul.lis.tab .lis.tab.par {
   width: 100%; 
   height: 100%;
-  border-radius: 50%;
-  border: 1px solid var(--col_ver);
 }
 /* Extensiones */
 ul.lis.tab ._hol-par_ana-ext { border: 1px solid var(--col_roj) !important; }
@@ -631,12 +641,35 @@ ul.lis.tab.kin.tzo {
   grid:repeat(20,1fr)/repeat(13,1fr); 
   grid-auto-flow:column;
 }
-ul.lis.tab.kin.tzo > :is(.ope,.sec) {
+ul.lis.tab.kin.tzo > :is(.pos,.sec) {
   width: 2rem; 
   height: 2rem;
 }
 
-/* Nave del Tiempo */
+/* 
+  Nave del Tiempo 
+*/
+ul.lis.tab.kin.nav {
+  grid-gap: .15rem;
+}
+ul.lis.tab.kin.nav .kin.nav_cas .pos.ope {
+  width: 1.2rem; 
+  height: 1.2rem;
+}
+
+/* Castillo */
+ul.lis.tab.kin.nav_cas {
+  padding: .2rem;
+}
+ul.lis.tab.kin.nav_cas li.pos.ope {
+  width: 3rem;
+  height: 3rem;
+}
+ul.lis.tab.kin.nav_cas .pos.ide-0 {
+  font-size:.5rem;
+}
+
+/* Onda Encantada */
 ul.lis.tab.kin.nav_ond {
   grid-gap: .2rem;
 }
@@ -644,32 +677,10 @@ ul.lis.tab.kin.nav_ond li.pos:not(.dep) {
   width: 2.25rem;
   height: 2.25rem;
 }
-ul.lis.tab.kin.nav_cas {
-  padding: .2rem;
-}
-ul.lis.tab.kin.nav_cas li.pos:not(.dep) {
-  width: 3rem;
-  height: 3rem;
-}
-ul.lis.tab.kin.nav_cas .pos.ide-0 {
-  font-size:.5rem;
-}
-ul.lis.tab.kin.nav {
-  grid-gap: .15rem;
-}
-ul.lis.tab.kin.nav .ope {
-  width: 1.10rem; 
-  height: 1.10rem;  
-}
 
-/* Giro Galáctico */
-ul.lis.tab.kin.arm_cel {
-  grid-gap:.15rem;
-}
-ul.lis.tab.kin.arm_tra li.pos:not(.dep) {
-  width: 2rem;
-  height: 2rem;
-}
+/* 
+  Giro Galáctico 
+*/
 ul.lis.tab.kin.arm {
   grid-gap: .3rem;
 }
@@ -678,7 +689,20 @@ ul.lis.tab.kin.arm .pos.ope {
   height: 1.08rem;
 }
 
-/* Giro Espectral */
+/* Trayectoria */
+ul.lis.tab.kin.arm_tra li.pos.ope {
+  width: 2rem;
+  height: 2rem;
+}
+
+/* Célula */
+ul.lis.tab.kin.arm_cel {
+  grid-gap:.15rem;
+}
+
+/* 
+  Giro Espectral 
+*/
 ul.lis.tab.kin.cro {
   grid-gap: .3rem;
 }
@@ -686,6 +710,7 @@ ul.lis.tab.kin.cro .pos.ope {
   width: 1rem; 
   height: 1rem;
 }
+
 
 /* 
   365 psi-cronos 
@@ -733,7 +758,7 @@ ul.lis.tab.psi_lun :is(.pos.ope, .sec) {
 }
 
 
-ul.lis.tab.kin.cro_est li.pos:not(.dep) {
+ul.lis.tab.kin.cro_est li.pos.ope {
   width: 3rem;
   height: 3rem;
 }
@@ -766,9 +791,9 @@ ul.lis.tab.kin.cro_est li.pos:not(.dep) {
     width: 2rem;
     height: 2rem;
   }
-  ul.lis.tab.kin.nav li.pos.ope {
-    width: .75rem; 
-    height: .75rem;
+  ul.lis.tab.kin.nav .kin.nav_cas li.pos.ope {
+    width: .9rem; 
+    height: .9rem;
   }
 
   ul.lis.tab.kin.arm_tra li.pos.ope {

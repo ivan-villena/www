@@ -41,7 +41,6 @@ function sis_adm( $tip, $dat, $val, ...$opc ){
         $.ico = document.createElement('span');
         $.ico.classList.add('doc_ico');
         $.ico.classList.add($ico.ide);
-        $.ico.classList.add('material-icons-outlined');
         $.ico.classList.add('mar_der-1');
         $.ico.innerHTML = $ico.val;
         

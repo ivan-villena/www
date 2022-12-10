@@ -37,6 +37,24 @@ class doc {
     return $_;
   }
 
+  // icono : .doc_ico.$ide
+  static function ico( string $ide, array $ele=[] ) : string {
+    $_ = "<span class='doc_ico'></span>";
+    $doc_ico = doc::_('ico');
+    if( isset($doc_ico[$ide]) ){
+      $eti = 'span';      
+      if( isset($ele['eti']) ){
+        $eti = $ele['eti'];
+        unset($ele['eti']);
+      }
+      if( $eti == 'button' && empty($ele['type']) ) $ele['type'] = "button"; $_ = "
+      <{$eti}".ele::atr(ele::cla($ele,"doc_ico $ide",'ini')).">
+        {$doc_ico[$ide]->val}
+      </{$eti}>";
+    }
+    return $_;
+  }  
+
   // botones : ( pan + win )
   static function bot( $dat ) : string {
     $_ = "";      
@@ -96,7 +114,7 @@ class doc {
     ";
     // botones de flujo
     $cab_bot = "
-    <div class='ope'>
+    <div class='doc_ope'>
       ".doc::ico('dat_fin',[ 'title'=>'Cerrar ( tecla "Esc" )', 'data-ope'=>"fin", 'onclick'=>"$_eje(this);" ])."
     </div>";
     // contenido 
@@ -178,7 +196,7 @@ class doc {
     if( isset($ele['tit']) ){ $_ .= "
       <header".ele::atr( isset($ele['cab']) ? $ele['cab'] : [] ).">";
         if( is_string($ele['tit']) ){ $_ .= "
-          <h1 class='mar-0'>".tex::let($ele['tit'])."</h1>";
+          <h1>".tex::let($ele['tit'])."</h1>";
         }else{
           $_ .= ele::val_dec(...$ele['tit']);
         }$_ .= "
@@ -256,24 +274,6 @@ class doc {
       }$_.="
     </$eti_sec>";
 
-    return $_;
-  }
-
-  // icono : .doc_ico.$ide
-  static function ico( string $ide, array $ele=[] ) : string {
-    $_ = "<span class='doc_ico'></span>";
-    $doc_ico = doc::_('ico');
-    if( isset($doc_ico[$ide]) ){
-      $eti = 'span';      
-      if( isset($ele['eti']) ){
-        $eti = $ele['eti'];
-        unset($ele['eti']);
-      }
-      if( $eti == 'button' && empty($ele['type']) ) $ele['type'] = "button"; $_ = "
-      <{$eti}".ele::atr(ele::cla($ele,"doc_ico $ide material-icons-outlined",'ini')).">
-        {$doc_ico[$ide]->val}
-      </{$eti}>";
-    }
     return $_;
   }
   
@@ -376,7 +376,7 @@ class doc {
       $ele['ite']['title'] = isset($ele['tit']) ? $ele['tit'] : '';
     }    
     return "
-    <div".ele::atr(ele::cla($ele['ite'],"var",'ini')).">
+    <div".ele::atr(ele::cla($ele['ite'],"doc_var",'ini')).">
       ".( !empty($agr['htm_ini']) ? $agr['htm_ini'] : '' )."
       {$eti_ini}
       {$val_htm}
@@ -498,7 +498,7 @@ class doc {
   }// - Filtros : operador + valor textual + ( totales )
   static function val_ver( string | array $dat = [], array $ele = [], ...$opc ) : string {
     $_ = "
-    <fieldset class='ite'>";      
+    <fieldset class='doc_ite'>";      
     // opciones de filtro por texto
     $_ .= doc::var_ope(['ver','tex'],[
       'ite'=>[ 
@@ -535,15 +535,12 @@ class doc {
     ele::cla($ope['sec'],"doc_tex".( !empty($tip) ? " -$tip" : "" ),'ini');
 
     $_ = "
-    <div".ele::atr($ope['sec']).">";
+    <section".ele::atr($ope['sec']).">";
 
-      if( !empty($ope['cab']) ){
-        $_ .= "
-        <div class='ite esp-ara'>
-          <span></span>
-          ".tex::let($ope['cab'])."
-          <span></span>
-        </div>";
+      if( !empty($ope['cab']) ){ $_ .= "
+        <header class='doc_ite tex-cen'>
+          ".tex::let($ope['cab'])."          
+        </header>";
       }
 
       if( !empty($tip) ){
@@ -558,7 +555,7 @@ class doc {
 
       $_ .= ( is_string($val) ? "<p".ele::atr($ope['tex']).">".tex::let($val)."</p>" : ele::val_dec($val) )."
 
-    </div>";
+    </section>";
     return $_;
   }
 

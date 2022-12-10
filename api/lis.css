@@ -2,29 +2,18 @@
 /* 
   Listados 
 */
-dl, 
-ul, 
-ol {  
+dl, ul, ol {  
   text-align: left;
   margin: .5rem 0;
 }
 
-ul, 
-ol {
+/* 
+  Posiciones
+*/
+ul, ol {
   padding-left: 1rem;
 }
 
-/* de términos */
-dl dt {
-  margin-top: .5rem;
-}
-dl dd { 
-  margin-left: 1rem;  
-}
-
-/* 
-  por estilos 
-*/
 ol.ite-let {
   list-style-type: lower-latin;
 }
@@ -49,7 +38,7 @@ ul.ite-cua {
 }
 
 /* 
-item
+  item horizontal
 */
 ul.ite > li {
   display: flex;
@@ -58,33 +47,67 @@ ul.ite > li {
   margin: .2rem 0;
 }
 
+/* 
+  horizontal
+*/
+ul.doc_val {
+  list-style: none;
+  justify-content: space-around;
+  padding: 0;
+  margin: 0;
+}
+
+/*  
+  de enlaces
+*/
+nav.lis {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+nav.lis > :is(p,a) {
+  padding-left: .5rem;
+  margin: .5rem;
+}
+
+/* de términos */
+dl dt {
+  margin-top: .5rem;
+}
+dl dd { 
+  margin-left: 1rem;  
+}
+
 /* ///////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 /* ///////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 /* 
-anidadas
+Base
 */
 ul.lis {
   list-style: none;
   overflow: auto;
   padding: 0;
 }
-ul.lis ul.lis {
+
+/* 
+Dependencias: con sublistas
+*/
+ul.lis.dep ul.lis {
   overflow: initial;  
   padding-left: 1rem;
-  padding-top: .25rem;
+  padding-bottom: .25rem;
+  margin: 0;
 }
-ul.lis > li.pos {
-  margin-bottom: .5rem;
+ul.lis.dep li > .doc_val {
+  margin: .25rem 0;
 }
-ul.lis:not(.dir-hor) > li.sep  {
+ul.lis.dep:not(.dir-hor) > li.sep  {
   margin-left: 1.5rem;
 }
-ul.lis li > .doc_val {
+ul.lis.dep li > .doc_val {
   border-radius: .2rem;
 }
 
-/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////// */
-/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 /* 
   Indices
 */
@@ -106,24 +129,6 @@ ul.lis.nav li.pos:not(.sep) > div.doc_val:hover {
   border-radius: .25rem;
 }
 
-
-/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////// */
-/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////// */
-/* 
-valores horizontales 
-*/
-ul.val {
-  list-style: none;
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-around;
-  align-items: center;
-  padding: 0;
-  margin: 0;
-}
-
-/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////// */
-/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 /* 
 Barra: con desplazamiento
 */
@@ -138,6 +143,93 @@ ul.lis.bar li[data-pos] {
   width: 100%;
   overflow: auto;
 }
+
+/* 
+  Tablero
+*/
+ul.lis.tab {
+  list-style: none;
+  display: grid;
+  width: fit-content;
+  align-self: center;
+  margin: auto;
+  padding: 0;
+}
+
+table.lis.tab {
+  border-collapse: collapse;
+}
+
+:is(ul,table).lis.tab {
+  overflow: initial;
+  min-width: max-content;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;  
+  text-align: center;
+  font-size: .7rem;
+  transition: background 1s, border 1s;  
+}
+
+/* posiciones y secciones */
+:is(ul,table).lis.tab .pos,
+:is(ul,table).lis.tab .sec {
+  margin: 0;
+  transition: background 1s, border 1s;
+}
+
+ul.lis.tab > li.pos {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  align-content: center; 
+  justify-content: center;
+}
+
+ul.lis.tab > li.sec,
+ul.lis.tab > li.pos {
+  width: 3rem;
+  height: 3rem;
+}
+
+/* Bordes */
+:is(ul,table).lis.tab .pos.bor-1 {
+  border-color: #008000;
+}
+/* - por seleccion */
+:is(ul,table).lis.tab .pos[class*="_val-"][class*="_bor"] {
+  border: 1px solid #991d99;
+}
+
+/* Fondos */
+:is(ul,table).lis.tab > .sec.fon { 
+  z-index: 0;
+  width: 100%; 
+  height: 100%;
+  grid-column: 1/sp; 
+  grid-row: 1/sp;  
+}
+
+/* Efectos */
+:is(ul,table).lis.tab .pos[onclick]:not(.dep):hover {
+  background-color:var(--tra_ros);
+  color:black;
+}
+
+/* Imágenes */
+:is(ul,table).lis.tab :is(.sec,.pos) > .arc_ima {
+  min-width: 100%;
+  height: 100%;
+}
+:is(ul,table).lis.tab td:is(.sec,.pos) > .arc_ima {
+  min-height: 100%;
+}
+
+/* Textos */
+:is(ul,table).lis.tab :is(.sec,.pos) > p {
+  text-align: center;
+}
+
 
 /* ///////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 /* ///////////////////////////////////////////////////////////////////////////////////////////////////////////// */
@@ -199,88 +291,4 @@ div.lis.est > table > tbody > tr[data-opc="tit"] > td {
 }
 div.lis.est > table > tbody > tr[data-ope="lec"][data-opc="det"] > td {
   padding-top: .25rem;
-}
-
-/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////// */
-/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////// */
-/* 
-  Tablero
-*/
-ul.lis.tab {
-  list-style: none;
-  display: grid;
-  width: fit-content;
-  align-self: center;
-  margin: auto;
-  padding: 0;
-}
-
-table.lis.tab {
-  border-collapse: collapse;
-}
-
-:is(ul,table).lis.tab {
-  overflow: initial;
-  min-width: max-content;
-  background-size: 100%;
-  background-repeat: no-repeat;
-  background-position: center;  
-  text-align: center;
-  font-size: .7rem;
-  transition: background 1s, border 1s;  
-}
-
-/* posiciones y secciones */
-:is(ul,table).lis.tab .pos,
-:is(ul,table).lis.tab .sec {
-  margin: 0;
-  transition: background 1s, border 1s;
-}
-
-ul.lis.tab > li.pos:not(.dep) {
-  width: 3rem;
-  height: 3rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center; 
-  align-content: center; 
-  justify-content: center;
-}
-
-/* Bordes */
-:is(ul,table).lis.tab .pos.bor-1 {
-  border-color: #008000;
-}
-/* - por seleccion */
-:is(ul,table).lis.tab .pos[class*="_val-"][class*="_bor"] {
-  border: 1px solid #991d99;
-}
-
-/* Fondos */
-:is(ul,table).lis.tab > .sec.fon { 
-  z-index: 0;
-  width: 100%; 
-  height: 100%;
-  grid-column: 1/sp; 
-  grid-row: 1/sp;  
-}
-
-/* Efectos */
-:is(ul,table).lis.tab .pos[onclick]:not(.dep):hover {
-  background-color:var(--tra_ros);
-  color:black;
-}
-
-/* Imágenes */
-:is(ul,table).lis.tab :is(.sec,.pos) > .arc_ima {
-  min-width: 100%;
-  height: 100%;
-}
-:is(ul,table).lis.tab td:is(.sec,.pos) > .arc_ima {
-  min-height: 100%;
-}
-
-/* Textos */
-:is(ul,table).lis.tab :is(.sec,.pos) > p {
-  text-align: center;
 }

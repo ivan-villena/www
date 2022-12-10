@@ -123,7 +123,7 @@ class app {
     }
 
     // cargo modal de operadores
-    $this->htm['win'] .= doc::win('app_ope',[ 'ico'=>"app_ope", 'nom'=>"Operador" ]);  
+    $this->htm['win'] .= doc::win('doc_ope',[ 'ico'=>"app_ope", 'nom'=>"Operador" ]);  
     
     // ajusto diseño
     $_ver = [];
@@ -281,7 +281,7 @@ class app {
   }
 
   // Articulo por contenido + ...secciones + pie de página
-  public function art( object $nav, string $esq, string $cab ) : string {
+  public function sec_art( object $nav, string $esq, string $cab ) : string {
     $_ = "";      
 
     $agr = ele::htm($nav->ope);
@@ -289,7 +289,7 @@ class app {
     $_art = dat::get('app_art',[ 'ver'=>"`esq`='{$esq}' AND `cab`='{$cab}'", 'ord'=>"`pos` ASC", 'ele'=>"ope" ]);
 
     $_ = "
-    <article class='inf'>";
+    <article class='doc_inf'>";
       // introduccion
       if( !empty($agr['htm_ini']) ){
         $_ .= $agr['htm_ini'];
@@ -305,11 +305,11 @@ class app {
             $art_url = "<a href='".SYS_NAV."/{$art->esq}/{$art->cab}/{$art->ide}'>".tex::let($art->nom)."</a>";
             if( !empty($art->ope['tex']) ){
               $_ .= "            
-              <div class='val nav'>
+              <div class='doc_val nav'>
                 ".doc::val_ico()."
                 {$art_url}
               </div>
-              <div class='dat'>
+              <div class='doc_dat'>
                 ".ele::val($art->ope['tex'])."
               </div>
               ";
@@ -331,7 +331,7 @@ class app {
   }
 
   // Section por indices : section > h2 + ...section > h3 + ...section > ...
-  public function nav( string $ide ) : string {
+  public function sec_nav( string $ide ) : string {
     $_ = "";
     $_ide = explode('.',$ide);
     $_nav = dat::get('app_nav',[ 

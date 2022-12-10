@@ -1,8 +1,6 @@
-
-
 function hol_ini(){
 
-  if( $api_app.uri.cab == "ope" ){
+  if( $sis_log.uri.cab == "ope" ){
 
     // actualizo clase del tablero
     if( $api_lis._tab.dep = $api_lis._tab.val.querySelector(`.pos.ope.sec_par`) ){
@@ -17,7 +15,7 @@ function dia( $dat ){
   // operador : fecha + sincronario
   let $ = doc.var($dat);
   
-  $.uri = `${$api_app.uri.esq}/ope/${ $api_app.uri.cab == 'ope' ? $api_app.uri.art : 'kin_tzo' }`;
+  $.uri = `${$sis_log.uri.esq}/ope/${ $sis_log.uri.cab == 'ope' ? $sis_log.uri.art : 'kin_tzo' }`;
   
   // calendario gregoriano
   if( $api_doc._var.classList.contains('fec') ){

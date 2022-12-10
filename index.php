@@ -22,7 +22,7 @@
 
     // Sesion
     $_SESSION['ubi'] = "America/Argentina/Buenos_Aires";  
-    if( !isset($_SESSION['usu']) ) $_SESSION['usu'] = 1;
+    if( !isset($_SESSION['usu']) ) $_SESSION['usu'] = 0;
     date_default_timezone_set( $_SESSION['ubi'] );
 
     // Inicio
@@ -112,8 +112,8 @@
       <meta name="viewport" content="width = device-width, initial-scale = 1, maximum-scale = 1">
       
       <!-- hojas de estilo -->
+      <link rel='stylesheet' href='<?=SYS_NAV?>index.css'>
       <?=$api_app->rec_cla('css')?>
-      <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Material+Icons+Outlined'>
       <link rel='stylesheet' href='<?=SYS_NAV?>api/sis/css.css'>
 
       <title><?=$api_app->htm['tit']?></title>
@@ -124,11 +124,11 @@
       <!-- Botonera -->
       <header class='doc_bot'>
         
-        <nav class="doc_ope">
+        <nav class='doc_ope'>
           <?= $api_app->htm['ope']['ini']; ?>
         </nav>
 
-        <nav class="doc_ope">
+        <nav class='doc_ope'>
           <?= $api_app->htm['ope']['fin']; ?>
         </nav>
         
@@ -142,20 +142,20 @@
       <?php } ?>
       
       <!-- Contenido -->
-      <main class="doc_sec">
+      <main class='doc_sec'>
         <?= doc::sec( $api_app->htm['sec'], [ 'tit'=>$api_app->htm['tit'] ] ) ?>
       </main>
       
       <?php if( !empty($api_app->htm['bar']) ){ ?>
         <!-- sidebar -->
-        <aside class="doc_bar">
+        <aside class='doc_bar'>
           <?= $api_app->htm['bar'] ?>
         </aside>
       <?php } ?>
 
       <?php if( !empty($api_app->htm['pie']) ){  ?>
         <!-- pie de página -->
-        <footer class="doc_pie">
+        <footer class='doc_pie'>
           <?= $api_app->htm['pie'] ?>
         </footer>
       <?php } ?>
@@ -172,29 +172,33 @@
         // Clases
         const DIS_OCU = "<?=DIS_OCU?>";
         const FON_SEL = "<?=FON_SEL?>";
-        const BOR_SEL = "<?=BOR_SEL?>";        
+        const BOR_SEL = "<?=BOR_SEL?>";
         // Peticiones
-        const $sis_log = { 'php':[], 'jso':[] };
+        const $sis_log = { php:[], jso:[], uri :<?= obj::val_cod( $api_app->uri ) ?>  };
+
       </script>
+      <!-- Módulos -->
       <?=$api_app->rec_cla('jso')?>
-      <script>
-        // cargo objetos
-        <?php 
+      <!-- Cargo Datos -->
+      <script>        
+        <?php // cargo objetos
         $var = get_defined_vars();
         foreach( $api_app->rec['obj']['api'] as $cla ){
           if( isset($var[$obj = "api_{$cla}"]) && is_object($var[$obj]) ){ echo "
             var \${$obj} = new $cla(".( !empty($atr = get_object_vars($var[$obj])) ? obj::val_cod($atr) : "" ).");\n";
-          }          
+          }
         }
         $dat_api = [];
         foreach( ['_ope','_tip','_est_ope'] as $atr ){ $dat_api[$atr] = $api_dat->$atr; }
         ?>
-        var $api_dat = new dat(<?= obj::val_cod($dat_api) ?>);
-        var $api_app = new app({ uri : <?= obj::val_cod( $api_app->uri ) ?> });      
-        // ejecuto codigo por aplicacion
+        var $api_dat = new dat(<?= obj::val_cod($dat_api) ?>);        
+        // codigo por aplicacion
         <?= $api_app->rec['eje'] ?>
-        // inicializo página
-        $api_app.ini();
+        
+      </script>
+      <!-- Inicializo página -->
+      <script src="./index.js"></script>
+      <script>
         console.log(`{-_-}.ini: en ${( ( Date.now() - (  <?= $sis_ini ?> * 1000 ) ) / 1000 ).toFixed(2)} segundos...`);
       </script>
     </body>
