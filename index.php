@@ -22,7 +22,7 @@
 
     // Sesion
     $_SESSION['ubi'] = "America/Argentina/Buenos_Aires";  
-    if( !isset($_SESSION['usu']) ) $_SESSION['usu'] = 0;
+    if( !isset($_SESSION['usu']) ) $_SESSION['usu'] = 1;
     date_default_timezone_set( $_SESSION['ubi'] );
 
     // Inicio
@@ -73,18 +73,15 @@
         $_ .= "ALTER TABLE `api`.`$est` DROP PRIMARY KEY;<br>";
       } 
       */
-      
-      foreach( [ 'ton', 'sel', 'kin'] as $ide ){
-        foreach( hol::_($ide) as $dat ){
-          $img = dat::est_ope('hol',$ide,'val.ima',$dat);
-          $_ .= "UPDATE `cac_react`.`$ide` SET 
-            `img`='$img' 
-          WHERE `ide` = $dat->ide;<br>";
-        }
-      }
 
+      include("./api/hol/_ini.php");
+
+      $_ = todo();
+      
       return $_;
     }
+
+    // cabeceras: tema no-cors
     
     echo obj::val_cod( !obj::val_tip( $eje = eje::val($_REQUEST['_']) ) ? [ '_' => $eje ] : $eje );
 

@@ -150,13 +150,13 @@ class fec {
         $_ = `${$.getFullYear()}/${$.getMonth()+1}/${$.getDate()} ${$.getHours()}:${$.getMinutes()}:${$.getSeconds()}`;  
         break;
       case 'hor': 
-        $_ = `${$_.getHours()}:${$_.getMinutes()}:${$_.getSeconds()}`;
+        $_ = `${$.getHours()}:${$.getMinutes()}:${$.getSeconds()}`;
         break;
       case 'dia': 
-        $_ = `${$_.getFullYear()}/${$_.getMonth()+1}/${$_.getDate()}`;
+        $_ = `${$.getFullYear()}/${$.getMonth()+1}/${$.getDate()}`;
         break;
       case 'sem': 
-        $_ = `${$_.getMonth()+1}/${$_.getDate()}`;
+        $_ = `${$.getMonth()+1}/${$.getDate()}`;
         break;
       }
     }

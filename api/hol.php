@@ -6,8 +6,7 @@ class hol {
   static string $EJE = "hol.";
 
   function __construct(){
-  }
-  // getter
+  }// getter
   static function _( string $ide, mixed $val = NULL ) : string | array | object {
     $_ = [];
     global $api_hol;
@@ -40,188 +39,6 @@ class hol {
       $_ = $_dat;
     }
     return $_;    
-  }// consults sql
-  static function sql( string $ide ) : string {
-    $_ = "";
-    $_ide = explode('_',$ide);
-    $est = array_shift($_ide);
-    $atr = implode('_',$_ide);
-    switch( $est ){
-    case 'cas':
-      if( empty($atr) ){
-        foreach( hol::_('cas') as $_cas ){
-          $_arm = hol::_('arm',$_cas->pos_arm);
-          $_ton = hol::_('ton',$_cas->ton);
-          $_ .= "
-          UPDATE `hol_cas` SET 
-            `nom` = '".tex::let_pal($_arm->des_col)." $_ton->nom'
-          WHERE 
-            `ide` = $_cas->ide;<br>";
-        }
-        break;
-      }
-      break;
-    case 'kin':
-      switch( $atr ){
-      case 'fac':
-        $_lim = [ 20, 20, 19, 20, 20, 19, 20, 20, 20, 19, 20, 20, 19, 20, 20, 19, 20, 20, 19, 20 ];
-        $_add = [ '052','130','208' ];
-        $ini = -3113;
-        foreach( hol::_('kin') as $_kin ){    
-    
-          $fin = $ini + $_lim[intval($_kin->arm_tra_dia)-1];
-    
-          if( in_array($_kin->ide,$_add) ){ $fin ++; }
-    
-          $_ .= "
-          UPDATE `_hol`.`_kin` SET 
-            `fac` = '".fec::año_ran($ini,$fin)."'
-          WHERE `ide`='$_kin->ide'; 
-          <br>";
-    
-          $ini = $fin;
-        }
-        break;
-      case 'enc':
-    
-        $enc_ini = -26000;    
-        foreach( hol::_('kin') as $_kin ){    
-    
-          $enc_fin = $enc_ini + 100;
-    
-          $_ .= "
-          UPDATE `_hol`.`_kin` 
-            SET `enc_ini` = $enc_ini, `enc_fin` = $enc_fin, `enc_ran` = '".fec::año_ran($enc_ini,$enc_fin)."' 
-            WHERE `ide`='$_kin->ide'; 
-          <br>";
-    
-          $enc_ini = $enc_fin;
-    
-        }
-        break;
-      case 'cro_ele':
-        $kin = 185;
-        $kin_lis = "{$kin} - 189";
-        foreach( hol::_('kin_cro_ele') as $_ele ){
-          $_cas = hol::_('cas',$_ele->ide);        
-          $_ton = hol::_('ton',$_ele->ton);
-          $_est = hol::_('kin_cro_est',$_cas->arm);
-          $_ .= "
-          UPDATE `hol_kin_cro_ele` SET
-            `des` = '$_ton->des del Espectro Galáctico ".tex::let_pal($_est->des_col)."',
-            `est` = $_est->ide,
-            `kin` = '$kin_lis'
-          WHERE 
-            `ide` = $_ele->ide;<br>";
-          // contadores
-          $kin = num::val_ran($kin + 5, 260);
-          $kin_lis = num::val($kin,3)." - ".num::val(num::val_ran($kin + 4,260),3);
-        }
-        break;
-      case 'cro_est_dia': 
-        $ton = 1;
-        $pos = 0;
-        foreach( hol::_('kin_cro_est_dia') as $_dia ){
-          $pos++;
-          if( $pos > 5 ){
-            $pos = 0;
-            $ton++;
-          }
-          $_ .= "
-          UPDATE `hol_kin_cro_est_dia` SET
-            `ton` = $ton
-          WHERE 
-            `ide` = $_dia->ide;<br>";
-        }
-        break;
-      case 'nav_ond':
-        foreach( hol::_('kin_nav_ond') as $_ond ){
-          $_sel = hol::_('sel',$_ond->sel);
-          $_cas_arm = hol::_('cas_arm',$_ond->cas_arm);
-          $_ .= "
-          UPDATE `hol_kin_nav_ond` SET
-            `des` = 'Se ".substr($_cas_arm->des_pod,0,-1)." el cuadrante $_cas_arm->des_col ".tex::art_del($_cas_arm->dir)." $_sel->acc_pal $_sel->des_car con el poder ".tex::art_del($_sel->des_pod)." '
-          WHERE 
-            `ide` = $_ond->ide;<br>";
-        }
-        break;
-      case 'arm_cel':
-        $kin = 1;
-        foreach( hol::_('kin_arm_cel') as $cel ){
-          $kin_val = num::val($kin, 3). " - ".num::val($kin = $kin + 3, 3);
-          $_ .= "UPDATE `hol_kin_arm_cel` SET `kin` = '$kin_val' WHERE `ide` = $cel->ide;<br>";
-          $kin++;
-        }
-        break;
-      default:
-        foreach( hol::_('kin') as $kin => $_kin ){
-          $sel = hol::_('sel',$_kin->arm_tra_dia);
-          $cel = hol::_('sel_arm_cel',$sel->arm_cel);
-          $ton = hol::_('ton',$_kin->nav_ond_dia);      
-          // poder del sello x poder del tono
-          if( preg_match("/(o|a)$/i",$ton->nom) ){
-            $pod = explode(' ',$sel->des_pod);
-            $art = $pod[0];
-            if( preg_match("/agua/i",$pod[1]) ){ 
-              $art = 'la';
-            }
-            $pod = "{$sel->des_pod} ".( ( strtolower($art) == 'la' ) ? substr($ton->nom,0,-1).'a' : substr($ton->nom,0,-1).'o' );
-          }else{
-            $pod = "{$sel->des_pod} {$ton->nom}";
-          }
-          // encantamiento del kin
-          $enc = "Yo ".($ton->pod_lec)." con el fin de ".ucfirst($sel->acc).", \n".($ton->acc_lec)." {$sel->des_car}. 
-            \nSello {$cel->nom} ".tex::art_del($sel->des_pod)." con el tono {$ton->nom} ".tex::art_del($ton->des_pod).". ";
-          $enc .= "\nMe guía ";
-          if( $ton->pul_mat == 1 ){
-            $enc .= "mi propio Poder duplicado. ";
-          }else{
-            $gui = hol::_('sel', hol::_('kin',$_kin->par_gui)->arm_tra_dia );
-            $enc .= " el poder ".tex::art_del($gui->des_pod).".";
-          }
-          if( in_array($kin+1, $_kin->val_est) ){
-            $_est = hol::_('kin_cro_est',$_kin->cro_est);
-            $_ele = hol::_('kin_cro_ele',$_kin->cro_ele);
-            $_arm = hol::_('kin_cro_ond',hol::_('ton',$_ele['ton'])->ond_arm);
-            $enc .= "\nSoy un Kin Polar, {$_arm->enc} {$_est->des_col}. ";
-          }
-          if( in_array($kin+1, $_kin->val_pag) ){
-            $enc .= "\nSoy un Portal de Activación Galáctica, entra en mí.";
-          }
-          $_ .= "
-          <p>
-            UPDATE `_hol`.`kin` SET 
-              `pod` = '{$pod}', 
-              `des` = '{$enc}'
-            WHERE 
-              `ide` = '{$_kin->ide}';
-          </p>";
-        }
-        break;
-      }
-      break;
-    case 'psi':
-      switch( $atr ){
-      case 'est_dia': 
-        $ton = 1;
-        $pos = 0;
-        foreach( hol::_('psi_est_dia') as $_dia ){
-          $pos++;
-          if( $pos > 7 ){
-            $pos = 0;
-            $ton ++;
-          }
-          $_ .= "
-          UPDATE `hol_psi_est_dia` SET
-            `ton` = $ton
-          WHERE 
-            `ide` = $_dia->ide;<br>";
-        }
-        break;
-      }
-      break;
-    }
-    return $_;
   }
   
   // busco valores : fecha - sincronario - tránsitos
@@ -342,16 +159,11 @@ class hol {
       if ($año < $_->año ){
 
         while( $año < $_->año ){ 
-
           $año++;
-
           $_->ani++;
-
           foreach( ['fam_2','fam_3','fam_4'] as $atr ){ 
-
             $_->$atr = num::val_ran($_->$atr+105, 260); 
           }
-
           if ($_->ani > 51){ 
             $_->ani = 0; 
             $_->sir++; 
@@ -362,16 +174,11 @@ class hol {
         
         $_->sir = 0;
         while( $_->año < $año ){ 
-
-          $año--; 
-          
+          $año--;           
           $_->ani--;
-
-          foreach( ['fam_2','fam_3','fam_4'] as $atr ){ 
-            
+          foreach( ['fam_2','fam_3','fam_4'] as $atr ){             
             $_->$atr = num::val_ran($_->$atr-105, 260); 
           }
-
           if ($_->ani < 0){ 
             $_->ani = 51; 
             $_->sir--; 
@@ -380,12 +187,9 @@ class hol {
         // sin considerar 0, directo a -1 : https://www.lawoftime.org/esp/IIG/esp-rinri/esp-rinriIII3.1.html
         if( $_->sir == 0 ) $_->sir = -1;
       }      
-      if( $_->dia <= 25 && $_->mes <= 7){
-        
-        $_->ani--;
-        
+      if( $_->dia <= 25 && $_->mes <= 7 ){
+        $_->ani--;        
         foreach( ['fam_3','fam_4'] as $atr ){ 
-
           $_->$atr = num::val_ran($_->$atr-105, 260); 
         }
       }
