@@ -26,7 +26,14 @@ class hol {
           ]);
           break;
         case 'kin':
-          $_ = $_dat[ num::val_ran( num::val_sum($val), 260 ) - 1 ];
+          if( $val == -1 ){
+            $_ = new stdClass;
+            $_->ide = 261;
+            $_->nom = "Hunab Ku";
+            $_->des = "";
+          }else{
+            $_ = $_dat[ num::val_ran( num::val_sum($val), 260 ) - 1 ];
+          }          
           break;
         default:
           if( is_numeric($val) ) $val = intval($val) - 1;
@@ -323,45 +330,46 @@ class hol {
   static function val_dat( string $est, array $dat, array $ope = [] ) : array {
     $_ = [];
 
+    $cue = 0;
     $ini = isset($ope['ini']) ? intval($ope['ini']) : 1;
     $inc = isset($ope['inc']) ? intval($ope['inc']) : 1;
     $val = isset($ope['val']) ? intval($ope['val']) : "+";
-    
-    $cue = 0;
-    // x 260 dias por kin 
-    if( $est == 'kin' && isset($dat['kin']) && isset($dat['fec']) ){
-
-      $cue = 260;
-
-      $fec = fec::val_ope( $dat['fec'], intval( is_object($dat['kin']) ? $dat['kin']->ide : $dat['kin'] ) - 1, '-');
-    }
-    // x 364+1 dias por psi-cronos
-    elseif( $est == 'psi' && isset($dat['psi']) && isset($dat['fec']) ){
-
-      $cue = 364;
-
-      $fec = fec::val_ope( $dat['fec'], intval( is_object($dat['psi']) ? $dat['psi']->ide : $dat['psi'] ) - 1, '-');
-    }
-
-    if( isset($fec) ){
-  
+    $est_kin = ( $est == 'kin' && isset($dat['kin']) );
+    $est_psi = ( $est == 'psi' && isset($dat['psi']) );
+      
+    if( isset($dat['fec']) ){
+      // x 260 dias por kin 
+      if( $est_kin ){
+        $cue = 260;
+        $fec = fec::val_ope( $dat['fec'], intval( is_object($dat['kin']) ? $dat['kin']->ide : $dat['kin'] ) - 1, '-');
+      }
+      // x 364+1 dias por psi-cronos
+      elseif( $est_psi ){
+        $cue = 364;
+        $fec = fec::val_ope( $dat['fec'], intval( is_object($dat['psi']) ? $dat['psi']->ide : $dat['psi'] ) - 1, '-');
+      }
+      // recorro datos    
       for( $pos = 0; $pos < $cue; $pos++ ){
 
-        $_dat = hol::val($fec);
+        // salteo el 29/02: no tiene ni kin, ni psicronos ( día hunab ku )
+        if( preg_match("/^29-02/",$fec) ){
+          $pos--;
+        }
+        else{
+          $_dat = hol::val($fec);      
 
-        $_ []= lis::ope([
-          'fec'=>[ 
-            'dat'=>fec::_('dat',$fec),
-          ],
-          'hol'=>[
-            'kin'=>hol::_('kin',$_dat['kin']), 
-            'psi'=>hol::_('psi',$_dat['psi']) 
-          ]
-        ]);
-
+          $_ []= lis::ope([
+            'fec'=>[ 
+              'dat'=>fec::_('dat',$fec),
+            ],
+            'hol'=>[
+              'kin'=>hol::_('kin',$_dat['kin']),
+              'psi'=>hol::_('psi',$_dat['psi']) 
+            ]
+          ]);
+        }
         $fec = fec::val_ope($fec, $inc, $val);
-      }      
-
+      }
     }
     return $_;
   }// genero transitos por fecha del sincronario

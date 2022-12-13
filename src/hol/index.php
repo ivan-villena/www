@@ -2,7 +2,7 @@
 
   // cargo página 
   $_hol = new stdClass;
-  // Diario : Fecha del Sistema => valor por peticion : hol/$cab/$art/"ide=val"      
+  // - cargo Diario: valor por peticion => { hol/$cab/$art/$ide=val }
   $_hol->val = hol::val( !empty($_SESSION['hol-val']) ? hol::val_cod($_SESSION['hol-val']) : date('Y/m/d') );
   // - cargo identificadores
   $_hol->ide = !empty($_uri->art) ? explode('_',$_uri->art) : [ "kin" ];
@@ -146,8 +146,7 @@
     ob_start();  
     // operador : modulos
     if( $_uri->cab == 'ope' ){
-      // genero datos
-      $_hol->dat = hol::val_dat($_hol->ide[0], $_hol->val);
+      
       // cargo todos los datos utilizados por esquema
       $api_app->rec['dat']['hol'] = [];
 
@@ -156,12 +155,17 @@
         echo doc::tex('err',"No existe el tablero '$_uri->art'");
       }
       else{
+        // genero datos
+        $_hol->dat = hol::val_dat($_hol->ide[0], $_hol->val);
+        
         // operadores del tablero
         $tab_ide = "hol.{$_hol->ide[0]}";  
         if( !( $tab_ope =  dat::est_ope('hol',$_uri->art,'tab') ) ) $tab_ope = [];    
+        
         // inicializo valores
         $tab_ope['val'] = [];
         $ope_atr = ['kin','psi'];
+        
         // fecha => muestro listado por ciclos
         if( !empty( $_hol->val['fec'] ) ){
           // joins
@@ -169,6 +173,7 @@
             'fec'=>["dat"],
             'hol'=>$ope_atr
           ];
+          
           // cargo datos
           $tab_ope['dat'] = $_hol->dat;
           // kin + psi : activo acumulados
