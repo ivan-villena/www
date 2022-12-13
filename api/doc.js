@@ -100,7 +100,7 @@ class doc {
           $.art.dataset.pos = $api_doc._win.querySelectorAll(`article[data-pos]`).length + 1;
           // agrego icono : retroceder
           if( $.art.dataset.pos > 1 ){
-            $.ope = $.art.querySelector('header:first-child > .ope');
+            $.ope = $.art.querySelector('header:first-child > .doc_ope');
             $.ope.insertBefore( ele.val_cod( doc.ico('val_mov-izq',{ 
               'title': "Volver a la pantalla anterior", 'data-ope':"pre", 'onclick':"doc.win(this)" 
             })), $.ope.querySelector('.doc_ico.dat_fin') );

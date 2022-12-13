@@ -1,26 +1,27 @@
 /* 
   Eventos Globales 
 */
+let $ = {};
 // evento-1: teclado
 document.onkeyup = $eve => {
   switch( $eve.keyCode ){
   // Escape => ocultar modales
   case 27: 
     // menú contextual
-    if( $dat.men = document.querySelector(`ul.ope_opc:not(.${DIS_OCU})`) ){
-      $dat.men.classList.add(DIS_OCU);
+    if( $.men = document.querySelector(`ul.ope_opc:not(.${DIS_OCU})`) ){
+      $.men.classList.add(DIS_OCU);
     }
     // operadores
-    else if( $dat.ope = document.querySelector(`nav.ope ~ * > [class*="ide-"]:not(.${DIS_OCU})`) ){
-      $dat.nav = $dat.ope.parentElement.previousElementSibling;
-      if( $doc.ico = $dat.nav.querySelector(`.doc_ico.fon-sel`) ) $doc.ico.click();
+    else if( $.ope = document.querySelector(`nav.ope ~ * > [class*="ide-"]:not(.${DIS_OCU})`) ){
+      $.nav = $.ope.parentElement.previousElementSibling;
+      if( $doc.ico = $.nav.querySelector(`.doc_ico.fon-sel`) ) $doc.ico.click();
     }
     // pantallas
     else if( document.querySelector(`.doc_win > :not(.${DIS_OCU})`) ){
       // oculto la ultima pantalla
-      $dat.art = $api_doc._win.children;          
-      for( let $ide = $dat.art.length-1; $ide >= 0; $ide-- ){
-        const $art = $dat.art[$ide];
+      $.art = $api_doc._win.children;          
+      for( let $ide = $.art.length-1; $ide >= 0; $ide-- ){
+        const $art = $.art[$ide];
         if( !$art.classList.contains(DIS_OCU) ){
           doc.win( $art.querySelector(`header:first-child .doc_ico[data-ope="fin"]`) );
           break;
@@ -42,8 +43,6 @@ document.querySelectorAll('form').forEach(
 /* 
   Inicio
 */
-let $ = {};
-
 // muestro menu
 if( !$sis_log.uri.cab ){
 

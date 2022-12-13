@@ -22,7 +22,7 @@
 
     // Sesion
     $_SESSION['ubi'] = "America/Argentina/Buenos_Aires";  
-    if( !isset($_SESSION['usu']) ) $_SESSION['usu'] = 1;
+    if( !isset($_SESSION['usu']) ) $_SESSION['usu'] = 0;
     date_default_timezone_set( $_SESSION['ubi'] );
 
     // Inicio
@@ -106,7 +106,8 @@
        
     <head>
       <meta charset="UTF-8">
-      <meta name="viewport" content="width = device-width, initial-scale = 1, maximum-scale = 1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
       <!-- hojas de estilo -->
       <link rel='stylesheet' href='<?=SYS_NAV?>index.css'>
@@ -142,6 +143,7 @@
       <main class='doc_sec'>
         <?= doc::sec( $api_app->htm['sec'], [ 'tit'=>$api_app->htm['tit'] ] ) ?>
       </main>
+      
       
       <?php if( !empty($api_app->htm['bar']) ){ ?>
         <!-- sidebar -->
@@ -194,10 +196,10 @@
         
       </script>
       <!-- Inicializo página -->
-      <script src="./index.js"></script>
+      <script src="<?=SYS_NAV?>index.js"></script>
       <script>
         console.log(`{-_-}.ini: en ${( ( Date.now() - (  <?= $sis_ini ?> * 1000 ) ) / 1000 ).toFixed(2)} segundos...`);
       </script>
     </body>
 
-  </html>      
+  </html>

@@ -581,7 +581,7 @@
           "num": 13
         },
         "inf":{
-          "atr": [ "des_car", "des_acc", "des_pod" ],
+          "atr": [ "des_car", "des_acc", "des_pod" ],          
           "tab": [ "hol.ton.ond", 
             { 
               "val":{ "pos":"()($)ide()" }, 
@@ -621,92 +621,92 @@
         }
     }' ),
     -- aventura de la onda encantada
-    ('hol','ton_ond', '{
-        "atr":{ 
-          "ide":{ "min":1, "max":4, "dat":"hol.ton_ond" },
-          "ton":{ "dat":"hol.ton" }
-        },
-        "val":{ 
-          "nom": "Aventura de la Onda Encantada #()($)ide() de 4.",
-          "des": "()($)des().",
-          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/ton/ond/()($)ide().png);",
-          "col": 4,
-          "num": 4
-        },
-        "inf":{ 
-          "opc": [ "des" ],
-          "htm" :{ "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost//hol/bib/enc#_03-12-\'>Onda Encantada de la Aventura</a> en el Encantamiento del Sueño" },
-          "fic": [ "ton" ]
-        },
-        "opc":{ 
-          "ima": [ "ide" ] 
-        }          
-    }' ),
+      ('hol','ton_ond', '{
+          "atr":{ 
+            "ide":{ "min":1, "max":4, "dat":"hol.ton_ond" },
+            "ton":{ "dat":"hol.ton" }
+          },
+          "val":{ 
+            "nom": "Aventura de la Onda Encantada #()($)ide() de 4.",
+            "des": "()($)des().",
+            "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/ton/ond/()($)ide().png);",
+            "col": 4,
+            "num": 4
+          },
+          "inf":{ 
+            "opc": [ "des" ],
+            "htm" :{ "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost//hol/bib/enc#_03-12-\'>Onda Encantada de la Aventura</a> en el Encantamiento del Sueño" },
+            "fic": [ "ton" ]
+          },
+          "opc":{ 
+            "ima": [ "ide" ] 
+          }          
+      }' ),
     -- pulsares
-    ('hol','ton_dim', '{
-        "atr":{
-          "ide":{ "min":1, "max":4, "dat":"hol.ton_dim" },
-          "ton":{ "dat":"hol.ton" }
-        },
-        "val":{ 
-          "nom": "Pulsar Dimensional #()($)ide() de 4: ()($)nom().",
-          "des": "()($)des_ond(). ()($)des_dim() dimensión, Campo de aplicación ()($)des_cam().", 
-          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/ton/dim/()($)ide().png);",
-          "col": 4
-        },
-        "inf":{ 
-          "atr": [ "des_dim", "des_cam" ],
-          "htm" :{ "eti":"p", "class":"tit", "htm":"El <a target=\'_blank\' href=\'http://localhost//hol/bib/enc#_03-13-\'>Código pulsar</a> en el Encantamiento del Sueño" },
-          "lec-tit": [ "des_ond" ],
-          "fic": [ "ton" ]
-        },
-        "opc":{ 
-          "ima": [ "ide" ] 
-        }          
-    }' ),
-    ('hol','ton_mat', '{
-        "atr":{ 
-          "ide":{ "min":1, "max":5, "dat":"hol.ton_mat" },
-          "ton":{ "dat":"hol.ton" }
-        },      
-        "val":{ 
-          "nom": "Pulsar Matiz #()($)ide() de 5: ()($)nom().",
-          "des": "Código: ()($)des_cod(). Pulsares Dimensionales: ()($)des_dim().", 
-          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/ton/mat/()($)ide().png);",
-          "col": 5
-        },
-        "inf":{ 
-          "atr": [ "des_cod", "des_dim" ],
-          "htm" :{ "eti":"p", "class":"tit", "htm":"El <a target=\'_blank\' href=\'http://localhost//hol/bib/enc#_03-13-\'> Código pulsar</a> en el Encantamiento del Sueño" },
-          "lec-tit": [ "des_ond" ],
-          "fic": [ "ton" ]
-        },
-        "opc":{ 
-          "ima": [ "ide" ]
-        }
-    }' ),
-    ('hol','ton_sim', '{
-        "atr":{
-          "ide":{ "min":1, "max":7, "dat":"hol.ton_sim" },
-          "inv":{ "min":1, "max":13, "dat":"hol.ton" },
-          "ton":{ "dat":"hol.ton" }
-        },
-        "val":{ 
-          "nom": "Simetría Especular #()($)ide() de 7: ()($)nom().",
-          "des": "()($)des()",
-          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/ton/sim/()($)ide().png);",
-          "col": 7
-        },
-        "inf":{ 
-          "opc": [ "des" ],
-          "htm" :{ "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost//hol/bib/fac#_04-04-01-02-\'>Simetría Especular</a> en el Factor Maya" },
-          "lec-tit": [ "fac_des" ],
-          "fic": [ "ton" ]
-        },
-        "opc":{ 
-          "ima": [ "ide" ]
-        }
-    }' )
+      ('hol','ton_dim', '{
+          "atr":{
+            "ide":{ "min":1, "max":4, "dat":"hol.ton_dim" },
+            "ton":{ "dat":"hol.ton" }
+          },
+          "val":{ 
+            "nom": "Pulsar Dimensional #()($)ide() de 4: ()($)nom().",
+            "des": "()($)des_ond(). ()($)des_dim() dimensión, Campo de aplicación ()($)des_cam().", 
+            "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/ton/dim/()($)ide().png);",
+            "col": 4
+          },
+          "inf":{ 
+            "atr": [ "des_dim", "des_cam" ],
+            "htm" :{ "eti":"p", "class":"tit", "htm":"El <a target=\'_blank\' href=\'http://localhost//hol/bib/enc#_03-13-\'>Código pulsar</a> en el Encantamiento del Sueño" },
+            "lec-tit": [ "des_ond" ],
+            "fic": [ "ton" ]
+          },
+          "opc":{ 
+            "ima": [ "ide" ] 
+          }          
+      }' ),
+      ('hol','ton_mat', '{
+          "atr":{ 
+            "ide":{ "min":1, "max":5, "dat":"hol.ton_mat" },
+            "ton":{ "dat":"hol.ton" }
+          },      
+          "val":{ 
+            "nom": "Pulsar Matiz #()($)ide() de 5: ()($)nom().",
+            "des": "Código: ()($)des_cod(). Pulsares Dimensionales: ()($)des_dim().", 
+            "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/ton/mat/()($)ide().png);",
+            "col": 5
+          },
+          "inf":{ 
+            "atr": [ "des_cod", "des_dim" ],
+            "htm" :{ "eti":"p", "class":"tit", "htm":"El <a target=\'_blank\' href=\'http://localhost//hol/bib/enc#_03-13-\'> Código pulsar</a> en el Encantamiento del Sueño" },
+            "lec-tit": [ "des_ond" ],
+            "fic": [ "ton" ]
+          },
+          "opc":{ 
+            "ima": [ "ide" ]
+          }
+      }' ),
+      ('hol','ton_sim', '{
+          "atr":{
+            "ide":{ "min":1, "max":7, "dat":"hol.ton_sim" },
+            "inv":{ "min":1, "max":13, "dat":"hol.ton" },
+            "ton":{ "dat":"hol.ton" }
+          },
+          "val":{ 
+            "nom": "Simetría Especular #()($)ide() de 7: ()($)nom().",
+            "des": "()($)des()",
+            "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/ton/sim/()($)ide().png);",
+            "col": 7
+          },
+          "inf":{ 
+            "opc": [ "des" ],
+            "htm" :{ "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost//hol/bib/fac#_04-04-01-02-\'>Simetría Especular</a> en el Factor Maya" },
+            "lec-tit": [ "fac_des" ],
+            "fic": [ "ton" ]
+          },
+          "opc":{ 
+            "ima": [ "ide" ]
+          }
+      }' )
   ;
   DELETE FROM `dat_est` WHERE `esq`='hol' AND `ide` LIKE 'sel%'; INSERT INTO `dat_est` VALUES
 
@@ -962,7 +962,7 @@
           "num": 4
         },
         "inf":{ 
-          "atr": [ "dir", "pod", "dia" ],
+          "atr": [ "des_dir", "des_pod", "des_dia" ],
           "fic": [ "sel" ]
         },
         "opc":{ 
@@ -1039,7 +1039,7 @@
           "num": 4
         },
         "inf":{ 
-          "atr": [ "col", "men" ],
+          "atr": [ "des_col", "des_men" ],
           "lec": [ "des" ],
           "htm-1": [ { "eti":"p", "class":"tit", "htm":"Sellos Solares" } ],
           "fic-1": [ "sel" ],
@@ -1171,13 +1171,13 @@
           "col": 4,
           "num": 52
         },
-        "inf":{ 
+        "inf":{           
           "tab": [ "hol.cas.ond", { 
             "val":{ "pos":"()($)ide()" }, 
             "pos":{ "bor":1, "ima":"hol.cas.ton", "num":"hol.cas.ide", "col":"hol.cas.pos_arm" },
             "opc":{ "pul_dim":1, "pul_mat":1, "pul_sim":1 }
           }],
-          "fic": [ "arm", "ond", "ton" ],          
+          "fic": [ "arm", "ond", "ton" ],
           "htm":{ "eti":"p", "class":"tit", "htm":"Los Preceptos del Recorrido por el Castillo" },
           "lec-tit": [ "lec" ]
         },
@@ -1188,41 +1188,43 @@
           "num": [ "ide", "arm", "pos_arm", "ton_arm" ]
         }
     }' ),
-    ('hol','cas_arm', '{
-        "atr":{ 
-          "ide":{ "min":1, "max":4, "dat":"hol.cas_arm" },
-          "cas":{ "dat":"hol.cas" }
-        },
-        "val":{ 
-          "nom": "Cuadrante #()($)ide() de 4: ()($)nom().",
-          "des": "()($)des().",
-          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/cas/arm/()($)ide().png);",
-          "col": 4,
-          "num": 4
-        },
-        "inf":{ 
-          "opc": [ "des" ],
-          "atr": [ "col", "dir", "pod", "pol", "dia" ],
-          "fic": [ "cas" ]
-        }
-    }'),
-    ('hol','cas_ond', '{
-        "atr":{ 
-          "ide":{ "min":1, "max":4, "dat":"hol.cas_ond" },
-          "ton":{ "dat":"hol.ton" }
-        },
-        "val":{ 
-          "nom": "Aventura de la Onda Encantada #()($)ide() de 4: ()($)nom().",
-          "des": "()($)des().",
-          "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/cas/ond/()($)ide().png);",
-          "col": 4,
-          "num": 4
-        },
-        "inf":{ 
-          "opc": [ "des" ],
-          "fic": [ "ton" ]
-        }
-    }')
+    -- cuadrante
+      ('hol','cas_arm', '{
+          "atr":{ 
+            "ide":{ "min":1, "max":4, "dat":"hol.cas_arm" },
+            "cas":{ "dat":"hol.cas" }
+          },
+          "val":{ 
+            "nom": "Cuadrante #()($)ide() de 4: ()($)nom().",
+            "des": "()($)des().",
+            "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/cas/arm/()($)ide().png);",
+            "col": 4,
+            "num": 4
+          },
+          "inf":{ 
+            "opc": [ "des" ],
+            "atr": [ "col", "dir", "pod", "pol", "dia" ],
+            "fic": [ "cas" ]
+          }
+      }'),
+    -- aventura
+      ('hol','cas_ond', '{
+          "atr":{ 
+            "ide":{ "min":1, "max":4, "dat":"hol.cas_ond" },
+            "ton":{ "dat":"hol.ton" }
+          },
+          "val":{ 
+            "nom": "Aventura de la Onda Encantada #()($)ide() de 4: ()($)nom().",
+            "des": "()($)des().",
+            "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/cas/ond/()($)ide().png);",
+            "col": 4,
+            "num": 4
+          },
+          "inf":{ 
+            "opc": [ "des" ],
+            "fic": [ "ton" ]
+          }
+      }')
   ;
   DELETE FROM `dat_est` WHERE `esq`='hol' AND `ide` LIKE 'chi%'; INSERT INTO `dat_est` VALUES
 
@@ -1458,9 +1460,9 @@
             "col": 7
           },
           "inf":{
+            "atr": [ "tit", "may", "fac" ],
             "tab": [ "hol.kin.arm_tra", { "sec":{ "par":1 }, "pos":{ "ima":"hol.kin.ide" } } ],
-            "htm-1":{ "eti":"p", "class":"tit", "htm":"El <a target=\'_blank\' href=\'hol/bib/fac#_05-04-\'>Rayo de Sincronización Galáctica</a> en el Factor Maya" },
-            "lis-1-atr": [ "tit", "may", "fac" ],
+            "htm-1":{ "eti":"p", "class":"tit", "htm":"El <a target=\'_blank\' href=\'hol/bib/fac#_05-04-\'>Rayo de Sincronización Galáctica</a> en el Factor Maya" },            
             "lec-1-tit": [ "lec" ],
             "htm-2":{ "eti":"p", "class":"tit", "htm":"El <a target=\'_blank\' href=\'hol/bib/enc#_04-\'>Índice Armónico</a> en el Encantamiento del Sueño" },
             "lec-tit": [ "des" ],
@@ -1486,8 +1488,8 @@
           },        
           "inf":{ 
             "opc": [ "des", "des-cit" ],
-            "fic": [ "tra", "cel", "ton", "chi" ],
             "tab": [ "hol.kin.arm_cel", { "sec":{ "par":1 }, "pos":{ "ima":"hol.kin.ide" } } ],
+            "fic": [ "tra", "cel", "ton", "chi" ],            
             "htm-2": [ { "eti":"p", "class":"tit", "htm":"Kines" } ],
             "fic-2": [ "kin" ]
           }
@@ -1514,10 +1516,10 @@
           "num": 4,
           "col": 4            
         },
-        "inf":{ 
+        "inf":{
           "atr": [ "nom", "des", "det" ],
+          "tab": [ "hol.kin.cro_est", { "pos":{ "ima":"hol.kin.ide" } } ],          
           "lec": [ "fac_des" ],
-          "tab": [ "hol.kin.cro_est", { "pos":{ "ima":"hol.kin.ide" } } ],
           "htm-1": [ { "eti":"p", "class":"tit", "htm":"Elementos Galácticos" } ],
           "fic-1": [ "ele" ]
         },
@@ -1558,10 +1560,10 @@
           "col": 4            
         },
         "inf":{ 
-          "opc": [ "des-cit" ],            
+          "opc": [ "des-cit" ],
+          "tab": [ "hol.kin.cro_ele", { "pos":{ "ima":"hol.kin.ide" } } ],
           "fic": [ "ele", "ton", "ond", "arm" ],
           "lec": [ "cas_lec" ],
-          "tab": [ "hol.kin.cro_ele", { "pos":{ "ima":"hol.kin.ide" } } ],          
           "htm-2": [ { "eti":"p", "class":"tit", "htm":"Kines" } ],
           "fic-2": [ "kin" ]
         }
@@ -1608,7 +1610,7 @@
         },
         "inf":{
           "tab": [ "hol.kin.nav_ond", { "sec":{ "par":1 }, "pos":{ "ima":"hol.kin.ide" } } ],
-          "tit-atr": [ "Ciclos del Tiempo", [ "fac", "enc" ] ],
+          "atr": [ "fac", "enc" ],
           "htm-1" :{ "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost//hol/bib/fac#_05-07-01-\'>Ciclos Ahau</a> en el Factor Maya" },
           "lec-1-tit": [ "fac_des" ],
           "htm-2" :{ "eti":"p", "class":"tit", "htm":"Las <a target=\'_blank\' href=\'http://localhost//hol/bib/enc#_03-06-\'>Ondas Encantadas de la Nave del Tiempo</a> en el Encantamiento del Sueño" },

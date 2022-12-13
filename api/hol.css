@@ -690,7 +690,7 @@ ul.lis.tab.kin.arm .pos.ope {
 }
 
 /* Trayectoria */
-ul.lis.tab.kin.arm_tra li.pos.ope {
+ul.lis.tab.kin.arm_tra li.pos:not(.lis,.dep) {
   width: 2rem;
   height: 2rem;
 }

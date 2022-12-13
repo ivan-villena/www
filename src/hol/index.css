@@ -27,6 +27,7 @@ aside.doc_pan > .ide-val > .ide-cue > ul {
 
 /* Articulo: Tableros */
 main.doc_sec > article {
+  max-width: -moz-fit-content;
   max-width: fit-content;
   padding: 0;
   border: initial;

@@ -43,23 +43,23 @@ form.dat {
   margin: auto;
 }
 
-form.dat :is(fieldset,div).var {
+form.dat :is(fieldset,div).doc_var {
   flex-grow: 2;
   flex-direction: column;
   align-items: start;
   margin: .5rem;
 }
 
-form.dat :is(fieldset,div).var label[for] {
+form.dat :is(fieldset,div).doc_var label[for] {
   margin: 0;
   color: var(--let_ide);
   padding: .5rem;
 }
 
-form.dat :is(fieldset,div).var select,
-form.dat :is(fieldset,div).var textarea,
-form.dat :is(fieldset,div).var input:not([type='checkbox']):not([type='radio']) {
-  width: 100%; width:-webkit-fill-available; width:-moz-available;  
+form.dat :is(fieldset,div).doc_var select,
+form.dat :is(fieldset,div).doc_var textarea,
+form.dat :is(fieldset,div).doc_var input:not([type='checkbox']):not([type='radio']) {
+  width: 100%;
   border: 0;
   border-radius: 0;
   border-bottom: 1px solid;

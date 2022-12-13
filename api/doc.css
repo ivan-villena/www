@@ -90,6 +90,7 @@
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
+  width: -moz-fit-content;
   width: fit-content;
   margin: 0;
   padding: 0;
@@ -228,8 +229,8 @@ legend {
   align-items: center;
 }
 label {
-  min-width: fit-content;
   min-width: -moz-fit-content;
+  min-width: fit-content;
   margin: .25rem;
 }
 legend {

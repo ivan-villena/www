@@ -3,6 +3,7 @@
 */
 time {  
   display: flex;
+  max-width: -moz-fit-content;
   max-width: fit-content;
   color: var(--let_num);
 }

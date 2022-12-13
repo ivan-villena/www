@@ -968,7 +968,7 @@ class dat {
       // imagen + atributos | lectura
       if( !empty($_val['ima']) || ( !empty($_inf['atr']) || !empty($_inf['cit']) ) )
       $_ .= "
-      <div class='doc_val jus-cen'>";
+      <div class='doc_val jus-cen mar_arr-1'>";
         if( !empty($_val['ima']) ){ // 'onclick'=>FALSE
           $_ .= arc::ima($esq,$est,$_dat,[ 'class'=>"mar_der-2" ]);
         }

@@ -100,12 +100,10 @@ ul.lis.dep ul.lis {
 }
 ul.lis.dep li > .doc_val {
   margin: .25rem 0;
-}
-ul.lis.dep:not(.dir-hor) > li.sep  {
-  margin-left: 1.5rem;
-}
-ul.lis.dep li > .doc_val {
   border-radius: .2rem;
+}
+ul.lis.dep:not(.dir-hor) > li li.sep  {
+  margin-left: 1.5rem;
 }
 
 /* 
@@ -150,6 +148,7 @@ ul.lis.bar li[data-pos] {
 ul.lis.tab {
   list-style: none;
   display: grid;
+  width: -moz-fit-content;
   width: fit-content;
   align-self: center;
   margin: auto;
@@ -186,8 +185,8 @@ ul.lis.tab > li.pos {
   justify-content: center;
 }
 
-ul.lis.tab > li.sec,
-ul.lis.tab > li.pos {
+.lis.tab > .sec,
+.lis.tab > .pos:not(.lis.tab,.dep) {
   width: 3rem;
   height: 3rem;
 }
