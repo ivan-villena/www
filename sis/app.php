@@ -267,7 +267,7 @@ class sis_app {
         </a>";
       }
       $_lis []= [ 
-        'ite'=>[ 'eti'=>"p", 'class'=>"ide-$_cab->ide mar_ver-1 tex-tit tex-4", 'htm'=>$ite_ico.api_tex::let($_cab->nom) ],
+        'ite'=>[ 'eti'=>"p", 'class'=>"ide-$_cab->ide mar_ver-1 tex-tit tex-enf", 'htm'=>$ite_ico.api_tex::let($_cab->nom) ],
         'lis'=>$_lis_val 
       ];
     }

@@ -2,22 +2,32 @@
 
 function hol_ini(){
 
-  if( $sis_log.uri.cab == "ope" ){
+  // operadores
+  if( ['kin','psi'].includes($sis_log.uri.cab) ){
 
     // actualizo clase del tablero
-    if( $api_lis._tab.dep = $api_lis._tab.val.querySelector(`.pos.ope.sec_par`) ){
+    if( $api_lis._tab.dep = $api_lis._tab.val.querySelector(`.pos.ope.dep`) ){
   
-      $api_lis._tab.cla = `.pos.ope.sec_par > .lis.tab[class*="_par"] > .pos[class*="ide-"]`;
+      $api_lis._tab.cla = `.pos.ope.dep > .lis.tab[class*="_par"] > .pos[class*="ide-"]`;
     }
+
+    // inicializo: tablero + listado
+    api_lis.tab_ini('api_hol');
+    api_lis.est_ini();
   }
+
 }
 
 // proceso diario
 function hol_dia( $dat ){
+
   // operador : fecha + sincronario
   let $ = api_dat.var($dat);
   
-  $.uri = `${$sis_log.uri.esq}/ope/${ $sis_log.uri.cab == 'ope' ? $sis_log.uri.art : 'kin_tzo' }`;
+  $.uri_cab = ['kin','psi'].includes($sis_log.uri.cab) ? $sis_log.uri.cab : 'kin';
+  $.uri_art = $sis_log.uri.art ? $sis_log.uri.art : 'tzo';
+
+  $.uri = `${$sis_log.uri.esq}/${$.uri_cab}/${$.uri_art}`;
   
   // calendario gregoriano
   if( $api_doc._var.classList.contains('fec') ){

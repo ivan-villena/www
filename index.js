@@ -44,41 +44,29 @@ document.querySelectorAll('form').forEach(
 /* 
   Inicio
 */
-$.cab = $sis_log.uri.cab;
-$.art = $sis_log.uri.art;
 // muestro menu
-if( !$.cab ){
+if( !( $.cab = $sis_log.uri.cab ) ){
 
-  ( $.bot_ini = $api_doc._bot.querySelector('.fig_ico.ide-app_cab') ) && $.bot_ini.click();
+  if( $.bot_ini = $api_doc._bot.querySelector('.fig_ico.ide-app_cab') ) $.bot_ini.click();
 }
 // articulo
 else{
-
   // Menu: expando seleccionado
   if( $.app_cab = $api_doc._pan.querySelector(`.ide-app_cab p.ide-${$.cab}`) ){ 
     $.app_cab.click();
-    // Pinto fondo si hay opcion seleccionada
-    if( $.art && ( $.app_art = $.app_cab.parentElement.nextElementSibling.querySelector(`a[href$="/${$.art}"]`) ) ){
-      $.app_art.parentElement.classList.add('fon-sel');
+    if( $.art = $sis_log.uri.art ){
+      // Pinto fondo si hay opcion seleccionada
+      if( $.app_art = $.app_cab.parentElement.nextElementSibling.querySelector(`a[href$="/${$.art}"]`) ){
+        $.app_art.parentElement.classList.add('fon-sel');
+      }
+      // Índice: hago click y muestro panel
+      if( $.art && ( $.art_nav = $api_doc._pan.querySelector('.ide-app_nav ul.lis.nav') ) ){
+        // inicializo enlace local
+        api_lis.nav_tog($.art_nav);
+        // muestro panel
+        api_doc.pan('app_nav');
+      }        
     }
   }
-  
-  // Operadores
-  if( $.cab == 'ope' ){
-    // inicializo: tablero + listado
-    if( $.cla_app = eval($.cla = `api_${$sis_log.uri.esq}`) ){      
-      api_lis.tab_ini($.cla);
-      api_lis.est_ini();
-    }
-  }
-  // Artículo
-  else if( $.art ){    
-    // Índice: hago click y muestro panel
-    if( $.art_nav = $api_doc._pan.querySelector('.ide-app_nav ul.lis.nav') ){
-      // inicializo enlace local
-      api_lis.nav_tog($.art_nav);
-      // muestro panel
-      api_doc.pan('app_nav');
-    }
-  }
+
 }
