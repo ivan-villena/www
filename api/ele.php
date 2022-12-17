@@ -1,9 +1,9 @@
 <?php
 // Elemento : <eti ...atr="val"> ...htm + ...tex </eti>
-class ele {
+class api_ele {
 
-  static string $IDE = "ele-";
-  static string $EJE = "ele.";
+  static string $IDE = "api_ele-";
+  static string $EJE = "api_ele.";
 
   function __construct(){
   }
@@ -12,7 +12,7 @@ class ele {
     $_ = [];    
     global $api_ele;
     $est = "_$ide";
-    if( !isset($api_ele->$est) ) $api_ele->$est = dat::est_ini(DAT_ESQ,"ele{$est}");
+    if( !isset($api_ele->$est) ) $api_ele->$est = api_dat::est_ini(DAT_ESQ,"ele{$est}");
     $_dat = $api_ele->$est;
     
     if( !empty($val) ){
@@ -43,21 +43,21 @@ class ele {
         $_ .= $ele;
       }
       else{
-        $ele = obj::val_dec($ele,[],'nom');
-        // por icono
+        $ele = api_obj::val_dec($ele,[],'nom');
+        // 1- icono
         if( isset($ele['ico']) ){
           $ico_ide = $ele['ico'];
           unset($ele['ico']);
-          $_ .= doc::ico($ico_ide,$ele);
+          $_ .= api_fig::ico($ico_ide,$ele);
         }
-        // por imagen
+        // 2- imagen
         elseif( isset($ele['ima']) ){
           $est = explode('.',$ele['ima']);
           unset($ele['ima']);
           array_push($est,!empty($ele['ide'])?$ele['ide']:0,$ele);
-          $_ .= arc::ima(...$est);
+          $_ .= api_fig::ima(...$est);
         }
-        // por tipo de valor
+        // 3- variable
         elseif( isset($ele['tip']) ){
           $tip = explode('_',$ele['tip']);
           unset($ele['tip']);
@@ -69,17 +69,17 @@ class ele {
           }
           // funciones
           $eje = array_shift($tip);
-          if( class_exists($cla_ide = $eje) && method_exists($cla_ide,'var') ){
+          if( class_exists($cla = "api_$eje") && method_exists($cla,'var') ){
 
-            $_ = $eje::var( empty($tip) ? 'val' : implode('_',$tip), $val, $ele );
+            $_ = $cla::var( empty($tip) ? 'val' : implode('_',$tip), $val, $ele );
           }
           else{
-            $_ = "<span class='err' title='no existe el operador $cla_ide'></span>";
+            $_ = "<span class='err' title='no existe el operador $cla'></span>";
           }                    
         }
-        // por etiqueta
+        // 4- etiqueta
         else{
-          $_ .= ele::eti($ele);
+          $_ .= api_ele::eti($ele);
         }
       }
     }
@@ -89,11 +89,11 @@ class ele {
     $_ = $ele;
     // convierto "" => []
     if( is_string($ele) ){
-      $_ = obj::val_dec($ele,$dat,'nom');
+      $_ = api_obj::val_dec($ele,$dat,'nom');
     }
     // convierto {} => []
     elseif( is_object($ele) ){
-      $_ = obj::val_nom($ele);
+      $_ = api_obj::val_nom($ele);
     }
     // proceso atributos con variables : ()($)nom()
     elseif( is_array($_) && isset($dat) ){
@@ -102,7 +102,7 @@ class ele {
 
         if( is_string($atr) ){ // && preg_match("/\(\)\(\$\).*\(\)/",$atr) 
 
-          $atr = obj::val($dat,$atr);            
+          $atr = api_obj::val($dat,$atr);            
         }
       }
     }
@@ -112,11 +112,11 @@ class ele {
     // proceso opciones
     $dat = isset($ope['dat']) ? $ope['dat'] : NULL;
     // si es "", convierto a []
-    $_ = ele::val_dec($ele,$dat);
+    $_ = api_ele::val_dec($ele,$dat);
     // recorro 2ºs elementos
-    foreach( lis::val_ite($lis) as $ele ){
+    foreach( api_lis::val_ite($lis) as $ele ){
       // recorro atributos
-      foreach( ele::val_dec($ele,$dat) as $atr => $val ){
+      foreach( api_ele::val_dec($ele,$dat) as $atr => $val ){
         // agrego
         if( !isset($_[$atr]) ){
           $_[$atr] = $val;
@@ -124,11 +124,11 @@ class ele {
         // actualizo
         else{
           switch($atr){
-          case 'onclick':   ele::eje($_,'cli',$val); break;
-          case 'onchange':  ele::eje($_,'cam',$val); break;
-          case 'oninput':   ele::eje($_,'inp',$val); break;
-          case 'class':     ele::cla($_,$val); break;// agrego con separador: " "
-          case 'style':     ele::css($_,$val); break;// agrego con separador: ";"
+          case 'onclick':   api_ele::eje($_,'cli',$val); break;
+          case 'onchange':  api_ele::eje($_,'cam',$val); break;
+          case 'oninput':   api_ele::eje($_,'inp',$val); break;
+          case 'class':     api_ele::cla($_,$val); break;// agrego con separador: " "
+          case 'style':     api_ele::css($_,$val); break;// agrego con separador: ";"
           default:          $_[$atr] = $val; break;// reemplazo
           }
         }
@@ -150,13 +150,17 @@ class ele {
       $htm = $ele['htm'];
       unset($ele['htm']);
     }
+    if( isset($ele['val']) ){
+      if( !isset($ele['value']) ) $ele['value'] = $ele['val'];
+      unset($ele['val']);
+    }
     if( !is_string($htm) ){
       $htm_lis = "";
-      foreach( lis::val_ite($htm) as $e ){ $htm_lis .= is_string($e) ? $e : ele::val($e); }
+      foreach( api_lis::val_ite($htm) as $e ){ $htm_lis .= is_string($e) ? $e : api_ele::val($e); }
       $htm = $htm_lis;
     }
     $_ = "
-    <{$eti}".ele::atr($ele).">
+    <{$eti}".api_ele::atr($ele).">
       ".( !in_array($eti,['input','img','br','hr']) ? "{$htm}
     </{$eti}>" : '' );
     return $_;
@@ -200,7 +204,7 @@ class ele {
         if( is_string($ele[$tip]) ){
           $_[$tip] = $ele[$tip];
         }else{
-          $_[$tip] = ele::val($ele[$tip]);
+          $_[$tip] = api_ele::val($ele[$tip]);
         }
         unset($ele[$tip]);
       }
@@ -263,7 +267,7 @@ class ele {
 
       $_ = [];
   
-      $ele = obj::val_dec($ele,[],'nom');
+      $ele = api_obj::val_dec($ele,[],'nom');
   
       if( isset($ele['class']) ){
   
@@ -277,7 +281,7 @@ class ele {
       
       if( in_array('eli',$opc) ){
 
-        foreach( lis::val_ite($val) as $v ){
+        foreach( api_lis::val_ite($val) as $v ){
           
         }    
       }
@@ -330,7 +334,7 @@ class ele {
       // por atributos
       if( is_array($val) ){
 
-        $css = ele::css($ele);
+        $css = api_ele::css($ele);
 
         if( in_array('eli',$opc) ){
 

@@ -2,7 +2,7 @@
 'use strict';
 
 // Objeto : [ ...val ], [ ...nom => val ], { ...atr : val }
-class obj {
+class api_obj {
 
   constructor( $dat = {} ){
     
@@ -71,7 +71,7 @@ class obj {
     if( typeof($dat) == 'string' ){
   
       if( !!$ope && /\(\)\(\$\).+\(\)/.test($dat) ){
-        $dat = obj.val($ope,$dat);
+        $dat = api_obj.val($ope,$dat);
       }
       // json : {} + []
       if( /^({|\[).*(}|\])$/.test($dat) ){ 
@@ -118,7 +118,7 @@ class obj {
 
     for( const $i in $dat ){ const $v = $dat[$i];
 
-      $.tip = dat.tip($v);
+      $.tip = api_dat.tip($v);
 
       $.ite = document.createElement('li');
       $.ite.classList.add('mar_ver-1');
@@ -127,7 +127,7 @@ class obj {
       `;
       if( ![undefined,NaN,null,true,false].includes($v) ){
 
-        $.ite.innerHTML += tex.let( ( $.tip.dat=='obj' ) ? JSON.stringify($v) : $v.toString() ) ;          
+        $.ite.innerHTML += api_tex.let( ( $.tip.dat=='obj' ) ? JSON.stringify($v) : $v.toString() ) ;          
       }
       else{
         $.ite.innerHTML += `<c>${$v}</c>`;

@@ -1,9 +1,9 @@
 <?php
 // Fecha : aaaa-mm-dia hh:mm:ss utc
-class fec {
+class api_fec {
   
-  static string $IDE = "fec-";
-  static string $EJE = "fec.";
+  static string $IDE = "api_fec-";
+  static string $EJE = "api_fec.";
 
   function __construct(){
   }
@@ -12,7 +12,7 @@ class fec {
     $_ = [];
     global $api_fec;
     $est = "_$ide";
-    if( !isset($api_fec->$est) ) $api_fec->$est = dat::est_ini(DAT_ESQ,"fec{$est}");
+    if( !isset($api_fec->$est) ) $api_fec->$est = api_dat::est_ini(DAT_ESQ,"fec{$est}");
     $_dat = $api_fec->$est;
     
     if( !empty($val) ){
@@ -20,7 +20,7 @@ class fec {
       if( !is_object($val) ){
         switch( $ide ){
         case 'dat':
-          $_ = fec::dat($val);
+          $_ = api_fec::dat($val);
           break;
         default:
           if( is_numeric($val) ) $val = intval($val) - 1;
@@ -72,9 +72,9 @@ class fec {
           $_->dia = intval($fec[0]);
         }  
         // valido fecha resultante
-        if( $_->val = fec::val($_,...$opc) ){
+        if( $_->val = api_fec::val($_,...$opc) ){
           // busco valor semanal
-          $_->sem = fec::val_tip($_,'sem');
+          $_->sem = api_fec::val_tip($_,'sem');
           // proceso horario
           if( isset($val[1]) ){
             $hor = explode(':', $_->tie = $val[1]);
@@ -103,7 +103,7 @@ class fec {
 
     if( checkdate($mes, $dia, $año) ){
       
-      $_ = !in_array('año',$opc) ? num::val($dia,2).'/'.num::val($mes,2).'/'.num::val($año,4) : num::val($año,4).'/'.num::val($mes,2).'/'.num::val($dia,2);
+      $_ = !in_array('año',$opc) ? api_num::val($dia,2).'/'.api_num::val($mes,2).'/'.api_num::val($año,4) : api_num::val($año,4).'/'.api_num::val($mes,2).'/'.api_num::val($dia,2);
     }
 
     return $_;
@@ -124,7 +124,7 @@ class fec {
       }
       elseif( is_string($dat) ){ 
         try{ 
-          $_ = fec::dat($dat);
+          $_ = api_fec::dat($dat);
           $_ = !! $_ ? new DateTime( "{$_->año}-{$_->mes}-{$_->dia}" ) : new DateTime('NOW');
         }
         catch( Throwable $_err ){ 
@@ -169,12 +169,12 @@ class fec {
 
     if( empty($tip) ){
       $_ = $dat;
-      if( is_string($dat) ) $_ = fec::dat($dat);
+      if( is_string($dat) ) $_ = api_fec::dat($dat);
     }
     else{
       $_fec = $dat;
       // aseguro objeto nativo
-      if( !is_object($dat) || get_class($dat)=='stdClass' ) $_fec = fec::val_dec($dat); 
+      if( !is_object($dat) || get_class($dat)=='stdClass' ) $_fec = api_fec::val_dec($dat); 
       // busco tipo
       switch( $tip ){
       case 'dyh': $_ = $_fec->format('Y/m/d H:i:s');  break;
@@ -216,7 +216,7 @@ class fec {
   }// cuento dias pos periodo : mes | año
   static function val_cue( string $tip, string | object $val ) : mixed {
 
-    $_ = is_string($val) ? fec::dat($val) : $val;
+    $_ = is_string($val) ? api_fec::dat($val) : $val;
 
     switch( $tip ){
     case 'mes':
@@ -231,7 +231,7 @@ class fec {
       $mes = 0;
       for( $i = 1; $i <= 12; $i++ ){
 
-        $lis[$i] = fec::val_cue('mes',"{$_->año}/$i/1");
+        $lis[$i] = api_fec::val_cue('mes',"{$_->año}/$i/1");
         $tot += $lis[$i]; 
       }
       if( $_->mes == 1 ){ 
@@ -265,7 +265,7 @@ class fec {
   // año bisciesto ?
   static function año_bis( string | object $fec ) : bool {
 
-    if( is_string($fec) ) $fec = fec::dat($fec);
+    if( is_string($fec) ) $fec = api_fec::dat($fec);
 
     return date('L', strtotime("$fec->año-01-01"));
   }// defino valor por rangos : AC - DC
@@ -275,14 +275,14 @@ class fec {
 
     if( $ini < 0 && $fin < 0  ){
 
-      $_ = num::int( $ini * - 1 )." - ".num::int( $fin * - 1). " A.C.";
+      $_ = api_num::int( $ini * - 1 )." - ".api_num::int( $fin * - 1). " A.C.";
     }
     elseif( $ini > 0 && $fin > 0 ){
 
-      $_ = num::int( $ini )." - ".num::int( $fin ). " D.C.";
+      $_ = api_num::int( $ini )." - ".api_num::int( $fin ). " D.C.";
     }
     else{
-      $_ = num::int( $ini * - 1 )." A.C. - ".num::int( $fin ). " D.C.";
+      $_ = api_num::int( $ini * - 1 )." A.C. - ".api_num::int( $fin ). " D.C.";
     }
 
     return $_;
@@ -297,23 +297,23 @@ class fec {
     switch( $tip ){
     case 'val':
       $ope['value'] = $dat; $_ = "
-      <time".ele::atr($ope).">
-        ".tex::let(fec::var_val($dat))."
+      <time".api_ele::atr($ope).">
+        ".api_tex::let(api_fec::var_val($dat))."
       </time>";
     case 'tie': 
       $ope['value'] = intval($dat);
       $ope['type']='numeric';
       break;
     case 'dyh': 
-      $ope['value'] = fec::var_val($dat,$tip);
+      $ope['value'] = api_fec::var_val($dat,$tip);
       $ope['type']='datetime-local';
       break;
     case 'hor':
-      $ope['value'] = fec::var_val($dat,$tip);
+      $ope['value'] = api_fec::var_val($dat,$tip);
       $ope['type']='time';
       break;
     case 'dia':
-      $ope['value'] = fec::var_val($dat,$tip);
+      $ope['value'] = api_fec::var_val($dat,$tip);
       $ope['type']='date';
       break;
     case 'sem':
@@ -332,8 +332,8 @@ class fec {
 
     if( empty($_) && !empty($ope['type']) ){
       // seleccion automática
-      ele::eje($ope,'foc',"this.select();",'ini');
-      $_ = "<input".ele::atr($ope).">";
+      api_ele::eje($ope,'foc',"this.select();",'ini');
+      $_ = "<input".api_ele::atr($ope).">";
     }      
 
     return $_;
@@ -345,7 +345,7 @@ class fec {
 
       if( ( $tip == 'dia' || $tip == 'dyh' ) ){
 
-        $_fec = fec::dat($val,'año');
+        $_fec = api_fec::dat($val,'año');
 
         $val = $_fec->val;
       }

@@ -1,0 +1,32 @@
+/* //////////////////////////////////////////////////////////////////////// */
+/* //////////////////////////////////////////////////////////////////////// */
+/*  
+  Inicio
+*/
+main section.inicio {
+  height: 78vh;
+  background: center/contain no-repeat url(../../img/hol/fon/sis.png);
+  display: grid;
+  grid: repeat( 10, 1fr) / repeat( 10, 1fr);
+  padding: 1rem;
+}
+
+main section.inicio > .doc_tex {
+  margin: initial;  
+}
+
+main section.inicio > .doc_tex.-adv {
+  grid-column: 4/sp;
+  grid-row: 1/2;
+}
+
+main section.inicio > .doc_tex.pie {
+  grid-column: 1/11;
+  grid-row: 9/11;
+}
+
+@media ( max-width:400px ){
+  main section.inicio > .doc_tex.pie {
+    grid-row: 7/11;
+  } 
+}

@@ -2,9 +2,9 @@
   Objeto 
 */
 
-div.obj > .dat > .atr {
+div.api_obj > .dat > .atr {
   margin: .2rem;
 }
-div.obj > .dat > .atr > .val {
+div.api_obj > .dat > .atr > .val {
   margin: .1rem;
 }

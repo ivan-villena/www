@@ -2,43 +2,6 @@
  Textos
 */
 
-/* 
-  Separador 
-*/
-hr{   
-  margin: 2rem;
-}
-
-/* 
-  Títulos 
-*/
-h1, h2, h3, h4, h5, h6 {
-  margin: 1rem 0 .3rem;
-  text-decoration: underline;
-  font-style: italic;
-  font-weight: bold;
-}
-
-h1 { font-size: 1.8rem; } 
-h2 { font-size: 1.5rem; }
-h3 { font-size: 1.3rem; } 
-h4 { font-size: 1.2rem; } 
-h5 { font-size: 1.1rem; }
-h6 { font-size: 1rem; }
-
-/* 
-  Enlaces
-*/
-a:not(.doc_ico,.tex) {
-  text-decoration: underline;
-  font-style: italic; 
-  color: var(--let_ide);
-}
-a.tex {
-  text-decoration: none;
-  color: var(--let_tex);
-}
-
 /* letra */
 c {
   display: inline;  
@@ -51,17 +14,7 @@ c.sep {
   margin: .3rem;
 }
 
-/* Numeros */
-n {
-  display: inline;
-}
-
-n, sup, sub {
-  text-shadow: 0 0 5px;
-  color: var(--let_num);
-}
-
-/* citas */
+/* cita */
 cite {
   font-style: italic;
 }
@@ -74,11 +27,51 @@ q, blockquote {
   text-shadow: 0 0 5px;
 }
 
+/*  
+  tipografías
+*/
+dfn, /* Definiciones */
+abbr, /* Abreviaturas */
+dt, /* Términos */
+:is(b,i).ide { 
+  color: var(--let_ide); 
+}
+:is(b,i).val { 
+  color: var(--let_val); 
+}
+:is(p,b,i).err { 
+  color: var(--let_err); 
+}
+
+/* separador */
+hr{   
+  margin: 2rem;
+}
+
+/* titulo */
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  text-decoration: underline;
+  font-style: italic;
+  font-weight: bold;
+}
+:is(h2, h3, h4, h5, h6):not(:first-child) {
+  margin: 1rem 0 .3rem;
+}
+:is(h2, h3, h4, h5, h6):first-child {
+  margin: .3rem 0;
+}
+h1 { font-size: 1.30rem; }
+h2 { font-size: 1.25rem; }
+h3 { font-size: 1.20rem; }
+h4 { font-size: 1.15rem; }
+h5 { font-size: 1.10rem; }
+h6 { font-size: 1.05rem; }
+
 /* párrafos */
 p {
   margin: 0;
 }
-
 p.cit {
   margin: .75rem auto;
   font-style: italic;
@@ -93,52 +86,11 @@ p.des {
   font-style: italic;
 }
 
-/*  
-  tipografías
-*/
-dfn, /* Definiciones */
-abbr, /* Abreviaturas */
-dl dt, /* Términos */
-:is(b,i).ide { 
-  color: var(--let_ide); 
-}
-:is(b,i).val { 
-  color: var(--let_val); 
-}
-:is(p,b,i).err { 
-  color: var(--let_err); 
-}
-
 /* 
   controladores
 */
 textarea {
   padding: .6rem;
   resize: vertical;
-}
-
-/* 
-  Artículos
-*/
-article > p,
-article section > p {
-  margin-bottom: .5rem;
-}
-article > ul.lis,
-article section > ul.lis {
-  margin: .5rem auto;
-  /* max-width: fit-content;   */
-}
-article > figure,
-article section > figure {
-  margin: 1rem auto;
-}
-/* Informe */
-article.doc_inf {
-  margin-left: auto;
-  margin-right: auto;
-}
-article.doc_inf > * {
-  margin: .5rem;
 }
 

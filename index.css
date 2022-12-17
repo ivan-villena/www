@@ -1,23 +1,31 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Lora');
 
+/*//////////////////////////////////////////////////////////////////////*/
+/*//////////////////////////////////////////////////////////////////////*/
+/* 
+  Variables
+*/
 :root { 
-  /* 
-    colores:
-  */
+
+  /* tamaños */
+  --tam_cab_max: 6vh;
+  --tam_sec_max: 94vh;
+  --tam_cab_min: 8vh;
+  --tam_sec_min: 92vh;
 
   /* fondos */
-  --fon_win:rgba(015, 015, 015, 1);
-  --fon_sec:rgba(015, 015, 015, .9);
-  --fon_art:rgba(015, 015, 015, .6);
-  --fon_nav:rgba(020, 005, 005, .3);
-  --fon_foc:rgba(049, 134, 245, .3);
-  --fon_sel:rgba(130, 167, 216, .6);  
+  --fon_win:rgba(015, 015, 015,  1);/* pantalla */
+  --fon_sec:rgba(015, 015, 015, .9);/* seccion */
+  --fon_art:rgba(015, 015, 015, .6);/* articulo */
+  --fon_nav:rgba(020, 005, 005, .3);/* navegador */  
+  --fon_sel:rgba(130, 167, 216, .6);/* al seleccionar */
+  --fon_foc:rgba(049, 134, 245, .3);/* al hacer foco */  
 
   /* Bordes */
-  --bor_val:rgb(080, 125, 188);
-  --bor_sel:rgb(005, 031, 068);
-  --bor_dat:rgb(116, 066, 200);
+  --bor_sec:rgb(116, 066, 200);/* contenedor */
+  --bor_art:rgb(080, 125, 188);/* contenido */
+  --bor_sel:rgb(005, 031, 068);/* al seleccionar */
 
   /* letras */
   --let_ico:#ccc0b0;
@@ -59,261 +67,43 @@
   --tra_vio:rgba(116,066,200,.7);
   --tra_cel:rgba(066,189,200,.7);
 }
- 
+
+/* 
+  Globales
+*/
 *, :before, :after {
   box-sizing: border-box;
 }
 
+/* 
+  Página
+*/
 html {
   font-family: 'Lora', 'Book Antiqua', 'Georgia';
-  font-size: 14px;
+  font-size: 15px;
+}
+/*  
+  tamaño pequeño
+*/
+@media only screen and ( max-width: 500px ){
+  html { 
+    font-size: 13px;
+  }
+}
+
+@media only screen and ( max-width: 700px ){
+  body > main article {
+    max-width: 100vw;
+  }
 }
 
 body {
-  display: flex;
-  flex-direction: column;
   width: 100vw;
   height: 100vh;
+  background: center/cover no-repeat url('../../img/app/fon/01.jpg');
   margin: 0;
-}
-
-
-/*//////////////////////////////////////////////////////////////////////*/
-/*//////////////////////////////////////////////////////////////////////*/
-/* 
-  botonera : inicio + paneles + pantallas 
-*/
-header.doc_bot {
+  color: var(--let_tex);
+  /* para que se vea el modal */
   display: flex;
-  justify-content: space-between;
-  height: 5vh;
-  background-color: var(--fon_win);
-}
-header.doc_bot h1 {
-  margin: .25rem;
-  font-size: 1rem;
-}
-
-
-/*//////////////////////////////////////////////////////////////////////*/
-/*//////////////////////////////////////////////////////////////////////*/
-/*
-  Pantallas
-*/
-div.doc_win {  
-  z-index: 99999;
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 1rem;
-  background-color: rgba(0,0,0,.8);  
-  text-align: center;
-  animation: dis-ver .5s;
-}
-div.doc_win > article {
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  height: 90vh;
-  width: 95%;
-  max-width: 50rem;
-  overflow: hidden;  
-  background-color: var(--fon_sec);
-  border: 1px solid var(--col_azu);
-  border-radius: .5rem;
-  line-height: 1.5;
-  animation: dis-ver 1s, dis-ver-tam .5s;
-}
-div.doc_win > article > header {    
-  display: flex;
-  flex-wrap: nowrap;  
-  justify-content: space-between;
-  padding: .25rem;
-  height: 3rem;
-}
-div.doc_win > article > header + * {
-  flex-grow: 2;
-  overflow-y: auto;
-  overflow-x: hidden;
-  display: flex;
-  flex-direction: column;
-  padding: 0 .5rem;
-}
-div.doc_win > article > header + * > section {
-  margin: .5rem;  
-}
-
-/*//////////////////////////////////////////////////////////////////////*/
-/*//////////////////////////////////////////////////////////////////////*/
-/* 
-  Laterales
-*/
-aside:is(.doc_pan,.doc_bar) {
-  z-index: 9999;
-  display: flex;
-  position: fixed;
-  top: 5vh;
-  height: 95vh;
-  width: 450px;
-  background-color: var(--fon_sec);  
-}
-
-@keyframes doc_pan-ver {
-  from { transform: translate(-5rem); } to { transform: translate(0rem); }
-}
-@keyframes doc_pan-ocu {
-  from { transform: translate(0rem); } to { transform: translate(-5rem); }
-}
-
-/* izquierda: panel movil */
-aside.doc_pan {
-  max-width: 100%;
-  overflow: hidden;
-  border: 1px solid var(--col_azu);
-  border-left: 0;
-  border-radius: 0 1rem 1rem 0;    
-  transition: all 1s;
-  animation: doc_pan-ver 1s, dis-ver 1s;
-}
-aside.doc_pan.dis-ocu {  
-  animation: doc_pan-ocu 1s;
-  display: flex !important;
-  width: 0 !important;
-  height: 0 !important;   
-  border: 0 !important;
-  padding: 0 !important;
-  margin: 0 !important;
-}
-aside.doc_pan > [class*="ide-"] {
-  width: 100%;
-  animation: dis-ver 1s;
-}
-aside.doc_pan > [class*="ide-"] > header {
-  display: flex;
-  justify-content: space-between;  
-  padding: .5rem;
-  text-align: center;
-}
-aside.doc_pan > [class*="ide-"] > header + * {
-  max-height: 90vh;
-  overflow: auto;
-}
-
-/* derecha: sidebar */
-aside.doc_bar {
-  max-width: 100%;
-}
-
-
-/*//////////////////////////////////////////////////////////////////////*/
-/*//////////////////////////////////////////////////////////////////////*/
-/* 
-  Seccion Principal
-*/
-main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 95vh;
-  overflow: auto;  
-  background-color: var(--fon_art);/* por barra de desplazamiento */
-  text-align: center;
-}
-/* Titulo */
-main > header {
-  width: 100%;
-  background-color: var(--fon_sec);  
-}
-main > header > h1 {
-  margin: 0 0 0 1rem;
-}
-/* Contenido */
-main > *:not(header,footer) {
-  width: 100%;
-  max-width: 55rem;
-  line-height: 1.5;
-}
-/* 
-  por articulo 
-*/
-main article {
-  height: max-content;
-  margin: .5rem auto;
-  padding: 0 1rem;
-  border-radius: 1rem;
-  border: 1px solid var(--bor_sel);
-  background-color: var(--fon_sec);
-}
-
-/*//////////////////////////////////////////////////////////////////////*/
-/*//////////////////////////////////////////////////////////////////////*/
-/* 
-  pie de página
-*/
-footer.doc_pie {
-  padding: .5rem;
-  text-align: center;
-}
-
-/*//////////////////////////////////////////////////////////////////////*/
-/*//////////////////////////////////////////////////////////////////////*/
-
-@media only screen and ( orientation: landscape )
-  and ( min-width: 400px ) and ( max-width: 780px )
-  and ( min-height: 300px ) and ( max-height: 450px )
-{
-  header.doc_bot {
-    height: 10vh;
-  }
-
-  aside:is(.doc_pan,.doc_bar) {
-    top: 10vh;
-    height: 90vh;
-  }  
-
-  main {
-    height: 90vh;
-  }
-}
-
-/*
-  Panel : Menú Principal e indices 
-*/
-aside.doc_pan > .ide-app_cab ul.lis.nav {
-  height: 85vh;
-}
-aside.doc_pan > .ide-app_nav ul.lis.nav {
-  height: 80vh;
-}
-
-/*
-  Modal : Operador
-*/
-div.doc_win > .ide-doc_ope {
-  z-index: 9999;
-  height: 95vh;
-  background-color: var(--fon_win);
-}
-div.doc_win > .ide-doc_ope > header + * {
-  align-items: center;
-}
-div.doc_win > .ide-doc_ope > header + * > section {
-  margin: .5rem;
-  padding: 0 .5rem;
-  margin-bottom: 1.5rem;
-}
-/* -- Estructuras */
-div.doc_win > .ide-est {
-  max-width: 60rem;
-  height: 90vh;
-}
-div.doc_win > .ide-est > div {
-  padding: 0;
-}
-div.doc_win > .ide-est > div > .app_est {
-  height: 77vh;
+  flex-direction: column;  
 }

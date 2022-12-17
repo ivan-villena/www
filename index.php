@@ -2,10 +2,17 @@
   // mostrar errores:
   error_reporting(E_ALL);
   ini_set('display_errors', '1');
-  
-  // Inicio Sesion
-  session_start();
 
+  // Sesion
+  session_start();
+    // Sesion
+    $_SESSION['ubi'] = "America/Argentina/Buenos_Aires";  
+    if( !isset($_SESSION['usu']) ) $_SESSION['usu'] = 1;
+    date_default_timezone_set( $_SESSION['ubi'] );
+    // Inicio
+    $sis_ini = time();
+
+  // Constantes
     // Rutas :: localhost / icpv.com.ar  
     define('SYS_NAV', "http://{$_SERVER['HTTP_HOST']}/" );
 
@@ -20,70 +27,51 @@
     define('BOR_SEL', "bor-sel");
     define('FON_SEL', "fon-sel");
 
-    // Sesion
-    $_SESSION['ubi'] = "America/Argentina/Buenos_Aires";  
-    if( !isset($_SESSION['usu']) ) $_SESSION['usu'] = 0;
-    date_default_timezone_set( $_SESSION['ubi'] );
-
-    // Inicio
-    $sis_ini = time();
-
-  //
-  // cargo modulos
+  // Modulos
   $sis_cla = [ 
-    'sis/sql', 
-    'dat', 'hol', 'usu', 'app', 'doc',
-    'ele', 'arc', 'eje', 'obj', 'lis', 
-    'opc', 'num', 'tex', 'fig', 'fec'
+      'api'=>[ 
+        'doc', 'dat', 'arc', 'eje', 'ele', 'obj', 'lis', 'opc', 'num', 'tex', 'fig', 'fec', 'hol'
+      ],
+      'sis'=>[
+        'ses','sql', 'usu', 'app'
+      ]
+    ];
+
+    $sis_obj = [
+      'api'=>[ 'doc', 'arc', 'eje', 'ele', 'obj', 'lis', 'opc', 'num', 'tex', 'fig', 'fec', 'hol' ]
     ];
     
-    foreach( $sis_cla as $cla_ide ){
+    foreach( $sis_cla as $cla_rec => $cla_lis ){
 
-      if( file_exists($rec = "./api/{$cla_ide}.php") ) require_once($rec);
+      foreach( $cla_lis as $cla_ide ){
+
+        if( file_exists($rec = "./{$cla_rec}/{$cla_ide}.php") ) require_once($rec);
+      }      
     }
-    // cargo variables        
-    $api_opc = new opc();
-    $api_num = new num();
-    $api_tex = new tex();
-    $api_fig = new fig();
-    $api_fec = new fec();
-    $api_hol = new hol();
-    $api_ele = new ele();
-    $api_arc = new arc();
-    $api_eje = new eje();
-    $api_obj = new obj();
-    $api_lis = new lis();
-    $api_dat = new dat();    
-    $api_doc = new doc();
-    $api_usu = new usu( $_SESSION['usu'] );
+    // Cargo Datos en Objetos
+    $api_dat = new api_dat();
+    $api_doc = new api_doc();
+    $api_arc = new api_arc();
+    $api_eje = new api_eje();
+    $api_ele = new api_ele();
+    $api_obj = new api_obj();
+    $api_lis = new api_lis();
+    $api_opc = new api_opc();
+    $api_num = new api_num();
+    $api_tex = new api_tex();
+    $api_fig = new api_fig();
+    $api_fec = new api_fec();
+    $api_hol = new api_hol();
+        
+    // cargo sistema    
+    $sis_usu = new sis_usu( $_SESSION['usu'] );
+    $sis_ses = new sis_ses( isset($_REQUEST['uri']) ? $_REQUEST['uri'] : "hol" );
   //
   // peticion AJAX
-  if( isset($_REQUEST['_']) ){  
+  if( isset($_REQUEST['_']) ){
 
-    // log del sistema por ajax
-    function sis_log() : string {
-      
-      $_ = "  
-      <h2>hola desde php<c>!</c></h2>
-      ";
-
-      // recorrer tablas de un esquema
-      /* 
-      foreach( api_sql::est(DAT_ESQ,'lis','hol_','tab') as $est ){
-        $_ .= "ALTER TABLE `api`.`$est` DROP PRIMARY KEY;<br>";
-      } 
-      */
-
-      include("./api/hol/_ini.php");
-
-      $_ = todo();
-      
-      return $_;
-    }
-
-    // cabeceras: tema no-cors
-    
-    echo obj::val_cod( !obj::val_tip( $eje = eje::val($_REQUEST['_']) ) ? [ '_' => $eje ] : $eje );
+    // ver cabeceras para api's: tema no-cors
+    echo api_obj::val_cod( !api_obj::val_tip( $eje = api_eje::val($_REQUEST['_']) ) ? [ '_' => $eje ] : $eje );
 
     exit;
   }
@@ -92,76 +80,75 @@
   ////////////////////////////////////////////////////////////////////////////////////////////
 
   // cargo documento y aplicacion
-  $api_app = new app( isset($_REQUEST['uri']) ? $_REQUEST['uri'] : "hol" );
+  $sis_app = new sis_app( isset($_REQUEST['uri']) ? $_REQUEST['uri'] : "hol" );
 
   // pido contenido por aplicacion
-  $_uri = $api_app->uri;
-  if( file_exists($rec = "./src/{$_uri->esq}/index.php") ) require_once( $rec );
+  $_uri = $sis_app->uri;
+  if( file_exists($rec = "./app/{$_uri->esq}/index.php") ) require_once( $rec );
   
   // inicializo contenido
-  $api_app->htm_ini();
+  $sis_app->htm_ini();
   ?>
   <!DOCTYPE html>
   <html lang="es">
        
     <head>
       <meta charset="UTF-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
       <!-- hojas de estilo -->
+      <?=$sis_app->rec_cla('css')?>
       <link rel='stylesheet' href='<?=SYS_NAV?>index.css'>
-      <?=$api_app->rec_cla('css')?>
-      <link rel='stylesheet' href='<?=SYS_NAV?>api/sis/css.css'>
+      <link rel='stylesheet' href='<?=SYS_NAV?>sis/css.css'>
 
-      <title><?=$api_app->htm['tit']?></title>
+      <title><?=$sis_app->htm['tit']?></title>
     </head>
 
-    <body <?=ele::atr($api_app->rec['ele']['body'])?>>
+    <body <?=api_ele::atr($sis_app->rec['ele']['body'])?>>
       
       <!-- Botonera -->
       <header class='doc_bot'>
         
         <nav class='doc_ope'>
-          <?= $api_app->htm['ope']['ini']; ?>
+          <?= $sis_app->htm['ope']['ini']; ?>
         </nav>
 
         <nav class='doc_ope'>
-          <?= $api_app->htm['ope']['fin']; ?>
+          <?= $sis_app->htm['ope']['fin']; ?>
         </nav>
         
       </header>
 
-      <?php if( !empty($api_app->htm['pan']) ){ ?>
+      <?php if( !empty($sis_app->htm['pan']) ){ ?>
         <!-- Panel -->
         <aside class='doc_pan dis-ocu'>
-          <?= $api_app->htm['pan'] ?>
+          <?= $sis_app->htm['pan'] ?>
         </aside>
       <?php } ?>
       
       <!-- Contenido -->
       <main class='doc_sec'>
-        <?= doc::sec( $api_app->htm['sec'], [ 'tit'=>$api_app->htm['tit'] ] ) ?>
+        <?= api_doc::sec( $sis_app->htm['sec'], [ 'tit'=>$sis_app->htm['tit'] ] ) ?>
       </main>
       
       
-      <?php if( !empty($api_app->htm['bar']) ){ ?>
+      <?php if( !empty($sis_app->htm['bar']) ){ ?>
         <!-- sidebar -->
         <aside class='doc_bar'>
-          <?= $api_app->htm['bar'] ?>
+          <?= $sis_app->htm['bar'] ?>
         </aside>
       <?php } ?>
 
-      <?php if( !empty($api_app->htm['pie']) ){  ?>
+      <?php if( !empty($sis_app->htm['pie']) ){  ?>
         <!-- pie de página -->
         <footer class='doc_pie'>
-          <?= $api_app->htm['pie'] ?>
+          <?= $sis_app->htm['pie'] ?>
         </footer>
       <?php } ?>
       
       <!-- Modales -->
       <div class='doc_win dis-ocu'>
-        <?= $api_app->htm['win'] ?>
+        <?= $sis_app->htm['win'] ?>
       </div>
       
       <!-- Programas -->
@@ -173,26 +160,29 @@
         const FON_SEL = "<?=FON_SEL?>";
         const BOR_SEL = "<?=BOR_SEL?>";
         // Peticiones
-        const $sis_log = { php:[], jso:[], uri :<?= obj::val_cod( $api_app->uri ) ?>  };
+        const $sis_log = { php:[], jso:[], uri :<?= api_obj::val_cod( $sis_app->uri ) ?>  };
 
       </script>
       <!-- Módulos -->
-      <?=$api_app->rec_cla('jso')?>
+      <?=$sis_app->rec_cla('jso')?>
       <!-- Cargo Datos -->
       <script>        
         <?php // cargo objetos
         $var = get_defined_vars();
-        foreach( $api_app->rec['obj']['api'] as $cla ){
+        foreach( $sis_app->rec['obj']['api'] as $cla ){
           if( isset($var[$obj = "api_{$cla}"]) && is_object($var[$obj]) ){ echo "
-            var \${$obj} = new $cla(".( !empty($atr = get_object_vars($var[$obj])) ? obj::val_cod($atr) : "" ).");\n";
+            var \${$obj} = new {$obj}(".( !empty($atr = get_object_vars($var[$obj])) ? api_obj::val_cod($atr) : "" ).");\n";
           }
         }
+        
         $dat_api = [];
         foreach( ['_ope','_tip','_est_ope'] as $atr ){ $dat_api[$atr] = $api_dat->$atr; }
-        ?>
-        var $api_dat = new dat(<?= obj::val_cod($dat_api) ?>);        
+        ?>        
+        // cargo datos globales
+        var $api_dat = new api_dat(<?= api_obj::val_cod($dat_api) ?>);        
+        
         // codigo por aplicacion
-        <?= $api_app->rec['eje'] ?>
+        <?= $sis_app->rec['eje'] ?>
         
       </script>
       <!-- Inicializo página -->

@@ -2,7 +2,7 @@
 'use strict';
 
 // Ejecucion : ( ...par ) => { ...cod } : val 
-class eje {
+class api_eje {
 
   constructor( $dat = {} ){
     
@@ -98,7 +98,7 @@ class eje {
       $.fun = eval(`( ${$.par} ) =>{ ${$.val} return ${$.ini} }`);
       if( $.fun ){// defino un array para desestructurar e invocar
         $_ = !!($.inv) ? $.fun( ...eval(`[${$.inv}]`) ) : $.fun() ;
-        $.tip = dat.tip($_);// evaluo e imprimo resultado 
+        $.tip = api_dat.tip($_);// evaluo e imprimo resultado 
         // $.pad.querySelector(`[ini]`).innerHTML = ( `${$.tip.dat}_${$.tip.val}`, { 'val':$_ } );
       }else{ 
         $.pad.querySelector(`[ini]`).innerHTML = `<span class="let err">${$.fun._err}</span>`;
@@ -153,7 +153,7 @@ class eje {
                 // [-tip(,)]ele(,)par
                 $.par = !!$.fun[1] ? [ $.fun[1], $.ele, ...$.par ] : [ $.ele, ...$.par ];
                 
-                // obj.met
+                // api_obj.met
                 $.fun = $.fun[0].split('.');                
                 if( $.fun[1] ){ 
                   $.obj = !$.fun[0] ? '_doc' : $.fun[0] ; 

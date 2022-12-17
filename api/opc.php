@@ -1,9 +1,9 @@
 <?php
 
-class opc {
+class api_opc {
 
-  static string $IDE = "opc-";
-  static string $EJE = "opc.";
+  static string $IDE = "api_opc-";
+  static string $EJE = "api_opc.";
 
   function __construct(){
   }
@@ -12,7 +12,7 @@ class opc {
     $_ = [];    
     global $api_opc;
     $est = "_$ide";
-    if( !isset($api_opc->$est) ) $api_opc->$est = dat::est_ini(DAT_ESQ,"opc{$est}");
+    if( !isset($api_opc->$est) ) $api_opc->$est = api_dat::est_ini(DAT_ESQ,"opc{$est}");
     $_dat = $api_opc->$est;
     
     if( !empty($val) ){
@@ -52,7 +52,9 @@ class opc {
     // binario : input[checkbox]
     case 'bin':
       $ope['type']='checkbox';
-      if( !empty($dat) ){ $ope['checked']='checked'; }
+      if( !empty($dat) ){ 
+        $ope['checked']='checked'; 
+      }
       break;
     // único : div > input[radio]
     case 'uni':
@@ -90,7 +92,7 @@ class opc {
       break;          
     }
     if( empty($_) && !empty($ope['type']) ){
-      $_ = "<input".ele::atr($ope).">";            
+      $_ = "<input".api_ele::atr($ope).">";            
     }
     return $_;
   }    
@@ -108,7 +110,7 @@ class opc {
   
       $obj_tip = FALSE;
       foreach( $dat as $i => $v){ 
-        $obj_tip = obj::val_tip($v);
+        $obj_tip = api_obj::val_tip($v);
         break;
       }
   
@@ -121,14 +123,14 @@ class opc {
         if( !$obj_tip ){  
           $e['value'] = $i;
           $htm = !!$opc_ide ? "{$i}: ".strval($v) : strval($v) ;
-          $atr = ele::atr($e);
+          $atr = api_ele::atr($e);
         }
         // elemento
         elseif( $obj_tip == 'nom' ){
-          $e = ele::val_jun($e,$v);
+          $e = api_ele::val_jun($e,$v);
           if( !isset($e['value']) ) $e['value'] = $i;
           $htm = isset($e['htm']) ? $e['htm'] : $i;
-          $atr = ele::atr($e);
+          $atr = api_ele::atr($e);
         }
         // objeto ( ide + nom + des + tit )
         elseif( $obj_tip == 'atr' ){
@@ -136,7 +138,7 @@ class opc {
           $_htm = isset($v->nom) ? $v->nom : FALSE ;
           // valor
           if( isset($e['value']) ){ 
-            $e['value'] = obj::val($v,$e['value']); 
+            $e['value'] = api_obj::val($v,$e['value']); 
           }else{ 
             $e['value'] = $i;
             if( $_ide ){ $e['value'] = $_ide; }elseif( $_htm ){ $e['value'] = $_htm; }
@@ -151,7 +153,7 @@ class opc {
           }
           // contenido
           if( isset($e['htm']) ){
-            $htm = obj::val($v,$e['htm']);
+            $htm = api_obj::val($v,$e['htm']);
           }else{
             if( !!$opc_ide && $_ide && $_htm ){
               $htm = "{$_ide}: {$_htm}";
@@ -161,11 +163,11 @@ class opc {
               $htm = $_ide; 
             }
           }
-          $atr = ele::atr($e,$v);            
+          $atr = api_ele::atr($e,$v);            
         }// por posiciones
         else{
           $htm = "( \"".implode( '", "', $v )."\" )" ;
-          $atr = ele::atr($e);
+          $atr = api_ele::atr($e);
         }
         // agrego atributo si está en la lista
         if( $val_ite ){ 
@@ -183,7 +185,7 @@ class opc {
     };
 
     // etiqueta del contenedor
-    $ope_eti = !empty($ope['eti']) ? obj::val_dec($ope['eti'],[],'nom') : [];
+    $ope_eti = !empty($ope['eti']) ? api_obj::val_dec($ope['eti'],[],'nom') : [];
     $eti = isset($ope_eti['eti']) ? $ope_eti['eti'] : 'select';
     
     // opciones
@@ -200,7 +202,7 @@ class opc {
       unset($ope_eti['val']);
     }
     $_ = "
-    <{$eti}".ele::atr($ope_eti).">";
+    <{$eti}".api_ele::atr($ope_eti).">";
 
       if( in_array('nad',$opc) ){ $_ .= "
         <option default value=''>{-_-}</option>"; 

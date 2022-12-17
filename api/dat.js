@@ -2,7 +2,7 @@
 'use strict';
 
 // Dato : esq.est[ide].atr
-class dat {
+class api_dat {
 
   _var = {};
  
@@ -48,10 +48,10 @@ class dat {
       $.est = $ope;
       $_ = $val;
 
-      if( !$val || !obj.val_tip($val) ){
+      if( !$val || !api_obj.val_tip($val) ){
         
         // por clase : metodo estático
-        if( $.esq && ( $.cla = eval(`${$.esq}`) ) ){
+        if( $.esq && ( $.cla = eval(`api_${$.esq}`) ) ){
 
           if( !!$.cla._ ) $_ = $.cla._($.est,$val);
         }
@@ -60,12 +60,12 @@ class dat {
     // de la documento 
     else if( typeof($dat) == 'string' ){
       
-      $_ = ( $.ver = ele.val_ope($dat) ) ? $.ver : [];
+      $_ = ( $.ver = api_ele.val_ope($dat) ) ? $.ver : [];
     }
     // por estructura : [ {}, [] ]
     else{
 
-      $_ = lis.val_est('ver',$dat,$ope);
+      $_ = api_lis.val_est('ver',$dat,$ope);
     }
     return $_;
   }// tipo
@@ -149,7 +149,7 @@ class dat {
       }
     }
     // busco
-    $.tip_lis = dat._('tip');
+    $.tip_lis = api_dat._('tip');
     return !!$.tip_lis[$ide] ? $.tip_lis[$ide] : false;     
   }// comparacion de valores
   static ver( $dat, $ide, $val, $opc=['g','i'] ){
@@ -165,12 +165,12 @@ class dat {
     case '<<':  $_ = ( $dat  <  $val );  break;
     case '>=':  $_ = ( $dat >=  $val );  break;
     case '<=':  $_ = ( $dat <=  $val );  break;
-    case '^^':  $_ = tex.val_dec(`^${tex.val_cod($val)}`, $opc.join('') ).test( $dat.toString() ); break;
-    case '!^':  $_ = tex.val_dec(`^[^${tex.val_cod($val)}]`, $opc.join('') ).test( $dat.toString() ); break;
-    case '$$':  $_ = tex.val_dec( `${tex.val_cod($val)}$`, $opc.join('') ).test( $dat.toString() ); break;
-    case '!$':  $_ = tex.val_dec( `[^${tex.val_cod($val)}]$`, $opc.join('') ).test( $dat.toString() ); break;
-    case '**':  $_ = tex.val_dec( `${tex.val_cod($val)}`, $opc.join('') ).test( $dat.toString() ); break;
-    case '!*':  $_ = tex.val_dec( `[^${tex.val_cod($val)}]`, $opc.join('') ).test( $dat.toString() ); break;
+    case '^^':  $_ = api_tex.val_dec(`^${api_tex.val_cod($val)}`, $opc.join('') ).test( $dat.toString() ); break;
+    case '!^':  $_ = api_tex.val_dec(`^[^${api_tex.val_cod($val)}]`, $opc.join('') ).test( $dat.toString() ); break;
+    case '$$':  $_ = api_tex.val_dec( `${api_tex.val_cod($val)}$`, $opc.join('') ).test( $dat.toString() ); break;
+    case '!$':  $_ = api_tex.val_dec( `[^${api_tex.val_cod($val)}]$`, $opc.join('') ).test( $dat.toString() ); break;
+    case '**':  $_ = api_tex.val_dec( `${api_tex.val_cod($val)}`, $opc.join('') ).test( $dat.toString() ); break;
+    case '!*':  $_ = api_tex.val_dec( `[^${api_tex.val_cod($val)}]`, $opc.join('') ).test( $dat.toString() ); break;
     }
     return $_;
   }// identificador: esq.est[...atr]
@@ -183,6 +183,37 @@ class dat {
 
     return $val;
   }
+  
+  // Variable : form > .dov_var > label + (select,input,textarea,button)[name]
+  static var( $tip, $dat, $ope, ...$opc ){
+    let $={};
+
+    if( $tip && $tip.nodeName ){
+      $dat = $tip;
+      $api_doc._var = api_ele.val_ver($dat,{'eti':'form'});
+      $.var_ide = $dat.getAttribute('name');
+    }
+    else{
+      switch( $tip ){
+      case 'mar':
+        if( $ope ){
+          $dat.parentElement.parentElement.querySelectorAll(`.${$ope}`).forEach( $e => $e.classList.remove($ope) );
+          $dat.classList.add($ope);
+        }
+        break;
+      case 'tog':
+        if( $ope ){
+          $dat.parentElement.querySelectorAll(`.${$ope}`).forEach( $e => $e != $dat && $e.classList.remove($ope) );
+          $dat.classList.toggle($ope);
+        }
+        break;
+      }
+    }
+    return $;
+  }// toggles por : form > fieldsets > ...
+  static var_tog( $ide ){
+    api_lis.val_cod( api_ele.val_ver($dat,{'eti':'fieldset'}).children ).forEach( $e => $e != $dat && $e.classList.toggle(DIS_OCU) );
+  }  
 
   /* Estructura
   */
@@ -198,7 +229,7 @@ class dat {
     });
 
     // proceso valores con datos
-    if( $_ && $.ope_atr[0] == 'val' && !!($dat) ) $_ = obj.val( dat.get($esq,$est,$dat), $_ );
+    if( $_ && $.ope_atr[0] == 'val' && !!($dat) ) $_ = api_obj.val( api_dat.get($esq,$est,$dat), $_ );
 
     return $_;
   }  
@@ -210,18 +241,18 @@ class dat {
 
     let $_ = "", $ = {};
     // proceso estructura
-    $ = dat.ide($dat,$);
+    $ = api_dat.ide($dat,$);
     // cargo datos
-    $._dat = dat.get($.esq,$.est,$ope);
+    $._dat = api_dat.get($.esq,$.est,$ope);
     // cargo valores
-    $._val = dat.est_ope($.esq,$.est,'val');
+    $._val = api_dat.est_ope($.esq,$.est,'val');
     
     // armo titulo : nombre <br> detalle
     if( $tip == 'tit' ){
-      $_ = obj.val($._dat,$._val.nom) + ( $._val.des ? "\n"+obj.val($._dat,$._val.des) : '' );
+      $_ = api_obj.val($._dat,$._val.nom) + ( $._val.des ? "\n"+api_obj.val($._dat,$._val.des) : '' );
     }
     else if( !!($._val[$tip]) ){
-      $_ = obj.val($._dat,$._val[$tip]);  
+      $_ = api_obj.val($._dat,$._val[$tip]);  
     }
     // armo ficha
     if( $tip == 'ima' ){
@@ -235,37 +266,37 @@ class dat {
       // titulos
       if( $.ele.title === undefined ){
 
-        $.ele.title = dat.val('tit',`${$.esq}.${$.est}`,$._dat);
+        $.ele.title = api_dat.val('tit',`${$.esq}.${$.est}`,$._dat);
       }
       else if( $.ele.title === false ){        
         delete($.ele.title);
       }
       // acceso informe
       if( $.ele.onclick === undefined ){
-        if( dat.est_ope($.esq,$.est,'inf') ) $.ele.onclick = `dat.inf('${$.esq}','${$.est}',${parseInt($._dat.ide)})`;
+        if( api_dat.est_ope($.esq,$.est,'inf') ) $.ele.onclick = `dat.inf('${$.esq}','${$.est}',${parseInt($._dat.ide)})`;
       }
       else if( $.ele.onclick === false ){
 
         delete($.ele.onclick);
       }
       // informe      
-      $_ = arc.ima( { 'style': $_ }, $.ele );
+      $_ = api_fig.ima( { 'style': $_ }, $.ele );
     }
     else if( !!$opc[0] ){
       
       if( !($opc[0]['eti']) ) $opc[0]['eti'] = 'p'; 
-      $opc[0]['htm'] = tex.let($_);
-      $_ = ele.val($opc[0]);
+      $opc[0]['htm'] = api_tex.let($_);
+      $_ = api_ele.val($opc[0]);
     }
 
     return $_;
   }// opciones : esquema.estructura.atributos.valores
   static val_opc( $tip, $dat, $ope, ...$opc ){
-    let $_="", $ = doc.var($dat);
+    let $_="", $ = api_dat.var($dat);
     // vacio valores y atributos
     $.ini = ( $ide = ["val"] ) => {
       $ide.forEach( $i => { 
-        if( $.ope = $api_doc._var.querySelector(`[name="${$i}"]`) ) ele.val_eli( $.ope, `option:not([value=""])` ); 
+        if( $.ope = $api_doc._var.querySelector(`[name="${$i}"]`) ) api_ele.val_eli( $.ope, `option:not([value=""])` ); 
       });
     };
     switch( $tip ){
@@ -277,9 +308,9 @@ class dat {
       $.val = $dat.value.split('.');
       if( $.ope = $dat.nextElementSibling.nextElementSibling ){
         $.ope.value = "";
-        ele.act('cla_agr', $.ope.querySelectorAll(`[data-esq][data-est]:not(.${DIS_OCU})`), DIS_OCU );
+        api_ele.act('cla_agr', $.ope.querySelectorAll(`[data-esq][data-est]:not(.${DIS_OCU})`), DIS_OCU );
         if( $.val[1] ){
-          ele.act('cla_eli', $.ope.querySelectorAll(`[data-esq="${$.val[0]}"][data-est="${$.val[1]}"]`), DIS_OCU );
+          api_ele.act('cla_eli', $.ope.querySelectorAll(`[data-esq="${$.val[0]}"][data-est="${$.val[1]}"]`), DIS_OCU );
         }
       }
       break; 
@@ -287,18 +318,18 @@ class dat {
       $.ini();
       // elimino selector
       if( $.opc = $dat.parentElement.querySelector('select[name="val"]') ){
-        ele.val_eli($.opc,'option:not([value=""])');        
+        api_ele.val_eli($.opc,'option:not([value=""])');        
         $.opc.dataset.esq = '';
         $.opc.dataset.est = '';
   
         if( $dat.value ){
           $.dat = $dat.options[$dat.selectedIndex];        
           // identificadores
-          $ = dat.ide( $.dat.dataset.ide ? $.dat.dataset.ide : $.dat.value, $ );
+          $ = api_dat.ide( $.dat.dataset.ide ? $.dat.dataset.ide : $.dat.value, $ );
           $.opc.dataset.esq = $.esq;
           $.opc.dataset.est = $.est;
-          eje.val(['dat::get', [`${$.esq}_${$.est}`] ], $dat => {
-            $.opc = opc.lis( $dat, $.opc, 'ide');
+          api_eje.val(['api_dat::get', [`${$.esq}_${$.est}`] ], $dat => {
+            $.opc = api_opc.lis( $dat, $.opc, 'ide');
           });
         }
       }
@@ -315,7 +346,7 @@ class dat {
     if( !!($atr) ) $_['est'] = $atr == 'ide' ? $est : `${$est}_${$atr}`;
     
     // valido dato
-    if( !!( $.dat_Val = dat.est_ope($_['esq'],$_['est'],`val.${$tip}`,$dat) ) ){
+    if( !!( $.dat_Val = api_dat.est_ope($_['esq'],$_['est'],`val.${$tip}`,$dat) ) ){
       $_['ide'] = `${$_['esq']}.${$_['est']}`;
       $_['val'] = $.dat_Val;
     }
@@ -330,9 +361,9 @@ class dat {
 
     if( $dat.dataset && $ope.esq && $ope.est && $ope.atr && ( $ope.val = $dat.dataset[`${$ope.esq}_${$ope.est}`] ) ){
 
-      if( !$ope.fic ) $ope.fic = dat.opc('ima', $ope.esq, $ope.est );
+      if( !$ope.fic ) $ope.fic = api_dat.opc('ima', $ope.esq, $ope.est );
 
-      $_ = arc.ima($ope.fic.esq, $ope.fic.est, dat.get($ope.esq,$ope.est,$ope.val)[$ope.atr], $ope.ele);
+      $_ = api_fig.ima($ope.fic.esq, $ope.fic.est, api_dat.get($ope.esq,$ope.est,$ope.val)[$ope.atr], $ope.ele);
     }
     return $_;
   }
@@ -340,30 +371,30 @@ class dat {
   /* Ficha : imagenes por valor ( relaciones por estructura ) 
   */
   static fic( $dat, $ope, ...$opc ){
-    let $_="", $=doc.var($dat);
+    let $_="", $ = api_dat.var($dat);
     $.dat = {};
 
     // actualizo valores principales
-    $dat.querySelectorAll(`.atr`).forEach( $ite =>{
+    $dat.querySelectorAll(`.dat_var`).forEach( $ite =>{
       
       $.atr = $ite.querySelector('[name]').getAttribute('name');
       $.num = $ite.querySelector('[max]');
       $.num_max = $.num.getAttribute('max');
-      $.dat[`${$.atr}`] = ( $ope > 0 ) ? num.val_ran($ope, $.num_max) : 0;
+      $.dat[`${$.atr}`] = ( $ope > 0 ) ? api_num.val_ran($ope, $.num_max) : 0;
       $.num.innerHTML = $.dat[`${$.atr}`];
     });    
 
     // actualizo fichas : principal => { ...dependencias } 
-    $dat.querySelectorAll(`.atr [data-esq][data-est][data-atr][data-ima]`).forEach( $ite => {
+    $dat.querySelectorAll(`.dat_var [data-esq][data-est][data-atr][data-ima]`).forEach( $ite => {
 
       $.esq = $ite.dataset.esq;
       $.est = $ite.dataset.est;
       $.atr = $ite.dataset.atr;
       $.ima = $ite.dataset.ima.split('.');
       // actualizo fichas
-      ele.val_eli($ite,'.arc_ima');
+      api_ele.val_eli($ite,'.fig_ima');
       if( $.val = $.dat[$.est] ){
-        ele.val_agr( arc.ima( $.ima[0], $.ima[1], dat.get($.esq,$.est,$.val)[$.atr], {'class':`tam-4`} ), $ite );
+        api_ele.val_agr( api_fig.ima( $.ima[0], $.ima[1], api_dat.get($.esq,$.est,$.val)[$.atr], {'class':`tam-4`} ), $ite );
       }
     });   
     
@@ -374,9 +405,9 @@ class dat {
   */
   static inf( $esq, $est, $val ){
     // pido ficha
-    eje.val([ `dat::inf`, [ $esq, $est, $val ] ], $htm => {
+    api_eje.val([ `api_dat::inf`, [ $esq, $est, $val ] ], $htm => {
       // muestro en ventana
-      if( $htm ) doc.win('doc_ope',{ 
+      if( $htm ) api_doc.win('doc_ope',{ 
         ico: "", 
         cab: "", 
         htm: $htm, 
@@ -387,7 +418,7 @@ class dat {
 
   // alta, baja, modificacion por tabla-informe
   static abm( $tip, $dat, $ope, ...$opc ){
-    let $ = doc.var($dat);
+    let $ = api_dat.var($dat);
     switch( $tip ){
     // cargo valores
     case 'var':
@@ -397,8 +428,8 @@ class dat {
       });      
     // inicializo valores
     case 'ope':
-      $api_doc._var.querySelectorAll(`.atr > :is(select,input,textarea).fon-roj`).forEach( $e => $e.classList.remove('fon-roj') );
-      $api_doc._var.querySelectorAll(`.atr > ul.col-roj`).forEach( $e => $e.parentElement.removeChild($e) );
+      $api_doc._var.querySelectorAll(`.dat_var > :is(select,input,textarea).fon-roj`).forEach( $e => $e.classList.remove('fon-roj') );
+      $api_doc._var.querySelectorAll(`.dat_var > ul.col-roj`).forEach( $e => $e.parentElement.removeChild($e) );
       break;
     // proceso errores
     case 'err':
@@ -484,7 +515,7 @@ class dat {
             <li>${_tex.let($e)}</li>`
             ); $._tex += `
           </ul>`;
-          ele.val_agr( $._tex, $_atr );
+          api_ele.val_agr( $._tex, $_atr );
         }
 
       });
@@ -508,7 +539,7 @@ class dat {
       if( $.tip_eli || ( $._val && !$._tex ) ){        
         // actualizo datos
         if( ( $.esq = $api_doc._var.dataset.esq ) && ( $.est = $api_doc._var.dataset.est ) ){
-          eje.val(['dat::abm', [ $.esq, $.est, $tip, $._val ] ], $e => {
+          api_eje.val(['dat::abm', [ $.esq, $.est, $tip, $._val ] ], $e => {
             if( !$e._err ){
               // reiniciar formulario
               this.abm('fin',$dat);

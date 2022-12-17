@@ -1,9 +1,9 @@
 <?php
 // Archivo : fichero + texto + imagen + audio + video + app + ...tipos
-class arc {  
+class api_arc {  
 
-  static string $IDE = "arc-";
-  static string $EJE = "arc.";
+  static string $IDE = "api_arc-";
+  static string $EJE = "api_arc.";
 
   function __construct(){
   }
@@ -12,7 +12,7 @@ class arc {
     $_ = [];    
     global $api_arc;
     $est = "_$ide";
-    if( !isset($api_arc->$est) ) $api_arc->$est = dat::est_ini(DAT_ESQ,"arc{$est}");
+    if( !isset($api_arc->$est) ) $api_arc->$est = api_dat::est_ini(DAT_ESQ,"arc{$est}");
     $_dat = $api_arc->$est;
     
     if( !empty($val) ){
@@ -65,7 +65,7 @@ class arc {
         if( $arc !== "." && $arc !== ".."){
           // Carpeta          
           if( is_dir($ide = $url."\\".$arc) ){
-            $_ []= [ 'tip'=>"dir", 'nom'=>$arc, 'val'=>arc::dir($ide) ];
+            $_ []= [ 'tip'=>"dir", 'nom'=>$arc, 'val'=>api_arc::dir($ide) ];
           }// Links
           elseif( is_link($ide) ){
             $_ []= [ 'tip'=>"url", 'nom'=>$arc, 'val'=>[] ];
@@ -84,15 +84,15 @@ class arc {
       if( !isset($ope['lis']) ) $ope['lis'] = [];
       if( !isset($ope['ite']) ) $ope['ite'] = [];
 
-      ele::cla($ope['lis'],"lis arc dir mar-1",'ini'); $_ .= "
-      <ul".ele::atr($ope['lis']).">";
-      foreach( arc::dir($dat) as $arc ){
+      api_ele::cla($ope['lis'],"lis arc dir mar-1",'ini'); $_ .= "
+      <ul".api_ele::atr($ope['lis']).">";
+      foreach( api_arc::dir($dat) as $arc ){
         $ele_ite = $ope['ite'];
-        ele::cla($ele_ite,"{$arc['tip']}",'ini'); $_ .= "
-        <li".ele::atr($ele_ite).">
+        api_ele::cla($ele_ite,"{$arc['tip']}",'ini'); $_ .= "
+        <li".api_ele::atr($ele_ite).">
           {$arc['nom']}";
           if( $arc['tip'] == 'dir' ){
-            $_ .= arc::dir_lis($dat."\\".$arc['nom'], [ 'lis'=>[ 'data-pos'=>isset($ope['lis']['data-pos']) ? $ope['lis']['data-pos']+1 : 1 ] ] );
+            $_ .= api_arc::dir_lis($dat."\\".$arc['nom'], [ 'lis'=>[ 'data-pos'=>isset($ope['lis']['data-pos']) ? $ope['lis']['data-pos']+1 : 1 ] ] );
           }
           $_ .= "
         </li>";
@@ -123,51 +123,6 @@ class arc {
     return $_;
   }
 
-  // imagen : .arc_ima.$ide
-  static function ima( ...$dat ) : string {
-    $_ = "";
-    // por aplicacion
-    if( isset($dat[2]) ){
-      $ele = isset($dat[3]) ? $dat[3] : [];
-      $_ = dat::val('ima', "{$dat[0]}.{$dat[1]}", $dat[2], $ele );
-    }
-    // por directorio
-    else{
-      $ele = isset($dat[1]) ? $dat[1] : [];
-      $dat = $dat[0];
-      // por estilos : bkg
-      if( is_array($dat) ){
-        $ele = ele::val_jun( $dat, $ele );          
-      }
-      // por directorio : localhost/img/esquema/image
-      elseif( is_string($dat)){
-        $ima = explode('.',$dat);
-        $dat = $ima[0];
-        $tip = isset($ima[1]) ? $ima[1] : 'png';
-        $dir = SYS_NAV."img/{$dat}";
-        ele::css( $ele, ele::css_fon($dir,['tip'=>$tip]) );
-      }
-      // etiqueta
-      $eti = 'span';
-      if( isset($ele['eti']) ){
-        $eti = $ele['eti'];
-        unset($ele['eti']);
-      }// codifico boton
-      if( $eti == 'button' && empty($ele['type']) ) $ele['type'] = "button";
-      // ide de imagen
-      ele::cla($ele,"arc_ima",'ini');
-      // contenido
-      $htm = "";
-      if( !empty($ele['htm']) ){
-        ele::cla($ele,'dis-fle dir-ver jus-cen ali-cen');
-        $htm = $ele['htm'];
-        unset($ele['htm']);
-      }
-      $_ = "<{$eti}".ele::atr($ele).">{$htm}</{$eti}>";
-    }
-    return $_;
-  }  
-
   // controladores
   static function var( string $tip, mixed $dat = NULL, array $ope = [], ...$opc ) : string {
     $_ = "";
@@ -176,12 +131,12 @@ class arc {
     switch( $tip ){
     case 'fic':
       $ope['type'] = 'file';
-      if( isset($ope['tip']) ) $ope['accept'] = arc::tip($ope['tip']);
+      if( isset($ope['tip']) ) $ope['accept'] = api_arc::tip($ope['tip']);
       if( isset($ope['multiple']) ) unset($ope['multiple']);
       break;
     case 'dir':
       $ope['type'] = 'file';
-      if( isset($ope['tip']) ) $ope['accept'] = arc::tip($ope['tip']);
+      if( isset($ope['tip']) ) $ope['accept'] = api_arc::tip($ope['tip']);
       $ope['multiple'] = '1';
       break;
     case 'url':
@@ -190,11 +145,11 @@ class arc {
     // ima - vid - mus
     default:
       $ope['type']='file';
-      $ope['accept'] = arc::tip($tip);
+      $ope['accept'] = api_arc::tip($tip);
       break;      
     }
     if( empty($_) && !empty($ope['type']) ){
-      $_ = "<input".ele::atr($ope).">";
+      $_ = "<input".api_ele::atr($ope).">";
     }
     return $_;
   }    

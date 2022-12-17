@@ -1,9 +1,9 @@
 <?php
 // Ejecucion : ( ...par ) => { ...cod } : val 
-class eje {
+class api_eje {
   
-  static string $IDE = "eje-";
-  static string $EJE = "eje.";
+  static string $IDE = "api_eje-";
+  static string $EJE = "api_eje.";
 
   function __construct(){
   }
@@ -12,7 +12,7 @@ class eje {
     $_ = [];    
     global $api_eje;
     $est = "_$ide";
-    if( !isset($api_eje->$est) ) $api_eje->$est = dat::est_ini(DAT_ESQ,"eje{$est}");
+    if( !isset($api_eje->$est) ) $api_eje->$est = api_dat::est_ini(DAT_ESQ,"eje{$est}");
     $_dat = $api_eje->$est;
     
     if( !empty($val) ){
@@ -39,7 +39,7 @@ class eje {
 
       if( preg_match("/^\[.+\]$/",$ide) ){
         // FALSE : convierto en objetos stdClass
-        $var_eve = obj::val_dec($ide);
+        $var_eve = api_obj::val_dec($ide);
         $ide = $var_eve[0];
         if( isset($var_eve[1]) ) $par = $var_eve[1];
       }
@@ -52,11 +52,11 @@ class eje {
     }
     // metodos de clase
     if( preg_match("/\./",$ide) || preg_match("/::/",$ide) ){
-      $_ = eje::met( $ide, $par, $ini );
+      $_ = api_eje::met( $ide, $par, $ini );
     }
     // funcion del entorno
     else{
-      $_ = eje::fun( $ide, ...lis::val_ite($par) );      
+      $_ = api_eje::fun( $ide, ...api_lis::val_ite($par) );      
     }
     return $_;
   }
@@ -133,7 +133,7 @@ class eje {
 
           try{
 
-            $_ = empty($par) ? $cla::$met() : $cla::$met( ...lis::val_ite($par) ) ;
+            $_ = empty($par) ? $cla::$met() : $cla::$met( ...api_lis::val_ite($par) ) ;
           }
           catch( Exception $e ){
 
@@ -153,7 +153,7 @@ class eje {
       $cla = $_ide[0];
       $met = $_ide[1];
       // instancio
-      $obj = eje::cla( $cla, ...$ini );
+      $obj = api_eje::cla( $cla, ...$ini );
       // ejecuto      
       if( is_object($obj) ){
 
@@ -161,7 +161,7 @@ class eje {
 
           try{
 
-            $_ = empty($par) ? $obj->$met() : $obj->$met( ...lis::val_ite($par) ) ;
+            $_ = empty($par) ? $obj->$met() : $obj->$met( ...api_lis::val_ite($par) ) ;
           }
           catch( Exception $e ){
 

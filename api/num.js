@@ -2,7 +2,7 @@
 'use strict';
 
 // Numero : separador + operador + entero + decimal + rango
-class num {  
+class api_num {  
 
   constructor( $dat = {} ){
     
@@ -41,7 +41,7 @@ class num {
 
     if( !!$tot ){
 
-      $_ = tex.val_agr( $_, $tot, "0" );
+      $_ = api_tex.val_agr( $_, $tot, "0" );
     }
     // parse-int o parse-float
     else{
@@ -70,7 +70,7 @@ class num {
   static val_ran( $dat, $max = 1, $min = 1 ){
     let $_ = $dat;
 
-    if( typeof($_) == 'string' ) $_ = num.val($_);
+    if( typeof($_) == 'string' ) $_ = api_num.val($_);
 
     while( $_ > $max ){ $_ -= $max; }
 
@@ -99,18 +99,18 @@ class num {
 
     let $={};
 
-    $.val = num.val($dat.value);
+    $.val = api_num.val($dat.value);
 
     // excluyo bits
     if( $dat.type != 'text' ){
 
       // valido minimos y máximos
-      if( ( $.min = num.val($dat.min) ) && $dat.value && $.val < $.min ) $dat.value = $.val = $.min;    
+      if( ( $.min = api_num.val($dat.min) ) && $dat.value && $.val < $.min ) $dat.value = $.val = $.min;    
 
-      if( ( $.max = num.val($dat.max) ) && $dat.value && $.val > $.max ) $dat.value = $.val = $.max;
+      if( ( $.max = api_num.val($dat.max) ) && $dat.value && $.val > $.max ) $dat.value = $.val = $.max;
 
       // relleno con ceros
-      if( $dat.getAttribute('num_pad') && ( $.num_cue = $dat.maxlength ) ) $.num_pad = num.val($.val,$.num_cue);
+      if( $dat.getAttribute('num_pad') && ( $.num_cue = $dat.maxlength ) ) $.num_pad = api_num.val($.val,$.num_cue);
 
       // actualizo valores por rango
       if( $dat.type == 'range' ){

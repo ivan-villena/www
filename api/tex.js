@@ -2,7 +2,7 @@
 'use strict';
 
 // Texto : caracter + letra + oracion + parrafo
-class tex {
+class api_tex {
   
   constructor( $dat = {} ){
     
@@ -170,7 +170,7 @@ class tex {
   // letras : c - n
   static let( $dat, $ele={} ){
 
-    let $_ = [], $pal = [], $let = [], $num = 0, $tex_let = tex._('let');
+    let $_ = [], $pal = [], $let = [], $num = 0, $tex_let = api_tex._('let');
 
     if( $dat !== null && $dat !== undefined && $dat !== NaN ){
 
@@ -180,14 +180,14 @@ class tex {
 
         $pal_lis.split(' ').forEach( $pal_val => {
           
-          $num = num.val($pal_val);
+          $num = api_num.val($pal_val);
           if( !!$num || $num == 0 ){
             $pal.push( `<n>${$pal_val}</n>` );
           }
           else{
             $let = [];
             $pal_val.split('').forEach( $car =>{
-              $num = num.val($car);
+              $num = api_num.val($car);
               if( !!$num || $num == 0 ){
                 $let.push( `<n>${$car}</n>` );
               }

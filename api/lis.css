@@ -47,16 +47,6 @@ ul.ite > li {
   margin: .2rem 0;
 }
 
-/* 
-  horizontal
-*/
-ul.doc_val {
-  list-style: none;
-  justify-content: space-around;
-  padding: 0;
-  margin: 0;
-}
-
 /*  
   de enlaces
 */
@@ -84,23 +74,35 @@ dl dd {
 Base
 */
 ul.lis {
-  list-style: none;
-  overflow: auto;
+  list-style: none;  
   padding: 0;
+}
+/* 
+  horizontal
+*/
+ul.lis.val {
+  display: flex;
+  flex-wrap: nowrap;
+  max-width: fit-content;
+  align-items: center;
+  padding: 0;
+  margin: 0;
 }
 
 /* 
 Dependencias: con sublistas
 */
-ul.lis.dep ul.lis {
-  overflow: initial;  
+ul.lis.dep {
+  overflow: auto;
+}
+ul.lis.dep ul.lis {    
   padding-left: 1rem;
   padding-bottom: .25rem;
   margin: 0;
 }
 ul.lis.dep li > .doc_val {
-  margin: .25rem 0;
   border-radius: .2rem;
+  margin: .25rem 0;
 }
 ul.lis.dep:not(.dir-hor) > li li.sep  {
   margin-left: 1.5rem;
@@ -111,6 +113,7 @@ ul.lis.dep:not(.dir-hor) > li li.sep  {
 */
 ul.lis.nav a {
   display: inline-block;
+  overflow: auto;
   width: 100%;
   text-decoration: none;
   color: var(--let_tex);
@@ -130,8 +133,7 @@ ul.lis.nav li.pos:not(.sep) > div.doc_val:hover {
 /* 
 Barra: con desplazamiento
 */
-ul.lis.bar {   
-  list-style: none;
+ul.lis.bar {
   display: flex;
   flex-flow: row nowrap;
   padding: 0;
@@ -146,21 +148,20 @@ ul.lis.bar li[data-pos] {
   Tablero
 */
 ul.lis.tab {
-  list-style: none;
   display: grid;
   width: -moz-fit-content;
   width: fit-content;
-  align-self: center;
-  margin: auto;
   padding: 0;
+  margin: 0;
+  margin-left: auto;
+  margin-right: auto;  
 }
 
 table.lis.tab {
   border-collapse: collapse;
 }
 
-:is(ul,table).lis.tab {
-  overflow: initial;
+:is(ul,table).lis.tab {  
   min-width: max-content;
   background-size: 100%;
   background-repeat: no-repeat;
@@ -183,12 +184,6 @@ ul.lis.tab > li.pos {
   align-items: center; 
   align-content: center; 
   justify-content: center;
-}
-
-.lis.tab > .sec,
-.lis.tab > .pos:not(.lis.tab,.dep) {
-  width: 3rem;
-  height: 3rem;
 }
 
 /* Bordes */
@@ -216,11 +211,11 @@ ul.lis.tab > li.pos {
 }
 
 /* Imágenes */
-:is(ul,table).lis.tab :is(.sec,.pos) > .arc_ima {
+:is(ul,table).lis.tab :is(.sec,.pos) > .fig_ima {
   min-width: 100%;
   height: 100%;
 }
-:is(ul,table).lis.tab td:is(.sec,.pos) > .arc_ima {
+:is(ul,table).lis.tab td:is(.sec,.pos) > .fig_ima {
   min-height: 100%;
 }
 
@@ -236,8 +231,7 @@ ul.lis.tab > li.pos {
   Tabla
 */
 table {
-  width: max-content;
-  max-width: 100%;
+  width: 100%;
   border-collapse: separate; /* espaciado aplica cuando el collapse es separate // not:: collapse: collapse */  
   border-spacing: .2rem .1rem; /* => horizontal-izquierda vertical-superior */
 }
@@ -251,13 +245,20 @@ table th p {
 /* 
   Estructura
 */
-div.lis.est {  
+div.lis.est {
   width: 100%;
   overflow: auto;
   padding: 0 .5rem;
 }
+/* por revalsamiento en articulos */
+main article div.lis.est {
+  max-width: 90vw;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 div.lis.est > table {
+  width: max-content;
   margin: 0 auto;
   line-height: 1.3;
   text-align: center;  
@@ -273,11 +274,12 @@ div.lis.est > table > thead {
 div.lis.est > table > thead > tr > th > p {
   color: var(--let_ide);
   padding: .5rem;
+  max-width: min-content;
 }
 
 div.lis.est > table > thead > tr:not(.gru) > th,
 div.lis.est > table > tbody > tr:not([data-ope],[data-opc]) > td {
-  border-right: 1px dotted var(--bor_dat);
+  border-right: 1px dotted var(--bor_sec);
 }
 
 /* titulo + detalle */
@@ -291,3 +293,9 @@ div.lis.est > table > tbody > tr[data-opc="tit"] > td {
 div.lis.est > table > tbody > tr[data-ope="lec"][data-opc="det"] > td {
   padding-top: .25rem;
 }
+
+/* datos */
+div.lis.est > table > tbody > tr > td > :is(n,time,p) {
+  font-size: .9rem;
+}
+

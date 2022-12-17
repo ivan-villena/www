@@ -1,7 +1,7 @@
 // WINDOW 
 'use strict';
 
-class opc {
+class api_opc {
 
   constructor( $dat = {} ){
     
@@ -62,7 +62,7 @@ class opc {
       $.val = $ope.val;
     }
 
-    opc.lis_ite($dat,$.val,...$opc).forEach( 
+    api_opc.lis_ite($dat,$.val,...$opc).forEach( 
       $e => $_.appendChild($e) 
     );
 
@@ -82,7 +82,7 @@ class opc {
     $.val_ide = $opc.includes('ide');
 
     for( const $ide in $dat ){ 
-      $.obj_tip = obj.val_tip($dat[$ide]); 
+      $.obj_tip = api_obj.val_tip($dat[$ide]); 
       break; 
     }
     $.obj_pos = ( $.obj_tip == 'pos' );

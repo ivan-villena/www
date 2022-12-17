@@ -1,7 +1,7 @@
 // window
 'use strict';
 
-class doc {
+class api_doc {
   
   _bot = 'body > .doc_bot';
   _win = 'body > .doc_win';
@@ -10,7 +10,6 @@ class doc {
   _bar = 'body > .doc_bar';
   _pie = 'body > .doc_pie';
   _var = {};
-  _ico = [];
 
   constructor( $dat = {} ){
 
@@ -46,31 +45,11 @@ class doc {
     return $_;
   }
 
-  /* Icono : .doc_ico.$ide 
-  */
-  static ico( $ide, $ele = {} ){
-    let $_="<span class='doc_ico'></span>", $ = {};
-    $.doc_ico = doc._('ico');
-    if( !!($.doc_ico[$ide]) ){
-      $.eti = 'span';
-      if( $ele['eti'] ){
-        $.eti = $ele['eti'];
-        delete($ele['eti']);
-      }      
-      if( $.eti == 'button' && !($ele['type']) ) $ele['type'] = "button"; 
-      $_ = `
-      <${$.eti}${ele.atr(ele.cla($ele,`doc_ico ${$ide}`,'ini'))}>
-        ${$.doc_ico[$ide].val}
-      </${$.eti}>`;
-    }
-    return $_;
-  }    
-
   // pantalla modal : .doc_win > article > header + section
   static win( $ide, $ope ){
     let $ = {};    
     // botones
-    if( $ide.nodeName && $ide.classList.contains('doc_ico') ){
+    if( $ide.nodeName && $ide.classList.contains('fig_ico') ){
       // cierro pantalla
       $.art = $ide.parentElement.parentElement.parentElement;
       if( $ide.dataset.ope == 'fin' || $ide.dataset.ope == 'pre' ){        
@@ -93,7 +72,7 @@ class doc {
       $.htm = $.art.querySelector(`div:nth-child(2)`);
       // actualizo contenido
       if( !!$ope ){
-        $.opc = $ope.opc ? lis.val_ite($ope.opc) : [];
+        $.opc = $ope.opc ? api_lis.val_ite($ope.opc) : [];
         // creo nueva ventana con mismo identificador
         if( $.opc.includes('pos') ){
           $api_doc._win.appendChild( $.art = $.art.cloneNode(true) );
@@ -101,27 +80,27 @@ class doc {
           // agrego icono : retroceder
           if( $.art.dataset.pos > 1 ){
             $.ope = $.art.querySelector('header:first-child > .doc_ope');
-            $.ope.insertBefore( ele.val_cod( doc.ico('val_mov-izq',{ 
-              'title': "Volver a la pantalla anterior", 'data-ope':"pre", 'onclick':"doc.win(this)" 
-            })), $.ope.querySelector('.doc_ico.dat_fin') );
+            $.ope.insertBefore( api_ele.val_cod( api_fig.ico('val_mov-izq',{ 
+              'title': "Volver a la pantalla anterior", 'data-ope':"pre", 'onclick':"api_doc.win(this)" 
+            })), $.ope.querySelector('.fig_ico.ide-dat_fin') );
           }
           $.htm = $.art.querySelector(`div:nth-child(2)`);
         }
         // icono
-        if( $.ico = $.art.querySelector(`header:first-child > .doc_ico:first-of-type`) ){
+        if( $.ico = $.art.querySelector(`header:first-child > .fig_ico:first-of-type`) ){
           $.ico.innerHTML = '';
           if( $ope.ico !== undefined ){
-            if( typeof($ope.ico) == 'string' ) $ope.ico = doc.ico($ope.ico,{ class:'mar_hor-1' });
-            ele.val_mod($ope.ico,$.ico);
+            if( typeof($ope.ico) == 'string' ) $ope.ico = api_fig.ico($ope.ico,{ class:'mar_hor-1' });
+            api_ele.val_mod($ope.ico,$.ico);
           }
         }
         // titulo
         if( $.tit = $.art.querySelector(`header:first-child > h2`) ){
-          $.tit.innerHTML = ( $ope.cab !== undefined ) ? tex.let($ope.cab) : '';
+          $.tit.innerHTML = ( $ope.cab !== undefined ) ? api_tex.let($ope.cab) : '';
         }
         // contenido
-        ele.val_eli($.htm);
-        if( $ope.htm !== undefined ) ele.val_agr($ope.htm,$.htm);
+        api_ele.val_eli($.htm);
+        if( $ope.htm !== undefined ) api_ele.val_agr($ope.htm,$.htm);
       }
       // muestro por valor
       $.art.classList.contains(DIS_OCU) && $.art.classList.remove(DIS_OCU);
@@ -179,7 +158,7 @@ class doc {
     // contenido
     if( $ope ){
       // recorro items
-      lis.val_cod( $.lis.children ).forEach( $e => {
+      api_lis.val_cod( $.lis.children ).forEach( $e => {
         // coincide con el seleccionado
         if( $e.classList.contains(`ide-${$ope}`) ){          
           // hago toogles
@@ -210,39 +189,6 @@ class doc {
     }  
   }
 
-  /* Variable :
-  */
-  // form > .dov_var > label + (select,input,textarea,button)[name]
-  static var( $tip, $dat, $ope, ...$opc ){
-    let $={};
-
-    if( $tip && $tip.nodeName ){
-      $dat = $tip;
-      $api_doc._var = ele.val_ver($dat,{'eti':'form'});
-      $.var_ide = $dat.getAttribute('name');
-    }
-    else{
-      switch( $tip ){
-      case 'mar':
-        if( $ope ){
-          $dat.parentElement.parentElement.querySelectorAll(`.${$ope}`).forEach( $e => $e.classList.remove($ope) );
-          $dat.classList.add($ope);
-        }
-        break;
-      case 'tog':
-        if( $ope ){
-          $dat.parentElement.querySelectorAll(`.${$ope}`).forEach( $e => $e != $dat && $e.classList.remove($ope) );
-          $dat.classList.toggle($ope);
-        }
-        break;
-      }
-    }
-    return $;
-  }// toggles por : form > fieldsets > ...
-  static var_tog( $ide ){
-    lis.val_cod( ele.val_ver($dat,{'eti':'fieldset'}).children ).forEach( $e => $e != $dat && $e.classList.toggle(DIS_OCU) );
-  }
-
   // contenedor : bloque + visible/oculto  
   static val( $dat, $ope ){
     let $ = {};
@@ -250,7 +196,7 @@ class doc {
     if( !$ope ){
       $.ite = $dat.parentElement;
       if( 
-        ( $.bot = $.ite.querySelector('.doc_ico.val_tog') ) 
+        ( $.bot = $.ite.querySelector('.fig_ico.ide-val_tog') ) 
         && ( $.sec = $.ite.nextElementSibling )
       ){        
       
@@ -267,13 +213,13 @@ class doc {
     // por opciones
     else if( ['tod','nad'].includes($ope) ){
 
-      if( $api_doc._var = ele.val_ver($dat,{'eti':"form"}) ){
+      if( $api_doc._var = api_ele.val_ver($dat,{'eti':"form"}) ){
 
         $.lis = !!$api_doc._var.nextElementSibling ? $api_doc._var.nextElementSibling : $api_doc._var.parentElement.parentElement;
 
         $.cla = ( $ope == 'tod' ) ? `.ocu` : `:not(.ocu)`;
               
-        $.lis.querySelectorAll(`.doc_val > .doc_ico.val_tog${$.cla}`).forEach( $e => $e.click() );
+        $.lis.querySelectorAll(`.doc_val > .fig_ico.ide-val_tog${$.cla}`).forEach( $e => $e.click() );
       }
     }
   }

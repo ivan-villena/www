@@ -1,13 +1,15 @@
 <?php
-// Texto : caracter + letra + oracion + parrafo
-class tex {
 
-  static string $IDE = "tex-";
-  static string $EJE = "tex.";
+// Texto : caracter + letra + oracion + parrafo
+
+class api_tex {
+
+  static string $IDE = "api_tex-";
+  static string $EJE = "api_tex.";
 
   function __construct(){
 
-    $this->_let = dat::get('tex_let', [ 'niv'=>['ide'] ]);
+    $this->_let = api_dat::get('tex_let', [ 'niv'=>['ide'] ]);
 
   }
   // getter
@@ -15,7 +17,7 @@ class tex {
     $_ = [];    
     global $api_tex;
     $est = "_$ide";
-    if( !isset($api_tex->$est) ) $api_tex->$est = dat::est_ini(DAT_ESQ,"tex{$est}");
+    if( !isset($api_tex->$est) ) $api_tex->$est = api_dat::est_ini(DAT_ESQ,"tex{$est}");
     $_dat = $api_tex->$est;
     
     if( !empty($val) ){
@@ -62,7 +64,7 @@ class tex {
   static function let( string $dat, array $ele=[] ) : string {
     $_ = [];
     $pal = [];
-    $tex_let = tex::_('let');
+    $tex_let = api_tex::_('let');
     // saltos de linea
     foreach( explode('\n',$dat) as $tex_pal ){
       // espacios
@@ -73,7 +75,7 @@ class tex {
         }// caracteres
         else{
           $let = [];
-          foreach( tex::let_sep($pal_val) as $car ){
+          foreach( api_tex::let_sep($pal_val) as $car ){
             if( is_numeric($car) ){
               $let []= "<n>{$car}</n>";
             }elseif( isset($tex_let[$car]) ){
@@ -186,12 +188,12 @@ class tex {
     // valor
     if( $tip == 'val' ){
       $ope['eti'] = !empty($ope['eti']) ? $ope['eti'] : 'p';
-      $ope['htm'] = tex::let( is_null($dat) ? '' : strval($dat) );
-      $_ = ele::val($ope);
+      $ope['htm'] = api_tex::let( is_null($dat) ? '' : strval($dat) );
+      $_ = api_ele::val($ope);
     }// por tipos
     else{
 
-      if( !is_string($dat) ) $dat = strval( is_iterable($dat) ? obj::val_cod($dat) : $dat );
+      if( !is_string($dat) ) $dat = strval( is_iterable($dat) ? api_obj::val_cod($dat) : $dat );
 
       $ope['value'] = str_replace('"','\"',$dat);
 
@@ -206,13 +208,13 @@ class tex {
         $lis_htm = "";
         if( isset($ope['lis']) || isset($ope['dat']) ){
           if( isset($ope['lis']) ){
-            $dat_lis = obj::val_dec($ope['lis']);
+            $dat_lis = api_obj::val_dec($ope['lis']);
             unset($ope['lis']);          
           }else{
             $dat_lis = [];
           }        
           if( empty($ope['id']) ){ 
-            $ope['id']="_tex-{$tip}-".doc::var_ide("_tex-{$tip}-");
+            $ope['id']="_tex-{$tip}-".api_dat::var_ide("_tex-{$tip}-");
           }
           $ope['list'] = "{$ope['id']}-lis";
           $lis_htm = "
@@ -223,11 +225,11 @@ class tex {
           </datalist>";
         }
         // seleccion automática
-        ele::eje($ope,'foc',"this.select();",'ini');  
-        $_ = "<input".ele::atr($ope).">".$lis_htm;
+        api_ele::eje($ope,'foc',"this.select();",'ini');  
+        $_ = "<input".api_ele::atr($ope).">".$lis_htm;
       }
       else{
-        $_ = "<textarea".ele::atr($ope).">{$dat}</textarea>";
+        $_ = "<textarea".api_ele::atr($ope).">{$dat}</textarea>";
       }
     }      
 
