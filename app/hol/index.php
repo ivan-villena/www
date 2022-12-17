@@ -4,8 +4,6 @@
   $_hol = new stdClass;
   // - cargo Diario: valor por peticion => { hol/$cab/$art/$ide=val }
   $_hol->val = api_hol::val( !empty($_SESSION['hol-val']) ? api_hol::val_cod($_SESSION['hol-val']) : date('Y/m/d') );
-  // - cargo identificadores
-  $_hol->ide = !empty($_uri->art) ? explode('_',$_uri->art) : [ "kin" ];
 
   // proceso fecha
   if( !empty($_uri->val) ){    
@@ -132,7 +130,19 @@
 
         <p>En esta sección podrás encontrar datos que van apareciendo en los distintos libros y están relacionados a cada código y cuenta<c>,</c> junto con sus respectivas agrupaciones y subciclos<c>.</c></p>
 
-        <p>Haciendo referencia a la fuente<c>,</c> se describen brevemente para introducir al lector en sus conceptos y bridarle acceso directo al material donde puede encontrarlo<c>.</c> A partir de su comprensión se pueden realizar lecturas y relaciones entre distintas posiciones<c>,</c> fechas o firmas galácticas<c>.</c></p>
+        <p>Los sistemas del Sincronario están basados en códigos y cuentas<c>:</c> Los <n>13</n> tonos galácticos crean el módulo de sincronización para las <n>13</n> lunas del giro solar y las <n>13</n> trayectorias armónicas del giro galáctico<c>.</c></p>
+
+        <ul>
+          <li>Cada Tono Galáctico se encuentra dentro de uno de los <n>4</n> Pulsares Dimensionales<c>,</c> relacionado por uno de los <n>5</n> Pulsares Matiz y se conecta con otro tono por una de las <n>7</n> Simetrías Inversas<c>.</c> A su vez<c>,</c> dentro de una Onda Encantada cumple uno de los <n>4</n> Mandatos de Acción<c>.</c></li>
+          <li>Cada sello Solar pertecene a una de las <n>5</n> Familias Terrestres<c>,</c> a una de las <n>4</n> Razas Cósmicas<c>,</c> a uno de los <n>4</n> Clanes Galácticos y a una de las <n>5</n> Células del Tiempo<c>.</c> Por otro lado<c>,</c> el Sello se relaciona con uno de las <n>10</n> Órbitas Planetarias del Sistema Solar<c>,</c> establece uno de los <n>5</n> Centros Planetarios del Holon Terrestre y codifica uno de los <n>20</n> dedos del Holon Humano<c>.</c></li>
+          <li>Cada uno de los <n>260</n> kines está compuesto por uno de los <n>13</n> tonos galácticos<c>,</c> y uno de los <n>20</n> sellos solares<c>.</c></li>
+          <li>Cada día del año se encuentra en una de los <n>13</n> Giros Lunares y se asocia a uno de los <n>7</n> Plasma Radiales<c>.</c></li>
+          <li>Cada Giro Lunar se divide en <n>4</n> semanas<c>/</c>héptadas de <n>7</n> días cada una<c>,</c> codificados por uno de los <n>7</n> Plasmas Radiales<c>.</c> Durante este ciclo se incluye el viaje del Guerrero por el Cubo de la Ley compuesto de <n>16</n> pasos<c>.</c> El resto de los <n>12</n> días se dividen en <n>2</n> caminatas de <n>6</n> días cada una<c>,</c> al inicio y al final de cada ciclo<c>.</c></li>
+          <li>Cada Plasma Radial está compuesto por <n>2</n> de las <n>12</n> Líneas de Fuerza<c>,</c> las cuales se generan por la combinacion de dos de los <n>6</n> Tipos de Electricidad en la energía Cósmica<c>.</c> Por otro lado<c>,</c> a cada Plasma se lo relaciona con uno de los <n>7</n> chakras del Cuerpo Humano<c>,</c> y una de las <n>7</n> posiciones del Heptágono de la Mente<c>.</c></li>
+          <li>Un Castillo Fractal está compuesto por <n>52</n> posiciones que se dividen en <n>4</n> ondas encantadas de <n>13</n> unidades cada una<c>.</c> Con el castillo se codifican las <n>4</n> estaciones espectrales del giro galáctico<c>,</c> las <n>4</n> estaciones cíclicas del giro solar<c>,</c> los <n>52</n> anillos solares del ciclo Nuevo Siario y los <n>52</n> años del sendero del destino para el kin planetario<c>.</c> A su vez<c>,</c> la nave del tiempo tierra está compuesta de <n>5</n> castillos para abarcar los <n>260</n> kines del giro galáctico<c>.</c></li>
+        </ul>
+
+        <p>Todos estos son ejemplos de las cuentas utilizadas para medir el tiempo con el concepto de Matriz Radial<c>.</c> Cada cuenta va del <n>1</n> al <n>n</n><c>,</c> siendo <n>n</n> el valor total que define la cuenta<c>.</c> De esta manera<c>:</c> los plasmas val del <n>1<c>-</c>7</n><c>,</c> los tonos del <n>1<c>-</c>13</n><c>,</c> los sellos del <n>1<c>-</c>20</n><c>,</c> las lunas del <n>1<c>-</c>28</n><c>,</c>etc<c>.</c></p>
 
       </section>
       <!-- Módulos -->
@@ -152,6 +162,12 @@
         <p>Desde allí podrás cambiar la fecha y acceder a los datos del valor diario<c>,</c> opciones<c>,</c> elementos de las posiciones<c>,</c> un índice de las cuentas incluídas y un listado de las posiciones seleccionadas para comparar sus características y ubicaciones<c>.</c></p>
         
       </section>
+      <!-- Orden Sincrónico -->
+      <section>        
+      </section>
+      <!-- Orden Ciclico -->
+      <section>        
+      </section>      
     <?php
     $sis_app->rec['ope']['fin']['app_dat']['htm'] = ob_get_clean();
 
@@ -159,87 +175,80 @@
   // por articulo 
   else{  
     ob_start();  
-    // operador : modulos
-    if( $_uri->cab == 'ope' ){
-      
+    // operador : modulos        
+    if( in_array($_uri->cab, $ope_atr = ['kin','psi']) ){
+
       // cargo todos los datos utilizados por esquema
       $sis_app->rec['dat']['hol'] = [];
 
-      // valido uri tablero      
-      if( !isset($_hol->ide[1]) ){
-        echo api_doc::tex([ 'tip'=>"err", "tex"=>"No existe el tablero '$_uri->art'" ]);
+      // genero datos
+      $_hol->dat = api_hol::val_dat($_uri->cab, $_hol->val);
+      
+      // operadores del tablero
+      $tab_ide = "hol.{$_uri->cab}";  
+      
+      if( !( $tab_ope =  api_dat::est_ope('hol',"{$_uri->cab}_{$_uri->art}",'tab') ) ) $tab_ope = [];    
+      
+      // inicializo valores
+      $tab_ope['val'] = [];            
+
+      // fecha => muestro listado por ciclos
+      if( !empty( $_hol->val['fec'] ) ){
+        // joins        
+        $tab_ope['est'] = [ 'fec'=>["dat"], 'hol'=>$ope_atr ];
+        
+        // cargo datos
+        $tab_ope['dat'] = $_hol->dat;
+
+        // kin + psi : activo acumulados
+        if( in_array($_uri->cab,$ope_atr) ){
+          $tab_ope['val']['acu'] = [ 'pos'=>1, 'mar'=>1, 'ver'=>1 ];
+          // agrego opciones
+          if( !empty($tab_ope['opc']) ) $tab_ope['val']['acu']['opc'] = 1;
+        }
+
+        // valor seleccionado
+        $tab_ope['val']['pos'] = $_hol->val;
       }
-      else{
-        // genero datos
-        $_hol->dat = api_hol::val_dat($_hol->ide[0], $_hol->val);
-        
-        // operadores del tablero
-        $tab_ide = "hol.{$_hol->ide[0]}";  
-        if( !( $tab_ope =  api_dat::est_ope('hol',$_uri->art,'tab') ) ) $tab_ope = [];    
-        
-        // inicializo valores
-        $tab_ope['val'] = [];
-        $ope_atr = ['kin','psi'];
-        
-        // fecha => muestro listado por ciclos
-        if( !empty( $_hol->val['fec'] ) ){
-          // joins
-          $tab_ope['est'] = [ 
-            'fec'=>["dat"],
-            'hol'=>$ope_atr
+      // imprimo operadores del tablero
+      $ope = api_obj::val_nom(api_lis::$TAB_OPE,'ver',['ver','opc','val']);
+      foreach( $ope as $ope_ide => $ope_tab ){
+        if( !empty( $htm = api_lis::tab_ope($ope_ide, $tab_ide, $tab_ope) ) ){
+          $sis_app->rec['ope']['ini'][$ope_ide] = [ 
+            'ico'=>$ope_tab['ico'], 'tip'=>"pan", 'nom'=>$ope_tab['nom'], 'nav'=>[ 'eti'=>"article" ], 'htm'=>$htm
           ];
-          
-          // cargo datos
-          $tab_ope['dat'] = $_hol->dat;
-          // kin + psi : activo acumulados
-          if( in_array($_hol->ide[0],$ope_atr) ){
-            $tab_ope['val']['acu'] = [ 'pos'=>1, 'mar'=>1, 'ver'=>1 ];
-            // agrego opciones
-            if( !empty($tab_ope['opc']) ) $tab_ope['val']['acu']['opc'] = 1;
-          }
-          // valor seleccionado
-          $tab_ope['val']['pos'] = $_hol->val;
         }
-        // imprimo operadores del tablero
-        $ope = api_obj::val_nom(api_lis::$TAB_OPE,'ver',['ver','opc','val']);
-        foreach( $ope as $ope_ide => $ope_tab ){
-          if( !empty( $htm = api_lis::tab_ope($ope_ide, $tab_ide, $tab_ope) ) ){
-            $sis_app->rec['ope']['ini'][$ope_ide] = [ 
-              'ico'=>$ope_tab['ico'], 'tip'=>"pan", 'nom'=>$ope_tab['nom'], 'nav'=>[ 'eti'=>"article" ], 'htm'=>$htm
-            ];
-          }
-        }
-        // imprimo operador de lista
-        $lis_ope = api_dat::est_ope("hol",$_hol->ide[0],'lis');
-        $lis_ope['val'] = $tab_ope['val'];
-        // cargo operadores
-        if( isset($tab_ope['est']) ){        
-          $lis_ope['dat'] = $tab_ope['dat'];
-          // busco operadores de lista por : esquema_estructura
-          $lis_ope['est'] = [];
-          foreach( $tab_ope['est'] as $esq_ide => $esq_lis ){
-            $lis_ope['est'][$esq_ide] = [];
-            foreach( $esq_lis as $est_ide ){
-              $lis_ope['est'][$esq_ide][$est_ide] = [];
-              if( $est_ope = api_dat::est_ope($esq_ide,$est_ide,'lis') ){
-                $lis_ope['est'][$esq_ide][$est_ide] = $est_ope;
-              }
+      }
+      // imprimo operador de lista
+      $lis_ope = api_dat::est_ope("hol",$_uri->cab,'lis');
+      $lis_ope['val'] = $tab_ope['val'];
+      // cargo operadores
+      if( isset($tab_ope['est']) ){        
+        $lis_ope['dat'] = $tab_ope['dat'];
+        // busco operadores de lista por : esquema_estructura
+        $lis_ope['est'] = [];
+        foreach( $tab_ope['est'] as $esq_ide => $esq_lis ){
+          $lis_ope['est'][$esq_ide] = [];
+          foreach( $esq_lis as $est_ide ){
+            $lis_ope['est'][$esq_ide][$est_ide] = [];
+            if( $est_ope = api_dat::est_ope($esq_ide,$est_ide,'lis') ){
+              $lis_ope['est'][$esq_ide][$est_ide] = $est_ope;
             }
           }
         }
-        $ope = api_lis::$TAB_OPE['lis'];
-        $sis_app->rec['ope']['ini']['est'] = [ 'ico'=>$ope['ico'], 'tip'=>"win", 'nom'=>$ope['nom'], 
-          'htm'=>api_lis::tab_ope('lis',"hol.{$_hol->ide[0]}",$lis_ope) 
-        ];
-        // imprimo tablero en página principal
-        echo "
-        <article>
-          ".api_hol::tab($_hol->ide[0], $_hol->ide[1], $tab_ope, [
-            'pos'=>[ 'onclick'=>"lis.tab_val('mar',this);" ], 
-            'ima'=>[ 'onclick'=>FALSE ]
-          ])."
-        </article>";
       }
+      $ope = api_lis::$TAB_OPE['lis'];
+      $sis_app->rec['ope']['ini']['est'] = [ 'ico'=>$ope['ico'], 'tip'=>"win", 'nom'=>$ope['nom'], 
+        'htm'=>api_lis::tab_ope('lis',"hol.{$_uri->cab}",$lis_ope) 
+      ];
+      // imprimo tablero en página principal
+      echo "
+      <article>
+        ".api_hol::tab($_uri->cab, $_uri->art, $tab_ope, [
+          'pos'=>[ 'onclick'=>"lis.tab_val('mar',this);" ], 
+          'ima'=>[ 'onclick'=>FALSE ]
+        ])."
+      </article>";
       // cargo tutorial    
       ob_start(); ?>
         <!-- Introducción --> 

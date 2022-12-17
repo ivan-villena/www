@@ -4,14 +4,14 @@
   ini_set('display_errors', '1');
 
   // Sesion
-  session_start();
+    session_start();
     // Sesion
     $_SESSION['ubi'] = "America/Argentina/Buenos_Aires";  
     if( !isset($_SESSION['usu']) ) $_SESSION['usu'] = 1;
     date_default_timezone_set( $_SESSION['ubi'] );
-    // Inicio
+    // Tiempo de Inicio
     $sis_ini = time();
-
+  //
   // Constantes
     // Rutas :: localhost / icpv.com.ar  
     define('SYS_NAV', "http://{$_SERVER['HTTP_HOST']}/" );
@@ -27,6 +27,7 @@
     define('BOR_SEL', "bor-sel");
     define('FON_SEL', "fon-sel");
 
+  //
   // Modulos
   $sis_cla = [ 
       'api'=>[ 
@@ -66,7 +67,11 @@
     // cargo sistema    
     $sis_usu = new sis_usu( $_SESSION['usu'] );
     $sis_ses = new sis_ses( isset($_REQUEST['uri']) ? $_REQUEST['uri'] : "hol" );
+  
   //
+  ////////////////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////
+
   // peticion AJAX
   if( isset($_REQUEST['_']) ){
 

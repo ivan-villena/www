@@ -1,81 +1,8 @@
--- Active: 1665550796793@@127.0.0.1@3306@c1461857_api
+-- Active: 1670107173962@@127.0.0.1@3306@c1461857_api
 
 -- Holon
   --
-  -- Articulos
-    DELETE FROM `app_nav` WHERE `esq`='hol' AND `cab`='dat'
-    ;
-    DELETE FROM `app_nav` WHERE `esq`='hol' AND `cab`='dat' AND `ide`='cod'; INSERT INTO `app_nav` VALUES
-    	('hol','dat','cod',  '07', 'Los 7 Plasmas Radiales' ),
-        ('hol','dat','cod','07-01','Días del Giro Lunar'),
-        ('hol','dat','cod','07-02','Sellos de la profecía'),
-        ('hol','dat','cod','07-03','El heptágono de la Mente'),
-        ('hol','dat','cod','07-04','Autodelcaraciones Diarias'),
-        ('hol','dat','cod','07-05','Componentes Electrónicos'),
-      ('hol','dat','cod',  '13', 'Los 13 Tonos Galácticos' ),
-        ('hol','dat','cod','13-01','Los 13 Rayos de Pulsación'),
-        ('hol','dat','cod','13-02','Los 7 pares especulares'),     
-        ('hol','dat','cod','13-03','Los 13 Principios de la Creación'),           
-        ('hol','dat','cod','13-04','La Onda Encantada de la Aventura'),
-        ('hol','dat','cod','13-05','Los 4 pulsares dimensionales'),
-        ('hol','dat','cod','13-06','Los 5 pulsares matices'),
-      ('hol','dat','cod',  '20', 'Los 20 Sellos Solares' ),
-        ('hol','dat','cod','20-01','Símbolos posicionales'),
-        ('hol','dat','cod','20-02','Las 3 etapas en el Desarrollo del Ser'),
-        ('hol','dat','cod','20-03','Las 4 etapas evolutivas de la mente'),
-        ('hol','dat','cod','20-04','Las 5 Familias Cíclicas de la Luz'),
-        ('hol','dat','cod','20-05','Colocación Cromática'),
-        ('hol','dat','cod','20-06','Las 5 familias terrestres'),
-        ('hol','dat','cod','20-07','Los 4 clanes galácticos'),          
-        ('hol','dat','cod','20-08','Colocación Armónica'),
-        ('hol','dat','cod','20-09','Las 4 razas raíz cósmicas'),
-        ('hol','dat','cod','20-10','Las 5 células del tiempo'),    
-        ('hol','dat','cod','20-11','Parejas del Oráculo'),
-        ('hol','dat','cod','20-12','Las 10 parejas Análogas'),
-        ('hol','dat','cod','20-13','Las 10 parejas Antípodas'),
-        ('hol','dat','cod','20-14','Las 10 parejas Ocultas'),
-        ('hol','dat','cod','20-15','Holon Solar'),
-        ('hol','dat','cod','20-16','Las 10 Órbitas planetarias'),
-        ('hol','dat','cod','20-17','Las 5 Células Solares'),
-        ('hol','dat','cod','20-18','Los 5 Circuitos de telepatía'),
-        ('hol','dat','cod','20-19','Holon Planetario'),
-        ('hol','dat','cod','20-20','Los 3 Campos Dimensionales'),
-        ('hol','dat','cod','20-21','Los 5 Centros de la Fuerza-G'),
-        ('hol','dat','cod','20-22','Los 2 Flujos Polares'),
-        ('hol','dat','cod','20-23','Holon humano'),
-        ('hol','dat','cod','20-24','Los 5 Centros Galácticos'),
-        ('hol','dat','cod','20-25','Las 4 Extremidades Cromáticas'),
-        ('hol','dat','cod','20-26','Las 5 Dedos de las manos y pies'),
-        ('hol','dat','cod','20-27','Los 2 Lados de la Respiración S-G'),
-      ('hol','dat','cod',  '28', 'Los 28 Días del Giro Lunar' ),
-        ('hol','dat','cod','28-01','Las 4 héptadas'),
-      ('hol','dat','cod',  '52', 'Las 52 Posiciones del Castillo' ),
-        ('hol','dat','cod','52-01','Los 4 Cuadrantes'),
-        ('hol','dat','cod','52-02','las 13 Armonías'),
-      ('hol','dat','cod',  '64', 'Los 64 Hexagramas' ),
-        ('hol','dat','cod','64-01','Los 4 Bigramas'),
-        ('hol','dat','cod','64-02','Los 6 Trigramas'),
-      ('hol','dat','cod', '260', 'Los 260 Kines del Giro Galáctico' ),
-        ('hol','dat','cod','260-01','Los 52 portales de Activación Galáctica'),
-        ('hol','dat','cod','260-02','Los 13 + 1 campos de Energía'),
-        ('hol','dat','cod','260-03','Giro Espectral'),
-        ('hol','dat','cod','260-04','Estación Galáctica'),
-        ('hol','dat','cod','260-05','Elemento Cromático'),
-        ('hol','dat','cod','260-06','Giro Galáctico'),
-        ('hol','dat','cod','260-07','Trayectoria Armónica'),
-        ('hol','dat','cod','260-08','Célula del Tiempo'),
-        ('hol','dat','cod','260-09','Nave del Tiempo'),
-        ('hol','dat','cod','260-10','Castillo Direccional'),
-        ('hol','dat','cod','260-11','Aventura de la Onda Encantada'),
-      ('hol','dat','cod', '365', 'Los 365 Psi-Cronos del Giro Solar' ),
-        ('hol','dat','cod','365-01','Las 4 estaciones solares'),
-        ('hol','dat','cod','365-02','Las 13 lunas del servicio planetario'),
-        ('hol','dat','cod','365-03','Los 19 vinales del haab'),
-        ('hol','dat','cod','365-04','Las 52 heptadas semanales'),
-        ('hol','dat','cod','365-05','Las 73 cromáticas entonadas')    
-    ;
-  --
-  -- Bibliografía 
+  -- Bibliografía: Libros
     DELETE FROM `app_nav` WHERE `esq`='hol' AND `cab`='bib'
     ;
     DELETE FROM `app_nav` WHERE `esq`='hol' AND `cab`='bib' AND `ide`='tut'; INSERT INTO `app_nav` VALUES 
@@ -940,5 +867,84 @@
         ('hol','bib','cro','04-10','Programa 128 codones noosfera  '),
         ('hol','bib','cro','04-11','Las 48 Runas Ur Armónicas de La Segunda Creación y otros elementos del Arbol De La Vida Telepático Parlan')              
     ;
+  --  
+  -- Datos: Codigos y Cuentas
+    DELETE FROM `app_nav` WHERE `esq`='hol' AND `cab`='dat'
+    ;
+    DELETE FROM `app_nav` WHERE `esq`='hol' AND `cab`='dat' AND `ide`='rad'; INSERT INTO `app_nav` VALUES
+      ('hol','dat','rad','01','Días del Giro Lunar'),
+      ('hol','dat','rad','02','Sellos de la profecía'),
+      ('hol','dat','rad','03','El heptágono de la Mente'),
+      ('hol','dat','rad','04','Autodelcaraciones Diarias'),
+      ('hol','dat','rad','05','Componentes Electrónicos')
+    ;
+    DELETE FROM `app_nav` WHERE `esq`='hol' AND `cab`='dat' AND `ide`='ton'; INSERT INTO `app_nav` VALUES
+      ('hol','dat','ton','01','Los 13 Rayos de Pulsación'),
+      ('hol','dat','ton','02','Los 7 pares especulares'),     
+      ('hol','dat','ton','03','Los 13 Principios de la Creación'),           
+      ('hol','dat','ton','04','La Onda Encantada de la Aventura'),
+      ('hol','dat','ton','05','Los 4 pulsares dimensionales'),
+      ('hol','dat','ton','06','Los 5 pulsares matices')
+    ;
+    DELETE FROM `app_nav` WHERE `esq`='hol' AND `cab`='dat' AND `ide`='sel'; INSERT INTO `app_nav` VALUES
+      ('hol','dat','sel','01','Símbolos posicionales'),
+      ('hol','dat','sel','02','Las 5 Familias Cíclicas de la Luz'),
+      ('hol','dat','sel','03','Las 3 etapas en el Desarrollo del Ser'),
+      ('hol','dat','sel','04','Las 4 etapas evolutivas de la mente'),      
+      ('hol','dat','sel','05','Colocación Cromática'),
+      ('hol','dat','sel','06','Las 5 familias terrestres'),
+      ('hol','dat','sel','07','Los 4 clanes galácticos'),          
+      ('hol','dat','sel','08','Colocación Armónica'),
+      ('hol','dat','sel','09','Las 4 razas raíz cósmicas'),
+      ('hol','dat','sel','10','Las 5 células del tiempo'),    
+      ('hol','dat','sel','11','Parejas del Oráculo'),
+      ('hol','dat','sel','12','Las 10 parejas Análogas'),
+      ('hol','dat','sel','13','Las 10 parejas Antípodas'),
+      ('hol','dat','sel','14','Las 10 parejas Ocultas'),
+      ('hol','dat','sel','15','Holon Solar'),
+      ('hol','dat','sel','16','Las 10 Órbitas planetarias'),
+      ('hol','dat','sel','17','Las 5 Células Solares'),
+      ('hol','dat','sel','18','Los 5 Circuitos de telepatía'),
+      ('hol','dat','sel','19','Holon Planetario'),
+      ('hol','dat','sel','20','Los 3 Campos Dimensionales'),
+      ('hol','dat','sel','21','Los 5 Centros de la Fuerza-G'),
+      ('hol','dat','sel','22','Los 2 Flujos Polares'),
+      ('hol','dat','sel','23','Holon humano'),
+      ('hol','dat','sel','24','Los 5 Centros Galácticos'),
+      ('hol','dat','sel','25','Las 4 Extremidades Cromáticas'),
+      ('hol','dat','sel','26','Las 5 Dedos de las manos y pies'),
+      ('hol','dat','sel','27','Los 2 Lados de la Respiración S-G')
+    ;
+    DELETE FROM `app_nav` WHERE `esq`='hol' AND `cab`='dat' AND `ide`='lun'; INSERT INTO `app_nav` VALUES
+      ('hol','dat','lun','01','Las 4 héptadas')
+    ;
+    DELETE FROM `app_nav` WHERE `esq`='hol' AND `cab`='dat' AND `ide`='cas'; INSERT INTO `app_nav` VALUES
+      ('hol','dat','cas','01','Los 4 Cuadrantes'),
+      ('hol','dat','cas','02','las 13 Armonías')    
+    ;
+    DELETE FROM `app_nav` WHERE `esq`='hol' AND `cab`='dat' AND `ide`='chi'; INSERT INTO `app_nav` VALUES
+      ('hol','dat','chi','01','Los 4 Bigramas'),
+      ('hol','dat','chi','02','Los 6 Trigramas')
+    ;
+    DELETE FROM `app_nav` WHERE `esq`='hol' AND `cab`='dat' AND `ide`='kin'; INSERT INTO `app_nav` VALUES
+      ('hol','dat','kin','01','Los 52 portales de Activación Galáctica'),
+      ('hol','dat','kin','02','Los 13 + 1 campos de Energía'),
+      ('hol','dat','kin','03','Giro Espectral'),
+      ('hol','dat','kin','04','Estación Galáctica'),
+      ('hol','dat','kin','05','Elemento Cromático'),
+      ('hol','dat','kin','06','Giro Galáctico'),
+      ('hol','dat','kin','07','Trayectoria Armónica'),
+      ('hol','dat','kin','08','Célula del Tiempo'),
+      ('hol','dat','kin','09','Nave del Tiempo'),
+      ('hol','dat','kin','10','Castillo Direccional'),
+      ('hol','dat','kin','11','Aventura de la Onda Encantada')
+    ;
+    DELETE FROM `app_nav` WHERE `esq`='hol' AND `cab`='dat' AND `ide`='psi'; INSERT INTO `app_nav` VALUES
+      ('hol','dat','psi','01','Las 4 estaciones solares'),
+      ('hol','dat','psi','02','Las 13 lunas del servicio planetario'),
+      ('hol','dat','psi','03','Los 19 vinales del haab'),
+      ('hol','dat','psi','04','Las 52 heptadas semanales'),
+      ('hol','dat','psi','05','Las 73 cromáticas entonadas')
+    ;    
   --
 --

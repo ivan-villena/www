@@ -1,4 +1,4 @@
--- Active: 1665550796793@@127.0.0.1@3306@c1461857_api
+-- Active: 1670107173962@@127.0.0.1@3306@c1461857_api
 
 -- Cabecera: 1° nivel : Opcion del Menú
 
@@ -8,8 +8,8 @@
 			( `esq`, `ide`, `pos`, `nom`, `des`, `ico`, `ocu`, `url`, `nav`, `usu` )
 			
 		VALUES
-			('hol','bib', 1, 'Bibliografía', 	'', 'tex_lib', 	0, 0, 1, 0 ),
-			('hol','dat', 2, 'Artículos', 		'', 'tex_inf', 	0, 0, 1, 0 ),
-			('hol','ope', 3, 'Módulos',				'', 'tab', 			0, 0, 0, 0 ),
-			('hol','usu', 4, 'Usuario', 			'', 'usu', 		 	1, 0, 1, 0 )
+			('hol','bib', 1, 'Bibliografía', 				'', 'tex_lib', 	0, 0, 1, 0 ),
+			('hol','dat', 2, 'Códigos y Cuentas',		'', 'tex_inf', 	0, 0, 1, 0 ),
+			('hol','kin', 3, 'Órden Sincrónico',		'', 'tab', 			0, 0, 0, 0 ),
+			('hol','psi', 4, 'Órden Cíclico',				'', 'tab', 			0, 0, 0, 0 )
 		;

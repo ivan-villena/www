@@ -30,3 +30,35 @@ main section.inicio > .doc_tex.pie {
     grid-row: 7/11;
   } 
 }
+
+/* //////////////////////////////////////////////////////////////////////// */
+/* //////////////////////////////////////////////////////////////////////// */
+/* 
+  Operador: Modulos
+*/
+
+/* 
+  Panel 
+*/
+
+/* Cuentas */
+aside.doc_pan > .ide-val > .ide-cue > ul {
+  height: 40vh;
+}
+
+
+/* 
+  Tablero 
+*/
+main.doc_sec article {
+  max-width: -moz-fit-content;
+  max-width: fit-content;
+  padding: 0;
+  border: initial;
+  margin: auto;
+  line-height: initial;
+}
+
+main.doc_sec article > .tab {
+  margin: auto;
+}
