@@ -6,8 +6,7 @@ class api_fec {
   static string $EJE = "api_fec.";
 
   function __construct(){
-  }
-  // getter
+  }// getter
   static function _( string $ide, $val = NULL ) : string | array | object {
     $_ = [];
     global $api_fec;
@@ -39,15 +38,15 @@ class api_fec {
   static function dat( string $val, ...$opc ) : object {
 
     $_ = new stdClass();
-    $_->val = "";
+    $_->val = "";// fecha
     $_->dia = 0;
     $_->mes = 0;
     $_->año = 0;
-    $_->tie = "";
+    $_->tie = "";// horario
     $_->hor = 0;
     $_->min = 0;
     $_->seg = 0;
-    $_->ubi = "";
+    $_->ubi = "";// ubicacion
     // extension: sincronario
     $_->kin = "";
     $_->psi = "";
@@ -74,7 +73,7 @@ class api_fec {
         // valido fecha resultante
         if( $_->val = api_fec::val($_,...$opc) ){
           // busco valor semanal
-          $_->sem = api_fec::val_tip($_,'sem');
+          $_->sem = api_fec::val_sem($_);
           // proceso horario
           if( isset($val[1]) ){
             $hor = explode(':', $_->tie = $val[1]);
@@ -92,8 +91,61 @@ class api_fec {
     }    
     return $_;
   }  
+
+  // controladores
+  static function var( string $tip, mixed $dat = NULL, array $ope = [], ...$opc ) : string {
+    $_ = "";
+    $_ide = self::$IDE."var_{$tip}";
+    $_eje = self::$EJE."var_{$tip}";  
+
+    switch( $tip ){
+    case 'val':
+      $ope['eti'] = "time";
+      $ope['htm'] = api_tex::let(api_fec::val_var($dat));
+      api_ele::cla($ope,"fec",'ini');
+      $ope['value'] = $dat;
+      $_ = api_ele::eti($ope);
+      break;
+    case 'tie': 
+      $ope['type'] = 'datetime-local';
+      $ope['value'] = api_fec::val_var($dat,$tip);
+      break;
+    case 'dia':
+      $ope['type'] = 'date';
+      $ope['value'] = api_fec::val_var($dat,$tip);
+      break;      
+    case 'hor':
+      $ope['type'] = 'time';
+      $ope['value'] = api_fec::val_var($dat,$tip);
+      break;
+    case 'sem':
+      $ope['type'] = 'week';
+      $ope['value'] = intval($dat);
+      break;
+    case 'mes':      
+      $ope['type'] = 'number';
+      $ope['min'] = 1;
+      $ope['max'] = 12;
+      $ope['value'] = intval($dat);
+      break;
+    case 'año': 
+      $ope['type'] = 'number';
+      $ope['value'] = intval($dat);
+      $ope['min'] = -9999;
+      $ope['max'] = 9999;
+      break;
+    }
+
+    if( empty($_) && !empty($ope['type']) ){
+      // seleccion automática
+      api_ele::eje($ope,'foc',"this.select();",'ini');
+      $_ = "<input".api_ele::atr($ope).">";
+    }      
+
+    return $_;
+  }  
   
-  // validor de fecha : "año/mes/dia" | "dia/mes/año"
+  // valido de fecha : "año/mes/dia" | "dia/mes/año"
   static function val( object $dat, ...$opc ) : bool | string {
     $_ = FALSE;
   
@@ -101,12 +153,16 @@ class api_fec {
     $mes = !empty($dat->mes) ? $dat->mes : 1;
     $dia = !empty($dat->dia) ? $dat->dia : 1;
 
-    if( checkdate($mes, $dia, $año) ){
+    if( api_fec::val_tip($año, $mes, $dia) ){
       
       $_ = !in_array('año',$opc) ? api_num::val($dia,2).'/'.api_num::val($mes,2).'/'.api_num::val($año,4) : api_num::val($año,4).'/'.api_num::val($mes,2).'/'.api_num::val($dia,2);
     }
 
     return $_;
+  }// valido tipos
+  static function val_tip( $año, $mes, $dia ) : bool | string {
+
+    return checkdate($mes, $dia, $año);
   }// objeto: DateTime
   static function val_dec( int | string | object | array $dat = NULL ) : DateTime | string {
     $_ = $dat;
@@ -161,27 +217,6 @@ class api_fec {
     }
     else{        
       $_ = [ $dat[2], $dat[1], $dat[0] ];
-    }
-    return $_;
-  }// devuelvo por tipo
-  static function val_tip( mixed $dat, $tip = NULL ) : bool | string {
-    $_ = FALSE;
-
-    if( empty($tip) ){
-      $_ = $dat;
-      if( is_string($dat) ) $_ = api_fec::dat($dat);
-    }
-    else{
-      $_fec = $dat;
-      // aseguro objeto nativo
-      if( !is_object($dat) || get_class($dat)=='stdClass' ) $_fec = api_fec::val_dec($dat); 
-      // busco tipo
-      switch( $tip ){
-      case 'dyh': $_ = $_fec->format('Y/m/d H:i:s');  break;
-      case 'hor': $_ = $_fec->format('H:i:s');        break;
-      case 'sem': $_ = $_fec->format('w');            break;
-      case 'dia': $_ = $_fec->format('Y/m/d');        break;
-      }
     }
     return $_;
   }// operaciones numericas por tipos
@@ -260,85 +295,8 @@ class api_fec {
       break;
     }
     return $_;
-  }
-  
-  // año bisciesto ?
-  static function año_bis( string | object $fec ) : bool {
-
-    if( is_string($fec) ) $fec = api_fec::dat($fec);
-
-    return date('L', strtotime("$fec->año-01-01"));
-  }// defino valor por rangos : AC - DC
-  static function año_ran( int $ini, int $fin ) : string {
-
-    $_ = "";
-
-    if( $ini < 0 && $fin < 0  ){
-
-      $_ = api_num::int( $ini * - 1 )." - ".api_num::int( $fin * - 1). " A.C.";
-    }
-    elseif( $ini > 0 && $fin > 0 ){
-
-      $_ = api_num::int( $ini )." - ".api_num::int( $fin ). " D.C.";
-    }
-    else{
-      $_ = api_num::int( $ini * - 1 )." A.C. - ".api_num::int( $fin ). " D.C.";
-    }
-
-    return $_;
-  }
-
-  // controladores
-  static function var( string $tip, mixed $dat = NULL, array $ope = [], ...$opc ) : string {
-    $_ = "";
-    $_ide = self::$IDE."var_{$tip}";
-    $_eje = self::$EJE."var_{$tip}";  
-
-    switch( $tip ){
-    case 'val':
-      $ope['value'] = $dat; $_ = "
-      <time".api_ele::atr($ope).">
-        ".api_tex::let(api_fec::var_val($dat))."
-      </time>";
-    case 'tie': 
-      $ope['value'] = intval($dat);
-      $ope['type']='numeric';
-      break;
-    case 'dyh': 
-      $ope['value'] = api_fec::var_val($dat,$tip);
-      $ope['type']='datetime-local';
-      break;
-    case 'hor':
-      $ope['value'] = api_fec::var_val($dat,$tip);
-      $ope['type']='time';
-      break;
-    case 'dia':
-      $ope['value'] = api_fec::var_val($dat,$tip);
-      $ope['type']='date';
-      break;
-    case 'sem':
-      $ope['value'] = intval($dat);
-      $ope['type']='week';
-      break;
-    case 'mes':
-      $ope['value'] = intval($dat);
-      $ope['type']='number';
-      break;
-    case 'año': 
-      $ope['value'] = intval($dat);
-      $ope['type']='number';
-      break;
-    }
-
-    if( empty($_) && !empty($ope['type']) ){
-      // seleccion automática
-      api_ele::eje($ope,'foc',"this.select();",'ini');
-      $_ = "<input".api_ele::atr($ope).">";
-    }      
-
-    return $_;
   }// formateo para input : "aaa-mm-ddThh:mm:ss"
-  static function var_val( string $val = NULL, string $tip = 'dia' ) : string {
+  static function val_var( string $val = NULL, string $tip = 'dia' ) : string {
     $_ = "";
 
     if( !empty($val) ){
@@ -355,5 +313,55 @@ class api_fec {
     
     return $_;
   }
+  // devuelvo dia y hora
+  static function val_tie( mixed $dat ) : string {
+    $_fec = ( !is_object($dat) || get_class($dat)=='stdClass' ) ? api_fec::val_dec($dat) : $dat;
+    return $_fec->format('Y/m/d H:i:s');
+  }// devuelvo dia
+  static function val_dia( mixed $dat ) : string {
+    $_fec = ( !is_object($dat) || get_class($dat)=='stdClass' ) ? api_fec::val_dec($dat) : $dat;
+    return $_fec->format('w');
+  }// devuelvo hora
+  static function val_hor( mixed $dat ) : string {
+    $_fec = ( !is_object($dat) || get_class($dat)=='stdClass' ) ? api_fec::val_dec($dat) : $dat;
+    return $_fec->format('H:i:s');
+  }// devuelvo dia semanal
+  static function val_sem( mixed $dat ) : string {
+    $_fec = ( !is_object($dat) || get_class($dat)=='stdClass' ) ? api_fec::val_dec($dat) : $dat;
+    return $_fec->format('w');
+  }// devuelvo mes
+  static function val_mes( mixed $dat ) : string {
+    $_fec = ( !is_object($dat) || get_class($dat)=='stdClass' ) ? api_fec::val_dec($dat) : $dat;
+    return $_fec->format('Y/m');
+  }// devuelvo año
+  static function val_año( mixed $dat ) : string {
+    $_fec = ( !is_object($dat) || get_class($dat)=='stdClass' ) ? api_fec::val_dec($dat) : $dat;
+    return $_fec->format('Y');
+  }
+  
+  // - año bisciesto ?
+  static function año_bis( string | object $fec ) : bool {
 
+    if( is_string($fec) ) $fec = api_fec::dat($fec);
+
+    return date('L', strtotime("$fec->año-01-01"));
+  }// - defino valor por rangos : AC - DC
+  static function año_ran( int $ini, int $fin ) : string {
+
+    $_ = "";
+
+    if( $ini < 0 && $fin < 0  ){
+
+      $_ = api_num::val_int( $ini * - 1 )." - ".api_num::val_int( $fin * - 1). " A.C.";
+    }
+    elseif( $ini > 0 && $fin > 0 ){
+
+      $_ = api_num::val_int( $ini )." - ".api_num::val_int( $fin ). " D.C.";
+    }
+    else{
+      $_ = api_num::val_int( $ini * - 1 )." A.C. - ".api_num::val_int( $fin ). " D.C.";
+    }
+
+    return $_;
+  }
 }

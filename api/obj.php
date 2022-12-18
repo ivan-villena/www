@@ -6,8 +6,7 @@ class api_obj {
   static string $EJE = "api_obj.";
 
   function __construct(){
-  }
-  // getter 
+  }// getter 
   static function _( string $ide, $val = NULL ) : string | array | object {
     $_ = [];    
     global $api_obj;
@@ -29,6 +28,137 @@ class api_obj {
     elseif( isset($_dat) ){
       $_ = $_dat;
     }
+    return $_;
+  }
+
+
+  // controlador
+  static function var( string $tip, mixed $dat = NULL, array $ope = [], ...$opc ) : string {
+    $_ = "";
+    $_eje = self::$EJE."obj";
+
+    $_ite = function( mixed $ide, mixed $dat = NULL, string $tip = 'pos', array $ope = [], ...$opc ) : string {
+      $_ = "";
+  
+      $ope['ent']=isset($ope['ent'])?$ope['ent']:'alm';
+      
+      $ope['eti']=isset($ope['eti'])?$ope['eti']:[]; 
+      $ope['ite']=isset($ope['ite'])?$ope['ite']:[];      
+  
+      if( is_null($dat) ){ 
+        $dat=''; 
+        $tip_dat='val'; 
+        $tip_val='vac'; 
+        $_="<input type='radio' disabled>";
+      }
+      else{ 
+        $tip = api_dat::tip($dat); 
+        $tip_dat = $tip['dat']; 
+        $tip_val = $tip['val']; 
+      }
+  
+      $ite = "";
+      if( in_array('dat',$opc) && $tip != 'val' ){ 
+        $ite = "<input type='checkbox'>"; 
+      }
+      // items de lista -> // reducir dependencias
+      $cla_ide = "{$tip_dat}";
+      if( in_array($tip_dat,[ 'lis' ]) ){
+  
+        if( $ite != "" ){          
+          $_ = $cla_ide::var( $tip_val, $dat, [ 'ide'=>"{$ope['ent']}.{$ide}", 'eti'=>$ope['ite'] ] );
+        }
+        else{
+          $_ = api_opc::lis( $dat, [ 'eti'=>$ope['eti'], 'ite'=>$ope['ite'] ] );
+        }
+      }// controladores
+      else{
+  
+        $dat = is_string($dat) ? $dat : strval($dat); 
+        $_ = !empty($ope) ? $cla_ide::ope( $tip_val, $dat, $ope['ite'] ) : "<p".api_ele::atr($ope['ite']).">{$dat}</p>";
+      }
+      $ide='';
+      if( !empty($ite) ){ 
+        $agr = "";
+        if( $tip == 'pos' ){
+          $agr = " tam='2'";
+          $tip = "number";
+        }else{
+          $tip = "text";
+        }
+        $ide="<input class='ide' type='{$tip}'{$agr} value='{$ide}' title='{$ide}'>";
+      }
+      else{ 
+        $ide="<c class='sep'>[</c><n>{$ide}</n><c class='sep'>]</c>";
+      }
+      if( $tip == 'pos' ){
+        $sep='='; 
+      }else{ 
+        $sep=( $tip == 'nom' ) ? '=>' : ':' ; 
+      }  
+      $sep = "<c class='sep'>{$sep}</c>"; 
+  
+      return "
+      <li class='atr' data-ide='{$ide}'>
+        {$ite}{$ide}{$sep}{$_}
+      </li>";  
+    };
+    // texto : json
+    if( !isset($dat) || is_string($dat) ){
+      $ope['value'] = strval($dat); $_ = "
+      <textarea".api_ele::atr($ope).">{$dat}</textarea>";
+    }
+    // por tipos: pos - nom - atr
+    elseif( $tip = api_obj::val_tip($dat) ){
+      $cue = 0; 
+      $htm = '';
+      $cla_agr = ''; 
+      $cla_tog = ' dis-ocu';
+      if( in_array('ocu',$opc) ){ 
+        $cla_agr = ' dis-ocu'; 
+        $cla_tog = ''; 
+      }
+      $atr_agr = in_array('dat',$opc) ? '' : " disabled";
+      // separadores
+      if( $tip=='pos' ){ $ini='('; $fin=')'; }elseif( $tip=='nom' ){ $ini='['; $fin=']'; }else{ $ini='{'; $fin='}'; }
+      // conteido
+      if( is_object($dat) ){
+        // ... incluir metodos
+      }
+      foreach( $dat as $i=>$v ){ 
+        $cue++; 
+        $htm .= $_ite($i,$v,$tip,...$opc);
+      }
+      api_ele::cla($ope,"api_obj {$tip}",'ini');
+      $_ = "
+      <div".api_ele::atr($ope).">
+        <div class='jus-ini mar_ver-1'>
+          <p>
+            <c>(</c> <n class='sep'>{$cue}</n> <c>)</c> <c class='sep'>=></c> <c class='_lis-ini'>{$ini}</c>
+          </p>
+          ".api_fig::ico('dat_ver',['onclick'=>"$_eje.val(this,'tog');"])."
+          <ul class='doc_ope _tog{$cla_agr}'>"; 
+            if( empty($atr_agr) ){ $_.="
+            ".api_fig::ico('dat_tod',['eti'=>"li",'onclick'=>"$_eje.val(this,'tod');"])."
+            ".api_fig::ico('dat_nad',['eti'=>"li",'onclick'=>"$_eje.val(this,'nad');"])."
+            ".api_fig::ico('dat_agr',['eti'=>"li",'onclick'=>"$_eje.val(this,'agr');"])."
+            ".api_fig::ico('dat_eli',['eti'=>"li",'onclick'=>"$_eje.val(this,'eli');"])."
+            ";
+            }$_.="
+          </ul>
+          <p class=' _tog{$cla_tog}'>
+            <c class='sep _lis-fin'>{$fin}</c>
+          </p>
+        </div>
+        <ul class='lis _atr ali-ini _tog{$cla_agr}'> 
+          {$htm}
+        </ul>
+        <p class='_tog{$cla_agr}'>
+          <c class='_lis-fin'>{$fin}</c>
+        </p>
+      </div>";
+    }
+
     return $_;
   }
 
@@ -235,134 +365,4 @@ class api_obj {
     }
     return $_;
   }
-
-  // controlador
-  static function var( string $tip, mixed $dat = NULL, array $ope = [], ...$opc ) : string {
-    $_ = "";
-    $_eje = self::$EJE."obj";
-
-    $_ite = function( mixed $ide, mixed $dat = NULL, string $tip = 'pos', array $ope = [], ...$opc ) : string {
-      $_ = "";
-  
-      $ope['ent']=isset($ope['ent'])?$ope['ent']:'alm';
-      
-      $ope['eti']=isset($ope['eti'])?$ope['eti']:[]; 
-      $ope['ite']=isset($ope['ite'])?$ope['ite']:[];      
-  
-      if( is_null($dat) ){ 
-        $dat=''; 
-        $tip_dat='val'; 
-        $tip_val='vac'; 
-        $_="<input type='radio' disabled>";
-      }
-      else{ 
-        $tip = api_dat::tip($dat); 
-        $tip_dat = $tip['dat']; 
-        $tip_val = $tip['val']; 
-      }
-  
-      $ite = "";
-      if( in_array('dat',$opc) && $tip != 'val' ){ 
-        $ite = "<input type='checkbox'>"; 
-      }
-      // items de lista -> // reducir dependencias
-      $cla_ide = "{$tip_dat}";
-      if( in_array($tip_dat,[ 'lis' ]) ){
-  
-        if( $ite != "" ){          
-          $_ = $cla_ide::var( $tip_val, $dat, [ 'ide'=>"{$ope['ent']}.{$ide}", 'eti'=>$ope['ite'] ] );
-        }
-        else{
-          $_ = api_opc::lis( $dat, [ 'eti'=>$ope['eti'], 'ite'=>$ope['ite'] ] );
-        }
-      }// controladores
-      else{
-  
-        $dat = is_string($dat) ? $dat : strval($dat); 
-        $_ = !empty($ope) ? $cla_ide::ope( $tip_val, $dat, $ope['ite'] ) : "<p".api_ele::atr($ope['ite']).">{$dat}</p>";
-      }
-      $ide='';
-      if( !empty($ite) ){ 
-        $agr = "";
-        if( $tip == 'pos' ){
-          $agr = " tam='2'";
-          $tip = "number";
-        }else{
-          $tip = "text";
-        }
-        $ide="<input class='ide' type='{$tip}'{$agr} value='{$ide}' title='{$ide}'>";
-      }
-      else{ 
-        $ide="<c class='sep'>[</c><n>{$ide}</n><c class='sep'>]</c>";
-      }
-      if( $tip == 'pos' ){
-        $sep='='; 
-      }else{ 
-        $sep=( $tip == 'nom' ) ? '=>' : ':' ; 
-      }  
-      $sep = "<c class='sep'>{$sep}</c>"; 
-  
-      return "
-      <li class='atr' data-ide='{$ide}'>
-        {$ite}{$ide}{$sep}{$_}
-      </li>";  
-    };
-    // texto : json
-    if( !isset($dat) || is_string($dat) ){
-      $ope['value'] = strval($dat); $_ = "
-      <textarea".api_ele::atr($ope).">{$dat}</textarea>";
-    }
-    // por tipos: pos - nom - atr
-    elseif( $tip = api_obj::val_tip($dat) ){
-      $cue = 0; 
-      $htm = '';
-      $cla_agr = ''; 
-      $cla_tog = ' dis-ocu';
-      if( in_array('ocu',$opc) ){ 
-        $cla_agr = ' dis-ocu'; 
-        $cla_tog = ''; 
-      }
-      $atr_agr = in_array('dat',$opc) ? '' : " disabled";
-      // separadores
-      if( $tip=='pos' ){ $ini='('; $fin=')'; }elseif( $tip=='nom' ){ $ini='['; $fin=']'; }else{ $ini='{'; $fin='}'; }
-      // conteido
-      if( is_object($dat) ){
-        // ... incluir metodos
-      }
-      foreach( $dat as $i=>$v ){ 
-        $cue++; 
-        $htm .= $_ite($i,$v,$tip,...$opc);
-      }
-      api_ele::cla($ope,"api_obj {$tip}",'ini');
-      $_ = "
-      <div".api_ele::atr($ope).">
-        <div class='jus-ini mar_ver-1'>
-          <p>
-            <c>(</c> <n class='sep'>{$cue}</n> <c>)</c> <c class='sep'>=></c> <c class='_lis-ini'>{$ini}</c>
-          </p>
-          ".api_fig::ico('dat_ver',['onclick'=>"$_eje.val(this,'tog');"])."
-          <ul class='doc_ope _tog{$cla_agr}'>"; 
-            if( empty($atr_agr) ){ $_.="
-            ".api_fig::ico('dat_tod',['eti'=>"li",'onclick'=>"$_eje.val(this,'tod');"])."
-            ".api_fig::ico('dat_nad',['eti'=>"li",'onclick'=>"$_eje.val(this,'nad');"])."
-            ".api_fig::ico('dat_agr',['eti'=>"li",'onclick'=>"$_eje.val(this,'agr');"])."
-            ".api_fig::ico('dat_eli',['eti'=>"li",'onclick'=>"$_eje.val(this,'eli');"])."
-            ";
-            }$_.="
-          </ul>
-          <p class=' _tog{$cla_tog}'>
-            <c class='sep _lis-fin'>{$fin}</c>
-          </p>
-        </div>
-        <ul class='lis _atr ali-ini _tog{$cla_agr}'> 
-          {$htm}
-        </ul>
-        <p class='_tog{$cla_agr}'>
-          <c class='_lis-fin'>{$fin}</c>
-        </p>
-      </div>";
-    }
-
-    return $_;
-  }  
 }

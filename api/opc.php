@@ -6,8 +6,7 @@ class api_opc {
   static string $EJE = "api_opc.";
 
   function __construct(){
-  }
-  // getter
+  }// getter
   static function _( string $ide, $val = NULL ) : string | array | object {
     $_ = [];    
     global $api_opc;

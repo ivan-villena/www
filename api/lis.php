@@ -99,9 +99,7 @@ class api_lis {
     return $_;
   }
 
-  /* 
-  Valores 
-  */
+  /* Valores */
   static function val( mixed $dat, mixed $ope = NULL ) : bool | array {
     $_ = [];
     if( empty($ope) ){ 
@@ -297,56 +295,15 @@ class api_lis {
 
     return $dat;
   }
-  
-  /* 
-  Variable
-  */
-  static function var( string $tip, string | array $dat, array $ope ){
-    $_ = "";
-    switch( $tip ){
-    case 'pos': break;
-    case 'ite': break;
-    }
-    return $_;
-  }// operadores : tog + filtro 
-  static function var_ope( string $tip, array $opc = [], array $ele = [] ) : string {
-    $_ide = self::$IDE."$tip";
-    $_eje = self::$EJE."$tip";      
-    $_ = "";
 
-    $tod = empty($opc);
-    
-    if( $tod || in_array('tog',$opc) ){        
-      
-      $_ .= api_doc::val_ope( $tip == 'ite' ? ['eje'=>"{$_eje}_tog(this,"] : [] );
-    }
-    if( $tod || in_array('ver',$opc) ){ 
-      $_ .= api_dat::var('val','ver',[ 
-        'des'=> "Filtrar...",
-        'htm'=> api_doc::val_ver([ 'cue'=>in_array('cue',$opc) ? 0 : NULL, 'eje'=>"{$_eje}_ver(this);" ])
-      ]);
-    }
-
-    if( !empty($_) ){ 
-      if( !isset($ele['ope']) ) $ele['ope'] = [];
-      api_ele::cla($ele['ope'],"doc_ite"); 
-      $ele['ope']['eti'] = "form";
-      $ele['ope']['htm'] = $_;
-      $_ = api_ele::val($ele['ope']);
-    }      
-    return $_;
-  }
-
-  /* 
-  Posicion: puteos, numerados, términos
-  */
+  /* Posicion: puteos, numerados, términos */
   static function pos( string | array $dat, array $ope = [] ) : string {
     foreach( ['lis','ite','val'] as $i ){ if( !isset($ope[$i]) ) $ope[$i]=[]; }
     $_ = "";
     $_eje = self::$EJE."pos";
     // operador
     if( isset($ope['opc']) ) 
-      $_ .= api_lis::var_ope('ite', $ope['opc'] = api_lis::val_ite($ope['opc']), $ope);
+      $_ .= api_lis::ope('dep', $ope['opc'] = api_lis::val_ite($ope['opc']), $ope);
     
     // listado
     $eti = isset($ope['lis']['eti']) ? $ope['lis']['eti'] : 'ul';
@@ -364,7 +321,7 @@ class api_lis {
       $_ .= "
       <{$eti}".api_ele::atr($ope['lis']).">";
         foreach( $dat as $pos => $val ){
-          $_ .= api_lis::pos_val( 1, $pos, $val, $ope, $eti );
+          $_ .= api_lis::pos_ite( 1, $pos, $val, $ope, $eti );
         }$_.="
       </{$eti}>";
     }
@@ -392,7 +349,7 @@ class api_lis {
     }
     return $_;
   }
-  static function pos_val( int $niv, int | string $ide, mixed $val, array $ope, string $eti = "ul" ) : string {
+  static function pos_ite( int $niv, int | string $ide, mixed $val, array $ope, string $eti = "ul" ) : string {
     $_ = "
     <li".api_ele::atr($ope['ite']).">";
       if( is_string($val) ){ 
@@ -405,10 +362,10 @@ class api_lis {
         if( isset($ope['opc']) ){
           $opc = [];
           if( in_array('tog_dep',$ope['opc']) ) $opc []= "tog";
-          $_ .= "<li>".api_lis::var_ope('ite',$opc,$ope)."</li>";
+          $_ .= "<li>".api_lis::ope('dep',$opc,$ope)."</li>";
         }
         foreach( $val as $ide => $val ){
-          $_ .= api_lis::pos_val( $niv, $ide, $val, $ope, $eti );
+          $_ .= api_lis::pos_ite( $niv, $ide, $val, $ope, $eti );
         }$_.="
         </$eti>";
       }
@@ -417,29 +374,31 @@ class api_lis {
     return $_;
   }
 
-  /* 
-  Sublistados : ul.lis > ...li > .val(.fig_ico + tex-tit) + lis/htm
-  */
-  static function ite( array $dat, array $ope = [] ) : string {
+  /* Contenedor : ul.lis > ...li > .val(.fig_ico + tex-tit) + lis/htm */
+  static function dep( array $dat, array $ope = [] ) : string {
     foreach( ['lis','ite','val','ico','dep','ope'] as $e ){ if( !isset($ope[$e]) ){ $ope[$e]=[]; } }
     $_ = "";
     // elementos        
     api_ele::cla($ope['lis'],"lis dep",'ini');
     api_ele::cla($ope['dep'],"lis",'ini');
     // operadores
-    if( isset($ope['opc']) ) $_ .= api_lis::var_ope('ite', api_lis::val_ite($ope['opc']), $ope);
+    if( isset($ope['opc']) ){ 
+      $_ .= api_lis::ope('dep', api_lis::val_ite($ope['opc']), $ope);
+    }else{
+      $ope['opc'] = [];
+    }
     // listado
     $_ .= "
     <ul".api_ele::atr($ope['lis']).">";
     $ide = 0;
     foreach( $dat as $val ){
       $ide++;
-      $_ .= api_lis::ite_val( 1, $ide, $val, $ope );
+      $_ .= api_lis::dep_ite( 1, $ide, $val, $ope );
     }$_ .= "
     </ul>";
     return $_;
   }    
-  static function ite_val( int $niv, int | string $ide, string | array $val, array $ope ) : string {  
+  static function dep_ite( int $niv, int | string $ide, string | array $val, array $ope ) : string {  
     $ope_ite = $ope['ite'];      
     api_ele::cla($ope_ite,"pos ide-$ide",'ini');
     // con dependencia : evalúo rotacion de icono
@@ -451,7 +410,7 @@ class api_lis {
       $val['ite_ope']['ico'] = $ope_ico;
     }// sin dependencias : separo item por icono vacío
     else{
-      api_ele::cla($ope_ite,"sep");
+      if( !in_array('not-sep',$ope['opc']) ) api_ele::cla($ope_ite,"sep");
     }
     $_ = "
     <li".api_ele::atr( isset($ope["ite-$ide"]) ? api_ele::val_jun($ope["ite-$ide"],$ope_ite) : $ope_ite  ).">
@@ -476,11 +435,11 @@ class api_lis {
               if( in_array('tog_dep',$ope['opc']) && $lis_dep ) $opc []= "tog";
               if( !empty($opc) ) 
               $_ .= "
-              <li>".api_lis::var_ope('ite',$opc,$ope)."</li>";
+              <li>".api_lis::ope('dep',$opc,$ope)."</li>";
             }
             foreach( $val['lis'] as $i => $v ){
 
-              $_ .= api_lis::ite_val( $niv+1, $i, $v, $ope );
+              $_ .= api_lis::dep_ite( $niv+1, $i, $v, $ope );
             }
           }
           // listado textual
@@ -499,9 +458,7 @@ class api_lis {
     return $_;
   }
 
-  /* 
-  Indice: a[href] > ...a[href]
-  */
+  /* Indice: a[href] > ...a[href] */
   static function nav( array $dat, array $ele = [], ...$opc ) : string {    
     $_ = "";
     $_eje = self::$EJE."nav";// val | ver
@@ -603,13 +560,11 @@ class api_lis {
     // pido listado
     api_ele::cla($ele['dep'],DIS_OCU);
     $ele['opc'] = [];
-    $_ .= api_lis::ite($_lis,$ele);
+    $_ .= api_lis::dep($_lis,$ele);
     return $_;
   }    
 
-  /* 
-  Barra: desplazamiento por item
-  */
+  /* Barra: desplazamiento por item */
   static function bar( array $dat, array $ope = [] ) : string {
     $_ide = self::$IDE."bar";
     $_eje = self::$EJE."bar";      
@@ -662,11 +617,35 @@ class api_lis {
     return $_;
   }
   
-  /* 
-  Operador
-  */
-  // cargo datos de un proceso ( absoluto o con dependencias )
-  static function ope( array $dat ) : array {
+  /* Operadores */
+  static function ope( string $tip, array $opc = [], array $ele = [] ) : string {
+    $_ide = self::$IDE."$tip";
+    $_eje = self::$EJE."$tip";      
+    $_ = "";
+
+    $tod = empty($opc);
+    
+    if( $tod || in_array('tog',$opc) ){        
+      
+      $_ .= api_doc::val_ope( $tip == 'dep' ? ['eje'=>"{$_eje}_tog(this,"] : [] );
+    }
+    if( $tod || in_array('ver',$opc) ){ 
+      $_ .= api_dat::var('val','ver',[ 
+        'des'=> "Filtrar...",
+        'htm'=> api_doc::val_ver([ 'cue'=>in_array('cue',$opc) ? 0 : NULL, 'eje'=>"{$_eje}_ver(this);" ])
+      ]);
+    }
+
+    if( !empty($_) ){ 
+      if( !isset($ele['ope']) ) $ele['ope'] = [];
+      api_ele::cla($ele['ope'],"doc_ite"); 
+      $ele['ope']['eti'] = "form";
+      $ele['ope']['htm'] = $_;
+      $_ = api_ele::val($ele['ope']);
+    }      
+    return $_;
+  }// cargo datos de un proceso ( absoluto o con dependencias )
+  static function ope_val( array $dat ) : array {
     $_ = [];
     // cargo temporal
     foreach( $dat as $esq => $est_lis ){
@@ -825,8 +804,8 @@ class api_lis {
       if( in_array('fec',$tip) && isset($ope['dat'][0]['fec_dat']) && isset($ope['dat'][$fin]['fec_dat']) ){
         $fec_var = [ 'id'=>"{$ide}-fec", 'min'=>1, 'max'=>$dat_cue, 'onchange'=>"$eje('fec');" ];
         $fec_var_val = array_merge($fec_var,[ 'tip'=>"fec_dia",
-          'min'=>api_fec::var_val($ope['dat'][0]['fec_dat']),
-          'max'=>api_fec::var_val($ope['dat'][$fin]['fec_dat'])
+          'min'=>api_fec::val_var($ope['dat'][0]['fec_dat']),
+          'max'=>api_fec::val_var($ope['dat'][$fin]['fec_dat'])
         ]);
         $_ .= "
         <form class='ide-fec'>
@@ -948,9 +927,7 @@ class api_lis {
     return $_;
   }
 
-  /* 
-  Tabla: thead( tr > th ) + tbody( tr > td ) + tfoot( tr > td )
-  */
+  /* Tabla: thead( tr > th ) + tbody( tr > td ) + tfoot( tr > td ) */
   static function est( string | array $dat, array $ope = [], array $ele = [] ) : string {
     $_ = "";
     $_ide = self::$IDE."est";
@@ -1325,7 +1302,7 @@ class api_lis {
       $_ = "        
       <h3 class='mar_arr-0 tex_ali-izq'>Columnas</h3>
 
-      ".api_lis::ite($lis_val,[ 'dep'=>[], 'opc'=>['tog'] ]);
+      ".api_lis::dep($lis_val,[ 'dep'=>[], 'opc'=>['tog'] ]);
 
       break;
     // Descripciones : titulo + detalle
@@ -1363,14 +1340,14 @@ class api_lis {
       $_ = "
       <h3 class='mar_arr-0 tex_ali-izq'>Descripciones</h3>
 
-      ".api_lis::ite($lis_val,[ 'dep'=>[], 'opc'=>['tog'] ]);
+      ".api_lis::dep($lis_val,[ 'dep'=>[], 'opc'=>['tog'] ]);
 
       break;
     // Cuentas : total + porcentaje
     case 'cue':
       $_ = "
       <h3 class='mar_arr-0 tex_ali-izq'>Cuentas</h3>
-      ".api_lis::ite( api_lis::ope_cue('dat', $ope['est'], [ 'ide'=>$_ide ]), [ 'dep'=>[], 'opc'=>['tog','ver','cue'] ]);
+      ".api_lis::dep( api_lis::ope_cue('dat', $ope['est'], [ 'ide'=>$_ide ]), [ 'dep'=>[], 'opc'=>['tog','ver','cue'] ]);
 
       break;
     }
@@ -1416,7 +1393,7 @@ class api_lis {
         $htm_ope = "";
         $_ .= "
         <th".api_ele::atr($ele_ite).">
-          <p>{$htm}</p>
+          <p class='ide'>{$htm}</p>
           {$htm_ope}
         </th>";
       }         
@@ -1615,9 +1592,7 @@ class api_lis {
     return $_;
   }
 
-  /*
-  Tablero
-  */
+  /* Tablero */
   static function tab_dat( string $esq, string $est, string $atr, array &$ope = [], array &$ele = [] ) : array {
     foreach( ['sec','pos'] as $v ){ if( !isset($ele[$v]) ) $ele[$v] = []; }
 
@@ -1721,7 +1696,7 @@ class api_lis {
       <section class='ide-cue inf pad_hor-2'>
         <h3>Totales por Estructura</h3>
 
-        ".api_lis::ite( api_lis::ope_cue('dat',$ope['est'],['ide'=>$_ide]), [ 
+        ".api_lis::dep( api_lis::ope_cue('dat',$ope['est'],['ide'=>$_ide]), [ 
           'dep'=>['class'=>DIS_OCU], 
           'opc'=>['tog','ver','cue'] 
         ])."

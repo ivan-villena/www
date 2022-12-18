@@ -115,7 +115,7 @@ class hol_bib {
       <ul>
         <li>Regente Planetario<c>:</c> $_pla->nom $_pol->des_flu<c>.</c></li>
         <li>Etapa <n>$ton</n><c>,</c> Ciclo $_arq->nom_may<c>.</c></li>
-        <li>Índice Armónico <n>".api_num::int($_kin->fac)."</n><c>:</c> período ".api_tex::let($_kin->fac)."</li>
+        <li>Índice Armónico <n>".api_num::val_int($_kin->fac)."</n><c>:</c> período ".api_tex::let($_kin->fac)."</li>
         <li><q>".api_tex::let($_sel->arm_tra_des)."</q></li>
       </ul>";
       break;
@@ -140,7 +140,7 @@ class hol_bib {
 
         <p>
           <n>{$lis_pos}</n><c>.</c> <b class='ide'>{$_sel->nom_may}</b> <n>".intval($_kin->nav_ond_dia)."</n>
-          <br>".api_tex::let(api_num::int($_kin->fac))."
+          <br>".api_tex::let(api_num::val_int($_kin->fac))."
         </p>";
       }          
       break;
@@ -185,7 +185,7 @@ class hol_bib {
             <td></td>
             <td>
               <n>$sel</n><c>.</c><n>$ton</n> <b class='ide'>$_sel->nom_may</b><c>:</c>
-              <br><n>".api_num::int($_kin->fac)."</n><c>,</c> año <n>".api_num::int($_kin->fac_ini)."</n>
+              <br><n>".api_num::val_int($_kin->fac)."</n><c>,</c> año <n>".api_num::val_int($_kin->fac_ini)."</n>
             </td>
             <td>
               <q>".api_tex::let($_sel->arm_tra_des)."</q>
@@ -212,7 +212,7 @@ class hol_bib {
         foreach( explode('; ',$_tra->lec) as $ite ){
           $lis []= "<c>-></c> ".api_tex::let($ite);
         }
-        $_[] = $htm.api_lis::ite($lis,[ 'lis'=>['class'=>"pun"] ]);
+        $_[] = $htm.api_lis::dep($lis,[ 'lis'=>['class'=>"pun"] ]);
       }          
       break;
     // kin : 20 katunes
@@ -263,7 +263,7 @@ class hol_bib {
             <br><n>".intval($_ond->ton)."</n> {$_sel->nom_may}
           </p>";
         }                
-        $_[] = $htm.api_lis::ite($lis,[ 'lis'=>['class'=>'ite'] ]);
+        $_[] = $htm.api_lis::dep($lis,[ 'lis'=>['class'=>'ite'] ]);
       }          
       break;
     // kin : ciclo ahau / onda encantada
@@ -801,7 +801,7 @@ class hol_bib {
       )."
       <nav".api_ele::atr($ope['nav']).">
 
-        ".api_lis::ite($_lis,$ope)."
+        ".api_lis::dep($_lis,$ope)."
 
       </nav>";    
       break;        
@@ -1191,7 +1191,7 @@ class hol_bib {
           <br><q>".api_tex::let($_rad->rin_des)."<c>.</c></q>
         </p>";
       }
-      $_ = api_lis::ite($_,$ope);
+      $_ = api_lis::dep($_,$ope);
       break;                    
     // luna : días del cubo
     case 'lun_cub':

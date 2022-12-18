@@ -321,8 +321,8 @@ class api_doc {
     </fieldset>";
   }// - Filtros : operador + valor textual + ( totales )
   static function val_ver( string | array $dat = [], array $ele = [], ...$opc ) : string {
-    $_ = "
-    <fieldset class='doc_ite'>";      
+    $_ = "";
+    
     // opciones de filtro por texto
     $_ .= api_dat::var_ope(['ver','tex'],[
       'ite'=>[ 
@@ -333,6 +333,7 @@ class api_doc {
         'class'=>isset($dat['ele_ope']['class']) ? $dat['ele_ope']['class'] : "mar_hor-1", 'onchange'=>$dat['eje']
       ]
     ]);
+
     // ingreso de valor a filtrar
     $_ .= api_tex::var('ora', isset($dat['val']) ? $dat['val'] : '', [ 
       'id'=>isset($dat['ide']) ? $dat['ide'] : NULL, 
@@ -342,14 +343,14 @@ class api_doc {
       'class'=>isset($ele['class']) ? $ele['class'] : NULL,
       'style'=>isset($ele['style']) ? $ele['class'] : NULL
     ]);
+
     // agrego totales
     if( isset($dat['cue']) ){ $_ .= "
       <p class='mar_izq-1' title='Items totales'>
         <c>(</c><n name='tot'>".( is_array($dat['cue']) ? count($dat['cue']) : $dat['cue'] )."</n><c>)</c>
       </p>";
     }
-    $_ .= "
-    </fieldset>";
+    
     return $_;
   }
 
@@ -419,7 +420,7 @@ class api_doc {
   }
 
   // Menú de opciones
-  static function opc(){
+  static function opc( array $ope = [], array $ele = [] ) {
   }
 
 }

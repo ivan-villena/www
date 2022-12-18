@@ -275,7 +275,7 @@ class sis_app {
     api_ele::cla($ele['lis'],"nav");
     api_ele::cla($ele['dep'],DIS_OCU);
     $ele['opc'] = [ 'tog' ]; // dlt- 'ver', 'cue'
-    return api_lis::ite($_lis,$ele);
+    return api_lis::dep($_lis,$ele);
   }
 
   // Articulo por contenido + ...secciones + pie de página

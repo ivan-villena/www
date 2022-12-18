@@ -60,6 +60,12 @@ class api_num {
     }
 
     return $_;
+  }  
+  static val_int( $dat ){
+
+    if( typeof($dat) == 'string' ) $dat = parseInt($dat);
+
+    return $dat.toFixed(0);
   }
   static val_dec( $dat, $val = 2 ){
 
@@ -77,13 +83,6 @@ class api_num {
     while( $_ < $min ){ $_ += $max; }
 
     return $_;
-  }
-
-  static int( $dat ){
-
-    if( typeof($dat) == 'string' ) $dat = parseInt($dat);
-
-    return $dat.toFixed(0);
   }
 
   static var( $tip, $dat, $ope, ...$opc ){

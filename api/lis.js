@@ -94,8 +94,7 @@ class api_lis {
     return $_;
   }
 
-  /* 
-  Valores del Entorno
+  /* Valores del Entorno
   */
   static val( $dat = [], $ope ){
     let $_ = $dat;
@@ -198,8 +197,7 @@ class api_lis {
     return $_;
   }
 
-  /* 
-  Posicion: punteos, numeraciones, y términos
+  /* Posicion: punteos, numeraciones, y términos
   */
   static pos(){
   }
@@ -306,12 +304,11 @@ class api_lis {
     }    
   }
 
-  /* 
-  Contenedor: toggles + filtros
+  /* Contenedor: toggles + filtros
   */
-  static ite(){      
+  static dep(){      
   }
-  static ite_ver( $dat, $ope = 'p:first-of-type', $cla = 'tex-luz' ){
+  static dep_ver( $dat, $ope = 'p:first-of-type', $cla = 'tex-luz' ){
     let $ = api_dat.var($dat);
     // busco listado
     if( $api_doc._var ){
@@ -364,13 +361,12 @@ class api_lis {
       if( $.tot_val = $api_doc._var.querySelector(`[name="tot"]`) ) $.tot_val.innerHTML = $.tot;           
     }      
   }
-  static ite_tog( $dat, $val ){
+  static dep_tog( $dat, $val ){
     
     return api_doc.val($dat,$val);
   }
 
-  /* 
-  indice
+  /* Indice
   */
   static nav( $dat, $cla = FON_SEL ){
 
@@ -434,15 +430,14 @@ class api_lis {
   static nav_ver( $dat, $ope = 'a[href]' ){
 
     // ejecuto filtros
-    api_lis.ite_ver($dat, $ope);
+    api_lis.dep_ver($dat, $ope);
 
     // volver a marcar el fondo del elemento seleccionado
     api_lis.nav_tog($api_doc._var.nextElementSibling);
 
   }    
 
-  /* 
-  desplazamiento horizontal x item
+  /* Barra: desplazamiento horizontal x item
   */
   static bar(){
   }
@@ -476,8 +471,7 @@ class api_lis {
     }
   }
 
-  /*  
-  Operador: valores
+  /* Operador: valores
   */
   // acumulados : posicion + marca + seleccion
   static ope_acu( $dat, $ope, ...$opc ){
@@ -694,10 +688,9 @@ class api_lis {
       }
       break;              
     }    
-  }  
+  }
 
-  /* 
-  Tabla
+  /* Tabla
   */
   // inicializo : acumulados
   static est_ini(){
@@ -967,8 +960,7 @@ class api_lis {
     }
   }
   
-  /* 
-    Tablero
+  /* Tablero
   */
   static tab( $dat, $ele, ...$opc ){
     let $ = {};

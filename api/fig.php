@@ -122,5 +122,4 @@ class api_fig {
     }
     return $_;
   }
-
 }

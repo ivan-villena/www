@@ -107,7 +107,7 @@ class sis_usu {
             $_cic_ani->arm, 
             $_cic_ani->ond, 
             $_cic_ani->ton, 
-            '".api_fec::var_val($_cic_ani->fec,'dia')."', '$_cic_ani->sin', $_cic_ani->kin 
+            '".api_fec::val_var($_cic_ani->fec,'dia')."', '$_cic_ani->sin', $_cic_ani->kin 
           );<br>";
 
           if( empty($_cic_ani->lun) ) continue;
@@ -118,7 +118,7 @@ class sis_usu {
               $this->ide, 
               $_cic_lun->ani, 
               $_cic_lun->ide, 
-              '".api_fec::var_val($_cic_lun->fec,'dia')."', 
+              '".api_fec::val_var($_cic_lun->fec,'dia')."', 
               '$_cic_lun->sin', $_cic_lun->kin 
             );<br>";
           }
@@ -143,12 +143,12 @@ class sis_usu {
 
     // busco anillo actual
     $_['ani'] = api_dat::get('usu_cic_ani',[ 
-      'ver'=>"`usu`='{$this->ide}' AND `fec` <= '".api_fec::var_val( $_['hol']['fec'] )."'", 'ord'=>"`ide` DESC", 'lim'=>1, 'opc'=>"uni"
+      'ver'=>"`usu`='{$this->ide}' AND `fec` <= '".api_fec::val_var( $_['hol']['fec'] )."'", 'ord'=>"`ide` DESC", 'lim'=>1, 'opc'=>"uni"
     ]);
 
     // busco transito lunar
     $_['lun'] = api_dat::get('usu_cic_lun',[ 
-      'ver'=>"`usu`='{$this->ide}' AND `ani`={$_['ani']->ide} AND `fec` <= '".api_fec::var_val( $_['hol']['fec'] )."'", 'ord'=>"`ani`, `ide` DESC", 'lim'=>1, 'opc'=>"uni" 
+      'ver'=>"`usu`='{$this->ide}' AND `ani`={$_['ani']->ide} AND `fec` <= '".api_fec::val_var( $_['hol']['fec'] )."'", 'ord'=>"`ani`, `ide` DESC", 'lim'=>1, 'opc'=>"uni" 
     ]);
 
     // calculo diario
@@ -216,7 +216,7 @@ class sis_usu {
     // configuro listado
     api_ele::cla($ope['dep'],DIS_OCU);
     $ope['opc'] = [ 'tog', 'ver', 'cue', 'tog_dep' ];
-    return api_lis::ite($_lis,$ope);
+    return api_lis::dep($_lis,$ope);
   }
   // - informe
   public function cic_inf( array $ele = [], ...$opc ) : string {    

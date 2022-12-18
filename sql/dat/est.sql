@@ -588,7 +588,7 @@
               "pos":{ "ima":"hol.ton.ide", "tex":"hol.ton.des" }, 
               "opc":{ "pul_dim":1, "pul_mat":1, "pul_sim":1 } 
             }, { 
-              "pos":{ "class":"bor-1 pad-1", "style":"width: 5rem; height: 5rem;" } 
+              "pos":{ "class":"bor-1 pad-1" } 
             }
           ],
           "fic": [ "ond", "dim", "mat", "sim" ],

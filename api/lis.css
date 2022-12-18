@@ -260,7 +260,7 @@ main article div.lis.est {
 div.lis.est > table {
   width: max-content;
   margin: 0 auto;
-  line-height: 1.3;
+  line-height: 1.25;
   text-align: center;  
 }
 
@@ -270,13 +270,10 @@ div.lis.est > table > thead {
   top: 0;
   background-color: var(--fon_win);
 }
-
-div.lis.est > table > thead > tr > th > p {
-  color: var(--let_ide);
+div.lis.est > table > thead > tr > th > p.ide {
   padding: .5rem;
   max-width: min-content;
 }
-
 div.lis.est > table > thead > tr:not(.gru) > th,
 div.lis.est > table > tbody > tr:not([data-ope],[data-opc]) > td {
   border-right: 1px dotted var(--bor_sec);

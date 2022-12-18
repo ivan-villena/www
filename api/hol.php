@@ -358,7 +358,7 @@ class api_hol {
         else{
           $_dat = api_hol::val($fec);      
 
-          $_ []= api_lis::ope([
+          $_ []= api_lis::ope_val([
             'fec'=>[ 
               'dat'=>api_fec::_('dat',$fec),
             ],
