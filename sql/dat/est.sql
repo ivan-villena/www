@@ -82,9 +82,9 @@
             "num": 10
           },
           "inf":{ 
-            "atr": [ "nom_cod" ],
+            "atr": [ "nom_cod" ],            
+            "tab": [ "hol.uni.sol", { "sec":{ "pla":"()($)ide()" } }],
             "fic": [ "orb", "cel", "cir" ],
-            "tab": [ "hol.uni.sol", { "sec":{ "pla":1 } } ],
             "htm-1": [ { "eti":"p", "class":"tit", "htm":"Sellos Solares" } ],
             "fic-1": [ "sel" ],
             "htm-2": [ { "eti":"p", "class":"tit", "htm":"Clanes" } ],
@@ -116,8 +116,8 @@
       ('hol','uni_sol_orb', '{
           "atr":{ 
             "ide":{ "min":1, "max":2, "dat":"hol.uni_sol_orb" },
-            "pla":{ "dat":"hol.uni_sol_pla" },
-            "ele":{ "dat":"hol.sel_cro_ele" }            
+            "ele":{ "dat":"hol.sel_cro_ele" },
+            "pla":{ "dat":"hol.uni_sol_pla" }                        
           },
           "val":{ 
             "nom": "Grupo Orbital #()($)ide() de 2: ()($)nom().",
@@ -127,9 +127,11 @@
             "num": 2
           },
           "inf":{ 
-            "htm-1": [ { "eti":"p", "class":"tit", "htm":"Planetas" } ],
+            "opc": [ "des" ],
+            "tab": [ "hol.uni.sol", { "sec":{ "orb":"()($)ide()" } }],
+            "htm-1": { "eti":"p", "class":"tit", "htm":"Órbitas Planetarias" },
             "fic-1": [ "pla" ],
-            "htm-2": [ { "eti":"p", "class":"tit", "htm":"Clanes" } ],
+            "htm-2": { "eti":"p", "class":"tit", "htm":"Clanes Cromáticos" },
             "fic-2": [ "ele" ]
           },
           "opc":{ 
@@ -151,7 +153,8 @@
             "num": 5
           },
           "inf":{ 
-            "opc": [ "det" ],
+            "opc": [ "des" ],
+            "tab": [ "hol.uni.sol", { "sec":{ "cel":"()($)ide()" } }],
             "htm-1": [ { "eti":"p", "class":"tit", "htm":"Planetas" } ],
             "fic-1": [ "pla" ],
             "htm-2": [ { "eti":"p", "class":"tit", "htm":"Sellos Solares" } ],
@@ -180,6 +183,7 @@
           },
           "inf":{ 
             "atr": [ "cod", "des" ],
+            "tab": [ "hol.uni.sol", { "sec":{ "cir":"()($)ide()" } }],
             "htm-1": [ { "eti":"p", "class":"tit", "htm":"Planetas" } ],
             "fic-1": [ "pla" ],
             "htm-2": [ { "eti":"p", "class":"tit", "htm":"Sellos Solares" } ],
@@ -222,8 +226,8 @@
             "num": 5
           },
           "inf":{ 
+            "tab": [ "hol.uni.pla", { "sec":{ "cen":"()($)ide()" } } ],
             "fic": [ "fam" ],
-            "tab": [ "hol.uni.pla", { } ],
             "htm-1": [ { "eti":"p", "class":"tit", "htm":"Sellos Solares" } ],
             "fic-1": [ "sel" ]
           },
@@ -243,6 +247,7 @@
             "num": 3
           },
           "inf":{ 
+            "tab": [ "hol.uni.pla", { "sec":{ "cen":[], "hem":"()($)ide()" } } ],
             "fic": [ "sel" ]
           },
           "opc":{ 
@@ -261,6 +266,7 @@
             "num": 2
           },
           "inf":{ 
+            "tab": [ "hol.uni.pla", { "sec":{ "cen":[], "mer":"()($)ide()" } } ],
             "fic": [ "sel" ]
           },
           "opc":{ 
@@ -279,6 +285,7 @@
             "col": 2
           },
           "inf":{ 
+            "tab": [ "hol.uni.hum", { "sec":{ "ded":[], "cen":[], "res":"()($)ide()" } } ],
             "atr": [ ]
           },
           "opc":{ 
@@ -299,8 +306,8 @@
             "num": 5
           },
           "inf":{ 
-            "fic": [ "fam" ],
-            "tab": [ "hol.uni.hum", { "sec":{ "cen":1 } } ],
+            "tab": [ "hol.uni.hum", { "sec":{ "ded":[], "cen":"()($)ide()" } } ],
+            "fic": [ "fam" ],            
             "htm-1": { "eti":"p", "class":"tit", "htm":"Sellos Solares" },
             "fic-1": [ "sel" ]
           },
@@ -321,6 +328,7 @@
             "num": 5
           },
           "inf":{ 
+            "tab": [ "hol.uni.hum", { "sec":{ "ded":"()($)ide()", "cen":[] } } ],
             "fic": [ "fam" ],
             "htm-1": { "eti":"p", "class":"tit", "htm":"Sellos Solares" },
             "fic-1": [ "sel" ]
@@ -342,6 +350,7 @@
             "num": 4
           },
           "inf":{ 
+            "tab": [ "hol.uni.hum", { "sec":{ "ext":"()($)ide()", "ded":[], "cen":[] } } ],
             "fic": [ "ele" ],
             "htm-1": [ { "eti":"p", "class":"tit", "htm":"Sellos Solares" } ],
             "fic-1": [ "sel" ]
@@ -364,6 +373,7 @@
             "num": 10
           },
           "inf":{ 
+            "tab": [ "hol.uni.hum", { "sec":{ "res":[], "cen":[], "art":[], "ded":[] } } ],
             "fic": [ "fam" ],
             "htm-1": [ { "eti":"p", "class":"tit", "htm":"Clanes Galácticos" } ],
             "fic-1": [ "ele" ],
@@ -386,8 +396,9 @@
             "num": 7
           },
           "inf":{ 
-            "htm-1": [ { "eti":"p", "class":"tit", "htm":"Tonos Galácticos" } ],
-            "fic-1": [ "ton" ]
+            "tab": [ "hol.uni.hum", { "sec":{ "art":"()($)ide()", "ded":[] } } ],
+            "htm": [ { "eti":"p", "class":"tit", "htm":"Tonos Galácticos" } ],
+            "fic": [ "ton" ]
           }
       }' ),
       ('hol','uni_hum_cha', '{
@@ -402,6 +413,7 @@
             "num": 7
           },
           "inf":{ 
+            "tab": [ "hol.uni.hum", { "sec":{ "art":[], "ded":[], "cha":"()($)ide()" } } ],
             "fic": [ "rad" ]
           }
       }' ),
@@ -581,7 +593,7 @@
           "num": 13
         },
         "inf":{
-          "atr": [ "des_car", "des_acc", "des_pod" ],          
+          "atr": [ "des_car", "des_acc", "des_pod" ],                    
           "tab": [ "hol.ton.ond", 
             { 
               "val":{ "pos":"()($)ide()" }, 
@@ -1171,7 +1183,7 @@
           "col": 4,
           "num": 52
         },
-        "inf":{           
+        "inf":{          
           "tab": [ "hol.cas.ond", { 
             "val":{ "pos":"()($)ide()" }, 
             "pos":{ "bor":1, "ima":"hol.cas.ton", "num":"hol.cas.ide", "col":"hol.cas.pos_arm" },
@@ -1241,7 +1253,7 @@
           "num": 64
         },
         "inf":{ 
-          "opc": [ "det" ],
+          "opc": [ "des" ],
           "fic": [ "sup", "inf" ],
           "lec": [ "tit", "lec" ]
         }

@@ -44,13 +44,8 @@ document.querySelectorAll('form').forEach(
 /* 
   Inicio
 */
-// muestro menu
-if( !( $.cab = $sis_log.uri.cab ) ){
-
-  if( $.bot_ini = $api_doc._bot.querySelector('.fig_ico.ide-app_cab') ) $.bot_ini.click();
-}
-// articulo
-else{
+// por Articulo
+if( $.cab = $sis_log.uri.cab ){
   // Menu: expando seleccionado
   if( $.app_cab = $api_doc._pan.querySelector(`.ide-app_cab p.ide-${$.cab}`) ){ 
     $.app_cab.click();
@@ -67,6 +62,8 @@ else{
         api_doc.pan('app_nav');
       }        
     }
-  }
-
+  }  
+}// muestro menú
+else{
+  // if( $.bot_ini = $api_doc._bot.querySelector('.fig_ico.ide-app_cab') ) $.bot_ini.click();
 }

@@ -12,24 +12,10 @@ main section.inicio {
   padding: 1rem;
 }
 
-main section.inicio > .doc_tex {
-  margin: initial;  
-}
-
 main section.inicio > .doc_tex.-adv {
+  margin: initial;  
   grid-column: 4/sp;
   grid-row: 1/2;
-}
-
-main section.inicio > .doc_tex.pie {
-  grid-column: 1/11;
-  grid-row: 9/11;
-}
-
-@media ( max-width:400px ){
-  main section.inicio > .doc_tex.pie {
-    grid-row: 7/11;
-  } 
 }
 
 /* //////////////////////////////////////////////////////////////////////// */
@@ -51,15 +37,15 @@ aside.doc_pan > .ide-val > .ide-cue > ul {
 /* 
   Tablero 
 */
-main.doc_sec article {
+body:is([data-cab="kin"],[data-cab="psi"]) main.doc_sec article {
   max-width: -moz-fit-content;
   max-width: fit-content;
   padding: 0;
   border: initial;
   margin: auto;
-  line-height: initial;
+  line-height: initial;  
 }
 
-main.doc_sec article > .tab {
+body:is([data-cab="kin"],[data-cab="psi"]) main.doc_sec article > .tab {
   margin: auto;
 }

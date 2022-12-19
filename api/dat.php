@@ -905,7 +905,7 @@ class api_dat {
       if( !isset($ele['lis']) ) $ele['lis'] = [];
       $ele['lis']['data-dat'] = $ide;
       // tipos: pos + ite + tab
-      $tip = "ite";
+      $tip = "dep";
       if( isset($ele['lis_tip']) ){
         $tip = $ele['lis_tip'];
         unset($ele['lis_tip']);
@@ -1122,7 +1122,7 @@ class api_dat {
       if( !empty($_val['ima']) || ( !empty($_inf['atr']) || !empty($_inf['cit']) ) )
       $_ .= "
       <div class='doc_val jus-cen mar_arr-1'>";
-        if( !empty($_val['ima']) ){ // 'onclick'=>FALSE
+        if( !empty($_val['ima']) ){
           $_ .= api_fig::ima($esq,$est,$_dat,[ 'class'=>"mar_der-2" ]);
         }
         if( !empty($_inf['atr']) ){
@@ -1150,13 +1150,13 @@ class api_dat {
             foreach( $inf_val as $det ){
               if( isset($_dat->$det) ){
                 foreach( explode("\n",$_dat->$det) as $tex_par ){
-                  $_ .= "<p>".api_tex::let($tex_par)."</p>";
+                  $_ .= api_tex::var('val',$tex_par);
                 }
               }
             }
           }else{
             foreach( explode("\n",$inf_val) as $tex_par ){
-              $_ .= "<p>".api_tex::let(api_obj::val($_dat,$tex_par))."</p>";
+              $_ .= api_tex::var('val',api_obj::val($_dat,$tex_par));
             }
           }
           break;
@@ -1164,16 +1164,15 @@ class api_dat {
         case 'tit':
           if( is_array($inf_val) ){
             if( preg_match("/-atr/",$inf_ide) ){
-              if( isset($inf_val[1]) && is_array($inf_val[1]) ){ $_ .= "
-                <p class='tit'>".api_tex::let($inf_val[0])."</p>
-                ".api_dat::lis_atr($esq,$est,$inf_val[1],$_dat);
+              if( isset($inf_val[1]) && is_array($inf_val[1]) ){ 
+                $_ .= api_tex::var('val',$inf_val[0],['class'=>"tit"]).api_dat::lis_atr($esq,$est,$inf_val[1],$_dat);
               }
             }else{
               foreach( $inf_val as $tit ){
-                if( isset($_atr[$tit]) && isset($_dat->$tit) ){ $_ .= "
-                  <p class='tit'>{$_atr[$tit]->nom}</p>";
-                  foreach( explode("\n",$_dat->$tit) as $tex_par ){ $_ .= "
-                    <p class='des'>".api_tex::let($tex_par)."</p>";
+                if( isset($_atr[$tit]) && isset($_dat->$tit) ){ 
+                  $_ .= $_ .= api_tex::var('val',$_atr[$tit]->nom,['class'=>'tit']);
+                  foreach( explode("\n",$_dat->$tit) as $tex_par ){ 
+                    $_ .= api_tex::var('val',$tex_par,['class'=>'des']);
                   }
                 }
               }
@@ -1196,6 +1195,16 @@ class api_dat {
             $_ .= "<p class='cit mar-0'><q>".api_tex::let(api_obj::val($_dat,$inf_val))."</q></p>";
           }
           break;
+        // Texto por valor: parrafos por \n
+        case 'tex':
+          foreach( api_lis::val_ite($inf_val) as $tex ){
+
+            foreach( explode("\n",$tex) as $tex_val ){
+
+              $_ .= api_tex::var('val',api_obj::val($_dat,$tex_val));
+            }
+          }
+          break;          
         // listado por atributo(\n) con titulo / punteo
         case 'lis': 
           if( is_array($inf_val) ){
@@ -1227,15 +1236,23 @@ class api_dat {
           break;
         // Fichas : por atributos con Relaciones
         case 'fic':
+
           foreach( api_lis::val_ite($inf_val) as $ide ){
+            // inicializo separado
+            $sep = NULL;
             if( isset($_atr[$ide]) && isset($_atr[$ide]->var['dat']) && isset($_dat->$ide) ){
+
               if( is_numeric($_dat->$ide) ){
+
                 $_ .= api_dat::fic($_atr[$ide]->var['dat'],$_dat->$ide,[ 'opc'=>[ "det" ] ]);
-              }// listado de imagenes por valor
+              }
+              // listado de imagenes por valor
               elseif( is_string($_dat->$ide) ){
+
                 if( !isset($sep) ){
-                  $sep = ( preg_match("/, /",$_dat->$ide) ) ? ", " : (  preg_match("/\s*\-\s*/",$_dat->$ide) ? " - " : FALSE );
-                }                  
+                  $sep = ( preg_match("/, /",$_dat->$ide) ) ? ", " : (  preg_match("/\s*-\s*/",$_dat->$ide) ? " - " : FALSE );
+                }
+
                 if( $sep ){
                   // valores
                   $ran_lis = [];
@@ -1255,14 +1272,6 @@ class api_dat {
             }
           }
           break;
-        // Texto por valor: parrafos por \n
-        case 'tex':
-          foreach( api_lis::val_ite($inf_val) as $tex ){
-            foreach( explode("\n",$tex) as $tex_val ){
-              $_ .= "<p>".api_tex::let(api_obj::val($_dat,$tex_val))."</p>";
-            }
-          }
-          break;          
         // Contenido HTML : textual o con objetos
         case 'htm':
           if( is_string($inf_val) ){

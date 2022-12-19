@@ -181,7 +181,7 @@ class api_fec {
   }// Valido fecha
   static val_tip( $año, $mes, $dia ){
 
-    $_ = false;
+    let $_ = false;
     
     $mes = parseInt($mes);
     $dia = parseInt($dia);

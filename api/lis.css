@@ -108,6 +108,8 @@ ul.lis.dep:not(.dir-hor) > li li.sep  {
   margin-left: 1.5rem;
 }
 
+/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 /* 
   Indices
 */
@@ -130,6 +132,8 @@ ul.lis.nav li.pos:not(.sep) > div.doc_val:hover {
   border-radius: .25rem;
 }
 
+/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 /* 
 Barra: con desplazamiento
 */
@@ -143,87 +147,6 @@ ul.lis.bar li[data-pos] {
   width: 100%;
   overflow: auto;
 }
-
-/* 
-  Tablero
-*/
-ul.lis.tab {
-  display: grid;
-  width: -moz-fit-content;
-  width: fit-content;
-  padding: 0;
-  margin: 0;
-  margin-left: auto;
-  margin-right: auto;  
-}
-
-table.lis.tab {
-  border-collapse: collapse;
-}
-
-:is(ul,table).lis.tab {  
-  min-width: max-content;
-  background-size: 100%;
-  background-repeat: no-repeat;
-  background-position: center;  
-  text-align: center;
-  font-size: .7rem;
-  transition: background 1s, border 1s;  
-}
-
-/* posiciones y secciones */
-:is(ul,table).lis.tab .pos,
-:is(ul,table).lis.tab .sec {
-  margin: 0;
-  transition: background 1s, border 1s;
-}
-
-ul.lis.tab > li.pos {
-  display: flex;
-  flex-direction: column;
-  align-items: center; 
-  align-content: center; 
-  justify-content: center;
-}
-
-/* Bordes */
-:is(ul,table).lis.tab .pos.bor-1 {
-  border-color: #008000;
-}
-/* - por seleccion */
-:is(ul,table).lis.tab .pos[class*="_val-"][class*="_bor"] {
-  border: 1px solid #991d99;
-}
-
-/* Fondos */
-:is(ul,table).lis.tab > .sec.fon { 
-  z-index: 0;
-  width: 100%; 
-  height: 100%;
-  grid-column: 1/sp; 
-  grid-row: 1/sp;  
-}
-
-/* Efectos */
-:is(ul,table).lis.tab .pos[onclick]:not(.dep):hover {
-  background-color:var(--tra_ros);
-  color:black;
-}
-
-/* Imágenes */
-:is(ul,table).lis.tab :is(.sec,.pos) > .fig_ima {
-  min-width: 100%;
-  height: 100%;
-}
-:is(ul,table).lis.tab td:is(.sec,.pos) > .fig_ima {
-  min-height: 100%;
-}
-
-/* Textos */
-:is(ul,table).lis.tab :is(.sec,.pos) > p {
-  text-align: center;
-}
-
 
 /* ///////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 /* ///////////////////////////////////////////////////////////////////////////////////////////////////////////// */
@@ -296,3 +219,112 @@ div.lis.est > table > tbody > tr > td > :is(n,time,p) {
   font-size: .9rem;
 }
 
+/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* 
+  Tablero
+*/
+ul.lis.tab {
+  display: grid;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 0;
+  margin: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+table.lis.tab {
+  border-collapse: collapse;
+}
+
+:is(ul,table).lis.tab {  
+  min-width: max-content;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;  
+  text-align: center;
+  font-size: .7rem;
+  transition: background 1s, border 1s;  
+}
+
+/* posiciones y secciones */
+:is(ul,table).lis.tab .pos,
+:is(ul,table).lis.tab .sec {  
+  justify-self: center;
+  align-self: center;
+  margin: 0;
+  transition: background 1s, border 1s;
+}
+
+/* secciones: fondos + bordes y areas + imágenes */
+
+.lis.tab > .sec.fon { 
+  z-index: 0;
+  width: 100%; 
+  height: 100%;
+  grid-column: 1/sp; 
+  grid-row: 1/sp;  
+}
+
+.lis.tab > .sec.bor {
+  z-index: 1;
+  width: 100%;
+  height: 100%;  
+  border-width: 2px;
+  border-style: double;
+  border-color: var(--col_ver);
+  border-radius: 10%;
+  box-shadow: 0 0 5px;
+}
+
+.lis.tab > .sec.ima {
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;  
+}
+.lis.tab.uni.hum > .sec.ima[class*="cen-"].fon-sel {
+  background-color: var(--col_tra) !important;
+  box-shadow: 0 0 15px var(--col_vio);
+}
+
+/* posiciones */
+ul.lis.tab > li.pos {
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  align-content: center; 
+  justify-content: center;
+}
+
+/* Bordes */
+:is(ul,table).lis.tab .pos.bor-1 {
+  border-color: #008000;
+}
+/* - por seleccion */
+:is(ul,table).lis.tab .pos[class*="_val-"][class*="_bor"] {
+  border: 1px solid #991d99;
+}
+
+/* Efectos */
+:is(ul,table).lis.tab .pos[onclick]:not(.dep):hover {
+  background-color:var(--tra_ros);
+  color:black;
+}
+
+/* Imágenes */
+:is(ul,table).lis.tab :is(.sec,.pos) > .fig_ima {
+  min-width: 100%;
+  height: 100%;
+}
+:is(ul,table).lis.tab td:is(.sec,.pos) > .fig_ima {
+  min-height: 100%;
+}
+
+/* Textos */
+:is(ul,table).lis.tab :is(.sec,.pos) > p {
+  text-align: center;
+}

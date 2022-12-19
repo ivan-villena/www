@@ -58,19 +58,18 @@
     ob_start(); ?>
 
     <article>
+      
+      <section>
+        <h2>Inicio</h2>
 
-      <h2>Inicio</h2>
-    
+        <p>Accede al menú en la barra superior<c>,</c> o busca ayuda con el ícono que tiene el signo de pregunta <c>( ? )</c></p>
+      </section>
+      
       <section class="inicio">
 
         <?=api_doc::tex([ 'tip'=>"adv", 'tit'=>"¡Atención!", 'tex'=>[
           "Este sitio aún se está en construcción...", "Puede haber contenido incompleto, errores o faltas."
         ]])?>  
-
-        <p class="doc_tex pie">
-          Entrada al Sincronario<c>...</c>
-          <br>Accede al menú en la barra superior<c>,</c> o busca ayuda con el ícono que tiene el signo de pregunta <c>( ? )</c>
-        </p>
 
       </section>
 

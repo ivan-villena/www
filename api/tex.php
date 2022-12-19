@@ -42,19 +42,19 @@ class api_tex {
     $_ide = self::$IDE."var";
     $_eje = self::$EJE."var";
 
-    // valor
-    if( $tip == 'val' ){      
+    // parrafo
+    if( in_array($tip,['val','cit']) ){
 
       $tex = [];
       foreach( explode("/n",$dat) as $tex_pal ){
         $tex []= api_tex::let($tex_pal);
       }
       $ele['htm'] = implode("<br>",$tex);
-      $ele['eti'] = 'p';
+      $ele['eti'] = $tip == 'val' ? 'p' : 'q';
       api_ele::cla($ele,"tex",'ini');
       $_ = api_ele::eti($ele);
 
-    }// por tipos
+    }
     else{
 
       if( !is_string($dat) ) $dat = strval( is_iterable($dat) ? api_obj::val_cod($dat) : $dat );

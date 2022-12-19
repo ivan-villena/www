@@ -197,9 +197,9 @@ class api_hol {
       // filas: heptadas
       case 'hep':
         if( $dat.checked ){
-          api_ele.act('cla_eli',$api_lis._tab.val.querySelectorAll(`.sec-hep.${DIS_OCU}`),DIS_OCU);
+          api_ele.act('cla_eli',$api_lis._tab.val.querySelectorAll(`.sec.hep.${DIS_OCU}`),DIS_OCU);
         }else{
-          api_ele.act('cla_agr',$api_lis._tab.val.querySelectorAll(`.sec-hep:not(.${DIS_OCU})`),DIS_OCU);
+          api_ele.act('cla_agr',$api_lis._tab.val.querySelectorAll(`.sec.hep:not(.${DIS_OCU})`),DIS_OCU);
         }
         break;            
       } 
@@ -236,18 +236,18 @@ class api_hol {
         case 'bor': 
           $.cla = "bor-1";
           if( $dat.checked ){
-            api_ele.act('cla_agr',$api_lis._tab.val.querySelectorAll(`.lis.tab[class*=" cas"]:not(.${$.cla})`),$.cla);
+            api_ele.act('cla_agr',$api_lis._tab.val.querySelectorAll(`.lis.tab.hol_cas:not(.${$.cla})`),$.cla);
           }else{
-            api_ele.act('cla_eli',$api_lis._tab.val.querySelectorAll(`.lis.tab[class*=" cas"].${$.cla}`),$.cla);
+            api_ele.act('cla_eli',$api_lis._tab.val.querySelectorAll(`.lis.tab.hol_cas.${$.cla}`),$.cla);
           }
           break;          
         // color de fondo : 1-5
         case 'col':
           $.cla = "fon-0";
           if( $dat.checked ){
-            api_ele.act('cla_eli',$api_lis._tab.val.querySelectorAll(`.lis.tab[class*=" cas"][class*="fon_col-"].${$.cla}`),$.cla);
+            api_ele.act('cla_eli',$api_lis._tab.val.querySelectorAll(`.lis.tab.hol_cas[class*="fon_col-"].${$.cla}`),$.cla);
           }else{
-            api_ele.act('cla_agr',$api_lis._tab.val.querySelectorAll(`.lis.tab[class*=" cas"][class*="fon_col-"]:not(.${$.cla})`),$.cla);
+            api_ele.act('cla_agr',$api_lis._tab.val.querySelectorAll(`.lis.tab.hol_cas[class*="fon_col-"]:not(.${$.cla})`),$.cla);
           }             
           break;
         // tog: orbitales

@@ -118,6 +118,7 @@ class api_lis {
   static function val_ite( mixed $dat ) : array {
 
     return api_lis::val($dat) ? $dat : [ $dat ];
+    
   }// convierto a listado : [ ...$$ ]
   static function val_cod( array | object $dat ) : array {
     $_ = $dat;
@@ -465,16 +466,9 @@ class api_lis {
     foreach( ['ope','ope_dep','lis','dep'] as $i ){ if( !isset($ele[$i]) ) $ele[$i] = []; }
 
     // operador
-    api_ele::cla( $ele['ope'], "ren", 'ini' );
-    $_ .= "
-    <form".api_ele::atr($ele['ope']).">
+    api_ele::cla( $ele['ope'], "doc_ren", 'ini' );
+    $_ .= api_lis::ope('nav',['tog','ver'],$ele);
 
-      ".api_doc::val_ope()."
-
-      ".api_doc::val_ver([ 'cue'=>0, 'ele_val'=>['class'=>"anc-100"], 'eje'=>"{$_eje}_ver(this);" ])."      
-
-    </form>";
-    
     // dependencias
     $tog_dep = FALSE;
     if( in_array('tog_dep',$opc) ){
@@ -627,7 +621,7 @@ class api_lis {
     
     if( $tod || in_array('tog',$opc) ){        
       
-      $_ .= api_doc::val_ope( $tip == 'dep' ? ['eje'=>"{$_eje}_tog(this,"] : [] );
+      $_ .= api_doc::val_ope( $tip == 'dep' || $tip == 'nav' ? ['eje'=>"{$_eje}_tog(this,"] : [] );
     }
     if( $tod || in_array('ver',$opc) ){ 
       $_ .= api_dat::var('val','ver',[ 
@@ -1864,7 +1858,7 @@ class api_lis {
     }
     return $_;
   }// posicion
-  static function tab_pos( string $esq, string $est, mixed $val, array &$ope, array $ele ){    
+  static function tab_pos( string $esq, string $est, mixed $val, array &$ope, array $ele ) : string {
     // recibo objeto 
     if( is_object( $val_ide = $val ) ){
       $_dat = $val;
@@ -1962,5 +1956,16 @@ class api_lis {
     $ope['_tab_pos']++;// agrego posicion automatica-incremental
     api_ele::cla($e,"pos ide-{$ope['_tab_pos']}",'ini');    
     return "<{$ope['eti']}".api_ele::atr($e).">{$htm}</{$ope['eti']}>";
+  }// Secciones
+  static function tab_sec( array $ope, array $ide ) : array {
+    $_ = [];
+    if( isset($ope['sec']) ){
+      foreach( $ide as $i ){
+        $_[$i] = isset($ope['sec'][$i]) ? ( 
+          is_string($ope['sec'][$i]) ? explode(', ',$ope['sec'][$i]) : $ope['sec'][$i] 
+        ) : FALSE;
+      }
+    }
+    return $_;
   }
 }

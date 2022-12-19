@@ -231,7 +231,7 @@ class api_doc {
 
       if( $opc_ico && isset($val['ico']) ){
         $ele_nav['title'] = $val['nom'];
-        api_ele::cla($ele_nav,"mar-0 pad-1 cir-1 tam-4",'ini');
+        api_ele::cla($ele_nav,"mar-0 pad-1 tam-4 bor_cir-1",'ini');
         $_ .= api_fig::ico($val['ico'],$ele_nav);
       }
       else{
