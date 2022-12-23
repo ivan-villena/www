@@ -90,8 +90,8 @@ class sis_app {
     global $sis_usu;
 
     // loggin
-    $tip = empty($sis_usu->ide) ? 'ini' : 'fin';
-    // $sis_app->rec['ope']['fin']["ses_{$tip}"]['htm'] = api::usu($tip);
+    $tip = "ses_".( empty($sis_usu->ide) ? 'ini' : 'ope' );
+    $this->rec['ope']['fin'][$tip]['htm'] = api_usu::$tip();
 
     // consola del sistema
     if( $sis_usu->ide == 1 ){
@@ -168,7 +168,7 @@ class sis_app {
       ],
       'fin'=>[
         'ses_ini'=>[ 'ico'=>"app_ini", 'tip'=>"win", 'nom'=>"Iniciar Sesión..."  ],
-        'ses_fin'=>[ 'ico'=>"app_fin", 'tip'=>"win", 'nom'=>"Cerrar Sesión..." ],
+        'ses_ope'=>[ 'ico'=>"usu",     'tip'=>"win", 'nom'=>"Cuenta de Usuario..." ],
         'sis_adm'=>[ 'ico'=>"eje",     'tip'=>"win", 'nom'=>"Consola del Sistema" ],
         'app_dat'=>[ 'ico'=>"dat_des", 'tip'=>"win", 'nom'=>"Ayuda" ]
       ]
@@ -261,9 +261,11 @@ class sis_app {
         $ele_val['href'] = SYS_NAV."/$_art->esq/$_art->cab/$_art->ide";
 
         $_lis_val []= "
-        <a".api_ele::atr($ele_val).">"
+        <a".api_ele::atr($ele_val).">
+          <p>"
           .( !empty($_art->ico) ? api_fig::ico( $_art->ico, [ 'class'=>"mar_der-1" ] ) : $ite_ico )
-          ."<p>".api_tex::let($_art->nom)."</p>
+          .api_tex::let($_art->nom)."
+          </p>
         </a>";
       }
       $_lis []= [ 
@@ -277,9 +279,8 @@ class sis_app {
     $ele['opc'] = [ 'tog' ]; // dlt- 'ver', 'cue'
     return api_lis::dep($_lis,$ele);
   }
-
   // Articulo por contenido + ...secciones + pie de página
-  public function sec_art( object $nav, string $esq, string $cab ) : string {
+  public function art( object $nav, string $esq, string $cab ) : string {
     $_ = "";      
 
     $agr = api_ele::htm($nav->ope);
@@ -327,9 +328,8 @@ class sis_app {
 
     return $_;
   }
-
   // Section por indices : section > h2 + ...section > h3 + ...section > ...
-  public function sec_nav( string $ide ) : string {
+  public function nav( string $ide ) : string {
     $_ = "";
     $_ide = explode('.',$ide);
     $_nav = api_dat::get('app_nav',[ 

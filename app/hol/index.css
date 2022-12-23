@@ -47,5 +47,6 @@ body:is([data-cab="kin"],[data-cab="psi"]) main.doc_sec article {
 }
 
 body:is([data-cab="kin"],[data-cab="psi"]) main.doc_sec article > .tab {
-  margin: auto;
+  margin: .5rem;
+  padding: 1rem;
 }

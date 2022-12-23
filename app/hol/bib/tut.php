@@ -29,7 +29,7 @@
     <?php 
     $_ = []; 
     foreach( api_hol::_($ide = 'lun_arm') as $_hep ){ $_ []= 
-      api_tex::let("$_hep->nom (")."<c class='col-4-$_hep->ide'>$_hep->des_col</c>".api_tex::let("): $_hep->des");
+      api_tex::let("$_hep->nom (")."<b class='col-4-$_hep->ide'>$_hep->des_col</b>".api_tex::let("): $_hep->des");
     }
     echo api_dat::lis($_,$ide);
     ?>

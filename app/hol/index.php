@@ -37,16 +37,16 @@
     </section>
 
     ".api_doc::nav('bar',[
-      'kin' => [ 'ide'=>"kin", 'ico'=>"", 'nom'=>"Sincrónico", 'des'=>"", 'htm'=>api_dat::pos("hol","kin",[ 
+      'kin' => [ 'ide'=>"kin", 'ico'=>"", 'nom'=>"Sincrónico", 'des'=>"", 'htm'=>api_dat::lis_pos("hol","kin",[ 
         'kin'=>$_kin = api_hol::_('kin',$_hol->val['kin']),
         'sel'=>api_hol::_('sel',$_kin->arm_tra_dia),
         'ton'=>api_hol::_('ton',$_kin->nav_ond_dia)
       ])],
-      'psi' => [ 'ide'=>"psi", 'ico'=>"", 'nom'=>"Cíclico", 'des'=>"", 'htm'=>api_dat::pos("hol","psi",[ 
+      'psi' => [ 'ide'=>"psi", 'ico'=>"", 'nom'=>"Cíclico", 'des'=>"", 'htm'=>api_dat::lis_pos("hol","psi",[ 
         'psi'=>$_psi = api_hol::_('psi',$_hol->val['psi']),
-        'est'=>api_hol::_('est',$_psi->est),
-        'lun'=>api_hol::_('lun',$_psi->lun),
-        'hep'=>api_hol::_('hep',$_psi->hep)
+        'est'=>api_hol::_('hep_est',$_psi->hep_est),
+        'lun'=>api_hol::_('ani_lun',$_psi->ani_lun),
+        'hep'=>api_hol::_('hep_rad',$_psi->hep_rad)
       ])]      
     ],[ 'sel' => "kin" ])
   ];
@@ -156,7 +156,7 @@
         
         <p>Desde el menú principal puedes acceder a un listado de tableros que representan las cuentas principales del sincronario<c>,</c> a estos los llamaremos módulos<c>.</c></p>
 
-        <p>Para cada módulo se genera un ciclo de tiempo que contiene la fecha y abarca el total de días para el ciclo que representa<c>,</c> por Ej<c>:</c> el <a href="<?=SYS_NAV."hol/tab/kin-tzo"?>" target="_blank">tzolkin</a> genera un ciclo de <n>260</n> días<c>,</c> el <a href="<?=SYS_NAV."hol/tab/psi-ban"?>" target="_blank">banco<c>-</c>psi</a> genera un ciclo de <n>365</n> días<c>,</c> y la <a href="<?=SYS_NAV."hol/tab/psi-lun"?>" target="_blank">luna</a> uno de <n>28</n><c>.</c></p>
+        <p>Para cada módulo se genera un ciclo de tiempo que contiene la fecha y abarca el total de días para el ciclo que representa<c>,</c> por Ej<c>:</c> el <a href="<?=SYS_NAV."hol/kin/tzo"?>" target="_blank">tzolkin</a> genera un ciclo de <n>260</n> días<c>,</c> el <a href="<?=SYS_NAV."hol/tab/psi-ban"?>" target="_blank">banco<c>-</c>psi</a> genera un ciclo de <n>365</n> días<c>,</c> y la <a href="<?=SYS_NAV."hol/tab/psi-lun"?>" target="_blank">luna</a> uno de <n>28</n><c>.</c></p>
 
         <p>Desde allí podrás cambiar la fecha y acceder a los datos del valor diario<c>,</c> opciones<c>,</c> elementos de las posiciones<c>,</c> un índice de las cuentas incluídas y un listado de las posiciones seleccionadas para comparar sus características y ubicaciones<c>.</c></p>
         
@@ -222,7 +222,7 @@
       $lis_ope = api_dat::est_ope("hol",$_uri->cab,'lis');
       $lis_ope['val'] = $tab_ope['val'];
       // cargo operadores
-      if( isset($tab_ope['est']) ){        
+      if( isset($tab_ope['est']) ){
         $lis_ope['dat'] = $tab_ope['dat'];
         // busco operadores de lista por : esquema_estructura
         $lis_ope['est'] = [];
@@ -244,7 +244,7 @@
       echo "
       <article>
         ".api_hol::tab($_uri->cab, $_uri->art, $tab_ope, [
-          'pos'=>[ 'onclick'=>"lis.tab_val('mar',this);" ], 
+          'pos'=>[ 'onclick'=>"api_lis.tab_val('mar',this);" ], 
           'ima'=>[ 'onclick'=>FALSE ]
         ])."
       </article>";
@@ -348,7 +348,7 @@
       require_once("./app/hol/bib.php");
 
       // busco archivos : html-php
-      if( !empty( $rec = api_arc::ide($val = "./app/$_uri->esq/$_uri->cab/$_uri->art") ) ){
+      if( !empty( $rec = api_arc::val_ide($val = "./app/$_uri->esq/$_uri->cab/$_uri->art") ) ){
 
         include( $rec );
       }

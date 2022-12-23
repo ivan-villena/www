@@ -56,12 +56,12 @@ function sis_adm( $tip, $dat, $val, ...$opc ){
     }
     else{
       if( !$dat.value ){
-        api_lis.val_dec($.lis.children).forEach( $e => 
+        api_lis.val_cod($.lis.children).forEach( $e => 
           $e.classList.contains(DIS_OCU) && $e.classList.remove(DIS_OCU) 
         );
       }
       else{
-        api_lis.val_dec($.lis.children).forEach( $e => {
+        api_lis.val_cod($.lis.children).forEach( $e => {
 
           if( api_dat.ver( $e.querySelector('.ide').innerHTML, '^^', $dat.value ) ){
             $e.classList.contains(DIS_OCU) && $e.classList.remove(DIS_OCU);

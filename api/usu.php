@@ -1,65 +1,57 @@
 <?php
-// usuario : sesion + tránsitos  
-class sis_usu {
 
-  public int    $ide = 0;
-  public string $pas = "";
-  public string $nom = "Usuario";
-  public string $ape = "Público";
-  public string $eda = "";
-  public string $fec = "";
-  public string $sin = "";
-  public string $kin = "";
-  public string $psi = "";
+class api_usu {
 
-  public function __construct( int $ide = NULL ){
-
-    if( !empty($ide) ){
-      // cargo datos
-      foreach( api_dat::get('usu', [ 'ver'=>"`ide`='{$ide}'", 'opc'=>'uni' ]) as $atr => $val ){
-
-        $this->$atr = $val;
-      }
-      // calculo edad actual
-      if( !empty($this->fec) ) $this->eda = api_fec::val_cue('eda',$this->fec);
-    }      
+  public function __construct(){
   }
 
-  // sesion
-  public function dat() : string {
-    $esq = 'api'; 
-    $est = 'usu';
-    $_kin = api_hol::_('kin',$this->kin);
-    $_psi = api_hol::_('psi',$this->psi);
+  // Datos
+  static function dat( int | string $ide = 0 ) : object {
+    $_ = new stdClass;
+    if( empty($ide) ){
+      $_->ide = 0;
+      $_->nom = "Usuario Público";      
+    }
+    else{
+      // cargo datos
+      foreach( api_dat::get('usu_dat', [ 
+        'ver'=>is_numeric($ide) ? "`ide`='{$ide}'" : "`ema`='{$ide}'", 'opc'=>'uni' 
+      ]) as $atr => $val ){
+        $_->$atr = $val;
+      }
+      // calculo edad actual
+      if( !empty($_->fec) ) $_->eda = api_fec::val_cue('eda',$_->fec);      
+    }
+    return $_;
+  }// Informe: nuevo / editar
+  static function dat_inf() : string {
+    global $sis_usu;
+    $esq = 'usu';
+    $est = 'dat';
+    $_kin = api_hol::_('kin',$sis_usu->kin);
+    $_psi = api_hol::_('psi',$sis_usu->psi);
     $_ = "
     <form class='dat' data-esq='{$esq}' data-est='{$est}'>
 
       <fieldset class='doc_ren'>
-
-        ".api_dat::var('atr', [$esq,$est,$atr='nom'], [ 'val'=>$this->$atr  ], 'eti')."
-
-        ".api_dat::var('atr', [$esq,$est,$atr='ape'], [ 'val'=>$this->$atr  ], 'eti')."                        
-      
+        ".api_dat::var('atr', [$esq,$est,$atr='nom'], [ 'val'=>$sis_usu->$atr  ], 'eti')."
+        ".api_dat::var('atr', [$esq,$est,$atr='ape'], [ 'val'=>$sis_usu->$atr  ], 'eti')."                              
       </fieldset>
 
       <fieldset class='doc_ren'>
-
-        ".api_dat::var('atr', [$esq,$est,$atr='mai'], [ 'val'=>$this->$atr  ],'eti')."
-
-        ".api_dat::var('atr', [$esq,$est,$atr='fec'], [ 'val'=>$this->$atr, 'ite'=>[ 'class'=>"tam-ini" ]  ], 'eti')."
-
+        ".api_dat::var('atr', [$esq,$est,$atr='mai'], [ 'val'=>$sis_usu->$atr  ],'eti')."
+        ".api_dat::var('atr', [$esq,$est,$atr='fec'], [ 'val'=>$sis_usu->$atr, 'ite'=>[ 'class'=>"tam-ini" ]  ], 'eti')."
       </fieldset>
 
     </form>";
     return $_;
-  }
-
-  // ficha
-  public function fic( array $ope = [], ...$opc ) : string {
+  }// Ficha: ver datos
+  static function dat_fic( array $ope = [], ...$opc ) : string {
+    global $sis_usu;
     $_ = "";
-    $_fec = api_fec::_('dat',$this->fec);
-    $_kin = api_hol::_('kin',$this->kin);
-    $_psi = api_hol::_('psi',$this->psi);
+    $_fec = api_fec::_('dat',$sis_usu->fec);
+    $_kin = api_hol::_('kin',$sis_usu->kin);
+    $_psi = api_hol::_('psi',$sis_usu->psi);
     // sumatoria : kin + psi
     $sum = $_kin->ide + $_psi->tzo;
 
@@ -68,8 +60,8 @@ class sis_usu {
     <section class='doc_inf ren esp-ara'>
 
       <div>
-        <p class='tex-tit tex-3 mar_aba-1'>".api_tex::let("$this->nom $this->ape")."</p>
-        <p>".api_tex::let($_fec->val." ( $this->eda años )")."</p>
+        <p class='tex-tit tex-3 mar_aba-1'>".api_tex::let("$sis_usu->nom $sis_usu->ape")."</p>
+        <p>".api_tex::let($_fec->val." ( $sis_usu->eda años )")."</p>
       </div>        
 
       <div class='doc_val'>
@@ -85,8 +77,76 @@ class sis_usu {
     return $_;
   }
 
-  // genero transitos
-  public function cic( string $tip = NULL, mixed $val = NULL ) : string {
+  // Sesion
+  static function ses( string $tip ){
+    switch( $tip ){
+    case 'ini':
+      $_ = "dat";
+      if( isset($_REQUEST['ema']) && isset($_REQUEST['pas']) ){
+        // valido usuario
+        $usu_dat = api_usu::dat( $_REQUEST['ema'] );
+        if( isset($usu_dat->pas) ){
+          // valido password
+          if( $usu_dat->pas == $_REQUEST['pas'] ){
+            $_SESSION['usu'] = $_REQUEST['ide'];
+            $_ = "";
+          }else{
+            $_ = "pas";
+          }
+        }else{
+          $_ = "usu";
+        }
+      }
+      break;
+    case 'fin':
+      $_SESSION['usu'] = 0;
+      break;
+    }
+  }// - inicio
+  static function ses_ini() : string {
+    $esq = 'usu';
+    $est = 'dat';
+    $_ = "
+    <form class='dat' data-esq='{$esq}' data-est='{$est}' onsubmit='sis_usu.ses_ini'>
+
+      <fieldset class='doc_var'>
+        <input id='usu-ses_ini-mai' name='mai' type='email' placeholder='Ingresa tu Email...'>
+      </fieldset>
+
+      <fieldset class='doc_var'>
+        <input id='usu-ses_ini-pas' name='pas' type='password' placeholder='Ingresa tu Password...'>
+      </fieldset>
+
+      <fieldset class='doc_var'>
+        <label>Mantener Sesión Activa en este Equipo:</label>
+        <input id='usu-ses_ini-val' name='val' type='checkbox'>
+      </fieldset>
+
+      <fieldset class='doc_ope'>
+        <button type='submit'></button>
+      </fieldset>
+
+    </form>";
+    return $_;
+  }// - operador
+  static function ses_ope() : string {
+    global $sis_usu;
+    $_ = "
+    <nav class='lis'>
+      <a href='' target='_blank'>Datos</a>
+      <a href='' target='_blank'>Tránsitos</a>
+    </nav>
+
+    <nav class='doc_ope'>
+      ".api_fig::ico('ses_fin',[ 'title'=>"Cerrar Sesión..." ])."
+    <nav>";
+
+    return $_;
+  }
+
+  // Transitos
+  static function cic( string $tip = NULL, mixed $val = NULL ) : string {
+    global $sis_usu;
     $_ = "";
     if( empty($tip) ){
     }
@@ -95,13 +155,13 @@ class sis_usu {
       // genero tránsitos anuales > lunares
       case 'ani':          
         // elimino previos
-        $_ .= "DELETE FROM `usu_cic_ani` WHERE usu = $this->ide;<br>";
-        $_ .= "DELETE FROM `usu_cic_lun` WHERE usu = $this->ide;<br>";
+        $_ .= "DELETE FROM `usu_cic_ani` WHERE usu = $sis_usu->ide;<br>";
+        $_ .= "DELETE FROM `usu_cic_lun` WHERE usu = $sis_usu->ide;<br>";
         // pido tránsitos
-        foreach( api_hol::val_cic( $this->sin, 1, 52, 'not-lun') as $_cic_ani ){
+        foreach( api_hol::val_cic( $sis_usu->sin, 1, 52, 'not-lun') as $_cic_ani ){
 
           $_ .= "INSERT INTO `usu_cic_ani` VALUES( 
-            $this->ide, 
+            $sis_usu->ide, 
             $_cic_ani->ide, 
             $_cic_ani->eda, 
             $_cic_ani->arm, 
@@ -115,7 +175,7 @@ class sis_usu {
           foreach( $_cic_ani->lun as $_cic_lun ){
 
             $_ .= "INSERT INTO `usu_cic_lun` VALUES( 
-              $this->ide, 
+              $sis_usu->ide, 
               $_cic_lun->ani, 
               $_cic_lun->ide, 
               '".api_fec::val_var($_cic_lun->fec,'dia')."', 
@@ -132,8 +192,9 @@ class sis_usu {
       }
     }
     return $_;
-  }// calculo tránsito actual
-  public function cic_dat( string $fec = '' ) : array {
+  }// - calculo
+  static function cic_dat( string $fec = '' ) : array {
+    global $sis_usu;
 
     // valido fecha
     if( empty($fec) ) $fec = date( 'Y/m/d' );
@@ -143,22 +204,22 @@ class sis_usu {
 
     // busco anillo actual
     $_['ani'] = api_dat::get('usu_cic_ani',[ 
-      'ver'=>"`usu`='{$this->ide}' AND `fec` <= '".api_fec::val_var( $_['hol']['fec'] )."'", 'ord'=>"`ide` DESC", 'lim'=>1, 'opc'=>"uni"
+      'ver'=>"`usu`='{$sis_usu->ide}' AND `fec` <= '".api_fec::val_var( $_['hol']['fec'] )."'", 'ord'=>"`ide` DESC", 'lim'=>1, 'opc'=>"uni"
     ]);
 
     // busco transito lunar
     $_['lun'] = api_dat::get('usu_cic_lun',[ 
-      'ver'=>"`usu`='{$this->ide}' AND `ani`={$_['ani']->ide} AND `fec` <= '".api_fec::val_var( $_['hol']['fec'] )."'", 'ord'=>"`ani`, `ide` DESC", 'lim'=>1, 'opc'=>"uni" 
+      'ver'=>"`usu`='{$sis_usu->ide}' AND `ani`={$_['ani']->ide} AND `fec` <= '".api_fec::val_var( $_['hol']['fec'] )."'", 'ord'=>"`ani`, `ide` DESC", 'lim'=>1, 'opc'=>"uni" 
     ]);
 
     // calculo diario
     $_['dia'] = new stdClass;
-    $_['dia']->kin = api_hol::_('kin', intval($_['hol']['kin']) + intval($this->kin) );
+    $_['dia']->kin = api_hol::_('kin', intval($_['hol']['kin']) + intval($sis_usu->kin) );
 
     return $_;
-  }  
-  // - listado
-  public function cic_nav( array $ope = [], ...$opc ) : string {
+  }// - listado
+  static function cic_nav( array $ope = [], ...$opc ) : string {
+    global $sis_usu;
     $_ = "";
     foreach(['nav','lis','dep','opc'] as $eti ){ if( !isset($ope["$eti"]) ) $ope["$eti"] = []; }
     $opc_des = !in_array('not-des',$opc);
@@ -172,10 +233,10 @@ class sis_usu {
     $_lis = [];
     foreach( api_dat::get("usu_cic") as $_arm ){
       $_lis_cic = [];
-      foreach( api_dat::get('usu_cic_ani',[ 'ver'=>"`usu`='{$this->ide}' AND `arm`=$_arm->ide", 'ord'=>"`ide` ASC" ]) as $_cic ){
+      foreach( api_dat::get('usu_cic_ani',[ 'ver'=>"`usu`='{$sis_usu->ide}' AND `arm`=$_arm->ide", 'ord'=>"`ide` ASC" ]) as $_cic ){
         // ciclos lunares
         $_lis_lun = [];
-        foreach( api_dat::get('usu_cic_lun',[ 'ver'=>"`usu`='{$this->ide}' AND `ani`=$_cic->ide", 'ord'=>"`ide` ASC" ]) as $_lun ){                            
+        foreach( api_dat::get('usu_cic_lun',[ 'ver'=>"`usu`='{$sis_usu->ide}' AND `ani`=$_cic->ide", 'ord'=>"`ide` ASC" ]) as $_lun ){                            
           $_fec = api_fec::_('dat',$_lun->fec);
           $_lun_ton = api_hol::_('ton',$_lun->ide);
           $_kin = api_hol::_('kin',$_lun->kin);
@@ -215,21 +276,21 @@ class sis_usu {
     }
     // configuro listado
     api_ele::cla($ope['dep'],DIS_OCU);
-    $ope['opc'] = [ 'tog', 'ver', 'cue', 'tog_dep' ];
+    $ope['opc'] = [ 'tog', 'ver', 'cue', 'tog-dep' ];
     return api_lis::dep($_lis,$ope);
-  }
-  // - informe
-  public function cic_inf( array $ele = [], ...$opc ) : string {    
-    $dat = $this->cic_dat();
+  }// - informe
+  static function cic_inf( array $ele = [], ...$opc ) : string {
+    $dat = api_usu::cic_dat();
     $_ = "
     <section>
-      ".$this->cic_inf_ani( $dat, $ele, ...$opc )."
-      ".$this->cic_inf_lun( $dat, $ele, ...$opc )."
-      ".$this->cic_inf_dia( $dat, $ele, ...$opc )."
+      ".api_usu::cic_inf_ani( $dat, $ele, ...$opc )."
+      ".api_usu::cic_inf_lun( $dat, $ele, ...$opc )."
+      ".api_usu::cic_inf_dia( $dat, $ele, ...$opc )."
     </section>"; 
     return $_;
   }// -- anual
-  public function cic_inf_ani( array $dat, array $ele = [], ...$opc ) : string {
+  static function cic_inf_ani( array $dat, array $ele = [], ...$opc ) : string {
+    global $sis_usu;
     $_ani = $dat['ani'];
     $_cas_arm = api_hol::_('cas_arm',$dat['ani']->arm);
     $_ani_arm = api_dat::get("usu_cic",['ver'=>"`ide`=$_ani->arm",'opc'=>"uni"]);
@@ -258,7 +319,8 @@ class sis_usu {
     ";
     return $_;
   }// -- lunar
-  public function cic_inf_lun( array $dat, array $ele = [], ...$opc ) : string {
+  static function cic_inf_lun( array $dat, array $ele = [], ...$opc ) : string {
+    global $sis_usu;
     $_lun = $dat['lun'];
     $_lun_fec = api_fec::_('dat',$_lun->fec);
     $_lun_ton = api_hol::_('ton',$_lun->ide);
@@ -283,7 +345,8 @@ class sis_usu {
     ";
     return $_;
   }// -- diario
-  public function cic_inf_dia( array $dat, array $ele = [], ...$opc ) : string {
+  static function cic_inf_dia( array $dat, array $ele = [], ...$opc ) : string {
+    global $sis_usu;
     $_dat = api_hol::val( date('Y/m/d') );
     $_kin = api_hol::_('kin',$dat['dia']->kin);
 
@@ -294,5 +357,5 @@ class sis_usu {
 
     ";
     return $_;
-  }
+  }  
 }

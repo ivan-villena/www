@@ -5,17 +5,15 @@ function hol_ini(){
   // operadores
   if( ['kin','psi'].includes($sis_log.uri.cab) ){
 
-    // actualizo clase del tablero
-    if( $api_lis._tab.dep = $api_lis._tab.val.querySelector(`.pos.ope.dep`) ){
-  
-      $api_lis._tab.cla = `.pos.ope.dep > .lis.tab[class*="_par"] > .pos[class*="ide-"]`;
-    }
+    // actualizo clase del tablero    
+    if( $api_lis._tab.dep = !!$api_lis._tab.val.querySelector(`.pos.ope.dep`) ){
+      $api_lis._tab.cla = `.pos.ope.dep > .lis.tab[class*=" par"] > .pos[class*="ide-"]`;
+    }    
 
     // inicializo: tablero + listado
     api_lis.tab_ini('api_hol');
     api_lis.est_ini();
   }
-
 }
 
 // proceso diario

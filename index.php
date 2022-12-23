@@ -31,10 +31,10 @@
   // Modulos
   $sis_cla = [ 
       'api'=>[ 
-        'doc', 'dat', 'arc', 'eje', 'ele', 'obj', 'lis', 'opc', 'num', 'tex', 'fig', 'fec', 'hol'
+        'doc', 'dat', 'arc', 'eje', 'ele', 'obj', 'lis', 'opc', 'num', 'tex', 'fig', 'fec', 'hol', 'usu'
       ],
       'sis'=>[
-        'ses','sql', 'usu', 'app'
+        'sql', 'app'
       ]
     ];
 
@@ -63,17 +63,34 @@
     $api_fig = new api_fig();
     $api_fec = new api_fec();
     $api_hol = new api_hol();
+    $api_usu = new api_usu();
         
-    // cargo sistema    
-    $sis_usu = new sis_usu( $_SESSION['usu'] );
-    $sis_ses = new sis_ses( isset($_REQUEST['uri']) ? $_REQUEST['uri'] : "hol" );
-  
+    // cargo sistema
+    $sis_usu = api_usu::dat( $_SESSION['usu'] );
+
   //
   ////////////////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////////
 
   // peticion AJAX
   if( isset($_REQUEST['_']) ){
+    
+    // ejecucion
+    function sis_log() : string {
+      
+      $_ = "<h2>hola desde php<c>!</c></h2>";
+
+      // recorrer tablas de un esquema    
+      /* 
+      foreach( api_sql::est(DAT_ESQ,'lis','hol_','tab') as $est ){
+        $_ .= "ALTER TABLE `api`.`$est` DROP PRIMARY KEY;<br>";
+      } 
+      */
+
+      
+      
+      return $_;
+    }
 
     // ver cabeceras para api's: tema no-cors
     echo api_obj::val_cod( !api_obj::val_tip( $eje = api_eje::val($_REQUEST['_']) ) ? [ '_' => $eje ] : $eje );
@@ -171,7 +188,7 @@
       <!-- Módulos -->
       <?=$sis_app->rec_cla('jso')?>
       <!-- Cargo Datos -->
-      <script>        
+      <script>
         <?php // cargo objetos
         $var = get_defined_vars();
         foreach( $sis_app->rec['obj']['api'] as $cla ){

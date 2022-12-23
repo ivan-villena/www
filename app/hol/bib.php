@@ -875,7 +875,7 @@ class hol_bib {
       }          
       break;
     // psi : por tonos galácticos
-    case 'psi_lun':
+    case 'psi_ani_lun':
       $ope['lis'] = ['class'=>"ite"];
 
       foreach( api_hol::_($ide) as $_lun ){
@@ -890,7 +890,7 @@ class hol_bib {
     case 'psi_lun_fec':
       $ope['lis'] = ['class'=>"ite"];
 
-      foreach( api_hol::_('psi_lun') as $_lun ){
+      foreach( api_hol::_('psi_ani_lun') as $_lun ){
         $_[] = api_hol::ima("ton",$_lun->ton,['class'=>"mar_der-3"])."
         <p>
           <b class='ide'>$_lun->nom</b> <n>".intval($_lun->ton)."</n>
@@ -969,7 +969,7 @@ class hol_bib {
       ];
 
       foreach( $_lis as $ite => $htm ){
-        $_ []= api_hol::ima("psi_lun",$_lun = api_hol::_('psi_lun',$ite),['class'=>"mar_der-2"])."
+        $_ []= api_hol::ima("psi_ani_lun",$_lun = api_hol::_('psi_ani_lun',$ite),['class'=>"mar_der-2"])."
         <p>
           $htm
           <br>".api_tex::let($_lun->fec_ran)."

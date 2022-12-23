@@ -77,13 +77,28 @@ class api_opc {
       if( isset($ope['dat']) ){
         $_dat = $ope['dat'];
         unset($ope['dat']); 
+        if( is_string($_dat) ){
+          $_dat = api_dat::get($_dat);
+        }
         $_ .= "
-        <div var='opc_mul'>";
-        $ope_ide = isset($ope['ide']) ? $ope['ide'] : '_doc-opc-'.count($_dat);
-        foreach( $_dat as $ide => $val ){ $_ .= "
+        <div class='api_opc mul'>";
+        $ope_dat = api_lis::val_ite($dat);
+        $ope_ide = isset($ope['id']) ? $ope['id'] : "_opc_mul-".api_dat::var_ide('opc_mul');
+        $ope_nom = isset($ope['name']) ? $ope['name'] : FALSE;
+        foreach( $_dat as $ide => $dat ){
+          $ide = isset($dat->ide) ? $dat->ide : $ide;
+          $val = isset($dat->nom) ? $dat->nom : $ide;
+          $ope_var = $ope;
+          $ope_var['eti']   = "input";
+          $ope_var['type']  = "checkbox";
+          $ope_var['id']    = "{$ope_ide}-{$ide}";
+          $ope_var['name']  = $ope_nom ? $ope_nom : $ide;
+          $ope_var['value'] = $ide;
+          if( in_array($ide,$ope_dat) ) $ope_var['checked'] = 1;
+          $_ .= "
           <div class='doc_val'>
-            <label for='{$ope_ide}-{$ide}'>{$val}<c>:</c></label>
-            <input id='{$ope_ide}-{$ide}' type='checkbox' name='{$ide}' value='{$ide}'>
+            <label for='{$ope_var['id']}'>{$val}<c>:</c></label>
+            ".api_ele::eti($ope_var)."
           </div>";
         }$_ .= "
         </div>";

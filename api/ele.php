@@ -43,21 +43,24 @@ class api_ele {
         $_ .= $ele;
       }
       else{
-        $ele = api_obj::val_dec($ele,[],'nom');
-        // 1- icono
-        if( isset($ele['ico']) ){
+        // 1- letra
+        if( isset($ele['let']) ){
+          $_ .= api_tex::let($ele['let']);
+        }
+        // 2- icono
+        elseif( isset($ele['ico']) ){
           $ico_ide = $ele['ico'];
           unset($ele['ico']);
           $_ .= api_fig::ico($ico_ide,$ele);
         }
-        // 2- imagen
+        // 3- imagen
         elseif( isset($ele['ima']) ){
           $est = explode('.',$ele['ima']);
           unset($ele['ima']);
           array_push($est,!empty($ele['ide'])?$ele['ide']:0,$ele);
           $_ .= api_fig::ima(...$est);
         }
-        // 3- variable
+        // 4- variable
         elseif( isset($ele['tip']) ){
           $tip = explode('_',$ele['tip']);
           unset($ele['tip']);
@@ -77,7 +80,7 @@ class api_ele {
             $_ = "<span class='err' title='no existe el operador $cla'></span>";
           }                    
         }
-        // 4- etiqueta
+        // 5- etiqueta
         else{
           $_ .= api_ele::eti($ele);
         }
@@ -263,48 +266,41 @@ class api_ele {
   // clases
   static function cla( array &$ele, mixed $val = NULL, ...$opc ) : array {
     $_ = $ele;
+    // listado
     if( !isset($val) ){
-
       $_ = [];
-  
-      $ele = api_obj::val_dec($ele,[],'nom');
-  
       if( isset($ele['class']) ){
-  
-        foreach( explode(' ',$ele['class']) as $val ){ 
-  
-          if( !empty($val) ) $_[] = trim($val);
+        foreach( explode(' ',trim($ele['class'])) as $val ){
+          $_[] = $val;
         }
       }
-    }// operaciones
+    }
     else{
-      
+      $ele_cla = api_ele::cla($ele);
+      // elimino
       if( in_array('eli',$opc) ){
+        foreach( api_lis::val_ite($val) as $cla_val ){
 
-        foreach( api_lis::val_ite($val) as $v ){
-          
-        }    
-      }
+          foreach( $ele_cla as &$cla_ele ){
+
+            if( $cla_ele == $cla_val ) unset($cla_ele);
+          }
+        }
+      }// reemplazo
       elseif( in_array('mod',$opc) ){
+        $cla_ver = $val[0];
+        $cla_val = $val[1];
 
-        if( is_array($val) ){
+        foreach( $ele_cla as &$cla_ele ){
 
+          if( $cla_ele == $cla_ver ) $cla_ele = $cla_val;
         }
+      }// agrego
+      else{        
+        $cla_val = api_lis::val_ite($val);
+        in_array('ini',$opc) ? array_unshift($ele_cla, ...$cla_val) : array_push($ele_cla, ...$cla_val);
       }
-      else{
-        if( !isset($ele['class']) ) $ele['class']='';
-  
-        if( in_array('ini',$opc) ){
-
-          $ele['class'] = $val.( !empty($ele['class']) ? " {$ele['class']}" : "" );
-        }// agrego
-        elseif( !empty($ele['class']) ){ 
-          $ele['class'] .= " ".$val; 
-        }// inicializo
-        else{
-          $ele['class'] = $val; 
-        }
-      }
+      $ele['class'] = implode(' ',$ele_cla);
       $_ = $ele;
     }
     return $_;
@@ -314,70 +310,46 @@ class api_ele {
     $_ = $ele;
     // listado
     if( !isset($val) ){
-
       $_ = [];
-
       if( isset($ele['style']) ){
-
-        foreach( explode(';',$ele['style']) as $art ){
-
-          if( !empty($art) ){
-
-            $val = explode(':',$art);
-
-            $_[ trim($val[0]) ] = trim($val[1]);
-          }
+        foreach( explode(';',trim($ele['style'])) as $art ){
+          if( !empty( $val = explode(':',$art) ) ){
+            if( isset($val[1]) ) $_[$val[0]] = $val[1];
+          }          
         }
       }
     }// operaciones
-    else{        
-      // por atributos
+    else{
+      // por atributos : { pro = val }
       if( is_array($val) ){
-
         $css = api_ele::css($ele);
-
+        // elimino
         if( in_array('eli',$opc) ){
-
           foreach( $val as $v ){
-
             if( isset($css[$v]) ) unset($css[$v]);
           }
         }// agrego, actualizo o modifico
         else{
           foreach( $val as $i => $v ){
-
-            if( isset($css[$i]) && in_array('mod',$opc) ){
-              $css[$i] .= $v;
-            }
-            else{
-              $css[$i] = $v;
-            }
+            // concanteno o modifico
+            if( isset($css[$i]) && in_array('mod',$opc) ){ $css[$i] .= $v; }else{ $css[$i] = $v; }
           }
         }
+
         $css_val = [];
-        foreach( $css as $i => $v ){
-
-          $css_val []= "{$i} : {$v}";
-        }
-
+        foreach( $css as $i => $v ){ $css_val []= "{$i} : {$v}"; }
         $ele['style'] = implode('; ',$css_val);
       }
-      // por texto
+      // por texto: agrego al inicio o al final
       else{
-
-        if( in_array('eli',$opc) ){
-
+        if( in_array('ini',$opc) ){
+          $ele['style'] = $val.( !empty($ele['style']) ? " {$ele['style']}" : "" );
+        }
+        elseif( !empty($ele['style']) ){
+          $ele['style'] .= " ".$val;
         }
         else{
-
-          if( in_array('ini',$opc) ){
-            $ele['style'] = $val.( !empty($ele['style']) ? " {$ele['style']}" : "" );
-          }
-          elseif( !empty($ele['style']) ){
-            $ele['style'] .= " ".$val;
-          }else{
-            $ele['style'] = $val;
-          }
+          $ele['style'] = $val;
         }
       }
       $_ = $ele;

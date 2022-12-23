@@ -65,6 +65,8 @@ class api_lis {
       }
     });
 
+    this._tab.cla = ".pos.ope";
+
     for( const $atr in $dat ){ this[$atr] = $dat[$atr]; }
     
   }// getter
@@ -97,8 +99,7 @@ class api_lis {
   /* Valores del Entorno
   */
   static val( $dat = [], $ope ){
-    let $_ = $dat;
-    
+    let $_ = $dat;    
     // valido tipo
     if( !$ope ){
       $_ = Array.isArray($dat);
@@ -999,10 +1000,10 @@ class api_lis {
     return $.tab;
   }// Inicio : opciones, posicion, filtros
   static tab_ini( $cla ){
-    let $={ cla : !!$cla ? eval($cla) : false };
+
+    let $ = { cla : !!$cla ? eval($cla) : false };
 
     // clase por posicion
-    $api_lis._tab.cla = '.pos.ope'; 
     $api_lis._tab.ide = $api_lis._tab.val.classList[3];
     
     // inicializo opciones
@@ -1118,19 +1119,14 @@ class api_lis {
       }
       break;
     case 'mar':
-      $.pos = $dat.classList.contains('pos') ? $dat : $dat.parentElement;
-      // si no es un posicion de tablero
-      if( !$.pos.classList.contains('tab') ){
-
-        $.pos.classList.toggle(`_val-mar-`);
-        // marco bordes
-        if( $api_lis._tab.val_acu ){
-          if( $.pos.classList.contains(`_val-mar-`) && $api_lis._tab.val_acu.querySelector(`[name="mar"]:checked`) ){
-            $.pos.classList.add(`_val-mar_bor`);
-          }
-          else if( !$.pos.classList.contains(`_val-mar-`) && $.pos.classList.contains(`_val-mar_bor`) ){
-            $.pos.classList.remove(`_val-mar_bor`);
-          }
+      $dat.classList.toggle(`_val-mar-`);
+      // marco bordes
+      if( $api_lis._tab.val_acu ){
+        if( $dat.classList.contains(`_val-mar-`) && $api_lis._tab.val_acu.querySelector(`[name="mar"]:checked`) ){
+          $dat.classList.add(`_val-mar_bor`);
+        }
+        else if( !$dat.classList.contains(`_val-mar-`) && $dat.classList.contains(`_val-mar_bor`) ){
+          $dat.classList.remove(`_val-mar_bor`);
         }
       }
       break;
@@ -1274,14 +1270,8 @@ class api_lis {
     case 'col':
       $.ope = `fon_col-`;
 
-      if( $api_lis._tab.dep ){
-        $.eli = `${$api_lis._tab.cla} .pos:not(.tab)[class*='${$.ope}']`;
-        $.agr = `${$api_lis._tab.cla} .pos:not(.tab)`;
-      }
-      else{
-        $.eli = `${$api_lis._tab.cla}[class*='${$.ope}']`;
-        $.agr = `${$api_lis._tab.cla}`;
-      }
+      $.eli = `${$api_lis._tab.cla}[class*='${$.ope}']`;
+      $.agr = `${$api_lis._tab.cla}`;
 
       $api_lis._tab.val.querySelectorAll($.eli).forEach( $e => api_ele.cla($e,$.ope,'eli','ini' ) );
 
@@ -1318,11 +1308,9 @@ class api_lis {
         $.fic = api_dat.val_ide('ima', ...( ( $.dat = $dat.options[$dat.selectedIndex].getAttribute('dat') ) ? $.dat : $dat.value ).split('.') );
         // actualizo por opciones                
         $api_lis._tab.val.querySelectorAll($api_lis._tab.cla).forEach( $e => {
+          // capturar posicion .dep
           $.htm = '';
-          $.ele = { 
-            title : false, 
-            onclick : false 
-          };
+          $.ele = { title : false, onclick : false  };
           if( $.ima.pos || $.ima.mar || $.ima.ver || $.ima.opc ){
 
             if( $.ima.pos && $e.classList.contains('_val-pos-') ){ 

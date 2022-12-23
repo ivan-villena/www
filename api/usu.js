@@ -2,12 +2,10 @@
 'use strict';
 
 // Usuario
-class sis_usu {
+class api_usu {
 
-  constructor( $dat = {} ){
-    
+  constructor( $dat = {} ){    
     for( const $atr in $dat ){ this[$atr] = $dat[$atr]; }
-    
   }
 
 }

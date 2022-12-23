@@ -409,10 +409,9 @@ nav.doc_nav.ope + :is(div,section) {
   z-index: 900;
   position: absolute;
   width: 100%;
-  max-height: 70vh;  
-  background-color: var(--fon_sec);
-  padding: .25rem .5rem;
-  border: 1px solid var(--col_azu);
+  max-height: 80vh; 
+  background-color: var(--fon_win);
+  padding: 1rem;
   margin: 0;
 }
 

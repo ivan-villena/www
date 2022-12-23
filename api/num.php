@@ -54,6 +54,9 @@ class api_num {
 
     if( $tip == 'val' ){
       $ope['eti'] = "n";
+      if( isset($ope['val']) ){
+        unset($ope['val']);
+      }
       $num = isset($dat) ? strval($dat) : "";      
       $ope['htm'] = preg_match("/\./",$num) ? api_num::val_dec($num) : api_num::val_int($num);
       api_ele::cla($ope,"num",'ini');
@@ -158,7 +161,7 @@ class api_num {
             unset($ope['class']); 
           }
           if( !isset($ope['id']) ){ 
-            $ope['id'] = "_num_ran-".api_dat::var_ide('_num-ran');
+            $ope['id'] = "_num_ran-".api_dat::var_ide('num_ran');
           }
           $htm_out = "";
           if( !in_array('val-ocu',$opc) ){ $htm_out = "

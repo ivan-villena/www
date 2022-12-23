@@ -4,3 +4,11 @@
 main article div.lis.est > table {
   width: initial;
 }
+
+
+/* 
+  Glosarios 
+*/
+body[data-art="ide"] article li.pos > .doc_val > p {
+  color: var(--let_ide);
+}

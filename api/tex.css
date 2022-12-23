@@ -9,10 +9,20 @@ c {
   color: var(--let_ope);
   text-shadow: 0 0 5px;  
 }
-
 c.sep { 
   margin: .3rem;
 }
+
+.let-ide { 
+  color: var(--let_ide); 
+}
+.let-val { 
+  color: var(--let_val); 
+}
+.let-err { 
+  color: var(--let_err); 
+}
+
 
 /* cita */
 cite {
@@ -27,20 +37,11 @@ q, blockquote {
   text-shadow: 0 0 5px;
 }
 
-/*  
-  tipografías
-*/
 dfn, /* Definiciones */
 abbr, /* Abreviaturas */
-dt, /* Términos */
-:is(b,i).ide { 
+dt /* Términos */
+{ 
   color: var(--let_ide); 
-}
-:is(b,i).val { 
-  color: var(--let_val); 
-}
-:is(p,b,i).err { 
-  color: var(--let_err); 
 }
 
 /* separador */

@@ -41,9 +41,11 @@ class api_ele {
       if( typeof($ele)=='string' ){        
         $_ += $ele;
       }
-      else{      
-        // por ícono
-        if( $ele['ico'] ){
+      else{
+        if( $ele['let'] ){
+          $_ += api_tex.let($ele['let']);
+        }// por ícono
+        else if( $ele['ico'] ){
           $.ico_ide = $ele['ico'];
           delete($ele['ico']);
           $_ += api_fig.ico($.ico_ide,$ele);
