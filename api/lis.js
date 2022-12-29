@@ -1021,9 +1021,9 @@ class api_lis {
     api_lis.tab_val('pos');
 
     // actualizo opciones
-    $api_lis._ope.acu.forEach( $ite => 
-      ( $.ele = $api_lis._tab.val_acu.querySelector(`[name="${$ite}"]:checked`) ) && api_lis.tab_val_acu($.ele) 
-    );
+    $api_lis._ope.acu.forEach( $ite => {
+      if( $.ele = $api_lis._tab.val_acu.querySelector(`[name="${$ite}"]:checked`) ) api_lis.tab_val_acu($.ele) 
+    });
 
     // inicializo operador por aplicacion
     if( $.cla ){
@@ -1042,11 +1042,11 @@ class api_lis {
       if( $api_lis._tab.atr ){
         $api_lis._tab.atr.querySelectorAll(`form[class*="ide-"]`).forEach( $for => {
           
-          $.eje = `tab_${$for.classList[0].split('-')[2]}`;
+          $.eje = `tab_opc`;
 
           $for.querySelectorAll(`[name][onchange*="${$cla}.${$.eje}"]`).forEach( 
 
-            $inp => !!$.cla[$.eje] && $.cla[$.eje]( $inp )
+            $inp => !!$.cla[$.eje] && $.cla[$.eje]( $for.classList[0].split('-')[2], $inp )
           );
         });
       }
