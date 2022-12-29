@@ -96,6 +96,6 @@
 		'' ),
 		('hol','psi','hep_est', 31, 'La Estación Solar de 91 días',
 		'' ),
-		('hol','psi','hep_rad', 32, 'El Heptágono Semanal de 7 días',
+		('hol','psi','hep_pla', 32, 'El Heptágono Semanal de 7 días',
 		'' )
 	;

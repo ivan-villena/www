@@ -26,13 +26,7 @@
 
     <p>Cada una de las cuatro semanas tiene un poder único<c>:</c></p>
 
-    <?php 
-    $_ = []; 
-    foreach( api_hol::_($ide = 'lun_arm') as $_hep ){ $_ []= 
-      api_tex::let("$_hep->nom (")."<b class='col-4-$_hep->ide'>$_hep->des_col</b>".api_tex::let("): $_hep->des");
-    }
-    echo api_dat::lis($_,$ide);
-    ?>
+    <?=hol_bib::tut('lun_arm')?>
 
     <figure>
       <img src='<?=$_dir->ima?>01-02.jpg' class='mar-1'>
@@ -82,13 +76,7 @@
 
     <p>Por ejemplo<c>,</c> aquí están las primeras cinco unidades en el Tzolkin<c>:</c></p>
 
-    <ul class="lis val mar-aut">
-      <li><?=api_hol::ima('kin','001',['class'=>"mar_der-1"])?></li>
-      <li><?=api_hol::ima('kin','002',['class'=>"mar_der-1"])?></li>
-      <li><?=api_hol::ima('kin','003',['class'=>"mar_der-1"])?></li>
-      <li><?=api_hol::ima('kin','004',['class'=>"mar_der-1"])?></li>
-      <li><?=api_hol::ima('kin','005',['class'=>"mar_der-1"])?></li>
-    </ul>
+    <?=hol_bib::tut('kin_ima',[1,2,3,4,5])?>
 
     <p><i>Aprenderás más acerca de los <n>13</n> Tonos Galácticos y los <n>20</n> Sellos Solares en la siguiente sección<c>.</c></i></p>
     
@@ -127,7 +115,7 @@
 
       <div class="ite">
 
-        <?=api_dat::lis_des('hol','rad',['pla_des'])?>
+        <?=hol_bib::tut('rad')?>
 
         <img src='<?=$_dir->ima?>03-01-02.png' class='mar-1' style="max-width:20rem;">
 
@@ -137,7 +125,7 @@
 
       <div class="ite">
 
-        <?=api_dat::lis_des('hol','rad',['pla_ene','pla_pod'])?>
+        <?=hol_bib::tut('rad-lec')?>
 
         <img src='<?=$_dir->ima?>03-01-03.png' class='mar-aut' style="max-width:10rem;">        
 
@@ -158,7 +146,7 @@
 
       <p>El Sincronario de <n>13</n> Lunas es una herramienta para armonizarnos con el orden dimensional superior<c>.</c> El uso más elevado de lo que nosotros llamamos <c>"</c>Sincronario<c>"</c> es en realidad una medida de sincronicidad <c>-</c><c>¡</c>es por eso que llamamos al Sincronario de <n>13</n> Lunas <b>un sincronario de <n>13</n> Lunas</b><c>!</c></p>
 
-      Para tener más información sobre el tiempo galáctico ver Boletín Rinri <c>"</c><a href="https://www.13lunas.net/boletines/Rinri/V03N2_2.htm" target="_blank">Recordando el Camino Sagrado <c>-</c> Tiempo Estándar Galáctico <c>(</c>TEG<c>)</c><c>:</c> El significado esencial del Sincronario de Trece Lunas de <n>28</n> días</a><c>"</c> <c>(</c>Rinri III <n>2<c>.</c>2</n><c>)</c>
+      <p>Para tener más información sobre el tiempo galáctico ver Boletín Rinri <c>"</c><a href="https://www.13lunas.net/boletines/Rinri/V03N2_2.htm" target="_blank">Recordando el Camino Sagrado <c>-</c> Tiempo Estándar Galáctico <c>(</c>TEG<c>)</c><c>:</c> El significado esencial del Sincronario de Trece Lunas de <n>28</n> días</a><c>"</c> <c>(</c>Rinri III <n>2<c>.</c>2</n><c>)</c></p>
       
     </section>
     
@@ -200,11 +188,11 @@
 
       <h4>Los <n>13</n> Tonos Galácticos</h4>
 
-      <?=api_lis::est("hol.ton",['atr'=>['ide','nom','des_car','des_pod','des_acc'],'opc'=>['htm','cab_ocu']])?>
+      <?=hol_bib::tut('ton')?>
 
       <h4>Los <n>20</n> Sellos Solares</h4>
 
-      <?=api_lis::est("hol.sel",['atr'=>['ide','nom','des_pod','des_acc','des_car'],'opc'=>['htm','cab_ocu']])?>
+      <?=hol_bib::tut('sel')?>
 
       <p>El portal galáctico siempre se lee <c>"</c>Sello<c>,</c> Tono<c>,</c> Color<c>"</c><c>.</c> Por ejemplo<c>,</c> un día dragón rojo<c>,</c> con el tono magnético se lee<c>:</c> <c>"</c> Dragón Magnético Rojo<c>"</c><c>.</c> Las palabras clave del Dragón Rojo son<c>:</c> nutrir<c>,</c> nacimiento<c>,</c> ser <c>-</c>Las palabras claves para el tono magnético son<c>:</c> unificar<c>,</c> atraer propósito<c>.</c></p>
 
@@ -300,37 +288,7 @@
       
       <p>El gráfico clave del Oráculo del Destino anterior muestra cómo calcular el Guía para cualquier firma galáctica dada <c>(</c>portal galáctico<c>)</c><c>.</c> Resumiendo<c>:</c></p>
 
-      <table class="mar-aut">
-        <thead>
-          <tr>
-            <th>Para los portales galácticos con tonos:</th>
-            <th>El Kin guía es:</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <tr>
-            <td><n>1</n><c>,</c> <n>6</n> o <n>11</n><c>:</c></td>
-            <td>el mismo sello solar como el sello del kin destino</td>
-          </tr>
-          <tr>
-            <td><n>2</n><c>,</c> <n>7</n> o <n>12</n><c>:</c></td>
-            <td><n>12</n> sellos adelante <c>(</c>o <n>8</n> sellos atrás<c>)</c> del kin destino</td>
-          </tr>
-          <tr>
-            <td><n>3</n><c>,</c> <n>8</n> o <n>13</n><c>:</c></td>
-            <td><n>4</n> sellos adelante <c>(</c>o <n>16</n> sellos atrás<c>)</c> del kin destino</td>
-          </tr>
-          <tr>
-            <td><n>4</n> o <n>9</n><c>:</c></td>
-            <td><n>4</n> sellos atrás <c>(</c>o <n>16</n> sellos adelante<c>)</c> del kin destino</td>
-          </tr>
-          <tr>
-            <td><n>5</n> o <n>10</n><c>:</c></td>
-            <td><n>8</n> sellos adelante <c>(</c>o <n>12</n> sellos atrás<c>)</c> del kin destino</td>
-          </tr>          
-        </tbody>
-      </table>
+      <?=hol_bib::tut('par_gui')?>
 
       <p>Por ejemplo<c>:</c></p>
 
@@ -357,12 +315,7 @@
       
       <p>En el Tiempo NET<c>,</c> para cada kin diario<c>,</c> utilizas el oráculo de quinta fuerza para encontrar las cuatro miradas del día que son<c>:</c></p>
 
-      <ul>
-        <li>Primera Mirada<c>:</c> De Medianoche al Amanecer <c>(</c>Kin Análogo<c>)</c> </li>
-        <li>Segunda Mirada<c>:</c> Amanecer a Mediodía <c>(</c>Kin Guía<c>)</c> </li>
-        <li>Tercera Mirada<c>:</c> Mediodía al Atardecer <c>(</c>Kin Antípoda<c>)</c> </li>
-        <li>Cuarta Mirada<c>:</c> Atardecer a Medianoche <c>(</c>Kin Oculto)</li>
-      </ul>
+      <?=hol_bib::tut('par-dia')?>
                   
       <p>Siguiendo el patrón de tiempo net cada día llega a ser un mandala de sincronicidad<c>.</c> Sigue las miradas cambiantes del Oráculo de Quinta Fuerza del Tiempo NET <c>¡</c>para obtener una visión más profunda con el flujo de la realidad diaria<c>!</c></p>
 

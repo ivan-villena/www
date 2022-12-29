@@ -1,22 +1,35 @@
 -- Active: 1665550796793@@127.0.0.1@3306@c1461857_api
 
+UPDATE `hol_kin_cro_est_dia` SET `enc` = CONCAT( '"', `enc`, '"' );
+
+UPDATE `hol_kin` SET `des` = REPLACE(`des`,'. "','."');
+
+RENAME TABLE `hol_tel_cam` TO `hol_uni_tel_cam`;
+
 ----------------------------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------
 
 -- _tex : tratamiento de textos
 
-  -- let_ora : convierte a mayuscia el primer caracter
-  UPDATE 
-    esq.est 
-  SET 
-    atr = CONCAT( UCASE( LEFT(atr, 1) ), LCASE( SUBSTRING(atr, 2) ) )
+  -- let_cue : Longitud del Campo
+  SELECT char_length(`atr`) FROM `est`; 
+
+
+  -- let_ora : Oración ( Primer Caracter Mayúscula )
+  UPDATE `est` SET `atr` = CONCAT( UCASE( LEFT(`atr`,1) ), LCASE( SUBSTRING(`atr`,2) ) ) 
   WHERE 
-    atr = atr
+    `atr_ver` = 0
   ;
-
-  -- let_cue : longitud de campo
-  SELECT char_length(campo) FROM `tabla`; 
-
+  -- let_rep : Reemplaza
+  UPDATE `est` SET `atr` = REPLACE(`atr`,'buscar','remplazar')
+  WHERE 
+    `atr_ver` = 0
+  ;
+  -- let_agr : Agrega
+  UPDATE `est` SET `atr` = CONCAT( '"', `atr`, '"' )
+  WHERE
+    `atr_ver` = 0
+  ;
 
 ----------------------------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------
@@ -55,7 +68,7 @@
     INSERT INTO `esq_1`.`est_1` SELECT * FROM `esq_2`.`est_2`;
   
   -- cambiar estructuras
-    RENAME TABLE `esq_1`.`est_1` TO `esq_2`.`est_2`;
+    RENAME TABLE `esq_1`.`est_1` TO `esq_2`.`est_2`;    
 
   ----------------------------------------------------------------
   ----------------------------------------------------------------

@@ -574,10 +574,11 @@ class api_lis {
       foreach( $dat as $ite ){ 
         $pos++;
         $ele_ite = $ope['ite'];
+        $ele_ite['data-pos'] = $pos;
         api_ele::cla($ele_ite,"pos ide-$pos",'ini');
         if( $pos != $pos_ver ) api_ele::cla($ele_ite,DIS_OCU);
         $_.="
-        <li".api_ele::atr($ope['ite']).">";
+        <li".api_ele::atr($ele_ite).">";
           // contenido html
           if( is_string($ite) ){
             $_ .= $ite;
@@ -1588,7 +1589,22 @@ class api_lis {
   }
 
   /* Tablero */
-  static function tab_dat( string $esq, string $est, string $atr, array &$ope = [], array &$ele = [] ) : array {
+  static function tab( string | array $ide, object $dat = NULL, array $ope = NULL, array $ele = NULL ) : string {
+    $_ = "";
+    if( is_string($ide) ){
+      // tablero por aplicacion: esq.est.atr
+      extract( api_dat::ide($ide) );
+      // convierto parametros por valores ($)
+      if( isset($dat) && !empty($ope) ) $ope = api_obj::val_lis($ope,$dat);
+      // aseguro identificador del tablero
+      if( !isset($ope['ide']) && isset($dat->ide) ) $ope['ide'] = $dat->ide;
+      if( $atr && class_exists($cla = "api_{$esq}") && method_exists($cla,"tab") ){
+        $_ = $cla::tab( $est, $atr, $ope, $ele );
+      }
+    }
+    return $_;
+  }// datos: ide + est + dat + val[ pos, ver, opc ] + sec[ ima col ...opc ] + pos[ bor + ima + num + fec + tex ] + ...opc
+  static function tab_dat( string $esq, string $est, string $atr, array $ope = [], array $ele = [] ) : array {
     foreach( ['sec','pos'] as $v ){ if( !isset($ele[$v]) ) $ele[$v] = []; }
 
     $_ = [ 
@@ -1599,23 +1615,24 @@ class api_lis {
 
     if( empty($ele['sec']['class']) || !preg_match("/^tab/",$ele['sec']['class']) ) api_ele::cla($ele['sec'],
       "lis tab {$_['esq']} {$_['tab']} {$atr}",'ini'
-    );
+    );    
     // opciones
     if( !isset($ope['opc']) ) $ope['opc'] = [];
     $opc = $ope['opc'];
 
-    // items
-    if( !isset($ope['eti']) ) $ope['eti'] = "li";
-    $ope['_tab_pos'] = 0;// contador de posiciones
-
-    // operador de opciones
-    if( !empty($ope['pos']['bor']) ) api_ele::cla($ele['pos'],"bor-1");      
-    $ope['_val'] = [];
-    $ope['_val']['pos_col'] = !empty($ope['pos']['col']) ? $ope['pos']['col'] : FALSE;// color
-    $ope['_val']['pos_ima'] = !empty($ope['pos']['ima']) ? $ope['pos']['ima'] : FALSE;// imagen
-    // posiciones
-    $ope['_val']['pos_dep'] = !empty($ope['sec']['pos_dep']);// dependencia por patrones del destino
-    $ope['_val']['pos_eje'] = class_exists($cla = "api_{$_['esq']}") && method_exists($cla,"tab_pos");
+    // operador de opciones    
+    if( !isset($ele['pos']['eti']) ) $ele['pos']['eti'] = "li";
+    $ope['pos_cue'] = 0;// inicializo contador de posiciones    
+    if( !empty($ope['pos']['bor']) ) api_ele::cla($ele['pos'],"bor-1");
+    // opciones
+    $ope['val_pos_col'] = !empty($ope['pos']['col']) ? $ope['pos']['col'] : FALSE;// color
+    $ope['val_pos_ima'] = !empty($ope['pos']['ima']) ? $ope['pos']['ima'] : FALSE;// imagen
+    // dependencia por patrones del destino
+    $ope['val_pos_dep'] = !empty($ope['sec']['pos_dep']);
+    // ejecucion por contenido
+    $ope['pos_eje'] = class_exists($cla = "api_{$_['esq']}") && method_exists($cla,"tab_pos");    
+    // completo datos por aplicacion
+    if( class_exists($cla) && method_exists($cla,"tab_dat") ) $cla::tab_dat($est,$atr,$ope,$ele);
     
     // identificadores de datos
     if( is_object( $ide = !empty($ope['ide']) ? $ope['ide'] : 0 ) ) $ide = $ide->ide;
@@ -1717,11 +1734,8 @@ class api_lis {
           if( isset($ope_var[$ide]) ){
   
             $_ .= api_dat::var($esq,"tab.$tip.$ide", [
-              'ope'=>[
-                'id'=>"{$_ide}-{$ide}", 
-                'val'=>!empty($ope_val[$ide]) ? !empty($ope_val[$ide]) : NULL, 
-                'onchange'=>"$_eje(this);"
-              ]
+              'val'=>!empty($ope_val[$ide]) ? !empty($ope_val[$ide]) : NULL, 
+              'ope'=>[ 'id'=>"{$_ide}-{$ide}", 'onchange'=>"$_eje(this);" ]
             ]);
           }
         } 
@@ -1822,12 +1836,8 @@ class api_lis {
           $htm = "";
           foreach( api_dat::var_dat($esq,'tab',"{$tip}-{$atr}") as $ide => $val ){
             $htm .= api_dat::var($esq,"tab.{$tip}-{$atr}.$ide", [
-              'ope'=>[ 
-                'id'=>"{$_ide}-{$esq}-{$tip}_{$atr}-{$ide}", 
-                'dat'=>$atr,
-                'val'=>isset($ope[$atr][$ide]) ? $ope[$atr][$ide] : NULL,
-                'onchange'=>"$_eje('$atr',this)" 
-              ]
+              'val'=>isset($ope[$atr][$ide]) ? $ope[$atr][$ide] : NULL,
+              'ope'=>[ 'id'=>"{$_ide}-{$esq}-{$tip}_{$atr}-{$ide}", 'onchange'=>"$_eje('$atr',this)" ]
             ]);
           }          
           // busco datos del operador 
@@ -1861,6 +1871,7 @@ class api_lis {
     return $_;
   }// posicion
   static function tab_pos( string $esq, string $est, mixed $val, array &$ope, array $ele ) : string {
+
     // recibo objeto 
     if( is_object( $val_ide = $val ) ){
       $_dat = $val;
@@ -1871,11 +1882,9 @@ class api_lis {
         $_dat = $cla_dat::_("{$est}",$val);
       }      
     }
- 
-    $_val = isset($ope['_val']) ? $ope['_val'] : [];
     //////////////////////////////////////////////
     // cargo datos ///////////////////////////////
-    $e = isset($ele['pos']) ? $ele['pos'] : [];      
+    $e = $ele['pos'];
     // por acumulados
     if( isset($ope['dat']) ){
 
@@ -1906,11 +1915,12 @@ class api_lis {
         $e["data-{$esq}_{$est}"] = $_dat->ide;
       }
     }
+    
     //////////////////////////////////////////////
     // .posiciones del tablero principal /////////
     $cla_agr = [];
     // habilito operador
-    if( !$_val['pos_dep'] ){
+    if( !$ope['val_pos_dep'] ){
       $cla_agr []= "ope";
       if( isset($ope['val']['pos']) ){
 
@@ -1924,29 +1934,31 @@ class api_lis {
       }
     }// clases adicionales
     if( !empty($cla_agr) ) api_ele::cla($e,implode(' ',$cla_agr),'ini');
+    
     //////////////////////////////////////////////
     // Contenido html ///////////////////////////
     $htm = "";
-    if( $ope['_val']['pos_eje'] ){
+    // metodo por aplicacion
+    if( $ope['pos_eje'] ){
       $cla = "api_$esq";
       $htm = $cla::tab_pos($est,$val,$ope,$e);
     }
-    if( empty($htm) ){
+    // contenido automático
+    if( empty($htm) && !isset($e['htm']) ){
       // color de fondo
-      if( $_val['pos_col'] ){
-        $_ide = api_dat::ide($_val['pos_col']);
+      if( $ope['val_pos_col'] ){
+        $_ide = api_dat::ide($ope['val_pos_col']);
         if( isset($e[$dat_ide = "data-{$_ide['esq']}_{$_ide['est']}"]) && !empty( $_dat = api_dat::get($_ide['esq'],$_ide['est'],$e[$dat_ide]) ) ){
-          $col = api_dat::val_ide('col', ...explode('.',$_val['pos_col']));          
+          $col = api_dat::val_ide('col', ...explode('.',$ope['val_pos_col']));          
           if( isset($col['val']) ){
             $col = $col['val'];
             $val = ( $col == 1 && $_dat->{$_ide['atr']} > $col ) ?  0 : $_dat->{$_ide['atr']};
             api_ele::cla($e, "fon_col-$col-".( $val === 0 ? $val : api_num::val_ran($val,$col) ) );
           }
         }
-      }
-      // imagen + numero + texto + fecha
+      }// imagen + numero + texto + fecha
       if( !isset($ele['ima']) ) $ele['ima'] = [];
-      if( !empty($e['title']) ) $ele['ima']['title'] = FALSE;     
+      if( !empty($e['title']) ) $ele['ima']['title'] = FALSE;
       foreach( ['ima','num','tex','fec'] as $tip ){
         if( !empty($ope['pos'][$tip]) ){
           $ide = api_dat::ide($ope['pos'][$tip]);
@@ -1954,11 +1966,14 @@ class api_lis {
         }
       }
     }
+    if( !isset($e['htm']) && !empty($htm) ){
+      $e['htm'] = $htm;
+    }
     //////////////////////////////////////////////
     // devuelvo posicion /////////////////////////
-    $ope['_tab_pos']++;// agrego posicion automatica-incremental
-    api_ele::cla($e,"pos ide-{$ope['_tab_pos']}",'ini');    
-    return "<{$ope['eti']}".api_ele::atr($e).">{$htm}</{$ope['eti']}>";
+    $ope['pos_cue']++;// valor de posicion automatica-incremental
+    api_ele::cla($e,"pos ide-{$ope['pos_cue']}",'ini');    
+    return api_ele::eti($e);
   }// Secciones
   static function tab_sec( array $ope, array $ide ) : array {
     $_ = [];

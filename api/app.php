@@ -1,6 +1,6 @@
 <?php
 // Página-app
-class sis_app {
+class api_app {
 
   // inicializo aplicacion
   function __construct( string $uri, string $ini = "hol" ){
@@ -89,6 +89,7 @@ class sis_app {
 
     global $sis_usu;
 
+    /* 
     // loggin
     $tip = "ses_".( empty($sis_usu->ide) ? 'ini' : 'ope' );
     $this->rec['ope']['fin'][$tip]['htm'] = api_usu::$tip();
@@ -99,7 +100,8 @@ class sis_app {
       ob_start();
       include("./sis/adm.php");
       $this->rec['ope']['fin']['sis_adm']['htm'] = ob_get_clean();      
-    }    
+    }
+    */
 
     // cargo operadores del documento ( botones + contenidos )
     foreach( $this->rec['ope'] as $tip => $tip_lis ){

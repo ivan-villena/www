@@ -314,14 +314,13 @@ class api_hol {
 
     $.ide = `${$tip}_${$.var_ide}`;
 
-    $.cla = [`_hol-${$.ide}`];    
+    $.cla = [`_hol-${$.ide}`, `_val-opc-${$.ide}`, `_val-opc_act-${$.ide}`];    
 
     $.kin = $_hol.val.kin;
 
     switch( $tip ){
-    // portales de activacion      
-    case 'pag': 
-      $.cla.push(`_val-opc-${$.ide}`, `_val-opc_act-${$.ide}`);
+    // kines: portales de activacion      
+    case 'pag':
       // galácticos
       if( $.var_ide == 'kin' ){
 
@@ -348,9 +347,8 @@ class api_hol {
       // Actualizo acumulados
       api_hol.tab_val($dat);    
       break;
-    // oráculo por posicion
+    // sellos: oráculo por posicion
     case 'par':
-      $.cla.push("_val-opc-par", "_val-opc_act-par");
       $._par_lis = ['ana','gui','ant','ocu'];
       // marcar todos los patrones del oráculo
       if( !$.var_ide ){
@@ -424,82 +422,80 @@ class api_hol {
         }
       }      
       break;
-    // pulsares por posicion
-    case 'pul': 
-      $.cla.push("_val-opc-pul","_val-opc_act-pul");
-      $._par_lis = ['ana','gui','ant','ocu'];
-      // marcar todos los patrones del oráculo
-      if( !$.var_ide ){
-
-        $._par_lis.forEach( $ide => {
-
-          api_hol.tab_opc('par', $api_doc._var.querySelector(`[name="${$ide}"]`) );
-        });
-      }// por pareja
-      else{
-        // marco pareja
-        if( $._par_lis.includes($.var_ide) ){
-          // desmarco todos los anteriores
-          api_ele.act('cla_eli',$api_lis._tab.val.querySelectorAll(`.${$.cla[0]}`),$.cla);
-          // marco correspondientes
-          if( $dat.checked ){
-            $api_lis._tab.val.querySelectorAll(
-              `${$api_lis._tab.cla}[data-hol_kin="${api_hol._('kin',$.kin)[`par_${$.var_ide}`]}"]:not(.${$.cla})`
-            ).forEach( $ele =>{ 
-              
-              api_ele.act('cla_agr',$ele,$.cla);
-            })
-          }
-          // evaluo extensiones
-          api_hol.tab_opc('par', $api_doc._var.querySelector(`[name="ext"]`) );
+    // tonos: pulsares por posicion
+    case 'pul':
+      // elimino todos los pulsares anteriores
+      api_ele.act('htm_eli',$api_lis._tab.val.querySelectorAll(`.sec.-ond[data-pul="${$.var_ide}"]`));
+      
+      // inicializo acumulados
+      api_ele.act('cla_eli',$api_lis._tab.val.querySelectorAll(`.${$.cla[0]}`),$.cla);
+      
+      // posicion principal por kin      
+      if( $dat.checked && ( $.pos = $api_lis._tab.val.querySelector(`${$api_lis._tab.cla}[data-hol_kin="${$.kin}"]`) ) ){
+        switch( $.tab ){
+        // estaciones cromáticas : 1 x 5
+        case 'kin_cro': 
+          $.val = api_num.val_ran($.pos.parentElement.getAttribute('pos'),13);
+          break;
+        // trayectorias armónicas : 1 x 20
+        case 'kin_arm': 
+          $.val = $.pos.parentElement.parentElement.getAttribute('pos');
+          break;
+        // lunas : 1 x 28
+        case 'psi_lun': 
+          $.val = $.pos.parentElement.parentElement.parentElement.getAttribute('pos');
+          break;
+        // posicion directa x 1
+        default:
+          if( $.pos.dataset['hol_ton'] ) $.val = $.pos.dataset['hol_ton'];         
+          break;
         }
-        // extiendo oráculo
-        else if( $.var_ide == 'ext' ){
+        // busco tono del elemento y cargo la ficha del pulsar
+        if( $.val ){
+
+          $.ton = api_hol._('ton',$.val);
+
+          $.ton_pul = $.ton[ $.pul_ide = $.ide.split('_')[1] ];
           
-          $.val_tot = 0;
-          $.cla[1] = "_val-opc-par_ext";
-          $.cla[2] = "_val-opc_act-par_ext";
-          $._par_lis.forEach( $i => {
+          // marco acumulos
+          $api_lis._tab.val.querySelectorAll(`${$api_lis._tab.cla}[data-hol_kin]`).forEach( $e => {
 
-            // elimino marcas previas + marco extensiones por pareja
-            $.cla[0] = `_hol-par_${$i}-ext`;                    
-            // agrgo 3 clases : -ext , _val-opc, _val-opc_act
-            api_ele.act('cla_eli',$api_lis._tab.val.querySelectorAll(`.${$.cla[0]}`),$.cla);
+            $.ton = api_hol._('ton',$e.dataset['hol_ton']);
 
-            // marco extensiones
-            if( 
-              $dat.checked && $api_doc._var.querySelector(`[name="${$i}"]`).checked && 
-              ( $.ele = $api_lis._tab.val.querySelector(`${$api_lis._tab.cla}[data-hol_kin="${api_hol._('kin',$.kin)[`par_${$i}`]}"]:not(.${$.cla[0]})`) ) 
-            ){
-              $._kin = api_hol._('kin',$.ele.dataset['hol_kin']);
-
-              $._par_lis.map( $ide => `par_${$ide}` ).forEach( $ide_ext => {
-
-                $api_lis._tab.val.querySelectorAll(`${$api_lis._tab.cla}[data-hol_kin="${$._kin[$ide_ext]}"]`).forEach( $ext => {
-                  $.val_tot++;                
-                  api_ele.act('cla_agr',$ext,$.cla);
-                })
-              });
-            }
+            if( $.ton_pul == $.ton[$.pul_ide] ) api_ele.act('cla_agr',$e,$.cla);
+            
           });
-          // actualizo cantidades
-          $._par_lis.forEach( $ide => {
-
-            if( $.tot = $api_doc._var.querySelector(`.dat_var > [name="${$ide}"] ~ span > n`) ){
-
-              $.tot.innerHTML = $api_lis._tab.val.querySelectorAll(`[class*="_hol-par_${$ide}"]`).length;
-            }
+          // muestro pulsares de la o.e.
+          $api_lis._tab.val.querySelectorAll(`.sec.-ond[data-pul="${$.var_ide}"]`).forEach( $e => {
+            
+            $e.innerHTML += hol.ima(`ton_${$.var_ide}`, $.ton_pul, {'class':'fon'} );
           });
-          // total general
-          if( $.tot = $api_doc._var.querySelector('.dat_var > [name="cue"]') ){
-
-            $.tot.innerHTML = $api_lis._tab.val.querySelectorAll(`[class*="_hol-par_"]`).length;
-          }
-          // actualizo acumulado por opciones
-          api_lis.tab_act('opc');        
         }
       }
+      // actualizo acumulados
+      hol.tab_val($dat);
       break;
+    // tonos: pulsares por seleccion
+    case 'dim':
+    case 'mat':
+    case 'sim':
+      // inicializo acumulados
+      api_ele.act('cla_eli',$api_lis._tab.val.querySelectorAll(`${$api_lis._tab.cla}.${$.cla[0]}`),$.cla);
+      if( $dat.checked ){
+        // muestro pulsar seleccionado
+        api_ele.act('cla_eli',$api_lis._tab.val.querySelector(`.sec.ond.pul.${$tip}-${$dat.value}.${DIS_OCU}`),DIS_OCU);
+        // acumulo posiciones sin considerar oráculos
+        $.cla_ver = $api_lis._tab.val.querySelector(`.pos.dep`) ? ".pos.dep" : $api_lis._tab.cla;
+        $api_lis._tab.val.querySelectorAll(`${$.cla_ver}[data-hol_ton]`).forEach( $ele_pos => {
+          if( ( $.ton = api_hol._(`ton`,$ele_pos.dataset.hol_ton) ) && $.ton[$tip] == $dat.value ) api_ele.act('cla_agr',$ele_pos,$.cla);
+        });
+      }// oculto pulsar seleccionado
+      else{
+        api_ele.act('cla_agr',$api_lis._tab.val.querySelector(`.sec.ond.pul.${$tip}-${$dat.value}:not(.${DIS_OCU})`),DIS_OCU);
+      }
+
+      // actualizo acumulados
+      api_hol.tab_val($dat);
     }
 
   }

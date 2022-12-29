@@ -1,8 +1,7 @@
 <!-- 7 Plasmas Radiales -->
 <div>  
 
-  <!-- dìas de la semana 
-  -->
+  <!-- dìas de la semana -->
   <article>
     <h2 id="<?="_{$_nav[1]['01']->pos}-"?>"><?=api_tex::let($_nav[1]['01']->nom)?></h2>
 
@@ -32,8 +31,7 @@
 
   </article>
 
-  <!-- heptágono de la mente
-  -->
+  <!-- heptágono de la mente -->
   <article>
     <h2 id="<?="_{$_nav[1]['03']->pos}-"?>"><?=api_tex::let($_nav[1]['03']->nom)?></h2>
 
@@ -61,7 +59,7 @@
 
     <p>En el <a href="<?=$_bib?>ato#_03-01-" target="_blank">átomo del tiempo</a> se establecen los principios y componentes de los plasmas en el marco de la energía o electricidad cósmica<c>.</c></p>
 
-    <?=api_lis::est('hol.rad',[ 'atr'=>['ide','nom','des_col','pla_qua','pla_pod','pla_fue','pla_fue_pre','pla_fue_pos'] ])?>
+    <?=api_lis::est('hol.rad',[ 'atr'=>['ide','nom','des_col','pla_qua','des_pod','des_fue','pla_fue'] ])?>
 
   </article>     
   

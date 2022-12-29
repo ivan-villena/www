@@ -50,9 +50,9 @@ class api_opc {
       break;
     // binario : input[checkbox]
     case 'bin':
-      $ope['type']='checkbox';
-      if( !empty($dat) ){ 
-        $ope['checked']='checked'; 
+      $ope['type'] = 'checkbox';
+      if( !empty($dat) ){
+        $ope['checked'] = 'checked'; 
       }
       break;
     // único : div > input[radio]
@@ -76,7 +76,7 @@ class api_opc {
     case 'mul':
       if( isset($ope['dat']) ){
         $_dat = $ope['dat'];
-        unset($ope['dat']); 
+        unset($ope['dat']);
         if( is_string($_dat) ){
           $_dat = api_dat::get($_dat);
         }

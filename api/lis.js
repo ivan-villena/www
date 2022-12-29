@@ -376,7 +376,7 @@ class api_lis {
     if( $.lis ){
       // elimino marcas previas
       $.lis.querySelectorAll(
-        `ul.lis.nav :is( li.pos.sep, li.pos:not(.sep) > div.doc_val ).${$cla}`
+        `ul.lis.nav :is( li.pos.sep, li.pos:not(.sep) > div.doc_ite ).${$cla}`
       ).forEach( 
         $e => $e.classList.remove($cla) 
       );
@@ -406,7 +406,7 @@ class api_lis {
       while( 
         ( $.lis = api_ele.val_ver($.nav,{'eti':'ul'}) ) 
         && 
-        ( $.val = $.lis.previousElementSibling ) && $.val.nodeName == 'DIV' &&  $.val.classList.contains('doc_val')
+        ( $.val = $.lis.previousElementSibling ) && $.val.nodeName == 'DIV' &&  $.val.classList.contains('doc_ite')
         && 
         ( $.nav = $.val.querySelector('a[href^="#"]') )
       ){

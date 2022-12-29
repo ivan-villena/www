@@ -94,7 +94,7 @@
     $kin = 185;
     $kin_lis = "{$kin} - 189";
     foreach( api_hol::_('kin_cro_ele') as $_ele ){
-      $_cas = api_hol::_('cas',$_ele->ide);        
+      $_cas = api_hol::_('cas',$_ele->ide);
       $_ton = api_hol::_('ton',$_ele->ton);
       $_est = api_hol::_('kin_cro_est',$_cas->arm);
       $_ .= "

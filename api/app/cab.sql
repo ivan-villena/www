@@ -18,7 +18,7 @@
 			),
 			('hol','inf', 3, 'Kin Planetario',
 				'', 
-				'tex_inf', 	0, 0, 1, 0 
+				'tex_inf', 	1, 0, 1, 0
 			),
 			('hol','kin', 4, 'Órden Sincrónico',
 				'', 

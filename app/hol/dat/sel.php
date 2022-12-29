@@ -43,7 +43,7 @@
   <article>
     <h2 id="<?="_{$_nav[1]['06']->pos}-"?>"><?=api_tex::let($_nav[1]['06']->nom)?></h2>
     <p>En <a href="<?=$_bib?>enc#_03-14-" target="_blank">el Encantamiento del Sueño</a><c>.</c></p>
-    <?=api_lis::est('hol.sel_cro_fam',[ 'atr'=>['ide','nom','des_cod','des_fun','pla_cen','hum_cen','hum_ded','des','sel'] ])?>
+    <?=api_lis::est('hol.sel_cro_fam',[ 'atr'=>['ide','nom','des_cod','des_fun','des_pod','pla_cen','hum_cen','hum_ded','des','sel'] ])?>
   </article>
 
   <!-- 4 clanes cromáticos -->

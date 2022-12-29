@@ -233,8 +233,8 @@ div.doc_win > .ide-doc_ope > header + * {
 div.doc_win > .ide-doc_ope > header + * > section {
   margin: .5rem;
   padding: 0 .5rem;
-  margin-bottom: 1.5rem;
 }
+
 /* -- Estructuras */
 div.doc_win > .ide-est {
   max-width: 60rem;
@@ -264,12 +264,9 @@ div.doc_win > .ide-est > div > .app_est {
   align-items: center;
 }
 
-/* Bloque */
-.doc_val > .fig_ico.ide-val_tog {
-  text-shadow: 0 0 5px;
-}
-.doc_val > .fig_ico.ide-val_tog.ocu {
-  transform: rotate(270deg);
+.doc_val {
+  width: -moz-fit-content;
+  width: fit-content;
 }
 
 /* Renglón y Línea */
@@ -283,6 +280,14 @@ div.doc_win > .ide-est > div > .app_est {
 :is(.doc_ren,.doc_ite) {
   flex-grow: 2;  
   align-self: stretch;
+}
+
+/* Bloque */
+.doc_ite > .fig_ico.ide-val_tog {
+  text-shadow: 0 0 5px;
+}
+.doc_ite > .fig_ico.ide-val_tog.ocu {
+  transform: rotate(270deg);
 }
 
 /* Botones : .doc_ope > a/button/span */

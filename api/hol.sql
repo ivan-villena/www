@@ -1,6 +1,5 @@
 -- Active: 1670107173962@@127.0.0.1@3306@c1461857_api
-
--- VISTAS:
+--
   --
   -- x7 : plasma radial
 
@@ -87,7 +86,8 @@
       SELECT
         _fam.*,
         _cro.des_cod,
-        _cro.des_fun      
+        _cro.des_fun,
+        _cro.des_pod
       FROM 
         `hol_sel_cro_fam` _fam
       INNER JOIN
@@ -153,8 +153,37 @@
         _ocu.ini
     ;
   --
+  -- x28: giro lunar
+    -- heptadas
+    DROP VIEW IF EXISTS `_hol_lun_arm`; CREATE VIEW `_hol_lun_arm` AS
+      SELECT 
+        _lun.*,
+        _arm.des_pod,
+        _arm.des_pol,
+        _arm.des_dia
+      FROM 
+        `hol_lun_arm` _lun
+      INNER JOIN 
+        `hol_arm` _arm ON _arm.ide = _lun.ide
+      ORDER BY
+        _lun.ide
+    ;
+  --
   -- x52 : Castillo fractal-galactico
-
+    -- posiciones
+    DROP VIEW IF EXISTS `_hol_cas`; CREATE VIEW `_hol_cas` AS
+      SELECT 
+        _cas.*,
+        _ton.dim,
+        _ton.mat,
+        _ton.sim
+      FROM 
+        `hol_cas` _cas
+      INNER JOIN 
+        `hol_ton` _ton ON _ton.ide = _cas.ton
+      ORDER BY
+        _cas.ide
+    ;
     -- Cuadrantes
     DROP VIEW IF EXISTS `_hol_cas_arm`; CREATE VIEW `_hol_cas_arm` AS
       SELECT 
@@ -182,9 +211,83 @@
       ORDER BY
         _ond.ide
     ;
+    -- pulsares
+    DROP VIEW IF EXISTS `_hol_cas_dim`; CREATE VIEW `_hol_cas_dim` AS
+      SELECT        
+        _ond.*,
+        _cas.cas
+      FROM 
+        `hol_cas_dim` _cas
+      INNER JOIN 
+        `hol_ton_dim` _ond ON _cas.ide = _ond.ide
+      ORDER BY
+        _ond.ide
+    ;
+    DROP VIEW IF EXISTS `_hol_cas_mat`; CREATE VIEW `_hol_cas_mat` AS
+      SELECT        
+        _ond.*,
+        _cas.cas
+      FROM 
+        `hol_cas_mat` _cas
+      INNER JOIN 
+        `hol_ton_mat` _ond ON _cas.ide = _ond.ide
+      ORDER BY
+        _ond.ide
+    ;
+    DROP VIEW IF EXISTS `_hol_cas_sim`; CREATE VIEW `_hol_cas_sim` AS
+      SELECT        
+        _ond.*,
+        _cas.cas
+      FROM 
+        `hol_cas_sim` _cas
+      INNER JOIN 
+        `hol_ton_sim` _ond ON _cas.ide = _ond.ide
+      ORDER BY
+        _ond.ide
+    ;       
   --
   -- x260 : Kin
-
+    -- oraculos
+    DROP VIEW IF EXISTS `_hol_kin_par`; CREATE VIEW `_hol_kin_par` AS
+      SELECT 
+        _kin.ide,
+        _kin.des,
+        _kin.par_ana,
+        _kin.par_gui,
+        _kin.par_ant,
+        _kin.par_ocu
+      FROM 
+        `hol_kin` _kin
+      ORDER BY 
+        _kin.ide ASC
+    ;
+    -- Trayectoria Armónica
+    DROP VIEW IF EXISTS `_hol_kin_arm_tra`; CREATE VIEW `_hol_kin_arm_tra` AS
+      SELECT 
+        _tra.*,
+        _ton.nom AS `ton`,
+        _ton.des AS `ton_des`
+      FROM 
+        `hol_kin_arm_tra` _tra
+      INNER JOIN 
+        `hol_ton` _ton ON _tra.ide = _ton.ide
+      ORDER BY 
+        _tra.ide ASC
+    ;    
+    -- célula de tiempo
+    DROP VIEW IF EXISTS `_hol_kin_arm_cel`; CREATE VIEW `_hol_kin_arm_cel` AS
+      SELECT 
+        _cel.*,
+        _arm.nom AS `cel_nom`,
+        _arm.des_fun AS `cel_fun`,
+        _arm.des_pod AS `cel_pod`
+      FROM 
+        `hol_kin_arm_cel` _cel
+      INNER JOIN 
+        `hol_sel_arm_cel` _arm ON _cel.cel = _arm.ide
+      ORDER BY
+        _cel.ide ASC
+    ;
     -- estacion galáctica
     DROP VIEW IF EXISTS `_hol_kin_cro_est`; CREATE VIEW `_hol_kin_cro_est` AS
       SELECT 
@@ -204,7 +307,13 @@
         _dia.*,
         _ond.fac,
         _ond.enc,
+        _ton.dim,
+        _ton.mat,
+        _ton.sim,
         _ton.ond,
+        _ton.ond_pos,
+        _ton.ond_nom,
+        _ton.ond_pod,
         _ton.ond_man
       FROM 
         `hol_kin_cro_est_dia` _dia
@@ -227,15 +336,28 @@
         `hol_ton_ond` _ond ON _cro.ide = _ond.ide
       ORDER BY
         _cro.ide
-    ;-- elemento galáctico
+    ;
+    -- elemento galáctico
     DROP VIEW IF EXISTS `_hol_kin_cro_ele`; CREATE VIEW `_hol_kin_cro_ele` AS
       SELECT 
         _ele.*,
-        _cas.lec AS `cas_lec`,
-        _cas.arm AS `arm`,
-        _cas.ond AS `ond`,
-        _cas.ton AS `ton`,
-        _ton.des AS `ton_des`
+        _cas.arm,
+        _cas.pos_arm,
+        _cas.ond,
+        _ton.dim,
+        _ton.mat,
+        _ton.sim,        
+        _cas.ton,        
+        _ton.des AS `ton_des`,
+        _ton.des_car AS `ton_des_car`,
+        _ton.des_pod AS `ton_des_pod`,
+        _ton.des_acc AS `ton_des_acc`,
+        _ton.ond_nom AS `ond_nom`,
+        _ton.ond_pos AS `ond_pos`,
+        _ton.ond_pod AS `ond_pod`,
+        _ton.ond_man AS `ond_man`,
+        _cas.des AS `cas_des`,
+        _cas.lec AS `cas_lec`
       FROM 
         `hol_kin_cro_ele` _ele
       INNER JOIN
@@ -244,31 +366,6 @@
         `hol_ton` _ton ON _cas.ton = _ton.ide
       ORDER BY
         _ele.ide ASC
-    ;
-    -- Trayectoria Armónica
-    DROP VIEW IF EXISTS `_hol_kin_arm_tra`; CREATE VIEW `_hol_kin_arm_tra` AS
-      SELECT 
-        _tra.*,
-        _ton.nom AS `ton`,
-        _ton.des AS `ton_des`
-      FROM 
-        `hol_kin_arm_tra` _tra
-        INNER JOIN `hol_ton` _ton ON _tra.ide = _ton.ide
-      ORDER BY 
-        _tra.ide ASC
-    ;    
-    -- célula de tiempo
-    DROP VIEW IF EXISTS `_hol_kin_arm_cel`; CREATE VIEW `_hol_kin_arm_cel` AS
-      SELECT 
-        _cel.*,
-        _arm.nom AS `cel_nom`,
-        _arm.des_fun AS `cel_fun`,
-        _arm.des_pod AS `cel_pod`
-      FROM 
-        `hol_kin_arm_cel` _cel
-        INNER JOIN `hol_sel_arm_cel` _arm ON _cel.cel = _arm.ide
-      ORDER BY
-        _cel.ide ASC
     ;
   --
   -- x365 : Banco-psi
@@ -286,6 +383,25 @@
       ORDER BY
         _psi.ide        
     ;
+    -- x250x365 : anillos del encantamiento
+    DROP VIEW IF EXISTS `_hol_psi_ani`; CREATE VIEW `_hol_psi_ani` AS 
+      SELECT 
+        _ani.ide, 
+        _kin.nom, 
+        _cas.ide AS `cas`, 
+        _cas.ton, 
+        _ani.fam_2,
+        _ani.fam_3,
+        _ani.fam_4
+      FROM 
+        `hol_psi_ani` _ani
+      INNER JOIN 
+        `hol_kin` _kin ON _kin.ide = _ani.fam_4 
+      INNER JOIN 
+        `hol_cas` _cas ON _ani.ide+1 = _cas.ide
+      ORDER BY
+        _ani.ide
+    ;    
     -- 4 estaciones
     DROP VIEW IF EXISTS `_hol_psi_hep_est`; CREATE VIEW `_hol_psi_hep_est` AS
       SELECT 
@@ -299,7 +415,25 @@
         `_hol_cas_arm` _cas ON _est.ide = _cas.ide
       ORDER BY
         _est.ide        
-    ;    
+    ;-- días estacionales
+    DROP VIEW IF EXISTS `_hol_psi_hep_est_dia`; CREATE VIEW `_hol_psi_hep_est_dia` AS
+      SELECT 
+        _dia.*,
+        _ton.dim,
+        _ton.mat,
+        _ton.sim,
+        _ton.ond,
+        _ton.ond_nom,
+        _ton.ond_pos,
+        _ton.ond_pod,
+        _ton.ond_man
+      FROM 
+        `hol_psi_hep_est_dia` _dia
+      INNER JOIN 
+        `hol_ton` _ton ON _ton.ide = _dia.ton
+      ORDER BY
+        _dia.ide
+    ;
     -- 13 lunas del giro solar
     DROP VIEW IF EXISTS `_hol_psi_ani_lun`; CREATE VIEW `_hol_psi_ani_lun` AS 
       SELECT 
@@ -328,73 +462,61 @@
         _lun.ide        
     ;
     -- 52 heptadas del giro solar
-    DROP VIEW IF EXISTS `_hol_psi_hep_rad`; CREATE VIEW `_hol_psi_hep_rad` AS
+    DROP VIEW IF EXISTS `_hol_psi_hep_pla`; CREATE VIEW `_hol_psi_hep_pla` AS
       SELECT 
-        _hep.*, 
-        _cas.ond, 
+        _hep.*,
         _cas.arm,
-        _arm.des_col,
-        _arm.des_dir,
+        _cas.pos_arm,
+        _cas.ond,
+        _ton.dim,
+        _ton.mat,
+        _ton.sim,
         _cas.ton,
-        _ton.nom AS `ton_nom`,
         _ton.des AS `ton_des`,
-        _cas.des AS `cas_des`
+        _ton.des_car AS `ton_des_car`,
+        _ton.des_pod AS `ton_des_pod`,
+        _ton.des_acc AS `ton_des_acc`,
+        _ton.ond_nom AS `ond_nom`,
+        _ton.ond_pos AS `ond_pos`,
+        _ton.ond_pod AS `ond_pod`,
+        _ton.ond_man AS `ond_man`,
+        _cas.des AS `cas_des`,
+        _cas.lec AS `cas_lec`
       FROM 
-        `hol_psi_hep_rad` _hep
+        `hol_psi_hep_pla` _hep
       INNER JOIN 
         `hol_cas` _cas ON _hep.ide = _cas.ide
-      INNER JOIN 
-        `hol_arm` _arm ON _cas.arm = _arm.ide        
       INNER JOIN 
         `hol_ton` _ton ON _cas.ton = _ton.ide
       ORDER BY
         _hep.ide        
     ;
   --
-  -- x250x365 : anillos del encantamiento
-    DROP VIEW IF EXISTS `_hol_ani`; CREATE VIEW `_hol_ani` AS 
-      SELECT 
-        _ani.ide, 
-        _kin.nom, 
-        _cas.ide AS `cas`, 
-        _cas.ton, 
-        _ani.fam_2,
-        _ani.fam_3,
-        _ani.fam_4
-      FROM 
-        `hol_ani` _ani
-      INNER JOIN 
-        `hol_kin` _kin ON _kin.ide = _ani.fam_4 
-      INNER JOIN 
-        `hol_cas` _cas ON _ani.ide+1 = _cas.ide
-      ORDER BY
-        _ani.ide
-    ;
-  --
-  -- solar:
+  -- holon solar:
   -- 
-  -- planetario:
+  -- holon planetario:
     DROP VIEW IF EXISTS `_hol_uni_pla_cen`; CREATE VIEW `_hol_uni_pla_cen` AS
       SELECT
         _cen.*,
-        _cro.des_fun
+        _fam.des_fun
       FROM 
         `hol_uni_pla_cen` _cen
       INNER JOIN
-        `_hol_sel_cro_fam` _cro ON _cro.ide = _cen.ide
+        `_hol_sel_cro_fam` _fam ON _fam.ide = _cen.fam
       ORDER BY 
         _cen.ide ASC
     ;
   -- 
-  -- humano
+  -- holon humano:
     DROP VIEW IF EXISTS `_hol_uni_hum_cen`; CREATE VIEW `_hol_uni_hum_cen` AS
       SELECT
         _cen.*,
+        _cro.des_cod,
         _cro.des_pod
       FROM 
         `hol_uni_hum_cen` _cen
       INNER JOIN
-        `_hol_sel_cro_fam` _cro ON _cro.ide = _cen.ide
+        `hol_cro` _cro ON _cro.ide = _cen.fam
       ORDER BY 
         _cen.ide ASC
     ;
@@ -409,6 +531,5 @@
       ORDER BY 
         _ded.ide ASC
     ;      
---
 --
 

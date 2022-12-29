@@ -541,6 +541,9 @@ BORDES /////////////////////////////////////////////////////////////////////////
 .bor-das {
   border-style: dashed !important; 
 }
+.bor-luz {
+  box-shadow: 0 0 5px black;
+}
 
 .bor-1 {
   border-width: 1px !important;

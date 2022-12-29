@@ -219,7 +219,7 @@ class api_doc {
 
         $.cla = ( $ope == 'tod' ) ? `.ocu` : `:not(.ocu)`;
               
-        $.lis.querySelectorAll(`.doc_val > .fig_ico.ide-val_tog${$.cla}`).forEach( $e => $e.click() );
+        $.lis.querySelectorAll(`.doc_ite > .fig_ico.ide-val_tog${$.cla}`).forEach( $e => $e.click() );
       }
     }
   }

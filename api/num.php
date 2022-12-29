@@ -53,11 +53,9 @@ class api_num {
     $_eje = self::$EJE."var";
 
     if( $tip == 'val' ){
-      $ope['eti'] = "n";
-      if( isset($ope['val']) ){
-        unset($ope['val']);
-      }
-      $num = isset($dat) ? strval($dat) : "";      
+      $num = isset($dat) ? strval($dat) : ""; 
+      $ope['eti'] = "n";            
+      if( isset($ope['val']) ) unset($ope['val']);
       $ope['htm'] = preg_match("/\./",$num) ? api_num::val_dec($num) : api_num::val_int($num);
       api_ele::cla($ope,"num",'ini');
       $_ = api_ele::eti($ope);

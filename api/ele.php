@@ -36,54 +36,47 @@ class api_ele {
   static function val( ...$ele ) : string {
     $_ = "";
     $ele_lis = $ele;
-    foreach( $ele_lis as &$ele ){
+    foreach( $ele_lis as $ele ){
         
       if( is_string($ele) ){
   
         $_ .= $ele;
-      }
-      else{
-        // 1- letra
-        if( isset($ele['let']) ){
-          $_ .= api_tex::let($ele['let']);
+      }      
+      // 1- letra
+      elseif( isset($ele['let']) ){
+        $_ .= api_tex::let($ele['let']);
+      }// 2- icono
+      elseif( isset($ele['ico']) ){
+        $ico_ide = $ele['ico'];
+        unset($ele['ico']);
+        $_ .= api_fig::ico($ico_ide,$ele);
+      }// 3- imagen
+      elseif( isset($ele['ima']) ){
+        $est = explode('.',$ele['ima']);
+        unset($ele['ima']);
+        array_push($est,!empty($ele['ide'])?$ele['ide']:0,$ele);
+        $_ .= api_fig::ima(...$est);
+      }// 4- variable
+      elseif( isset($ele['tip']) ){
+        $tip = explode('_',$ele['tip']);
+        unset($ele['tip']);
+        // valores
+        if( isset($ele['val']) ){
+          $val = $ele['val'];
+          unset($ele['val']);
+        }        
+        // funciones
+        $eje = array_shift($tip);
+        if( class_exists($cla = "api_$eje") && method_exists($cla,'var') ){
+          $_ = $cla::var( empty($tip) ? 'val' : implode('_',$tip), isset($val) ? $val : NULL, $ele );
         }
-        // 2- icono
-        elseif( isset($ele['ico']) ){
-          $ico_ide = $ele['ico'];
-          unset($ele['ico']);
-          $_ .= api_fig::ico($ico_ide,$ele);
-        }
-        // 3- imagen
-        elseif( isset($ele['ima']) ){
-          $est = explode('.',$ele['ima']);
-          unset($ele['ima']);
-          array_push($est,!empty($ele['ide'])?$ele['ide']:0,$ele);
-          $_ .= api_fig::ima(...$est);
-        }
-        // 4- variable
-        elseif( isset($ele['tip']) ){
-          $tip = explode('_',$ele['tip']);
-          unset($ele['tip']);
-          // valores
-          $val = NULL;
-          if( isset($ele['val']) ){
-            $val = $ele['val'];
-            unset($ele['val']);
-          }
-          // funciones
-          $eje = array_shift($tip);
-          if( class_exists($cla = "api_$eje") && method_exists($cla,'var') ){
-
-            $_ = $cla::var( empty($tip) ? 'val' : implode('_',$tip), $val, $ele );
-          }
-          else{
-            $_ = "<span class='err' title='no existe el operador $cla'></span>";
-          }                    
-        }
-        // 5- etiqueta
         else{
-          $_ .= api_ele::eti($ele);
+          $_ = "<span class='err' title='no existe el operador $cla'></span>";
         }
+        if( isset($val) ) unset($val);
+      }// 5- etiqueta
+      else{
+        $_ .= api_ele::eti($ele);
       }
     }
     return $_;
@@ -281,26 +274,30 @@ class api_ele {
       if( in_array('eli',$opc) ){
         foreach( api_lis::val_ite($val) as $cla_val ){
 
-          foreach( $ele_cla as &$cla_ele ){
+          foreach( $ele_cla as $cla_pos => $cla_ide ){
 
-            if( $cla_ele == $cla_val ) unset($cla_ele);
-          }
+            if( $cla_ide == $cla_val ){ 
+              unset($ele_cla[$cla_pos]);
+            }
+          }          
         }
       }// reemplazo
       elseif( in_array('mod',$opc) ){
-        $cla_ver = $val[0];
-        $cla_val = $val[1];
+        if( is_string($val) ) $val = explode(':',$val);
+        
+        $cla_ver = trim($val[0]);
+        $cla_val = trim($val[1]);
 
-        foreach( $ele_cla as &$cla_ele ){
+        foreach( $ele_cla as $cla_pos => $cla_ide ){
 
-          if( $cla_ele == $cla_ver ) $cla_ele = $cla_val;
+          if( $cla_ide == $cla_ver ) $ele_cla[$cla_pos] = $cla_val;
         }
       }// agrego
       else{        
         $cla_val = api_lis::val_ite($val);
         in_array('ini',$opc) ? array_unshift($ele_cla, ...$cla_val) : array_push($ele_cla, ...$cla_val);
       }
-      $ele['class'] = implode(' ',$ele_cla);
+      $ele['class'] = implode(' ',array_values($ele_cla));
       $_ = $ele;
     }
     return $_;

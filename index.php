@@ -31,10 +31,10 @@
   // Modulos
   $sis_cla = [ 
       'api'=>[ 
-        'doc', 'dat', 'arc', 'eje', 'ele', 'obj', 'lis', 'opc', 'num', 'tex', 'fig', 'fec', 'hol', 'usu'
+        'app', 'doc', 'dat', 'arc', 'eje', 'ele', 'obj', 'lis', 'opc', 'num', 'tex', 'fig', 'fec', 'hol', 'usu'
       ],
       'sis'=>[
-        'sql', 'app'
+        'sql'
       ]
     ];
 
@@ -80,14 +80,18 @@
       
       $_ = "<h2>hola desde php<c>!</c></h2>";
 
-      // recorrer tablas de un esquema    
-      /* 
+    
+      /* Recorrer tablas de un esquema:
+
       foreach( api_sql::est(DAT_ESQ,'lis','hol_','tab') as $est ){
         $_ .= "ALTER TABLE `api`.`$est` DROP PRIMARY KEY;<br>";
       } 
       */
-
       
+      /*  Invocando funciones
+        include("./api/hol/cas.php");
+        $_ = hol_cas();
+      */
       
       return $_;
     }
@@ -102,14 +106,14 @@
   ////////////////////////////////////////////////////////////////////////////////////////////
 
   // cargo documento y aplicacion
-  $sis_app = new sis_app( isset($_REQUEST['uri']) ? $_REQUEST['uri'] : "hol" );
+  $api_app = new api_app( isset($_REQUEST['uri']) ? $_REQUEST['uri'] : "hol" );
 
   // pido contenido por aplicacion
-  $_uri = $sis_app->uri;
+  $_uri = $api_app->uri;
   if( file_exists($rec = "./app/{$_uri->esq}/index.php") ) require_once( $rec );
   
   // inicializo contenido
-  $sis_app->htm_ini();
+  $api_app->htm_ini();
   ?>
   <!DOCTYPE html>
   <html lang="es">
@@ -119,58 +123,58 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
       <!-- hojas de estilo -->
-      <?=$sis_app->rec_cla('css')?>
+      <?=$api_app->rec_cla('css')?>
       <link rel='stylesheet' href='<?=SYS_NAV?>index.css'>
       <link rel='stylesheet' href='<?=SYS_NAV?>sis/css.css'>
 
-      <title><?=$sis_app->htm['tit']?></title>
+      <title><?=$api_app->htm['tit']?></title>
     </head>
 
-    <body <?=api_ele::atr($sis_app->rec['ele']['body'])?>>
+    <body <?=api_ele::atr($api_app->rec['ele']['body'])?>>
       
       <!-- Botonera -->
       <header class='doc_bot'>
         
         <nav class='doc_ope'>
-          <?= $sis_app->htm['ope']['ini']; ?>
+          <?= $api_app->htm['ope']['ini']; ?>
         </nav>
 
         <nav class='doc_ope'>
-          <?= $sis_app->htm['ope']['fin']; ?>
+          <?= $api_app->htm['ope']['fin']; ?>
         </nav>
         
       </header>
 
-      <?php if( !empty($sis_app->htm['pan']) ){ ?>
+      <?php if( !empty($api_app->htm['pan']) ){ ?>
         <!-- Panel -->
         <aside class='doc_pan dis-ocu'>
-          <?= $sis_app->htm['pan'] ?>
+          <?= $api_app->htm['pan'] ?>
         </aside>
       <?php } ?>
       
       <!-- Contenido -->
       <main class='doc_sec'>
-        <?= api_doc::sec( $sis_app->htm['sec'], [ 'tit'=>$sis_app->htm['tit'] ] ) ?>
+        <?= api_doc::sec( $api_app->htm['sec'], [ 'tit'=>$api_app->htm['tit'] ] ) ?>
       </main>
       
       
-      <?php if( !empty($sis_app->htm['bar']) ){ ?>
+      <?php if( !empty($api_app->htm['bar']) ){ ?>
         <!-- sidebar -->
         <aside class='doc_bar'>
-          <?= $sis_app->htm['bar'] ?>
+          <?= $api_app->htm['bar'] ?>
         </aside>
       <?php } ?>
 
-      <?php if( !empty($sis_app->htm['pie']) ){  ?>
+      <?php if( !empty($api_app->htm['pie']) ){  ?>
         <!-- pie de página -->
         <footer class='doc_pie'>
-          <?= $sis_app->htm['pie'] ?>
+          <?= $api_app->htm['pie'] ?>
         </footer>
       <?php } ?>
       
       <!-- Modales -->
       <div class='doc_win dis-ocu'>
-        <?= $sis_app->htm['win'] ?>
+        <?= $api_app->htm['win'] ?>
       </div>
       
       <!-- Programas -->
@@ -182,16 +186,16 @@
         const FON_SEL = "<?=FON_SEL?>";
         const BOR_SEL = "<?=BOR_SEL?>";
         // Peticiones
-        const $sis_log = { php:[], jso:[], uri :<?= api_obj::val_cod( $sis_app->uri ) ?>  };
+        const $sis_log = { php:[], jso:[], uri :<?= api_obj::val_cod( $api_app->uri ) ?>  };
 
       </script>
       <!-- Módulos -->
-      <?=$sis_app->rec_cla('jso')?>
+      <?=$api_app->rec_cla('jso')?>
       <!-- Cargo Datos -->
       <script>
         <?php // cargo objetos
         $var = get_defined_vars();
-        foreach( $sis_app->rec['obj']['api'] as $cla ){
+        foreach( $api_app->rec['obj']['api'] as $cla ){
           if( isset($var[$obj = "api_{$cla}"]) && is_object($var[$obj]) ){ echo "
             var \${$obj} = new {$obj}(".( !empty($atr = get_object_vars($var[$obj])) ? api_obj::val_cod($atr) : "" ).");\n";
           }
@@ -204,7 +208,7 @@
         var $api_dat = new api_dat(<?= api_obj::val_cod($dat_api) ?>);        
         
         // codigo por aplicacion
-        <?= $sis_app->rec['eje'] ?>
+        <?= $api_app->rec['eje'] ?>
         
       </script>
       <!-- Inicializo página -->

@@ -283,15 +283,13 @@ class api_doc {
     foreach( ['val','ico'] as $eti ){ if( !isset($ele[$eti]) ) $ele[$eti]=[]; }
     
     // contenido textual
-    if( is_string($dat) ) $dat = [
-      'eti'=>"p", 'class'=>"tex-enf tex-cur", 'htm'=> api_tex::let($dat) 
-    ];
+    if( is_string($dat) ) $dat = [ 'eti'=>"p", 'class'=>"tex-enf tex-cur", 'htm'=> api_tex::let($dat) ];
 
     // contenedor : icono + ...elementos          
     api_ele::eje( $dat,'cli',"$_eje(this);",'ini');
 
     return "
-    <div".api_ele::atr( api_ele::cla( $ele['val'],"doc_val",'ini') ).">
+    <div".api_ele::atr( api_ele::cla( $ele['val'],"doc_ite",'ini') ).">
     
       ".api_doc::val_ico( isset($ele['ico']) ? $ele['ico'] : [] )."
 

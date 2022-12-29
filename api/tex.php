@@ -49,10 +49,10 @@ class api_tex {
       foreach( explode("/n",$dat) as $tex_pal ){
         $tex []= api_tex::let($tex_pal);
       }
-      $ele['htm'] = implode("<br>",$tex);
-      $ele['eti'] = $tip == 'val' ? 'p' : 'q';
-      api_ele::cla($ele,"tex",'ini');
-      $_ = api_ele::eti($ele);
+      $ope['htm'] = implode("<br>",$tex);
+      $ope['eti'] = $tip == 'val' ? 'p' : 'q';
+      api_ele::cla($ope,"tex",'ini');
+      $_ = api_ele::eti($ope);
 
     }
     else{

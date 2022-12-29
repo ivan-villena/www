@@ -20,7 +20,7 @@
     }
   }
   // imrpimo panel con operadores
-  $sis_app->rec['ope']['ini']['dia'] = [ 
+  $api_app->rec['ope']['ini']['dia'] = [ 
 
     'ico'=>"fec_val", 'tip'=>"pan", 'nom'=>"Diario", 'nav'=>[ 'eti'=>"article" ], 'htm'=>"
 
@@ -30,7 +30,7 @@
 
       <div class='mar-2 tex_ali-cen'>
 
-        ".api_dat::inf('hol','kin',$_hol->val['kin'],['opc'=>"nom",'cit'=>"des"])."
+        ".api_dat::inf('hol','kin',$_hol->val['kin'],[ 'opc'=>["nom"], 'det'=>"des" ])."
 
       </div>
 
@@ -46,7 +46,7 @@
         'psi'=>$_psi = api_hol::_('psi',$_hol->val['psi']),
         'est'=>api_hol::_('hep_est',$_psi->hep_est),
         'lun'=>api_hol::_('ani_lun',$_psi->ani_lun),
-        'hep'=>api_hol::_('hep_rad',$_psi->hep_rad)
+        'hep'=>api_hol::_('hep_pla',$_psi->hep_pla)
       ])]      
     ],[ 'sel' => "kin" ])
   ];
@@ -76,7 +76,7 @@
     </article>
     
     <?php
-    $sis_app->htm['sec'] = ob_get_clean();
+    $api_app->htm['sec'] = ob_get_clean();
 
     // cargo tutorial:
     ob_start(); ?>
@@ -168,7 +168,7 @@
       <section>        
       </section>      
     <?php
-    $sis_app->rec['ope']['fin']['app_dat']['htm'] = ob_get_clean();
+    $api_app->rec['ope']['fin']['app_dat']['htm'] = ob_get_clean();
 
   }
   // por articulo 
@@ -178,7 +178,7 @@
     if( in_array($_uri->cab, $ope_atr = ['kin','psi']) ){
 
       // cargo todos los datos utilizados por esquema
-      $sis_app->rec['dat']['hol'] = [];
+      $api_app->rec['dat']['hol'] = [];
 
       // genero datos
       $_hol->dat = api_hol::val_dat($_uri->cab, $_hol->val);
@@ -213,7 +213,7 @@
       $ope = api_obj::val_nom(api_lis::$TAB_OPE,'ver',['ver','opc','val']);
       foreach( $ope as $ope_ide => $ope_tab ){
         if( !empty( $htm = api_lis::tab_ope($ope_ide, $tab_ide, $tab_ope) ) ){
-          $sis_app->rec['ope']['ini'][$ope_ide] = [ 
+          $api_app->rec['ope']['ini'][$ope_ide] = [ 
             'ico'=>$ope_tab['ico'], 'tip'=>"pan", 'nom'=>$ope_tab['nom'], 'nav'=>[ 'eti'=>"article" ], 'htm'=>$htm
           ];
         }
@@ -237,7 +237,7 @@
         }
       }
       $ope = api_lis::$TAB_OPE['lis'];
-      $sis_app->rec['ope']['ini']['est'] = [ 'ico'=>$ope['ico'], 'tip'=>"win", 'nom'=>$ope['nom'], 
+      $api_app->rec['ope']['ini']['est'] = [ 'ico'=>$ope['ico'], 'tip'=>"win", 'nom'=>$ope['nom'], 
         'htm'=>api_lis::tab_ope('lis',"hol.{$_uri->cab}",$lis_ope) 
       ];
       // imprimo tablero en página principal
@@ -335,13 +335,13 @@
 
         </section>        
       <?php
-      $sis_app->rec['ope']['fin']['app_dat']['htm'] = ob_get_clean();     
+      $api_app->rec['ope']['fin']['app_dat']['htm'] = ob_get_clean();     
     }
     // contenido : bibliografía + articulos
     else{      
       // cargo indice, directorio y enlaces
-      $_nav = $sis_app->rec['dat']['nav'];
-      $_dir = $sis_app->uri_dir();
+      $_nav = $api_app->rec['dat']['nav'];
+      $_dir = $api_app->uri_dir();
       $_bib = SYS_NAV."hol/bib/";
       
       // módulos: bibliografía
@@ -356,21 +356,21 @@
         echo api_doc::tex([ 'tip'=>"err", 'tex'=>"No existe el archivo '$val'" ]);
       }
     }// imprimo secciones
-    $sis_app->htm['sec'] = ob_get_clean();
+    $api_app->htm['sec'] = ob_get_clean();
   }
 
   // recursos del documento
-  $sis_app->rec['cla']['app/hol'] = [];
+  $api_app->rec['cla']['app/hol'] = [];
   if( !empty($_uri->cab) ){ 
     // de contenido
-    $sis_app->rec['cla']['app/hol'] []= $_uri->cab;
+    $api_app->rec['cla']['app/hol'] []= $_uri->cab;
     // de articulo
     if( !empty($_uri->art) ){
-      $sis_app->rec['cla']["app/hol/{$_uri->cab}"] = [ $_uri->art ];
+      $api_app->rec['cla']["app/hol/{$_uri->cab}"] = [ $_uri->art ];
     }
   }
 
-  $sis_app->rec['eje'] .= '
+  $api_app->rec['eje'] .= '
 
     var $_hol = { val : '.api_obj::val_cod( $_hol->val ).' };
     
