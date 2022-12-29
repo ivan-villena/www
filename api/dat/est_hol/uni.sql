@@ -4,7 +4,7 @@ DELETE FROM `dat_est` WHERE `esq`='hol' AND `ide` LIKE 'uni%'; INSERT INTO `dat_
   -- flujos: respiraciones y poderes
   ('hol','uni_flu_res', '{
       "atr": { 
-        "ide": { "min":1, "max":2, "dat":"hol_uni_sol_res" }
+        "ide": { "min":1, "max":2, "dat":"uni_flu_res" }
       },        
       "val": { 
         "nom": "Respiración de flujo polar #()($)ide() de 2: ()($)nom()",
@@ -17,7 +17,7 @@ DELETE FROM `dat_est` WHERE `esq`='hol' AND `ide` LIKE 'uni%'; INSERT INTO `dat_
   }' ),
   ('hol','uni_flu_pod', '{
       "atr": { 
-        "ide": { "min":1, "max":2, "dat":"hol_uni_sol_res" }
+        "ide": { "min":1, "max":2, "dat":"uni_flu_pod" }
       },
       "val": { 
         "nom": "Poder de flujo polar #()($)ide() de 2: ()($)nom()",
@@ -178,7 +178,7 @@ DELETE FROM `dat_est` WHERE `esq`='hol' AND `ide` LIKE 'uni%'; INSERT INTO `dat_
   -- holon planetario
   ('hol','uni_pla_res', '{
       "atr": { 
-        "ide": { "min":1, "max":2, "dat":"hol_uni_sol_res" }
+        "ide": { "min":1, "max":2, "dat":"uni_pla_res" }
       },
       "val": { 
         "nom": "Respiración del Holon Planetario #()($)ide() de 2: ()($)nom()",
@@ -258,7 +258,9 @@ DELETE FROM `dat_est` WHERE `esq`='hol' AND `ide` LIKE 'uni%'; INSERT INTO `dat_
   -- holon humano
   ('hol','uni_hum_res', '{
       "atr": { 
-        "ide": { "min":1, "max":2, "dat":"hol_uni_sol_res" }
+        "ide": { "min":1, "max":2, "dat":"uni_hum_res" },
+        "sel": { "dat":"hol_sel" },
+        "ele": { "dat":"hol_sel_cro_ele" }
       },
       "val": { 
         "nom": "Respiración del Holon Humano #()($)ide() de 2: ()($)nom()",
@@ -267,12 +269,31 @@ DELETE FROM `dat_est` WHERE `esq`='hol' AND `ide` LIKE 'uni%'; INSERT INTO `dat_
         "col": 2
       },
       "opc": { 
-        "ima": [ "ide" ]
+        "ima": [ "ide", "sel", "ele" ]
       },
       "inf": { 
-        "tab": [ "hol.uni.hum", { "sec": { "ded":[], "cen":[], "res":"()($)ide()" } } ]
+        "tab": [ "hol.uni.hum", { "sec": { "ded":[], "cen":[], "res":"()($)ide()" } } ],
+        "fic-1-tit": [ "ele", "sel" ]
       }
   }' ),
+  ('hol','uni_hum_lad', '{
+      "atr": { 
+        "ide": { "min":1, "max":3, "dat":"uni_hum_lad" },
+        "ton": { "dat":"hol_ton" }
+      },
+      "val": { 
+        "nom": "Lado del Holon Humano #()($)ide() de 3: ()($)nom()",
+        "des": "()($)des()",
+        "col": 3
+      },
+      "opc": {
+        "ima": [ "ton" ]
+      },
+      "inf": { 
+        "tab": [ "hol.uni.hum", { "sec": { "ton":[], "res":"()($)ide()" } } ],
+        "fic-tit": [ "ton" ]
+      }
+  }' ),  
   ('hol','uni_hum_cen', '{
       "atr": { 
         "ide": { "min":1, "max":5, "dat":"hol_uni_hum_cen" },

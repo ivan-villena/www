@@ -22,10 +22,10 @@ DELETE FROM `dat_est` WHERE `esq`='hol' AND `ide` LIKE 'cas%'; INSERT INTO `dat_
         "num": 52
       },
       "opc": { 
-        "ver": [ "ide", "arm" ],    
-        "ima": [ "arm", "ond" ],
-        "col": [ "arm", "pos_arm", "ond", "ton_arm" ],
-        "num": [ "ide", "arm", "pos_arm", "ton_arm" ]
+        "ver": [ "ide", "arm", "ond", "pos_arm", "ton_arm" ],    
+        "ima": [ "ide", "arm", "ond", "pos_arm", "ton_arm" ],
+        "col": [ "arm", "ond", "pos_arm", "ton_arm" ],
+        "num": [ "ide", "arm", "ond", "pos_arm", "ton_arm" ]
       },
       "inf": {
         "fic": [ "arm", "ton", "pos_arm" ],

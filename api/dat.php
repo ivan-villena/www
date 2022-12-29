@@ -401,10 +401,10 @@ class api_dat {
     $_ = "";
     // proceso estructura
     extract( api_dat::ide($ide) );
-    // cargo datos/registros
-    $_dat = api_dat::get($esq,$est,$dat);
     // cargo valores
     $_val = api_dat::est_ope($esq,$est,'val');
+    // cargo datos/registros
+    if(  $tip != 'ima' ) $_dat = api_dat::get($esq,$est,$dat);
 
     // armo titulo : nombre <br> detalle
     if( $tip == 'tit' ){
@@ -414,9 +414,8 @@ class api_dat {
     // por atributos con texto : nom + des + ima 
     elseif( isset($_val[$tip]) ){
 
-      if( $tip == 'ima' && is_array($_val[$tip]) ){
-        $_ = $_val[$tip];
-        $tip = 'tab';
+      if( $tip == 'ima' ){
+        if( is_array($_val[$tip]) ) $tip = 'tab';
       }
       elseif( is_string($_val[$tip]) ){ 
         $_ = api_obj::val($_dat,$_val[$tip]);
@@ -425,32 +424,44 @@ class api_dat {
 
     // ficha por imagen
     if( $tip == 'ima' ){
+
       // identificador      
       $ele['data-esq'] = $esq;
       $ele['data-est'] = $est;
-      $ele['data-ide'] = $_dat->ide;
+
+      // 1 o muchos: valores ", " o rango " - "
+      $_ = "";
+      $ele_ima = $ele;
+      $ima_lis = is_string($dat) ? explode(preg_match("/, /",$dat) ? ", ": " - ",$dat) : [ $dat ];
+      foreach( $ima_lis as $dat_val ){
+
+        $_dat = api_dat::get($esq,$est,$dat_val);
+
+        $ele_ima['data-ide'] = $_dat->ide;
       
-      // cargo titulos
-      if( !isset($ele['title']) ){
-        $ele['title'] = api_dat::val('tit',"$esq.$est",$_dat);
+        // cargo titulos
+        if( !isset($ele_ima['title']) ){
+          $ele_ima['title'] = api_dat::val('tit',"$esq.$est",$_dat);
+        }
+        elseif( $ele_ima['title'] === FALSE  ){
+          unset($ele_ima['title']);
+        }
+        
+        // acceso a informe
+        if( !isset($ele_ima['onclick']) ){
+          if( api_dat::est_ope($esq,$est,'inf') ) api_ele::eje($ele_ima,'cli',"api_dat.inf('$esq','$est',".intval($_dat->ide).")");
+        }
+        elseif( $ele_ima['onclick'] === FALSE ){
+          unset($ele_ima['onclick']);
+        }
+        
+        $_ .= api_fig::ima( [ 'style' => api_obj::val($_dat,$_val[$tip]) ], $ele_ima );
       }
-      elseif( $ele['title'] === FALSE  ){
-        unset($ele['title']);
-      }
-      
-      // acceso a informe
-      if( !isset($ele['onclick']) ){
-        if( api_dat::est_ope($esq,$est,'inf') ) api_ele::eje($ele,'cli',"api_dat.inf('$esq','$est',".intval($_dat->ide).")");
-      }
-      elseif( $ele['onclick'] === FALSE ){
-        unset($ele['onclick']);
-      }
-      
-      $_ = api_fig::ima( [ 'style' => $_ ], $ele );
     }
     // tablero por imagen
     elseif( $tip == 'tab' ){
-      $par = $_;
+      $_dat = api_dat::get($esq,$est,$dat);
+      $par = $_val['ima'];
       $ele_ima = $ele;
       $ele = isset($par[2]) ? $par[2] : [];
       $ele['sec'] = api_ele::val_jun($ele_ima,isset($ele['sec']) ? $ele['sec'] : []);

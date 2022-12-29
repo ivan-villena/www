@@ -80,6 +80,17 @@ class api_hol {
     $.tip = $.var_ide.split('-');
 
     switch( $.tip[0] ){
+    // parejas del oráculo
+    case 'par':
+      if( $dat.checked ){
+        if( $api_lis._tab.val.querySelector(`.lis.tab.par.bor-0`) )
+          api_ele.act('cla_eli',$api_lis._tab.val.querySelectorAll(`.lis.tab.par.bor-0`),'bor-0');
+      }
+      else{
+        if( $api_lis._tab.val.querySelector(`.lis.tab.par:not(.bor-0)`) )
+          api_ele.act('cla_agr',$api_lis._tab.val.querySelectorAll(`.lis.tab.par:not(.bor-0)`),'bor-0');
+      }      
+      break;
     // plasma radial
     case 'rad':
       switch( $.tip[1] ){

@@ -29,18 +29,18 @@ DELETE FROM `dat_est` WHERE `esq`='hol' AND `ide` LIKE 'psi%'; INSERT INTO `dat_
       "num": 365
     },
     "opc": { 
-      "ver": [ 
+      "ver": [
+        "kin",
         "ani_lun", "ani_vin",
-        "hep_est", "hep_pla"          
+        "hep_est", "hep_pla"
       ],
       "ima": [
-        "kin", 
+        "kin",
         "ani_lun", 
-        "hep_est", "hep_pla", "hep_pla_dia"
+        "hep_est", "hep_pla"
       ],
       "col": [
-        "ani_lun", "ani_lun_dia",
-        "hep_est", "hep_pla"
+        "ani_lun", "hep_est"
       ],
       "num": [ 
         "ide", "fec", "kin",           
@@ -49,9 +49,7 @@ DELETE FROM `dat_est` WHERE `esq`='hol' AND `ide` LIKE 'psi%'; INSERT INTO `dat_
         "ani_cro", "ani_cro_dia",
         "hep_est", "hep_est_dia",
         "hep_pla", "hep_pla_dia"          
-      ],
-      "tex": [
-      ]                  
+      ]            
     },
     "lis": { 
       "atr": [ "ide", "kin", "hep_est", "hep_est_dia", "ani_lun", "ani_lun_dia", "hep_pla", "hep_pla_dia" ],

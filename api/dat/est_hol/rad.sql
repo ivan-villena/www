@@ -22,18 +22,20 @@ DELETE FROM `dat_est` WHERE `esq`='hol' AND `ide` LIKE 'rad%'; INSERT INTO `dat_
       },
       "opc": { 
         "ver": [ 
-          "ide", "pla_qua" 
+          "ide", 
+          "pla_fue", "pla_cub", "pla_qua",
+          "hum_cha"
         ],
         "ima": [
           "ide",
-          "tel_ora_año", "tel_ora_ani", "tel_ora_gen", 
-          "pla_cub", "pla_fue", "pla_qua", 
+          "pla_fue", "pla_cub", "pla_qua",
+          "tel_ora_año", "tel_ora_ani", "tel_ora_gen",
           "hum_cha"
         ],
         "col": [
-          "ide","pla_qua"
+          "ide", "pla_qua"
         ],
-        "num": [ 
+        "num": [
           "ide", "pla_qua" 
         ]
       },

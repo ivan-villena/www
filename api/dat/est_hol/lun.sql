@@ -20,16 +20,16 @@ DELETE FROM `dat_est` WHERE `esq`='hol' AND `ide` LIKE 'lun%'; INSERT INTO `dat_
       },
       "opc": { 
         "ver": [ 
-          "ide", "arm" 
+          "ide", "arm", "rad"
         ],
         "ima": [
-          "arm", "rad"
+          "ide", "arm", "rad"
         ],
         "col": [
-          "arm", "rad"
+          "ide", "arm"
         ],
         "num": [ 
-          "ide", "arm" 
+          "ide", "arm", "rad"
         ]
       },
       "lis": {

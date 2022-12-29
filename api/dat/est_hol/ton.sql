@@ -24,20 +24,35 @@ DELETE FROM `dat_est` WHERE `esq`='hol' AND `ide` LIKE 'ton%'; INSERT INTO `dat_
         "num": 13
       },
       "opc": { 
-        "ver": [ "ide", "ond", "dim", "mat", "sim", "hum_art" ],
-        "ima": [ "ide", "ond", "dim", "mat" ],
-        "col": [ "ide", "ond", "dim", "mat", "sim", "hum_art", "hum_lad" ],
-        "num": [ "ide", "ond", "dim", "mat", "sim", "hum_art", "hum_lad" ]
+        "ver": [ 
+          "ide", "ond", "dim", "mat", "sim", "hum_art", "hum_lad" 
+        ],
+        "ima": [ 
+          "ide", "ond", "dim", "mat", "sim" 
+        ],
+        "col": [ 
+          "ide", "ond", "dim", "mat", "sim", "hum_art", "hum_lad" 
+        ],
+        "num": [ 
+          "ide", "ond", "dim", "mat", "sim", "hum_art", "hum_lad" 
+        ]
       },
       "lis": { 
-
-        "atr": [ "ide", "nom", "des_car", "des_pod", "des_acc", "dim", "mat", "sim" ],
-        "atr_ocu": [ "dim", "mat", "sim" ],
-
-        "tit_cic": [ "ond" ],
-        "tit_gru": [ "dim", "mat", "sim" ],
-
-        "det_des": [ "ond_man", "cit_med", "cit_pre", "cit_por" ]
+        "atr": [ 
+          "ide", "nom", "des_car", "des_pod", "des_acc", "dim", "mat", "sim" 
+        ],
+        "atr_ocu": [ 
+          "dim", "mat", "sim" 
+        ],
+        "tit_cic": [ 
+          "ond" 
+        ],
+        "tit_gru": [ 
+          "dim", "mat", "sim" 
+        ],
+        "det_des": [ 
+          "ond_man", "cit_med", "cit_pre", "cit_por" 
+        ]
       },
       "inf": {
         "det": [ "des_car", "des_acc", "des_pod" ],

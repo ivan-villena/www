@@ -239,20 +239,30 @@ ul.lis.tab.hol_lun {
   border-radius: 50%;
   border: 1px solid var(--col_ver);
 }
-.lis.tab .pos.dep {
-  border-radius: 50%;
-}
-
 .lis.tab.par > .pos {
   width: 3rem;
   height: 3rem;
 }
-.lis.tab .tab.par {
+/* en posiciones del tablero */
+.lis.tab .pos.dep {
+  border-radius: 50%;
+}
+.lis.tab .lis.tab.par {
   width: 100%;
   height: 100%;
 }
-.lis.tab .tab.par > .pos {
+.lis.tab .lis.tab.par > .pos {
   width: 100%; 
+  height: 100%;
+}
+
+/* fichas */
+.lis.tab.par.ima {
+  width: 3rem;
+  height: 3rem;
+}
+.lis.tab.par.ima > .pos {
+  width: 100%;
   height: 100%;
 }
 
@@ -1043,6 +1053,10 @@ ul.lis.tab.hol_lun {
 /* 5 Centros */
 .lis.tab.uni.hum > .sec.ima[class*="cen-"] {
   border-radius: 50%;
+}
+.lis.tab.uni.hum > .sec.ima[class*="cen-"].fon-sel {
+  background-color: var(--col_tra) !important;
+  box-shadow: 0 0 1rem var(--col_vio);
 }
 .lis.tab.uni.hum > .sec.ima.cen-1 { grid-column:6/9; grid-row:01/03; }
 .lis.tab.uni.hum > .sec.ima.cen-2 { grid-column:6/9; grid-row:03/06; z-index:1; }

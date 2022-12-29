@@ -520,7 +520,7 @@ class api_lis {
     $._tip = $tip.split('-');
 
     $.cla_val = `_val-ver-`;
-    $.cla_ide=`${$.cla_val}_${$tip}`;
+    $.cla_ide = `_val-ver_${$tip}`;
     
     api_ele.act('cla_eli',$dat,[$.cla_val, $.cla_ide]);
 
@@ -530,7 +530,7 @@ class api_lis {
     if( $tip == 'dat' ){
 
       $.dat_est = $api_doc._var.querySelector(`[name="est"]`);
-      $.dat_ide=$api_doc._var.querySelector(`[name="ver"]`);
+      $.dat_ide = $api_doc._var.querySelector(`[name="ver"]`);
       $.dat_val = $api_doc._var.querySelector(`[name="val"]`);     
 
       // actualizo dependencia
@@ -788,7 +788,7 @@ class api_lis {
     // ejecuto filtros
     if( !$tip || ['dat','pos','fec'].includes($tip) ){
 
-      // 1º - muestro todos
+      // 1- muestro todos
       if( !$api_lis._est.val_acu || $api_lis._est.val_acu.querySelector(`[name="tod"]:checked`) ){
 
         api_ele.act('cla_eli',$api_lis._est.val.querySelectorAll(`tr.pos.${DIS_OCU}`),DIS_OCU);
@@ -796,19 +796,17 @@ class api_lis {
       else{
         api_lis.est_val('acu');
       }
-      // 2º - cargo filtros : - dato(val) -fecha(ini) -posicion(ini)
-      $.eje = [];
+
+      // 2- cargo filtros : - dato(val) -fecha(ini) -posicion(ini)
+      $.eje = [];// tomo solo los que tienen valor
       for( const $ope_ide in $api_lis._ope.ver ){
-        // tomo solo los que tienen valor
         if( ( $.val = $api_lis._est.ver.querySelector(`${$api_lis._ope.ver[$ope_ide]}`) ) && !!$.val.value ){
           $.eje.push($ope_ide);
         }
       }
       // 3º - ejecuto todos los filtros
       if( $.eje.length > 0 ){
-
         $.eje.forEach( $ope_ide => {
-
           api_lis.ope_ver($ope_ide, api_lis.val_cod( $api_lis._est.val.querySelectorAll(`tr.pos:not(.${DIS_OCU})`) ), $api_lis._est.ver);
           // oculto valores no seleccionados
           api_ele.act('cla_agr',$api_lis._est.val.querySelectorAll(`tr.pos:not(._val-ver-, .${DIS_OCU})`),DIS_OCU);
@@ -816,17 +814,17 @@ class api_lis {
       }
     }
     // por ciclos + agrupaciones
-    else{
-      if( ['cic','gru'].includes($tip) ){
-        // muestro todos los items
-        api_ele.act('cla_eli',$api_lis._est.val.querySelectorAll(`tbody tr:not(.pos).${DIS_OCU}`),DIS_OCU);        
-        
-        // aplico filtro
-        // ... 
-      }
+    else if( ['cic','gru'].includes($tip) ){
+      // muestro todos los items
+      api_ele.act('cla_eli',$api_lis._est.val.querySelectorAll(`tbody tr:not(.pos).${DIS_OCU}`),DIS_OCU);        
+      
+      // aplico filtro
+      // ... 
     }
+    
     // actualizo total, cuentas y descripciones
     api_lis.est_act();
+
   }// Columnas : toggles + atributos
   static est_atr(){
   }// - muestro-oculto
@@ -1181,14 +1179,25 @@ class api_lis {
     api_lis.tab_act($.var_ide);
 
   }// Seleccion : datos, posicion, fecha
-  static tab_ver( $tip ){
+  static tab_ver(){
 
-    // ejecuto filtros por tipo : pos, fec
-    $.lis_ver = $api_lis._tab.val.querySelector(`${$api_lis._tab.cla}`);
-    
-    api_lis.ope_ver( $tip, api_lis.val_cod($.lis_ver), $api_lis._tab.ver );
+    // 1- cargo filtros : - dato(val) -fecha(ini) -posicion(ini)
+    $.eje = [];// tomo solo los que tienen valor
+    for( const $ope_ide in $api_lis._ope.ver ){      
+      if( ( $.val = $api_lis._tab.ver.querySelector(`${$api_lis._ope.ver[$ope_ide]}`) ) && !!$.val.value ){
+        $.eje.push($ope_ide);
+      }
+    }
+    // 2- ejecuto todos los filtros
+    if( $.eje.length > 0 ){
+      $.eje.forEach( ($ope_ide, $ope_pos) => {
+        api_lis.ope_ver($ope_ide, api_lis.val_cod(// si es el 1° paso todas las posiciones, sino solo las filtradas
+          $api_lis._tab.val.querySelectorAll( $ope_pos == 0 ? $api_lis._tab.cla : `._val-ver-` )
+        ), $api_lis._tab.ver);
+      });
+    }
 
-    // marco seleccionados
+    // 3- marco seleccionados
     api_ele.act('cla_eli',$api_lis._tab.val.querySelectorAll('._val-ver_bor'),'_val-ver_bor');
     if( $api_lis._tab.val_acu && $api_lis._tab.val_acu.querySelector(`[name="ver"]:checked`) ){
       api_ele.act('cla_agr',$api_lis._tab.val.querySelectorAll(`._val-ver-`),'_val-ver_bor');
@@ -1279,9 +1288,11 @@ class api_lis {
 
         $ = api_dat.ide($dat.value,$);
 
-        $.col = api_dat.val_ide('col', ...( ( $.dat = $dat.options[$dat.selectedIndex].getAttribute('dat') ) ? $.dat : $dat.value ).split('.') );
+        $.dat_ide = ( ( $.dat = $dat.options[$dat.selectedIndex].getAttribute('dat') ) ? $.dat : $dat.value ).split('.');
 
-        $.col = ( $.col && $.col.val ) ? $.col.val : 0;
+        $.col_dat = api_dat.val_ide('col', ...$.dat_ide );
+
+        $.col = ( $.col_dat && $.col_dat.val ) ? $.col_dat.val : 1;
 
         $api_lis._tab.val.querySelectorAll($.agr).forEach( $e =>{
 

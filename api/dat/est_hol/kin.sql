@@ -43,8 +43,11 @@ DELETE FROM `dat_est` WHERE `esq`='hol' AND `ide` LIKE 'kin%'; INSERT INTO `dat_
     },
     "opc": { 
       "ver": [ 
-        "ene", "ene_cam", "gen_enc", "gen_cel", "nav_cas", "nav_ond", 
-        "cro_est", "cro_ele", "arm_tra", "arm_cel" 
+        "ene", "ene_cam", "chi",
+        "gen_enc", "gen_cel", 
+        "nav_cas", "nav_ond", 
+        "cro_est", "cro_ele", 
+        "arm_tra", "arm_cel" 
       ],
       "col": [
         "ene", 
@@ -54,10 +57,11 @@ DELETE FROM `dat_est` WHERE `esq`='hol' AND `ide` LIKE 'kin%'; INSERT INTO `dat_
         "arm_tra", "arm_cel"
       ],
       "ima": [
-        "ide", "ene", "ene_cam", "chi", 
+        "ide", 
+        "ene", "ene_cam", "chi", 
         "par_ana", "par_gui", "par_ant", "par_ocu", 
-        "nav_cas", "nav_ond", "nav_ond_dia", 
-        "arm_tra", "arm_cel", "arm_tra_dia", 
+        "nav_cas", "nav_ond", 
+        "arm_tra", "arm_cel", 
         "cro_est", "cro_ele"
       ],
       "num": [ 
@@ -66,10 +70,7 @@ DELETE FROM `dat_est` WHERE `esq`='hol' AND `ide` LIKE 'kin%'; INSERT INTO `dat_
         "nav_cas", "nav_cas_dia", "nav_ond", "nav_ond_dia", 
         "cro_est", "cro_est_dia", "cro_ele", "cro_ele_dia", 
         "arm_tra", "arm_tra_dia", "arm_cel", "arm_cel_dia"
-      ],
-      "tex": [
-        "nom","des"
-      ]            
+      ]    
     },
     "lis": { 
       "atr": [

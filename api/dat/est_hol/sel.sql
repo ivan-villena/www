@@ -1,3 +1,4 @@
+-- Active: 1670107173962@@127.0.0.1@3306@c1461857_api
 
 DELETE FROM `dat_est` WHERE `esq`='hol' AND `ide` LIKE 'sel%'; INSERT INTO `dat_est` VALUES
 
@@ -21,7 +22,7 @@ DELETE FROM `dat_est` WHERE `esq`='hol' AND `ide` LIKE 'sel%'; INSERT INTO `dat_
       "par_ant":  { "min":1, "max":20, 	"dat":"hol_sel" },
       "par_ocu":  { "min":1, "max":20, 	"dat":"hol_sel" },
 
-      "flu_res":  { "min":1, "max":2, 	"dat":"hol_uni_flu_pod" },
+      "flu_res":  { "min":1, "max":2, 	"dat":"hol_uni_flu_res" },
       
       "sol_pla":  { "min":1, "max":10, 	"dat":"hol_uni_sol_pla" },
       "sol_res":  { "min":1, "max":2, 	"dat":"hol_uni_sol_res" },
@@ -46,6 +47,31 @@ DELETE FROM `dat_est` WHERE `esq`='hol' AND `ide` LIKE 'sel%'; INSERT INTO `dat_
       "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/sel/()($)ide().png);",
       "col": 4,
       "num": 20
+    },
+    "opc": { 
+      "ver": [ 
+        "ide", "ord",
+        "cic_ser", "cic_luz", "cro_fam", "cro_ele", "arm_raz", "arm_cel",
+        "flu_res", "sol_pla", "sol_cel", "sol_cir", "pla_cen", "hum_ext", "hum_cen", "hum_ded", "hum_mer" 
+      ],
+      "ima": [
+        "ide", "ord", 
+        "par_ana", "par_ant", "par_ocu",
+        "cro_fam", "cro_ele", "arm_raz", "arm_cel",
+        "flu_res", "sol_pla", "sol_cel", "sol_cir", "pla_cen", "pla_hem", "pla_mer", "hum_res", "hum_mer", "hum_cen", "hum_ext", "hum_ded"
+      ],
+      "col": [
+        "ide", 
+        "cic_ser", "cic_luz", "cro_fam", "cro_ele", "arm_raz", "arm_cel",
+        "flu_res", "sol_pla", "sol_cel", "sol_cir", "pla_cen", "pla_hem", "pla_mer", "hum_mer"
+      ],
+      "num": [ 
+        "ide", "cod", "par_ana", "par_ant", "par_ocu", 
+        "cic_ser", "cic_luz", "cro_fam", "cro_ele", "arm_tra", "arm_raz", "arm_cel", 
+        "flu_res", "sol_pla", "sol_cel", "sol_cir", "pla_cen", "hum_ext", "hum_cen", "hum_ded", "hum_mer"
+      ],
+      "tex": [
+      ]
     },
     "inf": { 
       "det": [ "des_car", "des_acc", "des_pod" ],
@@ -97,27 +123,6 @@ DELETE FROM `dat_est` WHERE `esq`='hol' AND `ide` LIKE 'sel%'; INSERT INTO `dat_
       "tit_cic": [ "cic_ser", "cic_luz", "cro_ele", "arm_cel", "flu_res" ],
 
       "det_des": [ "cit_des", "cit_por", "cit_por_som", "cit_por_rec" ]
-    },
-    "opc": { 
-      "ver": [ 
-        "ide", "cic_luz", "cro_fam", "cro_ele", "arm_raz", "arm_cel",
-        "flu_res", "sol_pla", "sol_cel", "sol_cir", "pla_cen", "hum_ext", "hum_cen", "hum_ded", "hum_mer" 
-      ],
-      "ima": [
-        "ide", "ord", "par_ana", "par_ant", "par_ocu", "cro_fam", "cro_ele", 
-        "flu_res", "sol_pla", "sol_cel", "sol_cir", "pla_cen", "pla_hem", "pla_mer", "hum_res", "hum_mer", "hum_cen", "hum_ext", "hum_ded"
-      ],
-      "col": [
-        "ide", "ord", "par_ana", "par_ant", "par_ocu", "cic_ser", "cic_luz", "cro_fam", "cro_ele", "arm_raz", "arm_cel",
-        "flu_res", "sol_pla", "sol_cel", "sol_cir", "pla_cen", "pla_hem", "pla_mer", "hum_mer"
-      ],
-      "num": [ 
-        "ide", "cod", "cic_ser", "cic_luz", 
-        "cro_fam", "cro_ele", "arm_tra", "arm_raz", "arm_cel", "par_ana", "par_ant", "par_ocu", 
-        "flu_res", "sol_pla", "sol_cel", "sol_cir", "pla_cen", "hum_ext", "hum_cen", "hum_ded", "hum_mer"
-      ],
-      "tex": [
-      ]
     }
   }' ),
   ('hol','sel_cod', '{

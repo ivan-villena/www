@@ -229,21 +229,37 @@ class api_dat {
     });
 
     // proceso valores con datos
-    if( $_ && $.ope_atr[0] == 'val' && !!($dat) ) $_ = api_obj.val( api_dat.get($esq,$est,$dat), $_ );
+    if( $_ && $.ope_atr[0] == 'val' && !!($dat) ){ 
+      
+      $_ = api_obj.val( api_dat.get($esq,$est,$dat), $_ );
+    }
 
     return $_;
-  }  
+  }// busco dato relacional por atributo
+  static est_ope_atr_dat( $esq, $est, $atr ){
+
+    let $={}, $_ = false;
+
+    if( $.dat_atr = $api_dat._est_ope[$esq][$est].atr[$atr].dat ){
+      $.dat_atr = $.dat_atr.split('_');
+      $_ = {
+        'esq': $.dat_atr.shift(),
+        'est': $.dat_atr.join('_')
+      };
+    }
+    return $_;
+  }
 
   /* Valor
   */
   // p[tit, nom, des] + ima 
-  static val( $tip, $dat, $ope, ...$opc ){
+  static val( $tip, $ide, $dat, ...$opc ){
 
     let $_ = "", $ = {};
     // proceso estructura
-    $ = api_dat.ide($dat,$);
+    $ = api_dat.ide($ide,$);
     // cargo datos
-    $._dat = api_dat.get($.esq,$.est,$ope);
+    $._dat = api_dat.get($.esq,$.est,$dat);
     // cargo valores
     $._val = api_dat.est_ope($.esq,$.est,'val');
     
@@ -252,38 +268,60 @@ class api_dat {
       $_ = api_obj.val($._dat,$._val.nom) + ( $._val.des ? "\n"+api_obj.val($._dat,$._val.des) : '' );
     }
     else if( !!($._val[$tip]) ){
-      $_ = api_obj.val($._dat,$._val[$tip]);  
+      $.tip_val = typeof($._val[$tip]);
+      if( $tip == 'ima' ){
+        if( $.tip_val != 'string' ) $tip = 'tab';
+      }
+      else if( $.tip_val == 'string' ){
+        $_ = api_obj.val($._dat,$._val[$tip]);  
+      }
     }
+
     // armo ficha
     if( $tip == 'ima' ){
-      $.ele = !!$opc[0] ? $opc[0] : {};
-
+      
       // identificador
+      $.ele = !!$opc[0] ? $opc[0] : {};      
       $.ele['data-esq'] = $.esq;
       $.ele['data-est'] = $.est;
-      $.ele['data-ide'] = $._dat.ide;
       
-      // titulos
-      if( $.ele.title === undefined ){
+      // 1 o muchos...
+      $_ = "";
+      $.ima_ele = $.ele;
+      $.ima_lis = ( typeof($dat) == 'string' ? ( $dat.split( /, /.test($dat) ? ", " : " - " )  ) : [ $dat ] );
+      $.ima_lis.forEach( $dat_val => {
 
-        $.ele.title = api_dat.val('tit',`${$.esq}.${$.est}`,$._dat);
-      }
-      else if( $.ele.title === false ){        
-        delete($.ele.title);
-      }
-      // acceso informe
-      if( $.ele.onclick === undefined ){
-        if( api_dat.est_ope($.esq,$.est,'inf') ) $.ele.onclick = `dat.inf('${$.esq}','${$.est}',${parseInt($._dat.ide)})`;
-      }
-      else if( $.ele.onclick === false ){
+        $._dat = api_dat.get($.esq,$.est,$dat_val);
 
-        delete($.ele.onclick);
-      }
-      // informe      
-      $_ = api_fig.ima( { 'style': $_ }, $.ele );
+        $.ima_ele['data-ide'] = $._dat.ide;
+        
+        // titulos
+        if( $.ima_ele.title === undefined ){
+
+          $.ima_ele.title = api_dat.val('tit',`${$.esq}.${$.est}`,$._dat);
+        }
+        else if( $.ima_ele.title === false ){
+          delete($.ima_ele.title);
+        }
+        // acceso informe
+        if( $.ima_ele.onclick === undefined ){
+          if( api_dat.est_ope($.esq,$.est,'inf') ) $.ima_ele.onclick = `dat.inf('${$.esq}','${$.est}',${parseInt($._dat.ide)})`;
+        }
+        else if( $.ima_ele.onclick === false ){
+
+          delete($.ima_ele.onclick);
+        }
+        // informe      
+        $_ += api_fig.ima( { 'style': api_obj.val($._dat,$._val[$tip]) }, $.ima_ele );
+      })
     }
+    // pido tablero por identificador
+    else if( $tip == 'tab' ){
+      $.par = $_val['ima'];
+      $.ele_ima = $.ele;
+    }
+    // por contenido
     else if( !!$opc[0] ){
-      
       if( !($opc[0]['eti']) ) $opc[0]['eti'] = 'p'; 
       $opc[0]['htm'] = api_tex.let($_);
       $_ = api_ele.val($opc[0]);
@@ -338,30 +376,44 @@ class api_dat {
     return $_;
   }// identificador por seleccion : imagen, color...
   static val_ide( $tip, $esq, $est, $atr, $dat ){
-    
-    // dato
-    let $={}, $_ = { 'esq': $esq, 'est': $est };
+      
+    let $={}, 
+    // armo identificadores
+    $_ = { 'esq': $esq, 'est': $est, 'atr':$atr, 'ide':"", 'val':null };
 
-    // armo identificador
-    if( !!($atr) ) $_['est'] = $atr == 'ide' ? $est : `${$est}_${$atr}`;
+    if( !!($atr) ) $_['est'] = ( $atr == 'ide' ) ? $est : `${$est}_${$atr}`;
+
+    $_['ide'] = `${$_['esq']}.${$_['est']}`;
+
+    // busco estructura relacionada por atributo
+    $.esq = $_.esq;
+    $.est = $_.est;
+    if( $.dat_atr = api_dat.est_ope_atr_dat($esq,$est,$atr) ){
+      $.esq = $.dat_atr.esq;
+      $.est = $.dat_atr.est;
+    }
     
-    // valido dato
-    if( !!( $.dat_Val = api_dat.est_ope($_['esq'],$_['est'],`val.${$tip}`,$dat) ) ){
-      $_['ide'] = `${$_['esq']}.${$_['est']}`;
-      $_['val'] = $.dat_Val;
+    if( !!( $.dat_val = api_dat.est_ope($.esq,$.est,`val.${$tip}`,$dat) ) ){
+      $_['val'] = $.dat_val;
     }
-    else{
-      $_ = [];
-    }
+
     return $_;    
   }// imagen por identificadores
   static val_ima( $dat, $ope ){
 
-    let $_ = "";
+    let $ = {}, $_ = "";
 
     if( $dat.dataset && $ope.esq && $ope.est && $ope.atr && ( $ope.val = $dat.dataset[`${$ope.esq}_${$ope.est}`] ) ){
-
-      if( !$ope.fic ) $ope.fic = api_dat.opc('ima', $ope.esq, $ope.est );
+      
+      // por atributo
+      if( $.dat_atr = api_dat.est_ope_atr_dat($ope.esq,$ope.est,$ope.atr) ){
+        if( !$ope.fic ) $ope.fic = {};
+        $ope.fic.esq = $.dat_atr.esq;
+        $ope.fic.est = $.dat_atr.est;
+      }// por seleccion
+      else if( !$ope.fic ){
+        $ope.fic = api_dat.opc('ima', $ope.esq, $ope.est );
+      }
 
       $_ = api_fig.ima($ope.fic.esq, $ope.fic.est, api_dat.get($ope.esq,$ope.est,$ope.val)[$ope.atr], $ope.ele);
     }
