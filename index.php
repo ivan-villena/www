@@ -7,7 +7,7 @@
     session_start();
     // Sesion
     $_SESSION['ubi'] = "America/Argentina/Buenos_Aires";  
-    if( !isset($_SESSION['usu']) ) $_SESSION['usu'] = 1;
+    if( !isset($_SESSION['usu']) ) $_SESSION['usu'] = 0;
     date_default_timezone_set( $_SESSION['ubi'] );
     // Tiempo de Inicio
     $sis_ini = time();
