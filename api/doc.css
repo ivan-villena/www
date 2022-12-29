@@ -415,8 +415,10 @@ nav.doc_nav.ope + :is(div,section) {
   position: absolute;
   width: 100%;
   max-height: 80vh; 
-  background-color: var(--fon_win);
+  background-color: var(--fon_sec);
   padding: 1rem;
   margin: 0;
+  border-top: 1px solid var(--bor_art);
+  border-bottom: 1px solid var(--bor_art);
 }
 

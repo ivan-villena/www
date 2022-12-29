@@ -183,7 +183,7 @@ DELETE FROM `dat_est` WHERE `esq`='hol' AND `ide` LIKE 'kin%'; INSERT INTO `dat_
     "tab": { 
       "sec": { "sel-arm_tra-bor": 0, "sel-arm_cel-pos": 1, "sel-arm_cel-bor": 0, "sel-arm_cel-col": 0},
       "pos": { "ima": "hol.sel.ide", "col": "", "num": "" },
-      "opc": [ "par", "pul" ]          
+      "opc": [ "par", "dim", "mat", "sim" ]          
     }
   }' ),
   ('hol','kin_arm_tra', '{
@@ -257,7 +257,7 @@ DELETE FROM `dat_est` WHERE `esq`='hol' AND `ide` LIKE 'kin%'; INSERT INTO `dat_
     "tab": { 
       "sec": { "cas-pos": 1, "cas-orb": 1, "ton-col":1, "sel-cro_ele-pos": 1 },
       "pos": { "ima": "hol.sel.ide", "col": "", "num": "" },
-      "opc": [ "par", "pul" ]          
+      "opc": [ "par", "dim", "mat", "sim" ]          
     }
   }' ),
   ('hol','kin_cro_est', '{
@@ -365,7 +365,7 @@ DELETE FROM `dat_est` WHERE `esq`='hol' AND `ide` LIKE 'kin%'; INSERT INTO `dat_
     "tab": { 
       "sec": { "cas-pos":1, "cas-bor": 0, "cas-col": 1, "cas-orb": 0, "ton-col":0 },
       "pos": { "ima": "hol.kin.ide", "col": "", "num": "" },
-      "opc": [ "par", "pul" ]          
+      "opc": [ "par", "dim", "mat", "sim" ]          
     }
   }' ),    
   ('hol','kin_nav_cas', '{ 

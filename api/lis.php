@@ -74,6 +74,9 @@ class api_lis {
   static string $EJE = "api_lis.";
 
   function __construct(){
+
+    $this->_ope_val = [];
+
   }// getter
   static function _( string $ide, $val = NULL ) : string | array | object {
     $_ = [];    
@@ -647,15 +650,16 @@ class api_lis {
     foreach( $dat as $esq => $est_lis ){
       // recorro estructuras del esquema
       foreach( $est_lis as $est => $dat ){
-        // recorro dependencias            
+        // recorro dependencias
         foreach( ( !empty($dat_est = api_dat::est_ope($esq,$est,'rel')) ? $dat_est : [ $esq => $est ] ) as $ide => $ref ){
           // acumulo valores
           if( isset($dat->$ide) ) $_[$ref] = $dat->$ide;
         }
       }
     }
-    global $api_dat;
-    $api_dat->_ope_val []= $_;
+    global $api_lis;
+    $_['pos'] = count($api_lis->_ope_val) + 1;
+    $api_lis->_ope_val []= $_;
 
     return $_;
   }// acumulado : posicion + marcas + seleccion
@@ -1257,7 +1261,6 @@ class api_lis {
           </form>";
         }
         // pido operadores de filtro: dato + posicion + fecha
-        
         $_ .= api_lis::ope_ver([ 'dat'=>$ope['dat'], 'est'=>$ope['est'] ], $_ide, $_eje );
 
       }// filtros por : cic + gru
@@ -1622,7 +1625,7 @@ class api_lis {
 
     // operador de opciones    
     if( !isset($ele['pos']['eti']) ) $ele['pos']['eti'] = "li";
-    $ope['pos_cue'] = 0;// inicializo contador de posiciones    
+    $ope['pos_cue'] = 0;// inicializo contador de posiciones
     if( !empty($ope['pos']['bor']) ) api_ele::cla($ele['pos'],"bor-1");
     // opciones
     $ope['val_pos_col'] = !empty($ope['pos']['col']) ? $ope['pos']['col'] : FALSE;// color
@@ -1835,10 +1838,14 @@ class api_lis {
         foreach( $opc as $atr ){  
           $htm = "";
           foreach( api_dat::var_dat($esq,'tab',"{$tip}-{$atr}") as $ide => $val ){
-            $htm .= api_dat::var($esq,"tab.{$tip}-{$atr}.$ide", [
+            $val_ope = [
               'val'=>isset($ope[$atr][$ide]) ? $ope[$atr][$ide] : NULL,
-              'ope'=>[ 'id'=>"{$_ide}-{$esq}-{$tip}_{$atr}-{$ide}", 'onchange'=>"$_eje('$atr',this)" ]
-            ]);
+              'ope'=>[ 'id'=>"{$_ide}-{$esq}-{$tip}_{$atr}-{$ide}" ]
+            ];
+            if( isset($val['ope']['tip']) && $val['ope']['tip'] != 'num' ){
+              $val_ope['ope']['onchange'] = "$_eje('$atr',this)";
+            }
+            $htm .= api_dat::var($esq,"tab.{$tip}-{$atr}.$ide", $val_ope);
           }          
           // busco datos del operador 
           if( !empty($htm) && !empty($_ope = api_dat::var_dat($esq,'tab',$tip,$atr)) ){

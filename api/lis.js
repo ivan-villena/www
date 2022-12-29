@@ -43,8 +43,8 @@ class api_lis {
     // seccion + posicion
     sec : `.doc_pan > .ide-opc .ide-sec`,    
     pos : `.doc_pan > .ide-opc .ide-pos`,
-    // ...atributos
-    atr : `.doc_pan > .ide-opc .ide-atr`
+    // ...opciones
+    opc : `.doc_pan > .ide-opc .ide-opc`
   };
 
   constructor( $dat = {} ){
@@ -549,10 +549,7 @@ class api_lis {
     }
     // listado : posicion + fecja
     else if( $tip == 'pos' || $tip == 'fec' ){
-      
-      // elimino valor de dato por seleccion
-      if( ( $.ver = $ope.querySelector(`form.ide-dat select[name="val"]`) ) && $.ver.value ) $.ver.value = '';
-            
+
       // valores
       $.val = {};
       $.var = {};
@@ -585,12 +582,12 @@ class api_lis {
         $.var.inc.value = $.val.inc = 1;
       }
 
-      // filtro por posicion de lista      
+      // filtro por posicion de lista
       if( $tip == 'pos' ){
         
-        $dat.forEach( $e => {
+        $dat.forEach( $e => {          
+          $.pos_val = parseInt($e.dataset.pos ? $e.dataset.pos : $e.classList[1].split('-')[1]);
           // valor por desde-hasta
-          $.pos_val = $e.classList[1].split('-')[1];
           if( $.inc_val == 1 && $.pos_val >= $.val.ini && $.pos_val <= $.val.fin ){
             api_ele.act('cla_agr',$e,[$.cla_val, $.cla_ide]);
           }
@@ -784,12 +781,12 @@ class api_lis {
     }
     return $_;
   }// Filtros : Valores + Fecha + Posicion
-  static est_ver( $tip, $dat, $ope ){
+  static est_ver( $tip, $dat ){
 
     let $ = api_dat.var($dat);
 
     // ejecuto filtros
-    if( !$tip ){
+    if( !$tip || ['dat','pos','fec'].includes($tip) ){
 
       // 1º - muestro todos
       if( !$api_lis._est.val_acu || $api_lis._est.val_acu.querySelector(`[name="tod"]:checked`) ){
@@ -1039,8 +1036,8 @@ class api_lis {
       });
       
       // atributos
-      if( $api_lis._tab.atr ){
-        $api_lis._tab.atr.querySelectorAll(`form[class*="ide-"]`).forEach( $for => {
+      if( $api_lis._tab.opc ){
+        $api_lis._tab.opc.querySelectorAll(`form[class*="ide-"]`).forEach( $for => {
           
           $.eje = `tab_opc`;
 
@@ -1101,6 +1098,7 @@ class api_lis {
 
       api_lis.ope_cue('act', $api_lis._tab.val.querySelectorAll(`${$api_lis._tab.cla}[class*=_val-]:is([class*=_bor],[class*=_act])`), $api_lis._tab.val_cue );
     }
+
   }// Valores
   static tab_val( $tip, $dat ){
 
@@ -1185,8 +1183,10 @@ class api_lis {
   }// Seleccion : datos, posicion, fecha
   static tab_ver( $tip ){
 
-    // ejecuto filtros por tipo : pos, fec      
-    api_lis.ope_ver( $tip, api_lis.val_cod($api_lis._tab.val.querySelectorAll(`${$api_lis._tab.cla}`)), $api_lis._tab.ver );
+    // ejecuto filtros por tipo : pos, fec
+    $.lis_ver = $api_lis._tab.val.querySelector(`${$api_lis._tab.cla}`);
+    
+    api_lis.ope_ver( $tip, api_lis.val_cod($.lis_ver), $api_lis._tab.ver );
 
     // marco seleccionados
     api_ele.act('cla_eli',$api_lis._tab.val.querySelectorAll('._val-ver_bor'),'_val-ver_bor');

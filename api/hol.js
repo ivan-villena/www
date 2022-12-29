@@ -306,7 +306,7 @@ class api_hol {
       break;
     }
   }// Operadores
-  static tab_opc( $tip, $dat ){
+  static tab_opc( $tip, $dat = {} ){    
 
     let $ = api_dat.var($dat);    
 
@@ -483,7 +483,7 @@ class api_hol {
       api_ele.act('cla_eli',$api_lis._tab.val.querySelectorAll(`${$api_lis._tab.cla}.${$.cla[0]}`),$.cla);
       if( $dat.checked ){
         // muestro pulsar seleccionado
-        api_ele.act('cla_eli',$api_lis._tab.val.querySelector(`.sec.ond.pul.${$tip}-${$dat.value}.${DIS_OCU}`),DIS_OCU);
+        api_ele.act('cla_eli',$api_lis._tab.val.querySelectorAll(`.sec.pul.${$tip}-${$dat.value}.${DIS_OCU}`),DIS_OCU);
         // acumulo posiciones sin considerar oráculos
         $.cla_ver = $api_lis._tab.val.querySelector(`.pos.dep`) ? ".pos.dep" : $api_lis._tab.cla;
         $api_lis._tab.val.querySelectorAll(`${$.cla_ver}[data-hol_ton]`).forEach( $ele_pos => {
@@ -491,9 +491,8 @@ class api_hol {
         });
       }// oculto pulsar seleccionado
       else{
-        api_ele.act('cla_agr',$api_lis._tab.val.querySelector(`.sec.ond.pul.${$tip}-${$dat.value}:not(.${DIS_OCU})`),DIS_OCU);
+        api_ele.act('cla_agr',$api_lis._tab.val.querySelectorAll(`.sec.pul.${$tip}-${$dat.value}:not(.${DIS_OCU})`),DIS_OCU);
       }
-
       // actualizo acumulados
       api_hol.tab_val($dat);
     }

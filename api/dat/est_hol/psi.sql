@@ -92,7 +92,7 @@ DELETE FROM `dat_est` WHERE `esq`='hol' AND `ide` LIKE 'psi%'; INSERT INTO `dat_
     "tab": { 
       "sec": { "lun-cab":1, "lun-hep":1 },
       "pos": { "ima": "hol.kin.ide", "col": "", "num": "" },
-      "opc": [ "pag", "par", "pul" ]          
+      "opc": [ "pag", "par", "dim", "mat", "sim" ]          
     }
   }' ),
   ('hol','psi_ani_lun', '{
@@ -157,7 +157,7 @@ DELETE FROM `dat_est` WHERE `esq`='hol' AND `ide` LIKE 'psi%'; INSERT INTO `dat_
     "tab": { 
       "sec": { "cas-pos": 1, "cas-orb": 0, "ton-col": 0 },
       "pos": { "ima": "hol.sel.ide", "col": "", "num": "" },
-      "opc": [ "pag", "par", "pul" ]          
+      "opc": [ "pag", "par", "dim", "mat", "sim" ]          
     }
   }' ),    
   ('hol','psi_hep_pla', '{
@@ -206,7 +206,7 @@ DELETE FROM `dat_est` WHERE `esq`='hol' AND `ide` LIKE 'psi%'; INSERT INTO `dat_
     "tab": { 
       "sec": { },
       "pos": { "ima": "hol.kin.ide", "col": "", "num": "" },
-      "opc": [ "par", "pul" ]
+      "opc": [ "par", "dim", "mat", "sim" ]
     },
     "inf": {
       "det": [ "des_col", "des_dir" ],
