@@ -397,13 +397,17 @@ class api_lis {
       }
     }
   }// - hago toogle por item
-  static nav_tog( $lis ){
+  static nav_tog( $lis, $ope ){
 
     let $={};
 
-    if( $.nav = $lis ? api_lis.nav_mar($lis) : false ){
+    if( $ope ){
+
+      return api_doc.val($lis,$ope);
+    }
+    else if( $.nav = $lis ? api_lis.nav_mar($lis) : false ){
       // hago toogles ascendentes
-      while( 
+      while(
         ( $.lis = api_ele.val_ver($.nav,{'eti':'ul'}) ) 
         && 
         ( $.val = $.lis.previousElementSibling ) && $.val.nodeName == 'DIV' &&  $.val.classList.contains('doc_ite')
@@ -412,7 +416,7 @@ class api_lis {
       ){
         if( $.lis.classList.contains(DIS_OCU) && ( $.ico = $.nav.previousElementSibling ) && $.ico.classList.contains('fig_ico') ){                
           api_doc.val($.ico);
-        }                
+        }
       }
     }
   }// - marco valor seleccionado

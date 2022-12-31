@@ -1492,7 +1492,7 @@ class hol_bib {
               $fue_pos->nom
               ".api_hol::ima($dat_rel,$fue_pos)."
               
-              <p><c class='sep'>:</c> ".api_tex::let($_rad->des_fue)." <c>(</c>Días ".api_tex::let($_rad->dia)."<c>)</c></p>
+              <p><c class='sep'>:</c> ".api_tex::let($_rad->pla_des)." <c>(</c>Días ".api_tex::let($_rad->dia)."<c>)</c></p>
             </div>
           </div>";
           if( in_array($_rad->ide,$pla_qua) ){

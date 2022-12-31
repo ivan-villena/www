@@ -96,7 +96,7 @@ DELETE FROM `dat_est` WHERE `esq`='hol' AND `ide` LIKE 'ton%'; INSERT INTO `dat_
         "num": 4
       },
       "opc": { 
-        "ima": [ "ide" ] 
+        "ima": [ "ide", "ton" ] 
       },
       "inf": { 
         "opc": [ "des" ],
@@ -117,7 +117,7 @@ DELETE FROM `dat_est` WHERE `esq`='hol' AND `ide` LIKE 'ton%'; INSERT INTO `dat_
         "col": 4
       },
       "opc": { 
-        "ima": [ "ide" ] 
+        "ima": [ "ide", "ton" ] 
       },
       "inf": { 
         "det": [ "des_dim", "des_cam" ],
@@ -139,7 +139,7 @@ DELETE FROM `dat_est` WHERE `esq`='hol' AND `ide` LIKE 'ton%'; INSERT INTO `dat_
         "col": 5
       },
       "opc": { 
-        "ima": [ "ide" ]
+        "ima": [ "ide", "ton" ]
       },
       "inf": { 
         "det": [ "des_cod", "des_dim" ],
@@ -162,7 +162,7 @@ DELETE FROM `dat_est` WHERE `esq`='hol' AND `ide` LIKE 'ton%'; INSERT INTO `dat_
         "col": 7
       },
       "opc": { 
-        "ima": [ "ide" ]
+        "ima": [ "ide", "ton" ]
       },
       "inf": { 
         "opc": [ "des" ],

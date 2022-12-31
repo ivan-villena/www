@@ -105,7 +105,7 @@ ul.lis.dep li > .doc_ite {
   border-radius: .2rem;
   margin: .25rem 0;
 }
-ul.lis.dep:not(.dir-hor) > li li.sep  {
+ul.lis.dep:not(.dir-hor) li.sep  {
   margin-left: 1.5rem;
 }
 
@@ -159,7 +159,7 @@ ul.lis.bar > li {
   Tabla
 */
 table {
-  width: 100%;
+  /* width: 100%; */
   border-collapse: separate; /* espaciado aplica cuando el collapse es separate // not:: collapse: collapse */  
   border-spacing: .2rem .1rem; /* => horizontal-izquierda vertical-superior */
   padding-bottom: 1rem;
@@ -179,17 +179,15 @@ div.lis.est {
   width: 100%;
   overflow: auto;
   padding: 0 .5rem;
-  margin-bottom: 1rem;
+  margin: 1rem auto;
 }
 /* por revalsamiento en articulos */
-main article div.lis.est {
+.doc_sec article div.lis.est {
   max-width: 90vw;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 div.lis.est > table {
-  width: max-content;
+  /* width: max-content; */
   margin: 0 auto;
   line-height: 1.25;
   text-align: center;  

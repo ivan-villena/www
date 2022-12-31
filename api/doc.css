@@ -44,19 +44,6 @@ main article {
   background-color: var(--fon_sec);
 }
 
-article > p,
-article section > p {
-  margin-bottom: .5rem;
-}
-article > ul.lis,
-article section > ul.lis {
-  margin: .5rem auto;
-  /* max-width: fit-content;   */
-}
-article > figure,
-article section > figure {
-  margin: 1rem auto;
-}
 
 /*//////////////////////////////////////////////////////////////////////*/
 /*//////////////////////////////////////////////////////////////////////*/

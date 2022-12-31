@@ -52,10 +52,12 @@ class sis_sql {
           <p class='err'>".api_tex::let($v)."</p>
           ".( isset($var_eve[$i]) ? "<c class='sep'>=></c><q>".api_tex::let($var_eve[$i])."</q>" : "" )."
         </li>";
-      }$_['_err'] .= "
+      }
+      $_['_err'] .= "
       </ul>";
       echo $_['_err'];
-    }// resultados
+    }
+    // resultados
     elseif( isset($sql_res) && is_object($sql_res) ){
       unset($sql_res);
     }

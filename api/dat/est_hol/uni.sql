@@ -178,7 +178,7 @@ DELETE FROM `dat_est` WHERE `esq`='hol' AND `ide` LIKE 'uni%'; INSERT INTO `dat_
   -- holon planetario
   ('hol','uni_pla_res', '{
       "atr": { 
-        "ide": { "min":1, "max":2, "dat":"uni_pla_res" }
+        "ide": { "min":1, "max":2, "dat":"hol_uni_pla_res" }
       },
       "val": { 
         "nom": "Respiración del Holon Planetario #()($)ide() de 2: ()($)nom()",
@@ -258,7 +258,7 @@ DELETE FROM `dat_est` WHERE `esq`='hol' AND `ide` LIKE 'uni%'; INSERT INTO `dat_
   -- holon humano
   ('hol','uni_hum_res', '{
       "atr": { 
-        "ide": { "min":1, "max":2, "dat":"uni_hum_res" },
+        "ide": { "min":1, "max":2, "dat":"hol_uni_hum_res" },
         "sel": { "dat":"hol_sel" },
         "ele": { "dat":"hol_sel_cro_ele" }
       },

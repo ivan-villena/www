@@ -972,7 +972,7 @@ class api_lis {
     }
     else{
       // datos de atributos
-      if( !isset($ope['atr_dat']) ) $ope['atr_dat'] = api_dat::atr_ver($dat);
+      if( !isset($ope['atr_dat']) ) $ope['atr_dat'] = api_dat::est_atr_ver($dat);
       // listado de columnas
       if( !isset($ope['atr']) ) $ope['atr'] = array_keys($ope['atr_dat']);
       // total de columnas
@@ -1105,7 +1105,7 @@ class api_lis {
 
       /* columnas 
       */
-      if( empty($_['atr']) ) $_['atr'] = !empty( $_atr = api_dat::atr($esq,$est) ) ? array_keys($_atr) : [];
+      if( empty($_['atr']) ) $_['atr'] = !empty( $_atr = api_dat::est_atr($esq,$est) ) ? array_keys($_atr) : [];
       // totales
       $_['atr_tot'] = count($_['atr']);
       
@@ -1167,7 +1167,7 @@ class api_lis {
       ];
       // cuento atributos por tipo
       foreach( $est_ope['atr'] as $atr ){
-        $tip_dat = explode('_', api_dat::atr($esq,$est,$atr)->ope['tip'])[0];
+        $tip_dat = explode('_', api_dat::est_atr($esq,$est,$atr)->ope['tip'])[0];
         if( isset($_cue[$tip_dat]) ) $_cue[$tip_dat][1]++;
       }
       // operador : toggles + filtros
@@ -1200,7 +1200,7 @@ class api_lis {
       <table".api_ele::atr( !empty($ele['lis']) ? $ele['lis'] : [] ).">";
       foreach( $est_ope['atr'] as $atr ){
         $pos++;
-        $_atr = api_dat::atr($esq,$est,$atr);
+        $_atr = api_dat::est_atr($esq,$est,$atr);
         $dat_tip = explode('_',$_atr->ope['tip'])[0];
 
         $_var = [];        
@@ -1284,8 +1284,8 @@ class api_lis {
               'data-val'=>"ocu", 'data-esq'=>$esq, 'data-est'=>$est, 'onclick'=>"{$_eje}_tog(this);"])."                
             </fieldset>";
             foreach( $est_ope['atr'] as $atr ){
-              $_atr = api_dat::atr($esq,$est,$atr);
-              $atr_nom = empty($_atr->nom) && $atr=='ide' ? api_dat::atr($esq,$est,'nom')->nom : $_atr->nom ;
+              $_atr = api_dat::est_atr($esq,$est,$atr);
+              $atr_nom = empty($_atr->nom) && $atr=='ide' ? api_dat::est_atr($esq,$est,'nom')->nom : $_atr->nom ;
               $htm .= api_dat::var('val',$atr,[
                 'nom'=>"¿{$atr_nom}?", 
                 'val'=>!isset($est_ope['atr_ocu']) || !in_array($atr,$est_ope['atr_ocu']),
@@ -1318,7 +1318,7 @@ class api_lis {
                 <form class='ide-{$ide} doc_ren ali-ini mar_izq-2' data-esq='{$esq}' data-est='{$est}'>";
                 foreach( $est_ope["{$pre}_{$ide}"] as $atr ){
                   $htm .= api_dat::var('val',$atr,[ 
-                    'nom'=>"¿".api_dat::atr($esq,$est,$atr)->nom."?",
+                    'nom'=>"¿".api_dat::est_atr($esq,$est,$atr)->nom."?",
                     'ope'=>[ 'tip'=>'opc_bin', 'id'=>"{$_ide}-{$atr}-{$ide}", 'onchange'=>"{$_eje}_tog(this);" ] 
                   ]);
                 }$htm .= "
@@ -1372,7 +1372,7 @@ class api_lis {
       }
       $ope_nav = isset($ope['nav']) ? $ope['nav'] : FALSE;
       // cargo datos
-      $dat_atr = isset($ope['atr_dat']) ? $ope['atr_dat'] : ( $_val_dat ? api_dat::atr($esq,$est) : api_dat::atr_ver($dat) );
+      $dat_atr = isset($ope['atr_dat']) ? $ope['atr_dat'] : ( $_val_dat ? api_dat::est_atr($esq,$est) : api_dat::est_atr_ver($dat) );
       // ocultos por estructura
       $atr_ocu = isset($ope['atr_ocu']) ? $ope['atr_ocu'] : [];
       // genero columnas :
@@ -1418,7 +1418,7 @@ class api_lis {
       <p class='tit'>".api_tex::let($htm_val)."</p>";
       
       if( !empty($htm_val = api_dat::val('des',"{$esq}.{$ide}",$val)) ) $htm .= "
-      <q class='mar_arr-1'>".api_tex::let($htm_val)."</q>";
+      <p class='des mar_arr-1'>".api_tex::let($htm_val)."</p>";
       
       if( in_array('ite_ocu',$opc) ) api_ele::cla($ele['ite'],'dis-ocu'); $_ .= "
       <tr".api_ele::atr($ele['ite']).">
@@ -1483,7 +1483,7 @@ class api_lis {
     // proceso estructura de la base
     if( is_string($dat) ){
       extract( api_dat::ide($dat) );
-      $_atr = api_dat::atr($esq,$est);
+      $_atr = api_dat::est_atr($esq,$est);
       $ele['dat_val']['data-esq'] = $esq;
       $ele['dat_val']['data-est'] = $est;
       $est_ima = api_dat::est_ope($esq,$est,'opc.ima');
@@ -1495,14 +1495,14 @@ class api_lis {
         if( $atr_ocu && in_array($atr,$atr_ocu) ) api_ele::cla($ele_dat,'dis-ocu');
         // contenido
         $ele_val = $ele['val'];
-        
+
+        $ide = "";
         if( $opc_ima && ( !empty($est_ima) && in_array($atr,$est_ima) ) ){
           api_ele::cla($ele_val,"tam-5 mar_hor-1");
           $ide = 'ima';
         }
         // variables
         else{
-          $ide = $opc_var ? 'var' : 'tip';
           // adapto estilos por tipo de valor
           if( !empty($_atr[$atr]) ){
             $var_dat = $_atr[$atr]->var_dat;
@@ -1520,9 +1520,16 @@ class api_lis {
           if( $var_dat == 'tex' ){
             if( $var_dat == 'par' ) api_ele::css($ele_val,"max-height:4rem;overflow-y:scroll");
           }
-        }$_ .= "
+          $ele_dat['data-val_dat'] = $var_dat;
+          $ele_dat['data-val_tip'] = $var_val;
+          $ide = $opc_var ? 'var' : 'tip';
+        }
+        $htm = api_dat::val_ver($ide,"{$esq}.{$est}.{$atr}",$val,$ele_val);
+        if( $ide == "ima" ) $htm = "<div class='doc_val'>$htm</div>";
+        $ele_dat['data-val'] = $ide;
+        $_ .= "
         <td".api_ele::atr( ( $atr_ocu && in_array($atr,$atr_ocu) ) ? api_ele::cla($ele_dat,DIS_OCU) : $ele_dat ).">      
-          ".api_dat::val_ver($ide,"{$esq}.{$est}.{$atr}",$val,$ele_val)."
+          {$htm}
         </td>";
       }
     }
@@ -1872,6 +1879,8 @@ class api_lis {
       if( !isset($ope['ope']) ) $ope['ope'] = [ "ver", "atr", "des" ];
       if( !isset($ope['opc']) ) $ope['opc'] = [];
       array_push($ope['opc'],"ite_ocu");
+      if( !isset($ele['lis']) ) $ele['lis'] = [];
+      api_ele::cla($ele['lis'],"mar_aba-0");
       $_ = api_lis::est($dat,$ope,$ele);
       break;
     }

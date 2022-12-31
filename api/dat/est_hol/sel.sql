@@ -184,7 +184,8 @@ DELETE FROM `dat_est` WHERE `esq`='hol' AND `ide` LIKE 'sel%'; INSERT INTO `dat_
   -- ciclos: direccional + desarrollo del ser + familia ciclica de la luz
   ('hol','sel_cic_dir', '{
     "atr": { 
-      "ide": { "min":1, "max":4, "dat":"hol_sel_cic_dir" }
+      "ide": { "min":1, "max":4, "dat":"hol_sel_cic_dir" },
+      "sel": { "dat":"hol_sel" }
     },
     "val": { 
       "nom": "Ciclo Direccional #()($)ide() de 4: ()($)nom()",
@@ -193,29 +194,37 @@ DELETE FROM `dat_est` WHERE `esq`='hol' AND `ide` LIKE 'sel%'; INSERT INTO `dat_
       "col": 4
     },
     "opc": { 
-      "ima": [ "ide" ] 
+      "ima": [ "ide", "sel" ] 
     }
   }' ),
   ('hol','sel_cic_ser', '{
     "atr": { 
-      "ide": { "min":1, "max":3, "dat":"hol_sel_cic_ser" }
+      "ide": { "min":1, "max":3, "dat":"hol_sel_cic_ser" },
+      "sel": { "dat":"hol_sel" }
     },
     "val": { 
       "nom": "Desarrollo del ser #()($)ide() de 3: ()($)nom().",
       "des": "()($)des().",
       "col": 3,
       "num": 3
+    },
+    "opc": {
+      "ima": [ "sel" ]
     }
   }' ),
   ('hol','sel_cic_luz', '{ 
     "atr": { 
-      "ide": { "min":1, "max":5, "dat":"hol_sel_cic_luz" }
+      "ide": { "min":1, "max":5, "dat":"hol_sel_cic_luz" },
+      "sel": { "dat":"hol_sel" }
     },
     "val": { 
-      "nom": "Grupo Cíclico de la luz #()($)ide() de 5: ()($)nom().",
+      "nom": "Familia Cíclica de la luz #()($)ide() de 5: ()($)nom().",
       "des": "()($)des().",
       "col": 5,
       "num": 5
+    },
+    "opc": {
+      "ima": [ "sel" ]
     }
   }' ),
   -- parejas: analogo + antipoda + oculto
@@ -259,6 +268,9 @@ DELETE FROM `dat_est` WHERE `esq`='hol' AND `ide` LIKE 'sel%'; INSERT INTO `dat_
       "col": 4,
       "num": 4
     },
+    "opc": { 
+      "ima": [ "ide", "sel" ]
+    },
     "inf": {
       "opc": [ "des" ],
 
@@ -266,9 +278,6 @@ DELETE FROM `dat_est` WHERE `esq`='hol' AND `ide` LIKE 'sel%'; INSERT INTO `dat_
 
       "htm": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-04-\'>Colocación Armónica</a> d<cite>el Encantamiento del Sueño</cite>" },
       "fic": [ "sel" ]
-    },
-    "opc": { 
-      "ima": [ "ide" ]
     }
   }' ),
   ('hol','sel_arm_cel', '{
@@ -283,6 +292,9 @@ DELETE FROM `dat_est` WHERE `esq`='hol' AND `ide` LIKE 'sel%'; INSERT INTO `dat_
       "col": 5,
       "num": 5
     },
+    "opc": { 
+      "ima": [ "ide", "sel" ]
+    },
     "inf": { 
       "opc": [ "des" ],
 
@@ -290,18 +302,19 @@ DELETE FROM `dat_est` WHERE `esq`='hol' AND `ide` LIKE 'sel%'; INSERT INTO `dat_
 
       "htm": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-05-\'>Colocación Armónica</a> d<cite>el Encantamiento del Sueño</cite>" },
       "fic": [ "sel" ]
-    },
-    "opc": { 
-      "ima": [ "ide" ]
     }
   }' ),
   ('hol','sel_arm_tra', '{
     "atr": { 
-      "ide": { "min":1, "max":20, "dat":"hol_sel_arm_tra" }
+      "ide": { "min":1, "max":20, "dat":"hol_sel_arm_tra" },
+      "sel": { "dat":"hol_sel" }
     },        
     "val": { 
       "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/sel.png), center/contain no-repeat url(http://localhost/img/hol/fic/sel/()($)ide().png);"
-    }          
+    },
+    "opc": { 
+      "ima": [ "ide" ]
+    }  
   }' ),
   -- cromaticas
   ('hol','sel_cro_fam', '{
@@ -319,6 +332,9 @@ DELETE FROM `dat_est` WHERE `esq`='hol' AND `ide` LIKE 'sel%'; INSERT INTO `dat_
       "col": 5,
       "num": 5
     },
+    "opc": { 
+      "ima": [ "ide", "sel", "pla_cen", "hum_cen", "hum_ded" ]
+    },
     "inf": { 
       "det": [ "des_fun", "des_mis", "des_rol", "des_acc" ],
 
@@ -330,10 +346,7 @@ DELETE FROM `dat_est` WHERE `esq`='hol' AND `ide` LIKE 'sel%'; INSERT INTO `dat_
 
       "htm-2": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-08-\'>Holon Humano</a> d<cite>el Encantamiento del Sueño</cite>" },
       "fic-2": [ "hum_cen", "hum_ded" ]
-    },
-    "opc": { 
-      "ima": [ "ide", "pla_cen", "hum_cen", "hum_ded" ]
-    }          
+    }
   }' ),
   ('hol','sel_cro_ele', '{
     "atr": { 
@@ -350,6 +363,9 @@ DELETE FROM `dat_est` WHERE `esq`='hol' AND `ide` LIKE 'sel%'; INSERT INTO `dat_
       "col": 4,
       "num": 4
     },
+    "opc": { 
+      "ima": [ "ide", "sel", "flu_res", "hum_ext" ]
+    },
     "inf": { 
       "det": [ "des_col", "des_men" ],
       "atr": [ "des" ],
@@ -359,9 +375,6 @@ DELETE FROM `dat_est` WHERE `esq`='hol' AND `ide` LIKE 'sel%'; INSERT INTO `dat_
       
       "htm-1": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-02-\'>Células del Tiempo</a> en el Íncide Armónico d<cite>el Encantamiento del Sueño</cite>" },
       "fic-2": [ "arm_cel" ]
-    },
-    "opc": { 
-      "ima": [ "ide", "flu_res", "hum_ext" ]
-    }          
+    }
   }' )
 ;

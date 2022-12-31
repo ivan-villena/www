@@ -131,20 +131,25 @@ DELETE FROM `dat_est` WHERE `esq`='hol' AND `ide` LIKE 'rad%'; INSERT INTO `dat_
         "htm-1": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/hol/bib/ato#_03-01-\'>Componentes Electrónicos</a> en <cite>el Átomo del Tiempo</cite>" },
         "fic-1": [ "ele_pre", "ele_pos" ]
       }
-  }' ),  
+  }' ),
   ('hol','rad_pla_qua', '{
       "atr": { 
-        "ide": { "min":1, "max":3, "dat":"hol_rad_pla_qua" }
+        "ide": { "min":1, "max":3, "dat":"hol_rad_pla_qua" },
+        "pla": { "dat":"hol_rad" }
       },      
-      "val": { 
+      "val": {
         "nom": "Quantum #()($)ide() de 3: ()($)nom().",
         "des": "()($)des()",
         "ima": "background: center/contain no-repeat url(http://localhost/img/hol/fic/rad/pla_qua/()($)ide().png);",
         "col": 3,
         "num": 3
       },
-      "opc": { 
-        "ima": [ "ide" ]            
-      }          
+      "opc": {
+        "ima": [ "ide", "pla" ]
+      },
+      "inf": {
+        "opc": [ "des" ],
+        "fic": [ "pla" ]
+      }
   }' )  
 ;

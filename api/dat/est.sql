@@ -5,3 +5,4 @@
 -- Holon
   DELETE FROM `dat_est` WHERE `esq`='hol';
 --
+  UPDATE `dat_est` SET ope = REPLACE(ope,'localhost','www.icpv.com.ar');

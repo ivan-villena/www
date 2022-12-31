@@ -208,6 +208,158 @@ class api_dat {
     return $ope;
   }
 
+  // estructura : datos + operadores
+  static function est( string $esq, string $ide, mixed $tip = NULL, mixed $dat = NULL ) : mixed {
+    $_ = [];
+    global $api_dat;
+    // cargo una estructura
+    if( !isset($tip) ){
+
+      if( !isset($api_dat->_est[$esq][$ide]) ){
+
+        $api_dat->_est[$esq][$ide] = sis_sql::est('ver',"{$esq}_{$ide}",'uni');
+        // cargo operador
+
+        // cargo atributos
+
+      }
+      $_ = $api_dat->_est[$esq][$ide];
+    }
+    else{
+      switch( $tip ){
+      }
+    }
+    return $_;
+  }// inicio estructura: busco datos por vista o tabla
+  static function est_ini( string $esq, string $est, array $ope = [] ) : string | array {
+    $_ = [];
+
+    $val_est = sis_sql::est('val',$est);
+
+    $vis = "_{$est}";
+
+    $val_vis = sis_sql::est('val',$vis);
+
+    if( $val_est || $val_vis ){
+
+      $ide = ( $val_vis == 'vis' ) ? $vis : $est;
+
+      $_ = api_dat::get("{$esq}.{$ide}",$ope);
+    }
+
+    return $_;
+  }// cargo operador: valores + relaciones + atributos + informe + listado + opciones
+  static function est_ope( string $esq, string $est, string $ope, mixed $dat = NULL ) : mixed {
+    global $api_dat;
+
+    if( !isset($api_dat->_est_ope[$esq][$est]) ){
+      
+      $api_dat->_est_ope[$esq][$est] = api_dat::get('dat_est',[
+        'ver'=>"`esq`='{$esq}' AND `ide`='{$est}'", 
+        'ele'=>["ope"],
+        'red'=>"ope",
+        'opc'=>"uni"
+      ]);
+    }
+    $_ = $api_dat->_est_ope[$esq][$est];
+
+    // cargo atributo
+    foreach( ( $ope_atr = explode('.',$ope) ) as $ide ){
+
+      $_ = ( is_array($_) && isset($_[$ide]) ) ? $_[$ide] : FALSE;
+    }
+
+    // proceso valores con datos
+    if( $ope_atr[0] == 'val' && isset($dat) ) $_ = api_obj::val( api_dat::get($esq,$est,$dat), $_ );
+
+    return $_;
+  }// atributo : datos + tipo + variable
+  static function est_atr( string $esq, string $est, mixed $ide = NULL ) : mixed {
+    $_ = [];
+    global $api_dat;
+    // cargo atributos de la estructura
+    if( !isset($api_dat->_atr[$esq][$est]) ){
+      
+      // busco atributos de una vista ( si existe ) o de una tabla
+      $sql_ide = "{$esq}_{$est}";
+      $api_dat->_atr[$esq][$est] = sis_sql::atr( !empty( sis_sql::est('lis',"_{$sql_ide}",'uni') )  ? "_{$sql_ide}" : $sql_ide );
+
+      // cargo operadores del atributo
+      $dat = &$api_dat->_atr[$esq][$est];
+
+      if( $dat_atr = api_dat::est_ope($esq,$est,'atr') ){
+
+        foreach( $dat_atr as $i => $v ){
+        
+          if( isset($dat[$i]) ) $dat[$i]->var = api_ele::val_jun($dat[$i]->var, api_obj::val_nom($v));
+        }
+      }
+    }// devuelvo todos los atributos
+    $_ = $api_dat->_atr[$esq][$est];
+    // buscar por identificador/es
+    if( isset($ide) ){
+      $atr_lis = $_;
+      // devuelvo 1
+      if( is_string($ide) ){
+        $_ = new stdClass;
+        if( isset($atr_lis[$ide]) ) $_ = $atr_lis[$ide];
+      }// muchos
+      else{
+        $_ = [];
+        foreach( $ide as $atr ){
+          if( isset($atr_lis[$atr]) ) $_[$atr] = $atr_lis[$atr];
+        }
+      }
+    }
+    return $_;
+  }// genero atributos desde listado o desde la base
+  static function est_atr_ver( string | array $dat, string $ope = "" ) : array {
+    $_ = [];
+    if( empty($ope) ){
+      // de la base
+      if( is_string($dat) ){
+        $ide = api_dat::ide($dat);
+        $_ = api_dat::est_atr($ide['esq'],$ide['est']);
+      }
+      // listado variable por objeto
+      else{
+        foreach( $dat as $ite ){
+          // del 1° objeto: cargo atributos
+          foreach( $ite as $ide => $val ){ 
+            $atr = new stdClass;
+            $atr->ide = $ide;
+            $atr->nom = $ide;
+            $atr->var = api_dat::tip($val);
+            $_ [$ide] = $atr;
+          }
+          break;
+        }        
+      }
+    }
+    return $_;
+  }// relaciones : esq.est_atr | api.dat_atr[ide].dat
+  static function est_rel( string $esq, string $est, string $atr ) : string {
+    $_ = '';
+    // armo identificador por nombre de estructura + atributo
+    if( $atr == 'ide' ){
+      $_ = $est;
+    }
+    // parametrizado en : $sis_app.dat_atr
+    elseif( ( $_atr = api_dat::est_atr($esq,$est,$atr) ) && !empty($_atr->var['dat']) ){        
+      $_ide = explode('_',$_atr->var['dat']);
+      array_shift($_ide);
+      $_ = implode('_',$_ide);
+    }
+    // valido existencia de tabla relacional : "_api.esq_est_atr"
+    elseif( !!sis_sql::est('val',"{$esq}_{$est}_{$atr}") ){ 
+      $_ = "{$est}_{$atr}";
+    }
+    else{
+      $_ = $atr;
+    }
+    return $_;
+  }  
+
   // Variable : div.dat_var > label + (select,input,textarea,button)[name]  
   static function var( string $tip, string | array $ide, array $ele=[], ...$opc ) : string {
     $_ope = [ 
@@ -240,7 +392,7 @@ class api_dat {
     // por atributi de la base
     if( $tip == 'atr' ){
 
-      if( !empty($_atr = api_dat::atr($esq,$est,$atr)) ) $_var = [ 
+      if( !empty($_atr = api_dat::est_atr($esq,$est,$atr)) ) $_var = [ 
         'nom'=>$_atr->nom, 
         'ope'=>$_atr->var 
       ];
@@ -502,7 +654,7 @@ class api_dat {
 
     if( is_object($dat) && isset($dat->$atr) ){
       
-      $_atr = api_dat::atr($esq,$est,$atr);
+      $_atr = api_dat::est_atr($esq,$est,$atr);
       // variable por tipo
       if( $tip == 'var' ){
         $_var = $_atr->var;
@@ -578,7 +730,7 @@ class api_dat {
       // armo identificador
       $_['est'] = $atr == 'ide' ? $est : "{$est}_{$atr}";  
       // busco dato en atributos
-      $_atr = api_dat::atr($esq,$est,$atr);
+      $_atr = api_dat::est_atr($esq,$est,$atr);
       if( isset($_atr->var['dat']) && !empty($var_dat = $_atr->var['dat']) ){
         $dat = explode('_',$var_dat);
         $_['esq'] = array_shift($dat);
@@ -677,13 +829,13 @@ class api_dat {
         // recorro atributos + si tiene el operador, agrego la opcion      
         foreach( $dat_opc_ide as $atr ){
           // cargo atributo
-          $_atr = api_dat::atr($esq,$est,$atr);
+          $_atr = api_dat::est_atr($esq,$est,$atr);
           if( empty($_atr) ){
-            var_dump(api_dat::atr($esq,$est));
+            var_dump(api_dat::est_atr($esq,$est));
             var_dump($esq,$est,$atr);
           }
           $atr_nom = $_atr->nom;
-          if( $_atr->ide == 'ide' && empty($_atr->nom) && !empty($_atr_nom = api_dat::atr($esq,$est,'nom')) ){
+          if( $_atr->ide == 'ide' && empty($_atr->nom) && !empty($_atr_nom = api_dat::est_atr($esq,$est,'nom')) ){
             $atr_nom = $_atr_nom->nom;
           }
           // armo identificador
@@ -765,157 +917,7 @@ class api_dat {
     }
     return $_;
   }
-
-  // estructura : datos + operadores
-  static function est( string $esq, string $ide, mixed $tip = NULL, mixed $dat = NULL ) : mixed {
-    $_ = [];
-    global $api_dat;
-    // cargo una estructura
-    if( !isset($tip) ){
-
-      if( !isset($api_dat->_est[$esq][$ide]) ){
-
-        $api_dat->_est[$esq][$ide] = sis_sql::est('ver',"{$esq}_{$ide}",'uni');
-      }
-      $_ = $api_dat->_est[$esq][$ide];
-    }
-    else{
-      switch( $tip ){
-      }
-    }
-    return $_;
-  }// inicio estructura: busco datos por vista o tabla
-  static function est_ini( string $esq, string $est, array $ope = [] ) : string | array {
-    $_ = [];
-
-    $val_est = sis_sql::est('val',$est);
-
-    $vis = "_{$est}";
-
-    $val_vis = sis_sql::est('val',$vis);
-
-    if( $val_est || $val_vis ){
-
-      $ide = ( $val_vis == 'vis' ) ? $vis : $est;
-
-      $_ = api_dat::get("{$esq}.{$ide}",$ope);
-    }
-
-    return $_;
-  }// cargo operador: valores + relaciones + atributos + informe + listado + opciones
-  static function est_ope( string $esq, string $est, string $ope, mixed $dat = NULL ) : mixed {
-    global $api_dat;
-    if( !isset($api_dat->_est_ope[$esq][$est]) ){
-      
-      $api_dat->_est_ope[$esq][$est] = api_dat::get('dat_est',[
-        'ver'=>"`esq`='{$esq}' AND `ide`='{$est}'", 
-        'ele'=>["ope"],
-        'red'=>"ope",
-        'opc'=>"uni"
-      ]);
-    }
-    $_ = $api_dat->_est_ope[$esq][$est];
-
-    // cargo atributo
-    foreach( ( $ope_atr = explode('.',$ope) ) as $ide ){
-
-      $_ = ( is_array($_) && isset($_[$ide]) ) ? $_[$ide] : FALSE;
-    }
-
-    // proceso valores con datos
-    if( $ope_atr[0] == 'val' && isset($dat) ) $_ = api_obj::val( api_dat::get($esq,$est,$dat), $_ );
-
-    return $_;
-  }// relaciones : esq.est_atr | api.dat_atr[ide].dat
-  static function est_rel( string $esq, string $est, string $atr ) : string {
-    $_ = '';
-    // armo identificador por nombre de estructura + atributo
-    if( $atr == 'ide' ){
-      $_ = $est;
-    }
-    // parametrizado en : $sis_app.dat_atr
-    elseif( ( $_atr = api_dat::atr($esq,$est,$atr) ) && !empty($_atr->var['dat']) ){        
-      $_ide = explode('_',$_atr->var['dat']);
-      array_shift($_ide);
-      $_ = implode('_',$_ide);
-    }
-    // valido existencia de tabla relacional : "_api.esq_est_atr"
-    elseif( !!sis_sql::est('val',"{$esq}_{$est}_{$atr}") ){ 
-      $_ = "{$est}_{$atr}";
-    }
-    else{
-      $_ = $atr;
-    }
-    return $_;
-  }
-
-  // atributo : datos + tipo + variable
-  static function atr( string $esq, string $est, mixed $ide = NULL ) : mixed {
-    $_ = [];
-    global $api_dat;
-    // cargo atributos de la estructura
-    if( !isset($api_dat->_atr[$esq][$est]) ){
-      
-      // busco atributos de una vista ( si existe ) o de una tabla
-      $sql_ide = "{$esq}_{$est}";
-      $api_dat->_atr[$esq][$est] = sis_sql::atr( !empty( sis_sql::est('lis',"_{$sql_ide}",'uni') )  ? "_{$sql_ide}" : $sql_ide );
-
-      // cargo operadores del atributo
-      $dat = &$api_dat->_atr[$esq][$est];
-
-      if( $dat_atr = api_dat::est_ope($esq,$est,'atr') ){
-
-        foreach( $dat_atr as $i => $v ){
-        
-          if( isset($dat[$i]) ) $dat[$i]->var = api_ele::val_jun($dat[$i]->var, api_obj::val_nom($v));
-        }
-      }
-    }// devuelvo todos los atributos
-    $_ = $api_dat->_atr[$esq][$est];
-    // buscar por identificador/es
-    if( isset($ide) ){
-      $atr_lis = $_;
-      // devuelvo 1
-      if( is_string($ide) ){
-        $_ = new stdClass;
-        if( isset($atr_lis[$ide]) ) $_ = $atr_lis[$ide];
-      }// muchos
-      else{
-        $_ = [];
-        foreach( $ide as $atr ){
-
-          if( isset($atr_lis[$atr]) ) $_[$atr] = $atr_lis[$atr];
-        }
-      }
-    }
-    return $_;
-  }// genero atributos desde listado o desde la base
-  static function atr_ver( string | array $dat, string $ope = "" ) : array {
-    $_ = [];
-    if( empty($ope) ){
-      // de la base
-      if( is_string($dat) ){
-        $ide = api_dat::ide($dat);
-        $_ = api_dat::atr($ide['esq'],$ide['est']);
-      }
-      // listado variable por objeto
-      else{
-        foreach( $dat as $ite ){
-          // del 1° objeto: cargo atributos
-          foreach( $ite as $ide => $val ){ 
-            $atr = new stdClass;
-            $atr->ide = $ide;
-            $atr->nom = $ide;
-            $atr->var = api_dat::tip($val);
-            $_ [$ide] = $atr;
-          }
-          break;
-        }        
-      }
-    }
-    return $_;
-  }
-
+  
   // Listado
   static function lis( string | array $dat, string $ide, array $ele = [] ) : string {
     $_ = $dat;
@@ -956,7 +958,7 @@ class api_dat {
     // cargo dato
     if( !is_object($dat) ) $dat = api_dat::get($esq,$est,$dat);
     // cargo atributos
-    $dat_atr = api_dat::atr($esq,$est);      
+    $dat_atr = api_dat::est_atr($esq,$est);      
     $ite = [];
     foreach( ( !empty($atr) ? $atr : array_keys($dat_atr) ) as $atr ){       
       if( isset($dat_atr[$atr]) && isset($dat->$atr) ){ 
@@ -1032,7 +1034,7 @@ class api_dat {
     foreach( api_dat::est_ope($esq,$est,'pos') as $ite ){
       $var = [ 'ite'=>$ite['nom'], 'lis'=>[] ];
       extract( api_dat::ide($ite['ide']) );
-      $ope_atr = api_dat::atr($esq,$est);
+      $ope_atr = api_dat::est_atr($esq,$est);
 
       foreach( $ite['atr'] as $atr ){
         $val = isset($dat[$est]->$atr) ? $dat[$est]->$atr : NULL;        
@@ -1161,7 +1163,7 @@ class api_dat {
     $_ = "";      
     if( $_inf = isset($ope) ? $ope : api_dat::est_ope($esq,$est,'inf') ){      
       // cargo atributos
-      $_atr = api_dat::atr($esq,$est);
+      $_atr = api_dat::est_atr($esq,$est);
       // cargo datos
       $_dat = api_dat::get($esq,$est,$dat);
       // cargo valores
