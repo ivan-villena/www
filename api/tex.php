@@ -8,9 +8,6 @@ class api_tex {
   static string $EJE = "api_tex.";
 
   function __construct(){
-
-    $this->_let = api_dat::get('tex_let', [ 'niv'=>['ide'] ]);
-
   }// getter
   static function _( string $ide, $val = NULL ) : string | array | object {
     $_ = [];    

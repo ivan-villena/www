@@ -47,7 +47,7 @@ class api_lis {
     opc : `.doc_pan > .ide-opc .ide-opc`
   };
 
-  constructor( $dat = {} ){
+  constructor(){
     
     ['_est','_tab'].forEach( $ope => {
       for( const $ide in this[$ope] ){
@@ -66,8 +66,6 @@ class api_lis {
     });
 
     this._tab.cla = ".pos.ope";
-
-    for( const $atr in $dat ){ this[$atr] = $dat[$atr]; }
     
   }// getter
   static _( $ide, $val ){

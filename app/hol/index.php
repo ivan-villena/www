@@ -178,7 +178,7 @@
     if( in_array($_uri->cab, $ope_atr = ['kin','psi']) ){
 
       // cargo todos los datos utilizados por esquema
-      $api_app->rec['dat']['hol'] = [];
+      $api_app->rec['api_dat'] []= '_est';
 
       // genero datos
       $_hol->dat = api_hol::val_dat($_uri->cab, $_hol->val);
@@ -186,7 +186,7 @@
       // operadores del tablero
       $tab_ide = "hol.{$_uri->cab}";  
       
-      if( !( $tab_ope =  api_dat::est_ope('hol',"{$_uri->cab}_{$_uri->art}",'tab') ) ) $tab_ope = [];    
+      if( !( $tab_ope =  api_dat::est('hol',"{$_uri->cab}_{$_uri->art}",'tab') ) ) $tab_ope = [];    
       
       // inicializo valores
       $tab_ope['val'] = [];            
@@ -219,7 +219,7 @@
         }
       }
       // imprimo operador de lista
-      $lis_ope = api_dat::est_ope("hol",$_uri->cab,'lis');
+      $lis_ope = api_dat::est("hol",$_uri->cab,'lis');
       $lis_ope['val'] = $tab_ope['val'];
       // cargo operadores
       if( isset($tab_ope['est']) ){
@@ -230,7 +230,7 @@
           $lis_ope['est'][$esq_ide] = [];
           foreach( $esq_lis as $est_ide ){
             $lis_ope['est'][$esq_ide][$est_ide] = [];
-            if( $est_ope = api_dat::est_ope($esq_ide,$est_ide,'lis') ){
+            if( $est_ope = api_dat::est($esq_ide,$est_ide,'lis') ){
               $lis_ope['est'][$esq_ide][$est_ide] = $est_ope;
             }
           }

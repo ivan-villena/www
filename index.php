@@ -7,7 +7,7 @@
     session_start();
     // Sesion
     $_SESSION['ubi'] = "America/Argentina/Buenos_Aires";  
-    if( !isset($_SESSION['usu']) ) $_SESSION['usu'] = 0;
+    if( !isset($_SESSION['usu']) ) $_SESSION['usu'] = 1;
     date_default_timezone_set( $_SESSION['ubi'] );
     // Tiempo de Inicio
     $sis_ini = time();
@@ -202,7 +202,7 @@
         }
         
         $dat_api = [];
-        foreach( ['_ope','_tip','_est_ope'] as $atr ){ $dat_api[$atr] = $api_dat->$atr; }
+        foreach( $api_app->rec['api_dat'] as $atr ){ $dat_api[$atr] = $api_dat->$atr; }
         ?>        
         // cargo datos globales
         var $api_dat = new api_dat(<?= api_obj::val_cod($dat_api) ?>);        

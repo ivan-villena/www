@@ -11,13 +11,11 @@ class api_doc {
   _pie = 'body > .doc_pie';
   _var = {};
 
-  constructor( $dat = {} ){
-
+  constructor(){
+    // cargo elementos
     for( const $atr in this ){
       if( typeof(this[$atr]) == 'string' ) this[$atr] = document.querySelector(this[$atr]);
     }
-
-    for( const $atr in $dat ){ this[$atr] = $dat[$atr]; };    
     
   }// getter
   static _( $ide, $val ){

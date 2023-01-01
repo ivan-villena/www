@@ -6,9 +6,6 @@ class api_fig {
   static string $EJE = "api_fig.";
 
   function __construct(){
-
-    $this->_ico = api_dat::get('fig_ico', [ 'niv'=>['ide'] ]);
-
   }// getter
   static function _( string $ide, $val = NULL ) : string | array | object {
     $_ = [];    

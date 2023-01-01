@@ -151,6 +151,9 @@ class api_app {
     'obj'=>[
       'api'=>[ 'doc','arc','eje','ele','obj','lis','opc','num','tex','fig','fec','hol' ]
     ],
+    // instancias 
+    'api_dat'=>[ '_est'
+    ],
     // datos de la aplicacion
     'dat'=> [
     ],      

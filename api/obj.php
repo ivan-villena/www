@@ -31,7 +31,6 @@ class api_obj {
     return $_;
   }
 
-
   // controlador
   static function var( string $tip, mixed $dat = NULL, array $ope = [], ...$opc ) : string {
     $_ = "";
@@ -255,6 +254,20 @@ class api_obj {
     }// convierto : {} => []
     elseif( in_array('nom',$opc) && is_object($dat) && get_class($dat)=='stdClass' ){    
       $_ = api_obj::val_nom($dat);
+    }
+    return $_;
+  }// busco dato por propiedad
+  static function val_dat( array | object $dat, string | array $atr ) : mixed {
+    $_ = $dat;
+    foreach( ( is_string($atr) ? explode('.',$atr) : $atr ) as $atr_ide ){
+      if( is_array($_) && isset($_[$atr_ide]) ){
+        $_ = $_[$atr_ide];
+      }elseif( is_object($_) && isset($_->$atr_ide) ){
+        $_ = $_->$atr_ide;
+      }else{
+        $_ = FALSE;
+        break;
+      }        
     }
     return $_;
   }// combino por contenido

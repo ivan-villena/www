@@ -4,10 +4,7 @@
 // Fecha : aaaa-mm-dia hh:mm:ss utc
 class api_fec {
 
-  constructor( $dat = {} ){
-    
-    for( const $atr in $dat ){ this[$atr] = $dat[$atr]; }
-    
+  constructor(){      
   }// getter
   static _( $ide, $val ){
     let $_ = [], $_dat, $est = `_${$ide}`;

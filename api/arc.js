@@ -4,10 +4,7 @@
 // Archivo : fichero + texto + imagen + audio + video + app + ...tipos
 class api_arc {  
 
-  constructor( $dat = {} ){
-    
-    for( const $atr in $dat ){ this[$atr] = $dat[$atr]; }
-
+  constructor(){      
   }// getter
   static _( $ide, $val ){
     let $_ = [], $_dat, $est = `_${$ide}`;

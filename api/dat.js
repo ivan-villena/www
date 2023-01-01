@@ -3,13 +3,8 @@
 
 // Dato : esq.est[ide].atr
 class api_dat {
-
-  _var = {};
  
-  constructor( $dat = {} ){
-    
-    for( const $atr in $dat ){ this[$atr] = $dat[$atr]; }
-
+  constructor(){      
   }// getter
   static _( $ide, $val ){
     let $_ = [], $_dat, $est = `_${$ide}`;

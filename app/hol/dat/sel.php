@@ -42,9 +42,7 @@
       <?php $nv2 = api_num::val(intval($nv2) + 1,2) ?>
       <h3 id="<?="_{$_nav[2][$nv1][$nv2]->pos}-"?>"><?=api_tex::let($_nav[2][$nv1][$nv2]->nom)?></h2>
 
-      <p>En <cite>el Factor Maya</cite> <q>los signos describen un <a href="<?=$_bib?>fac#_04-04-02-04-" target="_blank">proceso de desarrollo</a><c>,</c> que es el mismo sendero de la vida</q><c>.</c></p>
-
-      <p>Este ciclo que representa las <q>progresiones de la Luz</q> se divide en <n>3</n> etapas evolutivas del ser que van del cuerpo físico al cuerpo mental<c>.</c></p>
+      <p>En <cite>el Factor Maya</cite> <q>los signos describen un <a href="<?=$_bib?>fac#_04-04-02-04-" target="_blank">proceso de desarrollo</a><c>,</c> que es el mismo sendero de la vida</q><c>.</c> Este ciclo que representa las <q>progresiones de la Luz</q> se divide en <n>3</n> etapas evolutivas del ser que van del cuerpo físico al cuerpo mental<c>.</c></p>
 
       <?=api_lis::est('hol.sel',[ 'atr'=>['ide','nom_may','cic_dir','cic_ser_des'], 'tit_cic'=>['cic_ser'], 'opc'=>['cab_ocu'] ])?>
 
