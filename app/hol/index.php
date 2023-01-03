@@ -6,7 +6,7 @@
   $_hol->val = api_hol::val( !empty($_SESSION['hol-val']) ? api_hol::val_cod($_SESSION['hol-val']) : date('Y/m/d') );
 
   // proceso fecha
-  if( !empty($_uri->val) ){    
+  if( !empty($_uri->val) ){
 
     $uri_val = explode('=',$_uri->val);
 
@@ -44,9 +44,9 @@
       ])],
       'psi' => [ 'ide'=>"psi", 'ico'=>"", 'nom'=>"Cíclico", 'des'=>"", 'htm'=>api_dat::lis_pos("hol","psi",[ 
         'psi'=>$_psi = api_hol::_('psi',$_hol->val['psi']),
-        'est'=>api_hol::_('hep_est',$_psi->hep_est),
-        'lun'=>api_hol::_('ani_lun',$_psi->ani_lun),
-        'hep'=>api_hol::_('hep_pla',$_psi->hep_pla)
+        'est'=>api_hol::_('psi_hep_est',$_psi->hep_est),
+        'lun'=>api_hol::_('psi_ani_lun',$_psi->ani_lun),
+        'hep'=>api_hol::_('psi_hep_pla',$_psi->hep_pla)
       ])]      
     ],[ 'sel' => "kin" ])
   ];
@@ -67,9 +67,16 @@
       
       <section class="inicio">
 
-        <?=api_doc::tex([ 'tip'=>"adv", 'tit'=>"¡Atención!", 'tex'=>[
-          "Este sitio aún se está en construcción...", "Puede haber contenido incompleto, errores o faltas."
-        ]])?>  
+        <?=api_doc::tex([ 'tip'=>"adv", 'tit'=>"¡Atención!", 
+          'tex'=>[
+            "Este sitio aún se está en construcción...", "Puede haber contenido incompleto, errores o faltas."
+          ],
+          'htm'=>[
+            'eti'=>"div", 'class'=>"doc_ite jus-cen mar-1", 'htm'=>"Contacto<c>:</c> 
+              ".api_fig::ico('usu_mai',['eti'=>"a",'href'=>"mailto:ivan.pieszko@gmail.com",'class'=>"mar_hor-1",'title'=>"Enviar un correo electrónico..."])."
+              ".api_fig::ico('usu_tel',['eti'=>"a",'href'=>"tel:+5491131037776",'class'=>"mar_hor-1",'title'=>"Enviar un mensaje al celular..."])
+          ]
+        ])?>  
 
       </section>
 
@@ -104,7 +111,7 @@
 
         <h3>La bibliografía</h3>
 
-        <div class="val jus-cen">
+        <div class="doc_val mar-aut">
           <?= api_fig::ico('app_cab',['class'=>"mar_hor-1"]) ?>
           <c>-></c>
           <?= api_fig::ico('tex_lib',['class'=>"mar_hor-1"]) ?>
@@ -121,7 +128,7 @@
       <section>
         <h3>Códigos y Cuentas</h3>
 
-        <div class="val jus-cen">
+        <div class="doc_val mar-aut">
           <?= api_fig::ico('app_cab',['class'=>"mar_hor-1"]) ?>
           <c>-></c>
           <?= api_fig::ico('num_cod',['class'=>"mar_hor-1"]) ?>
@@ -148,7 +155,7 @@
       <section>
         <h3>Los Módulos</h3>
 
-        <div class="val jus-cen">
+        <div class="doc_val mar-aut">
           <?= api_fig::ico('app_cab',['class'=>"mar_hor-1"]) ?>
           <c>-></c>
           <?= api_fig::ico('tab',['class'=>"mar_hor-1"]) ?>
@@ -172,21 +179,18 @@
 
   }
   // por articulo 
-  else{  
+  else{
     ob_start();  
     // operador : modulos        
     if( in_array($_uri->cab, $ope_atr = ['kin','psi']) ){
-
-      // cargo todos los datos utilizados por esquema
-      $api_app->rec['api_dat'] []= '_est';
 
       // genero datos
       $_hol->dat = api_hol::val_dat($_uri->cab, $_hol->val);
       
       // operadores del tablero
-      $tab_ide = "hol.{$_uri->cab}";  
+      $tab_ide = "hol.{$_uri->cab}";
       
-      if( !( $tab_ope =  api_dat::est('hol',"{$_uri->cab}_{$_uri->art}",'tab') ) ) $tab_ope = [];    
+      if( !( $tab_ope =  api_app::est('hol',"{$_uri->cab}_{$_uri->art}",'tab') ) ) $tab_ope = [];
       
       // inicializo valores
       $tab_ope['val'] = [];            
@@ -209,17 +213,19 @@
         // valor seleccionado
         $tab_ope['val']['pos'] = $_hol->val;
       }
-      // imprimo operadores del tablero
-      $ope = api_obj::val_nom(api_lis::$TAB_OPE,'ver',['ver','opc','val']);
+
+      // 1- imprimo operadores del tablero
+      $ope = api_obj::val_nom(api_est::$TAB_OPE,'ver',['ver','opc','val']);
       foreach( $ope as $ope_ide => $ope_tab ){
-        if( !empty( $htm = api_lis::tab_ope($ope_ide, $tab_ide, $tab_ope) ) ){
+        if( !empty( $htm = api_est::tab_ope($ope_ide, $tab_ide, $tab_ope) ) ){
           $api_app->rec['ope']['ini'][$ope_ide] = [ 
             'ico'=>$ope_tab['ico'], 'tip'=>"pan", 'nom'=>$ope_tab['nom'], 'nav'=>[ 'eti'=>"article" ], 'htm'=>$htm
           ];
         }
       }
-      // imprimo operador de lista
-      $lis_ope = api_dat::est("hol",$_uri->cab,'lis');
+
+      // 2-imprimo operador de lista
+      $lis_ope = api_app::est("hol",$_uri->cab,'lis');
       $lis_ope['val'] = $tab_ope['val'];
       // cargo operadores
       if( isset($tab_ope['est']) ){
@@ -230,24 +236,26 @@
           $lis_ope['est'][$esq_ide] = [];
           foreach( $esq_lis as $est_ide ){
             $lis_ope['est'][$esq_ide][$est_ide] = [];
-            if( $est_ope = api_dat::est($esq_ide,$est_ide,'lis') ){
+            if( $est_ope = api_app::est($esq_ide,$est_ide,'lis') ){
               $lis_ope['est'][$esq_ide][$est_ide] = $est_ope;
             }
           }
         }
       }
-      $ope = api_lis::$TAB_OPE['lis'];
-      $api_app->rec['ope']['ini']['est'] = [ 'ico'=>$ope['ico'], 'tip'=>"win", 'nom'=>$ope['nom'], 
-        'htm'=>api_lis::tab_ope('lis',"hol.{$_uri->cab}",$lis_ope) 
+      $ope = api_est::$TAB_OPE['lis'];
+      $api_app->rec['ope']['ini']['lis'] = [ 'ico'=>$ope['ico'], 'tip'=>"win", 'nom'=>$ope['nom'], 
+        'htm'=>api_est::tab_ope('lis',"hol.{$_uri->cab}",$lis_ope) 
       ];
-      // imprimo tablero en página principal
+
+      // 3- imprimo tablero en página principal
       echo "
       <article>
         ".api_hol::tab($_uri->cab, $_uri->art, $tab_ope, [
-          'pos'=>[ 'onclick'=>"api_lis.tab_val('mar',this);" ], 
+          'pos'=>[ 'onclick'=>"api_est.tab_val('mar',this);" ],
           'ima'=>[ 'onclick'=>FALSE ]
         ])."
       </article>";
+      
       // cargo tutorial    
       ob_start(); ?>
         <!-- Introducción --> 
@@ -336,11 +344,15 @@
         </section>        
       <?php
       $api_app->rec['ope']['fin']['app_dat']['htm'] = ob_get_clean();     
+      
+      // cargo todos los datos utilizados por esquema
+      $api_app->rec['est']['api']['hol'] = array_keys($api_app->_est['hol']);
+      $api_app->rec['est']['api']['fec'] = array_keys($api_app->_est['fec']);
     }
     // contenido : bibliografía + articulos
     else{      
       // cargo indice, directorio y enlaces
-      $_nav = $api_app->rec['dat']['nav'];
+      $_nav = $api_app->rec['app']['nav'];
       $_dir = $api_app->uri_dir();
       $_bib = SYS_NAV."hol/bib/";
       
@@ -348,7 +360,7 @@
       require_once("./app/hol/bib.php");
 
       // busco archivos : html-php
-      if( !empty( $rec = api_arc::val_ide($val = "./app/$_uri->esq/$_uri->cab/$_uri->art") ) ){
+      if( !empty( $rec = api_arc::val($val = "./app/$_uri->esq/$_uri->cab/$_uri->art") ) ){
 
         include( $rec );
       }

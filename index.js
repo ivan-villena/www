@@ -20,7 +20,7 @@ document.onkeyup = ( $eve ) => {
     // 3- pantalla
     else if( document.querySelector(`.doc_win > :not(.${DIS_OCU})`) ){
       // oculto la ultima pantalla
-      $.art = $api_doc._win.children;          
+      $.art = $dom.doc.win.children;          
       for( let $ide = $.art.length-1; $ide >= 0; $ide-- ){
         const $art = $.art[$ide];
         if( !$art.classList.contains(DIS_OCU) ){
@@ -47,7 +47,7 @@ document.querySelectorAll('form').forEach(
 // por Articulo
 if( $.cab = $sis_log.uri.cab ){
   // Menu: expando seleccionado
-  if( $.app_cab = $api_doc._pan.querySelector(`.ide-app_cab p.ide-${$.cab}`) ){ 
+  if( $.app_cab = $dom.doc.pan.querySelector(`.ide-app_cab p.ide-${$.cab}`) ){ 
     $.app_cab.click();
     if( $.art = $sis_log.uri.art ){
       // Pinto fondo si hay opcion seleccionada
@@ -55,7 +55,7 @@ if( $.cab = $sis_log.uri.cab ){
         $.app_art.parentElement.classList.add('fon-sel');
       }
       // Índice: hago click y muestro panel
-      if( $.art && ( $.art_nav = $api_doc._pan.querySelector('.ide-app_nav ul.lis.nav') ) ){
+      if( $.art && ( $.art_nav = $dom.doc.pan.querySelector('.ide-app_nav ul.lis.nav') ) ){
         // inicializo enlace local
         api_lis.nav_tog($.art_nav);
         // muestro panel
@@ -65,5 +65,5 @@ if( $.cab = $sis_log.uri.cab ){
   }  
 }// muestro menú
 else{
-  // if( $.bot_ini = $api_doc._bot.querySelector('.fig_ico.ide-app_cab') ) $.bot_ini.click();
+  // if( $.bot_ini = $dom.doc.bot.querySelector('.fig_ico.ide-app_cab') ) $.bot_ini.click();
 }

@@ -6,14 +6,10 @@ class api_ele {
   static string $EJE = "api_ele.";
 
   function __construct(){
-  }
-  // getter
+  }// getter
   static function _( string $ide, $val = NULL ) : string | array | object {
-    $_ = [];    
-    global $api_ele;
-    $est = "_$ide";
-    if( !isset($api_ele->$est) ) $api_ele->$est = api_dat::est_ini(DAT_ESQ,"ele{$est}");
-    $_dat = $api_ele->$est;
+
+    $_ = $_dat = api_app::est('ele',$ide,'dat');
     
     if( !empty($val) ){
       $_ = $val;
@@ -25,10 +21,8 @@ class api_ele {
           break;
         }
       }
-    }// toda la lista
-    elseif( isset($_dat) ){
-      $_ = $_dat;
     }
+    
     return $_;
   }
 

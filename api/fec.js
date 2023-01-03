@@ -4,16 +4,10 @@
 // Fecha : aaaa-mm-dia hh:mm:ss utc
 class api_fec {
 
-  constructor(){      
-  }// getter
+  // getter
   static _( $ide, $val ){
-    let $_ = [], $_dat, $est = `_${$ide}`;
-    
-    // aseguro datos
-    if( !$api_fec || $api_fec[$est] === undefined ){
-      // ...pido datos
-    }
-    $_dat = $api_fec[$est];
+    let $_, $_dat;
+    $_ = $_dat = api_app.est('fec',$ide,'dat');
 
     if( !!($val) ){
       $_ = $val;
@@ -28,9 +22,6 @@ class api_fec {
           break;
         }
       }
-    }
-    else{
-      $_ = $_dat ? $_dat : [];
     }
     return $_;
   }

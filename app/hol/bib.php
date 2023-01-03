@@ -13,18 +13,15 @@ class hol_bib {
     case 'lib':
       $ope['opc'] = ['tog','ver','tog-dep'];
       // busco libros
-      foreach( api_dat::get("app_art",[ 'ver'=>"esq = 'hol' AND cab = 'bib'" ]) as $_lib ){
+      foreach( api_app::dat("app_art",[ 'ver'=>"esq = 'hol' AND cab = 'bib'" ]) as $_lib ){
         // busco terminos
-        if( !empty( $_pal_lis = api_dat::get("app_ide",[ 
+        if( !empty( $_pal_lis = api_app::dat("app_ide",[ 
           'ver'=>"`esq` = 'hol' AND `ide`='$_lib->ide'", 
           'ord'=>"`ide` ASC, `nom` ASC"
         ]) ) ){
           $_pal_ite = [];
-          foreach( $_pal_lis as $_pal ){         
-            $_pal_ite[] = [ 
-              'ite'=>$_pal->nom, 
-              'lis'=>[ api_tex::let($_pal->des) ]
-            ];
+          foreach( $_pal_lis as $_pal ){
+            $_pal_ite[] = [ 'ite'=>$_pal->nom, 'lis'=>[ api_tex::let($_pal->des) ] ];
           }
           $_ []= [
             'ite'=>$_lib->nom, 'lis'=>$_pal_ite
@@ -64,11 +61,11 @@ class hol_bib {
     // tonos
     case 'ton':
       $est_ope['atr'] = ['ide','nom','des_car','des_pod','des_acc'];
-      $_ = api_lis::est("hol.ton",$est_ope);
+      $_ = api_est::lis("hol.ton",$est_ope);
       break;
     case 'sel':
       $est_ope['atr'] = ['ide','nom','des_pod','des_acc','des_car'];
-      $_ = api_lis::est("hol.sel",$est_ope);
+      $_ = api_est::lis("hol.sel",$est_ope);
       break;
     // patrones guia
     case 'par_gui':
@@ -407,7 +404,7 @@ class hol_bib {
     // tonos : descripciones
     case 'ton':
       $est_ope['atr'] = ['ide','nom','des','des_acc'];
-      $_ = api_lis::est("hol.ton", $est_ope, $ope );
+      $_ = api_est::lis("hol.ton", $est_ope, $ope );
       break;
     // tonos : aventura de la onda encantada 
     case 'ton_ond':
@@ -415,7 +412,7 @@ class hol_bib {
         [ 
           'ima'=>api_obj::val_atr(['ide'=>'ima','nom'=>''])
         ], 
-        api_dat::atr('hol',"ton", [ 'ide', 'ond_pos', 'ond_pod', 'ond_man' ])
+        api_app::est('hol',"ton",'atr',[ 'ide','ond_pos','ond_pod','ond_man'])
       );
       // cargo valores
       foreach( ( $_dat = api_obj::val_atr(api_hol::_('ton')) ) as $_ton ){
@@ -431,7 +428,7 @@ class hol_bib {
           $_tit[$lis_pos] = $_ond->des;
         }
       }
-      $_ = api_lis::est($_dat,[ 'atr_dat'=>$_atr, 'tit'=>$_tit, 'opc'=>['cab_ocu'] ], $ope);              
+      $_ = api_est::lis($_dat,[ 'atr_dat'=>$_atr, 'tit'=>$_tit, 'opc'=>['cab_ocu'] ], $ope);              
       break;
           
     // tonos : pulsares dimensionales
@@ -708,7 +705,7 @@ class hol_bib {
           'ima_cod'=>[ 'htm'=>api_hol::ima("sel_cod",$_sel,['class'=>"mar-1"]) ]
         ]);
       }
-      $_ = api_lis::est($sel_lis,[ 'tit'=>$ele_tit, 'opc'=>['cab_ocu'] ]);
+      $_ = api_est::lis($sel_lis,[ 'tit'=>$ele_tit, 'opc'=>['cab_ocu'] ]);
       break;
     // sello : holon humano => rol de familias terrestres
     case 'uni_hum_fam':
@@ -736,7 +733,7 @@ class hol_bib {
         }
       }
 
-      $_ = api_lis::est($sel_lis,[ 'tit'=>$fam_tit, 'opc'=>['cab_ocu'] ]);
+      $_ = api_est::lis($sel_lis,[ 'tit'=>$fam_tit, 'opc'=>['cab_ocu'] ]);
       break;
     // sello : holon humano => extremidades del humano
     case 'uni_hum_ext':
@@ -1047,7 +1044,7 @@ class hol_bib {
     case 'lun_arm_col':
       $est_ope['atr'] = [ 'ide','nom','col','dia','pod' ];
       $est_ope['opc'] []= 'cab_ocu';
-      $_ = api_lis::est("hol.lun_arm", $est_ope, $ope );
+      $_ = api_est::lis("hol.lun_arm", $est_ope, $ope );
       break;
     // kin : castillos del encantamiento
     case 'kin_nav_cas':
@@ -1207,7 +1204,7 @@ class hol_bib {
       $est_ope['atr'] = ['ide','nom','fec','sin','cro'];
       $est_ope['det_des'] = ['des'];
       //$ope['lis']['class'] = "anc-100 mar-2";
-      $_ = api_lis::est("hol.{$ide}", $est_ope, $ope);
+      $_ = api_est::lis("hol.psi_ani_vin", $est_ope, $ope);
 
       break;
     }
@@ -1390,7 +1387,7 @@ class hol_bib {
       }
       elseif( empty($est_ope['atr']) ){
         $est_ope['atr'] = [];
-        $_ = api_lis::est("hol.lun", $est_ope, $ope );
+        $_ = api_est::lis("hol.lun", $est_ope, $ope );
       }
       break;
     // psi-cronos : cromaticas entonadas

@@ -3,6 +3,24 @@
 class api_usu {
 
   public function __construct(){
+  }// getter
+  static function _( string $ide, $val = NULL ) : string | array | object {
+
+    $_ = $_dat = api_app::est('usu',$ide,'dat');
+    
+    if( !empty($val) ){
+      $_ = $val;
+      if( !is_object($val) ){
+        switch( $ide ){
+        default:
+          if( is_numeric($val) ) $val = intval($val) - 1;
+          if( isset($_dat[$val]) ) $_ = $_dat[$val];
+          break;
+        }
+      }
+    }
+    
+    return $_;
   }
 
   // Datos
@@ -14,7 +32,7 @@ class api_usu {
     }
     else{
       // cargo datos
-      foreach( api_dat::get('usu_dat', [ 
+      foreach( api_app::dat('usu_dat', [ 
         'ver'=>is_numeric($ide) ? "`ide`='{$ide}'" : "`ema`='{$ide}'", 'opc'=>'uni' 
       ]) as $atr => $val ){
         $_->$atr = $val;
@@ -203,12 +221,12 @@ class api_usu {
     $_['hol'] = api_hol::val( $fec );
 
     // busco anillo actual
-    $_['ani'] = api_dat::get('usu_cic_ani',[ 
+    $_['ani'] = api_app::dat('usu_cic_ani',[ 
       'ver'=>"`usu`='{$sis_usu->ide}' AND `fec` <= '".api_fec::val_var( $_['hol']['fec'] )."'", 'ord'=>"`ide` DESC", 'lim'=>1, 'opc'=>"uni"
     ]);
 
     // busco transito lunar
-    $_['lun'] = api_dat::get('usu_cic_lun',[ 
+    $_['lun'] = api_app::dat('usu_cic_lun',[ 
       'ver'=>"`usu`='{$sis_usu->ide}' AND `ani`={$_['ani']->ide} AND `fec` <= '".api_fec::val_var( $_['hol']['fec'] )."'", 'ord'=>"`ani`, `ide` DESC", 'lim'=>1, 'opc'=>"uni" 
     ]);
 
@@ -231,12 +249,12 @@ class api_usu {
     };
     // listado
     $_lis = [];
-    foreach( api_dat::get("usu_cic") as $_arm ){
+    foreach( api_app::dat("usu_cic") as $_arm ){
       $_lis_cic = [];
-      foreach( api_dat::get('usu_cic_ani',[ 'ver'=>"`usu`='{$sis_usu->ide}' AND `arm`=$_arm->ide", 'ord'=>"`ide` ASC" ]) as $_cic ){
+      foreach( api_app::dat('usu_cic_ani',[ 'ver'=>"`usu`='{$sis_usu->ide}' AND `arm`=$_arm->ide", 'ord'=>"`ide` ASC" ]) as $_cic ){
         // ciclos lunares
         $_lis_lun = [];
-        foreach( api_dat::get('usu_cic_lun',[ 'ver'=>"`usu`='{$sis_usu->ide}' AND `ani`=$_cic->ide", 'ord'=>"`ide` ASC" ]) as $_lun ){                            
+        foreach( api_app::dat('usu_cic_lun',[ 'ver'=>"`usu`='{$sis_usu->ide}' AND `ani`=$_cic->ide", 'ord'=>"`ide` ASC" ]) as $_lun ){                            
           $_fec = api_fec::_('dat',$_lun->fec);
           $_lun_ton = api_hol::_('ton',$_lun->ide);
           $_kin = api_hol::_('kin',$_lun->kin);
@@ -293,7 +311,7 @@ class api_usu {
     global $sis_usu;
     $_ani = $dat['ani'];
     $_cas_arm = api_hol::_('cas_arm',$dat['ani']->arm);
-    $_ani_arm = api_dat::get("usu_cic",['ver'=>"`ide`=$_ani->arm",'opc'=>"uni"]);
+    $_ani_arm = api_app::dat("usu_cic",['ver'=>"`ide`=$_ani->arm",'opc'=>"uni"]);
     $_ani_fec = api_fec::_('dat',$_ani->fec);      
     $_ani_ton = api_hol::_('ton',$dat['ani']->ton);
     $_kin = api_hol::_('kin',$_ani->kin);

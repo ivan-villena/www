@@ -4,16 +4,10 @@
 // Objeto : [ ...val ], [ ...nom => val ], { ...atr : val }
 class api_obj {
 
-  constructor(){      
-  }// getter
+  // getter
   static _( $ide, $val ){
-    let $_ = [], $_dat, $est = `_${$ide}`;
-    
-    // aseguro datos
-    if( !$api_obj || $api_obj[$est] === undefined ){
-      // ...pido datos
-    }
-    $_dat = $api_obj[$est];
+    let $_, $_dat;
+    $_ = $_dat = api_app.est('obj',$ide,'dat');
 
     if( !!($val) ){
       $_ = $val;
@@ -26,9 +20,7 @@ class api_obj {
         }        
       }
     }
-    else{
-      $_ = $_dat ? $_dat : [];
-    }
+    
     return $_;
   }
 
@@ -115,7 +107,7 @@ class api_obj {
 
     for( const $i in $dat ){ const $v = $dat[$i];
 
-      $.tip = api_dat.tip($v);
+      $.tip = api_app.tip($v);
 
       $.ite = document.createElement('li');
       $.ite.classList.add('mar_ver-1');

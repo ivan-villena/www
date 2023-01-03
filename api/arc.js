@@ -4,15 +4,11 @@
 // Archivo : fichero + texto + imagen + audio + video + app + ...tipos
 class api_arc {  
 
-  constructor(){      
-  }// getter
+  // getter
   static _( $ide, $val ){
-    let $_ = [], $_dat, $est = `_${$ide}`;
     
-    if( !$api_arc || $api_arc[$est] === undefined ){
-      // ...pido datos
-    }
-    $_dat = $api_arc[$est];
+    let $_, $_dat;
+    $_ = $_dat = api_app.est('arc',$ide,'dat');
 
     if( !!($val) ){
       $_ = $val;
@@ -24,9 +20,6 @@ class api_arc {
           break;
         }        
       }
-    }
-    else{
-      $_ = $_dat ? $_dat : [];
     }
     return $_;
   }

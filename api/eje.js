@@ -4,15 +4,10 @@
 // Ejecucion : ( ...par ) => { ...cod } : val 
 class api_eje {
 
-  constructor(){      
-  }// getter
+  // getter
   static _( $ide, $val ){
-    let $_ = [], $_dat, $est = `_${$ide}`;
-    
-    if( !$api_eje || $api_eje[$est] === undefined ){
-      // ...pido datos
-    }
-    $_dat = $api_eje[$est];
+    let $_, $_dat;
+    $_ = $_dat = api_app.est('eje',$ide,'dat');
 
     if( !!($val) ){
       $_ = $val;
@@ -25,9 +20,7 @@ class api_eje {
         }        
       }
     }
-    else{
-      $_ = $_dat ? $_dat : [];
-    }
+    
     return $_;
   }
 
@@ -95,7 +88,7 @@ class api_eje {
       $.fun = eval(`( ${$.par} ) =>{ ${$.val} return ${$.ini} }`);
       if( $.fun ){// defino un array para desestructurar e invocar
         $_ = !!($.inv) ? $.fun( ...eval(`[${$.inv}]`) ) : $.fun() ;
-        $.tip = api_dat.tip($_);// evaluo e imprimo resultado 
+        $.tip = api_app.tip($_);// evaluo e imprimo resultado 
         // $.pad.querySelector(`[ini]`).innerHTML = ( `${$.tip.dat}_${$.tip.val}`, { 'val':$_ } );
       }else{ 
         $.pad.querySelector(`[ini]`).innerHTML = `<span class="let err">${$.fun._err}</span>`;

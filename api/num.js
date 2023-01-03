@@ -4,16 +4,10 @@
 // Numero : separador + operador + entero + decimal + rango
 class api_num {  
 
-  constructor(){      
-  }// getter
+  // getter
   static _( $ide, $val ){
-    let $_ = [], $_dat, $est = `_${$ide}`;
-    
-    // aseguro datos
-    if( !$api_num || $api_num[$est] === undefined ){
-      // ...pido datos
-    }
-    $_dat = $api_num[$est];
+    let $_, $_dat;
+    $_ = $_dat = api_app.est('num',$ide,'dat');
 
     if( !!($val) ){
       $_ = $val;
@@ -26,9 +20,7 @@ class api_num {
         }        
       }
     }
-    else{
-      $_ = $_dat ? $_dat : [];
-    }
+    
     return $_;
   }
   

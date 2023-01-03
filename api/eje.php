@@ -9,11 +9,8 @@ class api_eje {
   }
   // getter
   static function _( string $ide, $val = NULL ) : string | array | object {
-    $_ = [];    
-    global $api_eje;
-    $est = "_$ide";
-    if( !isset($api_eje->$est) ) $api_eje->$est = api_dat::est_ini(DAT_ESQ,"eje{$est}");
-    $_dat = $api_eje->$est;
+
+    $_ = $_dat = api_app::est('eje',$ide,'dat');
     
     if( !empty($val) ){
       $_ = $val;
@@ -25,10 +22,8 @@ class api_eje {
           break;
         }
       }
-    }// toda la lista
-    elseif( isset($_dat) ){
-      $_ = $_dat;
     }
+
     return $_;
   }
 

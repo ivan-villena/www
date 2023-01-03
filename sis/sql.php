@@ -1,8 +1,20 @@
 <?php
-// Código sql 
+
+/* lenguaje SQL */
 class sis_sql {
-  
-  // ejecuto codigo sql 
+
+  // Tipos
+  static array $_tip = [    
+  ];
+  static function tip( string $ide ){
+
+    if( empty(self::$_tip) ){
+      self::$_tip = api_app::dat('app_tip',['ver'=>"`len` LIKE '%sql%'",'niv'=>["ide"],'ele'=>["ope"]]);
+    }
+
+    return isset(self::$_tip[$ide]) ? self::$_tip[$ide] : new stdClass;
+  }  
+  // ejecuto codigo
   static function dec( ...$val ){  
     $_ = []; 
     $err = [];
@@ -66,7 +78,7 @@ class sis_sql {
 
     return $_;
   }
-  // codifica instrucciones de consultas
+  // codifico instrucciones
   static function cod( string $ide = '', array $ope = [], string $tip='ver' ) : array {
     $ide = explode('.',$ide);
     $_=[
@@ -301,14 +313,13 @@ class sis_sql {
       }
     }
     elseif( $ope == 'ver' ){
-      $_var = api_dat::_('tip');
       $pos = 0;    
       // si existe una vista, veo esas columnas...
       foreach( $dat_lis as $i => $atr ){
         $pos++;      
         $_tip = explode('(',$atr->Type);      
         if( isset($_tip[1]) ) $var_cue = explode(')',$_tip[1])[0]; 
-        $_var_atr = $_var[$sql_tip = $_tip[0]];
+        $_var_atr = sis_sql::tip($sql_tip = $_tip[0]);
         $var_dat = $_var_atr->dat;
         $var_val = $_var_atr->val;
         $dat_tip = "{$var_dat}_{$var_val}";
@@ -449,7 +460,7 @@ class sis_sql {
     }
 
     return $_;
-  }  
+  }
   // registros
   static function reg( string $tip, string $ide, mixed $ope=[] ) : array | object | string {
     $_ = [];

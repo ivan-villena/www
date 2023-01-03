@@ -8,11 +8,8 @@ class api_num {
   function __construct(){
   }// getter
   static function _( string $ide, $val = NULL ) : string | array | object {
-    $_ = [];    
-    global $api_num;
-    $est = "_$ide";
-    if( !isset($api_num->$est) ) $api_num->$est = api_dat::est_ini(DAT_ESQ,"num{$est}");
-    $_dat = $api_num->$est;
+    
+    $_ = $_dat = api_app::est('num',$ide,'dat');
     
     if( !empty($val) ){
       $_ = $val;
@@ -24,10 +21,8 @@ class api_num {
           break;
         }
       }
-    }// toda la lista
-    elseif( isset($_dat) ){
-      $_ = $_dat;
     }
+    
     return $_;
   }
 
@@ -159,7 +154,7 @@ class api_num {
             unset($ope['class']); 
           }
           if( !isset($ope['id']) ){ 
-            $ope['id'] = "_num_ran-".api_dat::var_ide('num_ran');
+            $ope['id'] = "_num_ran-".api_app::var_ide('num_ran');
           }
           $htm_out = "";
           if( !in_array('val-ocu',$opc) ){ $htm_out = "

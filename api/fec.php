@@ -8,11 +8,8 @@ class api_fec {
   function __construct(){
   }// getter
   static function _( string $ide, $val = NULL ) : string | array | object {
-    $_ = [];
-    global $api_fec;
-    $est = "_$ide";
-    if( !isset($api_fec->$est) ) $api_fec->$est = api_dat::est_ini(DAT_ESQ,"fec{$est}");
-    $_dat = $api_fec->$est;
+
+    $_ = $_dat = api_app::est('fec',$ide,'dat');
     
     if( !empty($val) ){
       $_ = $val;
@@ -27,10 +24,8 @@ class api_fec {
           break;
         }
       }
-    }// toda la lista
-    elseif( isset($_dat) ){
-      $_ = $_dat;
     }
+
     return $_;
   }
 
@@ -313,27 +308,33 @@ class api_fec {
     
     return $_;
   }
+
   // devuelvo dia y hora
   static function val_tie( mixed $dat ) : string {
     $_fec = ( !is_object($dat) || get_class($dat)=='stdClass' ) ? api_fec::val_dec($dat) : $dat;
     return $_fec->format('Y/m/d H:i:s');
-  }// devuelvo dia
+  }
+  // devuelvo dia
   static function val_dia( mixed $dat ) : string {
     $_fec = ( !is_object($dat) || get_class($dat)=='stdClass' ) ? api_fec::val_dec($dat) : $dat;
     return $_fec->format('w');
-  }// devuelvo hora
+  }
+  // devuelvo hora
   static function val_hor( mixed $dat ) : string {
     $_fec = ( !is_object($dat) || get_class($dat)=='stdClass' ) ? api_fec::val_dec($dat) : $dat;
     return $_fec->format('H:i:s');
-  }// devuelvo dia semanal
+  }
+  // devuelvo dia semanal
   static function val_sem( mixed $dat ) : string {
     $_fec = ( !is_object($dat) || get_class($dat)=='stdClass' ) ? api_fec::val_dec($dat) : $dat;
     return $_fec->format('w');
-  }// devuelvo mes
+  }
+  // devuelvo mes
   static function val_mes( mixed $dat ) : string {
     $_fec = ( !is_object($dat) || get_class($dat)=='stdClass' ) ? api_fec::val_dec($dat) : $dat;
     return $_fec->format('Y/m');
-  }// devuelvo año
+  }
+  // devuelvo año
   static function val_año( mixed $dat ) : string {
     $_fec = ( !is_object($dat) || get_class($dat)=='stdClass' ) ? api_fec::val_dec($dat) : $dat;
     return $_fec->format('Y');

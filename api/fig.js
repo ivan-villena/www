@@ -3,16 +3,10 @@
 
 class api_fig {
 
-  constructor(){      
-  }// getter
+  // getter
   static _( $ide, $val ){
-    let $_ = [], $_dat, $_est = `_${$ide}`;
-    
-    // aseguro datos
-    if( !$api_fig || $api_fig[$_est] === undefined ){
-      // ...pido datos
-    }
-    $_dat = $api_fig[$_est];
+    let $_, $_dat;
+    $_ = $_dat = api_app.est('fig',$ide,'dat');
 
     if( !!($val) ){
       $_ = $val;
@@ -25,9 +19,7 @@ class api_fig {
         }        
       }
     }
-    else{
-      $_ = $_dat ? $_dat : [];
-    }
+    
     return $_;
   }
 

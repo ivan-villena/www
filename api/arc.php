@@ -6,14 +6,10 @@ class api_arc {
   static string $EJE = "api_arc.";
 
   function __construct(){
-  }
-  // getter
+  }// getter
   static function _( string $ide, $val = NULL ) : string | array | object {
-    $_ = [];    
-    global $api_arc;
-    $est = "_$ide";
-    if( !isset($api_arc->$est) ) $api_arc->$est = api_dat::est_ini(DAT_ESQ,"arc{$est}");
-    $_dat = $api_arc->$est;
+
+    $_ = $_dat = api_app::est('arc',$ide,'dat');
     
     if( !empty($val) ){
       $_ = $val;
@@ -25,15 +21,12 @@ class api_arc {
           break;
         }
       }
-    }// toda la lista
-    elseif( isset($_dat) ){
-      $_ = $_dat;
     }
     return $_;
   }
 
   // valido archivos por formatos para include/s
-  static function val_ide( string $ide, array $arc = [ 'html', 'php' ] ) : string {
+  static function val( string $ide, array $arc = [ 'html', 'php' ] ) : string {
     $_ = '';
     foreach( $arc as $tip ){
       if( file_exists( $rec = "{$ide}.{$tip}" ) ){

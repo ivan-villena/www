@@ -11,11 +11,11 @@ class hol_bib {
     // libro del kin
     case 'kin':
 
-      if( $api_doc._var ) $.lis = $api_doc._var.nextElementSibling;
+      if( $dom.dat.var ) $.lis = $dom.dat.var.nextElementSibling;
 
-      $.res = $api_doc._var.querySelector('.hol-kin');
+      $.res = $dom.dat.var.querySelector('.hol-kin');
 
-      if( $.val = api_num.val( $api_doc._var.querySelector('[name="ide"]').value ) ) $.kin_ide = `#kin-${api_num.val($.val,3)}`;
+      if( $.val = api_num.val( $dom.dat.var.querySelector('[name="ide"]').value ) ) $.kin_ide = `#kin-${api_num.val($.val,3)}`;
       
       switch($tip){
       case 'val':

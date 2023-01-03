@@ -8,11 +8,8 @@ class api_fig {
   function __construct(){
   }// getter
   static function _( string $ide, $val = NULL ) : string | array | object {
-    $_ = [];    
-    global $api_fig;
-    $est = "_$ide";
-    if( !isset($api_fig->$est) ) $api_fig->$est = api_dat::est_ini(DAT_ESQ,"fig{$est}");
-    $_dat = $api_fig->$est;
+
+    $_ = $_dat = api_app::est('fig',$ide,'dat');
     
     if( !empty($val) ){
       $_ = $val;
@@ -24,10 +21,8 @@ class api_fig {
           break;
         }
       }
-    }// toda la lista
-    elseif( isset($_dat) ){
-      $_ = $_dat;
     }
+
     return $_;
   }
 
@@ -59,7 +54,7 @@ class api_fig {
 
   // icono : .fig_ico.$ide
   static function ico( string $ide, array $ele=[] ) : string {
-    $_ = "<span class='fig_ico'></span>";
+    $_ = "<span class='fig_ico'></span>";    
     $fig_ico = api_fig::_('ico');
     if( isset($fig_ico[$ide]) ){
       $eti = 'span';      

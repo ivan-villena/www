@@ -4,15 +4,10 @@
 // Elemento : <eti ...atr="val"> ...htm + ...tex </eti>
 class api_ele {
 
-  constructor(){      
-  }// getter
+  // getter
   static _( $ide, $val ){
-    let $_ = [], $_dat, $est = `_${$ide}`;
-    
-    if( !$api_ele || $api_ele[$est] === undefined ){
-      // ...pido datos
-    }
-    $_dat = $api_ele[$est];
+    let $_, $_dat;
+    $_ = $_dat = api_app.est('ele',$ide,'dat');
 
     if( !!($val) ){
       $_ = $val;
@@ -24,9 +19,6 @@ class api_ele {
           break;
         }        
       }
-    }
-    else{
-      $_ = $_dat ? $_dat : [];
     }
     return $_;
   }

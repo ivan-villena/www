@@ -7,20 +7,20 @@ function sis_adm( $tip, $dat, $val, ...$opc ){
   let $ = api_dat.var($dat);
   
   // -> desde form : vacío resultados previos
-  if( $api_doc._var && ( $.res = $api_doc._var.querySelector('.ope_res') ) ){ 
+  if( $dom.dat.var && ( $.res = $dom.dat.var.querySelector('.ope_res') ) ){ 
 
     api_ele.val_eli($.res);
   }
   // -> desde menu : capturo form
   else if( $dat.nodeName && $dat.nodeName == 'A' ){
 
-    $api_doc._var = $dat.parentElement.nextElementSibling.querySelector(`.ide-${$tip}`);
+    $dom.dat.var = $dat.parentElement.nextElementSibling.querySelector(`.ide-${$tip}`);
   }
   
   switch( $tip ){
   // peticiones
   case 'aja':
-    $.lis = $api_doc._var.querySelector(`nav.lis`);
+    $.lis = $dom.dat.var.querySelector(`nav.lis`);
     api_ele.val_eli($.lis);
     $sis_log.php.forEach( $log => {
       $.ver = document.createElement('a'); 
@@ -32,7 +32,7 @@ function sis_adm( $tip, $dat, $val, ...$opc ){
     break;
   // iconos
   case 'ico':
-    $.lis = $api_doc._var.querySelector(`ul.lis`);
+    $.lis = $dom.dat.var.querySelector(`ul.lis`);
     if( !$val ){
       // limpio listado
       api_ele.val_eli($.lis);
@@ -63,7 +63,7 @@ function sis_adm( $tip, $dat, $val, ...$opc ){
       else{
         api_lis.val_cod($.lis.children).forEach( $e => {
 
-          if( api_dat.ver( $e.querySelector('.ide').innerHTML, '^^', $dat.value ) ){
+          if( api_app.val( $e.querySelector('.ide').innerHTML, '^^', $dat.value ) ){
             $e.classList.contains(DIS_OCU) && $e.classList.remove(DIS_OCU);
           }
           else if( !$e.classList.contains(DIS_OCU) ){
@@ -75,7 +75,7 @@ function sis_adm( $tip, $dat, $val, ...$opc ){
     break;
   // base de datos
   case 'sql':
-    $.cod = $api_doc._var.querySelector('[name="cod"]').value;
+    $.cod = $dom.dat.var.querySelector('[name="cod"]').value;
     if( $.cod ){
 
       api_eje.val( ['sis_sql::dec', [ $.cod ] ], $res => {
@@ -99,13 +99,13 @@ function sis_adm( $tip, $dat, $val, ...$opc ){
     break;
   // servidor
   case 'php':    
-    $.val = $api_doc._var.querySelector('pre.ope_res');
+    $.val = $dom.dat.var.querySelector('pre.ope_res');
     $.val.classList.add(DIS_OCU);
     $.val.innerText = '';
     $.res.classList.add(DIS_OCU);
-    $.htm = $api_doc._var.querySelector('[name="htm"]').checked;
-    if( $.ide = $api_doc._var.querySelector('[name="ide"]').value ){
-      api_eje.val([ $.ide, eval(`[${$api_doc._var.querySelector('[name="par"]').value}]`) ], $res => {
+    $.htm = $dom.dat.var.querySelector('[name="htm"]').checked;
+    if( $.ide = $dom.dat.var.querySelector('[name="ide"]').value ){
+      api_eje.val([ $.ide, eval(`[${$dom.dat.var.querySelector('[name="par"]').value}]`) ], $res => {
         if( $.htm ){
           $.res.innerHTML = $res;
           $.res.classList.remove(DIS_OCU);
@@ -118,13 +118,13 @@ function sis_adm( $tip, $dat, $val, ...$opc ){
     break;
   // terminal
   case 'jso':
-    $.cod = $api_doc._var.querySelector('[name="cod"]');
+    $.cod = $dom.dat.var.querySelector('[name="cod"]');
 
     try{
 
       $.val = eval($.cod.value);
 
-      $.dat_tip = api_dat.tip($.val);
+      $.dat_tip = api_app.tip($.val);
 
       if( $.dat_tip.dat == 'obj' ){
 
@@ -156,16 +156,16 @@ function sis_adm( $tip, $dat, $val, ...$opc ){
     case 'val':
       $dat.parentElement.parentElement.querySelectorAll(`.${FON_SEL}`).forEach( $e => $e.classList.remove(FON_SEL) );
       $dat.nextElementSibling.classList.add(FON_SEL);
-      $.res = $api_doc._var.querySelector('div.ele');
+      $.res = $dom.dat.var.querySelector('div.ele');
       api_ele.val_eli($.res);
       $.ver = $dat.nextElementSibling.innerText.replaceAll('\n','');
       $.res.innerHTML = api_ele.var('eti',document.querySelector($.ver));
       break;      
     case 'cod':
-      $.res = $api_doc._var.querySelector('div.ele_nod');          
-      api_ele.val_eli($api_doc._var.querySelector('div.ele'));
+      $.res = $dom.dat.var.querySelector('div.ele_nod');          
+      api_ele.val_eli($dom.dat.var.querySelector('div.ele'));
       api_ele.val_eli($.res);
-      $.cod = $api_doc._var.querySelector('[name="cod"]');
+      $.cod = $dom.dat.var.querySelector('[name="cod"]');
 
       $.val = document.querySelectorAll($.cod.value);
 

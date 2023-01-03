@@ -8,11 +8,8 @@ class api_obj {
   function __construct(){
   }// getter 
   static function _( string $ide, $val = NULL ) : string | array | object {
-    $_ = [];    
-    global $api_obj;
-    $est = "_$ide";
-    if( !isset($api_obj->$est) ) $api_obj->$est = api_dat::est_ini(DAT_ESQ,"obj{$est}");
-    $_dat = $api_obj->$est;
+    
+    $_ = $_dat = api_app::est('obj',$ide,'dat');
     
     if( !empty($val) ){
       $_ = $val;
@@ -24,10 +21,8 @@ class api_obj {
           break;
         }
       }
-    }// toda la lista
-    elseif( isset($_dat) ){
-      $_ = $_dat;
     }
+    
     return $_;
   }
 
@@ -51,7 +46,7 @@ class api_obj {
         $_="<input type='radio' disabled>";
       }
       else{ 
-        $tip = api_dat::tip($dat); 
+        $tip = api_app::tip($dat); 
         $tip_dat = $tip['dat']; 
         $tip_val = $tip['val']; 
       }
@@ -248,7 +243,7 @@ class api_obj {
       // esquema.estructura : tabla de la base
       elseif( preg_match("/[A-Za-z0-9_]+\.[A-Za-z0-9_]+$/",$dat) ){
   
-        $_ = api_dat::get($dat,$ope);
+        $_ = api_app::dat($dat,$ope);
         
       }
     }// convierto : {} => []

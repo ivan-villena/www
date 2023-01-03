@@ -4,16 +4,10 @@
 // Texto : caracter + letra + oracion + parrafo
 class api_tex {
   
-  constructor(){    
-  }// getter
+  // getter
   static _( $ide, $val ){
-    let $_ = [], $_dat, $est = `_${$ide}`;
-    
-    // aseguro datos
-    if( !$api_tex || $api_tex[$est] === undefined ){
-      // ...pido datos
-    }
-    $_dat = $api_tex[$est];
+    let $_, $_dat;
+    $_ = $_dat = api_app.est('tex',$ide,'dat');
 
     if( !!($val) ){
       $_ = $val;
@@ -26,9 +20,7 @@ class api_tex {
         }        
       }
     }
-    else{
-      $_ = $_dat ? $_dat : [];
-    }
+    
     return $_;
   }
 

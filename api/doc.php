@@ -8,11 +8,8 @@ class api_doc {
   public function __construct(){
   }// getter
   static function _( string $ide, $val = NULL ) : string | array | object {
-    $_ = [];    
-    global $api_doc;
-    $est = "_$ide";
-    if( !isset($api_doc->$est) ) $api_doc->$est = api_dat::est_ini(DAT_ESQ,"doc{$est}");
-    $_dat = $api_doc->$est;
+
+    $_ = $_dat = api_app::est('doc',$ide,'dat');
     
     if( !empty($val) ){
       $_ = $val;
@@ -24,10 +21,8 @@ class api_doc {
           break;
         }
       }
-    }// toda la lista
-    elseif( isset($_dat) ){
-      $_ = $_dat;
     }
+
     return $_;
   }
 
@@ -322,7 +317,7 @@ class api_doc {
     $_ = "";
     
     // opciones de filtro por texto
-    $_ .= api_dat::var_ope(['ver','tex'],[
+    $_ .= api_app::var_ope(['ver','tex'],[
       'ite'=>[ 
         'dat'=>"()($)dat()" 
       ],
@@ -382,7 +377,7 @@ class api_doc {
       }
 
       // contenido: texto
-      if( isset($ope['tex']) ){        
+      if( isset($ope['tex']) ){
         $ope_tex = [];
         if( is_array($ope['tex']) ){
           foreach( $ope['tex'] as $tex ){
@@ -393,9 +388,10 @@ class api_doc {
         }
         $_ .= "<p".api_ele::atr($ele['tex']).">".implode('<br>',$ope_tex)."</p>" ;
       }
+
       // elementos
       if( isset($ope['htm']) ){
-        $_ .= api_ele::val_dec($ope['tex']);
+        $_ .= api_ele::val(...api_lis::val_ite($ope['htm']));
       }
 
       // botones: aceptar - cancelar

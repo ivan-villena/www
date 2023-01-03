@@ -3,16 +3,10 @@
 
 class api_opc {
 
-  constructor(){      
-  }// getter
+  // getter
   static _( $ide, $val ){
-    let $_ = [], $_dat, $est = `_${$ide}`;
-    
-    // aseguro datos
-    if( !$api_opc || $api_opc[$est] === undefined ){
-      // ...pido datos
-    }
-    $_dat = $api_opc[$est];
+    let $_, $_dat;
+    $_ = $_dat = api_app.est('opc',$ide,'dat');
 
     if( !!($val) ){
       $_ = $val;
@@ -25,9 +19,7 @@ class api_opc {
         }        
       }
     }
-    else{
-      $_ = $_dat ? $_dat : [];
-    }
+    
     return $_;
   }
 

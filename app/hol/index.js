@@ -6,8 +6,8 @@ function hol_ini(){
   if( ['kin','psi'].includes($sis_log.uri.cab) ){
     
     // inicializo: tablero + listado
-    api_lis.tab_ini('api_hol');
-    api_lis.est_ini();
+    api_est.tab_ini('api_hol');
+    api_est.lis_ini();
   }
 }
 
@@ -23,9 +23,9 @@ function hol_dia( $dat ){
   $.uri = `${$sis_log.uri.esq}/${$.uri_cab}/${$.uri_art}`;
   
   // calendario gregoriano
-  if( $api_doc._var.classList.contains('fec') ){
+  if( $dom.dat.var.classList.contains('fec') ){
     
-    if( $.fec = $api_doc._var.querySelector('[name="fec"]').value ){
+    if( $.fec = $dom.dat.var.querySelector('[name="fec"]').value ){
 
       api_arc.url(`${$.uri}/fec=${$.fec.replaceAll('/','-')}`);
     }
@@ -34,13 +34,13 @@ function hol_dia( $dat ){
     }
   }
   // sincronario
-  else if( $api_doc._var.classList.contains('sin') ){
+  else if( $dom.dat.var.classList.contains('sin') ){
     $.atr = {};
     $.hol = [];
     $.val = true;
     ['gal','ani','lun','dia'].forEach( $v => {
 
-      $.atr[$v] = $api_doc._var.querySelector(`[name="${$v}"]`).value;
+      $.atr[$v] = $dom.dat.var.querySelector(`[name="${$v}"]`).value;
 
       if( !$.atr[$v] ){ 
         return $.val = false;          

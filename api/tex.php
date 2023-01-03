@@ -5,16 +5,13 @@
 class api_tex {
 
   static string $IDE = "api_tex-";
-  static string $EJE = "api_tex.";
+  static string $EJE = "api_tex.";    
 
   function __construct(){
   }// getter
   static function _( string $ide, $val = NULL ) : string | array | object {
-    $_ = [];    
-    global $api_tex;
-    $est = "_$ide";
-    if( !isset($api_tex->$est) ) $api_tex->$est = api_dat::est_ini(DAT_ESQ,"tex{$est}");
-    $_dat = $api_tex->$est;
+
+    $_ = $_dat = api_app::est('tex',$ide,'dat');
     
     if( !empty($val) ){
       $_ = $val;
@@ -26,10 +23,8 @@ class api_tex {
           break;
         }
       }
-    }// toda la lista
-    elseif( isset($_dat) ){
-      $_ = $_dat;
     }
+    
     return $_;
   }
 
@@ -75,7 +70,7 @@ class api_tex {
             $dat_lis = [];
           }        
           if( empty($ope['id']) ){ 
-            $ope['id']="_tex-{$tip}-".api_dat::var_ide("_tex-{$tip}-");
+            $ope['id']="_tex-{$tip}-".api_app::var_ide("_tex-{$tip}-");
           }
           $ope['list'] = "{$ope['id']}-lis";
           $lis_htm = "
