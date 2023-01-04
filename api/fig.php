@@ -76,7 +76,7 @@ class api_fig {
     // por aplicacion
     if( isset($dat[2]) ){
       $ele = isset($dat[3]) ? $dat[3] : [];
-      $_ = api_dat::val('ima', "{$dat[0]}.{$dat[1]}", $dat[2], $ele );
+      $_ = api_est::val('ima', "{$dat[0]}.{$dat[1]}", $dat[2], $ele );
     }
     // por directorio
     else{

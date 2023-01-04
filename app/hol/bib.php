@@ -599,14 +599,14 @@ class hol_bib {
                     ".api_hol::ima("sel",$_sel,['class'=>"mar_der-1"])."
                     <p>
                       <b class='val'>Dentro</b><c>:</c> Sello Solar <n>{$_sel->ide}</n>
-                      <br><q>".api_tex::let($_sel->sol_pla_des)."</q>
+                      <br>".api_tex::let($_sel->sol_pla_des)."
                     </p>
                   </li>
                   <li>
                     ".api_hol::ima("sel",$_par,['class'=>"mar_der-1"])."
                     <p>
                       <b class='val'>Fuera</b><c>:</c> Sello Solar <n>{$_par->ide}</n>
-                      <br><q>".api_tex::let($_par->sol_pla_des)."</q>
+                      <br>".api_tex::let($_par->sol_pla_des)."
                     </p>
                   </li>
                 </ul>

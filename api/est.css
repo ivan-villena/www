@@ -111,8 +111,8 @@ table.est.tab {
   transition: background 1s, border 1s;  
 }
 :is(ul,table).est.tab.bor-1 {
-  border-color: var(--bor_sec) !important;
-  box-shadow: 0 0 .5rem var(--bor_sec) !important;
+  border-color: var(--bor_sec);
+  box-shadow: 0 0 .5rem var(--bor_sec);
 }
 
 /* posiciones y secciones */

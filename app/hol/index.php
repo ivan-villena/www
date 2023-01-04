@@ -30,7 +30,7 @@
 
       <div class='mar-2 tex_ali-cen'>
 
-        ".api_dat::inf('hol','kin',$_hol->val['kin'],[ 'opc'=>["nom"], 'det'=>"des" ])."
+        ".api_est::inf('hol','kin',$_hol->val['kin'],[ 'opc'=>["nom"], 'det'=>"des" ])."
 
       </div>
 

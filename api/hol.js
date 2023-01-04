@@ -13,8 +13,9 @@ class api_hol {
       $_ = $val;
       if( typeof($val) != 'object' ){
         switch( $ide ){
-        case 'fec':
-          // ...calculo fecha
+        case 'sel_cod':
+          if( $val == 20 ) $val = 1;
+          if( $_dat && $_dat[$val] ) $_ = $_dat[$val];
           break;
         default:
           if( Number($val) ) $val = parseInt($val)-1;

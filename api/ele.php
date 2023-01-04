@@ -288,8 +288,10 @@ class api_ele {
         }
       }// agrego
       else{        
-        $cla_val = api_lis::val_ite($val);
-        in_array('ini',$opc) ? array_unshift($ele_cla, ...$cla_val) : array_push($ele_cla, ...$cla_val);
+        foreach( api_lis::val_ite($val) as $cla_val ){
+          if( !in_array($cla_val,$ele_cla) ) 
+            in_array('ini',$opc) ? array_unshift($ele_cla, $cla_val) : array_push($ele_cla, $cla_val);
+        }        
       }
       $ele['class'] = implode(' ',array_values($ele_cla));
       $_ = $ele;

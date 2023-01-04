@@ -347,6 +347,127 @@ class api_doc {
     return $_;
   }
 
+  // Variable : div.dat_var > label + (select,input,textarea,button)[name]
+  static function var( string $tip, string | array $ide, array $ele=[], ...$opc ) : string {
+    $_VAR = [ 
+      'ico'=>"", 
+      'nom'=>"", 
+      'des'=>"", 
+      'ite'=>[], 
+      'eti'=>[], 
+      'ope'=>[], 
+      'htm'=>"", 
+      'htm_pre'=>"", 
+      'htm_med'=>"", 
+      'htm_pos'=>"" 
+    ];
+    // identificadores
+    $dat_ide = is_string($ide) ? explode('.',$ide) : $ide;
+    if( isset($dat_ide[2]) ){
+      $esq = $dat_ide[0]; 
+      $est = $dat_ide[1];
+      $atr = $dat_ide[2];
+    }
+    elseif( isset($dat_ide[1]) ){
+      $est = $dat_ide[0];
+      $atr = $dat_ide[1];
+    }
+    else{
+      $atr = $dat_ide[0];
+    }
+
+    // por atributi de la base
+    if( $tip == 'atr' ){
+
+      if( !empty($_atr = api_app::est($esq,$est,'atr',$atr)) ) $_var = [ 
+        'nom'=>$_atr->nom, 
+        'ope'=>$_atr->var 
+      ];
+    }
+    // carga operadores: esquema - dato - valor
+    elseif( $tip != 'val' ){ 
+
+      $_var = api_app::var($tip,$esq,$est,$atr);
+    }
+
+    // combino operadores
+    if( !empty($_var) ){
+
+      if( !empty($_var['ope']) ){
+        $ele['ope'] = api_ele::val_jun($_var['ope'],isset($ele['ope']) ? $ele['ope'] : []);
+        unset($_var['ope']);
+      }
+      $ele = api_obj::val_jun($ele,$_var);
+    }
+    // identificadores
+    if( empty($ele['ope']['id'])  && !empty($ele['ide']) ){
+      $ele['ope']['id'] = $ele['ide'];
+    }
+    // nombre en formulario
+    if( empty($ele['ope']['name']) ){
+      $ele['ope']['name'] = $atr;
+    }      
+    // proceso html + agregados
+    $agr = api_ele::htm($ele);
+
+    // etiqueta
+    $eti_htm='';
+    if( !isset($ele['eti']) ) $ele['eti'] = [];
+    if( !in_array('eti',$opc) ){
+      // icono o texto
+      if( !empty($ele['ico']) ){
+        $eti_htm = api_fig::ico($ele['ico']);
+      }elseif( !empty($ele['nom']) ){    
+        $eti_htm = api_tex::let( ( !in_array('not_sep',$opc) && preg_match("/[a-zA-Z\d]$/",$ele['nom']) ) ? "{$ele['nom']}:" : $ele['nom']);
+      }
+      // agrego for/id e imprimo
+      if( !empty($eti_htm) ){    
+        if( isset($ele['id']) ){
+          $ele['eti']['for'] = $ele['id'];
+        }elseif( isset($ele['ope']['id']) ){
+          $ele['eti']['for'] = $ele['ope']['id'];
+        }
+        $eti_htm = "<label".api_ele::atr($ele['eti']).">{$eti_htm}</label>";
+      }
+    }
+
+    // contenido medio
+    if( !in_array('eti_fin',$opc) ){
+      $eti_ini = $eti_htm.( !empty($agr['htm_med']) ? $agr['htm_med'] : '' ); 
+      $eti_fin = "";
+    }else{
+      $eti_ini = ""; 
+      $eti_fin = ( !empty($agr['htm_med']) ? $agr['htm_med'] : '' ).$eti_htm;
+    }
+
+    // valor: hmtl o controlador
+    if( isset($agr['htm']) ){
+      $val_htm = $agr['htm'];
+    }else{
+      if( isset($ele['val']) ){
+        $ele['ope']['val'] = $ele['val'];
+      }
+      if( empty($ele['ope']['name']) && isset($ele['ide']) ){
+        $ele['ope']['name'] = $ele['ide'];
+      }
+      $val_htm = api_ele::val($ele['ope']);
+    }
+
+    // contenedor
+    if( !isset($ele['ite']) ) $ele['ite']=[];      
+    if( !isset($ele['ite']['title']) ) $ele['ite']['title'] = isset($ele['tit']) ? $ele['tit'] : '';
+
+    return "
+    <div".api_ele::atr(api_ele::cla($ele['ite'],"dat_var",'ini')).">
+      ".( !empty($agr['htm_ini']) ? $agr['htm_ini'] : '' )."
+      {$eti_ini}
+      {$val_htm}
+      {$eti_fin}
+      ".( !empty($agr['htm_fin']) ? $agr['htm_fin'] : '' )."      
+    </div>
+    ";   
+  }  
+
   // Carteles : advertencia + confirmacion
   static function tex( array $ope = [], array $ele = [] ) : string {
     foreach( ['sec','ico','tex'] as $i ){ if( !isset($ele[$i]) ) $ele[$i] = []; }
