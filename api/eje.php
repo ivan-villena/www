@@ -10,7 +10,7 @@ class api_eje {
   // getter
   static function _( string $ide, $val = NULL ) : string | array | object {
 
-    $_ = $_dat = api_app::est('eje',$ide,'dat');
+    $_ = $_dat = sis_dat::est('eje',$ide,'dat');
     
     if( !empty($val) ){
       $_ = $val;
@@ -66,7 +66,6 @@ class api_eje {
     }
     return $_;
   }
-
   // objeto de clase
   static function cla( string $ide, ...$ini ) : object | array {
 
@@ -101,8 +100,7 @@ class api_eje {
       $_ = ['_err'=>"{-_-}.err: No existe el directorio '{$ide}' en este servidor..."];
     }  
     return $_;
-  }
-  
+  }  
   // instancia de clase con extract
   static function ins( string $ide, ...$par ) : array {
     $_ = [];
@@ -111,8 +109,7 @@ class api_eje {
       $_[$ide] = empty($par) ? new $ide() : new $ide(...$par);
 
     return $_;
-  }
-  
+  }  
   // ejecuto método de clase
   static function met( string $ide, mixed $par=[], array $ini=[] ) : mixed {
     $_ = FALSE;
@@ -172,4 +169,6 @@ class api_eje {
     }
     return $_;
   }
+
+  
 }

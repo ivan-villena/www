@@ -8,7 +8,7 @@ class api_arc {
   static _( $ide, $val ){
     
     let $_, $_dat;
-    $_ = $_dat = api_app.est('arc',$ide,'dat');
+    $_ = $_dat = sis_dat.est('arc',$ide,'dat');
 
     if( !!($val) ){
       $_ = $val;

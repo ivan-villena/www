@@ -9,7 +9,7 @@ class api_ele {
   }// getter
   static function _( string $ide, $val = NULL ) : string | array | object {
 
-    $_ = $_dat = api_app::est('ele',$ide,'dat');
+    $_ = $_dat = sis_dat::est('ele',$ide,'dat');
     
     if( !empty($val) ){
       $_ = $val;
@@ -127,7 +127,7 @@ class api_ele {
     return $_;
   }
 
-  // armo etiqueta : <eti atr="val" >...htm</eti>
+  // Etiqueta : <eti atr="val" >...htm</eti>
   static function eti( array $ele ) : string {
     $_ = "";
     $eti = 'span';
@@ -155,7 +155,7 @@ class api_ele {
     </{$eti}>" : '' );
     return $_;
   }
-  // devuelvo atributos : "< ...atr="">"
+  // Atributos : "< ...atr="">"
   static function atr( array $ele, array | object $dat = NULL ) : string {
     $_ = '';
     if( isset($dat) ){
@@ -186,7 +186,7 @@ class api_ele {
     }
     return $_;
   }
-  // contenido: htm + htm_ini + htm_med + htm_fin
+  // Contenido: htm + htm_ini + htm_med + htm_fin
   static function htm( array &$ele ) : array {
     $_=[];
     foreach( ['htm','htm_ini','htm_med','htm_fin'] as $tip ){
@@ -201,10 +201,11 @@ class api_ele {
     }
     return $_;
   }
-
-  // ejecuciones
+  // Ejecuciones
   static function eje( array &$ele, string $ide, string $val = NULL, ...$opc ) : array {
+    
     $_ = $ele;
+    
     $_eve = [ 
       'cli'=>"onclick",
       'cam'=>"onchange",
@@ -213,17 +214,14 @@ class api_ele {
       'hov'=>"onhover",
       'tec'=>"onkeypress"
     ];
+
     if( isset($_eve[$ide]) ){
 
       $ide = $_eve[$ide];
 
       if( !isset($val) ){
 
-        $_ = [];
-
-        if( isset($ele[$ide]) ){
-          $_ = explode(';',$ele[$ide]);
-        }
+        $_ = isset($ele[$ide]) ? explode(';',$ele[$ide]) : [];
 
       }// operaciones por valor
       else{
@@ -250,7 +248,7 @@ class api_ele {
     }
     return $_;
   }
-  // clases
+  // Clases
   static function cla( array &$ele, mixed $val = NULL, ...$opc ) : array {
     $_ = $ele;
     // listado
@@ -287,18 +285,16 @@ class api_ele {
           if( $cla_ide == $cla_ver ) $ele_cla[$cla_pos] = $cla_val;
         }
       }// agrego
-      else{        
-        foreach( api_lis::val_ite($val) as $cla_val ){
-          if( !in_array($cla_val,$ele_cla) ) 
-            in_array('ini',$opc) ? array_unshift($ele_cla, $cla_val) : array_push($ele_cla, $cla_val);
-        }        
+      else{
+        $cla_val = api_lis::val_ite($val);
+        in_array('ini',$opc) ? array_unshift($ele_cla, ...$cla_val) : array_push($ele_cla, ...$cla_val);            
       }
       $ele['class'] = implode(' ',array_values($ele_cla));
       $_ = $ele;
     }
     return $_;
   }
-  // estilos
+  // Estilos
   static function css( array &$ele, mixed $val = NULL, ...$opc ) : array {
     $_ = $ele;
     // listado

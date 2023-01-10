@@ -9,7 +9,7 @@ class api_hol {
   }// getter
   static function _( string $ide, mixed $val = NULL ) : string | array | object {
 
-    $_ = $_dat = api_app::est('hol',$ide,'dat');
+    $_ = $_dat = sis_dat::est('hol',$ide,'dat');
     
     if( isset($val) ){
       $_ = $val;
@@ -17,7 +17,7 @@ class api_hol {
         switch( $ide ){
         case 'fec':
           $fec = api_fec::_('dat',$val);
-          if( isset($fec->dia)  ) $_ = api_app::dat( api_hol::_('psi'), [ 
+          if( isset($fec->dia)  ) $_ = sis_dat::get( api_hol::_('psi'), [ 
             'ver'=>[ ['fec_dia','==',$fec->dia], ['fec_mes','==',$fec->mes] ],
             'opc'=>['uni'] 
           ]);
@@ -117,7 +117,7 @@ class api_hol {
       $dia = intval($val[3]);
 
       // mes y día
-      $_psi = api_app::dat( api_hol::_('psi'), [ 'ver'=>[ ['lun','==',$lun], ['lun_dia','==',$dia] ], 'opc'=>['uni'] ]);
+      $_psi = sis_dat::get( api_hol::_('psi'), [ 'ver'=>[ ['lun','==',$lun], ['lun_dia','==',$dia] ], 'opc'=>['uni'] ]);
   
       if( isset($_psi->fec_mes) && isset($_psi->fec_dia) ){
 
@@ -375,7 +375,7 @@ class api_hol {
     $_ = new stdClass;
 
     if( isset($fec->dia)  ) 
-      $_ = api_app::dat( api_hol::_('psi'), [ 
+      $_ = sis_dat::get( api_hol::_('psi'), [ 
         'ver'=>[ ['fec_dia','==',$fec->dia], ['fec_mes','==',$fec->mes] ],
         'opc'=>['uni'] 
       ]);
@@ -535,7 +535,7 @@ class api_hol {
           // salteo el destino
           if( ( $ide = $_par->cod ) == 'des' ) continue;
           // busco datos de parejas
-          $_par = api_app::dat( api_hol::_('sel_par'), [ 'ver'=>[ ['cod','==',$ide] ], 'opc'=>'uni' ]);
+          $_par = sis_dat::get( api_hol::_('sel_par'), [ 'ver'=>[ ['cod','==',$ide] ], 'opc'=>'uni' ]);
           $kin = api_hol::_('kin',$dat->{"par_{$ide}"});
           $_ .= "
           <p class='tex mar_arr-2 tex_ali-izq'>
@@ -1712,13 +1712,20 @@ class api_hol {
     ///////////////////////////////////////////////////////////////////////////////////
     // modifico html por patrones: posicion por dependencia
     if( !!$ope['val_sec_par'] ){
+
       $par_est = $est;
-      $par_ele = [ 'pos'=>[] ];
+      $par_ele = [ 
+        'pos'=>[], // para todas las posiciones: bordes, color, imagen
+        'des'=>[] // para el destino : posicion principal
+      ];
+      
+      // cambio clases del operador
       if( !empty($ele['class']) ){
         $par_ele['pos']['class'] = $ele['class'];
         unset($ele['class']);
       }
-      // cambio clases del operador
+
+      // cambio datos del operador
       if( isset($ele["data-fec_dat"]) ){
         // cambio valor 
         if( $est == 'psi' && isset($ele["data-hol_kin"]) ){
@@ -1752,13 +1759,12 @@ class api_hol {
           }
         }
       }
-      api_ele::cla($ele,'dep');
-      $par_ope = [
+      api_ele::cla($ele,'dep');      
+      $_ = api_hol::tab($par_est,'par',[
         'ide' => $val,
         'sec' => [ 'par'=>$ope['sec']['par'] - 1, 'pos_dep'=>1 ],// fuera de posicion principal
         'pos' => isset($ope['pos']) ? $ope['pos'] : [ 'ima'=>"hol.{$par_est}.ide" ]
-      ];
-      $_ = api_hol::tab($par_est,'par',$par_ope,$par_ele);
+      ],$par_ele);
     }
 
     return $_;

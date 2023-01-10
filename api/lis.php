@@ -9,7 +9,7 @@ class api_lis {
   }// getter
   static function _( string $ide, $val = NULL ) : string | array | object {
     
-    $_ = $_dat = api_app::est('lis',$ide,'dat');
+    $_ = $_dat = sis_dat::est('lis',$ide,'dat');
     
     if( !empty($val) ){
       $_ = $val;
@@ -90,7 +90,7 @@ class api_lis {
   
           foreach( $ope['ver'] as $ver ){
   
-            if( $atr == $ver[0] ) $val_ite []= api_app::val( $val, $ver[1], $ver[2] );
+            if( $atr == $ver[0] ) $val_ite []= sis_dat::val( $val, $ver[1], $ver[2] );
           }
         }
         // evaluo resultados
@@ -232,14 +232,17 @@ class api_lis {
 
     $tod = empty($opc);
     
-    if( $tod || in_array('tog',$opc) ){        
+    // - expandir-contraer items
+    if( $tod || in_array('tog',$opc) ){
       
-      $_ .= api_doc::val_ope( $tip == 'dep' || $tip == 'nav' ? ['eje'=>"{$_eje}_tog(this,"] : [] );
+      $_ .= api_lis::ope_tog( $tip == 'dep' || $tip == 'nav' ? ['eje'=>"{$_eje}_tog(this,"] : [] );
     }
+    // - filtrar items
     if( $tod || in_array('ver',$opc) ){ 
-      $_ .= api_dat::var('val','ver',[ 
+      $_ .= api_doc::var('val','ver',[ 
         'des'=> "Filtrar...",
-        'htm'=> api_doc::val_ver([ 'cue'=>in_array('cue',$opc) ? 0 : NULL, 'eje'=>"{$_eje}_ver(this);" ])
+        'ite'=> [ 'class'=>'tam-cre' ],
+        'htm'=> api_lis::ope_ver([ 'cue'=>in_array('cue',$opc) ? 0 : NULL, 'eje'=>"{$_eje}_ver(this);" ])
       ]);
     }
 
@@ -251,6 +254,52 @@ class api_lis {
       $_ = api_ele::val($ele['ope']);
     }      
     return $_;
+  }// - Filtros : operador + valor textual + ( totales )
+  static function ope_ver( string | array $dat = [], array $ele = [], ...$opc ) : string {
+    $_ = "";
+    
+    // opciones de filtro por texto
+    $_ .= sis_dat::var_ope(['ver','tex'],[
+      'ite'=>[ 
+        'dat'=>"()($)dat()" 
+      ],
+      'eti'=>[ 
+        'name'=>"ope", 'title'=>"Seleccionar un operador de comparación...", 'val'=>'**', 
+        'class'=>isset($dat['ele_ope']['class']) ? $dat['ele_ope']['class'] : "mar_hor-1", 'onchange'=>$dat['eje']
+      ]
+    ]);
+
+    // ingreso de valor a filtrar
+    $_ .= api_tex::var('ora', isset($dat['val']) ? $dat['val'] : '', [ 
+      'id'=>isset($dat['ide']) ? $dat['ide'] : NULL, 
+      'name'=>"val",
+      'title'=>"Introducir un valor de búsqueda...",
+      'oninput'=>!empty($dat['eje']) ? $dat['eje'] : NULL,
+      'class'=>isset($ele['class']) ? $ele['class'] : NULL,
+      'style'=>isset($ele['style']) ? $ele['class'] : NULL
+    ]);
+
+    // agrego totales
+    if( isset($dat['cue']) ){ $_ .= "
+      <p class='mar_izq-1' title='Items totales'>
+        <c>(</c><n name='tot'>".( is_array($dat['cue']) ? count($dat['cue']) : $dat['cue'] )."</n><c>)</c>
+      </p>";
+    }
+    
+    return $_;
+  }// - expandir / contraer
+  static function ope_tog( array $ele = [], ...$opc ) : string {
+    $_eje = self::$EJE."val";      
+
+    if( !isset($ele['ope']) ) $ele['ope'] = [];
+    api_ele::cla($ele['ope'],"doc_ope",'ini');
+
+    $_eje_val = isset($ele['eje']) ? $ele['eje'] : "$_eje(this,";
+    return "
+    <fieldset".api_ele::atr($ele['ope']).">
+      ".api_fig::ico('val_tog-tod', [ 'eti'=>"button", 'class'=>"tam-2", 'title'=>"Expandir todos...", 'onclick'=>$_eje_val."'tod');" ] )."
+      ".api_fig::ico('val_tog-nad', [ 'eti'=>"button", 'class'=>"tam-2", 'title'=>"Contraer todos...", 'onclick'=>$_eje_val."'nad');", 'style'=>"transform: rotate(180deg);" ] )."
+    </fieldset>";
   }
   
   /* Barra: Desplazamiento Horizontal */
@@ -305,8 +354,8 @@ class api_lis {
 
     </form>";
     return $_;
-  }  
-
+  }
+  
   /* Posicion: puteos, numerados, términos */
   static function pos( string | array $dat, array $ope = [] ) : string {
     foreach( ['lis','ite','val'] as $i ){ if( !isset($ope[$i]) ) $ope[$i]=[]; }
@@ -486,7 +535,7 @@ class api_lis {
       api_ele::cla( $ele['ope_dep'], "ite", 'ini' ); $tog_dep = "
       <form".api_ele::atr($ele['ope_dep']).">
 
-        ".api_doc::val_ope()."
+        ".api_lis::ope_tog()."
 
       </form>";
     }
@@ -567,6 +616,5 @@ class api_lis {
     $ele['opc'] = [];
     $_ .= api_lis::dep($_lis,$ele);
     return $_;
-  }    
-
+  }
 }

@@ -9,7 +9,7 @@ class api_num {
   }// getter
   static function _( string $ide, $val = NULL ) : string | array | object {
     
-    $_ = $_dat = api_app::est('num',$ide,'dat');
+    $_ = $_dat = sis_app::est('num',$ide,'dat');
     
     if( !empty($val) ){
       $_ = $val;
@@ -154,7 +154,7 @@ class api_num {
             unset($ope['class']); 
           }
           if( !isset($ope['id']) ){ 
-            $ope['id'] = "_num_ran-".api_app::var_ide('num_ran');
+            $ope['id'] = "_num_ran-".sis_app::var_ide('num_ran');
           }
           $htm_out = "";
           if( !in_array('val-ocu',$opc) ){ $htm_out = "

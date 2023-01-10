@@ -9,7 +9,7 @@ class api_fec {
   }// getter
   static function _( string $ide, $val = NULL ) : string | array | object {
 
-    $_ = $_dat = api_app::est('fec',$ide,'dat');
+    $_ = $_dat = sis_dat::est('fec',$ide,'dat');
     
     if( !empty($val) ){
       $_ = $val;

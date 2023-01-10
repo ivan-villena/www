@@ -20,24 +20,17 @@ main section.inicio > .doc_tex.-adv {
 
 /* //////////////////////////////////////////////////////////////////////// */
 /* //////////////////////////////////////////////////////////////////////// */
-/* 
-  Operador: Modulos
-*/
-
-/* 
-  Panel 
+/*  
+  Módulos
 */
 
 /* Cuentas */
-aside.doc_pan > .ide-val > .ide-cue > ul {
+body > aside > .ide-val > .ide-cue > ul {
   height: 40vh;
 }
 
-
-/* 
-  Tablero 
-*/
-body:is([data-cab="kin"],[data-cab="psi"]) main.doc_sec article {
+/* Tableros */
+body:is([data-cab="kin"],[data-cab="psi"]) > main article {
   max-width: -moz-fit-content;
   max-width: fit-content;
   padding: 0;
@@ -46,7 +39,7 @@ body:is([data-cab="kin"],[data-cab="psi"]) main.doc_sec article {
   line-height: initial;  
 }
 
-body:is([data-cab="kin"],[data-cab="psi"]) main.doc_sec article > .tab {
+body:is([data-cab="kin"],[data-cab="psi"]) > main article > .tab {
   margin: .5rem;
   padding: 1rem;
 }

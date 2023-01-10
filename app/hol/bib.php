@@ -1,4 +1,5 @@
 <?php
+
 // biblografía
 class hol_bib {
 
@@ -13,9 +14,9 @@ class hol_bib {
     case 'lib':
       $ope['opc'] = ['tog','ver','tog-dep'];
       // busco libros
-      foreach( api_app::dat("app_art",[ 'ver'=>"esq = 'hol' AND cab = 'bib'" ]) as $_lib ){
+      foreach( sis_dat::get("app_art",[ 'ver'=>"esq = 'hol' AND cab = 'bib'" ]) as $_lib ){
         // busco terminos
-        if( !empty( $_pal_lis = api_app::dat("app_ide",[ 
+        if( !empty( $_pal_lis = sis_dat::get("app_ide",[ 
           'ver'=>"`esq` = 'hol' AND `ide`='$_lib->ide'", 
           'ord'=>"`ide` ASC, `nom` ASC"
         ]) ) ){
@@ -30,7 +31,7 @@ class hol_bib {
       }      
       break;
     }
-    return is_array($_) ? api_dat::lis( $_, $ide, $ope ) : $_;
+    return is_array($_) ? api_est::inf_lis( $_, $ide, $ope ) : $_;
   }
   // tutorial
   static function tut( string $ide, array $ope = [] ) : string {
@@ -45,11 +46,11 @@ class hol_bib {
       break;
     // plasmas y descripciones
     case 'rad':
-      $_ = api_dat::lis_des('hol','rad',[ 'des_fue', 'des_pod' ]);
+      $_ = api_est::inf_des('hol','rad',[ 'des_fue', 'des_pod' ]);
       break;
     // plasmas y afirmaciones
     case 'rad-lec':
-      $_ = api_dat::lis_des('hol','rad',[ 'pla_lec' ]);
+      $_ = api_est::inf_des('hol','rad',[ 'pla_lec' ]);
       break;      
     // kines
     case 'kin_ima':
@@ -114,7 +115,7 @@ class hol_bib {
       </ul>";
       break;
     }
-    return is_array($_) ? api_dat::lis( $_, $ide, $ope ) : $_;
+    return is_array($_) ? api_est::inf_lis( $_, $ide, $ope ) : $_;
   }
   // Tierra en ascenso
   static function asc( string $ide, array $ope = [] ) : string {
@@ -122,7 +123,7 @@ class hol_bib {
     $est_ope = [ 'opc'=>['htm','cab_ocu'] ];
     switch( $ide ){
     }
-    return is_array($_) ? api_dat::lis( $_, $ide, $ope ) : $_;
+    return is_array($_) ? api_est::inf_lis( $_, $ide, $ope ) : $_;
   }
   // Factor Maya
   static function fac( string $ide, array $ope = [] ) : string {
@@ -227,7 +228,7 @@ class hol_bib {
         <li>Regente Planetario<c>:</c> $_pla->nom $_pol->des_flu<c>.</c></li>
         <li>Etapa <n>$ton</n><c>,</c> Ciclo $_arq->nom_may<c>.</c></li>
         <li>Índice Armónico <n>".api_num::val_int($_kin->fac)."</n><c>:</c> período ".api_tex::let($_kin->fac)."</li>
-        <li><q>".api_tex::let($_sel->arm_tra_des)."</q></li>
+        <li>".api_tex::let($_sel->arm_tra_des)."</li>
       </ul>";
       break;
     // kin : portales de activacion
@@ -284,7 +285,7 @@ class hol_bib {
               <td>
                 ".api_hol::ima("kin_nav_ond",$_ond,['class'=>"mar_der-1"])."
               </td>
-              <td colspan='3'>{$_sel->nom_may}<c>:</c> ".api_tex::let($_ond->fac)." <q>".api_tex::let($_ond->fac_des)."</q></td>
+              <td colspan='3'>{$_sel->nom_may}<c>:</c> ".api_tex::let($_ond->fac)." ".api_tex::let($_ond->fac_des)."</td>
             </tr>";
           }
           $_sel = api_hol::_('sel',$sel = intval($_kin->arm_tra_dia));
@@ -299,7 +300,7 @@ class hol_bib {
               <br><n>".api_num::val_int($_kin->fac)."</n><c>,</c> año <n>".api_num::val_int($_kin->fac_ini)."</n>
             </td>
             <td>
-              <q>".api_tex::let($_sel->arm_tra_des)."</q>
+              ".api_tex::let($_sel->arm_tra_des)."
             </td>
           </tr>";
         }$_.="
@@ -388,18 +389,18 @@ class hol_bib {
 
         <p>
           <n>{$_ond->ide}</n><c>.</c> <b class='ide'>{$_sel->nom_may}</b><c>:</c> ".api_tex::let($_ond->fac)."
-          <br><q>{$_ond->fac_des}</q>
+          <br>".api_tex::let($_ond->fac_des)."
         </p>";
       }            
       break;
     }
-    return is_array($_) ? api_dat::lis( $_, $ide, $ope ) : $_;
+    return is_array($_) ? api_est::inf_lis( $_, $ide, $ope ) : $_;
   }
   // Encantamiento del Sueño
   static function enc( string $ide, array $ope = [] ) : string {
     $_ = []; 
     $lis_pos = 0; 
-    $est_ope = [ 'opc'=>['htm','cab_ocu'] ];    
+    $est_ope = [ 'opc'=>['htm','cab_ocu'] ];
     switch( $ide ){
     // tonos : descripciones
     case 'ton':
@@ -412,7 +413,7 @@ class hol_bib {
         [ 
           'ima'=>api_obj::val_atr(['ide'=>'ima','nom'=>''])
         ], 
-        api_app::est('hol',"ton",'atr',[ 'ide','ond_pos','ond_pod','ond_man'])
+        sis_dat::est('hol',"ton",'atr',[ 'ide','ond_pos','ond_pod','ond_man'])
       );
       // cargo valores
       foreach( ( $_dat = api_obj::val_atr(api_hol::_('ton')) ) as $_ton ){
@@ -482,7 +483,7 @@ class hol_bib {
             ".api_hol::ima("sel",$_sel,['class'=>"mar_der-2"])."
             <p>
               <n>{$lis_pos->ide}</n><c>.</c> Sello Solar <n>{$_sel->ide}</n><c>:</c>
-              <br><q>".api_tex::let($_sel->arm_raz_des)."</q>
+              <br>".api_tex::let($_sel->arm_raz_des)."
             </p>
           </li>";
           $sel += 4;
@@ -490,7 +491,7 @@ class hol_bib {
         }        
         $htm.="
         </ul>
-        <q>".api_tex::let(api_tex::let_pal($_raz_pod)." ha sido ".api_tex::art_gen("realizado",$_raz_pod).".")."</q>";
+        ".api_tex::let(api_tex::let_pal($_raz_pod)." ha sido ".api_tex::art_gen("realizado",$_raz_pod).".")."";
         $_ []= $htm;
         $sel++;
       }        
@@ -501,14 +502,14 @@ class hol_bib {
 
       foreach( api_hol::_($ide) as $_dat ){ $htm = "
         <p class='tit'>Célula del Tiempo <n>{$_dat->ide}</n>: <b class='ide'>{$_dat->nom}</b></p>
-        <q>".api_tex::let($_dat->des)."</q>
+        <p class='des'>".api_tex::let($_dat->des)."</p>
         <ul class='ite'>";
         foreach( api_hol::_('sel_arm_raz') as $cro ){ $_sel = api_hol::_('sel',$lis_pos); $htm .= "
           <li>
             ".api_hol::ima("sel",$_sel,['class'=>"mar_der-1"])."
             <p>
               <n>{$cro->ide}</n><c>.</c> Sello Solar <n>{$_sel->ide}</n><c>:</c>
-              <br><q>".api_tex::let($_sel->arm_cel_des)."</q>
+              <br>".api_tex::let($_sel->arm_cel_des)."
             </p>
           </li>";
           $lis_pos ++;
@@ -522,22 +523,30 @@ class hol_bib {
       $sel = 20;      
       foreach( api_hol::_($ide) as $_dat ){
         $ele_nom = explode(' ',$_dat->nom)[1]; $htm = "
-        <p class='tit'><b class='ide'>Clan ".api_tex::art_del($_dat->nom)."</b>".api_tex::let(": Cromática {$_dat->des_col}.")."</p>
-        ".( !empty($_dat->des_ini) ? "<p>".api_tex::let($_dat->des_ini)."</p>" : '' )."
+        <p class='tit'>
+          <b class='ide'>Clan ".api_tex::art_del($_dat->nom)."</b>".api_tex::let(": Cromática {$_dat->des_col}.")."
+        </p>
+        ".( !empty($_dat->des_ini) ? "
+        <p class='des'>
+          ".api_tex::let($_dat->des_ini)."
+        </p>" : '' )."
         <ul class='ite'>";
-        for( $fam=1; $fam<=5; $fam++ ){ 
-          $_sel = api_hol::_('sel',$sel); 
-          $_fam = api_hol::_('sel_cro_fam',$fam); $htm .= "
-          <li sel='{$_sel->ide}' cro_fam='{$fam}'>
-            ".api_hol::ima("sel",$_sel,[ 'class'=>"mar_der-1" ])."
-            <p>
-              <n>{$sel}</n><c>.</c> <b class='ide'>{$ele_nom} {$_fam->nom}</b><c>:</c>
-              <br><q>".api_tex::let($_sel->cro_ele_des)."</q>
-            </p>
-          </li>";
-          $sel++;
-          if( $sel > 20 ) $sel -= 20;
-        }$htm .= "
+          for( $fam=1; $fam<=5; $fam++ ){ 
+            $_sel = api_hol::_('sel',$sel); 
+            $_fam = api_hol::_('sel_cro_fam',$fam); $htm .= "
+            <li>
+              ".api_hol::ima("sel",$_sel,[ 'class'=>"mar_der-1" ])."
+              <p>
+                <n>{$sel}</n><c>.</c> <b class='ide'>{$ele_nom} {$_fam->nom}</b><c>:</c>
+                <br>".api_tex::let($_sel->cro_ele_des)."
+              </p>
+            </li>";
+            $sel++;
+            if( $sel > 20 ) $sel -= 20;
+          }$htm .= "
+          <li>
+            <p class='des'>".api_tex::let($_dat->des)."</p>
+          </li>
         </ul>";
         $_ []= $htm;
       }          
@@ -789,9 +798,9 @@ class hol_bib {
 
           <fieldset class='doc_val'>
 
-            ".api_doc::val_ope()."
+            ".api_lis::ope_tog()."
 
-            ".api_dat::var('atr',"hol.kin.ide",[ 'nom'=>"ver el kin", 'ope'=>[ 
+            ".api_doc::var('atr',"hol.kin.ide",[ 'nom'=>"ver el kin", 'ope'=>[ 
               'title'=>"Introduce un número de kin...", 'oninput'=>"{$_eje},'val',this);" 
             ]])."
           </fieldset>
@@ -873,7 +882,7 @@ class hol_bib {
               ".api_hol::ima("kin",$_kin->ide,['class'=>'mar-aut'])."
               <p>
                 <b>KIN</b> <n>{$_kin->ide}</n><c>:</c> <c class='col-4-{$_kin->arm_cel_dia}'>".api_tex::let(api_tex::let_may($_kin->nom))."</c>
-                <br><q>".api_tex::let($_kin->des)."</q>                  
+                <br>".api_tex::let($_kin->des)."
               </p>
             </div>
           </div>";
@@ -982,7 +991,10 @@ class hol_bib {
           </p>";
         }              
         $_ []= api_hol::ima("kin_nav_ond",$_ond,['class'=>"mar_der-1"])."              
-        <p><n>".intval($_ond->ide)."</n><c>°</c> Onda encantada<c>:</c> <q>".api_tex::let($_ond->enc_des)."</q></p>";
+        <p>
+          <n>".intval($_ond->ide)."</n><c>°</c> Onda encantada<c>:</c>
+          <br>".api_tex::let($_ond->enc_des)."
+        </p>";
       }          
       break;
     // psi : por tonos galácticos
@@ -1015,7 +1027,7 @@ class hol_bib {
       </p>";        
       break;
     }
-    return is_array($_) ? api_dat::lis( $_, $ide, $ope ) : $_;
+    return is_array($_) ? api_est::inf_lis( $_, $ide, $ope ) : $_;
   }
   // 13 Lunas en Movimiento
   static function lun( string $ide, array $ope = [] ) : string {
@@ -1139,14 +1151,14 @@ class hol_bib {
       </div>";
       break;
     }
-    return is_array($_) ? api_dat::lis( $_, $ide, $ope ) : $_;
+    return is_array($_) ? api_est::inf_lis( $_, $ide, $ope ) : $_;
   }
   // Sonda de Arcturus
   static function arc( string $ide, array $ope = [] ) : string {
     $_ = [];
     switch( $ide ){
     }
-    return is_array($_) ? api_dat::lis( $_, $ide, $ope ) : $_;
+    return is_array($_) ? api_est::inf_lis( $_, $ide, $ope ) : $_;
   }
   // Tratado del Tiempo
   static function tie( string $ide, array $ope = [] ) : string {
@@ -1208,7 +1220,7 @@ class hol_bib {
 
       break;
     }
-    return is_array($_) ? api_dat::lis( $_, $ide, $ope ) : $_;
+    return is_array($_) ? api_est::inf_lis( $_, $ide, $ope ) : $_;
   }
   // Telektonon
   static function tel( string $ide, array $ope = [] ) : string {
@@ -1283,7 +1295,7 @@ class hol_bib {
       }
       break;
     }
-    return is_array($_) ? api_dat::lis( $_, $ide, $ope ) : $_;
+    return is_array($_) ? api_est::inf_lis( $_, $ide, $ope ) : $_;
   }
   // Proyecto Rinri
   static function rin( string $ide, array $ope = [] ) : string {
@@ -1299,7 +1311,7 @@ class hol_bib {
         api_hol::ima("rad",$_rad,['class'=>"mar_der-1"])."
         <p>
           <b class='ide'>{$_rad->nom}</b><c>:</c> $_rad->tel_des<c>,</c> <n>$_rad->tel_año</n> <c>-</c> <n>".($_rad->tel_año+1)."</n>
-          <br><q>".api_tex::let($_rad->rin_des)."<c>.</c></q>
+          <br>".api_tex::let($_rad->rin_des)."
         </p>";
       }
       $_ = api_lis::dep($_,$ope);
@@ -1316,8 +1328,8 @@ class hol_bib {
           </div>              
         </div>
         <p class='tex-enf tex_ali-cen'>".api_tex::let($_cub->tit)."</p>
-        ".( !empty($_cub->lec) ? "<p class='tex-cur tex_ali-cen'>".api_tex::let($_cub->lec)."</p>" : ""  )."
-        <q>".api_tex::let($_cub->afi)."</q>";
+        ".( !empty($_cub->lec) ? "<p class='des tex-cur tex_ali-cen'>".api_tex::let($_cub->lec)."</p>" : ""  )."
+        <p class='des'>".api_tex::let($_cub->afi)."</p>";
       }        
       break;                    
     // psi-cronos : dias pag + cubo
@@ -1400,7 +1412,7 @@ class hol_bib {
       }        
       break;      
     }
-    return is_array($_) ? api_dat::lis( $_, $ide, $ope ) : $_;
+    return is_array($_) ? api_est::inf_lis( $_, $ide, $ope ) : $_;
   }
   // Dinámicas del Tiempo
   static function din( string $ide, array $ope = [] ) : string {
@@ -1408,7 +1420,7 @@ class hol_bib {
     $lis_pos = 0; $est_ope = [ 'opc'=>['htm','cab_ocu'] ];
     switch( $ide ){
     }
-    return is_array($_) ? api_dat::lis( $_, $ide, $ope ) : $_;
+    return is_array($_) ? api_est::inf_lis( $_, $ide, $ope ) : $_;
   }
   // Tablas del Tiempo
   static function tab( string $ide, array $ope = [] ) : string {
@@ -1416,7 +1428,7 @@ class hol_bib {
     $lis_pos = 0; $est_ope = [ 'opc'=>['htm','cab_ocu'] ];
     switch( $ide ){
     }
-    return is_array($_) ? api_dat::lis( $_, $ide, $ope ) : $_;
+    return is_array($_) ? api_est::inf_lis( $_, $ide, $ope ) : $_;
   }
   // Atomo del tiempo 
   static function ato( string $ide, array $ope = [] ) : string {
@@ -1644,7 +1656,7 @@ class hol_bib {
         <div class='doc_ite'>
           ".api_hol::ima('rad',$tie->rad,['class'=>"mar_der-2"])."
           <p>
-            <q>$tie->des</q>
+            $tie->des
             <br>".api_tex::let("Día $tie->dia, $tie->tel, Tablero del Plasma.")."
             <br>".api_tex::let("Plasma Radial $rad->ide, $rad->nom: $rad->des_fue")."
             <br>".api_tex::let("( $tie->pos última Luna, $tie->pos Luna Mística )")."
@@ -1670,7 +1682,7 @@ class hol_bib {
       }
       break;
     }
-    return is_array($_) ? api_dat::lis( $_, $ide, $ope ) : $_;
+    return is_array($_) ? api_est::inf_lis( $_, $ide, $ope ) : $_;
   }
   // Sincronotron
   static function umb( string $ide, array $ope = [] ) : string {
@@ -1678,6 +1690,6 @@ class hol_bib {
     $lis_pos = 0; $est_ope = [ 'opc'=>['htm','cab_ocu'] ];
     switch( $ide ){
     }
-    return is_array($_) ? api_dat::lis( $_, $ide, $ope ) : $_;
+    return is_array($_) ? api_est::inf_lis( $_, $ide, $ope ) : $_;
   }
 }

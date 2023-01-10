@@ -92,7 +92,7 @@
       <?php $nv2 = api_num::val(intval($nv2) + 1,2) ?>
       <h3 id="<?="_{$_nav[2][$nv1][$nv2]->pos}-"?>"><?=api_tex::let($_nav[2][$nv1][$nv2]->nom)?></h3>
 
-      <p>En <cite>el Encantamiento del Sueño</cite> <a href="<?=$_bib?>enc#_02-03-05-" target="_blank">las Fichas de los <n>20</n> Sellos Solares</a> codifican el Color de la Raza de un lado<c>,</c> y del otro el número <i>código galáctico</i><c>,</c> que identifica la posición diaria en el <i>tablero del oráculo</i><c>,</c> junto con el <i>código encantado</i> que identifica el <i>nombre</i><c>,</c> la <i>acción</i> y el <i>poder</i> del Sello Solar y su Tribu<c>.</c></p>
+      <p>En <cite>el Encantamiento del Sueño</cite> <a href="<?=$_bib?>enc#_02-03-05-" target="_blank">las Fichas de los <n>20</n> <i>Sellos Solares</i></a> codifican el Color de la Raza de un lado<c>,</c> y del otro el número <i>código galáctico</i><c>,</c> que identifica la posición diaria en el <i>tablero del oráculo</i><c>,</c> junto con el <i>código encantado</i> que identifica el <i>nombre</i><c>,</c> la <i>acción</i> y el <i>poder</i> del Sello Solar y su Tribu<c>.</c></p>
 
       <?=api_est::lis('hol.sel',[ 'atr'=>[ 'ide', 'ord', 'nom', 'des_col', 'des' ] ])?>      
 
@@ -103,7 +103,7 @@
       <?php $nv2 = api_num::val(intval($nv2) + 1,2) ?>
       <h3 id="<?="_{$_nav[2][$nv1][$nv2]->pos}-"?>"><?=api_tex::let($_nav[2][$nv1][$nv2]->nom)?></h3>
 
-      <p>En el <a href="<?=$_bib?>enc#_02-02-01-02-" target="_blank">Cubo de Color</a> del <cite>Encantamiento del Sueño</cite> se encuentran las <i>Fichas de los Sellos Solares</i> codificadas por el <i>Código Galáctico <n>0<c>-</c>19</n></i> <c>.</c> Estos números código<c>,</c> representados por puntos y barras<c>,</c> son utilizados para posicionar las fichas en el <a href="<?=$_bib?>enc#_02-03-06-" target="_blank">Tablero del Oráculo</a> y en el <a href="<?=$_bib?>enc#_03-03-" target="_blank">Tablero del Viaje</a><c>.</c> Este arreglo<c>,</c> que comienza desde <n>0</n><c>,</c> también codifica la <i>Colocación Cromática</i> que incluye el <a href="<?=$_bib?>enc#_02-03-02-" target="_blank">Clan Galáctico</a> y la <a href="<?=$_bib?>enc#_02-03-14-" target="_blank">Familia Terrestre</a><c>,</c> quienes intervienen en la construcción y alienación de los Holones Solar<c>,</c> Planetario y Humano con los Ciclos del Centro Galáctico<c>.</c></p>
+      <p>En el <a href="<?=$_bib?>enc#_02-02-01-02-" target="_blank">Cubo de Color</a> del <cite>Encantamiento del Sueño</cite> se encuentran las <i>Fichas de los <i>Sellos Solares</i></i> codificadas por el <i>Código Galáctico <n>0<c>-</c>19</n></i> <c>.</c> Estos números código<c>,</c> representados por puntos y barras<c>,</c> son utilizados para posicionar las fichas en el <a href="<?=$_bib?>enc#_02-03-06-" target="_blank">Tablero del Oráculo</a> y en el <a href="<?=$_bib?>enc#_03-03-" target="_blank">Tablero del Viaje</a><c>.</c> Este arreglo<c>,</c> que comienza desde <n>0</n><c>,</c> también codifica la <i>Colocación Cromática</i> que incluye el <a href="<?=$_bib?>enc#_02-03-02-" target="_blank">Clan Galáctico</a> y la <a href="<?=$_bib?>enc#_02-03-14-" target="_blank">Familia Terrestre</a><c>,</c> quienes intervienen en la construcción y alienación de los Holones Solar<c>,</c> Planetario y Humano con los Ciclos del Centro Galáctico<c>.</c></p>
 
       <p>En <cite>las <n>13</n> Lunas en Movimiento</cite> se retoma la configuración del <a href="<?=$_bib?>lun#_04-04-" target="_blank">Holon Humano</a> y el papel que juegan las <a href="<?=$_bib?>lun#_04-05-" target="_blank">Familias Terrestres</a> en el Camino de la Nave del Tiempo por las <n>13</n> lunas<c>.</c></p>
 
@@ -116,98 +116,30 @@
     </section>    
 
   </article>
-  
-  <!-- Las Parejas del Oráculo  -->
-  <article>
-    <?php $nv1 = api_num::val(intval($nv1) + 1,2); $nv2 = 0; $nv3 = 0; $nv4 = 0; ?>
-    <h2 id="<?="_{$_nav[1][$nv1]->pos}-"?>"><?=api_tex::let($_nav[1][$nv1]->nom)?></h2>
 
-    <p>El <a href="<?=$_bib?>enc#_02-03-" target="_blank">Tablero del Oráculo</a> en <cite>el Encantamiento del Sueño</cite> ...<c>.</c></p>
-
-    <?= api_hol::tab('sel','arm_tra',[ 
-      'sec'=>[ 'par'=>1 ], 'pos'=>[ 'bor'=>1, 'ima'=>"hol.sel.ord" ] 
-    ],[ 
-      'sec'=>[ 'class'=>"mar_ver-2 bor-1 bor_col-5-0-" ] 
-    ])?>
-
-    <p>Luego<c>,</c> en <cite>el Telektonon</cite><c>,</c> <a href="<?=$_bib?>tel#_02-03-04-" target="_blank">...</a><c>.</c></p>
-    
-    <!-- parejas analogas -->        
-    <section>
-      <?php $nv2 = api_num::val(intval($nv2) + 1,2) ?>
-      <h3 id="<?="_{$_nav[2][$nv1][$nv2]->pos}-"?>"><?=api_tex::let($_nav[2][$nv1][$nv2]->nom)?></h3>
-
-      <p>En <cite>el Encantamiento del Sueño</cite> <a href="<?=$_bib?>enc#_02-03-06-06-" target="_blank">...</a><c>.</c></p>
-
-      <?=api_est::lis('hol.sel_par_ana',[ 'atr'=>['ini','ini_car','ini_des','fin','fin_car','fin_des'] ])?>
-
-    </section>
-
-    <!-- parejas antípodas -->        
-    <section>
-      <?php $nv2 = api_num::val(intval($nv2) + 1,2) ?>
-      <h3 id="<?="_{$_nav[2][$nv1][$nv2]->pos}-"?>"><?=api_tex::let($_nav[2][$nv1][$nv2]->nom)?></h3>
-
-      <p>En <cite>el Encantamiento del Sueño</cite> <a href="<?=$_bib?>enc#_02-03-06-04-" target="_blank">...</a><c>.</c></p>
-
-      <?=api_est::lis('hol.sel_par_ant',[ 'atr'=>['ini','ini_car','ini_des','fin','fin_car','fin_des'] ])?>
-
-    </section>
-
-    <!-- parejas ocultas -->        
-    <section>
-      <?php $nv2 = api_num::val(intval($nv2) + 1,2) ?>
-      <h3 id="<?="_{$_nav[2][$nv1][$nv2]->pos}-"?>"><?=api_tex::let($_nav[2][$nv1][$nv2]->nom)?></h3>
-
-      <p>En <cite>el Encantamiento del Sueño</cite> <a href="<?=$_bib?>enc#_02-03-06-05-" target="_blank">...</a><c>.</c></p>
-
-      <?=api_est::lis('hol.sel_par_ocu',[ 'atr'=>['ini','ini_car','ini_des','fin','fin_car','fin_des'] ])?>
-
-    </section>  
-
-  </article>
-
-  <!-- Colocacion Cromática -->
-  <article>
-    <?php $nv1 = api_num::val(intval($nv1) + 1,2); $nv2 = 0; $nv3 = 0; $nv4 = 0; ?>
-    <h2 id="<?="_{$_nav[1][$nv1]->pos}-"?>"><?=api_tex::let($_nav[1][$nv1]->nom)?></h2>
-
-    <p>En <cite>el Encantamiento del Sueño</cite> <a href="<?=$_bib?>enc#_03-14-" target="_blank">la Colocación Cromática</a> consiste en ordenar secuencialmente los sellos comenzando desde <n>20</n> o <n>00</n> a <n>19</n><c>.</c></p>
-
-    <?=api_est::lis('hol.sel_cod',[ 'atr'=>['ide','cro_ele_des'], 'tit_cic'=>['cro_ele'] ])?>
-
-    <!-- 5 familias terrestres -->        
-    <section>
-      <?php $nv2 = api_num::val(intval($nv2) + 1,2); $nv3 = 0; $nv4 = 0; ?>
-      <h3 id="<?="_{$_nav[2][$nv1][$nv2]->pos}-"?>"><?=api_tex::let($_nav[2][$nv1][$nv2]->nom)?></h3>
-
-      <p>En <cite>el Encantamiento del Sueño</cite> <a href="<?=$_bib?>enc#_03-14-" target="_blank">las Familias Terrestres</a> <c>.</c></p>
-
-      <?=api_est::lis('hol.sel_cro_fam',[ 'atr'=>['ide','nom','des_cod','des_fun','des_pod','pla_cen','hum_cen','hum_ded','des','sel'] ])?>
-
-    </section>
-
-    <!-- 4 clanes cromáticos -->
-    <section>
-      <?php $nv2 = api_num::val(intval($nv2) + 1,2); $nv3 = 0; $nv4 = 0; ?>
-      <h3 id="<?="_{$_nav[2][$nv1][$nv2]->pos}-"?>"><?=api_tex::let($_nav[2][$nv1][$nv2]->nom)?></h3>
-
-      <p>En <cite>el Encantamiento del Sueño</cite> <a href="<?=$_bib?>enc#_03-02-" target="_blank">los Clanes Galácticos</a> <c>.</c></p>
-
-      <?=api_est::lis('hol.sel_cro_ele',[ 'atr'=>['ide','nom','des_col','des_men','des','sel'] ])?>
-
-    </section>    
-
-  </article>
-  
   <!-- Colocación Armónica -->
   <article>
     <?php $nv1 = api_num::val(intval($nv1) + 1,2); $nv2 = 0; $nv3 = 0; $nv4 = 0; ?>
     <h2 id="<?="_{$_nav[1][$nv1]->pos}-"?>"><?=api_tex::let($_nav[1][$nv1]->nom)?></h2>
 
-    <p>En <cite>el Encantamiento del Sueño</cite> <a href="<?=$_bib?>enc#_03-14-" target="_blank">la Colocación Armónica</a> consiste en ordenar secuencialmente los sellos comenzando desde <n>1</n> a <n>20</n><c>.</c></p>
+    <p>En <cite>el Encantamiento del Sueño</cite> la <i>Colocación Armónica</i> consiste en ordenar secuencialmente los <i>Sellos Solares</i> de <n>1</n> a <n>20</n><c>,</c> creando las <a href="<?=$_bib?>enc#_03-05-" target="_blank"><n>5</n> Células del Tiempo</a> compuestas por <i><n>4</n> Sellos Solares</i> de distintas <a href="<?=$_bib?>enc#_03-04-" target="_blank">Razas Raiz Cósmicas</a> codificadas en el <i>Código de Color</i><c>.</c> Esta secuencia de <n>20</n> en el Tzolkin codifica las <i><n>13</n> Trayectorias Armónicas</i> del <a href="<?=$_bib?>enc#_02-03-07-" target="_blank">Índice Armónico</a><c>.</c></p>
+
+    <p>Luego<c>,</c> en <cite>Un Tratado del Tiempo</cite> se profundiza en el <a href="<?=$_bib?>tie#_04-03-04-" target="_blank">Cubo de Color<c>,</c> Armónicas y Células del Tiempo</a><c>,</c> y se dice que las células del tiempo crean una <q>Curva de Información Galáctica</q><c>.</c></p>
+
+    <p>Más adelante<c>,</c> en <a href="<?=$_bib?>tie#_04-03-05-" target="_blank">La Cromática o Quinto Entonado</a> se habla sobre <i>el poder de la circulación</i> que se genera al combinar el ciclo de la <i>armónica</i> con el ciclo de la <i>cromática</i><c>:</c> <q>Debido al quinto entonado<c>,</c> hay cinco y no cuatro células del tiempo<c>.</c> En la curva de información galáctica<c>,</c> la quinta célula del tiempo asegura que la matriz entonada se auto<c>-</c>regula y sincroniza durante el intervalo entre la salida y la siguiente entrada</q><c>.</c></p>
 
     <?=api_est::lis('hol.sel',[ 'atr'=>['ide','arm_cel_des'], 'tit_cic'=>['arm_cel'] ])?>
+
+    <!-- 5 Células del Tiempo-->
+    <section>
+      <?php $nv2 = api_num::val(intval($nv2) + 1,2); $nv3 = 0; $nv4 = 0; ?>
+      <h3 id="<?="_{$_nav[2][$nv1][$nv2]->pos}-"?>"><?=api_tex::let($_nav[2][$nv1][$nv2]->nom)?></h3>
+
+      <p>En <cite>el Encantamiento del Sueño</cite> <a href="<?=$_bib?>enc#_03-05-" target="_blank">las Células del Tiempo</a><c>.</c> </p>
+
+      <?=api_est::lis('hol.sel_arm_cel',[ 'atr'=>['ide','nom','des_fun','des_pod','sel'] ])?>
+
+    </section>
 
     <!-- 4 Razas raiz cósmicas -->        
     <section>
@@ -220,16 +152,183 @@
       
     </section>
 
-    <!-- células del tiempo-->
+  </article>  
+
+  <!-- Colocacion Cromática -->
+  <article>
+    <?php $nv1 = api_num::val(intval($nv1) + 1,2); $nv2 = 0; $nv3 = 0; $nv4 = 0; ?>
+    <h2 id="<?="_{$_nav[1][$nv1]->pos}-"?>"><?=api_tex::let($_nav[1][$nv1]->nom)?></h2>
+
+    <p>En <cite>el Encantamiento del Sueño</cite> la <i>Colocación Cromática</i> consiste en ordenar secuencialmente los <i>Sellos Solares</i> comenzando desde <n>00</n> a <n>19</n><c>,</c> creando así los <a href="<?=$_bib?>enc#_03-02-" target="_blank"><n>4</n> Clanes Galácticos</a> compuestos por las <a href="<?=$_bib?>enc#_03-14-" target="_blank"><n>5</n> Familias Terrestres</a> siguiendo el código galáctico de punto<c>-</c>barra<c>.</c> Esta secuencia en el <i>Tzolkin</i> codifica <i>las <n>4</n> Estaciones del Giro Espectral</i><c>.</c></p>
+
+    <p>Luego<c>,</c> en <cite>Un Tratado del Tiempo</cite> se profundiza en el concepto de la <a href="<?=$_bib?>tie#_04-03-05-" target="_blank">La Cromática o Quinto Entonado</a><c>,</c> como una función del <a href="<?=$_bib?>tie#_04-02-05-" target="_blank">Factor Más Uno</a> que consiste en <q>una secuencia codificada por cinco colores<c>,</c> en que la primera unidad y la quinta son del mismo color<c>,</c> y la secuencia cromática base del código del encantamiento</q><c>.</c></p>
+
+    <p>Por otro lado<c>,</c> dentro de la matriz del <a href="<?=$_bib?>tie#_04-03-01-" target="_blank">código <n>0<c>-</c>19</n></a> hay <n>4</n> cromáticas de <n>5</n> unidades cada una<c>,</c> que cubren una o dos células del tiempo<c>,</c> por lo que representan el <i>poder de Circulación</i><c>:</c> <q>Este poder de circulación es referido como <c>'</c>entonado<c>'</c> porque el quinto tono tiene siempre el mismo valor de color que el primer tono<c>;</c> por eso<c>,</c> el quinto siempre entona al primero</q><c>.</c></p>
+
+    <?=api_est::lis('hol.sel_cod',[ 'atr'=>['sel','cro_ele_des'], 'tit_cic'=>['cro_ele'] ])?>
+
+    <!-- 4 clanes cromáticos -->
     <section>
       <?php $nv2 = api_num::val(intval($nv2) + 1,2); $nv3 = 0; $nv4 = 0; ?>
       <h3 id="<?="_{$_nav[2][$nv1][$nv2]->pos}-"?>"><?=api_tex::let($_nav[2][$nv1][$nv2]->nom)?></h3>
 
-      <p>En <cite>el Encantamiento del Sueño</cite> <a href="<?=$_bib?>enc#_03-05-" target="_blank">las Células del Tiempo</a><c>.</c> </p>
+      <p>En <cite>el Encantamiento del Sueño</cite> <a href="<?=$_bib?>enc#_03-02-" target="_blank">los Clanes Galácticos</a> <c>.</c></p>
 
-      <?=api_est::lis('hol.sel_arm_cel',[ 'atr'=>['ide','nom','des_fun','des_pod','des','sel'] ])?>
+      <?=api_est::lis('hol.sel_cro_ele',[ 'atr'=>['ide','nom','des_col','des','sel'] ])?>
+
+    </section>       
+
+    <!-- 5 familias terrestres -->        
+    <section>
+      <?php $nv2 = api_num::val(intval($nv2) + 1,2); $nv3 = 0; $nv4 = 0; ?>
+      <h3 id="<?="_{$_nav[2][$nv1][$nv2]->pos}-"?>"><?=api_tex::let($_nav[2][$nv1][$nv2]->nom)?></h3>
+
+      <p>En <cite>el Encantamiento del Sueño</cite> <a href="<?=$_bib?>enc#_03-14-" target="_blank">las Familias Terrestres</a> <c>.</c></p>
+
+      <p>En <cite>Las <n>13</n> Lunas en Movimiento</cite><c>,</c> se amplían los datos correspondientes a las funciones de las <a href="<?=$_bib?>lun#_04-04-" target="_blank">Familias Terrestres</a><c>.</c></p>
+
+      <?=api_est::lis('hol.sel_cro_fam',[ 'atr'=>['ide','nom','des_cod','des','sel'] ])?>
+
+    </section> 
+
+  </article>
+
+  <!-- Las Parejas del Oráculo -->
+  <article>
+    <?php $nv1 = api_num::val(intval($nv1) + 1,2); $nv2 = 0; $nv3 = 0; $nv4 = 0; ?>
+    <h2 id="<?="_{$_nav[1][$nv1]->pos}-"?>"><?=api_tex::let($_nav[1][$nv1]->nom)?></h2>
+
+    <!-- Las Relaciones de Color -->
+    <section>
+      <?php $nv2 = api_num::val(intval($nv2) + 1,2) ?>
+      <h3 id="<?="_{$_nav[2][$nv1][$nv2]->pos}-"?>"><?=api_tex::let($_nav[2][$nv1][$nv2]->nom)?></h3>
+
+      <p>En el <a href="<?=$_bib?>enc#_02-03-06-" target="_blank">Átomo del Tiempo Cromático</a> del <cite>Encantamiento del Sueño</cite> se presentan las relaciones de color en las que se basan las Parejas del Oráculo<c>:</c></p>
+
+      <ul>
+        <li>
+          <p><b class="let-ide">Análogos</b><c>:</c></p>
+          <ul class="lis">
+            <li><i class="col-roj">Rojo</i> y <i class="col-bla">Blanco</i></li>
+            <li><i class="col-azu">Azul</i> y <i class="col-ama">Amarillo</i></li>
+          </ul>
+        </li>
+        <li>
+          <p><b class="let-ide">Antípodas</b><c>:</c></p>
+          <ul class="lis">
+            <li><i class="col-roj">Rojo</i> y <i class="col-azu">Azul</i></li>
+            <li><i class="col-bla">Blanco</i> y <i class="col-ama">Amarillo</i></li>
+          </ul>
+        </li>
+        <li>
+          <p><b class="let-ide">Ocultos</b><c>:</c></p>
+          <ul class="lis">
+            <li><i class="col-roj">Rojo</i> y <i class="col-ama">Amarillo</i></li>
+            <li><i class="col-bla">Blanco</i> y <i class="col-azu">Azul</i></li>
+          </ul>
+        </li>      
+      </ul>
+
+    </section>
+
+    <!-- Los Patrones del Destino -->
+    <section>
+      <?php $nv2 = api_num::val(intval($nv2) + 1,2) ?>
+      <h3 id="<?="_{$_nav[2][$nv1][$nv2]->pos}-"?>"><?=api_tex::let($_nav[2][$nv1][$nv2]->nom)?></h3>    
+
+      <p>El <a href="<?=$_bib?>enc#_02-03-06-" target="_blank">Tablero del Oráculo</a> esta compuesto por los <q><n>20</n> patrones básicos del destino</q> que se expanden en su posición guía por el poder del <n>5</n> para crear los <q><n>100</n> Patrones del Destino</q><c>.</c></p>    
+
+      <?= api_hol::tab('sel','arm_tra',[ 
+        'sec'=>[ 'par'=>1 ], 'pos'=>[ 'bor'=>1, 'col'=>"hol.sel.ide", 'ima'=>"hol.sel.ord" ] 
+      ],[ 
+        'sec'=>[ 'class'=>"mar_arr-3 mar_aba-3 bor-1 bor_col-5-0-" ] 
+      ])?>
+
+      <p>Estos patrones<c>,</c> que se definen por las relaciones de colores y combinación de númeos código entre dos sellos<c>,</c> son utilizados para las tres <a href="<?=$_bib?>enc#_02-03-06-01-" target="_blank">Claves de Lectura del Oráculo</a><c>:</c> <i>del Destino</i><c>,</c> <i>Diaria</i> o <i>del Azar</i><c>.</c></p>
+
+      <figure>
+        <img src='<?=$_dir->ima?>4-1.png' alt='Patrón del Destino' title='Guía del Oráculo del Encantamiento del Sueño'>
+      </figure>    
+
+    </section>
+
+    <!-- La Sincronometría del Oráculo -->
+    <section>
+      <?php $nv2 = api_num::val(intval($nv2) + 1,2) ?>
+      <h3 id="<?="_{$_nav[2][$nv1][$nv2]->pos}-"?>"><?=api_tex::let($_nav[2][$nv1][$nv2]->nom)?></h3>
+
+      <p>En <cite>el Telektonon</cite><c>,</c> el <a href="<?=$_bib?>tel#_02-03-04-" target="_blank"><n>4</n><c>°</c> nivel<c>,</c> Juego del Oráculo</a> establece las relaciones del oráculo en diagramas que miden la <a href="<?=$_bib?>tel#_02-03-04-" target="_blank">Sincronometría</a> de los <q>Flujos del Oráculo</q><c>.</c></p>
+
+      <figure>
+        <img src='<?=$_dir->ima?>4-2.png' alt='Sincronometría del Oráculo' title='Sincronometría de los Flujos del Oráculo'>
+      </figure>
+
+    </section>
+
+    <!-- El Tiempo N.E.T.  -->
+    <section>
+      <?php $nv2 = api_num::val(intval($nv2) + 1,2) ?>
+      <h3 id="<?="_{$_nav[2][$nv1][$nv2]->pos}-"?>"><?=api_tex::let($_nav[2][$nv1][$nv2]->nom)?></h3>
+
+      <p>En el <cite>Tutorial del Sincronario de <n>13</n> Lunas</cite> se presenta un aplicación especial del Oráculo llamada <a href="<?=$_bib?>tut#_04-04-" target="_blank">el Tiempo Net</a> que se basa en dividir el día en <n>4</n> subciclos llamados <q>Miradas</q><c>,</c> uno por cada pareja del oráculo<c>:</c> <q>Siguiendo el patrón de tiempo net cada día llega a ser un mandala de sincronicidad<c>.</c> Sigue las miradas cambiantes del Oráculo de Quinta Fuerza del Tiempo NET <c>¡</c>para obtener una visión más profunda con el flujo de la realidad diaria<c>!</c></q><c>.</c></p>
+
+      <figure>
+        <img src='<?=$_dir->ima?>4-3.png' alt='Oráculo del Tiempo NET' title='Oráculo del Tiempo NET'>
+      </figure>    
 
     </section>    
+    
+    <!-- Pareja Análoga -->        
+    <section>
+      <?php $nv2 = api_num::val(intval($nv2) + 1,2) ?>
+      <h3 id="<?="_{$_nav[2][$nv1][$nv2]->pos}-"?>"><?=api_tex::let($_nav[2][$nv1][$nv2]->nom)?></h3>
+
+      <p>En <cite>el Encantamiento del Sueño</cite> se define como <a href="<?=$_bib?>enc#_02-03-06-01-" target="_blank">Pareja Análoga</a> a dos <i>Sellos Solares</i> <q>cuyos números código sumen <n>19</n></q><c>,</c> los cuales <q>Van juntos y dan refuerzo</q><c>.</c></p>
+
+      <p>Esta relación se vé gráficamente en el <a href="<?=$_bib?>enc#_02-03-06-06-" target="_blank">Tablero del Viaje</a> donde ambos <i>Sellos Solares</i> de cada pareja análoga codifican una de las <i><n>10</n> Órbitas Planetarias</i><c>,</c> formando las <a href="<?=$_bib?>enc#_03-03-" target="_blank"><n>5</n> Células Solares Análogas</a><c>:</c> <q>La creación de equipos de células solares con el propósito de explorar los túneles del tiempo es una forma avanzada de jugar el Encantamiento del Sueño</q><c>.</c></p>
+
+      <?=api_est::lis('hol.sel_par_ana',[ 'atr'=>['ini','ini_car','ini_des','fin','fin_car','fin_des'] ])?>
+
+    </section>
+
+    <!-- Pareja Antípoda -->        
+    <section>
+      <?php $nv2 = api_num::val(intval($nv2) + 1,2) ?>
+      <h3 id="<?="_{$_nav[2][$nv1][$nv2]->pos}-"?>"><?=api_tex::let($_nav[2][$nv1][$nv2]->nom)?></h3>
+
+      <p>En <cite>el Encantamiento del Sueño</cite> se define como <a href="<?=$_bib?>enc#_02-03-06-01-" target="_blank">Pareja Antípoda</a> a dos <i>Sellos Solares</i> <q>cuyos números código entén separados entre sí por <n>10</n></q><c>,</c> los cuales <q>Se oponen y desafían para fortalecer la memoria del génesis</q><c>.</c></p>
+
+      <p>Esta relación se vé gráficamente en el <a href="<?=$_bib?>enc#_02-03-06-04-" target="_blank">Tablero del Génesis</a> donde los <i>Sellos Solares</i><c>,</c> correspondientes a las Ondas Encantadas<c>,</c> se agrupan con sus parejas antípodas formando las <a href="<?=$_bib?>enc#_03-06-" target="_blank"><n>5</n> Células de la Memoria del Génesis</a><c>:</c> <q>La creación de los equipos de memoria celular para viajar en el tiempo es un nivel avanzado del Oráculo del Encantamiento del Sueño</q><c>.</c></p>
+
+      <?=api_est::lis('hol.sel_par_ant',[ 'atr'=>['ini','ini_car','ini_des','fin','fin_car','fin_des'] ])?>
+
+    </section>
+
+    <!-- Pareja Oculta -->
+    <section>
+      <?php $nv2 = api_num::val(intval($nv2) + 1,2) ?>
+      <h3 id="<?="_{$_nav[2][$nv1][$nv2]->pos}-"?>"><?=api_tex::let($_nav[2][$nv1][$nv2]->nom)?></h3>
+
+      <p>En <cite>el Encantamiento del Sueño</cite> se define como <a href="<?=$_bib?>enc#_02-03-06-01-" target="_blank">Pareja Oculta</a> a dos <i>Sellos Solares</i> <q>cuyos números código sumen <n>21</n></q><c>,</c> los cuales <q>Representan factores inesperados y escondidos</q><c>.</c> A diferencia de las otras parejas<c>,</c> en el caso de dos <i>Kines</i><c>,</c> sus tonos deben sumar <n>14</n><c>.</c> Así surgen los cuartetos ocultos<c>,</c> como la combinación de dos parejas de Kines Ocultos cuyos <i>Tonos</i> sumen <n>28</n><c>.</c></p>
+
+      <p>Esta relación se vé gráficamente en el <a href="<?=$_bib?>enc#_02-03-06-05-" target="_blank">Índice Armónico</a> donde ambos <i>Sellos Solares</i> se encuentran en <a href="<?=$_bib?>enc#_02-03-07-" target="_blank">Armónicas Inversas</a><c>,</c> representando el principio de <b class="let-ide">matriz radial.</b><c>:</c> <q>El encontrar las parejas ocultas y los cuartetos aumenta el poder de tu holón y amplifica las posibilidades de jugar</q><c>.</c></p>
+
+      <?=api_est::lis('hol.sel_par_ocu',[ 'atr'=>['ini','ini_car','ini_des','fin','fin_car','fin_des'] ])?>
+
+    </section>
+
+    <!-- Parejas Guía -->
+    <section>
+      <?php $nv2 = api_num::val(intval($nv2) + 1,2) ?>
+      <h3 id="<?="_{$_nav[2][$nv1][$nv2]->pos}-"?>"><?=api_tex::let($_nav[2][$nv1][$nv2]->nom)?></h3>
+
+      <p>En <cite>el Encantamiento del Sueño</cite> se define la <a href="<?=$_bib?>enc#_02-03-06-01-" target="_blank">Pareja Guía</a> como dos <i>Sellos Solares</i> del mismo Color<c>,</c> los cuales <q>Representan el resultado favorecido por la dominación cromática de un color</q><c>.</c></p>
+
+      <p>A diferencia de las demás parejas<c>,</c> para determinar el guía es necesario conocer el <i>Tono Galáctico</i> del <i>Kin</i><c>.</c> Dado que cada hay <n>5</n> <i>Sellos Solares</i> por Color<c>,</c> el Sello Guía puede variar<c>,</c> lo que crea la expansión de los <i><n>20</n> Patrones Base</i> en los <i><n>100</n> Patrones del Destino</i><c>.</c></p>
+
+      <?=api_est::lis('hol.sel_par_gui')?>
+
+    </section>
 
   </article>
   

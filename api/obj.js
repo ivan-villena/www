@@ -7,7 +7,7 @@ class api_obj {
   // getter
   static _( $ide, $val ){
     let $_, $_dat;
-    $_ = $_dat = api_app.est('obj',$ide,'dat');
+    $_ = $_dat = sis_dat.est('obj',$ide,'dat');
 
     if( !!($val) ){
       $_ = $val;
@@ -107,7 +107,7 @@ class api_obj {
 
     for( const $i in $dat ){ const $v = $dat[$i];
 
-      $.tip = api_app.tip($v);
+      $.tip = sis_dat.tip($v);
 
       $.ite = document.createElement('li');
       $.ite.classList.add('mar_ver-1');

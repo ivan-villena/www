@@ -9,7 +9,7 @@ class api_arc {
   }// getter
   static function _( string $ide, $val = NULL ) : string | array | object {
 
-    $_ = $_dat = api_app::est('arc',$ide,'dat');
+    $_ = $_dat = sis_dat::est('arc',$ide,'dat');
     
     if( !empty($val) ){
       $_ = $val;

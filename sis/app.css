@@ -1,0 +1,280 @@
+/* 
+  Página
+*/
+html {
+  font-family: 'Lora', 'Book Antiqua', 'Georgia';
+  font-size: 15px;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  background: center/cover no-repeat url('../../img/app/fon/01.jpg');
+  margin: 0;
+  color: var(--let_tex);
+  /* para que se vea el modal en toda la pantalla*/
+  display: flex;
+  flex-direction: column;
+}
+
+/*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+/* 
+  botonera : inicio + paneles + pantallas 
+*/
+.app_bot {
+  display: flex;
+  height: var(--tam_cab_max);
+  justify-content: space-between;
+  background-color: var(--fon_win);
+}
+
+.app_bot > nav {
+  margin: auto 0;
+}
+
+.app_bot > nav > a {
+  padding: .25rem;
+}
+
+/* ////////////////////////////////////////////////////////////////////
+  Seccion Principal ///////////////////////////////////////////////////
+*/
+.app_sec {
+  height: var(--tam_sec_max);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: auto;  
+  background-color: var(--fon_art);/* por barra de desplazamiento */
+  text-align: center;
+}
+
+/* Titulo */
+.app_sec > header {
+  width: 100%;
+  background-color: var(--fon_sec);  
+}
+
+/* Articulos */
+.app_sec article {
+  width: 100%;
+  max-width: 700px;
+  height: max-content;
+  margin: .5rem auto;
+  padding: 0 1rem;
+  border-radius: 1rem;
+  border: 1px solid var(--bor_sel);
+  background-color: var(--fon_sec);
+}
+
+
+/* ////////////////////////////////////////////////////////////////////
+  Laterales ///////////////////////////////////////////////////////////
+*/
+:is(.app_pan,.app_bar) {  
+  z-index: 9999;
+  position: fixed;
+  top: var(--tam_cab_max);
+  display: flex;
+  height: var(--tam_sec_max);
+  width: 450px;
+  background-color: var(--fon_sec);
+}
+
+/* 
+  izquierda: panel movil 
+*/
+@keyframes app_pan-ver {
+  from { transform: translate(-5rem); } to { transform: translate(0rem); }
+}
+@keyframes app_pan-ocu {
+  from { transform: translate(0rem); } to { transform: translate(-5rem); }
+}
+.app_pan {
+  max-width: 100%;
+  overflow: hidden;
+  border: 1px solid var(--col_azu);
+  border-left: 0;
+  border-radius: 0 1rem 1rem 0;    
+  transition: all 1s;
+  animation: app_pan-ver 1s, dis-ver 1s;
+}
+.app_pan.dis-ocu {  
+  animation: app_pan-ocu 1s;
+  display: flex !important;
+  width: 0 !important;
+  height: 0 !important;   
+  border: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+.app_pan > [class*="ide-"] {
+  width: 100%;
+  animation: dis-ver 1s;
+}
+.app_pan > [class*="ide-"] > header {
+  display: flex;
+  justify-content: space-between;  
+  padding: .5rem;
+  text-align: center;
+}
+.app_pan > [class*="ide-"] > header + * {
+  max-height: 90vh;
+  overflow: auto;
+}
+
+/* ////////////////////////////////////////////////////////////////////
+  derecha: sidebar ////////////////////////////////////////////////////
+*/
+@keyframes app_bar-ver {
+  from { transform: translate(0rem); } to { transform: translate(-5rem); }
+}
+@keyframes app_bar-ocu {
+  from { transform: translate(-5rem); } to { transform: translate(0rem); }
+}
+.app_bar {
+  max-width: 100%;
+}
+
+
+/* ////////////////////////////////////////////////////////////////////
+  pie de página ///////////////////////////////////////////////////////
+*/
+.app_pie {
+  padding: .5rem;
+  text-align: center;
+}
+
+
+/*//////////////////////////////////////////////////////////////////////*/
+/*//////////////////////////////////////////////////////////////////////*/
+/*
+  Modales
+*/
+.app_win {  
+  z-index: 99999;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  background-color: rgba(0,0,0,.8);  
+  text-align: center;
+  animation: dis-ver .5s;
+}
+.app_win > article {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  height: 90vh;
+  width: 95%;
+  max-width: 50rem;
+  overflow: hidden;  
+  background-color: var(--fon_sec);
+  border: 1px solid var(--col_azu);
+  border-radius: .5rem;
+  line-height: 1.5;
+  animation: dis-ver 1s, dis-ver-tam .5s;
+}
+.app_win > article > header {    
+  display: flex;
+  flex-wrap: nowrap;  
+  justify-content: space-between;
+  padding: .25rem;
+  height: 3rem;
+}
+.app_win > article > header + * {
+  flex-grow: 2;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 0 .5rem;
+}
+.app_win > article > header + * > section {
+  margin: .5rem;  
+}
+
+
+/*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/* 
+  Ajustes de Pantalla
+*/
+
+@media only screen and ( max-width: 700px ){
+
+  body > main article {
+    max-width: 100vw;
+  }
+}
+
+@media only screen and ( max-width: 500px ){
+
+  html { 
+    font-size: 13px;
+  }
+}
+
+@media only screen and ( orientation: landscape ) and ( max-height: 500px ){
+
+  header.app_bot {
+    height: var(--tam_cab_min);
+  }
+  aside:is(.app_pan, .app_bar) {
+    top: var(--tam_cab_min);
+    height: var(--tam_sec_min);
+  }
+  main.app_sec {
+    height: var(--tam_sec_min);
+  }
+}
+
+/*
+  Panel:
+*/
+
+/* Menú */
+.app_pan > .ide-app_cab ul.lis.nav {
+  height: 84vh;
+}
+
+/* Indice */
+.app_pan > .ide-app_nav ul.lis.nav {
+  height: 80vh;
+}
+
+/*
+  Modal:
+*/
+
+/* Operador */
+.app_win > .ide-doc_ope {
+  z-index: 9999;
+  height: 95vh;
+  background-color: var(--fon_win);
+}
+.app_win > .ide-doc_ope > header + * {
+  align-items: center;
+}
+.app_win > .ide-doc_ope > header + * > section {
+  margin: .5rem;
+  padding: 0 .5rem;
+}
+
+/* Estructuras */
+.app_win > .ide-est {
+  max-width: 60rem;
+  height: 90vh;
+}
+.app_win > .ide-est > div {
+  padding: 0;
+}
+.app_win > .ide-est > div > .app_est {
+  height: 77vh;
+}

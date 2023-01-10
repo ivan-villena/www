@@ -6,7 +6,7 @@ class api_fig {
   // getter
   static _( $ide, $val ){
     let $_, $_dat;
-    $_ = $_dat = api_app.est('fig',$ide,'dat');
+    $_ = $_dat = sis_dat.est('fig',$ide,'dat');
 
     if( !!($val) ){
       $_ = $val;
@@ -109,8 +109,8 @@ class api_fig {
       }
     });
     if( !!$pad && $pad.nodeName ){
-      api_ele.val_eli($pad);
-      api_ele.val_agr($.lis,$pad);
+      $dom.eli($pad);
+      $dom.agr($.lis,$pad);
     }
     return $;
   }  

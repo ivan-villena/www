@@ -9,7 +9,7 @@ class sis_sql {
   static function tip( string $ide ){
 
     if( empty(self::$_tip) ){
-      self::$_tip = api_app::dat('app_tip',['ver'=>"`len` LIKE '%sql%'",'niv'=>["ide"],'ele'=>["ope"]]);
+      self::$_tip = sis_dat::get('app_tip',['ver'=>"`len` LIKE '%sql%'",'niv'=>["ide"],'ele'=>["ope"]]);
     }
 
     return isset(self::$_tip[$ide]) ? self::$_tip[$ide] : new stdClass;

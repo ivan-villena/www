@@ -7,7 +7,7 @@ class api_num {
   // getter
   static _( $ide, $val ){
     let $_, $_dat;
-    $_ = $_dat = api_app.est('num',$ide,'dat');
+    $_ = $_dat = sis_dat.est('num',$ide,'dat');
 
     if( !!($val) ){
       $_ = $val;

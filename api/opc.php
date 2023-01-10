@@ -9,7 +9,7 @@ class api_opc {
   }// getter
   static function _( string $ide, $val = NULL ) : string | array | object {
 
-    $_ = $_dat = api_app::est('opc',$ide,'dat');
+    $_ = $_dat = sis_dat::est('opc',$ide,'dat');
     
     if( !empty($val) ){
       $_ = $val;
@@ -75,12 +75,12 @@ class api_opc {
         $_dat = $ope['dat'];
         unset($ope['dat']);
         if( is_string($_dat) ){
-          $_dat = api_app::dat($_dat);
+          $_dat = sis_dat::get($_dat);
         }
         $_ .= "
         <div class='api_opc mul'>";
         $ope_dat = api_lis::val_ite($dat);
-        $ope_ide = isset($ope['id']) ? $ope['id'] : "_opc_mul-".api_app::var_ide('opc_mul');
+        $ope_ide = isset($ope['id']) ? $ope['id'] : "_opc_mul-".sis_dat::var_ide('opc_mul');
         $ope_nom = isset($ope['name']) ? $ope['name'] : FALSE;
         foreach( $_dat as $ide => $dat ){
           $ide = isset($dat->ide) ? $dat->ide : $ide;

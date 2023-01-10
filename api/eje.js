@@ -7,7 +7,7 @@ class api_eje {
   // getter
   static _( $ide, $val ){
     let $_, $_dat;
-    $_ = $_dat = api_app.est('eje',$ide,'dat');
+    $_ = $_dat = sis_dat.est('eje',$ide,'dat');
 
     if( !!($val) ){
       $_ = $val;
@@ -57,8 +57,7 @@ class api_eje {
       ;
     }
     return $_;
-  }
-  // codifico ejecucion
+  }// codifico ejecucion
   static val_cod( $val, $par ){
     let $_=false,$={}; 
     $.par=[];
@@ -82,47 +81,62 @@ class api_eje {
   }
 
   static fun( $dat, $val ){
+
     if( $dat.nodeName ){
+
       $.pad = $dat.parentElement.parentElement;
+
       ['par','val','ini','inv'].forEach( $v => $[$v] = $.pad.querySelector(`[${$v}]`).value );
+
       $.fun = eval(`( ${$.par} ) =>{ ${$.val} return ${$.ini} }`);
-      if( $.fun ){// defino un array para desestructurar e invocar
+
+      if( $.fun ){
+        // defino un array para desestructurar e invocar
         $_ = !!($.inv) ? $.fun( ...eval(`[${$.inv}]`) ) : $.fun() ;
-        $.tip = api_app.tip($_);// evaluo e imprimo resultado 
+        // evaluo e imprimo resultado 
+        $.tip = sis_dat.tip($_);
         // $.pad.querySelector(`[ini]`).innerHTML = ( `${$.tip.dat}_${$.tip.val}`, { 'val':$_ } );
-      }else{ 
+      }
+      else{ 
         $.pad.querySelector(`[ini]`).innerHTML = `<span class="let err">${$.fun._err}</span>`;
       }
-    }else if( !$val ){
+    }
+    else if( !$val ){
       $_ = $dat(); 
-    }else{ 
+    }
+    else{ 
       $_ = !Array.isArray($val) ? $dat($val) : $dat(...$val) ; 
     }
     return $_;
   }
 
-  static cla( $val ){
-    let $_,$={
-      'tip':typeof($val)
-    };
-    if( $.tip=='object' ){
-      $_=(!$d[1]) ? new $val.constructor() : ( !Array.isArray($d[1]) ) ? new $val.constructor($d[1]) : new $val.constructor(...$d[1]) ;
+  static cla( $val, $d = [] ){
+
+    let $_, $ = { 'tip':typeof($val) };
+
+    if( $.tip == 'object' ){
+      $_ = !$d[1] ? new $val.constructor() : ( !Array.isArray($d[1]) ? new $val.constructor($d[1]) : new $val.constructor(...$d[1]) );
     }
-    else if( $.tip=='string' ){
-      $_=(!$d[1]) ? new window[$val]() : ( !Array.isArray($d[1]) ) ? new window[$val]($d[1]) : new window[$val](...$d[1]) ; 
+    else if( $.tip == 'string' ){
+      $_ = !$d[1] ? new window[$val]() : ( !Array.isArray($d[1]) ? new window[$val]($d[1]) : new window[$val](...$d[1]) ); 
     }
-    else if( $.tip=='function' ){
-      $_=(!$d[1]) ? new $_fun() : ( !Array.isArray($d[1]) ) ? new $_fun($d[1]) : new $_fun(...$d[1]) ;
+    else if( $.tip == 'function' ){
+      $_ = !$d[1] ? new $_fun() : ( !Array.isArray($d[1]) ? new $_fun($d[1]) : new $_fun(...$d[1]) );
     }
+
     return $_;
   }
   
   static eve( $dat, $val  ){
+
     let $_=[], $={};
+
     // recivo un evento
     if( $dat.target ){
+
       $.eve = $dat;
       $.ele = $.eve.target;
+
       if( $.eje = $.ele.getAttribute('_eje') ){
     
         $.eje.split('(;;)').forEach( $eje_eve =>{
@@ -181,7 +195,8 @@ class api_eje {
           });
         });
       }
-    }// ejecuto desde un elemento '_eje'
+    }
+    // ejecuto desde un elemento '_eje'
     else if( $dat.nodeName ){
       // ejecuciones asociadas : evento_1-1,evt_1-2(=>)obj.met-tip(,)ele(,)...opc(;;)evento_2(=>)...
       if( $dat.getAttribute('_eje') ){
@@ -189,8 +204,7 @@ class api_eje {
         if( $val ){
   
         }
-      }
-      
+      }      
     }
     return $_;
   }

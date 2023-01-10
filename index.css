@@ -1,8 +1,8 @@
-
+/* 
+  Fuentes
+*/
 @import url('https://fonts.googleapis.com/css2?family=Lora');
 
-/*//////////////////////////////////////////////////////////////////////*/
-/*//////////////////////////////////////////////////////////////////////*/
 /* 
   Variables
 */
@@ -11,8 +11,8 @@
   /* tamaños */
   --tam_cab_max: 6vh;
   --tam_sec_max: 94vh;
-  --tam_cab_min: 8vh;
-  --tam_sec_min: 92vh;
+  --tam_cab_min: 9vh;
+  --tam_sec_min: 91vh;
 
   /* fondos */
   --fon_win:rgba(015, 015, 015,  1);/* pantalla */
@@ -74,39 +74,7 @@
 *, :before, :after {
   box-sizing: border-box;
 }
+
 *[onclick] {
   cursor: pointer;
-}
-
-/* 
-  Página
-*/
-html {
-  font-family: 'Lora', 'Book Antiqua', 'Georgia';
-  font-size: 15px;
-}
-/*  
-  tamaño pequeño
-*/
-@media only screen and ( max-width: 500px ){
-  html { 
-    font-size: 13px;
-  }
-}
-
-@media only screen and ( max-width: 700px ){
-  body > main article {
-    max-width: 100vw;
-  }
-}
-
-body {
-  width: 100vw;
-  height: 100vh;
-  background: center/cover no-repeat url('../../img/app/fon/01.jpg');
-  margin: 0;
-  color: var(--let_tex);
-  /* para que se vea el modal */
-  display: flex;
-  flex-direction: column;  
 }
