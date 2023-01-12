@@ -108,7 +108,7 @@ article section > p {
 article > ul.lis,
 article section > ul.lis {
   margin: .5rem auto;
-  /* max-width: fit-content;   */
+  max-width: fit-content;
 }
 article > figure,
 article section > figure {

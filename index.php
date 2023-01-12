@@ -40,7 +40,6 @@
     require_once("./sis/usu.php");
 
     // Componentes
-    require_once("./api/doc.php");
     require_once("./api/arc.php");
     require_once("./api/eje.php");
     require_once("./api/ele.php");
@@ -214,7 +213,7 @@
 
         const $sis_app = new sis_app(<?= api_obj::val_cod([ 'rec'=>[ 'uri'=>$_uri ] ]) ?>);
 
-        const $sis_dat = new sis_dat(<?= api_obj::val_cod([ '_tip'=>$sis_dat->_tip, '_est'=>$dat_est]) ?>);        
+        const $sis_dat = new sis_dat(<?= api_obj::val_cod([ '_tip'=>$sis_dat->_tip, '_est'=>$dat_est ]) ?>);
         
         // codigo por aplicacion
         <?= $sis_app->rec['eje'] ?>

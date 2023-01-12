@@ -131,7 +131,7 @@ class api_obj {
             <c>(</c> <n class='sep'>{$cue}</n> <c>)</c> <c class='sep'>=></c> <c class='_lis-ini'>{$ini}</c>
           </p>
           ".api_fig::ico('dat_ver',['onclick'=>"$_eje.val(this,'tog');"])."
-          <ul class='doc_ope _tog{$cla_agr}'>"; 
+          <ul class='app_ope _tog{$cla_agr}'>"; 
             if( empty($atr_agr) ){ $_.="
             ".api_fig::ico('dat_tod',['eti'=>"li",'onclick'=>"$_eje.val(this,'tod');"])."
             ".api_fig::ico('dat_nad',['eti'=>"li",'onclick'=>"$_eje.val(this,'nad');"])."

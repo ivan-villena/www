@@ -126,11 +126,119 @@ class api_lis {
     return $_;
   }
 
-  /*-- Posicion --*/
+
+  /* -- Barra -- */
+  static bar(){
+  }// - Desplazamiento
+  static bar_ite( $tip, $dat ){
+    
+    let $ = sis_app.var($dat);
+
+    if( $tip == 'val' ){
+
+      $.lis = $dom.app.var.previousElementSibling;
+
+      $.val = $dom.app.var.querySelector('[name="val"]');
+      $.pos = api_num.val($.val.value);
+
+      switch( $dat.getAttribute('name') ){
+      case 'ini': $.pos = api_num.val($.val.min);
+        break;
+      case 'pre': $.pos = $.pos > api_num.val($.val.min) ? $.pos-1 : $.pos;
+        break;
+      case 'pos': $.pos = $.pos < api_num.val($.val.max) ? $.pos+1 : $.pos;
+        break;
+      case 'fin': $.pos = api_num.val($.val.max);
+        break;
+      }
+      // valido y muestro item
+      $.val.value = $.pos;
+
+      $dom.act('cla_agr',$.lis.querySelectorAll(`li.pos:not(.${DIS_OCU})`),DIS_OCU);
+
+      if( $.ite = $.lis.querySelector(`li.ide-${$.pos}`) ) $.ite.classList.remove(DIS_OCU);
+    }
+  }    
+
+  /* -- Indice -- */
+  static nav( $dat, $cla = FON_SEL ){
+
+    let $ = { lis : $dom.ver($dat,{'eti':'nav'}) };
+
+    if( $.lis ){
+      // elimino marcas previas
+      $.lis.querySelectorAll(
+        `ul.lis.nav :is( li.pos.sep, li.pos:not(.sep) > .app_val ).${$cla}`
+      ).forEach( 
+        $e => $e.classList.remove($cla) 
+      );
+
+      // controlo el toggle automatico por dependencias
+      if( 
+        ( $.dep = $dat.parentElement.parentElement.querySelector('ul.lis') ) 
+        &&
+        ( $dat.classList.contains('fig_ico') || $.dep.classList.contains(DIS_OCU) ) 
+      ){
+        sis_app.val($dat);
+      }
+
+      // pinto fondo
+      if( !( $.bot = $dat.parentElement.querySelector('.fig_ico') ) || !$.bot.classList.contains('ocu') ){
+
+        $dat.parentElement.classList.add($cla);
+      }
+    }
+  }// - Toggles
+  static nav_tog( $lis, $ope ){
+
+    let $={};
+
+    if( $ope ){
+
+      return sis_app.val($lis,$ope);
+    }
+    else if( $.nav = $lis ? api_lis.nav_mar($lis) : false ){
+      // hago toogles ascendentes
+      while(
+        ( $.lis = $dom.ver($.nav,{'eti':'ul'}) ) 
+        && 
+        ( $.val = $.lis.previousElementSibling ) &&  $.val.classList.contains('app_val')
+        && 
+        ( $.nav = $.val.querySelector('a[href^="#"]') )
+      ){
+        if( $.lis.classList.contains(DIS_OCU) && ( $.ico = $.nav.previousElementSibling ) && $.ico.classList.contains('fig_ico') ){                
+          sis_app.val($.ico);
+        }
+      }
+    }
+  }// - Marcas
+  static nav_mar( $lis ){
+
+    let $nav, $val = location.href.split('#')[1];
+
+    // hago toogle por item
+    if( $val && ( $nav = $lis.querySelector(`a[href="#${$val}"]`) ) ){
+        
+      api_lis.nav($nav);
+    }
+
+    return $nav;
+  }// - Filtros
+  static nav_ver( $dat, $ope = 'a[href]' ){
+
+    // ejecuto filtros
+    api_lis.dep_ver($dat, $ope);
+
+    // volver a marcar el fondo del elemento seleccionado
+    api_lis.nav_tog($dom.app.var.nextElementSibling);
+
+  }
+
+  /* -- Posicion -- */
   static pos(){
   }// - Items
   static pos_val( $dat, $ope ){
-    let $ = api_doc.var($dat);
+    let $ = sis_app.var($dat);
     
     if( !$ope ){
       // toggles
@@ -151,7 +259,7 @@ class api_lis {
   }// - Toggles
   static pos_tog( $dat, $ope ){
 
-    let $ = api_doc.var($dat);
+    let $ = sis_app.var($dat);
 
     if( !$dat || !$ope ){
       $dom.act('cla_tog',$.lis.children,DIS_OCU); 
@@ -176,7 +284,7 @@ class api_lis {
   }// - Filtro
   static pos_ver( $dat, $ope ){
 
-    let $ = api_doc.var($dat);
+    let $ = sis_app.var($dat);
     
     // filtro por valor textual        
     if( !$ope ){
@@ -227,48 +335,15 @@ class api_lis {
     }    
   }
 
-  /*-- Barra --*/
-  static bar(){
-  }// - Desplazamiento
-  static bar_ite( $tip, $dat ){
-    
-    let $ = api_doc.var($dat);
-
-    if( $tip == 'val' ){
-
-      $.lis = $dom.app.var.previousElementSibling;
-
-      $.val = $dom.app.var.querySelector('[name="val"]');
-      $.pos = api_num.val($.val.value);
-
-      switch( $dat.getAttribute('name') ){
-      case 'ini': $.pos = api_num.val($.val.min);
-        break;
-      case 'pre': $.pos = $.pos > api_num.val($.val.min) ? $.pos-1 : $.pos;
-        break;
-      case 'pos': $.pos = $.pos < api_num.val($.val.max) ? $.pos+1 : $.pos;
-        break;
-      case 'fin': $.pos = api_num.val($.val.max);
-        break;
-      }
-      // valido y muestro item
-      $.val.value = $.pos;
-
-      $dom.act('cla_agr',$.lis.querySelectorAll(`li.pos:not(.${DIS_OCU})`),DIS_OCU);
-
-      if( $.ite = $.lis.querySelector(`li.ide-${$.pos}`) ) $.ite.classList.remove(DIS_OCU);
-    }
-  }  
-
-  /*-- Contenedor --*/
+  /* -- Contenedor -- */
   static dep(){      
   }// - Toggles
   static dep_tog( $dat, $val ){
     
-    return api_doc.val($dat,$val);
+    return sis_app.val($dat,$val);
   }// - Filtros
   static dep_ver( $dat, $ope = 'p:first-of-type', $cla = 'tex-luz' ){
-    let $ = api_doc.var($dat);
+    let $ = sis_app.var($dat);
 
     // busco listado
     if( $dom.app.var ){
@@ -319,7 +394,7 @@ class api_lis {
       }      
       // actualizo toggle
       if( $.tog[1] && ( $.ico = $dom.app.var.querySelector(`.fig_ico.ide-val_tog-${$.tog[1]}`) ) ){ 
-        api_doc.val($.ico,$.tog[1]);
+        sis_app.val($.ico,$.tog[1]);
       }
       
       // actualizo total
@@ -327,78 +402,4 @@ class api_lis {
     }      
   }
 
-  /* Indice
-  */
-  static nav( $dat, $cla = FON_SEL ){
-
-    let $ = { lis : $dom.ver($dat,{'eti':'nav'}) };
-
-    if( $.lis ){
-      // elimino marcas previas
-      $.lis.querySelectorAll(
-        `ul.lis.nav :is( li.pos.sep, li.pos:not(.sep) > div.doc_ite ).${$cla}`
-      ).forEach( 
-        $e => $e.classList.remove($cla) 
-      );
-
-      // controlo el toggle automatico por dependencias
-      if( 
-        ( $.dep = $dat.parentElement.parentElement.querySelector('ul.lis') ) 
-        &&
-        ( $dat.classList.contains('fig_ico') || $.dep.classList.contains(DIS_OCU) ) 
-      ){
-        api_doc.val($dat);
-      }
-
-      // pinto fondo
-      if( !( $.bot = $dat.parentElement.querySelector('.fig_ico') ) || !$.bot.classList.contains('ocu') ){
-
-        $dat.parentElement.classList.add($cla);
-      }
-    }
-  }// - Toggles
-  static nav_tog( $lis, $ope ){
-
-    let $={};
-
-    if( $ope ){
-
-      return api_doc.val($lis,$ope);
-    }
-    else if( $.nav = $lis ? api_lis.nav_mar($lis) : false ){
-      // hago toogles ascendentes
-      while(
-        ( $.lis = $dom.ver($.nav,{'eti':'ul'}) ) 
-        && 
-        ( $.val = $.lis.previousElementSibling ) && $.val.nodeName == 'DIV' &&  $.val.classList.contains('doc_ite')
-        && 
-        ( $.nav = $.val.querySelector('a[href^="#"]') )
-      ){
-        if( $.lis.classList.contains(DIS_OCU) && ( $.ico = $.nav.previousElementSibling ) && $.ico.classList.contains('fig_ico') ){                
-          api_doc.val($.ico);
-        }
-      }
-    }
-  }// - Marcas
-  static nav_mar( $lis ){
-
-    let $nav, $val = location.href.split('#')[1];
-
-    // hago toogle por item
-    if( $val && ( $nav = $lis.querySelector(`a[href="#${$val}"]`) ) ){
-        
-      api_lis.nav($nav);
-    }
-
-    return $nav;
-  }// - Filtros
-  static nav_ver( $dat, $ope = 'a[href]' ){
-
-    // ejecuto filtros
-    api_lis.dep_ver($dat, $ope);
-
-    // volver a marcar el fondo del elemento seleccionado
-    api_lis.nav_tog($dom.app.var.nextElementSibling);
-
-  }
 }

@@ -101,7 +101,7 @@ class api_est {
     return $_;
   }// opciones : esquema.estructura.atributos.valores
   static val_opc( $tip, $dat, $ope, ...$opc ){
-    let $_="", $ = api_doc.var($dat);
+    let $_="", $ = sis_app.var($dat);
     // vacio valores y atributos
     $.ini = ( $ide = ["val"] ) => {
       $ide.forEach( $i => { 
@@ -193,7 +193,7 @@ class api_est {
   
   /* Ficha */
   static fic( $dat, $ope, ...$opc ){
-    let $_="", $ = api_doc.var($dat);
+    let $_="", $ = sis_app.var($dat);
     $.dat = {};
 
     // actualizo valores principales
@@ -228,7 +228,7 @@ class api_est {
     // pido ficha
     api_eje.val([ `api_est::inf`, [ $esq, $est, $val ] ], $htm => {
       // muestro en ventana
-      if( $htm ) sis_app.win('doc_ope',{ 
+      if( $htm ) sis_app.win('app_ope',{ 
         ico: "", 
         cab: "", 
         htm: $htm, 
@@ -239,7 +239,7 @@ class api_est {
 
   /*-- Operador --*/
   static ope( $tip, $dat, $ope, ...$opc ){
-    let $ = api_doc.var($dat);
+    let $ = sis_app.var($dat);
     switch( $tip ){
     // cargo valores
     case 'var':
@@ -418,7 +418,7 @@ class api_est {
   }// filtros : dato + variables
   static ope_ver( $tip, $dat, $ope, ...$opc ){
 
-    let $ = api_doc.var($dat);
+    let $ = sis_app.var($dat);
 
     $._tip = $tip.split('-');
 
@@ -533,7 +533,7 @@ class api_est {
     
   }// conteos : valores de estructura relacionada por atributo
   static ope_cue( $tip, $dat, $ope, ...$opc ){
-    let $ = api_doc.var($dat);
+    let $ = sis_app.var($dat);
 
     switch( $tip ){
     // actualizo cuentas por valores
@@ -637,7 +637,7 @@ class api_est {
       }
       break;
     case 'tod': 
-      $ = api_doc.var($dat);  
+      $ = sis_app.var($dat);  
       
       if( $dom.est.lis.val_acu ){
         // ajusto controles acumulados
@@ -684,7 +684,7 @@ class api_est {
   }// Filtros : Valores + Fecha + Posicion
   static lis_ver( $tip, $dat ){
 
-    let $ = api_doc.var($dat);
+    let $ = sis_app.var($dat);
 
     // ejecuto filtros
     if( !$tip || ['dat','pos','fec'].includes($tip) ){
@@ -734,7 +734,7 @@ class api_est {
   }// - muestro-oculto
   static lis_atr_tog( $dat ){
 
-    let $ = api_doc.var($dat);      
+    let $ = sis_app.var($dat);      
 
     $.esq = $dat.dataset.esq;
     $.est = $dat.dataset.est;
@@ -768,7 +768,7 @@ class api_est {
   }// - muestro-oculto
   static lis_des_tog( $dat ){
 
-    let $ = api_doc.var($dat);
+    let $ = sis_app.var($dat);
     $.ope  = $dom.app.var.classList[0].split('-')[1];
     $.esq = $dom.app.var.dataset.esq;
     $.est = $dom.app.var.dataset.est;
@@ -798,7 +798,7 @@ class api_est {
   }// - filtro por descripciones
   static lis_des_ver( $dat ){
 
-    let $ = api_doc.var($dat);    
+    let $ = sis_app.var($dat);    
 
     // por selectores : titulo + detalle + lectura 
     if( ['tit','det'].includes($.var_ide) ){
@@ -1003,7 +1003,7 @@ class api_est {
   }// Valores
   static tab_val( $tip, $dat ){
 
-    let $ = api_doc.var($dat);
+    let $ = sis_app.var($dat);
 
     switch( $tip ){
     case 'pos': 
@@ -1053,9 +1053,9 @@ class api_est {
   }// - acumulados( posicion + marcas + seleccion )
   static tab_val_acu( $dat, $ope ){
     
-    let $ = api_doc.var($dat);
+    let $ = sis_app.var($dat);
 
-    if( !$.var_ide && $ope ) $ = api_doc.var( $dat = $dom.est.tab.val_acu.querySelector(`[name="${$ope}"]`) );
+    if( !$.var_ide && $ope ) $ = sis_app.var( $dat = $dom.est.tab.val_acu.querySelector(`[name="${$ope}"]`) );
     
     // busco marcas 
     $.cla_ide = `_val-${$.var_ide}`;
@@ -1122,7 +1122,7 @@ class api_est {
   }// Secciones : bordes + colores + imagen + ...
   static tab_sec( $dat ){
 
-    let $ = api_doc.var($dat); 
+    let $ = sis_app.var($dat); 
 
     switch( $.var_ide ){
     case 'bor':
@@ -1162,7 +1162,7 @@ class api_est {
   }// Posiciones : borde + color + imagen + texto + numero + fecha
   static tab_pos( $dat ){
 
-    let $ = api_doc.var($dat); 
+    let $ = sis_app.var($dat); 
     
     if( ( $.var_ide = $.var_ide.split('_')[0] ) != 'bor' ){
       // aseguro selector

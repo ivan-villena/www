@@ -1,0 +1,110 @@
+
+/* 
+campos
+*/
+form {
+  max-height: 100%;
+}
+fieldset {
+  border-radius: .5rem;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+legend {
+  display: flex;  
+  flex-flow: row nowrap;
+  align-items: center;
+  overflow: hidden;
+  padding: .3rem 1rem;
+  border-radius: .8rem;
+  border: 1px solid var(--bor_sec);
+  font-size: medium;
+  text-align: left;
+}
+
+/* 
+  Operadores
+*/
+fieldset.app_inf {
+  margin: .25rem .5rem .75rem;
+}
+:is(form,fieldset) > :is(.doc_ren,.doc_ite) {
+  justify-content: space-evenly;  
+}
+:is(form,fieldset) > div:is(.doc_ren,.doc_ite) {
+  margin: .25rem;
+}
+
+/* 
+variable > label + input
+*/
+form .dat_var {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  margin: .25rem;
+}
+
+/* 
+  Etiquetas
+*/
+label[for] {
+  min-width: -moz-fit-content;
+  min-width: fit-content;
+  margin: 0 .25rem;
+  cursor: pointer;
+}
+
+/* 
+  Control 
+*/
+input, 
+textarea,
+select,
+datalist,
+button {
+  background-color: var(--fon_art);
+  padding: .2rem;
+  border: 1px solid var(--col_azu);
+  border-radius: .5rem;
+  font-family: var(--tex);
+  color: var(--let_tex);
+}
+
+/* Focos */
+:is(input,select,button:not(.fig_ico)):focus {
+  background-color: var(--tra_azu);
+}
+:is(input,select,textarea):focus {
+  outline: none;
+}
+
+/* Acciones */
+
+/* Tamaños */
+input:is([type="text"]) {
+  width: 100%;
+  max-width: 70vw;
+}
+input[maxlength='1'] { width: 2.5rem; }
+input[maxlength='2'] { width: 3rem; }
+input[maxlength='3'] { width: 3.5rem; }
+input[maxlength='4'] { width: 4rem; }
+input[maxlength='5'] { width: 4.5rem; }
+input[maxlength='6'] { width: 5rem; }
+input[maxlength='7'] { width: 5.5rem; }
+input[maxlength='8'] { width: 6rem; }
+input[maxlength='9'] { width: 6.5rem; }
+input[maxlength='10']{ width: 7rem; }
+input[maxlength='11']{ width: 7.5rem; }
+input[maxlength='12']{ width: 8rem; }
+input[maxlength='13']{ width: 8.5rem; }
+input[maxlength='14']{ width: 9rem; }
+input[maxlength='15']{ width: 9.5rem; }
+input[maxlength='16']{ width: 10rem; }
+input[maxlength='17']{ width: 10.5rem; }
+input[maxlength='18']{ width: 11rem; }
+input[maxlength='19']{ width: 11.5rem; }
+input[maxlength='20']{ width: 12rem; }
+input[maxlength='25']{ width: 15rem; }

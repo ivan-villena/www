@@ -871,7 +871,7 @@ class api_est {
         $url_ver = in_array('lis',$opc) ? "{$url}/lis" : "{$url}/tab";
       }
       $_ .= "
-      <fieldset class='doc_ope' abm='{$tip}'>    
+      <fieldset class='app_ope' abm='{$tip}'>    
         ".api_fig::ico('dat_ver', ['eti'=>"a", 'title'=>$_ope['ver']['nom'], 'onclick'=>"{$_eje}('ver');"])."
 
         ".api_fig::ico('dat_agr', ['eti'=>"a", 'title'=>$_ope['agr']['nom'], 'href'=>!empty($url) ? $url_agr : NULL, 'onclick'=>empty($url) ? "{$_eje}('agr');" : NULL])."
@@ -882,7 +882,7 @@ class api_est {
     // Tabla
     case 'est':
       $_ .= "
-      <fieldset class='doc_ope'>    
+      <fieldset class='app_ope'>    
         ".api_fig::ico('dat_agr',['eti'=>"button", 'type'=>"button", 'title'=>"Agregar", 'onclick'=>""])."
         
         ".api_fig::ico('dat_eli',['eti'=>"button", 'type'=>"button", 'title'=>"Eliminar", 'onclick'=>""])."    
@@ -892,7 +892,7 @@ class api_est {
     case 'inf':
       $tip = isset($ope['tip']) ? $ope['tip'] : 'ini';
       $_ = "
-      <fieldset class='doc_ope mar-2 esp-ara'>
+      <fieldset class='app_ope mar-2 esp-ara'>
 
         ".api_fig::ico('dat_ini', [ 'eti'=>"button", 'title'=>$_ope[$tip]['nom'], 'type'=>"submit", 'onclick'=>"{$_eje}('{$tip}');" ]);
 
@@ -941,7 +941,7 @@ class api_est {
     $_ .= "
     <div class='doc_ren'>";
       foreach( $opc as $ide ){        
-        $_ .= api_doc::var('est',"ope.acu.$ide", [
+        $_ .= sis_app::var('est',"ope.acu.$ide", [
           'ope'=> [ 
             'id'=>"{$_ide}-{$ide}", 'val'=>isset($dat[$ide]) ? $dat[$ide] : NULL, 'onchange'=>$_eje_val
           ],
@@ -961,7 +961,7 @@ class api_est {
     // estructuras por esquema
     foreach( sis_dat::var($esq,'ope','sum') as $ide => $ite ){
   
-      $_ .= api_doc::var($esq,"ope.sum.$ide",[
+      $_ .= sis_app::var($esq,"ope.sum.$ide",[
         'ope'=>[ 'id'=>"{$_ide} sum-{$ide}" ],
         // busco fichas del operador
         'htm_fin'=> !empty($ite['var_fic']) ? api_est::fic_atr($ite['var_fic'], $val, $ope) : ''
@@ -995,12 +995,12 @@ class api_est {
       // imprimo: desde - hasta
       foreach( ['ini','fin'] as $ide ){
         
-        if( isset($var[$ide]) ) $_ .= api_doc::var('est',"ope.ver.$ide", [ 'ope'=>$_ite($ide,$var) ]);
+        if( isset($var[$ide]) ) $_ .= sis_app::var('est',"ope.ver.$ide", [ 'ope'=>$_ite($ide,$var) ]);
       }
 
       // imprimo cada
       if( isset($var['inc']) ){
-        $_ .= api_doc::var('est',"ope.ver.inc", [ 'ope'=>$_ite('inc',$var) ]);
+        $_ .= sis_app::var('est',"ope.ver.inc", [ 'ope'=>$_ite('inc',$var) ]);
       }
 
       // imprimo cuántos
@@ -1009,9 +1009,9 @@ class api_est {
         $_ .= "
         <div class='doc_ren tam-ini'>
 
-          ".api_doc::var('est',"ope.ver.lim", [ 'ope'=>$_ite('lim',$var) ] )."
+          ".sis_app::var('est',"ope.ver.lim", [ 'ope'=>$_ite('lim',$var) ] )."
 
-          <fieldset class='doc_ope'>
+          <fieldset class='app_ope'>
             ".api_fig::ico('lis_ini',[ 'eti'=>"button", 'title'=>"Los primeros...", 'class'=>"bor-sel", 'onclick'=>$_eje ])."
             ".api_fig::ico('lis_fin',[ 'eti'=>"button", 'title'=>"Los primeros...", 'onclick'=>$_eje ])."
           </fieldset>
@@ -1036,10 +1036,10 @@ class api_est {
         array_push($opc,'est','val');
         $_ .= "
         <form class='ide-dat'>
-          <fieldset class='doc_inf doc_ren'>
+          <fieldset class='app_inf doc_ren'>
             <legend>por Datos</legend>
 
-            ".api_doc::var('est',"ope.ver.dat",[ 
+            ".sis_app::var('est',"ope.ver.dat",[ 
               'ite'=>[ 'class'=>"tam-mov" ], 
               'htm'=>api_est::val_opc('ver',$ope_dat,[ 'ope'=>[ 'id'=>"{$ide}-val", 'onchange'=>"$eje('dat');" ] ], ...$opc)
             ])."
@@ -1055,7 +1055,7 @@ class api_est {
         $pos_var_val = array_merge($pos_var,[ 'tip'=>"num_int" ]); 
         $_ .= "
         <form class='ide-pos'>
-          <fieldset class='doc_inf doc_ren'>
+          <fieldset class='app_inf doc_ren'>
             <legend>por Posiciones</legend>
 
             ".$ope_ver_var([ 'ini'=>$pos_var_val, 'fin'=>$pos_var_val, 'inc'=>$pos_var, 'lim'=>$pos_var ])."
@@ -1074,7 +1074,7 @@ class api_est {
         ]);
         $_ .= "
         <form class='ide-fec'>
-          <fieldset class='doc_inf doc_ren'>
+          <fieldset class='app_inf doc_ren'>
             <legend>por Fechas</legend>
 
             ".$ope_ver_var([ 'ini'=>$fec_var_val, 'fin'=>$fec_var_val, 'inc'=>$fec_var, 'lim'=>$fec_var ])."
@@ -1153,7 +1153,7 @@ class api_est {
       <!-- filtros -->
       <form class='doc_val'>
 
-        ".api_doc::var('val','ver',[ 
+        ".sis_app::var('val','ver',[ 
           'nom'=>"Filtrar", 
           'id'=> "{$_ide}-ver {$esq}-{$ide}",
           'htm'=> api_lis::ope_ver([ 'ide'=>"{$_ide}-ver {$esq}-{$ide}", 'eje'=>"$_eje('ver',this);" ])
@@ -1253,7 +1253,7 @@ class api_est {
         foreach( $_ope as $ope_ide => &$ope_lis ){
           $ope_lis['htm'] = api_est::lis_ope($ope_ide,$dat,$ope,$ele);
         }
-        $_ .= api_doc::nav('ope', $_ope,[ 'lis'=>['class'=>"mar_hor-1"] ],'ico','tog');
+        $_ .= sis_app::nav('ope', $_ope,[ 'lis'=>['class'=>"mar_hor-1"] ],'ico','tog');
       }    
     }
     /////////////////////////////////////////
@@ -1276,12 +1276,30 @@ class api_est {
           $pos_val = 0;   
           // recorro: por listado $dat = []                     
           if( !$_val_dat ){
+            $_ite = function( string $tip, int $pos, array $ope, array $ele ) : string {
+              $_ = "";
+              foreach( api_lis::val_ite($ope[$tip][$pos]) as $val ){ 
+                $_ .= "
+                <tr".api_ele::atr($ele["{$tip}_ite"]).">
+                  <td".api_ele::atr(api_ele::val_jun(['data-ope'=>$tip,'colspan'=>$ope['atr_tot']],$ele["{$tip}_val"])).">
+                    ".( is_array($val) ? api_ele::val($val) : "<p class='{$tip} tex_ali-izq'>".api_tex::let($val)."</p>" )."
+                  </td>
+                </tr>";
+                return $_;
+              }
+              return $_;
+            };            
             foreach( $dat as $ite => $val ){ 
-              $ele_pos = $ele['ite'];
+              // Titulo
+              if( !empty($ope['tit'][$ite]) ) $_ .= self::lis_des('tit',$ite,$ope,$ele);
+              // Item
+              $ele_pos = $ele['ite'];              
               api_ele::cla($ele_pos,"pos ide-$ite",'ini'); $_ .= "
               <tr".api_ele::atr($ele_pos).">
                 ".api_est::lis_ite( $dat, $val, $ope, $ele )."
               </tr>";
+              // Detalle
+              if( !empty($ope['det'][$ite]) ) $_ .= self::lis_des('det',$ite,$ope,$ele);
             }
           }
           // estructuras de la base esquema
@@ -1357,7 +1375,7 @@ class api_est {
       </table>
     </div>";
     return $_;
-  }// armo Listado-Tabla 
+  }// Listado-Tabla 
   static function lis_dat( string $esq, string $est, array $ope = [] ) : array {     
     $_ = [];
 
@@ -1405,7 +1423,7 @@ class api_est {
     }
 
     return $_;
-  }// operadores : listado + valores + filtros + columnas + descripciones + cuentas/conteos
+  }// Operadores : listado + valores + filtros + columnas + descripciones + cuentas/conteos
   static function lis_ope( string $tip, string | array $dat, array $ope = [], array $ele = [] ) : string {
     $_ = "";
     $_ide = self::$IDE."lis_$tip";
@@ -1437,12 +1455,12 @@ class api_est {
       $_ .= "
       <form class='doc_val ide-dat jus-ini'>
 
-        <fieldset class='doc_ope'>
+        <fieldset class='app_ope'>
           ".api_fig::ico('val_ver-nad',['eti'=>"button",'title'=>"Ocultar todas las Columnas", 'onclick'=>"{$_eje}_val(this,'ocu');"])."
           ".api_fig::ico('val_ver-tod',['eti'=>"button",'title'=>"Mostrar todas las Columnas", 'onclick'=>"{$_eje}_val(this,'ver');"])."
         </fieldset>
 
-        ".api_doc::var('val','ver',[ 
+        ".sis_app::var('val','ver',[ 
           'nom'=>"Filtrar", 'htm'=> api_lis::ope_ver([ 'eje'=>"{$_eje}_ver(this);" ]) 
         ])."
 
@@ -1507,12 +1525,12 @@ class api_est {
           $eje_val = self::$EJE."lis_val";
           $_ .= "
           <form class='ide-acu'>
-            <fieldset class='doc_inf doc_ren'>
+            <fieldset class='app_inf doc_ren'>
               <legend>Acumulados</legend>
 
-              ".api_doc::var('est',"ope.ver.tot", [ 'ope'=>[ 'id'=>"{$_ide}-tot" ] ])."
+              ".sis_app::var('est',"ope.ver.tot", [ 'ope'=>[ 'id'=>"{$_ide}-tot" ] ])."
               
-              ".api_doc::var('est',"ope.ver.tod", [ 'ope'=>[ 'id'=>"{$_ide}-tod", 'onchange'=>"{$eje_val}('tod',this);" ] ])."
+              ".sis_app::var('est',"ope.ver.tod", [ 'ope'=>[ 'id'=>"{$_ide}-tod", 'onchange'=>"{$eje_val}('tod',this);" ] ])."
               
               ".api_est::ope_acu($ope['val']['acu'],[
                 'ide'=>$_ide, 
@@ -1540,7 +1558,7 @@ class api_est {
           // contenido : listado de checkbox en formulario
           $htm = "
           <form class='ide-$tip doc_ren jus-ini mar_izq-2'>
-            <fieldset class='doc_ope'>
+            <fieldset class='app_ope'>
               ".api_fig::ico('val_ver-tod',['eti'=>"button", 'title'=>"Mostrar todas las Columnas", 'class'=>"tam-2",
               'data-val'=>"ver", 'data-esq'=>$esq, 'data-est'=>$est, 'onclick'=>"{$_eje}_tog(this);"])."
               ".api_fig::ico('val_ver-nad',['eti'=>"button", 'title'=>"Ocultar todas las Columnas", 'class'=>"tam-2",
@@ -1549,7 +1567,7 @@ class api_est {
             foreach( $est_ope['atr'] as $atr ){
               $_atr = sis_dat::est($esq,$est,'atr',$atr);
               $atr_nom = empty($_atr->nom) && $atr=='ide' ? sis_dat::est($esq,$est,'atr','nom')->nom : $_atr->nom ;
-              $htm .= api_doc::var('val',$atr,[
+              $htm .= sis_app::var('val',$atr,[
                 'nom'=>"¿{$atr_nom}?", 
                 'val'=>!isset($est_ope['atr_ocu']) || !in_array($atr,$est_ope['atr_ocu']),
                 'ope'=>[ 'tip'=>'opc_bin', 'id'=>"{$_ide} _{$esq}-{$est}-{$atr}", 
@@ -1580,7 +1598,7 @@ class api_est {
               if( !empty($est_ope["{$pre}_{$ide}"]) ){ $htm = "
                 <form class='ide-{$ide} doc_ren ali-ini mar_izq-2' data-esq='{$esq}' data-est='{$est}'>";
                 foreach( $est_ope["{$pre}_{$ide}"] as $atr ){
-                  $htm .= api_doc::var('val',$atr,[ 
+                  $htm .= sis_app::var('val',$atr,[ 
                     'nom'=>"¿".sis_dat::est($esq,$est,'atr',$atr)->nom."?",
                     'ope'=>[ 'tip'=>'opc_bin', 'id'=>"{$_ide}-{$atr}-{$ide}", 'onchange'=>"{$_eje}_tog(this);" ] 
                   ]);
@@ -1614,7 +1632,7 @@ class api_est {
       break;
     }
     return $_;
-  }// columnas : por atributos
+  }// Columnas : por atributos
   static function lis_atr( string | array $dat, array $ope = [], array $ele = [] ) : string {
     $_ = "";
     // por muchos      
@@ -1661,7 +1679,20 @@ class api_est {
       }         
     }
     return $_;
-  }// titulo : posicion + ciclos + agrupaciones
+  }// Descripción : por posición, titulo o detalle
+  static function lis_des( string $tip, int $pos, array $ope, array $ele ) : string {
+    $_ = "";
+    foreach( api_lis::val_ite($ope[$tip][$pos]) as $val ){ 
+      $_ .= "
+      <tr".api_ele::atr($ele["{$tip}_ite"]).">
+        <td".api_ele::atr(api_ele::val_jun([ 'data-ope'=>$tip, 'colspan'=>$ope['atr_tot'] ], $ele["{$tip}_val"])).">
+          ".( is_array($val) ? api_ele::val($val) : "<p class='{$tip} tex_ali-izq'>".api_tex::let($val)."</p>" )."
+        </td>
+      </tr>";
+      return $_;
+    }
+    return $_;
+  }// Titulo por : posicion + ciclos + agrupaciones
   static function lis_tit( string $tip, string | array $dat, mixed $val, array $ope = [], array $ele = [], array $opc = [] ) : string {
     $_ = "";
     // proceso estructura de la base
@@ -1736,7 +1767,7 @@ class api_est {
       }        
     }
     return $_;
-  }// fila : datos de la estructura
+  }// Fila : valores de la estructura|objetos
   static function lis_ite( string | array $dat, mixed $val, array $ope = [], array $ele = [], array $opc = [] ) : string {
     $_ = "";
     $opc_ima = !in_array('ima',$opc);
@@ -1822,7 +1853,7 @@ class api_est {
       }
     }      
     return $_;
-  }// detalles : posicion + descripciones + lecturas
+  }// Detalle por : posicion + descripciones + lecturas
   static function lis_det( string $tip, string | array $dat, mixed $val, array $ope = [], array $ele = [], array $opc = [] ) : string {
     $_ = "";
     // 1 detalle
@@ -1959,10 +1990,10 @@ class api_est {
       // por acumulados
       $_ .= "
       <form class='ide-acu'>
-        <fieldset class='doc_inf doc_ren'>
+        <fieldset class='app_inf doc_ren'>
           <legend>Acumulados</legend>";
 
-          $_ .= api_doc::var('est',"ope.ver.tot", [ 'ope'=>[ 'id'=>"{$_ide}-tot" ] ]);
+          $_ .= sis_app::var('est',"ope.ver.tot", [ 'ope'=>[ 'id'=>"{$_ide}-tot" ] ]);
           
           $_ .= api_est::ope_acu($ope['val']['acu'],[ 
             'ide'=>"{$_ide}_acu", 
@@ -1976,7 +2007,7 @@ class api_est {
       if( isset($ope['val']['pos']['kin']) ){ $_ .= "
         <form class='ide-sum'>
   
-          <fieldset class='doc_inf doc_ren' data-esq='hol' data-est='kin'>
+          <fieldset class='app_inf doc_ren' data-esq='hol' data-est='kin'>
             <legend>Sumatorias del Kin</legend>
 
             ".api_est::ope_sum('hol.kin',$ope['val']['pos']['kin'])."
@@ -2014,7 +2045,7 @@ class api_est {
   
           if( isset($ope_var[$ide]) ){
   
-            $_ .= api_doc::var($esq,"tab.$tip.$ide", [
+            $_ .= sis_app::var($esq,"tab.$tip.$ide", [
               'val'=>!empty($ope_val[$ide]) ? !empty($ope_val[$ide]) : NULL, 
               'ope'=>[ 'id'=>"{$_ide}-{$ide}", 'onchange'=>"$_eje(this);" ]
             ]);
@@ -2029,14 +2060,14 @@ class api_est {
         $ele_ope = $ele['ope'];
         api_ele::cla($ele_ope,"ide-$tip_opc",'ini'); $_ .= "
         <form".api_ele::atr($ele_ope).">
-          <fieldset class='doc_inf doc_ren'>
+          <fieldset class='app_inf doc_ren'>
             <legend>Secciones</legend>";
             // operadores globales
             if( !empty($tab_sec = sis_dat::var('est','tab',$tip_opc)) ){ $_ .= "
               <div class='doc_val'>";
               foreach( sis_dat::var('est','tab',$tip_opc) as $ide => $ite ){
                 if( isset($ope[$tip_opc][$ide]) ){ 
-                  $_ .= api_doc::var('est',"tab.$tip_opc.$ide", [ 
+                  $_ .= sis_app::var('est',"tab.$tip_opc.$ide", [ 
                     'val'=>$ope[$tip_opc][$ide], 
                     'ope'=>[ 'id'=>"{$ele_ide}-{$ide}", 'onchange'=>$ele_eve ] 
                   ]); 
@@ -2057,18 +2088,18 @@ class api_est {
         $ele_ope = $ele['ope'];
         api_ele::cla($ele_ope,"ide-$tip_opc",'ini'); $_ .= "
         <form".api_ele::atr($ele_ope).">
-          <fieldset class='doc_inf doc_ren'>
+          <fieldset class='app_inf doc_ren'>
             <legend>Posiciones</legend>";
             // bordes            
             $ide = 'bor';
-            $_ .= api_doc::var('est',"tab.$tip_opc.$ide",[
+            $_ .= sis_app::var('est',"tab.$tip_opc.$ide",[
               'val'=>isset($ope[$tip_opc][$ide]) ? $ope[$tip_opc][$ide] : 0,
               'ope'=>[ 'id'=>"{$ele_ide}-bor", 'onchange'=>$ele_eve ] 
             ]);                
             // sin acumulados : color de fondo - numero - texto - fecha
             foreach( ['col','num','tex','fec'] as $ide ){
               if( isset($ope[$tip_opc][$ide]) ){
-                $_ .= api_doc::var('est',"tab.{$tip_opc}.{$ide}", [
+                $_ .= sis_app::var('est',"tab.{$tip_opc}.{$ide}", [
                   'id'=>"{$ele_ide}-{$ide}",
                   'htm'=>api_est::val_opc($ide, $ope['est'], [
                     'val'=>$ope[$tip_opc][$ide], 
@@ -2082,7 +2113,7 @@ class api_est {
               if( isset($ope[$tip_opc][$ide]) ){ $_ .= "
                 <div class='doc_ren'>";
                   // vistas por acumulados
-                  $_ .= api_doc::var('est',"tab.{$tip_opc}.{$ide}",[
+                  $_ .= sis_app::var('est',"tab.{$tip_opc}.{$ide}",[
                     'id'=>"{$ele_ide}-{$ide}",
                     'htm'=>api_est::val_opc($ide, $ope['est'], [ 
                       'val'=>$ope[$tip_opc][$ide], 
@@ -2091,7 +2122,7 @@ class api_est {
                   ]);
                   if( isset($ope['val']['acu']) ){ 
                     foreach( array_keys($ope['val']['acu']) as $ite ){
-                      $_ .= api_doc::var('est',"tab.$tip_opc.{$ide}_{$ite}", [
+                      $_ .= sis_app::var('est',"tab.$tip_opc.{$ide}_{$ite}", [
                         'val'=>isset($ope[$tip_opc]["{$ide}_{$ite}"]) ? $ope[$tip_opc]["{$ide}_{$ite}"] : FALSE,
                         'ope'=>[ 'id'=>"{$ele_ide}-{$ide}_{$ite}", 'onchange'=>$ele_eve ]
                       ]);
@@ -2123,14 +2154,14 @@ class api_est {
             if( isset($val['ope']['tip']) && $val['ope']['tip'] != 'num' ){
               $val_ope['ope']['onchange'] = "$_eje('$atr',this)";
             }
-            $htm .= api_doc::var($esq,"tab.{$tip}-{$atr}.$ide", $val_ope);
+            $htm .= sis_app::var($esq,"tab.{$tip}-{$atr}.$ide", $val_ope);
           }          
           // busco datos del operador 
           if( !empty($htm) && !empty($_ope = sis_dat::var($esq,'tab',$tip,$atr)) ){
             $ele_ope = $ele['ope'];
             api_ele::cla($ele_ope,"ide-{$esq}_tab_{$tip}-$atr",'ini'); $_ .= "
             <form".api_ele::atr($ele_ope).">
-              <fieldset class='doc_inf doc_ren'>
+              <fieldset class='app_inf doc_ren'>
                 <legend>{$_ope['nom']}</legend>
                   {$htm}
               </fieldset>

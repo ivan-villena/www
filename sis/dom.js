@@ -13,6 +13,7 @@ class sis_dom {
     var: null
   };// - Estructura
   app_est = {
+
     ope: {
       // acumulados
       acu : [ "pos", "mar", "ver", "opc" ],
@@ -23,6 +24,7 @@ class sis_dom {
         pos : `form.ide-pos input[name="ini"]`
       }    
     },
+
     lis: {
       // Valores
       val :     `.ide-lis div.est.lis`,
@@ -35,6 +37,7 @@ class sis_dom {
       // Descripciones
       des : `.ide-lis .ide-des`    
     },
+    
     tab: {
       ide : null,
       dep : null,

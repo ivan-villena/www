@@ -5,7 +5,7 @@ class hol_bib {
   /* Encantamiento del Sueño... */
   static enc( $ide, $tip, $dat ){
     
-    let $ = api_doc.var($dat);
+    let $ = sis_app.var($dat);
 
     switch( $ide ){
     // libro del kin

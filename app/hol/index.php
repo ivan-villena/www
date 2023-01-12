@@ -37,7 +37,7 @@
 
     </section>
 
-    ".api_doc::nav('bar',[
+    ".sis_app::nav('bar',[
       'kin' => [ 'ide'=>"kin", 'ico'=>"", 'nom'=>"Sincrónico", 'des'=>"", 'htm'=>api_est::inf_pos("hol","kin",[ 
         'kin'=>$_kin = api_hol::_('kin',$_hol->val['kin']),
         'sel'=>api_hol::_('sel',$_kin->arm_tra_dia),
@@ -65,7 +65,7 @@
       
         <section class="inicio">
 
-          <?=api_doc::tex([ 'tip'=>"adv", 'tit'=>"¡Atención!", 
+          <?=sis_app::tex([ 'tip'=>"adv", 'tit'=>"¡Atención!", 
             'tex'=>[
               "Este sitio aún se está en construcción...", "Puede haber contenido incompleto, errores o faltas."
             ],
@@ -190,7 +190,7 @@
       // operadores del tablero
       $tab_ide = "hol.{$_uri->cab}";
       
-      if( !( $tab_ope =  sis_app::est('hol',"{$_uri->cab}_{$_uri->art}",'tab') ) ) $tab_ope = [];
+      if( !( $tab_ope =  sis_dat::est('hol',"{$_uri->cab}_{$_uri->art}",'tab') ) ) $tab_ope = [];
       
       // inicializo valores
       $tab_ope['val'] = [];            
@@ -225,7 +225,7 @@
       }
 
       // 2-imprimo operador de lista
-      $lis_ope = sis_app::est("hol",$_uri->cab,'lis');
+      $lis_ope = sis_dat::est("hol",$_uri->cab,'lis');
       $lis_ope['val'] = $tab_ope['val'];
       // cargo operadores
       if( isset($tab_ope['est']) ){
@@ -236,7 +236,7 @@
           $lis_ope['est'][$esq_ide] = [];
           foreach( $esq_lis as $est_ide ){
             $lis_ope['est'][$esq_ide][$est_ide] = [];
-            if( $est_ope = sis_app::est($esq_ide,$est_ide,'lis') ){
+            if( $est_ope = sis_dat::est($esq_ide,$est_ide,'lis') ){
               $lis_ope['est'][$esq_ide][$est_ide] = $est_ope;
             }
           }
@@ -365,7 +365,7 @@
         include( $rec );
       }
       else{
-        echo api_doc::tex([ 'tip'=>"err", 'tex'=>"No existe el archivo '$val'" ]);
+        echo sis_app::tex([ 'tip'=>"err", 'tex'=>"No existe el archivo '$val'" ]);
       }
     }// imprimo secciones
     $sis_app->rec['htm']['sec'] = ob_get_clean();

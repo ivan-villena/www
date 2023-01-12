@@ -15,7 +15,7 @@ function hol_ini(){
 function hol_dia( $dat ){
 
   // operador : fecha + sincronario
-  let $ = api_doc.var($dat);
+  let $ = sis_app.var($dat);
   
   $.uri_cab = ['kin','psi'].includes($sis_app.rec.uri.cab) ? $sis_app.rec.uri.cab : 'kin';
   $.uri_art = $sis_app.rec.uri.art ? $sis_app.rec.uri.art : 'tzo';

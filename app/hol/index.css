@@ -12,7 +12,7 @@ main section.inicio {
   padding: 1rem;
 }
 
-main section.inicio > .doc_tex.-adv {
+main section.inicio > .-adv {
   margin: initial;  
   grid-column: 4/sp;
   grid-row: 1/2;

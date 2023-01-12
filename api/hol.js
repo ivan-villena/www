@@ -39,7 +39,7 @@ class api_hol {
   }// Valores
   static tab_val( $ope ){
 
-    let $ = api_doc.var($ope);
+    let $ = sis_app.var($ope);
 
     // clases: portales + parejas + pulsares + dimensionales + matices + especulares
     $.cla = `_hol-${$dom.app.var.classList[0].split('-')[2]}_`;
@@ -62,7 +62,7 @@ class api_hol {
   }// Secciones
   static tab_sec( $dat ){
 
-    let $ = api_doc.var($dat);    
+    let $ = sis_app.var($dat);    
 
     $.tab = $dom.est.tab.ide;
 
@@ -310,7 +310,7 @@ class api_hol {
   }// Operadores
   static tab_opc( $tip, $dat = {} ){    
 
-    let $ = api_doc.var($dat);    
+    let $ = sis_app.var($dat);    
 
     $.tab = $dom.est.tab.ide;    
 

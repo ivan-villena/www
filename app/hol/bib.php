@@ -136,7 +136,7 @@ class hol_bib {
       foreach( api_hol::_('ton') as $_ton ){ $_ []= "
         ".api_hol::ima("ton",$_ton,['class'=>"mar_der-1"])."
         <p>
-          <n>".intval($_ton->ide)."</n><c>.</c> El Rayo de Pulsación ".preg_replace("/^(del|de la)/","$1<b class='ide'>",api_tex::art_del($_ton->gal))."</b>
+          <n>".intval($_ton->ide)."</n><c>.</c> El Rayo de Pulsación ".preg_replace("/^(del|de la)/","$1<b class='let-ide'>",api_tex::art_del($_ton->gal))."</b>
         </p>";
       }        
       break;
@@ -152,7 +152,7 @@ class hol_bib {
       foreach( api_hol::_($ide) as $_dir ){ $_ []=
         api_hol::ima($ide,$_dir,['class'=>"mar_der-1 tam-11"])."
         <div>
-          <p><b class='ide'>".explode(' ',$_dir->nom)[1]."</b><c>:</c></p>
+          <p><b class='let-ide'>".explode(' ',$_dir->nom)[1]."</b><c>:</c></p>
           <ul>
             <li><p><c>-></c> ".api_tex::let($_dir->des)."</p></li>
             <li><p><c>-></c> Color<c>:</c> <c class='col-4-{$_dir->ide}'>{$_dir->des_col}</c></p></li>
@@ -178,7 +178,7 @@ class hol_bib {
 
         api_hol::ima("sel",$_sel,['class'=>"mar_der-1"])."
 
-        <p><n>{$_sel->ide}</n><c>.</c> <b class='ide'>{$_sel->nom_may}</b><c>:</c> ".explode(' ',$_dir->nom)[1]."<c>.</c>
+        <p><n>{$_sel->ide}</n><c>.</c> <b class='let-ide'>{$_sel->nom_may}</b><c>:</c> ".explode(' ',$_dir->nom)[1]."<c>.</c>
           <br>".api_tex::let($_sel->cic_ser_des)."
         </p>";
       }        
@@ -200,7 +200,7 @@ class hol_bib {
 
         api_hol::ima("sel",$_sel,['class'=>"mar_der-1"])."
 
-        <p>".explode(' ',$_dir->nom)[1]."<c>:</c> <b class='ide'>{$_sel->nom_may}</b><c>.</c>
+        <p>".explode(' ',$_dir->nom)[1]."<c>:</c> <b class='let-ide'>{$_sel->nom_may}</b><c>.</c>
           <br>".api_tex::let($_sel->cic_luz_des)."
         </p>";                
       }          
@@ -220,7 +220,7 @@ class hol_bib {
         ".api_hol::ima("kin",$_kin)."
 
         <p class='tit tex_ali-izq'>
-          Katún <n>".intval($_sel->ide-1)."</n><c>:</c> Kin <n>$ton</n> <b class='ide'>$_sel->nom_may</b>".( !empty($_kin->pag) ? "<c>(</c> Activación Galáctica <c>)</c>" : '' )."<c>.</c>
+          Katún <n>".intval($_sel->ide-1)."</n><c>:</c> Kin <n>$ton</n> <b class='let-ide'>$_sel->nom_may</b>".( !empty($_kin->pag) ? "<c>(</c> Activación Galáctica <c>)</c>" : '' )."<c>.</c>
         </p>
       
       </div>
@@ -251,7 +251,7 @@ class hol_bib {
         ".api_hol::ima("kin",$_kin,['class'=>"mar_der-1"])."
 
         <p>
-          <n>{$lis_pos}</n><c>.</c> <b class='ide'>{$_sel->nom_may}</b> <n>".intval($_kin->nav_ond_dia)."</n>
+          <n>{$lis_pos}</n><c>.</c> <b class='let-ide'>{$_sel->nom_may}</b> <n>".intval($_kin->nav_ond_dia)."</n>
           <br>".api_tex::let(api_num::val_int($_kin->fac))."
         </p>";
       }          
@@ -296,7 +296,7 @@ class hol_bib {
             </td>
             <td></td>
             <td>
-              <n>$sel</n><c>.</c><n>$ton</n> <b class='ide'>$_sel->nom_may</b><c>:</c>
+              <n>$sel</n><c>.</c><n>$ton</n> <b class='let-ide'>$_sel->nom_may</b><c>:</c>
               <br><n>".api_num::val_int($_kin->fac)."</n><c>,</c> año <n>".api_num::val_int($_kin->fac_ini)."</n>
             </td>
             <td>
@@ -336,7 +336,7 @@ class hol_bib {
         ".api_hol::ima("sel_arm_tra",$_sel,['class'=>"mar_der-2"])."
 
         <p>
-          <b class='ide'>{$_sel->nom_may}</b><c>:</c> Katún <n>".(intval($_sel->ide)-1)."</n>
+          <b class='let-ide'>{$_sel->nom_may}</b><c>:</c> Katún <n>".(intval($_sel->ide)-1)."</n>
           <br>{$_sel->arm_tra_des}
         </p>";
       }
@@ -350,8 +350,8 @@ class hol_bib {
         
         api_hol::ima("sel",$_sel,['class'=>"mar_der-1"])."
 
-        <p><n>".intval($_sel->ide)."</n><c>°</c> Signo<c>.</c> ".explode(' ',$_dir->nom)[1]."<c>:</c> <b class='ide'>{$_sel->nom_may}</b><c>.</c>
-          <br><b class='val des'>{$_est->nom}</b><c>:</c> {$_est->des}<c>.</c>
+        <p><n>".intval($_sel->ide)."</n><c>°</c> Signo<c>.</c> ".explode(' ',$_dir->nom)[1]."<c>:</c> <b class='let-ide'>{$_sel->nom_may}</b><c>.</c>
+          <br><b class='let-val des'>{$_est->nom}</b><c>:</c> {$_est->des}<c>.</c>
         </p>";
       }        
       break;
@@ -363,7 +363,7 @@ class hol_bib {
           ".api_hol::ima("sel",$_sel,['class'=>"mar_der-2"])."
           <p>
             <b class='tit'>ESTACIÓN ".api_tex::let_may(api_tex::art_del("el {$_est->des_dir}"))."</b>
-            <br>Guardían<c>:</c> <b class='ide'>{$_sel->nom_may}</b> <c>(</c> {$_sel->nom} <c>)</c>
+            <br>Guardían<c>:</c> <b class='let-ide'>{$_sel->nom_may}</b> <c>(</c> {$_sel->nom} <c>)</c>
           </p>
         </div>";
         $lis = [];
@@ -388,7 +388,7 @@ class hol_bib {
         ".api_hol::ima("kin_nav_ond",$_ond,['class'=>"mar_der-2"])."
 
         <p>
-          <n>{$_ond->ide}</n><c>.</c> <b class='ide'>{$_sel->nom_may}</b><c>:</c> ".api_tex::let($_ond->fac)."
+          <n>{$_ond->ide}</n><c>.</c> <b class='let-ide'>{$_sel->nom_may}</b><c>:</c> ".api_tex::let($_ond->fac)."
           <br>".api_tex::let($_ond->fac_des)."
         </p>";
       }            
@@ -436,7 +436,7 @@ class hol_bib {
     case 'ton_dim':
       foreach( api_hol::_('ton_dim') as $_dat ){ $htm = "
         <p>
-          <n>{$_dat->ide}</n><c>.</c> <b class='ide'>Pulsar de la {$_dat->des_dim} dimensión</b><c>:</c> <b class='val'>Dimensión {$_dat->nom}</b>
+          <n>{$_dat->ide}</n><c>.</c> <b class='let-ide'>Pulsar de la {$_dat->des_dim} dimensión</b><c>:</c> <b class='let-val'>Dimensión {$_dat->nom}</b>
           <br>Tonos ".api_tex::let("{$_dat->ton}: {$_dat->des_ond}")."
         </p>
         <div class='doc_val'>
@@ -453,7 +453,7 @@ class hol_bib {
     // tonos : pulsares matiz
     case 'ton_mat':
       foreach( api_hol::_('ton_mat') as $_dat ){ $htm = "
-        <p><n>{$_dat->ide}</n><c>.</c> <b class='ide'>Matiz {$_dat->nom}</b><c>,</c> <b class='val'>".api_tex::let($_dat->des_cod)."</b><c>:</c>
+        <p><n>{$_dat->ide}</n><c>.</c> <b class='let-ide'>Matiz {$_dat->nom}</b><c>,</c> <b class='let-val'>".api_tex::let($_dat->des_cod)."</b><c>:</c>
           <br>Tonos ".api_tex::let("{$_dat->ton}: {$_dat->des_ond}")."
         </p>
         <div class='doc_val'>
@@ -474,7 +474,7 @@ class hol_bib {
       foreach( api_hol::_($ide) as $_dat ){
         $_raz_pod = api_hol::_('sel',$_dat->ide)->des_pod; 
         $htm = "
-        <p class='tit'>Familia <b class='col-4-{$_dat->ide}'>{$_dat->nom}</b><c>:</c> de la <b class='ide'>Raza Raíz ".api_tex::let_min($_dat->nom)."</b></p>
+        <p class='tit'>Familia <b class='col-4-{$_dat->ide}'>{$_dat->nom}</b><c>:</c> de la <b class='let-ide'>Raza Raíz ".api_tex::let_min($_dat->nom)."</b></p>
         <p>Los {$_dat->des_pod}dores<c>.</c> Nota clave<c>:</c> ".explode(' ',$_raz_pod)[1]."</p>
         <ul class='ite'>";
         foreach( api_hol::_('sel_arm_cel') as $lis_pos ){
@@ -501,7 +501,7 @@ class hol_bib {
       $lis_pos = 1;
 
       foreach( api_hol::_($ide) as $_dat ){ $htm = "
-        <p class='tit'>Célula del Tiempo <n>{$_dat->ide}</n>: <b class='ide'>{$_dat->nom}</b></p>
+        <p class='tit'>Célula del Tiempo <n>{$_dat->ide}</n>: <b class='let-ide'>{$_dat->nom}</b></p>
         <p class='des'>".api_tex::let($_dat->des)."</p>
         <ul class='ite'>";
         foreach( api_hol::_('sel_arm_raz') as $cro ){ $_sel = api_hol::_('sel',$lis_pos); $htm .= "
@@ -524,7 +524,7 @@ class hol_bib {
       foreach( api_hol::_($ide) as $_dat ){
         $ele_nom = explode(' ',$_dat->nom)[1]; $htm = "
         <p class='tit'>
-          <b class='ide'>Clan ".api_tex::art_del($_dat->nom)."</b>".api_tex::let(": Cromática {$_dat->des_col}.")."
+          <b class='let-ide'>Clan ".api_tex::art_del($_dat->nom)."</b>".api_tex::let(": Cromática {$_dat->des_col}.")."
         </p>
         ".( !empty($_dat->des_ini) ? "
         <p class='des'>
@@ -537,7 +537,7 @@ class hol_bib {
             <li>
               ".api_hol::ima("sel",$_sel,[ 'class'=>"mar_der-1" ])."
               <p>
-                <n>{$sel}</n><c>.</c> <b class='ide'>{$ele_nom} {$_fam->nom}</b><c>:</c>
+                <n>{$sel}</n><c>.</c> <b class='let-ide'>{$ele_nom} {$_fam->nom}</b><c>:</c>
                 <br>".api_tex::let($_sel->cro_ele_des)."
               </p>
             </li>";
@@ -561,7 +561,7 @@ class hol_bib {
         $htm = 
         api_hol::ima("uni_pla_cen",$_pla,['class'=>"mar_der-2",'style'=>"min-width: 9rem; height:7rem;"])."
         <div>
-          <p><b class='ide'>Kin {$_fam->nom}</b><c>:</c> {$_fam->des_mis}</p>
+          <p><b class='let-ide'>Kin {$_fam->nom}</b><c>:</c> {$_fam->des_rol}</p>
           <div class='doc_val fic mar-2'>
             ".api_hol::ima("uni_hum_cen",$_hum)."
             <c class='sep'>=></c>
@@ -586,7 +586,7 @@ class hol_bib {
       foreach( api_hol::_($ide) as $_dat ){
         if( $val_sel || in_array($_dat->ide,$val) ){ 
           $htm = "
-          <p class='tit'><b class='ide'>{$_dat->nom}</b><c>:</c> Célula Solar ".api_num::dat($_dat->ide,'nom')."<c>.</c></p>                  
+          <p class='tit'><b class='let-ide'>{$_dat->nom}</b><c>:</c> Célula Solar ".api_num::dat($_dat->ide,'nom')."<c>.</c></p>                  
           <ul est='sol_pla'>";
           for( $sol_pla=1; $sol_pla<=2; $sol_pla++ ){
             $_pla = api_hol::_('uni_sol_pla',$pla);
@@ -594,11 +594,11 @@ class hol_bib {
             $_par = api_hol::_('sel',$_sel->par_ana); 
             if( $orb != $_pla->orb ){
               $_orb = api_hol::_('uni_sol_orb',$orb = $_pla->orb); $htm .= "
-              <li>Los <n>5</n> <b class='ide'>planetas {$_orb->nom}es</b><c>:</c> ".api_tex::let($_orb->des)."</li>";                        
+              <li>Los <n>5</n> <b class='let-ide'>planetas {$_orb->nom}es</b><c>:</c> ".api_tex::let($_orb->des)."</li>";                        
             }
             $htm .= "
             <li>
-              <p><b class='ide'>{$_pla->nom}</b><c>,</c> <n>{$pla}</n><c>°</c> órbita<c>:</c></p>
+              <p><b class='let-ide'>{$_pla->nom}</b><c>,</c> <n>{$pla}</n><c>°</c> órbita<c>:</c></p>
               <div class='doc_ite'>
 
                 ".api_hol::ima("uni_sol_pla",$_pla,['class'=>"mar_der-1"])."
@@ -607,14 +607,14 @@ class hol_bib {
                   <li>
                     ".api_hol::ima("sel",$_sel,['class'=>"mar_der-1"])."
                     <p>
-                      <b class='val'>Dentro</b><c>:</c> Sello Solar <n>{$_sel->ide}</n>
+                      <b class='let-val'>Dentro</b><c>:</c> Sello Solar <n>{$_sel->ide}</n>
                       <br>".api_tex::let($_sel->sol_pla_des)."
                     </p>
                   </li>
                   <li>
                     ".api_hol::ima("sel",$_par,['class'=>"mar_der-1"])."
                     <p>
-                      <b class='val'>Fuera</b><c>:</c> Sello Solar <n>{$_par->ide}</n>
+                      <b class='let-val'>Fuera</b><c>:</c> Sello Solar <n>{$_par->ide}</n>
                       <br>".api_tex::let($_par->sol_pla_des)."
                     </p>
                   </li>
@@ -647,7 +647,7 @@ class hol_bib {
           <c class='sep'>:</c>
         </div>
         <p>
-          <n>{$_dat->ide}</n><c>.</c> El Kin <b class='ide'>{$_fam->nom}</b><c>:</c>
+          <n>{$_dat->ide}</n><c>.</c> El Kin <b class='let-ide'>{$_fam->nom}</b><c>:</c>
           <br><q>{$_dat->des_fun} desde el {$_dat->nom}</q>
         </p>";
         $_ []= $htm;
@@ -667,7 +667,7 @@ class hol_bib {
         $_fam = api_hol::_('sel_cro_fam',$_dat->fam);
         $htm = "
         <div class='tex_ali-cen'>
-          <p>Kin <b class='ide'>{$_fam->nom}</b></p>
+          <p>Kin <b class='let-ide'>{$_fam->nom}</b></p>
           ".api_hol::ima("uni_pla_cen",$_dat,['class'=>"mar_der-1",'style'=>"min-width: 17rem; height: 11rem;"])."
         </div>
         <ul class='ite'>";
@@ -690,13 +690,14 @@ class hol_bib {
       break;
     // sello : holon humano => colocacion cromática
     case 'uni_hum_ele': 
-      $ele_tit = []; $lis_pos = 0; $col = 4;
+      $ele_tit = [];
+      $col = 4;
       foreach( api_hol::_('uni_hum_ext') as $_ext ){
         $_ele = api_hol::_('sel_cro_ele',$_ext->ele); 
         $nom = explode(' ',api_tex::art_del($_ele->nom)); $cla = array_pop($nom); $nom = implode(' ',$nom);
         $ele_tit[$lis_pos] = [ 
           'eti'=>"div", 'class'=>"ite", 'htm'=> api_hol::ima("uni_hum_ext",$_ext,['class'=>"mar_der-1"])."                  
-          <p class='tit tex_ali-izq'><b class='ide'>$_ext->nom</b><c>:</c>
+          <p class='tit tex_ali-izq'><b class='let-ide'>$_ext->nom</b><c>:</c>
             <br>Clan {$nom} <c class='col-4-$col'>{$cla} $_ele->des_col</c></p>" 
         ];
         $lis_pos += 5; 
@@ -716,34 +717,6 @@ class hol_bib {
       }
       $_ = api_est::lis($sel_lis,[ 'tit'=>$ele_tit, 'opc'=>['cab_ocu'] ]);
       break;
-    // sello : holon humano => rol de familias terrestres
-    case 'uni_hum_fam':
-      $fam_tit = [];
-      $sel_lis = [];
-
-      foreach( api_hol::_('uni_hum_ded') as $_ded ){
-        $_fam = api_hol::_('sel_cro_fam',$_ded->fam);
-        $fam_tit[$lis_pos] = [
-          'eti'=>"div", 'class'=>"ite", 'htm'=> api_hol::ima("uni_hum_ded",$_ded,['class'=>"mar_der-1"])."                  
-          <p class='tit tex_ali-izq'><b class='ide'>Familia Terrestre $_fam->nom</b><c>:</c>
-            <br>Familia de $_fam->des_cod<c>:</c> Dedos {$_ded->nom}".( in_array($_ded->nom,['Anular','Pulgar']) ? "es" : "s" )." </p>" 
-        ];
-        $lis_pos += 4;
-        foreach( explode(', ',$_fam->sel) as $_sel ){
-          $_sel = api_hol::_('sel',$_sel);
-          $_hum_ext = api_hol::_('uni_hum_ext',$_sel->hum_ext);
-          $sel_lis []= api_obj::val_atr([
-            'nom'=>"Tribu ".api_tex::art_del($_sel->nom)." $_sel->des_col", 
-            'ima_nom'=>[ 'htm'=>api_hol::ima("sel",$_sel,['class'=>"mar-1"]) ],
-            'des_cod'=>$_sel->des_cod,
-            'ima_cod'=>[ 'htm'=>api_hol::ima("sel_cod",$_sel,['class'=>"mar-1"]) ],
-            'hum_ext'=>$_hum_ext->nom
-          ]);
-        }
-      }
-
-      $_ = api_est::lis($sel_lis,[ 'tit'=>$fam_tit, 'opc'=>['cab_ocu'] ]);
-      break;
     // sello : holon humano => extremidades del humano
     case 'uni_hum_ext':
       $ope['lis'] = ['class'=>"ite"];
@@ -753,7 +726,7 @@ class hol_bib {
 
           ".api_hol::ima("uni_hum_ext",$_dat,['class'=>"mar_der-1"])."
 
-          <p><b class='ide'>Cromática ".api_tex::art_del($_ele->nom)."</b><c>:</c>
+          <p><b class='let-ide'>Cromática ".api_tex::art_del($_ele->nom)."</b><c>:</c>
             <br>{$_dat->nom}
           </p>";
       }        
@@ -767,7 +740,7 @@ class hol_bib {
 
           ".api_hol::ima("uni_hum_ded",$_dat,['class'=>"mar_der-1"])."
 
-          <p><b class='ide'>Kin {$_fam->nom}</b><c>:</c> <b class='val'>{$_fam->des_cod}</b>
+          <p><b class='let-ide'>Kin {$_fam->nom}</b><c>:</c> <b class='let-val'>{$_fam->des_cod}</b>
             <br>{$_dat->nom}
           </p>";
       }        
@@ -782,7 +755,7 @@ class hol_bib {
 
         ".api_hol::ima($ide,$_hum,['class'=>"mar_der-1"])."
 
-        <p><b class='ide'>Kin {$_fam->nom}</b><c>:</c> <b class='val'>{$_fam->des_cod}</b>
+        <p><b class='let-ide'>Kin {$_fam->nom}</b><c>:</c> <b class='let-val'>{$_fam->des_cod}</b>
           <br>".api_tex::art($_hum->nom)." <c>-></c> {$_hum->des_pod}
         </p>";
       }            
@@ -792,7 +765,7 @@ class hol_bib {
       $_eje = "hol_bib.enc('{$ide}'";
       $_ = "
       <!-- libro del kin -->
-      <form class='doc_inf' esq='hol' est='$ide'>
+      <form class='app_inf' esq='hol' est='$ide'>
 
         <div class='doc_val'>
 
@@ -800,12 +773,12 @@ class hol_bib {
 
             ".api_lis::ope_tog()."
 
-            ".api_doc::var('atr',"hol.kin.ide",[ 'nom'=>"ver el kin", 'ope'=>[ 
+            ".sis_app::var('atr',"hol.kin.ide",[ 'nom'=>"ver el kin", 'ope'=>[ 
               'title'=>"Introduce un número de kin...", 'oninput'=>"{$_eje},'val',this);" 
             ]])."
           </fieldset>
 
-          <fieldset class='doc_ope'>
+          <fieldset class='app_ope'>
             ".api_fig::ico('dat_fin',[ 'eti'=>"button", 'type'=>"reset", 'title'=>"Vaciar Casillero...", 'onclick'=>"{$_eje},'fin',this);" ])."
             ".api_fig::ico('lis_fin',[ 'eti'=>"button", 'title'=>"Ir al Kin...", 'onclick'=>"{$_eje},'nav',this);" ])."
           </fieldset>
@@ -833,7 +806,7 @@ class hol_bib {
               </section>
               ";
             }$_ .= "
-            ".api_doc::val(['eti'=>'h3','id'=>"_04-0{$_cas->ide}-",'cas'=>$_cas->ide,'htm'=>"Castillo {$_cas->nom}"])."
+            ".sis_app::val(['eti'=>'h3','id'=>"_04-0{$_cas->ide}-",'cas'=>$_cas->ide,'htm'=>"Castillo {$_cas->nom}"])."
             <section data-kin_nav_cas='{$_cas->ide}' class='pad_izq-3'>
               <p cas='{$_cas->ide}'>".api_tex::let("Corte {$_cas->des_cor}: {$_cas->des_mis}")."</p>
             ";
@@ -855,7 +828,7 @@ class hol_bib {
               </section>";
             }
             $_ .= "
-            ".api_doc::val([
+            ".sis_app::val([
               'eti'=>'h4', 'id'=>"_04-0{$_cas->ide}-0{$ond}-", 'data-ond'=>$_ond->ide, 
               'htm'=> api_tex::let("Onda Encantada {$_ond->ide} {$_ond->nom}")
             ])."
@@ -868,9 +841,9 @@ class hol_bib {
             $_cel = api_hol::_('kin_arm_cel',$_kin->arm_cel); $_ .= "
             </section>
 
-            ".api_doc::val([
+            ".sis_app::val([
               'eti'=>'h5','class'=>"tex_ali-izq",'id'=>"kin_arm_cel-{$_cel->ide}-",'data-cel'=>$_cel->ide,
-              'htm'=>"<b class='ide'>ARMÓNICA <n>{$_cel->ide}</n></b><c>:</c> {$_cel->nom}<br>".api_tex::let(api_tex::let_may($_cel->des))
+              'htm'=>"<b class='let-ide'>ARMÓNICA <n>{$_cel->ide}</n></b><c>:</c> {$_cel->nom}<br>".api_tex::let(api_tex::let_may($_cel->des))
             ])."
             <section data-kin_arm_cel='{$_cel->ide}'>
             ";
@@ -903,7 +876,7 @@ class hol_bib {
           $arm_cel++;
           $_cel = api_hol::_('kin_arm_cel',$arm_cel); $_lis_cel []= "
           <a class='tex' href='#kin_arm_cel-{$_cel->ide}-'>
-            <n>{$_cel->ide}</n><c>.</c> <b class='ide'>{$_cel->nom}</b>".api_tex::let(": {$_cel->des}")."
+            <n>{$_cel->ide}</n><c>.</c> <b class='let-ide'>{$_cel->nom}</b>".api_tex::let(": {$_cel->des}")."
           </a>";
         }        
         $_lis []= [
@@ -915,7 +888,7 @@ class hol_bib {
       $ope['opc'] = ['tog','ver'];
       $_ = "
 
-      ".api_doc::val(
+      ".sis_app::val(
         [ 'eti'=>'h3', 'htm'=> api_tex::let("Índice de las 13 Trayectorias y 65 células armónicas.") ], 
         [ 'ico'=>['class'=>"ocu"] ]
       )."
@@ -962,9 +935,9 @@ class hol_bib {
     // kin : génesis
     case 'kin_gen':
       $_ = [
-        "<b class='ide'>Génesis del Dragón</b><c>:</c> <n>13.000</n> años del Encantamiento del Sueño<c>,</c> poder del sueño<c>.</c>",
-        "<b class='ide'>Génesis del Mono</b><c>:</c> <n>7.800</n> años del Encantamiento del Sueño<c>,</c> poder de la magia<c>.</c>",
-        "<b class='ide'>Génesis de la Luna</b><c>:</c> <n>5.200</n> años del Encantamiento del Sueño<c>,</c> poder del vuelo mágico<c>.</c>",
+        "<b class='let-ide'>Génesis del Dragón</b><c>:</c> <n>13.000</n> años del Encantamiento del Sueño<c>,</c> poder del sueño<c>.</c>",
+        "<b class='let-ide'>Génesis del Mono</b><c>:</c> <n>7.800</n> años del Encantamiento del Sueño<c>,</c> poder de la magia<c>.</c>",
+        "<b class='let-ide'>Génesis de la Luna</b><c>:</c> <n>5.200</n> años del Encantamiento del Sueño<c>,</c> poder del vuelo mágico<c>.</c>",
       ];     
       break;
     // kin : ondas y castillos con células del génesis
@@ -978,11 +951,11 @@ class hol_bib {
         // génesis
         if( $gen != $_ond->gen_enc ){ 
           $_gen = api_hol::_('kin_gen_enc',$gen = $_ond->gen_enc); $_[]="
-          <p class='tit'>{$_gen->lec}<c>:</c> <b class='ide'>Génesis {$_gen->nom}</b><c>.</c></p>";
+          <p class='tit'>{$_gen->lec}<c>:</c> <b class='let-ide'>Génesis {$_gen->nom}</b><c>.</c></p>";
         }
         if( $cel != $_ond->gen_cel ){ 
           $_cel = api_hol::_('kin_gen_cel',$cel = $_ond->gen_cel); $_[]="
-          <p class='tit'>Célula <n>{$_cel->ide}</n> de la memoria del Génesis<c>:</c> <b class='val'>{$_cel->nom}</b></p>";
+          <p class='tit'>Célula <n>{$_cel->ide}</n> de la memoria del Génesis<c>:</c> <b class='let-val'>{$_cel->nom}</b></p>";
         }
         if( $cas != $_ond->nav_cas ){ 
           $_cas = api_hol::_('kin_nav_cas',$cas = $_ond->nav_cas); $_[]="
@@ -1004,7 +977,7 @@ class hol_bib {
       foreach( api_hol::_($ide) as $_lun ){
         $_ []= api_hol::ima("ton",$_lun->ton,['class'=>"mar_der-2"])."
         <p>
-          <b class='ide'>".api_tex::let_pal(api_num::dat($_lun->ide,'pas'))." Luna</b>
+          <b class='let-ide'>".api_tex::let_pal(api_num::dat($_lun->ide,'pas'))." Luna</b>
           <br>Luna ".api_tex::art_del($_lun->ton_car)."<c>:</c> ".api_tex::let($_lun->ton_pre)."
         </p>";
       }    
@@ -1016,13 +989,13 @@ class hol_bib {
       foreach( api_hol::_('psi_ani_lun') as $_lun ){
         $_[] = api_hol::ima("ton",$_lun->ton,['class'=>"mar_der-3"])."
         <p>
-          <b class='ide'>$_lun->nom</b> <n>".intval($_lun->ton)."</n>
+          <b class='let-ide'>$_lun->nom</b> <n>".intval($_lun->ton)."</n>
           <br>".api_tex::let($_lun->fec_ran)."
         </p>";
       }$_[] = "
       <span class='fig_ima'></span>
       <p>
-        <b class='ide'>Día Verde</b> o Día Fuera del Tiempo
+        <b class='let-ide'>Día Verde</b> o Día Fuera del Tiempo
         <br><n>25</n> de Julio
       </p>";        
       break;
@@ -1032,6 +1005,7 @@ class hol_bib {
   // 13 Lunas en Movimiento
   static function lun( string $ide, array $ope = [] ) : string {
     $_ = [];
+    $lis_pos = 0; 
     $est_ope = [ 'opc'=>['htm','cab_ocu'] ];
     switch( $ide ){
     // luna : heptadas - cuarto armónica
@@ -1067,7 +1041,7 @@ class hol_bib {
         api_hol::ima($ide,$_cas,['class'=>"mar_der-2"])."
 
         <p>
-          <b class='ide'>Castillo $_cas->des_col $_cas->des_dir ".api_tex::art_del($_cas->des_acc)."</b><c>:</c>
+          <b class='let-ide'>Castillo $_cas->des_col $_cas->des_dir ".api_tex::art_del($_cas->des_acc)."</b><c>:</c>
           <br>Ondas Encantadas ".api_tex::let($_cas->nav_ond)."
         </p>";
       }          
@@ -1076,19 +1050,19 @@ class hol_bib {
     case 'psi_lun_tot':
       $ope['lis'] = ['class'=>"ite"];
       $_lis = [
-        1=>"El <b class='ide'>Murciélago Magnético</b> va con la Primera Luna",
-        2=>"El <b class='ide'>Escorpión Lunar</b> va con la Segunda Luna",
-        3=>"El <b class='ide'>Venado Eléctrico</b> va con la Tercera Luna",
-        4=>"El <b class='ide'>Búho Auto<c>-</c>Existente</b> va con la Cuarta Luna",
-        5=>"El <b class='ide'>Pavo Real Entonado</b> va con la Quinta Luna",
-        6=>"El <b class='ide'>Lagarto Rítmico</b> va con la Sexta Luna",
-        7=>"El <b class='ide'>Mono Resonante</b> va con la Séptima Luna",
-        8=>"El <b class='ide'>Halcón Galáctico</b> va con la Octava ",
-        9=>"El <b class='ide'>Jaguar Solar</b> va con la Novena Luna",
-        10=>"El <b class='ide'>Perro Planetario</b> va con la Décima Luna",
-        11=>"La <b class='ide'>Serpiente Espectral</b> va con la Undécima Luna",
-        12=>"El <b class='ide'>Conejo Cristal</b> va con la Duodécima Luna",
-        13=>"La <b class='ide'>Tortuga Cósmica</b> va con la Decimotercera Luna"
+        1=>"El <b class='let-ide'>Murciélago Magnético</b> va con la Primera Luna",
+        2=>"El <b class='let-ide'>Escorpión Lunar</b> va con la Segunda Luna",
+        3=>"El <b class='let-ide'>Venado Eléctrico</b> va con la Tercera Luna",
+        4=>"El <b class='let-ide'>Búho Auto<c>-</c>Existente</b> va con la Cuarta Luna",
+        5=>"El <b class='let-ide'>Pavo Real Entonado</b> va con la Quinta Luna",
+        6=>"El <b class='let-ide'>Lagarto Rítmico</b> va con la Sexta Luna",
+        7=>"El <b class='let-ide'>Mono Resonante</b> va con la Séptima Luna",
+        8=>"El <b class='let-ide'>Halcón Galáctico</b> va con la Octava ",
+        9=>"El <b class='let-ide'>Jaguar Solar</b> va con la Novena Luna",
+        10=>"El <b class='let-ide'>Perro Planetario</b> va con la Décima Luna",
+        11=>"La <b class='let-ide'>Serpiente Espectral</b> va con la Undécima Luna",
+        12=>"El <b class='let-ide'>Conejo Cristal</b> va con la Duodécima Luna",
+        13=>"La <b class='let-ide'>Tortuga Cósmica</b> va con la Decimotercera Luna"
       ];
 
       foreach( $_lis as $ite => $htm ){
@@ -1104,47 +1078,78 @@ class hol_bib {
         <br><n>25</n> de Julio
       </p>";        
       break;
+    // sello : holon humano => rol de familias terrestres
+    case 'sel_cro_fam':
+
+      $fam_tit = [];
+      $sel_lis = [];
+
+      foreach( api_hol::_('uni_hum_ded') as $_ded ){
+        $_fam = api_hol::_('sel_cro_fam',$_ded->fam);
+        $fam_tit[$lis_pos] = [
+          'eti'=>"div", 
+          'class'=>"doc_ite", 
+          'htm'=> api_hol::ima("uni_hum_ded",$_ded,['class'=>"mar_der-1"])."                  
+          <p class='tit tex_ali-izq'><b class='let-ide'>Familia Terrestre $_fam->nom</b><c>:</c>
+            <br>Familia de $_fam->des_cod<c>:</c> Dedos {$_ded->nom}".( in_array($_ded->nom,['Anular','Pulgar']) ? "es" : "s" )." </p>" 
+        ];
+        $lis_pos += 4;
+        foreach( explode(', ',$_fam->sel) as $_sel ){
+          $_sel = api_hol::_('sel',$_sel);
+          $_hum_ext = api_hol::_('uni_hum_ext',$_sel->hum_ext);
+          $sel_lis []= api_obj::val_atr([
+            'nom'=>"Tribu ".api_tex::art_del($_sel->nom)." $_sel->des_col", 
+            'ima_nom'=>[ 'htm'=>api_hol::ima("sel",$_sel,['class'=>"mar-1"]) ],
+            'des_cod'=>$_sel->des_cod,
+            'ima_cod'=>[ 'htm'=>api_hol::ima("sel_cod",$_sel->ord,['class'=>"mar-1"]) ],
+            'hum_ext'=>$_hum_ext->nom
+          ]);
+        }
+      }
+
+      $_ = api_est::lis($sel_lis,[ 'tit'=>$fam_tit, 'opc'=>['cab_ocu'] ]);
+      break;
     // anillo : años (desde-hasta) por anillos solares
     case 'ani':
       $ini = 1992;
       $cue = 8;
       $_[] = "
-      <b class='ide'>Año Uno</b>
+      <b class='let-ide'>Año Uno</b>
       <div class='doc_ite'>
         ".api_hol::ima("kin",$_kin = api_hol::_('kin',39),['class'=>"mar_der-1"])."
         <p>$_kin->nom<c>:</c><br><n>26</n> de Julio  <n>1.992</n> <c>-</c> <n>25</n> Julio <n>1.993</n><c>.</c></p>
       </div>"; $_[] = "
-      <b class='ide'>Año Dos</b>
+      <b class='let-ide'>Año Dos</b>
       <div class='doc_ite'>
         ".api_hol::ima("kin",$_kin = api_hol::_('kin',144),['class'=>"mar_der-1"])."
         <p>$_kin->nom<c>:</c><br><n>26</n> de Julio <n>1.993</n> <c>-</c> <n>25</n> Julio <n>1.994</n><c>.</c></p>
       </div>"; $_[] = "
-      <b class='ide'>Año Tres</b>
+      <b class='let-ide'>Año Tres</b>
       <div class='doc_ite'>
         ".api_hol::ima("kin",$_kin = api_hol::_('kin',249),['class'=>"mar_der-1"])."
         <p>$_kin->nom<c>:</c><br><n>26</n> de Julio <n>1.994</n> <c>-</c> <n>25</n> Julio <n>1.995</n><c>.</c></p>
       </div>"; $_[] = "
-      <b class='ide'>Año Cuatro</b>
+      <b class='let-ide'>Año Cuatro</b>
       <div class='doc_ite'>
         ".api_hol::ima("kin",$_kin = api_hol::_('kin',94),['class'=>"mar_der-1"])."
         <p>$_kin->nom<c>:</c><br><n>26</n> de Julio <n>1.995</n> <c>-</c> <n>25</n> Julio <n>1.996</n><c>.</c></p>
       </div>"; $_[] = "
-      <b class='ide'>Año Cinco</b>
+      <b class='let-ide'>Año Cinco</b>
       <div class='doc_ite'>
         ".api_hol::ima("kin",$_kin = api_hol::_('kin',199),['class'=>"mar_der-1"])."
         <p>$_kin->nom<c>:</c><br><n>26</n> de Julio <n>1.996</n> <c>-</c> <n>25</n> Julio <n>1.997</n><c>.</c></p>
       </div>"; $_[] = "
-      <b class='ide'>Año Seis</b>
+      <b class='let-ide'>Año Seis</b>
       <div class='doc_ite'>
         ".api_hol::ima("kin",$_kin = api_hol::_('kin',44),['class'=>"mar_der-1"])."
         <p>$_kin->nom<c>:</c><br><n>26</n> de Julio <n>1.997</n> <c>-</c> <n>25</n> Julio <n>1.998</n><c>.</c></p>
       </div>"; $_[] = "
-      <b class='ide'>Año Siete</b>
+      <b class='let-ide'>Año Siete</b>
       <div class='doc_ite'>
         ".api_hol::ima("kin",$_kin = api_hol::_('kin',149),['class'=>"mar_der-1"])."
         <p>$_kin->nom<c>:</c><br><n>26</n> de Julio <n>1.998</n> <c>-</c> <n>25</n> Julio <n>1.999</n><c>.</c></p>
       </div>"; $_[] = "
-      <b class='ide'>Año Ocho</b>
+      <b class='let-ide'>Año Ocho</b>
       <div class='doc_ite'>
         ".api_hol::ima("kin",$_kin = api_hol::_('kin',254),['class'=>"mar_der-1"])."
         <p>$_kin->nom<c>:</c><br><n>26</n> de Julio <n>1.999</n> <c>-</c> <n>25</n> Julio <n>2.000</n><c>.</c></p>
@@ -1264,7 +1269,7 @@ class hol_bib {
         $htm = 
         api_hol::ima($ide,$_cir,['class'=>""])."
         <div>
-          <p class='tit'>Circuito <n>$_cir->ide</n><c>:</c> <b class='ide'>$pla_ini->nom <c>-</c> $pla_fin->nom</b></p>
+          <p class='tit'>Circuito <n>$_cir->ide</n><c>:</c> <b class='let-ide'>$pla_ini->nom <c>-</c> $pla_fin->nom</b></p>
           <ul>
             <li>Circuito ".api_tex::let($_cir->nom)."</li>
             <li><p>".api_tex::let("$_cir->cue unidades - $_cir->des")."</p></li>
@@ -1310,7 +1315,7 @@ class hol_bib {
       foreach( api_hol::_('rad') as $_rad ){ $_ []=
         api_hol::ima("rad",$_rad,['class'=>"mar_der-1"])."
         <p>
-          <b class='ide'>{$_rad->nom}</b><c>:</c> $_rad->tel_des<c>,</c> <n>$_rad->tel_año</n> <c>-</c> <n>".($_rad->tel_año+1)."</n>
+          <b class='let-ide'>{$_rad->nom}</b><c>:</c> $_rad->tel_des<c>,</c> <n>$_rad->tel_año</n> <c>-</c> <n>".($_rad->tel_año+1)."</n>
           <br>".api_tex::let($_rad->rin_des)."
         </p>";
       }
@@ -1493,7 +1498,7 @@ class hol_bib {
           $_ []= 
           api_hol::ima($dat_ide,$_rad,['class'=>"mar_der-2"])."
           <div>        
-            <p><b class='ide'>$_rad->nom</b> <b class='col-".substr($_rad->des_col,0,3)."'>$_rad->des_col</b></p>
+            <p><b class='let-ide'>$_rad->nom</b> <b class='col-".substr($_rad->des_col,0,3)."'>$_rad->des_col</b></p>
             <div class='doc_ite'>
               $fue_pre->nom
               ".api_hol::ima($dat_rel,$fue_pre)."
@@ -1551,7 +1556,7 @@ class hol_bib {
         $_ []= 
         api_hol::ima($ide,$pla_ele,['class'=>"mar_der-2"])."
         <p>
-          <b class='ide'>$pla_ele->nom</b> o <b class='ide'>$pla_ele->des_cod</b>
+          <b class='let-ide'>$pla_ele->nom</b> o <b class='let-ide'>$pla_ele->des_cod</b>
           <br>
           ".api_tex::let($pla_ele->des)."
         </p>";
@@ -1566,7 +1571,7 @@ class hol_bib {
         $_ []= 
         api_hol::ima($ide,$_pla_fue,['class'=>"mar_der-2"])."
         <div>
-          <p><b class='ide'>$_pla_fue->nom</b></p>
+          <p><b class='let-ide'>$_pla_fue->nom</b></p>
           <div class='doc_val'>
             <b class='mar_hor-1'>$ele_pre->des_cod</b>
             ".api_hol::ima("rad_pla_ele",$ele_pre)."
@@ -1589,7 +1594,7 @@ class hol_bib {
           $_ []= 
           api_hol::ima($ide,$ato,['class'=>"mar_der-2"])."
 
-          <p>Semana <n>$ato->ide</n><c>:</c> Átomo Telepático del <b class='ide'>".api_tex::let($ato->nom)."</b></p>";
+          <p>Semana <n>$ato->ide</n><c>:</c> Átomo Telepático del <b class='let-ide'>".api_tex::let($ato->nom)."</b></p>";
           // tetraedros
           if( in_array($ato->ide,$pla_tet) ){
             $tet_ide++;

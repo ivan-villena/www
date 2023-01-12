@@ -129,6 +129,8 @@ class api_arc {
     return api_ele::eti($ele);
   }
 
+  
+
   // listado de archivos por carpeta
   static function dir( mixed $dat, array $ope = [] ) : string {
     $_ = "";

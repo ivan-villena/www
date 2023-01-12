@@ -66,22 +66,22 @@ class sis_usu {
   }// - inicio
   public function ses_ini() : string {
     $_ = "
-    <form class='dat' onsubmit='sis_usu.ses_ini'>
+    <form class='app_dat' onsubmit='sis_usu.ses_ini'>
 
-      <fieldset class='doc_var'>
+      <fieldset class='app_var'>
         <input id='usu-ses_ini-mai' name='mai' type='email' placeholder='Ingresa tu Email...'>
       </fieldset>
 
-      <fieldset class='doc_var'>
+      <fieldset class='app_var'>
         <input id='usu-ses_ini-pas' name='pas' type='password' placeholder='Ingresa tu Password...'>
       </fieldset>
 
-      <fieldset class='doc_var'>
+      <fieldset class='app_var'>
         <label>Mantener Sesión Activa en este Equipo:</label>
         <input id='usu-ses_ini-val' name='val' type='checkbox'>
       </fieldset>
 
-      <fieldset class='doc_ope'>
+      <fieldset class='app_ope'>
         <button type='submit'></button>
       </fieldset>
 
@@ -95,7 +95,7 @@ class sis_usu {
       <a href='' target='_blank'>Tránsitos</a>
     </nav>
 
-    <nav class='doc_ope'>
+    <nav class='app_ope'>
       ".api_fig::ico('ses_fin',[ 'title'=>"Cerrar Sesión..." ])."
     <nav>";
 
@@ -113,13 +113,13 @@ class sis_usu {
     <form class='dat' data-esq='{$esq}' data-est='{$est}'>
 
       <fieldset class='doc_ren'>
-        ".api_doc::var('atr', [$esq,$est,$atr='nom'], [ 'val'=>$this->$atr  ], 'eti')."
-        ".api_doc::var('atr', [$esq,$est,$atr='ape'], [ 'val'=>$this->$atr  ], 'eti')."                              
+        ".sis_app::var('atr', [$esq,$est,$atr='nom'], [ 'val'=>$this->$atr  ], 'eti')."
+        ".sis_app::var('atr', [$esq,$est,$atr='ape'], [ 'val'=>$this->$atr  ], 'eti')."                              
       </fieldset>
 
       <fieldset class='doc_ren'>
-        ".api_doc::var('atr', [$esq,$est,$atr='mai'], [ 'val'=>$this->$atr  ],'eti')."
-        ".api_doc::var('atr', [$esq,$est,$atr='fec'], [ 'val'=>$this->$atr, 'ite'=>[ 'class'=>"tam-ini" ]  ], 'eti')."
+        ".sis_app::var('atr', [$esq,$est,$atr='mai'], [ 'val'=>$this->$atr  ],'eti')."
+        ".sis_app::var('atr', [$esq,$est,$atr='fec'], [ 'val'=>$this->$atr, 'ite'=>[ 'class'=>"tam-ini" ]  ], 'eti')."
       </fieldset>
 
     </form>";
@@ -135,7 +135,7 @@ class sis_usu {
 
     // nombre + fecha : kin + psi
     $_ = "
-    <section class='doc_inf ren esp-ara'>
+    <section class='app_inf ren esp-ara'>
 
       <div>
         <p class='tex-tit tex-3 mar_aba-1'>".api_tex::let("$this->nom $this->ape")."</p>

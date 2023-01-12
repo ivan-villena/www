@@ -78,3 +78,33 @@
 *[onclick] {
   cursor: pointer;
 }
+
+/* 
+  Contenido
+*/
+.doc_ren,
+.doc_ite,
+.doc_val {
+  display: flex;
+  flex-direction: row !important;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.doc_val {
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+/* Renglón y Línea */
+:is(.doc_ren, .doc_ite){
+  align-items: center;
+  flex-grow: 2;
+}
+.doc_ren {
+  flex-wrap: wrap;
+}
+:is(.doc_ren,.doc_ite) {
+  flex-grow: 2;  
+  align-self: stretch;
+}

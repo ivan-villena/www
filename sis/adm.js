@@ -4,7 +4,7 @@
 // consola
 function sis_adm( $tip, $dat, $val, ...$opc ){
   
-  let $ = api_doc.var($dat);
+  let $ = sis_app.var($dat);
   
   // -> desde form : vacío resultados previos
   if( $dom.app.var && ( $.res = $dom.app.var.querySelector('.ope_res') ) ){ 
