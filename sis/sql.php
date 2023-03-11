@@ -1,19 +1,19 @@
 <?php
 
-/* lenguaje SQL */
 class sis_sql {
 
   // Tipos
-  static array $_tip = [    
-  ];
+  static array $TIP = []
+  ;  
   static function tip( string $ide ){
 
-    if( empty(self::$_tip) ){
-      self::$_tip = sis_dat::get('app_tip',['ver'=>"`len` LIKE '%sql%'",'niv'=>["ide"],'ele'=>["ope"]]);
+    if( empty(self::$TIP) ){
+      self::$TIP = api_dat::get('dat_tip',['ver'=>"`len` LIKE '%sql%'",'niv'=>["ide"],'ele'=>["ope"]]);
     }
 
-    return isset(self::$_tip[$ide]) ? self::$_tip[$ide] : new stdClass;
-  }  
+    return isset(self::$TIP[$ide]) ? self::$TIP[$ide] : new stdClass;
+    
+  }
   // ejecuto codigo
   static function dec( ...$val ){  
     $_ = []; 
@@ -224,7 +224,9 @@ class sis_sql {
       foreach( sis_sql::dec("SHOW DATABASES") as $esq ){
         $_[] = $esq->Database;
       }
-    }else{
+    }
+    else{
+      
       switch( $ope ){
       case 'cop':
         // copio estructuras
@@ -300,7 +302,7 @@ class sis_sql {
     return $_;
   }
   // atributos
-  static function atr( string $est, string $ope='ver', ...$opc ) : array | object | string {
+  static function atr( string $est, string $ope = 'ver', ...$opc ) : array | object | string {
     $_=[];
     $esq = DAT_ESQ;
     $dat_lis = sis_sql::dec("SHOW FULL COLUMNS FROM `{$esq}`.`{$est}`");    
@@ -485,5 +487,6 @@ class sis_sql {
       break;
     }
     return $_;
-  }
+  }  
+
 }

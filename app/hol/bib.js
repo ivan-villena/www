@@ -5,17 +5,17 @@ class hol_bib {
   /* Encantamiento del Sueño... */
   static enc( $ide, $tip, $dat ){
     
-    let $ = sis_app.var($dat);
+    let $ = sis_doc.var($dat);
 
     switch( $ide ){
     // libro del kin
     case 'kin':
 
-      if( $dom.app.var ) $.lis = $dom.app.var.nextElementSibling;
+      if( $sis_app.dat.var ) $.lis = $sis_app.dat.var.nextElementSibling;
 
-      $.res = $dom.app.var.querySelector('.hol-kin');
+      $.res = $sis_app.dat.var.querySelector('.hol-kin');
 
-      if( $.val = api_num.val( $dom.app.var.querySelector('[name="ide"]').value ) ) $.kin_ide = `#kin-${api_num.val($.val,3)}`;
+      if( $.val = api_num.val( $sis_app.dat.var.querySelector('[name="ide"]').value ) ) $.kin_ide = `#kin-${api_num.val($.val,3)}`;
       
       switch($tip){
       case 'val':

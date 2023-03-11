@@ -6,7 +6,7 @@ class api_opc {
   // getter
   static _( $ide, $val ){
     let $_, $_dat;
-    $_ = $_dat = sis_dat.est('opc',$ide,'dat');
+    $_ = $_dat = sis_app.dat_est('opc',$ide,'dat');
 
     if( !!($val) ){
       $_ = $val;

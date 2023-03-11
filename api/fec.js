@@ -7,7 +7,7 @@ class api_fec {
   // getter
   static _( $ide, $val ){
     let $_, $_dat;
-    $_ = $_dat = sis_dat.est('fec',$ide,'dat');
+    $_ = $_dat = sis_app.dat_est('fec',$ide,'dat');
 
     if( !!($val) ){
       $_ = $val;

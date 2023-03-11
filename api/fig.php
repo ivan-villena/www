@@ -9,7 +9,7 @@ class api_fig {
   }// getter
   static function _( string $ide, $val = NULL ) : string | array | object {
 
-    $_ = $_dat = sis_dat::est('fig',$ide,'dat');
+    $_ = $_dat = sis_app::dat_est('fig',$ide,'dat');
     
     if( !empty($val) ){
       $_ = $val;
@@ -76,7 +76,7 @@ class api_fig {
     // por aplicacion
     if( isset($dat[2]) ){
       $ele = isset($dat[3]) ? $dat[3] : [];
-      $_ = api_est::val('ima', "{$dat[0]}.{$dat[1]}", $dat[2], $ele );
+      $_ = api_dat::val('ima', "{$dat[0]}.{$dat[1]}", $dat[2], $ele );
     }
     // por directorio
     else{

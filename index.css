@@ -80,31 +80,20 @@
 }
 
 /* 
-  Contenido
+  Página
 */
-.doc_ren,
-.doc_ite,
-.doc_val {
+html {
+  font-family: 'Lora', 'Book Antiqua', 'Georgia';
+  font-size: 15px;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  background: center/cover no-repeat url('../../img/app/fon/01.jpg');
+  margin: 0;
+  color: var(--let_tex);
+  /* para que se vea el modal en toda la pantalla*/
   display: flex;
-  flex-direction: row !important;
-  flex-wrap: nowrap;
-  align-items: center;
-}
-
-.doc_val {
-  width: -moz-fit-content;
-  width: fit-content;
-}
-
-/* Renglón y Línea */
-:is(.doc_ren, .doc_ite){
-  align-items: center;
-  flex-grow: 2;
-}
-.doc_ren {
-  flex-wrap: wrap;
-}
-:is(.doc_ren,.doc_ite) {
-  flex-grow: 2;  
-  align-self: stretch;
+  flex-direction: column;
 }

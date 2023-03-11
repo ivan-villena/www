@@ -41,5 +41,4 @@ body:is([data-cab="kin"],[data-cab="psi"]) > main article {
 
 body:is([data-cab="kin"],[data-cab="psi"]) > main article > .tab {
   margin: .5rem;
-  padding: 1rem;
 }

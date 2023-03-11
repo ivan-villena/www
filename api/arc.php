@@ -9,7 +9,7 @@ class api_arc {
   }// getter
   static function _( string $ide, $val = NULL ) : string | array | object {
 
-    $_ = $_dat = sis_dat::est('arc',$ide,'dat');
+    $_ = $_dat = sis_app::dat_est('arc',$ide,'dat');
     
     if( !empty($val) ){
       $_ = $val;
@@ -128,8 +128,6 @@ class api_arc {
     }
     return api_ele::eti($ele);
   }
-
-  
 
   // listado de archivos por carpeta
   static function dir( mixed $dat, array $ope = [] ) : string {

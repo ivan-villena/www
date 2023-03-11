@@ -1,3 +1,41 @@
+/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+debbug ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+*/
+/* 
+call-stack
+*/
+table[class*="xdebug"]{ 
+  font-size: .8rem; 
+  border-spacing: 0;
+}
+table[class*="xdebug"] th, 
+table[class*="xdebug"] td{ 
+  background-color: var(--fon_art); 
+}
+/* 
+var_dump() 
+*/
+pre[class*="xdebug"]{ 
+  background-color:#0f0f0f; 
+  padding: 1rem; 
+  border-radius: 2rem; 
+  border:1px solid var(--col_azu); 
+  text-align: left; 
+  height: max-content;
+}
+pre[class*="xdebug"] small{
+  color:var(--let_num); 
+} 
+pre[class*="xdebug"] font{ 
+  color:#9b31d0; 
+}
+pre[class*="xdebug"] b{ 
+  color:#ee82ee; 
+}
+pre[class*="xdebug"] i{ 
+  color:#b13030; 
+}
+
 /* /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 /* /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 
@@ -894,40 +932,3 @@ color
 .col-neg { color: var(--col_neg) !important; }
 .col-gri { color: var(--col_gri) !important; }
 
-/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-debbug ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-*/
-/* 
-call-stack
-*/
-table[class*="xdebug"]{ 
-  font-size: .8rem; 
-  border-spacing: 0;
-}
-table[class*="xdebug"] th, 
-table[class*="xdebug"] td{ 
-  background-color: var(--fon_art); 
-}
-/* 
-var_dump() 
-*/
-pre[class*="xdebug"]{ 
-  background-color:#0f0f0f; 
-  padding: 1rem; 
-  border-radius: 2rem; 
-  border:1px solid var(--col_azu); 
-  text-align: left; 
-  height: max-content;
-}
-pre[class*="xdebug"] small{
-  color:var(--let_num); 
-} 
-pre[class*="xdebug"] font{ 
-  color:#9b31d0; 
-}
-pre[class*="xdebug"] b{ 
-  color:#ee82ee; 
-}
-pre[class*="xdebug"] i{ 
-  color:#b13030; 
-}

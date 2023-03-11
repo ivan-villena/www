@@ -9,7 +9,7 @@ class api_lis {
   }// getter
   static function _( string $ide, $val = NULL ) : string | array | object {
     
-    $_ = $_dat = sis_dat::est('lis',$ide,'dat');
+    $_ = $_dat = sis_app::dat_est('lis',$ide,'dat');
     
     if( !empty($val) ){
       $_ = $val;
@@ -90,7 +90,7 @@ class api_lis {
   
           foreach( $ope['ver'] as $ver ){
   
-            if( $atr == $ver[0] ) $val_ite []= sis_dat::val( $val, $ver[1], $ver[2] );
+            if( $atr == $ver[0] ) $val_ite []= api_dat::ver( $val, $ver[1], $ver[2] );
           }
         }
         // evaluo resultados
@@ -239,7 +239,7 @@ class api_lis {
     }
     // - filtrar items
     if( $tod || in_array('ver',$opc) ){ 
-      $_ .= sis_app::var('val','ver',[ 
+      $_ .= api_dat::var('val','ver',[ 
         'des'=> "Filtrar...",
         'ite'=> [ 'class'=>'tam-cre' ],
         'htm'=> api_lis::ope_ver([ 'cue'=>in_array('cue',$opc) ? 0 : NULL, 'eje'=>"{$_eje}_ver(this);" ])
@@ -259,7 +259,7 @@ class api_lis {
     $_ = "";
     
     // opciones de filtro por texto
-    $_ .= sis_dat::var_ope(['ver','tex'],[
+    $_ .= api_dat::var_ope(['ver','tex'],[
       'ite'=>[ 
         'dat'=>"()($)dat()" 
       ],
@@ -292,7 +292,7 @@ class api_lis {
     $_eje = self::$EJE."val";      
 
     if( !isset($ele['ope']) ) $ele['ope'] = [];
-    api_ele::cla($ele['ope'],"app_ope",'ini');
+    api_ele::cla($ele['ope'], "doc_ope", 'ini');
 
     $_eje_val = isset($ele['eje']) ? $ele['eje'] : "$_eje(this,";
     return "
@@ -340,7 +340,7 @@ class api_lis {
     $max = $pos;
     $_eje .= "_ite";
     $_ .= "
-    <form class='app_ope anc-100 jus-cen mar_ver-2'>
+    <form class='doc_ope anc-100 jus-cen mar_ver-2'>
 
       ".api_num::var('val',$min,['name'=>"ini", 'title'=>"Ir al primero...", 'class'=>"mar_hor-1", 'onclick'=>"$_eje('val',this);" ])."
               
@@ -353,105 +353,6 @@ class api_lis {
       ".api_num::var('val',$max,['name'=>"fin", 'title'=>"Ir al último...", 'class'=>"mar_hor-1", 'onclick'=>"$_eje('val',this);" ])."          
 
     </form>";
-    return $_;
-  }
-
-  /* Indice: Enlaces Externos-Internos => a[href] > ...a[href] */
-  static function nav( array $dat, array $ele = [], ...$opc ) : string {    
-    $_ = "";
-    $_eje = self::$EJE."nav";// val | ver
-    foreach( ['ope','ope_dep','lis','dep'] as $i ){ if( !isset($ele[$i]) ) $ele[$i] = []; }
-
-    // operador
-    api_ele::cla( $ele['ope'], "doc_ren", 'ini' );
-    $_ .= api_lis::ope('nav',['tog','ver'],$ele);
-
-    // dependencias
-    $tog_dep = FALSE;
-    if( in_array('tog-dep',$opc) ){
-      api_ele::cla( $ele['ope_dep'], "ite", 'ini' ); $tog_dep = "
-      <form".api_ele::atr($ele['ope_dep']).">
-
-        ".api_lis::ope_tog()."
-
-      </form>";
-    }
-    
-    // armo listado de enlaces
-    $_lis = [];
-    $opc_ide = in_array('ide',$opc);
-    api_ele::cla( $ele['lis'], "lis nav", 'ini' );
-    foreach( $dat[1] as $nv1 => $_nv1 ){
-      $ide = $opc_ide ? $_nv1->ide : $nv1;
-      $eti_1 = ['eti'=>"a", 'href'=>"#_{$ide}-", 'onclick'=>"{$_eje}(this);", 'htm'=> api_tex::let("{$_nv1->nom}") ];
-      if( !isset($dat[2][$nv1]) ){
-        $_lis []= api_ele::val($eti_1);
-      }
-      else{
-        $_lis_2 = [];
-        foreach( $dat[2][$nv1] as $nv2 => $_nv2 ){
-          $ide = $opc_ide ? $_nv2->ide : "{$nv1}-{$nv2}"; 
-          $eti_2 = [ 'eti'=>"a", 'href'=>"#_{$ide}-", 'onclick'=>"{$_eje}(this);", 'htm'=> api_tex::let("{$_nv2->nom}") ];
-          if( !isset($dat[3][$nv1][$nv2])  ){
-            $_lis_2 []= api_ele::val($eti_2);
-          }
-          else{
-            $_lis_3 = [];              
-            foreach( $dat[3][$nv1][$nv2] as $nv3 => $_nv3 ){
-              $ide = $opc_ide ? $_nv3->ide : "{$nv1}-{$nv2}-{$nv3}";
-              $eti_3 = [ 'eti'=>"a", 'href'=>"#_{$ide}-", 'onclick'=>"{$_eje}(this);", 'htm'=> api_tex::let("{$_nv3->nom}") ];
-              if( !isset($dat[4][$nv1][$nv2][$nv3]) ){
-                $_lis_3 []= api_ele::val($eti_3);
-              }
-              else{
-                $_lis_4 = [];                  
-                foreach( $dat[4][$nv1][$nv2][$nv3] as $nv4 => $_nv4 ){
-                  $ide = $opc_ide ? $_nv4->ide : "{$nv1}-{$nv2}-{$nv3}-{$nv4}"; 
-                  $eti_4 = [ 'eti'=>"a", 'href'=>"#_{$ide}-", 'onclick'=>"{$_eje}(this);", 'htm'=> api_tex::let("{$_nv4->nom}") ];
-                  if( !isset($dat[5][$nv1][$nv2][$nv3][$nv4]) ){
-                    $_lis_4 []= api_ele::val($eti_4);
-                  }
-                  else{
-                    $_lis_5 = [];                      
-                    foreach( $dat[5][$nv1][$nv2][$nv3][$nv4] as $nv5 => $_nv5 ){
-                      $ide = $opc_ide ? $_nv5->ide : "{$nv1}-{$nv2}-{$nv3}-{$nv4}-{$nv5}"; 
-                      $eti_5 = [ 'eti'=>"a", 'href'=>"#_{$ide}-", 'onclick'=>"{$_eje}(this);", 'htm'=> api_tex::let("{$_nv5->nom}") ];
-                      if( !isset($dat[6][$nv1][$nv2][$nv3][$nv4][$nv5]) ){
-                        $_lis_5 []= api_ele::val($eti_5);
-                      }
-                      else{
-                        $_lis_6 = [];
-                        foreach( $dat[6][$nv1][$nv2][$nv3][$nv4][$nv5] as $nv6 => $_nv6 ){
-                          $ide = $opc_ide ? $_nv6->ide : "{$nv1}-{$nv2}-{$nv3}-{$nv4}-{$nv5}-{$nv6}"; 
-                          $eti_6 = [ 'eti'=>"a", 'href'=>"#_{$ide}-", 'onclick'=>"{$_eje}(this);", 'htm'=> api_tex::let("{$_nv6->nom}") ];
-                          if( !isset($dat[7][$nv1][$nv2][$nv3][$nv4][$nv5][$nv6]) ){
-                            $_lis_6 []= api_ele::val($eti_6);
-                          }
-                          else{
-                            $_lis_7 = [];
-                            // ... continuar ciclo
-                            $_lis_6 []= [ 'ite'=>$eti_6, 'lis'=>$_lis_7 ];                              
-                          }
-                        }
-                        $_lis_5 []= [ 'ite'=>$eti_5, 'lis'=>$_lis_6 ];
-                      }
-                    }
-                    $_lis_4 []= [ 'ite'=>$eti_4, 'lis'=>$_lis_5 ];
-                  }
-                }
-                $_lis_3 []= [ 'ite'=>$eti_3, 'lis'=>$_lis_4 ];
-              }
-            }
-            $_lis_2 []= [ 'ite'=>$eti_2, 'lis'=>$_lis_3 ];  
-          }
-        }
-        $_lis []= [ 'ite'=>$eti_1, 'lis'=>$_lis_2 ];
-      }
-    }
-    // pido listado
-    api_ele::cla($ele['dep'],DIS_OCU);
-    $ele['opc'] = [];
-    $_ .= api_lis::dep($_lis,$ele);
     return $_;
   }
   
@@ -574,7 +475,7 @@ class api_lis {
     $_ = "
     <li".api_ele::atr( isset($ope["ite-$ide"]) ? api_ele::val_jun($ope["ite-$ide"],$ope_ite) : $ope_ite  ).">
 
-      ".( $val_lis ? sis_app::val( isset($val['ite']) ? $val['ite'] : $ide, $val['ite_ope'] ) : $val );
+      ".( $val_lis ? sis_doc::val( isset($val['ite']) ? $val['ite'] : $ide, $val['ite_ope'] ) : $val );
       
       if( $val_lis ){
         // sublista
@@ -618,4 +519,103 @@ class api_lis {
     </li>";        
     return $_;
   }
+
+  /* Indice: Enlaces Externos-Internos => a[href] > ...a[href] */
+  static function nav( array $dat, array $ele = [], ...$opc ) : string {    
+    $_ = "";
+    $_eje = self::$EJE."nav";// val | ver
+    foreach( ['ope','ope_dep','lis','dep'] as $i ){ if( !isset($ele[$i]) ) $ele[$i] = []; }
+
+    // operador
+    api_ele::cla( $ele['ope'], "doc_ren", 'ini' );
+    $_ .= api_lis::ope('nav',['tog','ver'],$ele);
+
+    // dependencias
+    $tog_dep = FALSE;
+    if( in_array('tog-dep',$opc) ){
+      api_ele::cla( $ele['ope_dep'], "ite", 'ini' ); $tog_dep = "
+      <form".api_ele::atr($ele['ope_dep']).">
+
+        ".api_lis::ope_tog()."
+
+      </form>";
+    }
+    
+    // armo listado de enlaces
+    $_lis = [];
+    $opc_ide = in_array('ide',$opc);
+    api_ele::cla($ele['lis'], "nav");
+    foreach( $dat[1] as $nv1 => $_nv1 ){
+      $ide = $opc_ide ? $_nv1->ide : $nv1;
+      $eti_1 = ['eti'=>"a", 'href'=>"#_{$ide}-", 'onclick'=>"{$_eje}(this);", 'htm'=> api_tex::let("{$_nv1->nom}") ];
+      if( !isset($dat[2][$nv1]) ){
+        $_lis []= api_ele::val($eti_1);
+      }
+      else{
+        $_lis_2 = [];
+        foreach( $dat[2][$nv1] as $nv2 => $_nv2 ){
+          $ide = $opc_ide ? $_nv2->ide : "{$nv1}-{$nv2}"; 
+          $eti_2 = [ 'eti'=>"a", 'href'=>"#_{$ide}-", 'onclick'=>"{$_eje}(this);", 'htm'=> api_tex::let("{$_nv2->nom}") ];
+          if( !isset($dat[3][$nv1][$nv2])  ){
+            $_lis_2 []= api_ele::val($eti_2);
+          }
+          else{
+            $_lis_3 = [];              
+            foreach( $dat[3][$nv1][$nv2] as $nv3 => $_nv3 ){
+              $ide = $opc_ide ? $_nv3->ide : "{$nv1}-{$nv2}-{$nv3}";
+              $eti_3 = [ 'eti'=>"a", 'href'=>"#_{$ide}-", 'onclick'=>"{$_eje}(this);", 'htm'=> api_tex::let("{$_nv3->nom}") ];
+              if( !isset($dat[4][$nv1][$nv2][$nv3]) ){
+                $_lis_3 []= api_ele::val($eti_3);
+              }
+              else{
+                $_lis_4 = [];                  
+                foreach( $dat[4][$nv1][$nv2][$nv3] as $nv4 => $_nv4 ){
+                  $ide = $opc_ide ? $_nv4->ide : "{$nv1}-{$nv2}-{$nv3}-{$nv4}"; 
+                  $eti_4 = [ 'eti'=>"a", 'href'=>"#_{$ide}-", 'onclick'=>"{$_eje}(this);", 'htm'=> api_tex::let("{$_nv4->nom}") ];
+                  if( !isset($dat[5][$nv1][$nv2][$nv3][$nv4]) ){
+                    $_lis_4 []= api_ele::val($eti_4);
+                  }
+                  else{
+                    $_lis_5 = [];                      
+                    foreach( $dat[5][$nv1][$nv2][$nv3][$nv4] as $nv5 => $_nv5 ){
+                      $ide = $opc_ide ? $_nv5->ide : "{$nv1}-{$nv2}-{$nv3}-{$nv4}-{$nv5}"; 
+                      $eti_5 = [ 'eti'=>"a", 'href'=>"#_{$ide}-", 'onclick'=>"{$_eje}(this);", 'htm'=> api_tex::let("{$_nv5->nom}") ];
+                      if( !isset($dat[6][$nv1][$nv2][$nv3][$nv4][$nv5]) ){
+                        $_lis_5 []= api_ele::val($eti_5);
+                      }
+                      else{
+                        $_lis_6 = [];
+                        foreach( $dat[6][$nv1][$nv2][$nv3][$nv4][$nv5] as $nv6 => $_nv6 ){
+                          $ide = $opc_ide ? $_nv6->ide : "{$nv1}-{$nv2}-{$nv3}-{$nv4}-{$nv5}-{$nv6}"; 
+                          $eti_6 = [ 'eti'=>"a", 'href'=>"#_{$ide}-", 'onclick'=>"{$_eje}(this);", 'htm'=> api_tex::let("{$_nv6->nom}") ];
+                          if( !isset($dat[7][$nv1][$nv2][$nv3][$nv4][$nv5][$nv6]) ){
+                            $_lis_6 []= api_ele::val($eti_6);
+                          }
+                          else{
+                            $_lis_7 = [];
+                            // ... continuar ciclo
+                            $_lis_6 []= [ 'ite'=>$eti_6, 'lis'=>$_lis_7 ];                              
+                          }
+                        }
+                        $_lis_5 []= [ 'ite'=>$eti_5, 'lis'=>$_lis_6 ];
+                      }
+                    }
+                    $_lis_4 []= [ 'ite'=>$eti_4, 'lis'=>$_lis_5 ];
+                  }
+                }
+                $_lis_3 []= [ 'ite'=>$eti_3, 'lis'=>$_lis_4 ];
+              }
+            }
+            $_lis_2 []= [ 'ite'=>$eti_2, 'lis'=>$_lis_3 ];  
+          }
+        }
+        $_lis []= [ 'ite'=>$eti_1, 'lis'=>$_lis_2 ];
+      }
+    }
+    // pido listado
+    api_ele::cla($ele['dep'],DIS_OCU);
+    $ele['opc'] = [];
+    $_ .= api_lis::dep($_lis,$ele);
+    return $_;
+  }  
 }

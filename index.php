@@ -20,30 +20,24 @@
   
     // Rutas :: localhost / icpv.com.ar  
     define('SYS_NAV', "http://{$_SERVER['HTTP_HOST']}/" );
-
+    
     // Base de datos: local / produccion
     define('DAT_SER', 'localhost');
     define('DAT_USU', "c1461857_api");
     define('DAT_PAS', "lu51zakoWA");
     define('DAT_ESQ', "c1461857_api");
-
+    
     // Elementos : Clases
     define('DIS_OCU', "dis-ocu");
     define('BOR_SEL', "bor-sel");
     define('FON_SEL', "fon-sel");
 
   //
-  // Modulos
-    require_once("./sis/sql.php");
-    require_once("./sis/dat.php");
-    require_once("./sis/app.php");
-    require_once("./sis/usu.php");
-
-    // Componentes
+  // Componentes
+    require_once("./api/dat.php");
     require_once("./api/arc.php");
     require_once("./api/eje.php");
     require_once("./api/ele.php");
-    require_once("./api/est.php");
     require_once("./api/obj.php");
     require_once("./api/lis.php");
     require_once("./api/opc.php");
@@ -52,9 +46,14 @@
     require_once("./api/fig.php");
     require_once("./api/fec.php");
     require_once("./api/hol.php");
+  //  
+  // Sistema
+    require_once("./sis/sql.php");
+    require_once("./sis/doc.php");
+    require_once("./sis/app.php");
+    require_once("./sis/usu.php");  
     
-    // cargo sistema
-    $sis_dat = new sis_dat();
+    $sis_dat = new sis_doc();
     $sis_app = new sis_app();
     $sis_usu = new sis_usu( $_SESSION['usu'] );    
   //
@@ -96,10 +95,13 @@
   $_uri = $sis_app->rec_uri( isset($_REQUEST['uri']) ? $_REQUEST['uri'] : "hol" );
   
   // cargo contenido por aplicacion
-  if( file_exists($rec = "./app/{$_uri->esq}/index.php") ){ require_once( $rec ); }
+  if( file_exists($rec = "./app/{$_uri->esq}/index.php") ){ 
+    require_once( $rec ); 
+  }
   
   // inicializo contenido de página + aplicación
   $_htm = $sis_app->rec_htm();
+
   ?>
   <!DOCTYPE html>
   <html lang="es">
@@ -113,7 +115,7 @@
       <!-- hojas de estilo -->
       <link rel='stylesheet' href='<?=SYS_NAV?>index.css'>
       <?=$sis_app->rec_cla('css')?>
-      <link rel='stylesheet' href='<?=SYS_NAV?>sis/css.css'>      
+      <link rel='stylesheet' href='<?=SYS_NAV?>css.css'>      
     </head>
 
     <body <?=api_ele::atr($sis_app->rec['ele']['body'])?>>
@@ -122,7 +124,7 @@
       if( !empty($_htm['ope']['ini']) || !empty($_htm['ope']['fin']) ){
         ?>
         <!-- Operador -->
-        <header class='app_bot'>
+        <header class='doc_bot'>
           
           <nav class='ini'>
             <?= $_htm['ope']['ini'] ?>
@@ -140,7 +142,7 @@
       <?php // Paneles Ocultos
       if( !empty($_htm['pan']) ){ ?>
         <!-- Panel -->
-        <aside class='app_pan dis-ocu'>
+        <aside class='doc_pan dis-ocu'>
           <?= $_htm['pan'] ?>
         </aside>
         <?php 
@@ -150,8 +152,8 @@
       if( !empty($_htm['sec']) ){
         ?>
         <!-- Contenido -->
-        <main class='app_sec'>
-          <?= sis_app::sec( $_htm['sec'], [ 'tit'=>$_htm['tit'] ] ) ?>
+        <main class='doc_sec'>
+          <?= sis_doc::sec( $_htm['sec'], [ 'tit'=>$_htm['tit'] ] ) ?>
         </main>          
         <?php
       } ?>
@@ -159,7 +161,7 @@
       <?php // Lateral: siempre visible
       if( !empty($_htm['bar']) ){ ?>
         <!-- Sidebar -->
-        <aside class='app_bar'>
+        <aside class='doc_bar'>
           <?= $_htm['bar'] ?>
         </aside>
         <?php 
@@ -168,14 +170,14 @@
       <?php // pié de página
       if( !empty($_htm['pie']) ){  ?>
         <!-- pie de página -->
-        <footer class='app_pie'>
+        <footer class='doc_pie'>
           <?= $_htm['pie'] ?>
         </footer>
         <?php 
       } ?>
       
       <!-- Modales -->
-      <div class='app_win dis-ocu'>
+      <div class='doc_win dis-ocu'>
         <?= $_htm['win'] ?>
       </div>
       
@@ -184,9 +186,17 @@
       
       <!-- Aplicación -->
       <script>
+        // Rutas
+        const SYS_NAV = "<?=SYS_NAV?>";
+        
+        // Clases
+        const DIS_OCU = "<?=DIS_OCU?>";
+        const FON_SEL = "<?=FON_SEL?>";
+        const BOR_SEL = "<?=BOR_SEL?>";
+
         <?php
         $dat_est = [];
-        foreach( $sis_dat->_est as $esq => $esq_lis ){
+        foreach( $sis_app->dat as $esq => $esq_lis ){
           $dat_est_val = [];
           foreach( $esq_lis as $est => $est_ope ){
             if( isset($sis_app->rec['est']['api'][$esq]) ){
@@ -196,29 +206,18 @@
             }
           }
           if( !empty($dat_est_val) ) $dat_est[$esq] = $dat_est_val;
-        }?>
+        }
+        ?>
+        // Cargo Sistema
+        const $sis_dom = new sis_dom();
 
-        // Rutas
-        const SYS_NAV = "<?=SYS_NAV?>";
+        const $sis_app = new sis_app(<?= api_obj::val_cod([ 'rec'=>[ 'uri'=>$_uri ], 'dat'=>$dat_est ]) ?>);
         
-        // Clases
-        const DIS_OCU = "<?=DIS_OCU?>";
-        const FON_SEL = "<?=FON_SEL?>";
-        const BOR_SEL = "<?=BOR_SEL?>";
-        
-        // Sistema
-        const $dom = new sis_dom();
-
-        const $sis_log = new sis_log();
-
-        const $sis_app = new sis_app(<?= api_obj::val_cod([ 'rec'=>[ 'uri'=>$_uri ] ]) ?>);
-
-        const $sis_dat = new sis_dat(<?= api_obj::val_cod([ '_tip'=>$sis_dat->_tip, '_est'=>$dat_est ]) ?>);
-        
-        // codigo por aplicacion
+        // Codigo por aplicacion
         <?= $sis_app->rec['eje'] ?>
         
         console.log(`{-_-}.ini: en ${( ( Date.now() - (  <?= $sis_ini ?> * 1000 ) ) / 1000 ).toFixed(2)} segundos...`);
+
       </script>
 
     </body>

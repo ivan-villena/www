@@ -68,6 +68,21 @@ dl dd {
   margin-left: 1rem;  
 }
 
+/* Tabla */
+table {
+  /* width: 100%; */
+  border-collapse: separate; /* espaciado aplica cuando el collapse es separate // not:: collapse: collapse */  
+  border-spacing: .2rem .1rem; /* => horizontal-izquierda vertical-superior */
+  padding-bottom: 1rem;
+}
+table th {
+  color: var(--let_ide);
+  max-width: fit-content;
+}
+table th > p {
+  margin: auto;
+}
+
 /* ///////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 /* ///////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 /* 
@@ -118,13 +133,13 @@ ul.lis.nav a {
   color: var(--let_tex);
 }
 ul.lis.nav li.pos.sep,
-ul.lis.nav li.pos:not(.sep) > .app_val {
+ul.lis.nav li.pos:not(.sep) > .doc_val {  
   margin-top: .1rem;
   margin-bottom: .1rem;
   padding: .25rem;
 }
 ul.lis.nav li.pos.sep:hover,  
-ul.lis.nav li.pos:not(.sep) > .app_val:hover {
+ul.lis.nav li.pos:not(.sep) > .doc_val:hover {
   background-color: var(--fon_foc);
   border-radius: .25rem;
 }
@@ -141,7 +156,8 @@ ul.lis.dep ul.lis {
   padding-bottom: .25rem;
   margin: 0;
 }
-ul.lis.dep li > .app_val {
+ul.lis.dep li > .doc_val {
+  width: initial;
   border-radius: .2rem;
   margin: .25rem 0;
 }

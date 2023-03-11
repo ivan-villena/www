@@ -90,28 +90,28 @@ textarea {
 }
 
 /* 
-  Artículos
+  Artículos de la Seccion Principal
 */
-article > h2 {
+main article > h2 {
   margin-bottom: 1rem;
 }
-article section > :is(h3,h4,h5,h6) {
+main article section > :is(h3,h4,h5,h6) {
   margin: 1rem 0;
   margin-top: 1.5rem;
 }
 
-article > p,
-article section > p {
+main article > p,
+main article section > p {
   margin-bottom: .5rem;
   line-height: 1.5;
 }
-article > ul.lis,
-article section > ul.lis {
+main article > ul.lis,
+main article section > ul.lis {
   margin: .5rem auto;
   max-width: fit-content;
 }
-article > figure,
-article section > figure {
+main article > figure,
+main article section > figure {
   margin: 1rem auto;
 }
 

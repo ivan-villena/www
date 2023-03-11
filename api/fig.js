@@ -6,7 +6,7 @@ class api_fig {
   // getter
   static _( $ide, $val ){
     let $_, $_dat;
-    $_ = $_dat = sis_dat.est('fig',$ide,'dat');
+    $_ = $_dat = sis_app.dat_est('fig',$ide,'dat');
 
     if( !!($val) ){
       $_ = $val;
@@ -60,7 +60,7 @@ class api_fig {
     
     if( $dat[2] !== undefined ){
       $.ele = !!($dat[3]) ? $dat[3] : {};      
-      $_ = api_est.val('ima', `${$dat[0]}.${$dat[1]}`, $dat[2], $.ele);
+      $_ = api_dat.val('ima', `${$dat[0]}.${$dat[1]}`, $dat[2], $.ele);
     }
     else{
       $ele = !!$dat[1] ? $dat[1] : {};
@@ -109,8 +109,8 @@ class api_fig {
       }
     });
     if( !!$pad && $pad.nodeName ){
-      $dom.eli($pad);
-      $dom.agr($.lis,$pad);
+      api_ele.eli($pad);
+      api_ele.agr($.lis,$pad);
     }
     return $;
   }  

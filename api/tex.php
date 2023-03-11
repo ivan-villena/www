@@ -11,7 +11,7 @@ class api_tex {
   }// getter
   static function _( string $ide, $val = NULL ) : string | array | object {
 
-    $_ = $_dat = sis_dat::est('tex',$ide,'dat');
+    $_ = $_dat = sis_app::dat_est('tex',$ide,'dat');
     
     if( !empty($val) ){
       $_ = $val;
@@ -70,7 +70,7 @@ class api_tex {
             $dat_lis = [];
           }
           if( empty($ope['id']) ){ 
-            $ope['id']="_tex-{$tip}-".sis_dat::var_ide("_tex-{$tip}-");
+            $ope['id']="_tex-{$tip}-".sis_app::var_ide("_tex-{$tip}-");
           }
           $ope['list'] = "{$ope['id']}-lis";
           $lis_htm = "
@@ -90,7 +90,7 @@ class api_tex {
     }      
 
     return $_;
-  }  
+  }
 
   // salvo caracteres con "\"
   static function val_cod( string $val, string $cod = ".*+\-?^{}()|[\]\$\\", string $opc = "" ) : string {
@@ -226,4 +226,5 @@ class api_tex {
 
     return ucwords( mb_strtolower($val, $cod) );
   }
+
 }

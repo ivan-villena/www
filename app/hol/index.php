@@ -31,19 +31,19 @@
 
       <div class='mar-2 tex_ali-cen'>
 
-        ".api_est::inf('hol','kin',$_hol->val['kin'],[ 'opc'=>["nom"], 'det'=>"des" ])."
+        ".api_dat::inf('hol','kin',$_hol->val['kin'],[ 'opc'=>["nom"], 'det'=>"des" ])."
 
       </div>
 
     </section>
 
-    ".sis_app::nav('bar',[
-      'kin' => [ 'ide'=>"kin", 'ico'=>"", 'nom'=>"Sincrónico", 'des'=>"", 'htm'=>api_est::inf_pos("hol","kin",[ 
+    ".sis_doc::nav('bar',[
+      'kin' => [ 'ide'=>"kin", 'ico'=>"", 'nom'=>"Sincrónico", 'des'=>"", 'htm'=>api_dat::inf_pos("hol","kin",[ 
         'kin'=>$_kin = api_hol::_('kin',$_hol->val['kin']),
         'sel'=>api_hol::_('sel',$_kin->arm_tra_dia),
         'ton'=>api_hol::_('ton',$_kin->nav_ond_dia)
       ])],
-      'psi' => [ 'ide'=>"psi", 'ico'=>"", 'nom'=>"Cíclico", 'des'=>"", 'htm'=>api_est::inf_pos("hol","psi",[ 
+      'psi' => [ 'ide'=>"psi", 'ico'=>"", 'nom'=>"Cíclico", 'des'=>"", 'htm'=>api_dat::inf_pos("hol","psi",[ 
         'psi'=>$_psi = api_hol::_('psi',$_hol->val['psi']),
         'est'=>api_hol::_('psi_hep_est',$_psi->hep_est),
         'lun'=>api_hol::_('psi_ani_lun',$_psi->ani_lun),
@@ -65,7 +65,7 @@
       
         <section class="inicio">
 
-          <?=sis_app::tex([ 'tip'=>"adv", 'tit'=>"¡Atención!", 
+          <?=sis_doc::tex([ 'tip'=>"adv", 'tit'=>"¡Atención!", 
             'tex'=>[
               "Este sitio aún se está en construcción...", "Puede haber contenido incompleto, errores o faltas."
             ],
@@ -190,7 +190,7 @@
       // operadores del tablero
       $tab_ide = "hol.{$_uri->cab}";
       
-      if( !( $tab_ope =  sis_dat::est('hol',"{$_uri->cab}_{$_uri->art}",'tab') ) ) $tab_ope = [];
+      if( !( $tab_ope =  sis_app::dat_est('hol',"{$_uri->cab}_{$_uri->art}",'tab') ) ) $tab_ope = [];
       
       // inicializo valores
       $tab_ope['val'] = [];            
@@ -215,9 +215,9 @@
       }
 
       // 1- imprimo operadores del tablero
-      $ope = api_obj::val_nom(api_est::$TAB_OPE,'ver',['ver','opc','val']);
+      $ope = api_obj::val_nom(api_dat::$TAB['ope'],'ver',['ver','opc','val']);
       foreach( $ope as $ope_ide => $ope_tab ){
-        if( !empty( $htm = api_est::tab_ope($ope_ide, $tab_ide, $tab_ope) ) ){
+        if( !empty( $htm = api_dat::tab_ope($ope_ide, $tab_ide, $tab_ope) ) ){
           $sis_app->rec['ope']['ini'][$ope_ide] = [ 
             'ico'=>$ope_tab['ico'], 'tip'=>"pan", 'nom'=>$ope_tab['nom'], 'nav'=>[ 'eti'=>"article" ], 'htm'=>$htm
           ];
@@ -225,7 +225,7 @@
       }
 
       // 2-imprimo operador de lista
-      $lis_ope = sis_dat::est("hol",$_uri->cab,'lis');
+      $lis_ope = sis_app::dat_est("hol",$_uri->cab,'lis');
       $lis_ope['val'] = $tab_ope['val'];
       // cargo operadores
       if( isset($tab_ope['est']) ){
@@ -236,22 +236,22 @@
           $lis_ope['est'][$esq_ide] = [];
           foreach( $esq_lis as $est_ide ){
             $lis_ope['est'][$esq_ide][$est_ide] = [];
-            if( $est_ope = sis_dat::est($esq_ide,$est_ide,'lis') ){
+            if( $est_ope = sis_app::dat_est($esq_ide,$est_ide,'lis') ){
               $lis_ope['est'][$esq_ide][$est_ide] = $est_ope;
             }
           }
         }
       }
-      $ope = api_est::$TAB_OPE['lis'];
+      $ope = api_dat::$TAB['ope']['lis'];
       $sis_app->rec['ope']['ini']['lis'] = [ 'ico'=>$ope['ico'], 'tip'=>"win", 'nom'=>$ope['nom'], 
-        'htm'=>api_est::tab_ope('lis',"hol.{$_uri->cab}",$lis_ope) 
+        'htm'=>api_dat::tab_ope('lis',"hol.{$_uri->cab}",$lis_ope) 
       ];
 
       // 3- imprimo tablero en página principal
       echo "
       <article>
         ".api_hol::tab($_uri->cab, $_uri->art, $tab_ope, [
-          'pos'=>[ 'onclick'=>"api_est.tab_val('mar',this);" ],
+          'pos'=>[ 'onclick'=>"api_dat.tab_val('mar',this);" ],
           'ima'=>[ 'onclick'=>FALSE ]
         ])."
       </article>";
@@ -346,8 +346,8 @@
       $sis_app->rec['ope']['med']['app_dat']['htm'] = ob_get_clean();     
       
       // cargo todos los datos utilizados por esquema
-      $sis_app->rec['est']['api']['hol'] = array_keys($sis_app->_est['hol']);
-      $sis_app->rec['est']['api']['fec'] = array_keys($sis_app->_est['fec']);
+      $sis_app->rec['est']['api']['hol'] = array_keys($sis_app->dat['hol']);
+      $sis_app->rec['est']['api']['fec'] = array_keys($sis_app->dat['fec']);
     }
     // contenido : bibliografía + articulos
     else{      
@@ -365,7 +365,7 @@
         include( $rec );
       }
       else{
-        echo sis_app::tex([ 'tip'=>"err", 'tex'=>"No existe el archivo '$val'" ]);
+        echo sis_doc::tex([ 'tip'=>"err", 'tex'=>"No existe el archivo '$val'" ]);
       }
     }// imprimo secciones
     $sis_app->rec['htm']['sec'] = ob_get_clean();

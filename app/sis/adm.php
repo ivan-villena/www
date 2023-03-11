@@ -25,23 +25,22 @@
   // iconos del sistema
     ob_start();
     ?>
-      <?=sis_app::var('val','ver',['nom'=>"Filtrar",'ope'=>[ 
+      <?=api_dat::var('val','ver',['nom'=>"Filtrar",'ope'=>[ 
         'tip'=>"tex_ora", 'id'=>"_adm-ico-ver", 'oninput'=>"$_eje('ico',this,'ver')"  
       ]])?>
 
       <ul class='lis ite mar-2'>
       </ul>
-
     <?php
     $_ope['ico']['htm'] = ob_get_clean();
 
   // javascript: consola
     ob_start();
     ?>
-      <fieldset class='app_inf pad-3'>
+      <fieldset class='doc_inf pad-3'>
         <legend>Ejecutar JavaScript</legend>      
 
-        <?=sis_app::var('val','cod',[ 
+        <?=api_dat::var('val','cod',[ 
           'ite'=>[ 'class'=>"tam-cre" ], 
           'ope'=>[ 'tip'=>"tex_par", 'rows'=>"10", 'class'=>"anc-100", 'oninput'=>"$_eje('jso',this)" ] 
         ])?>
@@ -56,18 +55,18 @@
   // php: ejecucion
     ob_start();
     ?>
-      <fieldset class='app_inf dir-hor pad-3'>
+      <fieldset class='doc_inf dir-hor pad-3'>
         <legend>Ejecutar en PHP</legend>
 
-        <?=sis_app::var('val','ide',[ 'ope'=>[ 'tip'=>"tex_ora" ] ])?>
+        <?=api_dat::var('val','ide',[ 'ope'=>[ 'tip'=>"tex_ora" ] ])?>
         
-        <?=sis_app::var('val','par',[ 
+        <?=api_dat::var('val','par',[ 
           'ite'=>['class'=>"tam-cre"], 
           'ope'=>['tip'=>"tex_ora", 'class'=>"anc-100 mar_hor-1"], 
           'htm_ini'=>"<c>(</c>", 'htm_fin'=>"<c>)</c>"
         ])?>
 
-        <?=sis_app::var('val','htm',[
+        <?=api_dat::var('val','htm',[
           'nom'=>"¿HTML?",
           'ope'=>[ 'tip'=>"opc_bin", 'val'=>1, 'id'=>"_adm-php-htm" ]
         ])?>
@@ -88,10 +87,10 @@
   // sql: consultas
     ob_start();
     ?>
-      <fieldset class='app_inf dir-hor pad-3'>
+      <fieldset class='doc_inf dir-hor pad-3'>
         <legend>Ejecutar S.Q.L.</legend>
 
-        <?=sis_app::var('val','cod',[ 
+        <?=api_dat::var('val','cod',[ 
           'ite'=>[ 'class'=>"tam-cre" ], 
           'ope'=>[ 'tip'=>"tex_ora", 'class'=>"anc-100 mar_der-1" ],
           'htm_fin'=> api_fig::ico('dat_ope',[ 'eti'=>"button", 'type'=>"submit", 'onclick'=>"$_eje('sql',this,'cod')" ])
@@ -106,10 +105,10 @@
   // html: consultas dom
     ob_start();
     ?>
-      <fieldset class='app_inf dir-hor pad-3'>
+      <fieldset class='doc_inf dir-hor pad-3'>
         <legend>Ejecutar Selector</legend>
 
-        <?=sis_app::var('val','cod',[ 
+        <?=api_dat::var('val','cod',[ 
           'ite'=>['class'=>"tam-cre"], 
           'ope'=>['tip'=>"tex_ora", 'class'=>"anc-100 mar_der-1"],
           'htm_fin'=> api_fig::ico('dat_ope',['eti'=>"button", 'type'=>"submit", 'onclick'=>"$_eje('htm',this,'cod')"])
@@ -124,4 +123,4 @@
     <?php
     $_ope['htm']['htm'] = ob_get_clean();
 
-  echo sis_app::nav('bar', $_ope, [ 'sel' => "php", 'ite' => [ 'eti'=>"form" ] ]);
+  echo sis_doc::nav('bar', $_ope, [ 'sel' => "php", 'ite' => [ 'eti'=>"form" ] ]);

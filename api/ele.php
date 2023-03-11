@@ -9,7 +9,7 @@ class api_ele {
   }// getter
   static function _( string $ide, $val = NULL ) : string | array | object {
 
-    $_ = $_dat = sis_dat::est('ele',$ide,'dat');
+    $_ = $_dat = sis_app::dat_est('ele',$ide,'dat');
     
     if( !empty($val) ){
       $_ = $val;

@@ -10,7 +10,7 @@ class api_eje {
   // getter
   static function _( string $ide, $val = NULL ) : string | array | object {
 
-    $_ = $_dat = sis_dat::est('eje',$ide,'dat');
+    $_ = $_dat = sis_app::dat_est('eje',$ide,'dat');
     
     if( !empty($val) ){
       $_ = $val;

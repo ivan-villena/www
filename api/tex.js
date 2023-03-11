@@ -7,7 +7,7 @@ class api_tex {
   // getter
   static _( $ide, $val ){
     let $_, $_dat;
-    $_ = $_dat = sis_dat.est('tex',$ide,'dat');
+    $_ = $_dat = sis_app.dat_est('tex',$ide,'dat');
 
     if( !!($val) ){
       $_ = $val;

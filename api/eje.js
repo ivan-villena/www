@@ -7,7 +7,7 @@ class api_eje {
   // getter
   static _( $ide, $val ){
     let $_, $_dat;
-    $_ = $_dat = sis_dat.est('eje',$ide,'dat');
+    $_ = $_dat = sis_app.dat_est('eje',$ide,'dat');
 
     if( !!($val) ){
       $_ = $val;
@@ -38,7 +38,7 @@ class api_eje {
       // armo peticion
       $_ = `${SYS_NAV}index.php?_=${JSON.stringify($dat)}`;  
       // cargo log 
-      $sis_log.php.push($_);
+      $sis_app.log.php.push($_);
       // ejecuto peticion
       $_ = $_ajax( encodeURI($_) ).then( $ => {
           // proceso error
@@ -57,7 +57,8 @@ class api_eje {
       ;
     }
     return $_;
-  }// codifico ejecucion
+  }
+  // codifico ejecucion
   static val_cod( $val, $par ){
     let $_=false,$={}; 
     $.par=[];
@@ -94,7 +95,7 @@ class api_eje {
         // defino un array para desestructurar e invocar
         $_ = !!($.inv) ? $.fun( ...eval(`[${$.inv}]`) ) : $.fun() ;
         // evaluo e imprimo resultado 
-        $.tip = sis_dat.tip($_);
+        $.tip = api_dat.tip($_);
         // $.pad.querySelector(`[ini]`).innerHTML = ( `${$.tip.dat}_${$.tip.val}`, { 'val':$_ } );
       }
       else{ 
@@ -179,7 +180,7 @@ class api_eje {
 
                     console.log( $.log=`{-_-}.${$.eve.type} => ${($.obj=='window')?'':$.obj+'.'}${$.fun}( ${$.par.join('(,)')} )` );
 
-                    $sis_log.jso.push($.log);// log
+                    $sis_app.log.jso.push($.log);// log
 
                     $_.push( $.ins[$.fun]( ...$.par ) );// invocacion
                   }
