@@ -2,13 +2,13 @@
 'use strict';
 
 // Archivo : fichero + texto + imagen + audio + video + app + ...tipos
-class api_arc {  
+class Arc {  
 
   // getter
   static _( $ide, $val ){
     
     let $_, $_dat;
-    $_ = $_dat = sis_app.dat_est('arc',$ide,'dat');
+    $_ = $_dat = Dat.get_est('arc',$ide,'dat');
 
     if( !!($val) ){
       $_ = $val;

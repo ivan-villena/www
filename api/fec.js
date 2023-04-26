@@ -2,19 +2,19 @@
 'use strict';
 
 // Fecha : aaaa-mm-dia hh:mm:ss utc
-class api_fec {
+class Fec {
 
   // getter
   static _( $ide, $val ){
     let $_, $_dat;
-    $_ = $_dat = sis_app.dat_est('fec',$ide,'dat');
+    $_ = $_dat = Dat.get_est('fec',$ide,'dat');
 
     if( !!($val) ){
       $_ = $val;
       if( typeof($val) != 'object' ){
         switch( $ide ){
         case 'dat':
-          $_ = api_fec.dat($val);
+          $_ = Fec.dat($val);
           break;
         default:
           if( Number($val) ) $val = parseInt($val)-1;
@@ -35,7 +35,7 @@ class api_fec {
       $dat = /-/.test($dat) ? $dat.split('-') : $dat.split('/');
     }
   
-    if( $.tip_obj = api_obj.val_tip($dat) ){
+    if( $.tip_obj = Obj.val_tip($dat) ){
   
       if( $.tip_obj == 'pos' ){
         $.mes = $dat[1];
@@ -52,8 +52,8 @@ class api_fec {
         $.dia = !!($dat.dia) ? $dat.dia : 1;
       }
   
-      if( api_fec.val_tip($.mes, $.dia, $.año) ){
-        $_ = !$opc.includes('año') ? api_num.val($.dia,2)+'/'+num.val($.mes,2)+'/'+num.val($.año,4) : api_num.val($.año,4)+'/'+num.val($.mes,2)+'/'+num.val($.dia,2);
+      if( Fec.val_tip($.mes, $.dia, $.año) ){
+        $_ = !$opc.includes('año') ? Num.val($.dia,2)+'/'+num.val($.mes,2)+'/'+num.val($.año,4) : Num.val($.año,4)+'/'+num.val($.mes,2)+'/'+num.val($.dia,2);
       }else{
         $_ = false;
       } 
@@ -70,7 +70,7 @@ class api_fec {
       $_ = new Date( parseInt($dat) );
     }// formateo e instancio
     else if( $.tip == 'string' ){ 
-      $.fec = api_fec.dat($dat);
+      $.fec = Fec.dat($dat);
       if( $.fec.año && $.fec.mes && $.fec.dia ){ 
         $_ = new Date( $.fec.año, $.fec.mes, $.fec.dia ); 
       }else{
@@ -103,7 +103,7 @@ class api_fec {
     return $_;
   }// Cantidades :  de dias en el mes, año...
   static val_cue( $tip, $dat ){
-    let $={},$_ = api_fec.dat($dat)
+    let $={},$_ = Fec.dat($dat)
     switch( $tip ){
       case 'mes':
         $_ = new Date( $_['año'] || new Date().getFullYear(), $_['mes'], 0 ).getDate()
@@ -111,7 +111,7 @@ class api_fec {
       case 'año':
         $.tab=[]; $.tot=0; $.num=0; $.mes=0;
         for( let $i = 1; $i <= 12 ; $i++ ){ 
-          $.tab[$i] = api_fec.val_cue('mes',`${$_['año']}/${$i}/1`); 
+          $.tab[$i] = Fec.val_cue('mes',`${$_['año']}/${$i}/1`); 
           $.tot += $.tab[$i]; 
         }
         if( $_['mes'] == 1 ){ 
@@ -133,10 +133,10 @@ class api_fec {
   static val_ver( $val, $ini, $fin ){
     let $_ = true, $ = {};
     if( !!$val ){
-      $.val = Array.isArray($val) ? $val : api_fec.val_cod($val);
+      $.val = Array.isArray($val) ? $val : Fec.val_cod($val);
       // fecha desde
       if( !!$ini ){
-        $.ini = Array.isArray($ini) ? $ini : api_fec.val_cod($ini);
+        $.ini = Array.isArray($ini) ? $ini : Fec.val_cod($ini);
         if( $.val[0] < $.ini[0] ){// el año es menor, oculto
           $_ = false;
         }else if( $.val[0] == $.ini[0] ){// mismo año
@@ -151,7 +151,7 @@ class api_fec {
       }
       // fecha hasta
       if( !!$fin && !!$_ ){
-        $.fin = Array.isArray($fin) ? $fin : api_fec.val_cod($fin);
+        $.fin = Array.isArray($fin) ? $fin : Fec.val_cod($fin);
         if( $.val[0] > $.fin[0] ){// si el año es mayor, oculto
           $_ = false;
         }else if( $.val[0] == $.fin[0] ){// mismo año
@@ -197,19 +197,19 @@ class api_fec {
     return $_;
   }// Devuelvo : dia y hora
   static val_dyh( $dat ){
-    let $ = typeof($dat) == 'object' ? $dat : api_fec.val_dec($dat);
+    let $ = typeof($dat) == 'object' ? $dat : Fec.val_dec($dat);
     return `${$.getFullYear()}/${$.getMonth()+1}/${$.getDate()} ${$.getHours()}:${$.getMinutes()}:${$.getSeconds()}`;
   }// Devuelvo : Dia
   static val_dia( $dat ){
-    let $ = typeof($dat) == 'object' ? $dat : api_fec.val_dec($dat);
+    let $ = typeof($dat) == 'object' ? $dat : Fec.val_dec($dat);
     return `${$.getFullYear()}/${$.getMonth()+1}/${$.getDate()}`;
   }// Devuelvo : Hora
   static val_hor( $dat ){
-    let $ = typeof($dat) == 'object' ? $dat : api_fec.val_dec($dat);
+    let $ = typeof($dat) == 'object' ? $dat : Fec.val_dec($dat);
     return `${$.getHours()}:${$.getMinutes()}:${$.getSeconds()}`;
   }// Devuelvo : Dia de la Semana
   static val_sem( $dat ){
-    let $ = typeof($dat) == 'object' ? $dat : api_fec.val_dec($dat);
+    let $ = typeof($dat) == 'object' ? $dat : Fec.val_dec($dat);
     return `d/l/m/x/j/v/s`;
   }
 
@@ -218,7 +218,7 @@ class api_fec {
     let $_={}, $={};
   
     if( typeof($val) != 'string' ){
-      $val = api_fec.val($val);
+      $val = Fec.val($val);
       if( !$val ){
         return $val;
       }
@@ -249,8 +249,8 @@ class api_fec {
       $_.hor = parseInt($.hor[0]);
     }
     $_.val = [$_.dia,$_.mes,$_.año].join($sep);
-    if( api_fec.val($_.val) ){
-      $_.sem = api_fec.val_sem($_);
+    if( Fec.val($_.val) ){
+      $_.sem = Fec.val_sem($_);
     }else{
       $_ = false;
     }

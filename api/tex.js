@@ -2,12 +2,12 @@
 'use strict';
 
 // Texto : caracter + letra + oracion + parrafo
-class api_tex {
+class Tex {
   
   // getter
   static _( $ide, $val ){
     let $_, $_dat;
-    $_ = $_dat = sis_app.dat_est('tex',$ide,'dat');
+    $_ = $_dat = Dat.get_est('tex',$ide,'dat');
 
     if( !!($val) ){
       $_ = $val;
@@ -46,7 +46,7 @@ class api_tex {
   // letras : c - n
   static let( $dat, $ele={} ){
 
-    let $_ = [], $pal = [], $let = [], $num = 0, $tex_let = api_tex._('let');
+    let $_ = [], $pal = [], $let = [], $num = 0, $tex_let = Tex._('let');
 
     if( $dat !== null && $dat !== undefined && $dat !== NaN ){
 
@@ -56,14 +56,14 @@ class api_tex {
 
         $pal_lis.split(' ').forEach( $pal_val => {
           
-          $num = api_num.val($pal_val);
+          $num = Num.val($pal_val);
           if( !!$num || $num == 0 ){
             $pal.push( `<n>${$pal_val}</n>` );
           }
           else{
             $let = [];
             $pal_val.split('').forEach( $car =>{
-              $num = api_num.val($car);
+              $num = Num.val($car);
               if( !!$num || $num == 0 ){
                 $let.push( `<n>${$car}</n>` );
               }
@@ -81,5 +81,31 @@ class api_tex {
       });
     }
     return $_.join('<br>');
+  }
+  // - Capitalizar primer letra
+  static let_pal( $val = "" ){
+
+    let $tex = [];
+
+    $tex = $val.split(' ');
+
+    if( $tex[0] && $tex[0][0] ){
+
+      $tex[0][0] = $tex[0][0].toUpperCase();
+    }      
+
+    return $tex.join(' ');
+  }
+  // - Capitalizar todas las palabras
+  static let_ora( $val = "" ){
+
+    let $tex = [];
+
+    $val.split(' ').forEach( $pal  => {
+      $pal = $pal.toLocaleLowerCase();
+      $tex.push( $pal[0].toUpperCase() + $pal.substring(1) );
+    } );
+
+    return $tex.join(' ');
   }
 }

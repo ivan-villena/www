@@ -1,12 +1,12 @@
 // WINDOW
 'use strict';
 
-class api_fig {
+class Fig {
 
   // getter
   static _( $ide, $val ){
     let $_, $_dat;
-    $_ = $_dat = sis_app.dat_est('fig',$ide,'dat');
+    $_ = $_dat = Dat.get_est('fig',$ide,'dat');
 
     if( !!($val) ){
       $_ = $val;
@@ -37,7 +37,7 @@ class api_fig {
   /* Icono : .fig_ico.ide-$ide */
   static ico( $ide, $ele = {} ){
     let $_="<span class='fig_ico'></span>", $ = {};
-    $.fig_ico = api_fig._('ico');
+    $.fig_ico = Fig._('ico');
     if( !!($.fig_ico[$ide]) ){
       $.eti = 'span';
       if( $ele['eti'] ){
@@ -46,7 +46,7 @@ class api_fig {
       }      
       if( $.eti == 'button' && !($ele['type']) ) $ele['type'] = "button"; 
       $_ = `
-      <${$.eti}${api_ele.atr(api_ele.cla($ele,`fig_ico ide-${$ide}`,'ini'))}>
+      <${$.eti}${Ele.atr(Ele.cla($ele,`fig_ico ide-${$ide}`,'ini'))}>
         ${$.fig_ico[$ide].val}
       </${$.eti}>`;
     }
@@ -60,14 +60,14 @@ class api_fig {
     
     if( $dat[2] !== undefined ){
       $.ele = !!($dat[3]) ? $dat[3] : {};      
-      $_ = api_dat.val('ima', `${$dat[0]}.${$dat[1]}`, $dat[2], $.ele);
+      $_ = Dat.get_val('ima', `${$dat[0]}.${$dat[1]}`, $dat[2], $.ele);
     }
     else{
       $ele = !!$dat[1] ? $dat[1] : {};
       $.tip = typeof($dat = $dat[0]);
       // por estilos : bkg
       if( $.tip == 'object' ){
-        $ele = api_ele.val_jun( $dat, $ele );
+        $ele = Ele.val_jun( $dat, $ele );
       }
       // por directorio : localhost/_/esq/ima/...
       else if( $.tip == 'string' ){    
@@ -75,7 +75,7 @@ class api_fig {
         $dat = $.ima[0];
         $.tip = !!$.ima[1] ? $.ima[1] : 'png';
         $.dir = `img/${$dat}`;
-        api_ele.css( $ele, api_ele.css_fon($.dir,{'tip':$.tip}) );
+        Ele.css( $ele, Ele.css_fon($.dir,{'tip':$.tip}) );
       }
       // etiqueta
       $.eti = 'span';
@@ -85,15 +85,15 @@ class api_fig {
       }// codifico botones
       if( $.eti == 'button' && !$ele['type'] ) $ele['type'] = "button";
       // aseguro identificador
-      api_ele.cla($ele,`fig_ima`,'ini');
+      Ele.cla($ele,`fig_ima`,'ini');
       // contenido 
       $.htm = '';
       if( !!($ele['htm']) ){
-        api_ele.cla($ele,'dis-fle dir-ver jus-cen ali-cen');
+        Ele.cla($ele,'dis-fle dir-ver jus-cen ali-cen');
         $.htm = $ele['htm'];
         delete($ele['htm']);
       }
-      $_ = `<${$.eti}${api_ele.atr($ele)}>${$.htm}</${$.eti}>`;
+      $_ = `<${$.eti}${Ele.atr($ele)}>${$.htm}</${$.eti}>`;
     }
     return $_;
   }
@@ -101,7 +101,7 @@ class api_fig {
     let $={
       'lis':[]
     };  
-    api_lis.val_ite($arc).forEach( $_arc => {
+    Lis.val_ite($arc).forEach( $_arc => {
       if( typeof($_arc)=='object' ){
         $.ima = document.createElement('img');
         $.ima.src = URL.createObjectURL($_arc);
@@ -109,8 +109,8 @@ class api_fig {
       }
     });
     if( !!$pad && $pad.nodeName ){
-      api_ele.eli($pad);
-      api_ele.agr($.lis,$pad);
+      dom.eli($pad);
+      dom.agr($.lis,$pad);
     }
     return $;
   }  

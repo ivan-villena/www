@@ -1,23 +1,23 @@
 <?php
 // holon : ns.ani.lun.dia:kin
-class api_hol { 
+class Hol { 
 
-  static string $IDE = "api_hol-";
-  static string $EJE = "api_hol.";
+  static string $IDE = "Hol-";
+  static string $EJE = "Hol.";
 
   function __construct(){
   }// getter
   static function _( string $ide, mixed $val = NULL ) : string | array | object {
 
-    $_ = $_dat = sis_app::dat_est('hol',$ide,'dat');
+    $_ = $_dat = Dat::get_est('hol',$ide,'dat');
     
     if( isset($val) ){
       $_ = $val;
       if( !is_object($val) ){
         switch( $ide ){
         case 'fec':
-          $fec = api_fec::_('dat',$val);
-          if( isset($fec->dia)  ) $_ = api_dat::get( api_hol::_('psi'), [ 
+          $fec = Fec::_('dat',$val);
+          if( isset($fec->dia)  ) $_ = Dat::get( Hol::_('psi'), [ 
             'ver'=>[ ['fec_dia','==',$fec->dia], ['fec_mes','==',$fec->mes] ],
             'opc'=>['uni'] 
           ]);
@@ -29,7 +29,7 @@ class api_hol {
             $_->nom = "Hunab Ku";
             $_->des = "";
           }else{
-            $_ = $_dat[ api_num::val_ran( api_num::val_sum($val), 260 ) - 1 ];
+            $_ = $_dat[ Num::val_ran( Num::val_sum($val), 260 ) - 1 ];
           }          
           break;
         default:
@@ -51,7 +51,7 @@ class api_hol {
       // proceso fecha
       if( $tip == 'fec' ){
         $fec = $val;
-        $_ = api_hol::val($fec);
+        $_ = Hol::val($fec);
         if( is_string($_) ){ 
           $_ = "<p class='err'>Error de Cálculo con la Fecha del Calendario... {$_}</p>"; 
         }
@@ -59,9 +59,9 @@ class api_hol {
       // decodifico N.S.( cod.ani.lun.dia:kin )
       elseif( $tip == 'sin' ){
         // busco año          
-        if( $_fec = api_hol::val_cod($val) ){
+        if( $_fec = Hol::val_cod($val) ){
 
-          $_ = api_hol::val($_fec);
+          $_ = Hol::val($_fec);
 
           if( is_string($_) ) $_ = "<p class='err'>Error de Cálculo con la Fecha del ciclo NS... {$_}</p>"; 
         }
@@ -71,21 +71,21 @@ class api_hol {
       }
     }
     // armo datos de una fecha
-    elseif( $fec = api_fec::dat($val) ){
+    elseif( $fec = Fec::dat($val) ){
       // giro solar => año
       $_['fec'] = $fec->val;
 
-      $_fec = api_hol::val_dec( $fec );
+      $_fec = Hol::val_dec( $fec );
 
       // giro lunar => mes + día
-      if( $_psi = api_hol::val_dia($_['fec']) ){
+      if( $_psi = Hol::val_dia($_['fec']) ){
 
         $_['psi'] = $_psi->ide;
 
-        $_['sin'] = "{$_fec->sir}.".api_num::val($_fec->ani,2).".{$_psi->ani_lun}.{$_psi->ani_lun_dia}";
+        $_['sin'] = "{$_fec->sir}.".Num::val($_fec->ani,2).".{$_psi->ani_lun}.{$_psi->ani_lun_dia}";
         
         // giro galáctico => kin
-        $_kin = api_hol::_('kin',[ $_fec->fam_2, $_psi->fec_cod, $_fec->dia ]);
+        $_kin = Hol::_('kin',[ $_fec->fam_2, $_psi->fec_cod, $_fec->dia ]);
 
         if( is_object($_kin) ){
 
@@ -117,7 +117,7 @@ class api_hol {
       $dia = intval($val[3]);
 
       // mes y día
-      $_psi = api_dat::get( api_hol::_('psi'), [ 'ver'=>[ ['lun','==',$lun], ['lun_dia','==',$dia] ], 'opc'=>['uni'] ]);
+      $_psi = Dat::get( Hol::_('psi'), [ 'ver'=>[ ['lun','==',$lun], ['lun_dia','==',$dia] ], 'opc'=>['uni'] ]);
   
       if( isset($_psi->fec_mes) && isset($_psi->fec_dia) ){
 
@@ -147,7 +147,7 @@ class api_hol {
   }// convierto d/m/a => NS
   static function val_dec( mixed $val ) : object | string {
 
-    $_ = !is_object($val) ? api_fec::dat($val) : $val ;
+    $_ = !is_object($val) ? Fec::dat($val) : $val ;
 
     if( !!$_ ){
       // SE TOMA COMO PUNTO DE REFERENCIA EL AÑO 26/07/1987
@@ -164,7 +164,7 @@ class api_hol {
           $año++;
           $_->ani++;
           foreach( ['fam_2','fam_3','fam_4'] as $atr ){ 
-            $_->$atr = api_num::val_ran($_->$atr+105, 260); 
+            $_->$atr = Num::val_ran($_->$atr+105, 260); 
           }
           if ($_->ani > 51){ 
             $_->ani = 0; 
@@ -179,7 +179,7 @@ class api_hol {
           $año--;           
           $_->ani--;
           foreach( ['fam_2','fam_3','fam_4'] as $atr ){             
-            $_->$atr = api_num::val_ran($_->$atr-105, 260); 
+            $_->$atr = Num::val_ran($_->$atr-105, 260); 
           }
           if ($_->ani < 0){ 
             $_->ani = 51; 
@@ -192,7 +192,7 @@ class api_hol {
       if( $_->dia <= 25 && $_->mes <= 7 ){
         $_->ani--;        
         foreach( ['fam_3','fam_4'] as $atr ){ 
-          $_->$atr = api_num::val_ran($_->$atr-105, 260); 
+          $_->$atr = Num::val_ran($_->$atr-105, 260); 
         }
       }
     }
@@ -220,16 +220,16 @@ class api_hol {
           $dia += $cue;        
   
           if( $dia > 28 ){
-            $lun += api_num::val_red($cue / 28);
-            $dia = api_num::val_ran($dia, 28);
+            $lun += Num::val_red($cue / 28);
+            $dia = Num::val_ran($dia, 28);
             
             if( $lun > 13 ){
-              $ani += api_num::val_red($lun / 13);
-              $lun = api_num::val_ran($lun, 13);
+              $ani += Num::val_red($lun / 13);
+              $lun = Num::val_ran($lun, 13);
   
               if( $ani > 51 ){
-                $sir += api_num::val_red($ani / 51);
-                $ani = api_num::val_ran($ani, 51, 0);
+                $sir += Num::val_red($ani / 51);
+                $ani = Num::val_ran($ani, 51, 0);
               }
             }
           }
@@ -239,16 +239,16 @@ class api_hol {
           $dia -= $cue;        
   
           if( $dia < 1 ){
-            $lun -= api_num::val_red($cue / 28);
-            $dia = api_num::val_ran($dia, 28);
+            $lun -= Num::val_red($cue / 28);
+            $dia = Num::val_ran($dia, 28);
             
             if( $lun < 1 ){    
-              $ani -= api_num::val_red($lun / 13);
-              $lun = api_num::val_ran($lun, 13);
+              $ani -= Num::val_red($lun / 13);
+              $lun = Num::val_ran($lun, 13);
   
               if( $ani < 0 ){    
-                $sir -= api_num::val_red($ani / 51);
-                $ani = api_num::val_ran($ani, 51, 0);
+                $sir -= Num::val_red($ani / 51);
+                $ani = Num::val_ran($ani, 51, 0);
               }
             }
           }
@@ -260,12 +260,12 @@ class api_hol {
           $lun += $cue;
             
           if( $lun > 13 ){
-            $ani += api_num::val_red($lun / 13);
-            $lun = api_num::val_ran($lun, 13);
+            $ani += Num::val_red($lun / 13);
+            $lun = Num::val_ran($lun, 13);
 
             if( $ani > 51 ){  
-              $sir += api_num::val_red($ani / 51);
-              $ani = api_num::val_ran($ani, 51, 0);                
+              $sir += Num::val_red($ani / 51);
+              $ani = Num::val_ran($ani, 51, 0);                
             }
           }
         }
@@ -274,12 +274,12 @@ class api_hol {
           $lun -= $cue;
             
           if( $lun < 1 ){  
-            $ani -= api_num::val_red($lun / 13);
-            $lun = api_num::val_ran($lun, 13);
+            $ani -= Num::val_red($lun / 13);
+            $lun = Num::val_ran($lun, 13);
 
             if( $ani < 0 ){
-              $sir -= api_num::val_red($ani / 51);
-              $ani = api_num::val_ran($ani, 51, 0);
+              $sir -= Num::val_red($ani / 51);
+              $ani = Num::val_ran($ani, 51, 0);
             }
           }
         }        
@@ -290,8 +290,8 @@ class api_hol {
           $ani += $cue;
 
           if( $ani > 51 ){
-            $sir += api_num::val_red($ani / 51);
-            $ani = api_num::val_ran($ani, 51, 0);
+            $sir += Num::val_red($ani / 51);
+            $ani = Num::val_ran($ani, 51, 0);
           }
         }
         elseif( $tip == '-' ){
@@ -299,8 +299,8 @@ class api_hol {
           $ani -= $cue;
 
           if( $ani < 0 ){
-            $sir -= api_num::val_red($ani / 51);
-            $ani = api_num::val_ran($ani, 51, 0);
+            $sir -= Num::val_red($ani / 51);
+            $ani = Num::val_ran($ani, 51, 0);
           }
         }
         break;
@@ -318,7 +318,7 @@ class api_hol {
         break;
       }
 
-      $_ = "$sir.".api_num::val($ani,2).".".api_num::val($lun,2).".".api_num::val($dia,2);
+      $_ = "$sir.".Num::val($ani,2).".".Num::val($lun,2).".".Num::val($dia,2);
     }
     return $_;
   }// genero acumulados por valor principal
@@ -336,12 +336,12 @@ class api_hol {
       // x 260 dias por kin 
       if( $est_kin ){
         $cue = 260;
-        $fec = api_fec::val_ope( $dat['fec'], intval( is_object($dat['kin']) ? $dat['kin']->ide : $dat['kin'] ) - 1, '-');
+        $fec = Fec::val_ope( $dat['fec'], intval( is_object($dat['kin']) ? $dat['kin']->ide : $dat['kin'] ) - 1, '-');
       }
       // x 364+1 dias por psi-cronos
       elseif( $est_psi ){
         $cue = 364;
-        $fec = api_fec::val_ope( $dat['fec'], intval( is_object($dat['psi']) ? $dat['psi']->ide : $dat['psi'] ) - 1, '-');
+        $fec = Fec::val_ope( $dat['fec'], intval( is_object($dat['psi']) ? $dat['psi']->ide : $dat['psi'] ) - 1, '-');
       }
       // recorro datos    
       for( $pos = 0; $pos < $cue; $pos++ ){
@@ -351,31 +351,31 @@ class api_hol {
           $pos--;
         }
         else{
-          $_dat = api_hol::val($fec);      
+          $_dat = Hol::val($fec);
 
-          $_ []= api_dat::ope_val([
+          $_ []= Dat::val([
             'fec'=>[ 
-              'dat'=>api_fec::_('dat',$fec),
+              'dat'=>Fec::_('dat',$fec),
             ],
             'hol'=>[
-              'kin'=>api_hol::_('kin',$_dat['kin']),
-              'psi'=>api_hol::_('psi',$_dat['psi']) 
+              'kin'=>Hol::_('kin',$_dat['kin']),
+              'psi'=>Hol::_('psi',$_dat['psi']) 
             ]
           ]);
         }
-        $fec = api_fec::val_ope($fec, $inc, $val);
+        $fec = Fec::val_ope($fec, $inc, $val);
       }
     }
     return $_;
   }// busco valor diario por psi-crono
   static function val_dia( mixed $val ) : object {
 
-    $fec = api_fec::_('dat',$val);
+    $fec = Fec::_('dat',$val);
 
     $_ = new stdClass;
 
     if( isset($fec->dia)  ) 
-      $_ = api_dat::get( api_hol::_('psi'), [ 
+      $_ = Dat::get( Hol::_('psi'), [ 
         'ver'=>[ ['fec_dia','==',$fec->dia], ['fec_mes','==',$fec->mes] ],
         'opc'=>['uni'] 
       ]);
@@ -390,9 +390,9 @@ class api_hol {
     // recorro el castillo anual
     for( $cic_año = 1 ; $cic_año <= 52; $cic_año++ ){
       
-      $_val = api_hol::val($val,'sin');
+      $_val = Hol::val($val,'sin');
 
-      $_cas = api_hol::_('cas',$cic_año);
+      $_cas = Hol::_('cas',$cic_año);
       
       // creo el transito anual
       $_cic_año = new stdClass;
@@ -412,7 +412,7 @@ class api_hol {
 
         for( $cic_mes = 1 ; $cic_mes <= 13; $cic_mes++ ){
 
-          $_val_lun = api_hol::val($val_lun,'sin');
+          $_val_lun = Hol::val($val_lun,'sin');
 
           $_cic_lun = new stdClass;  
           $_cic_lun->ani = $cic_año;
@@ -423,12 +423,12 @@ class api_hol {
           
           $_cic_año->lun []= $_cic_lun;
           // incremento 1 luna
-          $val_lun = api_hol::val_fec('+',$val_lun,1,'lun');            
+          $val_lun = Hol::val_fec('+',$val_lun,1,'lun');            
         }
       }        
       $_ []= $_cic_año;
       // incremento 1 anillo      
-      $val = api_hol::val_fec('+',$val,1,'ani');
+      $val = Hol::val_fec('+',$val,1,'ani');
     }
 
     return $_;
@@ -437,7 +437,7 @@ class api_hol {
   // imagen
   static function ima( string $est, mixed $dat, array $ele = [] ) : string {
     
-    return api_fig::ima('hol',$est,$dat,$ele);
+    return Fig::ima('hol',$est,$dat,$ele);
   }  
 
   // variable
@@ -450,8 +450,8 @@ class api_hol {
     switch( $est = $_tip[0] ){
     case 'fec':
       $_eje =  !empty($ope['eje']) ? $ope['eje'] : self::$EJE."val";
-      $_kin = isset($dat['kin']) ? ( is_object($dat['kin']) ? $dat['kin'] : api_hol::_('kin',$dat['kin']) ) : [];
-      $_psi = isset($dat['psi']) ? ( is_object($dat['psi']) ? $dat['psi'] : api_hol::_('psi',$dat['psi']) ) : [];
+      $_kin = isset($dat['kin']) ? ( is_object($dat['kin']) ? $dat['kin'] : Hol::_('kin',$dat['kin']) ) : [];
+      $_psi = isset($dat['psi']) ? ( is_object($dat['psi']) ? $dat['psi'] : Hol::_('psi',$dat['psi']) ) : [];
       $_sin = isset($dat['sin']) ? explode('.',$dat['sin']) : [];
       $_fec = isset($dat['fec']) ? $dat['fec'] : [];      
   
@@ -459,13 +459,13 @@ class api_hol {
       <!-- Fecha del Calendario -->
       <form class='doc_val fec mar-1'>
   
-        ".api_fig::ico('fec_dia',[ 'eti'=>"label", 'for'=>"hol_val-fec", 'class'=>"mar_hor-1", 
+        ".Fig::ico('fec_dia',[ 'eti'=>"label", 'for'=>"hol_val-fec", 'class'=>"mar_hor-1", 
           'title'=>"Desde aquí puedes cambiar la fecha..." 
         ])."
-        ".api_fec::var('dia', $_fec, [ 'id'=>"hol_val-fec", 'name'=>"fec", 
+        ".Fec::var('dia', $_fec, [ 'id'=>"hol_val-fec", 'name'=>"fec", 
           'title'=>"Selecciona o escribe una fecha del Calendario Gregoriano para buscarla..."
         ])."
-        ".api_fig::ico('dat_ini',[ 'eti'=>"button", 'type'=>"submit", 'class'=>"mar_hor-1", 'onclick'=>"$_eje(this);", 
+        ".Fig::ico('dat_ini',[ 'eti'=>"button", 'type'=>"submit", 'class'=>"mar_hor-1", 'onclick'=>"$_eje(this);", 
           'title'=>'Haz click para buscar esta fecha del Calendario Gregoriano...'
         ])."
   
@@ -476,21 +476,21 @@ class api_hol {
         
         <label>N<c>.</c>S<c>.</c></label>
   
-        ".api_num::var('int', $_sin[0], [ 
+        ".Num::var('int', $_sin[0], [ 
           'maxlength'=>2, 'name'=>"gal", 'title'=>"Portales Galácticos, Ciclos NS de 52 años..."
         ])."
         <c>.</c>
-        ".api_opc::lis( api_hol::_('psi_ani'), [
+        ".Lis::opc( Hol::_('psi_ani'), [
           'eti'=>[ 'name'=>"ani", 'class'=>"num", 'title'=>"Anillo Solar (año): los 52 ciclos anuales de 364+1 días...", 'val'=>$_sin[1] ], 
           'ite'=>[ 'title'=>'($)nom','htm'=>'($)ide' ]
         ])."
         <c>.</c>
-        ".api_opc::lis( api_hol::_('psi_ani_lun'), [
+        ".Lis::opc( Hol::_('psi_ani_lun'), [
           'eti'=>[ 'name'=>"lun", 'class'=>"num", 'title'=>"Giro Lunar (mes): los 13 ciclos mensuales de 28 días...", 'val'=>$_sin[2] ],
           'ite'=>[ 'title'=>'()($)nom(): ()($)des()','htm'=>'($)ide' ]
         ])."
         <c>.</c>
-        ".api_opc::lis( api_hol::_('lun'), [ 
+        ".Lis::opc( Hol::_('lun'), [ 
           'eti'=>[ 'name'=>"dia", 'class'=>"num", 'title'=>"Día Lunar : los 28 días del Giro Lunar...", 'val'=>$_sin[3] ], 
           'ite'=>[ 'title'=>'($)des','htm'=>'($)ide' ]
         ])."          
@@ -498,7 +498,7 @@ class api_hol {
     
         <n name='kin'>$_kin->ide</n>
   
-        ".api_fig::ico('dat_ini',[ 'eti'=>"button", 'type'=>"submit", 'class'=>"mar_hor-1", 'onclick'=>"$_eje(this);",
+        ".Fig::ico('dat_ini',[ 'eti'=>"button", 'type'=>"submit", 'class'=>"mar_hor-1", 'onclick'=>"$_eje(this);",
           'title'=>"Haz Click para buscar esta fecha en el Sincronario de 13 Lunas..."
         ])."
   
@@ -518,33 +518,33 @@ class api_hol {
     switch( $est = $_tip[0] ){
     case 'kin':
       $_bib = SYS_NAV."hol/bib/";
-      $_kin = $dat = api_hol::_($est,$dat);
-      $_sel = api_hol::_('sel',$dat->arm_tra_dia);
-      $_ton = api_hol::_('ton',$dat->nav_ond_dia);
+      $_kin = $dat = Hol::_($est,$dat);
+      $_sel = Hol::_('sel',$dat->arm_tra_dia);
+      $_ton = Hol::_('ton',$dat->nav_ond_dia);
       switch( $atr ){
       // parejas del oráculo
       case 'par':
         $_ = "
           
-        ".api_hol::tab("kin","par",[ 'ide'=>$dat, 'pos'=>[ 'ima'=>"hol.kin.ide"  ] ], [ 'sec'=>[ 'class'=>"mar_aba-1" ] ])."
+        ".Hol::tab("kin","par",[ 'ide'=>$dat, 'pos'=>[ 'ima'=>"hol.kin.ide"  ] ], [ 'sec'=>[ 'class'=>"mar_aba-1" ] ])."
 
         <p>Para realizar una lectura del oráculo<c>,</c> consulta la <a href='{$_bib}enc#_02-03-06-01-' target='_blank'>Guía del Oráculo</a> en el Encantamiento del Sueño<c>...</c></p>
 
         <div class='lis'>";
-        foreach( api_hol::_('sel_par') as $_par ){
+        foreach( Hol::_('sel_par') as $_par ){
           // salteo el destino
           if( ( $ide = $_par->cod ) == 'des' ) continue;
           // busco datos de parejas
-          $_par = api_dat::get( api_hol::_('sel_par'), [ 'ver'=>[ ['cod','==',$ide] ], 'opc'=>'uni' ]);
-          $kin = api_hol::_('kin',$dat->{"par_{$ide}"});
+          $_par = Dat::get( Hol::_('sel_par'), [ 'ver'=>[ ['cod','==',$ide] ], 'opc'=>'uni' ]);
+          $kin = Hol::_('kin',$dat->{"par_{$ide}"});
           $_ .= "
           <p class='tex mar_arr-2 tex_ali-izq'>
             <b class='let-ide tex-sub'>{$_par->nom}</b><c>:</c>
-            <br>".api_tex::let($_par->des)."
-            ".( !empty($_par->lec) ? "<br>".api_tex::let($_par->lec) : "" )."
+            <br>".Tex::let($_par->des)."
+            ".( !empty($_par->lec) ? "<br>".Tex::let($_par->lec) : "" )."
           </p>
           
-          ".api_dat::inf('hol','kin',$kin,[ 'det'=>"des" ]);
+          ".Dat::inf('hol','kin',$kin,[ 'det'=>"des" ]);
 
         } $_ .= "
         </div>";
@@ -560,23 +560,23 @@ class api_hol {
         $_par_atr = ['des_fun','des_acc','des_mis'];
         $_ton_atr = ['des_acc'];  
         $_sel_atr = ['des_car','des_des'];  
-        foreach( api_hol::_('sel_par') as $_par ){
+        foreach( Hol::_('sel_par') as $_par ){
           
-          $_kin_par = $_par->ide == 'des' ? $_kin : api_hol::_('kin',$_kin->{"par_{$_par->ide}"});
+          $_kin_par = $_par->ide == 'des' ? $_kin : Hol::_('kin',$_kin->{"par_{$_par->ide}"});
   
-          $ite = [ api_hol::ima("kin",$_kin_par) ];
+          $ite = [ Hol::ima("kin",$_kin_par) ];
   
-          foreach( $_par_atr as $atr ){ if( isset($_par->$atr) ) $ite []= api_tex::let($_par->$atr); }
+          foreach( $_par_atr as $atr ){ if( isset($_par->$atr) ) $ite []= Tex::let($_par->$atr); }
   
-          $_ton_par = api_hol::_('ton',$_kin_par->nav_ond_dia);
-          foreach( $_ton_atr as $atr ){ if( isset($_ton_par->$atr) ) $ite []= api_tex::let($_ton_par->$atr); }
+          $_ton_par = Hol::_('ton',$_kin_par->nav_ond_dia);
+          foreach( $_ton_atr as $atr ){ if( isset($_ton_par->$atr) ) $ite []= Tex::let($_ton_par->$atr); }
   
-          $_sel_par = api_hol::_('sel',$_kin_par->arm_tra_dia);            
-          foreach( $_sel_atr as $atr ){  if( isset($_sel_par->$atr) ) $ite []= api_tex::let($_sel_par->$atr); }
+          $_sel_par = Hol::_('sel',$_kin_par->arm_tra_dia);            
+          foreach( $_sel_atr as $atr ){  if( isset($_sel_par->$atr) ) $ite []= Tex::let($_sel_par->$atr); }
   
           $_ []= $ite;
         }
-        $_ = $htm.api_dat::lis( $_, [ 'opc'=>['htm','cab_ocu'] ], $ope);
+        $_ = $htm.Dat::lis( $_, [ 'opc'=>['htm','cab_ocu'] ], $ope);
         break;
       // - Lectura: por palabras clave
       case 'par_lec':
@@ -586,22 +586,22 @@ class api_hol {
 
         <p>Puedes armar lecturas conjugando las palabras clave<c>,</c> y ordenarlas según las miradas del oráculo<c>;</c> por ejemplo<c>:</c></p>";
         
-        foreach( api_hol::_('sel_par') as $_par ){
+        foreach( Hol::_('sel_par') as $_par ){
 
           if( $_par->ide == 'des' ) continue;
-          $_kin_par = api_hol::_('kin',$_kin->{"par_{$_par->ide}"});
-          $_sel_par = api_hol::_('sel',$_kin_par->arm_tra_dia);
+          $_kin_par = Hol::_('kin',$_kin->{"par_{$_par->ide}"});
+          $_sel_par = Hol::_('sel',$_kin_par->arm_tra_dia);
           $_ []=
-          api_hol::ima("kin",$_kin_par)."
+          Hol::ima("kin",$_kin_par)."
 
           <div>
-            <p><b class='tit'>{$_kin_par->nom}</b> <c>(</c> ".api_tex::let($_par->dia)." <c>)</c></p>
-            <p>".api_tex::let("{$_sel_par->acc} {$_par->des_pod} {$_sel_par->des_car}, que {$_par->mis} {$_sel->des_car}, {$_par->acc} {$_sel_par->des_pod}.")."</p>
+            <p><b class='tit'>{$_kin_par->nom}</b> <c>(</c> ".Tex::let($_par->dia)." <c>)</c></p>
+            <p>".Tex::let("{$_sel_par->acc} {$_par->des_pod} {$_sel_par->des_car}, que {$_par->mis} {$_sel->des_car}, {$_par->acc} {$_sel_par->des_pod}.")."</p>
           </div>";
         }
 
-        api_ele::cla($ope['lis'],'ite');
-        $_ = $htm.api_dat::lis( $_, [ 'opc'=>['htm','cab_ocu'] ], $ope);
+        Ele::cla($ope['lis'],'ite');
+        $_ = $htm.Dat::lis( $_, [ 'opc'=>['htm','cab_ocu'] ], $ope);
         break;
       // - Ciclos : Posiciones en ciclos del kin
       case 'par_cic': 
@@ -613,20 +613,20 @@ class api_hol {
 
         $_atr = [ 'ene_cam', 'cro_est', 'cro_ele', 'arm_tra', 'arm_cel', 'nav_cas', 'nav_ond' ];
   
-        foreach( api_hol::_('sel_par') as $_par ){
+        foreach( Hol::_('sel_par') as $_par ){
           
-          $_kin_par = $_par->ide == 'des' ? $_kin : api_hol::_('kin',$_kin->{"par_{$_par->ide}"});
+          $_kin_par = $_par->ide == 'des' ? $_kin : Hol::_('kin',$_kin->{"par_{$_par->ide}"});
 
-          $ite = [ api_hol::ima("kin",$_kin_par) ];
+          $ite = [ Hol::ima("kin",$_kin_par) ];
 
           foreach( $_atr as $atr ){
-            $ite []= api_hol::ima("kin_{$atr}",$_kin_par->$atr,[ 'class'=>"tam-5" ]);
+            $ite []= Hol::ima("kin_{$atr}",$_kin_par->$atr,[ 'class'=>"tam-5" ]);
           }
           
           $_ []= $ite;
         }
 
-        $_ = $htm.api_dat::lis( $_, [ 'opc'=>['htm','cab_ocu'] ], $ope);
+        $_ = $htm.Dat::lis( $_, [ 'opc'=>['htm','cab_ocu'] ], $ope);
         break;
       // - Grupos : Sincronometría del holon por sellos      
       case 'par_gru': 
@@ -638,21 +638,21 @@ class api_hol {
 
         $_atr = [ 'sol_pla', 'sol_cel', 'sol_cir', 'pla_hem', 'pla_mer', 'hum_cen', 'hum_ext', 'hum_mer' ];  
 
-        foreach( api_hol::_('sel_par') as $_par ){
+        foreach( Hol::_('sel_par') as $_par ){
           
-          $_kin_par = $_par->ide == 'des' ? $_kin : api_hol::_('kin',$_kin->{"par_{$_par->ide}"});                            
+          $_kin_par = $_par->ide == 'des' ? $_kin : Hol::_('kin',$_kin->{"par_{$_par->ide}"});                            
   
-          $_sel_par = api_hol::_('sel',$_kin_par->arm_tra_dia);
+          $_sel_par = Hol::_('sel',$_kin_par->arm_tra_dia);
   
-          $ite = [ api_hol::ima("kin",$_kin_par), $_par->nom, $_sel_par->des_pod ];
+          $ite = [ Hol::ima("kin",$_kin_par), $_par->nom, $_sel_par->des_pod ];
   
           foreach( $_atr as $atr ){
-            $ite []= api_hol::ima("sel_{$atr}",$_sel_par->$atr,[ 'class'=>"tam-5" ]);
+            $ite []= Hol::ima("sel_{$atr}",$_sel_par->$atr,[ 'class'=>"tam-5" ]);
           }            
           $_ []= $ite;
         }
 
-        $_ = $htm.api_dat::lis( $_, [ 'opc'=>['htm','cab_ocu'] ], $ope);       
+        $_ = $htm.Dat::lis( $_, [ 'opc'=>['htm','cab_ocu'] ], $ope);       
         break;
       }
       break;
@@ -662,76 +662,76 @@ class api_hol {
 
   // tablero
   static function tab( string $est, string $atr, array $ope = [], array $ele = [] ) : string {
-    extract( api_dat::tab_dat("hol",$est,$atr,$ope,$ele) );
+    extract( Dat::tab_dat("hol",$est,$atr,$ope,$ele) );
     $_ = "";
     switch( $tab ){
     case 'uni':
       switch( $atr ){
       // Sistema Solar ( vertical : T.K. )
       case 'sol': 
-        $sec = api_dat::tab_sec($ope,['pla','orb','ele','cel','cir']); $_ = "
-        <ul".api_ele::atr($ele['sec']).">";
+        $sec = Dat::tab_sec($ope,['pla','orb','ele','cel','cir']); $_ = "
+        <ul".Ele::atr($ele['sec']).">";
           // imágenes: galaxia + sol
           foreach( ['gal'=>[ 'Galaxia' ],'sol'=>[ 'Sol' ] ] as $i=>$v ){ $_ .= "
             <li class='sec ima $i'>
-              ".api_fig::ima("hol/tab/$i")."
+              ".Fig::ima("hol/tab/$i")."
             </li>";
           }
           // 2 respiraciones : x10 flechas
-          foreach( api_hol::_('uni_sol_res') as $v ){ 
+          foreach( Hol::_('uni_sol_res') as $v ){ 
             for( $i = 1; $i <= 10; $i++ ){ $_ .= "
               <li class='sec ima res-{$v->ide} ide-$i'>".
-                api_hol::ima("uni_sol_res",$v)."
+                Hol::ima("uni_sol_res",$v)."
               </li>";
             }
           }// x 4 flujos : alfa <-> omega
-          foreach( api_hol::_('uni_flu') as $v ){ $_ .= "
+          foreach( Hol::_('uni_flu') as $v ){ $_ .= "
             <li class='sec ima flu-{$v->ide} pod-{$v->pod}'>".
-              api_hol::ima("uni_flu_pod",$v->pod)."
+              Hol::ima("uni_flu_pod",$v->pod)."
             </li>";
           }
           // 10 planetas
-          foreach( api_hol::_('uni_sol_pla') as $v ){ 
+          foreach( Hol::_('uni_sol_pla') as $v ){ 
             $cla = ( $sec['pla'] && ( empty($sec['pla']) || in_array($v->ide,$sec['pla']) ) ) ? "" : " ".DIS_OCU;
             $_ .= "
             <li class='sec bor pla-{$v->ide}{$cla}'></li>
-            <li class='sec ima pla-{$v->ide}'>".api_hol::ima("uni_sol_pla",$v)."</li>";
+            <li class='sec ima pla-{$v->ide}'>".Hol::ima("uni_sol_pla",$v)."</li>";
           }
           // Secciones por Seleccion
           // - 2 grupos orbitales
-          foreach( api_hol::_('uni_sol_orb') as $v ){ 
+          foreach( Hol::_('uni_sol_orb') as $v ){ 
             $cla = ( $sec['orb'] !== FALSE && ( empty($sec['orb']) || in_array($v->ide,$sec['orb']) ) ) ? "" : " ".DIS_OCU; 
             $_ .= "
-            <li class='sec bor orb-{$v->ide}{$cla}' title='".api_dat::val('tit',"hol.uni_sol_orb",$v)."'></li>";
+            <li class='sec bor orb-{$v->ide}{$cla}' title='".Dat::get_val('tit',"hol.uni_sol_orb",$v)."'></li>";
           }// - 4 elementos/clanes
-          foreach( api_hol::_('sel_cro_ele') as $v ){ 
+          foreach( Hol::_('sel_cro_ele') as $v ){ 
             $cla = ( $sec['ele'] !== FALSE && ( empty($sec['ele']) || in_array($v->ide,$sec['ele']) ) ) ? "" : " ".DIS_OCU; 
             $_ .= "
-            <li class='sec bor ele-{$v->ide}{$cla}' title='".api_dat::val('tit',"hol.sel_cro_ele",$v)."'></li>";
+            <li class='sec bor ele-{$v->ide}{$cla}' title='".Dat::get_val('tit',"hol.sel_cro_ele",$v)."'></li>";
           }// - 5 células solares
-          foreach( api_hol::_('uni_sol_cel') as $v ){ 
+          foreach( Hol::_('uni_sol_cel') as $v ){ 
             $cla = ( $sec['cel'] !== FALSE && ( empty($sec['cel']) || in_array($v->ide,$sec['cel']) ) ) ? "" : " ".DIS_OCU;  
             $_ .= "
-            <li class='sec bor cel-{$v->ide}{$cla}' title='".api_dat::val('tit',"hol.uni_sol_cel",$v)."'></li>";
+            <li class='sec bor cel-{$v->ide}{$cla}' title='".Dat::get_val('tit',"hol.uni_sol_cel",$v)."'></li>";
           }// - 5 circuitos de telepatía
-          foreach( api_hol::_('uni_sol_cir') as $v ){ 
+          foreach( Hol::_('uni_sol_cir') as $v ){ 
             $cla = ( $sec['cir'] !== FALSE && ( empty($sec['cir']) || in_array($v->ide,$sec['cir']) ) ) ? "" : " ".DIS_OCU;  
             $_ .= "
-            <li class='sec bor cir-{$v->ide}{$cla}' title='".api_dat::val('tit',"hol.uni_sol_cir",$v)."'></li>";
+            <li class='sec bor cir-{$v->ide}{$cla}' title='".Dat::get_val('tit',"hol.uni_sol_cir",$v)."'></li>";
           }
           // posicion: 20 sellos solares
-          foreach( api_hol::_('sel') as $v ){ $_ .= "
+          foreach( Hol::_('sel') as $v ){ $_ .= "
             <li class='pos ide-{$v->ide} sel'>
-              ".api_hol::ima("sel_cod",$v)."
+              ".Hol::ima("sel_cod",$v)."
             </li>";
           }$_ .= " 
         </ul>";        
         break;
       // Sistema Solar ( circular : E.S. )
       case 'sol-cel':
-        $sec = api_dat::tab_sec($ope,['pla','orb','ele','cel','cir']);
+        $sec = Dat::tab_sec($ope,['pla','orb','ele','cel','cir']);
         $_ = "
-        <ul".api_ele::atr($ele['sec']).">";
+        <ul".Ele::atr($ele['sec']).">";
           // fondos: 
           foreach( ['map','ato'] as $i ){ $_ .= "
             <li class='sec fon $i'></li>";
@@ -741,15 +741,15 @@ class api_hol {
             <li class='sec fon $i'></li>";
           }
           // fichas: planetas
-          foreach( api_hol::_('uni_sol_pla') as $v ){ $_ .= "
+          foreach( Hol::_('uni_sol_pla') as $v ){ $_ .= "
             <li class='sec pla-$v->ide'>
-              ".api_hol::ima('uni_sol_pla',$v)."
+              ".Hol::ima('uni_sol_pla',$v)."
             </li>";
           }
           // posicion: sellos
-          foreach( api_hol::_('sel') as $v ){ $_ .= "
+          foreach( Hol::_('sel') as $v ){ $_ .= "
             <li class='pos ide-$v->ide sel'>
-              ".api_hol::ima('sel_cod',$v)."
+              ".Hol::ima('sel_cod',$v)."
             </li>";
           }
           $_ .= " 
@@ -757,8 +757,8 @@ class api_hol {
         break;
       // Tierra
       case 'pla':
-        $sec = api_dat::tab_sec($ope,['res','ele','hem','mer','cen']); $_ = "
-        <ul".api_ele::atr($ele['sec']).">
+        $sec = Dat::tab_sec($ope,['res','ele','hem','mer','cen']); $_ = "
+        <ul".Ele::atr($ele['sec']).">
           <li class='sec fon map'></li>
           <li class='sec fon sel'></li>";
           // fondos: flujos, 
@@ -767,32 +767,32 @@ class api_hol {
             <li class='sec fon {$i}{$cla}'></li>";
           }
           // 3 Hemisferios
-          foreach( api_hol::_('uni_pla_hem') as $v ){
+          foreach( Hol::_('uni_pla_hem') as $v ){
             $cla = ( $sec['hem'] !== FALSE && ( empty($sec['hem']) || in_array($v->ide,$sec['hem']) ) ) ? "" : " ".DIS_OCU;  
             $_ .= "
-            <li class='sec bor hem-{$v->ide}{$cla}' title='".api_dat::val('tit',"hol.uni_sol_hem",$v)."'></li>";
+            <li class='sec bor hem-{$v->ide}{$cla}' title='".Dat::get_val('tit',"hol.uni_sol_hem",$v)."'></li>";
           }          
           // 2 Meridianos
-          foreach( api_hol::_('uni_pla_mer') as $v ){
+          foreach( Hol::_('uni_pla_mer') as $v ){
             $cla = ( $sec['mer'] !== FALSE && ( empty($sec['mer']) || in_array($v->ide,$sec['mer']) ) ) ? "" : " ".DIS_OCU;  
             $_ .= "
-            <li class='sec bor mer-{$v->ide}{$cla}' title='".api_dat::val('tit',"hol.uni_sol_mer",$v)."'></li>";
+            <li class='sec bor mer-{$v->ide}{$cla}' title='".Dat::get_val('tit',"hol.uni_sol_mer",$v)."'></li>";
             if( $v->ide == 1 ){ $_ .= "
-              <li class='sec bor mer-{$v->ide}-0{$cla}' title='".api_dat::val('tit',"hol.uni_sol_mer",$v)."'></li>";
+              <li class='sec bor mer-{$v->ide}-0{$cla}' title='".Dat::get_val('tit',"hol.uni_sol_mer",$v)."'></li>";
             }
           }
           // 5 Centros galácticos
-          foreach( api_hol::_('uni_pla_cen') as $v ){
+          foreach( Hol::_('uni_pla_cen') as $v ){
             if( $sec['cen'] !== FALSE ){ $cla = in_array($v->ide,$sec['cen']) ? " fon-sel" : ""; }else{ $cla = " dis-ocu"; }
             $_ .= "
             <li class='sec ima cen-{$v->ide}{$cla}'>
-              ".api_hol::ima("sel_cro_fam",$v->fam)."
+              ".Hol::ima("sel_cro_fam",$v->fam)."
             </li>";
           }
           // 20 Sellos solares
-          foreach( api_hol::_('sel') as $v ){ $_ .= "
+          foreach( Hol::_('sel') as $v ){ $_ .= "
             <li class='pos ide-{$v->ide} sel'>
-              ".api_hol::ima("sel",$v)."
+              ".Hol::ima("sel",$v)."
             </li>";
           }
           $_ .= "
@@ -800,54 +800,54 @@ class api_hol {
         break;
       // Humano
       case 'hum':
-        $sec = api_dat::tab_sec($ope,['res','ext','cen','cha','art','ded']); $_ = "
-        <ul".api_ele::atr($ele['sec']).">
+        $sec = Dat::tab_sec($ope,['res','ext','cen','cha','art','ded']); $_ = "
+        <ul".Ele::atr($ele['sec']).">
           <li class='sec fon map'></li>";
           // 2 Lados del Cuerpo : Respiración del Holon
-          foreach( api_hol::_('uni_hum_res') as $v ){
+          foreach( Hol::_('uni_hum_res') as $v ){
             $cla = ( $sec['res'] !== FALSE && ( empty($sec['res']) || in_array($v->ide,$sec['res']) ) ) ? "" : " ".DIS_OCU; $_ .= "
-            <li class='sec bor res-{$v->ide}{$cla}' title='".api_dat::val('tit',"hol.uni_hum_res",$v)."'></li>";
+            <li class='sec bor res-{$v->ide}{$cla}' title='".Dat::get_val('tit',"hol.uni_hum_res",$v)."'></li>";
           }          
           // 5 Centros Galácticos : Familias Terrestres
           if( $sec['cen'] !== FALSE ){ $_ .= "
             <li class='sec fon cen'></li>
             <li class='sec fon ded'></li>";
           }
-          foreach( api_hol::_('uni_hum_cen') as $v ){
+          foreach( Hol::_('uni_hum_cen') as $v ){
             if( $sec['cen'] !== FALSE ){ $cla = in_array($v->ide,$sec['cen']) ? " fon-sel" : ""; }else{ $cla = " dis-ocu"; }
             $_ .= "
             <li class='sec ima cen-{$v->ide}{$cla}'>
-              ".api_hol::ima("uni_hum_cen",$v)."
+              ".Hol::ima("uni_hum_cen",$v)."
             </li>";
           }
           // 4 Extremidades : Clanes Cromáticos
-          foreach( api_hol::_('uni_hum_ext') as $v ){
+          foreach( Hol::_('uni_hum_ext') as $v ){
             if( $sec['ext'] !== FALSE ){ $cla = in_array($v->ide,$sec['ext']) ? " fon-sel" : ""; }else{ $cla = " dis-ocu"; }
             $_ .= "
             <li class='sec bor ext-{$v->ide}{$cla}'></li>";
           }          
           // 20 Dedos : Sellos Solares
-          foreach( api_hol::_('sel') as $v ){ 
+          foreach( Hol::_('sel') as $v ){ 
             if( $sec['ded'] !== FALSE ){ $cla = in_array($v->ide,$sec['ded']) ? " fon-sel" : ""; }else{ $cla = " dis-ocu"; }
             $_ .= "
             <li class='pos ide-{$v->ide} sel{$cla}'>
-              ".api_hol::ima("sel",$v)."
+              ".Hol::ima("sel",$v)."
             </li>";
           }
           // 7 Chakras : Plasmas Radiales
-          foreach( api_hol::_('rad') as $v ){ 
+          foreach( Hol::_('rad') as $v ){ 
             if( $sec['cha'] !== FALSE ){ $cla = in_array($v->ide,$sec['cha']) ? " fon-sel" : ""; }else{ $cla = " dis-ocu"; }
             $_ .= "
             <li class='pos ide-{$v->ide} rad{$cla}'>
-              ".api_hol::ima("rad",$v)."
+              ".Hol::ima("rad",$v)."
             </li>";
           }
           // 13 Articulaciones : Tonos Galácticos
-          foreach( api_hol::_('ton') as $v ){ 
+          foreach( Hol::_('ton') as $v ){ 
             if( $sec['art'] !== FALSE ){ $cla = in_array($v->ide,$sec['art']) ? " fon-sel" : ""; }else{ $cla = " dis-ocu"; }
             $_ .= "
             <li class='pos ide-{$v->ide} ton{$cla}'>
-              ".api_hol::ima("ton",$v)."
+              ".Hol::ima("ton",$v)."
             </li>";
           }
           $_ .= "
@@ -855,24 +855,24 @@ class api_hol {
         break;
       // Telektonon
       case 'tel':
-        $sec = api_dat::tab_sec($ope,['pla','orb','ele','cel','cir']); $_ = "
-        <ul".api_ele::atr($ele['sec']).">";
+        $sec = Dat::tab_sec($ope,['pla','orb','ele','cel','cir']); $_ = "
+        <ul".Ele::atr($ele['sec']).">";
           // posicion: 20 sellos del holon solar
-          foreach( api_hol::_('sel') as $v ){ $_ .= "
+          foreach( Hol::_('sel') as $v ){ $_ .= "
             <li class='pos ide-{$v->ide} sel sol'>
-              ".api_hol::ima("sel_cod",$v)."
+              ".Hol::ima("sel_cod",$v)."
             </li>";
           }
           // posicion: 20 sellos del circuito de recarga
-          foreach( api_hol::_('sel') as $v ){ $_ .= "
+          foreach( Hol::_('sel') as $v ){ $_ .= "
             <li class='pos ide-{$v->ide} sel cod'>
-              ".api_hol::ima("sel_cod",$v)."
+              ".Hol::ima("sel_cod",$v)."
             </li>";
           }
           // posicion: 28 plasmas
-          foreach( api_hol::_('lun') as $v ){ $_ .= "
+          foreach( Hol::_('lun') as $v ){ $_ .= "
             <li class='pos ide-{$v->ide} lun'>
-              ".api_hol::ima("rad",$v->rad)."
+              ".Hol::ima("rad",$v->rad)."
             </li>";
           }          
           $_ .= " 
@@ -883,15 +883,15 @@ class api_hol {
     case 'rad':
       switch( $atr ){
       case 'pla':
-        api_ele::cla($ele['sec'],"hol_hep"); 
+        Ele::cla($ele['sec'],"hol_hep"); 
         $_ = "
-        <ul".api_ele::atr($ele['sec']).">";
+        <ul".Ele::atr($ele['sec']).">";
           $ele_pos = $ele['pos'];
-          foreach( api_hol::_('rad') as $_rad ){ 
+          foreach( Hol::_('rad') as $_rad ){ 
             $ele['pos'] = $ele_pos;
             // cargo datos de la posicion
             $ele['pos']['data-hol_rad'] = $_rad->ide;
-            $_ .= api_dat::tab_pos('hol',$est,$_rad,$ope,$ele);
+            $_ .= Dat::tab_pos('hol',$est,$_rad,$ope,$ele);
           }$_ .= "
         </ul>";        
         break;
@@ -901,15 +901,15 @@ class api_hol {
       switch( $atr ){
       // onda encantada
       case 'ond':
-        api_ele::cla($ele['sec'],"est tab hol ton ond hol_ton",'ini');
+        Ele::cla($ele['sec'],"est tab hol ton ond hol_ton",'ini');
         $_ .= "
-        <ul".api_ele::atr($ele['sec']).">
-          ".api_hol::tab_sec('ton',$ope,$ele)
+        <ul".Ele::atr($ele['sec']).">
+          ".Hol::tab_sec('ton',$ope,$ele)
           ;
-          foreach( api_hol::_('ton') as $_ton ){
+          foreach( Hol::_('ton') as $_ton ){
             // cargo datos de la posicion
             $ele['pos']['data-hol_ton'] = $_ton->ide;
-            $_ .= api_dat::tab_pos('hol','ton',$_ton,$ope,$ele);
+            $_ .= Dat::tab_pos('hol','ton',$_ton,$ope,$ele);
           } $_ .= "
         </ul>";
         break;
@@ -920,14 +920,14 @@ class api_hol {
       // codigo
       case 'cod':
         $_ = "
-        <ul".api_ele::atr($ele['sec']).">";
-          foreach( api_hol::_('sel') as $_sel ){ 
+        <ul".Ele::atr($ele['sec']).">";
+          foreach( Hol::_('sel') as $_sel ){ 
             $agr = ( !!$ide && $_sel->ide == $ide ) ? ' _val-pos' : '';
             $_ .= "
             <li class='sec{$agr}'>
               <ul class='doc_val jus-cen'>
-                ".api_hol::ima("sel",$_sel,['eti'=>"li"])."
-                ".api_hol::ima("sel_cod",$_sel->cod,['eti'=>"li",'class'=>'tam-2'])."
+                ".Hol::ima("sel",$_sel,['eti'=>"li"])."
+                ".Hol::ima("sel_cod",$_sel->cod,['eti'=>"li",'class'=>'tam-2'])."
               </ul>
               <p class='mar-0 ali_pro-cen'>
                 {$_sel->arm}
@@ -941,90 +941,90 @@ class api_hol {
       // parejas del oráculo
       case 'par':
         if( empty($ide) ) $ide = 1;
-        $_sel = is_object($ide) ? $ide : api_hol::_('sel',$ide);           
-        api_ele::cla($ele['sec'],"hol_cro");
+        $_sel = is_object($ide) ? $ide : Hol::_('sel',$ide);           
+        Ele::cla($ele['sec'],"hol_cro");
         $_ = "
-        <ul".api_ele::atr($ele['sec']).">";
+        <ul".Ele::atr($ele['sec']).">";
           $ele_pos = $ele['pos'];
-          foreach( api_hol::_('sel_par') as $_par ){
+          foreach( Hol::_('sel_par') as $_par ){
             $par_ide = $_par->cod;
             // combino elementos
-            $ele['pos'] = isset($ele["par-{$par_ide}"]) ? api_ele::val_jun($ele_pos,$ele["par-{$par_ide}"]) : $ele_pos;
-            api_ele::cla($ele['pos'],"par-{$par_ide}");            
+            $ele['pos'] = isset($ele["par-{$par_ide}"]) ? Ele::val_jun($ele_pos,$ele["par-{$par_ide}"]) : $ele_pos;
+            Ele::cla($ele['pos'],"par-{$par_ide}");            
             // todos menos el guia
             $par_sel = 0;
-            if( $par_ide != 'gui' ){ $par_sel = ( $par_ide == 'des' ) ? $_sel : api_hol::_('sel',$_sel->{"par_{$par_ide}"}); }
-            $_ .= api_dat::tab_pos('hol','sel',$par_sel,$ope,$ele);
+            if( $par_ide != 'gui' ){ $par_sel = ( $par_ide == 'des' ) ? $_sel : Hol::_('sel',$_sel->{"par_{$par_ide}"}); }
+            $_ .= Dat::tab_pos('hol','sel',$par_sel,$ope,$ele);
           }$_ .= "
         </ul>";
         break;
       // colocacion cromática
       case 'cro':
         $_ = "
-        <ul".api_ele::atr($ele['sec']).">
+        <ul".Ele::atr($ele['sec']).">
           <li class='pos ide-0'></li>";
-          foreach( api_hol::_('sel_cro_fam') as $v ){ 
-            $_ .= api_hol::ima("sel_cro_fam",$v,[ 'eti'=>"li", 'class'=>"sec fam-{$v->ide}" ]);
+          foreach( Hol::_('sel_cro_fam') as $v ){ 
+            $_ .= Hol::ima("sel_cro_fam",$v,[ 'eti'=>"li", 'class'=>"sec fam-{$v->ide}" ]);
           } 
-          foreach( api_hol::_('sel_cro_ele') as $v ){ 
-            $_ .= api_hol::ima("sel_cro_ele",$v,[ 'eti'=>"li", 'class'=>"sec ele-{$v->ide}"]);
+          foreach( Hol::_('sel_cro_ele') as $v ){ 
+            $_ .= Hol::ima("sel_cro_ele",$v,[ 'eti'=>"li", 'class'=>"sec ele-{$v->ide}"]);
           }
           $ele_pos = $ele['pos'];
           for( $i=0; $i<=19; $i++ ){ 
-            $v = api_hol::_('sel', ( $i == 0 ) ? 20 : $i);
+            $v = Hol::_('sel', ( $i == 0 ) ? 20 : $i);
             $agr = ( !empty($ide) && $v->ide == $ide ) ? ' _val-pos' : '' ;
             $ele['pos'] = $ele_pos;
-            api_ele::cla($ele['pos'],"{$agr}");
-            $_ .= api_dat::tab_pos('hol','sel',$v,$ope,$ele);
+            Ele::cla($ele['pos'],"{$agr}");
+            $_ .= Dat::tab_pos('hol','sel',$v,$ope,$ele);
           } $_ .= "
         </ul>";
         break;
       // colocacion armónica
       case 'arm':
         $_ .= "
-        <ul".api_ele::atr($ele['sec']).">
+        <ul".Ele::atr($ele['sec']).">
           <li class='pos ide-0'></li>
           ";
-          foreach( api_hol::_('sel_arm_cel') as $v ){ 
-            $_ .= api_hol::ima("sel_arm_cel",$v,[ 'eti'=>"li", 'class'=>"sec cel-{$v->ide}"]);
+          foreach( Hol::_('sel_arm_cel') as $v ){ 
+            $_ .= Hol::ima("sel_arm_cel",$v,[ 'eti'=>"li", 'class'=>"sec cel-{$v->ide}"]);
           } 
-          foreach( api_hol::_('sel_arm_raz') as $v ){ 
-            $_ .= api_hol::ima("sel_arm_raz",$v,[ 'eti'=>"li", 'class'=>"sec raz-{$v->ide}"]);
+          foreach( Hol::_('sel_arm_raz') as $v ){ 
+            $_ .= Hol::ima("sel_arm_raz",$v,[ 'eti'=>"li", 'class'=>"sec raz-{$v->ide}"]);
           }
           $ele_pos = $ele['pos'];
-          foreach( api_hol::_('sel') as $v ){
+          foreach( Hol::_('sel') as $v ){
             $agr = ( !empty($ide) && $v->ide == $ide ) ? ' _val-pos' : '' ;
             $ele['pos'] = $ele_pos;
-            api_ele::cla($ele['pos'],"{$agr}");
-            $_ .= api_dat::tab_pos('hol','sel',$v,$ope,$ele);
+            Ele::cla($ele['pos'],"{$agr}");
+            $_ .= Dat::tab_pos('hol','sel',$v,$ope,$ele);
           }
           $_ .= "
         </ul>";        
         break;
       // tablero del oráculo
       case 'arm_tra':
-        api_ele::cla($ele['sec'],"hol_cro");
+        Ele::cla($ele['sec'],"hol_cro");
         $_ .= "
-        <ul".api_ele::atr($ele['sec']).">";
+        <ul".Ele::atr($ele['sec']).">";
           for( $i=1; $i<=5; $i++ ){
             $ope['ide'] = $i;            
             $_ .= "
             <li class='pos ide-{$i}'>
-              ".api_hol::tab('sel','arm_cel',$ope,$ele)."
+              ".Hol::tab('sel','arm_cel',$ope,$ele)."
             </li>";
           } $_ .= "
         </ul>";        
         break;      
       // célula del tiempo para el oráculo
       case 'arm_cel':
-        $_arm = api_hol::_('sel_arm_cel',$ide);        
-        $ele['cel']['title'] = api_dat::val('tit',"hol.{$est}",$_arm); 
-        api_ele::cla($ele['cel'],"est tab hol sel {$atr} hol_arm",'ini');
+        $_arm = Hol::_('sel_arm_cel',$ide);        
+        $ele['cel']['title'] = Dat::get_val('tit',"hol.{$est}",$_arm); 
+        Ele::cla($ele['cel'],"est tab hol sel {$atr} hol_arm",'ini');
         $_ = "
-        <ul".api_ele::atr($ele['cel']).">
-          ".api_hol::ima("sel_arm_cel", $_arm, ['eti'=>"li", 'class'=>"pos ide-0", 'htm'=>$_arm->ide ] );
+        <ul".Ele::atr($ele['cel']).">
+          ".Hol::ima("sel_arm_cel", $_arm, ['eti'=>"li", 'class'=>"pos ide-0", 'htm'=>$_arm->ide ] );
           foreach( explode(', ',$_arm->sel) as $sel ){
-            $_ .= api_dat::tab_pos('hol','sel',$sel,$ope,$ele);
+            $_ .= Dat::tab_pos('hol','sel',$sel,$ope,$ele);
           } $_ .= "
         </ul>";        
         break;
@@ -1034,21 +1034,21 @@ class api_hol {
       switch( $atr ){
       // 28 plasmas en 4 heptadas
       case 'pla':
-        api_ele::cla($ele['sec'],"hol_lun bor-1"); 
+        Ele::cla($ele['sec'],"hol_lun bor-1"); 
         $_ = "
-        <ul".api_ele::atr($ele['sec']).">";
+        <ul".Ele::atr($ele['sec']).">";
           $ele_pos = $ele['pos'];
-          foreach( api_hol::_('lun') as $_lun ){ 
+          foreach( Hol::_('lun') as $_lun ){ 
             $ele['pos'] = $ele_pos;
             // cargo datos de la posicion
             $ele['pos']['data-hol_lun'] = $_lun->ide;
             $ele['pos']['data-hol_rad'] = $_lun->rad;
-            api_ele::cla($ele['pos'],"fon_col-4-".$_lun->arm." bor-1 bor-luz");
+            Ele::cla($ele['pos'],"fon_col-4-".$_lun->arm." bor-1 bor-luz");
             $ele['pos']['htm'] = "
-              ".api_hol::ima('rad',$_lun->rad,['class'=>"mar-1"])."
-              ".api_num::var('val',$_lun->ide,['class'=>"tex-3"])."
+              ".Hol::ima('rad',$_lun->rad,['class'=>"mar-1"])."
+              ".Num::var('val',$_lun->ide,['class'=>"tex-3"])."
             ";
-            $_ .= api_dat::tab_pos('hol',$est,$_lun,$ope,$ele);
+            $_ .= Dat::tab_pos('hol',$est,$_lun,$ope,$ele);
           }$_ .= "
         </ul>";
         break;
@@ -1058,18 +1058,18 @@ class api_hol {
       switch( $atr ){
       // ondas encantadas
       case 'ond':
-        api_ele::cla($ele['sec'],"hol_cas");
+        Ele::cla($ele['sec'],"hol_cas");
         $_ = "
-        <ul".api_ele::atr($ele['sec']).">
+        <ul".Ele::atr($ele['sec']).">
           <li class='sec fon-ima'></li>          
-          ".api_hol::tab_sec('cas',$ope,$ele)."
+          ".Hol::tab_sec('cas',$ope,$ele)."
           <li class='pos ide-0'></li>";
 
-          foreach( api_hol::_('cas') as $_cas ){
+          foreach( Hol::_('cas') as $_cas ){
             // cargo datos de la posicion
             $ele['pos']['data-hol_cas'] = $_cas->ide;
             $ele['pos']['data-hol_ton'] = $_cas->ton;
-            $_ .= api_dat::tab_pos('hol','cas',$_cas,$ope,$ele);
+            $_ .= Dat::tab_pos('hol','cas',$_cas,$ope,$ele);
           } $_ .= "
         </ul>";
         break;
@@ -1085,34 +1085,34 @@ class api_hol {
         $sel_htm = isset($ope['sec']['kin-sel']);
         $sel_val = !empty($ope['sec']['kin-sel']);
         // ajusto grilla
-        if( $ton_val ) api_ele::css($ele['sec'],"grid: repeat(21,1fr) / repeat(13,1fr);");
+        if( $ton_val ) Ele::css($ele['sec'],"grid: repeat(21,1fr) / repeat(13,1fr);");
 
         $_ = "
-        <ul".api_ele::atr($ele['sec']).">";
+        <ul".Ele::atr($ele['sec']).">";
           // 1° columna
           if( $ton_htm && $sel_htm ){ $_ .= "
-            <li".api_ele::atr([ 'class' => "sec ini".( $ton_val && $sel_val ? "" : " dis-ocu" )])."></li>";
+            <li".Ele::atr([ 'class' => "sec ini".( $ton_val && $sel_val ? "" : " dis-ocu" )])."></li>";
           }
           // filas por sellos
           if( $sel_htm ){
-            foreach( api_hol::_('sel') as $v ){ $_ .= "
-              <li class='sec sel ide-{$v->ide}".( $sel_val ? "" : " dis-ocu" )."'>".api_hol::ima("sel",$v)."</li>";
+            foreach( Hol::_('sel') as $v ){ $_ .= "
+              <li class='sec sel ide-{$v->ide}".( $sel_val ? "" : " dis-ocu" )."'>".Hol::ima("sel",$v)."</li>";
             }
           }
           // 260 kines por 13 columnas 
           $kin_arm = 0; 
           $ele_pos = $ele['pos']; 
-          foreach( api_hol::_('kin') as $_kin ){
+          foreach( Hol::_('kin') as $_kin ){
             // columnas por tono          
             $kin_arm_tra = intval($_kin->arm_tra);
             if( $ton_htm && $kin_arm != $kin_arm_tra ){ $_ .= 
               "<li class='sec ton ide-{$_kin->arm_tra}".( $ton_val ? "" : " dis-ocu" )."'>
-                ".api_hol::ima("kin_arm_tra",$_kin->arm_tra)."
+                ".Hol::ima("kin_arm_tra",$_kin->arm_tra)."
               </li>";
               $kin_arm = $kin_arm_tra;
             }
             // posicion
-            $_ .= api_dat::tab_pos('hol','kin',$_kin,$ope,$ele);
+            $_ .= Dat::tab_pos('hol','kin',$_kin,$ope,$ele);
             $ele['pos'] = $ele_pos;
           } $_ .= "
         </ul>";        
@@ -1120,146 +1120,146 @@ class api_hol {
       // oráculo del destino por tipo de pareja
       case 'par':
         if( empty($ide) ) $ide = 1;
-        $_kin = is_object($ide) ? $ide : api_hol::_('kin',$ide);           
-        api_ele::cla($ele['sec'],"hol_cro");
+        $_kin = is_object($ide) ? $ide : Hol::_('kin',$ide);           
+        Ele::cla($ele['sec'],"hol_cro");
         $_ = "
-        <ul".api_ele::atr($ele['sec']).">";
+        <ul".Ele::atr($ele['sec']).">";
           $ele_pos = $ele['pos'];
-          foreach( api_hol::_('sel_par') as $_par ){
+          foreach( Hol::_('sel_par') as $_par ){
             $par_ide = $_par->cod;
-            $par_kin = ( $par_ide == 'des' ) ? $_kin : api_hol::_('kin',$_kin->{"par_{$par_ide}"});
+            $par_kin = ( $par_ide == 'des' ) ? $_kin : Hol::_('kin',$_kin->{"par_{$par_ide}"});
             // combino elementos :
-            $ele['pos'] = isset($ele["par-{$par_ide}"]) ? api_ele::val_jun($ele_pos,$ele["par-{$par_ide}"]) : $ele_pos;
-            api_ele::cla($ele['pos'],"par-{$par_ide}");
-            $_ .= api_dat::tab_pos('hol','kin',$par_kin,$ope,$ele);
+            $ele['pos'] = isset($ele["par-{$par_ide}"]) ? Ele::val_jun($ele_pos,$ele["par-{$par_ide}"]) : $ele_pos;
+            Ele::cla($ele['pos'],"par-{$par_ide}");
+            $_ .= Dat::tab_pos('hol','kin',$par_kin,$ope,$ele);
           }$_ .= "
         </ul>";
         break;
       // castillo del destino por familia terrestre
       case 'cas':
-        $_fam = api_hol::_('sel_cro_fam',$ide);
+        $_fam = Hol::_('sel_cro_fam',$ide);
         $_ = "
-        <ul".api_ele::atr($ele['sec']).">
-          ".api_hol::tab_sec('cas',$ope,$ele)."
+        <ul".Ele::atr($ele['sec']).">
+          ".Hol::tab_sec('cas',$ope,$ele)."
           <li class='pos ide-0'>
-            ".api_hol::ima('sel_cro_fam',$_fam)."
+            ".Hol::ima('sel_cro_fam',$_fam)."
           </li>";
 
           $kin = intval($_fam['kin']);
-          foreach( api_hol::_('cas') as $_cas ){
-            $_kin = api_hol::_('kin',$kin);
-            $_ .= api_dat::tab_pos('hol','kin',$kin,$ope,$ele);
-            $kin = api_num::val_ran($kin + 105, 260);
+          foreach( Hol::_('cas') as $_cas ){
+            $_kin = Hol::_('kin',$kin);
+            $_ .= Dat::tab_pos('hol','kin',$kin,$ope,$ele);
+            $kin = Num::val_ran($kin + 105, 260);
           } $_ .= "
         </ul>";          
         break;
       // nave del tiempo : 5 castillos + 20 ondas
       case 'nav':
-        api_ele::cla($ele['sec'],"hol_cro");
+        Ele::cla($ele['sec'],"hol_cro");
         $_ = "
-        <ul".api_ele::atr($ele['sec']).">";
-          foreach( api_hol::_('kin_nav_cas') as $cas => $_cas ){
+        <ul".Ele::atr($ele['sec']).">";
+          foreach( Hol::_('kin_nav_cas') as $cas => $_cas ){
             $ope['ide'] = $_cas->ide; $_ .= "
             <li class='pos ide-".intval($_cas->ide)."'>
-              ".api_hol::tab('kin','nav_cas',$ope,$ele)."
+              ".Hol::tab('kin','nav_cas',$ope,$ele)."
             </li>";
           } $_ .= "
         </ul>";
         break;
       case 'nav_cas':
-        if( empty($ide) && is_array($val) && isset($val['kin']) ) $ide = api_hol::_('kin',$val['kin'])->$atr;
-        $_cas = api_hol::_($est,$ide);
+        if( empty($ide) && is_array($val) && isset($val['kin']) ) $ide = Hol::_('kin',$val['kin'])->$atr;
+        $_cas = Hol::_($est,$ide);
         // clases del castillo
         if( !isset($ele['cas']) ) $ele['cas'] = [];
-        api_ele::cla($ele['cas'],"est tab kin {$atr} hol_cas fon_col-5-{$ide}".( empty($ope['sec']['cas-col']) ? ' fon-0' : '' ),'ini');
+        Ele::cla($ele['cas'],"est tab kin {$atr} hol_cas fon_col-5-{$ide}".( empty($ope['sec']['cas-col']) ? ' fon-0' : '' ),'ini');
         // titulos
-        $ele['cas']['title'] = api_dat::val('tit',"hol.{$est}",$_cas);        
+        $ele['cas']['title'] = Dat::get_val('tit',"hol.{$est}",$_cas);        
         $ini = ( ( $ide - 1 ) * 4 ) + 1;
         $ond_fin = $ini + 4;        
         for( $ond = $ini; $ond < $ond_fin; $ond++ ){ 
-          $_ond = api_hol::_('kin_nav_ond',$ond);
+          $_ond = Hol::_('kin_nav_ond',$ond);
           $ele['cas']['title'] .= "\n".$_ond->enc_des;
         }
         $_ = "
-        <ul".api_ele::atr($ele['cas']).">
-          ".api_hol::tab_sec('cas',$ope,$ele)."
+        <ul".Ele::atr($ele['cas']).">
+          ".Hol::tab_sec('cas',$ope,$ele)."
           <li class='pos ide-0'>
-            ".api_hol::ima('kin_nav_cas',$ide,[ 'title'=>$ele['cas']['title'] ])."
+            ".Hol::ima('kin_nav_cas',$ide,[ 'title'=>$ele['cas']['title'] ])."
           </li>";
           $kin = ( ( $ide - 1 ) * 52 ) + 1;
-          foreach( api_hol::_('cas') as $_cas ){
-            $_ .= api_dat::tab_pos('hol','kin',$kin,$ope,$ele);
+          foreach( Hol::_('cas') as $_cas ){
+            $_ .= Dat::tab_pos('hol','kin',$kin,$ope,$ele);
             $kin++;
           } $_ .= "
         </ul>";        
         break;
       case 'nav_ond':
-        if( empty($ide) && is_array($val) && isset($val['kin']) ) $ide = api_hol::_('kin',$val['kin'])->$atr;
-        $_ond = api_hol::_($est,$ide);
+        if( empty($ide) && is_array($val) && isset($val['kin']) ) $ide = Hol::_('kin',$val['kin'])->$atr;
+        $_ond = Hol::_($est,$ide);
         // clases
         if( !isset($ele['ond']) ) $ele['ond'] = [];
-        api_ele::cla($ele['ond'],"est tab kin {$atr} hol_ton",'ini');
+        Ele::cla($ele['ond'],"est tab kin {$atr} hol_ton",'ini');
         // titulo        
-        $ele['ond']['title'] = api_dat::val('tit',"hol.kin_nav_cas",$_ond->nav_cas)." .\n{$_ond->enc_des}"; 
+        $ele['ond']['title'] = Dat::get_val('tit',"hol.kin_nav_cas",$_ond->nav_cas)." .\n{$_ond->enc_des}"; 
         $_ = "
-        <ul".api_ele::atr($ele['ond']).">
-          ".api_hol::tab_sec('ton',$ope,$ele);
+        <ul".Ele::atr($ele['ond']).">
+          ".Hol::tab_sec('ton',$ope,$ele);
 
           $kin = ( ( $ide - 1 ) * 13 ) + 1;
-          foreach( api_hol::_('ton') as $_ton ){
-            $_ .= api_dat::tab_pos('hol','kin',$kin,$ope,$ele);
+          foreach( Hol::_('ton') as $_ton ){
+            $_ .= Dat::tab_pos('hol','kin',$kin,$ope,$ele);
             $kin++;
           } $_ .= "
         </ul>";        
         break;      
       // armónicas : 13 trayectorias + 65 células
       case 'arm':
-        api_ele::cla($ele['sec'],"hol_ton");
+        Ele::cla($ele['sec'],"hol_ton");
         $_ = "
-        <ul".api_ele::atr($ele['sec']).">
-          ".api_hol::tab_sec('ton',$ope,$ele);
+        <ul".Ele::atr($ele['sec']).">
+          ".Hol::tab_sec('ton',$ope,$ele);
 
-          foreach( api_hol::_('kin_arm_tra') as $_tra ){ 
+          foreach( Hol::_('kin_arm_tra') as $_tra ){ 
             $ope['ide'] = $_tra->ide; $_ .= "
             <li class='pos ide-".intval($_tra->ide)."'>
-              ".api_hol::tab('kin','arm_tra',$ope,$ele)."
+              ".Hol::tab('kin','arm_tra',$ope,$ele)."
             </li>";
           } $_ .= "
         </ul>";        
         break;
       case 'arm_tra':
-        if( empty($ide) && is_array($val) && isset($val['kin']) ) $ide = api_hol::_('kin',$val['kin'])->$atr;
-        $_tra = api_hol::_('kin',$ide);
+        if( empty($ide) && is_array($val) && isset($val['kin']) ) $ide = Hol::_('kin',$val['kin'])->$atr;
+        $_tra = Hol::_('kin',$ide);
         $cel_ini = ( ( intval($_tra->ide) - 1 ) * 5 ) + 1;
         $cel_fin = $cel_ini + 5;
 
         if( !isset($ele['tra']) ) $ele['tra']=[];
-        api_ele::cla($ele['tra'],"est tab kin {$atr} hol_cro",'ini');
+        Ele::cla($ele['tra'],"est tab kin {$atr} hol_cro",'ini');
         $_ = "
-        <ul".api_ele::atr($ele['tra']).">";
+        <ul".Ele::atr($ele['tra']).">";
           for( $cel = $cel_ini; $cel < $cel_fin; $cel++ ){
             $ope['ide'] = $cel; $_ .= "
-            <li class='pos ide-".api_num::val_ran($cel,5)."'>
-              ".api_hol::tab('kin','arm_cel',$ope,$ele)."
+            <li class='pos ide-".Num::val_ran($cel,5)."'>
+              ".Hol::tab('kin','arm_cel',$ope,$ele)."
             </li>";            
           } $_ .= "
         </ul>";
         break;
       case 'arm_cel': 
-        if( empty($ide) && is_array($val) && isset($val['kin']) ) $ide = api_hol::_('kin',$val['kin'])->$atr;
-        $_arm = api_hol::_($est,$ide);
+        if( empty($ide) && is_array($val) && isset($val['kin']) ) $ide = Hol::_('kin',$val['kin'])->$atr;
+        $_arm = Hol::_($est,$ide);
 
         if( !isset($ele['cel']) ) $ele['cel']=[];
-        api_ele::cla($ele['cel'],"est tab kin {$atr} hol_arm fon_col-5-$_arm->cel fon-0");
+        Ele::cla($ele['cel'],"est tab kin {$atr} hol_arm fon_col-5-$_arm->cel fon-0");
         $_ = "
-        <ul".api_ele::atr($ele['cel']).">
+        <ul".Ele::atr($ele['cel']).">
           <li class='pos ide-0 col-bla'>
-            ".api_hol::ima("sel_arm_cel",$_arm->cel,[ 'htm'=>$_arm->ide, 'title'=>api_dat::val('tit',"hol.{$est}",$_arm) ])."
+            ".Hol::ima("sel_arm_cel",$_arm->cel,[ 'htm'=>$_arm->ide, 'title'=>Dat::get_val('tit',"hol.{$est}",$_arm) ])."
           </li>";
 
           $kin = ( ( $ide - 1 ) * 4 ) + 1;
           for( $arm = 1; $arm <= 4; $arm++ ){
-            $_ .= api_dat::tab_pos('hol','kin',$kin,$ope,$ele);
+            $_ .= Dat::tab_pos('hol','kin',$kin,$ope,$ele);
             $kin++;
           } $_ .= "
         </ul>";
@@ -1267,46 +1267,46 @@ class api_hol {
       // cromáticas : 4 estaciones + 52 elementos
       case 'cro':
         if( !in_array('fic_cas',$ope['opc']) ) $ope['opc'] []= 'fic_cas';
-        api_ele::cla($ele['sec'],"hol_cas");
+        Ele::cla($ele['sec'],"hol_cas");
         $_ = "
-        <ul".api_ele::atr($ele['sec']).">
-          ".api_hol::tab_sec('cas',$ope,$ele)."
+        <ul".Ele::atr($ele['sec']).">
+          ".Hol::tab_sec('cas',$ope,$ele)."
 
           <li class='pos ide-0'>
-            ".api_fig::ima('hol/tab/gal')."
+            ".Fig::ima('hol/tab/gal')."
           </li>";
-          foreach( api_hol::_('kin_cro_ele') as $_ele ){
+          foreach( Hol::_('kin_cro_ele') as $_ele ){
             $ope['ide'] = $_ele->ide; $_ .= "
             <li class='pos ide-".intval($_ele->ide)."'>
-              ".api_hol::tab('kin','cro_ele',$ope,$ele)."
+              ".Hol::tab('kin','cro_ele',$ope,$ele)."
             </li>";
           } $_ .= "
         </ul>";        
         break;
       case 'cro_est':
         if( !in_array('fic_cas',$ope['opc']) ) $ope['opc'] []= 'fic_ond';
-        if( empty($ide) && is_array($val) && isset($val['kin']) ) $ide = api_hol::_('kin',$val['kin'])->$atr;
-        $_est = api_hol::_('kin_cro_est',$ide); 
+        if( empty($ide) && is_array($val) && isset($val['kin']) ) $ide = Hol::_('kin',$val['kin'])->$atr;
+        $_est = Hol::_('kin_cro_est',$ide); 
         $cas = explode(' - ',$_est->cas)[0];
         
         if( !isset($ele['est']) ) $ele['est']=[];
-        api_ele::cla($ele['est'],"est tab kin {$atr} hol_ton",'ini');
+        Ele::cla($ele['est'],"est tab kin {$atr} hol_ton",'ini');
         $_ = "
-        <ul".api_ele::atr($ele['est']).">
-          ".api_hol::tab_sec('ton',$ope,$ele);
+        <ul".Ele::atr($ele['est']).">
+          ".Hol::tab_sec('ton',$ope,$ele);
           
-          foreach( api_hol::_('ton') as $_ton ){
+          foreach( Hol::_('ton') as $_ton ){
             $ope['ide'] = $cas; $_ .= "
             <li class='pos ide-".intval($_ton->ide)."'>
-              ".api_hol::tab('kin','cro_ele',$ope,$ele)."
+              ".Hol::tab('kin','cro_ele',$ope,$ele)."
             </li>";
-            $cas = api_num::val_ran($cas + 1, 52);
+            $cas = Num::val_ran($cas + 1, 52);
           } $_ .= "
         </ul>";
         break;
       case 'cro_ele':
-        if( empty($ide) && is_array($val) && isset($val['kin']) ) $ide = api_hol::_('kin',$val['kin'])->$atr;
-        $_ele = api_hol::_('kin_cro_ele',$ide);
+        if( empty($ide) && is_array($val) && isset($val['kin']) ) $ide = Hol::_('kin',$val['kin'])->$atr;
+        $_ele = Hol::_('kin_cro_ele',$ide);
         $ele_rot = [
           "ton" => [ "147", "070", "074", "071", "074", "330", "352", "335", "350", "230", "270", "240", "160", "140", "070", "074", "071", "074", "330", "352", "335", "350", "230", "270", "240", "160", "140", "070", "074", "071", "074", "330", "352", "335", "350", "230", "270", "240", "160", "140", "070", "074", "071", "074", "330", "352", "335", "350", "230", "270", "240", "160" ],
           "cas" => [ "025", "000", "340", "345", "340", "250", "255", "250", "255", "155", "170", "160", "065", "290", "290", "290", "290", "220", "170", "160", "165", "160", "070", "075", "070", "335", "180", "150", "170", "160", "165", "070", "075", "070", "073", "330", "350", "340", "245", "095", "070", "075", "073", "073", "330", "350", "340", "345", "250", "255", "250", "160" ]
@@ -1315,19 +1315,19 @@ class api_hol {
         if( !isset($ele['ele']) ) $ele['ele']=[];
         $ele['ele']['title'] = "{$_ele->ide}: {$_ele->nom}";
         // del castillo | onda : rotaciones
-        if( in_array('fic_cas',$opc) || in_array('fic_ond',$opc) ){ api_ele::css($ele['ele'],
+        if( in_array('fic_cas',$opc) || in_array('fic_ond',$opc) ){ Ele::css($ele['ele'],
           "transform: rotate(".(in_array('fic_cas',$opc) ? $ele_rot['cas'][$ide-1] : $ele_rot['ton'][$ide-1])."deg)");
         }
-        api_ele::cla($ele['ele'],"est tab kin {$atr} hol_cro-cir",'ini');
+        Ele::cla($ele['ele'],"est tab kin {$atr} hol_cro-cir",'ini');
         $_ .= "
-        <ul".api_ele::atr($ele['ele']).">
+        <ul".Ele::atr($ele['ele']).">
           <li class='pos ide-0'>
-            ".api_hol::ima('kin_cro_ele',$_ele->ide)."
+            ".Hol::ima('kin_cro_ele',$_ele->ide)."
           </li>";
           // cuenta desde : kin = 185
-          $kin = api_num::val_ran( 185 + ( ( $ide - 1 ) * 5 ), 260);
-          foreach( api_hol::_('sel_cro_fam') as $cro_fam ){
-            $_ .= api_dat::tab_pos('hol','kin',$kin,$ope,$ele);
+          $kin = Num::val_ran( 185 + ( ( $ide - 1 ) * 5 ), 260);
+          foreach( Hol::_('sel_cro_fam') as $cro_fam ){
+            $_ .= Dat::tab_pos('hol','kin',$kin,$ope,$ele);
             $kin++;// por verdad eléctrica
             if( $kin > 260 ) $kin = 1;
           }$_ .= "
@@ -1340,11 +1340,11 @@ class api_hol {
       // Banco-psi
       case 'kin': 
         $_ = "
-        <ul".api_ele::atr($ele['sec']).">";
+        <ul".Ele::atr($ele['sec']).">";
           $ele['sec'] = isset($ele['tzo']) ? $ele['tzo'] : [];
           for( $i=1 ; $i<=8 ; $i++ ){ $_ .= "
             <li class='pos ide-$i'>
-              ".api_hol::tab('kin','tzo',$ope,$ele)."
+              ".Hol::tab('kin','tzo',$ope,$ele)."
             </li>";
           } $_ .= "
         </ul>";        
@@ -1353,17 +1353,17 @@ class api_hol {
       case 'sir':
         $kin = 34;
         $ope['sec']['orb_cir'] = '1';
-        api_ele::cla($ele['sec'],'hol_cas-cir');
+        Ele::cla($ele['sec'],'hol_cas-cir');
         $_ = "
-        <ul".api_ele::atr($ele['sec']).">
-          ".api_hol::tab_sec('cas_cir',$ope,$ele)."
+        <ul".Ele::atr($ele['sec']).">
+          ".Hol::tab_sec('cas_cir',$ope,$ele)."
           <li class='pos ide-0'>
           </li>";
 
-          foreach( api_hol::_('cas') as $_cas ){
-            $_kin = api_hol::_('kin',$kin); $_ .= "
+          foreach( Hol::_('cas') as $_cas ){
+            $_kin = Hol::_('kin',$kin); $_ .= "
             <li class='pos ide-".intval($_cas->ide)."'>
-              ".api_hol::ima("kin",$_kin)."
+              ".Hol::ima("kin",$_kin)."
             </li>";
             $kin += 105; if( $kin >260 ) $kin -= 260;
           } $_ .= "
@@ -1371,35 +1371,35 @@ class api_hol {
         break;
       // Anillo de 13 Lunas
       case 'ani':
-        api_ele::cla($ele['sec'],'hol_ton');
+        Ele::cla($ele['sec'],'hol_ton');
         $_ = "
-        <ul".api_ele::atr($ele['sec']).">
-          ".api_fig::ima('hol/tab/sol',['eti'=>"li", 'class'=>"sec uni_sol"])."
-          ".api_fig::ima('hol/tab/pla',['eti'=>"li", 'class'=>"sec uni_lun"])."
-          ".api_hol::tab_sec('ton',$ope,$ele)
+        <ul".Ele::atr($ele['sec']).">
+          ".Fig::ima('hol/tab/sol',['eti'=>"li", 'class'=>"sec uni_sol"])."
+          ".Fig::ima('hol/tab/pla',['eti'=>"li", 'class'=>"sec uni_lun"])."
+          ".Hol::tab_sec('ton',$ope,$ele)
           ;
           if( !in_array('cab_nom',$ope['opc']) ) $ope['opc'] []= 'cab_nom';
           for( $lun = 1; $lun <= 13; $lun++ ){
             $ope['ide'] = $lun; $_ .= "
             <li class='pos ide-{$lun}'>
-              ".api_hol::tab('psi','ani_lun',$ope,$ele)."
+              ".Hol::tab('psi','ani_lun',$ope,$ele)."
             </li>";
           } $_ .= "
         </ul>";        
         break;
       // - Giro Lunar: 28 días
       case 'ani_lun':
-        if( empty($ide) && is_array($val) && isset($val['psi']) ) $ide = api_hol::_('psi',$val['psi'])->$atr;
-        $_lun = api_hol::_($est,$ide);
-        $_ton = api_hol::_('ton',$ide);
+        if( empty($ide) && is_array($val) && isset($val['psi']) ) $ide = Hol::_('psi',$val['psi'])->$atr;
+        $_lun = Hol::_($est,$ide);
+        $_ton = Hol::_('ton',$ide);
 
         $ele['pos']['eti'] = 'td';
         $cab_ocu = in_array('cab_ocu',$opc);
         $cab_nom = in_array('cab_nom',$opc);
         
         foreach( ['lun','cab'] as $v ){ if( !isset($ele[$v]) ){ $ele[$v]=[]; } }
-        api_ele::cla($ele['lun'],"est tab psi {$atr} hol_lun",'ini'); $_ = "
-        <table".api_ele::atr($ele['lun']).">";
+        Ele::cla($ele['lun'],"est tab psi {$atr} hol_lun",'ini'); $_ = "
+        <table".Ele::atr($ele['lun']).">";
           if( !$cab_ocu ){ $_ .= "
             <thead>";
               // Luna
@@ -1408,7 +1408,7 @@ class api_hol {
                 <th colspan='8'>
                   <div class='doc_val tex_ali-izq' title='{$_lun->nom}: {$_lun->tot}'>
 
-                    ".api_hol::ima($est,$_lun,['class'=>( $cab_nom ? "tam-1 mar_der-1" : "tam-15 mar-1" )])."
+                    ".Hol::ima($est,$_lun,['class'=>( $cab_nom ? "tam-1 mar_der-1" : "tam-15 mar-1" )])."
 
                     ".( $cab_nom ? "
                       <p class='tex ide'>".str_replace(',','',explode(' ',$_lun->tot)[1])."</p>
@@ -1418,12 +1418,12 @@ class api_hol {
                           <n>{$ide}</n><c>°</c> Luna<c>:</c> Tono ".explode(' ',$_lun->nom)[1]."
                         </p>
                         <p class='tex tex-3 mar-1'>
-                          ".api_tex::let($_lun->ond_nom." ( $_lun->ond_pos ) : ".$_lun->ond_pod)."
-                          <br>".api_tex::let($_lun->ond_man)."
+                          ".Tex::let($_lun->ond_nom." ( $_lun->ond_pos ) : ".$_lun->ond_pod)."
+                          <br>".Tex::let($_lun->ond_man)."
                         </p>                   
                         <p class='tex tex-3 mar-1'>
                           Totem<c>:</c> $_lun->tot
-                          <br>Propiedades<c>:</c> ".api_tex::let($_lun->tot_pro)."
+                          <br>Propiedades<c>:</c> ".Tex::let($_lun->tot_pro)."
                         </p> 
                       </div>                      
                     " )."
@@ -1438,9 +1438,9 @@ class api_hol {
                     <span class='tex_ali-cen'><c>/</c></span>                    
                     <span class='tex_ali-izq'>Héptada</span>
                   </th>";
-                  foreach( api_hol::_('rad') as $_rad ){ $_ .= "
+                  foreach( Hol::_('rad') as $_rad ){ $_ .= "
                     <th>
-                      ".api_hol::ima("rad",$_rad,[])."
+                      ".Hol::ima("rad",$_rad,[])."
                     </th>";
                   }$_ .= "                  
                 </tr>";
@@ -1453,10 +1453,10 @@ class api_hol {
             for( $arm = 1; $arm <= 4; $arm++ ){ $_ .= "
               <tr>
                 <td class='sec hep fon_col-4-{$arm}'>
-                  ".api_hol::ima("psi_hep_pla",$hep)."
+                  ".Hol::ima("psi_hep_pla",$hep)."
                 </td>";
                 for( $rad=1; $rad<=7; $rad++ ){
-                  $_ .= api_dat::tab_pos('hol','psi',$psi,$ope,$ele);
+                  $_ .= Dat::tab_pos('hol','psi',$psi,$ope,$ele);
                   $psi++;
                 }
                 $hep++; 
@@ -1468,58 +1468,58 @@ class api_hol {
         break;
       // - totems Lunares
       case 'ani_lun_tot':
-        api_ele::cla($ele['sec'],'hol_ton');
+        Ele::cla($ele['sec'],'hol_ton');
         $_ = "
-        <ul".api_ele::atr($ele['sec']).">
-          ".api_hol::tab_sec('ton',$ope,$ele)
+        <ul".Ele::atr($ele['sec']).">
+          ".Hol::tab_sec('ton',$ope,$ele)
           ;
           $ele_pos = $ele['pos'];
-          foreach( api_hol::_('psi_ani_lun') as $_lun ){
+          foreach( Hol::_('psi_ani_lun') as $_lun ){
             $ele['pos'] = $ele_pos;
-            api_ele::cla($ele['pos'],"pos ide-".intval($_lun->ide)." bor-1 pad-1 bor-luz",'ini');
+            Ele::cla($ele['pos'],"pos ide-".intval($_lun->ide)." bor-1 pad-1 bor-luz",'ini');
             $ele['pos']['htm'] = "            
-            ".api_tex::var('val',$_lun->nom,['class'=>"tit tog mar_arr-0"])."
-            ".api_tex::var('val',"$_lun->fec_ini - $_lun->fec_fin",['class'=>"des"])."
-            ".api_tex::var('val',$_lun->tot,['class'=>"tog"])."
-            ".api_hol::ima('psi_ani_lun',$_lun)
+            ".Tex::var('val',$_lun->nom,['class'=>"tit tog mar_arr-0"])."
+            ".Tex::var('val',"$_lun->fec_ini - $_lun->fec_fin",['class'=>"des"])."
+            ".Tex::var('val',$_lun->tot,['class'=>"tog"])."
+            ".Hol::ima('psi_ani_lun',$_lun)
             ;
-            $_ .= api_dat::tab_pos('hol',$est,$_lun,$ope,$ele);
+            $_ .= Dat::tab_pos('hol',$est,$_lun,$ope,$ele);
           } $_ .= "
         </ul>";
         break;
       // Castillo de 52 Heptadas:
       case 'hep':
-        api_ele::cla($ele['sec'],'hol_cas');
+        Ele::cla($ele['sec'],'hol_cas');
         $_ = "
-        <ul".api_ele::atr($ele['sec']).">
-          ".api_hol::tab_sec('cas',$ope,$ele)."
+        <ul".Ele::atr($ele['sec']).">
+          ".Hol::tab_sec('cas',$ope,$ele)."
           <li class='pos ide-0'>
-            ".api_fig::ima('hol/tab/pla')."
+            ".Fig::ima('hol/tab/pla')."
           </li>";
 
-          foreach( api_hol::_('cas') as $_cas ){
+          foreach( Hol::_('cas') as $_cas ){
             $ope['ide'] = $_cas->ide; $_ .= "
             <li class='pos ide-".intval($_cas->ide)."'>
-              ".api_hol::tab('psi','hep_pla',$ope,$ele)."
+              ".Hol::tab('psi','hep_pla',$ope,$ele)."
             </li>";            
           } $_ .= "
         </ul>";        
         break;
       // - 1 de 4 Estaciones Solares
       case 'hep_est':
-        if( empty($ide) && is_array($val) && isset($val['psi']) ) $ide = api_hol::_('psi',$val['psi'])->$atr;        
-        $_est = api_hol::_('psi_hep_est',$ide); 
+        if( empty($ide) && is_array($val) && isset($val['psi']) ) $ide = Hol::_('psi',$val['psi'])->$atr;        
+        $_est = Hol::_('psi_hep_est',$ide); 
         $cas = explode(' - ',$_est->hep_pla)[0];
 
-        api_ele::cla($ele['sec'],'hol_ton');
+        Ele::cla($ele['sec'],'hol_ton');
         $_ = "
-        <ul".api_ele::atr($ele['sec']).">
-          ".api_hol::tab_sec('ton',$ope,$ele);
+        <ul".Ele::atr($ele['sec']).">
+          ".Hol::tab_sec('ton',$ope,$ele);
 
-          foreach( api_hol::_('ton') as $_ton ){
+          foreach( Hol::_('ton') as $_ton ){
             $ope['ide'] = $cas; $_ .= "
             <li class='pos ide-".intval($_ton->ide)."'>
-              ".api_hol::tab('psi','hep_pla',$ope,$ele)."
+              ".Hol::tab('psi','hep_pla',$ope,$ele)."
             </li>";
             $cas++; 
           } $_ .= "
@@ -1527,16 +1527,16 @@ class api_hol {
         break;
       // - 7 Plasmas Radiales
       case 'hep_pla':
-        if( empty($ide) && is_array($val) && isset($val['psi'])) $ide = api_hol::_('psi',$val['psi'])->$atr;        
-        $_hep = api_hol::_('psi_hep_pla',$ide);
+        if( empty($ide) && is_array($val) && isset($val['psi'])) $ide = Hol::_('psi',$val['psi'])->$atr;        
+        $_hep = Hol::_('psi_hep_pla',$ide);
         $psi = ( ( intval($_hep->ide) - 1 ) * 7 ) + 1;
         
         if( !isset($ele['hep']) ) $ele['hep']=[];
-        api_ele::cla($ele['hep'],"est tab psi {$atr} hol_hep",'ini');
+        Ele::cla($ele['hep'],"est tab psi {$atr} hol_hep",'ini');
         $_ = "
-        <ul".api_ele::atr($ele['hep']).">";
-          foreach( api_hol::_('rad') as $_rad ){
-            $_ .= api_dat::tab_pos('hol','psi',$psi,$ope,$ele);
+        <ul".Ele::atr($ele['hep']).">";
+          foreach( Hol::_('rad') as $_rad ){
+            $_ .= Dat::tab_pos('hol','psi',$psi,$ope,$ele);
             $psi++;
           } $_ .= "
         </ul>";        
@@ -1565,13 +1565,13 @@ class api_hol {
     $ele_eti = $ele['pos']['eti'];
     // fondos: imagen y color
     $ele_ite = isset($ele['fon-ima']) ? $ele['fon-ima'] : [];
-    api_ele::cla($ele_ite,"sec fon ima ".DIS_OCU,'ini'); $_ .= "
-    <{$ele_eti}".api_ele::atr($ele_ite).">
+    Ele::cla($ele_ite,"sec fon ima ".DIS_OCU,'ini'); $_ .= "
+    <{$ele_eti}".Ele::atr($ele_ite).">
     </{$ele_eti}>";
 
     $ele_ite = isset($ele['fon-col']) ? $ele['fon-col'] : [];
-    api_ele::cla($ele_ite,"sec fon col ".DIS_OCU,'ini'); $_ .= "
-    <{$ele_eti}".api_ele::atr($ele_ite).">
+    Ele::cla($ele_ite,"sec fon col ".DIS_OCU,'ini'); $_ .= "
+    <{$ele_eti}".Ele::atr($ele_ite).">
     </{$ele_eti}>";
 
     // pulsares
@@ -1581,17 +1581,17 @@ class api_hol {
         'dim'=>[], 'mat'=>[], 'sim'=>[]
       ];
       foreach( $_pul as $ide => $lis ){
-        foreach( api_hol::_("ton_{$ide}") as $ton_pul ){
-          $_pul[$ide] []= api_fig::ima("hol/tab/gal/$ide/{$ton_pul->ide}");
+        foreach( Hol::_("ton_{$ide}") as $ton_pul ){
+          $_pul[$ide] []= Fig::ima("hol/tab/gal/$ide/{$ton_pul->ide}");
         }
       }
       if( isset($ope['val']['pos']) ){
         $_val = $ope['val']['pos'];
         if( ( is_array($_val) && isset($_val['kin']->nav_ond_dia) ) || is_numeric($_val) ||( is_object($_val) && isset($_val->ide) ) ){
           if( is_numeric($_val) ){
-            $_ton = api_hol::_('ton',api_num::val_ran($_val,13));
+            $_ton = Hol::_('ton',Num::val_ran($_val,13));
           }else{
-            $_ton = api_hol::_('ton', is_object($_val) ? intval($_val->ide) : intval($_val['kin']->nav_ond_dia) );
+            $_ton = Hol::_('ton', is_object($_val) ? intval($_val->ide) : intval($_val['kin']->nav_ond_dia) );
           }
         }
       }
@@ -1611,9 +1611,9 @@ class api_hol {
           elseif( !!$ope["val_pul_$ide"] && ( empty($ope['pul'][$ide]) || in_array($pos,$ope['pul'][$ide]) ) ){
             $cla_agr = "";
           }
-          api_ele::cla($ele_ite,"sec fon ond pul {$ide}-{$pos}{$cla_agr}",'ini');
+          Ele::cla($ele_ite,"sec fon ond pul {$ide}-{$pos}{$cla_agr}",'ini');
           $_ .= "
-          <{$ele_eti}".api_ele::atr($ele_ite).">{$pul_ima}</{$ele_eti}>";
+          <{$ele_eti}".Ele::atr($ele_ite).">{$pul_ima}</{$ele_eti}>";
         }
       }
       break;
@@ -1626,23 +1626,23 @@ class api_hol {
       $ele_fon = isset($ele["fon-ima"]) ? $ele["fon-ima"] : [];
       for( $i = 1; $i <= 4; $i++ ){ 
         $ele_ite = $ele_fon;
-        api_ele::cla($ele_ite,"sec fon ima ond-$i ".DIS_OCU,'ini'); $_ .= "
-        <{$ele_eti}".api_ele::atr($ele_ite).">
+        Ele::cla($ele_ite,"sec fon ima ond-$i ".DIS_OCU,'ini'); $_ .= "
+        <{$ele_eti}".Ele::atr($ele_ite).">
         </{$ele_eti}>";
       }
       // fondos: color
       $ele_fon = isset($ele["fon-col"]) ? $ele["fon-col"] : [];
       for( $i = 1; $i <= 4; $i++ ){ 
         $ele_ite = $ele_fon;
-        api_ele::cla($ele_ite,"sec fon col ond-$i fon_col-4-{$i}{$col_ocu}",'ini'); $_ .= "
-        <{$ele_eti}".api_ele::atr($ele_ite)."></{$ele_eti}>";
+        Ele::cla($ele_ite,"sec fon col ond-$i fon_col-4-{$i}{$col_ocu}",'ini'); $_ .= "
+        <{$ele_eti}".Ele::atr($ele_ite)."></{$ele_eti}>";
       }        
       // bordes: orbitales
       $ele_orb = isset($ele["orb"]) ? $ele["orb"] : [];
       for( $i = 1; $i <= ($tip == 'cas_cir' ? 8 : 5); $i++ ){ 
         $ele_ite = $ele_orb;
-        api_ele::cla($ele_ite,"sec fon orb-{$i}{$orb_ocu}",'ini'); $_ .= "
-        <{$ele_eti}".api_ele::atr($ele_ite)."></{$ele_eti}>";
+        Ele::cla($ele_ite,"sec fon orb-{$i}{$orb_ocu}",'ini'); $_ .= "
+        <{$ele_eti}".Ele::atr($ele_ite)."></{$ele_eti}>";
       }      
       // fondos: pulsares
       foreach( $_pul as $ide => $lis ){ 
@@ -1659,9 +1659,9 @@ class api_hol {
             elseif( !!$ope["val_pul_$ide"] && ( empty($ope['pul'][$ide]) || in_array($pos,$ope['pul'][$ide]) ) ){
               $cla_agr = "";
             }
-            api_ele::cla($ele_ite,"sec fon ond-{$i} pul {$ide}-{$pos}{$cla_agr}",'ini');
+            Ele::cla($ele_ite,"sec fon ond-{$i} pul {$ide}-{$pos}{$cla_agr}",'ini');
             $_ .= "
-            <{$ele_eti}".api_ele::atr($ele_ite).">{$pul_ima}</{$ele_eti}>";
+            <{$ele_eti}".Ele::atr($ele_ite).">{$pul_ima}</{$ele_eti}>";
           }
         }
       }
@@ -1683,31 +1683,31 @@ class api_hol {
       $pos_tit []= "Calendario: {$ele["data-fec_dat"]}";
     }
     if( isset($ele["data-hol_kin"]) ){
-      $_kin = api_hol::_('kin',$ele["data-hol_kin"]);
-      $pos_tit []= api_dat::val('tit',"hol.kin",$_kin);
+      $_kin = Hol::_('kin',$ele["data-hol_kin"]);
+      $pos_tit []= Dat::get_val('tit',"hol.kin",$_kin);
       if( $ope['val_kin_pag'] && !empty($_kin->pag) ) $cla_agr []= "_hol-pag_kin";
     }
     if( isset($ele["data-hol_sel"]) ){
-      $pos_tit []= api_dat::val('tit',"hol.sel",$ele["data-hol_sel"]);
+      $pos_tit []= Dat::get_val('tit',"hol.sel",$ele["data-hol_sel"]);
     }
     if( isset($ele["data-hol_ton"]) ){
-      $pos_tit []= api_dat::val('tit',"hol.ton",$ele["data-hol_ton"]);
+      $pos_tit []= Dat::get_val('tit',"hol.ton",$ele["data-hol_ton"]);
     }
     if( isset($ele["data-hol_psi"]) ){
-      $_psi = api_hol::_('psi',$ele["data-hol_psi"]);
-      $pos_tit []= api_dat::val('tit',"hol.psi",$_psi);          
+      $_psi = Hol::_('psi',$ele["data-hol_psi"]);
+      $pos_tit []= Dat::get_val('tit',"hol.psi",$_psi);          
       if( $ope['val_psi_pag'] ){
-        $_psi->kin = api_hol::_('kin',$_psi->kin);
+        $_psi->kin = Hol::_('kin',$_psi->kin);
         if( !empty($_psi->kin->pag) ) $cla_agr []= "_hol-pag_psi";
       }
     }
     if( isset($ele["data-hol_rad"]) ){
-      $pos_tit []= api_dat::val('tit',"hol.rad",$ele["data-hol_rad"]);
+      $pos_tit []= Dat::get_val('tit',"hol.rad",$ele["data-hol_rad"]);
     }
     // titulo
     if( !empty($pos_tit) ) $ele['title'] = implode("\n\n",$pos_tit);
     // operadores: .pos.dep + .pos_hol-pag_kin + .pos_hol-pag_psi
-    if( !empty($cla_agr) ) api_ele::cla($ele,$cla_agr);
+    if( !empty($cla_agr) ) Ele::cla($ele,$cla_agr);
     
     ///////////////////////////////////////////////////////////////////////////////////
     // modifico html por patrones: posicion por dependencia
@@ -1739,7 +1739,7 @@ class api_hol {
         }
         // cargo datos de la fecha por posicion del oraculo
         if( $par_est != $est ){
-          $_kin = api_hol::_('kin',$val);
+          $_kin = Hol::_('kin',$val);
           $ele_par = [ 'ana'=>[], 'gui'=>[], 'ant'=>[], 'ocu'=>[] ];
           foreach( $ele_par as $par_ide => &$par_dat ){
             foreach( $ope['dat'] as $ope_dat ){
@@ -1759,8 +1759,8 @@ class api_hol {
           }
         }
       }
-      api_ele::cla($ele,'dep');      
-      $_ = api_hol::tab($par_est,'par',[
+      Ele::cla($ele,'dep');      
+      $_ = Hol::tab($par_est,'par',[
         'ide' => $val,
         'sec' => [ 'par'=>$ope['sec']['par'] - 1, 'pos_dep'=>1 ],// fuera de posicion principal
         'pos' => isset($ope['pos']) ? $ope['pos'] : [ 'ima'=>"hol.{$par_est}.ide" ]

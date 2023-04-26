@@ -1,16 +1,16 @@
 <?php
 // Ejecucion : ( ...par ) => { ...cod } : val 
-class api_eje {
+class Eje {
   
-  static string $IDE = "api_eje-";
-  static string $EJE = "api_eje.";
+  static string $IDE = "Eje-";
+  static string $EJE = "Eje.";
 
   function __construct(){
   }
   // getter
   static function _( string $ide, $val = NULL ) : string | array | object {
 
-    $_ = $_dat = sis_app::dat_est('eje',$ide,'dat');
+    $_ = $_dat = Dat::get_est('eje',$ide,'dat');
     
     if( !empty($val) ){
       $_ = $val;
@@ -34,7 +34,7 @@ class api_eje {
 
       if( preg_match("/^\[.+\]$/",$ide) ){
         // FALSE : convierto en objetos stdClass
-        $var_eve = api_obj::val_dec($ide);
+        $var_eve = Obj::val_dec($ide);
         $ide = $var_eve[0];
         if( isset($var_eve[1]) ) $par = $var_eve[1];
       }
@@ -47,11 +47,11 @@ class api_eje {
     }
     // metodos de clase
     if( preg_match("/\./",$ide) || preg_match("/::/",$ide) ){
-      $_ = api_eje::met( $ide, $par, $ini );
+      $_ = Eje::met( $ide, $par, $ini );
     }
     // funcion del entorno
     else{
-      $_ = api_eje::fun( $ide, ...api_lis::val_ite($par) );      
+      $_ = Eje::fun( $ide, ...Lis::val_ite($par) );      
     }
     return $_;
   }
@@ -125,7 +125,7 @@ class api_eje {
 
           try{
 
-            $_ = empty($par) ? $cla::$met() : $cla::$met( ...api_lis::val_ite($par) ) ;
+            $_ = empty($par) ? $cla::$met() : $cla::$met( ...Lis::val_ite($par) ) ;
           }
           catch( Exception $e ){
 
@@ -145,7 +145,7 @@ class api_eje {
       $cla = $_ide[0];
       $met = $_ide[1];
       // instancio
-      $obj = api_eje::cla( $cla, ...$ini );
+      $obj = Eje::cla( $cla, ...$ini );
       // ejecuto      
       if( is_object($obj) ){
 
@@ -153,7 +153,7 @@ class api_eje {
 
           try{
 
-            $_ = empty($par) ? $obj->$met() : $obj->$met( ...api_lis::val_ite($par) ) ;
+            $_ = empty($par) ? $obj->$met() : $obj->$met( ...Lis::val_ite($par) ) ;
           }
           catch( Exception $e ){
 

@@ -2,12 +2,12 @@
 'use strict';
 
 // Objeto : [ ...val ], [ ...nom => val ], { ...atr : val }
-class api_obj {
+class Obj {
 
   // getter
   static _( $ide, $val ){
     let $_, $_dat;
-    $_ = $_dat = sis_app.dat_est('obj',$ide,'dat');
+    $_ = $_dat = Dat.get_est('obj',$ide,'dat');
 
     if( !!($val) ){
       $_ = $val;
@@ -60,7 +60,7 @@ class api_obj {
     if( typeof($dat) == 'string' ){
   
       if( !!$ope && /\(\)\(\$\).+\(\)/.test($dat) ){
-        $dat = api_obj.val($ope,$dat);
+        $dat = Obj.val($ope,$dat);
       }
       // json : {} + []
       if( /^({|\[).*(}|\])$/.test($dat) ){ 
@@ -107,7 +107,7 @@ class api_obj {
 
     for( const $i in $dat ){ const $v = $dat[$i];
 
-      $.tip = api_dat.tip($v);
+      $.tip = Dat.tip($v);
 
       $.ite = document.createElement('li');
       $.ite.classList.add('mar_ver-1');
@@ -116,7 +116,7 @@ class api_obj {
       `;
       if( ![undefined,NaN,null,true,false].includes($v) ){
 
-        $.ite.innerHTML += api_tex.let( ( $.tip.dat=='obj' ) ? JSON.stringify($v) : $v.toString() ) ;          
+        $.ite.innerHTML += Tex.let( ( $.tip.dat=='obj' ) ? JSON.stringify($v) : $v.toString() ) ;          
       }
       else{
         $.ite.innerHTML += `<c>${$v}</c>`;

@@ -2,12 +2,12 @@
 'use strict';
 
 // Elemento : <eti ...atr="val"> ...htm + ...tex </eti>
-class api_ele {
+class Ele {
 
   // getter
   static _( $ide, $val ){
     let $_, $_dat;
-    $_ = $_dat = sis_app.dat_est('ele',$ide,'dat');
+    $_ = $_dat = Dat.get_est('ele',$ide,'dat');
 
     if( !!($val) ){
       $_ = $val;
@@ -32,18 +32,18 @@ class api_ele {
       }
       else{
         if( $ele['let'] ){
-          $_ += api_tex.let($ele['let']);
+          $_ += Tex.let($ele['let']);
         }// por ícono
         else if( $ele['ico'] ){
           $.ico_ide = $ele['ico'];
           delete($ele['ico']);
-          $_ += api_fig.ico($.ico_ide,$ele);
+          $_ += Fig.ico($.ico_ide,$ele);
         }// por ficha
         else if( $ele['ima'] ){
           $.est = $ele['ima'].split('.');
           delete($ele['ima']);
           $.est.push( !!($ele['ide']) ? $ele['ide'] : 0, $ele);
-          $_ += api_fig.ima(...$.est);
+          $_ += Fig.ima(...$.est);
         }// por variable
         else if( $ele['tip'] ){
           $.tip = $ele['tip']; 
@@ -53,16 +53,18 @@ class api_ele {
             $.val = $ele['val'];
             delete($ele['val']);
           }
-          $.tip = $.tip.split('_');
-          $._eje = $.tip.shift();
-          if( app_var ){
-            $_ += app_var[$._eje]( $.tip, $.val, $ele );
-          }else{
+          $.tip = $.tip.split('_');          
+          $.nom = Tex.let_pal( $.tip.shift() );
+          if( ( $.cla = window[$.nom] ) && $.cla.var ){
+            
+            $_ += $.cla.var( $.tip, $.val, $ele );
+          }
+          else{
             $_ += `<div class='err' title='No existe el operador ${$._eje}'></div>`
           }      
         }// por etiqueta
         else{
-          $_ += api_ele.eti($ele);
+          $_ += Ele.eti($ele);
         }
       }
     });
@@ -73,50 +75,11 @@ class api_ele {
     let $_ = $ele, $={ tip : typeof($ele) };
     // "" => {}
     if( $.tip == 'string' ){
-      $_ = api_obj.val_dec($ele,$dat);
+      $_ = Obj.val_dec($ele,$dat);
     }
     // {html} => {}
     else if( false ){
 
-    }
-    return $_;
-  }// {} / "" => {dom}
-  static val_cod( $ele, ...$opc ){
-    let $_ = false, $={ 'tip':typeof($ele) };
-    // desde texto : <> 
-    if( $.tip == 'string' ){
-      $_ = document.createElement('span');
-      $_.innerHTML = $ele;
-      // devuelvo nodos: todos o el 1°
-      if( $_.children[0] ){
-        $_ = $opc.includes('nod') ? api_lis.val_cod($_.children) : $_.children[0];
-      }
-    }// desde 1 objeto : {}
-    else if( $.tip == 'object' && !$ele.nodeName ){
-      $.ele = api_obj.val_dec($ele);
-      // creo etiqueta
-      $.eti = 'span';
-      if( $.ele.eti ){
-        $.eti = $.ele.eti;
-        delete($.ele.eti);
-      }
-      $_ = document.createElement($.eti);
-      // copio contenido : texto | 1-n elementos
-      if( $.ele.htm ){
-        if( typeof($.ele.htm)=='string' ){ 
-          $.ele_doc = document.createElement('span');
-          $.ele_doc.innerHTML = $.ele.htm; 
-          $.ele.htm = $.ele_doc.children;
-        }
-        api_lis.val_cod($.ele.htm).forEach( 
-          $htm => $_.appendChild($htm)
-        );
-        delete($.ele.htm);
-      }
-      // copio atributos
-      for( const $i in $val ){ 
-        $_.setAttribute($i,$val[$i]); 
-      }
     }
     return $_;
   }// combino
@@ -124,29 +87,28 @@ class api_ele {
     let $_ = $ele, $={};
     $.dat = ( $ope['dat'] !== undefined ) ? $ope['dat'] : null;
     // aseguo elemento
-    $ele = api_ele.val_dec($ele,$.dat);
+    $ele = Ele.val_dec($ele,$.dat);
     // recorro 2°dos elemento...
-    api_lis.val_ite($mod).forEach( $mod => {
-      for( const $atr in ( $.lis_atr = api_ele.val_dec($mod,$.dat) ) ){ const $v = $.lis_atr[$atr];
+    Lis.val_ite($mod).forEach( $mod => {
+      for( const $atr in ( $.lis_atr = Ele.val_dec($mod,$.dat) ) ){ const $v = $.lis_atr[$atr];
         // si no tiene el atributo, lo agrego
         if( !($_[$atr]) ){ 
           $_[$atr] = $v;
         }// combino, actualizo
         else{
           switch($atr){          
-          case 'onclick':   api_ele.eje($_,'cli',$v); break;// separador: "(;;)"
-          case 'onchange':  api_ele.eje($_,'cam',$v); break;// separador: "(;;)"
-          case 'oninput':   api_ele.eje($_,'inp',$v); break;// separador: "(;;)"
-          case 'class':     api_ele.cla($_,$v); break;// separador: " "
-          case 'style':     api_ele.css($_,$v); break;// separador: ";"
+          case 'onclick':   Ele.eje($_,'cli',$v); break;// separador: "(;;)"
+          case 'onchange':  Ele.eje($_,'cam',$v); break;// separador: "(;;)"
+          case 'oninput':   Ele.eje($_,'inp',$v); break;// separador: "(;;)"
+          case 'class':     Ele.cla($_,$v); break;// separador: " "
+          case 'style':     Ele.css($_,$v); break;// separador: ";"
           default:          $_[$atr] = $v;   break;
           }
         }
       }
     });
     return $_;
-  }
-  
+  }  
   // actualizo propiedades
   static act( $tip, $ele, $val, $ope ){
 
@@ -154,7 +116,7 @@ class api_ele {
 
     if( typeof($ele) == 'string' ) $ele = document.querySelectorAll($ele);
 
-    $.lis = api_lis.val_cod($ele);
+    $.lis = Lis.val_cod($ele);
 
     switch( $.tip[0] ){
     case 'nod':
@@ -176,7 +138,7 @@ class api_ele {
       switch( $.tip[1] ){
       // actualizacion creando elemento
       case 'val': $.lis.forEach( $v => $_.push( $v.innerHTML = $val ) ); break;
-      case 'eli': $.lis.forEach( $v => { api_lis.val_cod($v.children).forEach( $v_2 => $_.push($v.removeChild($v_2)) ) } ); break;
+      case 'eli': $.lis.forEach( $v => { Lis.val_cod($v.children).forEach( $v_2 => $_.push($v.removeChild($v_2)) ) } ); break;
       }
       break;
     case 'atr': 
@@ -197,13 +159,13 @@ class api_ele {
         $.lis.forEach( $v => $_.push( $v.classList.toggle($val) ) ); 
         break;
       case 'agr': 
-        $.lis.forEach( $v => api_lis.val_ite($val).forEach( $val_cla => $_.push( $v.classList.add($val_cla) ) ) ); 
+        $.lis.forEach( $v => Lis.val_ite($val).forEach( $val_cla => $_.push( $v.classList.add($val_cla) ) ) ); 
         break;
       case 'mod': 
         $.lis.forEach( $v => $_.push( $v.classList.replace($val, $ope) ) ); 
         break;
       case 'eli': 
-        $.lis.forEach( $v => api_lis.val_ite($val).forEach( $val_cla => $_.push( $v.classList.remove($val_cla) ) ) );
+        $.lis.forEach( $v => Lis.val_ite($val).forEach( $val_cla => $_.push( $v.classList.remove($val_cla) ) ) );
         break;    
       }
       break;
@@ -226,147 +188,6 @@ class api_ele {
 
     return $_;
   }
-  // operaciones
-  static ope( $val, $ope, ...$opc ){
-
-    let $_ = false, $ = {};
-
-    // busco elementos
-    if( typeof($val) == 'string' ){ 
-      $val = document.querySelectorAll($val);
-    }
-    else if( Array.isArray($val) ){
-
-      $val[0] = ( !$val[0] || typeof($val[0]) == 'string' ) ? document.querySelector( $val[0] ? $val[0] : 'body' ) : $val[0];
-
-      $val = $val[0].querySelectorAll($val[1] ? $val[1] : '*');
-    }
-    // ejecuto operaciones
-    $.res = $val;
-    if( $ope ){
-      $.res = [];
-      api_lis.val_ite($ope).forEach( $ope_ite => $.res.push( api_ele.act( $ope_ite, $val, ...$opc ) ) );
-    }
-    // resultados: [<>] => <> // si hay 1 solo, devuelvo único elemento
-    $_ = api_lis.val_cod($.res);
-    if( !$_.length ){ 
-      $_ = false; 
-    }
-    else if( $_.length == 1 ){ 
-      $_ = $_[0]; 
-    }
-    return $_;
-  }// busco nodos
-  static ver( $ele, $ope={} ){
-
-    let $_ = false, $ = {};
-    $.opc = $ope.opc ? $ope.opc : []      
-    // ejecuto valicaciones : etiqueta | clases | atributos
-    $._ele_ver = ( $ele, $ope ) =>{
-      let $_ = true;
-      // etiqueta
-      if( $ope.eti && $ope.eti != $ele.nodeName.toLowerCase() ) $_ = false;
-      // clases
-      if( $_ && $ope.cla ){
-        $ope.cla.forEach( $v =>{ 
-          if( !$ele.classList.contains($v) ) return $_ = false;
-        });
-      }
-      // atributo = valor
-      if( $_ && $ope.atr ){
-        $ope.atr.forEach( ($v,$i) =>{ 
-          if( !($.atr_val = $ele.getAttribute($i)) || ( $v && $.atr_val != $v ) ) return $_ = false;
-        });
-      }
-      return $_;
-
-    };
-    // proceso filtros
-    $.val = [];
-    $.opc_mul = $.opc.includes('mul');
-    
-    // por nodos descendentes
-    if( $.opc.includes('nod') ){
-
-      api_lis.val_cod($ele.children).forEach( $ele => {
-
-        if( $._ele_ver($ele,$ope) ){           
-          $.val.push($ele);
-          if( !$.opc_mul ){ return; }
-        }
-      });
-    }// por ascendentes
-    else{
-      while( $ele.parentElement ){
-
-        $ele = $ele.parentElement;
-
-        if( $._ele_ver($ele,$ope) ){ 
-          $.val.push($ele); 
-          if( !$.opc_mul ){ break; }
-        }
-      }
-    }
-    // devuelvo 1 o muchos
-    if( $.val.length > 0 ){
-      $_ = $.val.length == 1 ? $.val[0] : $.val;
-    }
-    return $_;
-  }// agrego nodo/s al inicio o al final
-  static agr( $ele, $pad, ...$opc ){
-    let $_=[], $={};
-    $.opc_ini = $opc.includes('ini');
-    $.val_uni = !Array.isArray($ele);
-    // recibo 1 o muchos    
-    api_lis.val_ite($ele).forEach( $ele => {
-      if( typeof($ele) == 'string' ){
-        $_.push( ...api_ele.val_cod($ele,'nod') );
-      }else{
-        $_.push( $ele );
-      }
-    });
-    // agrego o modifico  
-    if( typeof($pad)=='string' ) $pad = document.querySelector($pad);
-
-    if( $pad ){      
-      $_.forEach( $ele => {
-        if( $.opc_ini && $pad.children[0] ){
-          $pad.insertBefore( $ele, $pad.children[0] );
-        }else{
-          $pad.appendChild( $ele );
-        }
-      });
-
-    }
-    return ( $.val_uni && $_[0] ) ? $_[0] : $_;
-  }// modifico nodo : si no encuentro anterior, puedo agregar
-  static mod( $ele, $mod = {}, ...$opc ){
-    let $_={},$={};
-    $.opc_agr = !$opc.includes('-agr');
-    // aseguro valor
-    $.eti = api_ele.val_cod($ele);
-    if( $.eti.nodeName ){
-      if( $mod.nodeName ) $mod.parentElement.replaceChild( $.eti, $mod );
-    }
-    return $_;
-  }// elimino nodo/s : todos o por seleccion, y los devuelvo
-  static eli( $pad, $nod ){
-    let $_ = [];
-    // elimino todos
-    if( $nod === undefined ){
-      $nod = $pad.children;
-    }// por seleccion
-    else if( typeof($nod)=='string' ){
-      $nod = $pad.querySelectorAll($nod);
-    }// por elemento
-    else if( !$nod.nodeName ){
-      $nod = false;
-    }
-    if( !!$nod ){
-      api_lis.val_cod($nod).forEach( $ele => $_.push( $pad.removeChild($ele) ) );
-    }
-    return $_;
-  }
 
   // etiqueta : <eti atr="">...htm</eti>
   static eti( $ele ){
@@ -382,11 +203,11 @@ class api_ele {
       delete($ele['htm']);
       if( typeof($.htm) != 'string' ){
         $._htm_val = '';
-        api_lis.val_ite($.htm).forEach( $e => $._htm_val =+ ( typeof($e) == 'string' ) ? $e : api_ele.val($e) );
+        Lis.val_ite($.htm).forEach( $e => $._htm_val =+ ( typeof($e) == 'string' ) ? $e : Ele.val($e) );
       }
     }
     $_ = `
-    <${$.eti}${api_ele.atr($ele)}>
+    <${$.eti}${Ele.atr($ele)}>
       ${!['input','img','br','hr'].includes($.eti) ? `${$.htm}
     </${$.eti}>` : ''}`;
     return $_;
@@ -497,10 +318,10 @@ class api_ele {
         $_ = [];
         // elimino
         if( !!$.eli ){
-          $ele.classList.forEach( $cla => api_tex.val_dec($.ver).test($cla) && $ele.classList.remove($cla) && ( $_.push($cla) ) );
+          $ele.classList.forEach( $cla => Tex.val_dec($.ver).test($cla) && $ele.classList.remove($cla) && ( $_.push($cla) ) );
         }// cambio : si la tiene, la saca; sino, la pone
         else if( !!$.tog ){
-          $ele.classList.forEach( $cla => api_tex.val_dec($.ver).test($cla) && $ele.classList.toggle($ope) && ( $_.push($cla) ) );
+          $ele.classList.forEach( $cla => Tex.val_dec($.ver).test($cla) && $ele.classList.toggle($ope) && ( $_.push($cla) ) );
         }        
       }// agrego clase/s
       else{
@@ -522,7 +343,8 @@ class api_ele {
       }
     }
     return $_;
-  }// estilos
+  }
+  // estilos
   static css( $ele, $val, ...$opc ){
     let $_=$ele, $={};
 
@@ -576,11 +398,11 @@ class api_ele {
       $.fin=`<c></</c>/<b class='ide'>${$.nom}</b><c>></c>`;
       $.eti_htm = '';
       if( $dat.childNodes.length>0 ){ 
-        api_lis.val_cod($dat.childNodes).forEach( $e =>{
+        Lis.val_cod($dat.childNodes).forEach( $e =>{
           if( $e.nodeName.toLowerCase() != '#text' ){ $.eti_htm += `
-            <li>${api_ele.var('eti',$e)}</li>`;
+            <li>${Ele.var('eti',$e)}</li>`;
           }else{ $.eti_htm += `
-            <li>${api_tex.let($e.textContent)}</li>`;
+            <li>${Tex.let($e.textContent)}</li>`;
           }
         });
       }
@@ -650,8 +472,8 @@ class api_ele {
     
     // resultado
     $.res = $dat.parentElement.parentElement.previousElementSibling.querySelector('div.ele');
-    api_ele.eli($.res);
-    $.res.innerHTML = api_ele.var('eti',document.querySelector($.ver));
+    dom.eli($.res);
+    $.res.innerHTML = Ele.var('eti',document.querySelector($.ver));
 
   }// listado de nodos
   static var_val( $dat ){
@@ -664,7 +486,7 @@ class api_ele {
       $.ite.classList.add('mar_ver-2');
       $.ite.innerHTML = `${doc.ico('dat_ver',{'class':"tam-1 mar_der-1",'onclick':"ele.var_act(this);"})}`;
       $.tex = document.createElement('p');
-      $.tex.innerHTML = api_ele.var('her',$e);
+      $.tex.innerHTML = Ele.var('her',$e);
       $.ite.appendChild($.tex);
       $.lis.appendChild($.ite);
     });

@@ -2,16 +2,16 @@
 
 // Texto : caracter + letra + oracion + parrafo
 
-class api_tex {
+class Tex {
 
-  static string $IDE = "api_tex-";
-  static string $EJE = "api_tex.";    
+  static string $IDE = "Tex-";
+  static string $EJE = "Tex.";    
 
   function __construct(){
   }// getter
   static function _( string $ide, $val = NULL ) : string | array | object {
 
-    $_ = $_dat = sis_app::dat_est('tex',$ide,'dat');
+    $_ = $_dat = Dat::get_est('tex',$ide,'dat');
     
     if( !empty($val) ){
       $_ = $val;
@@ -39,17 +39,17 @@ class api_tex {
 
       $tex = [];
       foreach( explode("/n",$dat) as $tex_pal ){
-        $tex []= api_tex::let($tex_pal);
+        $tex []= Tex::let($tex_pal);
       }
       $ope['htm'] = implode("<br>",$tex);
       $ope['eti'] = $tip == 'val' ? 'p' : 'q';
-      api_ele::cla($ope,"tex",'ini');
-      $_ = api_ele::eti($ope);
+      Ele::cla($ope,"tex",'ini');
+      $_ = Ele::eti($ope);
 
     }
     else{
 
-      if( !is_string($dat) ) $dat = strval( is_iterable($dat) ? api_obj::val_cod($dat) : $dat );
+      if( !is_string($dat) ) $dat = strval( is_iterable($dat) ? Obj::val_cod($dat) : $dat );
 
       $ope['value'] = str_replace('"','\"',$dat);
 
@@ -64,13 +64,13 @@ class api_tex {
         $lis_htm = "";
         if( isset($ope['lis']) || isset($ope['dat']) ){
           if( isset($ope['lis']) ){
-            $dat_lis = api_obj::val_dec($ope['lis']);
+            $dat_lis = Obj::val_dec($ope['lis']);
             unset($ope['lis']);          
           }else{
             $dat_lis = [];
           }
           if( empty($ope['id']) ){ 
-            $ope['id']="_tex-{$tip}-".sis_app::var_ide("_tex-{$tip}-");
+            $ope['id']="_tex-{$tip}-".Doc::var_ide("_tex-{$tip}-");
           }
           $ope['list'] = "{$ope['id']}-lis";
           $lis_htm = "
@@ -81,11 +81,11 @@ class api_tex {
           </datalist>";
         }
         // seleccion automática
-        api_ele::eje($ope,'foc',"this.select();",'ini');  
-        $_ = "<input".api_ele::atr($ope).">".$lis_htm;
+        Ele::eje($ope,'foc',"this.select();",'ini');  
+        $_ = "<input".Ele::atr($ope).">".$lis_htm;
       }
       else{
-        $_ = "<textarea".api_ele::atr($ope).">{$dat}</textarea>";
+        $_ = "<textarea".Ele::atr($ope).">{$dat}</textarea>";
       }
     }      
 
@@ -174,7 +174,7 @@ class api_tex {
   static function let( string $dat, array $ele=[] ) : string {
     $_ = [];
     $pal = [];
-    $tex_let = api_tex::_('let');
+    $tex_let = Tex::_('let');
     // saltos de linea
     foreach( explode('\n',$dat) as $tex_pal ){
       // espacios
@@ -185,7 +185,7 @@ class api_tex {
         }// caracteres
         else{
           $let = [];
-          foreach( api_tex::let_sep($pal_val) as $car ){
+          foreach( Tex::let_sep($pal_val) as $car ){
             if( is_numeric($car) ){
               $let []= "<n>{$car}</n>";
             }elseif( isset($tex_let[$car]) ){
@@ -221,6 +221,7 @@ class api_tex {
   static function let_pal( string $val, string $cod = "UTF-8" ) : string {
   
     return ucfirst( mb_strtolower($val, $cod) );
+    
   }// - Capitalizar todas las palabras
   static function let_ora( string $val, string $cod = "UTF-8" ) : string {    
 

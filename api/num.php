@@ -1,15 +1,15 @@
 <?php
 // Numero : separador + operador + entero + decimal + rango
-class api_num {
+class Num {
 
-  static string $IDE = "api_num-";
-  static string $EJE = "api_num.";
+  static string $IDE = "Num-";
+  static string $EJE = "Num.";
 
   function __construct(){
   }// getter
   static function _( string $ide, $val = NULL ) : string | array | object {
     
-    $_ = $_dat = sis_app::dat_est('num',$ide,'dat');
+    $_ = $_dat = Dat::get_est('num',$ide,'dat');
     
     if( !empty($val) ){
       $_ = $val;
@@ -28,9 +28,9 @@ class api_num {
 
   // datos del objeto
   static function dat( int | float | string $ide, string $atr='' ) : object | string {
-    $_num_int = api_num::_('int');
+    $_num_int = Num::_('int');
     // aseguro valor
-    if( is_string($ide) ) $ide = api_num::val($ide);
+    if( is_string($ide) ) $ide = Num::val($ide);
     
     // busco datos
     $_ = isset($_num_int[$ide]) ? $_num_int[$ide] : new stdClass();
@@ -51,27 +51,38 @@ class api_num {
       $num = isset($dat) ? strval($dat) : ""; 
       $ope['eti'] = "n";            
       if( isset($ope['val']) ) unset($ope['val']);
-      $ope['htm'] = preg_match("/\./",$num) ? api_num::val_dec($num) : api_num::val_int($num);
-      api_ele::cla($ope,"num",'ini');
-      $_ = api_ele::eti($ope);
+      $ope['htm'] = preg_match("/\./",$num) ? Num::val_dec($num) : Num::val_int($num);
+      Ele::cla($ope,"num",'ini');
+      $_ = Ele::eti($ope);
     }
     else{
 
-      if( $tip != 'bit' ){
+      if( $tip != 'bin' ){
 
-        if( !isset($ope['value']) && isset($dat) ) $ope['value'] = $dat;
+        // sistema decimal
+        if( $tip != 'bit' ){
 
-        if( !empty($ope['num_ran']) ){ $tip = 'ran'; }else{ $ope['type']='number'; }
+          if( !isset($ope['value']) && isset($dat) ) $ope['value'] = $dat;
+  
+          if( !empty($ope['num_ran']) ){ $tip = 'ran'; }else{ $ope['type']='number'; }
+  
+          if( isset($ope['max']) && !isset($ope['maxlength']) ) $ope['maxlength'] = strlen( strval( $ope['max'] ) );          
+        }        
 
-        if( isset($ope['max']) && !isset($ope['maxlength']) ) $ope['maxlength'] = strlen( strval( $ope['max'] ) );          
+        // controlo valores al actualizar
+        Ele::eje($ope,'inp',"$_eje"."_act(this);",'ini');
+        
+        // seleccion automática
+        Ele::eje($ope,'foc',"this.select();",'ini');        
       }
-
-      // controlo valores al actualizar
-      api_ele::eje($ope,'inp',"$_eje"."_act(this);",'ini');
-      // seleccion automática
-      api_ele::eje($ope,'foc',"this.select();",'ini');        
       
       switch( $tip ){
+      case 'bin':
+        $ope['type'] = 'checkbox';
+        if( !empty($dat) ){
+          $ope['checked'] = 'checked'; 
+        }
+        break;        
       case 'bit':
 
         $ope['type']='text';  
@@ -92,10 +103,10 @@ class api_num {
             }
           }
           if( !empty($tam) ){ 
-            $ope['value'] = api_num::val($ope['value'],$tam); 
+            $ope['value'] = Num::val($ope['value'],$tam); 
           }
           if( !empty($ope['num_sep']) ){ 
-            $ope['value'] = api_num::val_int($ope['value']); 
+            $ope['value'] = Num::val_int($ope['value']); 
           }
         }
         break;
@@ -134,11 +145,11 @@ class api_num {
 
           $ope['num_dec'] = $dec;
 
-          if( !isset($ope['step']) ) $ope['step'] = '0.'.api_num::val('1',$dec);
+          if( !isset($ope['step']) ) $ope['step'] = '0.'.Num::val('1',$dec);
 
-          if( !empty($ope['num_pad']) && !empty($tam) ) $ope['value'] = api_num::val($ope['value'],$tam);
+          if( !empty($ope['num_pad']) && !empty($tam) ) $ope['value'] = Num::val($ope['value'],$tam);
 
-          if( !empty($ope['num_sep']) ) $ope['value'] = api_num::val_dec($ope['value']);
+          if( !empty($ope['num_sep']) ) $ope['value'] = Num::val_dec($ope['value']);
         }
         break;
       case 'ran':
@@ -154,7 +165,7 @@ class api_num {
             unset($ope['class']); 
           }
           if( !isset($ope['id']) ){ 
-            $ope['id'] = "_num_ran-".sis_app::var_ide('num_ran');
+            $ope['id'] = "_num_ran-".Doc::var_ide('num_ran');
           }
           $htm_out = "";
           if( !in_array('val-ocu',$opc) ){ $htm_out = "
@@ -163,12 +174,12 @@ class api_num {
             </output>";
           }
           $_ = "
-          <div class='api_num ran {$cla}'>
+          <div class='Num ran {$cla}'>
           
             <div class='doc_val'>
               <n class='_min'>{$ope['min']}</n>
               <c class='sep'><</c>
-              <input".api_ele::atr($ope).">
+              <input".Ele::atr($ope).">
               <c class='sep'>></c>
               <n class='_max'>{$ope['max']}</n>
             </div>
@@ -181,7 +192,7 @@ class api_num {
       }
 
       if( empty($_) && !empty($ope['type']) ){
-        $_ = "<input".api_ele::atr($ope).">";
+        $_ = "<input".Ele::atr($ope).">";
       }
     }        
 
@@ -193,7 +204,7 @@ class api_num {
     $_ = $dat;
     if( !empty($tot) ){
 
-      $_ = api_tex::val_agr( abs( $dat = api_num::val($dat) ), $tot, "0");
+      $_ = Tex::val_agr( abs( $dat = Num::val($dat) ), $tot, "0");
 
       if( $dat < 0 ) $_ = "-".$_;
     }
@@ -212,7 +223,7 @@ class api_num {
     
       function( $acu, $ite ){
         
-        return $acu += api_num::val($ite); 
+        return $acu += Num::val($ite); 
       }
     );
   }// redondeos
@@ -262,7 +273,7 @@ class api_num {
   }// reduzco a valor dentro del rango
   static function val_ran( string | float | int $num, int | float $max, int | float $min = 1 ) : int | float {
     
-    $_ = is_string($num) ? api_num::val($num) : $num;
+    $_ = is_string($num) ? Num::val($num) : $num;
     
     while( $_ > $max ){ $_ -= $max; } 
     

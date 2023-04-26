@@ -1,15 +1,15 @@
 <?php
 
-class api_fig {
+class Fig {
 
-  static string $IDE = "api_fig-";
-  static string $EJE = "api_fig.";
+  static string $IDE = "Fig-";
+  static string $EJE = "Fig.";
 
   function __construct(){
   }// getter
   static function _( string $ide, $val = NULL ) : string | array | object {
 
-    $_ = $_dat = sis_app::dat_est('fig',$ide,'dat');
+    $_ = $_dat = Dat::get_est('fig',$ide,'dat');
     
     if( !empty($val) ){
       $_ = $val;
@@ -47,7 +47,7 @@ class api_fig {
       break;
     }
     if( empty($_) && !empty($ope['type']) ){
-      $_ = "<input".api_ele::atr($ope).">";            
+      $_ = "<input".Ele::atr($ope).">";            
     }
     return $_;
   }
@@ -55,7 +55,7 @@ class api_fig {
   // icono : .fig_ico.$ide
   static function ico( string $ide, array $ele=[] ) : string {
     $_ = "<span class='fig_ico'></span>";    
-    $fig_ico = api_fig::_('ico');
+    $fig_ico = Fig::_('ico');
     if( isset($fig_ico[$ide]) ){
       $eti = 'span';      
       if( isset($ele['eti']) ){
@@ -63,7 +63,7 @@ class api_fig {
         unset($ele['eti']);
       }
       if( $eti == 'button' && empty($ele['type']) ) $ele['type'] = "button"; $_ = "
-      <{$eti}".api_ele::atr(api_ele::cla($ele,"fig_ico ide-$ide",'ini')).">
+      <{$eti}".Ele::atr(Ele::cla($ele,"fig_ico ide-$ide",'ini')).">
         {$fig_ico[$ide]->val}
       </{$eti}>";
     }
@@ -76,7 +76,7 @@ class api_fig {
     // por aplicacion
     if( isset($dat[2]) ){
       $ele = isset($dat[3]) ? $dat[3] : [];
-      $_ = api_dat::val('ima', "{$dat[0]}.{$dat[1]}", $dat[2], $ele );
+      $_ = Dat::get_val('ima', "{$dat[0]}.{$dat[1]}", $dat[2], $ele );
     }
     // por directorio
     else{
@@ -84,7 +84,7 @@ class api_fig {
       $dat = $dat[0];
       // por estilos : bkg
       if( is_array($dat) ){
-        $ele = api_ele::val_jun( $dat, $ele );          
+        $ele = Ele::val_jun( $dat, $ele );          
       }
       // por directorio : localhost/img/esquema/image
       elseif( is_string($dat)){
@@ -92,7 +92,7 @@ class api_fig {
         $dat = $ima[0];
         $tip = isset($ima[1]) ? $ima[1] : 'png';
         $dir = SYS_NAV."img/{$dat}";
-        api_ele::css( $ele, api_ele::css_fon($dir,['tip'=>$tip]) );
+        Ele::css( $ele, Ele::css_fon($dir,['tip'=>$tip]) );
       }
       // etiqueta
       $eti = 'span';
@@ -102,15 +102,15 @@ class api_fig {
       }// codifico boton
       if( $eti == 'button' && empty($ele['type']) ) $ele['type'] = "button";
       // ide de imagen
-      api_ele::cla($ele,"fig_ima",'ini');
+      Ele::cla($ele,"fig_ima",'ini');
       // contenido
       $htm = "";
       if( !empty($ele['htm']) ){
-        api_ele::cla($ele,'dis-fle dir-ver jus-cen ali-cen');
+        Ele::cla($ele,'dis-fle dir-ver jus-cen ali-cen');
         $htm = $ele['htm'];
         unset($ele['htm']);
       }
-      $_ = "<{$eti}".api_ele::atr($ele).">{$htm}</{$eti}>";
+      $_ = "<{$eti}".Ele::atr($ele).">{$htm}</{$eti}>";
     }
     return $_;
   }

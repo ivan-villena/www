@@ -1,15 +1,15 @@
 <?php
 // Objeto : [ ...val ], [ ...nom => val ], { ...atr : val }
-class api_obj {
+class Obj {
 
-  static string $IDE = "api_obj-";
-  static string $EJE = "api_obj.";
+  static string $IDE = "Obj-";
+  static string $EJE = "Obj.";
 
   function __construct(){
   }// getter 
   static function _( string $ide, $val = NULL ) : string | array | object {
     
-    $_ = $_dat = sis_app::dat_est('obj',$ide,'dat');
+    $_ = $_dat = Dat::get_est('obj',$ide,'dat');
     
     if( !empty($val) ){
       $_ = $val;
@@ -46,7 +46,7 @@ class api_obj {
         $_="<input type='radio' disabled>";
       }
       else{ 
-        $tip = api_dat::tip($dat); 
+        $tip = Dat::tip($dat); 
         $tip_dat = $tip['dat']; 
         $tip_val = $tip['val']; 
       }
@@ -63,13 +63,13 @@ class api_obj {
           $_ = $cla_ide::var( $tip_val, $dat, [ 'ide'=>"{$ope['ent']}.{$ide}", 'eti'=>$ope['ite'] ] );
         }
         else{
-          $_ = api_opc::lis( $dat, [ 'eti'=>$ope['eti'], 'ite'=>$ope['ite'] ] );
+          $_ = Lis::opc( $dat, [ 'eti'=>$ope['eti'], 'ite'=>$ope['ite'] ] );
         }
       }// controladores
       else{
   
         $dat = is_string($dat) ? $dat : strval($dat); 
-        $_ = !empty($ope) ? $cla_ide::ope( $tip_val, $dat, $ope['ite'] ) : "<p".api_ele::atr($ope['ite']).">{$dat}</p>";
+        $_ = !empty($ope) ? $cla_ide::ope( $tip_val, $dat, $ope['ite'] ) : "<p".Ele::atr($ope['ite']).">{$dat}</p>";
       }
       $ide='';
       if( !empty($ite) ){ 
@@ -100,10 +100,10 @@ class api_obj {
     // texto : json
     if( !isset($dat) || is_string($dat) ){
       $ope['value'] = strval($dat); $_ = "
-      <textarea".api_ele::atr($ope).">{$dat}</textarea>";
+      <textarea".Ele::atr($ope).">{$dat}</textarea>";
     }
     // por tipos: pos - nom - atr
-    elseif( $tip = api_obj::val_tip($dat) ){
+    elseif( $tip = Obj::val_tip($dat) ){
       $cue = 0; 
       $htm = '';
       $cla_agr = ''; 
@@ -123,20 +123,20 @@ class api_obj {
         $cue++; 
         $htm .= $_ite($i,$v,$tip,...$opc);
       }
-      api_ele::cla($ope,"api_obj {$tip}",'ini');
+      Ele::cla($ope,"Obj {$tip}",'ini');
       $_ = "
-      <div".api_ele::atr($ope).">
+      <div".Ele::atr($ope).">
         <div class='jus-ini mar_ver-1'>
           <p>
             <c>(</c> <n class='sep'>{$cue}</n> <c>)</c> <c class='sep'>=></c> <c class='_lis-ini'>{$ini}</c>
           </p>
-          ".api_fig::ico('dat_ver',['onclick'=>"$_eje.val(this,'tog');"])."
+          ".Fig::ico('dat_ver',['onclick'=>"$_eje.val(this,'tog');"])."
           <ul class='doc_ope _tog{$cla_agr}'>"; 
             if( empty($atr_agr) ){ $_.="
-            ".api_fig::ico('dat_tod',['eti'=>"li",'onclick'=>"$_eje.val(this,'tod');"])."
-            ".api_fig::ico('dat_nad',['eti'=>"li",'onclick'=>"$_eje.val(this,'nad');"])."
-            ".api_fig::ico('dat_agr',['eti'=>"li",'onclick'=>"$_eje.val(this,'agr');"])."
-            ".api_fig::ico('dat_eli',['eti'=>"li",'onclick'=>"$_eje.val(this,'eli');"])."
+            ".Fig::ico('dat_tod',['eti'=>"li",'onclick'=>"$_eje.val(this,'tod');"])."
+            ".Fig::ico('dat_nad',['eti'=>"li",'onclick'=>"$_eje.val(this,'nad');"])."
+            ".Fig::ico('dat_agr',['eti'=>"li",'onclick'=>"$_eje.val(this,'agr');"])."
+            ".Fig::ico('dat_eli',['eti'=>"li",'onclick'=>"$_eje.val(this,'eli');"])."
             ";
             }$_.="
           </ul>
@@ -159,7 +159,7 @@ class api_obj {
   // valor : ()($)atr_ide()
   static function val( object | array $dat, string $val='' ) : string {
     $_ = [];
-    $val_arr = api_obj::val_tip($dat) == 'nom';
+    $val_arr = Obj::val_tip($dat) == 'nom';
     foreach( explode(' ',$val) as $pal ){ 
       $let=[];
       foreach( explode('()',$pal) as $cad ){ 
@@ -182,7 +182,7 @@ class api_obj {
   static function val_lis( array | object $obj, array | object $dat ) : array | object {
     // iteraciones
     foreach( $obj as &$val ){
-      $val = api_obj::val_ite($val,$dat);
+      $val = Obj::val_ite($val,$dat);
     }
     return $obj;
   }// y convierto valor en caso de tener alguno
@@ -190,11 +190,11 @@ class api_obj {
 
     if( is_array($val) || is_object($val) ){
       foreach( $val as $var_ide => $val_atr ){
-        $val[$var_ide] = api_obj::val_ite($val_atr,$dat);
+        $val[$var_ide] = Obj::val_ite($val_atr,$dat);
       }
     }
     elseif( is_string($val) ){ // && preg_match("/\(\)\(\$\).+\(\)/",$val)      
-      $val = api_obj::val($dat,$val);
+      $val = Obj::val($dat,$val);
     }
 
     return $val;
@@ -215,7 +215,7 @@ class api_obj {
     if( is_string($dat) ){  
       // busco : ()($)atributo-valor()
       if( !empty($ope) && preg_match("/\(\)\(\$\).+\(\)/",$dat) ){
-        $dat = api_obj::val($ope,$dat);
+        $dat = Obj::val($ope,$dat);
       }
       // json : { "atr": val, ... } || [ val, val, ... ]
       if( preg_match("/^({|\[).*(}|\])$/",$dat) ){ 
@@ -243,12 +243,12 @@ class api_obj {
       // esquema.estructura : tabla de la base
       elseif( preg_match("/[A-Za-z0-9_]+\.[A-Za-z0-9_]+$/",$dat) ){
   
-        $_ = api_dat::get($dat,$ope);
+        $_ = Dat::get($dat,$ope);
         
       }
     }// convierto : {} => []
     elseif( in_array('nom',$opc) && is_object($dat) && get_class($dat)=='stdClass' ){    
-      $_ = api_obj::val_nom($dat);
+      $_ = Obj::val_nom($dat);
     }
     return $_;
   }// busco dato por propiedad
@@ -277,7 +277,7 @@ class api_obj {
         // valor del original
         $val_ite = $val_obj ? $_->$atr : $_[$atr];
         // combino objetos o reemplazo
-        $val = ( api_obj::val_tip($val) && api_obj::val_tip($val_ite) ) ? api_obj::val_jun($val_ite,$val,...$opc) : $val;
+        $val = ( Obj::val_tip($val) && Obj::val_tip($val_ite) ) ? Obj::val_jun($val_ite,$val,...$opc) : $val;
       }
       // agrego / actualizo atributo
       if( $val_obj ){ $_->$atr = $val; }else{ $_[$atr] = $val; }
@@ -288,7 +288,7 @@ class api_obj {
     
     $_ = FALSE;
 
-    if( api_lis::val($dat) ){
+    if( Lis::val($dat) ){
 
       $_ = 'pos';
     }
@@ -316,7 +316,7 @@ class api_obj {
       switch( $tip ){
       case 'ver':
         $_ = [];
-        if( empty($ope = api_lis::val_ite($ope)) ){
+        if( empty($ope = Lis::val_ite($ope)) ){
 
           foreach( $dat as $atr => $val ){ $_[$atr] = $val; }
         }
@@ -337,7 +337,7 @@ class api_obj {
 
     if( !isset($tip) ){
       // listado de objetos
-      if( api_lis::val($dat) ){
+      if( Lis::val($dat) ){
         
         $_ = array_map( function($i){ return clone $i; }, $dat );
       }
@@ -357,7 +357,7 @@ class api_obj {
       switch( $tip ){
       case 'ver':
         $_ = new stdClass();
-        if( empty($ope = api_lis::val_ite($ope)) ){
+        if( empty($ope = Lis::val_ite($ope)) ){
 
           foreach( $dat as $atr => $val ){ $_->$atr = $val; }
         }

@@ -1,0 +1,43 @@
+/* //////////////////////////////////////////////////////////////////////// */
+/* //////////////////////////////////////////////////////////////////////// */
+/*  
+  Inicio
+*/
+main section.inicio {
+  height: 78vh;
+  background: center/contain no-repeat url(../../img/sincronario/_fondo/sis.png);
+  display: grid;
+  grid: repeat( 10, 1fr) / repeat( 10, 1fr);
+  padding: 1rem;
+}
+
+main section.inicio > .-adv {
+  margin: initial;  
+  grid-column: 4/sp;
+  grid-row: 1/2;
+}
+
+/* //////////////////////////////////////////////////////////////////////// */
+/* //////////////////////////////////////////////////////////////////////// */
+/*  
+  Módulos
+*/
+
+/* Cuentas */
+body > aside > .ide-val > .ide-cue > ul {
+  height: 40vh;
+}
+
+/* Tableros */
+body:is([data-cab="kin"],[data-cab="psi"]) > main article {
+  max-width: -moz-fit-content;
+  max-width: fit-content;
+  padding: 0;
+  border: initial;
+  margin: auto;
+  line-height: initial;  
+}
+
+body:is([data-cab="kin"],[data-cab="psi"]) > main article > .tab {
+  margin: .5rem;
+}

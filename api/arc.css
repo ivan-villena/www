@@ -2,7 +2,7 @@
 /* 
   Enlaces
 */
-a:not(.fig_ico,.tex) {
+a:not( .fig_ico, .tex ) {
   text-decoration: underline;
   font-style: italic; 
   color: var(--let_ide);
