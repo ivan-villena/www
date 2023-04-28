@@ -79,7 +79,8 @@ class Eje {
       $dir = 'php';
       $ide = $_ide[0];
     }
-    if( is_string($ide) && file_exists($rec = "{$dir}/".substr($ide,1).".php") ){ 
+
+    if( is_string($ide) && file_exists($rec = "../{$dir}/".$ide.".php") ){ 
 
       $val = explode('/',$ide);
 
@@ -119,7 +120,7 @@ class Eje {
       $cla = $_ide[0];
       $met = $_ide[1];
       
-      if( class_exists($cla) ){       
+      if( class_exists($cla) ){
 
         if( in_array($met,get_class_methods($cla)) ){
 
@@ -141,11 +142,22 @@ class Eje {
       }
     }// por objeto
     else{
+
       $_ide = explode('.',$ide);
       $cla = $_ide[0];
       $met = $_ide[1];
-      // instancio
-      $obj = Eje::cla( $cla, ...$ini );
+
+      // objeto existente
+      if( preg_match("/\$/",$ide) ){
+        $cla_nom = substr($cla,1);
+        if( isset($GLOBALS[ $cla_nom ]) ){
+          $obj = $GLOBALS[ $cla_nom ];
+        }              
+      }// instancio
+      else{
+        $obj = Eje::cla( $cla, ...$ini );
+      }
+      
       // ejecuto      
       if( is_object($obj) ){
 
@@ -169,6 +181,5 @@ class Eje {
     }
     return $_;
   }
-
   
 }

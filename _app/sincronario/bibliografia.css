@@ -1,0 +1,15 @@
+/* //////////////////////////////////////////////////////////////////////// */
+/* //////////////////////////////////////////////////////////////////////// */
+
+body > main article div.est.lis > table {
+  width: initial;
+}
+
+/*
+  Glosarios 
+*/
+body[data-art="ide"] > main article li.pos > .doc_val > p {
+  color: var(--let_ide);
+}
+
+

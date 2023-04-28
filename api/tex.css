@@ -105,11 +105,13 @@ main article section > p {
   margin-bottom: .5rem;
   line-height: 1.5;
 }
-main article > ul.lis,
-main article section > ul.lis {
+
+main article > ul.lis:not(.dep),
+main article section > ul.lis:not(.dep) {
   margin: .5rem auto;
   max-width: fit-content;
 }
+
 main article > figure,
 main article section > figure {
   margin: 1rem auto;

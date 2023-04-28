@@ -74,7 +74,7 @@ class Fig {
         $.ima = $dat.split('.');
         $dat = $.ima[0];
         $.tip = !!$.ima[1] ? $.ima[1] : 'png';
-        $.dir = `img/${$dat}`;
+        $.dir = `_img/${$dat}`;
         Ele.css( $ele, Ele.css_fon($.dir,{'tip':$.tip}) );
       }
       // etiqueta

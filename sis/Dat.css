@@ -1,0 +1,330 @@
+/* 
+campos
+*/
+form {
+  max-height: 100%;
+}
+fieldset {
+  border-radius: .5rem;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+legend {
+  display: flex;  
+  flex-flow: row nowrap;
+  align-items: center;
+  overflow: hidden;
+  padding: .3rem 1rem;
+  border-radius: .8rem;
+  border: 1px solid var(--bor_sec);
+  font-size: medium;
+  text-align: left;
+}
+
+/* 
+  Operadores
+*/
+fieldset.app_inf {
+  margin: .25rem .5rem .75rem;
+}
+:is(form,fieldset) > :is(.doc_ren,.doc_ite) {
+  justify-content: space-evenly;  
+}
+:is(form,fieldset) > div:is(.doc_ren,.doc_ite) {
+  margin: .25rem;
+}
+
+/* 
+variable > label + input
+*/
+form .dat_var {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  margin: .25rem;
+}
+
+/* 
+  Etiquetas
+*/
+label[for] {
+  min-width: -moz-fit-content;
+  min-width: fit-content;
+  margin: 0 .25rem;
+  cursor: pointer;
+}
+
+/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* 
+  Control 
+*/
+input, 
+textarea,
+select,
+datalist,
+button {
+  background-color: var(--fon_art);
+  padding: .2rem;
+  border: 1px solid var(--col_azu);
+  border-radius: .5rem;
+  font-family: var(--tex);
+  color: var(--let_tex);
+}
+
+/* Focos */
+:is(input,select,button:not(.fig_ico)):focus {
+  background-color: var(--tra_azu);
+}
+:is(input,select,textarea):focus {
+  outline: none;
+}
+
+/* Acciones */
+
+/* Tamaños */
+input:is([type="text"]) {
+  width: 100%;
+  max-width: 70vw;
+}
+input[maxlength='1'] { width: 2.5rem; }
+input[maxlength='2'] { width: 3rem; }
+input[maxlength='3'] { width: 3.5rem; }
+input[maxlength='4'] { width: 4rem; }
+input[maxlength='5'] { width: 4.5rem; }
+input[maxlength='6'] { width: 5rem; }
+input[maxlength='7'] { width: 5.5rem; }
+input[maxlength='8'] { width: 6rem; }
+input[maxlength='9'] { width: 6.5rem; }
+input[maxlength='10']{ width: 7rem; }
+input[maxlength='11']{ width: 7.5rem; }
+input[maxlength='12']{ width: 8rem; }
+input[maxlength='13']{ width: 8.5rem; }
+input[maxlength='14']{ width: 9rem; }
+input[maxlength='15']{ width: 9.5rem; }
+input[maxlength='16']{ width: 10rem; }
+input[maxlength='17']{ width: 10.5rem; }
+input[maxlength='18']{ width: 11rem; }
+input[maxlength='19']{ width: 11.5rem; }
+input[maxlength='20']{ width: 12rem; }
+input[maxlength='25']{ width: 15rem; }
+
+/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* 
+  ABM de la base
+*/
+form.dat {
+  width: 100%;
+  max-width: 500px;
+  background-color: var(--fon_nav);
+  border-radius: 10%;
+  padding: 0 .5rem;   
+  margin: auto;
+}
+
+form.dat :is(fieldset,div).dat_var {
+  flex-grow: 2;
+  flex-direction: column;
+  align-items: start;
+  margin: .5rem;
+}
+
+form.dat :is(fieldset,div).dat_var label[for] {
+  color: var(--let_ide);
+  padding: .5rem;
+  margin: 0;
+}
+
+form.dat :is(fieldset,div).dat_var select,
+form.dat :is(fieldset,div).dat_var textarea,
+form.dat :is(fieldset,div).dat_var input:not([type='checkbox']):not([type='radio']) {
+  width: 100%;
+  border: 0;
+  border-radius: 0;
+  border-bottom: 1px solid;
+}
+
+/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+
+/* 
+  Estructura
+*/
+div.dat.lis {
+  width: 100%;
+  overflow: auto;
+  padding: 0 .5rem;
+  margin: 1rem auto;
+}
+/* por revalsamiento en articulos */
+main article div.dat.lis {
+  max-width: 90vw;
+}
+
+div.dat.lis > table {
+  /* width: max-content; */
+  margin: 0 auto;
+  line-height: 1.25;
+  text-align: center;  
+}
+
+/* Cabecera */
+div.dat.lis > table > thead {
+  position: sticky;
+  top: 0;
+  background-color: var(--fon_win);
+}
+div.dat.lis > table > thead > tr > th > p.ide {
+  padding: .5rem;
+  max-width: min-content;
+}
+div.dat.lis > table > thead > tr:not(.gru) > th,
+div.dat.lis > table > tbody > tr:not([data-ope],[data-opc]) > td {
+  border-right: 1px dotted var(--bor_sec);
+}
+
+/* titulo + detalle */
+div.dat.lis > table > tbody > tr:is([data-opc="tit"],[data-opc="det"]) {
+  text-align: left;
+  line-height: 1.5;
+}
+div.dat.lis > table > tbody > tr[data-opc="tit"] > td {
+  padding: 0 .5rem;
+}
+div.dat.lis > table > tbody > tr[data-ope="lec"][data-opc="det"] > td {
+  padding-top: .25rem;
+}
+
+/* datos */
+div.dat.lis > table > tbody > tr > td > :is(n,time,p) {
+  font-size: .9rem;  
+}
+div.dat.lis > table > tbody > tr > td > p {
+  text-align: left;
+}
+div.dat.lis > table > tbody > tr > td > :is(n,time) {
+  font-size: .9rem;
+  text-align: right;
+}
+
+/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* 
+  Tablero
+*/
+ul.dat.tab {
+  list-style: none;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 0;
+  margin: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+table.dat.tab {
+  border-collapse: collapse;
+  padding: 0;
+}
+
+:is(ul,table).dat.tab {
+  min-width: max-content;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;  
+  text-align: center;
+  font-size: .7rem;
+  transition: background 1s, border 1s;  
+}
+:is(ul,table).dat.tab.bor-1 {
+  border-color: var(--bor_sec);
+  box-shadow: 0 0 .5rem var(--bor_sec);
+}
+
+/* posiciones y secciones */
+.dat.tab > :is(.sec,.pos) {
+  width: 100%;
+  height: 100%;
+}
+:is(ul,table).dat.tab .pos,
+:is(ul,table).dat.tab .sec {  
+  justify-self: center;
+  align-self: center;
+  margin: 0;
+  transition: background 1s, border 1s;
+}
+:is(ul,table).dat.tab .pos[class*="fon_col-"] {
+  box-shadow: 0 0 .5rem black;
+}
+
+/* secciones */
+
+/* fondos: imagen + color */
+.dat.tab > .sec.fon { 
+  z-index: 0;
+  grid-column: 1/sp; 
+  grid-row: 1/sp;  
+}
+/* bordes y lineas*/
+.dat.tab > .sec.bor {
+  z-index: 1;
+  border-width: 2px;
+  border-style: double;
+  border-color: var(--col_ver);
+  border-radius: 10%;
+  box-shadow: 0 0 .5rem var(--let_ico);
+}
+/* fichas e imagenes */
+.dat.tab > .sec.ima {
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;  
+}
+
+/* posiciones */
+ul.dat.tab > li.pos {
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  align-content: center; 
+  justify-content: center;
+}
+
+/* Bordes */
+:is(ul,table).dat.tab .pos.bor-1 {
+  border-color: #008000;
+  box-shadow: 0 0 .3rem var(--let_ico);
+}
+/* - Operador */
+:is(ul,table).dat.tab .pos:is(._val-pos-bor,._val-ver-bor,._val-mar-bor) {
+  border: 1px double #991d99;
+}
+
+/* Efectos */
+:is(ul,table).dat.tab .pos.ope[onclick]:hover {
+  background-color: var(--tra_ros);
+  box-shadow: 0 0 .35rem var(--tra_vio);
+  color: black;
+}
+
+/* Fichas de Imágenes */
+:is(ul,table).dat.tab :is(.sec,.pos) > .fig_ima {
+  min-width: 100%;
+  height: 100%;
+}
+:is(ul,table).dat.tab td:is(.sec,.pos) > .fig_ima {
+  min-height: 100%;
+}
+
+/* Textos */
+:is(ul,table).dat.tab :is(.sec,.pos) > p {
+  text-align: center;
+}

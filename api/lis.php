@@ -239,7 +239,7 @@ class Lis {
     }
     // - filtrar items
     if( $tod || in_array('ver',$opc) ){ 
-      $_ .= Doc::var('val','ver',[ 
+      $_ .= Dat::var('val','ver',[ 
         'des'=> "Filtrar...",
         'ite'=> [ 'class'=>'tam-cre' ],
         'htm'=> Lis::ope_ver([ 'cue'=>in_array('cue',$opc) ? 0 : NULL, 'eje'=>"{$_eje}_ver(this);" ])
@@ -292,7 +292,7 @@ class Lis {
     $_eje = self::$EJE."val";      
 
     if( !isset($ele['ope']) ) $ele['ope'] = [];
-    Ele::cla($ele['ope'], "doc_ope", 'ini');
+    Ele::cla($ele['ope'], "doc_bot", 'ini');
 
     $_eje_val = isset($ele['eje']) ? $ele['eje'] : "$_eje(this,";
     return "
@@ -337,7 +337,7 @@ class Lis {
         $_ .= "
         <div class='Opc mul'>";
         $ope_dat = Lis::val_ite($dat);
-        $ope_ide = isset($ope['id']) ? $ope['id'] : "_opc_mul-".Doc::var_ide('opc_mul');
+        $ope_ide = isset($ope['id']) ? $ope['id'] : "_opc_mul-".Dat::var_ide('opc_mul');
         $ope_nom = isset($ope['name']) ? $ope['name'] : FALSE;
         foreach( $_dat as $ide => $dat ){
           $ide = isset($dat->ide) ? $dat->ide : $ide;
@@ -535,7 +535,7 @@ class Lis {
     $max = $pos;
     $_eje .= "_ite";
     $_ .= "
-    <form class='doc_ope anc-100 jus-cen mar_ver-2'>
+    <form class='doc_bot anc-100 jus-cen mar_ver-2'>
 
       ".Num::var('val',$min,['name'=>"ini", 'title'=>"Ir al primero...", 'class'=>"mar_hor-1", 'onclick'=>"$_eje('val',this);" ])."
               

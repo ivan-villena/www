@@ -89,9 +89,9 @@ class Tex {
 
     $tex = $val.split(' ');
 
-    if( $tex[0] && $tex[0][0] ){
+    if( $tex[0] ){
 
-      $tex[0][0] = $tex[0][0].toUpperCase();
+      $tex[0] = $tex[0][0].toUpperCase() + $tex[0].substring(1)
     }      
 
     return $tex.join(' ');

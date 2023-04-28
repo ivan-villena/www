@@ -389,7 +389,7 @@ class Ele {
   // controladores
   static var( $tip, $dat, $ope, ...$opc ){
 
-    let $_ = ""; $={};
+    let $_ = "", $ = {};
 
     switch( $tip ){
     // elemento por etiqueta      
@@ -470,9 +470,11 @@ class Ele {
 
     $.ver = $dat.nextElementSibling.innerText.replaceAll('\n','');
     
-    // resultado
-    $.res = $dat.parentElement.parentElement.previousElementSibling.querySelector('div.ele');
+    // resultado: div.ele
+    $.res = $dat.parentElement.parentElement.parentElement.previousElementSibling;
+
     dom.eli($.res);
+
     $.res.innerHTML = Ele.var('eti',document.querySelector($.ver));
 
   }// listado de nodos
@@ -484,7 +486,7 @@ class Ele {
     $dat.forEach( $e => {
       $.ite = document.createElement('li');
       $.ite.classList.add('mar_ver-2');
-      $.ite.innerHTML = `${doc.ico('dat_ver',{'class':"tam-1 mar_der-1",'onclick':"ele.var_act(this);"})}`;
+      $.ite.innerHTML = `${Fig.ico('dat_ver',{'class':"tam-1 mar_der-1",'onclick':"Ele.var_act(this);"})}`;
       $.tex = document.createElement('p');
       $.tex.innerHTML = Ele.var('her',$e);
       $.ite.appendChild($.tex);

@@ -56,7 +56,7 @@
 */
 .dat.tab.hol_hep { 
   grid: repeat(4,1fr) / repeat(4,1fr);
-  background: center/contain no-repeat url('../../img/hol/fic/rad.png');
+  background: center/contain no-repeat url('../../_img/hol/fic/rad.png');
 }
 .dat.tab.hol_hep > .pos {
   position: relative;
@@ -920,11 +920,11 @@ ul.dat.tab.hol_lun {
   grid: repeat(9,1fr) / repeat(9,1fr);
 }
 
-.dat.tab.uni.sol-enc > .sec.fon.map { background: center/contain no-repeat url('../../img/hol/tab/sol/map.png'); }
-.dat.tab.uni.sol-enc > .sec.fon.ato { background: center/contain no-repeat url('../../img/hol/tab/sol/ato.png'); }
-.dat.tab.uni.sol-enc > .sec.fon.res { background: center/contain no-repeat url('../../img/hol/tab/sol/res.png'); }
-.dat.tab.uni.sol-enc > .sec.fon.cel { background: center/contain no-repeat url('../../img/hol/tab/sol/cel.png'); }
-.dat.tab.uni.sol-enc > .sec.fon.cir { background: center/contain no-repeat url('../../img/hol/tab/sol/cir.png'); }
+.dat.tab.uni.sol-enc > .sec.fon.map { background: center/contain no-repeat url('../../_img/hol/tab/sol/map.png'); }
+.dat.tab.uni.sol-enc > .sec.fon.ato { background: center/contain no-repeat url('../../_img/hol/tab/sol/ato.png'); }
+.dat.tab.uni.sol-enc > .sec.fon.res { background: center/contain no-repeat url('../../_img/hol/tab/sol/res.png'); }
+.dat.tab.uni.sol-enc > .sec.fon.cel { background: center/contain no-repeat url('../../_img/hol/tab/sol/cel.png'); }
+.dat.tab.uni.sol-enc > .sec.fon.cir { background: center/contain no-repeat url('../../_img/hol/tab/sol/cir.png'); }
 
 .dat.tab.uni.sol-enc > .sec[class*="pla"] { 
   position: relative; width: 110%; height: 100%;
@@ -969,10 +969,10 @@ ul.dat.tab.hol_lun {
 .dat.tab.uni.pla > .sec.fon { 
   grid-column:2/sp;
 }
-.dat.tab.uni.pla > .sec.fon.map { background: center/cover no-repeat url('../../img/hol/tab/pla/map.png'); }
-.dat.tab.uni.pla > .sec.fon.sel { background: center/cover no-repeat url('../../img/hol/tab/pla/sel.png'); }
-.dat.tab.uni.pla > .sec.fon.res { background: center/contain no-repeat url('../../img/hol/tab/pla/res.png'); }
-.dat.tab.uni.pla > .sec.fon.flu { background: center/contain no-repeat url('../../img/hol/tab/pla/flu.png'); }
+.dat.tab.uni.pla > .sec.fon.map { background: center/cover no-repeat url('../../_img/hol/tab/pla/map.png'); }
+.dat.tab.uni.pla > .sec.fon.sel { background: center/cover no-repeat url('../../_img/hol/tab/pla/sel.png'); }
+.dat.tab.uni.pla > .sec.fon.res { background: center/contain no-repeat url('../../_img/hol/tab/pla/res.png'); }
+.dat.tab.uni.pla > .sec.fon.flu { background: center/contain no-repeat url('../../_img/hol/tab/pla/flu.png'); }
 
 /* Bordes */
 .dat.tab.uni.pla > .sec.bor {
@@ -1046,10 +1046,10 @@ ul.dat.tab.hol_lun {
   height: 70%;
 }
 
-.dat.tab.uni.hum > .sec.fon.map { background: center/contain no-repeat url('../../img/hol/tab/hum/map.png'); }
-.dat.tab.uni.hum > .sec.fon.res { background: center/contain no-repeat url('../../img/hol/tab/hum/res.png'); }
-.dat.tab.uni.hum > .sec.fon.cen { background: center/contain no-repeat url('../../img/hol/tab/hum/cen.png'); }
-.dat.tab.uni.hum > .sec.fon.ded { background: center/contain no-repeat url('../../img/hol/tab/hum/ded.png'); }
+.dat.tab.uni.hum > .sec.fon.map { background: center/contain no-repeat url('../../_img/hol/tab/hum/map.png'); }
+.dat.tab.uni.hum > .sec.fon.res { background: center/contain no-repeat url('../../_img/hol/tab/hum/res.png'); }
+.dat.tab.uni.hum > .sec.fon.cen { background: center/contain no-repeat url('../../_img/hol/tab/hum/cen.png'); }
+.dat.tab.uni.hum > .sec.fon.ded { background: center/contain no-repeat url('../../_img/hol/tab/hum/ded.png'); }
 
 /* 2 Lados */
 .dat.tab.uni.hum > .sec.bor[class*="res-"] {

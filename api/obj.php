@@ -131,7 +131,7 @@ class Obj {
             <c>(</c> <n class='sep'>{$cue}</n> <c>)</c> <c class='sep'>=></c> <c class='_lis-ini'>{$ini}</c>
           </p>
           ".Fig::ico('dat_ver',['onclick'=>"$_eje.val(this,'tog');"])."
-          <ul class='doc_ope _tog{$cla_agr}'>"; 
+          <ul class='doc_bot _tog{$cla_agr}'>"; 
             if( empty($atr_agr) ){ $_.="
             ".Fig::ico('dat_tod',['eti'=>"li",'onclick'=>"$_eje.val(this,'tod');"])."
             ".Fig::ico('dat_nad',['eti'=>"li",'onclick'=>"$_eje.val(this,'nad');"])."

@@ -33,8 +33,6 @@
     define('FON_SEL', "fon-sel");
   //
   // Modulos
-    require_once("./_/sql.php");
-    require_once("./api/Dat.php");
     require_once("./api/Arc.php");
     require_once("./api/Eje.php");
     require_once("./api/Ele.php");
@@ -44,11 +42,15 @@
     require_once("./api/Tex.php");
     require_once("./api/Fig.php");
     require_once("./api/Fec.php");
-    require_once("./api/Hol.php");
-    require_once("./api/Doc.php");
-    require_once("./api/Usu.php");
-    require_once("./api/App.php");
+    require_once("./api/Hol.php");    
 
+    require_once("./sis/sql.php");
+    require_once("./sis/Dat.php");
+    require_once("./sis/Doc.php");
+    require_once("./sis/App.php");
+    require_once("./sis/Usu.php");    
+
+    $App = new App();
     $Usu = new Usu( $_SESSION['usu'] );
   //
 
@@ -57,27 +59,6 @@
 
   // peticion AJAX
   if( isset($_REQUEST['_']) ){
-    
-    // ejecucion
-    function sis_log() : string {
-      
-      $_ = "<h2>hola desde php<c>!</c></h2>";
-
-    
-      /* Recorrer tablas de un esquema:
-
-      foreach( api_sql::est(DAT_ESQ,'lis','hol_','tab') as $est ){
-        $_ .= "ALTER TABLE `api`.`$est` DROP PRIMARY KEY;<br>";
-      } 
-      */
-      
-      /*  Invocando funciones
-        include("./_/hol/sel.php");
-        $_ = hol_sel_par_gui();
-      */
-      
-      return $_;
-    }
 
     // ver cabeceras para api's: tema no-cors
     echo Obj::val_cod( !Obj::val_tip( $eje = Eje::val($_REQUEST['_']) ) ? [ '_' => $eje ] : $eje );
@@ -88,19 +69,19 @@
   ////////////////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////////
 
-  // inicializo página
-  $App = new App();
-
-  $Uri = $App->rec_uri( isset($_REQUEST['uri']) ? $_REQUEST['uri'] : "sincronario" );
+  // cargo rutas
+  $Uri = $App->uri( isset($_REQUEST['uri']) ? $_REQUEST['uri'] : "sincronario" );
   
-  if( file_exists($rec = "./app/{$Uri->esq}/index.php") ){ 
+  if( file_exists($rec = "./_app/{$Uri->esq}/index.php") ){ 
+
+    // inicializo página
+    $App->doc_ini();
     
-    // cargo contenido por aplicacion
+    // cargo secciones por aplicacion
     require_once( $rec );
     
-    // inicializo contenido de página + aplicación
+    // cargo contenido de página + aplicación
     $App->doc( $Usu, $Uri );
-    
   }
   else{
     ?>
@@ -116,7 +97,7 @@
 
       <body>
 
-        <p>Página no encontrada...</p>
+        <?=Doc::tex([ 'tip'=>"err", 'tex'=>"No existe la Página solicitada..." ])?>
         
       </body>
     </html>

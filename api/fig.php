@@ -86,12 +86,12 @@ class Fig {
       if( is_array($dat) ){
         $ele = Ele::val_jun( $dat, $ele );          
       }
-      // por directorio : localhost/img/esquema/image
+      // por directorio : localhost/_img/esquema/image
       elseif( is_string($dat)){
         $ima = explode('.',$dat);
         $dat = $ima[0];
         $tip = isset($ima[1]) ? $ima[1] : 'png';
-        $dir = SYS_NAV."img/{$dat}";
+        $dir = SYS_NAV."_img/{$dat}";
         Ele::css( $ele, Ele::css_fon($dir,['tip'=>$tip]) );
       }
       // etiqueta

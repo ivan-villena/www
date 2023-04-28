@@ -901,7 +901,7 @@ class Hol {
       switch( $atr ){
       // onda encantada
       case 'ond':
-        Ele::cla($ele['sec'],"est tab hol ton ond hol_ton",'ini');
+        Ele::cla($ele['sec'],"dat tab hol ton ond hol_ton",'ini');
         $_ .= "
         <ul".Ele::atr($ele['sec']).">
           ".Hol::tab_sec('ton',$ope,$ele)
@@ -1019,7 +1019,7 @@ class Hol {
       case 'arm_cel':
         $_arm = Hol::_('sel_arm_cel',$ide);        
         $ele['cel']['title'] = Dat::get_val('tit',"hol.{$est}",$_arm); 
-        Ele::cla($ele['cel'],"est tab hol sel {$atr} hol_arm",'ini');
+        Ele::cla($ele['cel'],"dat tab hol sel {$atr} hol_arm",'ini');
         $_ = "
         <ul".Ele::atr($ele['cel']).">
           ".Hol::ima("sel_arm_cel", $_arm, ['eti'=>"li", 'class'=>"pos ide-0", 'htm'=>$_arm->ide ] );
@@ -1171,7 +1171,7 @@ class Hol {
         $_cas = Hol::_($est,$ide);
         // clases del castillo
         if( !isset($ele['cas']) ) $ele['cas'] = [];
-        Ele::cla($ele['cas'],"est tab kin {$atr} hol_cas fon_col-5-{$ide}".( empty($ope['sec']['cas-col']) ? ' fon-0' : '' ),'ini');
+        Ele::cla($ele['cas'],"dat tab kin {$atr} hol_cas fon_col-5-{$ide}".( empty($ope['sec']['cas-col']) ? ' fon-0' : '' ),'ini');
         // titulos
         $ele['cas']['title'] = Dat::get_val('tit',"hol.{$est}",$_cas);        
         $ini = ( ( $ide - 1 ) * 4 ) + 1;
@@ -1198,7 +1198,7 @@ class Hol {
         $_ond = Hol::_($est,$ide);
         // clases
         if( !isset($ele['ond']) ) $ele['ond'] = [];
-        Ele::cla($ele['ond'],"est tab kin {$atr} hol_ton",'ini');
+        Ele::cla($ele['ond'],"dat tab kin {$atr} hol_ton",'ini');
         // titulo        
         $ele['ond']['title'] = Dat::get_val('tit',"hol.kin_nav_cas",$_ond->nav_cas)." .\n{$_ond->enc_des}"; 
         $_ = "
@@ -1234,7 +1234,7 @@ class Hol {
         $cel_fin = $cel_ini + 5;
 
         if( !isset($ele['tra']) ) $ele['tra']=[];
-        Ele::cla($ele['tra'],"est tab kin {$atr} hol_cro",'ini');
+        Ele::cla($ele['tra'],"dat tab kin {$atr} hol_cro",'ini');
         $_ = "
         <ul".Ele::atr($ele['tra']).">";
           for( $cel = $cel_ini; $cel < $cel_fin; $cel++ ){
@@ -1250,7 +1250,7 @@ class Hol {
         $_arm = Hol::_($est,$ide);
 
         if( !isset($ele['cel']) ) $ele['cel']=[];
-        Ele::cla($ele['cel'],"est tab kin {$atr} hol_arm fon_col-5-$_arm->cel fon-0");
+        Ele::cla($ele['cel'],"dat tab kin {$atr} hol_arm fon_col-5-$_arm->cel fon-0");
         $_ = "
         <ul".Ele::atr($ele['cel']).">
           <li class='pos ide-0 col-bla'>
@@ -1290,7 +1290,7 @@ class Hol {
         $cas = explode(' - ',$_est->cas)[0];
         
         if( !isset($ele['est']) ) $ele['est']=[];
-        Ele::cla($ele['est'],"est tab kin {$atr} hol_ton",'ini');
+        Ele::cla($ele['est'],"dat tab kin {$atr} hol_ton",'ini');
         $_ = "
         <ul".Ele::atr($ele['est']).">
           ".Hol::tab_sec('ton',$ope,$ele);
@@ -1318,7 +1318,7 @@ class Hol {
         if( in_array('fic_cas',$opc) || in_array('fic_ond',$opc) ){ Ele::css($ele['ele'],
           "transform: rotate(".(in_array('fic_cas',$opc) ? $ele_rot['cas'][$ide-1] : $ele_rot['ton'][$ide-1])."deg)");
         }
-        Ele::cla($ele['ele'],"est tab kin {$atr} hol_cro-cir",'ini');
+        Ele::cla($ele['ele'],"dat tab kin {$atr} hol_cro-cir",'ini');
         $_ .= "
         <ul".Ele::atr($ele['ele']).">
           <li class='pos ide-0'>
@@ -1398,7 +1398,7 @@ class Hol {
         $cab_nom = in_array('cab_nom',$opc);
         
         foreach( ['lun','cab'] as $v ){ if( !isset($ele[$v]) ){ $ele[$v]=[]; } }
-        Ele::cla($ele['lun'],"est tab psi {$atr} hol_lun",'ini'); $_ = "
+        Ele::cla($ele['lun'],"dat tab psi {$atr} hol_lun",'ini'); $_ = "
         <table".Ele::atr($ele['lun']).">";
           if( !$cab_ocu ){ $_ .= "
             <thead>";
@@ -1532,7 +1532,7 @@ class Hol {
         $psi = ( ( intval($_hep->ide) - 1 ) * 7 ) + 1;
         
         if( !isset($ele['hep']) ) $ele['hep']=[];
-        Ele::cla($ele['hep'],"est tab psi {$atr} hol_hep",'ini');
+        Ele::cla($ele['hep'],"dat tab psi {$atr} hol_hep",'ini');
         $_ = "
         <ul".Ele::atr($ele['hep']).">";
           foreach( Hol::_('rad') as $_rad ){

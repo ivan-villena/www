@@ -51,7 +51,7 @@ img {
   font-family: 'Material Icons Outlined';
   font-style: normal;
   font-weight: 400;
-  src: url("../img/app/ico.woff2") format('woff2');
+  src: url("../_img/app/ico.woff2") format('woff2');
 }
 
 /* estilo principal */

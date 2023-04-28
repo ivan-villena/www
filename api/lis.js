@@ -211,7 +211,7 @@ class Lis {
   }// - Desplazamiento
   static bar_ite( $tip, $dat ){
     
-    let $ = Doc.var($dat);
+    let $ = Dat.var($dat);
 
     if( $tip == 'val' ){
 
@@ -243,7 +243,7 @@ class Lis {
   static pos(){
   }// - posicion
   static pos_val( $dat, $ope ){
-    let $ = Doc.var($dat);
+    let $ = Dat.var($dat);
     
     if( !$ope ){
       // toggles
@@ -264,7 +264,7 @@ class Lis {
   }// - Toggles
   static pos_tog( $dat, $ope ){
 
-    let $ = Doc.var($dat);
+    let $ = Dat.var($dat);
 
     if( !$dat || !$ope ){
       Ele.act('cla_tog',$.lis.children,DIS_OCU); 
@@ -289,7 +289,7 @@ class Lis {
   }// - Filtro
   static pos_ver( $dat, $ope ){
 
-    let $ = Doc.var($dat);
+    let $ = Dat.var($dat);
     
     // filtro por valor textual        
     if( !$ope ){
@@ -348,7 +348,7 @@ class Lis {
     return Doc.val($dat,$val);
   }// - Filtros
   static dep_ver( $dat, $ope = 'p:first-of-type', $cla = 'tex-luz' ){
-    let $ = Doc.var($dat);
+    let $ = Dat.var($dat);
 
     // busco listado
     if( $App.dom.dat.var ){
