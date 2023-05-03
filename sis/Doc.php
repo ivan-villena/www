@@ -181,6 +181,8 @@ class Doc {
     return $_;
   }
 
+  
+
   /* Navegador : nav + * > ...[nav="ide"] */
   static function nav( string $tip, array $dat, array $ele = [], ...$opc ) : string {
     $_ = "";
@@ -290,7 +292,9 @@ class Doc {
   
   /* Carteles : advertencia + confirmacion */
   static function tex( array $ope = [], array $ele = [] ) : string {
+
     foreach( ['sec','ico','tex'] as $i ){ if( !isset($ele[$i]) ) $ele[$i] = []; }
+    
     Ele::cla($ele['sec'],"doc_tex".( !empty($ope['tip']) ? " -{$ope['tip']}" : "" ),'ini');
 
     $_ = "

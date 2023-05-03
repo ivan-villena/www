@@ -72,13 +72,13 @@
           "fic": [ "orb", "cel", "cir" ],
           "tab": [ "hol.uni.sol", { "sec": { "pla":"()($)ide()" } }],
 
-          "htm-1": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-03-\'>Sellos Solares</a> en <cite>el Encantamiento del Sueño</cite>" },
+          "htm-1": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/encantamiento_del_sueño#_03-03-\'>Sellos Solares</a> en <cite>el Encantamiento del Sueño</cite>" },
           "fic-1": [ "sel" ],
           
-          "htm-2": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-02-\'>Clanes Cromáticos</a> en <cite>el Encantamiento del Sueño</cite>" },
+          "htm-2": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/encantamiento_del_sueño#_03-02-\'>Clanes Cromáticos</a> en <cite>el Encantamiento del Sueño</cite>" },
           "fic-2": [ "ele" ],
 
-          "htm-3": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-14-\'>Familias Terrestres</a> en <cite>el Encantamiento del Sueño</cite>" },
+          "htm-3": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/encantamiento_del_sueño#_03-14-\'>Familias Terrestres</a> en <cite>el Encantamiento del Sueño</cite>" },
           "fic-3": [ "fam" ]
         }
     }' ),
@@ -103,10 +103,10 @@
 
           "tab": [ "hol.uni.sol", { "sec": { "orb":"()($)ide()" } }],
 
-          "htm-1": { "eti":"p", "class":"tit", "htm":"Las <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-03-\'>Órbitas Planetarias</a> en <cite>el Encantamiento del Sueño</cite>" },
+          "htm-1": { "eti":"p", "class":"tit", "htm":"Las <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/encantamiento_del_sueño#_03-03-\'>Órbitas Planetarias</a> en <cite>el Encantamiento del Sueño</cite>" },
           "fic-1": [ "pla" ],
 
-          "htm-2": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-02-\'>Clanes Cromáticos</a> en <cite>el Encantamiento del Sueño</cite>" },
+          "htm-2": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/encantamiento_del_sueño#_03-02-\'>Clanes Cromáticos</a> en <cite>el Encantamiento del Sueño</cite>" },
           "fic-2": [ "ele" ]
         }
     }' ),
@@ -133,16 +133,16 @@
 
           "tab": [ "hol.uni.sol", { "sec": { "cel":"()($)ide()" } }],
 
-          "htm-1": { "eti":"p", "class":"tit", "htm":"Las <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-03-\'>Órbitas Planetarias</a> en <cite>el Encantamiento del Sueño</cite>" },
+          "htm-1": { "eti":"p", "class":"tit", "htm":"Las <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/encantamiento_del_sueño#_03-03-\'>Órbitas Planetarias</a> en <cite>el Encantamiento del Sueño</cite>" },
           "fic-1": [ "pla" ],
 
-          "htm-2": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_02-03-05-\'>Sellos Solares</a> en <cite>el Encantamiento del Sueño</cite>" },
+          "htm-2": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/encantamiento_del_sueño#_02-03-05-\'>Sellos Solares</a> en <cite>el Encantamiento del Sueño</cite>" },
           "fic-2": [ "sel" ],
 
-          "htm-3": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-02-\'>Clanes Cromáticos</a> en <cite>el Encantamiento del Sueño</cite>" },
+          "htm-3": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/encantamiento_del_sueño#_03-02-\'>Clanes Cromáticos</a> en <cite>el Encantamiento del Sueño</cite>" },
           "fic-3": [ "ele" ],
 
-          "htm-4": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-14-\'>Familias Terrestres</a> en <cite>el Encantamiento del Sueño</cite>" },
+          "htm-4": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/encantamiento_del_sueño#_03-14-\'>Familias Terrestres</a> en <cite>el Encantamiento del Sueño</cite>" },
           "fic-4": [ "fam" ]
         }
     }' ),
@@ -168,13 +168,13 @@
 
           "tab": [ "hol.uni.sol", { "sec": { "cir":"()($)ide()" } }],
 
-          "htm-1": { "eti":"p", "class":"tit", "htm":"Las <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-03-\'>Órbitas Planetarias</a> en <cite>el Encantamiento del Sueño</cite>" },
+          "htm-1": { "eti":"p", "class":"tit", "htm":"Las <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/encantamiento_del_sueño#_03-03-\'>Órbitas Planetarias</a> en <cite>el Encantamiento del Sueño</cite>" },
           "fic-1": [ "pla" ],
 
-          "htm-2": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_02-03-05-\'>Sellos Solares</a> en <cite>el Encantamiento del Sueño</cite>" },
+          "htm-2": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/encantamiento_del_sueño#_02-03-05-\'>Sellos Solares</a> en <cite>el Encantamiento del Sueño</cite>" },
           "fic-2": [ "sel" ],
 
-          "htm-3": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-14-\'>Familias Terrestres</a> en <cite>el Encantamiento del Sueño</cite>" },
+          "htm-3": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/encantamiento_del_sueño#_03-14-\'>Familias Terrestres</a> en <cite>el Encantamiento del Sueño</cite>" },
           "fic-3": [ "fam" ]
         }
     }' ),
@@ -217,7 +217,7 @@
           "tab": [ "hol.uni.pla", { "sec": { "cen":"()($)ide()" } } ],
           "fic": [ "fam" ],
 
-          "htm-1": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_02-03-05-\'>Sellos Solares</a> en <cite>el Encantamiento del Sueño</cite>" },
+          "htm-1": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/encantamiento_del_sueño#_02-03-05-\'>Sellos Solares</a> en <cite>el Encantamiento del Sueño</cite>" },
           "fic-1": [ "sel" ]
         }
     }' ),
@@ -335,7 +335,7 @@
           "tab": [ "hol.uni.hum", { "sec": { "ded":[], "cen":"()($)ide()" } } ],
           "fic": [ "fam" ],
 
-          "htm-1": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_02-03-05-\'>Sellos Solares</a> en <cite>el Encantamiento del Sueño</cite>" },
+          "htm-1": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/encantamiento_del_sueño#_02-03-05-\'>Sellos Solares</a> en <cite>el Encantamiento del Sueño</cite>" },
           "fic-1": [ "sel" ]
         }
     }' ),
@@ -359,7 +359,7 @@
           "tab": [ "hol.uni.hum", { "sec": { "ded":"()($)ide()", "cen":[] } } ],
           "fic": [ "fam" ],
 
-          "htm-1": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_02-03-05-\'>Sellos Solares</a> en <cite>el Encantamiento del Sueño</cite>" },
+          "htm-1": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/encantamiento_del_sueño#_02-03-05-\'>Sellos Solares</a> en <cite>el Encantamiento del Sueño</cite>" },
           "fic-1": [ "sel" ]
         }
     }' ),
@@ -383,7 +383,7 @@
           "tab": [ "hol.uni.hum", { "sec": { "ext":"()($)ide()", "ded":[], "cen":[] } } ],
           "fic": [ "ele" ],
 
-          "htm-1": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_02-03-05-\'>Sellos Solares</a> en <cite>el Encantamiento del Sueño</cite>" },
+          "htm-1": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/encantamiento_del_sueño#_02-03-05-\'>Sellos Solares</a> en <cite>el Encantamiento del Sueño</cite>" },
           "fic-1": [ "sel" ]
         }
     }' ),
@@ -409,10 +409,10 @@
           "tab": [ "hol.uni.hum", { "sec": { "res":[], "cen":[], "art":[], "ded":[] } } ],
           "fic": [ "fam" ],
 
-          "htm-1": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-02-\'>Clanes Cromáticos</a> en <cite>el Encantamiento del Sueño</cite>" },
+          "htm-1": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/encantamiento_del_sueño#_03-02-\'>Clanes Cromáticos</a> en <cite>el Encantamiento del Sueño</cite>" },
           "fic-1": [ "ele" ],
 
-          "htm-2": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_02-03-05-\'>Sellos Solares</a> en <cite>el Encantamiento del Sueño</cite>" },
+          "htm-2": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/encantamiento_del_sueño#_02-03-05-\'>Sellos Solares</a> en <cite>el Encantamiento del Sueño</cite>" },
           "fic-2": [ "sel" ]
         }
     }' ),
@@ -431,7 +431,7 @@
         "inf": { 
           "tab": [ "hol.uni.hum", { "sec": { "art":"()($)ide()", "ded":[] } } ],
 
-          "htm": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/hol/bib/fac#_08-03-01-\'>Tonos Galácticos</a> en<cite>el Factor Maya</cite>" },
+          "htm": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/factor_maya#_08-03-01-\'>Tonos Galácticos</a> en<cite>el Factor Maya</cite>" },
           "fic": [ "ton" ]
         }
     }' ),
@@ -550,28 +550,28 @@
             "pos":{ "ima":"hol.rad.ide", "col":"hol.rad.ide" }
           }],
 
-          "htm-1": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/hol/bib/tel#_02-06-\'>Oráculos y las Profecías</a> en <cite>el Telektonon</cite>" },
+          "htm-1": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/telektonon#_02-06-\'>Oráculos y las Profecías</a> en <cite>el Telektonon</cite>" },
           "tex-1": "()($)tel() ( ()($)tel_año() ): ()($)tel_des().",
           "fic-1-tit": [ "tel_ora_año", "tel_ora_ani", "tel_ora_gen" ],
           
-          "htm-2": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/hol/bib/rin#_02-05-01-\'>Funciones Anuales</a> en <cite>el Proyecto Rinri</cite>" },
+          "htm-2": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/proyecto_rinri#_02-05-01-\'>Funciones Anuales</a> en <cite>el Proyecto Rinri</cite>" },
           "atr-2": "rin_des",
 
-          "htm-3": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/hol/bib/ato#_03-01-\'>Componentes Electrónicos</a> en <cite>el Átomo del Tiempo</cite>" },
+          "htm-3": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/atomo_del_tiempo#_03-01-\'>Componentes Electrónicos</a> en <cite>el Átomo del Tiempo</cite>" },
           "atr-3": "pla_des",
           "fic-3": [ "pla_fue" ],
 
-          "htm-4": { "eti":"p", "class":"tit", "htm":"Las <a target=\'_blank\' href=\'http://localhost/hol/bib/ato#_03-06-\'>Autodeclaraciones Diarias de Padmasambhava</a> en <cite>el Átomo del Tiempo</cite>" },
+          "htm-4": { "eti":"p", "class":"tit", "htm":"Las <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/atomo_del_tiempo#_03-06-\'>Autodeclaraciones Diarias de Padmasambhava</a> en <cite>el Átomo del Tiempo</cite>" },
           "atr-4": "pla_lec",
           "fic-4": [ "pla_qua" ],
 
-          "htm-5": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/hol/bib/ato#_03-06-\'>Chakras y el Cubo del Radión</a> en <cite>el Átomo del Tiempo</cite>" },
+          "htm-5": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/atomo_del_tiempo#_03-06-\'>Chakras y el Cubo del Radión</a> en <cite>el Átomo del Tiempo</cite>" },
           "fic-5": [ "hum_cha", "pla_cub" ],
 
-          "htm-6": { "eti":"p", "class":"tit", "htm":"El <a target=\'_blank\' href=\'http://localhost/hol/bib/umb\'>Mapa Estelar</a> en <cite>el Sincronotrón</cite>" },
+          "htm-6": { "eti":"p", "class":"tit", "htm":"El <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/sincronotron\'>Mapa Estelar</a> en <cite>el Sincronotrón</cite>" },
           "atr-6": [ "umb_map" ], 
 
-          "htm-7": { "eti":"p", "class":"tit", "htm":"Las <a target=\'_blank\' href=\'http://localhost/hol/bib/umb\'>Esferas Mentales</a> en <cite>el Sincronotrón</cite>" },
+          "htm-7": { "eti":"p", "class":"tit", "htm":"Las <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/sincronotron\'>Esferas Mentales</a> en <cite>el Sincronotrón</cite>" },
           "tex-7": "()($)umb_esf(): ()($)umb_est_fun()"
         }
     }' ),
@@ -627,7 +627,7 @@
         },
         "inf": {
 
-          "htm-1": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/hol/bib/ato#_03-01-\'>Componentes Electrónicos</a> en <cite>el Átomo del Tiempo</cite>" },
+          "htm-1": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/atomo_del_tiempo#_03-01-\'>Componentes Electrónicos</a> en <cite>el Átomo del Tiempo</cite>" },
           "fic-1": [ "ele_pre", "ele_pos" ]
         }
     }' ),
@@ -720,13 +720,13 @@
           ],
           "fic": [ "ond", "dim", "mat", "sim" ],
 
-          "htm-1": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost//hol/bib/fac#_04-04-01-01-\'>Rayos de Pulsación</a> en el Factor Maya" },
+          "htm-1": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost//sincronario/bibliografia/factor_maya#_04-04-01-01-\'>Rayos de Pulsación</a> en el Factor Maya" },
           "atr-1": "gal",
 
-          "htm-2": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost//hol/bib/enc#_03-11-\'>Tonos Galácticos de la Creación</a> en el Encantamiento del Sueño" },
+          "htm-2": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost//sincronario/bibliografia/encantamiento_del_sueño#_03-11-\'>Tonos Galácticos de la Creación</a> en el Encantamiento del Sueño" },
           "tex-2": "()($)des(), ()($)des_acc_lec().",
 
-          "htm-3": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost//hol/bib/enc#_03-12-\'>Onda Encantada de la Aventura</a> en el Encantamiento del Sueño" },
+          "htm-3": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost//sincronario/bibliografia/encantamiento_del_sueño#_03-12-\'>Onda Encantada de la Aventura</a> en el Encantamiento del Sueño" },
           "tex-3": "()($)ond_nom(): ()($)ond_pos(). ()($)ond_man().",
 
           "htm-4": { "eti":"p", "class":"tit", "htm":"Referencias del Orden Sincrónico en la <a target=\'_blank\' href=\'https://13lunas.net/\'>Ley del Tiempo</a>" },
@@ -754,7 +754,7 @@
         },
         "inf": { 
           "opc": [ "des" ],
-          "htm": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost//hol/bib/enc#_03-12-\'>Onda Encantada de la Aventura</a> en el Encantamiento del Sueño" },
+          "htm": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost//sincronario/bibliografia/encantamiento_del_sueño#_03-12-\'>Onda Encantada de la Aventura</a> en el Encantamiento del Sueño" },
           "fic": [ "ton" ]
         }
     }' ),
@@ -776,7 +776,7 @@
         "inf": { 
           "det": [ "des_dim", "des_cam" ],
 
-          "htm": { "eti":"p", "class":"tit", "htm":"El <a target=\'_blank\' href=\'http://localhost//hol/bib/enc#_03-13-\'>Código pulsar</a> en el Encantamiento del Sueño" },
+          "htm": { "eti":"p", "class":"tit", "htm":"El <a target=\'_blank\' href=\'http://localhost//sincronario/bibliografia/encantamiento_del_sueño#_03-13-\'>Código pulsar</a> en el Encantamiento del Sueño" },
           "atr": [ "des_ond" ],
           "fic": [ "ton" ]
         }
@@ -798,7 +798,7 @@
         "inf": { 
           "det": [ "des_cod", "des_dim" ],
 
-          "htm": { "eti":"p", "class":"tit", "htm":"El <a target=\'_blank\' href=\'http://localhost//hol/bib/enc#_03-13-\'> Código pulsar</a> en el Encantamiento del Sueño" },
+          "htm": { "eti":"p", "class":"tit", "htm":"El <a target=\'_blank\' href=\'http://localhost//sincronario/bibliografia/encantamiento_del_sueño#_03-13-\'> Código pulsar</a> en el Encantamiento del Sueño" },
           "atr": [ "des_ond" ],
           "fic": [ "ton" ]
         }
@@ -820,7 +820,7 @@
         "inf": { 
           "opc": [ "des" ],
           
-          "htm": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost//hol/bib/fac#_04-04-01-02-\'>Simetría Especular</a> en el Factor Maya" },
+          "htm": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost//sincronario/bibliografia/factor_maya#_04-04-01-02-\'>Simetría Especular</a> en el Factor Maya" },
           "atr": [ "fac_des" ],
           "fic": [ "ton" ]
         }
@@ -928,14 +928,14 @@
         "htm-1-3": { "eti":"p", "class":"tit", "htm":"El <a target=\'_blank\' href=\'hol/bib/fac#_05-06-03-\'>Modelo Morfogenético</a> en <cite>el Factor Maya</cite>" },
         "atr-1-3": [ "arm_tra_des" ],
         
-        "htm-2": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-04-\'>Colocación Armónica</a> en <cite>el Encantamiento del Sueño</cite>" },
+        "htm-2": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/encantamiento_del_sueño#_03-04-\'>Colocación Armónica</a> en <cite>el Encantamiento del Sueño</cite>" },
         "tab-2": [ "hol.sel.arm", { "val": { "pos":"()($)ide()" }, "pos": { "ima":"hol.sel.ide" } } ],
         "fic-2-1": [ "arm_cel" ],
         "atr-2-1": [ "arm_cel_des" ],
         "fic-2-2": [ "arm_raz" ],
         "atr-2-2": [ "arm_raz_des" ],
 
-        "htm-3": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-02-\'>Colocación Cromática</a> en <cite>el Encantamiento del Sueño</cite>" },
+        "htm-3": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/encantamiento_del_sueño#_03-02-\'>Colocación Cromática</a> en <cite>el Encantamiento del Sueño</cite>" },
         "tab-3": [ "hol.sel.cro", { "val": { "pos":"()($)ide()" }, "pos": { "ima":"hol.sel.ide" } } ],
         "fic-3-1": [ "cro_ele" ],
         "atr-3-1": [ "cro_ele_des" ],
@@ -1010,7 +1010,7 @@
       "inf": { 
         "det": [ "des_car", "des_acc", "des_pod" ],
 
-        "htm-3": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-02-\'>Colocación Cromática</a> en <cite>el Encantamiento del Sueño</cite>" },
+        "htm-3": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/encantamiento_del_sueño#_03-02-\'>Colocación Cromática</a> en <cite>el Encantamiento del Sueño</cite>" },
         "tab-3": [ "hol.sel.cro", { "val": { "pos":"()($)sel()" }, "pos": { "ima":"hol.sel.ide" } } ],
         "fic-3-1": [ "cro_ele" ],
         "atr-3-1": [ "cro_ele_des" ],
@@ -1127,7 +1127,7 @@
 
         "det": [ "des_dir", "des_pod", "des_dia" ],
 
-        "htm": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-04-\'>Colocación Armónica</a> d<cite>el Encantamiento del Sueño</cite>" },
+        "htm": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/encantamiento_del_sueño#_03-04-\'>Colocación Armónica</a> d<cite>el Encantamiento del Sueño</cite>" },
         "fic": [ "sel" ]
       }
     }' ),
@@ -1151,7 +1151,7 @@
 
         "det": [ "des_fun", "des_pod" ],
 
-        "htm": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-05-\'>Colocación Armónica</a> d<cite>el Encantamiento del Sueño</cite>" },
+        "htm": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/encantamiento_del_sueño#_03-05-\'>Colocación Armónica</a> d<cite>el Encantamiento del Sueño</cite>" },
         "fic": [ "sel" ]
       }
     }' ),
@@ -1189,13 +1189,13 @@
       "inf": { 
         "det": [ "des_fun", "des_mis", "des_rol", "des_acc" ],
 
-        "htm": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-14-\'>Cuenta atrás</a> d<cite>el Encantamiento del Sueño</cite>" },
+        "htm": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/encantamiento_del_sueño#_03-14-\'>Cuenta atrás</a> d<cite>el Encantamiento del Sueño</cite>" },
         "fic": [ "sel" ],
 
-        "htm-1": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-07-\'>Holon Planetario</a> d<cite>el Encantamiento del Sueño</cite>" },
+        "htm-1": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/encantamiento_del_sueño#_03-07-\'>Holon Planetario</a> d<cite>el Encantamiento del Sueño</cite>" },
         "fic-1": [ "pla_cen" ], 
 
-        "htm-2": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-08-\'>Holon Humano</a> d<cite>el Encantamiento del Sueño</cite>" },
+        "htm-2": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/encantamiento_del_sueño#_03-08-\'>Holon Humano</a> d<cite>el Encantamiento del Sueño</cite>" },
         "fic-2": [ "hum_cen", "hum_ded" ]
       }
     }' ),
@@ -1221,10 +1221,10 @@
         "det": [ "des_col", "des_men" ],
         "atr": [ "des" ],
 
-        "htm-1": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-02-\'>Colocación Cromática</a> d<cite>el Encantamiento del Sueño</cite>" },
+        "htm-1": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/encantamiento_del_sueño#_03-02-\'>Colocación Cromática</a> d<cite>el Encantamiento del Sueño</cite>" },
         "fic-1": [ "sel" ],
         
-        "htm-1": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-02-\'>Células del Tiempo</a> en el Íncide Armónico d<cite>el Encantamiento del Sueño</cite>" },
+        "htm-1": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/encantamiento_del_sueño#_03-02-\'>Células del Tiempo</a> en el Íncide Armónico d<cite>el Encantamiento del Sueño</cite>" },
         "fic-2": [ "arm_cel" ]
       }
     }' )
@@ -1392,7 +1392,7 @@
           "num": 4
         },
         "inf": {
-          "htm": { "eti":"p", "class":"tit", "htm":"El <a target=\'_blank\' href=\'http://localhost//hol/bib/enc#_02-03-08-\'>Castillo del Destino</a> en el Encantamiento del Sueño" },        
+          "htm": { "eti":"p", "class":"tit", "htm":"El <a target=\'_blank\' href=\'http://localhost//sincronario/bibliografia/encantamiento_del_sueño#_02-03-08-\'>Castillo del Destino</a> en el Encantamiento del Sueño" },        
           "fic": [ "cas" ]
         }
     }'),
@@ -1411,7 +1411,7 @@
         },
         "inf": {
           "opc": [ "des" ],
-          "htm": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost//hol/bib/enc#_03-12-\'>Onda Encantada de la Aventura</a> en el Encantamiento del Sueño" },        
+          "htm": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost//sincronario/bibliografia/encantamiento_del_sueño#_03-12-\'>Onda Encantada de la Aventura</a> en el Encantamiento del Sueño" },        
           "fic": [ "ton" ]
         }
     }'),
@@ -1436,7 +1436,7 @@
             "pos": { "bor":1, "ima":"hol.cas.ton", "num":"hol.cas.ide", "col":"hol.cas.pos_arm" },
             "pul": { "dim":[] }
           }],
-          "htm": { "eti":"p", "class":"tit", "htm":"El <a target=\'_blank\' href=\'http://localhost//hol/bib/enc#_03-13-\'>Código pulsar</a> en el Encantamiento del Sueño" },
+          "htm": { "eti":"p", "class":"tit", "htm":"El <a target=\'_blank\' href=\'http://localhost//sincronario/bibliografia/encantamiento_del_sueño#_03-13-\'>Código pulsar</a> en el Encantamiento del Sueño" },
           "atr": [ "des_ond" ],
           "fic": [ "ton" ]
         }
@@ -1458,7 +1458,7 @@
         "inf": { 
           "det": [ "des_cod", "des_dim" ],
 
-          "htm": { "eti":"p", "class":"tit", "htm":"El <a target=\'_blank\' href=\'http://localhost//hol/bib/enc#_03-13-\'> Código pulsar</a> en el Encantamiento del Sueño" },
+          "htm": { "eti":"p", "class":"tit", "htm":"El <a target=\'_blank\' href=\'http://localhost//sincronario/bibliografia/encantamiento_del_sueño#_03-13-\'> Código pulsar</a> en el Encantamiento del Sueño" },
           "atr": [ "des_ond" ],
           "fic": [ "ton" ]
         }
@@ -1479,7 +1479,7 @@
         },
         "inf": { 
           "opc": [ "des" ],
-          "htm": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost//hol/bib/fac#_04-04-01-02-\'>Simetría Especular</a> en el Factor Maya" },
+          "htm": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost//sincronario/bibliografia/factor_maya#_04-04-01-02-\'>Simetría Especular</a> en el Factor Maya" },
           "atr": [ "fac_des" ],
           "fic": [ "ton" ]
         }
@@ -1659,17 +1659,17 @@
       "inf": { 
         "atr": "des",
 
-        "htm-1": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost//hol/bib/fac#_05-07-\'>Ciclos Ahau</a> en <cite>el Factor Maya</cite> y la <a target=\'_blank\' href=\'http://localhost//hol/bib/enc#_02-03-10-\'>Nave del Tiempo</a> en <cite>el Encantamiento del Sueño</cite>" },
+        "htm-1": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost//sincronario/bibliografia/factor_maya#_05-07-\'>Ciclos Ahau</a> en <cite>el Factor Maya</cite> y la <a target=\'_blank\' href=\'http://localhost//sincronario/bibliografia/encantamiento_del_sueño#_02-03-10-\'>Nave del Tiempo</a> en <cite>el Encantamiento del Sueño</cite>" },
         "fic-1": [ "nav_cas", "nav_ond", "nav_ond_dia" ],
 
-        "htm-2": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost//hol/bib/fac#_04-04-02-06-\'>Ciclos evolutivos</a> en <cite>el Factor Maya</cite> y el <a target=\'_blank\' href=\'http://localhost//hol/bib/enc#_03-16-\'>Giro Espectral</a> en <cite>el Encantamiento del Sueño</cite>" },
+        "htm-2": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost//sincronario/bibliografia/factor_maya#_04-04-02-06-\'>Ciclos evolutivos</a> en <cite>el Factor Maya</cite> y el <a target=\'_blank\' href=\'http://localhost//sincronario/bibliografia/encantamiento_del_sueño#_03-16-\'>Giro Espectral</a> en <cite>el Encantamiento del Sueño</cite>" },
         "fic-2": [ "cro_est", "cro_ele" ],
 
-        "htm-3": { "eti":"p", "class":"tit", "htm":"El <a target=\'_blank\' href=\'http://localhost//hol/bib/fac#_05-04-\'>Rayo de Sincronización Galáctica</a> en <cite>el Factor Maya</cite>, y las <a target=\'_blank\' href=\'http://localhost//hol/bib/enc#_04-\'>Trayectorias del Giro Galáctico</a> en <cite>el Encantamiento del Sueño</cite>" },
+        "htm-3": { "eti":"p", "class":"tit", "htm":"El <a target=\'_blank\' href=\'http://localhost//sincronario/bibliografia/factor_maya#_05-04-\'>Rayo de Sincronización Galáctica</a> en <cite>el Factor Maya</cite>, y las <a target=\'_blank\' href=\'http://localhost//sincronario/bibliografia/encantamiento_del_sueño#_04-\'>Trayectorias del Giro Galáctico</a> en <cite>el Encantamiento del Sueño</cite>" },
         "fic-3": [ "arm_tra", "arm_cel", "arm_tra_dia" ],
 
-        "htm-4": { "eti":"p", "class":"tit", "htm":"El <a target=\'_blank\' href=\'http://localhost//hol/bib/enc#_02-03-06-\'>Oráculo del Destino</a> en <cite>el Encantamiento del Sueño</cite>" },
-        "eje-4": { "ide": "api_hol::inf", "par": [ "kin-par", "()($)ide()" ] }
+        "htm-4": { "eti":"p", "class":"tit", "htm":"El <a target=\'_blank\' href=\'http://localhost//sincronario/bibliografia/encantamiento_del_sueño#_02-03-06-\'>Oráculo del Destino</a> en <cite>el Encantamiento del Sueño</cite>" },
+        "eje-4": { "ide": "Hol::inf", "par": [ "kin-par", "()($)ide()" ] }
         
       }
     }'),
@@ -1843,10 +1843,10 @@
         "tab": [ "hol.kin.cro_est", { 
           "pos": { "ima":"hol.kin.ide" } 
         }],
-        "htm-1": { "eti":"p", "class":"tit", "htm":"Las <a target=\'_blank\' href=\'http://localhost/hol/bib/fac#_04-04-02-06-\'>Etapas Evolutivas del Ser Galáctico</a> en <cite>el Factor Maya</cite>" },
+        "htm-1": { "eti":"p", "class":"tit", "htm":"Las <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/factor_maya#_04-04-02-06-\'>Etapas Evolutivas del Ser Galáctico</a> en <cite>el Factor Maya</cite>" },
         "atr-1": [ "fac_des" ],
 
-        "htm-2": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-16-\'>Elementos Galácticos del Giro Espectral</a> en <cite>el Encantamiento del Sueño</cite>" },
+        "htm-2": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/encantamiento_del_sueño#_03-16-\'>Elementos Galácticos del Giro Espectral</a> en <cite>el Encantamiento del Sueño</cite>" },
         "fic-2": [ "ele" ]
       }
     }' ),
@@ -1868,13 +1868,13 @@
       "inf": {
         "fic": [ "ton", "ond", "dim", "mat", "sim" ],
         
-        "htm-1": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/hol/bib/fac#_04-04-02-06-\'>Ciclos del Quemador</a> en <cite>el Factor Maya</cite>" },
+        "htm-1": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/factor_maya#_04-04-02-06-\'>Ciclos del Quemador</a> en <cite>el Factor Maya</cite>" },
         "atr-1": "fac",
 
-        "htm-2": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-16-\'>Función del Kin Polar</a> en <cite>el Encantamiento del Sueño</cite>" },
+        "htm-2": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/encantamiento_del_sueño#_03-16-\'>Función del Kin Polar</a> en <cite>el Encantamiento del Sueño</cite>" },
         "atr-2": "enc",
 
-        "htm-3": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-11-\'>Aventura de la Onda Encantada</a> en <cite>el Encantamiento del Sueño</cite>" },
+        "htm-3": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/encantamiento_del_sueño#_03-11-\'>Aventura de la Onda Encantada</a> en <cite>el Encantamiento del Sueño</cite>" },
         "tex-3": "()($)ond_nom(): ()($)ond_pos().\\n()($)ond_pod(): ()($)ond_man()."      
       }
     }' ),    
@@ -1912,7 +1912,7 @@
         
         "fic-1": [ "arm", "ond", "dim", "mat" ],
 
-        "htm-2": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-16-\'>Kines del Giro Espectral</a> d<cite>el Encantamiento del Sueño</cite>" },
+        "htm-2": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/encantamiento_del_sueño#_03-16-\'>Kines del Giro Espectral</a> d<cite>el Encantamiento del Sueño</cite>" },
         "fic-2": [ "kin" ]
       }
     }' ),
@@ -1947,7 +1947,7 @@
         "tab": [ "hol.kin.nav_cas", { 
           "pos": { "ima":"hol.kin.ide" } 
         }],
-        "htm": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost//hol/bib/enc#_03-06-\'>Castillos de la Nave del Tiempo</a> en <cite>el Encantamiento del Sueño</cite>" },
+        "htm": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost//sincronario/bibliografia/encantamiento_del_sueño#_03-06-\'>Castillos de la Nave del Tiempo</a> en <cite>el Encantamiento del Sueño</cite>" },
         "atr": [ "des" ],
         "fic": [ "nav_ond" ]
       }
@@ -1975,10 +1975,10 @@
           "pos": { "ima":"hol.kin.ide", "pul":[ "dim","mat","sim"] }
         }],
 
-        "htm-1": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost//hol/bib/fac#_05-07-01-\'>Ciclos Ahau</a> en el Factor Maya" },
+        "htm-1": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost//sincronario/bibliografia/factor_maya#_05-07-01-\'>Ciclos Ahau</a> en el Factor Maya" },
         "atr-1": [ "fac_des" ],
 
-        "htm-2": { "eti":"p", "class":"tit", "htm":"Las <a target=\'_blank\' href=\'http://localhost//hol/bib/enc#_03-06-\'>Ondas Encantadas de la Nave del Tiempo</a> en <cite>el Encantamiento del Sueño</cite>" },
+        "htm-2": { "eti":"p", "class":"tit", "htm":"Las <a target=\'_blank\' href=\'http://localhost//sincronario/bibliografia/encantamiento_del_sueño#_03-06-\'>Ondas Encantadas de la Nave del Tiempo</a> en <cite>el Encantamiento del Sueño</cite>" },
         "atr-2": [ "enc_des" ],
         "fic-2": [ "kin_lis" ]
       }
@@ -2130,7 +2130,7 @@
           "pos": { "pul":["dim","mat","sim"] }
         }],
 
-        "htm-1": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-11-\'>Aventura de la Onda Encantada</a> en el <cite>Encantamiento del Sueño</cite>" },
+        "htm-1": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/encantamiento_del_sueño#_03-11-\'>Aventura de la Onda Encantada</a> en el <cite>Encantamiento del Sueño</cite>" },
         "tex-1": "()($)ond_nom(): ()($)ond_pos().\\n()($)ond_pod(): ()($)ond_man().",
 
         "htm-2": { "eti":"p", "class":"tit", "htm":"El <a target=\'_blank\' href=\'http://localhost/hol/bib/lun#_02-07-01-\'>Totem Animal</a> en <cite>Las <n>13</n> Lunas en Movimiento</cite>" },      
@@ -2220,7 +2220,7 @@
           "ide":"()($)ide()", 
           "pos": { "ima":"hol.psi.ide" }
         }],
-        "htm": { "eti":"p", "class":"tit", "htm":"Las <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_02-03-09-\'>Estaciones Solares</a> en el <cite>Encantamiento del Sueño</cite>" },
+        "htm": { "eti":"p", "class":"tit", "htm":"Las <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/encantamiento_del_sueño#_02-03-09-\'>Estaciones Solares</a> en el <cite>Encantamiento del Sueño</cite>" },
         "atr": "des",
         "dat": [ "pol_nor", "pol_sur" ]
       }
@@ -2244,7 +2244,7 @@
 
         "fic": [ "ton", "ond", "dim", "mat", "sim" ],
 
-        "htm-1": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-11-\'>Aventura de la Onda Encantada</a> en el <cite>Encantamiento del Sueño</cite>" },
+        "htm-1": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/encantamiento_del_sueño#_03-11-\'>Aventura de la Onda Encantada</a> en el <cite>Encantamiento del Sueño</cite>" },
         "tex-1": "()($)ond_nom(): ()($)ond_pos().\\n()($)ond_pod(): ()($)ond_man()."
       }
     }' )

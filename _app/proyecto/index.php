@@ -15,6 +15,6 @@
     </article>
     
     <?php
-    $App->Doc['sec'] = ob_get_clean();
+    $App->Doc['htm']['sec'] = ob_get_clean();
 
   }

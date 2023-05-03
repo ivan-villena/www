@@ -1099,7 +1099,7 @@ class Dat {
           break;
         // Ejecuciones : por clase::metodo([...parametros])
         case 'eje':
-          // convierto valores ($), y ejecuto por identificadorv
+          // convierto valores ($), y ejecuto por identificador
           $_ .= Eje::val( $inf_val['ide'], isset($inf_val['par']) ? Obj::val_lis($inf_val['par'],$_dat) : [] );
           break;
         }

@@ -88,16 +88,20 @@
     <!DOCTYPE html>
     <html lang="es">
       <head>
+        <!-- parametros -->
         <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+        <!-- hojas de estilo -->
+        <link rel='stylesheet' href='<?=SYS_NAV?>index.css'>
+        <?=$App->rec_cla('css')?>
+        <link rel='stylesheet' href='<?=SYS_NAV?>sis/css.css'>
+        <!--  -->
         <title>Error</title>
       </head>
 
       <body>
 
-        <?=Doc::tex([ 'tip'=>"err", 'tex'=>"No existe la Página solicitada..." ])?>
+        <?=Doc::tex([ 'tip'=>"err", 'tex'=>"No existe la Página solicitada..." ],[ 'sec'=>[ 'class'=>"mar-aut" ] ])?>
         
       </body>
     </html>

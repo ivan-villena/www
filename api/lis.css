@@ -146,28 +146,6 @@ ul.lis.bar > li {
 }
 
 /* 
-  Indices
-*/
-ul.lis.nav a {
-  display: inline-block;
-  overflow: auto;
-  width: 100%;
-  text-decoration: none;
-  color: var(--let_tex);
-}
-ul.lis.nav li.pos.sep,
-ul.lis.nav li.pos:not(.sep) > .doc_val {  
-  margin-top: .1rem;
-  margin-bottom: .1rem;
-  padding: .25rem;
-}
-ul.lis.nav li.pos.sep:hover,  
-ul.lis.nav li.pos:not(.sep) > .doc_val:hover {
-  background-color: var(--fon_foc);
-  border-radius: .25rem;
-}
-
-/* 
 Dependencias: con sublistas
 */
 ul.lis.dep {
@@ -186,4 +164,41 @@ ul.lis.dep li > .doc_val {
 }
 ul.lis.dep:not(.dir-hor) li.sep  {
   margin-left: 1.5rem;
+}
+
+/* Navegacion por Enlaces externos e internos */
+ul.lis.nav a {
+  display: inline-block;
+  overflow: auto;
+  width: 100%;
+  text-decoration: none;
+  color: var(--let_tex);
+}
+ul.lis.nav li.pos.sep,
+ul.lis.nav li.pos:not(.sep) > .doc_val {  
+  margin-top: .1rem;
+  margin-bottom: .1rem;
+  padding: .25rem;
+}
+ul.lis.nav li.pos.sep:hover,  
+ul.lis.nav li.pos:not(.sep) > .doc_val:hover {
+  background-color: var(--fon_foc);
+  border-radius: .25rem;
+}ul.lis.nav a {
+  display: inline-block;
+  overflow: auto;
+  width: 100%;
+  text-decoration: none;
+  color: var(--let_tex);
+}
+ul.lis.nav li.pos.sep,
+ul.lis.nav li.pos:not(.sep) > .doc_val {  
+  margin-top: .1rem;
+  margin-bottom: .1rem;
+  padding: .25rem;
+}
+ul.lis.nav li.pos.sep:hover,  
+ul.lis.nav li.pos:not(.sep) > .doc_val:hover {
+  background-color: var(--fon_foc);
+  border-radius: .25rem;
 }

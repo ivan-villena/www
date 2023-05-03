@@ -90,6 +90,13 @@ textarea {
 }
 
 /* 
+  Libros 
+*/
+.tex_bib {
+  max-width: 100%;
+}
+
+/* 
   Artículos de la Seccion Principal
 */
 main article > h2 {

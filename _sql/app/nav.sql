@@ -917,19 +917,20 @@
         (1,2,3,'06-06','Las 10 Parejas Antípodas'),
         (1,2,3,'06-07','Las 10 Parejas Ocultas'),
         (1,2,3,'06-08','Los Patrones de la Pareja Guía'),
-      (1,2,3,'07','El Holon Solar-Interplanetario'),
-        (1,2,3,'07-01','Las 10 Órbitas planetarias'),
-        (1,2,3,'07-02','Las 5 Células Solares'),
-        (1,2,3,'07-03','Los 5 Circuitos de telepatía'),
-      (1,2,3,'08','El Holon Planetario'),      
-        (1,2,3,'08-01','Los 5 Centros de la Fuerza-G'),
-        (1,2,3,'08-02','Los 2 Flujos Polares'),
-        (1,2,3,'08-03','Los 3 Campos Dimensionales'),
-      (1,2,3,'09','El Holon humano'),
-        (1,2,3,'09-01','Los 5 Centros Galácticos'),
-        (1,2,3,'09-02','Las 4 Extremidades Cromáticas'),
-        (1,2,3,'09-03','Las 5 Dedos de las manos y pies'),
-        (1,2,3,'09-04','Los 2 Lados de la Respiración S-G')
+      (1,2,3,'07','Codificación del Holon'),
+        (1,2,3,'07-01','El Holon Solar-Interplanetario'),
+          (1,2,3,'07-01-01','Las 10 Órbitas planetarias'),
+          (1,2,3,'07-01-02','Las 5 Células Solares'),
+          (1,2,3,'07-01-03','Los 5 Circuitos de telepatía'),
+        (1,2,3,'07-02','El Holon Planetario'),      
+          (1,2,3,'07-02-01','Los 5 Centros de la Fuerza-G'),
+          (1,2,3,'07-02-02','Los 2 Flujos Polares'),
+          (1,2,3,'07-02-03','Los 3 Campos Dimensionales'),
+        (1,2,3,'07-03','El Holon humano'),
+          (1,2,3,'07-03-01','Los 5 Centros Galácticos'),
+          (1,2,3,'07-03-02','Las 4 Extremidades Cromáticas'),
+          (1,2,3,'07-03-03','Las 5 Dedos de las manos y pies'),
+          (1,2,3,'07-03-04','Los 2 Lados de la Respiración S-G')
     ;
     -- x260 : kines
     DELETE FROM `app_nav` WHERE `esq`=1 AND `cab`=2 AND `art`=11; INSERT INTO `app_nav` VALUES

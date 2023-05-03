@@ -127,9 +127,11 @@
 
       ('lis',			'list_alt'),
       -- tipos
+      ('lis_val',	 'list'),      
       ('lis_ite',	 'view_list'),
-      ('lis_val',	 'list'),
       ('lis_opc',  'checklist_rtl'),
+      ('lis_uni',	'radio_button_checked'),
+      ('lis_mul',	'check_box'),
       -- navegacion      
       ('lis_ini',	'first_page'),
       ('lis_fin',	'last_page'),
@@ -152,9 +154,6 @@
       ('opc',			'fact_check'),
       -- tipos          
       ('opc_vac', 'check_box_outline_blank'),
-      ('opc_bin',	'rule'),      
-      ('opc_uni',	'radio_button_checked'),
-      ('opc_mul',	'check_box'),
       -- listado
       ('opc_lis',  'checklist_rtl')
     ;    
@@ -168,6 +167,7 @@
       ('num_sup',	'superscript'),
       ('num_inf',	'subscript'),      
       -- tipos
+      ('num_bin',	'rule'),
       ('num_bit',	'1k'),
       ('num_int',	'numbers'),  
       ('num_dec',	'percent'),

@@ -137,7 +137,8 @@ class App {
 
   }
   
-  // Inicializo página
+  /* Página */
+  // inicializo
   doc(){
     let $ ={};
     

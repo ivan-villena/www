@@ -116,10 +116,10 @@
   width: 100%;
   max-width: 700px;
   height: max-content;
-  margin: .5rem auto;
-  padding: 0 1rem;
-  border-radius: 1rem;
-  border: 1px solid var(--bor_sel);
+  /* margin: .5rem auto; */
+  padding: .5rem 1rem;
+  border-radius: .5rem;
+  /* border: 1px solid var(--bor_sel); */
   background-color: var(--fon_sec);
 }
 

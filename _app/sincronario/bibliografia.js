@@ -1,5 +1,4 @@
 
-/* Listados */
 function listado( $lib, $ide, $tip, $dat ){
 
   let $ = Dat.var($dat);

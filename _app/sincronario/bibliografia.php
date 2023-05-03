@@ -1,12 +1,8 @@
 <?php
 
-
-
 function listado( string $lib, string $ide, array $ope = [] ){
-  $_ = [];
+  $_ = []; $lis_pos = 0; $est_ope = [ 'opc'=>['htm','cab_ocu'] ];
   $_eje = "listado('$lib','$ide'";
-  $lis_pos = 0;
-  $est_ope = [ 'opc'=>['htm','cab_ocu'] ];
   switch( $lib ){
   // glosario
   case 'ide':
@@ -61,6 +57,7 @@ function listado( string $lib, string $ide, array $ope = [] ){
       $est_ope['atr'] = ['ide','nom','des_car','des_pod','des_acc'];
       $_ = Dat::lis("hol.ton",$est_ope);
       break;
+    // sello
     case 'sel':
       $est_ope['atr'] = ['ide','nom','des_pod','des_acc','des_car'];
       $_ = Dat::lis("hol.sel",$est_ope);

@@ -4,7 +4,7 @@
   <!-- Sumas -->
   <article>
     <?php $nv1 = Num::val(intval($nv1) + 1,2); $nv2 = 0; $nv3 = 0; $nv4 = 0; ?>
-    <h2 id="<?="_{$_nav[1][$nv1]->key}-"?>"><?=Tex::let($_nav[1][$nv1]->nom)?></h2>
+    <h2 id="<?="_{$Nav[1][$nv1]->key}-"?>"><?=Tex::let($Nav[1][$nv1]->nom)?></h2>
 
     <p></p>
 
@@ -13,7 +13,7 @@
   <!-- Sincronicidades -->
   <article>
     <?php $nv1 = Num::val(intval($nv1) + 1,2); $nv2 = 0; $nv3 = 0; $nv4 = 0; ?>
-    <h2 id="<?="_{$_nav[1][$nv1]->key}-"?>"><?=Tex::let($_nav[1][$nv1]->nom)?></h2>
+    <h2 id="<?="_{$Nav[1][$nv1]->key}-"?>"><?=Tex::let($Nav[1][$nv1]->nom)?></h2>
 
     <p></p>
 

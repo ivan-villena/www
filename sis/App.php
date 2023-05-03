@@ -78,32 +78,11 @@ class App {
       }
     }
     return $_;
-  }// - Armo directorios
-  public function rec_dir() : object {
-
-    $Uri = $this->Uri;
-
-    $_ = new stdClass();
-    
-    $_->esq = SYS_NAV."{$Uri->esq}";
-      
-    $_->cab = "{$Uri->esq}/{$Uri->cab}";
-
-    $_->ima = SYS_NAV."img/{$_->cab}/";
-
-    if( !empty($Uri->art) ){
-
-      $_->art = $_->cab."/{$Uri->art}";
-    
-      $_->ima .= "{$Uri->art}/";
-    }
-
-    return $_;
   }
 
   /* Peticion */
   public object $Uri
-  ;
+  ;// carga inicial
   public function uri( string $uri ) : object {
 
     // armo peticion
@@ -129,6 +108,27 @@ class App {
 
     return $Uri;
 
+  }// - Armo directorios
+  public function uri_dir() : object {
+
+    $Uri = $this->Uri;
+
+    $_ = new stdClass();
+    
+    $_->esq = SYS_NAV."{$Uri->esq}";
+      
+    $_->cab = "{$Uri->esq}/{$Uri->cab}";
+
+    $_->ima = SYS_NAV."_img/{$_->cab}/";
+
+    if( !empty($Uri->art) ){
+
+      $_->art = $_->cab."/{$Uri->art}";
+    
+      $_->ima .= "{$Uri->art}/";
+    }
+
+    return $_;
   }
 
   /* Pagina */
@@ -257,15 +257,15 @@ class App {
     <html lang="es">
          
       <head>
+        <!-- parametros -->
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
-        <title><?=$doc['tit']?></title>
-  
         <!-- hojas de estilo -->
         <link rel='stylesheet' href='<?=SYS_NAV?>index.css'>
         <?=$this->rec_cla('css')?>
-        <link rel='stylesheet' href='<?=SYS_NAV?>sis/css.css'>      
+        <link rel='stylesheet' href='<?=SYS_NAV?>sis/css.css'>
+        <!-- aplicacion -->
+        <title><?=$doc['tit']?></title>
       </head>
   
       <body <?=Ele::atr($this->Doc['ele']['body'])?>>
@@ -311,7 +311,7 @@ class App {
           ?>
           <!-- Contenido -->
           <main class='doc_sec'>
-            <?= Doc::sec( $doc['sec'], [ 'tit'=>!empty($this->Cab->tit) ? $doc['tit'] : NULL ] ) ?>
+            <?= Doc::sec( $doc['sec'], [ 'tit'=> empty($this->Cab) || !empty($this->Cab->tit) ? $doc['tit'] : NULL ] ) ?>
           </main>          
           <?php
         } ?>
@@ -419,16 +419,17 @@ class App {
           $art_key = $this->Art->key;
           // cargo índice de contenidos
           if( !empty($this->Cab->nav) ){
-  
+                
             $this->Nav = Dat::get('app_nav',[ 
               'ver'=>"`esq`='{$esq_key}' AND `cab`='{$cab_key}' AND `art`='{$art_key}'", 
               'ord'=>"`key` ASC", 
               'nav'=>'key'
             ]);
-  
+            
             // pido listado por navegacion
-            if( !empty($this->Nav[1]) ){ 
-              $this->Doc['cab']['ini']['app_nav']['htm'] = Lis::nav($this->Nav);
+            if( !empty( $this->Nav[1]) ){ 
+
+              $this->Doc['cab']['ini']['app_nav']['htm'] = Lis::nav( $this->Nav ) ;
             }
           }          
         }
@@ -537,6 +538,7 @@ class App {
 
   // Menu : titulo + descripcion + listado > item = [icono] + enlace
   public object $Cab;
+  // genero listado
   public function cab( array $ele = [] ) : string {
     
     global $Usu;
@@ -594,8 +596,10 @@ class App {
     $ele['opc'] = [ 'tog' ]; // dlt- 'ver', 'cue'
     return Lis::dep($_lis,$ele);
   }
+  
   // Articulo : + ...secciones + pie de página
   public object $Art;
+  // genero desde objeto de la base
   public function art( object $nav, string $esq, string $cab ) : string {
     $_ = "";      
 
@@ -643,10 +647,8 @@ class App {
     </article>";          
 
     return $_;
-  }
-  // Indice : article > h2 + ...section > h3 + ...section > ...
-  public array $Nav;
-  public function nav( string $ide ) : string {
+  }// genero articulos por Indice de la base : article > h2 + ...section > h3 + ...section > ...
+  public function art_nav( string $ide ) : string {
     $_ = "";
     
     $_ide = explode('.',$ide);
@@ -697,6 +699,11 @@ class App {
 
     return $_;
   }
+  
+  /* Indice */
+  public array $Nav;
+
+  
   // Glosario : palabras por esquema
   static function ide( int $esq, string $ide, array $ele = [] ) : string {
 

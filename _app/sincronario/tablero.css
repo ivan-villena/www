@@ -9,6 +9,15 @@
 }
 
 /* 
+  Modales
+*/
+
+.doc_win > .ide-lis .doc_nav.bot + div {
+  height: 80vh;
+  max-height: initial;
+}
+
+/* 
   Tableros 
 */
 .doc_sec article {

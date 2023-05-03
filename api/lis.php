@@ -715,26 +715,16 @@ class Lis {
     return $_;
   }
 
-  /* Indice: Enlaces Externos-Internos => a[href] > ...a[href] */
+  /* Navegacion */
+  // Enlaces Externos-Internos => a[href] > ...a[href]
   static function nav( array $dat, array $ele = [], ...$opc ) : string {    
     $_ = "";
-    $_eje = self::$EJE."nav";// val | ver
+    $_eje = self::$EJE."nav";// val | ver      
     foreach( ['ope','ope_dep','lis','dep'] as $i ){ if( !isset($ele[$i]) ) $ele[$i] = []; }
 
-    // operador
-    Ele::cla( $ele['ope'], "doc_ren", 'ini' );
+    // operadores
+    Ele::cla( $ele['ope'], "doc_ren", 'ini' );    
     $_ .= Lis::ope('nav',['tog','ver'],$ele);
-
-    // dependencias
-    $tog_dep = FALSE;
-    if( in_array('tog-dep',$opc) ){
-      Ele::cla( $ele['ope_dep'], "ite", 'ini' ); $tog_dep = "
-      <form".Ele::atr($ele['ope_dep']).">
-
-        ".Lis::ope_tog()."
-
-      </form>";
-    }
     
     // armo listado de enlaces
     $_lis = [];
@@ -807,10 +797,14 @@ class Lis {
         $_lis []= [ 'ite'=>$eti_1, 'lis'=>$_lis_2 ];
       }
     }
+
     // pido listado
-    Ele::cla($ele['dep'],DIS_OCU);
     $ele['opc'] = [];
-    $_ .= Lis::dep($_lis,$ele);
+
+    Ele::cla($ele['dep'],DIS_OCU);
+
+    $_ .= Lis::dep($_lis,$ele);  
+    
     return $_;
   }  
 }

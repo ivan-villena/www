@@ -407,80 +407,6 @@ class Lis {
     }      
   }
 
-  /* -- Indice -- */
-  static nav( $dat, $cla = FON_SEL ){
-
-    let $ = { lis : dom.ver($dat,{'eti':'nav'}) };
-
-    if( $.lis ){
-      // elimino marcas previas
-      $.lis.querySelectorAll(
-        `ul.lis.nav :is( li.pos.sep, li.pos:not(.sep) > .app_val ).${$cla}`
-      ).forEach( 
-        $e => $e.classList.remove($cla) 
-      );
-
-      // controlo el toggle automatico por dependencias
-      if( 
-        ( $.dep = $dat.parentElement.parentElement.querySelector('ul.lis') ) 
-        &&
-        ( $dat.classList.contains('fig_ico') || $.dep.classList.contains(DIS_OCU) ) 
-      ){
-        Doc.val($dat);
-      }
-
-      // pinto fondo
-      if( !( $.bot = $dat.parentElement.querySelector('.fig_ico') ) || !$.bot.classList.contains('ocu') ){
-
-        $dat.parentElement.classList.add($cla);
-      }
-    }
-  }// - Toggles
-  static nav_tog( $lis, $ope ){
-
-    let $={};
-
-    if( $ope ){
-
-      return Doc.val($lis,$ope);
-    }
-    else if( $.nav = $lis ? Lis.nav_mar($lis) : false ){
-      // hago toogles ascendentes
-      while(
-        ( $.lis = dom.ver($.nav,{'eti':'ul'}) ) 
-        && 
-        ( $.val = $.lis.previousElementSibling ) &&  $.val.classList.contains('app_val')
-        && 
-        ( $.nav = $.val.querySelector('a[href^="#"]') )
-      ){
-        if( $.lis.classList.contains(DIS_OCU) && ( $.ico = $.nav.previousElementSibling ) && $.ico.classList.contains('fig_ico') ){                
-          Doc.val($.ico);
-        }
-      }
-    }
-  }// - Marcas
-  static nav_mar( $lis ){
-
-    let $nav, $val = location.href.split('#')[1];
-
-    // hago toogle por item
-    if( $val && ( $nav = $lis.querySelector(`a[href="#${$val}"]`) ) ){
-        
-      Lis.nav($nav);
-    }
-
-    return $nav;
-  }// - Filtros
-  static nav_ver( $dat, $ope = 'a[href]' ){
-
-    // ejecuto filtros
-    Lis.dep_ver($dat, $ope);
-
-    // volver a marcar el fondo del elemento seleccionado
-    Lis.nav_tog($App.dom.dat.var.nextElementSibling);
-
-  }
-
   /* Tabla */
   static tab(){
     let $ = {};
@@ -519,4 +445,77 @@ class Lis {
     return $.tab;    
   }
 
+  /* Indice */
+  static nav( $dat, $cla = FON_SEL ){
+
+    let $ = { lis : dom.ver($dat,{'eti':'nav'}) };
+
+    if( $.lis ){
+      // elimino marcas previas
+      $.lis.querySelectorAll(
+        `ul.lis.nav :is( li.pos.sep, li.pos:not(.sep) > .doc_val ).${$cla}`
+      ).forEach( 
+        $e => $e.classList.remove($cla) 
+      );
+
+      // controlo el toggle automatico por dependencias
+      if( 
+        ( $.dep = $dat.parentElement.parentElement.querySelector('ul.lis') ) 
+        &&
+        ( $dat.classList.contains('fig_ico') || $.dep.classList.contains(DIS_OCU) ) 
+      ){
+        Doc.val($dat);
+      }
+
+      // pinto fondo
+      if( !( $.bot = $dat.parentElement.querySelector('.fig_ico') ) || !$.bot.classList.contains('ocu') ){
+
+        $dat.parentElement.classList.add($cla);
+      }
+    }
+  }// - Toggles
+  static nav_tog( $lis, $ope ){
+
+    let $={};
+
+    if( $ope ){
+
+      return Doc.val($lis,$ope);
+    }
+    else if( $.nav = $lis ? Lis.nav_mar($lis) : false ){
+      // hago toogles ascendentes
+      while(
+        ( $.lis = dom.ver($.nav,{'eti':'ul'}) ) 
+        && 
+        ( $.val = $.lis.previousElementSibling ) &&  $.val.classList.contains('doc_val')
+        && 
+        ( $.nav = $.val.querySelector('a[href^="#"]') )
+      ){
+        if( $.lis.classList.contains(DIS_OCU) && ( $.ico = $.nav.previousElementSibling ) && $.ico.classList.contains('fig_ico') ){                
+          Doc.val($.ico);
+        }
+      }
+    }
+  }// - Marcas
+  static nav_mar( $lis ){
+
+    let $nav, $val = location.href.split('#')[1];
+
+    // hago toogle por item
+    if( $val && ( $nav = $lis.querySelector(`a[href="#${$val}"]`) ) ){
+        
+      Lis.nav($nav);
+    }
+
+    return $nav;
+  }// - Filtros
+  static nav_ver( $dat, $ope = 'a[href]' ){
+
+    // ejecuto filtros
+    Lis.dep_ver($dat, $ope);
+
+    // volver a marcar el fondo del elemento seleccionado
+    Lis.nav_tog($App.dom.dat.var.nextElementSibling);
+
+  }    
 }

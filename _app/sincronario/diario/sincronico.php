@@ -4,7 +4,7 @@
   <!-- El Encantamiento del Kin -->
   <article>
     <?php $nv1 = Num::val(intval($nv1) + 1,2); $nv2 = 0; $nv3 = 0; $nv4 = 0; ?>
-    <h2 id="<?="_{$_nav[1][$nv1]->key}-"?>"><?=Tex::let($_nav[1][$nv1]->nom)?></h2>
+    <h2 id="<?="_{$Nav[1][$nv1]->key}-"?>"><?=Tex::let($Nav[1][$nv1]->nom)?></h2>
 
     <p>El encantamiento del kin es una forma de expresar las características y funciones que cumple.</p>
 
@@ -13,7 +13,7 @@
   <!-- El Oráculo del Destino -->
   <article>
     <?php $nv1 = Num::val(intval($nv1) + 1,2); $nv2 = 0; $nv3 = 0; $nv4 = 0; ?>
-    <h2 id="<?="_{$_nav[1][$nv1]->key}-"?>"><?=Tex::let($_nav[1][$nv1]->nom)?></h2>
+    <h2 id="<?="_{$Nav[1][$nv1]->key}-"?>"><?=Tex::let($Nav[1][$nv1]->nom)?></h2>
 
     <p></p>
 
@@ -22,7 +22,7 @@
   <!-- La Nave del Tiempo -->
   <article>
     <?php $nv1 = Num::val(intval($nv1) + 1,2); $nv2 = 0; $nv3 = 0; $nv4 = 0; ?>
-    <h2 id="<?="_{$_nav[1][$nv1]->key}-"?>"><?=Tex::let($_nav[1][$nv1]->nom)?></h2>
+    <h2 id="<?="_{$Nav[1][$nv1]->key}-"?>"><?=Tex::let($Nav[1][$nv1]->nom)?></h2>
 
     <p></p>
 
@@ -31,7 +31,7 @@
   <!-- El Giro Galáctico -->
   <article>
     <?php $nv1 = Num::val(intval($nv1) + 1,2); $nv2 = 0; $nv3 = 0; $nv4 = 0; ?>
-    <h2 id="<?="_{$_nav[1][$nv1]->key}-"?>"><?=Tex::let($_nav[1][$nv1]->nom)?></h2>
+    <h2 id="<?="_{$Nav[1][$nv1]->key}-"?>"><?=Tex::let($Nav[1][$nv1]->nom)?></h2>
 
     <p></p>
 
@@ -40,7 +40,7 @@
   <!-- El Giro Espectral -->
   <article>
     <?php $nv1 = Num::val(intval($nv1) + 1,2); $nv2 = 0; $nv3 = 0; $nv4 = 0; ?>
-    <h2 id="<?="_{$_nav[1][$nv1]->key}-"?>"><?=Tex::let($_nav[1][$nv1]->nom)?></h2>
+    <h2 id="<?="_{$Nav[1][$nv1]->key}-"?>"><?=Tex::let($Nav[1][$nv1]->nom)?></h2>
 
     <p></p>
 
@@ -49,7 +49,7 @@
   <!-- El Holon de la Quinta Fuerza -->
   <article>
     <?php $nv1 = Num::val(intval($nv1) + 1,2); $nv2 = 0; $nv3 = 0; $nv4 = 0; ?>
-    <h2 id="<?="_{$_nav[1][$nv1]->key}-"?>"><?=Tex::let($_nav[1][$nv1]->nom)?></h2>
+    <h2 id="<?="_{$Nav[1][$nv1]->key}-"?>"><?=Tex::let($Nav[1][$nv1]->nom)?></h2>
 
     <p></p>
 

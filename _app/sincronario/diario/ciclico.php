@@ -5,7 +5,7 @@
   <!-- El Banco-psi -->
   <article>
     <?php $nv1 = Num::val(intval($nv1) + 1,2); $nv2 = 0; $nv3 = 0; $nv4 = 0; ?>
-    <h2 id="<?="_{$_nav[1][$nv1]->key}-"?>"><?=Tex::let($_nav[1][$nv1]->nom)?></h2>
+    <h2 id="<?="_{$Nav[1][$nv1]->key}-"?>"><?=Tex::let($Nav[1][$nv1]->nom)?></h2>
 
     <p></p>
 
@@ -14,7 +14,7 @@
   <!-- El Anillo Solar de Nuevo Sirio -->
   <article>
     <?php $nv1 = Num::val(intval($nv1) + 1,2); $nv2 = 0; $nv3 = 0; $nv4 = 0; ?>
-    <h2 id="<?="_{$_nav[1][$nv1]->key}-"?>"><?=Tex::let($_nav[1][$nv1]->nom)?></h2>
+    <h2 id="<?="_{$Nav[1][$nv1]->key}-"?>"><?=Tex::let($Nav[1][$nv1]->nom)?></h2>
 
     <p></p>
 
@@ -23,7 +23,7 @@
   <!-- La Luna del Servicio Planetario -->
   <article>
     <?php $nv1 = Num::val(intval($nv1) + 1,2); $nv2 = 0; $nv3 = 0; $nv4 = 0; ?>
-    <h2 id="<?="_{$_nav[1][$nv1]->key}-"?>"><?=Tex::let($_nav[1][$nv1]->nom)?></h2>
+    <h2 id="<?="_{$Nav[1][$nv1]->key}-"?>"><?=Tex::let($Nav[1][$nv1]->nom)?></h2>
 
     <p></p>
 
@@ -32,7 +32,7 @@
   <!-- La Cromática Entonada -->
   <article>
     <?php $nv1 = Num::val(intval($nv1) + 1,2); $nv2 = 0; $nv3 = 0; $nv4 = 0; ?>
-    <h2 id="<?="_{$_nav[1][$nv1]->key}-"?>"><?=Tex::let($_nav[1][$nv1]->nom)?></h2>
+    <h2 id="<?="_{$Nav[1][$nv1]->key}-"?>"><?=Tex::let($Nav[1][$nv1]->nom)?></h2>
 
     <p></p>
 
@@ -41,7 +41,7 @@
   <!-- La Estación Solar -->
   <article>
     <?php $nv1 = Num::val(intval($nv1) + 1,2); $nv2 = 0; $nv3 = 0; $nv4 = 0; ?>
-    <h2 id="<?="_{$_nav[1][$nv1]->key}-"?>"><?=Tex::let($_nav[1][$nv1]->nom)?></h2>
+    <h2 id="<?="_{$Nav[1][$nv1]->key}-"?>"><?=Tex::let($Nav[1][$nv1]->nom)?></h2>
 
     <p></p>
 
@@ -50,7 +50,7 @@
   <!-- El Plasma Radial -->
   <article>
     <?php $nv1 = Num::val(intval($nv1) + 1,2); $nv2 = 0; $nv3 = 0; $nv4 = 0; ?>
-    <h2 id="<?="_{$_nav[1][$nv1]->key}-"?>"><?=Tex::let($_nav[1][$nv1]->nom)?></h2>
+    <h2 id="<?="_{$Nav[1][$nv1]->key}-"?>"><?=Tex::let($Nav[1][$nv1]->nom)?></h2>
 
     <p></p>
 
@@ -59,7 +59,7 @@
   <!-- El Vinal del Haab -->
   <article>
     <?php $nv1 = Num::val(intval($nv1) + 1,2); $nv2 = 0; $nv3 = 0; $nv4 = 0; ?>
-    <h2 id="<?="_{$_nav[1][$nv1]->key}-"?>"><?=Tex::let($_nav[1][$nv1]->nom)?></h2>
+    <h2 id="<?="_{$Nav[1][$nv1]->key}-"?>"><?=Tex::let($Nav[1][$nv1]->nom)?></h2>
 
     <p></p>
 

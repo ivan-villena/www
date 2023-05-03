@@ -434,11 +434,11 @@
     // Contenido: bibliografia + codigo + kin planetario /////////////////////////////
     else{
       // enlaces
-      $_bib = SYS_NAV."sincronario/bibliografia/";
+      $Bib = SYS_NAV."sincronario/bibliografia/";
       // cargo directorio
-      $_dir = $App->rec_dir();      
+      $Dir = $App->uri_dir();      
       // cargo indice
-      $_nav = $App->Nav;
+      $Nav = $App->Nav;
 
       // cargo módulos
       if( !empty( $rec = Arc::val("./_app/$Uri->esq/$Uri->cab") ) ){
