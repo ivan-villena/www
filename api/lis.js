@@ -215,9 +215,9 @@ class Lis {
 
     if( $tip == 'val' ){
 
-      $.lis = $App.dom.dat.var.previousElementSibling;
+      $.lis = $App.Dom.dat.var.previousElementSibling;
 
-      $.val = $App.dom.dat.var.querySelector('[name="val"]');
+      $.val = $App.Dom.dat.var.querySelector('[name="val"]');
       $.pos = Num.val($.val.value);
 
       switch( $dat.getAttribute('name') ){
@@ -293,13 +293,13 @@ class Lis {
     
     // filtro por valor textual        
     if( !$ope ){
-      $.lis = $App.dom.dat.var.nextElementSibling;
+      $.lis = $App.Dom.dat.var.nextElementSibling;
       // muestro por coincidencias
-      if( $.val = $App.dom.dat.var.querySelector('[name="val"]').value ){
+      if( $.val = $App.Dom.dat.var.querySelector('[name="val"]').value ){
         // oculto todos
         Ele.act('cla_agr',$.lis.children,DIS_OCU); 
 
-        $.ope = $App.dom.dat.var.querySelector('[name="ope"]').value;
+        $.ope = $App.Dom.dat.var.querySelector('[name="ope"]').value;
         
         if( $.lis.nodeName == 'DL' ){
           $.lis.querySelectorAll(`dt`).forEach( $e => {
@@ -331,7 +331,7 @@ class Lis {
     }
 
     // actualizo cuenta
-    if( $.tot = $App.dom.dat.var.querySelector('[name="tot"]') ){
+    if( $.tot = $App.Dom.dat.var.querySelector('[name="tot"]') ){
       if( $.lis.nodeName == 'DL' ){
         $.tot.innerHTML = Lis.val_cod($.lis.children).filter( $ite => $ite.nodeName=='DT' && !$ite.classList.contains(DIS_OCU) ).length;
       }else{
@@ -351,8 +351,8 @@ class Lis {
     let $ = Dat.var($dat);
 
     // busco listado
-    if( $App.dom.dat.var ){
-      $.lis = !! $App.dom.dat.var.nextElementSibling ? $App.dom.dat.var.nextElementSibling : $App.dom.dat.var.parentElement;
+    if( $App.Dom.dat.var ){
+      $.lis = !! $App.Dom.dat.var.nextElementSibling ? $App.Dom.dat.var.nextElementSibling : $App.Dom.dat.var.parentElement;
       if( $.lis.nodeName == 'LI' ){
         $.lis = $.lis.parentElement;
         $.val_dep = true;
@@ -360,7 +360,7 @@ class Lis {
     }
 
     // ejecuto filtros
-    if( $.lis && ( $.ope = $App.dom.dat.var.querySelector(`[name="ope"]`) ) && ( $.val = $App.dom.dat.var.querySelector(`[name="val"]`) ) ){      
+    if( $.lis && ( $.ope = $App.Dom.dat.var.querySelector(`[name="ope"]`) ) && ( $.val = $App.Dom.dat.var.querySelector(`[name="val"]`) ) ){      
       
       // elimino marcas anteriores
       if( $cla ) $.lis.querySelectorAll(`li.pos ${$ope}.${$cla}`).forEach( $ite => $ite.classList.remove($cla) );
@@ -398,12 +398,12 @@ class Lis {
         $.tog = ['ocu','nad'];
       }      
       // actualizo toggle
-      if( $.tog[1] && ( $.ico = $App.dom.dat.var.querySelector(`.fig_ico.ide-val_tog-${$.tog[1]}`) ) ){ 
+      if( $.tog[1] && ( $.ico = $App.Dom.dat.var.querySelector(`.fig_ico.ide-val_tog-${$.tog[1]}`) ) ){ 
         Doc.val($.ico,$.tog[1]);
       }
       
       // actualizo total
-      if( $.tot_val = $App.dom.dat.var.querySelector(`[name="tot"]`) ) $.tot_val.innerHTML = $.tot;           
+      if( $.tot_val = $App.Dom.dat.var.querySelector(`[name="tot"]`) ) $.tot_val.innerHTML = $.tot;           
     }      
   }
 
@@ -445,7 +445,7 @@ class Lis {
     return $.tab;    
   }
 
-  /* Indice */
+  /* Indices */
   static nav( $dat, $cla = FON_SEL ){
 
     let $ = { lis : dom.ver($dat,{'eti':'nav'}) };
@@ -515,7 +515,7 @@ class Lis {
     Lis.dep_ver($dat, $ope);
 
     // volver a marcar el fondo del elemento seleccionado
-    Lis.nav_tog($App.dom.dat.var.nextElementSibling);
+    Lis.nav_tog($App.Dom.dat.var.nextElementSibling);
 
-  }    
+  }
 }

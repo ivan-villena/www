@@ -2,17 +2,17 @@
 
 class App {
 
-  // Recursos de la Aplicacion
+  // Peticion url: esq/cab/art/par=val
   Uri = {};
 
-  // Log de peticiones
-  log = { php: [], jso: [] };
-
   // Estructuras de datos
-  dat = {};
+  Dat = {};
 
-  // Elementos del documento
-  dom = {
+  // Log de peticiones
+  Log = { php: [], jso: [] };  
+
+  // modelo del documento
+  Dom = {
     // Pagina
     doc : {
       bot: 'body > .doc_cab',
@@ -95,7 +95,7 @@ class App {
         // 3- pantalla
         else if( document.querySelector(`.doc_win > :not(.${DIS_OCU})`) ){
           // oculto la ultima pantalla
-          $.art = $App.dom.doc.win.children;          
+          $.art = $App.Dom.doc.win.children;          
           for( let $ide = $.art.length-1; $ide >= 0; $ide-- ){
             const $art = $.art[$ide];
             if( !$art.classList.contains(DIS_OCU) ){
@@ -117,28 +117,27 @@ class App {
     /* Cargo Elementos */
 
     // Documento
-    for( const $atr in this.dom.doc ){
-      this.dom.doc[$atr] = document.querySelector(this.dom.doc[$atr]);
+    for( const $atr in this.Dom.doc ){
+      this.Dom.doc[$atr] = document.querySelector(this.Dom.doc[$atr]);
     }
     
     // Datos
     ['lis','tab'].forEach( $ope => {
 
-      for( const $ide in this.dom.dat[$ope] ){ 
+      for( const $ide in this.Dom.dat[$ope] ){ 
 
-        if( typeof(this.dom.dat[$ope][$ide]) == 'string' ){
+        if( typeof(this.Dom.dat[$ope][$ide]) == 'string' ){
 
-          this.dom.dat[$ope][$ide] = document.querySelector(this.dom.dat[$ope][$ide]); 
+          this.Dom.dat[$ope][$ide] = document.querySelector(this.Dom.dat[$ope][$ide]); 
         }
       }
     });
     // - Actualizo clase principal
-    this.dom.dat.tab.cla = ".pos.ope";
+    this.Dom.dat.tab.cla = ".pos.ope";
 
   }
   
   /* Página */
-  // inicializo
   doc(){
     let $ ={};
     
@@ -146,7 +145,7 @@ class App {
     if( $.cab = this.Uri.cab ){
       
       // Menu: expando seleccionado
-      if( $.app_cab = this.dom.doc.pan.querySelector(`.ide-app_cab p.ide-${$.cab}`) ){ 
+      if( $.app_cab = this.Dom.doc.pan.querySelector(`.ide-app_cab p.ide-${$.cab}`) ){ 
 
         $.app_cab.click();
         
@@ -158,7 +157,7 @@ class App {
           }
           
           // Índice: hago click y muestro panel
-          if( $.art && ( $.art_nav = this.dom.doc.pan.querySelector('.ide-app_nav ul.lis.nav') ) ){
+          if( $.art && ( $.art_nav = this.Dom.doc.pan.querySelector('.ide-app_nav ul.lis.nav') ) ){
             // inicializo enlace local
             Lis.nav_tog($.art_nav);
             // muestro panel
@@ -170,30 +169,32 @@ class App {
     // o muestro menú principal
     else{
 
-      // if( $.bot_ini = this.dom.doc.bot.querySelector('.fig_ico.ide-app_cab') ) $.bot_ini.click();
+      // if( $.bot_ini = this.Dom.doc.bot.querySelector('.fig_ico.ide-app_cab') ) $.bot_ini.click();
     }  
-  }// Consola de Administracion
-  static doc_adm( $tip, $dat, $val, ...$opc ){
+  }
+  
+  /* Consola */
+  adm( $tip, $dat, $val, ...$opc ){
   
     let $ = Dat.var($dat);
     
     // -> desde form : vacío resultados previos
-    if( $App.dom.dat.var && ( $.res = $App.dom.dat.var.querySelector('.ope_res') ) ){ 
+    if( $App.Dom.dat.var && ( $.res = $App.Dom.dat.var.querySelector('.ope_res') ) ){ 
 
       dom.eli($.res);
     }
     // -> desde menu : capturo form
     else if( $dat.nodeName && $dat.nodeName == 'A' ){
 
-      $App.dom.dat.var = $dat.parentElement.nextElementSibling.querySelector(`.ide-${$tip}`);
+      $App.Dom.dat.var = $dat.parentElement.nextElementSibling.querySelector(`.ide-${$tip}`);
     }
     
     switch( $tip ){
     // peticiones
     case 'aja':
-      $.lis = $App.dom.dat.var.querySelector(`nav.lis`);
+      $.lis = $App.Dom.dat.var.querySelector(`nav.lis`);
       dom.eli($.lis);
-      $App.log.php.forEach( $log => {
+      this.Log.php.forEach( $log => {
         $.ver = document.createElement('a'); 
         $.ver.href = $log;
         $.ver.innerHTML = Tex.let($log); 
@@ -203,7 +204,7 @@ class App {
       break;
     // iconos
     case 'ico':
-      $.lis = $App.dom.dat.var.querySelector(`ul.lis`);
+      $.lis = $App.Dom.dat.var.querySelector(`ul.lis`);
       if( !$val ){
         // limpio listado
         dom.eli($.lis);
@@ -246,7 +247,7 @@ class App {
       break;
     // base de datos
     case 'sql':
-      $.cod = $App.dom.dat.var.querySelector('[name="cod"]').value;
+      $.cod = $App.Dom.dat.var.querySelector('[name="cod"]').value;
       if( $.cod ){
 
         Eje.val( ['sql::dec', [ $.cod ] ], $res => {
@@ -270,13 +271,13 @@ class App {
       break;
     // servidor
     case 'php':
-      $.val = $App.dom.dat.var.querySelector('pre.ope_res');
+      $.val = $App.Dom.dat.var.querySelector('pre.ope_res');
       $.val.classList.add(DIS_OCU);
       $.val.innerText = '';
       $.res.classList.add(DIS_OCU);
-      $.htm = $App.dom.dat.var.querySelector('[name="htm"]').checked;
-      if( $.ide = $App.dom.dat.var.querySelector('[name="ide"]').value ){
-        Eje.val([ $.ide, eval(`[${$App.dom.dat.var.querySelector('[name="par"]').value}]`) ], $res => {
+      $.htm = $App.Dom.dat.var.querySelector('[name="htm"]').checked;
+      if( $.ide = $App.Dom.dat.var.querySelector('[name="ide"]').value ){
+        Eje.val([ $.ide, eval(`[${$App.Dom.dat.var.querySelector('[name="par"]').value}]`) ], $res => {
           if( $.htm ){
             $.res.innerHTML = $res;
             $.res.classList.remove(DIS_OCU);
@@ -289,7 +290,7 @@ class App {
       break;
     // terminal
     case 'jso':
-      $.cod = $App.dom.dat.var.querySelector('[name="cod"]');
+      $.cod = $App.Dom.dat.var.querySelector('[name="cod"]');
 
       try{
 
@@ -331,7 +332,7 @@ class App {
 
         $dat.nextElementSibling.classList.add(FON_SEL);
 
-        $.res = $App.dom.dat.var.querySelector('div.ele');
+        $.res = $App.Dom.dat.var.querySelector('div.ele');
 
         dom.eli($.res);
 
@@ -342,13 +343,13 @@ class App {
         break;
       // Listado de elementos resultante
       case 'cod':
-        $.res = $App.dom.dat.var.querySelector('div.ele_nod');          
+        $.res = $App.Dom.dat.var.querySelector('div.ele_nod');          
 
-        dom.eli($App.dom.dat.var.querySelector('div.ele'));
+        dom.eli($App.Dom.dat.var.querySelector('div.ele'));
 
         dom.eli($.res);
 
-        $.cod = $App.dom.dat.var.querySelector('[name="cod"]');
+        $.cod = $App.Dom.dat.var.querySelector('[name="cod"]');
 
         $.val = document.querySelectorAll($.cod.value);
 
@@ -368,4 +369,39 @@ class App {
     return $;
   }
 
+  /* Usuario */
+  usu_ini(){
+
+    let $ = {};
+
+    return $; 
+  }
+  usu_fin(){
+
+    let $ = {};
+
+    return $;
+  }  
+  usu_pas(){
+
+    let $ = {};
+
+    return $; 
+  }
+  usu_dat( $tip ){
+
+    let $ = {};
+
+    if( !$tip ){
+      // pedir form con datos del usuario 
+
+      // o borrar contenido previo
+    }    
+    else{
+      // proceso form
+
+    }
+    
+    return $; 
+  }
 }

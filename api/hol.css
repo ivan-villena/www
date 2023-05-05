@@ -668,13 +668,13 @@ ul.dat.tab.hol_lun {
 .dat.tab.psi.ani {
   grid-gap: .3rem;
 }
-.dat.tab.psi.ani > .sec.uni_sol {
+.dat.tab.psi.ani > .sec.sol {
   grid-row:1; grid-column:2;
   align-self: end; justify-self: end;
   max-width: 6rem; 
   max-height: 6rem;
 }
-.dat.tab.psi.ani > .sec.uni_lun {
+.dat.tab.psi.ani > .sec.lun {
   grid-row:3; grid-column:3;
   max-width: 4rem; 
   max-height: 4rem;

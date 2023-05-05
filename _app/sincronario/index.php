@@ -46,11 +46,35 @@
               "Este sitio aún se está en construcción...", "Puede haber contenido incompleto, errores o faltas."
             ],
             'htm'=>[
-              'eti'=>"div", 'class'=>"doc_ite jus-cen mar-1", 'htm'=>"Contacto<c>:</c> 
-                ".Fig::ico('usu_mai',['eti'=>"a",'href'=>"mailto:ivan.pieszko@gmail.com",'class'=>"mar_hor-1",'title'=>"Enviar un correo electrónico..."])."
-                ".Fig::ico('usu_tel',['eti'=>"a",'href'=>"tel:+5491131037776",'class'=>"mar_hor-1",'title'=>"Enviar un mensaje al celular..."])
+              'eti'=>"div", 
+              'class'=>"doc_ite jus-cen mar-1", 
+              'htm'=>"Contacto<c>:</c> 
+                ".Fig::ico('usu_mai',['eti'=>"a",
+                  'href'=>"mailto:ivan.pieszko@gmail.com",
+                  'class'=>"mar_hor-1",
+                  'title'=>"Enviar un correo electrónico..."
+                ])."
+                ".Fig::ico('usu_tel',['eti'=>"a",
+                  'href'=>"tel:+5491131037776",
+                  'class'=>"mar_hor-1",
+                  'title'=>"Enviar un mensaje al celular..."
+                ])
             ]
-          ])?>  
+          ])?>
+
+          <?php
+            // inicio de sesion
+            if( empty($Usu->ide) ){
+          ?>
+            <button class="app-ses_ini" onclick="Doc.win('app-ses_ini')">Iniciar Sesión</button>
+          <?php
+            }
+            else{
+          ?>
+
+          <?php
+            }
+          ?>
 
         </section>
         
@@ -71,7 +95,7 @@
         <div class="doc_val mar-aut">
           <?= Fig::ico('app_cab',['class'=>"mar_hor-1"]) ?>
           <c>-></c>
-          <?= Fig::ico('tex_lib',['class'=>"mar_hor-1"]) ?>
+          <?= Fig::ico('doc_lib',['class'=>"mar_hor-1"]) ?>
         </div>
 
         <p>Aquí podrás encontrar la mayoría de los libros en los cuales se basa la teoría del Sincronario<c>:</c> <q>La ley del Tiempo</q><c>.</c> Esta fué desarrollada por <a href="https://es.wikipedia.org/wiki/Jos%C3%A9_Arg%C3%BCelles" target="_blank">José Argüelles</a> quien organizó una fundación con el mismo nombre <c>(</c><a href="http://www.lawoftime.org" target="_blank">The Law of Time</a><c>)</c><c>.</c> Todos sus libros y materiales se pueden descargar gratuitamente desde <a href="https://13lunas.net/mapa.htm#biblioteca" target="_blank">La Biblioteca de <n>13</n> Lunas</a><c>.</c></p>
@@ -81,14 +105,14 @@
         <p>En la página de cada libro hay un índice en el panel izquierdo<c>,</c> que puedes ocultar o mostrar haciendo click en el botón Correspondiente<c>.</c> Los items del índice que figuran en el libro son los mismos<c>,</c> pero se agregaron nuevos para segmentar la información y poder acceder desde enlaces<c>.</c></p>
 
       </section>
-      <!-- Códigos -->
+      <!-- Apuntes -->
       <section>
-        <h3>Códigos y Cuentas</h3>
+        <h3>Los Apuntes</h3>
 
         <div class="doc_val mar-aut">
           <?= Fig::ico('app_cab',['class'=>"mar_hor-1"]) ?>
           <c>-></c>
-          <?= Fig::ico('num',['class'=>"mar_hor-1"]) ?>
+          <?= Fig::ico('doc_inf',['class'=>"mar_hor-1"]) ?>
         </div>
 
         <p>En esta sección podrás encontrar datos que van apareciendo en los distintos libros y están relacionados a cada código y cuenta<c>,</c> junto con sus respectivas agrupaciones y subciclos<c>.</c></p>
@@ -115,7 +139,7 @@
         <div class="doc_val mar-aut">
           <?= Fig::ico('app_cab',['class'=>"mar_hor-1"]) ?>
           <c>-></c>
-          <?= Fig::ico('tab',['class'=>"mar_hor-1"]) ?>
+          <?= Fig::ico('dat_tab',['class'=>"mar_hor-1"]) ?>
         </div>
         
         <p>Desde el menú principal puedes acceder a un listado de tableros que representan las cuentas principales del sincronario<c>,</c> a estos los llamaremos módulos<c>.</c></p>
@@ -427,8 +451,8 @@
       $App->Doc['cab']['med']['app_dat']['htm'] = ob_get_clean();     
       
       // cargo todos los datos utilizados por esquema
-      $App->rec['est']['api']['hol'] = array_keys($App->dat['hol']);
-      $App->rec['est']['api']['fec'] = array_keys($App->dat['fec']);
+      $App->Ses['est']['api']['hol'] = array_keys($App->dat['hol']);
+      $App->Ses['est']['api']['fec'] = array_keys($App->dat['fec']);
     }
     //////////////////////////////////////////////////////////////////////////////////
     // Contenido: bibliografia + codigo + kin planetario /////////////////////////////
@@ -436,7 +460,7 @@
       // enlaces
       $Bib = SYS_NAV."sincronario/bibliografia/";
       // cargo directorio
-      $Dir = $App->uri_dir();      
+      $Dir = $App->dir();      
       // cargo indice
       $Nav = $App->Nav;
 
@@ -460,7 +484,7 @@
   }
 
   // codigo inicial
-  $App->rec['eje'] .= '
+  $App->Ses['eje'] .= '
 
     var $_hol = { val : '.Obj::val_cod( $_hol->val ).' };
     

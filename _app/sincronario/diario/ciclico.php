@@ -1,66 +1,70 @@
-<?php 
-  $nv1 = "00"; $nv2 = "00"; $nv3 = "00"; $nv4 = "00";
-  ?>
+
+<article>
+  <?php $nv1 = "00"; $nv2 = "00"; $nv3 = "00"; $nv4 = "00"; ?>
+  <header>
+    <h1><?=Tex::let($App->Art->nom)?></h1>
+  </header>
    
   <!-- El Banco-psi -->
-  <article>
+  <section>
     <?php $nv1 = Num::val(intval($nv1) + 1,2); $nv2 = 0; $nv3 = 0; $nv4 = 0; ?>
     <h2 id="<?="_{$Nav[1][$nv1]->key}-"?>"><?=Tex::let($Nav[1][$nv1]->nom)?></h2>
 
     <p></p>
 
-  </article>
+  </section>
 
   <!-- El Anillo Solar de Nuevo Sirio -->
-  <article>
+  <section>
     <?php $nv1 = Num::val(intval($nv1) + 1,2); $nv2 = 0; $nv3 = 0; $nv4 = 0; ?>
     <h2 id="<?="_{$Nav[1][$nv1]->key}-"?>"><?=Tex::let($Nav[1][$nv1]->nom)?></h2>
 
     <p></p>
 
-  </article>
+  </section>
   
   <!-- La Luna del Servicio Planetario -->
-  <article>
+  <section>
     <?php $nv1 = Num::val(intval($nv1) + 1,2); $nv2 = 0; $nv3 = 0; $nv4 = 0; ?>
     <h2 id="<?="_{$Nav[1][$nv1]->key}-"?>"><?=Tex::let($Nav[1][$nv1]->nom)?></h2>
 
     <p></p>
 
-  </article>
+  </section>
   
   <!-- La Cromática Entonada -->
-  <article>
+  <section>
     <?php $nv1 = Num::val(intval($nv1) + 1,2); $nv2 = 0; $nv3 = 0; $nv4 = 0; ?>
     <h2 id="<?="_{$Nav[1][$nv1]->key}-"?>"><?=Tex::let($Nav[1][$nv1]->nom)?></h2>
 
     <p></p>
 
-  </article>
+  </section>
   
   <!-- La Estación Solar -->
-  <article>
+  <section>
     <?php $nv1 = Num::val(intval($nv1) + 1,2); $nv2 = 0; $nv3 = 0; $nv4 = 0; ?>
     <h2 id="<?="_{$Nav[1][$nv1]->key}-"?>"><?=Tex::let($Nav[1][$nv1]->nom)?></h2>
 
     <p></p>
 
-  </article>
+  </section>
   
   <!-- El Plasma Radial -->
-  <article>
+  <section>
     <?php $nv1 = Num::val(intval($nv1) + 1,2); $nv2 = 0; $nv3 = 0; $nv4 = 0; ?>
     <h2 id="<?="_{$Nav[1][$nv1]->key}-"?>"><?=Tex::let($Nav[1][$nv1]->nom)?></h2>
 
     <p></p>
 
-  </article>
+  </section>
   
   <!-- El Vinal del Haab -->
-  <article>
+  <section>
     <?php $nv1 = Num::val(intval($nv1) + 1,2); $nv2 = 0; $nv3 = 0; $nv4 = 0; ?>
     <h2 id="<?="_{$Nav[1][$nv1]->key}-"?>"><?=Tex::let($Nav[1][$nv1]->nom)?></h2>
 
     <p></p>
 
-  </article>  
+  </section>
+</article>

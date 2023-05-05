@@ -56,6 +56,30 @@ class Eje {
     return $_;
   }
 
+  // controladores
+  static function var( string $tip, mixed $dat = NULL, array $ope = [], ...$opc ) : string {
+    $_ = "";
+    $_ide = self::$IDE."$tip";
+    $_eje = self::$EJE."$tip";
+    switch( $tip ){
+    case 'bot':
+      // solo la funcion
+      if( is_string($dat) ){
+        $ope['eti'] = 'button';
+        Ele::eje($ope,'cli',$dat);
+        Ele::cla($ope,'eje_bot','ini');
+        // conenido html
+        if( $ope['htm'] ){
+          Ele::cla($ope,'pad-2');
+        }
+        $_ = Ele::eti($ope);
+      }
+      break;
+    }
+
+    return $_;
+  }  
+
   // ejecuto funciones
   static function fun( string $ide, ...$par ) : mixed {
     $_=FALSE;

@@ -38,7 +38,7 @@ class Eje {
       // armo peticion
       $_ = `${SYS_NAV}index.php?_=${JSON.stringify($dat)}`;  
       // cargo log 
-      $App.log.php.push($_);
+      $App.Log.php.push($_);
       // ejecuto peticion
       $_ = $_ajax( encodeURI($_) ).then( $ => {
           // proceso error
@@ -57,8 +57,7 @@ class Eje {
       ;
     }
     return $_;
-  }
-  // codifico ejecucion
+  }// codifico ejecucion
   static val_cod( $val, $par ){
     let $_=false,$={}; 
     $.par=[];
@@ -180,7 +179,7 @@ class Eje {
 
                     console.log( $.log=`{-_-}.${$.eve.type} => ${($.obj=='window')?'':$.obj+'.'}${$.fun}( ${$.par.join('(,)')} )` );
 
-                    $App.log.jso.push($.log);// log
+                    $App.Log.jso.push($.log);// log
 
                     $_.push( $.ins[$.fun]( ...$.par ) );// invocacion
                   }

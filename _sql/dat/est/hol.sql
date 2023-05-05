@@ -1,57 +1,29 @@
--- Holon
+-- Active: 1670107173962@@127.0.0.1@3306@c1461857_api
+
   DELETE FROM `dat_est` WHERE `esq`='hol';
 
-  DELETE FROM `dat_est` WHERE `esq`='hol' AND `ide` LIKE 'uni%'; INSERT INTO `dat_est` VALUES
-
-    -- flujos: respiraciones y poderes
-    ('hol','uni_flu_res', '{
+  -- Sistema Solar
+  DELETE FROM `dat_est` WHERE `esq`='hol' AND `ide` LIKE 'sol%'; INSERT INTO `dat_est` VALUES
+    ('hol','sol_res', '{
         "atr": { 
-          "ide": { "min":1, "max":2, "dat":"uni_flu_res" }
-        },        
-        "val": { 
-          "nom": "Respiración de flujo polar #()($)ide() de 2: ()($)nom()",
-          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/uni/flu_res/()($)ide().png);",
-          "col": 2
-        },
-        "opc": { 
-          "ima": [ "ide" ]
-        }
-    }' ),
-    ('hol','uni_flu_pod', '{
-        "atr": { 
-          "ide": { "min":1, "max":2, "dat":"uni_flu_pod" }
-        },
-        "val": { 
-          "nom": "Poder de flujo polar #()($)ide() de 2: ()($)nom()",
-          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/uni/flu_pod/()($)ide().png);",
-          "col": 2
-        },
-        "opc": { 
-          "ima": [ "ide" ]
-        }
-    }' ),
-
-    -- holon solar
-    ('hol','uni_sol_res', '{
-        "atr": { 
-          "ide": { "min":1, "max":2, "dat":"hol_uni_sol_res" }
+          "ide": { "min":1, "max":2, "dat":"hol_sol_res" }
         },
         "val": { 
           "nom": "Respiración del Holon Solar #()($)ide() de 2: ()($)nom()",
           "des": "()($)des()",
-          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/uni/sol_res/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/sol/res/()($)ide().png);",
           "col": 2
         },
         "opc": { 
           "ima": [ "ide" ]
         }
     }' ),  
-    ('hol','uni_sol_pla', '{
+    ('hol','sol_pla', '{
         "atr": { 
-          "ide": { "min":1, "max":10, "dat":"hol_uni_sol_pla" },
-          "orb": { "min":1, "max": 2, "dat":"hol_uni_sol_orb" },
-          "cel": { "min":1, "max": 5, "dat":"hol_uni_sol_cel" },
-          "cir": { "min":1, "max": 5, "dat":"hol_uni_sol_cir" },
+          "ide": { "min":1, "max":10, "dat":"hol_sol_pla" },
+          "orb": { "min":1, "max": 2, "dat":"hol_sol_orb" },
+          "cel": { "min":1, "max": 5, "dat":"hol_sol_cel" },
+          "cir": { "min":1, "max": 5, "dat":"hol_sol_cir" },
           "sel": { "dat":"hol_sel" },
           "ele": { "dat":"hol_sel_cro_ele" },
           "fam": { "dat":"hol_sel_cro_fam" }
@@ -59,7 +31,7 @@
         "val": { 
           "nom": "Órbita Planetaria #()($)ide() de 10: ()($)nom().",
           "des": "Código ()($)nom_cod()",
-          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/uni/sol_pla/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/sol/pla/()($)ide().png);",
           "col": 10,
           "num": 10
         },
@@ -82,16 +54,16 @@
           "fic-3": [ "fam" ]
         }
     }' ),
-    ('hol','uni_sol_orb', '{
+    ('hol','sol_orb', '{
         "atr": { 
-          "ide": { "min":1, "max":2, "dat":"hol_uni_sol_orb" },
+          "ide": { "min":1, "max":2, "dat":"hol_sol_orb" },
           "ele": { "dat":"hol_sel_cro_ele" },
-          "pla": { "dat":"hol_uni_sol_pla" }                        
+          "pla": { "dat":"hol_sol_pla" }                        
         },
         "val": { 
           "nom": "Grupo Orbital #()($)ide() de 2: ()($)nom().",
           "des": "()($)des()",
-          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/uni/sol_orb/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/sol/orb/()($)ide().png);",
           "col": 2,
           "num": 2
         },
@@ -110,10 +82,10 @@
           "fic-2": [ "ele" ]
         }
     }' ),
-    ('hol','uni_sol_cel', '{
+    ('hol','sol_cel', '{
         "atr": { 
-          "ide": { "min":1, "max":5, "dat":"hol_uni_sol_cel" },
-          "pla": { "dat":"hol_uni_sol_pla" },
+          "ide": { "min":1, "max":5, "dat":"hol_sol_cel" },
+          "pla": { "dat":"hol_sol_pla" },
           "sel": { "dat":"hol_sel" },
           "ele": { "dat":"hol_sel_cro_ele" },
           "fam": { "dat":"hol_sel_cro_fam" }            
@@ -121,7 +93,7 @@
         "val": { 
           "nom": "Célula Solar #()($)ide() de 5: ()($)nom().",
           "des": "()($)des()",
-          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/uni/sol_cel/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/sol/cel/()($)ide().png);",
           "col": 5, 
           "num": 5
         },
@@ -146,17 +118,17 @@
           "fic-4": [ "fam" ]
         }
     }' ),
-    ('hol','uni_sol_cir', '{
+    ('hol','sol_cir', '{
         "atr": { 
-          "ide": { "min":1, "max":5, "dat":"hol_uni_sol_cir" },
-          "pla": { "dat":"hol_uni_sol_pla" },
+          "ide": { "min":1, "max":5, "dat":"hol_sol_cir" },
+          "pla": { "dat":"hol_sol_pla" },
           "sel": { "dat":"hol_sel" },
           "fam": { "dat":"hol_sel_cro_fam" }
         },
         "val": { 
           "nom": "Circuito de Telepatía #()($)ide() de 5: ()($)nom().",
           "des": "()($)des()",
-          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/uni/sol_cir/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/sol/cir/()($)ide().png);",
           "col": 5,
           "num": 5
         },
@@ -177,35 +149,36 @@
           "htm-3": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/encantamiento_del_sueño#_03-14-\'>Familias Terrestres</a> en <cite>el Encantamiento del Sueño</cite>" },
           "fic-3": [ "fam" ]
         }
-    }' ),
-    
-    -- holon planetario
-    ('hol','uni_pla_res', '{
+    }' )  
+  ;
+  -- Planetario
+  DELETE FROM `dat_est` WHERE `esq`='hol' AND `ide` LIKE 'pla%'; INSERT INTO `dat_est` VALUES
+    ('hol','pla_res', '{
         "atr": { 
-          "ide": { "min":1, "max":2, "dat":"hol_uni_pla_res" },
+          "ide": { "min":1, "max":2, "dat":"hol_pla_res" },
           "fam": { "min":1, "max":5, "dat":"hol_sel_cro_fam" },            
           "sel": { "dat":"hol_sel" }        
         },
         "val": { 
           "nom": "Respiración del Holon Planetario #()($)ide() de 2: ()($)nom()",
           "des": "()($)des()",
-          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/uni/pla_res/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/pla/res/()($)ide().png);",
           "col": 2
         },
         "opc": { 
           "ima": [ "ide", "fam", "sel" ]
         }
     }' ),
-    ('hol','uni_pla_cen', '{
+    ('hol','pla_cen', '{
         "atr": { 
-          "ide": { "min":1, "max":5, "dat":"hol_uni_pla_cen" },
+          "ide": { "min":1, "max":5, "dat":"hol_pla_cen" },
           "fam": { "min":1, "max":5, "dat":"hol_sel_cro_fam" },            
           "sel": { "dat":"hol_sel" }
         },
         "val": { 
           "nom": "Centro Planetario #()($)ide() de 5: ()($)nom().",
           "des": "()($)des()",
-          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/uni/pla_cen/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/pla/cen/()($)ide().png);",
           "col": 5,
           "num": 5
         },
@@ -221,15 +194,15 @@
           "fic-1": [ "sel" ]
         }
     }' ),
-    ('hol','uni_pla_hem', '{
+    ('hol','pla_hem', '{
         "atr": { 
-          "ide": { "min":1, "max":3, "dat":"hol_uni_pla_hem" },
+          "ide": { "min":1, "max":3, "dat":"hol_pla_hem" },
           "sel": { "dat":"hol_sel" }
         },
         "val": { 
           "nom": "Hemisferio #()($)ide() de 3: ()($)nom().",
           "des": "()($)des()",
-          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/uni/pla_hem/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/pla/hem/()($)ide().png);",
           "col": 3,
           "num": 3
         },
@@ -241,15 +214,15 @@
           "fic": [ "sel" ]
         }
     }' ),
-    ('hol','uni_pla_mer', '{
+    ('hol','pla_mer', '{
         "atr": { 
-          "ide": { "min":1, "max":2, "dat":"hol_uni_pla_mer" },
+          "ide": { "min":1, "max":2, "dat":"hol_pla_mer" },
           "sel": { "dat":"hol_sel" }
         },
         "val": { 
           "nom": "Meridiano #()($)ide() de 2: ()($)nom().",
           "des": "()($)des()",
-          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/uni/pla_mer/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/pla/mer/()($)ide().png);",
           "col": 2,
           "num": 2
         },
@@ -261,32 +234,33 @@
           "fic": [ "sel" ]
         }
     }' ),
-    ('hol','uni_pla_tie', '{
+    ('hol','pla_tie', '{
         "atr": { 
-          "ide": { "min":1, "max":3, "dat":"hol_uni_pla_tie" }
+          "ide": { "min":1, "max":3, "dat":"hol_pla_tie" }
         },
         "val": { 
           "nom": "Campo #()($)ide() de 3: ()($)nom()",
           "des": "()($)tra(): ()($)des()",
-          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/uni/pla_tie/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/pla/tie/()($)ide().png);",
           "col": 3
         },
         "opc": { 
           "ima": [ "ide" ]
         }
-    }' ),  
-    
-    -- holon humano
-    ('hol','uni_hum_res', '{
+    }' )  
+  ;
+  -- Humano
+  DELETE FROM `dat_est` WHERE `esq`='hol' AND `ide` LIKE 'hum%'; INSERT INTO `dat_est` VALUES
+    ('hol','hum_res', '{
         "atr": { 
-          "ide": { "min":1, "max":2, "dat":"hol_uni_hum_res" },
+          "ide": { "min":1, "max":2, "dat":"hol_hum_res" },
           "sel": { "dat":"hol_sel" },
           "ele": { "dat":"hol_sel_cro_ele" }
         },
         "val": { 
           "nom": "Respiración del Holon Humano #()($)ide() de 2: ()($)nom()",
           "des": "()($)des()",
-          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/uni/flu_res/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/flu/res/()($)ide().png);",
           "col": 2
         },
         "opc": { 
@@ -297,9 +271,9 @@
           "fic-1-tit": [ "ele", "sel" ]
         }
     }' ),
-    ('hol','uni_hum_lad', '{
+    ('hol','hum_lad', '{
         "atr": { 
-          "ide": { "min":1, "max":3, "dat":"uni_hum_lad" },
+          "ide": { "min":1, "max":3, "dat":"hum_lad" },
           "ton": { "dat":"hol_ton" }
         },
         "val": { 
@@ -315,16 +289,16 @@
           "fic-tit": [ "ton" ]
         }
     }' ),  
-    ('hol','uni_hum_cen', '{
+    ('hol','hum_cen', '{
         "atr": { 
-          "ide": { "min":1, "max":5, "dat":"hol_uni_hum_cen" },
+          "ide": { "min":1, "max":5, "dat":"hol_hum_cen" },
           "fam": { "min":1, "max":5, "dat":"hol_sel_cro_fam" },
           "sel": { "dat":"hol_sel" }
         },
         "val": { 
           "nom": "Centro Galáctico #()($)ide() de 5: ()($)nom().",
           "des": "()($)des()",
-          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/uni/hum_cen/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/hum/cen/()($)ide().png);",
           "col": 5,
           "num": 5
         },
@@ -339,16 +313,16 @@
           "fic-1": [ "sel" ]
         }
     }' ),
-    ('hol','uni_hum_ded', '{
+    ('hol','hum_ded', '{
         "atr": { 
-          "ide": { "min":1, "max":5, "dat":"hol_uni_hum_ded" },
+          "ide": { "min":1, "max":5, "dat":"hol_hum_ded" },
           "fam": { "min":1, "max":5, "dat":"hol_sel_cro_fam" },
           "sel": { "dat":"hol_sel" }
         },
         "val": { 
           "nom": "Dedo #()($)ide() de 5: ()($)nom().",
           "des": "()($)des()",
-          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/uni/hum_ded/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/hum/ded/()($)ide().png);",
           "col": 5,
           "num": 5
         },
@@ -363,16 +337,16 @@
           "fic-1": [ "sel" ]
         }
     }' ),
-    ('hol','uni_hum_ext', '{
+    ('hol','hum_ext', '{
         "atr": { 
-          "ide": { "min":1, "max":4, "dat":"hol_uni_hum_ext" },
+          "ide": { "min":1, "max":4, "dat":"hol_hum_ext" },
           "ele": { "min":1, "max":4, "dat":"hol_sel_cro_ele" },
           "sel": { "dat":"hol_sel" }
         },
         "val": { 
           "nom": "Extremidad #()($)ide() de 4: ()($)nom().",
           "des": "()($)des()",
-          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/uni/hum_ext/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/hum/ext/()($)ide().png);",
           "col": 4,
           "num": 4
         },
@@ -387,9 +361,9 @@
           "fic-1": [ "sel" ]
         }
     }' ),
-    ('hol','uni_hum_mer', '{
+    ('hol','hum_mer', '{
         "atr": { 
-          "ide": { "min":1, "max":10, "dat":"hol_uni_hum_mer" },
+          "ide": { "min":1, "max":10, "dat":"hol_hum_mer" },
           "fam": { "min":1, "max":5, "dat":"hol_sel_cro_fam" },
           "ele": { "dat":"hol_sel_cro_ele" },
           "sel": { "dat":"hol_sel" }
@@ -397,7 +371,7 @@
         "val": { 
           "nom": "Meridiano Orgánico #()($)ide() de 10: ()($)nom().",
           "des": "()($)des()",
-          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/uni/hum_mer/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/hum/mer/()($)ide().png);",
           "col": 10,
           "num": 10
         },
@@ -416,15 +390,15 @@
           "fic-2": [ "sel" ]
         }
     }' ),
-    ('hol','uni_hum_art', '{
+    ('hol','hum_art', '{
         "atr": { 
-          "ide": { "min":1, "max":7, "dat":"hol_uni_hum_art" },
+          "ide": { "min":1, "max":7, "dat":"hol_hum_art" },
           "ton": { "dat":"hol_ton" }
         },
         "val": { 
           "nom": "Articulación #()($)ide() de 7: ()($)nom().",
           "des": "()($)des()",
-          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/uni/hum_art/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/hum/art/()($)ide().png);",
           "col": 7,
           "num": 7
         },
@@ -435,15 +409,15 @@
           "fic": [ "ton" ]
         }
     }' ),
-    ('hol','uni_hum_cha', '{
+    ('hol','hum_cha', '{
         "atr": { 
-          "ide": { "min":1, "max":7, "dat":"hol_uni_hum_cha" },
+          "ide": { "min":1, "max":7, "dat":"hol_hum_cha" },
           "rad": { "dat":"hol_rad" }
         },
         "val": { 
           "nom": "Chakra #()($)ide() de 7: ()($)nom().",
           "des": "()($)des()",
-          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/uni/hum_cha/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/hum/cha/()($)ide().png);",
           "col": 7,
           "num": 7
         },
@@ -452,20 +426,49 @@
           "fic": [ "rad" ]
         }
     }' ),
-    ('hol','uni_hum_mud', '{ 
+    ('hol','hum_mud', '{ 
         "atr": { 
-          "ide": { "min":1, "max":7, "dat":"hol_uni_hum_cha" },
+          "ide": { "min":1, "max":7, "dat":"hol_hum_cha" },
           "rad": { "dat":"hol_rad" }
         },
         "val": { 
           "nom": "Mudra #()($)ide() de 7: ()($)nom().",
           "des": "()($)des()",
-          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/uni/hum_mud/()($)ide().png);",
+          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/hum/mud/()($)ide().png);",
           "num": 7
         }
-    }' )
+    }' )  
+  ;
+  -- x2 : Flujos: respiraciones y poderes
+  DELETE FROM `dat_est` WHERE `esq`='hol' AND `ide` LIKE 'flu%'; INSERT INTO `dat_est` VALUES
+    ('hol','flu_res', '{
+        "atr": { 
+          "ide": { "min":1, "max":2, "dat":"flu_res" }
+        },        
+        "val": { 
+          "nom": "Respiración de flujo polar #()($)ide() de 2: ()($)nom()",
+          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/flu/res/()($)ide().png);",
+          "col": 2
+        },
+        "opc": { 
+          "ima": [ "ide" ]
+        }
+    }' ),
+    ('hol','flu_pod', '{
+        "atr": { 
+          "ide": { "min":1, "max":2, "dat":"flu_pod" }
+        },
+        "val": { 
+          "nom": "Poder de flujo polar #()($)ide() de 2: ()($)nom()",
+          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/flu/pod/()($)ide().png);",
+          "col": 2
+        },
+        "opc": { 
+          "ima": [ "ide" ]
+        }
+    }' ) 
   ;  
-
+  -- x4 : Ciclo Armonico
   DELETE FROM `dat_est` WHERE `esq`='hol' AND `ide` LIKE 'arm%'; INSERT INTO `dat_est` VALUES
 
     ('hol','arm', '{
@@ -481,7 +484,7 @@
       }
     }' )
   ;
-
+  -- x5 : Ciclo Cromatico
   DELETE FROM `dat_est` WHERE `esq`='hol' AND `ide` LIKE 'cro%'; INSERT INTO `dat_est` VALUES
 
     ('hol','cro', '{
@@ -497,7 +500,7 @@
       }
     }' )
   ;
-
+  -- x7 : Plasma Radial
   DELETE FROM `dat_est` WHERE `esq`='hol' AND `ide` LIKE 'rad%'; INSERT INTO `dat_est` VALUES
 
     ('hol','rad', '{
@@ -510,7 +513,7 @@
           "pla_fue":     { "dat":"hol_rad_pla_fue" },
           "pla_qua":     { "min":1, "max":3, "dat":"hol_rad_pla_qua" },
           "pla_cub":     { "min":1, "max":7, "dat":"hol_rad_pla_cub" },
-          "hum_cha":     { "min":1, "max":7, "dat":"hol_uni_hum_cha" }
+          "hum_cha":     { "min":1, "max":7, "dat":"hol_hum_cha" }
         },
         "val": { 
           "nom": "Plasma #()($)ide() de 7: ()($)nom().",
@@ -652,7 +655,7 @@
         }
     }' )  
   ;
-  
+  -- x13 : Tono Galactico
   DELETE FROM `dat_est` WHERE `esq`='hol' AND `ide` LIKE 'ton%'; INSERT INTO `dat_est` VALUES
 
     ('hol','ton', '{
@@ -666,9 +669,9 @@
           "mat": { "min":1, "max":5, "dat":"hol_ton_mat" },
           "sim": { "min":1, "max":7, "dat":"hol_ton_sim" },
           
-          "hum_lad": { "min":1, "max":3, "dat":"hol_uni_hum_lad" },
-          "hum_art": { "min":1, "max":7, "dat":"hol_uni_hum_art" },
-          "hum_sen": { "min":1, "max":7, "dat":"hol_uni_hum_sen" }
+          "hum_lad": { "min":1, "max":3, "dat":"hol_hum_lad" },
+          "hum_art": { "min":1, "max":7, "dat":"hol_hum_art" },
+          "hum_sen": { "min":1, "max":7, "dat":"hol_hum_sen" }
         },
         "val": { 
           "nom": "Tono Galáctico #()($)ide() de 13: ()($)nom().",
@@ -826,7 +829,7 @@
         }
     }' )
   ;
-
+  -- x20 : Sello Solar
   DELETE FROM `dat_est` WHERE `esq`='hol' AND `ide` LIKE 'sel%'; INSERT INTO `dat_est` VALUES
 
     ('hol','sel', '{
@@ -849,24 +852,24 @@
         "par_ant":  { "min":1, "max":20, 	"dat":"hol_sel" },
         "par_ocu":  { "min":1, "max":20, 	"dat":"hol_sel" },
 
-        "flu_res":  { "min":1, "max":2, 	"dat":"hol_uni_flu_res" },
+        "flu_res":  { "min":1, "max":2, 	"dat":"hol_flu_res" },
         
-        "sol_pla":  { "min":1, "max":10, 	"dat":"hol_uni_sol_pla" },
-        "sol_res":  { "min":1, "max":2, 	"dat":"hol_uni_sol_res" },
-        "sol_orb":  { "min":1, "max":2, 	"dat":"hol_uni_sol_orb" },
-        "sol_cel":  { "min":1, "max":5, 	"dat":"hol_uni_sol_cel" },
-        "sol_cir":  { "min":1, "max":5, 	"dat":"hol_uni_sol_cir" },
+        "sol_pla":  { "min":1, "max":10, 	"dat":"hol_sol_pla" },
+        "sol_res":  { "min":1, "max":2, 	"dat":"hol_sol_res" },
+        "sol_orb":  { "min":1, "max":2, 	"dat":"hol_sol_orb" },
+        "sol_cel":  { "min":1, "max":5, 	"dat":"hol_sol_cel" },
+        "sol_cir":  { "min":1, "max":5, 	"dat":"hol_sol_cir" },
 
-        "pla_res":  { "min":1, "max":2, 	"dat":"hol_uni_pla_res" },
-        "pla_mer":  { "min":1, "max":2, 	"dat":"hol_uni_pla_mer" },
-        "pla_hem":  { "min":1, "max":3, 	"dat":"hol_uni_pla_hem" },
-        "pla_cen":  { "min":1, "max":5, 	"dat":"hol_uni_pla_cen" },
+        "pla_res":  { "min":1, "max":2, 	"dat":"hol_pla_res" },
+        "pla_mer":  { "min":1, "max":2, 	"dat":"hol_pla_mer" },
+        "pla_hem":  { "min":1, "max":3, 	"dat":"hol_pla_hem" },
+        "pla_cen":  { "min":1, "max":5, 	"dat":"hol_pla_cen" },
 
-        "hum_res":  { "min":1, "max":2, 	"dat":"hol_uni_hum_res" },
-        "hum_cen":  { "min":1, "max":5, 	"dat":"hol_uni_hum_cen" },
-        "hum_ext":  { "min":1, "max":5, 	"dat":"hol_uni_hum_ext" },
-        "hum_ded":  { "min":1, "max":5, 	"dat":"hol_uni_hum_ded" },
-        "hum_mer":  { "min":1, "max":10, 	"dat":"hol_uni_hum_mer" }
+        "hum_res":  { "min":1, "max":2, 	"dat":"hol_hum_res" },
+        "hum_cen":  { "min":1, "max":5, 	"dat":"hol_hum_cen" },
+        "hum_ext":  { "min":1, "max":5, 	"dat":"hol_hum_ext" },
+        "hum_ded":  { "min":1, "max":5, 	"dat":"hol_hum_ded" },
+        "hum_mer":  { "min":1, "max":10, 	"dat":"hol_hum_mer" }
       },
       "val": { 
         "nom": "Sello Solar #()($)ide() de 20, ()($)arm().",
@@ -975,21 +978,21 @@
         "cod":      { "min":0, "max":19 },
         "cro_fam":  { "min":1, "max":5, 	"dat":"hol_sel_cro_fam" },
         "cro_ele":  { "min":1, "max":4, 	"dat":"hol_sel_cro_ele" },
-        "flu_res":  { "min":1, "max":2, 	"dat":"hol_uni_flu_res" },          
-        "sol_pla":  { "min":1, "max":10, 	"dat":"hol_uni_sol_pla" },
-        "sol_res":  { "min":1, "max":2, 	"dat":"hol_uni_sol_res" },
-        "sol_orb":  { "min":1, "max":2, 	"dat":"hol_uni_sol_orb" },
-        "sol_cel":  { "min":1, "max":5, 	"dat":"hol_uni_sol_cel" },
-        "sol_cir":  { "min":1, "max":5, 	"dat":"hol_uni_sol_cir" },
-        "pla_res":  { "min":1, "max":2, 	"dat":"hol_uni_pla_res" },
-        "pla_mer":  { "min":1, "max":2, 	"dat":"hol_uni_pla_mer" },
-        "pla_hem":  { "min":1, "max":3, 	"dat":"hol_uni_pla_hem" },
-        "pla_cen":  { "min":1, "max":5, 	"dat":"hol_uni_pla_cen" },          
-        "hum_res":  { "min":1, "max":2, 	"dat":"hol_uni_hum_res" },
-        "hum_cen":  { "min":1, "max":5, 	"dat":"hol_uni_hum_cen" },
-        "hum_ext":  { "min":1, "max":5, 	"dat":"hol_uni_hum_ext" },
-        "hum_ded":  { "min":1, "max":5, 	"dat":"hol_uni_hum_ded" },
-        "hum_mer":  { "min":1, "max":10, 	"dat":"hol_uni_hum_mer" }
+        "flu_res":  { "min":1, "max":2, 	"dat":"hol_flu_res" },          
+        "sol_pla":  { "min":1, "max":10, 	"dat":"hol_sol_pla" },
+        "sol_res":  { "min":1, "max":2, 	"dat":"hol_sol_res" },
+        "sol_orb":  { "min":1, "max":2, 	"dat":"hol_sol_orb" },
+        "sol_cel":  { "min":1, "max":5, 	"dat":"hol_sol_cel" },
+        "sol_cir":  { "min":1, "max":5, 	"dat":"hol_sol_cir" },
+        "pla_res":  { "min":1, "max":2, 	"dat":"hol_pla_res" },
+        "pla_mer":  { "min":1, "max":2, 	"dat":"hol_pla_mer" },
+        "pla_hem":  { "min":1, "max":3, 	"dat":"hol_pla_hem" },
+        "pla_cen":  { "min":1, "max":5, 	"dat":"hol_pla_cen" },          
+        "hum_res":  { "min":1, "max":2, 	"dat":"hol_hum_res" },
+        "hum_cen":  { "min":1, "max":5, 	"dat":"hol_hum_cen" },
+        "hum_ext":  { "min":1, "max":5, 	"dat":"hol_hum_ext" },
+        "hum_ded":  { "min":1, "max":5, 	"dat":"hol_hum_ded" },
+        "hum_mer":  { "min":1, "max":10, 	"dat":"hol_hum_mer" }
       },
       "val": { 
         "nom": "Código #()($)cod() de 20: ()($)des_cod()",
@@ -1172,9 +1175,9 @@
       "atr": { 
         "ide": { "min":1, "max":5, "dat":"hol_sel_cro_fam" },
         "sel": { "dat":"hol_sel" },
-        "pla_cen": { "min":1, "max":5, "dat":"hol_uni_pla_cen" },
-        "hum_cen": { "min":1, "max":5, "dat":"hol_uni_hum_cen" },
-        "hum_ded": { "min":1, "max":5, "dat":"hol_uni_hum_ded" }
+        "pla_cen": { "min":1, "max":5, "dat":"hol_pla_cen" },
+        "hum_cen": { "min":1, "max":5, "dat":"hol_hum_cen" },
+        "hum_ded": { "min":1, "max":5, "dat":"hol_hum_ded" }
       },
       "val": { 
         "nom": "Familia Terrestre #()($)ide() de 5: ()($)nom().",
@@ -1204,8 +1207,8 @@
         "ide": { "min":1, "max":4, "dat":"hol_sel_cro_ele" },
         "sel": { "dat":"hol_sel" },
         "arm_cel": { "dat":"hol_sel_arm_cel" },
-        "flu_res": { "min":1, "max":2, "dat":"hol_uni_flu_res" },
-        "hum_ext": { "min":1, "max":4, "dat":"hol_uni_hum_ext" }
+        "flu_res": { "min":1, "max":2, "dat":"hol_flu_res" },
+        "hum_ext": { "min":1, "max":4, "dat":"hol_hum_ext" }
       },
       "val": { 
         "nom": "Clan #()($)ide() de 4: ()($)nom() ()($)des_col().",
@@ -1229,7 +1232,7 @@
       }
     }' )
   ;
-
+  -- x28 : Ciclo Lunar
   DELETE FROM `dat_est` WHERE `esq`='hol' AND `ide` LIKE 'lun%'; INSERT INTO `dat_est` VALUES
 
     -- dias
@@ -1338,7 +1341,7 @@
       }
     }' )
   ;
-  
+  -- x52 : Castillo del Destino
   DELETE FROM `dat_est` WHERE `esq`='hol' AND `ide` LIKE 'cas%'; INSERT INTO `dat_est` VALUES
 
     ('hol','cas', '{
@@ -1485,7 +1488,7 @@
         }
     }' )
   ;
-  
+  -- x64 : codigos del I-ching
   DELETE FROM `dat_est` WHERE `esq`='hol' AND `ide` LIKE 'chi%'; INSERT INTO `dat_est` VALUES
 
     ('hol','chi', '{
@@ -1538,7 +1541,7 @@
         }
     }' )     
   ;
-  
+  -- x260 : Kines
   DELETE FROM `dat_est` WHERE `esq`='hol' AND `ide` LIKE 'kin%'; INSERT INTO `dat_est` VALUES
 
     ('hol','kin', '{
@@ -2006,7 +2009,7 @@
       }
     }' )
   ;
-
+  -- x365 : Psicronos
   DELETE FROM `dat_est` WHERE `esq`='hol' AND `ide` LIKE 'psi%'; INSERT INTO `dat_est` VALUES
 
     ('hol','psi', '{
@@ -2248,4 +2251,4 @@
         "tex-1": "()($)ond_nom(): ()($)ond_pos().\\n()($)ond_pod(): ()($)ond_man()."
       }
     }' )
-  ;  
+  ;

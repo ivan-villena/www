@@ -1,6 +1,7 @@
 /* 
-  Contenido
+  Contenido: Listado, Renglón y Línea
 */
+.doc_lis,
 .doc_ren,
 .doc_ite {
   display: flex;
@@ -9,21 +10,22 @@
   align-items: center;
 }
 
-/* Renglón y Línea */
-:is(.doc_ren, .doc_ite){
-  align-items: center;
-  flex-grow: 2;
-}
+
 .doc_ren {
   flex-wrap: wrap;
 }
+.doc_lis {
+  flex-direction: column !important;
+  align-items: stretch;
+}
+
 :is(.doc_ren,.doc_ite) {
-  flex-grow: 2;  
+  flex-grow: 2;
   align-self: stretch;
 }
 
 /* 
-  Bloque Contenedor
+  Contenedor
 */
 .doc_val {
   width: -moz-fit-content;
@@ -41,7 +43,7 @@
 }
 
 /* 
-  Botones : .doc_bot > a/button/span 
+  Botones: .doc_bot > a/button/span
 */
 .doc_bot {  
   display: flex;
@@ -52,11 +54,27 @@
   margin: 0;
   padding: 0;
 }
-.doc_bot.dir-ver > * {
+
+/* por iconos/imagenes :  */
+.doc_bot>:not(.tex).dir-ver > * {
   margin: .2rem 0;
 }
-.doc_bot:not(.dir-ver) > * {
+.doc_bot:not(.tex,.dir-ver) > * {
   margin: 0 .3rem;
+}
+
+/* por texto */
+.doc_bot.tex {
+  width: initial;
+  flex-direction: column;
+  align-items: stretch;
+  padding: .5rem;
+}
+.doc_bot.tex > button {
+  margin-bottom: .5rem;
+}
+.doc_bot.tex > button:hover {
+  background-color: var(--fon_foc);
 }
 
 /* 

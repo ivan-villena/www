@@ -381,8 +381,7 @@ class Hol {
       ]);
 
     return $_;
-  }
-  // genero transitos por fecha del sincronario
+  }// genero transitos por fecha del sincronario
   static function val_cic( string $val, ...$opc ) : array {
     $_ = [];
     $ver_lun = !in_array('not-lun',$opc);
@@ -465,7 +464,7 @@ class Hol {
         ".Fec::var('dia', $_fec, [ 'id'=>"hol_val-fec", 'name'=>"fec", 
           'title'=>"Selecciona o escribe una fecha del Calendario Gregoriano para buscarla..."
         ])."
-        ".Fig::ico('dat_ini',[ 'eti'=>"button", 'type'=>"submit", 'class'=>"mar_hor-1", 'onclick'=>"$_eje(this);", 
+        ".Fig::ico('val-ini',[ 'eti'=>"button", 'type'=>"submit", 'class'=>"mar_hor-1", 'onclick'=>"$_eje(this);", 
           'title'=>'Haz click para buscar esta fecha del Calendario Gregoriano...'
         ])."
   
@@ -665,10 +664,10 @@ class Hol {
     extract( Dat::tab_dat("hol",$est,$atr,$ope,$ele) );
     $_ = "";
     switch( $tab ){
-    case 'uni':
+    case 'sol':
       switch( $atr ){
       // Sistema Solar ( vertical : T.K. )
-      case 'sol': 
+      case 'pla': 
         $sec = Dat::tab_sec($ope,['pla','orb','ele','cel','cir']); $_ = "
         <ul".Ele::atr($ele['sec']).">";
           // imágenes: galaxia + sol
@@ -678,46 +677,46 @@ class Hol {
             </li>";
           }
           // 2 respiraciones : x10 flechas
-          foreach( Hol::_('uni_sol_res') as $v ){ 
+          foreach( Hol::_('sol_res') as $v ){ 
             for( $i = 1; $i <= 10; $i++ ){ $_ .= "
               <li class='sec ima res-{$v->ide} ide-$i'>".
-                Hol::ima("uni_sol_res",$v)."
+                Hol::ima("sol_res",$v)."
               </li>";
             }
           }// x 4 flujos : alfa <-> omega
-          foreach( Hol::_('uni_flu') as $v ){ $_ .= "
+          foreach( Hol::_('flu') as $v ){ $_ .= "
             <li class='sec ima flu-{$v->ide} pod-{$v->pod}'>".
-              Hol::ima("uni_flu_pod",$v->pod)."
+              Hol::ima("flu_pod",$v->pod)."
             </li>";
           }
           // 10 planetas
-          foreach( Hol::_('uni_sol_pla') as $v ){ 
+          foreach( Hol::_('sol_pla') as $v ){ 
             $cla = ( $sec['pla'] && ( empty($sec['pla']) || in_array($v->ide,$sec['pla']) ) ) ? "" : " ".DIS_OCU;
             $_ .= "
             <li class='sec bor pla-{$v->ide}{$cla}'></li>
-            <li class='sec ima pla-{$v->ide}'>".Hol::ima("uni_sol_pla",$v)."</li>";
+            <li class='sec ima pla-{$v->ide}'>".Hol::ima("sol_pla",$v)."</li>";
           }
           // Secciones por Seleccion
           // - 2 grupos orbitales
-          foreach( Hol::_('uni_sol_orb') as $v ){ 
+          foreach( Hol::_('sol_orb') as $v ){ 
             $cla = ( $sec['orb'] !== FALSE && ( empty($sec['orb']) || in_array($v->ide,$sec['orb']) ) ) ? "" : " ".DIS_OCU; 
             $_ .= "
-            <li class='sec bor orb-{$v->ide}{$cla}' title='".Dat::get_val('tit',"hol.uni_sol_orb",$v)."'></li>";
+            <li class='sec bor orb-{$v->ide}{$cla}' title='".Dat::get_val('tit',"hol.sol_orb",$v)."'></li>";
           }// - 4 elementos/clanes
           foreach( Hol::_('sel_cro_ele') as $v ){ 
             $cla = ( $sec['ele'] !== FALSE && ( empty($sec['ele']) || in_array($v->ide,$sec['ele']) ) ) ? "" : " ".DIS_OCU; 
             $_ .= "
             <li class='sec bor ele-{$v->ide}{$cla}' title='".Dat::get_val('tit',"hol.sel_cro_ele",$v)."'></li>";
           }// - 5 células solares
-          foreach( Hol::_('uni_sol_cel') as $v ){ 
+          foreach( Hol::_('sol_cel') as $v ){ 
             $cla = ( $sec['cel'] !== FALSE && ( empty($sec['cel']) || in_array($v->ide,$sec['cel']) ) ) ? "" : " ".DIS_OCU;  
             $_ .= "
-            <li class='sec bor cel-{$v->ide}{$cla}' title='".Dat::get_val('tit',"hol.uni_sol_cel",$v)."'></li>";
+            <li class='sec bor cel-{$v->ide}{$cla}' title='".Dat::get_val('tit',"hol.sol_cel",$v)."'></li>";
           }// - 5 circuitos de telepatía
-          foreach( Hol::_('uni_sol_cir') as $v ){ 
+          foreach( Hol::_('sol_cir') as $v ){ 
             $cla = ( $sec['cir'] !== FALSE && ( empty($sec['cir']) || in_array($v->ide,$sec['cir']) ) ) ? "" : " ".DIS_OCU;  
             $_ .= "
-            <li class='sec bor cir-{$v->ide}{$cla}' title='".Dat::get_val('tit',"hol.uni_sol_cir",$v)."'></li>";
+            <li class='sec bor cir-{$v->ide}{$cla}' title='".Dat::get_val('tit',"hol.sol_cir",$v)."'></li>";
           }
           // posicion: 20 sellos solares
           foreach( Hol::_('sel') as $v ){ $_ .= "
@@ -728,7 +727,7 @@ class Hol {
         </ul>";        
         break;
       // Sistema Solar ( circular : E.S. )
-      case 'sol-cel':
+      case 'cel':
         $sec = Dat::tab_sec($ope,['pla','orb','ele','cel','cir']);
         $_ = "
         <ul".Ele::atr($ele['sec']).">";
@@ -741,9 +740,9 @@ class Hol {
             <li class='sec fon $i'></li>";
           }
           // fichas: planetas
-          foreach( Hol::_('uni_sol_pla') as $v ){ $_ .= "
+          foreach( Hol::_('sol_pla') as $v ){ $_ .= "
             <li class='sec pla-$v->ide'>
-              ".Hol::ima('uni_sol_pla',$v)."
+              ".Hol::ima('sol_pla',$v)."
             </li>";
           }
           // posicion: sellos
@@ -753,10 +752,13 @@ class Hol {
             </li>";
           }
           $_ .= " 
-        </ul>";        
+        </ul>";            
         break;
-      // Tierra
-      case 'pla':
+      }
+      break;
+    case 'pla':
+      switch( $atr ){
+      case 'map': 
         $sec = Dat::tab_sec($ope,['res','ele','hem','mer','cen']); $_ = "
         <ul".Ele::atr($ele['sec']).">
           <li class='sec fon map'></li>
@@ -767,22 +769,22 @@ class Hol {
             <li class='sec fon {$i}{$cla}'></li>";
           }
           // 3 Hemisferios
-          foreach( Hol::_('uni_pla_hem') as $v ){
+          foreach( Hol::_('pla_hem') as $v ){
             $cla = ( $sec['hem'] !== FALSE && ( empty($sec['hem']) || in_array($v->ide,$sec['hem']) ) ) ? "" : " ".DIS_OCU;  
             $_ .= "
-            <li class='sec bor hem-{$v->ide}{$cla}' title='".Dat::get_val('tit',"hol.uni_sol_hem",$v)."'></li>";
+            <li class='sec bor hem-{$v->ide}{$cla}' title='".Dat::get_val('tit',"hol.sol_hem",$v)."'></li>";
           }          
           // 2 Meridianos
-          foreach( Hol::_('uni_pla_mer') as $v ){
+          foreach( Hol::_('pla_mer') as $v ){
             $cla = ( $sec['mer'] !== FALSE && ( empty($sec['mer']) || in_array($v->ide,$sec['mer']) ) ) ? "" : " ".DIS_OCU;  
             $_ .= "
-            <li class='sec bor mer-{$v->ide}{$cla}' title='".Dat::get_val('tit',"hol.uni_sol_mer",$v)."'></li>";
+            <li class='sec bor mer-{$v->ide}{$cla}' title='".Dat::get_val('tit',"hol.sol_mer",$v)."'></li>";
             if( $v->ide == 1 ){ $_ .= "
-              <li class='sec bor mer-{$v->ide}-0{$cla}' title='".Dat::get_val('tit',"hol.uni_sol_mer",$v)."'></li>";
+              <li class='sec bor mer-{$v->ide}-0{$cla}' title='".Dat::get_val('tit',"hol.sol_mer",$v)."'></li>";
             }
           }
           // 5 Centros galácticos
-          foreach( Hol::_('uni_pla_cen') as $v ){
+          foreach( Hol::_('pla_cen') as $v ){
             if( $sec['cen'] !== FALSE ){ $cla = in_array($v->ide,$sec['cen']) ? " fon-sel" : ""; }else{ $cla = " dis-ocu"; }
             $_ .= "
             <li class='sec ima cen-{$v->ide}{$cla}'>
@@ -796,32 +798,35 @@ class Hol {
             </li>";
           }
           $_ .= "
-        </ul>";        
+        </ul>";          
         break;
-      // Humano
-      case 'hum':
+      }      
+      break;
+    case 'hum':
+      switch( $atr ){
+      case 'map': 
         $sec = Dat::tab_sec($ope,['res','ext','cen','cha','art','ded']); $_ = "
         <ul".Ele::atr($ele['sec']).">
           <li class='sec fon map'></li>";
           // 2 Lados del Cuerpo : Respiración del Holon
-          foreach( Hol::_('uni_hum_res') as $v ){
+          foreach( Hol::_('hum_res') as $v ){
             $cla = ( $sec['res'] !== FALSE && ( empty($sec['res']) || in_array($v->ide,$sec['res']) ) ) ? "" : " ".DIS_OCU; $_ .= "
-            <li class='sec bor res-{$v->ide}{$cla}' title='".Dat::get_val('tit',"hol.uni_hum_res",$v)."'></li>";
+            <li class='sec bor res-{$v->ide}{$cla}' title='".Dat::get_val('tit',"hol.hum_res",$v)."'></li>";
           }          
           // 5 Centros Galácticos : Familias Terrestres
           if( $sec['cen'] !== FALSE ){ $_ .= "
             <li class='sec fon cen'></li>
             <li class='sec fon ded'></li>";
           }
-          foreach( Hol::_('uni_hum_cen') as $v ){
+          foreach( Hol::_('hum_cen') as $v ){
             if( $sec['cen'] !== FALSE ){ $cla = in_array($v->ide,$sec['cen']) ? " fon-sel" : ""; }else{ $cla = " dis-ocu"; }
             $_ .= "
             <li class='sec ima cen-{$v->ide}{$cla}'>
-              ".Hol::ima("uni_hum_cen",$v)."
+              ".Hol::ima("hum_cen",$v)."
             </li>";
           }
           // 4 Extremidades : Clanes Cromáticos
-          foreach( Hol::_('uni_hum_ext') as $v ){
+          foreach( Hol::_('hum_ext') as $v ){
             if( $sec['ext'] !== FALSE ){ $cla = in_array($v->ide,$sec['ext']) ? " fon-sel" : ""; }else{ $cla = " dis-ocu"; }
             $_ .= "
             <li class='sec bor ext-{$v->ide}{$cla}'></li>";
@@ -851,10 +856,13 @@ class Hol {
             </li>";
           }
           $_ .= "
-        </ul>";        
-        break;
-      // Telektonon
-      case 'tel':
+        </ul>";     
+        break;      
+      }      
+      break;
+    case 'tel':
+      switch( $atr ){
+      case 'map': 
         $sec = Dat::tab_sec($ope,['pla','orb','ele','cel','cir']); $_ = "
         <ul".Ele::atr($ele['sec']).">";
           // posicion: 20 sellos del holon solar
@@ -876,9 +884,9 @@ class Hol {
             </li>";
           }          
           $_ .= " 
-        </ul>";         
+        </ul>";            
         break;
-      }
+      }      
       break;
     case 'rad':
       switch( $atr ){
@@ -1374,8 +1382,8 @@ class Hol {
         Ele::cla($ele['sec'],'hol_ton');
         $_ = "
         <ul".Ele::atr($ele['sec']).">
-          ".Fig::ima('hol/tab/sol',['eti'=>"li", 'class'=>"sec uni_sol"])."
-          ".Fig::ima('hol/tab/pla',['eti'=>"li", 'class'=>"sec uni_lun"])."
+          ".Fig::ima('hol/tab/sol',['eti'=>"li", 'class'=>"sec sol"])."
+          ".Fig::ima('hol/tab/pla',['eti'=>"li", 'class'=>"sec lun"])."
           ".Hol::tab_sec('ton',$ope,$ele)
           ;
           if( !in_array('cab_nom',$ope['opc']) ) $ope['opc'] []= 'cab_nom';

@@ -1,4 +1,8 @@
 
+body {
+  background: center/cover no-repeat url(../../_img/sincronario/01.jpg);
+}
+
 /*  
   Inicio
 */
@@ -9,12 +13,17 @@ main section.inicio {
   grid: repeat( 10, 1fr) / repeat( 10, 1fr);
   padding: 1rem;
 }
-
+/* Cartel */
 main section.inicio > .-adv {
   margin: initial;  
   grid-column: 4/sp;
   grid-row: 1/2;
 }
-
+/* Iniciar Sesion */
+main section.inicio > .app-ses_ini {
+  grid-column: 5/8;
+  grid-row: 5;
+  padding: 1rem;
+}
 
 

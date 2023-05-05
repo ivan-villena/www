@@ -183,7 +183,7 @@ class Dat {
   }// Cargo estructura desde app.dat
   static get_est( $esq, $est, $ope, $dat ) {
 
-    let $={}, $_ = $App.dat[$esq][$est];
+    let $={}, $_ = $App.Dat[$esq][$est];
 
     // Estructura de la base
     if( !$_ ){
@@ -212,7 +212,7 @@ class Dat {
 
     let $={}, $_ = false;
     
-    if( $App.dat[$esq][$est]?.atr[$atr] && ( $.dat_atr = $App.dat[$esq][$est]?.atr[$atr].var.dat ) ){
+    if( $App.Dat[$esq][$est]?.atr[$atr] && ( $.dat_atr = $App.Dat[$esq][$est]?.atr[$atr].var.dat ) ){
 
       $.dat_atr = $.dat_atr.split('_');
 
@@ -225,7 +225,7 @@ class Dat {
     // vacio valores y atributos
     $.ini = ( $ide = ["val"] ) => {
       $ide.forEach( $i => { 
-        if( $.ope = $App.dom.dat.var.querySelector(`[name="${$i}"]`) ) dom.eli( $.ope, `option:not([value=""])` ); 
+        if( $.ope = $App.Dom.dat.var.querySelector(`[name="${$i}"]`) ) dom.eli( $.ope, `option:not([value=""])` ); 
       });
     };
     switch( $tip ){
@@ -395,7 +395,7 @@ class Dat {
 
     if( $tip && $tip.nodeName ){
       $dat = $tip;
-      $App.dom.dat.var = dom.ver($dat,{'eti':'form'});
+      $App.Dom.dat.var = dom.ver($dat,{'eti':'form'});
       $.var_ide = $dat.getAttribute('name');
     }
     else{
@@ -478,13 +478,13 @@ class Dat {
     // cargo valores
     case 'var':
       $._val = {};
-      $App.dom.dat.var.querySelectorAll(`[id][name]`).forEach( $atr => {          
+      $App.Dom.dat.var.querySelectorAll(`[id][name]`).forEach( $atr => {          
         $._val[ $atr.name ] = $.atr.value;
       });      
     // inicializo valores
     case 'ope':
-      $App.dom.dat.var.querySelectorAll(`.dat_var > :is(select,input,textarea).fon-roj`).forEach( $e => $e.classList.remove('fon-roj') );
-      $App.dom.dat.var.querySelectorAll(`.dat_var > ul.col-roj`).forEach( $e => $e.parentElement.removeChild($e) );
+      $App.Dom.dat.var.querySelectorAll(`.dat_var > :is(select,input,textarea).fon-roj`).forEach( $e => $e.classList.remove('fon-roj') );
+      $App.Dom.dat.var.querySelectorAll(`.dat_var > ul.col-roj`).forEach( $e => $e.parentElement.removeChild($e) );
       break;
     // proceso errores
     case 'err':
@@ -493,7 +493,7 @@ class Dat {
 
       this.abm('ope', $dat);
 
-      $App.dom.dat.var.querySelectorAll(`[id][name]`).forEach( $atr => {
+      $App.Dom.dat.var.querySelectorAll(`[id][name]`).forEach( $atr => {
         
         $.ide=$atr.name;
 
@@ -578,7 +578,7 @@ class Dat {
     // reinicio formulario
     case 'fin':
       this.abm('ope', $dat );
-      $App.dom.dat.var.reset();
+      $App.Dom.dat.var.reset();
       break;  
     // proceso ABM : ini - agr - mod - eli
     default:
@@ -586,19 +586,19 @@ class Dat {
       // cargo datos
       if( $.tip_eli ){
         if( !confirm('¿Confirmar Eliminación?') ){ return $; }
-        $ = this.abm('var',$App.dom.dat.var);
+        $ = this.abm('var',$App.Dom.dat.var);
       }else{
         $ = this.abm('err', $dat);
       }        
       // ejecuto proceso
       if( $.tip_eli || ( $._val && !$._tex ) ){        
         // actualizo datos
-        if( ( $.esq = $App.dom.dat.var.dataset.esq ) && ( $.est = $App.dom.dat.var.dataset.est ) ){
+        if( ( $.esq = $App.Dom.dat.var.dataset.esq ) && ( $.est = $App.Dom.dat.var.dataset.est ) ){
           Eje.val(['Dat::abm', [ $.esq, $.est, $tip, $._val ] ], $e => {
             if( !$e._err ){
               // reiniciar formulario
               this.abm('fin',$dat);
-              $App.dom.dat.var.reset();              
+              $App.Dom.dat.var.reset();              
               // reiniciar página
               window.location.href = ( $.tip_eli ) ? window.location.href.split('/').slice(0,-1).join('/') : window.location.href;
             }
@@ -617,7 +617,7 @@ class Dat {
 
     // actualizo acumulados
     $.acu_val = {};
-    ( $opc.length == 0 ? $App.dom.dat.ope.acu : $opc ).forEach( $ide => {
+    ( $opc.length == 0 ? $App.Dom.dat.ope.acu : $opc ).forEach( $ide => {
 
       // acumulo elementos del listado
       $.acu_val[$ide] = $dat.querySelectorAll(`[class*="_val-${$ide}-"]`);
@@ -660,14 +660,14 @@ class Dat {
     $.cla_ide = `_val-ver_${$tip}`;
     // las clases previas se eliminan desde el proceso que me llama ( tab + est )
 
-    $App.dom.dat.var = $ope.querySelector(`form.ide-${$tip}`);
+    $App.Dom.dat.var = $ope.querySelector(`form.ide-${$tip}`);
 
     // datos de la base : estructura > valores [+ima]
     if( $tip == 'dat' ){
 
-      $.dat_est = $App.dom.dat.var.querySelector(`[name="est"]`);
-      $.dat_ide = $App.dom.dat.var.querySelector(`[name="ver"]`);
-      $.dat_val = $App.dom.dat.var.querySelector(`[name="val"]`);     
+      $.dat_est = $App.Dom.dat.var.querySelector(`[name="est"]`);
+      $.dat_ide = $App.Dom.dat.var.querySelector(`[name="ver"]`);
+      $.dat_val = $App.Dom.dat.var.querySelector(`[name="val"]`);     
 
       // actualizo dependencia
       if( $.dat_ide.value && $.dat_val.value ){
@@ -691,7 +691,7 @@ class Dat {
       $.var = {};
       ['ini','fin','inc','lim'].forEach( $ide => {
         // capturo valores
-        if( ( $.ite = $App.dom.dat.var.querySelector(`[name="${$ide}"]`) ) ){
+        if( ( $.ite = $App.Dom.dat.var.querySelector(`[name="${$ide}"]`) ) ){
           $.var[$ide] = $.ite;
           if( !!$.ite.value ) $.val[$ide] = ( $.ite.getAttribute('type') == 'number' ) ? Num.val($.ite.value) : $.ite.value;
         }
@@ -755,7 +755,7 @@ class Dat {
 
         $.lis = $dat.filter( $e => $e.classList.contains($.cla_ide) );
         // ultimos
-        if( $App.dom.dat.var.querySelector(`.fig_ico.ide-lis_fin.bor-sel`) ) $.lis = $.lis.reverse();
+        if( $App.Dom.dat.var.querySelector(`.fig_ico.ide-lis_fin.bor-sel`) ) $.lis = $.lis.reverse();
 
         $.lim_cue = 0;
         $.lis.forEach( $e => {
@@ -801,9 +801,9 @@ class Dat {
     // filtro por valor textual
     case 'ver':
 
-      $.ope = $App.dom.dat.var.querySelector('[name="ope"]').value;
-      $.val = $App.dom.dat.var.querySelector('[name="val"]').value;
-      $.lis = $App.dom.dat.var.nextElementSibling.querySelector('tbody');
+      $.ope = $App.Dom.dat.var.querySelector('[name="ope"]').value;
+      $.val = $App.Dom.dat.var.querySelector('[name="val"]').value;
+      $.lis = $App.Dom.dat.var.nextElementSibling.querySelector('tbody');
       if( !$.val ){
 
         $.lis.querySelectorAll(`tr.${DIS_OCU}`).forEach( $e => $e.classList.remove(DIS_OCU) );
@@ -831,9 +831,9 @@ class Dat {
 
     let $={};   
 
-    if( $App.dom.dat.lis.val_acu ){
+    if( $App.Dom.dat.lis.val_acu ){
 
-      if( $.ele = $App.dom.dat.lis.val_acu.querySelector(`[name="tod"]`) ){
+      if( $.ele = $App.Dom.dat.lis.val_acu.querySelector(`[name="tod"]`) ){
 
         Dat.lis_val('tod',$.ele);
       }
@@ -844,19 +844,19 @@ class Dat {
 
     let $={};
     // actualizo total
-    if( $App.dom.dat.lis.val_acu && ( $.tot = $App.dom.dat.lis.val_acu.querySelector('[name="tot"]') ) ){
+    if( $App.Dom.dat.lis.val_acu && ( $.tot = $App.Dom.dat.lis.val_acu.querySelector('[name="tot"]') ) ){
       
       $.tot.innerHTML = Dat.lis_val('tot');
     }    
     // actualizo cuentas
-    if( $App.dom.dat.lis.val_cue ){
+    if( $App.Dom.dat.lis.val_cue ){
 
-      Dat.val_cue('act', $App.dom.dat.lis.val.querySelectorAll(`tr.pos:not(.${DIS_OCU})`), $App.dom.dat.lis.val_cue);
+      Dat.val_cue('act', $App.Dom.dat.lis.val.querySelectorAll(`tr.pos:not(.${DIS_OCU})`), $App.Dom.dat.lis.val_cue);
     }
     // actualizo descripciones
-    if( $App.dom.dat.lis.des ){
+    if( $App.Dom.dat.lis.des ){
 
-      $App.dom.dat.lis.des.querySelectorAll(`[name]:checked`).forEach( $e => Dat.lis_des_tog($e) );
+      $App.Dom.dat.lis.des.querySelectorAll(`[name]:checked`).forEach( $e => Dat.lis_des_tog($e) );
     }
   }// Valores: totales + acumulados
   static lis_val( $tip, $dat ){
@@ -864,8 +864,8 @@ class Dat {
     switch( $tip ){
     case 'tot': 
       $_ = 0;
-      if( $App.dom.dat.lis.val ){
-        $_ = $App.dom.dat.lis.val.querySelectorAll(`tr.pos:not(.${DIS_OCU})`).length;
+      if( $App.Dom.dat.lis.val ){
+        $_ = $App.Dom.dat.lis.val.querySelectorAll(`tr.pos:not(.${DIS_OCU})`).length;
       }
       else{
         console.error('No hay tabla relacionada...');
@@ -874,33 +874,33 @@ class Dat {
     case 'tod': 
       $ = Dat.var($dat);  
       
-      if( $App.dom.dat.lis.val_acu ){
+      if( $App.Dom.dat.lis.val_acu ){
         // ajusto controles acumulados
-        $App.dom.dat.ope.acu.forEach( $i => {
+        $App.Dom.dat.ope.acu.forEach( $i => {
 
-          if( $.val = $App.dom.dat.lis.val_acu.querySelector(`[name='${$i}']`) ) $.val.disabled = $dat.checked;
+          if( $.val = $App.Dom.dat.lis.val_acu.querySelector(`[name='${$i}']`) ) $.val.disabled = $dat.checked;
         });
       }
       // ejecuto todos los filtros y actualizo totales
       Dat.lis_ver();    
       break;
     case 'acu':
-      if( ( $.esq = $App.dom.dat.lis.val.dataset.esq ) && ( $.est = $App.dom.dat.lis.val.dataset.est ) ){
+      if( ( $.esq = $App.Dom.dat.lis.val.dataset.esq ) && ( $.est = $App.Dom.dat.lis.val.dataset.est ) ){
         
         // oculto todos los items de la tabla
-        Ele.act('cla_agr',$App.dom.dat.lis.val.querySelectorAll(`tr.pos:not(.${DIS_OCU})`),DIS_OCU);
+        Ele.act('cla_agr',$App.Dom.dat.lis.val.querySelectorAll(`tr.pos:not(.${DIS_OCU})`),DIS_OCU);
 
         // actualizo por acumulado
-        $App.dom.dat.ope.acu.forEach( $ide => {
+        $App.Dom.dat.ope.acu.forEach( $ide => {
 
-          if( $.val = $App.dom.dat.lis.val_acu.querySelector(`[name='${$ide}']`) ){
+          if( $.val = $App.Dom.dat.lis.val_acu.querySelector(`[name='${$ide}']`) ){
 
             $.tot = 0;
             if( $.val.checked ){
               // recorro seleccionados
-              $App.dom.dat.tab.val.querySelectorAll(`.pos[class*="_val-${$ide}-"]`).forEach( $e =>{
+              $App.Dom.dat.tab.val.querySelectorAll(`.pos[class*="_val-${$ide}-"]`).forEach( $e =>{
                 
-                if( $.ele = $App.dom.dat.lis.val.querySelector(`tr.pos[data-${$.esq}_${$.est}="${$e.dataset[`${$.esq}_${$.est}`]}"].${DIS_OCU}`) ){
+                if( $.ele = $App.Dom.dat.lis.val.querySelector(`tr.pos[data-${$.esq}_${$.est}="${$e.dataset[`${$.esq}_${$.est}`]}"].${DIS_OCU}`) ){
                   $.tot++;
                   $.ele.classList.remove(DIS_OCU);
                 }
@@ -925,9 +925,9 @@ class Dat {
     if( !$tip || ['dat','pos','fec'].includes($tip) ){
 
       // 1- muestro todos
-      if( !$App.dom.dat.lis.val_acu || $App.dom.dat.lis.val_acu.querySelector(`[name="tod"]:checked`) ){
+      if( !$App.Dom.dat.lis.val_acu || $App.Dom.dat.lis.val_acu.querySelector(`[name="tod"]:checked`) ){
 
-        Ele.act('cla_eli',$App.dom.dat.lis.val.querySelectorAll(`tr.pos.${DIS_OCU}`),DIS_OCU);
+        Ele.act('cla_eli',$App.Dom.dat.lis.val.querySelectorAll(`tr.pos.${DIS_OCU}`),DIS_OCU);
       }// o muestro solo acumulados
       else{
         Dat.lis_val('acu');
@@ -935,27 +935,27 @@ class Dat {
 
       // 2- cargo filtros : - dato(val) -fecha(ini) -posicion(ini)
       $.eje = [];
-      for( const $ope_ide in $App.dom.dat.ope.ver ){
+      for( const $ope_ide in $App.Dom.dat.ope.ver ){
         // Elimino todas las clases
-        Ele.act('cla_eli',$App.dom.dat.lis.val.querySelectorAll(`._val-ver_${$ope_ide}`),[`_val-ver-`,`_val-ver_${$ope_ide}`]);
+        Ele.act('cla_eli',$App.Dom.dat.lis.val.querySelectorAll(`._val-ver_${$ope_ide}`),[`_val-ver-`,`_val-ver_${$ope_ide}`]);
         // tomo solo los que tienen valor
-        if( ( $.val = $App.dom.dat.lis.ver.querySelector(`${$App.dom.dat.ope.ver[$ope_ide]}`) ) && !!$.val.value ){
+        if( ( $.val = $App.Dom.dat.lis.ver.querySelector(`${$App.Dom.dat.ope.ver[$ope_ide]}`) ) && !!$.val.value ){
           $.eje.push($ope_ide);
         }
       }
       // 3º - ejecuto todos los filtros
       if( $.eje.length > 0 ){
         $.eje.forEach( $ope_ide => {
-          Dat.val_ver($ope_ide, Lis.val_cod( $App.dom.dat.lis.val.querySelectorAll(`tr.pos:not(.${DIS_OCU})`) ), $App.dom.dat.lis.ver);
+          Dat.val_ver($ope_ide, Lis.val_cod( $App.Dom.dat.lis.val.querySelectorAll(`tr.pos:not(.${DIS_OCU})`) ), $App.Dom.dat.lis.ver);
           // oculto valores no seleccionados
-          Ele.act('cla_agr',$App.dom.dat.lis.val.querySelectorAll(`tr.pos:not(._val-ver-, .${DIS_OCU})`),DIS_OCU);
+          Ele.act('cla_agr',$App.Dom.dat.lis.val.querySelectorAll(`tr.pos:not(._val-ver-, .${DIS_OCU})`),DIS_OCU);
         });
       }
     }
     // por ciclos + agrupaciones
     else if( ['cic','gru'].includes($tip) ){
       // muestro todos los items
-      Ele.act('cla_eli',$App.dom.dat.lis.val.querySelectorAll(`tbody tr:not(.pos).${DIS_OCU}`),DIS_OCU);        
+      Ele.act('cla_eli',$App.Dom.dat.lis.val.querySelectorAll(`tbody tr:not(.pos).${DIS_OCU}`),DIS_OCU);        
       
       // aplico filtro
       // ... 
@@ -977,7 +977,7 @@ class Dat {
     // checkbox
     if( $dat.nodeName == 'INPUT' ){
 
-      $App.dom.dat.lis.val.querySelectorAll(
+      $App.Dom.dat.lis.val.querySelectorAll(
         `:is(thead,tbody) :is(td,th)[data-esq="${$.esq}"][data-est="${$.est}"][data-atr="${$dat.name}"]`
       ).forEach( $ite => {
         // muetro columna
@@ -1004,26 +1004,26 @@ class Dat {
   static lis_des_tog( $dat ){
 
     let $ = Dat.var($dat);
-    $.ope  = $App.dom.dat.var.classList[0].split('-')[1];
-    $.esq = $App.dom.dat.var.dataset.esq;
-    $.est = $App.dom.dat.var.dataset.est;
+    $.ope  = $App.Dom.dat.var.classList[0].split('-')[1];
+    $.esq = $App.Dom.dat.var.dataset.esq;
+    $.est = $App.Dom.dat.var.dataset.est;
     $.atr = $.var_ide;
     
     // oculto todos
-    Ele.act('cla_agr',$App.dom.dat.lis.val.querySelectorAll(
+    Ele.act('cla_agr',$App.Dom.dat.lis.val.querySelectorAll(
       `tbody tr[data-ope="${$.ope}"][data-esq="${$.esq}"][data-est="${$.est}"][data-atr="${$.atr}"]:not(.${DIS_OCU})`
     ),DIS_OCU);
     
     // muestro titulos y lecturas para los que no están ocultos
     if( $dat.checked ){
 
-      $App.dom.dat.lis.val.querySelectorAll(`tr.pos:not(.${DIS_OCU})`).forEach( $ite => {
+      $App.Dom.dat.lis.val.querySelectorAll(`tr.pos:not(.${DIS_OCU})`).forEach( $ite => {
 
         if( ( $.val = Dat.get($.esq,$.est,$ite.dataset[`${$.esq}_${$.est}`]) ) && $.val[$.atr] ){
 
           $.ide=( $.ope == 'des' ) ? $ite.dataset[`${$.esq}_${$.est}`] : $.val[$.atr];
 
-          Ele.act('cla_eli',$App.dom.dat.lis.val.querySelectorAll(
+          Ele.act('cla_eli',$App.Dom.dat.lis.val.querySelectorAll(
             `tbody tr[data-ope="${$.ope}"][data-esq="${$.esq}"][data-est="${$.est}"][data-atr="${$.atr}"][data-ide="${$.ide}"].${DIS_OCU}`
           ),DIS_OCU)          
         }
@@ -1039,14 +1039,14 @@ class Dat {
     if( ['tit','det'].includes($.var_ide) ){
   
       // oculto por cilcos y agrupaciones
-      $App.dom.dat.lis.val.querySelectorAll(`tbody tr[opc="${$.ite}"]:not([data-ope="des"],.${DIS_OCU})`).forEach( $e => $e.classList.add(DIS_OCU) );
+      $App.Dom.dat.lis.val.querySelectorAll(`tbody tr[opc="${$.ite}"]:not([data-ope="des"],.${DIS_OCU})`).forEach( $e => $e.classList.add(DIS_OCU) );
 
       // estructura
-      if( $.est = $App.dom.dat.lis.ver.querySelector(`form.ide-dat select[name] + .dep:not(.${DIS_OCU})`) ){
+      if( $.est = $App.Dom.dat.lis.ver.querySelector(`form.ide-dat select[name] + .dep:not(.${DIS_OCU})`) ){
         $.est = $.est.previousElementSibling.querySelector('select');
         $.opc = $.est.parentElement.parentElement.dataset.atr;
         // valor de dependencia
-        $.ide=$App.dom.dat.lis.ver.querySelector(`form.ide-dat select[name="${$.opc}"] + div.dep > select:not(.${DIS_OCU})`);
+        $.ide=$App.Dom.dat.lis.ver.querySelector(`form.ide-dat select[name="${$.opc}"] + div.dep > select:not(.${DIS_OCU})`);
       }
       // muestro        
       if( $dat.checked && ( $.est || $.ide ) ){
@@ -1058,13 +1058,13 @@ class Dat {
 
             $.agr = !!$.ide && $.ide.value ? `.ide-${$.ide.value}` : '';
 
-            Ele.act('cla_eli',$App.dom.dat.lis.val.querySelectorAll(`tbody tr[data-atr="${$.atr}"]${$.agr}.${DIS_OCU}`),DIS_OCU);            
+            Ele.act('cla_eli',$App.Dom.dat.lis.val.querySelectorAll(`tbody tr[data-atr="${$.atr}"]${$.agr}.${DIS_OCU}`),DIS_OCU);            
           }
         }// descripciones por item no oculto
         else{
-          $App.dom.dat.lis.val.querySelectorAll(`tbody tr:not(.pos,.${DIS_OCU})`).forEach( $e =>{
+          $App.Dom.dat.lis.val.querySelectorAll(`tbody tr:not(.pos,.${DIS_OCU})`).forEach( $e =>{
 
-            if( $.lis_ite = $App.dom.dat.lis.val.querySelector(`table tr[data-atr="${$.atr}_des"][data-ide="${$e.dataset.ide}"].${DIS_OCU}`) ){ 
+            if( $.lis_ite = $App.Dom.dat.lis.val.querySelector(`table tr[data-atr="${$.atr}_des"][data-ide="${$e.dataset.ide}"].${DIS_OCU}`) ){ 
               $.lis_ite.classList.remove(DIS_OCU);
             }
           });
@@ -1075,17 +1075,17 @@ class Dat {
     else if( $.var_ide == 'des' ){
 
       // desmarco otras opciones
-      Ele.act('atr_act',$App.dom.dat.lis.lec.querySelectorAll(`input[name]:not([name="${$.ite}"]):checked`),'checked',false);
+      Ele.act('atr_act',$App.Dom.dat.lis.lec.querySelectorAll(`input[name]:not([name="${$.ite}"]):checked`),'checked',false);
 
       // oculto todas las leyendas
-      Ele.act('cla_agr',$App.dom.dat.lis.val.querySelectorAll(`tr[data-ope="${$tip}"]:not(.${DIS_OCU})`),DIS_OCU);
+      Ele.act('cla_agr',$App.Dom.dat.lis.val.querySelectorAll(`tr[data-ope="${$tip}"]:not(.${DIS_OCU})`),DIS_OCU);
 
       // muestro por atributo seleccionado      
       if( $dat.checked ){
 
-        $App.dom.dat.lis.val.querySelectorAll(`tbody trnot(.pos,.${DIS_OCU})`).forEach( $e => {
+        $App.Dom.dat.lis.val.querySelectorAll(`tbody trnot(.pos,.${DIS_OCU})`).forEach( $e => {
 
-          if( $.lec = $App.dom.dat.lis.val.querySelector(
+          if( $.lec = $App.Dom.dat.lis.val.querySelector(
             `table tr[data-ope="${$tip}"][data-atr="${$dat.value}"].ide-${$e.dataset.ide}.${DIS_OCU}`
           ) ){
             $.lec.classList.remove(DIS_OCU);
@@ -1105,14 +1105,14 @@ class Dat {
     let $ = { cla : !!$cla ? eval( $cla ) : false };
 
     // clase por posicion
-    $App.dom.dat.tab.ide = $App.dom.dat.tab.val.classList[3];
+    $App.Dom.dat.tab.ide = $App.Dom.dat.tab.val.classList[3];
     
     // inicializo opciones
     ['sec','pos'].forEach( $ope => {
 
-      if( $App.dom.dat.tab[$ope] ){
+      if( $App.Dom.dat.tab[$ope] ){
 
-        $App.dom.dat.tab[$ope].querySelectorAll(          
+        $App.Dom.dat.tab[$ope].querySelectorAll(          
           `form[class*="ide-"] [onchange*=".tab_"]:is( input:checked, select:not([value=""]) )`
         ).forEach( 
 
@@ -1125,8 +1125,8 @@ class Dat {
     Dat.tab_val('pos');
 
     // actualizo opciones
-    $App.dom.dat.ope.acu.forEach( $ite => {
-      if( $.ele = $App.dom.dat.tab.val_acu.querySelector(`[name="${$ite}"]:checked`) ) Dat.tab_val_acu($.ele) 
+    $App.Dom.dat.ope.acu.forEach( $ite => {
+      if( $.ele = $App.Dom.dat.tab.val_acu.querySelector(`[name="${$ite}"]:checked`) ) Dat.tab_val_acu($.ele) 
     });
 
     // inicializo operador por aplicacion
@@ -1134,11 +1134,11 @@ class Dat {
       // secciones y posiciones por aplicacion
       ['sec','pos'].forEach( $ope => {
 
-        if( $App.dom.dat.tab[$ope] ){
+        if( $App.Dom.dat.tab[$ope] ){
 
           $.eje = `tab_${$ope}`;
           
-          $App.dom.dat.tab[$ope].querySelectorAll(`form[class*="ide-"] [name][onchange*="${$cla}.${$.eje}"]`).forEach(
+          $App.Dom.dat.tab[$ope].querySelectorAll(`form[class*="ide-"] [name][onchange*="${$cla}.${$.eje}"]`).forEach(
 
             $inp => $.cla[$.eje] && $.cla[$.eje]( $inp )
           );
@@ -1146,8 +1146,8 @@ class Dat {
       });
       
       // atributos
-      if( $App.dom.dat.tab.opc ){
-        $App.dom.dat.tab.opc.querySelectorAll(`form[class*="ide-"]`).forEach( $for => {
+      if( $App.Dom.dat.tab.opc ){
+        $App.Dom.dat.tab.opc.querySelectorAll(`form[class*="ide-"]`).forEach( $for => {
           
           $.eje = `tab_opc`;
 
@@ -1163,50 +1163,50 @@ class Dat {
     
     let $={};
     
-    $dat = !$dat ? $App.dom.dat.ope.acu : Lis.val_ite($dat);
+    $dat = !$dat ? $App.Dom.dat.ope.acu : Lis.val_ite($dat);
 
-    $.dat = $App.dom.dat.tab.val;
+    $.dat = $App.Dom.dat.tab.val;
 
     // acumulados + listado
-    if( $App.dom.dat.tab.val_acu ){ 
+    if( $App.Dom.dat.tab.val_acu ){ 
 
       // actualizo toales acumulados
-      Dat.val_acu($App.dom.dat.tab.val, $App.dom.dat.tab.val_acu, ...$dat);
+      Dat.val_acu($App.Dom.dat.tab.val, $App.Dom.dat.tab.val_acu, ...$dat);
             
       // actualizo sumatorias por acumulados
-      if( $App.dom.dat.tab.val_sum ){
+      if( $App.Dom.dat.tab.val_sum ){
         $.tot = [];
-        $App.dom.dat.ope.acu.forEach( $acu_ide => {
+        $App.Dom.dat.ope.acu.forEach( $acu_ide => {
 
-          if( $App.dom.dat.tab.val_acu.querySelector(`[name="${$acu_ide}"]:checked`) ){
+          if( $App.Dom.dat.tab.val_acu.querySelector(`[name="${$acu_ide}"]:checked`) ){
 
-            $.tot.push( ...$App.dom.dat.tab.val.querySelectorAll(`[class*="_val-${$acu_ide}-"]`) );
+            $.tot.push( ...$App.Dom.dat.tab.val.querySelectorAll(`[class*="_val-${$acu_ide}-"]`) );
           }
         });
-        Dat.val_sum($.tot, $App.dom.dat.tab.val_sum);
+        Dat.val_sum($.tot, $App.Dom.dat.tab.val_sum);
       }
 
       // listado asociado:
 
       // -> actualizo acumulados
-      if( !$App.dom.dat.lis.val_acu.querySelector(`[name="tod"]:checked`) ) Dat.lis_val('acu');
+      if( !$App.Dom.dat.lis.val_acu.querySelector(`[name="tod"]:checked`) ) Dat.lis_val('acu');
 
       // -> ejecuto filtros + actualizo totales
-      if( $App.dom.dat.lis.ver ) Dat.lis_ver();
+      if( $App.Dom.dat.lis.ver ) Dat.lis_ver();
     }
 
     // fichas del tablero
-    if( ( $App.dom.dat.tab.pos ) && ( $.ima = $App.dom.dat.tab.pos.querySelector(`[name="ima"]`) ) ){
+    if( ( $App.Dom.dat.tab.pos ) && ( $.ima = $App.Dom.dat.tab.pos.querySelector(`[name="ima"]`) ) ){
 
       $.ope = [];
-      $dat.forEach( $ide => ( $.val = $App.dom.dat.tab.pos.querySelector(`[name="ima_${$ide}"]:checked`) ) && $.ope.push($.val) );
+      $dat.forEach( $ide => ( $.val = $App.Dom.dat.tab.pos.querySelector(`[name="ima_${$ide}"]:checked`) ) && $.ope.push($.val) );
       if( $.ope.length > 0 ) Dat.tab_pos($.ima);
     }
 
     // actualizo cuentas
-    if( $App.dom.dat.tab.val_cue ){
+    if( $App.Dom.dat.tab.val_cue ){
 
-      Dat.val_cue('act', $App.dom.dat.tab.val.querySelectorAll(`.pos[class*=_val-]:is([class*=-bor],[class*=_act])`), $App.dom.dat.tab.val_cue );
+      Dat.val_cue('act', $App.Dom.dat.tab.val.querySelectorAll(`.pos[class*=_val-]:is([class*=-bor],[class*=_act])`), $App.Dom.dat.tab.val_cue );
     }
 
   }// Valores
@@ -1217,15 +1217,15 @@ class Dat {
     switch( $tip ){
     case 'pos': 
 
-      Ele.act('cla_eli',$App.dom.dat.tab.val.querySelectorAll(`${$App.dom.dat.tab.cla}._val-pos-`),['_val-pos-','_val-pos-bor']);
+      Ele.act('cla_eli',$App.Dom.dat.tab.val.querySelectorAll(`${$App.Dom.dat.tab.cla}._val-pos-`),['_val-pos-','_val-pos-bor']);
 
       if( $_hol && $_hol.val && ( $.kin = $_hol.val.kin ) ){        
 
-        $App.dom.dat.tab.val.querySelectorAll(`${$App.dom.dat.tab.cla}[data-hol_kin="${$.kin}"]`).forEach( $e => {
+        $App.Dom.dat.tab.val.querySelectorAll(`${$App.Dom.dat.tab.cla}[data-hol_kin="${$.kin}"]`).forEach( $e => {
 
           $e.classList.add(`_val-pos-`);
 
-          if( $App.dom.dat.tab.val_acu && $App.dom.dat.tab.val_acu.querySelector(`[name="pos"]:checked`) ){
+          if( $App.Dom.dat.tab.val_acu && $App.Dom.dat.tab.val_acu.querySelector(`[name="pos"]:checked`) ){
 
             $e.classList.add(`_val-pos-bor`);
           }
@@ -1236,8 +1236,8 @@ class Dat {
     case 'mar':
       $dat.classList.toggle(`_val-mar-`);
       // marco bordes
-      if( $App.dom.dat.tab.val_acu ){
-        if( $dat.classList.contains(`_val-mar-`) && $App.dom.dat.tab.val_acu.querySelector(`[name="mar"]:checked`) ){
+      if( $App.Dom.dat.tab.val_acu ){
+        if( $dat.classList.contains(`_val-mar-`) && $App.Dom.dat.tab.val_acu.querySelector(`[name="mar"]:checked`) ){
           $dat.classList.add(`_val-mar-bor`);
         }
         else if( !$dat.classList.contains(`_val-mar-`) && $dat.classList.contains(`_val-mar-bor`) ){
@@ -1246,11 +1246,11 @@ class Dat {
       }
       break;
     case 'ver':
-      for( const $ide in $App.dom.dat.ope.ope_ver ){
+      for( const $ide in $App.Dom.dat.ope.ope_ver ){
 
-        if( $.ele = $App.dom.dat.tab.ver.querySelector(`${$App.dom.dat.ope.ope_ver[$ide]}:not([value=""])`) ){
+        if( $.ele = $App.Dom.dat.tab.ver.querySelector(`${$App.Dom.dat.ope.ope_ver[$ide]}:not([value=""])`) ){
   
-          Dat.tab_ver($ide,$.ele,$App.dom.dat.tab.val);
+          Dat.tab_ver($ide,$.ele,$App.Dom.dat.tab.val);
 
           break;
         }
@@ -1266,14 +1266,14 @@ class Dat {
     
     let $ = Dat.var($dat);
 
-    if( !$.var_ide && $ope ) $ = Dat.var( $dat = $App.dom.dat.tab.val_acu.querySelector(`[name="${$ope}"]`) );
+    if( !$.var_ide && $ope ) $ = Dat.var( $dat = $App.Dom.dat.tab.val_acu.querySelector(`[name="${$ope}"]`) );
     
     // busco marcas 
     $.cla_ide = `_val-${$.var_ide}`;
     
     // marcas por opciones
     if( $.var_ide == 'opc' ){
-      $App.dom.dat.tab.val.querySelectorAll(`[class*="${$.cla_ide}-"]`).forEach( $ite => {
+      $App.Dom.dat.tab.val.querySelectorAll(`[class*="${$.cla_ide}-"]`).forEach( $ite => {
         // recorro clases de la posicion
         $ite.classList.forEach( $cla => {
           // si tiene alguna opcion activa
@@ -1291,9 +1291,9 @@ class Dat {
       });
     }// aplico bordes
     else{
-      Ele.act('cla_eli',$App.dom.dat.tab.val.querySelectorAll(`.${$.cla_ide}-bor`),`${$.cla_ide}-bor`);
+      Ele.act('cla_eli',$App.Dom.dat.tab.val.querySelectorAll(`.${$.cla_ide}-bor`),`${$.cla_ide}-bor`);
 
-      if( $dat.checked ) Ele.act('cla_agr',$App.dom.dat.tab.val.querySelectorAll(`.${$.cla_ide}-`),`${$.cla_ide}-bor`);
+      if( $dat.checked ) Ele.act('cla_agr',$App.Dom.dat.tab.val.querySelectorAll(`.${$.cla_ide}-`),`${$.cla_ide}-bor`);
     }
 
     // actualizo calculos + vistas( fichas + items )
@@ -1306,11 +1306,11 @@ class Dat {
 
     // 1- cargo filtros : - dato(val) -fecha(ini) -posicion(ini)
     $.eje = [];
-    for( const $ope_ide in $App.dom.dat.ope.ver ){      
+    for( const $ope_ide in $App.Dom.dat.ope.ver ){      
       // Elimino todas las clases
-      Ele.act('cla_eli',$App.dom.dat.tab.val.querySelectorAll(`._val-ver_${$ope_ide}`),[`_val-ver-`,`_val-ver_${$ope_ide}`]);
+      Ele.act('cla_eli',$App.Dom.dat.tab.val.querySelectorAll(`._val-ver_${$ope_ide}`),[`_val-ver-`,`_val-ver_${$ope_ide}`]);
       // tomo solo los que tienen valor
-      if( ( $.val = $App.dom.dat.tab.ver.querySelector(`${$App.dom.dat.ope.ver[$ope_ide]}`) ) && !!$.val.value ){
+      if( ( $.val = $App.Dom.dat.tab.ver.querySelector(`${$App.Dom.dat.ope.ver[$ope_ide]}`) ) && !!$.val.value ){
         $.eje.push($ope_ide);
       }
     }
@@ -1320,17 +1320,17 @@ class Dat {
       $.eje.forEach( ($ope_ide, $ope_pos) => {
         Dat.val_ver($ope_ide, Lis.val_cod(
           // si es el 1° paso todas las posiciones, sino solo las filtradas
-          $App.dom.dat.tab.val.querySelectorAll( $ope_pos == 0 ? $App.dom.dat.tab.cla : `._val-ver-` )
+          $App.Dom.dat.tab.val.querySelectorAll( $ope_pos == 0 ? $App.Dom.dat.tab.cla : `._val-ver-` )
         ), 
-          $App.dom.dat.tab.ver, 'tab'
+          $App.Dom.dat.tab.ver, 'tab'
         );
       });
     }
 
     // 3- marco bordes de seleccionados
-    Ele.act('cla_eli',$App.dom.dat.tab.val.querySelectorAll('._val-ver-bor'),'_val-ver-bor');
-    if( $App.dom.dat.tab.val_acu && $App.dom.dat.tab.val_acu.querySelector(`[name="ver"]:checked`) ){
-      Ele.act('cla_agr',$App.dom.dat.tab.val.querySelectorAll(`._val-ver-`),'_val-ver-bor');
+    Ele.act('cla_eli',$App.Dom.dat.tab.val.querySelectorAll('._val-ver-bor'),'_val-ver-bor');
+    if( $App.Dom.dat.tab.val_acu && $App.Dom.dat.tab.val_acu.querySelector(`[name="ver"]:checked`) ){
+      Ele.act('cla_agr',$App.Dom.dat.tab.val.querySelectorAll(`._val-ver-`),'_val-ver-bor');
     }
 
     // actualizo calculos + vistas( fichas + items )
@@ -1344,35 +1344,35 @@ class Dat {
     switch( $.var_ide ){
     case 'bor':
       if( $dat.checked ){
-        if( !$App.dom.dat.tab.val.classList.contains('bor-1') ){ $App.dom.dat.tab.val.classList.add('bor-1'); }
-        $App.dom.dat.tab.val.querySelectorAll('.tab:not(.bor-1)').forEach( $e => $e.classList.add('bor-1') );
+        if( !$App.Dom.dat.tab.val.classList.contains('bor-1') ){ $App.Dom.dat.tab.val.classList.add('bor-1'); }
+        $App.Dom.dat.tab.val.querySelectorAll('.tab:not(.bor-1)').forEach( $e => $e.classList.add('bor-1') );
       }else{
-        if( $App.dom.dat.tab.val.classList.contains('bor-1') ){ $App.dom.dat.tab.val.classList.remove('bor-1'); }
-        $App.dom.dat.tab.val.querySelectorAll('.tab.bor-1').forEach( $e => $e.classList.remove('bor-1') );
+        if( $App.Dom.dat.tab.val.classList.contains('bor-1') ){ $App.Dom.dat.tab.val.classList.remove('bor-1'); }
+        $App.Dom.dat.tab.val.querySelectorAll('.tab.bor-1').forEach( $e => $e.classList.remove('bor-1') );
       }
       break;
     case 'col' :
       if( $dat.checked ){
         // secciones
-        $App.dom.dat.tab.val.querySelectorAll(`.tab[class*="fon_col-"].fon-0`).forEach( $e => $e.classList.remove('fon-0') );
+        $App.Dom.dat.tab.val.querySelectorAll(`.tab[class*="fon_col-"].fon-0`).forEach( $e => $e.classList.remove('fon-0') );
         // principal
-        if( $App.dom.dat.tab.val.classList.contains('fon-0') ){
-          $App.dom.dat.tab.val.classList.remove('fon-0');
+        if( $App.Dom.dat.tab.val.classList.contains('fon-0') ){
+          $App.Dom.dat.tab.val.classList.remove('fon-0');
         }
       }else{
         // secciones
-        $App.dom.dat.tab.val.querySelectorAll(`.tab[class*="fon_col-"]:not(.fon-0)`).forEach( $e => $e.classList.add('fon-0') );
+        $App.Dom.dat.tab.val.querySelectorAll(`.tab[class*="fon_col-"]:not(.fon-0)`).forEach( $e => $e.classList.add('fon-0') );
         // principal
-        if( !$App.dom.dat.tab.val.classList.contains('fon-0') ){
-          $App.dom.dat.tab.val.classList.add('fon-0');
+        if( !$App.Dom.dat.tab.val.classList.contains('fon-0') ){
+          $App.Dom.dat.tab.val.classList.add('fon-0');
         }
       }
       break;
     case 'ima' :
       if( $dat.files && $dat.files[0] ){
-        $App.dom.dat.tab.val.style.backgroundImage = `url('${URL.createObjectURL($dat.files[0])}')`;
+        $App.Dom.dat.tab.val.style.backgroundImage = `url('${URL.createObjectURL($dat.files[0])}')`;
       }else{
-        $App.dom.dat.tab.val.style.backgroundImage = '';
+        $App.Dom.dat.tab.val.style.backgroundImage = '';
       }
       break;      
     }     
@@ -1384,12 +1384,12 @@ class Dat {
     if( ( $.var_ide = $.var_ide.split('_')[0] ) != 'bor' ){
       // aseguro selector
       if( !$dat.options  ){
-        $dat = $App.dom.dat.tab.pos.querySelector(`[name="${$.var_ide}"]`);
+        $dat = $App.Dom.dat.tab.pos.querySelector(`[name="${$.var_ide}"]`);
       }
       // opciones por valores
       $[$.var_ide] = {};
-      $App.dom.dat.ope.acu.forEach( $ver =>{
-        if( $[$.var_ide][$ver] = $App.dom.dat.tab.pos.querySelector(`[name="${$.var_ide}_${$ver}"]`) ){ 
+      $App.Dom.dat.ope.acu.forEach( $ver =>{
+        if( $[$.var_ide][$ver] = $App.Dom.dat.tab.pos.querySelector(`[name="${$.var_ide}_${$ver}"]`) ){ 
           $[$.var_ide][$ver] = $[$.var_ide][$ver].checked;
         }
       });    
@@ -1400,19 +1400,19 @@ class Dat {
     case 'bor':
       $.ope = `bor-1`;
       if( $dat.checked ){
-        $App.dom.dat.tab.val.querySelectorAll(`${$App.dom.dat.tab.cla}:not(.${$.ope})`).forEach( $e => $e.classList.add($.ope) );
+        $App.Dom.dat.tab.val.querySelectorAll(`${$App.Dom.dat.tab.cla}:not(.${$.ope})`).forEach( $e => $e.classList.add($.ope) );
       }else{
-        $App.dom.dat.tab.val.querySelectorAll(`${$App.dom.dat.tab.cla}.${$.ope}`).forEach( $e => $e.classList.remove($.ope) );
+        $App.Dom.dat.tab.val.querySelectorAll(`${$App.Dom.dat.tab.cla}.${$.ope}`).forEach( $e => $e.classList.remove($.ope) );
       }      
       break;                    
     // color de fondo
     case 'col':
       $.ope = `fon_col-`;
 
-      $.eli = `${$App.dom.dat.tab.cla}[class*='${$.ope}']`;
-      $.agr = `${$App.dom.dat.tab.cla}`;
+      $.eli = `${$App.Dom.dat.tab.cla}[class*='${$.ope}']`;
+      $.agr = `${$App.Dom.dat.tab.cla}`;
 
-      $App.dom.dat.tab.val.querySelectorAll($.eli).forEach( $e => Ele.cla($e,$.ope,'eli','ini' ) );
+      $App.Dom.dat.tab.val.querySelectorAll($.eli).forEach( $e => Ele.cla($e,$.ope,'eli','ini' ) );
 
       if( $dat.value ){
 
@@ -1424,7 +1424,7 @@ class Dat {
 
         $.col = ( $.col_dat && $.col_dat.val ) ? $.col_dat.val : 1;
 
-        $App.dom.dat.tab.val.querySelectorAll($.agr).forEach( $e =>{
+        $App.Dom.dat.tab.val.querySelectorAll($.agr).forEach( $e =>{
 
           if( $._dat = Dat.get($.esq,$.est,$e.dataset[`${$.esq}_${$.est}`]) ){
 
@@ -1438,7 +1438,7 @@ class Dat {
     // imagen / ficha
     case 'ima':
       // elimino fichas
-      $App.dom.dat.tab.val.querySelectorAll($App.dom.dat.tab.cla).forEach( $e => {
+      $App.Dom.dat.tab.val.querySelectorAll($App.Dom.dat.tab.cla).forEach( $e => {
 
         $e.querySelectorAll('.fig_ima').forEach( $fic => $fic.parentElement.removeChild($fic) );
       });      
@@ -1448,7 +1448,7 @@ class Dat {
         // busco valores de ficha
         $.fic = Dat.get_ide('ima', ...( ( $.dat = $dat.options[$dat.selectedIndex].getAttribute('dat') ) ? $.dat : $dat.value ).split('.') );
         // actualizo por opciones                
-        $App.dom.dat.tab.val.querySelectorAll($App.dom.dat.tab.cla).forEach( $e => {
+        $App.Dom.dat.tab.val.querySelectorAll($App.Dom.dat.tab.cla).forEach( $e => {
           // capturar posicion .dep
           $.htm = '';
           $.ele = { title : false, onclick : false  };
@@ -1490,13 +1490,13 @@ class Dat {
       else{
         $.eti = 'p';
       }
-      $App.dom.dat.tab.val.querySelectorAll($App.dom.dat.tab.cla).forEach( $e => dom.eli($e,$.eti) );
+      $App.Dom.dat.tab.val.querySelectorAll($App.Dom.dat.tab.cla).forEach( $e => dom.eli($e,$.eti) );
 
       if( $dat.value ){
 
         $ = Dat.ide($dat.value,$);
 
-        $App.dom.dat.tab.val.querySelectorAll($App.dom.dat.tab.cla).forEach( $e =>{
+        $App.Dom.dat.tab.val.querySelectorAll($App.Dom.dat.tab.cla).forEach( $e =>{
 
           if( $.obj = Dat.get($.esq,$.est,$e.dataset[`${$.esq}_${$.est}`]) ){
 

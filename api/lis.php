@@ -224,6 +224,69 @@ class Lis {
     return $dat;
   }
 
+  /* Controladores */
+  static function var( string $tip, mixed $dat = NULL, array $ope = [], ...$opc ) : string {
+    $_ = "";
+    $_ide = self::$IDE."var";
+    $_eje = self::$EJE."var";
+    
+    switch( $tip ){
+    // único : div > input[radio]
+    case 'uni':
+      if( isset($ope['dat']) ){
+        $_dat = $ope['dat'];
+        unset($ope['dat']); 
+        $_ .= "
+        <div var='opc_uni'>";
+        $ope_ide = isset($ope['ide']) ? $ope['ide'] : '_doc-opc-'.count($_dat);
+        foreach( $_dat as $ide => $val ){ $_ .= "
+          <div class='doc_val'>
+            <label for='{$ope_ide}-{$ide}'>{$val}<c>:</c></label>
+            <input id='{$ope_ide}-{$ide}' type='radio' name='{$ide}' value='{$ide}'>
+          </div>";
+        }$_ .= "
+        </div>";
+      }
+      break;
+    // múltiple : div > ...input[checkbox]
+    case 'mul':
+      if( isset($ope['dat']) ){
+        $_dat = $ope['dat'];
+        unset($ope['dat']);
+        if( is_string($_dat) ){
+          $_dat = Dat::get($_dat);
+        }
+        $_ .= "
+        <div class='Opc mul'>";
+        $ope_dat = Lis::val_ite($dat);
+        $ope_ide = isset($ope['id']) ? $ope['id'] : "_opc_mul-".Dat::var_ide('opc_mul');
+        $ope_nom = isset($ope['name']) ? $ope['name'] : FALSE;
+        foreach( $_dat as $ide => $dat ){
+          $ide = isset($dat->ide) ? $dat->ide : $ide;
+          $val = isset($dat->nom) ? $dat->nom : $ide;
+          $ope_var = $ope;
+          $ope_var['eti']   = "input";
+          $ope_var['type']  = "checkbox";
+          $ope_var['id']    = "{$ope_ide}-{$ide}";
+          $ope_var['name']  = $ope_nom ? $ope_nom : $ide;
+          $ope_var['value'] = $ide;
+          if( in_array($ide,$ope_dat) ) $ope_var['checked'] = 1;
+          $_ .= "
+          <div class='doc_val'>
+            <label for='{$ope_var['id']}'>{$val}<c>:</c></label>
+            ".Ele::eti($ope_var)."
+          </div>";
+        }$_ .= "
+        </div>";
+      }
+      break;          
+    }
+    if( empty($_) && !empty($ope['type']) ){
+      $_ = "<input".Ele::atr($ope).">";            
+    }
+    return $_;
+  }
+
   /* Operadores */
   static function ope( string $tip, array $opc = [], array $ele = [] ) : string {
     $_ide = self::$IDE."$tip";
@@ -300,70 +363,7 @@ class Lis {
       ".Fig::ico('val_tog-tod', [ 'eti'=>"button", 'class'=>"tam-2", 'title'=>"Expandir todos...", 'onclick'=>$_eje_val."'tod');" ] )."
       ".Fig::ico('val_tog-nad', [ 'eti'=>"button", 'class'=>"tam-2", 'title'=>"Contraer todos...", 'onclick'=>$_eje_val."'nad');", 'style'=>"transform: rotate(180deg);" ] )."
     </fieldset>";
-  }
-
-  /* Controladores */
-  static function var( string $tip, mixed $dat = NULL, array $ope = [], ...$opc ) : string {
-    $_ = "";
-    $_ide = self::$IDE."var";
-    $_eje = self::$EJE."var";
-    
-    switch( $tip ){
-    // único : div > input[radio]
-    case 'uni':
-      if( isset($ope['dat']) ){
-        $_dat = $ope['dat'];
-        unset($ope['dat']); 
-        $_ .= "
-        <div var='opc_uni'>";
-        $ope_ide = isset($ope['ide']) ? $ope['ide'] : '_doc-opc-'.count($_dat);
-        foreach( $_dat as $ide => $val ){ $_ .= "
-          <div class='doc_val'>
-            <label for='{$ope_ide}-{$ide}'>{$val}<c>:</c></label>
-            <input id='{$ope_ide}-{$ide}' type='radio' name='{$ide}' value='{$ide}'>
-          </div>";
-        }$_ .= "
-        </div>";
-      }
-      break;
-    // múltiple : div > ...input[checkbox]
-    case 'mul':
-      if( isset($ope['dat']) ){
-        $_dat = $ope['dat'];
-        unset($ope['dat']);
-        if( is_string($_dat) ){
-          $_dat = Dat::get($_dat);
-        }
-        $_ .= "
-        <div class='Opc mul'>";
-        $ope_dat = Lis::val_ite($dat);
-        $ope_ide = isset($ope['id']) ? $ope['id'] : "_opc_mul-".Dat::var_ide('opc_mul');
-        $ope_nom = isset($ope['name']) ? $ope['name'] : FALSE;
-        foreach( $_dat as $ide => $dat ){
-          $ide = isset($dat->ide) ? $dat->ide : $ide;
-          $val = isset($dat->nom) ? $dat->nom : $ide;
-          $ope_var = $ope;
-          $ope_var['eti']   = "input";
-          $ope_var['type']  = "checkbox";
-          $ope_var['id']    = "{$ope_ide}-{$ide}";
-          $ope_var['name']  = $ope_nom ? $ope_nom : $ide;
-          $ope_var['value'] = $ide;
-          if( in_array($ide,$ope_dat) ) $ope_var['checked'] = 1;
-          $_ .= "
-          <div class='doc_val'>
-            <label for='{$ope_var['id']}'>{$val}<c>:</c></label>
-            ".Ele::eti($ope_var)."
-          </div>";
-        }$_ .= "
-        </div>";
-      }
-      break;          
-    }
-    if( empty($_) && !empty($ope['type']) ){
-      $_ = "<input".Ele::atr($ope).">";            
-    }
-    return $_;
-  }    
+  }  
 
   /* Selector de Opciones */
   static function opc( mixed $dat = NULL, array $ope = [], ...$opc ) : string {
@@ -715,9 +715,8 @@ class Lis {
     return $_;
   }
 
-  /* Navegacion */
-  // Enlaces Externos-Internos => a[href] > ...a[href]
-  static function nav( array $dat, array $ele = [], ...$opc ) : string {    
+  /* Indice por atributo con enlaces => a[href] > ...a[href] */
+  static function nav( array $dat, array $ele = [], ...$opc ) : string {
     $_ = "";
     $_eje = self::$EJE."nav";// val | ver      
     foreach( ['ope','ope_dep','lis','dep'] as $i ){ if( !isset($ele[$i]) ) $ele[$i] = []; }
@@ -806,5 +805,5 @@ class Lis {
     $_ .= Lis::dep($_lis,$ele);  
     
     return $_;
-  }  
+  }
 }

@@ -10,7 +10,7 @@
       FROM 
         `hol_rad` _rad
       INNER JOIN 
-        `hol_uni_hum_cha` _cha ON _rad.hum_cha = _cha.ide
+        `hol_hum_cha` _cha ON _rad.hum_cha = _cha.ide
       ORDER BY
         _rad.ide ASC
     ;
@@ -41,7 +41,7 @@
         _ele.flu_res AS `hum_res`
       FROM `hol_sel` _sel
         INNER JOIN `hol_sel_cic_dir` _dir ON _sel.arm_raz = _dir.ide        
-        INNER JOIN `hol_uni_sol_pla` _pla ON _sel.sol_pla = _pla.ide
+        INNER JOIN `hol_sol_pla` _pla ON _sel.sol_pla = _pla.ide
         INNER JOIN `hol_sel_cro_ele` _ele ON _sel.cro_ele = _ele.ide
         INNER JOIN `hol_sel_cro_fam` _fam ON _sel.cro_fam = _fam.ide
       ORDER BY
@@ -533,13 +533,13 @@
   -- holon solar:
   -- 
   -- holon planetario:
-    DROP VIEW IF EXISTS `_hol_uni_pla_cen`; CREATE VIEW `_hol_uni_pla_cen` AS
+    DROP VIEW IF EXISTS `_hol_pla_cen`; CREATE VIEW `_hol_pla_cen` AS
       SELECT
         _cen.*,
         _fam.des_cod,
         _fam.des_fun
       FROM 
-        `hol_uni_pla_cen` _cen
+        `hol_pla_cen` _cen
       INNER JOIN
         `_hol_sel_cro_fam` _fam ON _fam.ide = _cen.fam
       ORDER BY 
@@ -547,27 +547,27 @@
     ;
   -- 
   -- holon humano:
-    DROP VIEW IF EXISTS `_hol_uni_hum_cen`; CREATE VIEW `_hol_uni_hum_cen` AS
+    DROP VIEW IF EXISTS `_hol_hum_cen`; CREATE VIEW `_hol_hum_cen` AS
       SELECT
         _cen.*,
         _fam.des_cod,
         _fam.des_pod
       FROM 
-        `hol_uni_hum_cen` _cen
+        `hol_hum_cen` _cen
       INNER JOIN
         `_hol_sel_cro_fam` _fam ON _fam.ide = _cen.fam
       ORDER BY 
         _cen.ide ASC
     ;
-    DROP VIEW IF EXISTS `_hol_uni_hum_ded`; CREATE VIEW `_hol_uni_hum_ded` AS
+    DROP VIEW IF EXISTS `_hol_hum_ded`; CREATE VIEW `_hol_hum_ded` AS
       SELECT
         _ded.*,
         _cro.des_acc
       FROM 
-        `hol_uni_hum_ded` _ded
+        `hol_hum_ded` _ded
       INNER JOIN
         `_hol_sel_cro_fam` _cro ON _cro.ide = _ded.ide
       ORDER BY 
         _ded.ide ASC
-    ;      
+    ;
 --

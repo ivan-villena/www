@@ -81,7 +81,7 @@
     require_once( $rec );
     
     // cargo contenido de página + aplicación
-    $App->doc( $Usu, $Uri );
+    $App->doc( $Usu );
   }
   else{
     ?>
@@ -93,7 +93,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- hojas de estilo -->
         <link rel='stylesheet' href='<?=SYS_NAV?>index.css'>
-        <?=$App->rec_cla('css')?>
+        <?=$App->ses_cla('css')?>
         <link rel='stylesheet' href='<?=SYS_NAV?>sis/css.css'>
         <!--  -->
         <title>Error</title>

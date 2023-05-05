@@ -4,9 +4,9 @@ class Doc {
 
   // Sección Principal
   static sec( $ide ){
-    $App.dom.doc.sec.querySelectorAll(`article[class*="ide-"]:not(.${DIS_OCU})`).forEach( $e => $e.classList.add(DIS_OCU) );
-    $App.dom.doc.sec.querySelectorAll(`article.ide-${$ide}.${DIS_OCU}`).forEach( $e => $e.classList.remove(DIS_OCU) );
-    $App.dom.doc.sec.scroll(0, 0);
+    $App.Dom.doc.sec.querySelectorAll(`article[class*="ide-"]:not(.${DIS_OCU})`).forEach( $e => $e.classList.add(DIS_OCU) );
+    $App.Dom.doc.sec.querySelectorAll(`article.ide-${$ide}.${DIS_OCU}`).forEach( $e => $e.classList.remove(DIS_OCU) );
+    $App.Dom.doc.sec.scroll(0, 0);
   }  
 
   // Panel
@@ -17,28 +17,28 @@ class Doc {
     // oculto todo
     if( !$ide ){
 
-      Ele.act('cla_agr',$App.dom.doc.pan.querySelectorAll(`:is(nav,article)[class*="ide-"]`),DIS_OCU);
+      Ele.act('cla_agr',$App.Dom.doc.pan.querySelectorAll(`:is(nav,article)[class*="ide-"]`),DIS_OCU);
     }
     // muestro uno articulo/navegador
     else{
       // Enlace
-      Ele.act('cla_eli',$App.dom.doc.bot.querySelectorAll(`a.bor-sel.fon-sel`),$.cla);
-      if( typeof($ide) == 'string' ) $ide = $App.dom.doc.bot.querySelector(`a[data-ide="${$ide}"]`);
+      Ele.act('cla_eli',$App.Dom.doc.bot.querySelectorAll(`a.bor-sel.fon-sel`),$.cla);
+      if( typeof($ide) == 'string' ) $ide = $App.Dom.doc.bot.querySelector(`a[data-ide="${$ide}"]`);
       Ele.act('cla_agr',$ide,$.cla);
       
       // Contenedor
       $.ide = $ide.dataset.ide;
-      Ele.act('cla_agr',$App.dom.doc.pan.querySelectorAll(`:is(nav,article)[class*="ide-"]:not( .ide-${$.ide}, .${DIS_OCU} )`),DIS_OCU);
-      Ele.act('cla_tog',$App.dom.doc.pan.querySelectorAll(`:is(nav,article).ide-${$.ide}`),DIS_OCU);
+      Ele.act('cla_agr',$App.Dom.doc.pan.querySelectorAll(`:is(nav,article)[class*="ide-"]:not( .ide-${$.ide}, .${DIS_OCU} )`),DIS_OCU);
+      Ele.act('cla_tog',$App.Dom.doc.pan.querySelectorAll(`:is(nav,article).ide-${$.ide}`),DIS_OCU);
     }
 
     // Panel
-    if( $App.dom.doc.pan.querySelector(`:is(nav,article)[class*="ide-"]:not(.${DIS_OCU})`) ){      
-      Ele.act('cla_eli',$App.dom.doc.pan,DIS_OCU);
+    if( $App.Dom.doc.pan.querySelector(`:is(nav,article)[class*="ide-"]:not(.${DIS_OCU})`) ){      
+      Ele.act('cla_eli',$App.Dom.doc.pan,DIS_OCU);
     }
     else{
-      Ele.act('cla_eli',$App.dom.doc.bot.querySelectorAll(`a.bor-sel.fon-sel`),$.cla);
-      Ele.act('cla_agr',$App.dom.doc.pan,DIS_OCU);
+      Ele.act('cla_eli',$App.Dom.doc.bot.querySelectorAll(`a.bor-sel.fon-sel`),$.cla);
+      Ele.act('cla_agr',$App.Dom.doc.pan,DIS_OCU);
     }    
   }
 
@@ -67,15 +67,15 @@ class Doc {
     }
     // articulos
     else{
-      $.art = typeof($ide) == 'string' ?  $App.dom.doc.win.querySelector(`article.ide-${$ide}`) : $ide;
+      $.art = typeof($ide) == 'string' ?  $App.Dom.doc.win.querySelector(`article.ide-${$ide}`) : $ide;
       $.htm = $.art.querySelector(`div:nth-child(2)`);
       // actualizo contenido
       if( !!$ope ){
         $.opc = $ope.opc ? Lis.val_ite($ope.opc) : [];
         // creo nueva ventana con mismo identificador
         if( $.opc.includes('pos') ){
-          $App.dom.doc.win.appendChild( $.art = $.art.cloneNode(true) );
-          $.art.dataset.pos = $App.dom.doc.win.querySelectorAll(`article[data-pos]`).length + 1;
+          $App.Dom.doc.win.appendChild( $.art = $.art.cloneNode(true) );
+          $.art.dataset.pos = $App.Dom.doc.win.querySelectorAll(`article[data-pos]`).length + 1;
           // agrego icono : retroceder
           if( $.art.dataset.pos > 1 ){
             $.ope = $.art.querySelector('header:first-child > .doc_bot');
@@ -107,11 +107,11 @@ class Doc {
     }
 
     // pantalla de fondo
-    if( $App.dom.doc.win.querySelector(`article[class*="ide-"]:not(.${DIS_OCU})`) ){
-      $App.dom.doc.win.classList.contains(DIS_OCU) && $App.dom.doc.win.classList.remove(DIS_OCU);
+    if( $App.Dom.doc.win.querySelector(`article[class*="ide-"]:not(.${DIS_OCU})`) ){
+      $App.Dom.doc.win.classList.contains(DIS_OCU) && $App.Dom.doc.win.classList.remove(DIS_OCU);
     }
-    else if( !$App.dom.doc.win.classList.contains(DIS_OCU) ){
-      $App.dom.doc.win.classList.add(DIS_OCU);
+    else if( !$App.Dom.doc.win.classList.contains(DIS_OCU) ){
+      $App.Dom.doc.win.classList.add(DIS_OCU);
     }    
   }  
 
@@ -139,9 +139,9 @@ class Doc {
     // por opciones
     else if( ['tod','nad'].includes($ope) ){
 
-      if( $App.dom.dat.var = dom.ver($dat,{'eti':"form"}) ){
+      if( $App.Dom.dat.var = dom.ver($dat,{'eti':"form"}) ){
 
-        $.lis = !!$App.dom.dat.var.nextElementSibling ? $App.dom.dat.var.nextElementSibling : $App.dom.dat.var.parentElement.parentElement;
+        $.lis = !!$App.Dom.dat.var.nextElementSibling ? $App.Dom.dat.var.nextElementSibling : $App.Dom.dat.var.parentElement.parentElement;
 
         $.cla = ( $ope == 'tod' ) ? `.ocu` : `:not(.ocu)`;
               

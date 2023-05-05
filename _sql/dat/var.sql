@@ -11,23 +11,23 @@
     -- 
     -- abm : contar, ver, agregar, modificar, eliminar
       ('dat','ope','abm', 1, 'act', '{
-        "ico":"dat_act",
+        "ico":"val-act",
         "tit":"Actualizar..."        
       }'),
       ('dat','ope','abm', 2, 'ver', '{
-        "ico":"dat_ver",
+        "ico":"val-ver",
         "tit":"Buscar..."
       }'),    
       ('dat','ope','abm', 3, 'agr', '{
-        "ico":"dat_agr",
+        "ico":"val-agr",
         "tit":"Agregar..."
       }'),
       ('dat','ope','abm', 4, 'mod', '{
-        "ico":"dat_mod",
+        "ico":"val-mod",
         "tit":"Modificar..."
       }'),
       ('dat','ope','abm', 5, 'eli', '{
-        "ico":"dat_eli",
+        "ico":"val-eli",
         "tit":"Eliminar..."
       }'),    
     --
@@ -118,7 +118,7 @@
         }'),
       -- por Estructuras de Datos
         ('dat','ope','ver', 21, 'dat', '{
-          "ico":"dat_ver",
+          "ico":"val-ver",
           "tit":"Seleccionar la Estructura e indicar el Valor Buscado..."
         }'),
         ('dat','ope','ver', 22, 'esq', '{
@@ -314,7 +314,7 @@
       }'),
       ('dat','tab', 'pos', 50, 'tex', '{
         "ide":"tex",
-        "ico":"tex_cod",
+        "ico":"tex",
         "nom":"Texto",
         "tit":"Seleccionar un valor textual para las Posiciones..."        
       }'),

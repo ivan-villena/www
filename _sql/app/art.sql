@@ -33,7 +33,7 @@
 		(1, 1, 14, 'sincronotron', '2009 - El Sincronotrón',
 		'' )		
 	;
-	-- Códigos
+	-- Apuntes
 	DELETE FROM `app_art` WHERE `esq`=1 AND `cab`= 2; INSERT INTO `app_art` VALUES
 		(1, 2, 0, '', 'Códigos',
 		'' ),	
@@ -43,11 +43,19 @@
 		'' ),
 		(1, 2, 3, 'sello',  'Los 20 Sellos Solares',
 		'' ),
-		(1, 2, 10, '', 'Cuentas',
+		(1, 2, 10, '', 'Ciclos',
 		'' ),			
 		(1, 2, 11, 'kin', 'Los 260 Kines del Giro Galáctico',
 		'' ),
 		(1, 2, 12, 'psi', 'Los 365 Psi-Cronos del Giro Solar',
+		'' ),
+		(1, 2, 20, '', 'Holones',
+		'' ),
+		(1, 2, 21, 'solar', 'Solar',
+		'' ),
+		(1, 2, 22, 'planetario', 'Planetario',
+		'' ),
+		(1, 2, 23, 'humano', 'Humano',
 		'' )
 	;
 	-- Tableros 

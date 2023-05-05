@@ -90,8 +90,8 @@ html {
 body {
   width: 100vw;
   height: 100vh;
-  background: center/cover no-repeat url(./_img/app/fon/01.jpg);
   margin: 0;
+  background-color: black;
   color: var(--let_tex);
   /* para que se vea el modal en toda la pantalla*/
   display: flex;

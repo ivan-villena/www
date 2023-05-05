@@ -252,7 +252,7 @@ class sql {
     }
     else{
       // proceso ides
-      $ver = [];        
+      $ver = [];
       if( !empty($ide) ){
         if( $opc_uni = in_array('uni',$opc) ){
           $ver []= "`Name` = '{$ide}'"; 
@@ -260,37 +260,31 @@ class sql {
           $ver []= "`Name` LIKE '".( in_array('ini',$opc) ? "%{$ide}" : ( in_array('tod',$opc) ? "%{$ide}%" : "{$ide}%" ) )."'"; 
         }
       }
-      // muestro listado de nombres
-      if( $ope == 'lis' ){
+      // tablas o vistas
+      if( in_array('vis',$opc) ){ 
+        $ver []= "`Comment` = 'VIEW'"; 
+      }
+      elseif( in_array('tab',$opc) ){ 
+        $ver []= "`Comment` <> 'VIEW'"; 
+      }
+      $lis = sql::dec("SHOW TABLE STATUS FROM `{$esq}`".( !empty($ver) ? " WHERE ".implode(' AND ',$ver) : '' ));
+
+      // listado de nombres
+      if( $ope == 'nom' ){        
     
-        if( in_array('vis',$opc) ){ $ver []= "`Comment` = 'VIEW'";  }
-    
-        if( in_array('tab',$opc) ){ $ver []= "`Comment` <> 'VIEW'"; }
-    
-        $ver = !empty($ver) ? " WHERE ".implode(' AND ',$ver) : '';
-    
-        foreach( sql::dec("SHOW TABLE STATUS FROM `{$esq}`{$ver}") as $v ){
-    
+        foreach( $lis as $v ){
           $_[] = $v->Name;
         }
-      }// o : armo datos por estructura
+      }// o muestro datos por estructura
       elseif( $ope == 'ver' ){
     
-        if( in_array('vis',$opc) ){ 
-          $ver []= "`Comment` = 'VIEW'"; 
-        }
-        elseif( in_array('tab',$opc) ){ 
-          $ver []= "`Comment` <> 'VIEW'"; 
-        }    
-        $ver = !empty($ver) ? " WHERE ".implode(' AND ',$ver) : '';
-    
-        foreach( sql::dec("SHOW TABLE STATUS FROM `{$esq}`{$ver}") as $v ){ 
+        foreach( $lis as $v ){ 
           $_est = new stdClass();
           $_est->esq = $esq;
           $_est->ide = $v->Name;
           $_est->nom = $v->Comment;
           $_est->fec = $v->Create_time;
-          $_[$_est->ide] = $_est;
+          $_[ $_est->ide ] = $_est;
         }
         // devuelvo uno solo
         if( !empty($ide) && $opc_uni && isset($_est) ){
@@ -308,7 +302,7 @@ class sql {
     if( isset($dat_lis['_err']) ){
       $dat_lis = sql::dec("SHOW FULL COLUMNS FROM `{$esq}`.`{$est}`");
     }
-    if( $ope == 'lis' ){
+    if( $ope == 'nom' ){
       foreach( $dat_lis as $atr ){
         $_[] = $atr->Field;
       }
@@ -443,14 +437,14 @@ class sql {
     $est = $ide[1];
 
     switch( $ope ){
+    case 'nom': 
+      break;      
     case 'ver': 
       if( !empty($ide = $opc[0]) ){
         foreach( sql::dec("SHOW KEYS FROM `$esq`.`$est` WHERE `Key_name` = '".( $ide == 'pri' ? "PRIMARY" : $ide )."'") as $key ){
           $_[] = $key->Column_name;
         }
       }      
-      break;
-    case 'lis': 
       break;
     case 'agr':
       // ALTER TABLE `$est` ADD PRIMARY KEY;<br>

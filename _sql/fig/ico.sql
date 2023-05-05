@@ -15,19 +15,18 @@
   DELETE FROM `fig_ico`
   ;
   -- 
-  -- por aplicacion
+  -- Sistema
     DELETE FROM `fig_ico` WHERE `ide` LIKE 'app%';
     INSERT INTO `fig_ico` VALUES  
       ('app',         'home'),      
       ('app_ses',	    'manage_accounts'),
-      ('app_ini',	    'login'),
-      ('app_fin',	    'logout'),
-      ('app_ope',     'settings'),
+      ('app_ses-ini',	'login'),
+      ('app_ses-fin',	'logout'),
       ('app_cab',			'menu'),
-      ('app_nav',	 'menu_open'),
+      ('app_nav',	    'menu_open'),
       ('app_art',     'article'),
       ('app_val',     'document_scanner')
-    ;
+    ;    
     DELETE FROM `fig_ico` WHERE `ide` LIKE 'usu%';
     INSERT INTO `fig_ico` VALUES
       ('usu',	    'person'),      
@@ -52,29 +51,31 @@
       ('dat_var',	'variables'),
       ('dat_err',	'gpp_bad'),
       ('dat_adv',	'gpp_maybe'),
-      -- operaciones
+      -- tipos
       ('dat_ope', 'play_arrow'),      
-      ('dat_ini',	'done'),
-      ('dat_fin',	'close'),
-      ('dat_tod',	'checklist'),
-      ('dat_nad',	'flaky'),
-      ('dat_ver',	'search'),
-      ('dat_act',	'sync'),
-      ('dat_agr',	'add'),
-      ('dat_mod',	'edit'),
-      ('dat_eli',	'delete')
-    ;    
+      ('dat_tab',  'dataset'),
+      ('dat_lis',	 'table_view')
+    ;
+    DELETE FROM `fig_ico` WHERE `ide` LIKE 'doc%';
+    INSERT INTO `fig_ico` VALUES
+      ('doc',	''),
+      ('doc_lib',	'auto_stories'),
+      ('doc_inf',	'description')
+    ;
     DELETE FROM `fig_ico` WHERE `ide` LIKE 'val%';
     INSERT INTO `fig_ico` VALUES
-
-      ('val',	    'check_box_outline_blank'),
-      -- carteles :
-      ('val_tex',	    'comment'),
-      ('val_tex-err',	'error'),
-      ('val_tex-adv',	'warning'),
-      ('val_tex-opc',	'help'),
-      ('val_tex-val',	'check_circle'),
-      -- toggs : item - expandir - contraer
+      ('val',	    'settings'),
+      -- operaciones de abm
+      ('val-ver',	'search'),
+      ('val-tod',	'checklist'),
+      ('val-nad',	'flaky'),
+      ('val-act',	'sync'),
+      ('val-agr',	'add'),
+      ('val-mod',	'edit'),
+      ('val-eli',	'delete'),
+      ('val-ini',	'done'),
+      ('val-fin',	'close'),
+      -- togs : item - expandir - contraer
       ('val_tog',	    'arrow_drop_down'),
       ('val_tog-tod',	'expand_circle_down'),
       ('val_tog-nad',	'expand_circle_down'),
@@ -102,26 +103,9 @@
       ('val_mov-dyb', 'north_west'),
       ('val_mov-iyr', 'south_east'),
       ('val_mov-iyb', 'south_west')
-    ;  
+    ;    
   --
-  -- por tipos
-    DELETE FROM `fig_ico` WHERE `ide` LIKE 'tab%';
-    INSERT INTO `fig_ico` VALUES
-      ('tab',  'dataset'),
-      ('tab_sec',  ''),
-      ('tab_pos',  ''),
-      ('tab_opc',  ''),
-      ('tab_val',  '')
-    ;    
-    DELETE FROM `fig_ico` WHERE `ide` LIKE 'est%';
-    INSERT INTO `fig_ico` VALUES
-      ('est',	     'table_view'),
-      ('est_dat',	 ''),
-      ('est_atr',	 ''),
-      ('est_ide',	 ''),
-      ('est_ind',	 ''),
-      ('est_val',	 '')
-    ;    
+  -- Api
     DELETE FROM `fig_ico` WHERE `ide` LIKE 'lis%';
     INSERT INTO `fig_ico` VALUES
 
@@ -148,15 +132,6 @@
       ('lis_lim',	'segment'),
       ('lis_mov',	'unfold_more')
     ;
-    DELETE FROM `fig_ico` WHERE `ide` LIKE 'opc%';
-    INSERT INTO `fig_ico` VALUES
-
-      ('opc',			'fact_check'),
-      -- tipos          
-      ('opc_vac', 'check_box_outline_blank'),
-      -- listado
-      ('opc_lis',  'checklist_rtl')
-    ;    
     DELETE FROM `fig_ico` WHERE `ide` LIKE 'num%';
     INSERT INTO `fig_ico` VALUES
 
@@ -191,13 +166,17 @@
       ('tex_let',	'title'),
       ('tex_pal',	'text_fields'),
       ('tex_ora',	'short_text'),
-      ('tex_par',	'chat'),      
-      ('tex_lib',	'auto_stories'),
-      ('tex_inf',	'description'),
+      ('tex_par',	'chat'),
       -- operadores
       ('tex_ord',	'sort_by_alpha'),
       ('tex_mov',	'wrap_text'),
-      ('tex_rot',	'text_rotation_down')
+      ('tex_rot',	'text_rotation_down'),
+      -- carteles :
+      ('tex-ver',	'comment'),
+      ('tex-err',	'error'),
+      ('tex-adv',	'warning'),
+      ('tex-opc',	'help'),
+      ('tex-val',	'check_circle')          
     ;
     DELETE FROM `fig_ico` WHERE `ide` LIKE 'fec%';
     INSERT INTO `fig_ico` VALUES
@@ -257,7 +236,7 @@
       ('obj_atr',	'data_object')
     ;
     DELETE FROM `fig_ico` WHERE `ide` LIKE 'ele%';
-    INSERT INTO `fig_ico` VALUES      
+    INSERT INTO `fig_ico` VALUES
       ('ele', 'code'),
       -- valores
       ('ele_htm', 'html'),

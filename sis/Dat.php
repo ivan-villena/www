@@ -217,12 +217,12 @@ class Dat {
     // cargo una estructura
     if( !isset($ope) ){
 
-      if( !isset($App->dat[$esq][$ide]) ){
+      if( !isset($App->Dat[$esq][$ide]) ){
         
         // Cargo Estructura
-        $App->dat[$esq][$ide] = sql::est('ver',$sql_est = "{$esq}_{$ide}",'uni');
-        if( empty($App->dat[$esq][$ide]) ){
-          $App->dat[$esq][$ide] = new stdClass;
+        $App->Dat[$esq][$ide] = sql::est('ver',$sql_est = "{$esq}_{$ide}",'uni');
+        if( empty($App->Dat[$esq][$ide]) ){
+          $App->Dat[$esq][$ide] = new stdClass;
         }// de la Base
         else{
           $sql_vis = "_{$sql_est}";
@@ -233,28 +233,28 @@ class Dat {
         if( isset($_est->ope) ){
           // Propiedades
           foreach( $_est->ope as $ope_ide => $ope ){
-            $App->dat[$esq][$ide]->$ope_ide = $ope;
+            $App->Dat[$esq][$ide]->$ope_ide = $ope;
           }
         }
         // Estructura de la base
         if( isset($sql_vis) ){
           // Atributos/columnas: de una vista ( si existe ) o de la tabla
-          $App->dat[$esq][$ide]->atr = sql::atr( !empty( sql::est('lis',"_{$sql_est}",'uni') )  ? "_{$sql_est}" : $sql_est );
+          $App->Dat[$esq][$ide]->atr = sql::atr( !empty( sql::est('nom',"_{$sql_est}",'uni') )  ? "_{$sql_est}" : $sql_est );
           if( isset($_est->ope['atr']) ){
             // cargo variables del operador
             foreach( $_est->ope['atr'] as $atr_ide => $atr_var ){
-              $App->dat[$esq][$ide]->atr[$atr_ide]->var = Ele::val_jun(
-                $App->dat[$esq][$ide]->atr[$atr_ide]->var, $atr_var
+              $App->Dat[$esq][$ide]->atr[$atr_ide]->var = Ele::val_jun(
+                $App->Dat[$esq][$ide]->atr[$atr_ide]->var, $atr_var
               );
             }
           }
           // Datos/registros: de una vista ( si existe ) o de la tabla
-          $est_ope = isset($App->dat[$esq][$ide]->dat) ? $App->dat[$esq][$ide]->dat : [];
-          $App->dat[$esq][$ide]->dat = Dat::get( sql::est('val',$sql_vis) == 'vis' ? $sql_vis : $sql_est, $est_ope );          
+          $est_ope = isset($App->Dat[$esq][$ide]->dat) ? $App->Dat[$esq][$ide]->dat : [];
+          $App->Dat[$esq][$ide]->dat = Dat::get( sql::est('val',$sql_vis) == 'vis' ? $sql_vis : $sql_est, $est_ope );          
         }
       }
       // devuelvo estructura completa: esq + ide + nom + atr + dat + ...ope
-      $_ = $App->dat[$esq][$ide];
+      $_ = $App->Dat[$esq][$ide];
     }
     // cargo operadores
     elseif( is_string($ope) ){
@@ -1562,20 +1562,20 @@ class Dat {
       $_ .= "
       <fieldset class='doc_bot abm-$tip'>
 
-        ".Fig::ico('dat_ver', ['eti'=>"a", 'title'=>$_abm['ver']['nom'], 'onclick'=>"{$_eje}('ver');"])."
+        ".Fig::ico('val-ver', ['eti'=>"a", 'title'=>$_abm['ver']['nom'], 'onclick'=>"{$_eje}('ver');"])."
 
-        ".Fig::ico('dat_agr', ['eti'=>"a", 'title'=>$_abm['agr']['nom'], 'href'=>!empty($url) ? $url_agr : NULL, 'onclick'=>empty($url) ? "{$_eje}('agr');" : NULL])."
+        ".Fig::ico('val-agr', ['eti'=>"a", 'title'=>$_abm['agr']['nom'], 'href'=>!empty($url) ? $url_agr : NULL, 'onclick'=>empty($url) ? "{$_eje}('agr');" : NULL])."
 
-        ".Fig::ico('dat_eli', ['eti'=>"a", 'title'=>$_abm['eli']['nom'], 'onclick'=>"{$_eje}('eli');"])."
+        ".Fig::ico('val-eli', ['eti'=>"a", 'title'=>$_abm['eli']['nom'], 'onclick'=>"{$_eje}('eli');"])."
       </fieldset>";
       break;
     // Tabla
     case 'est':
       $_ .= "
       <fieldset class='doc_bot'>    
-        ".Fig::ico('dat_agr',['eti'=>"button", 'type'=>"button", 'title'=>"Agregar", 'onclick'=>""])."
+        ".Fig::ico('val-agr',['eti'=>"button", 'type'=>"button", 'title'=>"Agregar", 'onclick'=>""])."
         
-        ".Fig::ico('dat_eli',['eti'=>"button", 'type'=>"button", 'title'=>"Eliminar", 'onclick'=>""])."    
+        ".Fig::ico('val-eli',['eti'=>"button", 'type'=>"button", 'title'=>"Eliminar", 'onclick'=>""])."    
       </fieldset>";                  
       break;                
     // Registro
@@ -1584,14 +1584,14 @@ class Dat {
       $_ = "
       <fieldset class='doc_bot mar-2 esp-ara'>
 
-        ".Fig::ico('dat_ini', [ 'eti'=>"button", 'title'=>$_abm[$tip]['nom'], 'type'=>"submit", 'onclick'=>"{$_eje}('{$tip}');" ]);
+        ".Fig::ico('val-ini', [ 'eti'=>"button", 'title'=>$_abm[$tip]['nom'], 'type'=>"submit", 'onclick'=>"{$_eje}('{$tip}');" ]);
 
         if( in_array('eli',$ope['opc']) ){
 
-          $_ .= Fig::ico('dat_eli', [ 'eti'=>"button", 'type'=>"button", 'title'=>$_abm['eli']['nom'], 'onclick'=>"{$_eje}('eli');" ]);
+          $_ .= Fig::ico('val-eli', [ 'eti'=>"button", 'type'=>"button", 'title'=>$_abm['eli']['nom'], 'onclick'=>"{$_eje}('eli');" ]);
         }$_ .= "
 
-        ".Fig::ico('dat_fin', [ 'eti'=>"button", 'title'=>$_abm['fin']['nom'], 'type'=>"reset", 'onclick'=>"{$_eje}('fin');" ])."    
+        ".Fig::ico('val-fin', [ 'eti'=>"button", 'title'=>$_abm['fin']['nom'], 'type'=>"reset", 'onclick'=>"{$_eje}('fin');" ])."    
 
       </fieldset>";
       break;              
@@ -1955,7 +1955,7 @@ class Dat {
         $_ .= "
         <tr class='pos ide-{$pos}' data-esq='{$esq}' data-est='{$est}' data-atr='{$atr}'>
           <td data-atr='val'>
-            ".Fig::ico( isset($lis->ocu) && in_array($atr,$lis->ocu) ? "ope_ver" : "ope_ocu",[
+            ".Fig::ico( isset($lis->ocu) && in_array($atr,$lis->ocu) ? "val_ver-tod" : "val_ver-nad",[
               'eti'=>"button",'title'=>"Mostrar",'class'=>"tam-2{$cla_ver}",'value'=>"tog",'onclick'=>"$_eje('val',this);"
             ])."
           </td>

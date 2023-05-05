@@ -74,7 +74,7 @@ button {
 }
 
 /* Focos */
-:is(input,select,button:not(.fig_ico)):focus {
+:is( input, select, button:not( .fig_ico, .eje_bot ) ):focus {
   background-color: var(--tra_azu);
 }
 :is(input,select,textarea):focus {

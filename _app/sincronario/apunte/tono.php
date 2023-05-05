@@ -1,9 +1,12 @@
 <!-- 13 Tonos Galácticos -->
-<?php 
-  $nv1 = "00"; $nv2 = "00"; $nv3 = "00"; $nv4 = "00"; 
-  ?>
+<article>  
+  <?php $nv1 = "00"; $nv2 = "00"; $nv3 = "00"; $nv4 = "00"; ?>
+  <header>
+    <h1><?=Tex::let($App->Art->nom)?></h1>
+  </header> 
+
   <!-- Rayos de pulsación -->
-  <article>
+  <section>
     <?php $nv1 = Num::val(intval($nv1) + 1,2); $nv2 = 0; $nv3 = 0; $nv4 = 0; ?>
     <h2 id="<?="_{$Nav[1][$nv1]->key}-"?>"><?=Tex::let($Nav[1][$nv1]->nom)?></h2>
 
@@ -13,10 +16,10 @@
 
     <?=Dat::lis('hol.ton',[ 'atr'=>['ide','gal'], 'opc'=>['cab_ocu'] ])?>
 
-  </article>
+  </section>
   
   <!-- Principios de la creacion -->
-  <article>
+  <section>
     <?php $nv1 = Num::val(intval($nv1) + 1,2); $nv2 = 0; $nv3 = 0; $nv4 = 0; ?>
     <h2 id="<?="_{$Nav[1][$nv1]->key}-"?>"><?=Tex::let($Nav[1][$nv1]->nom)?></h2>
 
@@ -26,10 +29,10 @@
 
     <?=Dat::lis('hol.ton',[ 'atr'=>['ide','nom','des','des_acc'] ])?>
 
-  </article>
+  </section>
   
   <!-- Onda Encantada de la Aventura -->
-  <article>
+  <section>
     <?php $nv1 = Num::val(intval($nv1) + 1,2); $nv2 = 0; $nv3 = 0; $nv4 = 0; ?>
     <h2 id="<?="_{$Nav[1][$nv1]->key}-"?>"><?=Tex::let($Nav[1][$nv1]->nom)?></h2>
 
@@ -41,10 +44,10 @@
 
     <?=Dat::lis('hol.ton',[ 'atr'=>['ide','ond_nom','ond_pos','ond_pod','ond_man'], 'tit_cic'=>['ond_enc'], 'opc'=>['cab_ocu'] ])?>
 
-  </article>
+  </section>
   
   <!-- Código Pulsar -->
-  <article>
+  <section>
     <?php $nv1 = Num::val(intval($nv1) + 1,2); $nv2 = 0; $nv3 = 0; $nv4 = 0; ?>
     <h2 id="<?="_{$Nav[1][$nv1]->key}-"?>"><?=Tex::let($Nav[1][$nv1]->nom)?></h2>
 
@@ -89,4 +92,6 @@
       
     </section>  
 
-  </article>
+  </section>
+
+</article>

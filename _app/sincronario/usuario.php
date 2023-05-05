@@ -145,7 +145,7 @@
     };
     // listado
     $_lis = [];
-    foreach( Dat::get("usu_cic") as $_arm ){
+    foreach( Dat::get("hol_hum_cas_arm") as $_arm ){
       $_lis_cic = [];
       foreach( Dat::get('usu_cic_ani',[ 'ver'=>"`usu`='{$Usu->ide}' AND `arm`=$_arm->ide", 'ord'=>"`ide` ASC" ]) as $_cic ){
         // ciclos lunares
@@ -210,7 +210,7 @@
     global $Usu;
     $_ani = $dat['ani'];
     $_cas_arm = Hol::_('cas_arm',$dat['ani']->arm);
-    $_ani_arm = Dat::get("usu_cic",['ver'=>"`ide`=$_ani->arm",'opc'=>"uni"]);
+    $_ani_arm = Dat::get("hol_hum_cas_arm",[ 'ver'=>"`ide`=$_ani->arm", 'opc'=>"uni"] );
     $_ani_fec = Fec::_('dat',$_ani->fec);      
     $_ani_ton = Hol::_('ton',$dat['ani']->ton);
     $_kin = Hol::_('kin',$_ani->kin);

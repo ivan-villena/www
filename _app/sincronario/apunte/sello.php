@@ -1,9 +1,12 @@
 <!-- 20 Sellos Solares -->
-<?php 
-  $nv1 = "00"; $nv2 = "00"; $nv3 = "00"; $nv4 = "00"; 
-  ?>
+<article>
+  <?php $nv1 = "00"; $nv2 = "00"; $nv3 = "00"; $nv4 = "00"; ?>
+  <header>
+    <h1><?=Tex::let($App->Art->nom)?></h1>
+  </header>
+
   <!-- Códigos de la Luz y de la Vida -->
-  <article>
+  <section>
     <?php $nv1 = Num::val(intval($nv1) + 1,2); $nv2 = 0; $nv3 = 0; $nv4 = 0; ?>
     <h2 id="<?="_{$Nav[1][$nv1]->key}-"?>"><?=Tex::let($Nav[1][$nv1]->nom)?></h2>
 
@@ -15,10 +18,10 @@
 
     <p>En el <a href="<?=$Bib?>tierra_en_ascenso#_02-04-04-" target="_blank">mapa <n>32</n></a> se retoma la relación entre los <n>64</n> hexagramas<c>,</c> esta vez con el arreglo del Cuadrado Mágico de Franklin<c>,</c> y el Calendario Sagrado de los Mayas<c>,</c> en los cuales están presentes tanto los <n>20</n> aminoácidos como los <n>20</n> signos sagrados<c>.</c></p>
 
-  </article>
+  </section>
   
   <!-- Rangos de Frecuencia para Símbolos ideográficos  -->
-  <article>
+  <section>
     <?php $nv1 = Num::val(intval($nv1) + 1,2); $nv2 = 0; $nv3 = 0; $nv4 = 0; ?>
     <h2 id="<?="_{$Nav[1][$nv1]->key}-"?>"><?=Tex::let($Nav[1][$nv1]->nom)?></h2>
 
@@ -80,10 +83,10 @@
 
     </section>
     
-  </article>
+  </section>
   
   <!-- Códigos del Encantamiento del Sueño -->
-  <article>
+  <section>
     <?php $nv1 = Num::val( intval($nv1) + 1, 2 ); $nv2 = 0; $nv3 = 0; $nv4 = 0; ?>
     <h2 id="<?="_{$Nav[1][$nv1]->key}-"?>"><?=Tex::let($Nav[1][$nv1]->nom)?></h2>
 
@@ -115,10 +118,10 @@
 
     </section>    
 
-  </article>
+  </section>
   
   <!-- Colocacion Cromática -->
-  <article>
+  <section>
     <?php $nv1 = Num::val(intval($nv1) + 1,2); $nv2 = 0; $nv3 = 0; $nv4 = 0; ?>
     <h2 id="<?="_{$Nav[1][$nv1]->key}-"?>"><?=Tex::let($Nav[1][$nv1]->nom)?></h2>
 
@@ -158,10 +161,10 @@
 
     </section> 
 
-  </article>  
+  </section>  
   
   <!-- Colocación Armónica -->
-  <article>
+  <section>
     <?php $nv1 = Num::val(intval($nv1) + 1,2); $nv2 = 0; $nv3 = 0; $nv4 = 0; ?>
     <h2 id="<?="_{$Nav[1][$nv1]->key}-"?>"><?=Tex::let($Nav[1][$nv1]->nom)?></h2>
 
@@ -199,10 +202,10 @@
 
     </section>
 
-  </article>
+  </section>
   
   <!-- Las Parejas del Oráculo -->
-  <article>
+  <section>
     <?php $nv1 = Num::val(intval($nv1) + 1,2); $nv2 = 0; $nv3 = 0; $nv4 = 0; ?>
     <h2 id="<?="_{$Nav[1][$nv1]->key}-"?>"><?=Tex::let($Nav[1][$nv1]->nom)?></h2>
 
@@ -342,10 +345,10 @@
 
     </section>
 
-  </article>
+  </section>
 
   <!-- El Holon -->
-  <article>
+  <section>
     <?php $nv1 = Num::val(intval($nv1) + 1,2); $nv2 = 0; $nv3 = 0; $nv4 = 0; ?>
     <h2 id="<?="_{$Nav[1][$nv1]->key}-"?>"><?=Tex::let($Nav[1][$nv1]->nom)?></h2>
 
@@ -502,4 +505,5 @@
 
     </section>
 
-  </article>
+  </section>
+</article>  

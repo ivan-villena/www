@@ -10,11 +10,11 @@ function listado( $lib, $ide, $tip, $dat ){
     // libro del kin
     case 'kin':
 
-      if( $App.dom.dat.var ) $.lis = $App.dom.dat.var.nextElementSibling;
+      if( $App.Dom.dat.var ) $.lis = $App.Dom.dat.var.nextElementSibling;
 
-      $.res = $App.dom.dat.var.querySelector('.hol-kin');
+      $.res = $App.Dom.dat.var.querySelector('.hol-kin');
 
-      if( $.val = Num.val( $App.dom.dat.var.querySelector('[name="ide"]').value ) ) $.kin_ide = `#kin-${Num.val($.val,3)}`;
+      if( $.val = Num.val( $App.Dom.dat.var.querySelector('[name="ide"]').value ) ) $.kin_ide = `#kin-${Num.val($.val,3)}`;
       
       switch($tip){
       case 'val':

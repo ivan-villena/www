@@ -1,9 +1,12 @@
 <!-- 7 Plasmas Radiales -->
-<?php 
-  $nv1 = "00"; $nv2 = "00"; $nv3 = "00"; $nv4 = "00";
-  ?>
+<article>
+<?php $nv1 = "00"; $nv2 = "00"; $nv3 = "00"; $nv4 = "00"; ?>
+  <header>
+    <h1><?=Tex::let($App->Art->nom)?></h1>
+  </header>
+
   <!-- Días de la Semana -->
-  <article>
+  <section>
     <?php $nv1 = Num::val(intval($nv1) + 1,2); $nv2 = 0; $nv3 = 0; $nv4 = 0; ?>
     <h2 id="<?="_{$Nav[1][$nv1]->key}-"?>"><?=Tex::let($Nav[1][$nv1]->nom)?></h2>
 
@@ -13,10 +16,10 @@
 
     <?=Dat::lis('hol.rad',[ 'atr'=>['ide','nom','des_pod'] ])?>
 
-  </article>
+  </section>
   
   <!-- Sellos de la Profecia -->
-  <article>
+  <section>
     <?php $nv1 = Num::val(intval($nv1) + 1,2); $nv2 = 0; $nv3 = 0; $nv4 = 0; ?>
     <h2 id="<?="_{$Nav[1][$nv1]->key}-"?>"><?=Tex::let($Nav[1][$nv1]->nom)?></h2>
 
@@ -32,10 +35,10 @@
 
     <?=Dat::lis('hol.rad',[ 'atr'=>['ide','tel_año','rin_des'], 'opc'=>["cab_ocu"] ])?>
 
-  </article>
+  </section>
   
   <!-- Componenetes Electrónicos -->
-  <article>
+  <section>
     <?php $nv1 = Num::val(intval($nv1) + 1,2); $nv2 = 0; $nv3 = 0; $nv4 = 0; ?>
     <h2 id="<?="_{$Nav[1][$nv1]->key}-"?>"><?=Tex::let($Nav[1][$nv1]->nom)?></h2>
 
@@ -76,10 +79,10 @@
       
     </section>
 
-  </article>  
+  </section>  
   
   <!-- Autodeclaraciones Diarias -->
-  <article>
+  <section>
     <?php $nv1 = Num::val(intval($nv1) + 1,2); $nv2 = 0; $nv3 = 0; $nv4 = 0; ?>
     <h2 id="<?="_{$Nav[1][$nv1]->key}-"?>"><?=Tex::let($Nav[1][$nv1]->nom)?></h2>
 
@@ -87,10 +90,10 @@
 
     <?=Dat::lis('hol.rad',[ 'atr'=>['ide','pla_lec'], 'opc'=>["cab_ocu"] ])?>
 
-  </article>  
+  </section>  
   
   <!-- Heptágono de la Mente -->
-  <article>
+  <section>
     <?php $nv1 = Num::val(intval($nv1) + 1,2); $nv2 = 0; $nv3 = 0; $nv4 = 0; ?>
     <h2 id="<?="_{$Nav[1][$nv1]->key}-"?>"><?=Tex::let($Nav[1][$nv1]->nom)?></h2>
 
@@ -102,4 +105,5 @@
 
     <?=Dat::lis('hol.rad',[ 'atr'=>['ide','pla_cub_pos','pla_cub','hum_cha'], 'opc'=>["cab_ocu"] ])?>
 
-  </article>
+  </section>
+</article>  

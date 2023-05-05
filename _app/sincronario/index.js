@@ -22,9 +22,9 @@ function diario( $dat ){
   $.uri = `${$App.Uri.esq}/${$App.Uri.cab}/${$App.Uri.art}`;
   
   // calendario gregoriano
-  if( $App.dom.dat.var.classList.contains('fec') ){
+  if( $App.Dom.dat.var.classList.contains('fec') ){
     
-    if( $.fec = $App.dom.dat.var.querySelector('[name="fec"]').value ){
+    if( $.fec = $App.Dom.dat.var.querySelector('[name="fec"]').value ){
 
       Arc.url(`${$.uri}/fec=${$.fec.replaceAll('/','-')}`);
     }
@@ -33,13 +33,13 @@ function diario( $dat ){
     }
   }
   // sincronario
-  else if( $App.dom.dat.var.classList.contains('sin') ){
+  else if( $App.Dom.dat.var.classList.contains('sin') ){
     $.atr = {};
     $.hol = [];
     $.val = true;
     ['gal','ani','lun','dia'].forEach( $v => {
 
-      $.atr[$v] = $App.dom.dat.var.querySelector(`[name="${$v}"]`).value;
+      $.atr[$v] = $App.Dom.dat.var.querySelector(`[name="${$v}"]`).value;
 
       if( !$.atr[$v] ){ 
         return $.val = false;          

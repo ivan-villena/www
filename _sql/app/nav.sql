@@ -867,7 +867,7 @@
         (1,1,14,'04-11','Las 48 Runas Ur Armónicas de La Segunda Creación y otros elementos del Arbol De La Vida Telepático Parlan')              
     ;
   --
-  -- 2- Codigos y Cuentas
+  -- 2- Apuntes
     DELETE FROM `app_nav` WHERE `esq`=1 AND `cab`=2
     ;
     -- x7 : plasma radial
@@ -916,22 +916,9 @@
         (1,2,3,'06-05','Las 10 Parejas Análogas'),
         (1,2,3,'06-06','Las 10 Parejas Antípodas'),
         (1,2,3,'06-07','Las 10 Parejas Ocultas'),
-        (1,2,3,'06-08','Los Patrones de la Pareja Guía'),
-      (1,2,3,'07','Codificación del Holon'),
-        (1,2,3,'07-01','El Holon Solar-Interplanetario'),
-          (1,2,3,'07-01-01','Las 10 Órbitas planetarias'),
-          (1,2,3,'07-01-02','Las 5 Células Solares'),
-          (1,2,3,'07-01-03','Los 5 Circuitos de telepatía'),
-        (1,2,3,'07-02','El Holon Planetario'),      
-          (1,2,3,'07-02-01','Los 5 Centros de la Fuerza-G'),
-          (1,2,3,'07-02-02','Los 2 Flujos Polares'),
-          (1,2,3,'07-02-03','Los 3 Campos Dimensionales'),
-        (1,2,3,'07-03','El Holon humano'),
-          (1,2,3,'07-03-01','Los 5 Centros Galácticos'),
-          (1,2,3,'07-03-02','Las 4 Extremidades Cromáticas'),
-          (1,2,3,'07-03-03','Las 5 Dedos de las manos y pies'),
-          (1,2,3,'07-03-04','Los 2 Lados de la Respiración S-G')
+        (1,2,3,'06-08','Los Patrones de la Pareja Guía')
     ;
+
     -- x260 : kines
     DELETE FROM `app_nav` WHERE `esq`=1 AND `cab`=2 AND `art`=11; INSERT INTO `app_nav` VALUES
       (1,2,11,'01','Los 52 portales de Activación Galáctica'),
@@ -953,7 +940,29 @@
       (1,2,12,'03','Las 52 heptadas semanales'),
       (1,2,12,'04','Las 73 cromáticas entonadas'),
       (1,2,12,'05','Los 19 vinales del Haab')
+    ;
+
+    -- Holon Solar
+    DELETE FROM `app_nav` WHERE `esq`=1 AND `cab`=2 AND `art`=21; INSERT INTO `app_nav` VALUES
+      (1,2,21,'01','Las 10 Órbitas planetarias'),
+      (1,2,21,'02','Las 5 Células Solares'),
+      (1,2,21,'03','Los 5 Circuitos de telepatía')
+    ;
+    -- Holon Planetario
+    DELETE FROM `app_nav` WHERE `esq`=1 AND `cab`=2 AND `art`=22; INSERT INTO `app_nav` VALUES
+      (1,2,22,'01','Los 5 Centros de la Fuerza-G'),
+      (1,2,22,'02','Los 2 Flujos Polares'),
+      (1,2,22,'03','Los 3 Campos Dimensionales')
     ;    
+    -- Holon Humano
+    DELETE FROM `app_nav` WHERE `esq`=1 AND `cab`=2 AND `art`=23; INSERT INTO `app_nav` VALUES
+      (1,2,23,'01','Los 5 Centros Galácticos'),
+      (1,2,23,'02','Las 4 Extremidades Cromáticas'),
+      (1,2,23,'03','Las 5 Dedos de las manos y pies'),
+      (1,2,23,'04','Los 2 Lados de la Respiración S-G')
+    ;
+
+
   --
   -- 4- Diario
     DELETE FROM `app_nav` WHERE `esq`=1 AND `cab`=4

@@ -4,16 +4,13 @@
 class App {
 
   static string $IDE = "App-";
-  static string $EJE = "App.";  
+  static string $EJE = "\$App.";
 
   /* Estructuras */
-  public array $dat = [];
+  public array $Dat = []; 
 
-  /* Recursos */
-  public array $rec = [
-    // peticion
-    'uri' => [
-    ],
+  /* Sesión */
+  public array $Ses = [
     // Clases : js / php / css
     'cla' => [  
       'api'=>[
@@ -39,9 +36,9 @@ class App {
     'eje' => ""
 
   ];//- Clases del programa
-  public function rec_cla( string $tip = "", array $dat = [] ) : string {
+  public function ses_cla( string $tip = "", array $dat = [] ) : string {
     $_ = "";
-    if( empty($dat) ) $dat = $this->rec['cla'];
+    if( empty($dat) ) $dat = $this->Ses['cla'];
     // estilos
     if( $tip == 'css' ){
 
@@ -80,56 +77,252 @@ class App {
     return $_;
   }
 
-  /* Peticion */
-  public object $Uri
-  ;// carga inicial
-  public function uri( string $uri ) : object {
+  /* peticion */
+  public object $Uri;
+  // - Armo objeto
+  public function uri( string $ide ) : object {
 
     // armo peticion
-    $uri = explode('/',$uri);
+    $dir = explode('/',$ide);
 
-    $this->Uri = new stdClass;
-    $this->Uri->esq = $uri[0];
-    $this->Uri->cab = !empty($uri[1]) ? $uri[1] : FALSE;
-    $this->Uri->val = FALSE;
+    $Uri = new stdClass;
 
-    if( $this->Uri->art = !empty($uri[2]) ? $uri[2] : FALSE ){
-      $_val = explode('#',$this->Uri->art);
-      if( isset($_val[1]) ){
-        $this->Uri->art = $_val[0];
-        $this->Uri->val = $_val[1];
+    $Uri->esq = $dir[0];
+    $Uri->cab = !empty($dir[1]) ? $dir[1] : FALSE;
+    $Uri->val = FALSE;
+
+    if( $Uri->art = !empty($dir[2]) ? $dir[2] : FALSE ){
+
+      $val = explode('#',$Uri->art);
+
+      if( isset($val[1]) ){
+        $Uri->art = $val[0];
+        $Uri->val = $val[1];
       }
-      elseif( !empty($uri[3]) ){
-        $this->Uri->val = $uri[3];
+      elseif( !empty($dir[3]) ){
+        $Uri->val = $dir[3];
       }
     }
 
-    $Uri = $this->Uri;  
+    return $this->Uri = $Uri;
 
-    return $Uri;
+  }
 
-  }// - Armo directorios
-  public function uri_dir() : object {
+  /* directorios */
+  public object $Dir;  
+  // - Armo objeto
+  public function dir() : object {
 
     $Uri = $this->Uri;
 
-    $_ = new stdClass();
+    $Dir = new stdClass();
     
-    $_->esq = SYS_NAV."{$Uri->esq}";
+    $Dir->esq = SYS_NAV."{$Uri->esq}";
       
-    $_->cab = "{$Uri->esq}/{$Uri->cab}";
+    $Dir->cab = "{$Uri->esq}/{$Uri->cab}";
 
-    $_->ima = SYS_NAV."_img/{$_->cab}/";
+    $Dir->ima = SYS_NAV."_img/{$Dir->cab}/";
 
     if( !empty($Uri->art) ){
 
-      $_->art = $_->cab."/{$Uri->art}";
+      $Dir->art = $Dir->cab."/{$Uri->art}";
     
-      $_->ima .= "{$Uri->art}/";
+      $Dir->ima .= "{$Uri->art}/";
+    }
+
+    return $this->Dir = $Dir;
+  }
+
+  // Esquema : nombre de la aplicacion
+  public object $Esq;
+
+  // Menu 
+  public object $Cab;
+  // Imprimo listado
+  public function cab( array $ele = [] ) : string {
+    
+    global $Usu;
+    
+    $esq_key = $this->Esq->key;
+    $esq_ide = $this->Esq->ide;
+
+    foreach( ['ope','lis','dep'] as $i ){ if( !isset($ele[$i]) ) $ele[$i] = []; }
+
+    // armo listado de enlaces
+    $_lis = [];
+    foreach( Dat::get('app_cab',[ 'ver'=>"`esq`='$esq_key'", 'ord'=>"`key` ASC" ]) as $_cab ){
+
+      if( !empty($_cab->ocu) || ( !empty($_cab->usu) && empty($Usu->ide) ) ){
+        continue;
+      }
+
+      $ite_ico = !empty($_cab->ico) ? Fig::ico( $_cab->ico, [ 'class'=>"mar_der-1" ] ) : "";
+
+      $_lis_val = [];
+      foreach( Dat::get('app_art',[ 'ver'=>"`esq`='$esq_key' AND `cab`='$_cab->key'", 'ord'=>"`key` ASC" ]) as $_art ){
+
+        $ele_val = !empty($_art->ele) ? $_art->ele : [ 'class'=>"dis-fle ali-cen" ];
+
+        if( !empty($_art->des) ) $ele_val['title'] = $_art->des;
+
+        // por titulo de separacion
+        if( empty($_art->ide) ){
+          $ite_val = "
+          <p class='tex-tit'>".Tex::let($_art->nom)."</p>";
+        }
+        // por enlace
+        else{
+          $ele_val['href'] = SYS_NAV."/$esq_ide/$_cab->ide/$_art->ide";
+          $ite_val = "
+          <p>"
+          .( !empty($_art->ico) ? Fig::ico( $_art->ico, [ 'class'=>"mar_der-1" ] ) : $ite_ico )
+          .Tex::let($_art->nom)."
+          </p>";
+        }       
+
+        $_lis_val []= "
+        <a".Ele::atr($ele_val).">
+          {$ite_val}
+        </a>";
+      }
+      $_lis []= [ 
+        'ite'=>[ 'eti'=>"p", 'class'=>"ide-$_cab->ide mar_ver-1 tex-tit tex-enf", 'htm'=>$ite_ico.Tex::let($_cab->nom) ],
+        'lis'=>$_lis_val 
+      ];
+    }
+    // reinicio opciones
+    Ele::cla($ele['lis'],"nav");
+    Ele::cla($ele['dep'],DIS_OCU);
+    $ele['opc'] = [ 'tog' ]; // dlt- 'ver', 'cue'
+    return Lis::dep($_lis,$ele);
+  }
+  
+  // Articulo
+  public object $Art;
+  // genero desde objeto de la base
+  public function art( object $nav, string $esq, string $cab ) : string {
+    $_ = "";      
+
+    $agr = Ele::htm($nav->ope);
+
+    $_art = Dat::get('app_art',[ 'ver'=>"`esq`='{$esq}' AND `cab`='{$cab}'", 'ord'=>"`pos` ASC", 'ele'=>"ope" ]);
+
+    $_ = "
+    <article class='app_art'>";
+      // introduccion
+      if( !empty($agr['htm_ini']) ){
+        $_ .= $agr['htm_ini'];
+      }
+      else{ $_ .= "
+        <h2>{$nav->nom}</h2>";
+      }
+      // listado de contenidos
+      if( !empty($_art) ){ $_ .= "
+
+        <nav class='lis'>";
+          foreach( $_art as $art ){
+            $art_url = "<a href='".SYS_NAV."/{$art->esq}/{$art->cab}/{$art->ide}'>".Tex::let($art->nom)."</a>";
+            if( !empty($art->ope['tex']) ){
+              $_ .= "            
+              <div class='doc_val nav'>
+                ".Doc::val_ico()."
+                {$art_url}
+              </div>
+              <div class='doc_dat'>
+                ".Ele::val($art->ope['tex'])."
+              </div>
+              ";
+            }else{
+              $_ .= $art_url;
+            }
+            
+          }$_.="
+        </nav>";
+      }
+      // pie de pagina
+      if( !empty($agr['htm_fin']) ){
+        $_ .= $agr['htm_fin'];
+      }
+      $_ .= "
+    </article>";          
+
+    return $_;
+  }// genero secciones por Indice de la base : article > h2 + ...section > h3 + ...section > ...
+  public function art_sec( string $ide ) : string {
+    $_ = "";
+    
+    $_ide = explode('.',$ide);
+    
+    $app_nav = Dat::get('app_nav',[ 'ver'=>"`esq`='{$_ide[0]}' AND `cab`='{$_ide[1]}' AND `ide`='{$_ide[2]}'", 'nav'=>'pos' ]);
+
+    if( isset($app_nav[1]) ){
+
+      foreach( $app_nav[1] as $nv1 => $_nv1 ){ $_ .= "
+        <h2 id='_{$nv1}-'>".Tex::let($_nv1->nom)."</h2>
+        <article>";
+          if( isset($app_nav[2][$nv1]) ){
+            foreach( $app_nav[2][$nv1] as $nv2 => $_nv2 ){$_ .= "
+
+          <h3 id='_{$nv1}-{$nv2}-'>".Tex::let($_nv2->nom)."</h3>
+          <section>";
+            if( isset($app_nav[3][$nv1][$nv2]) ){
+              foreach( $app_nav[3][$nv1][$nv2] as $nv3 => $_nv3 ){$_ .= "
+
+            <h4 id='_{$nv1}-{$nv2}-{$nv3}-'>".Tex::let($_nv3->nom)."</h4>
+            <section>";
+              if( isset($app_nav[4][$nv1][$nv2][$nv3]) ){
+                foreach( $app_nav[4][$nv1][$nv2][$nv3] as $nv4 => $_nv4 ){ $_ .= "
+
+              <h5 id='_{$nv1}-{$nv2}-{$nv3}-{$nv4}-'>".Tex::let($_nv4->nom)."</h5>
+              <section>";
+                if( isset($app_nav[5][$nv1][$nv2][$nv3][$nv4]) ){
+                  foreach( $app_nav[5][$nv1][$nv2][$nv3][$nv4] as $nv5 => $_nv5 ){ $_ .= "
+
+                <h6 id='_{$nv1}-{$nv2}-{$nv3}-{$nv4}-{$nv5}-'>".Tex::let($_nv5->nom)."</h6>
+                <section>                      
+
+                </section>";
+                  }
+                }$_ .= "                  
+              </section>";
+                }
+              }$_ .= "                
+            </section>";
+              }
+            }$_ .= "              
+          </section>";
+            }
+          }$_ .= "              
+        </article>";
+      }
     }
 
     return $_;
   }
+  
+  /* Indice por aplicacion */
+  public array $Nav;
+
+  /* Glosario : palabras por esquema */
+  static function ide( int $esq, string $art, array $ele = [] ) : string {
+
+    $_ = [];
+    
+    if( is_array( $tex = Dat::get('app_ide',['ver'=>"`esq`=$esq AND `art`='$art'"]) ) ){
+
+      foreach( $tex as $pal ){
+        $_[ $pal->nom ] = $pal->des;
+      }
+    }
+
+    // operadores : toggle + filtro
+    if( !isset($ele['opc']) ) $ele['opc'] = [];
+
+    return Lis::pos($_,$ele);
+  }
+
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   /* Pagina */
   public array $Doc = [
@@ -159,8 +352,8 @@ class App {
         'ses_ini'=>[ 
           'ico'=>"app_ini", 'tip'=>"win",    'nom'=>"Iniciar Sesión..."  
         ],
-        'ses_ope'=>[ 
-          'ico'=>"usu",     'tip'=>"win",    'nom'=>"Cuenta de Usuario..." 
+        'ses_usu'=>[ 
+          'ico'=>"usu",     'tip'=>"pan",    'nom'=>"Cuenta de Usuario..." 
         ],
         'app_adm'=>[ 
           'ico'=>"eje",     'tip'=>"win",    'nom'=>"Consola del Sistema..." 
@@ -184,33 +377,63 @@ class App {
       // barra inferior
       'pie'=>""      
     ]
-  ];// Imprimo
-  public function doc( $Usu, $Uri ){
+  ];// - Imprimo
+  public function doc( Usu $Usu ){
 
-    /* 
-    // loggin
-    $eje = "ses_".( empty($Usu->ide) ? 'ini' : 'ope' );
-    $this->Doc['cab']['fin'][$eje]['htm'] = $Usu->$eje();
-    */
+    // cargo rutas
+    $Uri = $this->Uri;
 
-    // consola del sistema
-    if( $Usu->ide == 1 ){
-
-      $this->Doc['cab']['fin']['app_adm']['htm'] = $this->doc_adm();
-    }
-
-    // Cargo clases por aplicacion
-    $this->rec['cla']["./_app/{$Uri->esq}"] = [];
+    // Cargo clases : por aplicacion
+    $this->Ses['cla']["./_app/{$Uri->esq}"] = [];
     if( !empty($Uri->cab) ){ 
       // de contenido
-      $this->rec['cla']["./_app/{$Uri->esq}"] []= $Uri->cab;
+      $this->Ses['cla']["./_app/{$Uri->esq}"] []= $Uri->cab;
       // de articulo
       if( !empty($Uri->art) ){
-        $this->rec['cla']["./_app/{$Uri->esq}/{$Uri->cab}"] = [ $Uri->art ];
+        $this->Ses['cla']["./_app/{$Uri->esq}/{$Uri->cab}"] = [ $Uri->art ];
       }
+    }
+
+    // cargo elemento principal
+    $this->Doc['ele']['body'] = [
+      'data-doc'=>$Uri->esq, 
+      'data-cab'=>!!$Uri->cab ? $Uri->cab : NULL, 
+      'data-art'=>!!$Uri->art ? $Uri->art : NULL 
+    ];    
+
+    // imprimo sesion del usuario
+    if( empty($Usu->ide) ){
+
+      $this->Doc['htm']['win'] .= Doc::win('app-ses_ini', [
+        'ico'=>"app_ini",
+        'nom'=>"Iniciar Sesión...",
+        'htm'=>$this->usu_ses()
+      ]);
+    }// imprimo menu de usuario por aplicacion
+    else{
+
+      $this->Doc['cab']['fin']['ses_usu']['htm'] = $this->usu();
+
+      // imprimo consola del sistema
+      if( $Usu->ide == 1 ){
+
+        $this->Doc['cab']['fin']['app_adm']['htm'] = $this->adm();
+      }      
+    }
+
+    // ajusto inicio
+    $this->Doc['cab']['ini']['app_ini']['url'] .= "/{$Uri->esq}";    
+
+    // imprimo menú principal
+    $this->Doc['cab']['ini']['app_cab']['htm'] = $this->cab();
+
+    // imprimo indice
+    if( !empty( $this->Nav ) ){
+      // proceso nivelacion de indices
+      $this->Doc['cab']['ini']['app_nav']['htm'] = Lis::nav( $this->Nav );
     }    
 
-    // cargo html para operadores del documento: botones de enlaces paneles y modales
+    // cargo operadores del documento: botones y html de enlaces paneles y modales
     foreach( $this->Doc['cab'] as $tip => $tip_lis ){
 
       foreach( $tip_lis as $ide => $ope ){
@@ -223,14 +446,17 @@ class App {
         elseif( isset($ope['tip']) && !empty($ope['htm']) ){
           // boton
           $this->Doc['htm']['cab'][$tip] .= Doc::cab([ $ide => $ope ]);
-          // contenido: pan / win
+          // html: pan / win
           $this->Doc['htm'][$ope['tip']] .= Doc::{"{$ope['tip']}"}($ide,$ope);
         }
       }  
     }
 
     // modal de operadores
-    $this->Doc['htm']['win'] .= Doc::win('app_ope',[ 'ico'=>"app_ope", 'nom'=>"Operador" ]);  
+    $this->Doc['htm']['win'] .= Doc::win('app_ope',[ 
+      'ico'=>"app_ope", 
+      'nom'=>"Operador" 
+    ]);
     
     // ajusto diseño
     $_ver = [];
@@ -250,45 +476,45 @@ class App {
       $this->Doc['htm']['tit'] = $this->Esq->nom; 
     }
 
-    $doc = $this->Doc['htm'];
+    $Doc = $this->Doc['htm'];
 
     ?>
     <!DOCTYPE html>
     <html lang="es">
-         
+          
       <head>
         <!-- parametros -->
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- hojas de estilo -->
         <link rel='stylesheet' href='<?=SYS_NAV?>index.css'>
-        <?=$this->rec_cla('css')?>
+        <?=$this->ses_cla('css')?>
         <link rel='stylesheet' href='<?=SYS_NAV?>sis/css.css'>
         <!-- aplicacion -->
-        <title><?=$doc['tit']?></title>
+        <title><?=$Doc['tit']?></title>
       </head>
   
       <body <?=Ele::atr($this->Doc['ele']['body'])?>>
         
         <?php // Cabecera con Operador : botones de accesos a enlaces, paneles y modales
-        if( !empty($doc['cab']['ini']) || !empty($doc['cab']['fin']) || !empty($doc['cab']['tod']) ){
+        if( !empty($Doc['cab']['ini']) || !empty($Doc['cab']['fin']) || !empty($Doc['cab']['tod']) ){
           ?>
           <!-- Operador -->
           <header class='doc_cab'>
             <?php
-            if( !empty($doc['cab']['tod']) ){
+            if( !empty($Doc['cab']['tod']) ){
 
-              echo $doc['cab']['tod'];
+              echo $Doc['cab']['tod'];
             }
             else{
               ?>
               <nav class='ini'>
-                <?= !empty($doc['cab']['ini']) ? $doc['cab']['ini'] : "" ?>
-                <?= !empty($doc['cab']['med']) ? $doc['cab']['med'] : "" ?>
+                <?= !empty($Doc['cab']['ini']) ? $Doc['cab']['ini'] : "" ?>
+                <?= !empty($Doc['cab']['med']) ? $Doc['cab']['med'] : "" ?>
               </nav>
     
               <nav class='fin'>
-                <?= !empty($doc['cab']['fin']) ? $doc['cab']['fin'] : "" ?>
+                <?= !empty($Doc['cab']['fin']) ? $Doc['cab']['fin'] : "" ?>
               </nav>
             <?php
             }
@@ -298,45 +524,45 @@ class App {
         } ?>
   
         <?php // Paneles Ocultos
-        if( !empty($doc['pan']) ){ ?>
+        if( !empty($Doc['pan']) ){ ?>
           <!-- Panel -->
           <aside class='doc_pan dis-ocu'>
-            <?= $doc['pan'] ?>
+            <?= $Doc['pan'] ?>
           </aside>
           <?php 
         } ?>
         
         <?php // Contenido Principal
-        if( !empty($doc['sec']) ){
+        if( !empty($Doc['sec']) ){
           ?>
           <!-- Contenido -->
           <main class='doc_sec'>
-            <?= Doc::sec( $doc['sec'], [ 'tit'=> empty($this->Cab) || !empty($this->Cab->tit) ? $doc['tit'] : NULL ] ) ?>
+            <?= Doc::sec( $Doc['sec'] ) ?>
           </main>          
           <?php
         } ?>
               
         <?php // Lateral: siempre visible
-        if( !empty($doc['bar']) ){ ?>
+        if( !empty($Doc['bar']) ){ ?>
           <!-- Sidebar -->
           <aside class='doc_bar'>
-            <?= $doc['bar'] ?>
+            <?= $Doc['bar'] ?>
           </aside>
           <?php 
         } ?>
   
         <?php // pié de página
-        if( !empty($doc['pie']) ){  ?>
+        if( !empty($Doc['pie']) ){  ?>
           <!-- pie de página -->
           <footer class='doc_pie'>
-            <?= $doc['pie'] ?>
+            <?= $Doc['pie'] ?>
           </footer>
           <?php 
         } ?>
         
         <!-- Modales -->
         <div class='doc_win dis-ocu'>
-          <?= $doc['win'] ?>
+          <?= $Doc['win'] ?>
         </div>
         
         <!-- Cargo Sistema -->
@@ -350,31 +576,32 @@ class App {
         </script>
   
         <!-- Módulos -->
-        <?=$this->rec_cla('jso')?>
+        <?=$this->ses_cla('jso')?>
         
         <!-- Inicio Aplicación -->
         <script>
-          <?php
-          global $sis_ini;
+          <?php          
           $dat_est = [];
-          foreach( $this->dat as $esq => $esq_lis ){
+          foreach( $this->Dat as $esq => $esq_lis ){
             $dat_est_val = [];
             foreach( $esq_lis as $est => $est_ope ){
-              if( isset($this->rec['est']['api'][$esq]) ){
-                if( in_array($est,$this->rec['est']['api'][$esq]) ) $dat_est_val[$est] = $est_ope;
-              }elseif( isset($this->rec['dat']['api'][$esq]) ){
-                if( in_array($est,$this->rec['dat']['api'][$esq]) ) $dat_est_val[$est] = [ 'dat' => $est_ope->dat ];
+              if( isset($this->Ses['est']['api'][$esq]) ){
+                if( in_array($est,$this->Ses['est']['api'][$esq]) ) $dat_est_val[$est] = $est_ope;
+              }elseif( isset($this->Ses['dat']['api'][$esq]) ){
+                if( in_array($est,$this->Ses['dat']['api'][$esq]) ) $dat_est_val[$est] = [ 'dat' => $est_ope->dat ];
               }
             }
             if( !empty($dat_est_val) ) $dat_est[$esq] = $dat_est_val;
-          }?>
+          }
+          global $sis_ini;
+          ?>
   
-          const $App = new App(<?= Obj::val_cod([ 'Uri'=>$Uri, 'dat'=>$dat_est ]) ?>);
+          const $App = new App(<?= Obj::val_cod([ 'Uri'=>$Uri, 'Dat'=>$dat_est ]) ?>);
 
           $App.doc();
           
           // ejecuto codigo por aplicacion
-          <?= $this->rec['eje'] ?>
+          <?= $this->Ses['eje'] ?>
           
           console.log(`{-_-}.ini: en ${( ( Date.now() - (  <?= $sis_ini ?> * 1000 ) ) / 1000 ).toFixed(2)} segundos...`);
   
@@ -384,14 +611,11 @@ class App {
   
     </html>
     <?php
-  }// Cargo contenido
+  }// - Cargo contenido
   public function doc_ini(){
 
     // cargp rutas
     $Uri = $this->Uri;
-    
-    // ajusto inicio
-    $this->Doc['cab']['ini']['app_ini']['url'] .= "/{$Uri->esq}";
 
     // cargo datos : esquema - cabecera - articulo - valor
     $this->Esq = Dat::get('app_esq',[ 'ver'=>"`ide`='{$Uri->esq}'", 'opc'=>'uni' ]);
@@ -405,7 +629,8 @@ class App {
         // cargo datos del menu
         $this->Cab = Dat::get('app_cab',[ 
           'ver'=>"`esq`='{$esq_key}' AND `ide`='{$Uri->cab}'", 
-          'ele'=>'ope', 'opc'=>'uni'
+          'ele'=>'ope', 
+          'opc'=>'uni'
         ]);
   
         $cab_key = $this->Cab->key;
@@ -413,7 +638,8 @@ class App {
         if( !empty($Uri->art) ){
           $this->Art = Dat::get('app_art',[ 
             'ver'=>"`esq`='{$esq_key}' AND `cab`='{$cab_key}' AND `ide`='{$Uri->art}'", 
-            'ele'=>'ope', 'opc'=>'uni' 
+            'ele'=>'ope', 
+            'opc'=>'uni' 
           ]);
   
           $art_key = $this->Art->key;
@@ -422,34 +648,20 @@ class App {
                 
             $this->Nav = Dat::get('app_nav',[ 
               'ver'=>"`esq`='{$esq_key}' AND `cab`='{$cab_key}' AND `art`='{$art_key}'", 
-              'ord'=>"`key` ASC", 
+              'ord'=>"`key` ASC",
               'nav'=>'key'
             ]);
-            
-            // pido listado por navegacion
-            if( !empty( $this->Nav[1]) ){ 
-
-              $this->Doc['cab']['ini']['app_nav']['htm'] = Lis::nav( $this->Nav ) ;
-            }
           }          
         }
       }
-  
-      // cargo menú principal
-      $this->Doc['cab']['ini']['app_cab']['htm'] = $this->cab();   
     }
+  }
 
-    // cargo elemento principal
-    $this->Doc['ele']['body'] = [
-      'data-doc'=>$Uri->esq, 
-      'data-cab'=>!!$Uri->cab ? $Uri->cab : NULL, 
-      'data-art'=>!!$Uri->art ? $Uri->art : NULL 
-    ];
+  /* Consola */
+  public function adm(){
 
-  }// Consola
-  public function doc_adm(){
+    $_eje = self::$EJE."adm";
 
-    $_eje = "App.doc_adm";    
     $_ope = [
       'aja' => [ 'nom'=>"AJAX",   'htm'=>"", 'nav'=>[ 'onclick'=>"$_eje('aja',this);" ] ],
       'ico' => [ 'nom'=>"Íconos", 'htm'=>"", 'nav'=>[ 'onclick'=>"$_eje('ico',this);" ] ],
@@ -512,213 +724,141 @@ class App {
 
     return Doc::nav('bar', $_ope, [ 'sel' => "php", 'ite' => [ 'eti'=>"form" ] ]);
 
-  }// ejecucion
-  public function doc_log() : string {
+  }// Ejecuto desde la consola
+  public function adm_log() : string {
     
     $_ = "<h2>hola desde php<c>!</c></h2>";
+
+    foreach( sql::est('nom','hol_uni_','tab') as $est ){
+
+      $_ .= "RENAME TABLE `$est` TO `".str_replace('uni_','',$est)."`;<br>";
+
+    } 
 
   
     /* Recorrer tablas de un esquema:
 
-    foreach( api_sql::est(DAT_ESQ,'lis','hol_','tab') as $est ){
+    foreach( sql::est('nom','hol_uni','tab') as $est ){
+
       $_ .= "ALTER TABLE `api`.`$est` DROP PRIMARY KEY;<br>";
+
     } 
     */
     
-    /*  Invocando funciones
-      include("./_/hol/sel.php");
+    /*  Invocando funciones 
+      include("./_sql/hol/sel.php");
       $_ = hol_sel_par_gui();
     */
     
     return $_;
   }
 
-  // Esquema : nombre de la aplicacion
-  public object $Esq;
+  /* Menu del usuario */
+  public array $Usu;
+  // - imprimo menu con accesos
+  public function usu() : string {
+    $_ = "";
 
-  // Menu : titulo + descripcion + listado > item = [icono] + enlace
-  public object $Cab;
-  // genero listado
-  public function cab( array $ele = [] ) : string {
-    
-    global $Usu;
-    
-    $esq_key = $this->Esq->key;
-    $esq_ide = $this->Esq->ide;
+    // busco opciones del menu para el usuario por aplicacion    
+    $lis = "";
+    if( !empty( $app_usu = Dat::get('app_usu',[ 'ver'=>"`esq`='{$this->Esq->key}'" ]) ) ){      
 
-    foreach( ['ope','lis','dep'] as $i ){ if( !isset($ele[$i]) ) $ele[$i] = []; }
+      foreach( $app_usu as $usu ){
 
-    // armo listado de enlaces
-    $_lis = [];
-    foreach( Dat::get('app_cab',[ 'ver'=>"`esq`='$esq_key'", 'ord'=>"`key` ASC" ]) as $_cab ){
+        // procesar imagen en vez de icono
+        $ite_ico = !empty($usu->ico) ? Fig::ico( $usu->ico, [ 'class'=>"mar_der-1" ] ) : "";
 
-      if( !empty($_cab->ocu) || ( !empty($_cab->usu) && empty($Usu->ide) ) ){
-        continue;
+        // enlace: esquema/usuario/identificador
+        $_lis []= [
+          'ite'=>[ 'eti'=>"a",  'class'=>"mar_ver-1 tex-tit tex-enf", 'htm'=>$ite_ico.Tex::let($usu->nom) ],
+        ];
       }
-
-      $ite_ico = !empty($_cab->ico) ? Fig::ico( $_cab->ico, [ 'class'=>"mar_der-1" ] ) : "";
-
-      $_lis_val = [];
-      foreach( Dat::get('app_art',[ 'ver'=>"`esq`='$esq_key' AND `cab`='$_cab->key'", 'ord'=>"`key` ASC" ]) as $_art ){
-
-        $ele_val = !empty($_art->ele) ? $_art->ele : [ 'class'=>"dis-fle ali-cen" ];
-
-        if( !empty($_art->des) ) $ele_val['title'] = $_art->des;
-
-        // por titulo de separacion
-        if( empty($_art->ide) ){
-          $ite_val = "
-          <p class='tex-tit'>".Tex::let($_art->nom)."</p>";
-        }
-        // por enlace
-        else{
-          $ele_val['href'] = SYS_NAV."/$esq_ide/$_cab->ide/$_art->ide";
-          $ite_val = "
-          <p>"
-          .( !empty($_art->ico) ? Fig::ico( $_art->ico, [ 'class'=>"mar_der-1" ] ) : $ite_ico )
-          .Tex::let($_art->nom)."
-          </p>";
-        }       
-
-        $_lis_val []= "
-        <a".Ele::atr($ele_val).">
-          {$ite_val}
-        </a>";
-      }
-      $_lis []= [ 
-        'ite'=>[ 'eti'=>"p", 'class'=>"ide-$_cab->ide mar_ver-1 tex-tit tex-enf", 'htm'=>$ite_ico.Tex::let($_cab->nom) ],
-        'lis'=>$_lis_val 
-      ];
+      // pido listado html
+      $ele = [ 
+        'lis'=>[]
+       ];
+      Ele::cla($ele['lis'],"nav");
+      $lis = Lis::dep($_lis,$ele);
     }
-    // reinicio opciones
-    Ele::cla($ele['lis'],"nav");
-    Ele::cla($ele['dep'],DIS_OCU);
-    $ele['opc'] = [ 'tog' ]; // dlt- 'ver', 'cue'
-    return Lis::dep($_lis,$ele);
-  }
-  
-  // Articulo : + ...secciones + pie de página
-  public object $Art;
-  // genero desde objeto de la base
-  public function art( object $nav, string $esq, string $cab ) : string {
-    $_ = "";      
+    $_ .= "
+    <nav class='doc_lis'>
 
-    $agr = Ele::htm($nav->ope);
+      $lis
+      
+      ".Doc::bot('tex',[
+        ["App.ses_usu()","Administrar Perfil"],
+        ["App.ses_fin()","Cerrar Sesión"]
+      ])."
 
-    $_art = Dat::get('app_art',[ 'ver'=>"`esq`='{$esq}' AND `cab`='{$cab}'", 'ord'=>"`pos` ASC", 'ele'=>"ope" ]);
+    </nav>";
+
+    return $_;
+
+  }// - Imprimo Inicio de Sesión
+  public function usu_ses() : string {
+
+    $_eje = self::$EJE."usu";
 
     $_ = "
-    <article class='app_art'>";
-      // introduccion
-      if( !empty($agr['htm_ini']) ){
-        $_ .= $agr['htm_ini'];
-      }
-      else{ $_ .= "
-        <h2>{$nav->nom}</h2>";
-      }
-      // listado de contenidos
-      if( !empty($_art) ){ $_ .= "
+    <form class='app_dat' onsubmit='{$_eje}_ini'>
 
-        <nav class='lis'>";
-          foreach( $_art as $art ){
-            $art_url = "<a href='".SYS_NAV."/{$art->esq}/{$art->cab}/{$art->ide}'>".Tex::let($art->nom)."</a>";
-            if( !empty($art->ope['tex']) ){
-              $_ .= "            
-              <div class='doc_val nav'>
-                ".Doc::val_ico()."
-                {$art_url}
-              </div>
-              <div class='doc_dat'>
-                ".Ele::val($art->ope['tex'])."
-              </div>
-              ";
-            }else{
-              $_ .= $art_url;
-            }
-            
-          }$_.="
-        </nav>";
-      }
-      // pie de pagina
-      if( !empty($agr['htm_fin']) ){
-        $_ .= $agr['htm_fin'];
-      }
-      $_ .= "
-    </article>";          
+      <fieldset class='dat_var'>
+        <input id='app-ses_ini-mai' name='mai' type='email' placeholder='Ingresa tu Email...'>
+      </fieldset>
+
+      <fieldset class='dat_var'>
+        <input id='app-ses_ini-pas' name='pas' type='password' placeholder='Ingresa tu Password...'>
+      </fieldset>
+
+      <fieldset class='dat_var'>
+        <label>Mantener Sesión Activa en este Equipo:</label>
+        <input id='app-ses_ini-val' name='val' type='checkbox'>
+      </fieldset>
+
+      <a href=''>¿Olvidaste la contraseña?</a>
+
+      <fieldset class='doc_bot tex'>
+        <button type='submit'>Ingresar</button>
+      </fieldset>
+
+    </form>";
 
     return $_;
-  }// genero articulos por Indice de la base : article > h2 + ...section > h3 + ...section > ...
-  public function art_nav( string $ide ) : string {
+  }// - proceso inicio de sesion 
+  public function usu_ini( string $mai, string $pas ) : string {
+
     $_ = "";
-    
-    $_ide = explode('.',$ide);
-    
-    $app_nav = Dat::get('app_nav',[ 'ver'=>"`esq`='{$_ide[0]}' AND `cab`='{$_ide[1]}' AND `ide`='{$_ide[2]}'", 'nav'=>'pos' ]);
 
-    if( isset($app_nav[1]) ){
+    if( isset($_REQUEST['ema']) && isset($_REQUEST['pas']) ){
+        
+      $Usu = new Usu( $_REQUEST['ema'] );
 
-      foreach( $app_nav[1] as $nv1 => $_nv1 ){ $_ .= "
-        <h2 id='_{$nv1}-'>".Tex::let($_nv1->nom)."</h2>
-        <article>";
-          if( isset($app_nav[2][$nv1]) ){
-            foreach( $app_nav[2][$nv1] as $nv2 => $_nv2 ){$_ .= "
-
-          <h3 id='_{$nv1}-{$nv2}-'>".Tex::let($_nv2->nom)."</h3>
-          <section>";
-            if( isset($app_nav[3][$nv1][$nv2]) ){
-              foreach( $app_nav[3][$nv1][$nv2] as $nv3 => $_nv3 ){$_ .= "
-
-            <h4 id='_{$nv1}-{$nv2}-{$nv3}-'>".Tex::let($_nv3->nom)."</h4>
-            <section>";
-              if( isset($app_nav[4][$nv1][$nv2][$nv3]) ){
-                foreach( $app_nav[4][$nv1][$nv2][$nv3] as $nv4 => $_nv4 ){ $_ .= "
-
-              <h5 id='_{$nv1}-{$nv2}-{$nv3}-{$nv4}-'>".Tex::let($_nv4->nom)."</h5>
-              <section>";
-                if( isset($app_nav[5][$nv1][$nv2][$nv3][$nv4]) ){
-                  foreach( $app_nav[5][$nv1][$nv2][$nv3][$nv4] as $nv5 => $_nv5 ){ $_ .= "
-
-                <h6 id='_{$nv1}-{$nv2}-{$nv3}-{$nv4}-{$nv5}-'>".Tex::let($_nv5->nom)."</h6>
-                <section>                      
-
-                </section>";
-                  }
-                }$_ .= "                  
-              </section>";
-                }
-              }$_ .= "                
-            </section>";
-              }
-            }$_ .= "              
-          </section>";
-            }
-          }$_ .= "              
-        </article>";
+      if( isset($Usu->pas) ){
+        if( $Usu->pas == $_REQUEST['pas'] ){
+          $_SESSION['usu'] = $_REQUEST['ide'];
+        }
+        else{
+          $_ = "Password Incorrecto";
+        }
+      }
+      else{
+        $_ = "Usuario Inexistente";
       }
     }
 
     return $_;
-  }
-  
-  /* Indice */
-  public array $Nav;
+  }// - finaliza la sesion
+  public function usu_fin() : void {
 
-  
-  // Glosario : palabras por esquema
-  static function ide( int $esq, string $ide, array $ele = [] ) : string {
+    // elimino datos de la sesion
+    session_destroy();
 
-    $_ = [];
-    
-    if( is_array( $tex = Dat::get('app_ide',['ver'=>"`esq`=$esq AND `art`='$ide'"]) ) ){
+    // reinicio 
+    session_start();
 
-      foreach( $tex as $pal ){
-        $_[ $pal->nom ] = $pal->des;
-      }
-    }
-
-    // operadores : toggle + filtro
-    if( !isset($ele['opc']) ) $ele['opc'] = [];
-
-    return Lis::pos($_,$ele);
+  }// - reiniciar contraseña
+  public function usu_pas() : void {
+  }// - datos del usuario
+  public function usu_dat() : void {
   }
 }
