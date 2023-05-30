@@ -1,18 +1,18 @@
 <?php 
 
-  function hol_cas(){
+  function dat(){
     $_ = "";
-    foreach( Hol::_('cas') as $_cas ){
+    foreach( Dat::_('hol.cas') as $_cas ){
       // armo nombre
-      $_arm = Hol::_('arm',$_cas->pos_arm);
-      $_ton = Hol::_('ton',$_cas->ton);
+      $_arm = Dat::_('hol.arm',$_cas->pos_arm);
+      $_ton = Dat::_('hol.ton',$_cas->ton);
       $nom = Tex::let_pal($_arm->des_col)." $_ton->nom";
       // armo descripcion
-      $_ond = Hol::_('cas_ond',$_cas->ond);
-      $_dim = Hol::_('ton_dim',$_ton->dim);
+      $_ond = Dat::_('hol.cas_ond',$_cas->ond);
+      $_dim = Dat::_('hol.ton_dim',$_ton->dim);
       $des = "$_arm->des_pod $_dim->nom $_ton->des_acc_lec $_ton->des_car para $_ond->des.";
       $_ .= "
-      UPDATE `hol_cas` SET 
+      UPDATE `hol-cas` SET 
         `nom` = '$nom',
         `des` = '$des'
       WHERE 

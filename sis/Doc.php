@@ -1,387 +1,405 @@
 <?php
 
-// Pagina
+// Pagina-Documento
 class Doc {
 
-  static string $IDE = "Doc-";
-  static string $EJE = "Doc.";
+  // Clases : js / php / css
+  public array $Cla = [];  
+  // Solo Registros
+  public array $Dat = [];  
+  // Estructuras
+  public array $Est = []; 
+  // Ejecuciones
+  public string $Eje = "";
+  // Elementos
+  public array $Ele = [];
+  // Accesos de cabecera
+  public array $Cab = [];
+  // Contenido del Usuario
+  public string $Usu = "";
+  // codigo HTML por secciones
+  public array $Htm = [];  
 
-  /* Bloque de Contenido : visible/oculto */
-  static function val( string | array $dat = NULL, array $ele = [] ) : string {
+  public function __construct(){
 
-    $_eje = self::$EJE."val";    
-    foreach( ['val','ico'] as $eti ){ if( !isset($ele[$eti]) ) $ele[$eti]=[]; }
-    
-    // contenido textual
-    if( is_string($dat) ) $dat = [ 'eti'=>"p", 'class'=>"tex-enf tex-cur", 'htm'=> Tex::let($dat) ];
+    $this->Cla = [
+      'Sis'=>[
+        'Num', 'Tex', 'Fec', 'Obj', 'Eje', 'Ele', 'Arc', 'Dat', 'Doc', 'Usu', 'App'
+      ],
+      'Api'=>[
+        'sql', 'dom'
+      ],
+      'Doc'=>[
+        'Dat', 'Ope', 'Val', 'Var', 'Hol'
+      ]
+    ];
 
-    // contenedor : icono + ...elementos          
-    Ele::eje( $dat,'cli',"$_eje(this);",'ini');
+    $this->Dat = [
 
-    return "
-    <div".Ele::atr( Ele::cla( $ele['val'],"doc_val",'ini') ).">
-    
-      ".Doc::val_ico( isset($ele['ico']) ? $ele['ico'] : [] )."
-
-      ".( isset($ele['htm_ini']) ? Ele::val($ele['htm_ini']) : '' )."
+      'sis'=>[ 
+        'dat_tip', 'tex_let', 'tex_ico'
+      ]
       
-      ".Ele::val( $dat )."
+    ];
 
-      ".( isset($ele['htm_fin']) ? Ele::val($ele['htm_fin']) : '' )."
+    $this->Cab = [
+      'ini'=>[
+        'app_ini'=>[ 'ico'=>"app",     'url'=>SYS_NAV,  'nom'=>"Página de Inicio" ],
+        'app_cab'=>[ 'ico'=>"app_cab", 'tip'=>"pan",    'nom'=>"Menú Principal"   ],
+        'app_nav'=>[ 'ico'=>"app_nav", 'tip'=>"pan",    'nom'=>"Índice"           ]
+      ],
+      'med'=>[
+        'app_dat'=>[ 'ico'=>"dat_des", 'tip'=>"win",    'nom'=>"Ayuda" ]
+      ],
+      'fin'=>[
+        'ses_ini'=>[ 'ico'=>"app_ini", 'tip'=>"win",    'nom'=>"Iniciar Sesión..."    ],
+        'ses_usu'=>[ 'ico'=>"usu",     'tip'=>"win",    'nom'=>"Cuenta de Usuario..."   ],
+        'app_adm'=>[ 'ico'=>"eje",     'tip'=>"win",    'nom'=>"Consola del Sistema..." ]
+      ]
+    ];
 
-    </div>";
-  }// - icono de toggle
-  static function val_ico( array $ele = [] ) : string {
-
-    $_eje = self::$EJE."val";
-
-    return Fig::ico('val_tog', Ele::eje($ele,'cli',"$_eje(this);",'ini'));
-
+    $this->Htm = [
+      // titulo
+      'tit'=>"{-_-}",
+      // botones
+      'cab'=>[ 'ini'=>"", 'med'=>"", 'fin'=>"", 'tod'=>""  ],
+      // paneles
+      'pan'=>"",
+      // main
+      'sec'=>"",
+      // modales
+      'win'=>"",
+      // barra lateral
+      'bar'=>"",
+      // barra inferior
+      'pie'=>""    
+    ];    
   }
-
-  /* Navegador por contenido : nav + * > ...[nav="ide"] */
-  static function nav( string $tip, array $dat, array $ele = [], ...$opc ) : string {
-    $_ = "";
-    $_eje = self::$EJE."nav";
-    foreach( ['lis','val','sec','ite'] as $i ){ if( !isset($ele[$i]) ) $ele[$i] = []; }
-
-    $opc_ico = in_array('ico',$opc);
-    $val_sel = isset($ele['sel']) ? $ele['sel'] : FALSE;
-    
-    // navegador 
-    Ele::cla($ele['lis'], "doc_nav $tip", 'ini');
-    $_ .= "
-    <nav".Ele::atr($ele['lis']).">";    
-    foreach( $dat as $ide => $val ){
-
-      if( is_object($val) ) $val = Obj::val_nom($val);
-
-      if( isset($val['ide']) ) $ide = $val['ide'];
-
-      $ele_nav = isset($val['nav']) ? $val['nav'] : [];
-
-      $ele_nav['eti'] = 'a';
-      Ele::eje($ele_nav,'cli',"{$_eje}(this,'$ide'".( !empty($opc) ? ", '".implode("', '",$opc)."'" : '' ).");",'ini');
-
-      if( $val_sel && $val_sel == $ide ) Ele::cla($ele_nav,FON_SEL);
-
-      if( $opc_ico && isset($val['ico']) ){
-        $ele_nav['title'] = $val['nom'];
-        Ele::cla($ele_nav,"mar-0 pad-1 tam-4 bor_cir-1",'ini');
-        $_ .= Fig::ico($val['ico'],$ele_nav);
-      }
-      else{
-        $ele_nav['htm'] = $val['nom'];
-        $_ .= Ele::val($ele_nav);
-      }        
-    }$_.="
-    </nav>";
-    
-    // contenido
-    $eti_sec = 'div';
-    if( isset($ele['sec']['eti'])  ){
-      $eti_sec = $ele['sec']['eti'];
-      unset($ele['sec']['eti']);
-    }
-    $eti_ite = 'section';
-    if( isset($ele['ite']['eti']) ){
-      $eti_ite = $ele['ite']['eti'];
-      unset($ele['ite']['eti']);
-    }
-    if( $tip != 'pes' && !$val_sel ) Ele::cla($ele['sec'],DIS_OCU);
-    $_ .= "
-    <$eti_sec".Ele::atr($ele['sec']).">";
-      foreach( $dat as $ide => $val ){
-        $ele_ite = $ele['ite'];
-        Ele::cla($ele_ite,"ide-$ide",'ini');
-        if( !$val_sel || $val_sel != $ide ) Ele::cla($ele_ite,DIS_OCU);
-        $_ .= "
-        <$eti_ite".Ele::atr($ele_ite).">
-          ".( isset($val['htm']) ? ( is_array($val['htm']) ? Ele::val_dec($val['htm']) : $val['htm'] ) : '' )."
-        </$eti_ite>";
-      }$_.="
-    </$eti_sec>";
-
-    // Contenedor de botones
-    if( $tip == 'bot' ){
-      $_ = "
-      <div class='doc_bot-nav'>
-        {$_}
-      </div>";
-    }
-
-    return $_;
-  }  
   
-  /* Carteles : advertencia + confirmacion */
-  static function tex( array $ope = [], array $ele = [] ) : string {
-
-    foreach( ['sec','ico','tex'] as $i ){ if( !isset($ele[$i]) ) $ele[$i] = []; }
+  public function cla( string $tip = "", array $dat = [] ) : string {
+    $_ = "";
     
-    Ele::cla($ele['sec'],"doc_tex".( !empty($ope['tip']) ? " -{$ope['tip']}" : "" ),'ini');
+    if( empty($dat) ) $dat = $this->Cla;
+    
+    // estilos
+    if( $tip == 'css' ){
 
-    $_ = "
-    <div".Ele::atr($ele['sec']).">";
+      foreach( $dat as $mod_ide => $mod_lis ){
+        // por aplicacion
+        if( file_exists( "./".($rec = "{$mod_ide}.css") ) ) $_ .= "
+          <link rel='stylesheet' href='".SYS_NAV."$rec' >";        
 
-      // cabecera: icono + titulo
-      if( isset($ope['tip']) || $ope['tit'] ){
-        $_.="
-        <header>";
-          if( isset($ope['tip']) ){
-            switch( $ope['tip'] ){
-            case 'err': $ele['ico']['title'] = "Error..."; break;
-            case 'adv': $ele['ico']['title'] = "Advertencia..."; break;
-            case 'opc': $ele['ico']['title'] = "Consultas..."; break;
-            case 'val': $ele['ico']['title'] = "Notificación..."; break;
-            }
-            Ele::cla($ele['ico'],"mar-1");
-            $_ .= Fig::ico("tex-{$ope['tip']}", $ele['ico']);
-          }
-          if( isset($ope['tit']) ){
-            if( is_string($ope['tit']) ) $_.="<p class='tit'>".Tex::let($ope['tit'])."</p>";
-          }
-          $_.="
-        </header>";
+        // por página
+        if( file_exists( "./".($rec = "{$mod_ide}/index.css") ) ) $_ .= "
+          <link rel='stylesheet' href='".SYS_NAV."$rec' >";
+
+        // por módulos
+        foreach( $mod_lis as $cla_ide ){
+
+          if( file_exists( "./".($rec = "{$mod_ide}/{$cla_ide}.css") ) ) $_ .= "
+          <link rel='stylesheet' href='".SYS_NAV."$rec' >";
+        }          
       }
-
-      // contenido: texto
-      if( isset($ope['tex']) ){
-        $ope_tex = [];
-        if( is_array($ope['tex']) ){
-          foreach( $ope['tex'] as $tex ){
-            $ope_tex []= Tex::let($tex);
-          }
-        }else{
-          $ope_tex []= $ope['tex'];
+    }
+    // prorama : clases 
+    elseif( $tip == 'jso' ){
+    
+      foreach( $dat as $mod_ide => $mod_lis ){
+        // por raiz
+        if( is_string($mod_lis) ){
+          if( file_exists( "./".($rec = "{$mod_lis}.js") ) ) $_ .= "
+          <script src='".SYS_NAV."$rec'></script>";   
         }
-        $_ .= "<p".Ele::atr($ele['tex']).">".implode('<br>',$ope_tex)."</p>" ;
-      }
-
-      // elementos
-      if( isset($ope['htm']) ){
-        $_ .= Ele::val(...Lis::val_ite($ope['htm']));
-      }
-
-      // botones: aceptar - cancelar
-      if( isset($ope['opc']) ){
-        $_ .= "
-        <form class='doc_bot'>";
-        if( isset($ope['opc']['ini']) ){
-          
+        else{
+          // por aplicacion
+          if( file_exists( "./".($rec = "{$mod_ide}.js") ) ) $_ .= "
+            <script src='".SYS_NAV."$rec'></script>";
+          // por página
+          if( file_exists( "./".($rec = "{$mod_ide}/index.js") ) ) $_ .= "
+            <script src='".SYS_NAV."$rec'></script>";
+          // por modulos        
+          foreach( $mod_lis as $cla_ide ){ 
+            
+            if( file_exists( "./".($rec = "{$mod_ide}/{$cla_ide}.js") ) ) $_ .= "
+              <script src='".SYS_NAV."$rec'></script>";
+          }
         }
-        if( isset($ope['opc']['fin']) ){
-        
-        }
-        $_ .= "
-        </form>";
       }
+    }
 
-      $_.="
-    </div>";
     return $_;
   }
 
-  /* Opciones : click derecho */
-  static function opc( array $ope = [], array $ele = [] ) : string {
-    $_ = "";
-    return $_;        
-  }
+  public function est() : array {
 
-  /* Botones */
-  static function bot( string $tip, mixed $dat, array $ope = [] ) : string {
-    $_ = "";
+    $_ = [];
+    
+    foreach( Dat::$Est as $esq => $esq_lis ){
 
-    switch( $tip ){
-    // con texto
-    case 'tex':
-      if( empty($ope['eti']) ){
-        $ope['eti'] = "div";
-      }
-      Ele::cla($ope,'doc_bot tex','ini');
-      $ope['htm'] = "";
-      foreach( $dat as $bot ){
-        if( isset($bot[0]) && isset($bot[1]) ){
-          $ele = isset($bot[2]) ? $bot[2] : [];
-          $ele['htm'] = $bot[1];
-          $ope['htm'] .= Eje::var('bot', $bot[0], $ele);
+      $Est = [];
+
+      foreach( $esq_lis as $est => $est_ope ){
+
+        // paso toda la estructura
+        if( isset($this->Est[$esq]) && in_array($est,$this->Est[$esq]) ){
+
+          $Est[$est] = $est_ope;
+
+        }// solo paso datos
+        elseif( isset($this->Dat[$esq]) && in_array($est,$this->Dat[$esq]) && isset($est_ope->dat) ){
+
+          $Est[$est] = [ 'dat' => $est_ope->dat ];
         }
       }
-      $_ = Ele::eti($ope);
-      break;
-    // de iconos/imagenes
-    case 'fig':
-      break;
+
+      if( !empty($Est) ) $_[$esq] = $Est;
     }
 
-    return $_;    
+    return $_;
   }
+    
+  public function htm( App $App, Usu $Usu ){
 
-  ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  ////////////////////////////////////////////////////////////////////////////////////////////////////////////  
+    // cargo rutas
+    $Uri = $App->Uri;
 
-  // Seccion Principal : main > ...article
-  static function sec( string | array $dat, array $ele = [] ) : string {
-    $_ = "";
-    // contenido directo
-    if( is_string($dat) ){ 
-      $_ .= $dat;
+    // Cargo clases : por aplicacion
+    $this->Cla["App/{$Uri->esq}"] = [];
+
+    if( !empty($Uri->cab) ){ 
+      
+      // de contenido
+      $this->Cla["App/{$Uri->esq}"] []= $Uri->cab;
+      
+      // de articulo
+      if( !empty($Uri->art) ){
+        $this->Cla["App/{$Uri->esq}"][] = "{$Uri->cab}/{$Uri->art}";
+      }
     }
-    // listado de articulos
+
+    // cargo elemento principal
+    $this->Ele['body'] = [ 
+      'data-doc'=>$Uri->esq, 
+      'data-cab'=>!!$Uri->cab ? $Uri->cab : NULL, 
+      'data-art'=>!!$Uri->art ? $Uri->art : NULL 
+    ];    
+
+    // imprimo sesion del usuario
+    if( empty($Usu->ide) ){
+
+      $this->Htm['win'] .= Doc_Ope::win('app-ses_ini', [
+        'ico'=>"app_ini",
+        'nom'=>"Iniciar Sesión...",
+        'htm'=>$App->usu_ses()
+      ]);
+
+    }// imprimo menu de usuario por aplicacion
     else{
-      foreach( $dat as $ide => $art ){
-        
-        if( isset($art['htm'])){
-          Ele::cla($art,"ide-$ide",'ini');
-          $_ .= "
-          <article".Ele::atr($art).">
-            {$art['htm']}
-          </article>";
-        }
-      }
+
+      $this->Cab['fin']['ses_usu']['htm'] = $this->Usu.Doc_Ope::nav('bot', $App->usu() );
+
+      // imprimo consola del sistema
+      if( $Usu->ide == 1 ){
+
+        $this->Cab['fin']['app_adm']['htm'] = $App->adm();
+      }      
     }
-    return $_;
-  }     
-  
-  // Cabecera : botones de acceso ( url + pan + win )
-  static function cab( $dat ) : string {
-    $_ = "";      
-    $_eje = self::$EJE;
-    
-    foreach( $dat as $ide => $art ){
+
+    // ajusto enlace de inicio
+    $this->Cab['ini']['app_ini']['url'] .= "/{$Uri->esq}";    
+
+    // imprimo menú principal
+    $this->Cab['ini']['app_cab']['htm'] = $App->cab();
+
+    // imprimo indice
+    if( !empty( $App->Nav ) ){
+
+      $this->Cab['ini']['app_nav']['htm'] = $App->Nav();
+    }
+
+    // cargo operadores del documento: botones y html de enlaces paneles y modales
+    foreach( $this->Cab as $tip => $tip_lis ){
+
+      foreach( $tip_lis as $ide => $ope ){
+        // enlaces
+        if( isset($ope['url']) ){
+          // boton
+          $this->Htm['cab'][$tip] .= Doc_Val::ico($ope['ico'],[ 'eti'=>"a", 'title'=>$ope['nom'], 'href'=>$ope['url'] ]);
+        }
+        // paneles y modales
+        elseif( isset($ope['tip']) && !empty($ope['htm']) ){
+          // boton
+          $this->Htm['cab'][$tip] .= Doc_Ope::cab([ $ide => $ope ]);
+          // html: pan / win
+          $this->Htm[$ope['tip']] .= Doc_Ope::{"{$ope['tip']}"}($ide,$ope);
+        }
+      }  
+    }
+
+    // modal de operadores
+    $this->Htm['win'] .= Doc_Ope::win('app_ope',[ 
+      'ico'=>"app_ope", 
+      'nom'=>"Operador" 
+    ]);
+
+    // cargo articulos por aplicacione
+    if( !empty($Uri->art) && empty($this->Htm['sec']) ){
       
-      $tip = isset($art['tip']) ? $art['tip'] : 'nav';
+      // imprimo articulo : html-php
+      if( !empty( $rec = Arc::val_rec($val = "./App/$Uri->esq/$Uri->cab/$Uri->art") ) ){
 
-      $eje_tog = "{$_eje}{$tip}('$ide');";
-
-      $ele = [ 'eti'=>"a", 'onclick'=>$eje_tog, 'data-ide'=>$ide  ];
-
-      if( is_string($art) ){
-        $_ .= Fig::ico($art,$ele);
+        include( $rec );
       }
-      elseif( is_array($art) ){
-
-        if( isset($art[0]) ){
-          $ele['title'] = isset($art[1]) ? $art[1] : '';
-          $_ .= Fig::ico($art[0],$ele);
-        }
-        elseif( isset($art['ico']) ){
-          $ele['title'] = isset($art['nom']) ? $art['nom'] : '';
-          $_ .= Fig::ico($art['ico'],$ele);
-        }
-      }
-      elseif( is_object($art) && isset($art->ico) ){
-        $ele['title'] = isset($art->nom) ? $art->nom : '';
-        $_ .= Fig::ico($art->ico,$ele);
-      }
-    }
-    return $_;
-  }
-
-  // Panel : nav|article[ide] > header + section
-  static function pan( string $ide, array $ope = [] ) : string {
-    foreach( ['nav','cab','sec'] as $e ){ if( !isset($ope[$e]) ){ $ope[$e]=[]; } }            
-    $_eje = self::$EJE."pan";
-    $_ = "";
-    $cab_ico = "";
-    if( !empty($ope['ico']) ) $cab_ico = Fig::ico($ope['ico'],['class'=>"mar_hor-1"]);
-
-    $cab_tit = "";
-    if( !empty($ope['nom']) ) $cab_tit = "
-      <h2 style='text-decoration: none; margin:0;'>".( !empty($ope['nom']) ? $ope['nom'] : '' )."</h2>
-    ";
-    // etiquetas
-    $eti_nav = 'nav';
-    if( isset($ope['nav']['eti']) ){
-      $eti_nav = $ope['nav']['eti'];
-      unset($ope['nav']['eti']);
-    }
-    $eti_sec = 'div';
-    if( isset($ope['sec']['eti']) ){
-      $eti_sec = $ope['sec']['eti'];
-      unset($ope['sec']['eti']);
-    }
-
-    if( !isset($ope['htm']) ){
-      $ope['htm'] = '';
-    }
-    elseif( is_array($ope['htm']) ){ 
-      $ope['htm'] = Ele::val_dec( $ope['htm'] );
-    }
-
-    // imprimo con identificador
-    Ele::cla($ope['nav'],"ide-$ide",'ini');
-    Ele::cla($ope['nav'],DIS_OCU);
-    $_ = "
-    <$eti_nav".Ele::atr($ope['nav']).">
-
-      <header".Ele::atr($ope['cab']).">
-      
-        {$cab_ico} {$cab_tit} ".Fig::ico('val-fin',[ 'title'=>'Cerrar ( tecla "Esc" )', 'onclick'=>"$_eje();" ])."
-
-      </header>
-
-      <$eti_sec".Ele::atr($ope['sec']).">
-
-        {$ope['htm']}
-
-      </$eti_sec>
-
-    </$eti_nav>";
-    
-    return $_;
-  }
-
-  // Modal : #sis > article[ide] > header + section
-  static function win( string $ide, array $ope = [] ) : string {
-    foreach( ['art','cab','sec'] as $e ){ if( !isset($ope[$e]) ){ $ope[$e]=[]; } }
-    $_eje = self::$EJE."win";
-    $_ = "";
-    // icono de lado izquierdo
-    $cab_ico = "";
-    if( isset($ope['ico']) ){
-      if( is_string($ope['ico']) ){
-        $cab_ico = Fig::ico($ope['ico'],['class'=>"mar_hor-1"]);
-      }// con menú
       else{
-        $_ .= "
-        <div class='ini'>";
-          $_.="
-        </div>";
+        
+        echo Doc_Ope::tex([ 'tip'=>"err", 'tex'=>"No existe el archivo '$val'" ]);
       }
     }
-    // titulo al centro
-    $cab_tit = "";
-    if( isset($ope['nom']) ) $cab_tit = "
-      <h2 style='text-decoration: none; margin:0;'>".( !empty($ope['nom']) ? Tex::let($ope['nom']) : "" )."</h2>
-    ";
-    // botones de flujo
-    $cab_bot = "
-    <div class='doc_bot'>
-      ".Fig::ico('val-fin',[ 'title'=>'Cerrar ( tecla "Esc" )', 'data-ope'=>"fin", 'onclick'=>"$_eje(this);" ])."
-    </div>";
-    // contenido 
-    if( !isset($ope['htm']) ){
-      $ope['htm'] = '';
+    
+    // ajusto diseño
+    $_ver = [];
+    foreach( ['bar','pie'] as $ide ){ 
+      if( !empty($this->Htm[$ide]) ) $_ver []= $ide; 
     }
-    elseif( is_array($ope['htm']) ){ 
-      $ope['htm'] = Ele::val_dec( $ope['htm'] );
-    }      
-    // imprimo con identificador
-    Ele::cla($ope['art'],"ide-$ide",'ini');
-    Ele::cla($ope['art'],DIS_OCU);
-    $_ = "
-    <article".Ele::atr($ope['art']).">
+    if( !empty($_ver) ) $this->Ele['body']['data-ver'] = implode(',',$_ver);
 
-      <header".Ele::atr($ope['cab']).">      
-        {$cab_ico} 
-        {$cab_tit} 
-        {$cab_bot}
-      </header>
+    // titulo
+    if( !empty($App->Art->nom) ){
+      $this->Htm['tit'] = $App->Art->nom;
+    }
+    elseif( !empty($App->Cab->nom) ){
+      $this->Htm['tit'] = $App->Cab->nom;
+    }
+    elseif( !empty($App->Esq->nom) ){
+      $this->Htm['tit'] = $App->Esq->nom; 
+    }
+    
+    global $sis_ini;
+    $Doc = $this->Htm;
 
-      <div".Ele::atr($ope['sec']).">
-        {$ope['htm']}
-      </div>
-    </article>";
-    return $_;
+    ?>
+    <!DOCTYPE html>
+    <html lang="es">
+          
+      <head>
+        <!-- parametros -->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- hojas de estilo -->
+        <link rel='stylesheet' href='<?=SYS_NAV?>index.css'>
+        <?=$this->cla('css')?>
+        <link rel='stylesheet' href='<?=SYS_NAV?>Api/css.css'>
+        <!-- aplicacion -->
+        <title><?=$Doc['tit']?></title>
+      </head>
+  
+      <body <?=Ele::atr($this->Ele['body'])?>>
+        
+        <?php // Cabecera con Operador : botones de accesos a enlaces, paneles y modales
+        if( !empty($Doc['cab']['ini']) || !empty($Doc['cab']['fin']) || !empty($Doc['cab']['tod']) ){
+          ?>
+          <!-- Operador -->
+          <header class='ope_cab'>
+            <?php
+            if( !empty($Doc['cab']['tod']) ){
+
+              echo $Doc['cab']['tod'];
+            }
+            else{
+              ?>
+              <nav class='ini'>
+                <?= !empty($Doc['cab']['ini']) ? $Doc['cab']['ini'] : "" ?>
+                <?= !empty($Doc['cab']['med']) ? $Doc['cab']['med'] : "" ?>
+              </nav>
+    
+              <nav class='fin'>
+                <?= !empty($Doc['cab']['fin']) ? $Doc['cab']['fin'] : "" ?>
+              </nav>
+            <?php
+            }
+            ?>
+          </header>        
+          <?php
+        } ?>
+  
+        <?php // Paneles Ocultos
+        if( !empty($Doc['pan']) ){ ?>
+          <!-- Panel -->
+          <aside class='ope_pan dis-ocu'>
+            <?= $Doc['pan'] ?>
+          </aside>
+          <?php 
+        } ?>
+        
+        <?php // Contenido Principal
+        if( !empty($Doc['sec']) ){
+          ?>
+          <!-- Contenido -->
+          <main class='ope_sec'>
+            <?= Doc_Ope::sec( $Doc['sec'] ) ?>
+          </main>          
+          <?php
+        } ?>
+              
+        <?php // Lateral: siempre visible
+        if( !empty($Doc['bar']) ){ ?>
+          <!-- Sidebar -->
+          <aside class='ope_bar'>
+            <?= $Doc['bar'] ?>
+          </aside>
+          <?php 
+        } ?>
+  
+        <?php // pié de página
+        if( !empty($Doc['pie']) ){  ?>
+          <!-- pie de página -->
+          <footer class='ope_pie'>
+            <?= $Doc['pie'] ?>
+          </footer>
+          <?php 
+        } ?>
+        
+        <!-- Modales -->
+        <div class='ope_win dis-ocu'>
+          <?= $Doc['win'] ?>
+        </div>
+        
+        <!-- Cargo Sistema -->
+        <script>
+          // Rutas
+          const SYS_NAV = "<?=SYS_NAV?>";        
+          // Clases
+          const DIS_OCU = "<?=DIS_OCU?>";
+          const FON_SEL = "<?=FON_SEL?>";
+          const BOR_SEL = "<?=BOR_SEL?>";
+        </script>
+  
+        <!-- Módulos -->
+        <?=$this->cla('jso')?>
+        
+        <!-- Inicio Aplicación -->
+        <script>
+          // Cargo Documento
+          const $Doc = new Doc();          
+  
+          const $App = new App(<?= Obj::val_cod([ 'Uri'=>$Uri ]) ?>);
+
+          const $Dat = new Dat(<?= Obj::val_cod([ 'Est'=>$this->est() ]) ?>);
+
+          // Inicializo Aplicacion
+          $App.ini();
+
+          // ejecuto codigo por aplicacion
+          <?= $this->Eje ?>
+          
+          // calculo tiempo de carga
+          console.log(`{-_-}.ini: en ${( ( Date.now() - (  <?= $sis_ini ?> * 1000 ) ) / 1000 ).toFixed(2)} segundos...`);
+  
+        </script>
+  
+      </body>
+  
+    </html>
+    <?php
   }
 }

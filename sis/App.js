@@ -5,147 +5,25 @@ class App {
   // Peticion url: esq/cab/art/par=val
   Uri = {};
 
-  // Estructuras de datos
-  Dat = {};
-
   // Log de peticiones
-  Log = { php: [], jso: [] };  
-
-  // modelo del documento
-  Dom = {
-    // Pagina
-    doc : {
-      bot: 'body > .doc_cab',
-      win: 'body > .doc_win',
-      pan: 'body > .doc_pan',
-      sec: 'body > .doc_sec',
-      bar: 'body > .doc_bar',
-      pie: 'body > .doc_pie'
-    },
-    // Datos de Estructura: Operador + Listado + tablero
-    dat : {
-      var: null
-      ,
-      ope: {
-        // acumulados
-        acu : [ "pos", "mar", "ver", "opc" ],
-        // filtros
-        ver : {
-          dat : `form.ide-dat select[name="val"]`,
-          fec : `form.ide-fec input[name="ini"]`,
-          pos : `form.ide-pos input[name="ini"]`
-        }    
-      },
-      lis: {
-        // Valores
-        val : `.ide-lis .dat.lis`,
-        // Operador
-        val_acu : `.ide-lis .ide-ver .ide-acu`,      
-        val_sum : `.ide-lis .ide-ver .ide-sum`,
-        val_cue : `.ide-lis .ide-ver .ide-cue`,    
-        // filtros
-        ver : `.ide-lis .ide-ver`,
-        // Descripciones
-        des : `.ide-lis .ide-des`    
-      },
-      tab: {
-        ide : null,
-        dep : null,
-        cla : null,
-        // Valores
-        val : `main > article > .dat.tab`,
-        // operador
-        val_acu : `.doc_pan > .ide-val .ide-acu`,
-        val_sum : `.doc_pan > .ide-val .ide-sum`,
-        val_cue : `.doc_pan > .ide-val .ide-cue`,
-        // Seleccion
-        ver : `.doc_pan > .ide-ver`,
-        // seccion + posicion
-        sec : `.doc_pan > .ide-opc .ide-sec`,    
-        pos : `.doc_pan > .ide-opc .ide-pos`,
-        // ...opciones
-        opc : `.doc_pan > .ide-opc .ide-opc`
-      }
-    }
-  };  
+  Log = { php: [], jso: [] };
 
   constructor( $dat = {} ){
 
-    let $ = {};
-
     for( const $atr in $dat ){ this[$atr] = $dat[$atr]; }    
-
-    /* Cargo Eventos */
-
-    // - 1: teclado
-    document.onkeyup = ( $eve ) => {
-
-      switch( $eve.keyCode ){
-      // Escape => ocultar modales
-      case 27: 
-        // 1- opciones
-        if( $.men = document.querySelector(`ul.ope_opc:not(.${DIS_OCU})`) ){
-          $.men.classList.add(DIS_OCU);
-        }
-        // 2- operador
-        else if( $.ope = document.querySelector(`nav.ope ~ * > [class*="ide-"]:not(.${DIS_OCU})`) ){
-          $.nav = $.ope.parentElement.previousElementSibling;
-          if( $.ico = $.nav.querySelector(`.fig_ico.fon-sel`) ) $.ico.click();
-        }
-        // 3- pantalla
-        else if( document.querySelector(`.doc_win > :not(.${DIS_OCU})`) ){
-          // oculto la ultima pantalla
-          $.art = $App.Dom.doc.win.children;          
-          for( let $ide = $.art.length-1; $ide >= 0; $ide-- ){
-            const $art = $.art[$ide];
-            if( !$art.classList.contains(DIS_OCU) ){
-              Doc.win( $art.querySelector(`header:first-child .fig_ico[data-ope="fin"]`) );
-              break;
-            }
-          }
-        }
-        // 4- paneles
-        else if( document.querySelector(`.doc_pan > [class*="ide-"]:not(.${DIS_OCU})`) ){ 
-          Doc.pan();
-        }
-        break;
-      }
-    };
-    // - 2: anulo formularios
-    document.querySelectorAll('form').forEach( $ele => Ele.act('eje_agr',$ele,'submit',`evt => evt.preventDefault()`) );
-
-    /* Cargo Elementos */
-
-    // Documento
-    for( const $atr in this.Dom.doc ){
-      this.Dom.doc[$atr] = document.querySelector(this.Dom.doc[$atr]);
-    }
-    
-    // Datos
-    ['lis','tab'].forEach( $ope => {
-
-      for( const $ide in this.Dom.dat[$ope] ){ 
-
-        if( typeof(this.Dom.dat[$ope][$ide]) == 'string' ){
-
-          this.Dom.dat[$ope][$ide] = document.querySelector(this.Dom.dat[$ope][$ide]); 
-        }
-      }
-    });
-    // - Actualizo clase principal
-    this.Dom.dat.tab.cla = ".pos.ope";
 
   }
   
-  /* Página */
-  doc(){
+  /* Inicializo Página */
+  ini(){
+
     let $ ={};
     
     // desde Articulo
     if( $.cab = this.Uri.cab ){
       
       // Menu: expando seleccionado
-      if( $.app_cab = this.Dom.doc.pan.querySelector(`.ide-app_cab p.ide-${$.cab}`) ){ 
+      if( $.app_cab = $Doc.Ope.pan.querySelector(`.ide-app_cab p.ide-${$.cab}`) ){ 
 
         $.app_cab.click();
         
@@ -157,11 +35,13 @@ class App {
           }
           
           // Índice: hago click y muestro panel
-          if( $.art && ( $.art_nav = this.Dom.doc.pan.querySelector('.ide-app_nav ul.lis.nav') ) ){
+          if( $.art && ( $.art_nav = $Doc.Ope.pan.querySelector('.ide-app_nav ul.ope_lis.nav') ) ){
+            
             // inicializo enlace local
-            Lis.nav_tog($.art_nav);
+            this.nav('tog',$.art_nav);
+            
             // muestro panel
-            Doc.pan('app_nav');
+            Doc_Ope.pan('app_nav');
           }        
         }
       }  
@@ -169,49 +49,138 @@ class App {
     // o muestro menú principal
     else{
 
-      // if( $.bot_ini = this.Dom.doc.bot.querySelector('.fig_ico.ide-app_cab') ) $.bot_ini.click();
+      // if( $.bot_ini = $Doc.Ope.bot.querySelector('.val_ico.ide-app_cab') ) $.bot_ini.click();
     }  
   }
+
+  /* Indice del Artículo */
+  nav( $tip, $dat, $ope ){
+
+    let $ = {};
+
+    switch( $tip ){
+    // - Toggles de lista
+    case 'tog': 
+      if( $ope ){
+
+        return Doc_Ope.val($dat,$ope);
+      }
+      else if( $.nav = $dat ? this.nav('mar',$dat) : false ){
+        // hago toogles ascendentes
+        while(
+          ( $.lis = dom.ver($.nav,{'eti':'ul'}) ) 
+          && 
+          ( $.val = $.lis.previousElementSibling ) &&  $.val.classList.contains('doc_ope') &&  $.val.classList.contains('val')
+          && 
+          ( $.nav = $.val.querySelector('a[href^="#"]') )
+        ){
+          if( $.lis.classList.contains(DIS_OCU) && ( $.ico = $.nav.previousElementSibling ) && $.ico.classList.contains('val_ico') ){
+            Doc_Ope.val($.ico);
+          }
+        }
+      }
+      break;
+    // - Filtros de lista
+    case 'ver': 
+      if( !$ope ) $ope = 'a[href]';
+
+      // ejecuto filtros
+      Doc_Ope.lis_dep('ver', $dat, $ope);
+
+      // volver a marcar el fondo del elemento seleccionado
+      this.nav('tog',$Doc.Ope.var.nextElementSibling);
+
+      break;
+    // - seleccion
+    case 'val': 
+
+      if( !$ope ) $ope = FON_SEL;
+
+      $.lis = dom.ver($dat,{'eti':'nav'});
+
+      if( $.lis ){
+        // elimino marcas previas
+        $.lis.querySelectorAll(`ul.ope_lis.nav :is( li.pos.sep, li.pos:not(.sep) > .ope_val ).${$ope}`).forEach( 
+          $e => $e.classList.remove($ope) 
+        );
+
+        // controlo el toggle automatico por dependencias
+        if( 
+          ( $.dep = $dat.parentElement.parentElement.querySelector('ul.ope_lis') ) 
+          &&
+          ( $dat.classList.contains('val_ico') || $.dep.classList.contains(DIS_OCU) ) 
+        ){
+          Doc_Ope.val($dat);
+        }
+
+        // pinto fondo
+        if( !( $.bot = $dat.parentElement.querySelector('.val_ico') ) || !$.bot.classList.contains('ocu') ){
+
+          $dat.parentElement.classList.add($ope);
+        }
+      }      
+      break;
+    // - Marcas
+    case 'mar': 
+      $.val = location.href.split('#')[1];
+
+      // hago toogle por item
+      if( $.val && ( $.nav = $dat.querySelector(`a[href="#${$.val}"]`) ) ){
+          
+        this.nav('val',$.nav);
+      }
+
+      return $.nav;
+      break;
+    }
+
+  }
+
+  /* Consola del Sistema */
+  adm( $tip, $dat, $val ){
   
-  /* Consola */
-  adm( $tip, $dat, $val, ...$opc ){
-  
-    let $ = Dat.var($dat);
+    let $ = Doc_Ope.var($dat);
     
     // -> desde form : vacío resultados previos
-    if( $App.Dom.dat.var && ( $.res = $App.Dom.dat.var.querySelector('.ope_res') ) ){ 
+    if( $Doc.Ope.var && ( $.res = $Doc.Ope.var.parentElement.querySelector('.res') ) ){ 
 
       dom.eli($.res);
     }
     // -> desde menu : capturo form
     else if( $dat.nodeName && $dat.nodeName == 'A' ){
 
-      $App.Dom.dat.var = $dat.parentElement.nextElementSibling.querySelector(`.ide-${$tip}`);
+      $Doc.Ope.var = $dat.parentElement.nextElementSibling.querySelector(`.ide-${$tip}`);
     }
     
     switch( $tip ){
-    // peticiones
+    // peticiones al servidor
     case 'aja':
-      $.lis = $App.Dom.dat.var.querySelector(`nav.lis`);
+      $.lis = $Doc.Ope.var.parentElement.querySelector(`nav.lis`);
+
       dom.eli($.lis);
+
       this.Log.php.forEach( $log => {
         $.ver = document.createElement('a'); 
         $.ver.href = $log;
-        $.ver.innerHTML = Tex.let($log); 
+        $.ver.innerHTML = Doc_Val.let($log); 
         $.ver.target = '_blank'; 
         $.lis.appendChild($.ver);
       });
       break;
-    // iconos
+    // listado de iconos
     case 'ico':
-      $.lis = $App.Dom.dat.var.querySelector(`ul.lis`);
+      
+      $.lis = $Doc.Ope.var.parentElement.querySelector(`ul.lis`);
+      
       if( !$val ){
         // limpio listado
         dom.eli($.lis);
-        for( let $ico in ( $._ico = Fig._('ico') ) ){ 
+
+        for( let $ico in ( $._ico = Dat._('sis.tex_ico') ) ){
+          
           $ico = $._ico[$ico];
           $.ico = document.createElement('span');
-          $.ico.classList.add('fig_ico');
+          $.ico.classList.add('val_ico');
           $.ico.classList.add($ico.ide);
           $.ico.classList.add('mar_der-1');
           $.ico.innerHTML = $ico.val;
@@ -223,19 +192,20 @@ class App {
           for( const $pad in $.ele = { 'ite':['ico','nom'], 'lis':['ite'] } ){
             $.ele[$pad].forEach( $e => $[$pad].appendChild($[$e]) );
           }
-          $.lis.appendChild($.ite);        
+
+          $.lis.appendChild($.ite);
         }
       }
       else{
         if( !$dat.value ){
-          Lis.val_cod($.lis.children).forEach( $e => 
+          Obj.pos($.lis.children).forEach( $e => 
             $e.classList.contains(DIS_OCU) && $e.classList.remove(DIS_OCU) 
           );
         }
         else{
-          Lis.val_cod($.lis.children).forEach( $e => {
+          Obj.pos($.lis.children).forEach( $e => {
 
-            if( Dat.ope_ver( $e.querySelector('.ide').innerHTML, '^^', $dat.value ) ){
+            if( Dat.ver( $e.querySelector('.ide').innerHTML, '^^', $dat.value ) ){
               $e.classList.contains(DIS_OCU) && $e.classList.remove(DIS_OCU);
             }
             else if( !$e.classList.contains(DIS_OCU) ){
@@ -245,161 +215,65 @@ class App {
         }
       }
       break;
-    // base de datos
-    case 'sql':
-      $.cod = $App.Dom.dat.var.querySelector('[name="cod"]').value;
-      if( $.cod ){
-
-        Eje.val( ['sql::dec', [ $.cod ] ], $res => {
-          // pido tabla
-          if( Array.isArray($res) ){
-
-            $.res.appendChild( app_est.lis($res) );
-          }// errores: html
-          else if( typeof($res)=='object' ){
-
-            $.res.innerHTML = $res._err;
-          }// literales: mensajes
-          else{                        
-            $.htm = document.createElement('p');
-            $.htm.classList.add('sql');
-            $.htm.innerHTML = Tex.let($res);
-            $.res.appendChild($.htm);
-          }  
-        });
-      }
-      break;
-    // servidor
+    // ejecucion desde servidor
     case 'php':
-      $.val = $App.Dom.dat.var.querySelector('pre.ope_res');
+      $.res.classList.add(DIS_OCU);
+      $.res.innerHTML = '';
+
+      $.val = $Doc.Ope.var.parentElement.querySelector('pre.res-htm');      
       $.val.classList.add(DIS_OCU);
       $.val.innerText = '';
-      $.res.classList.add(DIS_OCU);
-      $.htm = $App.Dom.dat.var.querySelector('[name="htm"]').checked;
-      if( $.ide = $App.Dom.dat.var.querySelector('[name="ide"]').value ){
-        Eje.val([ $.ide, eval(`[${$App.Dom.dat.var.querySelector('[name="par"]').value}]`) ], $res => {
-          if( $.htm ){
-            $.res.innerHTML = $res;
-            $.res.classList.remove(DIS_OCU);
-          }else{
-            $.val.innerText = $res;
-            $.val.classList.remove(DIS_OCU);
-          }
-        });
-      }
+
+      Eje.val([ "adm_log", [] ], $res => {
+
+        if( $Doc.Ope.var.querySelector('[name="htm"]').checked ){
+          $.res.innerHTML = $res;
+          $.res.classList.remove(DIS_OCU);
+        }else{
+          $.val.innerText = $res;
+          $.val.classList.remove(DIS_OCU);
+        }
+      });
       break;
-    // terminal
-    case 'jso':
-      $.cod = $App.Dom.dat.var.querySelector('[name="cod"]');
-
-      try{
-
-        $.val = eval($.cod.value);
-
-        $.dat_tip = Dat.tip($.val);
-
-        if( $.dat_tip.dat == 'obj' ){
-
-          $.res.appendChild( app_var.obj('val',$.val) );
-        }
-        else if( $.dat_tip.dat == 'eje' ){
-
-          $.res.innerHTML = Tex.let( $.val.toString() );
-        }
-        else if( ![undefined,NaN,null,true,false].includes($.val) ){
-
-          $.res.innerHTML = Tex.let( $.val );
-        }
-        else{
-
-          $.res.innerHTML = `<c>${$.val}</c>`;
-        }
-      }
-      catch( $err ){
-        $.err = document.createElement('b');
-        $.err.classList.add('err');
-        $.err.innerHTML = $err;
-        $.res.appendChild($.err);
-      }
-      break;
-    // documento
-    case 'htm':
-      switch( $val ){
-      // consulta por query
-      case 'val':
-
-        $dat.parentElement.parentElement.querySelectorAll(`.${FON_SEL}`).forEach( $e => $e.classList.remove(FON_SEL) );
-
-        $dat.nextElementSibling.classList.add(FON_SEL);
-
-        $.res = $App.Dom.dat.var.querySelector('div.ele');
-
-        dom.eli($.res);
-
-        $.ver = $dat.nextElementSibling.innerText.replaceAll('\n','');
-
-        $.res.innerHTML = Ele.var('eti',document.querySelector($.ver));
-
-        break;
-      // Listado de elementos resultante
-      case 'cod':
-        $.res = $App.Dom.dat.var.querySelector('div.ele_nod');          
-
-        dom.eli($App.Dom.dat.var.querySelector('div.ele'));
-
-        dom.eli($.res);
-
-        $.cod = $App.Dom.dat.var.querySelector('[name="cod"]');
-
-        $.val = document.querySelectorAll($.cod.value);
-
-        $.tit = document.createElement('h4');
-        $.tit.innerHTML = 'Listado';
-        $.tex = document.createElement('p');
-        $.tex.innerHTML = Tex.let(`Total: ${$.val.length}`);        
-        $.res.appendChild($.tit);
-        $.res.appendChild($.tex);
-        // genero elemento
-        $.res.appendChild( Ele.var_val($.val)[1] );
-        break;
-      }
-      break;        
     }
 
     return $;
   }
 
-  /* Usuario */
-  usu_ini(){
-
+  /* Sesion del Usuario */
+  usu(){    
+    let $ = {};
+    return $;
+  }// finalizar sesion
+  usu_ses( $tip ){
     let $ = {};
 
-    return $; 
-  }
-  usu_fin(){
+    if( $tip == 'ini' ){
 
-    let $ = {};
+
+
+    }
+    else if( $tip == 'fin' ){
+
+      console.log("finalizando sesion, hacer cartel de confirmacion");
+
+    }else if( $tip == 'pas' ){
+
+      console.log("regenerando contraseña");
+
+    }
 
     return $;
-  }  
-  usu_pas(){
+  }// datos del perfil
+  usu_dat( $tip, $ope ){
+    let $ = {};    
 
-    let $ = {};
-
-    return $; 
-  }
-  usu_dat( $tip ){
-
-    let $ = {};
-
-    if( !$tip ){
-      // pedir form con datos del usuario 
-
-      // o borrar contenido previo
-    }    
-    else{
-      // proceso form
-
+    switch( $tip ){
+    // administrar datos
+    case 'ver':
+      
+      Doc_Ope.nav_bot( $ope, '$Usu.dat', [ $tip ] );
+      break;
     }
     
     return $; 

@@ -8,35 +8,30 @@
 */
 :root { 
 
-  /* tamaños */
-  --tam_cab_max: 6vh;
-  --tam_sec_max: 94vh;
-  --tam_cab_min: 9vh;
-  --tam_sec_min: 91vh;
-
   /* fondos */
   --fon_win:rgba(015, 015, 015,  1);/* pantalla */
   --fon_sec:rgba(015, 015, 015, .9);/* seccion */
   --fon_art:rgba(015, 015, 015, .6);/* articulo */
-  --fon_nav:rgba(020, 005, 005, .3);/* navegador */  
+  --fon_dat:rgba(020, 005, 005, .3);/* campos */
+  --fon_ope:rgba(  0,   0,   0, .5);/* controlador */  
   --fon_sel:rgba(130, 167, 216, .6);/* al seleccionar */
   --fon_foc:rgba(049, 134, 245, .3);/* al hacer foco */  
 
   /* Bordes */
-  --bor_sec:rgb(116, 066, 200);/* contenedor */
-  --bor_art:rgb(080, 125, 188);/* contenido */
+  --bor_sec:rgb(116, 066, 200);/* seccion */
+  --bor_art:rgb(080, 125, 188);/* contenido */  
+  --bor_dat:rgb(054, 016, 117);/* campos */
+  --bor_ope:rgb(204, 192, 176);/* controlador */
   --bor_sel:rgb(005, 031, 068);/* al seleccionar */
 
   /* letras */
   --let_ico:#ccc0b0;
+  --let_err:#ff0000;
   --let_ide:#779adc;
   --let_val:#cd5de9;
-  --let_err:#ff0000;
-  --let_num:#7fff00;
-  --let_tex:#dfda4c;
   --let_ope:#b8860b;
-  --let_lis:#00eeff;
-  --let_obj:#001aff;
+  --let_tex:#dfda4c;
+  --let_num:#7fff00;
   
   /* colores sólidos */    
   --col_tra:rgba(0,0,0,0);      
@@ -97,3 +92,50 @@ body {
   display: flex;
   flex-direction: column;
 }
+
+@media only screen and ( max-width: 700px ){
+
+  body > main article {
+    max-width: 100vw;
+  }
+}
+
+@media only screen and ( max-width: 500px ){
+
+  html { 
+    font-size: 13px;
+  }
+}
+
+
+/* 
+  Contenido: Listado, Renglón / Línea y Bloque
+*/
+.-lis,
+.-ren,
+.-ite,
+.-val {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: center;
+}
+
+.-lis {
+  flex-direction: column !important;
+  align-items: stretch;
+}
+
+.-ren {
+  flex-wrap: wrap !important;
+}
+
+:is( .-ren, .-ite ) {
+  flex-grow: 2;
+  align-self: stretch;
+}
+
+.-val {
+  max-width: fit-content;
+}
+

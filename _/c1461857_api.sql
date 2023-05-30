@@ -151,99 +151,99 @@ INSERT INTO `app_est` (`esq`, `ide`, `ope`) VALUES
 ('fec', 'dat', '{\r\n      \"atr\": {\r\n        \"dia\": { \"min\":1, \"max\":31, \"dat\":\"fec_dia\" },\r\n        \"mes\": { \"min\":1, \"max\":12, \"dat\":\"fec_mes\" },\r\n        \"año\": { \"min\":-9999, \"max\":9999 },\r\n        \"hor\": { \"min\":1, \"max\":24, \"dat\":\"fec_hor\" },\r\n        \"min\": { \"min\":1, \"max\":60, \"dat\":\"fec_min\" },\r\n        \"seg\": { \"min\":1, \"max\":60, \"dat\":\"fec_seg\" }\r\n      },\r\n      \"rel\": {\r\n        \"val\":\"fec_dat\", \r\n        \"dia\":\"fec_dia\", \r\n        \"sem\":\"fec_sem\", \r\n        \"año\":\"fec_año\"\r\n      },\r\n      \"lis\": {\r\n        \"atr\": [ \"val\" ]\r\n      },\r\n      \"opc\": {\r\n        \"ver\": [ \"dia\", \"sem\", \"mes\" ],\r\n        \"num\": [ \"dia\", \"sem\", \"mes\" ]\r\n      }        \r\n  }'),
 ('fig', 'ico', '{\r\n\r\n      \"dat\": { \"niv\":[\"ide\"] }\r\n    }'),
 ('hol', 'ani', '{\r\n    }'),
-('hol', 'arm', '{\r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":4, \"dat\":\"hol_arm\" }\r\n      },\r\n      \"val\": { \r\n        \"nom\": \"Código Armónico #()($)ide() de 4: ()($)des_col().\",\r\n        \"des\": \"Dirección: ()($)des_dir(); Poder: ()($)des_pod(); Dualidad: ()($)des_pol(); Momento de Mayor vibración: ()($)des_dia().\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/arm/()($)ide().png);\",\r\n        \"col\": 4,\r\n        \"num\": 4\r\n      }\r\n    }'),
-('hol', 'cas', '{\r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":52, \"dat\":\"hol_cas\" },\r\n        \"arm\": { \"min\":1, \"max\":4, \"dat\":\"hol_cas_arm\" },\r\n        \"pos_arm\": { \"min\":1, \"max\":4, \"dat\":\"hol_arm\" },\r\n        \"ton_arm\": { \"min\":1, \"max\":13, \"dat\":\"hol_ton\" },        \r\n        \"ton\": { \"min\":1, \"max\":13, \"dat\":\"hol_ton\" },\r\n        \"ond\": { \"min\":1, \"max\":4, \"dat\":\"hol_cas_ond\" },\r\n        \"dim\": { \"min\":1, \"max\":4, \"dat\":\"hol_cas_dim\" },\r\n        \"mat\": { \"min\":1, \"max\":5, \"dat\":\"hol_cas_mat\" },\r\n        \"sim\": { \"min\":1, \"max\":7, \"dat\":\"hol_cas_sim\" }        \r\n      },\r\n      \"val\": { \r\n        \"nom\": \"Posicion #()($)ide() de 52: ()($)nom().\",\r\n        \"des\": \"()($)des()\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/ton/()($)ton().png), center/contain no-repeat url(http://localhost/img/hol/fic/ton/arm/()($)arm().png), center/70% no-repeat url(http://localhost/img/hol/fic/arm/()($)pos_arm().png);\",\r\n        \"col\": 4,\r\n        \"num\": 52\r\n      },\r\n      \"opc\": { \r\n        \"ver\": [ \"ide\", \"arm\", \"ond\", \"pos_arm\", \"ton_arm\" ],    \r\n        \"ima\": [ \"ide\", \"arm\", \"ond\", \"pos_arm\", \"ton_arm\" ],\r\n        \"col\": [ \"arm\", \"ond\", \"pos_arm\", \"ton_arm\" ],\r\n        \"num\": [ \"ide\", \"arm\", \"ond\", \"pos_arm\", \"ton_arm\" ]\r\n      },\r\n      \"inf\": {\r\n        \"fic\": [ \"arm\", \"ton\", \"pos_arm\" ],\r\n        \"tab\": [ \"hol.cas.ond\", { \r\n          \"val\": { \"pos\":\"()($)ide()\" }, \r\n          \"pos\": { \"bor\":1, \"ima\":\"hol.cas.ton\", \"num\":\"hol.cas.ide\", \"col\":\"hol.cas.pos_arm\", \"pul\":[\"dim\",\"mat\",\"sim\"] }\r\n        }],\r\n\r\n        \"fic-1\": [ \"ond\", \"dim\", \"mat\", \"sim\" ],\r\n        \"htm-2\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Los Preceptos del Recorrido por el Castillo\" },\r\n        \"atr-2\": [ \"lec\" ]\r\n      }\r\n  }'),
-('hol', 'cas_arm', '{\r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":4, \"dat\":\"hol_cas_arm\" },\r\n        \"cas\": { \"dat\":\"hol_cas\" }\r\n      },\r\n      \"val\": { \r\n        \"nom\": \"Cuadrante #()($)ide() de 4: ()($)nom().\",\r\n        \"des\": \"()($)des().\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/cas/arm/()($)ide().png);\",\r\n        \"col\": 4,\r\n        \"num\": 4\r\n      },\r\n      \"inf\": {\r\n        \"htm\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"El <a target=\'_blank\' href=\'http://localhost//hol/bib/enc#_02-03-08-\'>Castillo del Destino</a> en el Encantamiento del Sueño\" },        \r\n        \"fic\": [ \"cas\" ]\r\n      }\r\n  }'),
-('hol', 'cas_dim', '{\r\n      \"atr\": {\r\n        \"ide\": { \"min\":1, \"max\":4, \"dat\":\"hol_cas_dim\" },\r\n        \"ton\": { \"dat\":\"hol_ton\" }\r\n      },\r\n      \"val\": { \r\n        \"nom\": \"Pulsar Dimensional #()($)ide() de 4: ()($)nom().\",\r\n        \"des\": \"()($)des_ond(). ()($)des_dim() dimensión, Campo de aplicación ()($)des_cam().\", \r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/cas/dim/()($)ide().png);\",\r\n        \"col\": 4\r\n      },\r\n      \"opc\": { \r\n        \"ima\": [ \"ide\" ] \r\n      },\r\n      \"inf\": { \r\n        \"det\": [ \"des_dim\", \"des_cam\" ],\r\n        \"tab\": [ \"hol.cas.ond\", {\r\n          \"pos\": { \"bor\":1, \"ima\":\"hol.cas.ton\", \"num\":\"hol.cas.ide\", \"col\":\"hol.cas.pos_arm\" },\r\n          \"pul\": { \"dim\":[] }\r\n        }],\r\n        \"htm\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"El <a target=\'_blank\' href=\'http://localhost//hol/bib/enc#_03-13-\'>Código pulsar</a> en el Encantamiento del Sueño\" },\r\n        \"atr\": [ \"des_ond\" ],\r\n        \"fic\": [ \"ton\" ]\r\n      }\r\n  }'),
-('hol', 'cas_mat', '{\r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":5, \"dat\":\"hol_cas_mat\" },\r\n        \"ton\": { \"dat\":\"hol_ton\" }\r\n      },      \r\n      \"val\": { \r\n        \"nom\": \"Pulsar Matiz #()($)ide() de 5: ()($)nom().\",\r\n        \"des\": \"Código: ()($)des_cod(). Pulsares Dimensionales: ()($)des_dim().\", \r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/cas/mat/()($)ide().png);\",\r\n        \"col\": 5\r\n      },\r\n      \"opc\": { \r\n        \"ima\": [ \"ide\" ]\r\n      },\r\n      \"inf\": { \r\n        \"det\": [ \"des_cod\", \"des_dim\" ],\r\n\r\n        \"htm\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"El <a target=\'_blank\' href=\'http://localhost//hol/bib/enc#_03-13-\'> Código pulsar</a> en el Encantamiento del Sueño\" },\r\n        \"atr\": [ \"des_ond\" ],\r\n        \"fic\": [ \"ton\" ]\r\n      }\r\n  }'),
-('hol', 'cas_ond', '{\r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":4, \"dat\":\"hol_cas_ond\" },\r\n        \"ton\": { \"dat\":\"hol_ton\" }\r\n      },\r\n      \"val\": { \r\n        \"nom\": \"Aventura de la Onda Encantada #()($)ide() de 4: ()($)nom().\",\r\n        \"des\": \"()($)des().\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/cas/ond/()($)ide().png);\",\r\n        \"col\": 4,\r\n        \"num\": 4\r\n      },\r\n      \"inf\": {\r\n        \"opc\": [ \"des\" ],\r\n        \"htm\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"La <a target=\'_blank\' href=\'http://localhost//hol/bib/enc#_03-12-\'>Onda Encantada de la Aventura</a> en el Encantamiento del Sueño\" },        \r\n        \"fic\": [ \"ton\" ]\r\n      }\r\n  }'),
-('hol', 'cas_sim', '{\r\n      \"atr\": {\r\n        \"ide\": { \"min\":1, \"max\":7, \"dat\":\"hol_cas_sim\" },\r\n        \"ton\": { \"dat\":\"hol_ton\" }\r\n      },\r\n      \"val\": { \r\n        \"nom\": \"Simetría Especular #()($)ide() de 7: ()($)nom().\",\r\n        \"des\": \"()($)des()\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/cas/sim/()($)ide().png);\",\r\n        \"col\": 7\r\n      },\r\n      \"opc\": { \r\n        \"ima\": [ \"ide\" ]\r\n      },\r\n      \"inf\": { \r\n        \"opc\": [ \"des\" ],\r\n        \"htm\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"La <a target=\'_blank\' href=\'http://localhost//hol/bib/fac#_04-04-01-02-\'>Simetría Especular</a> en el Factor Maya\" },\r\n        \"atr\": [ \"fac_des\" ],\r\n        \"fic\": [ \"ton\" ]\r\n      }\r\n  }'),
-('hol', 'chi', '{\r\n      \"atr\": {\r\n        \"ide\": { \"min\":1, \"max\":64, \"dat\":\"hol_chi\" },\r\n        \"sup\": { \"min\":1, \"max\":\"8\", \"dat\":\"hol_chi_tri\" },\r\n        \"inf\": { \"min\":1, \"max\":\"8\", \"dat\":\"hol_chi_tri\" }\r\n      },      \r\n      \"val\": { \r\n        \"nom\": \"Hexagrama #()($)ide() de 64: ()($)nom().\",\r\n        \"des\": \"()($)des().\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/chi/()($)ide().png);\",\r\n        \"num\": 64\r\n      },\r\n      \"inf\": { \r\n        \"opc\": [ \"des\" ],\r\n\r\n        \"atr-1\": \"tit\",\r\n        \r\n        \"atr-2\": \"lec\",\r\n        \r\n        \"fic\": [ \"sup\", \"inf\" ]\r\n      }\r\n  }'),
-('hol', 'chi_bin', '{ \r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":4, \"dat\":\"hol_chi_bin\" }\r\n      },\r\n      \"val\": { \r\n        \"nom\": \"Bigrama #()($)ide() de 4\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/chi/bin/()($)ide().png);\"\r\n      }\r\n  }'),
-('hol', 'chi_mon', '{\r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":2, \"dat\":\"hol_chi_mon\" }\r\n      },\r\n      \"val\": { \r\n        \"nom\": \"Monograma #()($)ide() de 2\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/chi/mon/()($)ide().png);\"\r\n      }\r\n  }'),
-('hol', 'chi_tri', '{ \r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":8, \"dat\":\"hol_chi_tri\" }\r\n      },\r\n      \"val\": { \r\n        \"nom\": \"Trigrama #()($)ide() de 8\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/chi/tri/()($)ide().png);\"\r\n      }\r\n  }'),
-('hol', 'cro', '{\r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":4, \"dat\":\"hol_cro\" }\r\n      },      \r\n      \"val\": { \r\n        \"nom\": \"Código Cromático #()($)ide() de 5: ()($)des_cod().\",\r\n        \"des\": \"Color: ()($)des_col(); Posición: ()($)des_lad(); Dirección: ()($)des_dir(); Poder: ()($)des_pod(); Función: ()($)des_fun(); Acción: ()($)des_acc();\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/cro/()($)ide().png);\",        \r\n        \"col\": 5,\r\n        \"num\": 5\r\n      }\r\n    }'),
-('hol', 'kin', '{\r\n    \"atr\": { \r\n      \"ide\": { \"min\":1, \"max\":260, \"dat\":\"hol_kin\" },\r\n      \"ene\": { \"min\":1, \"max\":4, \"dat\":\"hol_kin_ene\" },\r\n      \"ene_cam\": { \"min\":1, \"max\":14, \"dat\":\"hol_kin_ene_cam\" },\r\n      \"chi\": { \"min\":1, \"max\":65, \"dat\":\"hol_chi\" },\r\n      \"cro_est\": { \"min\":1, \"max\":4, \"dat\":\"hol_kin_cro_est\" },\r\n      \"cro_est_dia\": { \"min\":1, \"max\":65, \"dat\":\"hol_kin_cro_est_dia\" },\r\n      \"cro_ele\": { \"min\":1, \"max\":4, \"dat\":\"hol_kin_cro_ele\" },\r\n      \"cro_ele_dia\": { \"min\":1, \"max\":5, \"dat\":\"hol_sel_cro_fam\" },\r\n      \"arm_tra\": { \"min\":1, \"max\":13, \"dat\":\"hol_kin_arm_tra\" },\r\n      \"arm_tra_dia\": { \"min\":1, \"max\":20, \"dat\":\"hol_sel\" },\r\n      \"arm_cel\": { \"min\":1, \"max\":5, \"dat\":\"hol_kin_arm_cel\" },\r\n      \"arm_cel_dia\": { \"min\":1, \"max\":4, \"dat\":\"hol_sel_arm_raz\" },  \r\n      \"gen_enc\": { \"min\":1, \"max\":3, \"dat\":\"hol_kin_gen_enc\" },\r\n      \"gen_enc_dia\": { \"min\":1, \"max\":3, \"max-1\":130, \"max-2\":90, \"max-3\":52 },\r\n      \"gen_cel\": { \"min\":1, \"max\":5, \"dat\":\"hol_kin_gen_cel\" },\r\n      \"gen_cel_dia\": { \"min\":1, \"max\":26 },\r\n      \"nav_cas\": { \"min\":1, \"max\":5, \"dat\":\"hol_kin_nav_cas\" },\r\n      \"nav_cas_dia\": { \"min\":1, \"max\":52, \"dat\":\"hol_cas\" },  \r\n      \"nav_ond\": { \"min\":1, \"max\":20, \"dat\":\"hol_kin_nav_ond\" },\r\n      \"nav_ond_dia\": { \"min\":1, \"max\":13, \"dat\":\"hol_ton\" },\r\n      \"par_ana\": { \"min\":1, \"max\":260, \"dat\":\"hol_kin\" },\r\n      \"par_gui\": { \"min\":1, \"max\":260, \"dat\":\"hol_kin\" },\r\n      \"par_ant\": { \"min\":1, \"max\":260, \"dat\":\"hol_kin\" },\r\n      \"par_ocu\": { \"min\":1, \"max\":260, \"dat\":\"hol_kin\" }\r\n    },\r\n    \"rel\": { \r\n      \"ide\": \"hol_kin\",\r\n      \"arm_tra_dia\": \"hol_sel\",\r\n      \"nav_ond_dia\": \"hol_ton\",\r\n      \"nav_cas_dia\": \"hol_cas\"\r\n    },\r\n    \"val\": { \r\n      \"nom\": \"Kin #()($)ide() de 260: ()($)nom().\",\r\n      \"des\": \"()($)des()\",\r\n      \"ima\": \"background: top/50% no-repeat url(http://localhost/img/hol/fic/ton/()($)nav_ond_dia().png), bottom/60% no-repeat url(http://localhost/img/hol/fic/sel/()($)arm_tra_dia().png);\",\r\n      \"num\": 260\r\n    },\r\n    \"opc\": { \r\n      \"ver\": [ \r\n        \"ene\", \"ene_cam\", \"chi\",\r\n        \"gen_enc\", \"gen_cel\", \r\n        \"nav_cas\", \"nav_ond\", \r\n        \"cro_est\", \"cro_ele\", \r\n        \"arm_tra\", \"arm_cel\" \r\n      ],\r\n      \"col\": [\r\n        \"ene\", \r\n        \"gen_enc\", \"gen_cel\", \r\n        \"nav_cas\", \"nav_ond\", \r\n        \"cro_est\", \"cro_ele\", \r\n        \"arm_tra\", \"arm_cel\"\r\n      ],\r\n      \"ima\": [\r\n        \"ide\", \r\n        \"ene\", \"ene_cam\", \"chi\", \r\n        \"par_ana\", \"par_gui\", \"par_ant\", \"par_ocu\", \r\n        \"nav_cas\", \"nav_ond\", \r\n        \"arm_tra\", \"arm_cel\", \r\n        \"cro_est\", \"cro_ele\"\r\n      ],\r\n      \"num\": [ \r\n        \"ide\", \"psi\", \"ene\", \"ene_cam\", \r\n        \"gen_enc\", \"gen_enc_dia\", \"gen_cel\", \"gen_cel_dia\", \r\n        \"nav_cas\", \"nav_cas_dia\", \"nav_ond\", \"nav_ond_dia\", \r\n        \"cro_est\", \"cro_est_dia\", \"cro_ele\", \"cro_ele_dia\", \r\n        \"arm_tra\", \"arm_tra_dia\", \"arm_cel\", \"arm_cel_dia\"\r\n      ]    \r\n    },\r\n    \"lis\": { \r\n      \"atr\": [\r\n        \"ide\",\r\n        \"pag\", \"chi\",\r\n        \"ene\", \"ene_cam\",\r\n        \"cro_est\", \"cro_ele\", \r\n        \"arm_tra\", \"arm_cel\", \r\n        \"gen_enc\", \"gen_cel\", \r\n        \"nav_cas\", \"nav_ond\", \r\n        \"par_ana\", \"par_gui\", \r\n        \"par_ant\", \"par_ocu\"\r\n      ],\r\n      \"atr_ocu\": [ \"pag\", \"chi\", \"ene\", \"ene_cam\", \"gen_enc\", \"gen_cel\", \"par_ana\", \"par_gui\", \"par_ant\", \"par_ocu\" ],\r\n      \"tit_cic\": [ \"nav_cas\", \"nav_ond\", \"cro_est\", \"cro_ele\", \"arm_tra\", \"arm_cel\" ],\r\n      \"det_des\": [ \"des\",\"des_tie\",\"des_umb\" ]\r\n    },\r\n    \"pos\": { \r\n      \"nav\": { \r\n        \"nom\": \"Nave del Tiempo\",  \r\n        \"ide\": \"hol.kin\", \"atr\": [ \"nav_cas\", \"nav_cas_dia\", \"nav_ond\", \"nav_ond_dia\" ] \r\n      },\r\n      \"arm\": { \r\n        \"nom\": \"Giro Galáctico\",\r\n        \"ide\": \"hol.kin\", \"atr\": [ \"arm_tra\", \"arm_tra_dia\", \"arm_cel\", \"arm_cel_dia\" ] \r\n      },\r\n      \"cro\": { \r\n        \"nom\": \"Giro Espectral\",   \r\n        \"ide\": \"hol.kin\", \"atr\": [ \"cro_est\", \"cro_est_dia\", \"cro_ele\", \"cro_ele_dia\" ] \r\n      },\r\n      \"sol\": { \r\n        \"nom\": \"Holon Solar\",   \r\n        \"ide\": \"hol.sel\", \"atr\": [ \"sol_pla\", \"sol_res\", \"sol_orb\", \"sol_cel\", \"sol_cir\" ] \r\n      },\r\n      \"pla\": { \r\n        \"nom\": \"Holon Planetario\",\r\n        \"ide\": \"hol.sel\", \"atr\": [ \"pla_cen\", \"pla_hem\", \"pla_mer\" ] \r\n      },\r\n      \"hum\": { \r\n        \"nom\": \"Holon Humano\",\r\n        \"ide\": \"hol.sel\", \"atr\": [ \"hum_cen\", \"hum_ext\", \"hum_ded\", \"hum_mer\" ] \r\n      }\r\n    },\r\n    \"fic\": [\r\n      \"ide\", [ \"nav_cas\", \"nav_ond\", \"arm_tra\", \"arm_cel\", \"cro_est\", \"cro_ele\" ]\r\n    ],\r\n    \"inf\": { \r\n      \"atr\": \"des\",\r\n\r\n      \"htm-1\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Los <a target=\'_blank\' href=\'http://localhost//hol/bib/fac#_05-07-\'>Ciclos Ahau</a> en <cite>el Factor Maya</cite> y la <a target=\'_blank\' href=\'http://localhost//hol/bib/enc#_02-03-10-\'>Nave del Tiempo</a> en <cite>el Encantamiento del Sueño</cite>\" },\r\n      \"fic-1\": [ \"nav_cas\", \"nav_ond\", \"nav_ond_dia\" ],\r\n\r\n      \"htm-2\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Los <a target=\'_blank\' href=\'http://localhost//hol/bib/fac#_04-04-02-06-\'>Ciclos evolutivos</a> en <cite>el Factor Maya</cite> y el <a target=\'_blank\' href=\'http://localhost//hol/bib/enc#_03-16-\'>Giro Espectral</a> en <cite>el Encantamiento del Sueño</cite>\" },\r\n      \"fic-2\": [ \"cro_est\", \"cro_ele\" ],\r\n\r\n      \"htm-3\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"El <a target=\'_blank\' href=\'http://localhost//hol/bib/fac#_05-04-\'>Rayo de Sincronización Galáctica</a> en <cite>el Factor Maya</cite>, y las <a target=\'_blank\' href=\'http://localhost//hol/bib/enc#_04-\'>Trayectorias del Giro Galáctico</a> en <cite>el Encantamiento del Sueño</cite>\" },\r\n      \"fic-3\": [ \"arm_tra\", \"arm_cel\", \"arm_tra_dia\" ],\r\n\r\n      \"htm-4\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"El <a target=\'_blank\' href=\'http://localhost//hol/bib/enc#_02-03-06-\'>Oráculo del Destino</a> en <cite>el Encantamiento del Sueño</cite>\" },\r\n      \"eje-4\": { \"ide\": \"api_hol::inf\", \"par\": [ \"kin-par\", \"()($)ide()\" ] }\r\n      \r\n    }\r\n  }'),
+('hol', 'arm', '{\r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":4, \"dat\":\"hol-arm\" }\r\n      },\r\n      \"val\": { \r\n        \"nom\": \"Código Armónico #()($)ide() de 4: ()($)des_col().\",\r\n        \"des\": \"Dirección: ()($)des_dir(); Poder: ()($)des_pod(); Dualidad: ()($)des_pol(); Momento de Mayor vibración: ()($)des_dia().\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/arm/()($)ide().png);\",\r\n        \"col\": 4,\r\n        \"num\": 4\r\n      }\r\n    }'),
+('hol', 'cas', '{\r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":52, \"dat\":\"hol-cas\" },\r\n        \"arm\": { \"min\":1, \"max\":4, \"dat\":\"hol-cas_arm\" },\r\n        \"pos_arm\": { \"min\":1, \"max\":4, \"dat\":\"hol-arm\" },\r\n        \"ton_arm\": { \"min\":1, \"max\":13, \"dat\":\"hol-ton\" },        \r\n        \"ton\": { \"min\":1, \"max\":13, \"dat\":\"hol-ton\" },\r\n        \"ond\": { \"min\":1, \"max\":4, \"dat\":\"hol-cas_ond\" },\r\n        \"dim\": { \"min\":1, \"max\":4, \"dat\":\"hol-cas_dim\" },\r\n        \"mat\": { \"min\":1, \"max\":5, \"dat\":\"hol-cas_mat\" },\r\n        \"sim\": { \"min\":1, \"max\":7, \"dat\":\"hol-cas_sim\" }        \r\n      },\r\n      \"val\": { \r\n        \"nom\": \"Posicion #()($)ide() de 52: ()($)nom().\",\r\n        \"des\": \"()($)des()\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/ton/()($)ton().png), center/contain no-repeat url(http://localhost/img/hol/fic/ton/arm/()($)arm().png), center/70% no-repeat url(http://localhost/img/hol/fic/arm/()($)pos_arm().png);\",\r\n        \"col\": 4,\r\n        \"num\": 52\r\n      },\r\n      \"opc\": { \r\n        \"ver\": [ \"ide\", \"arm\", \"ond\", \"pos_arm\", \"ton_arm\" ],    \r\n        \"ima\": [ \"ide\", \"arm\", \"ond\", \"pos_arm\", \"ton_arm\" ],\r\n        \"col\": [ \"arm\", \"ond\", \"pos_arm\", \"ton_arm\" ],\r\n        \"num\": [ \"ide\", \"arm\", \"ond\", \"pos_arm\", \"ton_arm\" ]\r\n      },\r\n      \"inf\": {\r\n        \"fic\": [ \"arm\", \"ton\", \"pos_arm\" ],\r\n        \"tab\": [ \"hol.cas.ond\", { \r\n          \"val\": { \"pos\":\"()($)ide()\" }, \r\n          \"pos\": { \"bor\":1, \"ima\":\"hol.cas.ton\", \"num\":\"hol.cas.ide\", \"col\":\"hol.cas.pos_arm\", \"pul\":[\"dim\",\"mat\",\"sim\"] }\r\n        }],\r\n\r\n        \"fic-1\": [ \"ond\", \"dim\", \"mat\", \"sim\" ],\r\n        \"htm-2\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Los Preceptos del Recorrido por el Castillo\" },\r\n        \"atr-2\": [ \"lec\" ]\r\n      }\r\n  }'),
+('hol', 'cas_arm', '{\r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":4, \"dat\":\"hol-cas_arm\" },\r\n        \"cas\": { \"dat\":\"hol-cas\" }\r\n      },\r\n      \"val\": { \r\n        \"nom\": \"Cuadrante #()($)ide() de 4: ()($)nom().\",\r\n        \"des\": \"()($)des().\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/cas/arm/()($)ide().png);\",\r\n        \"col\": 4,\r\n        \"num\": 4\r\n      },\r\n      \"inf\": {\r\n        \"htm\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"El <a target=\'_blank\' href=\'http://localhost//hol/bib/enc#_02-03-08-\'>Castillo del Destino</a> en el Encantamiento del Sueño\" },        \r\n        \"fic\": [ \"cas\" ]\r\n      }\r\n  }'),
+('hol', 'cas_dim', '{\r\n      \"atr\": {\r\n        \"ide\": { \"min\":1, \"max\":4, \"dat\":\"hol-cas_dim\" },\r\n        \"ton\": { \"dat\":\"hol-ton\" }\r\n      },\r\n      \"val\": { \r\n        \"nom\": \"Pulsar Dimensional #()($)ide() de 4: ()($)nom().\",\r\n        \"des\": \"()($)des_ond(). ()($)des_dim() dimensión, Campo de aplicación ()($)des_cam().\", \r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/cas/dim/()($)ide().png);\",\r\n        \"col\": 4\r\n      },\r\n      \"opc\": { \r\n        \"ima\": [ \"ide\" ] \r\n      },\r\n      \"inf\": { \r\n        \"det\": [ \"des_dim\", \"des_cam\" ],\r\n        \"tab\": [ \"hol.cas.ond\", {\r\n          \"pos\": { \"bor\":1, \"ima\":\"hol.cas.ton\", \"num\":\"hol.cas.ide\", \"col\":\"hol.cas.pos_arm\" },\r\n          \"pul\": { \"dim\":[] }\r\n        }],\r\n        \"htm\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"El <a target=\'_blank\' href=\'http://localhost//hol/bib/enc#_03-13-\'>Código pulsar</a> en el Encantamiento del Sueño\" },\r\n        \"atr\": [ \"des_ond\" ],\r\n        \"fic\": [ \"ton\" ]\r\n      }\r\n  }'),
+('hol', 'cas_mat', '{\r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":5, \"dat\":\"hol-cas_mat\" },\r\n        \"ton\": { \"dat\":\"hol-ton\" }\r\n      },      \r\n      \"val\": { \r\n        \"nom\": \"Pulsar Matiz #()($)ide() de 5: ()($)nom().\",\r\n        \"des\": \"Código: ()($)des_cod(). Pulsares Dimensionales: ()($)des_dim().\", \r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/cas/mat/()($)ide().png);\",\r\n        \"col\": 5\r\n      },\r\n      \"opc\": { \r\n        \"ima\": [ \"ide\" ]\r\n      },\r\n      \"inf\": { \r\n        \"det\": [ \"des_cod\", \"des_dim\" ],\r\n\r\n        \"htm\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"El <a target=\'_blank\' href=\'http://localhost//hol/bib/enc#_03-13-\'> Código pulsar</a> en el Encantamiento del Sueño\" },\r\n        \"atr\": [ \"des_ond\" ],\r\n        \"fic\": [ \"ton\" ]\r\n      }\r\n  }'),
+('hol', 'cas_ond', '{\r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":4, \"dat\":\"hol-cas_ond\" },\r\n        \"ton\": { \"dat\":\"hol-ton\" }\r\n      },\r\n      \"val\": { \r\n        \"nom\": \"Aventura de la Onda Encantada #()($)ide() de 4: ()($)nom().\",\r\n        \"des\": \"()($)des().\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/cas/ond/()($)ide().png);\",\r\n        \"col\": 4,\r\n        \"num\": 4\r\n      },\r\n      \"inf\": {\r\n        \"opc\": [ \"des\" ],\r\n        \"htm\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"La <a target=\'_blank\' href=\'http://localhost//hol/bib/enc#_03-12-\'>Onda Encantada de la Aventura</a> en el Encantamiento del Sueño\" },        \r\n        \"fic\": [ \"ton\" ]\r\n      }\r\n  }'),
+('hol', 'cas_sim', '{\r\n      \"atr\": {\r\n        \"ide\": { \"min\":1, \"max\":7, \"dat\":\"hol-cas_sim\" },\r\n        \"ton\": { \"dat\":\"hol-ton\" }\r\n      },\r\n      \"val\": { \r\n        \"nom\": \"Simetría Especular #()($)ide() de 7: ()($)nom().\",\r\n        \"des\": \"()($)des()\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/cas/sim/()($)ide().png);\",\r\n        \"col\": 7\r\n      },\r\n      \"opc\": { \r\n        \"ima\": [ \"ide\" ]\r\n      },\r\n      \"inf\": { \r\n        \"opc\": [ \"des\" ],\r\n        \"htm\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"La <a target=\'_blank\' href=\'http://localhost//hol/bib/fac#_04-04-01-02-\'>Simetría Especular</a> en el Factor Maya\" },\r\n        \"atr\": [ \"fac_des\" ],\r\n        \"fic\": [ \"ton\" ]\r\n      }\r\n  }'),
+('hol', 'chi', '{\r\n      \"atr\": {\r\n        \"ide\": { \"min\":1, \"max\":64, \"dat\":\"hol-chi\" },\r\n        \"sup\": { \"min\":1, \"max\":\"8\", \"dat\":\"hol-chi_tri\" },\r\n        \"inf\": { \"min\":1, \"max\":\"8\", \"dat\":\"hol-chi_tri\" }\r\n      },      \r\n      \"val\": { \r\n        \"nom\": \"Hexagrama #()($)ide() de 64: ()($)nom().\",\r\n        \"des\": \"()($)des().\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/chi/()($)ide().png);\",\r\n        \"num\": 64\r\n      },\r\n      \"inf\": { \r\n        \"opc\": [ \"des\" ],\r\n\r\n        \"atr-1\": \"tit\",\r\n        \r\n        \"atr-2\": \"lec\",\r\n        \r\n        \"fic\": [ \"sup\", \"inf\" ]\r\n      }\r\n  }'),
+('hol', 'chi_bin', '{ \r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":4, \"dat\":\"hol-chi_bin\" }\r\n      },\r\n      \"val\": { \r\n        \"nom\": \"Bigrama #()($)ide() de 4\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/chi/bin/()($)ide().png);\"\r\n      }\r\n  }'),
+('hol', 'chi_mon', '{\r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":2, \"dat\":\"hol-chi_mon\" }\r\n      },\r\n      \"val\": { \r\n        \"nom\": \"Monograma #()($)ide() de 2\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/chi/mon/()($)ide().png);\"\r\n      }\r\n  }'),
+('hol', 'chi_tri', '{ \r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":8, \"dat\":\"hol-chi_tri\" }\r\n      },\r\n      \"val\": { \r\n        \"nom\": \"Trigrama #()($)ide() de 8\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/chi/tri/()($)ide().png);\"\r\n      }\r\n  }'),
+('hol', 'cro', '{\r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":4, \"dat\":\"hol-cro\" }\r\n      },      \r\n      \"val\": { \r\n        \"nom\": \"Código Cromático #()($)ide() de 5: ()($)des_cod().\",\r\n        \"des\": \"Color: ()($)des_col(); Posición: ()($)des_lad(); Dirección: ()($)des_dir(); Poder: ()($)des_pod(); Función: ()($)des_fun(); Acción: ()($)des_acc();\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/cro/()($)ide().png);\",        \r\n        \"col\": 5,\r\n        \"num\": 5\r\n      }\r\n    }'),
+('hol', 'kin', '{\r\n    \"atr\": { \r\n      \"ide\": { \"min\":1, \"max\":260, \"dat\":\"hol-kin\" },\r\n      \"ene\": { \"min\":1, \"max\":4, \"dat\":\"hol-kin_ene\" },\r\n      \"ene_cam\": { \"min\":1, \"max\":14, \"dat\":\"hol-kin_ene_cam\" },\r\n      \"chi\": { \"min\":1, \"max\":65, \"dat\":\"hol-chi\" },\r\n      \"cro_est\": { \"min\":1, \"max\":4, \"dat\":\"hol-kin_cro_est\" },\r\n      \"cro_est_dia\": { \"min\":1, \"max\":65, \"dat\":\"hol-kin_cro_est_dia\" },\r\n      \"cro_ele\": { \"min\":1, \"max\":4, \"dat\":\"hol-kin_cro_ele\" },\r\n      \"cro_ele_dia\": { \"min\":1, \"max\":5, \"dat\":\"hol-sel_cro_fam\" },\r\n      \"arm_tra\": { \"min\":1, \"max\":13, \"dat\":\"hol-kin_arm_tra\" },\r\n      \"arm_tra_dia\": { \"min\":1, \"max\":20, \"dat\":\"hol-sel\" },\r\n      \"arm_cel\": { \"min\":1, \"max\":5, \"dat\":\"hol-kin_arm_cel\" },\r\n      \"arm_cel_dia\": { \"min\":1, \"max\":4, \"dat\":\"hol-sel_arm_raz\" },  \r\n      \"gen_enc\": { \"min\":1, \"max\":3, \"dat\":\"hol-kin_gen_enc\" },\r\n      \"gen_enc_dia\": { \"min\":1, \"max\":3, \"max-1\":130, \"max-2\":90, \"max-3\":52 },\r\n      \"gen_cel\": { \"min\":1, \"max\":5, \"dat\":\"hol-kin_gen_cel\" },\r\n      \"gen_cel_dia\": { \"min\":1, \"max\":26 },\r\n      \"nav_cas\": { \"min\":1, \"max\":5, \"dat\":\"hol-kin_nav_cas\" },\r\n      \"nav_cas_dia\": { \"min\":1, \"max\":52, \"dat\":\"hol-cas\" },  \r\n      \"nav_ond\": { \"min\":1, \"max\":20, \"dat\":\"hol-kin_nav_ond\" },\r\n      \"nav_ond_dia\": { \"min\":1, \"max\":13, \"dat\":\"hol-ton\" },\r\n      \"par_ana\": { \"min\":1, \"max\":260, \"dat\":\"hol-kin\" },\r\n      \"par_gui\": { \"min\":1, \"max\":260, \"dat\":\"hol-kin\" },\r\n      \"par_ant\": { \"min\":1, \"max\":260, \"dat\":\"hol-kin\" },\r\n      \"par_ocu\": { \"min\":1, \"max\":260, \"dat\":\"hol-kin\" }\r\n    },\r\n    \"rel\": { \r\n      \"ide\": \"hol-kin\",\r\n      \"arm_tra_dia\": \"hol-sel\",\r\n      \"nav_ond_dia\": \"hol-ton\",\r\n      \"nav_cas_dia\": \"hol-cas\"\r\n    },\r\n    \"val\": { \r\n      \"nom\": \"Kin #()($)ide() de 260: ()($)nom().\",\r\n      \"des\": \"()($)des()\",\r\n      \"ima\": \"background: top/50% no-repeat url(http://localhost/img/hol/fic/ton/()($)nav_ond_dia().png), bottom/60% no-repeat url(http://localhost/img/hol/fic/sel/()($)arm_tra_dia().png);\",\r\n      \"num\": 260\r\n    },\r\n    \"opc\": { \r\n      \"ver\": [ \r\n        \"ene\", \"ene_cam\", \"chi\",\r\n        \"gen_enc\", \"gen_cel\", \r\n        \"nav_cas\", \"nav_ond\", \r\n        \"cro_est\", \"cro_ele\", \r\n        \"arm_tra\", \"arm_cel\" \r\n      ],\r\n      \"col\": [\r\n        \"ene\", \r\n        \"gen_enc\", \"gen_cel\", \r\n        \"nav_cas\", \"nav_ond\", \r\n        \"cro_est\", \"cro_ele\", \r\n        \"arm_tra\", \"arm_cel\"\r\n      ],\r\n      \"ima\": [\r\n        \"ide\", \r\n        \"ene\", \"ene_cam\", \"chi\", \r\n        \"par_ana\", \"par_gui\", \"par_ant\", \"par_ocu\", \r\n        \"nav_cas\", \"nav_ond\", \r\n        \"arm_tra\", \"arm_cel\", \r\n        \"cro_est\", \"cro_ele\"\r\n      ],\r\n      \"num\": [ \r\n        \"ide\", \"psi\", \"ene\", \"ene_cam\", \r\n        \"gen_enc\", \"gen_enc_dia\", \"gen_cel\", \"gen_cel_dia\", \r\n        \"nav_cas\", \"nav_cas_dia\", \"nav_ond\", \"nav_ond_dia\", \r\n        \"cro_est\", \"cro_est_dia\", \"cro_ele\", \"cro_ele_dia\", \r\n        \"arm_tra\", \"arm_tra_dia\", \"arm_cel\", \"arm_cel_dia\"\r\n      ]    \r\n    },\r\n    \"lis\": { \r\n      \"atr\": [\r\n        \"ide\",\r\n        \"pag\", \"chi\",\r\n        \"ene\", \"ene_cam\",\r\n        \"cro_est\", \"cro_ele\", \r\n        \"arm_tra\", \"arm_cel\", \r\n        \"gen_enc\", \"gen_cel\", \r\n        \"nav_cas\", \"nav_ond\", \r\n        \"par_ana\", \"par_gui\", \r\n        \"par_ant\", \"par_ocu\"\r\n      ],\r\n      \"atr_ocu\": [ \"pag\", \"chi\", \"ene\", \"ene_cam\", \"gen_enc\", \"gen_cel\", \"par_ana\", \"par_gui\", \"par_ant\", \"par_ocu\" ],\r\n      \"tit_cic\": [ \"nav_cas\", \"nav_ond\", \"cro_est\", \"cro_ele\", \"arm_tra\", \"arm_cel\" ],\r\n      \"det_des\": [ \"des\",\"des_tie\",\"des_umb\" ]\r\n    },\r\n    \"pos\": { \r\n      \"nav\": { \r\n        \"nom\": \"Nave del Tiempo\",  \r\n        \"ide\": \"hol.kin\", \"atr\": [ \"nav_cas\", \"nav_cas_dia\", \"nav_ond\", \"nav_ond_dia\" ] \r\n      },\r\n      \"arm\": { \r\n        \"nom\": \"Giro Galáctico\",\r\n        \"ide\": \"hol.kin\", \"atr\": [ \"arm_tra\", \"arm_tra_dia\", \"arm_cel\", \"arm_cel_dia\" ] \r\n      },\r\n      \"cro\": { \r\n        \"nom\": \"Giro Espectral\",   \r\n        \"ide\": \"hol.kin\", \"atr\": [ \"cro_est\", \"cro_est_dia\", \"cro_ele\", \"cro_ele_dia\" ] \r\n      },\r\n      \"sol\": { \r\n        \"nom\": \"Holon Solar\",   \r\n        \"ide\": \"hol.sel\", \"atr\": [ \"sol_pla\", \"sol_res\", \"sol_orb\", \"sol_cel\", \"sol_cir\" ] \r\n      },\r\n      \"pla\": { \r\n        \"nom\": \"Holon Planetario\",\r\n        \"ide\": \"hol.sel\", \"atr\": [ \"pla_cen\", \"pla_hem\", \"pla_mer\" ] \r\n      },\r\n      \"hum\": { \r\n        \"nom\": \"Holon Humano\",\r\n        \"ide\": \"hol.sel\", \"atr\": [ \"hum_cen\", \"hum_ext\", \"hum_ded\", \"hum_mer\" ] \r\n      }\r\n    },\r\n    \"fic\": [\r\n      \"ide\", [ \"nav_cas\", \"nav_ond\", \"arm_tra\", \"arm_cel\", \"cro_est\", \"cro_ele\" ]\r\n    ],\r\n    \"inf\": { \r\n      \"atr\": \"des\",\r\n\r\n      \"htm-1\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Los <a target=\'_blank\' href=\'http://localhost//hol/bib/fac#_05-07-\'>Ciclos Ahau</a> en <cite>el Factor Maya</cite> y la <a target=\'_blank\' href=\'http://localhost//hol/bib/enc#_02-03-10-\'>Nave del Tiempo</a> en <cite>el Encantamiento del Sueño</cite>\" },\r\n      \"fic-1\": [ \"nav_cas\", \"nav_ond\", \"nav_ond_dia\" ],\r\n\r\n      \"htm-2\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Los <a target=\'_blank\' href=\'http://localhost//hol/bib/fac#_04-04-02-06-\'>Ciclos evolutivos</a> en <cite>el Factor Maya</cite> y el <a target=\'_blank\' href=\'http://localhost//hol/bib/enc#_03-16-\'>Giro Espectral</a> en <cite>el Encantamiento del Sueño</cite>\" },\r\n      \"fic-2\": [ \"cro_est\", \"cro_ele\" ],\r\n\r\n      \"htm-3\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"El <a target=\'_blank\' href=\'http://localhost//hol/bib/fac#_05-04-\'>Rayo de Sincronización Galáctica</a> en <cite>el Factor Maya</cite>, y las <a target=\'_blank\' href=\'http://localhost//hol/bib/enc#_04-\'>Trayectorias del Giro Galáctico</a> en <cite>el Encantamiento del Sueño</cite>\" },\r\n      \"fic-3\": [ \"arm_tra\", \"arm_cel\", \"arm_tra_dia\" ],\r\n\r\n      \"htm-4\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"El <a target=\'_blank\' href=\'http://localhost//hol/bib/enc#_02-03-06-\'>Oráculo del Destino</a> en <cite>el Encantamiento del Sueño</cite>\" },\r\n      \"eje-4\": { \"ide\": \"api_hol::inf\", \"par\": [ \"kin-par\", \"()($)ide()\" ] }\r\n      \r\n    }\r\n  }'),
 ('hol', 'kin_arm', '{\r\n    \"tab\": { \r\n      \"sec\": { \"sel-arm_tra-bor\": 0, \"sel-arm_cel-pos\": 1, \"sel-arm_cel-bor\": 0, \"sel-arm_cel-col\": 0},\r\n      \"pos\": { \"ima\": \"hol.sel.ide\", \"col\": \"\", \"num\": \"\" },\r\n      \"opc\": [ \"par\", \"dim\", \"mat\", \"sim\" ]          \r\n    }\r\n  }'),
-('hol', 'kin_arm_cel', '{ \r\n    \"atr\": { \r\n      \"ide\": { \"min\":1, \"max\":65, \"dat\":\"hol_kin_arm_cel\" },            \r\n      \"tra\": { \"min\":1, \"max\":13, \"dat\":\"hol_kin_arm_tra\" },            \r\n      \"cel\": { \"min\":1, \"max\":5, \"dat\":\"hol_sel_arm_cel\" },\r\n      \"inv\": { \"min\":1, \"max\":65, \"dat\":\"hol_kin_arm_cel\" },\r\n      \"ton\": { \"min\":1, \"max\":13, \"dat\":\"hol_ton\" },\r\n      \"chi\": { \"min\":1, \"max\":64, \"dat\":\"hol_chi\" },\r\n      \"kin\": { \"dat\":\"hol_kin\" }\r\n    },\r\n    \"val\": { \r\n      \"nom\": \"Célula del Tiempo #()($)ide() de 65: ()($)nom().\", \r\n      \"des\": \"()($)des()\",\r\n      \"ima\": \"background: top/75% no-repeat url(http://localhost/img/hol/fic/ton/()($)ton().png), center/contain no-repeat url(http://localhost/img/hol/fic/sel/arm_cel/()($)cel().png);\",\r\n      \"num\": 65,\r\n      \"col\": 5\r\n    },\r\n    \"tab\": { \r\n      \"sec\": { \"par\":1 },\r\n      \"pos\": { \"ima\":\"hol.kin.ide\", \"col\": \"\", \"num\": \"\" },\r\n      \"opc\": [ \"pag\", \"par\" ]\r\n    },        \r\n    \"inf\": {\r\n      \"fic\": [ \"tra\", \"cel\", \"ton\" ],\r\n      \"tab\": [ \"hol.kin.arm_cel\", { \"sec\": { \"par\":1 }, \"pos\": { \"ima\":\"hol.kin.ide\" } } ],\r\n\r\n      \"htm-1\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"El <a target=\'_blank\' href=\'hol/bib/tab#_06-04-\'>I-Ching Galáctico</a> en Las 20 Tablas del Tiempo\" },\r\n      \"fic-1\": [ \"chi\" ],\r\n\r\n      \"htm-2\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"El <a target=\'_blank\' href=\'hol/bib/enc#_04-\'>Índice Armónico</a> en <cite>el Encantamiento del Sueño</cite>\" },\r\n      \"atr-2\": [ \"des\" ],\r\n      \"fic-2\": [ \"kin\" ]\r\n    }\r\n  }'),
-('hol', 'kin_arm_tra', '{\r\n    \"atr\": {\r\n      \"ide\": { \"min\":1, \"max\":13, \"dat\":\"hol_kin_arm_tra\" },\r\n      \"cel\": { \"dat\":\"hol_kin_arm_cel\" }\r\n    },\r\n    \"val\": { \r\n      \"nom\": \"Trayectoria Armónica #()($)ide() de 13: ()($)nom().\",\r\n      \"des\": \"()($)des() ()($)tit().\",\r\n      \"ima\": \"background: top/75% no-repeat url(http://localhost/img/hol/fic/ton/()($)ide().png), center/contain no-repeat url(http://localhost/img/hol/fic/sel.png);\",\r\n      \"num\": 13,\r\n      \"col\": 7\r\n    },\r\n    \"tab\": {\r\n      \"sec\": { \"par\":1 },\r\n      \"pos\": { \"ima\":\"hol.kin.ide\", \"col\": \"\", \"num\": \"\" },\r\n      \"opc\": [ \"pag\", \"par\" ]\r\n    },              \r\n    \"inf\": {\r\n      \"det\": [ \"tit\", \"may\", \"fac\" ],\r\n\r\n      \"tab\": [ \"hol.kin.arm_tra\", { \r\n        \"sec\": { \"par\":1 }, \r\n        \"pos\": { \"ima\":\"hol.kin.ide\" } \r\n      }],\r\n      \"htm-1\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"El <a target=\'_blank\' href=\'hol/bib/fac#_05-04-\'>Rayo de Sincronización Galáctica</a> en el Factor Maya\" },\r\n      \"atr-1\": [ \"lec\" ],\r\n      \r\n      \"htm-2\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"El <a target=\'_blank\' href=\'hol/bib/enc#_04-\'>Índice Armónico</a> en <cite>el Encantamiento del Sueño</cite>\" },\r\n      \"atr-2\": [ \"des\" ],\r\n      \"fic-2\": [ \"cel\" ]\r\n    }\r\n  }'),
+('hol', 'kin_arm_cel', '{ \r\n    \"atr\": { \r\n      \"ide\": { \"min\":1, \"max\":65, \"dat\":\"hol-kin_arm_cel\" },            \r\n      \"tra\": { \"min\":1, \"max\":13, \"dat\":\"hol-kin_arm_tra\" },            \r\n      \"cel\": { \"min\":1, \"max\":5, \"dat\":\"hol-sel_arm_cel\" },\r\n      \"inv\": { \"min\":1, \"max\":65, \"dat\":\"hol-kin_arm_cel\" },\r\n      \"ton\": { \"min\":1, \"max\":13, \"dat\":\"hol-ton\" },\r\n      \"chi\": { \"min\":1, \"max\":64, \"dat\":\"hol-chi\" },\r\n      \"kin\": { \"dat\":\"hol-kin\" }\r\n    },\r\n    \"val\": { \r\n      \"nom\": \"Célula del Tiempo #()($)ide() de 65: ()($)nom().\", \r\n      \"des\": \"()($)des()\",\r\n      \"ima\": \"background: top/75% no-repeat url(http://localhost/img/hol/fic/ton/()($)ton().png), center/contain no-repeat url(http://localhost/img/hol/fic/sel/arm_cel/()($)cel().png);\",\r\n      \"num\": 65,\r\n      \"col\": 5\r\n    },\r\n    \"tab\": { \r\n      \"sec\": { \"par\":1 },\r\n      \"pos\": { \"ima\":\"hol.kin.ide\", \"col\": \"\", \"num\": \"\" },\r\n      \"opc\": [ \"pag\", \"par\" ]\r\n    },        \r\n    \"inf\": {\r\n      \"fic\": [ \"tra\", \"cel\", \"ton\" ],\r\n      \"tab\": [ \"hol.kin.arm_cel\", { \"sec\": { \"par\":1 }, \"pos\": { \"ima\":\"hol.kin.ide\" } } ],\r\n\r\n      \"htm-1\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"El <a target=\'_blank\' href=\'hol/bib/tab#_06-04-\'>I-Ching Galáctico</a> en Las 20 Tablas del Tiempo\" },\r\n      \"fic-1\": [ \"chi\" ],\r\n\r\n      \"htm-2\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"El <a target=\'_blank\' href=\'hol/bib/enc#_04-\'>Índice Armónico</a> en <cite>el Encantamiento del Sueño</cite>\" },\r\n      \"atr-2\": [ \"des\" ],\r\n      \"fic-2\": [ \"kin\" ]\r\n    }\r\n  }'),
+('hol', 'kin_arm_tra', '{\r\n    \"atr\": {\r\n      \"ide\": { \"min\":1, \"max\":13, \"dat\":\"hol-kin_arm_tra\" },\r\n      \"cel\": { \"dat\":\"hol-kin_arm_cel\" }\r\n    },\r\n    \"val\": { \r\n      \"nom\": \"Trayectoria Armónica #()($)ide() de 13: ()($)nom().\",\r\n      \"des\": \"()($)des() ()($)tit().\",\r\n      \"ima\": \"background: top/75% no-repeat url(http://localhost/img/hol/fic/ton/()($)ide().png), center/contain no-repeat url(http://localhost/img/hol/fic/sel.png);\",\r\n      \"num\": 13,\r\n      \"col\": 7\r\n    },\r\n    \"tab\": {\r\n      \"sec\": { \"par\":1 },\r\n      \"pos\": { \"ima\":\"hol.kin.ide\", \"col\": \"\", \"num\": \"\" },\r\n      \"opc\": [ \"pag\", \"par\" ]\r\n    },              \r\n    \"inf\": {\r\n      \"det\": [ \"tit\", \"may\", \"fac\" ],\r\n\r\n      \"tab\": [ \"hol.kin.arm_tra\", { \r\n        \"sec\": { \"par\":1 }, \r\n        \"pos\": { \"ima\":\"hol.kin.ide\" } \r\n      }],\r\n      \"htm-1\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"El <a target=\'_blank\' href=\'hol/bib/fac#_05-04-\'>Rayo de Sincronización Galáctica</a> en el Factor Maya\" },\r\n      \"atr-1\": [ \"lec\" ],\r\n      \r\n      \"htm-2\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"El <a target=\'_blank\' href=\'hol/bib/enc#_04-\'>Índice Armónico</a> en <cite>el Encantamiento del Sueño</cite>\" },\r\n      \"atr-2\": [ \"des\" ],\r\n      \"fic-2\": [ \"cel\" ]\r\n    }\r\n  }'),
 ('hol', 'kin_cro', '{\r\n    \"tab\": { \r\n      \"sec\": { \"cas-pos\": 1, \"cas-orb\": 1, \"ton-col\":1, \"sel-cro_ele-pos\": 1 },\r\n      \"pos\": { \"ima\": \"hol.sel.ide\", \"col\": \"\", \"num\": \"\" },\r\n      \"opc\": [ \"par\", \"dim\", \"mat\", \"sim\" ]          \r\n    }\r\n  }'),
-('hol', 'kin_cro_ele', '{ \r\n    \"atr\": { \r\n      \"ide\": { \"min\":1, \"max\":52, \"dat\":\"hol_kin_cro_ele\" },\r\n      \"ele\": { \"min\":1, \"max\":4, \"dat\":\"hol_sel_cro_ele\" },\r\n      \"est\": { \"min\":1, \"max\":4, \"dat\":\"hol_sel_cro_est\" },\r\n      \"pos_arm\": { \"min\":1, \"max\":4, \"dat\":\"hol_arm\" },\r\n      \"ton\": { \"min\":1, \"max\":13, \"dat\":\"hol_ton\" },\r\n      \"arm\": { \"min\":1, \"max\":4, \"dat\":\"hol_cas_arm\" },\r\n      \"ond\": { \"min\":1, \"max\":4, \"dat\":\"hol_cas_ond\" },\r\n      \"dim\": { \"min\":1, \"max\":4, \"dat\":\"hol_cas_dim\" },\r\n      \"mat\": { \"min\":1, \"max\":5, \"dat\":\"hol_cas_mat\" },\r\n      \"sim\": { \"min\":1, \"max\":7, \"dat\":\"hol_cas_sim\" },      \r\n      \"kin\": { \"dat\":\"hol_kin\" }\r\n    },\r\n    \"val\": { \r\n      \"nom\": \"Elemento Cromático #()($)ide() de 52: ()($)nom().\",\r\n      \"des\": \"()($)des().\",\r\n      \"ima\": \"background: center/75% no-repeat url(http://localhost/img/hol/fic/ton/()($)ton().png), center/contain no-repeat url(http://localhost/img/hol/fic/sel/cro_ele/()($)ele().png);\",\r\n      \"num\": 52,\r\n      \"col\": 4            \r\n    },\r\n    \"tab\": { \r\n      \"sec\": { \"par\":1 },\r\n      \"pos\": { \"ima\":\"hol.kin.ide\", \"col\": \"\", \"num\": \"\" },\r\n      \"opc\": [ \"pag\", \"par\" ]\r\n    },        \r\n    \"inf\": { \r\n      \"opc\": [ \"des\" ],\r\n\r\n      \"fic\": [ \"ele\", \"ton\" ],\r\n      \"tab\": [ \"hol.kin.cro_ele\", { \"pos\": { \"ima\":\"hol.kin.ide\" } } ],\r\n      \r\n      \"fic-1\": [ \"arm\", \"ond\", \"dim\", \"mat\" ],\r\n\r\n      \"htm-2\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Los <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-16-\'>Kines del Giro Espectral</a> d<cite>el Encantamiento del Sueño</cite>\" },\r\n      \"fic-2\": [ \"kin\" ]\r\n    }\r\n  }'),
-('hol', 'kin_cro_est', '{\r\n    \"atr\": { \r\n      \"ide\": { \"min\":1, \"max\":4, \"dat\":\"hol_kin_cro_est\" },\r\n      \"sel\": { \"min\":1, \"max\":20, \"dat\":\"hol_sel\" },\r\n      \"cas\": { \"min\":1, \"max\":52, \"dat\":\"hol_cas\" },\r\n      \"ele\": { \"dat\":\"hol_kin_cro_ele\" }\r\n    },\r\n    \"val\": { \r\n      \"nom\": \"Espectro Galáctico #()($)ide() de 4: ()($)col() ()($)des_dir().\",\r\n      \"des\": \"Guardían ()($)nom(): ()($)des(), ()($)det()\",\r\n      \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/cas/arm/()($)ide().png);\",\r\n      \"num\": 4,\r\n      \"col\": 4            \r\n    },\r\n    \"opc\": { \r\n      \"ima\": [ \"ide\", \"sel\", \"cas\" ]            \r\n    },\r\n    \"tab\": { \r\n      \"pos\": { \"ima\":\"hol.kin.ide\", \"col\": \"\", \"num\": \"\" },\r\n      \"opc\": [ \"pag\", \"par\" ]\r\n    },\r\n    \"inf\": {\r\n      \"det\": [ \"nom\", \"des\", \"det\" ],\r\n\r\n      \"tab\": [ \"hol.kin.cro_est\", { \r\n        \"pos\": { \"ima\":\"hol.kin.ide\" } \r\n      }],\r\n      \"htm-1\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Las <a target=\'_blank\' href=\'http://localhost/hol/bib/fac#_04-04-02-06-\'>Etapas Evolutivas del Ser Galáctico</a> en <cite>el Factor Maya</cite>\" },\r\n      \"atr-1\": [ \"fac_des\" ],\r\n\r\n      \"htm-2\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Los <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-16-\'>Elementos Galácticos del Giro Espectral</a> en <cite>el Encantamiento del Sueño</cite>\" },\r\n      \"fic-2\": [ \"ele\" ]\r\n    }\r\n  }'),
-('hol', 'kin_cro_est_dia', '{\r\n    \"atr\": { \r\n      \"ide\": { \"min\":1, \"max\":65, \"dat\":\"hol_kin_cro_est_dia\" },\r\n      \"ton\": { \"dat\":\"hol_ton\" },\r\n      \"ond\": { \"dat\":\"hol_ton_ond\" },\r\n      \"dim\": { \"dat\":\"hol_ton_dim\" },\r\n      \"mat\": { \"dat\":\"hol_ton_mat\" },\r\n      \"sim\": { \"dat\":\"hol_ton_sim\" }\r\n    },\r\n    \"val\": { \r\n      \"nom\": \"Día estacional #()($)ide() de 65.\",\r\n      \"des\": \"()($)ond_nom(): ()($)ond_pos(). ()($)ond_pod(): ()($)ond_man().\",\r\n      \"ima\": \"background: center/80% no-repeat url(http://localhost/img/hol/fic/ton/()($)ton().png), center/contain no-repeat url(http://localhost/img/hol/fic/ton.png);\",\r\n      \"num\": 65\r\n    },\r\n    \"inf\": {\r\n      \"fic\": [ \"ton\", \"ond\", \"dim\", \"mat\", \"sim\" ],\r\n      \r\n      \"htm-1\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Los <a target=\'_blank\' href=\'http://localhost/hol/bib/fac#_04-04-02-06-\'>Ciclos del Quemador</a> en <cite>el Factor Maya</cite>\" },\r\n      \"atr-1\": \"fac\",\r\n\r\n      \"htm-2\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"La <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-16-\'>Función del Kin Polar</a> en <cite>el Encantamiento del Sueño</cite>\" },\r\n      \"atr-2\": \"enc\",\r\n\r\n      \"htm-3\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"La <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-11-\'>Aventura de la Onda Encantada</a> en <cite>el Encantamiento del Sueño</cite>\" },\r\n      \"tex-3\": \"()($)ond_nom(): ()($)ond_pos().\\n()($)ond_pod(): ()($)ond_man().\"      \r\n    }\r\n  }'),
-('hol', 'kin_cro_ond', '{\r\n    \"atr\": { \r\n      \"ide\": { \"min\":1, \"max\":4, \"dat\":\"hol_kin_cro_ond\" },\r\n      \"ton\": { \"dat\":\"hol_ton\" }\r\n    },\r\n    \"val\": { \r\n      \"nom\": \"Aventura de la Onda Encantada #()($)ide() de 4: ()($)des().\",\r\n      \"des\": \"Lectura del Factor Maya ()($)fac().\\nLectura del Encantamiento ()($)enc()\\n\",\r\n      \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/ton/ond/()($)ide().png);\",\r\n      \"num\": 4,\r\n      \"col\": 4            \r\n    },\r\n    \"opc\": { \r\n      \"ima\": [ \"ide\", \"ton\" ]            \r\n    }\r\n  }'),
-('hol', 'kin_ene', '{ \r\n    \"atr\": {\r\n      \"ide\": { \"min\":1, \"max\":4, \"dat\":\"hol_kin_ene\" }\r\n    },\r\n    \"val\": { \r\n      \"nom\": \"Grupo #()($)ide() de ()($)nom()\",\r\n      \"des\": \"()($)gru() x ()($)gru_uni() = ()($)uni() unidades\",\r\n      \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/kin/ene/()($)ide().png);\",\r\n      \"col\": 4\r\n    },\r\n    \"inf\": { \r\n      \"det\": [ \"cue\", \"gru\", \"gru_uni\" ],\r\n      \"tab\": [ \"hol.kin.tzo\", { \"pos\": { \"ima\":\"hol.ton.ide\", \"num\":\"hol.kin.ide\", \"col\":\"hol.kin.ene\" } } ]\r\n    }\r\n  }'),
-('hol', 'kin_ene_cam', '{\r\n    \"atr\": {\r\n      \"ide\": { \"min\":1, \"max\":14, \"dat\":\"hol_kin_ene_cam\" }\r\n    },        \r\n    \"val\": { \r\n      \"nom\": \"Campo #()($)ide() de ()($)nom() unidades\",\r\n      \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/kin/ene_cam/()($)ide().png);\"\r\n    }\r\n  }'),
-('hol', 'kin_gen_cel', '{\r\n    \"atr\": {\r\n      \"ide\": { \"min\":1, \"max\":5, \"dat\":\"hol_kin_gen_cel\" }\r\n    },        \r\n    \"val\": { \r\n      \"nom\": \"Célula de la Memoria #()($)ide() de 5: ()($)nom().\",\r\n      \"des\": \"()($)des().\",\r\n      \"num\": 5,\r\n      \"col\": 5            \r\n    }\r\n  }'),
-('hol', 'kin_gen_enc', '{ \r\n    \"atr\": {\r\n      \"ide\": { \"min\":1, \"max\":3, \"dat\":\"hol_kin_gen_enc\" }\r\n    },\r\n    \"val\": { \r\n      \"nom\": \"()($)ide()° Génesis d<cite>el Encantamiento del Sueño</cite>: ()($)nom().\",\r\n      \"des\": \"()($)des().\",\r\n      \"num\": 3,\r\n      \"col\": 3\r\n    }\r\n  }'),
+('hol', 'kin_cro_ele', '{ \r\n    \"atr\": { \r\n      \"ide\": { \"min\":1, \"max\":52, \"dat\":\"hol-kin_cro_ele\" },\r\n      \"ele\": { \"min\":1, \"max\":4, \"dat\":\"hol-sel_cro_ele\" },\r\n      \"est\": { \"min\":1, \"max\":4, \"dat\":\"hol-sel_cro_est\" },\r\n      \"pos_arm\": { \"min\":1, \"max\":4, \"dat\":\"hol-arm\" },\r\n      \"ton\": { \"min\":1, \"max\":13, \"dat\":\"hol-ton\" },\r\n      \"arm\": { \"min\":1, \"max\":4, \"dat\":\"hol-cas_arm\" },\r\n      \"ond\": { \"min\":1, \"max\":4, \"dat\":\"hol-cas_ond\" },\r\n      \"dim\": { \"min\":1, \"max\":4, \"dat\":\"hol-cas_dim\" },\r\n      \"mat\": { \"min\":1, \"max\":5, \"dat\":\"hol-cas_mat\" },\r\n      \"sim\": { \"min\":1, \"max\":7, \"dat\":\"hol-cas_sim\" },      \r\n      \"kin\": { \"dat\":\"hol-kin\" }\r\n    },\r\n    \"val\": { \r\n      \"nom\": \"Elemento Cromático #()($)ide() de 52: ()($)nom().\",\r\n      \"des\": \"()($)des().\",\r\n      \"ima\": \"background: center/75% no-repeat url(http://localhost/img/hol/fic/ton/()($)ton().png), center/contain no-repeat url(http://localhost/img/hol/fic/sel/cro_ele/()($)ele().png);\",\r\n      \"num\": 52,\r\n      \"col\": 4            \r\n    },\r\n    \"tab\": { \r\n      \"sec\": { \"par\":1 },\r\n      \"pos\": { \"ima\":\"hol.kin.ide\", \"col\": \"\", \"num\": \"\" },\r\n      \"opc\": [ \"pag\", \"par\" ]\r\n    },        \r\n    \"inf\": { \r\n      \"opc\": [ \"des\" ],\r\n\r\n      \"fic\": [ \"ele\", \"ton\" ],\r\n      \"tab\": [ \"hol.kin.cro_ele\", { \"pos\": { \"ima\":\"hol.kin.ide\" } } ],\r\n      \r\n      \"fic-1\": [ \"arm\", \"ond\", \"dim\", \"mat\" ],\r\n\r\n      \"htm-2\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Los <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-16-\'>Kines del Giro Espectral</a> d<cite>el Encantamiento del Sueño</cite>\" },\r\n      \"fic-2\": [ \"kin\" ]\r\n    }\r\n  }'),
+('hol', 'kin_cro_est', '{\r\n    \"atr\": { \r\n      \"ide\": { \"min\":1, \"max\":4, \"dat\":\"hol-kin_cro_est\" },\r\n      \"sel\": { \"min\":1, \"max\":20, \"dat\":\"hol-sel\" },\r\n      \"cas\": { \"min\":1, \"max\":52, \"dat\":\"hol-cas\" },\r\n      \"ele\": { \"dat\":\"hol-kin_cro_ele\" }\r\n    },\r\n    \"val\": { \r\n      \"nom\": \"Espectro Galáctico #()($)ide() de 4: ()($)col() ()($)des_dir().\",\r\n      \"des\": \"Guardían ()($)nom(): ()($)des(), ()($)det()\",\r\n      \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/cas/arm/()($)ide().png);\",\r\n      \"num\": 4,\r\n      \"col\": 4            \r\n    },\r\n    \"opc\": { \r\n      \"ima\": [ \"ide\", \"sel\", \"cas\" ]            \r\n    },\r\n    \"tab\": { \r\n      \"pos\": { \"ima\":\"hol.kin.ide\", \"col\": \"\", \"num\": \"\" },\r\n      \"opc\": [ \"pag\", \"par\" ]\r\n    },\r\n    \"inf\": {\r\n      \"det\": [ \"nom\", \"des\", \"det\" ],\r\n\r\n      \"tab\": [ \"hol.kin.cro_est\", { \r\n        \"pos\": { \"ima\":\"hol.kin.ide\" } \r\n      }],\r\n      \"htm-1\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Las <a target=\'_blank\' href=\'http://localhost/hol/bib/fac#_04-04-02-06-\'>Etapas Evolutivas del Ser Galáctico</a> en <cite>el Factor Maya</cite>\" },\r\n      \"atr-1\": [ \"fac_des\" ],\r\n\r\n      \"htm-2\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Los <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-16-\'>Elementos Galácticos del Giro Espectral</a> en <cite>el Encantamiento del Sueño</cite>\" },\r\n      \"fic-2\": [ \"ele\" ]\r\n    }\r\n  }'),
+('hol', 'kin_cro_est_dia', '{\r\n    \"atr\": { \r\n      \"ide\": { \"min\":1, \"max\":65, \"dat\":\"hol-kin_cro_est_dia\" },\r\n      \"ton\": { \"dat\":\"hol-ton\" },\r\n      \"ond\": { \"dat\":\"hol-ton_ond\" },\r\n      \"dim\": { \"dat\":\"hol-ton_dim\" },\r\n      \"mat\": { \"dat\":\"hol-ton_mat\" },\r\n      \"sim\": { \"dat\":\"hol-ton_sim\" }\r\n    },\r\n    \"val\": { \r\n      \"nom\": \"Día estacional #()($)ide() de 65.\",\r\n      \"des\": \"()($)ond_nom(): ()($)ond_pos(). ()($)ond_pod(): ()($)ond_man().\",\r\n      \"ima\": \"background: center/80% no-repeat url(http://localhost/img/hol/fic/ton/()($)ton().png), center/contain no-repeat url(http://localhost/img/hol/fic/ton.png);\",\r\n      \"num\": 65\r\n    },\r\n    \"inf\": {\r\n      \"fic\": [ \"ton\", \"ond\", \"dim\", \"mat\", \"sim\" ],\r\n      \r\n      \"htm-1\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Los <a target=\'_blank\' href=\'http://localhost/hol/bib/fac#_04-04-02-06-\'>Ciclos del Quemador</a> en <cite>el Factor Maya</cite>\" },\r\n      \"atr-1\": \"fac\",\r\n\r\n      \"htm-2\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"La <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-16-\'>Función del Kin Polar</a> en <cite>el Encantamiento del Sueño</cite>\" },\r\n      \"atr-2\": \"enc\",\r\n\r\n      \"htm-3\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"La <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-11-\'>Aventura de la Onda Encantada</a> en <cite>el Encantamiento del Sueño</cite>\" },\r\n      \"tex-3\": \"()($)ond_nom(): ()($)ond_pos().\\n()($)ond_pod(): ()($)ond_man().\"      \r\n    }\r\n  }'),
+('hol', 'kin_cro_ond', '{\r\n    \"atr\": { \r\n      \"ide\": { \"min\":1, \"max\":4, \"dat\":\"hol-kin_cro_ond\" },\r\n      \"ton\": { \"dat\":\"hol-ton\" }\r\n    },\r\n    \"val\": { \r\n      \"nom\": \"Aventura de la Onda Encantada #()($)ide() de 4: ()($)des().\",\r\n      \"des\": \"Lectura del Factor Maya ()($)fac().\\nLectura del Encantamiento ()($)enc()\\n\",\r\n      \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/ton/ond/()($)ide().png);\",\r\n      \"num\": 4,\r\n      \"col\": 4            \r\n    },\r\n    \"opc\": { \r\n      \"ima\": [ \"ide\", \"ton\" ]            \r\n    }\r\n  }'),
+('hol', 'kin_ene', '{ \r\n    \"atr\": {\r\n      \"ide\": { \"min\":1, \"max\":4, \"dat\":\"hol-kin_ene\" }\r\n    },\r\n    \"val\": { \r\n      \"nom\": \"Grupo #()($)ide() de ()($)nom()\",\r\n      \"des\": \"()($)gru() x ()($)gru_uni() = ()($)uni() unidades\",\r\n      \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/kin/ene/()($)ide().png);\",\r\n      \"col\": 4\r\n    },\r\n    \"inf\": { \r\n      \"det\": [ \"cue\", \"gru\", \"gru_uni\" ],\r\n      \"tab\": [ \"hol.kin.tzo\", { \"pos\": { \"ima\":\"hol.ton.ide\", \"num\":\"hol.kin.ide\", \"col\":\"hol.kin.ene\" } } ]\r\n    }\r\n  }'),
+('hol', 'kin_ene_cam', '{\r\n    \"atr\": {\r\n      \"ide\": { \"min\":1, \"max\":14, \"dat\":\"hol-kin_ene_cam\" }\r\n    },        \r\n    \"val\": { \r\n      \"nom\": \"Campo #()($)ide() de ()($)nom() unidades\",\r\n      \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/kin/ene_cam/()($)ide().png);\"\r\n    }\r\n  }'),
+('hol', 'kin_gen_cel', '{\r\n    \"atr\": {\r\n      \"ide\": { \"min\":1, \"max\":5, \"dat\":\"hol-kin_gen_cel\" }\r\n    },        \r\n    \"val\": { \r\n      \"nom\": \"Célula de la Memoria #()($)ide() de 5: ()($)nom().\",\r\n      \"des\": \"()($)des().\",\r\n      \"num\": 5,\r\n      \"col\": 5            \r\n    }\r\n  }'),
+('hol', 'kin_gen_enc', '{ \r\n    \"atr\": {\r\n      \"ide\": { \"min\":1, \"max\":3, \"dat\":\"hol-kin_gen_enc\" }\r\n    },\r\n    \"val\": { \r\n      \"nom\": \"()($)ide()° Génesis d<cite>el Encantamiento del Sueño</cite>: ()($)nom().\",\r\n      \"des\": \"()($)des().\",\r\n      \"num\": 3,\r\n      \"col\": 3\r\n    }\r\n  }'),
 ('hol', 'kin_nav', '{\r\n    \"tab\": { \r\n      \"sec\": { \"cas-pos\":1, \"cas-bor\": 0, \"cas-col\": 1, \"cas-orb\": 0, \"ton-col\":0 },\r\n      \"pos\": { \"ima\": \"hol.kin.ide\", \"col\": \"\", \"num\": \"\" },\r\n      \"opc\": [ \"par\", \"dim\", \"mat\", \"sim\" ]          \r\n    }\r\n  }'),
-('hol', 'kin_nav_cas', '{ \r\n    \"atr\": { \r\n      \"ide\": { \"min\":1, \"max\":5, \"dat\":\"hol_kin_nav_cas\" },\r\n      \"nav_ond\": { \"dat\":\"hol_kin_nav_ond\" }\r\n    },\r\n    \"val\": { \r\n      \"nom\": \"Castillo #()($)ide() de 5: ()($)nom().\",\r\n      \"des\": \"()($)des()\",\r\n      \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/kin/nav_cas/()($)ide().png);\",\r\n      \"num\": 5,\r\n      \"col\": 5            \r\n    },\r\n    \"tab\": {\r\n      \"sec\": { \"par\":1, \"cas-pos\":1, \"cas-col\": 1, \"cas-orb\": 0, \"ton-col\":0 },\r\n      \"pos\": { \"ima\":\"hol.kin.ide\", \"col\": \"\", \"num\": \"\" },\r\n      \"opc\": [ \"pag\", \"par\", \"dim\", \"mat\", \"sim\" ]\r\n    },        \r\n    \"inf\": {\r\n      \"det\": [ \"des_cor\", \"des_pod\", \"des_acc\", \"des_mis\" ],\r\n\r\n      \"tab\": [ \"hol.kin.nav_cas\", { \r\n        \"pos\": { \"ima\":\"hol.kin.ide\" } \r\n      }],\r\n      \"htm\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Los <a target=\'_blank\' href=\'http://localhost//hol/bib/enc#_03-06-\'>Castillos de la Nave del Tiempo</a> en <cite>el Encantamiento del Sueño</cite>\" },\r\n      \"atr\": [ \"des\" ],\r\n      \"fic\": [ \"nav_ond\" ]\r\n    }\r\n  }'),
-('hol', 'kin_nav_ond', '{\r\n    \"atr\": {\r\n      \"ide\": { \"min\":1, \"max\":20, \"dat\":\"hol_kin_nav_ond\" },\r\n      \"kin_lis\": { \"dat\":\"hol_kin\" }\r\n    },\r\n    \"val\": { \r\n      \"nom\": \"Onda Encantada #()($)ide() de 20: ()($)nom().\",\r\n      \"des\": \"()($)enc_des()\", \r\n      \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/ton/arm/()($)cas_arm().png), center/contain no-repeat url(http://localhost/img/hol/fic/sel/()($)sel().png);\",\r\n      \"num\": 20,\r\n      \"col\": 4\r\n    },\r\n    \"tab\": { \r\n      \"sec\": { \"par\":1 },\r\n      \"pos\": { \"ima\":\"hol.kin.ide\", \"col\": \"\", \"num\": \"\" },\r\n      \"opc\": [ \"pag\", \"par\", \"dim\", \"mat\", \"sim\" ]\r\n    },\r\n    \"inf\": {\r\n      \"det\": [ \"fac\", \"enc\" ],\r\n      \"tab\": [ \"hol.kin.nav_ond\", { \r\n        \"pos\": { \"ima\":\"hol.kin.ide\", \"pul\":[ \"dim\",\"mat\",\"sim\"] }\r\n      }],\r\n\r\n      \"htm-1\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Los <a target=\'_blank\' href=\'http://localhost//hol/bib/fac#_05-07-01-\'>Ciclos Ahau</a> en el Factor Maya\" },\r\n      \"atr-1\": [ \"fac_des\" ],\r\n\r\n      \"htm-2\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Las <a target=\'_blank\' href=\'http://localhost//hol/bib/enc#_03-06-\'>Ondas Encantadas de la Nave del Tiempo</a> en <cite>el Encantamiento del Sueño</cite>\" },\r\n      \"atr-2\": [ \"enc_des\" ],\r\n      \"fic-2\": [ \"kin_lis\" ]\r\n    }\r\n  }'),
+('hol', 'kin_nav_cas', '{ \r\n    \"atr\": { \r\n      \"ide\": { \"min\":1, \"max\":5, \"dat\":\"hol-kin_nav_cas\" },\r\n      \"nav_ond\": { \"dat\":\"hol-kin_nav_ond\" }\r\n    },\r\n    \"val\": { \r\n      \"nom\": \"Castillo #()($)ide() de 5: ()($)nom().\",\r\n      \"des\": \"()($)des()\",\r\n      \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/kin/nav_cas/()($)ide().png);\",\r\n      \"num\": 5,\r\n      \"col\": 5            \r\n    },\r\n    \"tab\": {\r\n      \"sec\": { \"par\":1, \"cas-pos\":1, \"cas-col\": 1, \"cas-orb\": 0, \"ton-col\":0 },\r\n      \"pos\": { \"ima\":\"hol.kin.ide\", \"col\": \"\", \"num\": \"\" },\r\n      \"opc\": [ \"pag\", \"par\", \"dim\", \"mat\", \"sim\" ]\r\n    },        \r\n    \"inf\": {\r\n      \"det\": [ \"des_cor\", \"des_pod\", \"des_acc\", \"des_mis\" ],\r\n\r\n      \"tab\": [ \"hol.kin.nav_cas\", { \r\n        \"pos\": { \"ima\":\"hol.kin.ide\" } \r\n      }],\r\n      \"htm\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Los <a target=\'_blank\' href=\'http://localhost//hol/bib/enc#_03-06-\'>Castillos de la Nave del Tiempo</a> en <cite>el Encantamiento del Sueño</cite>\" },\r\n      \"atr\": [ \"des\" ],\r\n      \"fic\": [ \"nav_ond\" ]\r\n    }\r\n  }'),
+('hol', 'kin_nav_ond', '{\r\n    \"atr\": {\r\n      \"ide\": { \"min\":1, \"max\":20, \"dat\":\"hol-kin_nav_ond\" },\r\n      \"kin_lis\": { \"dat\":\"hol-kin\" }\r\n    },\r\n    \"val\": { \r\n      \"nom\": \"Onda Encantada #()($)ide() de 20: ()($)nom().\",\r\n      \"des\": \"()($)enc_des()\", \r\n      \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/ton/arm/()($)cas_arm().png), center/contain no-repeat url(http://localhost/img/hol/fic/sel/()($)sel().png);\",\r\n      \"num\": 20,\r\n      \"col\": 4\r\n    },\r\n    \"tab\": { \r\n      \"sec\": { \"par\":1 },\r\n      \"pos\": { \"ima\":\"hol.kin.ide\", \"col\": \"\", \"num\": \"\" },\r\n      \"opc\": [ \"pag\", \"par\", \"dim\", \"mat\", \"sim\" ]\r\n    },\r\n    \"inf\": {\r\n      \"det\": [ \"fac\", \"enc\" ],\r\n      \"tab\": [ \"hol.kin.nav_ond\", { \r\n        \"pos\": { \"ima\":\"hol.kin.ide\", \"pul\":[ \"dim\",\"mat\",\"sim\"] }\r\n      }],\r\n\r\n      \"htm-1\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Los <a target=\'_blank\' href=\'http://localhost//hol/bib/fac#_05-07-01-\'>Ciclos Ahau</a> en el Factor Maya\" },\r\n      \"atr-1\": [ \"fac_des\" ],\r\n\r\n      \"htm-2\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Las <a target=\'_blank\' href=\'http://localhost//hol/bib/enc#_03-06-\'>Ondas Encantadas de la Nave del Tiempo</a> en <cite>el Encantamiento del Sueño</cite>\" },\r\n      \"atr-2\": [ \"enc_des\" ],\r\n      \"fic-2\": [ \"kin_lis\" ]\r\n    }\r\n  }'),
 ('hol', 'kin_par', '{\r\n    \"val\": {\r\n      \"nom\": \"Kin #()($)ide() de 260: ()($)nom().\",\r\n      \"des\": \"()($)des()\",\r\n      \"ima\": [ \"hol.kin.par\", { \"pos\":{ \"ima\":\"hol.kin.ide\" } } ]\r\n    },\r\n    \"tab\": {\r\n      \"pos\": { \"ima\":\"hol.kin.ide\", \"col\": \"\", \"num\": \"\", \"tex\":\"\" },\r\n      \"opc\": [ \"pag\", \"par\" ]\r\n    }\r\n  }'),
 ('hol', 'kin_tzo', '{\r\n    \"tab\": { \r\n      \"sec\": { \"kin-sel\": 1, \"kin-ton\": 0 },\r\n      \"pos\": { \"ima\": \"hol.ton.ide\", \"col\": \"\", \"num\": \"hol.kin.ide\" }, \r\n      \"opc\": [ \"pag\", \"par\" ],\r\n      \"pag\": { \"kin\": 1 }\r\n    }\r\n  }'),
-('hol', 'lun', '{  \r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":28, \"dat\":\"hol_lun\" },\r\n        \"sel\": { \"min\":1, \"max\":20, \"dat\":\"hol_sel\" },        \r\n        \"fas\": { \"min\":1, \"max\":3, \"dat\":\"hol_lun_fas\" },\r\n        \"cub\": { \"min\":0, \"max\":16, \"dat\":\"hol_lun_cub\" },\r\n        \"arm\": { \"min\":1, \"max\":4, \"dat\":\"hol_lun_arm\" },        \r\n        \"rad\": { \"min\":1, \"max\":7, \"dat\":\"hol_rad\" }        \r\n      },\r\n      \"val\": { \r\n        \"nom\": \"Día Lunar #()($)ide() de 28\",\r\n        \"des\": \"()($)ato_des()\",\r\n        \"ima\": \"background: center/60% no-repeat url(http://localhost/img/hol/fic/rad/()($)rad().png), center/contain no-repeat url(http://localhost/img/hol/fic/rad.png), center/contain no-repeat url(http://localhost/img/hol/fic/arm/()($)arm().png);\",\r\n        \"col\": 4,\r\n        \"num\": 28\r\n      },\r\n      \"opc\": { \r\n        \"ver\": [ \r\n          \"ide\", \"arm\", \"rad\"\r\n        ],\r\n        \"ima\": [\r\n          \"ide\", \"arm\", \"rad\"\r\n        ],\r\n        \"col\": [\r\n          \"ide\", \"arm\"\r\n        ],\r\n        \"num\": [ \r\n          \"ide\", \"arm\", \"rad\"\r\n        ]\r\n      },\r\n      \"lis\": {\r\n        \"atr\": [ \"ide\", \"arm\", \"rad\" ],        \r\n        \"tit_cic\": [ \"arm\" ]\r\n      },\r\n      \"inf\": {\r\n        \"fic\": [ \"arm\", \"rad\" ],\r\n        \"tab\": [ \"hol.lun.pla\", { \"val\":{ \"pos\":\"()($)ide()\" } } ]\r\n      }\r\n  }'),
-('hol', 'lun_arm', '{  \r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":4, \"dat\":\"hol_lun_arm\" },\r\n        \"dia\": { \"min\":1, \"max\":4, \"dat\":\"hol_lun\" }\r\n      },\r\n      \"val\": { \r\n        \"nom\": \"Armonía lunar #()($)ide() de 4: Héptada ()($)des_col().\",\r\n        \"des\": \"()($)des(). ()($)nom(). Días ()($)dia()\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/rad.png), center/contain no-repeat url(http://localhost/img/hol/fic/arm/()($)ide().png);\",\r\n        \"col\": 4,\r\n        \"num\": 4\r\n      },\r\n      \"opc\": { \r\n        \"ima\": [\r\n          \"ide\"\r\n        ]            \r\n      },\r\n      \"inf\": {\r\n        \"opc\": [ \"des\" ],\r\n        \"det\": [ \"des_col\", \"des_pod\", \"des_pol\" ],\r\n        \"fic\": [ \"dia\" ]\r\n      }\r\n  }'),
-('hol', 'lun_pla_ato', '{\r\n    \"atr\": { \r\n      \"ide\": { \"min\":1, \"max\":4, \"dat\":\"hol_lun_pla_ato\" }\r\n    },\r\n    \"val\": { \r\n      \"nom\": \"Atomo del Tiempo #()($)ide() de 4. ()($)nom()\",\r\n      \"des\": \"()($)des()\",\r\n      \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/lun/pla_ato/()($)ide().png);\",\r\n      \"col\": 4,\r\n      \"num\": 4\r\n    }\r\n  }'),
-('hol', 'lun_pla_tet', '{\r\n    \"atr\": { \r\n      \"ide\": { \"min\":1, \"max\":2, \"dat\":\"hol_lun_pla_tet\" }\r\n    },      \r\n    \"val\": { \r\n      \"nom\": \"Tetraedro #()($)ide() de 2. ()($)nom()\",\r\n      \"des\": \"()($)des()\",\r\n      \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/lun/pla_tet/()($)ide().png);\",\r\n      \"col\": 2,\r\n      \"num\": 2\r\n    }\r\n  }'),
-('hol', 'lun_tel_cam', '{  \r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":8, \"dat\":\"hol_lun_tel_cam\" }\r\n      }\r\n  }'),
-('hol', 'lun_tel_cub', '{  \r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":16, \"dat\":\"hol_lun_tel_cub\" }\r\n      }\r\n  }'),
-('hol', 'lun_tel_tor', '{  \r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":4, \"dat\":\"hol_lun_tel_tor\" }\r\n      }\r\n  }'),
-('hol', 'psi', '{\r\n    \"atr\": { \r\n      \"ide\": { \"min\":1, \"max\":365, \"dat\":\"hol_psi\" },\r\n      \"kin\": { \"min\":1, \"max\":260, \"dat\":\"hol_kin\" },\r\n      \"ani_lun\": { \"min\":1, \"max\":13, \"dat\":\"hol_psi_ani_lun\" },\r\n      \"ani_lun_dia\": { \"min\":1, \"max\":28, \"dat\":\"hol_lun\" },\r\n      \"ani_vin\": { \"min\":1, \"max\":19, \"dat\":\"hol_psi_ani_vin\" },\r\n      \"ani_vin_dia\": { \"min\":1, \"max\":20 },\r\n      \"ani_cro\": { \"min\":1, \"max\":75, \"dat\":\"hol_psi_ani_cro\" },\r\n      \"ani_cro_dia\": { \"min\":1, \"max\":5 },        \r\n      \"hep_est\": { \"min\":1, \"max\":4, \"dat\":\"hol_psi_hep_est\" },\r\n      \"hep_est_dia\": { \"min\":1, \"max\":91 },\r\n      \"hep_pla\": { \"min\":1, \"max\":52, \"dat\":\"hol_psi_hep_pla\" },\r\n      \"hep_pla_dia\": { \"min\":1, \"max\":7, \"dat\":\"hol_rad\" }\r\n    },\r\n    \"rel\": { \r\n      \"ide\": \"hol_psi\",\r\n      \"ani_lun_dia\": \"hol_lun\",\r\n      \"hep_pla_dia\": \"hol_rad\"\r\n    },\r\n    \"val\": { \r\n      \"nom\": \"Psi-Crono #()($)ide() de 365, correspondiente al ()($)fec().\",\r\n      \"des\": \"- Kin: ()($)kin().\\n- Estación Solar #()($)hep_est() de 4, día ()($)hep_est_dia().\\n- Giro Lunar #()($)ani_lun() de 13, día ()($)ani_lun_dia() de 28.\\n- Héptada #()($)hep_pla() de 52, día ()($)hep_pla_dia() de 7.\",\r\n      \"ima\": \"background: top/50% no-repeat url(http://localhost/img/hol/fic/ton/()($)kin_ton().png), bottom/60% no-repeat url(http://localhost/img/hol/fic/sel/()($)kin_sel().png);\",\r\n      \"num\": 365\r\n    },\r\n    \"opc\": { \r\n      \"ver\": [\r\n        \"kin\",\r\n        \"ani_lun\", \"ani_vin\",\r\n        \"hep_est\", \"hep_pla\"\r\n      ],\r\n      \"ima\": [\r\n        \"kin\",\r\n        \"ani_lun\", \r\n        \"hep_est\", \"hep_pla\"\r\n      ],\r\n      \"col\": [\r\n        \"ani_lun\", \"hep_est\"\r\n      ],\r\n      \"num\": [ \r\n        \"ide\", \"fec\", \"kin\",           \r\n        \"ani_lun\", \"ani_lun_dia\", \r\n        \"ani_vin\", \"ani_vin_dia\",  \r\n        \"ani_cro\", \"ani_cro_dia\",\r\n        \"hep_est\", \"hep_est_dia\",\r\n        \"hep_pla\", \"hep_pla_dia\"          \r\n      ],\r\n      \"tex\": [\r\n      ]                  \r\n    },\r\n    \"lis\": { \r\n      \"atr\": [ \"ide\", \"kin\", \"hep_est\", \"hep_est_dia\", \"ani_lun\", \"ani_lun_dia\", \"hep_pla\", \"hep_pla_dia\" ],\r\n      \"atr_ocu\": [ \"hep_est_dia\", \"ani_lun_dia\" ],\r\n      \"tit_cic\": [ \"hep_est\", \"ani_lun\", \"ani_vin\", \"hep_pla\" ]\r\n    },\r\n    \"pos\": {\r\n      \"lun\": { \r\n        \"nom\": \"Giro Lunar\",\r\n        \"ide\": \"hol.psi\", \"atr\": [ \"ani_lun\", \"ani_lun_dia\" ] \r\n      },\r\n      \"est\": { \r\n        \"nom\": \"Estación Solar\",  \r\n        \"ide\": \"hol.psi\", \"atr\": [ \"hep_est\", \"hep_est_dia\" ] \r\n      },\r\n      \"hep\": { \r\n        \"nom\": \"Héptada Semanal\",   \r\n        \"ide\": \"hol.psi\", \"atr\": [ \"hep_pla\", \"hep_pla_dia\" ] \r\n      }\r\n    },\r\n    \"fic\": [ \r\n      \"kin\", [ \"hep_est\", \"ani_lun\", \"hep_pla\" ] \r\n    ],\r\n    \"inf\": {\r\n      \r\n    }\r\n  }'),
+('hol', 'lun', '{  \r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":28, \"dat\":\"hol-lun\" },\r\n        \"sel\": { \"min\":1, \"max\":20, \"dat\":\"hol-sel\" },        \r\n        \"fas\": { \"min\":1, \"max\":3, \"dat\":\"hol-lun_fas\" },\r\n        \"cub\": { \"min\":0, \"max\":16, \"dat\":\"hol-lun_cub\" },\r\n        \"arm\": { \"min\":1, \"max\":4, \"dat\":\"hol-lun_arm\" },        \r\n        \"rad\": { \"min\":1, \"max\":7, \"dat\":\"hol-rad\" }        \r\n      },\r\n      \"val\": { \r\n        \"nom\": \"Día Lunar #()($)ide() de 28\",\r\n        \"des\": \"()($)ato_des()\",\r\n        \"ima\": \"background: center/60% no-repeat url(http://localhost/img/hol/fic/rad/()($)rad().png), center/contain no-repeat url(http://localhost/img/hol/fic/rad.png), center/contain no-repeat url(http://localhost/img/hol/fic/arm/()($)arm().png);\",\r\n        \"col\": 4,\r\n        \"num\": 28\r\n      },\r\n      \"opc\": { \r\n        \"ver\": [ \r\n          \"ide\", \"arm\", \"rad\"\r\n        ],\r\n        \"ima\": [\r\n          \"ide\", \"arm\", \"rad\"\r\n        ],\r\n        \"col\": [\r\n          \"ide\", \"arm\"\r\n        ],\r\n        \"num\": [ \r\n          \"ide\", \"arm\", \"rad\"\r\n        ]\r\n      },\r\n      \"lis\": {\r\n        \"atr\": [ \"ide\", \"arm\", \"rad\" ],        \r\n        \"tit_cic\": [ \"arm\" ]\r\n      },\r\n      \"inf\": {\r\n        \"fic\": [ \"arm\", \"rad\" ],\r\n        \"tab\": [ \"hol.lun.pla\", { \"val\":{ \"pos\":\"()($)ide()\" } } ]\r\n      }\r\n  }'),
+('hol', 'lun_arm', '{  \r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":4, \"dat\":\"hol-lun_arm\" },\r\n        \"dia\": { \"min\":1, \"max\":4, \"dat\":\"hol-lun\" }\r\n      },\r\n      \"val\": { \r\n        \"nom\": \"Armonía lunar #()($)ide() de 4: Héptada ()($)des_col().\",\r\n        \"des\": \"()($)des(). ()($)nom(). Días ()($)dia()\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/rad.png), center/contain no-repeat url(http://localhost/img/hol/fic/arm/()($)ide().png);\",\r\n        \"col\": 4,\r\n        \"num\": 4\r\n      },\r\n      \"opc\": { \r\n        \"ima\": [\r\n          \"ide\"\r\n        ]            \r\n      },\r\n      \"inf\": {\r\n        \"opc\": [ \"des\" ],\r\n        \"det\": [ \"des_col\", \"des_pod\", \"des_pol\" ],\r\n        \"fic\": [ \"dia\" ]\r\n      }\r\n  }'),
+('hol', 'lun_pla_ato', '{\r\n    \"atr\": { \r\n      \"ide\": { \"min\":1, \"max\":4, \"dat\":\"hol-lun_pla_ato\" }\r\n    },\r\n    \"val\": { \r\n      \"nom\": \"Atomo del Tiempo #()($)ide() de 4. ()($)nom()\",\r\n      \"des\": \"()($)des()\",\r\n      \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/lun/pla_ato/()($)ide().png);\",\r\n      \"col\": 4,\r\n      \"num\": 4\r\n    }\r\n  }'),
+('hol', 'lun_pla_tet', '{\r\n    \"atr\": { \r\n      \"ide\": { \"min\":1, \"max\":2, \"dat\":\"hol-lun_pla_tet\" }\r\n    },      \r\n    \"val\": { \r\n      \"nom\": \"Tetraedro #()($)ide() de 2. ()($)nom()\",\r\n      \"des\": \"()($)des()\",\r\n      \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/lun/pla_tet/()($)ide().png);\",\r\n      \"col\": 2,\r\n      \"num\": 2\r\n    }\r\n  }'),
+('hol', 'lun_tel_cam', '{  \r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":8, \"dat\":\"hol-lun_tel_cam\" }\r\n      }\r\n  }'),
+('hol', 'lun_tel_cub', '{  \r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":16, \"dat\":\"hol-lun_tel_cub\" }\r\n      }\r\n  }'),
+('hol', 'lun_tel_tor', '{  \r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":4, \"dat\":\"hol-lun_tel_tor\" }\r\n      }\r\n  }'),
+('hol', 'psi', '{\r\n    \"atr\": { \r\n      \"ide\": { \"min\":1, \"max\":365, \"dat\":\"hol-psi\" },\r\n      \"kin\": { \"min\":1, \"max\":260, \"dat\":\"hol-kin\" },\r\n      \"ani_lun\": { \"min\":1, \"max\":13, \"dat\":\"hol-psi_ani_lun\" },\r\n      \"ani_lun_dia\": { \"min\":1, \"max\":28, \"dat\":\"hol-lun\" },\r\n      \"ani_vin\": { \"min\":1, \"max\":19, \"dat\":\"hol-psi_ani_vin\" },\r\n      \"ani_vin_dia\": { \"min\":1, \"max\":20 },\r\n      \"ani_cro\": { \"min\":1, \"max\":75, \"dat\":\"hol-psi_ani_cro\" },\r\n      \"ani_cro_dia\": { \"min\":1, \"max\":5 },        \r\n      \"hep_est\": { \"min\":1, \"max\":4, \"dat\":\"hol-psi_hep_est\" },\r\n      \"hep_est_dia\": { \"min\":1, \"max\":91 },\r\n      \"hep_pla\": { \"min\":1, \"max\":52, \"dat\":\"hol-psi_hep_pla\" },\r\n      \"hep_pla_dia\": { \"min\":1, \"max\":7, \"dat\":\"hol-rad\" }\r\n    },\r\n    \"rel\": { \r\n      \"ide\": \"hol-psi\",\r\n      \"ani_lun_dia\": \"hol-lun\",\r\n      \"hep_pla_dia\": \"hol-rad\"\r\n    },\r\n    \"val\": { \r\n      \"nom\": \"Psi-Crono #()($)ide() de 365, correspondiente al ()($)fec().\",\r\n      \"des\": \"- Kin: ()($)kin().\\n- Estación Solar #()($)hep_est() de 4, día ()($)hep_est_dia().\\n- Giro Lunar #()($)ani_lun() de 13, día ()($)ani_lun_dia() de 28.\\n- Héptada #()($)hep_pla() de 52, día ()($)hep_pla_dia() de 7.\",\r\n      \"ima\": \"background: top/50% no-repeat url(http://localhost/img/hol/fic/ton/()($)kin_ton().png), bottom/60% no-repeat url(http://localhost/img/hol/fic/sel/()($)kin_sel().png);\",\r\n      \"num\": 365\r\n    },\r\n    \"opc\": { \r\n      \"ver\": [\r\n        \"kin\",\r\n        \"ani_lun\", \"ani_vin\",\r\n        \"hep_est\", \"hep_pla\"\r\n      ],\r\n      \"ima\": [\r\n        \"kin\",\r\n        \"ani_lun\", \r\n        \"hep_est\", \"hep_pla\"\r\n      ],\r\n      \"col\": [\r\n        \"ani_lun\", \"hep_est\"\r\n      ],\r\n      \"num\": [ \r\n        \"ide\", \"fec\", \"kin\",           \r\n        \"ani_lun\", \"ani_lun_dia\", \r\n        \"ani_vin\", \"ani_vin_dia\",  \r\n        \"ani_cro\", \"ani_cro_dia\",\r\n        \"hep_est\", \"hep_est_dia\",\r\n        \"hep_pla\", \"hep_pla_dia\"          \r\n      ],\r\n      \"tex\": [\r\n      ]                  \r\n    },\r\n    \"lis\": { \r\n      \"atr\": [ \"ide\", \"kin\", \"hep_est\", \"hep_est_dia\", \"ani_lun\", \"ani_lun_dia\", \"hep_pla\", \"hep_pla_dia\" ],\r\n      \"atr_ocu\": [ \"hep_est_dia\", \"ani_lun_dia\" ],\r\n      \"tit_cic\": [ \"hep_est\", \"ani_lun\", \"ani_vin\", \"hep_pla\" ]\r\n    },\r\n    \"pos\": {\r\n      \"lun\": { \r\n        \"nom\": \"Giro Lunar\",\r\n        \"ide\": \"hol.psi\", \"atr\": [ \"ani_lun\", \"ani_lun_dia\" ] \r\n      },\r\n      \"est\": { \r\n        \"nom\": \"Estación Solar\",  \r\n        \"ide\": \"hol.psi\", \"atr\": [ \"hep_est\", \"hep_est_dia\" ] \r\n      },\r\n      \"hep\": { \r\n        \"nom\": \"Héptada Semanal\",   \r\n        \"ide\": \"hol.psi\", \"atr\": [ \"hep_pla\", \"hep_pla_dia\" ] \r\n      }\r\n    },\r\n    \"fic\": [ \r\n      \"kin\", [ \"hep_est\", \"ani_lun\", \"hep_pla\" ] \r\n    ],\r\n    \"inf\": {\r\n      \r\n    }\r\n  }'),
 ('hol', 'psi_ani', '{\r\n    \"tab\": { \r\n      \"sec\": { \"lun-cab\":1, \"lun-hep\":1 },\r\n      \"pos\": { \"ima\": \"hol.kin.ide\", \"col\": \"\", \"num\": \"\" },\r\n      \"opc\": [ \"pag\", \"par\", \"dim\", \"mat\", \"sim\" ]          \r\n    }\r\n  }'),
-('hol', 'psi_ani_cro', '{\r\n    \"atr\": { \r\n      \"ide\": { \"min\":1, \"max\":75, \"dat\":\"hol_psi_cro\" }\r\n    },\r\n    \"val\": { \r\n      \"nom\": \"Cromática Entonada #()($)ide() de 75.\",\r\n      \"num\": 75\r\n    }\r\n  }'),
-('hol', 'psi_ani_lun', '{\r\n    \"atr\": { \r\n      \"ide\": { \"min\":1, \"max\":13, \"dat\":\"hol_psi_lun\" },\r\n      \"ond\": { \"min\":1, \"max\":4, \"dat\":\"hol_ton_ond\" }\r\n    },\r\n    \"val\": { \r\n      \"nom\": \"Luna #()($)ide() de 13: ()($)nom().\",\r\n      \"des\": \"()($)ton_des() del Giro Solar Anual; Totem ()($)tot(): ()($)tot_pro().\",\r\n      \"ima\": \"background: url(http://localhost/img/hol/fic/psi/lun/()($)ide().png) center/contain no-repeat;\",\r\n      \"num\": 13,\r\n      \"col\": 7\r\n    },\r\n    \"opc\": { \r\n      \"ima\": [\r\n        \"ide\"\r\n      ]            \r\n    },\r\n    \"tab\": { \r\n      \"sec\": { \"par\":1, \"lun-cab\":1, \"lun-hep\":1, \"lun-rad\": 1 },\r\n      \"pos\": { \"ima\": \"hol.kin.ide\", \"col\": \"\", \"num\": \"\" },\r\n      \"opc\": [ \"pul\", \"par\" ]          \r\n    },\r\n    \"inf\": {\r\n      \"det\":[ \"ton_nom\", \"ton_des\", \"fec_ran\" ],\r\n\r\n      \"tab\": [ \"hol.psi.ani_lun_tot\", { \r\n        \"val\": { \"pos\":\"()($)ide()\" },\r\n        \"pos\": { \"pul\":[\"dim\",\"mat\",\"sim\"] }\r\n      }],\r\n\r\n      \"htm-1\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"La <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-11-\'>Aventura de la Onda Encantada</a> en el <cite>Encantamiento del Sueño</cite>\" },\r\n      \"tex-1\": \"()($)ond_nom(): ()($)ond_pos().\\n()($)ond_pod(): ()($)ond_man().\",\r\n\r\n      \"htm-2\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"El <a target=\'_blank\' href=\'http://localhost/hol/bib/lun#_02-07-01-\'>Totem Animal</a> en <cite>Las <n>13</n> Lunas en Movimiento</cite>\" },      \r\n      \"atr-2\": [ \"tot_nom\", \"tot_pro\", \"tot_por\" ]\r\n\r\n    }\r\n  }'),
-('hol', 'psi_ani_vin', '{\r\n    \"atr\": { \r\n      \"ide\": { \"min\":1, \"max\":18, \"dat\":\"hol_psi_vin\" }\r\n    },      \r\n    \"val\": { \r\n      \"nom\": \"Vinal #()($)ide() de 19: ()($)nom().\",\r\n      \"des\": \"()($)des().\",\r\n      \"num\": 19\r\n    }\r\n  }'),
+('hol', 'psi_ani_cro', '{\r\n    \"atr\": { \r\n      \"ide\": { \"min\":1, \"max\":75, \"dat\":\"hol-psi_cro\" }\r\n    },\r\n    \"val\": { \r\n      \"nom\": \"Cromática Entonada #()($)ide() de 75.\",\r\n      \"num\": 75\r\n    }\r\n  }'),
+('hol', 'psi_ani_lun', '{\r\n    \"atr\": { \r\n      \"ide\": { \"min\":1, \"max\":13, \"dat\":\"hol-psi_lun\" },\r\n      \"ond\": { \"min\":1, \"max\":4, \"dat\":\"hol-ton_ond\" }\r\n    },\r\n    \"val\": { \r\n      \"nom\": \"Luna #()($)ide() de 13: ()($)nom().\",\r\n      \"des\": \"()($)ton_des() del Giro Solar Anual; Totem ()($)tot(): ()($)tot_pro().\",\r\n      \"ima\": \"background: url(http://localhost/img/hol/fic/psi/lun/()($)ide().png) center/contain no-repeat;\",\r\n      \"num\": 13,\r\n      \"col\": 7\r\n    },\r\n    \"opc\": { \r\n      \"ima\": [\r\n        \"ide\"\r\n      ]            \r\n    },\r\n    \"tab\": { \r\n      \"sec\": { \"par\":1, \"lun-cab\":1, \"lun-hep\":1, \"lun-rad\": 1 },\r\n      \"pos\": { \"ima\": \"hol.kin.ide\", \"col\": \"\", \"num\": \"\" },\r\n      \"opc\": [ \"pul\", \"par\" ]          \r\n    },\r\n    \"inf\": {\r\n      \"det\":[ \"ton_nom\", \"ton_des\", \"fec_ran\" ],\r\n\r\n      \"tab\": [ \"hol.psi.ani_lun_tot\", { \r\n        \"val\": { \"pos\":\"()($)ide()\" },\r\n        \"pos\": { \"pul\":[\"dim\",\"mat\",\"sim\"] }\r\n      }],\r\n\r\n      \"htm-1\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"La <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-11-\'>Aventura de la Onda Encantada</a> en el <cite>Encantamiento del Sueño</cite>\" },\r\n      \"tex-1\": \"()($)ond_nom(): ()($)ond_pos().\\n()($)ond_pod(): ()($)ond_man().\",\r\n\r\n      \"htm-2\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"El <a target=\'_blank\' href=\'http://localhost/hol/bib/lun#_02-07-01-\'>Totem Animal</a> en <cite>Las <n>13</n> Lunas en Movimiento</cite>\" },      \r\n      \"atr-2\": [ \"tot_nom\", \"tot_pro\", \"tot_por\" ]\r\n\r\n    }\r\n  }'),
+('hol', 'psi_ani_vin', '{\r\n    \"atr\": { \r\n      \"ide\": { \"min\":1, \"max\":18, \"dat\":\"hol-psi_vin\" }\r\n    },      \r\n    \"val\": { \r\n      \"nom\": \"Vinal #()($)ide() de 19: ()($)nom().\",\r\n      \"des\": \"()($)des().\",\r\n      \"num\": 19\r\n    }\r\n  }'),
 ('hol', 'psi_hep', '{\r\n    \"tab\": { \r\n      \"sec\": { \"cas-pos\": 1, \"cas-orb\": 0, \"ton-col\": 0 },\r\n      \"pos\": { \"ima\": \"hol.sel.ide\", \"col\": \"\", \"num\": \"\" },\r\n      \"opc\": [ \"pag\", \"par\", \"dim\", \"mat\", \"sim\" ]          \r\n    }\r\n  }'),
-('hol', 'psi_hep_est', '{\r\n    \"atr\": { \r\n      \"ide\": { \"min\":1, \"max\":4, \"dat\":\"hol_psi_est\" }\r\n    },\r\n    \"val\": { \r\n      \"nom\": \"Estación Solar #()($)ide() de 4: ()($)nom().\",\r\n      \"des\": \"()($)des() ( ()($)pol_sur() al sur, ()($)pol_nor() al norte )\",\r\n      \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/cas/arm/()($)ide().png);\",\r\n      \"num\": 4,\r\n      \"col\": 4          \r\n    },\r\n    \"tab\": { \r\n      \"sec\": { },\r\n      \"pos\": { \"ima\": \"hol.kin.ide\", \"col\": \"\", \"num\": \"\" },\r\n      \"opc\": [ \"par\", \"dim\", \"mat\", \"sim\" ]\r\n    },\r\n    \"inf\": {\r\n      \"det\": [ \"des_col\", \"des_dir\" ],\r\n\r\n      \"tab\": [ \"hol.psi.hep_est\", { \r\n        \"ide\":\"()($)ide()\", \r\n        \"pos\": { \"ima\":\"hol.psi.ide\" }\r\n      }],\r\n      \"htm\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Las <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_02-03-09-\'>Estaciones Solares</a> en el <cite>Encantamiento del Sueño</cite>\" },\r\n      \"atr\": \"des\",\r\n      \"dat\": [ \"pol_nor\", \"pol_sur\" ]\r\n    }\r\n  }'),
-('hol', 'psi_hep_est_dia', '{\r\n    \"atr\": { \r\n      \"ide\": { \"min\":1, \"max\":95, \"dat\":\"hol_psi_est_dia\" },\r\n      \"ton\": { \"dat\":\"hol_ton\" },\r\n      \"ond\": { \"dat\":\"hol_ton_ond\" },\r\n      \"dim\": { \"dat\":\"hol_ton_dim\" },\r\n      \"mat\": { \"dat\":\"hol_ton_mat\" },\r\n      \"sim\": { \"dat\":\"hol_ton_sim\" }\r\n    },      \r\n    \"val\": { \r\n      \"nom\": \"Día estacional #()($)ide() de 91.\",\r\n      \"des\": \"()($)ond_nom(): ()($)ond_pos(). ()($)ond_pod(): ()($)ond_man().\",\r\n      \"ima\": \"background: center/80% no-repeat url(http://localhost/img/hol/fic/ton/()($)ton().png), center/contain no-repeat url(http://localhost/img/hol/fic/ton.png);\",\r\n      \"num\": 91\r\n    },\r\n    \"inf\": {\r\n\r\n      \"fic\": [ \"ton\", \"ond\", \"dim\", \"mat\", \"sim\" ],\r\n\r\n      \"htm-1\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"La <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-11-\'>Aventura de la Onda Encantada</a> en el <cite>Encantamiento del Sueño</cite>\" },\r\n      \"tex-1\": \"()($)ond_nom(): ()($)ond_pos().\\n()($)ond_pod(): ()($)ond_man().\"\r\n    }\r\n  }'),
-('hol', 'psi_hep_pla', '{\r\n    \"atr\": { \r\n      \"ide\": { \"min\":1, \"max\":52, \"dat\":\"hol_psi_hep\" },\r\n      \"est\": { \"min\":1, \"max\":4, \"dat\":\"hol_psi_hep_est\" },\r\n      \"ton\": { \"min\":1, \"max\":13, \"dat\":\"hol_ton\" },\r\n      \"arm\": { \"min\":1, \"max\":4, \"dat\":\"hol_cas_arm\" },\r\n      \"pos_arm\": { \"min\":1, \"max\":4, \"dat\":\"hol_arm\" },\r\n      \"ond\": { \"min\":1, \"max\":4, \"dat\":\"hol_cas_ond\" },\r\n      \"dim\": { \"min\":1, \"max\":4, \"dat\":\"hol_cas_dim\" },\r\n      \"mat\": { \"min\":1, \"max\":5, \"dat\":\"hol_cas_mat\" },\r\n      \"sim\": { \"min\":1, \"max\":7, \"dat\":\"hol_cas_sim\" },\r\n      \"psi\": { \"dat\":\"hol_psi\" }\r\n    },      \r\n    \"val\": { \r\n      \"nom\": \"Heptada #()($)ide() de 52.\",\r\n      \"des\": \"()($)ton_des() del cuadrante ()($)des_col() en el ()($)des_dir().\",\r\n      \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/sel/cod/()($)ton().png), center/contain no-repeat url(http://localhost/img/hol/fic/rad.png), center/contain no-repeat url(http://localhost/img/hol/fic/arm/()($)ond().png);\",\r\n      \"num\": 52,\r\n      \"col\": 4\r\n    },\r\n    \"tab\": { \r\n      \"sec\": { \"par\": 1 },\r\n      \"pos\": { \"ima\": \"hol.kin.ide\", \"col\": \"\", \"num\": \"\" },\r\n      \"opc\": [ \"par\" ]\r\n    },        \r\n    \"inf\": {\r\n      \"fic\": [ \"pos_arm\", \"ton\" ],\r\n      \"tab\": [ \"hol.psi.hep_pla\", { \"ide\": \"()($)ide()\", \"pos\": { \"ima\":\"hol.psi.ide\" } } ],\r\n      \"fic-1\": [ \"est\", \"ond\", \"dim\", \"mat\" ],\r\n      \"fic-2\": [ \"psi\" ]\r\n    }\r\n  }'),
+('hol', 'psi_hep_est', '{\r\n    \"atr\": { \r\n      \"ide\": { \"min\":1, \"max\":4, \"dat\":\"hol-psi_est\" }\r\n    },\r\n    \"val\": { \r\n      \"nom\": \"Estación Solar #()($)ide() de 4: ()($)nom().\",\r\n      \"des\": \"()($)des() ( ()($)pol_sur() al sur, ()($)pol_nor() al norte )\",\r\n      \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/cas/arm/()($)ide().png);\",\r\n      \"num\": 4,\r\n      \"col\": 4          \r\n    },\r\n    \"tab\": { \r\n      \"sec\": { },\r\n      \"pos\": { \"ima\": \"hol.kin.ide\", \"col\": \"\", \"num\": \"\" },\r\n      \"opc\": [ \"par\", \"dim\", \"mat\", \"sim\" ]\r\n    },\r\n    \"inf\": {\r\n      \"det\": [ \"des_col\", \"des_dir\" ],\r\n\r\n      \"tab\": [ \"hol.psi.hep_est\", { \r\n        \"ide\":\"()($)ide()\", \r\n        \"pos\": { \"ima\":\"hol.psi.ide\" }\r\n      }],\r\n      \"htm\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Las <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_02-03-09-\'>Estaciones Solares</a> en el <cite>Encantamiento del Sueño</cite>\" },\r\n      \"atr\": \"des\",\r\n      \"dat\": [ \"pol_nor\", \"pol_sur\" ]\r\n    }\r\n  }'),
+('hol', 'psi_hep_est_dia', '{\r\n    \"atr\": { \r\n      \"ide\": { \"min\":1, \"max\":95, \"dat\":\"hol-psi_est_dia\" },\r\n      \"ton\": { \"dat\":\"hol-ton\" },\r\n      \"ond\": { \"dat\":\"hol-ton_ond\" },\r\n      \"dim\": { \"dat\":\"hol-ton_dim\" },\r\n      \"mat\": { \"dat\":\"hol-ton_mat\" },\r\n      \"sim\": { \"dat\":\"hol-ton_sim\" }\r\n    },      \r\n    \"val\": { \r\n      \"nom\": \"Día estacional #()($)ide() de 91.\",\r\n      \"des\": \"()($)ond_nom(): ()($)ond_pos(). ()($)ond_pod(): ()($)ond_man().\",\r\n      \"ima\": \"background: center/80% no-repeat url(http://localhost/img/hol/fic/ton/()($)ton().png), center/contain no-repeat url(http://localhost/img/hol/fic/ton.png);\",\r\n      \"num\": 91\r\n    },\r\n    \"inf\": {\r\n\r\n      \"fic\": [ \"ton\", \"ond\", \"dim\", \"mat\", \"sim\" ],\r\n\r\n      \"htm-1\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"La <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-11-\'>Aventura de la Onda Encantada</a> en el <cite>Encantamiento del Sueño</cite>\" },\r\n      \"tex-1\": \"()($)ond_nom(): ()($)ond_pos().\\n()($)ond_pod(): ()($)ond_man().\"\r\n    }\r\n  }'),
+('hol', 'psi_hep_pla', '{\r\n    \"atr\": { \r\n      \"ide\": { \"min\":1, \"max\":52, \"dat\":\"hol-psi_hep\" },\r\n      \"est\": { \"min\":1, \"max\":4, \"dat\":\"hol-psi_hep_est\" },\r\n      \"ton\": { \"min\":1, \"max\":13, \"dat\":\"hol-ton\" },\r\n      \"arm\": { \"min\":1, \"max\":4, \"dat\":\"hol-cas_arm\" },\r\n      \"pos_arm\": { \"min\":1, \"max\":4, \"dat\":\"hol-arm\" },\r\n      \"ond\": { \"min\":1, \"max\":4, \"dat\":\"hol-cas_ond\" },\r\n      \"dim\": { \"min\":1, \"max\":4, \"dat\":\"hol-cas_dim\" },\r\n      \"mat\": { \"min\":1, \"max\":5, \"dat\":\"hol-cas_mat\" },\r\n      \"sim\": { \"min\":1, \"max\":7, \"dat\":\"hol-cas_sim\" },\r\n      \"psi\": { \"dat\":\"hol-psi\" }\r\n    },      \r\n    \"val\": { \r\n      \"nom\": \"Heptada #()($)ide() de 52.\",\r\n      \"des\": \"()($)ton_des() del cuadrante ()($)des_col() en el ()($)des_dir().\",\r\n      \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/sel/cod/()($)ton().png), center/contain no-repeat url(http://localhost/img/hol/fic/rad.png), center/contain no-repeat url(http://localhost/img/hol/fic/arm/()($)ond().png);\",\r\n      \"num\": 52,\r\n      \"col\": 4\r\n    },\r\n    \"tab\": { \r\n      \"sec\": { \"par\": 1 },\r\n      \"pos\": { \"ima\": \"hol.kin.ide\", \"col\": \"\", \"num\": \"\" },\r\n      \"opc\": [ \"par\" ]\r\n    },        \r\n    \"inf\": {\r\n      \"fic\": [ \"pos_arm\", \"ton\" ],\r\n      \"tab\": [ \"hol.psi.hep_pla\", { \"ide\": \"()($)ide()\", \"pos\": { \"ima\":\"hol.psi.ide\" } } ],\r\n      \"fic-1\": [ \"est\", \"ond\", \"dim\", \"mat\" ],\r\n      \"fic-2\": [ \"psi\" ]\r\n    }\r\n  }'),
 ('hol', 'psi_kin', '{\r\n    \"tab\": { \r\n      \"pos\": { \"ima\": \"hol.kin.ide\", \"col\": \"\", \"num\": \"\" },\r\n      \"opc\": [ \"pag\", \"par\" ],\r\n      \"pag\": { \"kin\": 1 }\r\n    }\r\n  }');
 INSERT INTO `app_est` (`esq`, `ide`, `ope`) VALUES
-('hol', 'rad', '{\r\n      \"atr\": { \r\n        \"ide\":         { \"min\":1, \"max\":7, \"dat\":\"hol_rad\" },            \r\n        \"tel_año\":     { \"min\":1997, \"max\":1999, \"dat\":\"api.fec_año\" },\r\n        \"tel_ora_año\": { \"min\":1, \"max\":260, \"dat\":\"hol_kin_par\" },\r\n        \"tel_ora_ani\": { \"min\":1, \"max\":260, \"dat\":\"hol_kin_par\" },\r\n        \"tel_ora_gen\": { \"min\":1, \"max\":260, \"dat\":\"hol_kin_par\" },\r\n        \"pla_fue\":     { \"dat\":\"hol_rad_pla_fue\" },\r\n        \"pla_qua\":     { \"min\":1, \"max\":3, \"dat\":\"hol_rad_pla_qua\" },\r\n        \"pla_cub\":     { \"min\":1, \"max\":7, \"dat\":\"hol_rad_pla_cub\" },\r\n        \"hum_cha\":     { \"min\":1, \"max\":7, \"dat\":\"hol_uni_hum_cha\" }\r\n      },\r\n      \"val\": { \r\n        \"nom\": \"Plasma #()($)ide() de 7: ()($)nom().\",\r\n        \"des\": \"\'()($)pla_lec()\'\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/rad/()($)ide().png);\",\r\n        \"col\": 7,\r\n        \"num\": 7\r\n      },\r\n      \"opc\": { \r\n        \"ver\": [ \r\n          \"ide\", \r\n          \"pla_fue\", \"pla_cub\", \"pla_qua\",\r\n          \"hum_cha\"\r\n        ],\r\n        \"ima\": [\r\n          \"ide\",\r\n          \"pla_fue\", \"pla_cub\", \"pla_qua\",\r\n          \"tel_ora_año\", \"tel_ora_ani\", \"tel_ora_gen\",\r\n          \"hum_cha\"\r\n        ],\r\n        \"col\": [\r\n          \"ide\", \"pla_qua\"\r\n        ],\r\n        \"num\": [\r\n          \"ide\", \"pla_qua\" \r\n        ]\r\n      },\r\n      \"lis\": { \r\n\r\n        \"atr\": [ \"ide\", \"nom\", \"des_pod\", \"des_fue\", \"pla_qua\" ]\r\n      },\r\n      \"inf\": {\r\n        \"det\": [ \"des_col\", \"des_pod\", \"des_fue\" ],\r\n\r\n        \"tab\": [ \"hol.rad.pla\", {\r\n          \"val\":{ \"pos\":\"()($)ide()\" },\r\n          \"pos\":{ \"ima\":\"hol.rad.ide\", \"col\":\"hol.rad.ide\" }\r\n        }],\r\n\r\n        \"htm-1\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Los <a target=\'_blank\' href=\'http://localhost/hol/bib/tel#_02-06-\'>Oráculos y las Profecías</a> en <cite>el Telektonon</cite>\" },\r\n        \"tex-1\": \"()($)tel() ( ()($)tel_año() ): ()($)tel_des().\",\r\n        \"fic-1-tit\": [ \"tel_ora_año\", \"tel_ora_ani\", \"tel_ora_gen\" ],\r\n        \r\n        \"htm-2\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Los <a target=\'_blank\' href=\'http://localhost/hol/bib/rin#_02-05-01-\'>Funciones Anuales</a> en <cite>el Proyecto Rinri</cite>\" },\r\n        \"atr-2\": \"rin_des\",\r\n\r\n        \"htm-3\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Los <a target=\'_blank\' href=\'http://localhost/hol/bib/ato#_03-01-\'>Componentes Electrónicos</a> en <cite>el Átomo del Tiempo</cite>\" },\r\n        \"atr-3\": \"pla_des\",\r\n        \"fic-3\": [ \"pla_fue\" ],\r\n\r\n        \"htm-4\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Las <a target=\'_blank\' href=\'http://localhost/hol/bib/ato#_03-06-\'>Autodeclaraciones Diarias de Padmasambhava</a> en <cite>el Átomo del Tiempo</cite>\" },\r\n        \"atr-4\": \"pla_lec\",\r\n        \"fic-4\": [ \"pla_qua\" ],\r\n\r\n        \"htm-5\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Los <a target=\'_blank\' href=\'http://localhost/hol/bib/ato#_03-06-\'>Chakras y el Cubo del Radión</a> en <cite>el Átomo del Tiempo</cite>\" },\r\n        \"fic-5\": [ \"hum_cha\", \"pla_cub\" ],\r\n\r\n        \"htm-6\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"El <a target=\'_blank\' href=\'http://localhost/hol/bib/umb\'>Mapa Estelar</a> en <cite>el Sincronotrón</cite>\" },\r\n        \"atr-6\": [ \"umb_map\" ], \r\n\r\n        \"htm-7\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Las <a target=\'_blank\' href=\'http://localhost/hol/bib/umb\'>Esferas Mentales</a> en <cite>el Sincronotrón</cite>\" },\r\n        \"tex-7\": \"()($)umb_esf(): ()($)umb_est_fun()\"\r\n      }\r\n  }'),
-('hol', 'rad_pla_cub', '{\r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":7, \"dat\":\"hol_rad_pla_cub\" }\r\n      },\r\n      \"val\": { \r\n        \"nom\": \"Posicion #()($)ide() de 7: ()($)nom()\",\r\n        \"des\": \"Correspondiente al plasma ()($)pla()\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/rad/pla_cub/()($)ide().png);\",\r\n        \"col\": 4,\r\n        \"num\": 7\r\n      }\r\n  }'),
-('hol', 'rad_pla_ele', '{\r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":6, \"dat\":\"hol_rad_pla_ele\" }\r\n      },      \r\n      \"val\": { \r\n        \"nom\": \"Tipo de Electricidad Cósmica #()($)ide() de 6: ()($)nom() ( ()($)des_cod() ).\",\r\n        \"des\": \"()($)des().\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/rad/pla_ele/()($)ide().png);\"                      \r\n      },\r\n      \"opc\": { \r\n        \"ima\": [ \"ide\" ]\r\n      }\r\n  }'),
-('hol', 'rad_pla_fue', '{\r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":12, \"dat\":\"hol_rad_pla_fue\" },\r\n        \"ele_pre\": { \"min\":1, \"max\":6, \"dat\":\"hol_rad_pla_ele\" },\r\n        \"ele_pos\": { \"min\":1, \"max\":6, \"dat\":\"hol_rad_pla_ele\" }\r\n      },\r\n      \"val\": { \r\n        \"nom\": \"Línea de Fuerza #()($)ide() de 12: ()($)nom().\",\r\n        \"des\": \"()($)des().\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/rad/pla_fue/()($)ide().png);\"\r\n      },\r\n      \"opc\": { \r\n        \"ima\": [ \"ide\", \"ele_pre\", \"ele_pos\" ]            \r\n      },\r\n      \"inf\": {\r\n\r\n        \"htm-1\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Los <a target=\'_blank\' href=\'http://localhost/hol/bib/ato#_03-01-\'>Componentes Electrónicos</a> en <cite>el Átomo del Tiempo</cite>\" },\r\n        \"fic-1\": [ \"ele_pre\", \"ele_pos\" ]\r\n      }\r\n  }'),
-('hol', 'rad_pla_pol', '{ \r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":2, \"dat\":\"hol_rad_pla_pol\" }\r\n      },      \r\n      \"val\": { \r\n        \"nom\": \"Carga #()($)ide() de 2: ()($)nom().\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/rad/pla_car/()($)ide().png);\"\r\n      }\r\n  }'),
-('hol', 'rad_pla_qua', '{\r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":3, \"dat\":\"hol_rad_pla_qua\" },\r\n        \"pla\": { \"dat\":\"hol_rad\" }\r\n      },      \r\n      \"val\": {\r\n        \"nom\": \"Quantum #()($)ide() de 3: ()($)nom().\",\r\n        \"des\": \"()($)des()\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/rad/pla_qua/()($)ide().png);\",\r\n        \"col\": 3,\r\n        \"num\": 3\r\n      },\r\n      \"opc\": {\r\n        \"ima\": [ \"ide\", \"pla\" ]\r\n      },\r\n      \"inf\": {\r\n        \"opc\": [ \"des\" ],\r\n        \"fic\": [ \"pla\" ]\r\n      }\r\n  }'),
-('hol', 'sel', '{\r\n    \"atr\": { \r\n      \"ide\":      { \"min\":1, \"max\":20, \"dat\":\"hol_sel\" },\r\n      \"cod\":      { \"min\":0, \"max\":19 },\r\n      \"ord\":      { \"min\":1, \"max\":20,  \"dat\":\"hol_sel_cod\" },\r\n\r\n      \"cic_ser\":  { \"min\":1, \"max\":3, 	\"dat\":\"hol_sel_cic_ser\" },\r\n      \"cic_luz\":  { \"min\":1, \"max\":5, 	\"dat\":\"hol_sel_cic_luz\" },\r\n\r\n      \"arm_tra\":  { \"min\":1, \"max\":20, 	\"dat\":\"hol_sel.arm_tra\" },\r\n      \"arm_raz\":  { \"min\":1, \"max\":4, 	\"dat\":\"hol_sel_arm_raz\" },\r\n      \"arm_cel\":  { \"min\":1, \"max\":5, 	\"dat\":\"hol_sel_arm_cel\" },\r\n\r\n      \"cro_fam\":  { \"min\":1, \"max\":5, 	\"dat\":\"hol_sel_cro_fam\" },\r\n      \"cro_ele\":  { \"min\":1, \"max\":4, 	\"dat\":\"hol_sel_cro_ele\" },\r\n\r\n      \"par_ana\":  { \"min\":1, \"max\":20, 	\"dat\":\"hol_sel\" },\r\n      \"par_ant\":  { \"min\":1, \"max\":20, 	\"dat\":\"hol_sel\" },\r\n      \"par_ocu\":  { \"min\":1, \"max\":20, 	\"dat\":\"hol_sel\" },\r\n\r\n      \"flu_res\":  { \"min\":1, \"max\":2, 	\"dat\":\"hol_uni_flu_res\" },\r\n      \r\n      \"sol_pla\":  { \"min\":1, \"max\":10, 	\"dat\":\"hol_uni_sol_pla\" },\r\n      \"sol_res\":  { \"min\":1, \"max\":2, 	\"dat\":\"hol_uni_sol_res\" },\r\n      \"sol_orb\":  { \"min\":1, \"max\":2, 	\"dat\":\"hol_uni_sol_orb\" },\r\n      \"sol_cel\":  { \"min\":1, \"max\":5, 	\"dat\":\"hol_uni_sol_cel\" },\r\n      \"sol_cir\":  { \"min\":1, \"max\":5, 	\"dat\":\"hol_uni_sol_cir\" },\r\n\r\n      \"pla_res\":  { \"min\":1, \"max\":2, 	\"dat\":\"hol_uni_pla_res\" },\r\n      \"pla_mer\":  { \"min\":1, \"max\":2, 	\"dat\":\"hol_uni_pla_mer\" },\r\n      \"pla_hem\":  { \"min\":1, \"max\":3, 	\"dat\":\"hol_uni_pla_hem\" },\r\n      \"pla_cen\":  { \"min\":1, \"max\":5, 	\"dat\":\"hol_uni_pla_cen\" },\r\n\r\n      \"hum_res\":  { \"min\":1, \"max\":2, 	\"dat\":\"hol_uni_hum_res\" },\r\n      \"hum_cen\":  { \"min\":1, \"max\":5, 	\"dat\":\"hol_uni_hum_cen\" },\r\n      \"hum_ext\":  { \"min\":1, \"max\":5, 	\"dat\":\"hol_uni_hum_ext\" },\r\n      \"hum_ded\":  { \"min\":1, \"max\":5, 	\"dat\":\"hol_uni_hum_ded\" },\r\n      \"hum_mer\":  { \"min\":1, \"max\":10, 	\"dat\":\"hol_uni_hum_mer\" }\r\n    },\r\n    \"val\": { \r\n      \"nom\": \"Sello Solar #()($)ide() de 20, ()($)arm().\",\r\n      \"des\": \"()($)des_car() ()($)des().\",\r\n      \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/sel/()($)ide().png);\",\r\n      \"col\": 4,\r\n      \"num\": 20\r\n    },\r\n    \"opc\": { \r\n      \"ver\": [ \r\n        \"ide\", \"ord\",\r\n        \"cic_ser\", \"cic_luz\", \r\n        \"cro_fam\", \"cro_ele\", \"arm_raz\", \"arm_cel\",\r\n        \"flu_res\",\r\n        \"sol_pla\", \"sol_cel\", \"sol_cir\", \r\n        \"pla_cen\", \"pla_hem\", \"pla_mer\",\r\n        \"hum_cen\", \"hum_ext\", \"hum_ded\", \"hum_mer\"\r\n      ],\r\n      \"ima\": [\r\n        \"ide\", \"ord\", \r\n        \"par_ana\", \"par_ant\", \"par_ocu\",\r\n        \"cro_fam\", \"cro_ele\", \"arm_raz\", \"arm_cel\",\r\n        \"flu_res\",\r\n        \"sol_pla\", \"sol_cel\", \"sol_cir\", \r\n        \"pla_cen\", \"pla_hem\", \"pla_mer\",\r\n        \"hum_cen\", \"hum_mer\", \"hum_ext\", \"hum_ded\"\r\n      ],\r\n      \"col\": [\r\n        \"ide\", \r\n        \"cic_ser\", \"cic_luz\", \r\n        \"cro_fam\", \"cro_ele\", \"arm_raz\", \"arm_cel\",\r\n        \"flu_res\",\r\n        \"sol_pla\", \"sol_cel\", \"sol_cir\", \r\n        \"pla_cen\", \"pla_hem\", \"pla_mer\",\r\n        \"hum_cen\", \"hum_mer\", \"hum_ext\", \"hum_ded\"\r\n      ],\r\n      \"num\": [ \r\n        \"ide\", \"cod\", \r\n        \"cic_ser\", \"cic_luz\", \r\n        \"par_ana\", \"par_ant\", \"par_ocu\", \r\n        \"cro_fam\", \"cro_ele\", \"arm_tra\", \"arm_raz\", \"arm_cel\",\r\n        \"flu_res\",\r\n        \"sol_pla\", \"sol_cel\", \"sol_cir\", \r\n        \"pla_cen\", \"pla_hem\", \"pla_mer\",\r\n        \"hum_cen\", \"hum_mer\", \"hum_ext\", \"hum_ded\"\r\n      ],\r\n      \"tex\": [\r\n      ]\r\n    },\r\n    \"inf\": { \r\n      \"det\": [ \"des_car\", \"des_acc\", \"des_pod\" ],\r\n\r\n      \"htm-1-1\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"El <a target=\'_blank\' href=\'hol/bib/fac#_04-04-02-04-\'>Desarrollo del Ser</a> en <cite>el Factor Maya</cite>\" },\r\n      \"atr-1-1\": [ \"cic_ser_des\" ],\r\n\r\n      \"htm-1-2\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Las <a target=\'_blank\' href=\'hol/bib/fac#_04-04-02-05-\'>Familias Cíclicas de la Luz</a> en <cite>el Factor Maya</cite>\" },\r\n      \"atr-1-2\": [ \"cic_luz_des\" ],\r\n\r\n      \"htm-1-3\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"El <a target=\'_blank\' href=\'hol/bib/fac#_05-06-03-\'>Modelo Morfogenético</a> en <cite>el Factor Maya</cite>\" },\r\n      \"atr-1-3\": [ \"arm_tra_des\" ],\r\n      \r\n      \"htm-2\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"La <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-04-\'>Colocación Armónica</a> en <cite>el Encantamiento del Sueño</cite>\" },\r\n      \"tab-2\": [ \"hol.sel.arm\", { \"val\": { \"pos\":\"()($)ide()\" }, \"pos\": { \"ima\":\"hol.sel.ide\" } } ],\r\n      \"fic-2-1\": [ \"arm_cel\" ],\r\n      \"atr-2-1\": [ \"arm_cel_des\" ],\r\n      \"fic-2-2\": [ \"arm_raz\" ],\r\n      \"atr-2-2\": [ \"arm_raz_des\" ],\r\n\r\n      \"htm-3\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"La <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-02-\'>Colocación Cromática</a> en <cite>el Encantamiento del Sueño</cite>\" },\r\n      \"tab-3\": [ \"hol.sel.cro\", { \"val\": { \"pos\":\"()($)ide()\" }, \"pos\": { \"ima\":\"hol.sel.ide\" } } ],\r\n      \"fic-3-1\": [ \"cro_ele\" ],\r\n      \"atr-3-1\": [ \"cro_ele_des\" ],\r\n      \"fic-3-2\": [ \"cro_fam\" ],\r\n      \"atr-3-2\": [ \"sol_pla_des\" ],\r\n\r\n      \"htm-4\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Descripciones en el Libro <cite><q>El kin, tu signo maya</q></cite>\" },\r\n      \"atr-4\": [ \"cit_des\", \"cit_por\", \"cit_por_som\", \"cit_por_rec\" ],\r\n      \"lis-4\": [ \"cit_lis_pal\", \"cit_lis_som\" ]\r\n\r\n    },\r\n    \"lis\": { \r\n\r\n      \"atr\": [ \"ide\", \"cod\", \"nom\", \"des_car\", \"des_acc\", \"des_pod\",\r\n        \"cro_fam\", \"cro_ele\", \r\n        \"arm_raz\", \"arm_cel\", \r\n        \"par_ana\", \"par_ant\", \"par_ocu\",\r\n        \"flu_res\", \"sol_pla\", \"pla_cen\", \"hum_mer\", \"hum_cen\", \"hum_ded\"\r\n      ],\r\n      \"atr_ocu\": [\r\n        \"cro_fam\", \"cro_ele\", \r\n        \"arm_raz\", \"arm_cel\", \r\n        \"par_ana\", \"par_ant\", \"par_ocu\",\r\n        \"flu_res\", \"sol_pla\", \"pla_cen\", \"hum_mer\", \"hum_cen\", \"hum_ded\" \r\n      ],\r\n\r\n      \"tit_gru\": [ \"cro_fam\", \"arm_raz\", \"sol_pla\", \"sol_cel\", \"sol_cir\", \"pla_cen\", \"hum_mer\", \"hum_cen\", \"hum_ded\" ],\r\n      \"tit_cic\": [ \"cic_ser\", \"cic_luz\", \"cro_ele\", \"arm_cel\", \"flu_res\" ],\r\n\r\n      \"det_des\": [ \"cit_des\", \"cit_por\", \"cit_por_som\", \"cit_por_rec\" ]\r\n    }\r\n  }'),
-('hol', 'sel_arm_cel', '{\r\n    \"atr\": { \r\n      \"ide\": { \"min\":1, \"max\":5, \"dat\":\"hol_sel_arm_cel\" },\r\n      \"sel\": { \"dat\":\"hol_sel\" }\r\n    },\r\n    \"val\": { \r\n      \"nom\": \"Célula del Tiempo #()($)ide() de 5: ()($)nom().\",\r\n      \"des\": \"()($)des().\", \r\n      \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/sel/arm_cel/()($)ide().png);\",\r\n      \"col\": 5,\r\n      \"num\": 5\r\n    },\r\n    \"opc\": { \r\n      \"ima\": [ \"ide\", \"sel\" ]\r\n    },\r\n    \"inf\": { \r\n      \"opc\": [ \"des\" ],\r\n\r\n      \"det\": [ \"des_fun\", \"des_pod\" ],\r\n\r\n      \"htm\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"La <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-05-\'>Colocación Armónica</a> d<cite>el Encantamiento del Sueño</cite>\" },\r\n      \"fic\": [ \"sel\" ]\r\n    }\r\n  }'),
-('hol', 'sel_arm_raz', '{\r\n    \"atr\": {\r\n      \"ide\": { \"min\":1, \"max\":4, \"dat\":\"hol_sel_arm_raz\" },\r\n      \"sel\": { \"dat\":\"hol_sel\" }\r\n    },\r\n    \"val\": { \r\n      \"nom\": \"Raza Raiz Cósmica #()($)ide() de 4: ()($)nom().\",\r\n      \"des\": \"()($)des().\",\r\n      \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/sel/arm_raz/()($)ide().png);\",\r\n      \"col\": 4,\r\n      \"num\": 4\r\n    },\r\n    \"opc\": { \r\n      \"ima\": [ \"ide\", \"sel\" ]\r\n    },\r\n    \"inf\": {\r\n      \"opc\": [ \"des\" ],\r\n\r\n      \"det\": [ \"des_dir\", \"des_pod\", \"des_dia\" ],\r\n\r\n      \"htm\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"La <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-04-\'>Colocación Armónica</a> d<cite>el Encantamiento del Sueño</cite>\" },\r\n      \"fic\": [ \"sel\" ]\r\n    }\r\n  }'),
-('hol', 'sel_arm_tra', '{\r\n    \"atr\": { \r\n      \"ide\": { \"min\":1, \"max\":20, \"dat\":\"hol_sel_arm_tra\" },\r\n      \"sel\": { \"dat\":\"hol_sel\" }\r\n    },        \r\n    \"val\": { \r\n      \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/sel.png), center/contain no-repeat url(http://localhost/img/hol/fic/sel/()($)ide().png);\"\r\n    },\r\n    \"opc\": { \r\n      \"ima\": [ \"ide\" ]\r\n    }  \r\n  }'),
-('hol', 'sel_cic_dir', '{\r\n    \"atr\": { \r\n      \"ide\": { \"min\":1, \"max\":4, \"dat\":\"hol_sel_cic_dir\" },\r\n      \"sel\": { \"dat\":\"hol_sel\" }\r\n    },\r\n    \"val\": { \r\n      \"nom\": \"Ciclo Direccional #()($)ide() de 4: ()($)nom()\",\r\n      \"des\": \"()($)des().\", \r\n      \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/sel/cic_dir/()($)ide().png);\",\r\n      \"col\": 4\r\n    },\r\n    \"opc\": { \r\n      \"ima\": [ \"ide\", \"sel\" ] \r\n    }\r\n  }'),
-('hol', 'sel_cic_luz', '{ \r\n    \"atr\": { \r\n      \"ide\": { \"min\":1, \"max\":5, \"dat\":\"hol_sel_cic_luz\" },\r\n      \"sel\": { \"dat\":\"hol_sel\" }\r\n    },\r\n    \"val\": { \r\n      \"nom\": \"Familia Cíclica de la luz #()($)ide() de 5: ()($)nom().\",\r\n      \"des\": \"()($)des().\",\r\n      \"col\": 5,\r\n      \"num\": 5\r\n    },\r\n    \"opc\": {\r\n      \"ima\": [ \"sel\" ]\r\n    }\r\n  }'),
-('hol', 'sel_cic_ser', '{\r\n    \"atr\": { \r\n      \"ide\": { \"min\":1, \"max\":3, \"dat\":\"hol_sel_cic_ser\" },\r\n      \"sel\": { \"dat\":\"hol_sel\" }\r\n    },\r\n    \"val\": { \r\n      \"nom\": \"Desarrollo del ser #()($)ide() de 3: ()($)nom().\",\r\n      \"des\": \"()($)des().\",\r\n      \"col\": 3,\r\n      \"num\": 3\r\n    },\r\n    \"opc\": {\r\n      \"ima\": [ \"sel\" ]\r\n    }\r\n  }'),
-('hol', 'sel_cod', '{\r\n    \"atr\": { \r\n      \"ide\":      { \"min\":1, \"max\":20, \"dat\":\"hol_sel\" },\r\n      \"cod\":      { \"min\":0, \"max\":19 },\r\n      \"ord\":      { \"min\":1, \"max\":20,  \"dat\":\"hol_sel_cod\" },\r\n      \"cic_ser\":  { \"min\":1, \"max\":3, 	\"dat\":\"hol_sel_cic_ser\" },\r\n      \"cic_luz\":  { \"min\":1, \"max\":5, 	\"dat\":\"hol_sel_cic_luz\" },\r\n      \"arm_tra\":  { \"min\":1, \"max\":20, 	\"dat\":\"hol_sel.arm_tra\" },\r\n      \"arm_raz\":  { \"min\":1, \"max\":4, 	\"dat\":\"hol_sel_arm_raz\" },\r\n      \"arm_cel\":  { \"min\":1, \"max\":5, 	\"dat\":\"hol_sel_arm_cel\" },\r\n      \"cro_fam\":  { \"min\":1, \"max\":5, 	\"dat\":\"hol_sel_cro_fam\" },\r\n      \"cro_ele\":  { \"min\":1, \"max\":4, 	\"dat\":\"hol_sel_cro_ele\" },\r\n      \"par_ana\":  { \"min\":1, \"max\":20, 	\"dat\":\"hol_sel\" },\r\n      \"par_ant\":  { \"min\":1, \"max\":20, 	\"dat\":\"hol_sel\" },\r\n      \"par_ocu\":  { \"min\":1, \"max\":20, 	\"dat\":\"hol_sel\" },\r\n      \"flu_res\":  { \"min\":1, \"max\":2, 	\"dat\":\"hol_uni_flu_pod\" },          \r\n      \"sol_pla\":  { \"min\":1, \"max\":10, 	\"dat\":\"hol_uni_sol_pla\" },\r\n      \"sol_res\":  { \"min\":1, \"max\":2, 	\"dat\":\"hol_uni_sol_res\" },\r\n      \"sol_orb\":  { \"min\":1, \"max\":2, 	\"dat\":\"hol_uni_sol_orb\" },\r\n      \"sol_cel\":  { \"min\":1, \"max\":5, 	\"dat\":\"hol_uni_sol_cel\" },\r\n      \"sol_cir\":  { \"min\":1, \"max\":5, 	\"dat\":\"hol_uni_sol_cir\" },\r\n      \"pla_res\":  { \"min\":1, \"max\":2, 	\"dat\":\"hol_uni_pla_res\" },\r\n      \"pla_mer\":  { \"min\":1, \"max\":2, 	\"dat\":\"hol_uni_pla_mer\" },\r\n      \"pla_hem\":  { \"min\":1, \"max\":3, 	\"dat\":\"hol_uni_pla_hem\" },\r\n      \"pla_cen\":  { \"min\":1, \"max\":5, 	\"dat\":\"hol_uni_pla_cen\" },          \r\n      \"hum_res\":  { \"min\":1, \"max\":2, 	\"dat\":\"hol_uni_flu_res\" },\r\n      \"hum_cen\":  { \"min\":1, \"max\":5, 	\"dat\":\"hol_uni_hum_cen\" },\r\n      \"hum_ext\":  { \"min\":1, \"max\":5, 	\"dat\":\"hol_uni_hum_ext\" },\r\n      \"hum_ded\":  { \"min\":1, \"max\":5, 	\"dat\":\"hol_uni_hum_ded\" },\r\n      \"hum_mer\":  { \"min\":1, \"max\":10, 	\"dat\":\"hol_uni_hum_mer\" }\r\n    },\r\n    \"val\": { \r\n      \"nom\": \"Código #()($)cod()\",\r\n      \"des\": \"()($)car() ()($)des().\",\r\n      \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/sel/cod/()($)cod().png);\",\r\n      \"col\": 5,\r\n      \"num\": 20\r\n    },\r\n    \"inf\": { \r\n      \"det\": [ \"des_car\", \"des_acc\", \"des_pod\" ],\r\n\r\n      \"htm-3\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"La <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-02-\'>Colocación Cromática</a> en <cite>el Encantamiento del Sueño</cite>\" },\r\n      \"tab-3\": [ \"hol.sel.cro\", { \"val\": { \"pos\":\"()($)ide()\" }, \"pos\": { \"ima\":\"hol.sel.ide\" } } ],\r\n      \"fic-3-1\": [ \"cro_ele\" ],\r\n      \"atr-3-1\": [ \"cro_ele_des\" ],\r\n      \"fic-3-2\": [ \"cro_fam\" ],\r\n      \"atr-3-2\": [ \"sol_pla_des\" ]\r\n\r\n    },\r\n    \"opc\": { \r\n      \"ima\": [\r\n        \"ide\", \"ord\", \"par_ana\", \"par_ant\", \"par_ocu\", \"cro_fam\", \"cro_ele\", \r\n        \"flu_res\", \"sol_pla\", \"sol_cel\", \"sol_cir\", \"pla_cen\", \"pla_hem\", \"pla_mer\", \"hum_res\", \"hum_mer\", \"hum_cen\", \"hum_ext\", \"hum_ded\"\r\n      ]            \r\n    }\r\n  }'),
-('hol', 'sel_cro_ele', '{\r\n    \"atr\": { \r\n      \"ide\": { \"min\":1, \"max\":4, \"dat\":\"hol_sel_cro_ele\" },\r\n      \"sel\": { \"dat\":\"hol_sel\" },\r\n      \"arm_cel\": { \"dat\":\"hol_sel_arm_cel\" },\r\n      \"flu_res\": { \"min\":1, \"max\":2, \"dat\":\"hol_uni_flu_res\" },\r\n      \"hum_ext\": { \"min\":1, \"max\":4, \"dat\":\"hol_uni_hum_ext\" }\r\n    },\r\n    \"val\": { \r\n      \"nom\": \"Clan #()($)ide() de 4: ()($)nom() ()($)col().\",\r\n      \"des\": \"()($)des().\",\r\n      \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/sel/cro_ele/()($)ide().png);\",\r\n      \"col\": 4,\r\n      \"num\": 4\r\n    },\r\n    \"opc\": { \r\n      \"ima\": [ \"ide\", \"sel\", \"flu_res\", \"hum_ext\" ]\r\n    },\r\n    \"inf\": { \r\n      \"det\": [ \"des_col\", \"des_men\" ],\r\n      \"atr\": [ \"des\" ],\r\n\r\n      \"htm-1\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"La <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-02-\'>Colocación Cromática</a> d<cite>el Encantamiento del Sueño</cite>\" },\r\n      \"fic-1\": [ \"sel\" ],\r\n      \r\n      \"htm-1\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"La <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-02-\'>Células del Tiempo</a> en el Íncide Armónico d<cite>el Encantamiento del Sueño</cite>\" },\r\n      \"fic-2\": [ \"arm_cel\" ]\r\n    }\r\n  }'),
-('hol', 'sel_cro_fam', '{\r\n    \"atr\": { \r\n      \"ide\": { \"min\":1, \"max\":5, \"dat\":\"hol_sel_cro_fam\" },\r\n      \"sel\": { \"dat\":\"hol_sel\" },\r\n      \"pla_cen\": { \"min\":1, \"max\":5, \"dat\":\"hol_uni_pla_cen\" },\r\n      \"hum_cen\": { \"min\":1, \"max\":5, \"dat\":\"hol_uni_hum_cen\" },\r\n      \"hum_ded\": { \"min\":1, \"max\":5, \"dat\":\"hol_uni_hum_ded\" }\r\n    },\r\n    \"val\": { \r\n      \"nom\": \"Familia Terrestre #()($)ide() de 5: ()($)nom().\",\r\n      \"des\": \"()($)des().\",\r\n      \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/sel/cro_fam/()($)ide().png);\",\r\n      \"col\": 5,\r\n      \"num\": 5\r\n    },\r\n    \"opc\": { \r\n      \"ima\": [ \"ide\", \"sel\", \"pla_cen\", \"hum_cen\", \"hum_ded\" ]\r\n    },\r\n    \"inf\": { \r\n      \"det\": [ \"des_fun\", \"des_mis\", \"des_rol\", \"des_acc\" ],\r\n\r\n      \"htm\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"La <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-14-\'>Cuenta atrás</a> d<cite>el Encantamiento del Sueño</cite>\" },\r\n      \"fic\": [ \"sel\" ],\r\n\r\n      \"htm-1\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"La <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-07-\'>Holon Planetario</a> d<cite>el Encantamiento del Sueño</cite>\" },\r\n      \"fic-1\": [ \"pla_cen\" ], \r\n\r\n      \"htm-2\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"La <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-08-\'>Holon Humano</a> d<cite>el Encantamiento del Sueño</cite>\" },\r\n      \"fic-2\": [ \"hum_cen\", \"hum_ded\" ]\r\n    }\r\n  }'),
-('hol', 'sel_par_ana', '{\r\n    \"atr\": { \r\n      \"ini\": { \"min\":1, \"max\":20, \"dat\":\"hol_sel\" },\r\n      \"fin\": { \"min\":1, \"max\":20, \"dat\":\"hol_sel\" }\r\n    },\r\n    \"opc\": { \r\n      \"ima\": [ \"ini\", \"fin\" ]            \r\n    }\r\n  }'),
-('hol', 'sel_par_ant', '{\r\n    \"atr\": { \r\n      \"ini\": { \"min\":1, \"max\":20, \"dat\":\"hol_sel\" },\r\n      \"fin\": { \"min\":1, \"max\":20, \"dat\":\"hol_sel\" }\r\n    },\r\n    \"opc\": { \r\n      \"ima\": [ \"ini\", \"fin\" ]            \r\n    }\r\n  }'),
-('hol', 'sel_par_ocu', '{\r\n    \"atr\": { \r\n      \"ini\": { \"min\":1, \"max\":20, \"dat\":\"hol_sel\" },\r\n      \"fin\": { \"min\":1, \"max\":20, \"dat\":\"hol_sel\" }\r\n    },\r\n    \"opc\": { \r\n      \"ima\": [ \"ini\", \"fin\" ]\r\n    }\r\n  }'),
-('hol', 'ton', '{\r\n      \"atr\": {\r\n        \"ide\": { \"min\":1, \"max\":13, \"dat\":\"hol_ton\" },\r\n\r\n        \"ond\": { \"min\":1, \"max\":4, \"dat\":\"hol_ton_ond\" },\r\n        \"ond_enc\": { \"min\":0, \"max\":4, \"dat\":\"hol_ton_ond\" },\r\n\r\n        \"dim\": { \"min\":1, \"max\":4, \"dat\":\"hol_ton_dim\" },\r\n        \"mat\": { \"min\":1, \"max\":5, \"dat\":\"hol_ton_mat\" },\r\n        \"sim\": { \"min\":1, \"max\":7, \"dat\":\"hol_ton_sim\" },\r\n        \r\n        \"hum_lad\": { \"min\":1, \"max\":3, \"dat\":\"hol_uni_hum_lad\" },\r\n        \"hum_art\": { \"min\":1, \"max\":7, \"dat\":\"hol_uni_hum_art\" },\r\n        \"hum_sen\": { \"min\":1, \"max\":7, \"dat\":\"hol_uni_hum_sen\" }\r\n      },\r\n      \"val\": { \r\n        \"nom\": \"Tono Galáctico #()($)ide() de 13: ()($)nom().\",\r\n        \"des\": \"()($)des() ()($)des_acc_lec().\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/ton/()($)ide().png);\",\r\n        \"col\": 7,\r\n        \"num\": 13\r\n      },\r\n      \"opc\": { \r\n        \"ver\": [ \r\n          \"ide\", \"ond\", \"dim\", \"mat\", \"sim\", \"hum_art\", \"hum_lad\" \r\n        ],\r\n        \"ima\": [ \r\n          \"ide\", \"ond\", \"dim\", \"mat\", \"sim\" \r\n        ],\r\n        \"col\": [ \r\n          \"ide\", \"ond\", \"dim\", \"mat\", \"sim\", \"hum_art\", \"hum_lad\" \r\n        ],\r\n        \"num\": [ \r\n          \"ide\", \"ond\", \"dim\", \"mat\", \"sim\", \"hum_art\", \"hum_lad\" \r\n        ]\r\n      },\r\n      \"lis\": { \r\n        \"atr\": [ \r\n          \"ide\", \"nom\", \"des_car\", \"des_pod\", \"des_acc\", \"dim\", \"mat\", \"sim\" \r\n        ],\r\n        \"atr_ocu\": [ \r\n          \"dim\", \"mat\", \"sim\" \r\n        ],\r\n        \"tit_cic\": [ \r\n          \"ond\" \r\n        ],\r\n        \"tit_gru\": [ \r\n          \"dim\", \"mat\", \"sim\" \r\n        ],\r\n        \"det_des\": [ \r\n          \"ond_man\", \"cit_med\", \"cit_pre\", \"cit_por\" \r\n        ]\r\n      },\r\n      \"inf\": {\r\n        \"det\": [ \"des_car\", \"des_acc\", \"des_pod\" ],\r\n\r\n        \"tab\": [ \"hol.ton.ond\", { \r\n            \"val\": { \"pos\":\"()($)ide()\" }, \r\n            \"pos\": { \"bor\":1, \"ima\":\"hol.ton.ide\", \"tex\":\"hol.ton.des\", \"pul\":[\"dim\",\"mat\",\"sim\"] }\r\n          }, { \r\n            \"pos\": { \"class\":\"pad-1\" } \r\n          }\r\n        ],\r\n        \"fic\": [ \"ond\", \"dim\", \"mat\", \"sim\" ],\r\n\r\n        \"htm-1\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Los <a target=\'_blank\' href=\'http://localhost//hol/bib/fac#_04-04-01-01-\'>Rayos de Pulsación</a> en el Factor Maya\" },\r\n        \"atr-1\": \"gal\",\r\n\r\n        \"htm-2\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Los <a target=\'_blank\' href=\'http://localhost//hol/bib/enc#_03-11-\'>Tonos Galácticos de la Creación</a> en el Encantamiento del Sueño\" },\r\n        \"tex-2\": \"()($)des(), ()($)des_acc_lec().\",\r\n\r\n        \"htm-3\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"La <a target=\'_blank\' href=\'http://localhost//hol/bib/enc#_03-12-\'>Onda Encantada de la Aventura</a> en el Encantamiento del Sueño\" },\r\n        \"tex-3\": \"()($)ond_nom(): ()($)ond_pos(). ()($)ond_man().\",\r\n\r\n        \"htm-4\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Referencias del Orden Sincrónico en la <a target=\'_blank\' href=\'https://13lunas.net/\'>Ley del Tiempo</a>\" },\r\n        \"atr-4\": \"cit_med\",\r\n\r\n        \"htm-5\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Extractos del libro <cite><q>El kin<c>,</c> tu signo maya</q></cite> \" },\r\n        \"atr-5\": [ \"cit_pre\", \"cit_por\" ]\r\n      }\r\n  }'),
-('hol', 'ton_dim', '{\r\n      \"atr\": {\r\n        \"ide\": { \"min\":1, \"max\":4, \"dat\":\"hol_ton_dim\" },\r\n        \"ton\": { \"dat\":\"hol_ton\" }\r\n      },\r\n      \"val\": { \r\n        \"nom\": \"Pulsar Dimensional #()($)ide() de 4: ()($)nom().\",\r\n        \"des\": \"()($)des_ond(). ()($)des_dim() dimensión, Campo de aplicación ()($)des_cam().\", \r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/ton/dim/()($)ide().png);\",\r\n        \"col\": 4\r\n      },\r\n      \"opc\": { \r\n        \"ima\": [ \"ide\", \"ton\" ] \r\n      },\r\n      \"inf\": { \r\n        \"det\": [ \"des_dim\", \"des_cam\" ],\r\n\r\n        \"htm\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"El <a target=\'_blank\' href=\'http://localhost//hol/bib/enc#_03-13-\'>Código pulsar</a> en el Encantamiento del Sueño\" },\r\n        \"atr\": [ \"des_ond\" ],\r\n        \"fic\": [ \"ton\" ]\r\n      }\r\n  }'),
-('hol', 'ton_mat', '{\r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":5, \"dat\":\"hol_ton_mat\" },\r\n        \"ton\": { \"dat\":\"hol_ton\" }\r\n      },      \r\n      \"val\": { \r\n        \"nom\": \"Pulsar Matiz #()($)ide() de 5: ()($)nom().\",\r\n        \"des\": \"Código: ()($)des_cod(). Pulsares Dimensionales: ()($)des_dim().\", \r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/ton/mat/()($)ide().png);\",\r\n        \"col\": 5\r\n      },\r\n      \"opc\": { \r\n        \"ima\": [ \"ide\", \"ton\" ]\r\n      },\r\n      \"inf\": { \r\n        \"det\": [ \"des_cod\", \"des_dim\" ],\r\n\r\n        \"htm\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"El <a target=\'_blank\' href=\'http://localhost//hol/bib/enc#_03-13-\'> Código pulsar</a> en el Encantamiento del Sueño\" },\r\n        \"atr\": [ \"des_ond\" ],\r\n        \"fic\": [ \"ton\" ]\r\n      }\r\n  }'),
-('hol', 'ton_ond', '{\r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":4, \"dat\":\"hol_ton_ond\" },\r\n        \"ton\": { \"dat\":\"hol_ton\" }\r\n      },\r\n      \"val\": { \r\n        \"nom\": \"Aventura de la Onda Encantada #()($)ide() de 4.\",\r\n        \"des\": \"()($)des().\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/ton/ond/()($)ide().png);\",\r\n        \"col\": 4,\r\n        \"num\": 4\r\n      },\r\n      \"opc\": { \r\n        \"ima\": [ \"ide\", \"ton\" ] \r\n      },\r\n      \"inf\": { \r\n        \"opc\": [ \"des\" ],\r\n        \"htm\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"La <a target=\'_blank\' href=\'http://localhost//hol/bib/enc#_03-12-\'>Onda Encantada de la Aventura</a> en el Encantamiento del Sueño\" },\r\n        \"fic\": [ \"ton\" ]\r\n      }\r\n  }'),
-('hol', 'ton_sim', '{\r\n      \"atr\": {\r\n        \"ide\": { \"min\":1, \"max\":7, \"dat\":\"hol_ton_sim\" },\r\n        \"ton\": { \"dat\":\"hol_ton\" }\r\n      },\r\n      \"val\": { \r\n        \"nom\": \"Simetría Especular #()($)ide() de 7: ()($)nom().\",\r\n        \"des\": \"()($)des()\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/ton/sim/()($)ide().png);\",\r\n        \"col\": 7\r\n      },\r\n      \"opc\": { \r\n        \"ima\": [ \"ide\", \"ton\" ]\r\n      },\r\n      \"inf\": { \r\n        \"opc\": [ \"des\" ],\r\n        \r\n        \"htm\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"La <a target=\'_blank\' href=\'http://localhost//hol/bib/fac#_04-04-01-02-\'>Simetría Especular</a> en el Factor Maya\" },\r\n        \"atr\": [ \"fac_des\" ],\r\n        \"fic\": [ \"ton\" ]\r\n      }\r\n  }'),
+('hol', 'rad', '{\r\n      \"atr\": { \r\n        \"ide\":         { \"min\":1, \"max\":7, \"dat\":\"hol-rad\" },            \r\n        \"tel_año\":     { \"min\":1997, \"max\":1999, \"dat\":\"api.fec_año\" },\r\n        \"tel_ora_año\": { \"min\":1, \"max\":260, \"dat\":\"hol-kin_par\" },\r\n        \"tel_ora_ani\": { \"min\":1, \"max\":260, \"dat\":\"hol-kin_par\" },\r\n        \"tel_ora_gen\": { \"min\":1, \"max\":260, \"dat\":\"hol-kin_par\" },\r\n        \"pla_fue\":     { \"dat\":\"hol-rad_pla_fue\" },\r\n        \"pla_qua\":     { \"min\":1, \"max\":3, \"dat\":\"hol-rad_pla_qua\" },\r\n        \"pla_cub\":     { \"min\":1, \"max\":7, \"dat\":\"hol-rad_pla_cub\" },\r\n        \"hum_cha\":     { \"min\":1, \"max\":7, \"dat\":\"hol-uni_hum_cha\" }\r\n      },\r\n      \"val\": { \r\n        \"nom\": \"Plasma #()($)ide() de 7: ()($)nom().\",\r\n        \"des\": \"\'()($)pla_lec()\'\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/rad/()($)ide().png);\",\r\n        \"col\": 7,\r\n        \"num\": 7\r\n      },\r\n      \"opc\": { \r\n        \"ver\": [ \r\n          \"ide\", \r\n          \"pla_fue\", \"pla_cub\", \"pla_qua\",\r\n          \"hum_cha\"\r\n        ],\r\n        \"ima\": [\r\n          \"ide\",\r\n          \"pla_fue\", \"pla_cub\", \"pla_qua\",\r\n          \"tel_ora_año\", \"tel_ora_ani\", \"tel_ora_gen\",\r\n          \"hum_cha\"\r\n        ],\r\n        \"col\": [\r\n          \"ide\", \"pla_qua\"\r\n        ],\r\n        \"num\": [\r\n          \"ide\", \"pla_qua\" \r\n        ]\r\n      },\r\n      \"lis\": { \r\n\r\n        \"atr\": [ \"ide\", \"nom\", \"des_pod\", \"des_fue\", \"pla_qua\" ]\r\n      },\r\n      \"inf\": {\r\n        \"det\": [ \"des_col\", \"des_pod\", \"des_fue\" ],\r\n\r\n        \"tab\": [ \"hol.rad.pla\", {\r\n          \"val\":{ \"pos\":\"()($)ide()\" },\r\n          \"pos\":{ \"ima\":\"hol.rad.ide\", \"col\":\"hol.rad.ide\" }\r\n        }],\r\n\r\n        \"htm-1\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Los <a target=\'_blank\' href=\'http://localhost/hol/bib/tel#_02-06-\'>Oráculos y las Profecías</a> en <cite>el Telektonon</cite>\" },\r\n        \"tex-1\": \"()($)tel() ( ()($)tel_año() ): ()($)tel_des().\",\r\n        \"fic-1-tit\": [ \"tel_ora_año\", \"tel_ora_ani\", \"tel_ora_gen\" ],\r\n        \r\n        \"htm-2\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Los <a target=\'_blank\' href=\'http://localhost/hol/bib/rin#_02-05-01-\'>Funciones Anuales</a> en <cite>el Proyecto Rinri</cite>\" },\r\n        \"atr-2\": \"rin_des\",\r\n\r\n        \"htm-3\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Los <a target=\'_blank\' href=\'http://localhost/hol/bib/ato#_03-01-\'>Componentes Electrónicos</a> en <cite>el Átomo del Tiempo</cite>\" },\r\n        \"atr-3\": \"pla_des\",\r\n        \"fic-3\": [ \"pla_fue\" ],\r\n\r\n        \"htm-4\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Las <a target=\'_blank\' href=\'http://localhost/hol/bib/ato#_03-06-\'>Autodeclaraciones Diarias de Padmasambhava</a> en <cite>el Átomo del Tiempo</cite>\" },\r\n        \"atr-4\": \"pla_lec\",\r\n        \"fic-4\": [ \"pla_qua\" ],\r\n\r\n        \"htm-5\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Los <a target=\'_blank\' href=\'http://localhost/hol/bib/ato#_03-06-\'>Chakras y el Cubo del Radión</a> en <cite>el Átomo del Tiempo</cite>\" },\r\n        \"fic-5\": [ \"hum_cha\", \"pla_cub\" ],\r\n\r\n        \"htm-6\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"El <a target=\'_blank\' href=\'http://localhost/hol/bib/umb\'>Mapa Estelar</a> en <cite>el Sincronotrón</cite>\" },\r\n        \"atr-6\": [ \"umb_map\" ], \r\n\r\n        \"htm-7\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Las <a target=\'_blank\' href=\'http://localhost/hol/bib/umb\'>Esferas Mentales</a> en <cite>el Sincronotrón</cite>\" },\r\n        \"tex-7\": \"()($)umb_esf(): ()($)umb_est_fun()\"\r\n      }\r\n  }'),
+('hol', 'rad_pla_cub', '{\r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":7, \"dat\":\"hol-rad_pla_cub\" }\r\n      },\r\n      \"val\": { \r\n        \"nom\": \"Posicion #()($)ide() de 7: ()($)nom()\",\r\n        \"des\": \"Correspondiente al plasma ()($)pla()\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/rad/pla_cub/()($)ide().png);\",\r\n        \"col\": 4,\r\n        \"num\": 7\r\n      }\r\n  }'),
+('hol', 'rad_pla_ele', '{\r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":6, \"dat\":\"hol-rad_pla_ele\" }\r\n      },      \r\n      \"val\": { \r\n        \"nom\": \"Tipo de Electricidad Cósmica #()($)ide() de 6: ()($)nom() ( ()($)des_cod() ).\",\r\n        \"des\": \"()($)des().\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/rad/pla_ele/()($)ide().png);\"                      \r\n      },\r\n      \"opc\": { \r\n        \"ima\": [ \"ide\" ]\r\n      }\r\n  }'),
+('hol', 'rad_pla_fue', '{\r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":12, \"dat\":\"hol-rad_pla_fue\" },\r\n        \"ele_pre\": { \"min\":1, \"max\":6, \"dat\":\"hol-rad_pla_ele\" },\r\n        \"ele_pos\": { \"min\":1, \"max\":6, \"dat\":\"hol-rad_pla_ele\" }\r\n      },\r\n      \"val\": { \r\n        \"nom\": \"Línea de Fuerza #()($)ide() de 12: ()($)nom().\",\r\n        \"des\": \"()($)des().\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/rad/pla_fue/()($)ide().png);\"\r\n      },\r\n      \"opc\": { \r\n        \"ima\": [ \"ide\", \"ele_pre\", \"ele_pos\" ]            \r\n      },\r\n      \"inf\": {\r\n\r\n        \"htm-1\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Los <a target=\'_blank\' href=\'http://localhost/hol/bib/ato#_03-01-\'>Componentes Electrónicos</a> en <cite>el Átomo del Tiempo</cite>\" },\r\n        \"fic-1\": [ \"ele_pre\", \"ele_pos\" ]\r\n      }\r\n  }'),
+('hol', 'rad_pla_pol', '{ \r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":2, \"dat\":\"hol-rad_pla_pol\" }\r\n      },      \r\n      \"val\": { \r\n        \"nom\": \"Carga #()($)ide() de 2: ()($)nom().\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/rad/pla_car/()($)ide().png);\"\r\n      }\r\n  }'),
+('hol', 'rad_pla_qua', '{\r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":3, \"dat\":\"hol-rad_pla_qua\" },\r\n        \"pla\": { \"dat\":\"hol-rad\" }\r\n      },      \r\n      \"val\": {\r\n        \"nom\": \"Quantum #()($)ide() de 3: ()($)nom().\",\r\n        \"des\": \"()($)des()\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/rad/pla_qua/()($)ide().png);\",\r\n        \"col\": 3,\r\n        \"num\": 3\r\n      },\r\n      \"opc\": {\r\n        \"ima\": [ \"ide\", \"pla\" ]\r\n      },\r\n      \"inf\": {\r\n        \"opc\": [ \"des\" ],\r\n        \"fic\": [ \"pla\" ]\r\n      }\r\n  }'),
+('hol', 'sel', '{\r\n    \"atr\": { \r\n      \"ide\":      { \"min\":1, \"max\":20, \"dat\":\"hol-sel\" },\r\n      \"cod\":      { \"min\":0, \"max\":19 },\r\n      \"ord\":      { \"min\":1, \"max\":20,  \"dat\":\"hol-sel_cod\" },\r\n\r\n      \"cic_ser\":  { \"min\":1, \"max\":3, 	\"dat\":\"hol-sel_cic_ser\" },\r\n      \"cic_luz\":  { \"min\":1, \"max\":5, 	\"dat\":\"hol-sel_cic_luz\" },\r\n\r\n      \"arm_tra\":  { \"min\":1, \"max\":20, 	\"dat\":\"hol-sel.arm_tra\" },\r\n      \"arm_raz\":  { \"min\":1, \"max\":4, 	\"dat\":\"hol-sel_arm_raz\" },\r\n      \"arm_cel\":  { \"min\":1, \"max\":5, 	\"dat\":\"hol-sel_arm_cel\" },\r\n\r\n      \"cro_fam\":  { \"min\":1, \"max\":5, 	\"dat\":\"hol-sel_cro_fam\" },\r\n      \"cro_ele\":  { \"min\":1, \"max\":4, 	\"dat\":\"hol-sel_cro_ele\" },\r\n\r\n      \"par_ana\":  { \"min\":1, \"max\":20, 	\"dat\":\"hol-sel\" },\r\n      \"par_ant\":  { \"min\":1, \"max\":20, 	\"dat\":\"hol-sel\" },\r\n      \"par_ocu\":  { \"min\":1, \"max\":20, 	\"dat\":\"hol-sel\" },\r\n\r\n      \"flu_res\":  { \"min\":1, \"max\":2, 	\"dat\":\"hol-uni_flu_res\" },\r\n      \r\n      \"sol_pla\":  { \"min\":1, \"max\":10, 	\"dat\":\"hol-uni_sol_pla\" },\r\n      \"sol_res\":  { \"min\":1, \"max\":2, 	\"dat\":\"hol-uni_sol_res\" },\r\n      \"sol_orb\":  { \"min\":1, \"max\":2, 	\"dat\":\"hol-uni_sol_orb\" },\r\n      \"sol_cel\":  { \"min\":1, \"max\":5, 	\"dat\":\"hol-uni_sol_cel\" },\r\n      \"sol_cir\":  { \"min\":1, \"max\":5, 	\"dat\":\"hol-uni_sol_cir\" },\r\n\r\n      \"pla_res\":  { \"min\":1, \"max\":2, 	\"dat\":\"hol-uni_pla_res\" },\r\n      \"pla_mer\":  { \"min\":1, \"max\":2, 	\"dat\":\"hol-uni_pla_mer\" },\r\n      \"pla_hem\":  { \"min\":1, \"max\":3, 	\"dat\":\"hol-uni_pla_hem\" },\r\n      \"pla_cen\":  { \"min\":1, \"max\":5, 	\"dat\":\"hol-uni_pla_cen\" },\r\n\r\n      \"hum_res\":  { \"min\":1, \"max\":2, 	\"dat\":\"hol-uni_hum_res\" },\r\n      \"hum_cen\":  { \"min\":1, \"max\":5, 	\"dat\":\"hol-uni_hum_cen\" },\r\n      \"hum_ext\":  { \"min\":1, \"max\":5, 	\"dat\":\"hol-uni_hum_ext\" },\r\n      \"hum_ded\":  { \"min\":1, \"max\":5, 	\"dat\":\"hol-uni_hum_ded\" },\r\n      \"hum_mer\":  { \"min\":1, \"max\":10, 	\"dat\":\"hol-uni_hum_mer\" }\r\n    },\r\n    \"val\": { \r\n      \"nom\": \"Sello Solar #()($)ide() de 20, ()($)arm().\",\r\n      \"des\": \"()($)des_car() ()($)des().\",\r\n      \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/sel/()($)ide().png);\",\r\n      \"col\": 4,\r\n      \"num\": 20\r\n    },\r\n    \"opc\": { \r\n      \"ver\": [ \r\n        \"ide\", \"ord\",\r\n        \"cic_ser\", \"cic_luz\", \r\n        \"cro_fam\", \"cro_ele\", \"arm_raz\", \"arm_cel\",\r\n        \"flu_res\",\r\n        \"sol_pla\", \"sol_cel\", \"sol_cir\", \r\n        \"pla_cen\", \"pla_hem\", \"pla_mer\",\r\n        \"hum_cen\", \"hum_ext\", \"hum_ded\", \"hum_mer\"\r\n      ],\r\n      \"ima\": [\r\n        \"ide\", \"ord\", \r\n        \"par_ana\", \"par_ant\", \"par_ocu\",\r\n        \"cro_fam\", \"cro_ele\", \"arm_raz\", \"arm_cel\",\r\n        \"flu_res\",\r\n        \"sol_pla\", \"sol_cel\", \"sol_cir\", \r\n        \"pla_cen\", \"pla_hem\", \"pla_mer\",\r\n        \"hum_cen\", \"hum_mer\", \"hum_ext\", \"hum_ded\"\r\n      ],\r\n      \"col\": [\r\n        \"ide\", \r\n        \"cic_ser\", \"cic_luz\", \r\n        \"cro_fam\", \"cro_ele\", \"arm_raz\", \"arm_cel\",\r\n        \"flu_res\",\r\n        \"sol_pla\", \"sol_cel\", \"sol_cir\", \r\n        \"pla_cen\", \"pla_hem\", \"pla_mer\",\r\n        \"hum_cen\", \"hum_mer\", \"hum_ext\", \"hum_ded\"\r\n      ],\r\n      \"num\": [ \r\n        \"ide\", \"cod\", \r\n        \"cic_ser\", \"cic_luz\", \r\n        \"par_ana\", \"par_ant\", \"par_ocu\", \r\n        \"cro_fam\", \"cro_ele\", \"arm_tra\", \"arm_raz\", \"arm_cel\",\r\n        \"flu_res\",\r\n        \"sol_pla\", \"sol_cel\", \"sol_cir\", \r\n        \"pla_cen\", \"pla_hem\", \"pla_mer\",\r\n        \"hum_cen\", \"hum_mer\", \"hum_ext\", \"hum_ded\"\r\n      ],\r\n      \"tex\": [\r\n      ]\r\n    },\r\n    \"inf\": { \r\n      \"det\": [ \"des_car\", \"des_acc\", \"des_pod\" ],\r\n\r\n      \"htm-1-1\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"El <a target=\'_blank\' href=\'hol/bib/fac#_04-04-02-04-\'>Desarrollo del Ser</a> en <cite>el Factor Maya</cite>\" },\r\n      \"atr-1-1\": [ \"cic_ser_des\" ],\r\n\r\n      \"htm-1-2\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Las <a target=\'_blank\' href=\'hol/bib/fac#_04-04-02-05-\'>Familias Cíclicas de la Luz</a> en <cite>el Factor Maya</cite>\" },\r\n      \"atr-1-2\": [ \"cic_luz_des\" ],\r\n\r\n      \"htm-1-3\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"El <a target=\'_blank\' href=\'hol/bib/fac#_05-06-03-\'>Modelo Morfogenético</a> en <cite>el Factor Maya</cite>\" },\r\n      \"atr-1-3\": [ \"arm_tra_des\" ],\r\n      \r\n      \"htm-2\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"La <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-04-\'>Colocación Armónica</a> en <cite>el Encantamiento del Sueño</cite>\" },\r\n      \"tab-2\": [ \"hol.sel.arm\", { \"val\": { \"pos\":\"()($)ide()\" }, \"pos\": { \"ima\":\"hol.sel.ide\" } } ],\r\n      \"fic-2-1\": [ \"arm_cel\" ],\r\n      \"atr-2-1\": [ \"arm_cel_des\" ],\r\n      \"fic-2-2\": [ \"arm_raz\" ],\r\n      \"atr-2-2\": [ \"arm_raz_des\" ],\r\n\r\n      \"htm-3\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"La <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-02-\'>Colocación Cromática</a> en <cite>el Encantamiento del Sueño</cite>\" },\r\n      \"tab-3\": [ \"hol.sel.cro\", { \"val\": { \"pos\":\"()($)ide()\" }, \"pos\": { \"ima\":\"hol.sel.ide\" } } ],\r\n      \"fic-3-1\": [ \"cro_ele\" ],\r\n      \"atr-3-1\": [ \"cro_ele_des\" ],\r\n      \"fic-3-2\": [ \"cro_fam\" ],\r\n      \"atr-3-2\": [ \"sol_pla_des\" ],\r\n\r\n      \"htm-4\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Descripciones en el Libro <cite><q>El kin, tu signo maya</q></cite>\" },\r\n      \"atr-4\": [ \"cit_des\", \"cit_por\", \"cit_por_som\", \"cit_por_rec\" ],\r\n      \"lis-4\": [ \"cit_lis_pal\", \"cit_lis_som\" ]\r\n\r\n    },\r\n    \"lis\": { \r\n\r\n      \"atr\": [ \"ide\", \"cod\", \"nom\", \"des_car\", \"des_acc\", \"des_pod\",\r\n        \"cro_fam\", \"cro_ele\", \r\n        \"arm_raz\", \"arm_cel\", \r\n        \"par_ana\", \"par_ant\", \"par_ocu\",\r\n        \"flu_res\", \"sol_pla\", \"pla_cen\", \"hum_mer\", \"hum_cen\", \"hum_ded\"\r\n      ],\r\n      \"atr_ocu\": [\r\n        \"cro_fam\", \"cro_ele\", \r\n        \"arm_raz\", \"arm_cel\", \r\n        \"par_ana\", \"par_ant\", \"par_ocu\",\r\n        \"flu_res\", \"sol_pla\", \"pla_cen\", \"hum_mer\", \"hum_cen\", \"hum_ded\" \r\n      ],\r\n\r\n      \"tit_gru\": [ \"cro_fam\", \"arm_raz\", \"sol_pla\", \"sol_cel\", \"sol_cir\", \"pla_cen\", \"hum_mer\", \"hum_cen\", \"hum_ded\" ],\r\n      \"tit_cic\": [ \"cic_ser\", \"cic_luz\", \"cro_ele\", \"arm_cel\", \"flu_res\" ],\r\n\r\n      \"det_des\": [ \"cit_des\", \"cit_por\", \"cit_por_som\", \"cit_por_rec\" ]\r\n    }\r\n  }'),
+('hol', 'sel_arm_cel', '{\r\n    \"atr\": { \r\n      \"ide\": { \"min\":1, \"max\":5, \"dat\":\"hol-sel_arm_cel\" },\r\n      \"sel\": { \"dat\":\"hol-sel\" }\r\n    },\r\n    \"val\": { \r\n      \"nom\": \"Célula del Tiempo #()($)ide() de 5: ()($)nom().\",\r\n      \"des\": \"()($)des().\", \r\n      \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/sel/arm_cel/()($)ide().png);\",\r\n      \"col\": 5,\r\n      \"num\": 5\r\n    },\r\n    \"opc\": { \r\n      \"ima\": [ \"ide\", \"sel\" ]\r\n    },\r\n    \"inf\": { \r\n      \"opc\": [ \"des\" ],\r\n\r\n      \"det\": [ \"des_fun\", \"des_pod\" ],\r\n\r\n      \"htm\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"La <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-05-\'>Colocación Armónica</a> d<cite>el Encantamiento del Sueño</cite>\" },\r\n      \"fic\": [ \"sel\" ]\r\n    }\r\n  }'),
+('hol', 'sel_arm_raz', '{\r\n    \"atr\": {\r\n      \"ide\": { \"min\":1, \"max\":4, \"dat\":\"hol-sel_arm_raz\" },\r\n      \"sel\": { \"dat\":\"hol-sel\" }\r\n    },\r\n    \"val\": { \r\n      \"nom\": \"Raza Raiz Cósmica #()($)ide() de 4: ()($)nom().\",\r\n      \"des\": \"()($)des().\",\r\n      \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/sel/arm_raz/()($)ide().png);\",\r\n      \"col\": 4,\r\n      \"num\": 4\r\n    },\r\n    \"opc\": { \r\n      \"ima\": [ \"ide\", \"sel\" ]\r\n    },\r\n    \"inf\": {\r\n      \"opc\": [ \"des\" ],\r\n\r\n      \"det\": [ \"des_dir\", \"des_pod\", \"des_dia\" ],\r\n\r\n      \"htm\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"La <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-04-\'>Colocación Armónica</a> d<cite>el Encantamiento del Sueño</cite>\" },\r\n      \"fic\": [ \"sel\" ]\r\n    }\r\n  }'),
+('hol', 'sel_arm_tra', '{\r\n    \"atr\": { \r\n      \"ide\": { \"min\":1, \"max\":20, \"dat\":\"hol-sel_arm_tra\" },\r\n      \"sel\": { \"dat\":\"hol-sel\" }\r\n    },        \r\n    \"val\": { \r\n      \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/sel.png), center/contain no-repeat url(http://localhost/img/hol/fic/sel/()($)ide().png);\"\r\n    },\r\n    \"opc\": { \r\n      \"ima\": [ \"ide\" ]\r\n    }  \r\n  }'),
+('hol', 'sel_cic_dir', '{\r\n    \"atr\": { \r\n      \"ide\": { \"min\":1, \"max\":4, \"dat\":\"hol-sel_cic_dir\" },\r\n      \"sel\": { \"dat\":\"hol-sel\" }\r\n    },\r\n    \"val\": { \r\n      \"nom\": \"Ciclo Direccional #()($)ide() de 4: ()($)nom()\",\r\n      \"des\": \"()($)des().\", \r\n      \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/sel/cic_dir/()($)ide().png);\",\r\n      \"col\": 4\r\n    },\r\n    \"opc\": { \r\n      \"ima\": [ \"ide\", \"sel\" ] \r\n    }\r\n  }'),
+('hol', 'sel_cic_luz', '{ \r\n    \"atr\": { \r\n      \"ide\": { \"min\":1, \"max\":5, \"dat\":\"hol-sel_cic_luz\" },\r\n      \"sel\": { \"dat\":\"hol-sel\" }\r\n    },\r\n    \"val\": { \r\n      \"nom\": \"Familia Cíclica de la luz #()($)ide() de 5: ()($)nom().\",\r\n      \"des\": \"()($)des().\",\r\n      \"col\": 5,\r\n      \"num\": 5\r\n    },\r\n    \"opc\": {\r\n      \"ima\": [ \"sel\" ]\r\n    }\r\n  }'),
+('hol', 'sel_cic_ser', '{\r\n    \"atr\": { \r\n      \"ide\": { \"min\":1, \"max\":3, \"dat\":\"hol-sel_cic_ser\" },\r\n      \"sel\": { \"dat\":\"hol-sel\" }\r\n    },\r\n    \"val\": { \r\n      \"nom\": \"Desarrollo del ser #()($)ide() de 3: ()($)nom().\",\r\n      \"des\": \"()($)des().\",\r\n      \"col\": 3,\r\n      \"num\": 3\r\n    },\r\n    \"opc\": {\r\n      \"ima\": [ \"sel\" ]\r\n    }\r\n  }'),
+('hol', 'sel_cod', '{\r\n    \"atr\": { \r\n      \"ide\":      { \"min\":1, \"max\":20, \"dat\":\"hol-sel\" },\r\n      \"cod\":      { \"min\":0, \"max\":19 },\r\n      \"ord\":      { \"min\":1, \"max\":20,  \"dat\":\"hol-sel_cod\" },\r\n      \"cic_ser\":  { \"min\":1, \"max\":3, 	\"dat\":\"hol-sel_cic_ser\" },\r\n      \"cic_luz\":  { \"min\":1, \"max\":5, 	\"dat\":\"hol-sel_cic_luz\" },\r\n      \"arm_tra\":  { \"min\":1, \"max\":20, 	\"dat\":\"hol-sel.arm_tra\" },\r\n      \"arm_raz\":  { \"min\":1, \"max\":4, 	\"dat\":\"hol-sel_arm_raz\" },\r\n      \"arm_cel\":  { \"min\":1, \"max\":5, 	\"dat\":\"hol-sel_arm_cel\" },\r\n      \"cro_fam\":  { \"min\":1, \"max\":5, 	\"dat\":\"hol-sel_cro_fam\" },\r\n      \"cro_ele\":  { \"min\":1, \"max\":4, 	\"dat\":\"hol-sel_cro_ele\" },\r\n      \"par_ana\":  { \"min\":1, \"max\":20, 	\"dat\":\"hol-sel\" },\r\n      \"par_ant\":  { \"min\":1, \"max\":20, 	\"dat\":\"hol-sel\" },\r\n      \"par_ocu\":  { \"min\":1, \"max\":20, 	\"dat\":\"hol-sel\" },\r\n      \"flu_res\":  { \"min\":1, \"max\":2, 	\"dat\":\"hol-uni_flu_pod\" },          \r\n      \"sol_pla\":  { \"min\":1, \"max\":10, 	\"dat\":\"hol-uni_sol_pla\" },\r\n      \"sol_res\":  { \"min\":1, \"max\":2, 	\"dat\":\"hol-uni_sol_res\" },\r\n      \"sol_orb\":  { \"min\":1, \"max\":2, 	\"dat\":\"hol-uni_sol_orb\" },\r\n      \"sol_cel\":  { \"min\":1, \"max\":5, 	\"dat\":\"hol-uni_sol_cel\" },\r\n      \"sol_cir\":  { \"min\":1, \"max\":5, 	\"dat\":\"hol-uni_sol_cir\" },\r\n      \"pla_res\":  { \"min\":1, \"max\":2, 	\"dat\":\"hol-uni_pla_res\" },\r\n      \"pla_mer\":  { \"min\":1, \"max\":2, 	\"dat\":\"hol-uni_pla_mer\" },\r\n      \"pla_hem\":  { \"min\":1, \"max\":3, 	\"dat\":\"hol-uni_pla_hem\" },\r\n      \"pla_cen\":  { \"min\":1, \"max\":5, 	\"dat\":\"hol-uni_pla_cen\" },          \r\n      \"hum_res\":  { \"min\":1, \"max\":2, 	\"dat\":\"hol-uni_flu_res\" },\r\n      \"hum_cen\":  { \"min\":1, \"max\":5, 	\"dat\":\"hol-uni_hum_cen\" },\r\n      \"hum_ext\":  { \"min\":1, \"max\":5, 	\"dat\":\"hol-uni_hum_ext\" },\r\n      \"hum_ded\":  { \"min\":1, \"max\":5, 	\"dat\":\"hol-uni_hum_ded\" },\r\n      \"hum_mer\":  { \"min\":1, \"max\":10, 	\"dat\":\"hol-uni_hum_mer\" }\r\n    },\r\n    \"val\": { \r\n      \"nom\": \"Código #()($)cod()\",\r\n      \"des\": \"()($)car() ()($)des().\",\r\n      \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/sel/cod/()($)cod().png);\",\r\n      \"col\": 5,\r\n      \"num\": 20\r\n    },\r\n    \"inf\": { \r\n      \"det\": [ \"des_car\", \"des_acc\", \"des_pod\" ],\r\n\r\n      \"htm-3\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"La <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-02-\'>Colocación Cromática</a> en <cite>el Encantamiento del Sueño</cite>\" },\r\n      \"tab-3\": [ \"hol.sel.cro\", { \"val\": { \"pos\":\"()($)ide()\" }, \"pos\": { \"ima\":\"hol.sel.ide\" } } ],\r\n      \"fic-3-1\": [ \"cro_ele\" ],\r\n      \"atr-3-1\": [ \"cro_ele_des\" ],\r\n      \"fic-3-2\": [ \"cro_fam\" ],\r\n      \"atr-3-2\": [ \"sol_pla_des\" ]\r\n\r\n    },\r\n    \"opc\": { \r\n      \"ima\": [\r\n        \"ide\", \"ord\", \"par_ana\", \"par_ant\", \"par_ocu\", \"cro_fam\", \"cro_ele\", \r\n        \"flu_res\", \"sol_pla\", \"sol_cel\", \"sol_cir\", \"pla_cen\", \"pla_hem\", \"pla_mer\", \"hum_res\", \"hum_mer\", \"hum_cen\", \"hum_ext\", \"hum_ded\"\r\n      ]            \r\n    }\r\n  }'),
+('hol', 'sel_cro_ele', '{\r\n    \"atr\": { \r\n      \"ide\": { \"min\":1, \"max\":4, \"dat\":\"hol-sel_cro_ele\" },\r\n      \"sel\": { \"dat\":\"hol-sel\" },\r\n      \"arm_cel\": { \"dat\":\"hol-sel_arm_cel\" },\r\n      \"flu_res\": { \"min\":1, \"max\":2, \"dat\":\"hol-uni_flu_res\" },\r\n      \"hum_ext\": { \"min\":1, \"max\":4, \"dat\":\"hol-uni_hum_ext\" }\r\n    },\r\n    \"val\": { \r\n      \"nom\": \"Clan #()($)ide() de 4: ()($)nom() ()($)col().\",\r\n      \"des\": \"()($)des().\",\r\n      \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/sel/cro_ele/()($)ide().png);\",\r\n      \"col\": 4,\r\n      \"num\": 4\r\n    },\r\n    \"opc\": { \r\n      \"ima\": [ \"ide\", \"sel\", \"flu_res\", \"hum_ext\" ]\r\n    },\r\n    \"inf\": { \r\n      \"det\": [ \"des_col\", \"des_men\" ],\r\n      \"atr\": [ \"des\" ],\r\n\r\n      \"htm-1\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"La <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-02-\'>Colocación Cromática</a> d<cite>el Encantamiento del Sueño</cite>\" },\r\n      \"fic-1\": [ \"sel\" ],\r\n      \r\n      \"htm-1\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"La <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-02-\'>Células del Tiempo</a> en el Íncide Armónico d<cite>el Encantamiento del Sueño</cite>\" },\r\n      \"fic-2\": [ \"arm_cel\" ]\r\n    }\r\n  }'),
+('hol', 'sel_cro_fam', '{\r\n    \"atr\": { \r\n      \"ide\": { \"min\":1, \"max\":5, \"dat\":\"hol-sel_cro_fam\" },\r\n      \"sel\": { \"dat\":\"hol-sel\" },\r\n      \"pla_cen\": { \"min\":1, \"max\":5, \"dat\":\"hol-uni_pla_cen\" },\r\n      \"hum_cen\": { \"min\":1, \"max\":5, \"dat\":\"hol-uni_hum_cen\" },\r\n      \"hum_ded\": { \"min\":1, \"max\":5, \"dat\":\"hol-uni_hum_ded\" }\r\n    },\r\n    \"val\": { \r\n      \"nom\": \"Familia Terrestre #()($)ide() de 5: ()($)nom().\",\r\n      \"des\": \"()($)des().\",\r\n      \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/sel/cro_fam/()($)ide().png);\",\r\n      \"col\": 5,\r\n      \"num\": 5\r\n    },\r\n    \"opc\": { \r\n      \"ima\": [ \"ide\", \"sel\", \"pla_cen\", \"hum_cen\", \"hum_ded\" ]\r\n    },\r\n    \"inf\": { \r\n      \"det\": [ \"des_fun\", \"des_mis\", \"des_rol\", \"des_acc\" ],\r\n\r\n      \"htm\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"La <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-14-\'>Cuenta atrás</a> d<cite>el Encantamiento del Sueño</cite>\" },\r\n      \"fic\": [ \"sel\" ],\r\n\r\n      \"htm-1\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"La <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-07-\'>Holon Planetario</a> d<cite>el Encantamiento del Sueño</cite>\" },\r\n      \"fic-1\": [ \"pla_cen\" ], \r\n\r\n      \"htm-2\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"La <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-08-\'>Holon Humano</a> d<cite>el Encantamiento del Sueño</cite>\" },\r\n      \"fic-2\": [ \"hum_cen\", \"hum_ded\" ]\r\n    }\r\n  }'),
+('hol', 'sel_par_ana', '{\r\n    \"atr\": { \r\n      \"ini\": { \"min\":1, \"max\":20, \"dat\":\"hol-sel\" },\r\n      \"fin\": { \"min\":1, \"max\":20, \"dat\":\"hol-sel\" }\r\n    },\r\n    \"opc\": { \r\n      \"ima\": [ \"ini\", \"fin\" ]            \r\n    }\r\n  }'),
+('hol', 'sel_par_ant', '{\r\n    \"atr\": { \r\n      \"ini\": { \"min\":1, \"max\":20, \"dat\":\"hol-sel\" },\r\n      \"fin\": { \"min\":1, \"max\":20, \"dat\":\"hol-sel\" }\r\n    },\r\n    \"opc\": { \r\n      \"ima\": [ \"ini\", \"fin\" ]            \r\n    }\r\n  }'),
+('hol', 'sel_par_ocu', '{\r\n    \"atr\": { \r\n      \"ini\": { \"min\":1, \"max\":20, \"dat\":\"hol-sel\" },\r\n      \"fin\": { \"min\":1, \"max\":20, \"dat\":\"hol-sel\" }\r\n    },\r\n    \"opc\": { \r\n      \"ima\": [ \"ini\", \"fin\" ]\r\n    }\r\n  }'),
+('hol', 'ton', '{\r\n      \"atr\": {\r\n        \"ide\": { \"min\":1, \"max\":13, \"dat\":\"hol-ton\" },\r\n\r\n        \"ond\": { \"min\":1, \"max\":4, \"dat\":\"hol-ton_ond\" },\r\n        \"ond_enc\": { \"min\":0, \"max\":4, \"dat\":\"hol-ton_ond\" },\r\n\r\n        \"dim\": { \"min\":1, \"max\":4, \"dat\":\"hol-ton_dim\" },\r\n        \"mat\": { \"min\":1, \"max\":5, \"dat\":\"hol-ton_mat\" },\r\n        \"sim\": { \"min\":1, \"max\":7, \"dat\":\"hol-ton_sim\" },\r\n        \r\n        \"hum_lad\": { \"min\":1, \"max\":3, \"dat\":\"hol-uni_hum_lad\" },\r\n        \"hum_art\": { \"min\":1, \"max\":7, \"dat\":\"hol-uni_hum_art\" },\r\n        \"hum_sen\": { \"min\":1, \"max\":7, \"dat\":\"hol-uni_hum_sen\" }\r\n      },\r\n      \"val\": { \r\n        \"nom\": \"Tono Galáctico #()($)ide() de 13: ()($)nom().\",\r\n        \"des\": \"()($)des() ()($)des_acc_lec().\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/ton/()($)ide().png);\",\r\n        \"col\": 7,\r\n        \"num\": 13\r\n      },\r\n      \"opc\": { \r\n        \"ver\": [ \r\n          \"ide\", \"ond\", \"dim\", \"mat\", \"sim\", \"hum_art\", \"hum_lad\" \r\n        ],\r\n        \"ima\": [ \r\n          \"ide\", \"ond\", \"dim\", \"mat\", \"sim\" \r\n        ],\r\n        \"col\": [ \r\n          \"ide\", \"ond\", \"dim\", \"mat\", \"sim\", \"hum_art\", \"hum_lad\" \r\n        ],\r\n        \"num\": [ \r\n          \"ide\", \"ond\", \"dim\", \"mat\", \"sim\", \"hum_art\", \"hum_lad\" \r\n        ]\r\n      },\r\n      \"lis\": { \r\n        \"atr\": [ \r\n          \"ide\", \"nom\", \"des_car\", \"des_pod\", \"des_acc\", \"dim\", \"mat\", \"sim\" \r\n        ],\r\n        \"atr_ocu\": [ \r\n          \"dim\", \"mat\", \"sim\" \r\n        ],\r\n        \"tit_cic\": [ \r\n          \"ond\" \r\n        ],\r\n        \"tit_gru\": [ \r\n          \"dim\", \"mat\", \"sim\" \r\n        ],\r\n        \"det_des\": [ \r\n          \"ond_man\", \"cit_med\", \"cit_pre\", \"cit_por\" \r\n        ]\r\n      },\r\n      \"inf\": {\r\n        \"det\": [ \"des_car\", \"des_acc\", \"des_pod\" ],\r\n\r\n        \"tab\": [ \"hol.ton.ond\", { \r\n            \"val\": { \"pos\":\"()($)ide()\" }, \r\n            \"pos\": { \"bor\":1, \"ima\":\"hol.ton.ide\", \"tex\":\"hol.ton.des\", \"pul\":[\"dim\",\"mat\",\"sim\"] }\r\n          }, { \r\n            \"pos\": { \"class\":\"pad-1\" } \r\n          }\r\n        ],\r\n        \"fic\": [ \"ond\", \"dim\", \"mat\", \"sim\" ],\r\n\r\n        \"htm-1\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Los <a target=\'_blank\' href=\'http://localhost//hol/bib/fac#_04-04-01-01-\'>Rayos de Pulsación</a> en el Factor Maya\" },\r\n        \"atr-1\": \"gal\",\r\n\r\n        \"htm-2\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Los <a target=\'_blank\' href=\'http://localhost//hol/bib/enc#_03-11-\'>Tonos Galácticos de la Creación</a> en el Encantamiento del Sueño\" },\r\n        \"tex-2\": \"()($)des(), ()($)des_acc_lec().\",\r\n\r\n        \"htm-3\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"La <a target=\'_blank\' href=\'http://localhost//hol/bib/enc#_03-12-\'>Onda Encantada de la Aventura</a> en el Encantamiento del Sueño\" },\r\n        \"tex-3\": \"()($)ond_nom(): ()($)ond_pos(). ()($)ond_man().\",\r\n\r\n        \"htm-4\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Referencias del Orden Sincrónico en la <a target=\'_blank\' href=\'https://13lunas.net/\'>Ley del Tiempo</a>\" },\r\n        \"atr-4\": \"cit_med\",\r\n\r\n        \"htm-5\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Extractos del libro <cite><q>El kin<c>,</c> tu signo maya</q></cite> \" },\r\n        \"atr-5\": [ \"cit_pre\", \"cit_por\" ]\r\n      }\r\n  }'),
+('hol', 'ton_dim', '{\r\n      \"atr\": {\r\n        \"ide\": { \"min\":1, \"max\":4, \"dat\":\"hol-ton_dim\" },\r\n        \"ton\": { \"dat\":\"hol-ton\" }\r\n      },\r\n      \"val\": { \r\n        \"nom\": \"Pulsar Dimensional #()($)ide() de 4: ()($)nom().\",\r\n        \"des\": \"()($)des_ond(). ()($)des_dim() dimensión, Campo de aplicación ()($)des_cam().\", \r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/ton/dim/()($)ide().png);\",\r\n        \"col\": 4\r\n      },\r\n      \"opc\": { \r\n        \"ima\": [ \"ide\", \"ton\" ] \r\n      },\r\n      \"inf\": { \r\n        \"det\": [ \"des_dim\", \"des_cam\" ],\r\n\r\n        \"htm\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"El <a target=\'_blank\' href=\'http://localhost//hol/bib/enc#_03-13-\'>Código pulsar</a> en el Encantamiento del Sueño\" },\r\n        \"atr\": [ \"des_ond\" ],\r\n        \"fic\": [ \"ton\" ]\r\n      }\r\n  }'),
+('hol', 'ton_mat', '{\r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":5, \"dat\":\"hol-ton_mat\" },\r\n        \"ton\": { \"dat\":\"hol-ton\" }\r\n      },      \r\n      \"val\": { \r\n        \"nom\": \"Pulsar Matiz #()($)ide() de 5: ()($)nom().\",\r\n        \"des\": \"Código: ()($)des_cod(). Pulsares Dimensionales: ()($)des_dim().\", \r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/ton/mat/()($)ide().png);\",\r\n        \"col\": 5\r\n      },\r\n      \"opc\": { \r\n        \"ima\": [ \"ide\", \"ton\" ]\r\n      },\r\n      \"inf\": { \r\n        \"det\": [ \"des_cod\", \"des_dim\" ],\r\n\r\n        \"htm\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"El <a target=\'_blank\' href=\'http://localhost//hol/bib/enc#_03-13-\'> Código pulsar</a> en el Encantamiento del Sueño\" },\r\n        \"atr\": [ \"des_ond\" ],\r\n        \"fic\": [ \"ton\" ]\r\n      }\r\n  }'),
+('hol', 'ton_ond', '{\r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":4, \"dat\":\"hol-ton_ond\" },\r\n        \"ton\": { \"dat\":\"hol-ton\" }\r\n      },\r\n      \"val\": { \r\n        \"nom\": \"Aventura de la Onda Encantada #()($)ide() de 4.\",\r\n        \"des\": \"()($)des().\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/ton/ond/()($)ide().png);\",\r\n        \"col\": 4,\r\n        \"num\": 4\r\n      },\r\n      \"opc\": { \r\n        \"ima\": [ \"ide\", \"ton\" ] \r\n      },\r\n      \"inf\": { \r\n        \"opc\": [ \"des\" ],\r\n        \"htm\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"La <a target=\'_blank\' href=\'http://localhost//hol/bib/enc#_03-12-\'>Onda Encantada de la Aventura</a> en el Encantamiento del Sueño\" },\r\n        \"fic\": [ \"ton\" ]\r\n      }\r\n  }'),
+('hol', 'ton_sim', '{\r\n      \"atr\": {\r\n        \"ide\": { \"min\":1, \"max\":7, \"dat\":\"hol-ton_sim\" },\r\n        \"ton\": { \"dat\":\"hol-ton\" }\r\n      },\r\n      \"val\": { \r\n        \"nom\": \"Simetría Especular #()($)ide() de 7: ()($)nom().\",\r\n        \"des\": \"()($)des()\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/ton/sim/()($)ide().png);\",\r\n        \"col\": 7\r\n      },\r\n      \"opc\": { \r\n        \"ima\": [ \"ide\", \"ton\" ]\r\n      },\r\n      \"inf\": { \r\n        \"opc\": [ \"des\" ],\r\n        \r\n        \"htm\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"La <a target=\'_blank\' href=\'http://localhost//hol/bib/fac#_04-04-01-02-\'>Simetría Especular</a> en el Factor Maya\" },\r\n        \"atr\": [ \"fac_des\" ],\r\n        \"fic\": [ \"ton\" ]\r\n      }\r\n  }'),
 ('hol', 'uni_flu_pod', '{\r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":2, \"dat\":\"uni_flu_pod\" }\r\n      },\r\n      \"val\": { \r\n        \"nom\": \"Poder de flujo polar #()($)ide() de 2: ()($)nom()\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/uni/flu_pod/()($)ide().png);\",\r\n        \"col\": 2\r\n      },\r\n      \"opc\": { \r\n        \"ima\": [ \"ide\" ]\r\n      }\r\n  }'),
 ('hol', 'uni_flu_res', '{\r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":2, \"dat\":\"uni_flu_res\" }\r\n      },        \r\n      \"val\": { \r\n        \"nom\": \"Respiración de flujo polar #()($)ide() de 2: ()($)nom()\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/uni/flu_res/()($)ide().png);\",\r\n        \"col\": 2\r\n      },\r\n      \"opc\": { \r\n        \"ima\": [ \"ide\" ]\r\n      }\r\n  }'),
-('hol', 'uni_hum_art', '{\r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":7, \"dat\":\"hol_uni_hum_art\" },\r\n        \"ton\": { \"dat\":\"hol_ton\" }\r\n      },\r\n      \"val\": { \r\n        \"nom\": \"Articulación #()($)ide() de 7: ()($)nom().\",\r\n        \"des\": \"()($)des()\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/uni/hum_art/()($)ide().png);\",\r\n        \"col\": 7,\r\n        \"num\": 7\r\n      },\r\n      \"inf\": { \r\n        \"tab\": [ \"hol.uni.hum\", { \"sec\": { \"art\":\"()($)ide()\", \"ded\":[] } } ],\r\n\r\n        \"htm\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Los <a target=\'_blank\' href=\'http://localhost/hol/bib/fac#_08-03-01-\'>Tonos Galácticos</a> en<cite>el Factor Maya</cite>\" },\r\n        \"fic\": [ \"ton\" ]\r\n      }\r\n  }'),
-('hol', 'uni_hum_cen', '{\r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":5, \"dat\":\"hol_uni_hum_cen\" },\r\n        \"fam\": { \"min\":1, \"max\":5, \"dat\":\"hol_sel_cro_fam\" },\r\n        \"sel\": { \"dat\":\"hol_sel\" }\r\n      },\r\n      \"val\": { \r\n        \"nom\": \"Centro Galáctico #()($)ide() de 5: ()($)nom().\",\r\n        \"des\": \"()($)des()\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/uni/hum_cen/()($)ide().png);\",\r\n        \"col\": 5,\r\n        \"num\": 5\r\n      },\r\n      \"opc\": { \r\n        \"ima\": [ \"ide\", \"fam\" ]\r\n      },\r\n      \"inf\": { \r\n        \"tab\": [ \"hol.uni.hum\", { \"sec\": { \"ded\":[], \"cen\":\"()($)ide()\" } } ],\r\n        \"fic\": [ \"fam\" ],\r\n\r\n        \"htm-1\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Los <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_02-03-05-\'>Sellos Solares</a> en <cite>el Encantamiento del Sueño</cite>\" },\r\n        \"fic-1\": [ \"sel\" ]\r\n      }\r\n  }'),
-('hol', 'uni_hum_cha', '{\r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":7, \"dat\":\"hol_uni_hum_cha\" },\r\n        \"rad\": { \"dat\":\"hol_rad\" }\r\n      },\r\n      \"val\": { \r\n        \"nom\": \"Chakra #()($)ide() de 7: ()($)nom().\",\r\n        \"des\": \"()($)des()\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/uni/hum_cha/()($)ide().png);\",\r\n        \"col\": 7,\r\n        \"num\": 7\r\n      },\r\n      \"inf\": { \r\n        \"tab\": [ \"hol.uni.hum\", { \"sec\": { \"art\":[], \"ded\":[], \"cha\":\"()($)ide()\" } } ],\r\n        \"fic\": [ \"rad\" ]\r\n      }\r\n  }'),
-('hol', 'uni_hum_ded', '{\r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":5, \"dat\":\"hol_uni_hum_ded\" },\r\n        \"fam\": { \"min\":1, \"max\":5, \"dat\":\"hol_sel_cro_fam\" },\r\n        \"sel\": { \"dat\":\"hol_sel\" }\r\n      },\r\n      \"val\": { \r\n        \"nom\": \"Dedo #()($)ide() de 5: ()($)nom().\",\r\n        \"des\": \"()($)des()\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/uni/hum_ded/()($)ide().png);\",\r\n        \"col\": 5,\r\n        \"num\": 5\r\n      },\r\n      \"opc\": { \r\n        \"ima\": [ \"ide\", \"fam\" ] \r\n      },\r\n      \"inf\": { \r\n        \"tab\": [ \"hol.uni.hum\", { \"sec\": { \"ded\":\"()($)ide()\", \"cen\":[] } } ],\r\n        \"fic\": [ \"fam\" ],\r\n\r\n        \"htm-1\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Los <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_02-03-05-\'>Sellos Solares</a> en <cite>el Encantamiento del Sueño</cite>\" },\r\n        \"fic-1\": [ \"sel\" ]\r\n      }\r\n  }'),
-('hol', 'uni_hum_ext', '{\r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":4, \"dat\":\"hol_uni_hum_ext\" },\r\n        \"ele\": { \"min\":1, \"max\":4, \"dat\":\"hol_sel_cro_ele\" },\r\n        \"sel\": { \"dat\":\"hol_sel\" }\r\n      },\r\n      \"val\": { \r\n        \"nom\": \"Extremidad #()($)ide() de 4: ()($)nom().\",\r\n        \"des\": \"()($)des()\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/uni/hum_ext/()($)ide().png);\",\r\n        \"col\": 4,\r\n        \"num\": 4\r\n      },\r\n      \"opc\": { \r\n        \"ima\": [ \"ide\", \"ele\" ] \r\n      },\r\n      \"inf\": { \r\n        \"tab\": [ \"hol.uni.hum\", { \"sec\": { \"ext\":\"()($)ide()\", \"ded\":[], \"cen\":[] } } ],\r\n        \"fic\": [ \"ele\" ],\r\n\r\n        \"htm-1\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Los <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_02-03-05-\'>Sellos Solares</a> en <cite>el Encantamiento del Sueño</cite>\" },\r\n        \"fic-1\": [ \"sel\" ]\r\n      }\r\n  }'),
-('hol', 'uni_hum_lad', '{\r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":3, \"dat\":\"uni_hum_lad\" },\r\n        \"ton\": { \"dat\":\"hol_ton\" }\r\n      },\r\n      \"val\": { \r\n        \"nom\": \"Lado del Holon Humano #()($)ide() de 3: ()($)nom()\",\r\n        \"des\": \"()($)des()\",\r\n        \"col\": 3\r\n      },\r\n      \"opc\": {\r\n        \"ima\": [ \"ton\" ]\r\n      },\r\n      \"inf\": { \r\n        \"tab\": [ \"hol.uni.hum\", { \"sec\": { \"ton\":[], \"res\":\"()($)ide()\" } } ],\r\n        \"fic-tit\": [ \"ton\" ]\r\n      }\r\n  }'),
-('hol', 'uni_hum_mer', '{\r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":10, \"dat\":\"hol_uni_hum_mer\" },\r\n        \"fam\": { \"min\":1, \"max\":5, \"dat\":\"hol_sel_cro_fam\" },\r\n        \"ele\": { \"dat\":\"hol_sel_cro_ele\" },\r\n        \"sel\": { \"dat\":\"hol_sel\" }\r\n      },\r\n      \"val\": { \r\n        \"nom\": \"Meridiano Orgánico #()($)ide() de 10: ()($)nom().\",\r\n        \"des\": \"()($)des()\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/uni/hum_mer/()($)ide().png);\",\r\n        \"col\": 10,\r\n        \"num\": 10\r\n      },\r\n      \"opc\": { \r\n        \"ima\": [ \"ide\" ] \r\n      },\r\n      \"inf\": { \r\n        \"opc\": [ \"des\" ],\r\n        \"tab\": [ \"hol.uni.hum\", { \"sec\": { \"res\":[], \"cen\":[], \"art\":[], \"ded\":[] } } ],\r\n        \"fic\": [ \"fam\" ],\r\n\r\n        \"htm-1\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Los <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-02-\'>Clanes Cromáticos</a> en <cite>el Encantamiento del Sueño</cite>\" },\r\n        \"fic-1\": [ \"ele\" ],\r\n\r\n        \"htm-2\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Los <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_02-03-05-\'>Sellos Solares</a> en <cite>el Encantamiento del Sueño</cite>\" },\r\n        \"fic-2\": [ \"sel\" ]\r\n      }\r\n  }'),
-('hol', 'uni_hum_mud', '{ \r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":7, \"dat\":\"hol_uni_hum_cha\" },\r\n        \"rad\": { \"dat\":\"hol_rad\" }\r\n      },\r\n      \"val\": { \r\n        \"nom\": \"Mudra #()($)ide() de 7: ()($)nom().\",\r\n        \"des\": \"()($)des()\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/uni/hum_mud/()($)ide().png);\",\r\n        \"num\": 7\r\n      }\r\n  }'),
-('hol', 'uni_hum_res', '{\r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":2, \"dat\":\"hol_uni_hum_res\" },\r\n        \"sel\": { \"dat\":\"hol_sel\" },\r\n        \"ele\": { \"dat\":\"hol_sel_cro_ele\" }\r\n      },\r\n      \"val\": { \r\n        \"nom\": \"Respiración del Holon Humano #()($)ide() de 2: ()($)nom()\",\r\n        \"des\": \"()($)des()\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/uni/flu_res/()($)ide().png);\",\r\n        \"col\": 2\r\n      },\r\n      \"opc\": { \r\n        \"ima\": [ \"ide\", \"sel\", \"ele\" ]\r\n      },\r\n      \"inf\": { \r\n        \"tab\": [ \"hol.uni.hum\", { \"sec\": { \"ded\":[], \"cen\":[], \"res\":\"()($)ide()\" } } ],\r\n        \"fic-1-tit\": [ \"ele\", \"sel\" ]\r\n      }\r\n  }'),
-('hol', 'uni_pla_cen', '{\r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":5, \"dat\":\"hol_uni_pla_cen\" },\r\n        \"fam\": { \"min\":1, \"max\":5, \"dat\":\"hol_sel_cro_fam\" },            \r\n        \"sel\": { \"dat\":\"hol_sel\" }\r\n      },\r\n      \"val\": { \r\n        \"nom\": \"Centro Planetario #()($)ide() de 5: ()($)nom().\",\r\n        \"des\": \"()($)des()\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/uni/pla_cen/()($)ide().png);\",\r\n        \"col\": 5,\r\n        \"num\": 5\r\n      },\r\n      \"opc\": { \r\n        \"ima\": [ \"ide\", \"fam\" ]            \r\n      },\r\n      \"inf\": {\r\n        \r\n        \"tab\": [ \"hol.uni.pla\", { \"sec\": { \"cen\":\"()($)ide()\" } } ],\r\n        \"fic\": [ \"fam\" ],\r\n\r\n        \"htm-1\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Los <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_02-03-05-\'>Sellos Solares</a> en <cite>el Encantamiento del Sueño</cite>\" },\r\n        \"fic-1\": [ \"sel\" ]\r\n      }\r\n  }'),
-('hol', 'uni_pla_hem', '{\r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":3, \"dat\":\"hol_uni_pla_hem\" },\r\n        \"sel\": { \"dat\":\"hol_sel\" }\r\n      },\r\n      \"val\": { \r\n        \"nom\": \"Hemisferio #()($)ide() de 3: ()($)nom().\",\r\n        \"des\": \"()($)des()\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/uni/pla_hem/()($)ide().png);\",\r\n        \"col\": 3,\r\n        \"num\": 3\r\n      },\r\n      \"opc\": { \r\n        \"ima\": [ \"ide\" ]            \r\n      },\r\n      \"inf\": { \r\n        \"tab\": [ \"hol.uni.pla\", { \"sec\": { \"cen\":[], \"hem\":\"()($)ide()\" } } ],\r\n        \"fic\": [ \"sel\" ]\r\n      }\r\n  }'),
-('hol', 'uni_pla_mer', '{\r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":2, \"dat\":\"hol_uni_pla_mer\" },\r\n        \"sel\": { \"dat\":\"hol_sel\" }\r\n      },\r\n      \"val\": { \r\n        \"nom\": \"Meridiano #()($)ide() de 2: ()($)nom().\",\r\n        \"des\": \"()($)des()\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/uni/pla_mer/()($)ide().png);\",\r\n        \"col\": 2,\r\n        \"num\": 2\r\n      },\r\n      \"opc\": { \r\n        \"ima\": [ \"ide\" ]            \r\n      },\r\n      \"inf\": { \r\n        \"tab\": [ \"hol.uni.pla\", { \"sec\": { \"cen\":[], \"mer\":\"()($)ide()\" } } ],\r\n        \"fic\": [ \"sel\" ]\r\n      }\r\n  }'),
-('hol', 'uni_pla_res', '{\r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":2, \"dat\":\"hol_uni_pla_res\" }\r\n      },\r\n      \"val\": { \r\n        \"nom\": \"Respiración del Holon Planetario #()($)ide() de 2: ()($)nom()\",\r\n        \"des\": \"()($)des()\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/uni/flu_res/()($)ide().png);\",\r\n        \"col\": 2\r\n      },\r\n      \"opc\": { \r\n        \"ima\": [ \"ide\" ]\r\n      }\r\n  }'),
-('hol', 'uni_sol_cel', '{\r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":5, \"dat\":\"hol_uni_sol_cel\" },\r\n        \"pla\": { \"dat\":\"hol_uni_sol_pla\" },\r\n        \"sel\": { \"dat\":\"hol_sel\" },\r\n        \"ele\": { \"dat\":\"hol_sel_cro_ele\" },\r\n        \"fam\": { \"dat\":\"hol_sel_cro_fam\" }            \r\n      },\r\n      \"val\": { \r\n        \"nom\": \"Célula Solar #()($)ide() de 5: ()($)nom().\",\r\n        \"des\": \"()($)des()\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/uni/sol_cel/()($)ide().png);\",\r\n        \"col\": 5, \r\n        \"num\": 5\r\n      },\r\n      \"opc\": { \r\n        \"ima\": [ \"ide\" ]\r\n      },\r\n      \"inf\": { \r\n        \"opc\": [ \"des\" ],\r\n\r\n        \"tab\": [ \"hol.uni.sol\", { \"sec\": { \"cel\":\"()($)ide()\" } }],\r\n\r\n        \"htm-1\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Las <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-03-\'>Órbitas Planetarias</a> en <cite>el Encantamiento del Sueño</cite>\" },\r\n        \"fic-1\": [ \"pla\" ],\r\n\r\n        \"htm-2\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Los <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_02-03-05-\'>Sellos Solares</a> en <cite>el Encantamiento del Sueño</cite>\" },\r\n        \"fic-2\": [ \"sel\" ],\r\n\r\n        \"htm-3\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Los <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-02-\'>Clanes Cromáticos</a> en <cite>el Encantamiento del Sueño</cite>\" },\r\n        \"fic-3\": [ \"ele\" ],\r\n\r\n        \"htm-4\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Los <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-14-\'>Familias Terrestres</a> en <cite>el Encantamiento del Sueño</cite>\" },\r\n        \"fic-4\": [ \"fam\" ]\r\n      }\r\n  }'),
-('hol', 'uni_sol_cir', '{\r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":5, \"dat\":\"hol_uni_sol_cir\" },\r\n        \"pla\": { \"dat\":\"hol_uni_sol_pla\" },\r\n        \"sel\": { \"dat\":\"hol_sel\" },\r\n        \"fam\": { \"dat\":\"hol_sel_cro_fam\" }\r\n      },\r\n      \"val\": { \r\n        \"nom\": \"Circuito de Telepatía #()($)ide() de 5: ()($)nom().\",\r\n        \"des\": \"()($)des()\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/uni/sol_cir/()($)ide().png);\",\r\n        \"col\": 5,\r\n        \"num\": 5\r\n      },\r\n      \"opc\": { \r\n        \"ima\": [ \"ide\" ]\r\n      },\r\n      \"inf\": { \r\n        \"det-lis\": [ \"cod\", \"des\" ],\r\n\r\n        \"tab\": [ \"hol.uni.sol\", { \"sec\": { \"cir\":\"()($)ide()\" } }],\r\n\r\n        \"htm-1\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Las <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-03-\'>Órbitas Planetarias</a> en <cite>el Encantamiento del Sueño</cite>\" },\r\n        \"fic-1\": [ \"pla\" ],\r\n\r\n        \"htm-2\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Los <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_02-03-05-\'>Sellos Solares</a> en <cite>el Encantamiento del Sueño</cite>\" },\r\n        \"fic-2\": [ \"sel\" ],\r\n\r\n        \"htm-3\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Los <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-14-\'>Familias Terrestres</a> en <cite>el Encantamiento del Sueño</cite>\" },\r\n        \"fic-3\": [ \"fam\" ]\r\n      }\r\n  }'),
-('hol', 'uni_sol_orb', '{\r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":2, \"dat\":\"hol_uni_sol_orb\" },\r\n        \"ele\": { \"dat\":\"hol_sel_cro_ele\" },\r\n        \"pla\": { \"dat\":\"hol_uni_sol_pla\" }                        \r\n      },\r\n      \"val\": { \r\n        \"nom\": \"Grupo Orbital #()($)ide() de 2: ()($)nom().\",\r\n        \"des\": \"()($)des()\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/uni/sol_orb/()($)ide().png);\",\r\n        \"col\": 2,\r\n        \"num\": 2\r\n      },\r\n      \"opc\": { \r\n        \"ima\": [ \"ide\", \"ele\" ]\r\n      },\r\n      \"inf\": { \r\n        \"opc\": [ \"des\" ],\r\n\r\n        \"tab\": [ \"hol.uni.sol\", { \"sec\": { \"orb\":\"()($)ide()\" } }],\r\n\r\n        \"htm-1\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Las <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-03-\'>Órbitas Planetarias</a> en <cite>el Encantamiento del Sueño</cite>\" },\r\n        \"fic-1\": [ \"pla\" ],\r\n\r\n        \"htm-2\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Los <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-02-\'>Clanes Cromáticos</a> en <cite>el Encantamiento del Sueño</cite>\" },\r\n        \"fic-2\": [ \"ele\" ]\r\n      }\r\n  }');
+('hol', 'uni_hum_art', '{\r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":7, \"dat\":\"hol-uni_hum_art\" },\r\n        \"ton\": { \"dat\":\"hol-ton\" }\r\n      },\r\n      \"val\": { \r\n        \"nom\": \"Articulación #()($)ide() de 7: ()($)nom().\",\r\n        \"des\": \"()($)des()\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/uni/hum_art/()($)ide().png);\",\r\n        \"col\": 7,\r\n        \"num\": 7\r\n      },\r\n      \"inf\": { \r\n        \"tab\": [ \"hol.uni.hum\", { \"sec\": { \"art\":\"()($)ide()\", \"ded\":[] } } ],\r\n\r\n        \"htm\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Los <a target=\'_blank\' href=\'http://localhost/hol/bib/fac#_08-03-01-\'>Tonos Galácticos</a> en<cite>el Factor Maya</cite>\" },\r\n        \"fic\": [ \"ton\" ]\r\n      }\r\n  }'),
+('hol', 'uni_hum_cen', '{\r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":5, \"dat\":\"hol-uni_hum_cen\" },\r\n        \"fam\": { \"min\":1, \"max\":5, \"dat\":\"hol-sel_cro_fam\" },\r\n        \"sel\": { \"dat\":\"hol-sel\" }\r\n      },\r\n      \"val\": { \r\n        \"nom\": \"Centro Galáctico #()($)ide() de 5: ()($)nom().\",\r\n        \"des\": \"()($)des()\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/uni/hum_cen/()($)ide().png);\",\r\n        \"col\": 5,\r\n        \"num\": 5\r\n      },\r\n      \"opc\": { \r\n        \"ima\": [ \"ide\", \"fam\" ]\r\n      },\r\n      \"inf\": { \r\n        \"tab\": [ \"hol.uni.hum\", { \"sec\": { \"ded\":[], \"cen\":\"()($)ide()\" } } ],\r\n        \"fic\": [ \"fam\" ],\r\n\r\n        \"htm-1\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Los <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_02-03-05-\'>Sellos Solares</a> en <cite>el Encantamiento del Sueño</cite>\" },\r\n        \"fic-1\": [ \"sel\" ]\r\n      }\r\n  }'),
+('hol', 'uni_hum_cha', '{\r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":7, \"dat\":\"hol-uni_hum_cha\" },\r\n        \"rad\": { \"dat\":\"hol-rad\" }\r\n      },\r\n      \"val\": { \r\n        \"nom\": \"Chakra #()($)ide() de 7: ()($)nom().\",\r\n        \"des\": \"()($)des()\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/uni/hum_cha/()($)ide().png);\",\r\n        \"col\": 7,\r\n        \"num\": 7\r\n      },\r\n      \"inf\": { \r\n        \"tab\": [ \"hol.uni.hum\", { \"sec\": { \"art\":[], \"ded\":[], \"cha\":\"()($)ide()\" } } ],\r\n        \"fic\": [ \"rad\" ]\r\n      }\r\n  }'),
+('hol', 'uni_hum_ded', '{\r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":5, \"dat\":\"hol-uni_hum_ded\" },\r\n        \"fam\": { \"min\":1, \"max\":5, \"dat\":\"hol-sel_cro_fam\" },\r\n        \"sel\": { \"dat\":\"hol-sel\" }\r\n      },\r\n      \"val\": { \r\n        \"nom\": \"Dedo #()($)ide() de 5: ()($)nom().\",\r\n        \"des\": \"()($)des()\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/uni/hum_ded/()($)ide().png);\",\r\n        \"col\": 5,\r\n        \"num\": 5\r\n      },\r\n      \"opc\": { \r\n        \"ima\": [ \"ide\", \"fam\" ] \r\n      },\r\n      \"inf\": { \r\n        \"tab\": [ \"hol.uni.hum\", { \"sec\": { \"ded\":\"()($)ide()\", \"cen\":[] } } ],\r\n        \"fic\": [ \"fam\" ],\r\n\r\n        \"htm-1\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Los <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_02-03-05-\'>Sellos Solares</a> en <cite>el Encantamiento del Sueño</cite>\" },\r\n        \"fic-1\": [ \"sel\" ]\r\n      }\r\n  }'),
+('hol', 'uni_hum_ext', '{\r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":4, \"dat\":\"hol-uni_hum_ext\" },\r\n        \"ele\": { \"min\":1, \"max\":4, \"dat\":\"hol-sel_cro_ele\" },\r\n        \"sel\": { \"dat\":\"hol-sel\" }\r\n      },\r\n      \"val\": { \r\n        \"nom\": \"Extremidad #()($)ide() de 4: ()($)nom().\",\r\n        \"des\": \"()($)des()\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/uni/hum_ext/()($)ide().png);\",\r\n        \"col\": 4,\r\n        \"num\": 4\r\n      },\r\n      \"opc\": { \r\n        \"ima\": [ \"ide\", \"ele\" ] \r\n      },\r\n      \"inf\": { \r\n        \"tab\": [ \"hol.uni.hum\", { \"sec\": { \"ext\":\"()($)ide()\", \"ded\":[], \"cen\":[] } } ],\r\n        \"fic\": [ \"ele\" ],\r\n\r\n        \"htm-1\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Los <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_02-03-05-\'>Sellos Solares</a> en <cite>el Encantamiento del Sueño</cite>\" },\r\n        \"fic-1\": [ \"sel\" ]\r\n      }\r\n  }'),
+('hol', 'uni_hum_lad', '{\r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":3, \"dat\":\"uni_hum_lad\" },\r\n        \"ton\": { \"dat\":\"hol-ton\" }\r\n      },\r\n      \"val\": { \r\n        \"nom\": \"Lado del Holon Humano #()($)ide() de 3: ()($)nom()\",\r\n        \"des\": \"()($)des()\",\r\n        \"col\": 3\r\n      },\r\n      \"opc\": {\r\n        \"ima\": [ \"ton\" ]\r\n      },\r\n      \"inf\": { \r\n        \"tab\": [ \"hol.uni.hum\", { \"sec\": { \"ton\":[], \"res\":\"()($)ide()\" } } ],\r\n        \"fic-tit\": [ \"ton\" ]\r\n      }\r\n  }'),
+('hol', 'uni_hum_mer', '{\r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":10, \"dat\":\"hol-uni_hum_mer\" },\r\n        \"fam\": { \"min\":1, \"max\":5, \"dat\":\"hol-sel_cro_fam\" },\r\n        \"ele\": { \"dat\":\"hol-sel_cro_ele\" },\r\n        \"sel\": { \"dat\":\"hol-sel\" }\r\n      },\r\n      \"val\": { \r\n        \"nom\": \"Meridiano Orgánico #()($)ide() de 10: ()($)nom().\",\r\n        \"des\": \"()($)des()\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/uni/hum_mer/()($)ide().png);\",\r\n        \"col\": 10,\r\n        \"num\": 10\r\n      },\r\n      \"opc\": { \r\n        \"ima\": [ \"ide\" ] \r\n      },\r\n      \"inf\": { \r\n        \"opc\": [ \"des\" ],\r\n        \"tab\": [ \"hol.uni.hum\", { \"sec\": { \"res\":[], \"cen\":[], \"art\":[], \"ded\":[] } } ],\r\n        \"fic\": [ \"fam\" ],\r\n\r\n        \"htm-1\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Los <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-02-\'>Clanes Cromáticos</a> en <cite>el Encantamiento del Sueño</cite>\" },\r\n        \"fic-1\": [ \"ele\" ],\r\n\r\n        \"htm-2\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Los <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_02-03-05-\'>Sellos Solares</a> en <cite>el Encantamiento del Sueño</cite>\" },\r\n        \"fic-2\": [ \"sel\" ]\r\n      }\r\n  }'),
+('hol', 'uni_hum_mud', '{ \r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":7, \"dat\":\"hol-uni_hum_cha\" },\r\n        \"rad\": { \"dat\":\"hol-rad\" }\r\n      },\r\n      \"val\": { \r\n        \"nom\": \"Mudra #()($)ide() de 7: ()($)nom().\",\r\n        \"des\": \"()($)des()\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/uni/hum_mud/()($)ide().png);\",\r\n        \"num\": 7\r\n      }\r\n  }'),
+('hol', 'uni_hum_res', '{\r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":2, \"dat\":\"hol-uni_hum_res\" },\r\n        \"sel\": { \"dat\":\"hol-sel\" },\r\n        \"ele\": { \"dat\":\"hol-sel_cro_ele\" }\r\n      },\r\n      \"val\": { \r\n        \"nom\": \"Respiración del Holon Humano #()($)ide() de 2: ()($)nom()\",\r\n        \"des\": \"()($)des()\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/uni/flu_res/()($)ide().png);\",\r\n        \"col\": 2\r\n      },\r\n      \"opc\": { \r\n        \"ima\": [ \"ide\", \"sel\", \"ele\" ]\r\n      },\r\n      \"inf\": { \r\n        \"tab\": [ \"hol.uni.hum\", { \"sec\": { \"ded\":[], \"cen\":[], \"res\":\"()($)ide()\" } } ],\r\n        \"fic-1-tit\": [ \"ele\", \"sel\" ]\r\n      }\r\n  }'),
+('hol', 'uni_pla_cen', '{\r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":5, \"dat\":\"hol-uni_pla_cen\" },\r\n        \"fam\": { \"min\":1, \"max\":5, \"dat\":\"hol-sel_cro_fam\" },            \r\n        \"sel\": { \"dat\":\"hol-sel\" }\r\n      },\r\n      \"val\": { \r\n        \"nom\": \"Centro Planetario #()($)ide() de 5: ()($)nom().\",\r\n        \"des\": \"()($)des()\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/uni/pla_cen/()($)ide().png);\",\r\n        \"col\": 5,\r\n        \"num\": 5\r\n      },\r\n      \"opc\": { \r\n        \"ima\": [ \"ide\", \"fam\" ]            \r\n      },\r\n      \"inf\": {\r\n        \r\n        \"tab\": [ \"hol.uni.pla\", { \"sec\": { \"cen\":\"()($)ide()\" } } ],\r\n        \"fic\": [ \"fam\" ],\r\n\r\n        \"htm-1\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Los <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_02-03-05-\'>Sellos Solares</a> en <cite>el Encantamiento del Sueño</cite>\" },\r\n        \"fic-1\": [ \"sel\" ]\r\n      }\r\n  }'),
+('hol', 'uni_pla_hem', '{\r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":3, \"dat\":\"hol-uni_pla_hem\" },\r\n        \"sel\": { \"dat\":\"hol-sel\" }\r\n      },\r\n      \"val\": { \r\n        \"nom\": \"Hemisferio #()($)ide() de 3: ()($)nom().\",\r\n        \"des\": \"()($)des()\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/uni/pla_hem/()($)ide().png);\",\r\n        \"col\": 3,\r\n        \"num\": 3\r\n      },\r\n      \"opc\": { \r\n        \"ima\": [ \"ide\" ]            \r\n      },\r\n      \"inf\": { \r\n        \"tab\": [ \"hol.uni.pla\", { \"sec\": { \"cen\":[], \"hem\":\"()($)ide()\" } } ],\r\n        \"fic\": [ \"sel\" ]\r\n      }\r\n  }'),
+('hol', 'uni_pla_mer', '{\r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":2, \"dat\":\"hol-uni_pla_mer\" },\r\n        \"sel\": { \"dat\":\"hol-sel\" }\r\n      },\r\n      \"val\": { \r\n        \"nom\": \"Meridiano #()($)ide() de 2: ()($)nom().\",\r\n        \"des\": \"()($)des()\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/uni/pla_mer/()($)ide().png);\",\r\n        \"col\": 2,\r\n        \"num\": 2\r\n      },\r\n      \"opc\": { \r\n        \"ima\": [ \"ide\" ]            \r\n      },\r\n      \"inf\": { \r\n        \"tab\": [ \"hol.uni.pla\", { \"sec\": { \"cen\":[], \"mer\":\"()($)ide()\" } } ],\r\n        \"fic\": [ \"sel\" ]\r\n      }\r\n  }'),
+('hol', 'uni_pla_res', '{\r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":2, \"dat\":\"hol-uni_pla_res\" }\r\n      },\r\n      \"val\": { \r\n        \"nom\": \"Respiración del Holon Planetario #()($)ide() de 2: ()($)nom()\",\r\n        \"des\": \"()($)des()\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/uni/flu_res/()($)ide().png);\",\r\n        \"col\": 2\r\n      },\r\n      \"opc\": { \r\n        \"ima\": [ \"ide\" ]\r\n      }\r\n  }'),
+('hol', 'uni_sol_cel', '{\r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":5, \"dat\":\"hol-uni_sol_cel\" },\r\n        \"pla\": { \"dat\":\"hol-uni_sol_pla\" },\r\n        \"sel\": { \"dat\":\"hol-sel\" },\r\n        \"ele\": { \"dat\":\"hol-sel_cro_ele\" },\r\n        \"fam\": { \"dat\":\"hol-sel_cro_fam\" }            \r\n      },\r\n      \"val\": { \r\n        \"nom\": \"Célula Solar #()($)ide() de 5: ()($)nom().\",\r\n        \"des\": \"()($)des()\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/uni/sol_cel/()($)ide().png);\",\r\n        \"col\": 5, \r\n        \"num\": 5\r\n      },\r\n      \"opc\": { \r\n        \"ima\": [ \"ide\" ]\r\n      },\r\n      \"inf\": { \r\n        \"opc\": [ \"des\" ],\r\n\r\n        \"tab\": [ \"hol.uni.sol\", { \"sec\": { \"cel\":\"()($)ide()\" } }],\r\n\r\n        \"htm-1\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Las <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-03-\'>Órbitas Planetarias</a> en <cite>el Encantamiento del Sueño</cite>\" },\r\n        \"fic-1\": [ \"pla\" ],\r\n\r\n        \"htm-2\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Los <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_02-03-05-\'>Sellos Solares</a> en <cite>el Encantamiento del Sueño</cite>\" },\r\n        \"fic-2\": [ \"sel\" ],\r\n\r\n        \"htm-3\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Los <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-02-\'>Clanes Cromáticos</a> en <cite>el Encantamiento del Sueño</cite>\" },\r\n        \"fic-3\": [ \"ele\" ],\r\n\r\n        \"htm-4\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Los <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-14-\'>Familias Terrestres</a> en <cite>el Encantamiento del Sueño</cite>\" },\r\n        \"fic-4\": [ \"fam\" ]\r\n      }\r\n  }'),
+('hol', 'uni_sol_cir', '{\r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":5, \"dat\":\"hol-uni_sol_cir\" },\r\n        \"pla\": { \"dat\":\"hol-uni_sol_pla\" },\r\n        \"sel\": { \"dat\":\"hol-sel\" },\r\n        \"fam\": { \"dat\":\"hol-sel_cro_fam\" }\r\n      },\r\n      \"val\": { \r\n        \"nom\": \"Circuito de Telepatía #()($)ide() de 5: ()($)nom().\",\r\n        \"des\": \"()($)des()\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/uni/sol_cir/()($)ide().png);\",\r\n        \"col\": 5,\r\n        \"num\": 5\r\n      },\r\n      \"opc\": { \r\n        \"ima\": [ \"ide\" ]\r\n      },\r\n      \"inf\": { \r\n        \"det-lis\": [ \"cod\", \"des\" ],\r\n\r\n        \"tab\": [ \"hol.uni.sol\", { \"sec\": { \"cir\":\"()($)ide()\" } }],\r\n\r\n        \"htm-1\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Las <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-03-\'>Órbitas Planetarias</a> en <cite>el Encantamiento del Sueño</cite>\" },\r\n        \"fic-1\": [ \"pla\" ],\r\n\r\n        \"htm-2\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Los <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_02-03-05-\'>Sellos Solares</a> en <cite>el Encantamiento del Sueño</cite>\" },\r\n        \"fic-2\": [ \"sel\" ],\r\n\r\n        \"htm-3\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Los <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-14-\'>Familias Terrestres</a> en <cite>el Encantamiento del Sueño</cite>\" },\r\n        \"fic-3\": [ \"fam\" ]\r\n      }\r\n  }'),
+('hol', 'uni_sol_orb', '{\r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":2, \"dat\":\"hol-uni_sol_orb\" },\r\n        \"ele\": { \"dat\":\"hol-sel_cro_ele\" },\r\n        \"pla\": { \"dat\":\"hol-uni_sol_pla\" }                        \r\n      },\r\n      \"val\": { \r\n        \"nom\": \"Grupo Orbital #()($)ide() de 2: ()($)nom().\",\r\n        \"des\": \"()($)des()\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/uni/sol_orb/()($)ide().png);\",\r\n        \"col\": 2,\r\n        \"num\": 2\r\n      },\r\n      \"opc\": { \r\n        \"ima\": [ \"ide\", \"ele\" ]\r\n      },\r\n      \"inf\": { \r\n        \"opc\": [ \"des\" ],\r\n\r\n        \"tab\": [ \"hol.uni.sol\", { \"sec\": { \"orb\":\"()($)ide()\" } }],\r\n\r\n        \"htm-1\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Las <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-03-\'>Órbitas Planetarias</a> en <cite>el Encantamiento del Sueño</cite>\" },\r\n        \"fic-1\": [ \"pla\" ],\r\n\r\n        \"htm-2\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Los <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-02-\'>Clanes Cromáticos</a> en <cite>el Encantamiento del Sueño</cite>\" },\r\n        \"fic-2\": [ \"ele\" ]\r\n      }\r\n  }');
 INSERT INTO `app_est` (`esq`, `ide`, `ope`) VALUES
-('hol', 'uni_sol_pla', '{\r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":10, \"dat\":\"hol_uni_sol_pla\" },\r\n        \"orb\": { \"min\":1, \"max\": 2, \"dat\":\"hol_uni_sol_orb\" },\r\n        \"cel\": { \"min\":1, \"max\": 5, \"dat\":\"hol_uni_sol_cel\" },\r\n        \"cir\": { \"min\":1, \"max\": 5, \"dat\":\"hol_uni_sol_cir\" },\r\n        \"sel\": { \"dat\":\"hol_sel\" },\r\n        \"ele\": { \"dat\":\"hol_sel_cro_ele\" },\r\n        \"fam\": { \"dat\":\"hol_sel_cro_fam\" }\r\n      },\r\n      \"val\": { \r\n        \"nom\": \"Órbita Planetaria #()($)ide() de 10: ()($)nom().\",\r\n        \"des\": \"Código ()($)nom_cod()\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/uni/sol_pla/()($)ide().png);\",\r\n        \"col\": 10,\r\n        \"num\": 10\r\n      },\r\n      \"opc\": { \r\n        \"ima\": [ \"ide\",\"orb\",\"cel\",\"cir\" ]\r\n      },\r\n      \"inf\": { \r\n        \"det\": [ \"nom_cod\" ],\r\n        \r\n        \"fic\": [ \"orb\", \"cel\", \"cir\" ],\r\n        \"tab\": [ \"hol.uni.sol\", { \"sec\": { \"pla\":\"()($)ide()\" } }],\r\n\r\n        \"htm-1\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Los <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-03-\'>Sellos Solares</a> en <cite>el Encantamiento del Sueño</cite>\" },\r\n        \"fic-1\": [ \"sel\" ],\r\n        \r\n        \"htm-2\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Los <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-02-\'>Clanes Cromáticos</a> en <cite>el Encantamiento del Sueño</cite>\" },\r\n        \"fic-2\": [ \"ele\" ],\r\n\r\n        \"htm-3\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Los <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-14-\'>Familias Terrestres</a> en <cite>el Encantamiento del Sueño</cite>\" },\r\n        \"fic-3\": [ \"fam\" ]\r\n      }\r\n  }'),
-('hol', 'uni_sol_res', '{\r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":2, \"dat\":\"hol_uni_sol_res\" }\r\n      },\r\n      \"val\": { \r\n        \"nom\": \"Respiración del Holon Solar #()($)ide() de 2: ()($)nom()\",\r\n        \"des\": \"()($)des()\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/uni/flu_res/()($)ide().png);\",\r\n        \"col\": 2\r\n      },\r\n      \"opc\": { \r\n        \"ima\": [ \"ide\" ]\r\n      }\r\n  }'),
+('hol', 'uni_sol_pla', '{\r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":10, \"dat\":\"hol-uni_sol_pla\" },\r\n        \"orb\": { \"min\":1, \"max\": 2, \"dat\":\"hol-uni_sol_orb\" },\r\n        \"cel\": { \"min\":1, \"max\": 5, \"dat\":\"hol-uni_sol_cel\" },\r\n        \"cir\": { \"min\":1, \"max\": 5, \"dat\":\"hol-uni_sol_cir\" },\r\n        \"sel\": { \"dat\":\"hol-sel\" },\r\n        \"ele\": { \"dat\":\"hol-sel_cro_ele\" },\r\n        \"fam\": { \"dat\":\"hol-sel_cro_fam\" }\r\n      },\r\n      \"val\": { \r\n        \"nom\": \"Órbita Planetaria #()($)ide() de 10: ()($)nom().\",\r\n        \"des\": \"Código ()($)nom_cod()\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/uni/sol_pla/()($)ide().png);\",\r\n        \"col\": 10,\r\n        \"num\": 10\r\n      },\r\n      \"opc\": { \r\n        \"ima\": [ \"ide\",\"orb\",\"cel\",\"cir\" ]\r\n      },\r\n      \"inf\": { \r\n        \"det\": [ \"nom_cod\" ],\r\n        \r\n        \"fic\": [ \"orb\", \"cel\", \"cir\" ],\r\n        \"tab\": [ \"hol.uni.sol\", { \"sec\": { \"pla\":\"()($)ide()\" } }],\r\n\r\n        \"htm-1\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Los <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-03-\'>Sellos Solares</a> en <cite>el Encantamiento del Sueño</cite>\" },\r\n        \"fic-1\": [ \"sel\" ],\r\n        \r\n        \"htm-2\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Los <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-02-\'>Clanes Cromáticos</a> en <cite>el Encantamiento del Sueño</cite>\" },\r\n        \"fic-2\": [ \"ele\" ],\r\n\r\n        \"htm-3\": { \"eti\":\"p\", \"class\":\"tit\", \"htm\":\"Los <a target=\'_blank\' href=\'http://localhost/hol/bib/enc#_03-14-\'>Familias Terrestres</a> en <cite>el Encantamiento del Sueño</cite>\" },\r\n        \"fic-3\": [ \"fam\" ]\r\n      }\r\n  }'),
+('hol', 'uni_sol_res', '{\r\n      \"atr\": { \r\n        \"ide\": { \"min\":1, \"max\":2, \"dat\":\"hol-uni_sol_res\" }\r\n      },\r\n      \"val\": { \r\n        \"nom\": \"Respiración del Holon Solar #()($)ide() de 2: ()($)nom()\",\r\n        \"des\": \"()($)des()\",\r\n        \"ima\": \"background: center/contain no-repeat url(http://localhost/img/hol/fic/uni/flu_res/()($)ide().png);\",\r\n        \"col\": 2\r\n      },\r\n      \"opc\": { \r\n        \"ima\": [ \"ide\" ]\r\n      }\r\n  }'),
 ('tex', 'let', '{\r\n\r\n    \"dat\": { \"niv\":[\"ide\"] }      \r\n  }');
 
 -- --------------------------------------------------------
@@ -1852,27 +1852,27 @@ INSERT INTO `app_var` (`esq`, `dat`, `val`, `pos`, `ide`, `atr`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `fec_año`
+-- Estructura de tabla para la tabla `api_fec_año`
 --
 
-CREATE TABLE `fec_año` (
+CREATE TABLE `api_fec_año` (
   `ide` smallint(4) NOT NULL COMMENT 'Año'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Año';
 
 --
--- Volcado de datos para la tabla `fec_año`
+-- Volcado de datos para la tabla `api_fec_año`
 --
 
-INSERT INTO `fec_año` (`ide`) VALUES
+INSERT INTO `api_fec_año` (`ide`) VALUES
 (1970);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `fec_dat`
+-- Estructura de tabla para la tabla `api_fec_dat`
 --
 
-CREATE TABLE `fec_dat` (
+CREATE TABLE `api_fec_dat` (
   `val` datetime DEFAULT NULL COMMENT 'Fecha',
   `año` smallint(4) UNSIGNED ZEROFILL DEFAULT NULL COMMENT 'Año',
   `mes` tinyint(2) UNSIGNED ZEROFILL DEFAULT NULL COMMENT 'Mes',
@@ -1890,18 +1890,18 @@ CREATE TABLE `fec_dat` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `fec_dia`
+-- Estructura de tabla para la tabla `api_fec_dia`
 --
 
-CREATE TABLE `fec_dia` (
+CREATE TABLE `api_fec_dia` (
   `ide` tinyint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Día'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Día del Mes';
 
 --
--- Volcado de datos para la tabla `fec_dia`
+-- Volcado de datos para la tabla `api_fec_dia`
 --
 
-INSERT INTO `fec_dia` (`ide`) VALUES
+INSERT INTO `api_fec_dia` (`ide`) VALUES
 (01),
 (02),
 (03),
@@ -1937,18 +1937,18 @@ INSERT INTO `fec_dia` (`ide`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `fec_hor`
+-- Estructura de tabla para la tabla `api_fec_hor`
 --
 
-CREATE TABLE `fec_hor` (
+CREATE TABLE `api_fec_hor` (
   `ide` tinyint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Hora'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Hora';
 
 --
--- Volcado de datos para la tabla `fec_hor`
+-- Volcado de datos para la tabla `api_fec_hor`
 --
 
-INSERT INTO `fec_hor` (`ide`) VALUES
+INSERT INTO `api_fec_hor` (`ide`) VALUES
 (01),
 (02),
 (03),
@@ -1977,20 +1977,20 @@ INSERT INTO `fec_hor` (`ide`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `fec_mes`
+-- Estructura de tabla para la tabla `api_fec_mes`
 --
 
-CREATE TABLE `fec_mes` (
+CREATE TABLE `api_fec_mes` (
   `ide` tinyint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Mes',
   `nom` varchar(15) NOT NULL COMMENT 'Nombre',
   `dia` tinyint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Cantidad de Días'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Mes del Calendario';
 
 --
--- Volcado de datos para la tabla `fec_mes`
+-- Volcado de datos para la tabla `api_fec_mes`
 --
 
-INSERT INTO `fec_mes` (`ide`, `nom`, `dia`) VALUES
+INSERT INTO `api_fec_mes` (`ide`, `nom`, `dia`) VALUES
 (01, 'Enero', 31),
 (02, 'Febrero', 28),
 (03, 'Marzo', 31),
@@ -2007,18 +2007,18 @@ INSERT INTO `fec_mes` (`ide`, `nom`, `dia`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `fec_min`
+-- Estructura de tabla para la tabla `api_fec_min`
 --
 
-CREATE TABLE `fec_min` (
+CREATE TABLE `api_fec_min` (
   `ide` tinyint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Minuto'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Minuto';
 
 --
--- Volcado de datos para la tabla `fec_min`
+-- Volcado de datos para la tabla `api_fec_min`
 --
 
-INSERT INTO `fec_min` (`ide`) VALUES
+INSERT INTO `api_fec_min` (`ide`) VALUES
 (01),
 (02),
 (03),
@@ -2083,18 +2083,18 @@ INSERT INTO `fec_min` (`ide`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `fec_seg`
+-- Estructura de tabla para la tabla `api_fec_seg`
 --
 
-CREATE TABLE `fec_seg` (
+CREATE TABLE `api_fec_seg` (
   `ide` tinyint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Segundo'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Segundo';
 
 --
--- Volcado de datos para la tabla `fec_seg`
+-- Volcado de datos para la tabla `api_fec_seg`
 --
 
-INSERT INTO `fec_seg` (`ide`) VALUES
+INSERT INTO `api_fec_seg` (`ide`) VALUES
 (01),
 (02),
 (03),
@@ -2159,20 +2159,20 @@ INSERT INTO `fec_seg` (`ide`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `fec_sem`
+-- Estructura de tabla para la tabla `api_fec_sem`
 --
 
-CREATE TABLE `fec_sem` (
+CREATE TABLE `api_fec_sem` (
   `ide` tinyint(1) UNSIGNED NOT NULL COMMENT 'Semana',
   `cod` char(1) NOT NULL COMMENT 'Código',
   `nom` varchar(15) NOT NULL COMMENT 'Nombre'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Día de la Semana';
 
 --
--- Volcado de datos para la tabla `fec_sem`
+-- Volcado de datos para la tabla `api_fec_sem`
 --
 
-INSERT INTO `fec_sem` (`ide`, `cod`, `nom`) VALUES
+INSERT INTO `api_fec_sem` (`ide`, `cod`, `nom`) VALUES
 (0, 'D', 'Domingo'),
 (1, 'L', 'Lunes'),
 (2, 'M', 'Martes'),
@@ -2359,10 +2359,10 @@ INSERT INTO `fig_ico` (`ide`, `val`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_arm`
+-- Estructura de tabla para la tabla `hol-arm`
 --
 
-CREATE TABLE `hol_arm` (
+CREATE TABLE `hol-arm` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Código Armónico',
   `des_col` varchar(10) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Color',
   `des_dir` varchar(15) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Dirección',
@@ -2372,10 +2372,10 @@ CREATE TABLE `hol_arm` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Armónica';
 
 --
--- Volcado de datos para la tabla `hol_arm`
+-- Volcado de datos para la tabla `hol-arm`
 --
 
-INSERT INTO `hol_arm` (`ide`, `des_col`, `des_dir`, `des_pod`, `des_pol`, `des_dia`) VALUES
+INSERT INTO `hol-arm` (`ide`, `des_col`, `des_dir`, `des_pod`, `des_pol`, `des_dia`) VALUES
 (1, 'rojo', 'el Oriente', 'Inicia', 'conocimiento / ignorancia', 'Amanecer'),
 (2, 'blanco', 'el Norte', 'Refina', 'humildad / sobervia', 'Mediodía'),
 (3, 'azul', 'el Occiden', 'Transforma', 'paciencia / ansiedad', 'Atardecer'),
@@ -2384,10 +2384,10 @@ INSERT INTO `hol_arm` (`ide`, `des_col`, `des_dir`, `des_pod`, `des_pol`, `des_d
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_cas`
+-- Estructura de tabla para la tabla `hol-cas`
 --
 
-CREATE TABLE `hol_cas` (
+CREATE TABLE `hol-cas` (
   `ide` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Posición',
   `nom` varchar(30) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `des` varchar(150) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Descripción',
@@ -2400,10 +2400,10 @@ CREATE TABLE `hol_cas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Castillo del Destino';
 
 --
--- Volcado de datos para la tabla `hol_cas`
+-- Volcado de datos para la tabla `hol-cas`
 --
 
-INSERT INTO `hol_cas` (`ide`, `nom`, `des`, `lec`, `arm`, `ond`, `pos_arm`, `ton`, `ton_arm`) VALUES
+INSERT INTO `hol-cas` (`ide`, `nom`, `des`, `lec`, `arm`, `ond`, `pos_arm`, `ton`, `ton_arm`) VALUES
 (01, 'Rojo Magnético', 'Inicia el Tiempo atrayendo el Propósito para Establecer la Base de la Acción.', '\"El único propósito de la vida es recordar a Dios, y retornar al alma, ese lugar \"', 1, 1, 1, 01, 01),
 (02, 'Blanco Lunar', 'Refina la Vida Orgánica estabilizando el Desafío para Establecer la Base de la Acción.', '\"Deshacer la nube que cubre el sistema materialista de creencias, es el propósito de la Historia Cósmica, sólo entonces puede brillar claro el campo mental del humano como el campo mental planetario.\"', 1, 1, 2, 02, 01),
 (03, 'Azul Eléctrico', 'Transforma el Sentir-Sentidos vinculando el Servicio para Establecer la Base de la Acción.', '\"El telar de la realidad es sagrado, y hay una autoría Divina del universo – el alma existe con la inscripción de Dios que dice: Recuérdame.\"', 1, 1, 3, 03, 01),
@@ -2460,10 +2460,10 @@ INSERT INTO `hol_cas` (`ide`, `nom`, `des`, `lec`, `arm`, `ond`, `pos_arm`, `ton
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_cas_arm`
+-- Estructura de tabla para la tabla `hol-cas_arm`
 --
 
-CREATE TABLE `hol_cas_arm` (
+CREATE TABLE `hol-cas_arm` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Cuadrante',
   `nom` varchar(25) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `des` varchar(150) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Descripción',
@@ -2471,10 +2471,10 @@ CREATE TABLE `hol_cas_arm` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Cuadrante Armónico';
 
 --
--- Volcado de datos para la tabla `hol_cas_arm`
+-- Volcado de datos para la tabla `hol-cas_arm`
 --
 
-INSERT INTO `hol_cas_arm` (`ide`, `nom`, `des`, `cas`) VALUES
+INSERT INTO `hol-cas_arm` (`ide`, `nom`, `des`, `cas`) VALUES
 (1, 'Rojo del Este', 'Se inicia la Armonía del Castillo', '01 - 13'),
 (2, 'Blanco del Norte', 'Se refina la Armonía del Castillo', '14 - 26'),
 (3, 'Azul del Oeste', 'Se transforma la Armonía del Castillo', '27 - 39'),
@@ -2483,19 +2483,19 @@ INSERT INTO `hol_cas_arm` (`ide`, `nom`, `des`, `cas`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_cas_dim`
+-- Estructura de tabla para la tabla `hol-cas_dim`
 --
 
-CREATE TABLE `hol_cas_dim` (
+CREATE TABLE `hol-cas_dim` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Pulsar Dimensional',
   `cas` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Posiciones del Castillo'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Pulsar Dimensional del Castillo';
 
 --
--- Volcado de datos para la tabla `hol_cas_dim`
+-- Volcado de datos para la tabla `hol-cas_dim`
 --
 
-INSERT INTO `hol_cas_dim` (`ide`, `cas`) VALUES
+INSERT INTO `hol-cas_dim` (`ide`, `cas`) VALUES
 (1, ''),
 (2, ''),
 (3, ''),
@@ -2504,19 +2504,19 @@ INSERT INTO `hol_cas_dim` (`ide`, `cas`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_cas_mat`
+-- Estructura de tabla para la tabla `hol-cas_mat`
 --
 
-CREATE TABLE `hol_cas_mat` (
+CREATE TABLE `hol-cas_mat` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Pulsar Matiz',
   `cas` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Posiciones del Castillo'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Pulsar Matiz del Castillo';
 
 --
--- Volcado de datos para la tabla `hol_cas_mat`
+-- Volcado de datos para la tabla `hol-cas_mat`
 --
 
-INSERT INTO `hol_cas_mat` (`ide`, `cas`) VALUES
+INSERT INTO `hol-cas_mat` (`ide`, `cas`) VALUES
 (1, ''),
 (2, ''),
 (3, ''),
@@ -2526,18 +2526,18 @@ INSERT INTO `hol_cas_mat` (`ide`, `cas`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_cas_ond`
+-- Estructura de tabla para la tabla `hol-cas_ond`
 --
 
-CREATE TABLE `hol_cas_ond` (
+CREATE TABLE `hol-cas_ond` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Aventura'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Aventura de la Onda Encantada';
 
 --
--- Volcado de datos para la tabla `hol_cas_ond`
+-- Volcado de datos para la tabla `hol-cas_ond`
 --
 
-INSERT INTO `hol_cas_ond` (`ide`) VALUES
+INSERT INTO `hol-cas_ond` (`ide`) VALUES
 (1),
 (2),
 (3),
@@ -2546,19 +2546,19 @@ INSERT INTO `hol_cas_ond` (`ide`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_cas_sim`
+-- Estructura de tabla para la tabla `hol-cas_sim`
 --
 
-CREATE TABLE `hol_cas_sim` (
+CREATE TABLE `hol-cas_sim` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Simetría Especular',
   `cas` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Posiciones del Castillo'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Simetría Especular del Castillo';
 
 --
--- Volcado de datos para la tabla `hol_cas_sim`
+-- Volcado de datos para la tabla `hol-cas_sim`
 --
 
-INSERT INTO `hol_cas_sim` (`ide`, `cas`) VALUES
+INSERT INTO `hol-cas_sim` (`ide`, `cas`) VALUES
 (1, ''),
 (2, ''),
 (3, ''),
@@ -2570,10 +2570,10 @@ INSERT INTO `hol_cas_sim` (`ide`, `cas`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_chi`
+-- Estructura de tabla para la tabla `hol-chi`
 --
 
-CREATE TABLE `hol_chi` (
+CREATE TABLE `hol-chi` (
   `ide` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Hexagrama',
   `nom` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `des` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Descripción',
@@ -2586,10 +2586,10 @@ CREATE TABLE `hol_chi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Hexagrama I-Ching';
 
 --
--- Volcado de datos para la tabla `hol_chi`
+-- Volcado de datos para la tabla `hol-chi`
 --
 
-INSERT INTO `hol_chi` (`ide`, `nom`, `des`, `sup`, `inf`, `ban_his`, `ban_cor`, `tit`, `lec`) VALUES
+INSERT INTO `hol-chi` (`ide`, `nom`, `des`, `sup`, `inf`, `ban_his`, `ban_cor`, `tit`, `lec`) VALUES
 (01, 'GENESIS CREATIVO', 'EL TIEMPO GENERA EL ARBOL', 8, 8, 1, 1, 'LO CREATIVO', 'Lo creativo está en acción; el cambio está en marcha de una forma dinámica. En este hexagrama se trata de obtener el punto de vista cósmico. La sugerencia de esta figura es despertar el sentido creativo más profundo y encauzar correctamente el impulso generador de lo nuevo. La confianza en la energía propia y la iniciativa para transformar el mundo exterior e interior será indispensable y llegará a buen puerto.'),
 (02, 'MATRIZ PRIMORDIAL', 'ARBOL INFORMADO', 1, 1, 1, 1, 'LO RECEPTIVO', 'Sopórtalo todo como la Tierra soporta todo lo que vive en ella. El éxito llegará de la mano de la observación, la meditación y la posterior acción a conciencia. Es tiempo de reflexión y no de accionar en forma mecánica o impulsiva. Cada suceso tiene una explicación que nos involucra y será necesario guiar el pensamiento y la intuición hacia la investigación de causa y efecto de cada acto. Percibir, escuchar y analizar serán palabras clave.'),
 (03, 'NUEVO COMIENZO', 'EL ÁRBOL CONTIENE LA FORMA DEL ESPACIO', 3, 5, 1, 1, 'LA DIFICULTAD INICIAL', 'Si perseveramos, todo saldrá bien. Este hexagrama advierte que se presentarán obstáculos que impedían el inmediato logro de los objetivos. Será una prueba que obligará a replantear estrategias y a reubicar los conceptos aprehendidos y las formas de actuar preconcebidas. Portarse en forma indiferente o necia ante esta situación, acarreará indefensión y debilidad.'),
@@ -2659,10 +2659,10 @@ INSERT INTO `hol_chi` (`ide`, `nom`, `des`, `sup`, `inf`, `ban_his`, `ban_cor`, 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_chi_bin`
+-- Estructura de tabla para la tabla `hol-chi_bin`
 --
 
-CREATE TABLE `hol_chi_bin` (
+CREATE TABLE `hol-chi_bin` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Bigrama',
   `nom` varchar(10) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `fam` varchar(10) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Familiar',
@@ -2673,10 +2673,10 @@ CREATE TABLE `hol_chi_bin` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Bigrama del i-ching';
 
 --
--- Volcado de datos para la tabla `hol_chi_bin`
+-- Volcado de datos para la tabla `hol-chi_bin`
 --
 
-INSERT INTO `hol_chi_bin` (`ide`, `nom`, `fam`, `dir`, `dia`, `año`, `lun`) VALUES
+INSERT INTO `hol-chi_bin` (`ide`, `nom`, `fam`, `dir`, `dia`, `año`, `lun`) VALUES
 (1, 'ying viejo', '', 'sur', 'media noche', 'invierno', 'luna nueva'),
 (2, 'ying joven', '', 'este', 'amanecer', 'primavera', 'cuarto creciente'),
 (3, 'yang viejo', '', 'norte', 'mediodía', 'verano', 'luna llena'),
@@ -2685,29 +2685,29 @@ INSERT INTO `hol_chi_bin` (`ide`, `nom`, `fam`, `dir`, `dia`, `año`, `lun`) VAL
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_chi_mon`
+-- Estructura de tabla para la tabla `hol-chi_mon`
 --
 
-CREATE TABLE `hol_chi_mon` (
+CREATE TABLE `hol-chi_mon` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Monograma',
   `nom` varchar(10) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Monograma del i-ching';
 
 --
--- Volcado de datos para la tabla `hol_chi_mon`
+-- Volcado de datos para la tabla `hol-chi_mon`
 --
 
-INSERT INTO `hol_chi_mon` (`ide`, `nom`) VALUES
+INSERT INTO `hol-chi_mon` (`ide`, `nom`) VALUES
 (1, 'ying'),
 (2, 'yang');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_chi_tri`
+-- Estructura de tabla para la tabla `hol-chi_tri`
 --
 
-CREATE TABLE `hol_chi_tri` (
+CREATE TABLE `hol-chi_tri` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Identificador',
   `nom` varchar(10) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `cod` varchar(10) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre Original',
@@ -2719,10 +2719,10 @@ CREATE TABLE `hol_chi_tri` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Trigrama del i-ching';
 
 --
--- Volcado de datos para la tabla `hol_chi_tri`
+-- Volcado de datos para la tabla `hol-chi_tri`
 --
 
-INSERT INTO `hol_chi_tri` (`ide`, `nom`, `cod`, `des`, `cua`, `sig`, `dir`, `fam`) VALUES
+INSERT INTO `hol-chi_tri` (`ide`, `nom`, `cod`, `des`, `cua`, `sig`, `dir`, `fam`) VALUES
 (1, 'la Tierra', 'KUN', 'lo Receptivo', 'Abnegado', 'YIN puro, principio pasivo de la tierra', 'Norte', 'Madre'),
 (2, 'la Montaña', 'KEN', 'el Aquietamiento', 'Quieto', 'Inmovilización', 'Noroeste', 'Hijo menor'),
 (3, 'el Agua', 'KAN', 'lo Abismal', 'Peligroso', 'Foso', 'Oeste', 'Hijo mediano'),
@@ -2735,10 +2735,10 @@ INSERT INTO `hol_chi_tri` (`ide`, `nom`, `cod`, `des`, `cua`, `sig`, `dir`, `fam
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_cro`
+-- Estructura de tabla para la tabla `hol-cro`
 --
 
-CREATE TABLE `hol_cro` (
+CREATE TABLE `hol-cro` (
   `ide` smallint(2) UNSIGNED NOT NULL COMMENT 'Código Cromáticó',
   `des_cod` varchar(15) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Código Punto-Barra',
   `des_col` varchar(10) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Color',
@@ -2750,10 +2750,10 @@ CREATE TABLE `hol_cro` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Cromática';
 
 --
--- Volcado de datos para la tabla `hol_cro`
+-- Volcado de datos para la tabla `hol-cro`
 --
 
-INSERT INTO `hol_cro` (`ide`, `des_cod`, `des_col`, `des_lad`, `des_dir`, `des_pod`, `des_fun`, `des_acc`) VALUES
+INSERT INTO `hol-cro` (`ide`, `des_cod`, `des_col`, `des_lad`, `des_dir`, `des_pod`, `des_fun`, `des_acc`) VALUES
 (1, 'un Punto', 'Rojo', 'Derecha', 'el Este', 'Transmitir', 'Transmite', 'Informa'),
 (2, 'dos Puntos', 'Blanco', 'Arriba', 'el Norte', 'Transducir', 'Da energía', 'Recuerda'),
 (3, 'tres Puntos', 'Azul', 'Izquierda', 'el Oeste', 'Recibir', 'Protege', 'Formula'),
@@ -2763,10 +2763,10 @@ INSERT INTO `hol_cro` (`ide`, `des_cod`, `des_col`, `des_lad`, `des_dir`, `des_p
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_kin`
+-- Estructura de tabla para la tabla `hol-kin`
 --
 
-CREATE TABLE `hol_kin` (
+CREATE TABLE `hol-kin` (
   `ide` smallint(3) UNSIGNED ZEROFILL NOT NULL COMMENT 'Kin',
   `nom` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `pod` varchar(35) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Poderes',
@@ -2809,10 +2809,10 @@ CREATE TABLE `hol_kin` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Tzolkin';
 
 --
--- Volcado de datos para la tabla `hol_kin`
+-- Volcado de datos para la tabla `hol-kin`
 --
 
-INSERT INTO `hol_kin` (`ide`, `nom`, `pod`, `des`, `des_umb`, `des_tie`, `psi`, `tel_pak`, `val_est`, `pag`, `fac`, `fac_ini`, `fac_fin`, `fac_ran`, `ene`, `ene_cam`, `chi`, `enc_ini`, `enc_fin`, `gen_enc`, `gen_enc_dia`, `gen_cel`, `gen_cel_dia`, `nav_cas`, `nav_cas_dia`, `nav_ond`, `nav_ond_dia`, `cro_est`, `cro_est_dia`, `cro_ele`, `cro_ele_dia`, `arm_tra`, `arm_tra_dia`, `arm_cel`, `arm_cel_dia`, `par_ana`, `par_gui`, `par_ant`, `par_ocu`) VALUES
+INSERT INTO `hol-kin` (`ide`, `nom`, `pod`, `des`, `des_umb`, `des_tie`, `psi`, `tel_pak`, `val_est`, `pag`, `fac`, `fac_ini`, `fac_fin`, `fac_ran`, `ene`, `ene_cam`, `chi`, `enc_ini`, `enc_fin`, `gen_enc`, `gen_enc_dia`, `gen_cel`, `gen_cel_dia`, `nav_cas`, `nav_cas_dia`, `nav_ond`, `nav_ond_dia`, `cro_est`, `cro_est_dia`, `cro_ele`, `cro_ele_dia`, `arm_tra`, `arm_tra_dia`, `arm_cel`, `arm_cel_dia`, `par_ana`, `par_gui`, `par_ant`, `par_ocu`) VALUES
 (001, 'Dragón Magnético Rojo', 'el Nacimiento Magnético', '\"Yo unifico con el fin de Nutrir, atrayendo el Ser. Sello la Entrada del Nacimiento con el tono Magnético del Propósito. Me guía mi propio Poder duplicado. Soy un Portal de Activación Galáctica, entra en mí.\"', '\"La única palabra para definir o describir todo el sistema de cubo 441 es Synchronotron. Synchronotron es el sistema de un lenguaje telepático que define el orden raíz subyacente del universo multidimensional en el que vivimos.\"', '\"En el tiempo cuatridimensional, la consciencia es vista como el flujo continuo de la evolución del tiempo de todo el espectro evolutivo de la inteligencia. Este espectro evolutivo de la inteligencia es llamado Cerebro Galáctico, y representa el índice de potenciales del vector tiempo que gobiernan la vida previa, la vida instintiva, la vida telepática y la mente pura.\"', '01.01', 0, 0, 1, 7200, -3113, -3093, '3.113 - 3.093 A.C.', 1, 01, NULL, -26000, 0, 1, 01, 1, 01, 1, 01, 01, 01, 2, 12, 16, 2, 01, 01, 01, 1, 118, 001, 131, 260),
 (002, 'Viento Lunar Blanco', 'el Espíritu Lunar', '\"Yo polarizo con el fin de Comunicar, estabilizando el Aliento. Sello la Entrada del Espíritu con el tono Lunar del Desafío. Me guía el poder de la Atemporalidad.\"', '\"Las súper realidades y dimensiones superiores son funciones de las percepciones sensoriales radializadas avanzadas y relaciones mentales debidas a la activación de la 7ª esfera mental, el Perceptor Holomental, el híper órgano telepático.\"', '\"De acuerdo a los principios del diseño original, las diferencias variables en la evolución en el tiempo se producen en las diferentes masas estelares dentro del Cerebro Galáctico.\"', '01.07', 0, 0, 0, 14400, -3093, -3073, '3.093 - 3.073 A.C.', 1, 01, NULL, 0, 0, 1, 02, 1, 02, 1, 02, 01, 02, 2, 13, 16, 3, 01, 02, 01, 2, 197, 054, 132, 259),
 (003, 'Noche Eléctrica Azul', 'la Abundancia Eléctrica', '\"Yo activo con el fin de Soñar, vinculando la Intuición. Sello la Entrada de la Abundancia con el tono Eléctrico del Servicio. Me guía el poder de la Realización.\"', '\"El número no es estático, sino dinámico, ya que cada número existe en un contexto de frecuencias de relaciones con los demás números así como consigo mismo en su composición, el total de lo que constituye una señal de Totalidad Exaltada.\"', '\"Al igual que el Cerebro Galáctico se divide horizontalmente por la confluencia entre el instinto y la telepatía, así también se divide verticalmente, siendo el lado izquierdo el estado primario, y el lado derecho un reflejo secundario de la condición primaria. El preconsciente es el instinto primario. El consciente subliminal es la telepatía primaria.\"', '01.08', 0, 0, 0, 21600, -3073, -3054, '3.073 - 3.054 A.C.', 1, 01, NULL, 0, 0, 1, 03, 1, 03, 1, 03, 01, 03, 2, 14, 16, 4, 01, 03, 01, 3, 016, 107, 133, 258),
@@ -2860,7 +2860,7 @@ INSERT INTO `hol_kin` (`ide`, `nom`, `pod`, `des`, `des_umb`, `des_tie`, `psi`, 
 (045, 'Serpiente Rítmica Roja', 'la Fuerza Vital Rítmica', '\"Yo organizo con el fin de Sobrevivir, equilibrando el Instinto. Sello el Almacén de la Fuerza Vital con el tono Rítmico de la Igualdad. Me guía mi propio Poder duplicado.\"', '\"Lo que los humanos llamamos memoria es simplemente lo que sus órganos de los sentidos tienen registrados y reportados. Cuando el aparato humano se retira de los estímulos de la experiencia física condicionada 3D de los órganos de los sentidos, y se conecta con el aparato extrasensorial 5D, experimenta otra realidad.\"', '\"El banco psi es el cerebro de la biosfera, la fuerza motriz de la evolución del tiempo y la consciencia que regula las etapas evolutivas de la biosfera. Como el repositorio de todos los pensamientos, inconscientes y conscientes, el banco psi permanece en el inconsciente instintivo hasta el advenimiento del pensamiento auto-reflexivo. La noosfera es el banco psi convertido en el regulador consciente continuo de la vida.\"', '03.14', 0, 0, 0, 324000, -2246, -2226, '2.246 - 2.226 A.C.', 1, 01, NULL, 0, 0, 1, 45, 2, 19, 1, 45, 04, 06, 2, 56, 25, 1, 03, 05, 12, 1, 214, 045, 175, 216),
 (046, 'Enlazador de Mundos Resonante Blanco', 'la Muerte Resonante', '\"Yo canalizo con el fin de Igualar, inspirando la Oportunidad. Sello el Almacén de la Muerte con el tono Resonante de la Sintonización. Me guía el poder del Sin-Fín.\"', '\"La primera esfera mental, Preconsciente, es la base de la creación cósmica; lo insondable puro, la mente sin dirección desde la cual todo surge. Se activa por los estados de samadhi profundo.\"', '\"El Encantamiento del Sueño, el Viaje de la Nave Tiempo Tierra 2013, es el repositorio de la suma del conocimiento de la Ley del Tiempo como un conjunto completo de códigos que demuestran la matemática radial de la cuarta dimensión. Tanto el Calendario de Trece Lunas, como el Telektonon, están derivados e integrados en los códigos del Encantamiento del Sueño.\"', '03.15', 0, 0, 0, 331200, -2226, -2207, '2.226 - 2.207 A.C.', 1, 01, NULL, 0, 0, 1, 46, 2, 20, 1, 46, 04, 07, 2, 57, 25, 2, 03, 06, 12, 2, 033, 098, 176, 215),
 (047, 'Mano Galáctica Azul', 'la Realización Galáctica', '\"Yo armonizo con el fin de Conocer, modelando la Curación. Sello el Almacén de la Realización con el tono Galáctico de la Integridad. Me guía el poder de la Magia.\"', '\"Los siete chacras son portales al sistema del Cubo 441. Los chacras son vórtices de energía y conductores de energía electromagnética que sirven como centros de control para la transformación de las energías etéricas y sutiles.\"', '\"La conclusión exitosa del Telektonon-Proyecto Rinri es el restablecimiento de la primacía de la AC y la reintegración de la CA, ahora definida como Consciencia Cósmica. La fusión (13:20) de la Continuidad Aborigen (32) y la Consciencia Cósmica (64) define la condición simbiótica de la escala humano-biosfera-noosfera que caracteriza la era Psicozoica.\"', '03.16', 0, 0, 0, 338400, -2207, -2187, '2.207 - 2.187 A.C.', 3, 13, 16, 0, 0, 1, 47, 2, 21, 1, 47, 04, 08, 2, 58, 25, 3, 03, 07, 12, 3, 112, 151, 177, 214);
-INSERT INTO `hol_kin` (`ide`, `nom`, `pod`, `des`, `des_umb`, `des_tie`, `psi`, `tel_pak`, `val_est`, `pag`, `fac`, `fac_ini`, `fac_fin`, `fac_ran`, `ene`, `ene_cam`, `chi`, `enc_ini`, `enc_fin`, `gen_enc`, `gen_enc_dia`, `gen_cel`, `gen_cel_dia`, `nav_cas`, `nav_cas_dia`, `nav_ond`, `nav_ond_dia`, `cro_est`, `cro_est_dia`, `cro_ele`, `cro_ele_dia`, `arm_tra`, `arm_tra_dia`, `arm_cel`, `arm_cel_dia`, `par_ana`, `par_gui`, `par_ant`, `par_ocu`) VALUES
+INSERT INTO `hol-kin` (`ide`, `nom`, `pod`, `des`, `des_umb`, `des_tie`, `psi`, `tel_pak`, `val_est`, `pag`, `fac`, `fac_ini`, `fac_fin`, `fac_ran`, `ene`, `ene_cam`, `chi`, `enc_ini`, `enc_fin`, `gen_enc`, `gen_enc_dia`, `gen_cel`, `gen_cel_dia`, `nav_cas`, `nav_cas_dia`, `nav_ond`, `nav_ond_dia`, `cro_est`, `cro_est_dia`, `cro_ele`, `cro_ele_dia`, `arm_tra`, `arm_tra_dia`, `arm_cel`, `arm_cel_dia`, `par_ana`, `par_gui`, `par_ant`, `par_ocu`) VALUES
 (048, 'Estrella Solar Amarilla', 'la Elegancia Solar', '\"Yo pulso con el fin de Embellecer, realizando el Arte. Sello el Almacén de la Elegancia con el tono Solar de la Intención. Me guía el poder del Florecimiento.\"', '\"441 es la matriz de todas las frecuencias de resonancia y sonido subyacentes, mantenidas unidas por una gama de tonalidades de 55 octavas (440 = \'Do 55\'). En el centro de esta matriz está el tono maestro 441, \'Do 56\': La reverberación del RANG primordial desde donde el universo fue constituido y surgió.\"', '\"La práctica del yoga, genéricamente entendida, es un requisito previo para cualquier consideración del viaje en el tiempo. El viaje en el tiempo es la función de una sensación corporal interna del circuito biopsíquico integrado AC-CA, que puede ser experimentada y afianzada uniformemente en una directriz única o forma de energía concentrada.\"', '03.17', 0, 0, 0, 345600, -2187, -2167, '2.187 - 2.167 A.C.', 3, 13, 01, 0, 0, 1, 48, 2, 22, 1, 48, 04, 09, 2, 59, 25, 4, 03, 08, 12, 4, 191, 204, 178, 213),
 (049, 'Luna Planetaria Roja', 'el Agua Universal Planetaria', '\"Yo perfecciono con el fin de Purificar, produciendo el Flujo. Sello el Proceso del Agua Universal con el tono Planetario de la Manifestación. Me guía el poder de la Navegación.\"', '\"El 252 es una frecuencia suprema (21x12, 36x7, 28x9) y establece el poder de la esfera cósmica supermental/superconsciente en la quinta dimensión del tiempo. Desde este punto, el corazón radiante del cuerpo etérico del destino, holón 4-D, se activa estableciendo el plano electromagnético. El calor Rojo de la divinidad masculina despierta en el campo de fuerza de la Estación Intermedia AA.\"', '\"El Puente Arco Iris Circumpolar sintetiza las funciones análogas de los campos de resonancia biopsíquico, electromagnético y geomagnético, en una correspondencia entre la identificación axial del cuerpo planetario y humano, y la proyección telepática colectiva simultánea.\"', '03.18', 0, 0, 0, 352800, -2167, -2147, '2.167 - 2.147 A.C.', 3, 13, 64, 0, 0, 1, 49, 2, 23, 1, 49, 04, 10, 2, 60, 25, 5, 03, 09, 13, 1, 010, 257, 179, 212),
 (050, 'Perro Espectral Blanco', 'el Corazón Espectral', '\"Yo disuelvo con el fin de Amar, divulgando la Lealtad. Sello el Proceso del Corazón con el tono Espectral de la Liberación. Me guía mi propio Poder duplicado. Soy un Kin Polar, transporto el Espectro Galáctico Blanco. Soy un Portal de Activación Galáctica, entra en mí.\"', '\"El circuito 8, contiene 24 unidades y es el circuito eléctrico del hiperpartón. Coordina la electricidad cósmica de cualquier cuerpo celeste determinado. Arquetipos: Suma Sacerdotisa y Navegante. Entra en el Consejo Uraniano de las Comunicaciones Evolutivas.\"', '\"La reorganización armónica del orden sincrónico es múltiplemente estética: las reorganizaciones genéticas atómico-celulares son intrínsecamente estéticas; las técnicas y las armónicas celestes de reorganización son estéticas por diseño; las formas sociales requeridas para evolucionar las técnicas son biológicamente estéticas. Por la ley T(E)=Arte, la RAP abarca todas y cada una de las cosas como un orden de sistemas enteros elevando la consciencia instintiva hacia órdenes telepáticos del consciente continuo y superconsciente.\"', '04.01', 0, 1, 1, 360000, -2147, -2128, '2.147 - 2.128 A.C.', 3, 13, 49, 0, 0, 1, 50, 2, 24, 1, 50, 04, 11, 2, 61, 26, 1, 03, 10, 13, 2, 089, 050, 180, 211),
@@ -2907,7 +2907,7 @@ INSERT INTO `hol_kin` (`ide`, `nom`, `pod`, `des`, `des_umb`, `des_tie`, `psi`, 
 (091, 'Mono Cósmico Azul', 'la Magia Cósmica', '\"Yo perduro con el fin de Jugar, trascendiendo la Ilusión. Sello el Proceso de la Magia con el tono Cósmico de la Presencia. Me guía el poder de la Visión.\"', '\"El sistema 11º dimensional es el mecanismo de trabajo/vivo del Ser Galáctico, el circuito telepático evolutivo de la noosfera. A través de la apertura del 441 la puerta mística 11ª, abrimos nuestro canal central, atrayendo los flujos magnéticos de fotones y fuerzas eléctricas que informan a las ‘estaciones del arca’, las unidades compactas de los mensajeros que rodean el núcleo 441.\"', '\"La personalidad cuatridimensional alternativa complementa a la configuración de la vida de la entidad tridimensional, y adquiere mayor importancia en el desarrollo de la cultura galáctica. En definitiva, la personalidad secundaria del holón es la ‘nave del alma’ que transmigra entre los cuadrantes superconsciente hiperorgánico y consciente subliminal postorgánico del Cerebro Galáctico.\"', '05.19', 0, 0, 0, 655200, -1339, -1319, '1.339 - 1.319 A.C.', 3, 13, 41, 0, 0, 1, 91, 4, 13, 2, 39, 07, 13, 3, 37, 34, 2, 05, 11, 23, 3, 208, 195, 221, 170),
 (092, 'Humano Magnético Amarillo', 'la Libre Voluntad Magnética', '\"Yo unifico con el fin de Influenciar, atrayendo la Sabiduría. Sello el Proceso de la Libre Voluntad con el tono Magnético del Propósito. Me guía mi propio Poder duplicado.\"', '\"Dentro de los parámetros del campo telepático 441 está inscrita la plantilla estelar de Hunab Ku 21, la estructura interna del nuevo cuerpo de radiancia.\"', '\"El propósito del viaje en el tiempo es expandir y acelerar la clase y la calidad de la experiencia espiritual que acompaña a la evolución en el superconsciente hiper-orgánico. La calidad de la experiencia del viaje en el tiempo es directamente proporcional a su utilidad beneficiosa.\"', '05.20', 0, 0, 0, 662400, -1319, -1299, '1.319 - 1.299 A.C.', 3, 13, 40, 0, 0, 1, 92, 4, 14, 2, 40, 08, 01, 3, 38, 34, 3, 05, 12, 23, 4, 027, 092, 222, 169),
 (093, 'Caminante del Cielo Lunar Rojo', 'el Espacio Lunar', '\"Yo polarizo con el fin de Explorar, estabilizando la Vigilancia. Sello la Salida del Espacio con el tono Lunar del Desafío. Me guía el poder de la Fuerza Vital. Soy un Portal de Activación Galáctica, entra en mí.\"', '\"La sincronicidad está organizada por su propio lenguaje o alfabeto de símbolos, conocidos como los códigos del orden sincrónico. Al igual que todo el lenguaje, los códigos sincrónicos se ajustan a sus conjuntos de reglas y formas de órdenes o de sintaxis.\"', '\"El transporte en el tiempo del cuerpo entero es la capacidad de extenderse desde el ahora, al consciente continuo y al superconsciente. Esto se logra a través de la proyección holográfica total cuya calidad es proporcional a la intensidad e integridad de la personalidad alternativa cuatridimensional para incorporar la sensación del cuerpo interno tridimensional normalmente conocido como el ‘yo’.\"', '08.04', 0, 0, 1, 669600, -1299, -1280, '1.299 - 1.280 A.C.', 3, 13, 25, 0, 0, 1, 93, 4, 15, 2, 41, 08, 02, 3, 39, 34, 4, 05, 13, 24, 1, 106, 145, 223, 168);
-INSERT INTO `hol_kin` (`ide`, `nom`, `pod`, `des`, `des_umb`, `des_tie`, `psi`, `tel_pak`, `val_est`, `pag`, `fac`, `fac_ini`, `fac_fin`, `fac_ran`, `ene`, `ene_cam`, `chi`, `enc_ini`, `enc_fin`, `gen_enc`, `gen_enc_dia`, `gen_cel`, `gen_cel_dia`, `nav_cas`, `nav_cas_dia`, `nav_ond`, `nav_ond_dia`, `cro_est`, `cro_est_dia`, `cro_ele`, `cro_ele_dia`, `arm_tra`, `arm_tra_dia`, `arm_cel`, `arm_cel_dia`, `par_ana`, `par_gui`, `par_ant`, `par_ocu`) VALUES
+INSERT INTO `hol-kin` (`ide`, `nom`, `pod`, `des`, `des_umb`, `des_tie`, `psi`, `tel_pak`, `val_est`, `pag`, `fac`, `fac_ini`, `fac_fin`, `fac_ran`, `ene`, `ene_cam`, `chi`, `enc_ini`, `enc_fin`, `gen_enc`, `gen_enc_dia`, `gen_cel`, `gen_cel_dia`, `nav_cas`, `nav_cas_dia`, `nav_ond`, `nav_ond_dia`, `cro_est`, `cro_est_dia`, `cro_ele`, `cro_ele_dia`, `arm_tra`, `arm_tra_dia`, `arm_cel`, `arm_cel_dia`, `par_ana`, `par_gui`, `par_ant`, `par_ocu`) VALUES
 (094, 'Mago Eléctrico Blanco', 'la Atemporalidad Eléctrica', '\"Yo activo con el fin de Encantar, vinculando la Receptividad. Sello la Salida de la Atemporalidad con el tono Eléctrico del Servicio. Me guía el poder del Sin-Fín.\"', '\"La telepatía es cómo se mantiene el orden del universo como un sistema de frecuencias matemáticas capaz de ordenarse de maneras infinitas a niveles infinitos. El espacio es el medio de unificación de todas las mentes.\"', '\"Durante el ciclo 2000-2013 DA, tres niveles de incidencias se revelan y se sincronizan simultáneamente: la activación del sistema del tubo de flujo y la reestructuración armónica del orden sincrónico del heliocosmos; el desarrollo simultáneo de las formas de arquitectura radiosónica ‘anclan’ el viaje telepático del tiempo; y la coordinación sincronizada del banco psi con pulsaciones de frecuencia solar (completa el circuito AC).\"', '05.21', 0, 0, 0, 676800, -1280, -1260, '1.280 - 1.260 A.C.', 3, 13, 24, 0, 0, 1, 94, 4, 16, 2, 42, 08, 03, 3, 40, 34, 5, 05, 14, 24, 2, 185, 198, 224, 167),
 (095, 'Águila Autoexistente Azul', 'la Visión Autoexistente', '\"Yo defino con el fin de Crear, midiendo la Mente. Sello la Salida de la Visión con el tono Autoexistente de la Forma. Me guía el poder de la Magia. Soy un Kin Polar, convierto el Espectro Galáctico Azul.\"', '\"Todo lo que surge en la mente es tanto lo que es, como lo que no es simultáneamente. La mente original no se modifica por el mundo material. El cubo 441 es un salto cuántico hacia la experiencia directa de la realidad cósmica más allá de la personalidad.\"', '\"A través de los nuevos programas del consciente subliminal, comienzan los experimentos de intercambio y desplazamiento mutuos, primero a un nivel terrestre, y luego a niveles interplanetario, solar/estelar y galáctico, iniciando la fase de expansión del viaje en el tiempo de la vida universal galáctica. El intercambio y el desplazamiento mutuo representa un nuevo nivel de evolución espiritual en el que la identidad-alma fusiona los holones en una masa radiosónica colectiva.\"', '05.22', 0, 1, 0, 684000, -1260, -1240, '1.260 - 1.240 A.C.', 1, 03, NULL, 0, 0, 1, 95, 4, 17, 2, 43, 08, 04, 3, 41, 35, 1, 05, 15, 24, 3, 004, 251, 225, 166),
 (096, 'Guerrero Entonado Amarillo', 'la Inteligencia Entonada', '\"Yo confiero poder con el fin de Cuestionar, comandando la Intrepidez. Sello la Salida de la Inteligencia con el tono Entonado de la Radiancia. Me guía el poder del Florecimiento. Soy un Portal de Activación Galáctica, entra en mí.\"', '\"Las unidades en el Cubo son adaptaciones primordiales del Uno que crea el orden y el sistema de la matriz matemática que subyace a toda realidad – mente, tiempo, espacio y orden sincrónico de la consciencia evolucionada. Todo está contenido y generado desde estos números: 1, 21, 441, 9261.\"', '\"El orden preorgánico inconsciente del T(E)=Arte (el dominio de potencialidad) resultante en la estructura proyectiva primaria del cristal se completa en la curva de ascenso donde el orden postorgánico subliminal de T(E)=Arte, resulta en la última estructura proyectiva auto-reflexiva de la ‘barca del alma’. La ‘barca del alma’ es una proyección cristalina radiosónica del orden del tiempo súper consciente auto-realizada.\"', '07.04', 0, 0, 1, 691200, -1240, -1221, '1.240 - 1.221 A.C.', 1, 03, NULL, 0, 0, 1, 96, 4, 18, 2, 44, 08, 05, 3, 42, 35, 2, 05, 16, 24, 4, 083, 044, 226, 165),
@@ -2954,7 +2954,7 @@ INSERT INTO `hol_kin` (`ide`, `nom`, `pod`, `des`, `des_umb`, `des_tie`, `psi`, 
 (137, 'Tierra Resonante Roja', 'la Navegación Resonante', '\"Yo canalizo con el fin de Evolucionar, inspirando la Sincronía. Sello la Matriz de la Navegación con el tono Resonante de la Sintonización. Me guía el poder del Agua Universal.\"', '\"El circuito interplanetario que subyace al holón planetario es la placa madre telepática que se acomoda a la emergencia de la noosfera.\"', '\"A través de la participación en la Federación Galáctica, los ángeles poseen una capacidad guiadora que está dirigida inteligentemente al retroalimentarse desde el diseño coordinador de Dios. Esta capacidad guiadora permite a los ángeles ser asignados a cualquier gama infinita de los cuerpos en el tiempo evolucionados a través del flujo continuo de energía-a-mente del Cerebro Galáctico.\"', '07.21', 0, 0, 0, 986400, -432, -412, '432 - 412 A.C.', 4, 14, NULL, 0, 0, 2, 07, 1, 07, 3, 33, 11, 07, 4, 18, 43, 3, 07, 17, 35, 1, 202, 189, 007, 124),
 (138, 'Espejo Galáctico Blanco', 'el Sin-Fín Galáctico', '\"Yo armonizo con el fin de Reflejar, modelando el Orden. Sello la Matriz del Sin-Fín con el tono Galáctico de la Integridad. Me guía el poder del Espíritu.\"', '\"La consciencia evoluciona a través de la conexión de diferentes puntos de Luz dentro de una Esfera Planetaria. Todos los más altos estados de la Mente y del Ser han penetrado a este nivel y en diversos grados ellos intentan comunicar a otros lo que esto es.\"', '\"Los Mahabodhisattvas son órdenes angélicos que eligen la trasmigración galáctica. El afán del bodhisattva está incesantemente dirigido a la realización ilimitada de todo el campo de resplandor y luminosidad a través de todo el universo espejo radialmente infinito de cerebros galácticos y sistemas de mundos infinitos.\"', '07.22', 0, 0, 0, 993600, -412, -392, '412 - 392 A.C.', 4, 14, NULL, 0, 0, 2, 08, 1, 08, 3, 34, 11, 08, 4, 19, 43, 4, 07, 18, 35, 2, 021, 242, 008, 123),
 (139, 'Tormenta Solar Azul', 'la Autogeneración Solar', '\"Yo pulso con el fin de Catalizar, realizando la Energía. Sello la Matriz de la Autogeneración con el tono Solar de la Intención. Me guía el poder de la Visión.\"', '\"A través de la aplicación de Synchronotron a uno se le hace avanzar hacia la simultaneidad de dimensiones y niveles de consciencia y modalidades del ser.\"', '\"Estar con Dios es el Día del Juicio Final. El Día del Juicio Final es definido por el descubrimiento de la Ley del Tiempo, el cual es tanto la revelación final como el conocimiento para proceder correctamente, ya que antes, debido a la falta de la ciencia del tiempo, sólo estaba el error manifiesto. La transición biosfera-noosfera es la maduración externa del inconsciente cósmico y es sinónimo con la secuencia del Día del Juicio Final del descubrimiento de la Ley del Tiempo.\"', '08.07', 0, 0, 0, 1000800, -392, -373, '392 - 373 A.C.', 4, 14, NULL, 0, 0, 2, 09, 1, 09, 3, 35, 11, 09, 4, 20, 43, 5, 07, 19, 35, 3, 100, 035, 009, 122);
-INSERT INTO `hol_kin` (`ide`, `nom`, `pod`, `des`, `des_umb`, `des_tie`, `psi`, `tel_pak`, `val_est`, `pag`, `fac`, `fac_ini`, `fac_fin`, `fac_ran`, `ene`, `ene_cam`, `chi`, `enc_ini`, `enc_fin`, `gen_enc`, `gen_enc_dia`, `gen_cel`, `gen_cel_dia`, `nav_cas`, `nav_cas_dia`, `nav_ond`, `nav_ond_dia`, `cro_est`, `cro_est_dia`, `cro_ele`, `cro_ele_dia`, `arm_tra`, `arm_tra_dia`, `arm_cel`, `arm_cel_dia`, `par_ana`, `par_gui`, `par_ant`, `par_ocu`) VALUES
+INSERT INTO `hol-kin` (`ide`, `nom`, `pod`, `des`, `des_umb`, `des_tie`, `psi`, `tel_pak`, `val_est`, `pag`, `fac`, `fac_ini`, `fac_fin`, `fac_ran`, `ene`, `ene_cam`, `chi`, `enc_ini`, `enc_fin`, `gen_enc`, `gen_enc_dia`, `gen_cel`, `gen_cel_dia`, `nav_cas`, `nav_cas_dia`, `nav_ond`, `nav_ond_dia`, `cro_est`, `cro_est_dia`, `cro_ele`, `cro_ele_dia`, `arm_tra`, `arm_tra_dia`, `arm_cel`, `arm_cel_dia`, `par_ana`, `par_gui`, `par_ant`, `par_ocu`) VALUES
 (140, 'Sol Planetario Amarillo', 'el Fuego Universal Planetario', '\"Yo perfecciono con el fin de Iluminar, produciendo la Vida. Sello la Matriz del Fuego Universal con el tono Planetario de la Manifestación. Me guía el poder de la Elegancia. Soy un Kin Polar, extiendo el Espectro Galáctico Amarillo.\"', '\"El cubo 441 es un campo de fuerza geométrico, una geometría mental que sustituye y contrarresta la gravedad que es sólo una fuerza tridimensional. Todo en la raíz del infinito es una función de geometría de la forma traducida en números de índice de frecuencia telepática.\"', '\"Al hacerse consciente, la Ley del Tiempo altera las posibilidades de interacción telepática entre cuerpos específicos. Las alteraciones conscientes de telepatía entre cuerpos específicos en los que la Ley del Tiempo se ha hecho consciente, determinan una serie de posibilidades llamada, la dinámica del tiempo, o armónicas celestes.\"', '08.08', 0, 1, 0, 1008000, -373, -353, '373 - 353 A.C.', 4, 14, NULL, 0, 0, 2, 10, 1, 10, 3, 36, 11, 10, 4, 21, 44, 1, 07, 20, 35, 4, 179, 088, 010, 121),
 (141, 'Dragón Espectral Rojo', 'el Nacimiento Espectral', '\"Yo disuelvo con el fin de Nutrir, divulgando el Ser. Sello la Entrada del Nacimiento con el tono Espectral de la Liberación. Me guía mi propio Poder duplicado.\"', '\"La sincronotrónica es la ciencia de lectura y aplicación de estas estructuras de inteligencia para el avance de la noosfera en el curso de la evolución cósmica.\"', '\"Las estructuras sociales encomendadas por la Ley del Tiempo son también estructuras telepáticas de conocimiento. La integración de los patrones biológicos de la vida en la frecuencia del tiempo correcta con la búsqueda de la creación de estructuras mentales de duración prolongada dotará a la especie con una consciencia telepática colectiva actualmente desconocida.\"', '08.09', 0, 0, 0, 1015200, -353, -333, '353 - 333 A.C.', 1, 02, NULL, 0, 0, 2, 11, 1, 11, 3, 37, 11, 11, 4, 22, 44, 2, 08, 01, 36, 1, 258, 141, 011, 120),
 (142, 'Viento Cristal Blanco', 'el Espíritu Cristal', '\"Yo me dedico a con el fin de Comunicar, universalizando el Aliento. Sello la Entrada del Espíritu con el tono Cristal de la Cooperación. Me guía el poder de la Atemporalidad.\"', '\"Para acelerar la experiencia directa de universos paralelos, la recuperación de la memoria y el viaje interdimensional, imprime telepáticamente el Perceptor Holomental en tu cuerpo calloso y absórbelo a través del samadhi meditativo.\"', '\"El instinto es totalmente una función de T(E)=Arte, y representa el orden ‘inconsciente’ de la telepatía. Mientras el instinto se basa enteramente en las funciones orgánicas, la telepatía es independiente de las operaciones orgánicas de la vida. El instinto tridimensional se inclina hacia la formación de estructuras de coherencia física. La telepatía cuatridimensional es disipante y se inclina hacia la navegación radiante en el tiempo.\"', '08.10', 0, 0, 0, 1022400, -333, -313, '333 - 313 A.C.', 1, 02, NULL, 0, 0, 2, 12, 1, 12, 3, 38, 11, 12, 4, 23, 44, 3, 08, 02, 36, 2, 077, 194, 012, 119),
@@ -3001,7 +3001,7 @@ INSERT INTO `hol_kin` (`ide`, `nom`, `pod`, `des`, `des_umb`, `des_tie`, `psi`, 
 (183, 'Noche Magnética Azul', 'la Abundancia Magnética', '\"Yo unifico con el fin de Soñar, atrayendo la Intuición. Sello la Entrada de la Abundancia con el tono Magnético del Propósito. Me guía mi propio Poder duplicado.\"', '\"La percepción del espacio-tiempo/tiempo-espacio en su conjunto es la primera etapa para comprender la organización telepática de la realidad. Dentro de la unidad de la totalidad del tiempo-espacio, el ayer y el mañana ya no existen.\"', '\"El Cerebro Galáctico, nombre dado a todo el orden del sistema del tiempo y la consciencia, es holonómico, y está gobernado por un único principio unitario, la Ley del Tiempo, T(E)=Arte. Este orden holonómico se incorpora e incluye en la naturaleza evolutiva de la masa estelar a través de sus cuerpos planetarios.\"', '09.21', 0, 0, 0, 1317600, 475, 494, '475 - 494 D.C.', 1, 02, NULL, 0, 0, 2, 53, 3, 01, 4, 27, 15, 01, 4, 64, 52, 4, 10, 03, 46, 3, 196, 183, 053, 078),
 (184, 'Semilla Lunar Amarilla', 'el Florecimiento Lunar', '\"Yo polarizo con el fin de Atinar, estabilizando la Atención. Sello la Entrada del Florecimiento con el tono Lunar del Desafío. Me guía el poder de la Inteligencia. Soy un Portal de Activación Galáctica, entra en mí.\"', '\"La Matriz Base es el ancla de todas las matrices 441 en las que la creación cósmica es concebida. Las plantillas Tiempo, Espacio y Sincrónica son las matrices coordinadoras. La Matriz Base superpuesta en el Perceptor Holomental, es una síntesis y el mapa del nuevo cerebro de la mente galáctica.\"', '\"El cuerpo de un planeta es la parte orbital de la masa estelar, en el que la incorporación de las geometrías cristalinas del tiempo, ofrecen la posibilidad de interpretar y definir la dialéctica desde la cual, el reflejo secundario vida puede ser evolucionada.\"', '05.23', 0, 0, 1, 1324800, 494, 514, '494 - 514 D.C.', 1, 02, NULL, 0, 0, 2, 54, 3, 02, 4, 28, 15, 02, 4, 65, 52, 5, 10, 04, 46, 4, 015, 236, 054, 077),
 (185, 'Serpiente Eléctrica Roja', 'la Fuerza Vital Eléctrica', '\"Yo activo con el fin de Sobrevivir, vinculando el Instinto. Sello el Almacén de la Fuerza Vital con el tono Eléctrico del Servicio. Me guía el poder del Agua Universal. Soy un Kin Polar, establezco el Espectro Galáctico Rojo.\"', '\"El Perceptor Holomental está conectado con los órganos de los sentidos humanos de modo que, una vez activado, la entrada sensorial comienza a ser procesada e interpretada de manera diferente (sinestesia) que cuando estaba con el piloto automático inconsciente.\"', '\"A través de un error en el tiempo, la especie humana transforma su constructo artificial, la civilización, en una tecnosfera global, producto de la suma de la mecanización industrial de sus funciones biológicas. Debido a la adaptación humana a la irregular y mecanizada frecuencia del tiempo 12:60, la tecnosfera va en contra de las leyes de la biosfera creando una inestabilidad magnética entre los procesos orgánicos cristalinos y vitales primarios.\"', '09.22', 0, 1, 0, 1332000, 514, 534, '514 - 534 D.C.', 1, 02, NULL, 0, 0, 2, 55, 3, 03, 4, 29, 15, 03, 1, 01, 01, 1, 10, 05, 47, 1, 094, 029, 055, 076);
-INSERT INTO `hol_kin` (`ide`, `nom`, `pod`, `des`, `des_umb`, `des_tie`, `psi`, `tel_pak`, `val_est`, `pag`, `fac`, `fac_ini`, `fac_fin`, `fac_ran`, `ene`, `ene_cam`, `chi`, `enc_ini`, `enc_fin`, `gen_enc`, `gen_enc_dia`, `gen_cel`, `gen_cel_dia`, `nav_cas`, `nav_cas_dia`, `nav_ond`, `nav_ond_dia`, `cro_est`, `cro_est_dia`, `cro_ele`, `cro_ele_dia`, `arm_tra`, `arm_tra_dia`, `arm_cel`, `arm_cel_dia`, `par_ana`, `par_gui`, `par_ant`, `par_ocu`) VALUES
+INSERT INTO `hol-kin` (`ide`, `nom`, `pod`, `des`, `des_umb`, `des_tie`, `psi`, `tel_pak`, `val_est`, `pag`, `fac`, `fac_ini`, `fac_fin`, `fac_ran`, `ene`, `ene_cam`, `chi`, `enc_ini`, `enc_fin`, `gen_enc`, `gen_enc_dia`, `gen_cel`, `gen_cel_dia`, `nav_cas`, `nav_cas_dia`, `nav_ond`, `nav_ond_dia`, `cro_est`, `cro_est_dia`, `cro_ele`, `cro_ele_dia`, `arm_tra`, `arm_tra_dia`, `arm_cel`, `arm_cel_dia`, `par_ana`, `par_gui`, `par_ant`, `par_ocu`) VALUES
 (186, 'Enlazador de Mundos Autoexistente Blanco', 'la Muerte Autoexistente', '\"Yo defino con el fin de Igualar, midiendo la Oportunidad. Sello el Almacén de la Muerte con el tono Autoexistente de la Forma. Me guía el poder del Espíritu.\"', '\"La práctica de meditación enfocada desapodera las grabaciones condicionadas, creando un espacio en la mente que permite la activación y realización de las diferentes esferas mentales. Eso no es igual que manufacturar y reciclar pensamientos.\"', '\"El uso consciente de la herramienta del Calendario de Trece Lunas que reemplaza la medida errónea del calendario artificial de doce meses es, en sí mismo, un acto de consciencia auto-reflexiva humana sin precedentes. La adaptación colectiva al Calendario de Trece Lunas es una elevación intrínseca de la consciencia que despierta rápidamente la programación telepática inherente en la biología humana, frustrada durante mucho tiempo por no haber sido permitido el desarrollo en la frecuencia del tiempo correcto.\"', '10.07', 0, 0, 0, 1339200, 534, 553, '534 - 553 D.C.', 1, 02, NULL, 0, 0, 2, 56, 3, 04, 4, 30, 15, 04, 1, 02, 01, 2, 10, 06, 47, 2, 173, 082, 056, 075),
 (187, 'Mano Entonada Azul', 'la Realización Entonada', '\"Yo confiero poder con el fin de Conocer, comandando la Curación. Sello el Almacén de la Realización con el tono Entonado de la Radiancia. Me guía el poder de la Visión.\"', '\"A través de la aplicación del Synchronotron y el orden sincrónico, el circuito sensorial modular humano y la unidad del radar auto-reflexivo tiene potencial para ser radializado y ampliar la capacidad cerebral.\"', '\"El orden cristalino primario de la dinámica evolutiva establece un tiempo cultural de función en curso definida como AC (Continuidad Aborigen). La AC – inducida por el cristal es equilibrada por su dinámica proyectiva del reflejo secundario de vida, cuya función continua en el tiempo está definida como CA.\"', '10.08', 0, 0, 0, 1346400, 553, 573, '553 - 573 D.C.', 3, 13, 14, 0, 0, 2, 57, 3, 05, 4, 31, 15, 05, 1, 03, 01, 3, 10, 07, 47, 3, 252, 135, 057, 074),
 (188, 'Estrella Rítmica Amarilla', 'la Elegancia Rítmica', '\"Yo organizo con el fin de Embellecer, equilibrando el Arte. Sello el Almacén de la Elegancia con el tono Rítmico de la Igualdad. Me guía mi propio Poder duplicado.\"', '\"La matriz del cubo 441 (OMA: Original Matriz Alcanzada) es la forma del medio de transmisión y comunicación del telépata biosolar a lo largo de todos los sistemas estelares. Hay un Plan y un Orden espiritual para el Universo que es imperceptible para la mayoría de la humanidad.\"', '\"La formulación de la Ley del Tiempo y la aplicación de las herramientas cuatridimensionales correctivas, inician el restablecimiento de la relación correcta entre la AC (Continuidad Aborigen) y la CA (Consciencia Cósmica). Individual y colectivamente, este proceso constituye el programa central de la ‘reeducación magnética de la humanidad’, y está definido genéricamente como ‘yoga’.\"', '10.09', 0, 0, 0, 1353600, 573, 593, '573 - 593 D.C.', 3, 13, 03, 0, 0, 2, 58, 3, 06, 4, 32, 15, 06, 1, 04, 01, 4, 10, 08, 47, 4, 071, 188, 058, 073),
@@ -3048,7 +3048,7 @@ INSERT INTO `hol_kin` (`ide`, `nom`, `pod`, `des`, `des_umb`, `des_tie`, `psi`, 
 (229, 'Luna Galáctica Roja', 'el Agua Universal Galáctica', '\"Yo armonizo con el fin de Purificar, modelando el Flujo. Sello el Proceso del Agua Universal con el tono Galáctico de la Integridad. Me guía el poder del Espacio.\"', '\"El 238 establece el canal resonante (7x34) del alto comando descendiendo hasta la séptima dimensión del tiempo. Desde este punto el chacra corona del cuerpo arco iris 5-D se activa, estableciendo el plano biosíquico en el campo de fuerza GM108X.\"', '\"La creación de la estructura telepática de la arquitectura radiosónica principal del Heptágono de la Mente y el Partón Cúbico Primario son una función de los cuatro plasmas liberados durante los cuatro años de la transición biosfera-noosfera conscientes. El cubo del eje polar doble corresponde con la coordinación AC-CA de los ejes corporal y planetario.\"', '12.10', 0, 0, 0, 1648800, 1382, 1402, '1.382 - 1.402 D.C.', 2, 10, NULL, 0, 0, 3, 21, 4, 21, 5, 21, 18, 08, 1, 45, 09, 5, 12, 09, 58, 1, 190, 073, 099, 032),
 (230, 'Perro Solar Blanco', 'el Corazón Solar', '\"Yo pulso con el fin de Amar, realizando la Lealtad. Sello el Proceso del Corazón con el tono Solar de la Intención. Me guía el poder de la Muerte.\"', '\"El circuito 6, contiene 40 unidades; es el circuito interior de la unidad exterior. Coordina el consciente cósmico del cuerpo de luz de sexta dimensión y transfiere la información PES (Percepción Extra-Sensorial). Arquetipos: Inocente y Vidente. Entra en el Consejo Jupiteriano del Florecimiento Creativo.\"', '\"No puede haber un reordenamiento armónico del orden sincrónico que no se traduzca en un aumento de mejora estética integral. T(E)=Arte define todos los procesos de reordenamiento armónico como actividades de la RAP (Red de Arte Planetario).\"', '12.11', 0, 0, 0, 1656000, 1402, 1421, '1.402 - 1.421 D.C.', 2, 10, NULL, 0, 0, 3, 22, 4, 22, 5, 22, 18, 09, 1, 46, 10, 1, 12, 10, 58, 2, 009, 126, 100, 031),
 (231, 'Mono Planetario Azul', 'la Magia Planetaria', '\"Yo perfecciono con el fin de Jugar, produciendo la Ilusión. Sello el Proceso de la Magia con el tono Planetario de la Manifestación. Me guía el poder de la Autogeneración.\"', '\"11 es al decimal lo que 21 es al vigesimal. Para dominar el sistema 11º-dimensional del Cubo debes aprender cómo organizar toda la realidad desde el interior del Perceptor Holomental, el cosmos multidimensional cubicado en el interior, el triunfo de la frecuencia Siriana en la Tierra.\"', '\"La liberación del inconsciente instintivo reprimido hacia el campo del holón liberado del consciente continuo telepático, análoga a la apertura del banco psi con la eyección del Puente Arco Iris Circumpolar, da lugar a la liberación de la energía psíquica reprimida. La energía psíquica reprimida es proporcional a la calidad de oscilación neurosensorial implicada en el proceso de teleportación sensorial.\"', '12.12', 0, 0, 0, 1663200, 1421, 1441, '1.421 - 1.441 D.C.', 2, 11, NULL, 0, 0, 3, 23, 4, 23, 5, 23, 18, 10, 1, 47, 10, 2, 12, 11, 58, 3, 088, 179, 101, 030);
-INSERT INTO `hol_kin` (`ide`, `nom`, `pod`, `des`, `des_umb`, `des_tie`, `psi`, `tel_pak`, `val_est`, `pag`, `fac`, `fac_ini`, `fac_fin`, `fac_ran`, `ene`, `ene_cam`, `chi`, `enc_ini`, `enc_fin`, `gen_enc`, `gen_enc_dia`, `gen_cel`, `gen_cel_dia`, `nav_cas`, `nav_cas_dia`, `nav_ond`, `nav_ond_dia`, `cro_est`, `cro_est_dia`, `cro_ele`, `cro_ele_dia`, `arm_tra`, `arm_tra_dia`, `arm_cel`, `arm_cel_dia`, `par_ana`, `par_gui`, `par_ant`, `par_ocu`) VALUES
+INSERT INTO `hol-kin` (`ide`, `nom`, `pod`, `des`, `des_umb`, `des_tie`, `psi`, `tel_pak`, `val_est`, `pag`, `fac`, `fac_ini`, `fac_fin`, `fac_ran`, `ene`, `ene_cam`, `chi`, `enc_ini`, `enc_fin`, `gen_enc`, `gen_enc_dia`, `gen_cel`, `gen_cel_dia`, `nav_cas`, `nav_cas_dia`, `nav_ond`, `nav_ond_dia`, `cro_est`, `cro_est_dia`, `cro_ele`, `cro_ele_dia`, `arm_tra`, `arm_tra_dia`, `arm_cel`, `arm_cel_dia`, `par_ana`, `par_gui`, `par_ant`, `par_ocu`) VALUES
 (232, 'Humano Espectral Amarillo', 'la Libre Voluntad Espectral', '\"Yo disuelvo con el fin de Influenciar, divulgando la Sabiduría. Sello el Proceso de la Libre Voluntad con el tono Espectral de la Liberación. Me guía mi propio Poder duplicado.\"', '\"La síntesis de la Ley del Siete y la Ley del Tres es 21 (1.1). 12 es el número del espacio, 13 es el número del tiempo, 20 es el número de la totalidad y 21 es el número de la luz –o emanación desde el segundo universo al primer universo.\"', '\"Los vehículos de transporte interplanetario son compuestos complejos del tipo cristal y diseño floral, construidos de acuerdo a las potencialidades vector tiempo en una escala de tiempo expandida que utiliza los tubos de flujo electromagnéticos restaurados como los senderos para el viaje. Los experimentos se llevarán a cabo durante la fase de navegación inicial de la Nave Tiempo Tierra 2013, 2000-2013 DA.\"', '12.13', 0, 0, 0, 1670400, 1441, 1461, '1.441 - 1.461 D.C.', 2, 11, NULL, 0, 0, 3, 24, 4, 24, 5, 24, 18, 11, 1, 48, 10, 3, 12, 12, 58, 4, 167, 232, 102, 029),
 (233, 'Caminante del Cielo Cristal Rojo', 'el Espacio Cristal', '\"Yo me dedico a con el fin de Explorar, universalizando la Vigilancia. Sello la Salida del Espacio con el tono Cristal de la Cooperación. Me guía el poder de la Fuerza Vital.\"', '\"El banco psi es la arquitectura etérica del orden galáctico potenciado en la consciencia evolutiva de la biosfera de planetas tales como V.24.3 (Tierra). Las frecuencias interplanetarias inconscientemente registradas en el banco psi se vuelven conscientes y formativas a través del despertar del Manitou Planetario.\"', '\"El patrón de experiencia de las personalidades alternativas en el ajuste del orden sincrónico del campo interplanetario del heliocosmos local está reflejado en los ajustes tridimensionales del planeta anfitrión. Los ajustes del planeta anfitrión equivalen al cumplimiento de la apertura de los patrones del circuito AC, una mitad (16 codones) que fue completada antes del ciclo histórico, la otra mitad (16) la cual sólo pudo ser completada después de que la CA fuera transmutada del Avance Civilizacional a la Consciencia Cósmica (2000 DA, eyección del Puente Arco Iris Circumpolar).\"', '12.14', 0, 0, 0, 1677600, 1461, 1480, '1.461 - 1.480 D.C.', 2, 12, NULL, 0, 0, 3, 25, 4, 25, 5, 25, 18, 12, 1, 49, 10, 4, 12, 13, 59, 1, 246, 025, 103, 028),
 (234, 'Mago Cósmico Blanco', 'la Atemporalidad Cósmica', '\"Yo perduro con el fin de Encantar, trascendiendo la Receptividad. Sello la Salida de la Atemporalidad con el tono Cósmico de la Presencia. Me guía el poder del Sin-Fín.\"', '\"Puesto que la velocidad de la telepatía es inseparable de la velocidad del tiempo que es instantáneamente infinita, las ondas telepáticas del tiempo cruzan el universo igualmente desde el pasado al futuro y desde el futuro al pasado.\"', '\"La existencia hiperorgánica de la arquitectura radiosónica que teje la RAP en una espora de arte planetaria totalmente evolucionada, establece los “programas de visita mutuos de la vida universal galáctica” como el mayor foro para la investigación de la cultura galáctica. Los órdenes cada vez más complejos de la arquitectura radiosónica autogenerada que constituyen la esencia manifiesta de la espora de arte planetaria, en sí mismos, se convierten en un aspecto atrayente para otras inteligencias en el Cerebro Galáctico.\"', '12.15', 0, 0, 0, 1684800, 1480, 1500, '1.480 - 1.500 D.C.', 2, 12, NULL, 0, 0, 3, 26, 4, 26, 5, 26, 18, 13, 1, 50, 10, 5, 12, 14, 59, 2, 065, 078, 104, 027),
@@ -3082,10 +3082,10 @@ INSERT INTO `hol_kin` (`ide`, `nom`, `pod`, `des`, `des_umb`, `des_tie`, `psi`, 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_kin_arm_cel`
+-- Estructura de tabla para la tabla `hol-kin_arm_cel`
 --
 
-CREATE TABLE `hol_kin_arm_cel` (
+CREATE TABLE `hol-kin_arm_cel` (
   `ide` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Célula',
   `nom` varchar(30) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `des` text COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Lectura',
@@ -3098,10 +3098,10 @@ CREATE TABLE `hol_kin_arm_cel` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Célula Armónica';
 
 --
--- Volcado de datos para la tabla `hol_kin_arm_cel`
+-- Volcado de datos para la tabla `hol-kin_arm_cel`
 --
 
-INSERT INTO `hol_kin_arm_cel` (`ide`, `nom`, `des`, `tra`, `cel`, `ton`, `inv`, `chi`, `kin`) VALUES
+INSERT INTO `hol-kin_arm_cel` (`ide`, `nom`, `des`, `tra`, `cel`, `ton`, `inv`, `chi`, `kin`) VALUES
 (01, 'Entrada Autoexistente', '\"Informa el florecimiento  de la forma\"', 01, 1, 04, 65, 01, '001 - 004'),
 (02, 'Almacén Galáctico', '\"Recuerda la elegancia  de la integridad \"', 01, 2, 08, 64, 43, '005 - 008'),
 (03, 'Proceso Cristal', '\"Formula la libre voluntad  de la cooperación \"', 01, 3, 12, 63, 44, '009 - 012'),
@@ -3171,10 +3171,10 @@ INSERT INTO `hol_kin_arm_cel` (`ide`, `nom`, `des`, `tra`, `cel`, `ton`, `inv`, 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_kin_arm_tra`
+-- Estructura de tabla para la tabla `hol-kin_arm_tra`
 --
 
-CREATE TABLE `hol_kin_arm_tra` (
+CREATE TABLE `hol-kin_arm_tra` (
   `ide` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Trayectoria',
   `nom` varchar(30) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `des` varchar(200) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Descripción',
@@ -3186,10 +3186,10 @@ CREATE TABLE `hol_kin_arm_tra` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Trayectoria Armónica';
 
 --
--- Volcado de datos para la tabla `hol_kin_arm_tra`
+-- Volcado de datos para la tabla `hol-kin_arm_tra`
 --
 
-INSERT INTO `hol_kin_arm_tra` (`ide`, `nom`, `des`, `tit`, `lec`, `fac`, `may`, `cel`) VALUES
+INSERT INTO `hol-kin_arm_tra` (`ide`, `nom`, `des`, `tit`, `lec`, `fac`, `may`, `cel`) VALUES
 (01, 'Magnética', 'Unifica el propósito del giro galáctico atrayendo', 'la Implantación Estelar', 'Entrada de la Tierra en el Rayo de Sincronización Galáctica.; Implantación de las “transmisiones estelares” de la federación galáctica, entre los pueblos, de una parte a otra del planeta.; Consolidación del alto y bajo Egipto, en el año 3.100 A.C.; Expansión de Sumeria en el año 3.000 A.C.; La construcción de Stonehenge comenzó en el año 2.800 A.C.', '3.113 A.C. - 2.718 A.C.', '13.0.0.0.0', '01 - 05'),
 (02, 'Lunar', 'Polariza el desafío del giro galáctico estabilizando', 'la Pirámide', 'Construcción de la Gran Pirámide en Giza, Egipto, del año 2.700 al 2.600 A.C, marca el anclaje del cuerpo de luz planetario.; Expansión de la civilización Sumeria, Akkad y Ur, y desarrollo del bronce.; Comienzo de Harapa y de la civilización del valle del Indos.; Comienzo de la vida agrícola sedentaria en China, Mesoamérica, y los Andes.', '2.718 A.C. - 2-324 A.C.', '1.0.0.0.0', '06 - 10'),
 (03, 'Eléctrica', 'Activa el servicio del giro galáctico vinculando', 'la Rueda', 'Pleno establecimiento de la rueda, iniciación de la tecnología del transporte y del pensamiento cíclico, escritura de los códigos de la ley, y desarrollo de la tecnología metalúrgica en Mesopotamia.; Sargón y el primer imperio babilónico.; Comienza la construcción de carros de guerra, y se inicia el imperialismo territorial de los emperadores legendarios en China.; Establecimiento de la civilización Minoica en Creta.', '2.324 A.C. - 1.930 A.C.', '2.0.0.0.0', '11 - 15'),
@@ -3207,10 +3207,10 @@ INSERT INTO `hol_kin_arm_tra` (`ide`, `nom`, `des`, `tit`, `lec`, `fac`, `may`, 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_kin_cro_ele`
+-- Estructura de tabla para la tabla `hol-kin_cro_ele`
 --
 
-CREATE TABLE `hol_kin_cro_ele` (
+CREATE TABLE `hol-kin_cro_ele` (
   `ide` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Elemento',
   `nom` varchar(35) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `des` tinytext COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Onda Encantada',
@@ -3220,10 +3220,10 @@ CREATE TABLE `hol_kin_cro_ele` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Elemento Cromático';
 
 --
--- Volcado de datos para la tabla `hol_kin_cro_ele`
+-- Volcado de datos para la tabla `hol-kin_cro_ele`
 --
 
-INSERT INTO `hol_kin_cro_ele` (`ide`, `nom`, `des`, `ele`, `est`, `kin`) VALUES
+INSERT INTO `hol-kin_cro_ele` (`ide`, `nom`, `des`, `ele`, `est`, `kin`) VALUES
 (01, 'la Sangre Magnética Roja', 'Unifica el Propósito del Espectro Galáctico Rojo', 2, 1, '185 - 189'),
 (02, 'la Verdad Lunar Blanca', 'Polariza el Desafío del Espectro Galáctico Rojo', 3, 1, '190 - 194'),
 (03, 'el Cielo Eléctrico Azul', 'Activa el Servicio del Espectro Galáctico Rojo', 4, 1, '195 - 199'),
@@ -3280,10 +3280,10 @@ INSERT INTO `hol_kin_cro_ele` (`ide`, `nom`, `des`, `ele`, `est`, `kin`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_kin_cro_est`
+-- Estructura de tabla para la tabla `hol-kin_cro_est`
 --
 
-CREATE TABLE `hol_kin_cro_est` (
+CREATE TABLE `hol-kin_cro_est` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Estación',
   `pos` varchar(15) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `nom` varchar(15) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Guardián',
@@ -3295,10 +3295,10 @@ CREATE TABLE `hol_kin_cro_est` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Etapa evolutiva de la mente';
 
 --
--- Volcado de datos para la tabla `hol_kin_cro_est`
+-- Volcado de datos para la tabla `hol-kin_cro_est`
 --
 
-INSERT INTO `hol_kin_cro_est` (`ide`, `pos`, `nom`, `des`, `des_det`, `fac_des`, `sel`, `ele`) VALUES
+INSERT INTO `hol-kin_cro_est` (`ide`, `pos`, `nom`, `des`, `des_det`, `fac_des`, `sel`, `ele`) VALUES
 (1, 'el Oriente', 'CHICCHAN', 'Cerebro Reptídico', 'Sistema Autónomo e Instinto', '\"El cerebro reptídico, o sistema límbico autónomo, que es la vestidura metabólica físico-vegetativa\"', 05, '01 - 13'),
 (2, 'el Norte', 'O\'C', 'Cerebro Mamífero', 'Mente Emocional y  Conceptual', '\"La inteligencia horizontal, emocional - conceptual, que es capaz de inventar estrategias\"', 10, '14 - 26'),
 (3, 'el Occidente', 'MEN', 'Cerebro Planetario', 'Mente Resonante y Superior', '\"La mente superior, la inteligencia vertical, y analógica, y que resuena con el propósito evolutivo del planeta\"', 15, '27 - 39'),
@@ -3307,19 +3307,19 @@ INSERT INTO `hol_kin_cro_est` (`ide`, `pos`, `nom`, `des`, `des_det`, `fac_des`,
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_kin_cro_est_dia`
+-- Estructura de tabla para la tabla `hol-kin_cro_est_dia`
 --
 
-CREATE TABLE `hol_kin_cro_est_dia` (
+CREATE TABLE `hol-kin_cro_est_dia` (
   `ide` smallint(2) NOT NULL COMMENT 'Día Estacional',
   `ton` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Tono Galáctico'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Día Estacional';
 
 --
--- Volcado de datos para la tabla `hol_kin_cro_est_dia`
+-- Volcado de datos para la tabla `hol-kin_cro_est_dia`
 --
 
-INSERT INTO `hol_kin_cro_est_dia` (`ide`, `ton`) VALUES
+INSERT INTO `hol-kin_cro_est_dia` (`ide`, `ton`) VALUES
 (1, 01),
 (2, 01),
 (3, 01),
@@ -3389,10 +3389,10 @@ INSERT INTO `hol_kin_cro_est_dia` (`ide`, `ton`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_kin_cro_ond`
+-- Estructura de tabla para la tabla `hol-kin_cro_ond`
 --
 
-CREATE TABLE `hol_kin_cro_ond` (
+CREATE TABLE `hol-kin_cro_ond` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Aventura',
   `ton` int(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Tono Inicial',
   `cue` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Cantidad de Cromáticas',
@@ -3401,10 +3401,10 @@ CREATE TABLE `hol_kin_cro_ond` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Aventura de la Onda Encantada';
 
 --
--- Volcado de datos para la tabla `hol_kin_cro_ond`
+-- Volcado de datos para la tabla `hol-kin_cro_ond`
 --
 
-INSERT INTO `hol_kin_cro_ond` (`ide`, `ton`, `cue`, `fac`, `enc`) VALUES
+INSERT INTO `hol-kin_cro_ond` (`ide`, `ton`, `cue`, `fac`, `enc`) VALUES
 (1, 03, 5, '\"El quemador toma el fuego\"', '\"Establezco el Espectro Galáctico\"'),
 (2, 10, 5, '\"El quemador inicia el fuego\"', '\"Extiendo el Espectro Galáctico\"'),
 (3, 04, 5, '\"El quemador corre con el fuego\"', '\"Convierto el Espectro Galáctico\"'),
@@ -3413,10 +3413,10 @@ INSERT INTO `hol_kin_cro_ond` (`ide`, `ton`, `cue`, `fac`, `enc`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_kin_ene`
+-- Estructura de tabla para la tabla `hol-kin_ene`
 --
 
-CREATE TABLE `hol_kin_ene` (
+CREATE TABLE `hol-kin_ene` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Campo',
   `nom` varchar(25) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `cue` tinyint(3) UNSIGNED NOT NULL COMMENT 'Unidades Totales',
@@ -3425,10 +3425,10 @@ CREATE TABLE `hol_kin_ene` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Modelo Energético del Tzolkin';
 
 --
--- Volcado de datos para la tabla `hol_kin_ene`
+-- Volcado de datos para la tabla `hol-kin_ene`
 --
 
-INSERT INTO `hol_kin_ene` (`ide`, `nom`, `cue`, `gru`, `gru_uni`) VALUES
+INSERT INTO `hol-kin_ene` (`ide`, `nom`, `cue`, `gru`, `gru_uni`) VALUES
 (1, 'la Energía Radiante', 144, 4, 36),
 (2, 'la Energía Cristalina', 32, 8, 4),
 (3, 'la Energía Genética', 64, 1, 64),
@@ -3437,20 +3437,20 @@ INSERT INTO `hol_kin_ene` (`ide`, `nom`, `cue`, `gru`, `gru_uni`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_kin_ene_cam`
+-- Estructura de tabla para la tabla `hol-kin_ene_cam`
 --
 
-CREATE TABLE `hol_kin_ene_cam` (
+CREATE TABLE `hol-kin_ene_cam` (
   `ide` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Grupo',
   `gru` smallint(1) NOT NULL COMMENT 'Nombre',
   `nom` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Campo de Energía';
 
 --
--- Volcado de datos para la tabla `hol_kin_ene_cam`
+-- Volcado de datos para la tabla `hol-kin_ene_cam`
 --
 
-INSERT INTO `hol_kin_ene_cam` (`ide`, `gru`, `nom`) VALUES
+INSERT INTO `hol-kin_ene_cam` (`ide`, `gru`, `nom`) VALUES
 (01, 1, '36'),
 (02, 1, '36'),
 (03, 1, '36'),
@@ -3469,19 +3469,19 @@ INSERT INTO `hol_kin_ene_cam` (`ide`, `gru`, `nom`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_kin_gen_cel`
+-- Estructura de tabla para la tabla `hol-kin_gen_cel`
 --
 
-CREATE TABLE `hol_kin_gen_cel` (
+CREATE TABLE `hol-kin_gen_cel` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Célula del Génesis',
   `nom` varchar(80) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Célula de las Memorias del Génesis';
 
 --
--- Volcado de datos para la tabla `hol_kin_gen_cel`
+-- Volcado de datos para la tabla `hol-kin_gen_cel`
 --
 
-INSERT INTO `hol_kin_gen_cel` (`ide`, `nom`) VALUES
+INSERT INTO `hol-kin_gen_cel` (`ide`, `nom`) VALUES
 (1, 'Transmitir el génesis.'),
 (2, 'Génesis de la transducción alfa.'),
 (3, 'Génesis de igualar.'),
@@ -3491,10 +3491,10 @@ INSERT INTO `hol_kin_gen_cel` (`ide`, `nom`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_kin_gen_enc`
+-- Estructura de tabla para la tabla `hol-kin_gen_enc`
 --
 
-CREATE TABLE `hol_kin_gen_enc` (
+CREATE TABLE `hol-kin_gen_enc` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Génesis',
   `nom` varchar(10) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `lec` varchar(30) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Descripción',
@@ -3504,10 +3504,10 @@ CREATE TABLE `hol_kin_gen_enc` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Génesis del Encantamiento';
 
 --
--- Volcado de datos para la tabla `hol_kin_gen_enc`
+-- Volcado de datos para la tabla `hol-kin_gen_enc`
 --
 
-INSERT INTO `hol_kin_gen_enc` (`ide`, `nom`, `lec`, `des`, `año`, `tot`) VALUES
+INSERT INTO `hol-kin_gen_enc` (`ide`, `nom`, `lec`, `des`, `año`, `tot`) VALUES
 (1, 'del Dragón', 'Anillo exterior', '\"13.000 años del Encantamiento del Sueño,  poder del sueño.\"', -23987, 130),
 (2, 'del Mono', 'Anillo interior', '\"7.800 años del Encantamiento del Sueño, poder de la magia.\"', -10987, 078),
 (3, 'de la Luna', 'Completar el Anillo interior', '\"5.200 años del Encantamiento del Sueño, poder del vuelo mágico.\"', -3187, 052);
@@ -3515,10 +3515,10 @@ INSERT INTO `hol_kin_gen_enc` (`ide`, `nom`, `lec`, `des`, `año`, `tot`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_kin_nav_cas`
+-- Estructura de tabla para la tabla `hol-kin_nav_cas`
 --
 
-CREATE TABLE `hol_kin_nav_cas` (
+CREATE TABLE `hol-kin_nav_cas` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Castillo Encantado',
   `nom` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `des` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Descripción',
@@ -3534,10 +3534,10 @@ CREATE TABLE `hol_kin_nav_cas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Castillo de la Nave';
 
 --
--- Volcado de datos para la tabla `hol_kin_nav_cas`
+-- Volcado de datos para la tabla `hol-kin_nav_cas`
 --
 
-INSERT INTO `hol_kin_nav_cas` (`ide`, `nom`, `des`, `des_dir`, `des_col`, `des_cor`, `des_mis`, `des_pod`, `des_acc`, `kin`, `nav_ond`, `gen_enc`) VALUES
+INSERT INTO `hol-kin_nav_cas` (`ide`, `nom`, `des`, `des_dir`, `des_col`, `des_cor`, `des_mis`, `des_pod`, `des_acc`, `kin`, `nav_ond`, `gen_enc`) VALUES
 (1, 'Rojo del Este', '\"El girar de la Semilla, corte del nacimiento, poder de entrada\"', 'Este', 'Rojo', 'del Nacimiento', 'Iniciar la Semilla', 'de Entrada', 'el girar', '001 - 052', '01 - 04', 1),
 (2, 'Blanco del Norte', '\"El cruzar del Guerrero, corte de la muerte, poder de descender\"', 'Norte', 'Blanco', 'de la Muerte', 'Refinar el Guerrero', 'de Descender', 'el cruzar', '053 - 104', '05 - 08', 1),
 (3, 'Azul del Oeste', '\"El quemar de la Estrella, corte de la magia, poder de dar la vuelta\"', 'Oeste', 'Azul', 'de la Magia', 'Transforma la Estrella', 'de Dar la Vuelta', 'el quemar', '105 - 156', '09 - 12', 2),
@@ -3547,10 +3547,10 @@ INSERT INTO `hol_kin_nav_cas` (`ide`, `nom`, `des`, `des_dir`, `des_col`, `des_c
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_kin_nav_ond`
+-- Estructura de tabla para la tabla `hol-kin_nav_ond`
 --
 
-CREATE TABLE `hol_kin_nav_ond` (
+CREATE TABLE `hol-kin_nav_ond` (
   `ide` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Onda Encantada',
   `nom` varchar(35) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `des` varchar(150) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Descripción',
@@ -3568,10 +3568,10 @@ CREATE TABLE `hol_kin_nav_ond` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Onda Encantada del Castillo';
 
 --
--- Volcado de datos para la tabla `hol_kin_nav_ond`
+-- Volcado de datos para la tabla `hol-kin_nav_ond`
 --
 
-INSERT INTO `hol_kin_nav_ond` (`ide`, `nom`, `des`, `kin`, `kin_lis`, `sel`, `gen_enc`, `gen_cel`, `nav_cas`, `cas_arm`, `enc`, `enc_des`, `fac`, `fac_des`) VALUES
+INSERT INTO `hol-kin_nav_ond` (`ide`, `nom`, `des`, `kin`, `kin_lis`, `sel`, `gen_enc`, `gen_cel`, `nav_cas`, `cas_arm`, `enc`, `enc_des`, `fac`, `fac_des`) VALUES
 (01, 'del Dragón Rojo', 'Se inicia el cuadrante rojo del oriente nutriendo el Ser con el poder del Nacimiento ', 001, '001 - 013', 01, 1, 1, 1, 1, '23.987 A.C - 22.687 A.C.', '\"a -23.987 años la tribu del Dragón rojo inicia el giro a través del  poder del nacimiento; recordada la verdad de Neptuno galáctico.\"', '3.113 A.C. - 2.857 A.C.', '\"La Semilla es Alimentada\"'),
 (02, 'del Mago Blanco', 'Se refina el cuadrante blanco del norte encantando la Receptividad con el poder de la Atemporalidad ', 014, '014 - 026', 14, 1, 1, 1, 2, '22.687 A.C - 21.387 A.C.', '\"a -22.687 años la tribu del Mago blanco refina el giro a través de la atemporalidad; recordada la verdad de Maldek solar.\"', '2.857 A.C. - 2.601 A.C.', '\"Protegida por los Magos\"'),
 (03, 'de la Mano Azul', 'Se transforma el cuadrante azul del occidente conociendo la Curación con el poder de la Realización ', 027, '027 - 039', 07, 1, 2, 1, 3, '21.387 A.C. - 20.087 A.C.', '\"a -21.387 años la tribu de la Mano azul transforma el giro a través del poder de la realización, recordada la verdad de la Tierra galáctica.\"', '2.601 A.C. - 2.344 A.C.', '\"Entregada a los constructores\"'),
@@ -3596,20 +3596,20 @@ INSERT INTO `hol_kin_nav_ond` (`ide`, `nom`, `des`, `kin`, `kin_lis`, `sel`, `ge
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_kin_par`
+-- Estructura de tabla para la tabla `hol-kin_par`
 --
 
-CREATE TABLE `hol_kin_par` (
+CREATE TABLE `hol-kin_par` (
   `ide` smallint(3) UNSIGNED ZEROFILL NOT NULL COMMENT 'Oráculo'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Parejas del Oráculo';
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_lun`
+-- Estructura de tabla para la tabla `hol-lun`
 --
 
-CREATE TABLE `hol_lun` (
+CREATE TABLE `hol-lun` (
   `ide` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Día Lunar',
   `arm` smallint(1) UNSIGNED ZEROFILL DEFAULT NULL COMMENT 'Héptada',
   `rad` smallint(1) UNSIGNED ZEROFILL DEFAULT NULL COMMENT 'Plasma Radial',
@@ -3621,10 +3621,10 @@ CREATE TABLE `hol_lun` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Día del Giro Lunar';
 
 --
--- Volcado de datos para la tabla `hol_lun`
+-- Volcado de datos para la tabla `hol-lun`
 --
 
-INSERT INTO `hol_lun` (`ide`, `arm`, `rad`, `fas`, `sel`, `cub`, `hep`, `ato_des`) VALUES
+INSERT INTO `hol-lun` (`ide`, `arm`, `rad`, `fas`, `sel`, `cub`, `hep`, `ato_des`) VALUES
 (01, 1, 1, 1, 07, 00, 0, 'Focaliza la fuerza térmica del átomo telepático del tiempo analogo'),
 (02, 1, 2, 1, 08, 00, 0, 'Fluye la fuerza lumínica del átomo telepático del tiempo analogo'),
 (03, 1, 3, 1, 09, 00, 0, 'Pacifica la fuerza de impacto t-l del átomo telepático del tiempo analogo'),
@@ -3657,10 +3657,10 @@ INSERT INTO `hol_lun` (`ide`, `arm`, `rad`, `fas`, `sel`, `cub`, `hep`, `ato_des
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_lun_arm`
+-- Estructura de tabla para la tabla `hol-lun_arm`
 --
 
-CREATE TABLE `hol_lun_arm` (
+CREATE TABLE `hol-lun_arm` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Héptada',
   `nom` varchar(10) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `des` varchar(30) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Descripción',
@@ -3671,10 +3671,10 @@ CREATE TABLE `hol_lun_arm` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Armonía Lunar';
 
 --
--- Volcado de datos para la tabla `hol_lun_arm`
+-- Volcado de datos para la tabla `hol-lun_arm`
 --
 
-INSERT INTO `hol_lun_arm` (`ide`, `nom`, `des`, `des_col`, `dia`, `tel_des`, `umb_des`) VALUES
+INSERT INTO `hol-lun_arm` (`ide`, `nom`, `des`, `des_col`, `dia`, `tel_des`, `umb_des`) VALUES
 (1, 'Semana 1', 'inicia el conocimiento', 'roja', '01 - 07', 'Clama el Poder de la Profecía', 'El Conocimiento inicia la Visión'),
 (2, 'Semana 2', 'refina la Humildad', 'blanca', '08 - 14', 'Mantén el Poder de la Profecía', 'La Humildad refina Meditación'),
 (3, 'Semana 3', 'transforma la paciencia', 'azul', '14 - 21', 'Proclama la Victoria de la Profecía', 'La Paciencia transforma la Conducta'),
@@ -3683,10 +3683,10 @@ INSERT INTO `hol_lun_arm` (`ide`, `nom`, `des`, `des_col`, `dia`, `tel_des`, `um
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_lun_cub`
+-- Estructura de tabla para la tabla `hol-lun_cub`
 --
 
-CREATE TABLE `hol_lun_cub` (
+CREATE TABLE `hol-lun_cub` (
   `ide` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Cubo del Guerrero',
   `nom` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `des` tinytext COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Descripción',
@@ -3698,10 +3698,10 @@ CREATE TABLE `hol_lun_cub` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Cubo del Guerrero';
 
 --
--- Volcado de datos para la tabla `hol_lun_cub`
+-- Volcado de datos para la tabla `hol-lun_cub`
 --
 
-INSERT INTO `hol_lun_cub` (`ide`, `nom`, `des`, `tit`, `lec`, `afi`, `sel`, `lun`) VALUES
+INSERT INTO `hol-lun_cub` (`ide`, `nom`, `des`, `tit`, `lec`, `afi`, `sel`, `lun`) VALUES
 (01, 'Memoria en el Salón del Dragón', 'El ser inicia la claridad de la mente', 'Hoy es el mejor día, ahora es la mayor oportunidad', 'Los seres humanos pueden transformar su mundo. La red de nuestras relaciones con otros y el mundo natural que ha producido los problemas que enfrentamos como familia humana, pueden ser cambiados. Que este dolor y sufrimiento disminuya en alguna medida el dolor y el sufrimiento de todos los seres.', 'Por mi poder de libre voluntad de profecía, yo elijo ser uno de los 144.000. Por mi poder guerrero superconsciente de la memoria del Dragón, reclamo y redimo el Baktun 7 y prometo liberar a la Tierra de la prisión del Planeta Babilónico.', 01, 07),
 (02, 'Espíritu en el Salón del Viento', 'El aliento refina la claridad de la mente', 'Las dificultades son el portal a la felicidad', 'El desarrollo viene desde el interior. El proceso del desarrollo humano y la comunidad se revela desde dentro de cada persona, relación, familia, organización, comunidad o nación.', 'Por la gracia de la compasión, el amor y consciencia de la verdad, que este momento conduzca a mi cuerpo, mente y espíritu a un estado de humildad y mayor reverencia por la vida. Por mi poder guerrero superconsciente del espíritu del Viento, yo redimo al Ungido como a mí mismo. ¡Que prevalezcan los Magos de la Paz!', 02, 08),
 (03, 'Abundancia en el Salón de la Noche', 'El sueño transforma la claridad de la mente', 'Eres tú mismo quien determinas tu destino y creas tu entorno', 'La curación es una parte necesaria del desarrollo. Curar el pasado, cerrar viejas heridas y aprender hábitos saludables de pensamiento y acción que reemplazan el pensamiento disfuncional y los patrones perturbadores de las relaciones humanas es una parte necesaria del proceso de desarrollo sustentable.', 'Que mi ignorancia pasada y presente sea perfeccionada en el santo aliento de la verdad sagrada, ahora y siempre. Por mi poder guerrero superconsciente de la abundancia de la Noche, yo recupero mi poder visionario telepático 13:20 en plenitud. ¡Que la Verdad y la Paz Prevalezcan!', 03, 09),
@@ -3723,10 +3723,10 @@ INSERT INTO `hol_lun_cub` (`ide`, `nom`, `des`, `tit`, `lec`, `afi`, `sel`, `lun
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_lun_fas`
+-- Estructura de tabla para la tabla `hol-lun_fas`
 --
 
-CREATE TABLE `hol_lun_fas` (
+CREATE TABLE `hol-lun_fas` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Fase',
   `nom` varchar(30) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `des` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Descripción',
@@ -3734,10 +3734,10 @@ CREATE TABLE `hol_lun_fas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Fase del Telektonon';
 
 --
--- Volcado de datos para la tabla `hol_lun_fas`
+-- Volcado de datos para la tabla `hol-lun_fas`
 --
 
-INSERT INTO `hol_lun_fas` (`ide`, `nom`, `des`, `lun`) VALUES
+INSERT INTO `hol-lun_fas` (`ide`, `nom`, `des`, `lun`) VALUES
 (1, 'Caminata en la Tierra', '', '01 - 06'),
 (2, 'Viaje en el Cubo del Guerrero', '', '07 - 22'),
 (3, 'Caminata en el Cielo', '', '23 - 28');
@@ -3745,10 +3745,10 @@ INSERT INTO `hol_lun_fas` (`ide`, `nom`, `des`, `lun`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_lun_fue`
+-- Estructura de tabla para la tabla `hol-lun_fue`
 --
 
-CREATE TABLE `hol_lun_fue` (
+CREATE TABLE `hol-lun_fue` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Línea de Fuerza Vertical',
   `nom` varchar(15) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `des` tinytext COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Descripción',
@@ -3757,10 +3757,10 @@ CREATE TABLE `hol_lun_fue` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Línea de Fuerza Vertical del Telektonon';
 
 --
--- Volcado de datos para la tabla `hol_lun_fue`
+-- Volcado de datos para la tabla `hol-lun_fue`
 --
 
-INSERT INTO `hol_lun_fue` (`ide`, `nom`, `des`, `lun_ini`, `lun_fin`) VALUES
+INSERT INTO `hol-lun_fue` (`ide`, `nom`, `des`, `lun_ini`, `lun_fin`) VALUES
 (1, '01-28', 'Torre del Espíritu (Torre de Babel). Flujo Galáctico-Kármico, plano preconsciente', 01, 28),
 (2, '02-27', 'Poder telecósmico del 9, plano inconsciente', 02, 27),
 (3, '03-26', 'Poder telecósmico del 13, plano consciente', 03, 26),
@@ -3779,10 +3779,10 @@ INSERT INTO `hol_lun_fue` (`ide`, `nom`, `des`, `lun_ini`, `lun_fin`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_lun_pla`
+-- Estructura de tabla para la tabla `hol-lun_pla`
 --
 
-CREATE TABLE `hol_lun_pla` (
+CREATE TABLE `hol-lun_pla` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Línea de Fuerza Vertical',
   `nom` varchar(30) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `des` varchar(200) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Descripción',
@@ -3790,10 +3790,10 @@ CREATE TABLE `hol_lun_pla` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Tablero del Plasma';
 
 --
--- Volcado de datos para la tabla `hol_lun_pla`
+-- Volcado de datos para la tabla `hol-lun_pla`
 --
 
-INSERT INTO `hol_lun_pla` (`ide`, `nom`, `des`, `dia`) VALUES
+INSERT INTO `hol-lun_pla` (`ide`, `nom`, `des`, `dia`) VALUES
 (1, 'Día Torre', 'Los Cuatro Días Torre, reunidos por los dos rayos verdes extendidos, el rayo uno que conecta los días 1 y 28, el rayo dos que conecta los días 6 y 23. Los Días Torre ligan el circuito teleplásmico.', '1, 6, 23, 28'),
 (2, 'Orden Instintivo', 'Los cuatro días del Orden Instintivo (Caminata en la Tierra, del Telektonon), días 2-5.', '2 - 5'),
 (3, ' Mente Supra-Consciente', 'El Cubo, Plano de la Mente Supra-Consciente: Cultiva la Claridad, días 7-10.', '7 - 10'),
@@ -3805,10 +3805,10 @@ INSERT INTO `hol_lun_pla` (`ide`, `nom`, `des`, `dia`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_lun_pla_ato`
+-- Estructura de tabla para la tabla `hol-lun_pla_ato`
 --
 
-CREATE TABLE `hol_lun_pla_ato` (
+CREATE TABLE `hol-lun_pla_ato` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Átomo',
   `nom` varchar(30) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `des` tinytext COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Descripción',
@@ -3825,10 +3825,10 @@ CREATE TABLE `hol_lun_pla_ato` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Átomo del Tiempo';
 
 --
--- Volcado de datos para la tabla `hol_lun_pla_ato`
+-- Volcado de datos para la tabla `hol-lun_pla_ato`
 --
 
-INSERT INTO `hol_lun_pla_ato` (`ide`, `nom`, `des`, `car`, `car_sec`, `hep`, `hep_cub`, `val`, `val_lun`, `val_lun_acu`, `val_rad`, `val_kin`, `ini`) VALUES
+INSERT INTO `hol-lun_pla_ato` (`ide`, `nom`, `des`, `car`, `car_sec`, `hep`, `hep_cub`, `val`, `val_lun`, `val_lun_acu`, `val_rad`, `val_kin`, `ini`) VALUES
 (1, 'Tiempo Análogo', '', 'inicia el conocimiento', 'Análoga: Análogo-Oculto-Análogo-Oculto- Análogo-Oculto-Análogo', 'la Matriz Primordial', 'el Cubo más externo', '1 katún', '260 ( Lunas por Katún )', '1.820 ( 260 x 7 )', 260, '260', 'Externa: Poder de la Iluminación Cósmica'),
 (2, 'Tiempo Antípoda', '', 'refina la humildad', 'Antípoda: Todas las cargas, del Antípoda', 'el Cielo', 'el segundo Cubo más externo', '1 año', '13 ( Lunas por Año )', '91 ( 13 x 7 )', 273, '013', 'Interna: Poder de la Profecía Cósmica'),
 (3, 'Tiempo Oculto', '', 'transforma la paciencia ', 'Oculta: Oculto-Análogo-Oculto-Análogo-\nOculto-Análogo-Oculto', 'la Tierra', 'el segundo Cubo más interno', '1 año', '13 ( Lunas por Año )', '91 ( 13 x 7 )', 286, '026', 'Secreta: Poder Cósmico de la Muerte'),
@@ -3837,10 +3837,10 @@ INSERT INTO `hol_lun_pla_ato` (`ide`, `nom`, `des`, `car`, `car_sec`, `hep`, `he
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_lun_pla_eje`
+-- Estructura de tabla para la tabla `hol-lun_pla_eje`
 --
 
-CREATE TABLE `hol_lun_pla_eje` (
+CREATE TABLE `hol-lun_pla_eje` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Eje',
   `nom` varchar(30) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `des` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Descripción',
@@ -3848,10 +3848,10 @@ CREATE TABLE `hol_lun_pla_eje` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Eje del Cubo Primigenio y del Átomo Telepático';
 
 --
--- Volcado de datos para la tabla `hol_lun_pla_eje`
+-- Volcado de datos para la tabla `hol-lun_pla_eje`
 --
 
-INSERT INTO `hol_lun_pla_eje` (`ide`, `nom`, `des`, `tie`) VALUES
+INSERT INTO `hol-lun_pla_eje` (`ide`, `nom`, `des`, `tie`) VALUES
 (1, 'Electromagnético de Sensación', '', '5, 4'),
 (2, 'Gravitacional de Forma', '', '3, 2'),
 (3, 'Biopsíquico de Telepatía', '', '1, 7');
@@ -3859,10 +3859,10 @@ INSERT INTO `hol_lun_pla_eje` (`ide`, `nom`, `des`, `tie`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_lun_pla_tet`
+-- Estructura de tabla para la tabla `hol-lun_pla_tet`
 --
 
-CREATE TABLE `hol_lun_pla_tet` (
+CREATE TABLE `hol-lun_pla_tet` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Tetraedro',
   `nom` varchar(25) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `des` tinytext COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Descripción',
@@ -3870,20 +3870,20 @@ CREATE TABLE `hol_lun_pla_tet` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Tetraedro de Plasma';
 
 --
--- Volcado de datos para la tabla `hol_lun_pla_tet`
+-- Volcado de datos para la tabla `hol-lun_pla_tet`
 --
 
-INSERT INTO `hol_lun_pla_tet` (`ide`, `nom`, `des`, `dia`) VALUES
+INSERT INTO `hol-lun_pla_tet` (`ide`, `nom`, `des`, `dia`) VALUES
 (1, 'Análogo-Antípoda', 'El Día 14, los primeros dos Átomos Telepáticos del Tiempo crean el primero de dos tetraedros, el Tetraedro del Análogo-Antípoda', 14),
 (2, 'Oculto-Campo Unificado', 'El Día 28, los segundos dos Átomos Telepáticos del Tiempo crean el segundo de los dos tetraedros, el Tetraedro del Oculto-Campo Unificado', 28);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_lun_pla_tie`
+-- Estructura de tabla para la tabla `hol-lun_pla_tie`
 --
 
-CREATE TABLE `hol_lun_pla_tie` (
+CREATE TABLE `hol-lun_pla_tie` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Posición',
   `nom` varchar(30) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `des` varchar(200) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Descripción',
@@ -3894,10 +3894,10 @@ CREATE TABLE `hol_lun_pla_tie` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Tablero del Plasma';
 
 --
--- Volcado de datos para la tabla `hol_lun_pla_tie`
+-- Volcado de datos para la tabla `hol-lun_pla_tie`
 --
 
-INSERT INTO `hol_lun_pla_tie` (`ide`, `nom`, `des`, `dia`, `tel`, `rad`, `pos`) VALUES
+INSERT INTO `hol-lun_pla_tie` (`ide`, `nom`, `des`, `dia`, `tel`, `rad`, `pos`) VALUES
 (1, 'Exterior', 'Y por la Tierra y su expansión', 01, 'Torre 1', 5, 'Quinta'),
 (2, 'Solar', 'Por el Sol y su creciente esplendor', 06, 'Torre 2', 4, 'Cuarta'),
 (3, 'Lunar', 'Y por la Luna cuando sigue al Sol', 08, 'Cubo 2', 3, 'Tercera'),
@@ -3909,16 +3909,16 @@ INSERT INTO `hol_lun_pla_tie` (`ide`, `nom`, `des`, `dia`, `tel`, `rad`, `pos`) 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_psi`
+-- Estructura de tabla para la tabla `hol-psi`
 --
 
-CREATE TABLE `hol_psi` (
+CREATE TABLE `hol-psi` (
   `ide` smallint(3) UNSIGNED ZEROFILL NOT NULL COMMENT 'Día Anual',
   `des` text COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Cita',
   `fec` varchar(5) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Fecha',
-  `fec_dia` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Día',
-  `fec_mes` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Mes',
-  `fec_cod` smallint(3) UNSIGNED ZEROFILL NOT NULL COMMENT 'Conversión',
+  `api_fec_dia` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Día',
+  `api_fec_mes` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Mes',
+  `api_fec_cod` smallint(3) UNSIGNED ZEROFILL NOT NULL COMMENT 'Conversión',
   `kin` smallint(3) UNSIGNED ZEROFILL NOT NULL COMMENT 'Psi-Cronos',
   `hep_est` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Estación Solar',
   `hep_est_dia` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Día en Estación',
@@ -3933,10 +3933,10 @@ CREATE TABLE `hol_psi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Banco-Psi';
 
 --
--- Volcado de datos para la tabla `hol_psi`
+-- Volcado de datos para la tabla `hol-psi`
 --
 
-INSERT INTO `hol_psi` (`ide`, `des`, `fec`, `fec_dia`, `fec_mes`, `fec_cod`, `kin`, `hep_est`, `hep_est_dia`, `ani_lun`, `ani_lun_dia`, `ani_vin`, `ani_vin_dia`, `hep_pla`, `hep_pla_dia`, `ani_cro`, `ani_cro_dia`) VALUES
+INSERT INTO `hol-psi` (`ide`, `des`, `fec`, `api_fec_dia`, `api_fec_mes`, `api_fec_cod`, `kin`, `hep_est`, `hep_est_dia`, `ani_lun`, `ani_lun_dia`, `ani_vin`, `ani_vin_dia`, `hep_pla`, `hep_pla_dia`, `ani_cro`, `ani_cro_dia`) VALUES
 (001, 'Un lienzo en blanco es una maravilla viva... mucho más hermosa que ciertos cuadros. ~ Wassily Kandinsky ~', '26/07', 26, 07, 181, 001, 1, 01, 01, 01, 01, 01, 01, 1, 01, 1),
 (002, 'El talento percibe la diferencia; la genialidad percibe la unidad. ~ William Butler Yeats ~', '27/07', 27, 07, 181, 001, 1, 02, 01, 02, 01, 02, 01, 2, 01, 2),
 (003, 'No hay más realidad que la contenida en nuestro interior. Por eso muchas personas viven una vida irreal. Toman las imágenes externas a ellos como realidad y nunca permiten manifestarse a su propio mundo interior. ~ Hermann Hesse ~', '28/07', 28, 07, 181, 001, 1, 03, 01, 03, 01, 03, 01, 3, 01, 3),
@@ -4165,7 +4165,7 @@ INSERT INTO `hol_psi` (`ide`, `des`, `fec`, `fec_dia`, `fec_mes`, `fec_cod`, `ki
 (226, 'Y salgamos a contemplar las estrellas. ~ Dante Alighieri ~', '08/03', 08, 03, 059, 106, 3, 44, 09, 02, 12, 06, 33, 2, 46, 1),
 (227, 'Echa un vistazo al sol. Mira la luna y las estrellas. Admira la belleza de los brotes de la tierra. Luego piensa. ~ Hildegarda de Bingen ~', '09/03', 09, 03, 059, 106, 3, 45, 09, 03, 12, 07, 33, 3, 46, 2),
 (228, 'El conocimiento es la mayor alquimia que existe. Sólo tienes que ser cada vez más y más consciente, y verás que tu vida mejora en todas las dimensiones posibles. Te reportará una gran satisfacción. ~ Osho ~', '10/03', 10, 03, 059, 115, 3, 46, 09, 04, 12, 08, 33, 4, 46, 3);
-INSERT INTO `hol_psi` (`ide`, `des`, `fec`, `fec_dia`, `fec_mes`, `fec_cod`, `kin`, `hep_est`, `hep_est_dia`, `ani_lun`, `ani_lun_dia`, `ani_vin`, `ani_vin_dia`, `hep_pla`, `hep_pla_dia`, `ani_cro`, `ani_cro_dia`) VALUES
+INSERT INTO `hol-psi` (`ide`, `des`, `fec`, `api_fec_dia`, `api_fec_mes`, `api_fec_cod`, `kin`, `hep_est`, `hep_est_dia`, `ani_lun`, `ani_lun_dia`, `ani_vin`, `ani_vin_dia`, `hep_pla`, `hep_pla_dia`, `ani_cro`, `ani_cro_dia`) VALUES
 (229, 'La Senda que conduce a la meta está iluminada por una única luz – la luz del arrojo que arde en el corazón. Cuanto más osado seas, más obtendrás. Cuanto más temas, tanto más palidecerá la luz. ~ H. P. Blavatsky ~', '11/03', 11, 03, 059, 115, 3, 47, 09, 05, 12, 09, 33, 5, 46, 4),
 (230, 'Una persona sabia creará más oportunidades que las que encuentra. ~ Francis Bacon ~', '12/03', 12, 03, 059, 115, 3, 48, 09, 06, 12, 10, 33, 6, 46, 5),
 (231, 'Enfréntate a la realidad como un niño pequeño, abandona cualquier idea preconcebida, dirígete humildemente a cualquier abismo donde la naturaleza te conduzca o nunca aprenderás nada. ~ Thomas Huxley ~', '13/03', 13, 03, 059, 166, 3, 49, 09, 07, 12, 11, 33, 7, 47, 1),
@@ -4308,10 +4308,10 @@ INSERT INTO `hol_psi` (`ide`, `des`, `fec`, `fec_dia`, `fec_mes`, `fec_cod`, `ki
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_psi_ani`
+-- Estructura de tabla para la tabla `hol-psi_ani`
 --
 
-CREATE TABLE `hol_psi_ani` (
+CREATE TABLE `hol-psi_ani` (
   `ide` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Anillo',
   `cas` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Posición del Castillo',
   `fam_2` smallint(3) UNSIGNED ZEROFILL DEFAULT NULL COMMENT 'Familia Central',
@@ -4321,10 +4321,10 @@ CREATE TABLE `hol_psi_ani` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Anillo Solar';
 
 --
--- Volcado de datos para la tabla `hol_psi_ani`
+-- Volcado de datos para la tabla `hol-psi_ani`
 --
 
-INSERT INTO `hol_psi_ani` (`ide`, `cas`, `fam_2`, `fam_3`, `fam_4`, `año`) VALUES
+INSERT INTO `hol-psi_ani` (`ide`, `cas`, `fam_2`, `fam_3`, `fam_4`, `año`) VALUES
 (00, 01, 087, 193, 034, 1987),
 (01, 02, 192, 038, 139, 1988),
 (02, 03, 037, 143, 244, 1989),
@@ -4381,20 +4381,20 @@ INSERT INTO `hol_psi_ani` (`ide`, `cas`, `fam_2`, `fam_3`, `fam_4`, `año`) VALU
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_psi_ani_cro`
+-- Estructura de tabla para la tabla `hol-psi_ani_cro`
 --
 
-CREATE TABLE `hol_psi_ani_cro` (
+CREATE TABLE `hol-psi_ani_cro` (
   `ide` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Cromática',
   `nom` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `des` tinytext COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Descripción'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Cromática Entonada';
 
 --
--- Volcado de datos para la tabla `hol_psi_ani_cro`
+-- Volcado de datos para la tabla `hol-psi_ani_cro`
 --
 
-INSERT INTO `hol_psi_ani_cro` (`ide`, `nom`, `des`) VALUES
+INSERT INTO `hol-psi_ani_cro` (`ide`, `nom`, `des`) VALUES
 (01, '', ''),
 (02, '', ''),
 (03, '', ''),
@@ -4472,10 +4472,10 @@ INSERT INTO `hol_psi_ani_cro` (`ide`, `nom`, `des`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_psi_ani_cro_arm`
+-- Estructura de tabla para la tabla `hol-psi_ani_cro_arm`
 --
 
-CREATE TABLE `hol_psi_ani_cro_arm` (
+CREATE TABLE `hol-psi_ani_cro_arm` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Armónica',
   `nom` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `des` tinytext COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Descripción',
@@ -4483,10 +4483,10 @@ CREATE TABLE `hol_psi_ani_cro_arm` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Armónica de la Cromática Entonada';
 
 --
--- Volcado de datos para la tabla `hol_psi_ani_cro_arm`
+-- Volcado de datos para la tabla `hol-psi_ani_cro_arm`
 --
 
-INSERT INTO `hol_psi_ani_cro_arm` (`ide`, `nom`, `des`, `des_col`) VALUES
+INSERT INTO `hol-psi_ani_cro_arm` (`ide`, `nom`, `des`, `des_col`) VALUES
 (1, 'Luna-Caminante ', 'Purificando La Profecía', 'Roja'),
 (2, 'Mago-Espejo', 'Atemporalidad De La Meditación', 'Blanca'),
 (3, 'Tormenta-Noche', 'Auto generando La Abundancia', 'Azul'),
@@ -4495,10 +4495,10 @@ INSERT INTO `hol_psi_ani_cro_arm` (`ide`, `nom`, `des`, `des_col`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_psi_ani_lun`
+-- Estructura de tabla para la tabla `hol-psi_ani_lun`
 --
 
-CREATE TABLE `hol_psi_ani_lun` (
+CREATE TABLE `hol-psi_ani_lun` (
   `ide` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Giro Lunar',
   `nom` varchar(25) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `pos` varchar(15) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Posición',
@@ -4507,16 +4507,16 @@ CREATE TABLE `hol_psi_ani_lun` (
   `tot_por` text COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Portador',
   `kin_pag` char(18) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Kines PAG',
   `kin_cub` char(7) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Kines del Cubo',
-  `fec_ini` char(5) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Desde',
-  `fec_fin` char(5) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Hasta',
-  `fec_ran` varchar(40) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Fechas'
+  `api_fec_ini` char(5) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Desde',
+  `api_fec_fin` char(5) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Hasta',
+  `api_fec_ran` varchar(40) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Fechas'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Luna del Anillo Solar';
 
 --
--- Volcado de datos para la tabla `hol_psi_ani_lun`
+-- Volcado de datos para la tabla `hol-psi_ani_lun`
 --
 
-INSERT INTO `hol_psi_ani_lun` (`ide`, `nom`, `pos`, `tot`, `tot_pro`, `tot_por`, `kin_pag`, `kin_cub`, `fec_ini`, `fec_fin`, `fec_ran`) VALUES
+INSERT INTO `hol-psi_ani_lun` (`ide`, `nom`, `pos`, `tot`, `tot_pro`, `tot_por`, `kin_pag`, `kin_cub`, `api_fec_ini`, `api_fec_fin`, `api_fec_ran`) VALUES
 (01, 'Luna Magnética', 'Primera', 'el Murciélago', 'Imagen y Curiosidad ', 'La persona de este signo se caracterizan por ser emprendedoras y exitosas en todos los aspectos de su vida. Son muy Inteligentes y poseen una energía avasallante. Los Murciélagos suelen ser bastante irónicos en su forma de comunicarse (y lo hacen por ultrasonido, los tenés que entender). Se los puede definir como verdaderos lideres (te da seguridad seguirlos porque saben lo que quieren y como hacerlo). Se manejan en la \"oscuridad\" (observación e interiorización) para reflexionar acerca de sus intereses y objetivos, así logran todas sus metas con resultados brillantes.   En el Ámbito Amoroso, los Murciélagos también necesitan momentos de soledad y penumbra. Resguardan mucho su intimidad y sus aspectos privados, por eso detestan que sus parejas los Invada o sofoquen (entendé que necesita su espacio de soledad y reflexión, ahí no entras vos). Defienden con todas las fuerzas su independencia pero, aun asi, son muy protectores con sus seres amados. Cuidan de su pareja, resultan ser excelentes padres y jefes de hogar.   En el trabajo, el murciélago es muy ordenado, responsable y disciplinado. Así alcanza sus objetivos y logra el éxito deseado. Las personas de este signo prefieren las profesiones vinculadas a la economía o la política.   La mujer de este signo tiende a ser muy racional; se maneja siempre con la logica y le fascina llamar la atención. Construye su particularidad con esmero para diferenciarse siempre del resto.  El hombre se caracteriza por ser triunfador y pasional en todos los ámbitos de su vida. Es absolutamente independiente y pretende que su pareja también lo sea o, por lo menos, que no interfiera en su libertad (no te metas, en todo caso, preguntá primero). Se exige mucho a si mismo para lograr sus metas. Generalmente, también resulta exigente con las demás personas.   El murciélago, ya sea hombre o mujer, es compatible con el PAVO REAL a quien elige como amigo para toda la vida. Pero prefiere a la VIVORA para compartir los negocios o situaciones laborales. En su juventud se relaciona especialmente con el JAGUAR como compañero de aventuras. Puede enamorarse perdidamente de la ARDILLA. ', '001, 020, 241, 260', '002-017', '26/07', '22/08', '26 de Julio - 22 de Agosto'),
 (02, 'Luna Lunar', 'Segunda', 'el Escorpión', 'Experimentación, Conocimiento y Costumbre ', 'Los escorpiones son seguros de si mismos y muy serios. Generan mucho respeto y hasta temor en todos aquellos que los rodean. También son extremadamente críticos de sus propias acciones y de las ajenas.   A veces, la gente prefiere mantener una distancia prudencial ya que inspiran demasiada autoridad. Sin embargo, las personas de este signo suelen ser muy afectuosas en el ámbito amoroso. En la intimidad, son demostrativos y cuidadosos de sus parejas. Su cualidad fundamental es la fidelidad, pero si los defraudan se convierten en seres feroces y muy vengativos.   En el trabajo, los escorpiones son responsables y puntillosos en todas sus tareas. Adoran estudiar y aprender diversas disciplinas, por ello pueden ser excelentes profesionales en cualquier carrera u ocupación que elijan. Todo aquello que emprenden, lo desarrollan con seriedad y fuerza de voluntad. Así logran lo que se proponen.   Las mujeres de este signo tienen un carácter bastante difícil, aparenta ser distante y temerosa. Sin embargo, resulta ser fuerte y lucha hasta la muerte por sus seres amados.  El hombre es mas introvertido y poco demostrativo en publico. En general, tiende a ser parco y distante. Aunque en la intimidad se convierte en un ser apasionado, comunicativo y generoso.   El escorpión -hombre o mujer- es muy compatible con el Perro (el desafío con lo hecho) ya que ambos se caracterizan por tener una personalidad fuerte y emprendedora. Además, comparten una energía superadora que no todos pueden mantener y acompañar. Usualmente, forma pareja con una persona de ese signo, pero elige como amigo al Lagarto (le da orden) con quien compartirá en forma incondicional sus secretos y aventuras.', '022, 039, 222, 239', '018-035', '23/08', '19/09', '23 de Agosto - 19 de Septiembre'),
 (03, 'Luna Eléctrica', 'Tercera', 'el Venado', 'Atracción, Ternura y Compasión ', 'El Venado es un ser Sensible y Espiritual. Se caracteriza por mostrarse muy temeroso y ciertamente frágil. Resultan muy afectuosos ya que de esta forma se aseguran el amor y la compañía del resto de las personas. Sus miedos los llevan a manejarse con extrema cautela para no lastimarse a si mismos ni a quienes los rodean. Requieren -y exigen- permanente cuidado y cariño. Por ser tan meticulosos y dependientes, muchas veces se pierden de grandes aventuras que la vida les ofrece.   En el amor, el Venado es un romántico empedernido. Es Soñador y vive en un permanente estado de enamoramiento. Fantasea con una historia de amor perfecta y LUCHA (si no lucha es porque no le interesa) toda su vida para construirla. Para el Venado, el amor es la fuente de inspiración para todos los aspectos de su existencia. Los afectos son su motor y su guía.   En el ámbito laboral, el Venado es muy Creativo y Bohemio. Por ello no encontraremos a una persona de este signo encerrada en una oficina, cumpliendo horarios estrictos (cazado?) y siguiendo una rutina impiadosa. El Venado sólo aceptará un trabajo de este tipo por razones económicas. De otro modo, siempre elegirá ocupaciones relacionadas con cualquier Rama del Arte.  Las Mujeres de este signo se caracterizan por ser increíblemente coquetas. Siempre tienen que estar prolijas, impecables y se ocupan de tener un estilo propio. Aunque le dan mucha importancia a su imagen, no descuidan las cosas verdaderamente importantes. Para ellas formar una pareja y una familia feliz es lo mas relevante de su existencia. Necesitan armonía y bienestar en el seno de su hogar para sentirse plenas y satisfechas.  En cambio, los hombres de este signo son muy difíciles de comprometerse y generalmente resultan infieles. Aunque son sensibles y cariñosos, se dejan ganar por el temor y las dudas. Por ello, tienden a escapar de las relaciones para correr en libertad.  El Venado, ya sea de sexo femenino o masculino, tiende a llevarse bien con todos los integrantes del zodiaco. Detesta la soledad y necesita que los afectos lo rodeen permanentemente. En la intimidad, se siente mas cómodo cerca de la serpiente y del Mono.', '043, 058, 203, 218', '036-055', '20/09', '17/10', '20 de Septiembre - 17 de Octubre'),
@@ -4534,10 +4534,10 @@ INSERT INTO `hol_psi_ani_lun` (`ide`, `nom`, `pos`, `tot`, `tot_pro`, `tot_por`,
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_psi_ani_vin`
+-- Estructura de tabla para la tabla `hol-psi_ani_vin`
 --
 
-CREATE TABLE `hol_psi_ani_vin` (
+CREATE TABLE `hol-psi_ani_vin` (
   `ide` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Vinal',
   `nom` varchar(15) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `des` tinytext COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Descripcion',
@@ -4547,10 +4547,10 @@ CREATE TABLE `hol_psi_ani_vin` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Vinal del Ciclo Solar';
 
 --
--- Volcado de datos para la tabla `hol_psi_ani_vin`
+-- Volcado de datos para la tabla `hol-psi_ani_vin`
 --
 
-INSERT INTO `hol_psi_ani_vin` (`ide`, `nom`, `des`, `fec`, `sin`, `cro`) VALUES
+INSERT INTO `hol-psi_ani_vin` (`ide`, `nom`, `des`, `fec`, `sin`, `cro`) VALUES
 (01, 'Pop', 'Aquel que Sabe', '26/07', '01.01', '01-04'),
 (02, 'Up', 'Escucha en Silencio', '15/08', '21.01', '05-08'),
 (03, 'Zip', 'Con el fin de Integrar el Universo', '04/09', '13.02', '09-12'),
@@ -4574,20 +4574,20 @@ INSERT INTO `hol_psi_ani_vin` (`ide`, `nom`, `des`, `fec`, `sin`, `cro`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_psi_ban`
+-- Estructura de tabla para la tabla `hol-psi_ban`
 --
 
-CREATE TABLE `hol_psi_ban` (
+CREATE TABLE `hol-psi_ban` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Placa',
   `pla` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Nombre',
   `dir` varchar(10) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Dirección'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Banco-Psi';
 
 --
--- Volcado de datos para la tabla `hol_psi_ban`
+-- Volcado de datos para la tabla `hol-psi_ban`
 --
 
-INSERT INTO `hol_psi_ban` (`ide`, `pla`, `dir`) VALUES
+INSERT INTO `hol-psi_ban` (`ide`, `pla`, `dir`) VALUES
 (1, 1, 'Norte'),
 (2, 2, 'Norte'),
 (3, 3, 'Norte'),
@@ -4600,19 +4600,19 @@ INSERT INTO `hol_psi_ban` (`ide`, `pla`, `dir`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_psi_ban_cor`
+-- Estructura de tabla para la tabla `hol-psi_ban_cor`
 --
 
-CREATE TABLE `hol_psi_ban_cor` (
+CREATE TABLE `hol-psi_ban_cor` (
   `ide` smallint(1) UNSIGNED NOT NULL COMMENT 'Corriente',
   `nom` varchar(35) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Corriente Histórica';
 
 --
--- Volcado de datos para la tabla `hol_psi_ban_cor`
+-- Volcado de datos para la tabla `hol-psi_ban_cor`
 --
 
-INSERT INTO `hol_psi_ban_cor` (`ide`, `nom`) VALUES
+INSERT INTO `hol-psi_ban_cor` (`ide`, `nom`) VALUES
 (1, 'Aboriginal'),
 (2, 'Aboriginal Generadora'),
 (3, 'Hierática y Original'),
@@ -4625,19 +4625,19 @@ INSERT INTO `hol_psi_ban_cor` (`ide`, `nom`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_psi_ban_his`
+-- Estructura de tabla para la tabla `hol-psi_ban_his`
 --
 
-CREATE TABLE `hol_psi_ban_his` (
+CREATE TABLE `hol-psi_ban_his` (
   `ide` smallint(1) UNSIGNED NOT NULL COMMENT 'Ecuación Historia',
   `nom` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Ecuación de la Historia';
 
 --
--- Volcado de datos para la tabla `hol_psi_ban_his`
+-- Volcado de datos para la tabla `hol-psi_ban_his`
 --
 
-INSERT INTO `hol_psi_ban_his` (`ide`, `nom`) VALUES
+INSERT INTO `hol-psi_ban_his` (`ide`, `nom`) VALUES
 (1, 'pre-historia'),
 (2, 'historia'),
 (3, 'post-historia');
@@ -4645,10 +4645,10 @@ INSERT INTO `hol_psi_ban_his` (`ide`, `nom`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_psi_ban_pla`
+-- Estructura de tabla para la tabla `hol-psi_ban_pla`
 --
 
-CREATE TABLE `hol_psi_ban_pla` (
+CREATE TABLE `hol-psi_ban_pla` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Placa',
   `nom` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `nor` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Estación del norte',
@@ -4656,10 +4656,10 @@ CREATE TABLE `hol_psi_ban_pla` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Placa del Banco-Psi';
 
 --
--- Volcado de datos para la tabla `hol_psi_ban_pla`
+-- Volcado de datos para la tabla `hol-psi_ban_pla`
 --
 
-INSERT INTO `hol_psi_ban_pla` (`ide`, `nom`, `nor`, `sur`) VALUES
+INSERT INTO `hol-psi_ban_pla` (`ide`, `nom`, `nor`, `sur`) VALUES
 (1, 'Afro-Euroasiática', 'Primavera', 'Otoño'),
 (2, 'Pacífico', 'Verano', 'Invierno'),
 (3, 'Americana', 'Otoño', 'Primavera'),
@@ -4668,10 +4668,10 @@ INSERT INTO `hol_psi_ban_pla` (`ide`, `nom`, `nor`, `sur`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_psi_hep_est`
+-- Estructura de tabla para la tabla `hol-psi_hep_est`
 --
 
-CREATE TABLE `hol_psi_hep_est` (
+CREATE TABLE `hol-psi_hep_est` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Estación Solar',
   `nom` varchar(10) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `des` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Descripción',
@@ -4681,10 +4681,10 @@ CREATE TABLE `hol_psi_hep_est` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Estación Solar';
 
 --
--- Volcado de datos para la tabla `hol_psi_hep_est`
+-- Volcado de datos para la tabla `hol-psi_hep_est`
 --
 
-INSERT INTO `hol_psi_hep_est` (`ide`, `nom`, `des`, `pol_sur`, `pol_nor`, `hep_pla`) VALUES
+INSERT INTO `hol-psi_hep_est` (`ide`, `nom`, `des`, `pol_sur`, `pol_nor`, `hep_pla`) VALUES
 (1, 'Roja', 'Inicia el giro solar', 'Invierno - Primavera', 'Verano - Otoño', '01 - 13'),
 (2, 'Blanca', 'Refina el giro solar', 'Primavera - Verano', 'Otoño - Invierno', '14 - 26'),
 (3, 'Azul', 'Transforma el giro solar', 'Verano - Otoño', 'Invierno - Primavera', '27 - 39'),
@@ -4693,19 +4693,19 @@ INSERT INTO `hol_psi_hep_est` (`ide`, `nom`, `des`, `pol_sur`, `pol_nor`, `hep_p
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_psi_hep_est_dia`
+-- Estructura de tabla para la tabla `hol-psi_hep_est_dia`
 --
 
-CREATE TABLE `hol_psi_hep_est_dia` (
+CREATE TABLE `hol-psi_hep_est_dia` (
   `ide` smallint(2) NOT NULL COMMENT 'Día Estacional',
   `ton` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Tono Galáctico'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Día Estacional';
 
 --
--- Volcado de datos para la tabla `hol_psi_hep_est_dia`
+-- Volcado de datos para la tabla `hol-psi_hep_est_dia`
 --
 
-INSERT INTO `hol_psi_hep_est_dia` (`ide`, `ton`) VALUES
+INSERT INTO `hol-psi_hep_est_dia` (`ide`, `ton`) VALUES
 (1, 01),
 (2, 01),
 (3, 01),
@@ -4801,10 +4801,10 @@ INSERT INTO `hol_psi_hep_est_dia` (`ide`, `ton`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_psi_hep_pla`
+-- Estructura de tabla para la tabla `hol-psi_hep_pla`
 --
 
-CREATE TABLE `hol_psi_hep_pla` (
+CREATE TABLE `hol-psi_hep_pla` (
   `ide` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Héptada',
   `nom` varchar(30) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `des` varchar(150) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Descripción',
@@ -4814,10 +4814,10 @@ CREATE TABLE `hol_psi_hep_pla` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Heptada de la Estación Solar';
 
 --
--- Volcado de datos para la tabla `hol_psi_hep_pla`
+-- Volcado de datos para la tabla `hol-psi_hep_pla`
 --
 
-INSERT INTO `hol_psi_hep_pla` (`ide`, `nom`, `des`, `est`, `lun`, `psi`) VALUES
+INSERT INTO `hol-psi_hep_pla` (`ide`, `nom`, `des`, `est`, `lun`, `psi`) VALUES
 (01, 'Magnética Roja', 'Unifica el Propósito de la Estación Solar Roja', 1, 01, '001 - 007'),
 (02, 'Lunar Blanca', 'Polariza el Desafío de la Estación Solar Roja', 1, 01, '008 - 014'),
 (03, 'Eléctrica Azul', 'Activa el Servicio de la Estación Solar Roja', 1, 01, '015 - 021'),
@@ -4874,10 +4874,10 @@ INSERT INTO `hol_psi_hep_pla` (`ide`, `nom`, `des`, `est`, `lun`, `psi`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_rad`
+-- Estructura de tabla para la tabla `hol-rad`
 --
 
-CREATE TABLE `hol_rad` (
+CREATE TABLE `hol-rad` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Plasma',
   `nom` varchar(10) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `des_col` varchar(15) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Color',
@@ -4909,10 +4909,10 @@ CREATE TABLE `hol_rad` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Plasma Radial';
 
 --
--- Volcado de datos para la tabla `hol_rad`
+-- Volcado de datos para la tabla `hol-rad`
 --
 
-INSERT INTO `hol_rad` (`ide`, `nom`, `des_col`, `des_pod`, `des_fue`, `dia`, `tel`, `tel_des`, `tel_año`, `tel_ora_año`, `tel_ora_ani`, `tel_ora_gen`, `rin_des`, `pla_des`, `pla_fue`, `pla_qua`, `pla_man`, `pla_cub`, `pla_cub_pos`, `pla_lec`, `hum_cha`, `umb`, `umb_map`, `umb_pat`, `umb_arc`, `umb_pue`, `umb_esf`, `umb_esf_fun`) VALUES
+INSERT INTO `hol-rad` (`ide`, `nom`, `des_col`, `des_pod`, `des_fue`, `dia`, `tel`, `tel_des`, `tel_año`, `tel_ora_año`, `tel_ora_ani`, `tel_ora_gen`, `rin_des`, `pla_des`, `pla_fue`, `pla_qua`, `pla_man`, `pla_cub`, `pla_cub_pos`, `pla_lec`, `hum_cha`, `umb`, `umb_map`, `umb_pat`, `umb_arc`, `umb_pue`, `umb_esf`, `umb_esf_fun`) VALUES
 (1, 'Dali', 'amarillo', 'Focaliza', 'Fuerza Térmica', '01, 08, 15, 22', 'Profecía del Año Uno', '\"La Victoria Da en el Blanco\"', 1993, 144, 248, 194, '\"Dalí liberada, capacidad técnica lumínica establecida\"', '\"Focaliza la Fuerza Térmica\"', '01, 02', 1, 'Om', 1, 'Arriba', '\"Mi Padre es la Consciencia Intrínseca. Yo Siento el Calor.\"', 1, 108, 'Fuente Omnigaláctica', 'Cristo', 'Trono', 'Alfa-Alfa', 'Preconsciente (Hemisferio Derecho Trasero)', 'Samadhi Profundo'),
 (2, 'Seli', 'rojo', 'Fluye', 'Fuerza Lumínica', '02, 09, 16, 23', 'Profecía del Año Dos', '\"La Victoria Fluye\"', 1994, 249, 093, 195, '\"Seli liberada, capacidad térmica-lumínica ampliada\"', '\"Fluye Fuerza Lumínica\"', '03, 03', 1, 'Hram', 2, 'Abajo', '\"Mi Madre es la Esfera última. Yo Veo la Luz.\"', 7, 291, 'Tierra Cristal', 'Mahoma', 'Avatar', 'Alfa-Beta', 'Subconsciente (Hemisferio Derecho Frontal)', 'Samadhi Informativo'),
 (3, 'Gama', 'blanco', 'Pacifica', 'Fuerza Pacificadora', '03, 10, 17, 24', 'Profecía del Año Tres', '\"La Victoria Pacifica\"', 1995, 094, 198, 196, '\"Gamma liberada capacidad térmica-lumínica ampliada, alcanza el poder extraordinario\"', '\"Fuerza de Impacto Lumínico-Térmica\"', '04, 05', 1, 'Hraha', 3, 'Derecha', '\"Mi Linaje es la Unión de la Consciencia Intrínseca y la Esfera Última.\"', 2, 144, 'Hubab Ku', 'Pacal Votan', 'Misterio', 'Beta-Beta', 'Consciente (Hemisferio Izquierdo Frontal)', 'Mediumnidad del Consciente Des'),
@@ -4924,20 +4924,20 @@ INSERT INTO `hol_rad` (`ide`, `nom`, `des_col`, `des_pod`, `des_fue`, `dia`, `te
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_rad_pla_car`
+-- Estructura de tabla para la tabla `hol-rad_pla_car`
 --
 
-CREATE TABLE `hol_rad_pla_car` (
+CREATE TABLE `hol-rad_pla_car` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Polaridad',
   `nom` varchar(15) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `des` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Relacion de Colores'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Polaridad Eléctrica del Plasma';
 
 --
--- Volcado de datos para la tabla `hol_rad_pla_car`
+-- Volcado de datos para la tabla `hol-rad_pla_car`
 --
 
-INSERT INTO `hol_rad_pla_car` (`ide`, `nom`, `des`) VALUES
+INSERT INTO `hol-rad_pla_car` (`ide`, `nom`, `des`) VALUES
 (1, 'Análogo', 'rojo y blanco o azul y amarillo'),
 (2, 'Antípoda', 'rojo y azul o blanco y amarillo'),
 (3, 'Oculto', 'rojo y amarillo o blanco y azul'),
@@ -4946,20 +4946,20 @@ INSERT INTO `hol_rad_pla_car` (`ide`, `nom`, `des`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_rad_pla_cub`
+-- Estructura de tabla para la tabla `hol-rad_pla_cub`
 --
 
-CREATE TABLE `hol_rad_pla_cub` (
+CREATE TABLE `hol-rad_pla_cub` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Heptágono'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Cubo de Plasma';
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_rad_pla_ele`
+-- Estructura de tabla para la tabla `hol-rad_pla_ele`
 --
 
-CREATE TABLE `hol_rad_pla_ele` (
+CREATE TABLE `hol-rad_pla_ele` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Tipo de Electricidad',
   `nom` varchar(15) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `des` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Descripción',
@@ -4967,10 +4967,10 @@ CREATE TABLE `hol_rad_pla_ele` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Tipo de Electricidad Cósmica';
 
 --
--- Volcado de datos para la tabla `hol_rad_pla_ele`
+-- Volcado de datos para la tabla `hol-rad_pla_ele`
 --
 
-INSERT INTO `hol_rad_pla_ele` (`ide`, `nom`, `des`, `des_cod`) VALUES
+INSERT INTO `hol-rad_pla_ele` (`ide`, `nom`, `des`, `des_cod`) VALUES
 (1, 'Neutrón', 'Carga ambivalente, en oposición a la corriente alterna', 'YAL'),
 (2, 'Dum Kuali', '2 cargas positivas en resonancia', 'CAT'),
 (3, 'Dum Duar', '2 cargas negativas en resonancia', 'DAT'),
@@ -4981,10 +4981,10 @@ INSERT INTO `hol_rad_pla_ele` (`ide`, `nom`, `des`, `des_cod`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_rad_pla_fue`
+-- Estructura de tabla para la tabla `hol-rad_pla_fue`
 --
 
-CREATE TABLE `hol_rad_pla_fue` (
+CREATE TABLE `hol-rad_pla_fue` (
   `ide` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Línea de Fuerza',
   `nom` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `des` varchar(150) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Descripción',
@@ -4994,10 +4994,10 @@ CREATE TABLE `hol_rad_pla_fue` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Línea de Fuerza Electrónica';
 
 --
--- Volcado de datos para la tabla `hol_rad_pla_fue`
+-- Volcado de datos para la tabla `hol-rad_pla_fue`
 --
 
-INSERT INTO `hol_rad_pla_fue` (`ide`, `nom`, `des`, `ele_pre`, `ele_ope`, `ele_pos`) VALUES
+INSERT INTO `hol-rad_pla_fue` (`ide`, `nom`, `des`, `ele_pre`, `ele_ope`, `ele_pos`) VALUES
 (01, 'Litmio', 'Cuatro cargas positivas en resonancia', 2, '+', 2),
 (02, 'Dalmi', 'Cuatro cargas negativas en resonancia', 3, '+', 3),
 (03, 'Sigma', 'Dos cargas positivas en resonancia y dos cargas negativas en resonancia', 2, '+', 3),
@@ -5014,30 +5014,30 @@ INSERT INTO `hol_rad_pla_fue` (`ide`, `nom`, `des`, `ele_pre`, `ele_ope`, `ele_p
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_rad_pla_pol`
+-- Estructura de tabla para la tabla `hol-rad_pla_pol`
 --
 
-CREATE TABLE `hol_rad_pla_pol` (
+CREATE TABLE `hol-rad_pla_pol` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Polaridad',
   `nom` varchar(10) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `cod` char(1) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Operador'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Polaridad Eléctrica del Plasma';
 
 --
--- Volcado de datos para la tabla `hol_rad_pla_pol`
+-- Volcado de datos para la tabla `hol-rad_pla_pol`
 --
 
-INSERT INTO `hol_rad_pla_pol` (`ide`, `nom`, `cod`) VALUES
+INSERT INTO `hol-rad_pla_pol` (`ide`, `nom`, `cod`) VALUES
 (1, 'Negativa', '-'),
 (2, 'Positiva', '+');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_rad_pla_qua`
+-- Estructura de tabla para la tabla `hol-rad_pla_qua`
 --
 
-CREATE TABLE `hol_rad_pla_qua` (
+CREATE TABLE `hol-rad_pla_qua` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Quántum',
   `nom` varchar(30) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `des` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Afirmación Diaria',
@@ -5048,10 +5048,10 @@ CREATE TABLE `hol_rad_pla_qua` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Quantum del Plasma Radial';
 
 --
--- Volcado de datos para la tabla `hol_rad_pla_qua`
+-- Volcado de datos para la tabla `hol-rad_pla_qua`
 --
 
-INSERT INTO `hol_rad_pla_qua` (`ide`, `nom`, `des`, `lec_col`, `lec_ato`, `lec_cub`, `pla`) VALUES
+INSERT INTO `hol-rad_pla_qua` (`ide`, `nom`, `des`, `lec_col`, `lec_ato`, `lec_cub`, `pla`) VALUES
 (1, 'Quantum Sensorial Primario', '\"Base primaria, Quantum sensorial establecido\"', '\"Los primeros tres colores forman la base primaria del quanto sensorial\"', '\"Estos primeros tres Plasmas Radiales constituyen un quantum primario de base sensorial\"', '\"Quantum Sensorial Primario completamente habilitado\"', '1, 2, 3'),
 (2, 'Agente Catalizador', '\"Agente catalizador establecido\"', '\"El Azul central es el agente catalítico, Kali\"', '\"Constituye el agente catalizador del quantum sensorial y el telepático\"', '\"Agente Catalizador establecido para unificación de los quanta Sensorial y Telepático\"', '4'),
 (3, 'Quantum Telepático Cromático', '\"Base cromática, Quantum telepático establecido\"', '\"Los últimos tres colores, tal como los primeros tres, forman la base cromática del quanto telepático\"', '\"Estos segundos tres Plasmas Radiales constituyen un quantum telepático de base cromática\"', '\"Quantum Telepático Cromático completamente habilitado\"', '5, 6, 7');
@@ -5059,10 +5059,10 @@ INSERT INTO `hol_rad_pla_qua` (`ide`, `nom`, `des`, `lec_col`, `lec_ato`, `lec_c
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_sel`
+-- Estructura de tabla para la tabla `hol-sel`
 --
 
-CREATE TABLE `hol_sel` (
+CREATE TABLE `hol-sel` (
   `ide` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Sello',
   `cod` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Código 0-19',
   `ord` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Código 0-19',
@@ -5118,10 +5118,10 @@ CREATE TABLE `hol_sel` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Sello Solar';
 
 --
--- Volcado de datos para la tabla `hol_sel`
+-- Volcado de datos para la tabla `hol-sel`
 --
 
-INSERT INTO `hol_sel` (`ide`, `cod`, `ord`, `nom`, `nom_may`, `des`, `des_col`, `des_cod`, `des_car`, `des_acc`, `des_acc_per`, `des_acc_pal`, `des_pod`, `des_pod_tel`, `cit_des`, `cit_lis_pal`, `cit_lis_som`, `cit_por`, `cit_por_som`, `cit_por_rec`, `cic_ser`, `cic_ser_des`, `cic_luz`, `cic_luz_des`, `arm_tra`, `arm_tra_des`, `arm`, `arm_raz`, `arm_raz_fun`, `arm_raz_des`, `arm_cel`, `arm_cel_fun`, `arm_cel_des`, `cro`, `cro_fam`, `cro_ele`, `cro_ele_fun`, `cro_ele_des`, `par_ana`, `par_gui`, `par_ant`, `par_ocu`, `flu_res`, `flu_res_des`, `sol_pla`, `sol_pla_des`, `pla_cen`, `pla_hem`, `pla_hem_cod`, `pla_mer`, `pla_mer_cod`, `hum_mer`) VALUES
+INSERT INTO `hol-sel` (`ide`, `cod`, `ord`, `nom`, `nom_may`, `des`, `des_col`, `des_cod`, `des_car`, `des_acc`, `des_acc_per`, `des_acc_pal`, `des_pod`, `des_pod_tel`, `cit_des`, `cit_lis_pal`, `cit_lis_som`, `cit_por`, `cit_por_som`, `cit_por_rec`, `cic_ser`, `cic_ser_des`, `cic_luz`, `cic_luz_des`, `arm_tra`, `arm_tra_des`, `arm`, `arm_raz`, `arm_raz_fun`, `arm_raz_des`, `arm_cel`, `arm_cel_fun`, `arm_cel_des`, `cro`, `cro_fam`, `cro_ele`, `cro_ele_fun`, `cro_ele_des`, `par_ana`, `par_gui`, `par_ant`, `par_ocu`, `flu_res`, `flu_res_des`, `sol_pla`, `sol_pla_des`, `pla_cen`, `pla_hem`, `pla_hem_cod`, `pla_mer`, `pla_mer_cod`, `hum_mer`) VALUES
 (01, 01, 02, 'el Dragón', 'IMIX', 'nutre el nacimiento', 'Rojo', 'un punto', 'el Ser', 'Nutrir', 'nutro', 'nutriendo', 'el Nacimiento', 'Memoria', 'Dragón simboliza la Esencia Divina, el Agua Primordial que todo lo inicia y Nutre, el rostro Materno de Dios, la Madre Cósmica, el Alimento espiritual que moviliza la vida. Responde al concepto que en realidad la Divinidad está dentro de cada uno de nosotros, que nuestra esencia es eterna y divina, chispas de un mismo Fuego. Es el Signo Iniciador por Excelencia, el que comienza el camino del conocimiento, que lleva a su vez a recuperar la memoria cósmica, a revelar de dónde venimos. En el plano espiritual habla de caminos iniciáticos, iniciaciones realizadas por maestros en distintas disciplinas o prácticas energéticas.', 'Esencia Divina, Madre Cósmica, Rostro Materno de Dios\nAgua Primordial, Fuente de Vida\nPrincipio Creador, Causa Primera\nUnidad, Origen,\nMaternidad, Partos, Natalidad\nDescendencia Numerosa\nAlimentación\nCrianza\nEnseñanza Materna, Figura Materna\nMandatos Maternos o de la Infancia\nProtección, Sobreprotección\nSeguridad, Confianza\nNecesidades Básicas\nEspacio Propio\nIniciación Espiritual, Nuevos Comienzos\nMemoria Cósmica\nNutricionismo\nGinecología\nMatriz Femenina, Pecho Materno\nSangre.', 'Rencores\nEgoísmo\nDesmotivación \nDesvaloración\nestá a la Defensiva\nObsesiones\nTemor a Ser\nImposibles\nDependencias\nDesconfianzas Invasivos\nNo puede\nAbandono\nSobreprotección\nLimites del EGO\nPoca Asimilación de lo Propio', 'Los portadores de este Sello demuestran poseer fuerza de voluntad, independencia, seguridad en sí mismos, confianza. Su fuerza nutre el ser o esencia que hay en uno mismo, y después de entregarse hasta consumirse renacen en un nuevo ciclo existencial. Contienen ímpetu, fuego para sortear todos los obstáculos y llegar primeros. La pauta de la protección suele proponerles situaciones donde ponen en juego cómo son como padres y madres, o amigos que vienen a proteger a modo de hermanos mayores. Poseen una fuerza Gestora y son Canales naturales de energía que moviliza el comienzo de un camino para los demás. A nivel psicológico, su clave está en cómo manejan en su vida la imagen materna, punto de partida para lo que será el manejo de su confianza y de los espacios propios y ajenos.', 'Mientras no vibran en total luz, y van aprendiendo de la vivencia de la Sombra, los portadores de este Sello pueden enfrentar sus eventuales rencores, y observar con excesiva puntillosidad la relación con los demás. Si pueden descubrirse como no respetuosos de tiempos y espacios de los otros, es porque en realidad les cuesta asimilar todavía los propios. Cuando están a la defensiva, es que están con temor a ser demasiado invasivos. Si se tornan excesivamente desconfiados, aún de los amigos, deben revisar la falta de fe en sí mismos o su autovaloración. Su eventual dependencia de los demás, o egoísmo, los llama a revisar cómo tratan las estructuras de su ego (creencias personales, valores, etc.) para crecer espiritualmente.', 'Reconocer en tu Interior la Divinidad que es parte de tu esencia.\nEstar atento a los inicios nuevos que se te ofrecen (que estás atrayendo a tu vida).\nAbrirte a descubrir cuándo estás en condiciones de impulsar a otros por caminos nuevos.\nRevisar la imagen y los conceptos de Madre que se formaron en tu interior desde la infancia.\nDescubrir tu capacidad maternal, de protección y seguridad para otros.\nAprender a hacer respetar tu propio espacio, respetando los espacios de los demás.\nReflexionar acerca del tipo y calidad de tu alimentación.', 1, '\"Fuente de Vida, Dragón, Agua primordial, Sangre, Nutrición, Pecho, Energía Materna, Poder de Dar a Luz.\"', 1, '\"La Luz se hace Forma\"', 1, '\"Se establece el Modelo Morfogenético.\"', 'el Dragón Rojo', 1, 'inicia el nacimiento', '\"la tribu del dragón rojo inicia el nacimiento\"', 1, 'inicia la entrada del fuego', '\"la tribu del dragón rojo inicia la entrada como poder del nacimiento.\"', 'el Fuego Cardinal', 1, 1, 'transmite el fuego', '\"la tribu del dragón rojo transmite el fuego como el poder del nacimiento\"', 18, '1,13,5,17,9', 11, 20, 1, '\"transmite la entrada galáctica\"', 09, '\"la tribu del dragón transmite la entrada galáctica como nacimiento\"', 2, 1, 030, 1, 030, 01),
 (02, 02, 03, 'el Viento', 'IK', 'comunica el espíritu', 'Blanco', 'dos puntos', 'el Aliento', 'Comunicar', 'comunico', 'comunicando', 'el Espíritu', 'Espíritu', 'Viento tiene que ver con el aliento divino de la naturaleza, el espíritu, la palabra, las emociones expresadas a través de la palabra, las ideas exteriorizadas. Indica el movimiento continuo y las dualidades de la existencia, que están llamadas a ser superadas en un tercer punto. La Comunicación tiene que ver con el Resolver las dualidades personales entre el TÚ y el YO, a través del concepto de la unidad de todo. El comunicar (sea hablada, por miradas, por pensamientos) implica poner en común dos puntos de vista y entre ellos, construir una realidad total a través de la aceptación de ambos puntos de vista.', 'Aliento Divino, Espíritu (santo)\nEnergía Cósmica, Movimiento Interior, Fluir Energético\nPersona de la Verdad\nPoder (creador) de la palabra\nEspiritualidad\nInmortalidad\nLibertad interior\nBúsqueda de sinceridad\nDualidad, Principio de polaridad y Superación o Integración de dualidades\nElección entre opuestos\nComunicación, Telepatía, Información, Noticia\nTransmisión de conocimientos\nLocualidad\nCultura\nInspiración\nOratoria\nPeriodismo\nPoder de la Respiración, Sistema Respiratorio\nCanto, Arte de la Palabra.', 'Chismoso\nSe deja llevar\nHipócrita\nFalsedades\nCharlatán\nIndecisiones\nMentiras\nMezquino\nNo dice nada\nFalta a la palabra\nImpositor\nHabla de mas\nOculta información\nDiscusión\nRuidosos', 'Los que tienen de nacimiento se inclinan por el periodismo y la comunicación, o bien el canto o la política; siempre comunicativos, nunca callados. Tienen habilidad para ser Excelentes Oradores, y se transforman en redes de comunicación entre distintas personas, cuando aprenden a escuchar y a dar información verdadera de las realidades que acceden o la que viene inspirada de un nivel más alto de conciencia. La Realidad siempre ofrece enfoques que a veces pueden ser opuestas y extremas, y desde este Sello se Aprende a enfrentarlas con la conciencia de que todos los opuestos percibidos fuera de uno se reconcilian en la propia persona, en uno mismo cuando integra otra visión y amplía su campo de la realidad, ya que es Uno quien puede conciliar las divergencias (o puntos de vista) en uno central y unificador.', 'En Sombra, el estado de Conciencia que no es luz pero que lleva al aprendizaje, los portadores de este sello pueden parecer ante otros como Chismosos, Charlatanes, Hipócritas, Mentirosos, Mezquinos a la hora de tener que dar información porque todavía no valoran el tesoro de la Verdad que conocen y la responsabilidad de Comunicarla a los demás. Todavía se dejan llevar por falsas opciones de una realidad de dualidades, que presenta sus dos opuestos, sus extremos, y mientras no superan esa idea de Dualidad, se desbordan en un ruido externo, que aún no les permite descubrir que el Espíritu se Comunica de Corazón a Corazón, cada vez con menos necesidad de Palabras.', 'Reconocer la porción inmortal de tu ser, es decir, tu espíritu.\nUsar la Comunicación como un puente entre tu persona y los otros.\nSuperar la tentación de los extremos, transitando por el camino del medio.\nEncontrar la palabra impecable en la comunicación con los otros.\nEntender que para entenderse dos personas, no necesariamente se necesitan palabras.\nRevisar la información recibida, los mensajes que nos llegan por distintos medios, y cómo estás preparado/a para trasmitirla.\nReconocerte como el tercer punto donde se resuelven todas las dualidades que se te plantean.', 1, '\"Espíritu, Aliento, Viento, Energía Cósmica, Inspiración: Principio Vital, Sistema Respiratorio.\"', 1, '\"El Viento Purifica las Formas\"', 2, '\"El Modelo Morfogenético Recibe Inspiración.\"', 'el Viento Blanco', 2, 'inicia el espíritu', '\"la tribu del viento blanco inicia el espíritu\"', 1, 'refina la entrada del nacimiento', '\"la tribu del viento blanco refina la entrada del nacimiento como espíritu.\"', 'el Fuego Central', 2, 1, 'da energía al fuego', '\"la tribu del viento blanco da energía al fuego como el poder del espíritu\"', 17, '2,14,6,18,10', 12, 19, 1, '\"da energía a la entrada galáctica\"', 08, '\"la tribu del viento da energía a la entrada galáctica como espíritu\"', 3, 3, 000, 1, 075, 02),
 (03, 03, 04, 'la Noche', 'AKBAL', 'sueña la abundancia', 'Azul', 'tres puntos', 'la Intuición', 'Soñar', 'sueño', 'soñando', 'la Abundancia', 'Abundancia', 'Noche Simboliza la Introspección, el Silencio, la Meditación, la Conexión con el Inconsciente, el Pasaje por la Noche del Alma. Enseña que la Abundancia está en nuestro Interior, Reconoce nuestra capacidad Interna de Conectarnos con todo lo que nos es necesario, y que parece oculto (aquello que necesitamos está ahí, esperando ser reconocido por nuestra propia forma de ver). Desde la meditación Desarrolla la Intuición y la Percepción de tipo Femenino. Es la Casa de los Sueños, el lugar Profundo del Inconsciente donde se esconde la Abundancia, la que está por llegar a la Realidad Externa a través de la concreción de los Sueños Internos. Es una Fuerza Amiga de la Oscuridad porque sabe que hay tres piedras de Luz escondidas para revelarse y superar la Dualidad Planteada por el Viento\"', 'Conexión con el incosnciente (individual y colectivo)\nAbundancia (material o espiritual)\nNoche del alma, velo de la verdad\nCasa del Sol (donde se pone y muere)\ncaverna del inconsciente\nTriangulo superador de las dualidades\nsueño, poder de los sueños, proyección de los sueños en la realidad\nEnsoñason, lo desconocido, lugar de los misterios\nluz escondida, poder de las tres piedras de luz ocultas\nmanifestación de lo oculto\nfuerza femenina humana\nintuición espiritual\nmeditación, introspección, silencio\nrecogimiento, soledad, profundidad\npsicología, parapsicología, hechicería\ngenitales femeninos, corazón y órganos internos.', 'Negativo\nIrrealidad\nPerdida de Fe\nIncomprensivo\nSuicidas\nPesimista\nMala Conexión\nIncrédulo\nEncerrado en si\nTraumado\nDestructivo\nImpaciente\nNo se Entiende\nPoco Sociable\nAngustias\nDepresiones', 'Los portadores de este Sello tienen una Vibración que les permite ser Reservados, Introspectivos, Cautelosos, Medidos y tan Intuitivos como Analíticos. Tienden a Ocultar o no poner todas sus Capacidades en Juego, como reservándolas o preservándolas. Tienen la paciencia para esperar la luz del día desde las sombras; y observan desde lo oculto, lo que los lleva a poder ver las Capacidades de los demás a través de sus Intuiciones. Pueden Concretar aquello que deseen con la fuerza de su pensamiento; según su fe en sí mismos, en sus Sueños, resultan Exitosos. Tienen gran Memoria Visual, guardan las imágenes vistas en el día en sus archivos ocultos de la noche (el Inconsciente). Suelen gustar del Campo y de su Silenciosa Soledad; se conectan con la Naturaleza, lo Verde, los Pájaros (como si guardaran dentro un gran Chamán, de los que prefieren el aislamiento para conectarse con el mundo visible y no visible). Como generalmente no recuerdan sus sueños, deberían intentar hacerlo, pues allí tienen información Valiosa, la que viene del Inconsciente, el verdadero Interior\"', 'En Sombra (El estado de conciencia que todavía no es luz y moviliza el aprendizaje personal), los portadores de este sello deben revisar su Negatividad o Pesimismo, su pérdida de Fe, el cerrarse en sí mismos o las actitudes de poca sociabilidad. Su poder Mental de concretar lo que desean es una responsabilidad para no volverse destructivos. Para hallar su adecuada conexión con su Existencia, deben comprender sus eventuales Depresiones, auto-desvalorizaciones e Ideas Suicidas, producto de un Desfasaje entre la Ilusoria Realidad Externa y los llamados Interiores todavía aún no comprendidos. En ese mismo nivel pueden desarrollar Miedos, hacer Surgir Traumas de la Infancia, Angustias, Intranquilidad e Impaciencia. En estos casos, no debería dejar que lo mental, la Racionalidad del hemisferio cerebral izquierdo, boicoteara su natural Intuición\"', 'Buscar el silencio en medio del ruido cotidiano.\nBuscar en tu Inconsciente, en tus Sueños, para encontrar Verdades.\nValorar la Oscuridad como el camino necesario para esperar la Luz del Día.\nMeditar, del modo o con el método que te sea mas provechoso.\nConectarte con la Abundancia que está escondida y que te reserva tu parte correspondiente.\nUsar más la Intuición, natural en las mujeres, pero también presente en los varones.\nSuperar la tentación de usar la oscuridad como un Poder, porque todo camina tarde o temprano hacia la Luz.', 1, '\"Casa, Tinieblas Circundantes, Noche, Cuerpo, Lugar de Misterio, Corazón y órganos Internos.\"', 1, '\"Las Formas encuentran Envoltura\"', 3, '\"El Modelo Morfogenético Recibe la Consagración.\"', 'la Noche Azul', 3, 'inicia la abundancia', '\"la tribu de la noche azul inicia la abundancia\"', 1, 'transforma la entrada del espíritu', '\"la tribu de la noche azul transforma la entrada del espíritu en abundancia.\"', 'el Fuego Señal', 3, 1, 'protege el fuego', '\"la tribu de la noche azul protege el fuego como el poder de la abundancia\"', 16, '3,15,7,19,11', 13, 18, 1, '\"protege la entrada galáctica\"', 07, '\" la tribu de la noche protege la entrada galáctica como abundancia\"', 4, 2, 030, 1, 120, 03),
@@ -5132,7 +5132,7 @@ INSERT INTO `hol_sel` (`ide`, `cod`, `ord`, `nom`, `nom_may`, `des`, `des_col`, 
 (08, 08, 09, 'la Estrella', 'LAMAT', 'embellece la elegancia', 'Amarilla', 'una barra y tres puntos', 'el Arte', 'Embellecer', 'embellezco', 'embelleciendo', 'la Elegancia', 'Arte', 'Estrella Representa la Belleza, el Arte, la Creatividad y el Buen Gusto. Estrella es el Lucero que se manifiesta en el cielo Matutino o Vespertino, el Planeta Venus con toda su Carga Energética de Amor y Belleza, una de las Claves Astronómicas y Astrológicas en la Cosmovisión Maya respecto de nuestro propio planeta. A nivel Personal, cada ser Humano tiene la Capacidad de Brillar con Luz Propia, todos como chispas de un mismo Fuego. Al Conectarse con esa Luz Alcanza Armonía, su Vida se Vuelve Arte en el Sentido más Amplio, y ese Estado Personal Mueve Naturalmente a Servir a los Demás, a Guiarlos en las Noches donde se Pierde la Ruta, a compartir esa Conciencia Armónica.', 'Belleza del plano cósmico, armonía, belleza humana, proporción de formas\nsemilla del cielo, planeta venus o lucero\nla octava musical, el cálculo perfecto\nelegancia, brillo\nchispa de inteligencia, uso de luz personal\nexpansión de la propia consciencia, comprensión intuitiva de patrones de vida superior\nservicio al prójimo, guía para los demás\nlo artístico (creativo y estético), vida hecha arte, esteticismo\nfeng shui, alcanzar las estrellas, altura espiritual\nmístico, visionario, más allá de lo cotidiano\nintegración del infinito con la realidad, la mirada al cielo\nconsciencia de la propia meta, prosperidad, buena estrella.', 'Depresivo\nDependiente\nCritico negativo\nAngustioso\nvive por el otro\nPesimista\nNo se Luce\nJuez critico\nDestructivo\nTapa Agresiones\nPremeditador\nCentro\nEsconde Ira\nAlevoso\nEufórico\nSin Orden\ncentro del EGO', 'Los Portadores de este Sello parecen ser Detallistas por su Natural Esteticismo, y se Manifiestan desde la Armonía Personal como Bondadosos, Serviciales, Graciosos e Inteligentes. Los que lo Conocen los consideran de “Buena Onda”, pues se muestran Esperanzados y Optimista. Son en General Emprendedores de Caminos Espirituales o propensos a aquellos que impliquen poner en juego la Sensibilidad del Espíritu. Se sienten con el Brillo de una Estrella donde sea que estén, y sus estados armónicos se conjugan con una Servicialidad que los lleva a Correr detrás de los más desvalidos y Necesitados, a quienes brindan consejo Guiador y Ayuda Correcta. A nivel Personal, cada ser Humano tiene la Capacidad de Brillar con Luz Propia, todos como chispas de un mismo Fuego. Al Conectarse con esa Luz Alcanza Armonía, su Vida se Vuelve Arte en el Sentido más Amplio, y ese Estado Personal Mueve Naturalmente a Servir a los Demás, a Guiarlos en las Noches donde se Pierde la Ruta, a compartir esa Conciencia Armónica.', 'En Sombra, el nivel de conciencia en el que todavía no terminan de conectarse con su propia Luz, se vuelven Depresivos y Pesimistas, y Critican y Juzgan a los demás como Proyección de la Visión Negativa de Sí mismos. Pueden Llegar a Transformarse en personas Destructivas con Premeditación y Alevosía pues asumen en sombra el poder de su propia Luz, y proyectan así su temporaria falta de Armonía. En ese Estado Viven por los Otros, en excesiva Dependencia, pues no Comprenden el Valor de Brillar por Sí mismos. Se vuelven personas Angustiadas que esconden Ira y Agresividad, hasta que pueden Canalizar la Desarmonía e ir Creando su propio Espacio de Brillo y Luz. En Estado Eufórico, se creen centro de todo y quieren atraer la Atención de Todos hacia Sí y la propia Voluntad, por temporaria falta de Alineación del Ego con su Ser Superior.', 'Buscar la Armonía en cada aspecto de tu vida.\nConectarte con el Arte en cualquiera de sus manifestaciones.\nDescubrir la perfecta Belleza de tu Ser.\nEntender que no hay Armonía Individual sin servicio a los otros.\nPotenciar tu Capacidad para ser un guía para el camino de los demás.\nHacer Brillar tu propia luz Personal, en lugar de intentar reflejar la de otros.\nCuida que a tus gestos no les falte un toque de elegancia y delicadeza.', 2, '\"Estrella, Armonía, La Octava, Comprensión Intuitiva del Modelo de la Vida Suprema, Amor, Estrella - Simiente.\"', 2, '\"La Armonía Surge Uniendo todas las cosas\"', 8, '\"El Modelo Morfogenético es Percibido Como Ley Cósmica.\"', 'la Estrella Amarilla', 4, 'almacena el florecimiento como elegancia.', '\"la tribu de la estrella amarilla almacena el florecimiento como elegancia.\"', 2, 'madura el almacén de la realización', '\"la tribu de la estrella amarilla madura el almacenamiento de la realización en elegancia.\"', 'la Sangre Señal', 3, 2, 'protege la sangre', '\"la tribu de la estrella amarilla protege la sangre como el poder de la elegancia.\"', 11, '8,20,12,4,16', 18, 13, 1, '\"protege el almacén galáctico\"', 02, '\"la tribu de la estrella protege el almacén galáctico como elegancia\"', 4, 2, 060, 2, 150, 08),
 (09, 09, 10, 'la Luna', 'MULUC', 'purifica el agua universal', 'Roja', 'una barra y cuatro puntos', 'el Flujo', 'Purificar', 'purifico', 'purificando', 'el Agua Universal', 'Purificación', 'Luna Representa la Purificación de las Emociones, lo Fluctuante, lo Mutable, los Cambios de Ánimo, y Simboliza el Agua Universal, la Faz Femenina de la Divinidad (La Diosa Mítica). Es el Fluir del Tao, que desde la Preeminencia de lo Femenino (YIN) Moviliza hacia lo Masculino (YANG). Es el Correr de los Ciclos Existenciales y Naturales, su Renovación y su Reinicio Permanente. Permite una mirada hacia lo Vivido, como Memoria donde los Recuerdos vienen a servir de Experiencia en el Aquí y Ahora. Marca el Inicio de la Apertura del Tercer Ojo o Visión del Corazón.', 'Agua como elemento universal\nla Diosa, Fuerza YIN superior, Rostro Femenino de Dios\nPuerta cosmica, Umbral de consciencia despierta\nEmociones, Purificacion de la emocionalidad, (aprendizaje de los) recuerdos\nfluir eterno, el Tao\nFluidos, gotas de lluvia, Mareas, contacto y relacion personal el agua\nhumores del cuerpo humano, ciclos, repeticiones ciclicas\nreflejo de la luz divina\napertura del tercer ojo, fantasia o escape de la realidad\nmutabilidad, sensibilidad, sentimientos fuertes\narea de los afectos, lo familiar\nlo psiquico exteriorizado\ndejar correr las aguas.', 'Manipulador\nRencoroso\nAferrado\nSe descarga con todos\nTestarudo\nCaprichoso\nCiclotímico\nAhogado en Emoción\nRetiene\nGota que Rebalsa\nImpaciente\nBipolar\nContiene Agresión\nNerviosismos\nLlorón\nInadecuada proporción ', 'Los que de Nacimiento portan este Sello, suelen pasarlo todo primero por las Aguas de la Emotividad; por eso se los suele ver como Sensibles y Románticos, o parecen tener la Impulsividad de las Emociones a Flor de Piel. Con su Natural Percepción notan algo que no les Agrada y de Inmediato lo Manifiestan en el Semblante y hasta en el Organismo. Aprenden a Trasmutar la pura Emotividad en Sentimientos Positivos. En Luz no se traban en los momentos Negativos; todo lo Perdonan, lo dejan Pasar como un Ciclo, y tratan de Volver a la Normalidad, a que las Aguas Reencuentren su Cauce Natural. Deben Manejar la Intuición para aprender a concretar sus Deseos, y a usar los Recuerdos como Evocaciones que traen una Enseñanza al Presente. En todos los casos es notable la Influencia del Agua para los portadores de este Sello, ya sea por la presencia Externa de Agua en los Paisajes o lugares que les toca vivir.', 'En Sombra, estado de Conciencia donde la Luz todavía no es Plena, Suelen verse como Manipuladores y Caprichosos, aferrados sus Emociones y Ahogados por la Carga de los Recuerdos. Desarrollan Testarudez y Rencor, son Ciclotímicos, y se Descargan con la Persona Menos Indicada, hasta que Empiezan a Comprender que el Agua, la Emocionalidad, no puede ser Retenida por más Tiempo. Si se dejan ganar por los Nervios y la Impaciencia, lloran innecesariamente ante la primera Contrariedad, con Mucha Agresión Contenida, por razones ajenas a la circunstancia Actual que detona la Descarga Emocional. Los Varones suelen usar su porción Femenina de manera Desequilibrada, hasta Asumir la Armonía Interna entre las polaridades naturales del Ser Humano.', 'Purificarte de la mera emocionalidad, que obnubila tu comprensión de las cosas.\nTrasmutar tus emociones en sentimientos positivos.\nDescubrir que la Divinidad tiene un poderoso aspecto Femenino.\nVivir con naturalidad los ciclos de inicio y fin de tu existencia.\nUsar tus recuerdos para darle sentido al Presente, no para quedarte en el pasado.\nHabitar en un lugar donde haya agua que fluya, en la casa o en el paisaje circundante.\nRevisar cuánto y de que calidad es el líquido que tu cuerpo incorpora.', 2, '\"Gota de Lluvia, La Semilla Cósmica en la Puerta de la Conciencia Despierta, Principio de Comunicación y Expansión de La Vida Superior.\"', 3, '\"A Través de la Puerta Cósmica la Semilla Creativa es Sembrada\"', 9, '\"El Modelo Morfogenético se Establece Como Principio de Comunicación.\"', 'la Luna Roja', 1, 'la tribu de la luna roja procesa la fuerza vital como agua universal', '\"la tribu de la luna roja procesa la fuerza vital como agua universal\"', 3, 'inicia el proceso de la elegancia', '\"la tribu de la luna roja inicia el proceso como poder del agua universal.\"', 'la Sangre Portal', 4, 2, 'culmina la sangre', '\"la tribu de la luna roja culmina la sangre como el poder del agua universal.\"', 10, '9,1,13,5,17', 19, 12, 1, '\"culmina el proceso galáctico\"', 01, '\"la tribu de la luna culmina el proceso galáctico como agua universal.\"', 5, 2, 060, 2, 105, 09),
 (10, 10, 11, 'el Perro', 'OC', 'ama el corazón', 'Blanco', 'dos barras', 'la Lealtad', 'Amar', 'amo', 'amando', 'el Corazón', 'Amor', 'Perro es el Sello central de los 20 y la Suma Energética y Matemática de todos ellos. Simboliza el Amor Universal, Vibración del Todo que se plantea a los humanos como aprendizaje Individual, el más Relevante. Representa Amor Incondicional, la Lealtad hacia uno mismo y hacia los demás, Los Verdaderos Sentimientos, la Domesticación de los Instintos o Desvíos del Ego, el Camino del Corazón, es un Trabajo personal que conecta a cada Individuo con su Prójimo y con el Todo. Un aprendizaje tal pasa indefectiblemente por la escuela del Amor condicionado, Egoico, Demandante y Emocional para purificarse poco a poco y lograr el Ideal pregonado por los grandes maestros y propuesto por todos los caminos de Luz.', 'Amor universal\naprendizaje del Amor incondicional, sentimientos purificados\nfuerza del corazón\ncerebro mamífero, domino del egoísmo\nbondad, lealtad, fidelidad, nobleza\nintegridad personal, honestidad\ncompañerismo, afectividad, dulzura\ntrabajo en equipo, servicialidad desinteresada\nguardián, guía desde el corazón, unificador\nfortalecedor, protector, defensor, valiente\nconvocador de grupos Kármicos, compañero de viajes espirituales\nsíntesis numérica de los 20 sellos.', ' Manipula el Sentir\nPosesivo\nManejador\nApartado\nCeloso\nFinge lo que Siente\nInseguro\nCínico\nInteresados\nCelosos\nAmor Egoico\nRabiosos\nInfieles\nBulling\nEgocentrico\nSolo piensa en sí mismo\nNo se pone en el otro lugar', 'Los portadores de este Sello son considerados Fieles y Bondadosos, Gentiles, Protectores, Conservadores de Afectos y Amistades, Incluso reconocidos como buenos Padres y Madres. Es común Declararlos Sinceros, Respetuosos, Serviciales, Bien Intencionados. Cuando logran verse Sentimentalmente Seguros de Sí Mismos, Comienzan a Manejar Adecuadamente el Amor a los Demás y la Confianza. Viven armoniosamente en familia, comprendiendo los espacios de otros sin invadirlos. Son Compañeros ideales porque trabajan muy bien en equipo, donde suelen funcionar como el Corazón. Desde la perspectiva espiritual de las almas en su recorrido kármico por las distintas experiencias, se dice que este “guardián de almas” convoca al grupo kármico, es decir, naturalmente va llamando y agrupando a almas afines que vienen a compartir un determinado aprendizaje. Un aprendizaje tal pasa indefectiblemente por la escuela del Amor condicionado, Egoico, Demandante y Emocional para purificarse poco a poco y lograr el Ideal pregonado por los grandes maestros y propuesto por todos los caminos de Luz.', 'En Sombra (Mientras el Aprendizaje no se ha completado para vibrar totalmente en Luz), deben revisar la Capacidad de Manipular desde los Sentimientos, la Actitud de Fingir Sufrimiento o manejar la vida de los demás en propio beneficio, Aprender de los Celos y la Posesividad Afectiva. Mientras están Inseguros de Sí Mismos, pueden cerrarse en la soledad, lejos del grupo, para “roer su propio hueso” o “ponerse rabiosos”. Su eventual Cinismo es otra Pauta para revisar el propio Corazón y el nivel de Amor hacia el Otro. Mientras Aprenden el Amor Incondicional en la escuela cotidiana del amor condicionado o egoico, Invaden Espacios Ajenos, Experimentan la Infelicidad, hacen de la Amistad y de las relaciones en general un espacio donde prima el intereses personal.', 'Aprender el Amor incondicional en la escuela cotidiana del amor con condiciones.\nRecordar que nunca es mucha la bondad que podamos brindar.\nRevisar las actitudes y manifestaciones que conforman tu compañerismo.\nDescubrir la riqueza de tu individualidad en el trabajo en equipo.\nPoner más dulzura en cada Gesto y en cada palabra.\nAsumirte en tu circulo más íntimo como encargado de reunir las almas afines.', 2, '\"Perro, Cerebro de Mamífero, Vida Emocional, Guía y Principio de la Lealtad, Fidelidad que da Fortaleza en el Viaje Espiritual.\"', 3, '\"A Través de la Lealtad y Fidelidad la semilla creativa es Guiada\"', 10, '\"El Modelo Morfogenético se Establece Como Principio Social.\"', 'el Perro Blanco', 2, 'procesa la muerte como corazón', '\"la tribu del perro blanco procesa la muerte como corazón\"', 3, 'refina el proceso del agua universal', '\"la tribu del perro blanco refina el proceso del agua universal como corazón.\"', 'la Verdad Polar', 5, 3, 'genera la verdad', '\"la tribu del perro blanco genera la verdad como el poder del corazón.\"', 09, '10,2,14,6,18', 20, 11, 2, '\"genera el proceso solar\"', 01, '\"la tribu del perro genera el proceso solar como corazón, poder alfa\"', 1, 1, 060, 1, 165, 10);
-INSERT INTO `hol_sel` (`ide`, `cod`, `ord`, `nom`, `nom_may`, `des`, `des_col`, `des_cod`, `des_car`, `des_acc`, `des_acc_per`, `des_acc_pal`, `des_pod`, `des_pod_tel`, `cit_des`, `cit_lis_pal`, `cit_lis_som`, `cit_por`, `cit_por_som`, `cit_por_rec`, `cic_ser`, `cic_ser_des`, `cic_luz`, `cic_luz_des`, `arm_tra`, `arm_tra_des`, `arm`, `arm_raz`, `arm_raz_fun`, `arm_raz_des`, `arm_cel`, `arm_cel_fun`, `arm_cel_des`, `cro`, `cro_fam`, `cro_ele`, `cro_ele_fun`, `cro_ele_des`, `par_ana`, `par_gui`, `par_ant`, `par_ocu`, `flu_res`, `flu_res_des`, `sol_pla`, `sol_pla_des`, `pla_cen`, `pla_hem`, `pla_hem_cod`, `pla_mer`, `pla_mer_cod`, `hum_mer`) VALUES
+INSERT INTO `hol-sel` (`ide`, `cod`, `ord`, `nom`, `nom_may`, `des`, `des_col`, `des_cod`, `des_car`, `des_acc`, `des_acc_per`, `des_acc_pal`, `des_pod`, `des_pod_tel`, `cit_des`, `cit_lis_pal`, `cit_lis_som`, `cit_por`, `cit_por_som`, `cit_por_rec`, `cic_ser`, `cic_ser_des`, `cic_luz`, `cic_luz_des`, `arm_tra`, `arm_tra_des`, `arm`, `arm_raz`, `arm_raz_fun`, `arm_raz_des`, `arm_cel`, `arm_cel_fun`, `arm_cel_des`, `cro`, `cro_fam`, `cro_ele`, `cro_ele_fun`, `cro_ele_des`, `par_ana`, `par_gui`, `par_ant`, `par_ocu`, `flu_res`, `flu_res_des`, `sol_pla`, `sol_pla_des`, `pla_cen`, `pla_hem`, `pla_hem_cod`, `pla_mer`, `pla_mer_cod`, `hum_mer`) VALUES
 (11, 11, 12, 'el Mono', 'CHUEN', 'juega con la magia', 'Azul', 'dos barras y un punto', 'la Ilusión', 'Jugar', 'juego', 'jugando', 'la Magia', 'Magia', 'Mono nos ayuda a conectarnos con nuestro Niño Interior, que tenemos que autosanar. Representa la Magia, el Juego, la Alegría, la Creatividad. Nos devuelve la Inocencia, para disfrutar la Vida. Enseña a no ser Estricto con uno mismo, a romper con los patrones de la Infancia. Como sabe que la realidad es ilusoria, el Mono ríe y no se deja Atar por Estructuras y Dogmas.', 'Niño divino, trasmutador de consciencia\ncreador de vida superior, punto de pasaje entre etapas evolutivas, factor psicológico del niño interior\nmaestría interior, romper estructuras, más allá de los dogmatismos\nlo extraordinario, capacidad artística, consciencia de la realidad como ilusión\nmente matemática, genialidad\nalegría, risa, humor, jovialidad\njuego, diversión\nmagia divina, creatividad, danza\ninocencia, picardía, gracia, agilidad, desenfado\ncarencia de pudor, espontaneidad, curiosidad\nmúsico, bailarín, actor, científico, matemático, bufón, imitador.', 'Mal Humor\nAburridos\nInsatisfecho\nSolemne\nIntolerante\nNegativos\nEstructurados\nInconstante\nAmargado\nPerezoso\nNo Disfruta\nDemandante\nIndolente que no siente\nFrustrado\nIrrespetuoso\nIluso\nno se Vale', 'Los portadores de este Sello son reconocidos por su buen humor y sociabilidad; se muestran amenos y divertidos, y viven intensamente como si cada día fuese el último. Están abiertos al Conocimiento, especialmente si acceden jugando. Se muestran Simples, Sencillos, Adaptables, al tiempo que no transigen con formas impuestas (aceptar el punto del otro que puede parecer en contra al propio). Encuentran el lado humorístico de las situaciones dramáticas y muestran la mezcla de picardía e inocencia propia de los niños. Su Inteligencia es la Matemática y su sensibilidad es la Artística. El punto de referencia, desde la infancia o fuera de ella, es la figura de la Madre que se internaliza y que sigue a lo largo de su vida con su juego de reflejos recíprocos, conformando lo que se da en llamar el Niño Interior. Enseña a no ser Estricto con uno mismo, a romper con los patrones de la Infancia. Como sabe que la realidad es ilusoria, el Mono ríe y no se deja Atar por Estructuras y Dogmas.', 'En Sombra, antes de lograr una conciencia plena de luz, la Desconexión con la natural alegría se manifiesta en eventual mal humor, negatividad, insatisfacción, inconstancia, y hasta aburrimiento. Las Estructuras aún no disueltas hacen parecer al Mono como muy solemnes, amargados, frustrados, incapaces de disfrutar la vida. En el otro Extremo, mientras no asumen cuán Ilusoria es la Realidad que los rodea, usan el desenfado o desinhibición para manifestarse indolentes (falto de voluntad), perezosos, excedidos en la Diversión, irrespetuosos. Su Niño Interior necesita llamar la atención y demandar ayuda, hasta lograr un equilibrio que viene por la vía de la autosanación.', 'Tratar de expandir tu natural alegría en cada aspecto de la vida.\nPoner en juego tu natural creatividad, en el arte o en la ciencia.\nSospechar que la realidad tiene Estructuras Internas que necesitan ser quebradas o renovadas.\nProcurar que tu Niño Interior este sano y armonioso.\nMovilizar las Sombras de tu entorno con tu desenfado y humor.\nComprender que la realidad es más ilusoria que lo que nos quieren hacer ver.\nUtilizar tu Ingenuidad y Pureza de niño para simplificar la comprensión de las cosas.', 2, '\"Mono, Artista, Bufón, Principio de la Co-Creación Inteligente de la Vida Superior.\"', 3, '\"A Través del Arte la Semilla Creativa es Dotada de Poder\"', 11, '\"El Modelo Morfogenético Emerge Como Visión y Como Fuerza Artística Dominante.\"', 'el Mono Azul', 3, 'procesa la realización como magia', '\"la tribu del mono azul procesa la realización como magia\"', 3, 'transforma el proceso del corazón', '\"la tribu del mono azul transforma el proceso del corazón en magia.\"', 'la Verdad Cardinal', 1, 3, 'transmite la verdad', '\"la tribu del mono azul transmite la verdad como el poder de la magia.\"', 08, '11,3,15,7,19', 01, 10, 2, '\"transmite el proceso solar\"', 02, '\"la tribu del mono transmite el proceso solar como magia\"', 2, 1, 030, 2, 150, 01),
 (12, 12, 13, 'el Humano', 'EB', 'influencia la libre voluntad', 'Amarillo', 'dos barras y dos puntos', 'la Sabiduría', 'Influenciar', 'influencio', 'influenciando', 'la Libre Voluntad', 'Libre Voluntad', 'Humano viene a resaltar el valor del libre albedrío o libre voluntad, la toma de conciencia de que todos somos parte de un todo. Simboliza el grial abierto a recibir la sabiduría desde lo Alto. Muestra el Ideal del Ser Humano llevado a su plenitud máxima de Madurez y Conciencia.', 'Libre albedrio, voluntad, libertad, capacidad de elegir\nplenitud del ser humano, madurez de la evolución humana\nsabiduría canalizada, receptividad\ncáliz receptivo, santo grial, vasija de gran poder\ncanalizador de la consciencia divina hacia la consciencia terrena\nantena de sintonías\nvivencia de la caducidad terrena\nconexión entre conciencia humana y planetaria\nel azar en la vida, la buena o mala suerte\nel trabajo, responsabilidad, sentido de justicia\nFactor social, trabajador arduo, cosechador\nafrontar las piedras del camino, el que (busca) supera las limitaciones humanas o de la materia, búsqueda del éxito.', 'Criticones\nCabeza Dura\nExtremista\nImpone lo suyo\nNo Resuelve\nDiscrimina\nCaprichosos\nDefiende lo imposible\nDice que hacer\nDudosos\nPesimista\nNo Trabaja\nFracasado\nSolo sabe mandar\nProblemático y Mal Pensado', 'Los portadores de este Sello manifiestan esta característica tan propia del ser humano, la libre Voluntad, a través de la actitud con la cual tratan de evaluar siempre las cosas, pesando el pro y el contra para realizar sus elecciones correctamente. En Luz suelen mostrar Respeto por la Voluntad de los demás, de la opinión ajena, sin crítica ni competitividad, pues han trabajado en sí la valoración de la propia libertad de pensamiento, elección y expresión. En la misma línea se muestran concientes de sus limitaciones personales, que tratarán de expandir a un punto de no limitación. La Prudencia los lleva a ser reservados pero sin perder optimismo. Su sentido humanitario, su actitud de militantes de la vida los embarca tarde o temprano en Aventuras, Trabajos y Amistades Nuevos. En general se los considera Inteligentes, capaces, responsables, objetivos, rápidos en las soluciones. Tienen un profundo sentido de la justicia u la responsabilidad del trabajo a realizar. Responden a la idea de que el trabajo a nivel planetario es la tarea por la cual los humanos vamos completando la Creación.', 'En Sombra, mientras buscan la plenitud en Luz, usan su libre albedrio para el juicio, la crítica y la Discriminación, y van a los extremos por defender lo indefendible, pues aún no han aprendido a superar las dualidades. El Camino que lleva a la Asunción de su sabiduría pasa por la cerrazón de mente, el capricho, la imposición de Ideas y Elecciones. En la medida en que fracasan en el vaivén de sus decisiones, pueden tomarse Pesimistas o Mal Pensados. Después de tomar decisiones viven en la duda de si hicieron bien, si no hubiese sido mejor haber tomado los caminos descartados en la elección, hasta que se les revela que ellos mismos son la solución a toda dualidad. Mientras no Resuelven la Valoración del trabajo como dignificación de la presencia humana en el planeta, se resisten respecto de esta actividad humana y entran en conflictos en su mundo laboral.', 'Entender que no hay libertad posible sin una conciencia que conozca la verdad.\nUsar con más sabiduría tu libre albedrío.\nHacerte Cargo de las decisiones que has tomado con Responsabilidad.\nBuscar la Plenitud Humana a la que se está llamando.\nTomar conciencia de que estamos todos tejidos en una misma red: la humanidad.\nValorar la dignidad de cualquier trabajo como modo de comprender la Creación.\nPoner en juego tu íntimo sentido de Justicia', 2, '\"el Ser Humano como Recipiente en el que Penetra la Mente Superior.\"', 3, '\"El Poder Creativo Penetra haciéndose completamente Humano\"', 12, '\"El Modelo Morfogenético es Experimentado Como la Naturaleza Humana Inevitable.\"', 'el Humano Amarillo', 4, 'procesa la elegancia como libre voluntad', '\"la tribu del humano amarillo procesa la elegancia como libre voluntad\"', 3, 'madura el proceso de la magia', '\"la tribu del humano amarillo madura el proceso de la magia como libre voluntad.\"', 'la Verdad Central', 2, 3, 'da energía a la verdad', '\"la tribu del humano amarillo da energía a la verdad como poder de libre voluntad\"', 07, '12,4,16,8,20', 02, 09, 2, '\"da energía al proceso solar\"', 03, '\"la tribu del humano da energía al proceso solar como libre voluntad\"', 3, 3, 000, 2, 105, 02),
 (13, 13, 14, 'el Caminante del Cielo', 'BEN', 'explora el espacio', 'Rojo', 'dos barras y tres puntos', 'la Vigilancia', 'Explorar', 'exploro', 'explorando', 'el Espacio', 'Profecía', 'Caminante del Cielo señala el equilibrio entre materia y espíritu, donde se comprende que todo es Energía y que tal diferencia es solo una cuestión de percepción. Es la Caña que está enraizada en tierra y que se eleva vertical hacia el cielo, como puente entre ambas dimensiones, y hueca para llenarse de conocimientos. Y una vez hallada la información en niveles superiores, a la manera de un Ángel Mensajero para compartirla con los demás.', 'Conexión Espiritual, (búsqueda de) equilibrio entre cielo y tierra\nintegración de materia y espíritu, pies en la tierra y mirada en el cielo\npuente entre ambos mundos, pilar de cielo y tierra\nexploración\ncaña vacía para llenarse de conocimientos, crecimiento vertical\nmovimiento en búsqueda de información\nmensajero del cielo, ángel que baja a tierra\nviajero del espacio y el tiempo\nla eterna búsqueda\ncomienzo de actividades múltiples, actividades simultaneas que suelen no completarse\ninquietud por principios sociales, experto popular\npreocupación por carencias materiales\nidealización, aventuras, aventurero.', 'Aferrado\nNo se Concentra\nSin Metas\nMaterialista\nSuperficial\nAnclado al Pasado\nAtado a Extremos\nInconstante\nIncompleto\nDesconectado\nPerdido en misticismos\nAferrado información Librito\nDespreocupado', 'Los Portadores de este Sello son Eternos Buscadores, Inquietos, Ávidos de querer saber cosas. Comienzan muchos caminos, que suelen recorrer y profundizar hasta el Fin, o bien que dejan como puerta abierta para futuras exploraciones propias o de los demás. En Luz, Valorada la fuerza del conocimiento y su Capacidad de transformar la conciencia personal, son capaces de desechar cualquier tipo de superficialidad. Se Conectan con todo el Mundo y así surgen posibilidades y oportunidades (en trabajos, amistades, etc.). Aprenden también que nadie es Profeta en su Tierra y que hay que escuchar la voz Interior. Tarde o Temprano Comprenden que solo algo hueco o vacío tiene la capacidad de llenarse con información nueva.', 'En Sombra, mientras no llegan a la plenitud en Luz, se quedan explorando y navegando sobre el pasado, la infancia o vidas anteriores. Hasta asumir una meta clara, rara vez terminan lo que empiezan, todo lo cual es aprendizaje de la constancia. La Superficialidad y la falta de concentración son atributos del Explorador aún novato. El equilibrio ideal pasa primero por la oscilación entre los extremos: o se preocupan demasiado por las problemáticas económicas y los desafíos de la vida cotidiana, alejados de su condición espiritual; o bien se pierden en misticismos y por dedicarse a temáticas más elevadas se desconectan de sus obligaciones y necesidades personales, hasta que chocan consigo mismos y deben regresar bruscamente a la cotidianidad. Hasta que comprenden la necesidad de vaciarse para comenzar a llenar la medida de la propia conciencia, ponen la información enciclopédica a la que han accedido como un obstáculo para lo nuevo que todavía tienen que aprender.', 'Buscar en todo el Equilibrio Necesario.\nEntender que Materia y Espíritu son manifestaciones de lo mismo: Energía.\nMantener los pies en la tierra, y la mirada en el cielo.\nPropiciar en tu interior el vacío, necesario para poder llenarte de nuevos conocimientos.\nFomentar esa actitud innata de querer explorar todo.\nAsumirte como un mensajero que viene a traer información celestial para los terráqueos.\nConjugar tu respetable preocupación material con tu sincera búsqueda de lo espiritual.', 2, '\"Caminante de los Cielos, los Pilares de Cielos y de la Tierra, Aspiración de Unir el Cielo y la Tierra, Principio del Crecimiento de la Mente Superior, Caña.\"', 4, '\"Descenso de los Caminantes Celestes\"', 13, '\"Plena Maduración del Modelo Morfogenético Cíclico.\"', 'el Caminante del Cielo Rojo', 1, 'expresa el agua universal como espacio', '\"la tribu del caminante del cielo rojo expresa el agua universal como espacio\"', 4, 'inicia la salida de la libre voluntad', '\"la tribu del caminante del cielo rojo inicia la salida como poder del espacio.\"', 'la Verdad Señal', 3, 3, 'protege la verdad', '\"la tribu del caminante del cielo rojo protege la verdad como el poder del espacio.\"', 06, '13,5,17,9,1', 03, 08, 2, '\"protege la salida solar\"', 04, '\"la tribu del caminante del ciclo protege la salida solar como espacio\"', 4, 2, 060, 2, 060, 03),
@@ -5147,10 +5147,10 @@ INSERT INTO `hol_sel` (`ide`, `cod`, `ord`, `nom`, `nom_may`, `des`, `des_col`, 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_sel_arm_cel`
+-- Estructura de tabla para la tabla `hol-sel_arm_cel`
 --
 
-CREATE TABLE `hol_sel_arm_cel` (
+CREATE TABLE `hol-sel_arm_cel` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Célula del Tiempo',
   `nom` varchar(10) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `des` varchar(150) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Descripción del Encantamiento',
@@ -5160,10 +5160,10 @@ CREATE TABLE `hol_sel_arm_cel` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Célula del Tiempo';
 
 --
--- Volcado de datos para la tabla `hol_sel_arm_cel`
+-- Volcado de datos para la tabla `hol-sel_arm_cel`
 --
 
-INSERT INTO `hol_sel_arm_cel` (`ide`, `nom`, `des`, `des_fun`, `des_pod`, `sel`) VALUES
+INSERT INTO `hol-sel_arm_cel` (`ide`, `nom`, `des`, `des_fun`, `des_pod`, `sel`) VALUES
 (1, 'la Entrada', '\"El fuego informa la armonía de entrada\"', 'informar', 'el florecimiento', '01, 02, 03, 04'),
 (2, 'el Almacén', '\"La sangre recuerda la armonía del almacén\"', 'recordar', 'la elegancia', '05, 06, 07, 08'),
 (3, 'el Proceso', '\"La sangre formula la verdad como armonía del proceso\"', 'formular', 'la libre voluntad', '09, 10, 11, 12'),
@@ -5173,10 +5173,10 @@ INSERT INTO `hol_sel_arm_cel` (`ide`, `nom`, `des`, `des_fun`, `des_pod`, `sel`)
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_sel_arm_raz`
+-- Estructura de tabla para la tabla `hol-sel_arm_raz`
 --
 
-CREATE TABLE `hol_sel_arm_raz` (
+CREATE TABLE `hol-sel_arm_raz` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Raza Cósmica',
   `nom` varchar(15) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `des` varchar(150) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Descripción',
@@ -5184,10 +5184,10 @@ CREATE TABLE `hol_sel_arm_raz` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Raza Raíz Cósmica';
 
 --
--- Volcado de datos para la tabla `hol_sel_arm_raz`
+-- Volcado de datos para la tabla `hol-sel_arm_raz`
 --
 
-INSERT INTO `hol_sel_arm_raz` (`ide`, `nom`, `des`, `sel`) VALUES
+INSERT INTO `hol-sel_arm_raz` (`ide`, `nom`, `des`, `sel`) VALUES
 (1, 'Roja', 'Inicia desde el Este al Amanecer', '01, 05, 09, 13, 17'),
 (2, 'Blanca', 'Refina desde el Norte al Mediodía', '02, 06, 10, 14, 18'),
 (3, 'Azul', 'Transforma desde el Oeste al Atardecer', '03, 07, 11, 15, 19'),
@@ -5196,10 +5196,10 @@ INSERT INTO `hol_sel_arm_raz` (`ide`, `nom`, `des`, `sel`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_sel_cic_dir`
+-- Estructura de tabla para la tabla `hol-sel_cic_dir`
 --
 
-CREATE TABLE `hol_sel_cic_dir` (
+CREATE TABLE `hol-sel_cic_dir` (
   `ide` smallint(1) UNSIGNED NOT NULL COMMENT 'Dirección',
   `nom` varchar(15) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `des` varchar(150) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Descripción posicional-cíclica',
@@ -5207,10 +5207,10 @@ CREATE TABLE `hol_sel_cic_dir` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Dirección';
 
 --
--- Volcado de datos para la tabla `hol_sel_cic_dir`
+-- Volcado de datos para la tabla `hol-sel_cic_dir`
 --
 
-INSERT INTO `hol_sel_cic_dir` (`ide`, `nom`, `des`, `sel`) VALUES
+INSERT INTO `hol-sel_cic_dir` (`ide`, `nom`, `des`, `sel`) VALUES
 (1, 'el Oriente', '\"Lugar de Luz y Generación.\"', '01, 05, 09, 13, 17'),
 (2, 'el Norte', '\"Lugar de Sabiduría y Purificación.\"', '02, 06, 10, 14, 18'),
 (3, 'el Occidente', '\"Lugar de Muerte y Transformación.\"', '03, 07, 11, 15, 19'),
@@ -5219,10 +5219,10 @@ INSERT INTO `hol_sel_cic_dir` (`ide`, `nom`, `des`, `sel`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_sel_cic_luz`
+-- Estructura de tabla para la tabla `hol-sel_cic_luz`
 --
 
-CREATE TABLE `hol_sel_cic_luz` (
+CREATE TABLE `hol-sel_cic_luz` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Familia Cíclica',
   `nom` varchar(15) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `des` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Descripción',
@@ -5230,10 +5230,10 @@ CREATE TABLE `hol_sel_cic_luz` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Familia Cíclica de la Luz';
 
 --
--- Volcado de datos para la tabla `hol_sel_cic_luz`
+-- Volcado de datos para la tabla `hol-sel_cic_luz`
 --
 
-INSERT INTO `hol_sel_cic_luz` (`ide`, `nom`, `des`, `sel`) VALUES
+INSERT INTO `hol-sel_cic_luz` (`ide`, `nom`, `des`, `sel`) VALUES
 (1, 'del Oriente', '\"Origen y Generación de la Luz\"', '01, 02, 03, 04'),
 (2, 'del Norte', '\"Sabiduría y Purificación de la Luz\"', '05, 06, 07, 08'),
 (3, 'del Oeste', '\"Muerte y Transformación de la Luz\"', '09, 10, 11, 12'),
@@ -5243,10 +5243,10 @@ INSERT INTO `hol_sel_cic_luz` (`ide`, `nom`, `des`, `sel`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_sel_cic_ser`
+-- Estructura de tabla para la tabla `hol-sel_cic_ser`
 --
 
-CREATE TABLE `hol_sel_cic_ser` (
+CREATE TABLE `hol-sel_cic_ser` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Etapa',
   `nom` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `des` varchar(60) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Descripción',
@@ -5254,10 +5254,10 @@ CREATE TABLE `hol_sel_cic_ser` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Desarrollo del Ser';
 
 --
--- Volcado de datos para la tabla `hol_sel_cic_ser`
+-- Volcado de datos para la tabla `hol-sel_cic_ser`
 --
 
-INSERT INTO `hol_sel_cic_ser` (`ide`, `nom`, `des`, `sel`) VALUES
+INSERT INTO `hol-sel_cic_ser` (`ide`, `nom`, `des`, `sel`) VALUES
 (1, 'el Ser Primario', '\"Cuerpo inferior o ser físico\"', '01, 02, 03, 04, 05, 06, 07'),
 (2, 'el Ser Superior', '\"1° etapa del cuerpo mental, generativa\"', '08, 09, 10, 11, 12, 13, 14'),
 (3, 'el YO Superior', '\"2° etapa del cuerpo mental, de culminación\"', '15, 16, 17, 18, 19, 20');
@@ -5265,10 +5265,10 @@ INSERT INTO `hol_sel_cic_ser` (`ide`, `nom`, `des`, `sel`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_sel_cod`
+-- Estructura de tabla para la tabla `hol-sel_cod`
 --
 
-CREATE TABLE `hol_sel_cod` (
+CREATE TABLE `hol-sel_cod` (
   `ide` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Ordenamiento 0-19',
   `ord` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Orden'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Código 0-19';
@@ -5276,10 +5276,10 @@ CREATE TABLE `hol_sel_cod` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_sel_cro_ele`
+-- Estructura de tabla para la tabla `hol-sel_cro_ele`
 --
 
-CREATE TABLE `hol_sel_cro_ele` (
+CREATE TABLE `hol-sel_cro_ele` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Elemento Galáctico',
   `nom` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `des` tinytext COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Lectura del Encantamiento',
@@ -5295,10 +5295,10 @@ CREATE TABLE `hol_sel_cro_ele` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Clan del Elemento Cromático';
 
 --
--- Volcado de datos para la tabla `hol_sel_cro_ele`
+-- Volcado de datos para la tabla `hol-sel_cro_ele`
 --
 
-INSERT INTO `hol_sel_cro_ele` (`ide`, `nom`, `des`, `des_ini`, `des_col`, `des_men`, `sel`, `sel_ini`, `sel_fin`, `arm_cel`, `flu_res`, `hum_ext`) VALUES
+INSERT INTO `hol-sel_cro_ele` (`ide`, `nom`, `des`, `des_ini`, `des_col`, `des_men`, `sel`, `sel_ini`, `sel_fin`, `arm_cel`, `flu_res`, `hum_ext`) VALUES
 (1, 'el Fuego', '\"A través del poder del florecer el fuego se convierte en sangre\"', 'El Fuego auto-genera', 'amarillo', 'Mente Luminosa y Estelaridad', '20, 01, 02, 03, 04', 20, 04, '5, 1', 1, 1),
 (2, 'la Sangre', '\"A través del poder del agua universal, la sangre se convierte en verdad\"', NULL, 'roja', 'Sistema Autónomo e Instinto', '05, 06, 07, 08, 09', 05, 09, '2', 1, 2),
 (3, 'la Verdad', '\"A través del poder del agua universal, la sangre se convierte en verdad\"', NULL, 'blanca', 'Mente Emocional y  Conceptual', '10, 11, 12, 13, 14', 10, 14, '3, 4', 2, 3),
@@ -5307,10 +5307,10 @@ INSERT INTO `hol_sel_cro_ele` (`ide`, `nom`, `des`, `des_ini`, `des_col`, `des_m
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_sel_cro_fam`
+-- Estructura de tabla para la tabla `hol-sel_cro_fam`
 --
 
-CREATE TABLE `hol_sel_cro_fam` (
+CREATE TABLE `hol-sel_cro_fam` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Familia Terrestre',
   `nom` varchar(10) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `des` tinytext COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Descripción en el Encantamiento',
@@ -5324,10 +5324,10 @@ CREATE TABLE `hol_sel_cro_fam` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Familia Terrestre';
 
 --
--- Volcado de datos para la tabla `hol_sel_cro_fam`
+-- Volcado de datos para la tabla `hol-sel_cro_fam`
 --
 
-INSERT INTO `hol_sel_cro_fam` (`ide`, `nom`, `des`, `des_mis`, `des_rol`, `des_acc`, `sel`, `pla_cen`, `hum_cen`, `hum_ded`) VALUES
+INSERT INTO `hol-sel_cro_fam` (`ide`, `nom`, `des`, `des_mis`, `des_rol`, `des_acc`, `sel`, `pla_cen`, `hum_cen`, `hum_ded`) VALUES
 (1, 'Cardinal', '\"Los regentes del plano cósmico, establecen el génesis codificando el comienzo de los castillos\"', 'Regentes del Plano Cósmico', 'Establecer el Génesis del Encantamiento del Sueño', 'Codifican el comienzo de los Castillos', '01, 06, 11, 16', 2, 2, 2),
 (2, 'Central', '\"Los canales entre cielo y tierra, cavan los túneles y activan el cambio de polaridad codificando la información solar\"', 'Canales entre el Cielo y la Tierra', 'Minar los Túneles y Activar el cambio de Polaridad', 'Codifican la información Solar', '02, 07, 12, 17', 3, 3, 3),
 (3, 'Señal', '\"Los agentes del proceso cósmico, descifran el misterio codificando los días fuera del tiempo\"', 'Agentes del Proceso Cósmico', 'Descifrar y Develar el Misterio', 'Codifican los días Fuera del Tiempo (25 de junio)', '03, 08, 13, 18', 4, 4, 4),
@@ -5337,10 +5337,10 @@ INSERT INTO `hol_sel_cro_fam` (`ide`, `nom`, `des`, `des_mis`, `des_rol`, `des_a
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_sel_par`
+-- Estructura de tabla para la tabla `hol-sel_par`
 --
 
-CREATE TABLE `hol_sel_par` (
+CREATE TABLE `hol-sel_par` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Pareja del Oráculo',
   `cod` char(3) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Código',
   `nom` varchar(15) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
@@ -5354,10 +5354,10 @@ CREATE TABLE `hol_sel_par` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Patrón del Oráculo';
 
 --
--- Volcado de datos para la tabla `hol_sel_par`
+-- Volcado de datos para la tabla `hol-sel_par`
 --
 
-INSERT INTO `hol_sel_par` (`ide`, `cod`, `nom`, `des`, `lec`, `mis`, `pod`, `acc`, `fun`, `dia`) VALUES
+INSERT INTO `hol-sel_par` (`ide`, `cod`, `nom`, `des`, `lec`, `mis`, `pod`, `acc`, `fun`, `dia`) VALUES
 (1, 'ana', 'Análogo', '\"El poder de Mentes Gemelas de la Pareja Planetaria solar-galáctica.\"', '\"Van juntos y dan refuerzo.\"', 'refuerza', 'inicia', 'informando', 'transmite', 'de 00:00:00 HS a 06:00:00 HS'),
 (2, 'gui', 'Guía', '\"El poder del Resultado de la Quinta Fuerza.\"', '\"Representan el resultado favorecido por la dominación cromática de un color.\"', 'orienta', 'refina', 'recordando', 'da energía', 'de 06:00:00 HS a 12:00:00 HS'),
 (3, 'ant', 'Antípoda', '\"El poder del Desafío fortalece la Reconstrucción de Memoria.\"', '\"Se oponen y desafían para fortalecer la memoria del génesis.\"', 'desafía', 'transforma', 'formulando', 'protege', 'de 12:00:00 HS a 18:00:00  HS'),
@@ -5367,20 +5367,20 @@ INSERT INTO `hol_sel_par` (`ide`, `cod`, `nom`, `des`, `lec`, `mis`, `pod`, `acc
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_sel_par_ana`
+-- Estructura de tabla para la tabla `hol-sel_par_ana`
 --
 
-CREATE TABLE `hol_sel_par_ana` (
+CREATE TABLE `hol-sel_par_ana` (
   `ide` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Pareja Análoga',
   `ini` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Sello 1',
   `fin` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Sello 2'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Pareja de Sellos Análogos';
 
 --
--- Volcado de datos para la tabla `hol_sel_par_ana`
+-- Volcado de datos para la tabla `hol-sel_par_ana`
 --
 
-INSERT INTO `hol_sel_par_ana` (`ide`, `ini`, `fin`) VALUES
+INSERT INTO `hol-sel_par_ana` (`ide`, `ini`, `fin`) VALUES
 (01, 20, 19),
 (02, 01, 18),
 (03, 02, 17),
@@ -5395,20 +5395,20 @@ INSERT INTO `hol_sel_par_ana` (`ide`, `ini`, `fin`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_sel_par_ant`
+-- Estructura de tabla para la tabla `hol-sel_par_ant`
 --
 
-CREATE TABLE `hol_sel_par_ant` (
+CREATE TABLE `hol-sel_par_ant` (
   `ide` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Pareja Antípoda',
   `ini` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Sello 1',
   `fin` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Sello 2'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Pareja de Sellos Antípodas';
 
 --
--- Volcado de datos para la tabla `hol_sel_par_ant`
+-- Volcado de datos para la tabla `hol-sel_par_ant`
 --
 
-INSERT INTO `hol_sel_par_ant` (`ide`, `ini`, `fin`) VALUES
+INSERT INTO `hol-sel_par_ant` (`ide`, `ini`, `fin`) VALUES
 (01, 01, 11),
 (02, 02, 12),
 (03, 03, 13),
@@ -5423,20 +5423,20 @@ INSERT INTO `hol_sel_par_ant` (`ide`, `ini`, `fin`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_sel_par_ocu`
+-- Estructura de tabla para la tabla `hol-sel_par_ocu`
 --
 
-CREATE TABLE `hol_sel_par_ocu` (
+CREATE TABLE `hol-sel_par_ocu` (
   `ide` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Pareja Oculta',
   `ini` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Sello 1',
   `fin` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Sello 2'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Pareja de Sellos Ocultos';
 
 --
--- Volcado de datos para la tabla `hol_sel_par_ocu`
+-- Volcado de datos para la tabla `hol-sel_par_ocu`
 --
 
-INSERT INTO `hol_sel_par_ocu` (`ide`, `ini`, `fin`) VALUES
+INSERT INTO `hol-sel_par_ocu` (`ide`, `ini`, `fin`) VALUES
 (01, 01, 20),
 (02, 02, 19),
 (03, 03, 18),
@@ -5451,10 +5451,10 @@ INSERT INTO `hol_sel_par_ocu` (`ide`, `ini`, `fin`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_ton`
+-- Estructura de tabla para la tabla `hol-ton`
 --
 
-CREATE TABLE `hol_ton` (
+CREATE TABLE `hol-ton` (
   `ide` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Tono',
   `nom` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `nom_may` varchar(10) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre Maya',
@@ -5483,10 +5483,10 @@ CREATE TABLE `hol_ton` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Tono Galáctico';
 
 --
--- Volcado de datos para la tabla `hol_ton`
+-- Volcado de datos para la tabla `hol-ton`
 --
 
-INSERT INTO `hol_ton` (`ide`, `nom`, `nom_may`, `des`, `des_car`, `des_pod`, `des_pod_lec`, `des_acc`, `des_acc_lec`, `cit_med`, `cit_pre`, `cit_por`, `gal`, `ond`, `ond_enc`, `ond_nom`, `ond_pos`, `ond_pod`, `ond_man`, `dim`, `mat`, `sim`, `hum_lad`, `hum_art`, `hum_sen`) VALUES
+INSERT INTO `hol-ton` (`ide`, `nom`, `nom_may`, `des`, `des_car`, `des_pod`, `des_pod_lec`, `des_acc`, `des_acc_lec`, `cit_med`, `cit_pre`, `cit_por`, `gal`, `ond`, `ond_enc`, `ond_nom`, `ond_pos`, `ond_pod`, `ond_man`, `dim`, `mat`, `sim`, `hum_lad`, `hum_art`, `hum_sen`) VALUES
 (01, 'Magnético', 'HUN', 'Unifica el Propósito', 'el Propósito', 'Unificar', 'unifico', 'Atraer', 'atrayendo', 'Uno - Yoga de la Unidad: La Fuerza Primordial del Ser Cósmico, Galactatrón, El Iniciador - Dragón Rojo (Polo Norte - Polo Marka) - Controla el poder del ser cósmico y desciende como conocimiento cósmico. Abre la Puerta de Luz Universal a la Corte del Avatar. (108) Dragón - La Fuerza Primordial:  Ahora siente en el vacío de cero, o espacio vacío, que el uno es el primer pensamiento que surge. Siente la sensación de unicidad. El uno surge como la primera separación de luz o espacio. Nada existe sin el uno. Todo tiene un punto central alrededor del cual girar - este es el poder del uno. El uno da origen a todos los demás números. El uno está en todo.   ', '¿Cómo puedo identificar mis propósitos? ¿Cómo Trabajo los inicios de mis procesos? ¿Cómo Encuentro Unidad en la Multiplicidad de la vida?', ' El que nace con este tono está llamado a que responda a los más profundo y verdadero de su vibración energética, como si necesitara despertar a una vida nueva, dónde comprende que en él se encuentra ya no solo el inicio sino también, y simultáneamente, el final de cualquier proceso. \r\nSu misión es la del iniciador, la del que abre el camino para sí y para otros. Si en su conciencia personal todavía se percibe como solo, o separado de la Esencia Divina, su trabajo consiste en reconocer la unidad profunda de todas las cosas y centrarse en su corazón, donde ya está la sabiduría necesaria para ese fin. \r\nEn su función, el uno establece el propósito u objetivo para cualquier acción. Es un pequeño escalón, un pequeño gran paso, que quizás todavía no determine como seguir adelante, pero ya está tomando conciencia de que hay algún sentido, algún para qué que moviliza de la quietud inicial al movimiento inmediato posterior. \r\nEn el primer escalón está contenida toda la escalera, por eso su energía y su propuesta e la de todos los demás, que la expanden. \r\n', 'la Unidad', 1, 0, 'Pórtico Magnético', 'Punto de Entrada', 'Identifica el propósito', '¿Cuál es mi meta?', 4, 1, 1, 1, 1, 1),
 (02, 'Lunar', 'KA', 'Polariza el Desafío', 'el Desafío', 'Polarizar', 'polarizo', 'Estabilizar', 'estabilizando', 'Dos - Yoga de la Polaridad: La Suma Sacerdotisa del Espíritu Cósmico, Urania, El Aliento del Espíritu - Viento Blanco (Polo Sur - Polo Darka) - Controla el poder del aliento cósmico y asciende como profecía. Abre la Puerta de Luz Universal a la Corte del Profeta. (144) Viento - La Suma Sacerdotisa: Inhala, exhala.  Siente el dos. Día y noche. Siente el dos. Masculino y femenino. Siente el dos. Polo Norte y Polo Sur. Siente el dos. Dos es la lente a través de la cual emerge la unidad y equilibra con lo infinito. Dos es la puerta entre el uno y lo infinito. Uno y dos son los padres de todos los números. Todos los números pares son divisibles por dos. La separación de la naturaleza tiene su raíz en el dos. Todos nuestros procesos de pensamiento siguen la polaridad de la naturaleza. La vida está creada a partir del dos. En vigesimal el uno se divide en dos puntos, como una división biológica. Cada forma de vida conlleva la dualidad del dos. Dos es la fuerza Lunar en el Yoga de Polaridad.\"   ', '¿Cómo identifico los obstáculos o mis desafíos? ¿Cómo trabajo y supero las dualidades de la vida? ¿Cómo me movilizo luego de comenzar un proceso? ', 'El portador de este tono debe revisar sus conflictos personales, y esa sensación ilusoria de sentirse separado del Todo, simplemente porque se pone a creer demasiado en la dualidad de las cosas. \r\nDebe observar aquello que le atrae y lo que le produce rechazo, hallar una conexión entre los extremos, apreciar lo que cada aspecto de la polaridad puede enseñarle. \r\nUna de las manifestaciones más claras de esta dualidad tiene que ver con lo masculino y femenino, que debe examinarse en el interior de la misma persona, incluso en los distintos aspectos de la divinidad; desde allí construye su propia identidad y da sentido a los flujos energéticos a su alrededor a su alrededor, los vaivenes del destino.\r\n\r\n', 'la Polaridad', 1, 1, 'Cámara Lunar', '1° Cámara', 'Identifica el desafío', '¿Cuáles son los obstáculos?', 1, 2, 2, 1, 2, 2),
 (03, 'Eléctrico', 'OX', 'Activa el Servicio', 'el Servicio', 'Activar', 'activo', 'Unir', 'vinculando', 'Tres - Yoga del Servicio: El Soñador de la Larga Noche del Sueño Cósmico - Noche Azul (extremidad izquierda centrífuga) - Controla el poder del sueño para llegar a ser abundancia de manifestación. Abre la Puerta de Luz Universal a la Corte del Compasivo. (126) Noche - El Soñador: Ahora siente que el dos da paso al tres. El tres une y activa creando el dinamismo. Todo lo que es dinámico, tiene tres partes. El tres es el principio vinculante. Principio, Medio y Final. Pasado, Futuro y Presente. Hombre, Mujer y Niño. Siente la estructura del tres en tu cuerpo como tres partes. El triangular de dos es tres. Tres es también el número del servicio que va más allá. El servicio es siempre un principio transcendental. Tres es la fuerza Eléctrica en el Yoga de Activación.  ', '¿Qué servicios o permisos debo darme? ¿Cómo puedo brindar un mejor servicio a los demás? ¿Cómo conecto una realidad con otra? ', 'Este tono sugiere al que lo lleva que es hora de salir de estancamientos en el flujo de la vida. \r\nDebe convertirse en el tercer punto entre las polaridades y generar una realidad nueva unificadora, que integre o redescubra los los aspectos de la existencia que parecían perdidos o desconectados de la verdad. \r\nLas personas portadoras de este tono deben comprender que es eso que se llama \"servicio\". Necesitan plantearse qué pueden permitirse a si mismas, para tener las manos llenas a la hora de ofrecer su servicio a los demás. Una vez que resuelven esto, que comprenden que deben primero darse un servicio a sí mismas (uno es el primer prójimo), nunca se sienten vacías por estar diciendo siempre que sí, por estar corriendo primero para socorrer a las necesidades ajenas, muchas veces sin retribución por su valioso servicio. \r\nPoseen una amplia capacidad para conectar o vincular personas; y también la de ayudar a las personas a superar sus diferencias.\r\n', 'el Ritmo', 1, 1, 'Cámara Eléctrica', '2° Cámara', 'Identifica el servicio', '¿Cuál es el servicio?', 2, 3, 3, 1, 3, 3),
@@ -5504,10 +5504,10 @@ INSERT INTO `hol_ton` (`ide`, `nom`, `nom_may`, `des`, `des_car`, `des_pod`, `de
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_ton_dim`
+-- Estructura de tabla para la tabla `hol-ton_dim`
 --
 
-CREATE TABLE `hol_ton_dim` (
+CREATE TABLE `hol-ton_dim` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Pulsar Dimensional',
   `nom` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `des` varchar(200) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Descripción',
@@ -5519,10 +5519,10 @@ CREATE TABLE `hol_ton_dim` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Púlsar Dimensional';
 
 --
--- Volcado de datos para la tabla `hol_ton_dim`
+-- Volcado de datos para la tabla `hol-ton_dim`
 --
 
-INSERT INTO `hol_ton_dim` (`ide`, `nom`, `des`, `des_dim`, `des_cam`, `des_fun`, `des_ond`, `ton`) VALUES
+INSERT INTO `hol-ton_dim` (`ide`, `nom`, `des`, `des_dim`, `des_cam`, `des_fun`, `des_ond`, `ton`) VALUES
 (1, 'la Vida', '\"Abarca el reino entero de los cambios biogeoquímicos, que pueden ser estudiados o comprendidos hoy como el dominio de la geobiología.\"', 'Primera', 'Bioquímico', 'Identificar y cumplir el desafío', 'Cámaras Lunar, Rítmica y Planetaria', '02, 06, 10'),
 (2, 'el Sentir', '\"Abarca el reino psicofísico entero de umbrales electrosensoriales, que pueden ser estudiados o comprendidos hoy como el dominio del arte y la física.\"', 'Segunda', 'Electrofísico', 'Identificar y cumplir el servicio', 'Cámaras Eléctrica, Resonante y Espectral', '03, 07, 11'),
 (3, 'la Mente', '\"Abarca el dominio del desarrollo mental y social, que puede ser estudiado o comprendido hoy como dominio del orden cósmico cooperativo.\"', 'Tercera', 'Social', 'Identificar y cumplir la forma (del propósito, del desafío y del servicio)', 'Cámaras Auto-existente, Galáctica y Cristal', '04, 08, 12'),
@@ -5531,10 +5531,10 @@ INSERT INTO `hol_ton_dim` (`ide`, `nom`, `des`, `des_dim`, `des_cam`, `des_fun`,
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_ton_mat`
+-- Estructura de tabla para la tabla `hol-ton_mat`
 --
 
-CREATE TABLE `hol_ton_mat` (
+CREATE TABLE `hol-ton_mat` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Pulsar Matiz',
   `nom` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `des` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Descripción',
@@ -5545,10 +5545,10 @@ CREATE TABLE `hol_ton_mat` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Púlsar Matiz';
 
 --
--- Volcado de datos para la tabla `hol_ton_mat`
+-- Volcado de datos para la tabla `hol-ton_mat`
 --
 
-INSERT INTO `hol_ton_mat` (`ide`, `nom`, `des`, `des_cod`, `des_dim`, `des_ond`, `ton`) VALUES
+INSERT INTO `hol-ton_mat` (`ide`, `nom`, `des`, `des_cod`, `des_dim`, `des_ond`, `ton`) VALUES
 (1, 'Magnético', '\"Unifica las dimensiones cuarta, primera y segunda\"', 'un punto', 'Tiempo-Vida-Sentir', 'Umbral Magnético, cámaras Rítmica y Espectral unificadas.', '01, 06, 11'),
 (2, 'Lunar', '\"Unifica las dimensiones primera, segunda y tercera\"', 'dos puntos', 'Vida-Sentir-Mente', 'Cámaras Lunar, Resonante y Cristal unificadas', '02, 07, 12'),
 (3, 'Eléctrico', '\"Unifica las dimensiones segunda, tercera y cuarta\"', 'tres puntos', 'Sentir-Mente-Tiempo', 'Cámaras Eléctrica, Galáctica y umbral Cósmico unificados.', '03, 08, 13'),
@@ -5558,10 +5558,10 @@ INSERT INTO `hol_ton_mat` (`ide`, `nom`, `des`, `des_cod`, `des_dim`, `des_ond`,
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_ton_ond`
+-- Estructura de tabla para la tabla `hol-ton_ond`
 --
 
-CREATE TABLE `hol_ton_ond` (
+CREATE TABLE `hol-ton_ond` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Aventura',
   `nom` varchar(15) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `des` varchar(35) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Descripción',
@@ -5569,10 +5569,10 @@ CREATE TABLE `hol_ton_ond` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Aventura de la Onda Encantada';
 
 --
--- Volcado de datos para la tabla `hol_ton_ond`
+-- Volcado de datos para la tabla `hol-ton_ond`
 --
 
-INSERT INTO `hol_ton_ond` (`ide`, `nom`, `des`, `ton`) VALUES
+INSERT INTO `hol-ton_ond` (`ide`, `nom`, `des`, `ton`) VALUES
 (1, 'Establece', 'Establecer la Base de la Acción', '01, 02, 03, 04'),
 (2, 'Extiende', 'Extender el Ritmo de la Acción', '05, 06, 07, 08'),
 (3, 'Convierte', 'Convertir la Acción', '09, 10, 11, 12'),
@@ -5581,10 +5581,10 @@ INSERT INTO `hol_ton_ond` (`ide`, `nom`, `des`, `ton`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_ton_sim`
+-- Estructura de tabla para la tabla `hol-ton_sim`
 --
 
-CREATE TABLE `hol_ton_sim` (
+CREATE TABLE `hol-ton_sim` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Simetría Especular',
   `nom` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `des` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Descripción',
@@ -5593,10 +5593,10 @@ CREATE TABLE `hol_ton_sim` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Simetría Especular';
 
 --
--- Volcado de datos para la tabla `hol_ton_sim`
+-- Volcado de datos para la tabla `hol-ton_sim`
 --
 
-INSERT INTO `hol_ton_sim` (`ide`, `nom`, `des`, `fac_des`, `ton`) VALUES
+INSERT INTO `hol-ton_sim` (`ide`, `nom`, `des`, `fac_des`, `ton`) VALUES
 (1, 'Unidad y Movimiento', 'Tonos 1 magnético y 13 cósmico', '\"El 1, principio de la unidad, es equilibrado por el 13, rayo del movimiento universal\"', '01, 13'),
 (2, 'Polaridad y Estabilidad Compleja', 'Tonos 2 lunar y 12 cristal', '\"El 2, principio de la polaridad, es equilibrado por el 12, que es el principio de la estabilidad compleja. La reflexión muestra que cualquier orden de estabilidad compleja se mantiene o se destruye por un equilibrio sutil de las fuerzas polares.\"', '02, 12'),
 (3, 'Ritmo y Estructura Disonante', 'Tonos 3 eléctrico y 11 espectral', '\"El número 3, responde por la variabilidad e introduce la posibilidad del azar, que juega tal papel en el 11, o principio de las estructuras disonantes.\"', '03, 11'),
@@ -5608,10 +5608,10 @@ INSERT INTO `hol_ton_sim` (`ide`, `nom`, `des`, `fac_des`, `ton`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_uni_adn_ami`
+-- Estructura de tabla para la tabla `hol-uni_adn_ami`
 --
 
-CREATE TABLE `hol_uni_adn_ami` (
+CREATE TABLE `hol-uni_adn_ami` (
   `ide` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Aminoácido',
   `nom` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `des` varchar(150) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Descripción',
@@ -5621,10 +5621,10 @@ CREATE TABLE `hol_uni_adn_ami` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_uni_bio_pie`
+-- Estructura de tabla para la tabla `hol-uni_bio_pie`
 --
 
-CREATE TABLE `hol_uni_bio_pie` (
+CREATE TABLE `hol-uni_bio_pie` (
   `ide` smallint(5) NOT NULL COMMENT 'Piedra',
   `nom` varchar(25) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `des` varchar(150) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Descripción',
@@ -5634,10 +5634,10 @@ CREATE TABLE `hol_uni_bio_pie` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_uni_flu`
+-- Estructura de tabla para la tabla `hol-uni_flu`
 --
 
-CREATE TABLE `hol_uni_flu` (
+CREATE TABLE `hol-uni_flu` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Flujo Polar',
   `nom` varchar(25) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `des` tinytext COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Descripcion',
@@ -5645,10 +5645,10 @@ CREATE TABLE `hol_uni_flu` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Flujo de Fuerzas Polares';
 
 --
--- Volcado de datos para la tabla `hol_uni_flu`
+-- Volcado de datos para la tabla `hol-uni_flu`
 --
 
-INSERT INTO `hol_uni_flu` (`ide`, `nom`, `des`, `pod`) VALUES
+INSERT INTO `hol-uni_flu` (`ide`, `nom`, `des`, `pod`) VALUES
 (1, 'Alfa-G', 'Comienzo de la Inhalación Galáctica', 1),
 (2, 'Omega-G', 'Fin de la Inhalación Galáctica', 2),
 (3, 'Alfa-S', 'Comienzo de la Exhalación Solar', 1),
@@ -5657,10 +5657,10 @@ INSERT INTO `hol_uni_flu` (`ide`, `nom`, `des`, `pod`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_uni_flu_pod`
+-- Estructura de tabla para la tabla `hol-uni_flu_pod`
 --
 
-CREATE TABLE `hol_uni_flu_pod` (
+CREATE TABLE `hol-uni_flu_pod` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Poder Primario',
   `nom` varchar(25) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `des` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Descripción',
@@ -5668,20 +5668,20 @@ CREATE TABLE `hol_uni_flu_pod` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Poder de Fuerza Polar';
 
 --
--- Volcado de datos para la tabla `hol_uni_flu_pod`
+-- Volcado de datos para la tabla `hol-uni_flu_pod`
 --
 
-INSERT INTO `hol_uni_flu_pod` (`ide`, `nom`, `des`, `fue`) VALUES
+INSERT INTO `hol-uni_flu_pod` (`ide`, `nom`, `des`, `fue`) VALUES
 (1, 'Alfa', '', 'Masculina'),
 (2, 'Omega', '', 'Femenina');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_uni_flu_res`
+-- Estructura de tabla para la tabla `hol-uni_flu_res`
 --
 
-CREATE TABLE `hol_uni_flu_res` (
+CREATE TABLE `hol-uni_flu_res` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Respiración S-G',
   `nom` varchar(25) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `des` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Descripción',
@@ -5690,30 +5690,30 @@ CREATE TABLE `hol_uni_flu_res` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Respiración del Holon';
 
 --
--- Volcado de datos para la tabla `hol_uni_flu_res`
+-- Volcado de datos para la tabla `hol-uni_flu_res`
 --
 
-INSERT INTO `hol_uni_flu_res` (`ide`, `nom`, `des`, `des_flu`, `des_tel`) VALUES
+INSERT INTO `hol-uni_flu_res` (`ide`, `nom`, `des`, `des_flu`, `des_tel`) VALUES
 (1, 'Inhalación', 'Flujo Galáctico-Kármico', 'Galáctica', 'Karmico'),
 (2, 'Exhalación', 'Flujo Solar-Profético', 'Solar', 'Profético');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_uni_hum_art`
+-- Estructura de tabla para la tabla `hol-uni_hum_art`
 --
 
-CREATE TABLE `hol_uni_hum_art` (
+CREATE TABLE `hol-uni_hum_art` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Articulación',
   `nom` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `ton` varchar(6) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Tonos Galácticos'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Articulacion';
 
 --
--- Volcado de datos para la tabla `hol_uni_hum_art`
+-- Volcado de datos para la tabla `hol-uni_hum_art`
 --
 
-INSERT INTO `hol_uni_hum_art` (`ide`, `nom`, `ton`) VALUES
+INSERT INTO `hol-uni_hum_art` (`ide`, `nom`, `ton`) VALUES
 (1, 'Tobillo', '01, 13'),
 (2, 'Rodilla', '02, 12'),
 (3, 'Cadera', '03, 11'),
@@ -5725,10 +5725,10 @@ INSERT INTO `hol_uni_hum_art` (`ide`, `nom`, `ton`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_uni_hum_cen`
+-- Estructura de tabla para la tabla `hol-uni_hum_cen`
 --
 
-CREATE TABLE `hol_uni_hum_cen` (
+CREATE TABLE `hol-uni_hum_cen` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Centro Galáctico',
   `nom` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `des` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Descripción',
@@ -5737,10 +5737,10 @@ CREATE TABLE `hol_uni_hum_cen` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Centro del Holon Humano';
 
 --
--- Volcado de datos para la tabla `hol_uni_hum_cen`
+-- Volcado de datos para la tabla `hol-uni_hum_cen`
 --
 
-INSERT INTO `hol_uni_hum_cen` (`ide`, `nom`, `des`, `sel`, `fam`) VALUES
+INSERT INTO `hol-uni_hum_cen` (`ide`, `nom`, `des`, `sel`, `fam`) VALUES
 (1, 'la Corona', 'Recibe la quinta fuerza', '20, 05, 10, 15', 5),
 (2, 'la Garganta', 'Transmite la quinta fuerza', '01, 06, 11, 16', 1),
 (3, 'el Corazón', 'Transduce la quinta fuerza', '02, 07, 12, 17', 2),
@@ -5750,10 +5750,10 @@ INSERT INTO `hol_uni_hum_cen` (`ide`, `nom`, `des`, `sel`, `fam`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_uni_hum_cha`
+-- Estructura de tabla para la tabla `hol-uni_hum_cha`
 --
 
-CREATE TABLE `hol_uni_hum_cha` (
+CREATE TABLE `hol-uni_hum_cha` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Chakra',
   `nom` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `rad` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Plasma Radial',
@@ -5772,10 +5772,10 @@ CREATE TABLE `hol_uni_hum_cha` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Chakra del Cuerpo Humano';
 
 --
--- Volcado de datos para la tabla `hol_uni_hum_cha`
+-- Volcado de datos para la tabla `hol-uni_hum_cha`
 --
 
-INSERT INTO `hol_uni_hum_cha` (`ide`, `nom`, `rad`, `des_cod`, `des_pos`, `des_col`, `des_gla`, `des_ele`, `des_mus`, `des_sen`, `des_acc`, `des_pla`, `des_niv`, `fre`, `flo`) VALUES
+INSERT INTO `hol-uni_hum_cha` (`ide`, `nom`, `rad`, `des_cod`, `des_pos`, `des_col`, `des_gla`, `des_ele`, `des_mus`, `des_sen`, `des_acc`, `des_pla`, `des_niv`, `fre`, `flo`) VALUES
 (1, 'Corona', 1, 'Sahasrara', 'Séptimo', 'Violeta', 'Pitiutaria', 'Eter', 'si', 'Pensamiento', 'Saber y Conocer', 'Espiritual', 'Unidad', 963, 972),
 (2, 'Tercer Ojo', 3, 'Agnya', 'Sexto', 'Índigo', 'Pineal', 'Luz', 'la', 'Telepatía', 'Ver y Percibir', 'Mental', 'Inteligencia', 852, 96),
 (3, 'Garganta', 5, 'Vissudha', 'Quinto', 'Azul', 'Tiroides', 'Sonido', 'sol', 'Oído', 'Decir y Oir', 'Creativo', 'Expresión', 741, 16),
@@ -5787,10 +5787,10 @@ INSERT INTO `hol_uni_hum_cha` (`ide`, `nom`, `rad`, `des_cod`, `des_pos`, `des_c
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_uni_hum_ded`
+-- Estructura de tabla para la tabla `hol-uni_hum_ded`
 --
 
-CREATE TABLE `hol_uni_hum_ded` (
+CREATE TABLE `hol-uni_hum_ded` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Dedo',
   `nom` varchar(10) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `des` varchar(150) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Descripción',
@@ -5799,10 +5799,10 @@ CREATE TABLE `hol_uni_hum_ded` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Dedo del Cuerpo Humano';
 
 --
--- Volcado de datos para la tabla `hol_uni_hum_ded`
+-- Volcado de datos para la tabla `hol-uni_hum_ded`
 --
 
-INSERT INTO `hol_uni_hum_ded` (`ide`, `nom`, `des`, `sel`, `fam`) VALUES
+INSERT INTO `hol-uni_hum_ded` (`ide`, `nom`, `des`, `sel`, `fam`) VALUES
 (1, 'Pulgar', 'Codificado por los 4 Sellos de la Familia Polar', '20, 05, 10, 15', 5),
 (2, 'Índice', 'Codificado por los 4 Sellos de la Familia Cardinal', '01, 06, 11, 16', 1),
 (3, 'Medio', 'Codificado por los 4 Sellos de la Familia Central', '02, 07, 12, 17', 2),
@@ -5812,10 +5812,10 @@ INSERT INTO `hol_uni_hum_ded` (`ide`, `nom`, `des`, `sel`, `fam`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_uni_hum_ext`
+-- Estructura de tabla para la tabla `hol-uni_hum_ext`
 --
 
-CREATE TABLE `hol_uni_hum_ext` (
+CREATE TABLE `hol-uni_hum_ext` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Extremidad',
   `nom` varchar(15) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `des` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Descripción',
@@ -5824,10 +5824,10 @@ CREATE TABLE `hol_uni_hum_ext` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Extremidad del Cuerpo Humano';
 
 --
--- Volcado de datos para la tabla `hol_uni_hum_ext`
+-- Volcado de datos para la tabla `hol-uni_hum_ext`
 --
 
-INSERT INTO `hol_uni_hum_ext` (`ide`, `nom`, `des`, `sel`, `ele`) VALUES
+INSERT INTO `hol-uni_hum_ext` (`ide`, `nom`, `des`, `sel`, `ele`) VALUES
 (1, 'Mano derecha', 'Codificada por los 5 Sellos del Clan del Fuego', '20, 01, 02, 03, 04', 1),
 (2, 'Pie derecho', 'Codificado por los 5 Sellos del Clan de la Sangre', '05, 06, 07, 08, 09', 2),
 (3, 'Mano izquierda', 'Codificada por los 5 Sellos del Clan de la Verdad', '10, 11, 12, 13, 14', 3),
@@ -5836,10 +5836,10 @@ INSERT INTO `hol_uni_hum_ext` (`ide`, `nom`, `des`, `sel`, `ele`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_uni_hum_lad`
+-- Estructura de tabla para la tabla `hol-uni_hum_lad`
 --
 
-CREATE TABLE `hol_uni_hum_lad` (
+CREATE TABLE `hol-uni_hum_lad` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Lado del Cuerpo',
   `nom` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `des` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Descripción',
@@ -5847,10 +5847,10 @@ CREATE TABLE `hol_uni_hum_lad` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Respiración del Holon Humano';
 
 --
--- Volcado de datos para la tabla `hol_uni_hum_lad`
+-- Volcado de datos para la tabla `hol-uni_hum_lad`
 --
 
-INSERT INTO `hol_uni_hum_lad` (`ide`, `nom`, `des`, `ton`) VALUES
+INSERT INTO `hol-uni_hum_lad` (`ide`, `nom`, `des`, `ton`) VALUES
 (1, 'Derecho', 'Flujo de la Inhalación Galáctico-Kármica', '01, 02, 03, 04, 05, 06'),
 (2, 'Centro', 'Correspondiente a la Columna Mística', '07'),
 (3, 'Izquierdo', 'Flujo de la Exhalación Solar-Profética', '08, 09, 10, 11, 12, 13');
@@ -5858,10 +5858,10 @@ INSERT INTO `hol_uni_hum_lad` (`ide`, `nom`, `des`, `ton`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_uni_hum_mer`
+-- Estructura de tabla para la tabla `hol-uni_hum_mer`
 --
 
-CREATE TABLE `hol_uni_hum_mer` (
+CREATE TABLE `hol-uni_hum_mer` (
   `ide` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Meridiano Orgánico',
   `nom` varchar(30) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `des` tinytext COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Funcionamiento',
@@ -5871,10 +5871,10 @@ CREATE TABLE `hol_uni_hum_mer` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Meridianos Orgánicos del Cuerpo Humano';
 
 --
--- Volcado de datos para la tabla `hol_uni_hum_mer`
+-- Volcado de datos para la tabla `hol-uni_hum_mer`
 --
 
-INSERT INTO `hol_uni_hum_mer` (`ide`, `nom`, `des`, `sel`, `fam`, `ele`) VALUES
+INSERT INTO `hol-uni_hum_mer` (`ide`, `nom`, `des`, `sel`, `fam`, `ele`) VALUES
 (01, 'Intestino Grueso', 'Codificado por 2 Sellos de la Familia Cardinal. Clanes del Fuego y la Verdad.', '01, 11', 1, '1, 3'),
 (02, 'Circulación y Energía Sexual', 'Codificado por 2 Sellos de la Familia Central. Clanes del Fuego y la Verdad.', '02, 12', 2, '1, 3'),
 (03, 'Triple Calentador y Sistema De', 'Codificado por 2 Sellos de la Familia Señal. Clanes del Fuego y la Verdad.', '03, 13', 3, '1, 3'),
@@ -5889,20 +5889,20 @@ INSERT INTO `hol_uni_hum_mer` (`ide`, `nom`, `des`, `sel`, `fam`, `ele`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_uni_hum_mud`
+-- Estructura de tabla para la tabla `hol-uni_hum_mud`
 --
 
-CREATE TABLE `hol_uni_hum_mud` (
+CREATE TABLE `hol-uni_hum_mud` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Mudra',
   `nom` varchar(15) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `des` varchar(150) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Descripción'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Mudra del Holon Humano';
 
 --
--- Volcado de datos para la tabla `hol_uni_hum_mud`
+-- Volcado de datos para la tabla `hol-uni_hum_mud`
 --
 
-INSERT INTO `hol_uni_hum_mud` (`ide`, `nom`, `des`) VALUES
+INSERT INTO `hol-uni_hum_mud` (`ide`, `nom`, `des`) VALUES
 (1, '', ''),
 (2, '', ''),
 (3, '', ''),
@@ -5914,10 +5914,10 @@ INSERT INTO `hol_uni_hum_mud` (`ide`, `nom`, `des`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_uni_hum_res`
+-- Estructura de tabla para la tabla `hol-uni_hum_res`
 --
 
-CREATE TABLE `hol_uni_hum_res` (
+CREATE TABLE `hol-uni_hum_res` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL,
   `nom` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Lado del Cuerpo',
   `des` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Descripción',
@@ -5926,20 +5926,20 @@ CREATE TABLE `hol_uni_hum_res` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Respiración del Holon Humano';
 
 --
--- Volcado de datos para la tabla `hol_uni_hum_res`
+-- Volcado de datos para la tabla `hol-uni_hum_res`
 --
 
-INSERT INTO `hol_uni_hum_res` (`ide`, `nom`, `des`, `ele`, `sel`) VALUES
+INSERT INTO `hol-uni_hum_res` (`ide`, `nom`, `des`, `ele`, `sel`) VALUES
 (1, 'Lado derecho', 'Flujo de la Inhalación Galáctico-Kármica', '4, 1', '20, 01, 02, 03, 04, 05, 06, 07, 08, 09'),
 (2, 'Lado izquierdo', 'Flujo de la Exhalación Solar-Profética', '2, 3', '10, 11, 12, 13, 14, 15, 16, 17, 18, 19');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_uni_hum_sen`
+-- Estructura de tabla para la tabla `hol-uni_hum_sen`
 --
 
-CREATE TABLE `hol_uni_hum_sen` (
+CREATE TABLE `hol-uni_hum_sen` (
   `ide` smallint(1) UNSIGNED NOT NULL COMMENT 'Sentido',
   `nom` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `des` varchar(150) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Descripción',
@@ -5947,10 +5947,10 @@ CREATE TABLE `hol_uni_hum_sen` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Sentido del Cuerpo Humano';
 
 --
--- Volcado de datos para la tabla `hol_uni_hum_sen`
+-- Volcado de datos para la tabla `hol-uni_hum_sen`
 --
 
-INSERT INTO `hol_uni_hum_sen` (`ide`, `nom`, `des`, `ton`) VALUES
+INSERT INTO `hol-uni_hum_sen` (`ide`, `nom`, `des`, `ton`) VALUES
 (1, 'el tacto', '', '01, 13'),
 (2, 'el gusto', '', '02, 12'),
 (3, 'el olfato', '', '03, 11'),
@@ -5962,10 +5962,10 @@ INSERT INTO `hol_uni_hum_sen` (`ide`, `nom`, `des`, `ton`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_uni_pla_cen`
+-- Estructura de tabla para la tabla `hol-uni_pla_cen`
 --
 
-CREATE TABLE `hol_uni_pla_cen` (
+CREATE TABLE `hol-uni_pla_cen` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Centro Galáctico',
   `nom` varchar(25) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `des` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Descripción',
@@ -5974,10 +5974,10 @@ CREATE TABLE `hol_uni_pla_cen` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Centro Planetario';
 
 --
--- Volcado de datos para la tabla `hol_uni_pla_cen`
+-- Volcado de datos para la tabla `hol-uni_pla_cen`
 --
 
-INSERT INTO `hol_uni_pla_cen` (`ide`, `nom`, `des`, `fam`, `sel`) VALUES
+INSERT INTO `hol-uni_pla_cen` (`ide`, `nom`, `des`, `fam`, `sel`) VALUES
 (1, 'Polo Norte', 'Se Genera el Ciclo Elemental de la Quinta Fuerza', 5, '20, 05, 10, 15'),
 (2, 'Norte Meridional', 'Se Transmite el Ciclo Elemental de la Quinta Fuerza', 1, '01, 06, 11, 16'),
 (3, 'Ecuador', 'Se Da Energía al Ciclo Elemental de la Quinta Fuerza', 2, '02, 07, 12, 17'),
@@ -5987,10 +5987,10 @@ INSERT INTO `hol_uni_pla_cen` (`ide`, `nom`, `des`, `fam`, `sel`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_uni_pla_hem`
+-- Estructura de tabla para la tabla `hol-uni_pla_hem`
 --
 
-CREATE TABLE `hol_uni_pla_hem` (
+CREATE TABLE `hol-uni_pla_hem` (
   `ide` int(11) NOT NULL COMMENT 'Hemisferio',
   `nom` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `des` varchar(150) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Descripción',
@@ -5999,10 +5999,10 @@ CREATE TABLE `hol_uni_pla_hem` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Hemisferio Planetario';
 
 --
--- Volcado de datos para la tabla `hol_uni_pla_hem`
+-- Volcado de datos para la tabla `hol-uni_pla_hem`
 --
 
-INSERT INTO `hol_uni_pla_hem` (`ide`, `nom`, `des`, `fam`, `sel`) VALUES
+INSERT INTO `hol-uni_pla_hem` (`ide`, `nom`, `des`, `fam`, `sel`) VALUES
 (1, 'Norte', 'Familias Polar y Cardinal reciben y transmiten la Inhalación Galáctica de Flujo Karmico.', '5, 1', '20, 01, 05, 06, 10, 11, 15, 16'),
 (2, 'Sur', 'Familias Señal y Portal reciben y transmiten la Exhalación Solar de Flujo Profético.', '3, 4', '03, 04, 08, 09, 13, 14, 18, 19'),
 (3, 'Ecuador', 'La Familia Central Transduce la Inhalación Galáctica de flujo Kármico en Exhalación Solar de flujo Profético.', '2', '02, 07, 12, 17');
@@ -6010,10 +6010,10 @@ INSERT INTO `hol_uni_pla_hem` (`ide`, `nom`, `des`, `fam`, `sel`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_uni_pla_mer`
+-- Estructura de tabla para la tabla `hol-uni_pla_mer`
 --
 
-CREATE TABLE `hol_uni_pla_mer` (
+CREATE TABLE `hol-uni_pla_mer` (
   `ide` int(11) NOT NULL COMMENT 'Meridiano',
   `nom` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `des` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Descripción',
@@ -6021,20 +6021,20 @@ CREATE TABLE `hol_uni_pla_mer` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Meridiano Planetario';
 
 --
--- Volcado de datos para la tabla `hol_uni_pla_mer`
+-- Volcado de datos para la tabla `hol-uni_pla_mer`
 --
 
-INSERT INTO `hol_uni_pla_mer` (`ide`, `nom`, `des`, `sel`) VALUES
+INSERT INTO `hol-uni_pla_mer` (`ide`, `nom`, `des`, `sel`) VALUES
 (1, 'Este', 'Codificado por 10 sellos solares con mayor carga de Luz y Sangre', '01, 02, 03, 04, 05, 06, 07, 10, 18, 19'),
 (2, 'Oeste', 'Codificado por 10 sellos solares con mayor carga de Verdad y Cielo', '08, 09, 11, 12, 13, 14, 15, 16, 17, 20');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_uni_pla_res`
+-- Estructura de tabla para la tabla `hol-uni_pla_res`
 --
 
-CREATE TABLE `hol_uni_pla_res` (
+CREATE TABLE `hol-uni_pla_res` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Respiración S-G',
   `nom` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `des` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Descripción',
@@ -6043,20 +6043,20 @@ CREATE TABLE `hol_uni_pla_res` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Respiración del Holon Planetario';
 
 --
--- Volcado de datos para la tabla `hol_uni_pla_res`
+-- Volcado de datos para la tabla `hol-uni_pla_res`
 --
 
-INSERT INTO `hol_uni_pla_res` (`ide`, `nom`, `des`, `fam`, `sel`) VALUES
+INSERT INTO `hol-uni_pla_res` (`ide`, `nom`, `des`, `fam`, `sel`) VALUES
 (1, 'Polo Norte', 'Flujo de la inhalación Galáctico-Kármica', 5, '20, 05, 10, 15'),
 (2, 'Polo  Sur', 'Flujo de la exhalación Solar-Profética', 4, '04, 09, 14, 19');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_uni_pla_tie`
+-- Estructura de tabla para la tabla `hol-uni_pla_tie`
 --
 
-CREATE TABLE `hol_uni_pla_tie` (
+CREATE TABLE `hol-uni_pla_tie` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Campo',
   `nom` varchar(30) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `des` tinytext COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Descripción',
@@ -6064,10 +6064,10 @@ CREATE TABLE `hol_uni_pla_tie` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Cronosfera Planetaria';
 
 --
--- Volcado de datos para la tabla `hol_uni_pla_tie`
+-- Volcado de datos para la tabla `hol-uni_pla_tie`
 --
 
-INSERT INTO `hol_uni_pla_tie` (`ide`, `nom`, `des`, `tra`) VALUES
+INSERT INTO `hol-uni_pla_tie` (`ide`, `nom`, `des`, `tra`) VALUES
 (1, 'Electromagnético', 'La Magnetosfera y cinturores de radiación, incluyendo la ionosfera.', 'Poderes cromáticos'),
 (2, 'Biopsíquico', 'La Biosfera incluyendo la simbiosis de eco-ciclos que integran el \"corpus inerte\" con el \"vivo\".', 'Familias Terrestres'),
 (3, 'Gravitacional', 'Incluyendo la estructura de placas tectónicas, mantos y núcleo de la Tierra.', 'Razas Cósmicas');
@@ -6075,10 +6075,10 @@ INSERT INTO `hol_uni_pla_tie` (`ide`, `nom`, `des`, `tra`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_uni_sol_cel`
+-- Estructura de tabla para la tabla `hol-uni_sol_cel`
 --
 
-CREATE TABLE `hol_uni_sol_cel` (
+CREATE TABLE `hol-uni_sol_cel` (
   `ide` smallint(1) UNSIGNED NOT NULL COMMENT 'Célula Solar',
   `nom` varchar(25) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `des` varchar(150) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Composición',
@@ -6089,10 +6089,10 @@ CREATE TABLE `hol_uni_sol_cel` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Célula Solar del Holon Interplanetario';
 
 --
--- Volcado de datos para la tabla `hol_uni_sol_cel`
+-- Volcado de datos para la tabla `hol-uni_sol_cel`
 --
 
-INSERT INTO `hol_uni_sol_cel` (`ide`, `nom`, `des`, `sel`, `ele`, `fam`, `pla`) VALUES
+INSERT INTO `hol-uni_sol_cel` (`ide`, `nom`, `des`, `sel`, `ele`, `fam`, `pla`) VALUES
 (1, 'Terminal Galáctica', '\"Clanes del Fuego y el Cielo\"', '20, 01, 18, 19', '1, 4', '5, 1, 3, 4', '10, 09'),
 (2, 'Transbordo de Urano', '\"Clanes del Fuego y el Cielo\"', '02, 03, 16, 17', '1, 4', '2, 3, 1', '08, 07'),
 (3, 'Transbordo Intermedio', '\"Cruce de los 4 clanes\"', '04, 05, 14, 15', '1, 2, 3, 4', '4, 5', '06, 05'),
@@ -6102,10 +6102,10 @@ INSERT INTO `hol_uni_sol_cel` (`ide`, `nom`, `des`, `sel`, `ele`, `fam`, `pla`) 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_uni_sol_cir`
+-- Estructura de tabla para la tabla `hol-uni_sol_cir`
 --
 
-CREATE TABLE `hol_uni_sol_cir` (
+CREATE TABLE `hol-uni_sol_cir` (
   `ide` tinyint(3) UNSIGNED NOT NULL COMMENT 'Circuito',
   `nom` varchar(35) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `des` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Descripción',
@@ -6116,10 +6116,10 @@ CREATE TABLE `hol_uni_sol_cir` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Circuito de Telepatía del Holon Interplanetario';
 
 --
--- Volcado de datos para la tabla `hol_uni_sol_cir`
+-- Volcado de datos para la tabla `hol-uni_sol_cir`
 --
 
-INSERT INTO `hol_uni_sol_cir` (`ide`, `nom`, `des`, `cue`, `sel`, `fam`, `pla`) VALUES
+INSERT INTO `hol-uni_sol_cir` (`ide`, `nom`, `des`, `cue`, `sel`, `fam`, `pla`) VALUES
 (1, 'de Recarga Alfa-Omega', '\"Metaconsciencia Solar/Galáctica\"', 36, '20, 09, 10, 19', '5, 4', '10, 01'),
 (2, 'de la Memoria Instintiva Aliada', '\"Poder Cristal, n Estructura del ADN\"', 32, '01, 08, 11, 18', '1, 3', '09, 02'),
 (3, 'Biotelepático del Telektonon', '\"Tubo por el que Habla la Tierra\"', 28, '02, 07, 12, 17', '2', '08, 03'),
@@ -6129,10 +6129,10 @@ INSERT INTO `hol_uni_sol_cir` (`ide`, `nom`, `des`, `cue`, `sel`, `fam`, `pla`) 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_uni_sol_orb`
+-- Estructura de tabla para la tabla `hol-uni_sol_orb`
 --
 
-CREATE TABLE `hol_uni_sol_orb` (
+CREATE TABLE `hol-uni_sol_orb` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Grupo Orbital',
   `nom` varchar(10) NOT NULL COMMENT 'Nombre',
   `des` varchar(150) NOT NULL COMMENT 'Composición',
@@ -6141,20 +6141,20 @@ CREATE TABLE `hol_uni_sol_orb` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Tipo de Órbita';
 
 --
--- Volcado de datos para la tabla `hol_uni_sol_orb`
+-- Volcado de datos para la tabla `hol-uni_sol_orb`
 --
 
-INSERT INTO `hol_uni_sol_orb` (`ide`, `nom`, `des`, `pla`, `ele`) VALUES
+INSERT INTO `hol-uni_sol_orb` (`ide`, `nom`, `des`, `pla`, `ele`) VALUES
 (1, 'Exterior', 'Los 5 orbitales mas próximos al Centro Galáctico', '06 - 10', '1, 4'),
 (2, 'Interior', 'Los 5 orbitales mas próximos al Centro Solar', '01 - 05', '2, 3');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_uni_sol_pla`
+-- Estructura de tabla para la tabla `hol-uni_sol_pla`
 --
 
-CREATE TABLE `hol_uni_sol_pla` (
+CREATE TABLE `hol-uni_sol_pla` (
   `ide` smallint(2) UNSIGNED ZEROFILL NOT NULL COMMENT 'Órbita Planetaria',
   `nom` varchar(10) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `nom_cod` varchar(10) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Código',
@@ -6168,10 +6168,10 @@ CREATE TABLE `hol_uni_sol_pla` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Planeta del Sistema Solar';
 
 --
--- Volcado de datos para la tabla `hol_uni_sol_pla`
+-- Volcado de datos para la tabla `hol-uni_sol_pla`
 --
 
-INSERT INTO `hol_uni_sol_pla` (`ide`, `nom`, `nom_cod`, `des`, `orb`, `cel`, `cir`, `sel`, `ele`, `fam`) VALUES
+INSERT INTO `hol-uni_sol_pla` (`ide`, `nom`, `nom_cod`, `des`, `orb`, `cel`, `cir`, `sel`, `ele`, `fam`) VALUES
 (01, 'Mercurio', 'V24.1', '', 2, 5, 1, '09, 10', '2, 3', '4, 5'),
 (02, 'Venus', 'V24.2', '', 2, 5, 2, '08, 11', '2, 3', '3, 1'),
 (03, 'Gaia', 'V24.3', '', 2, 4, 3, '07, 12', '2, 3', '2'),
@@ -6186,10 +6186,10 @@ INSERT INTO `hol_uni_sol_pla` (`ide`, `nom`, `nom_cod`, `des`, `orb`, `cel`, `ci
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_uni_sol_res`
+-- Estructura de tabla para la tabla `hol-uni_sol_res`
 --
 
-CREATE TABLE `hol_uni_sol_res` (
+CREATE TABLE `hol-uni_sol_res` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Respiración S-G',
   `nom` varchar(25) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `des` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Descripción',
@@ -6198,20 +6198,20 @@ CREATE TABLE `hol_uni_sol_res` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Respiración del Holon Solar';
 
 --
--- Volcado de datos para la tabla `hol_uni_sol_res`
+-- Volcado de datos para la tabla `hol-uni_sol_res`
 --
 
-INSERT INTO `hol_uni_sol_res` (`ide`, `nom`, `des`, `ele`, `sel`) VALUES
+INSERT INTO `hol-uni_sol_res` (`ide`, `nom`, `des`, `ele`, `sel`) VALUES
 (1, 'la Inhalación Galáctica', 'Flujo de la inhalación Galáctico-Kármica', '4, 1', '20, 01, 02, 03, 04, 05, 06, 07, 08, 09'),
 (2, 'la Exhalación Solar', 'Flujo de la exhalación Solar-Profética', '2, 3', '10, 11, 12, 13, 14, 15, 16, 17, 18, 19');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_uni_tel`
+-- Estructura de tabla para la tabla `hol-uni_tel`
 --
 
-CREATE TABLE `hol_uni_tel` (
+CREATE TABLE `hol-uni_tel` (
   `ide` smallint(1) NOT NULL COMMENT 'Plano',
   `nom` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `des` tinytext COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Descripción',
@@ -6219,10 +6219,10 @@ CREATE TABLE `hol_uni_tel` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Plano del Cubo de la Ley';
 
 --
--- Volcado de datos para la tabla `hol_uni_tel`
+-- Volcado de datos para la tabla `hol-uni_tel`
 --
 
-INSERT INTO `hol_uni_tel` (`ide`, `nom`, `des`, `lad`) VALUES
+INSERT INTO `hol-uni_tel` (`ide`, `nom`, `des`, `lad`) VALUES
 (1, 'la Mente', 'La mente es la raíz del tiempo que origina, mueve y disuelve todas las cosas. Está representado por el tablero del Telektonon en su totalidad. La intersección divina de los 3 planos está en el preciso centro del Cubo del Guerrero.', 'superficie'),
 (2, 'el Espíritu', 'El espíritu es la raíz de la telepatía. La Telepatía es el orden instantáneo de la mente como número. Es un eje horizontal que separa el campo superior de telepatía del campo inferior de la estructura atómica.', 'eje horizontal'),
 (3, 'la Voluntad', 'La voluntad resuena el orden y es la raíz de la estructura atómica, tanto molecular como celular. Es un eje vertical que divide el plano pre-consciente a la izquierda del plano consciente subliminal a la derecha.', 'eje vertical');
@@ -6230,10 +6230,10 @@ INSERT INTO `hol_uni_tel` (`ide`, `nom`, `des`, `lad`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_uni_tel_cam`
+-- Estructura de tabla para la tabla `hol-uni_tel_cam`
 --
 
-CREATE TABLE `hol_uni_tel_cam` (
+CREATE TABLE `hol-uni_tel_cam` (
   `ide` smallint(1) NOT NULL COMMENT 'Campo',
   `nom` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `des` varchar(150) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Descripción',
@@ -6241,20 +6241,20 @@ CREATE TABLE `hol_uni_tel_cam` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Campo de Tiempo';
 
 --
--- Volcado de datos para la tabla `hol_uni_tel_cam`
+-- Volcado de datos para la tabla `hol-uni_tel_cam`
 --
 
-INSERT INTO `hol_uni_tel_cam` (`ide`, `nom`, `des`, `lad`) VALUES
+INSERT INTO `hol-uni_tel_cam` (`ide`, `nom`, `des`, `lad`) VALUES
 (1, 'Telepatía', 'La Telepatía precipita la estructura atómica', 'Superior'),
 (2, 'Estructura Atómica', 'La estructura atómica resuena telepáticamente', 'Inferior');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_uni_tel_mov`
+-- Estructura de tabla para la tabla `hol-uni_tel_mov`
 --
 
-CREATE TABLE `hol_uni_tel_mov` (
+CREATE TABLE `hol-uni_tel_mov` (
   `ide` smallint(1) NOT NULL COMMENT 'Plano',
   `nom` varchar(25) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `des` varchar(150) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Descripción',
@@ -6266,20 +6266,20 @@ CREATE TABLE `hol_uni_tel_mov` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Movimiento del Tiempo';
 
 --
--- Volcado de datos para la tabla `hol_uni_tel_mov`
+-- Volcado de datos para la tabla `hol-uni_tel_mov`
 --
 
-INSERT INTO `hol_uni_tel_mov` (`ide`, `nom`, `des`, `tip`, `flu`, `pod`, `fun`, `lad`) VALUES
+INSERT INTO `hol-uni_tel_mov` (`ide`, `nom`, `des`, `tip`, `flu`, `pod`, `fun`, `lad`) VALUES
 (1, 'Galáctico-Kármico', 'Involucionado, de flujo Descendente. Poderes de Conversión que Inician', 'involucionado', 'descendente', 'conversión', 'inicia', 'Izquierda'),
 (2, 'Solar-Profético', 'Evolucionado, de flujo Ascendente. Poderes de Sueño que Completan', 'evolucionado', 'ascendente', 'sueño', 'completa', 'Derecha');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_uni_tel_pla`
+-- Estructura de tabla para la tabla `hol-uni_tel_pla`
 --
 
-CREATE TABLE `hol_uni_tel_pla` (
+CREATE TABLE `hol-uni_tel_pla` (
   `ide` smallint(1) NOT NULL COMMENT 'Plano',
   `nom` varchar(25) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `des` varchar(150) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Descripción',
@@ -6287,20 +6287,20 @@ CREATE TABLE `hol_uni_tel_pla` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Plano del Tiempo';
 
 --
--- Volcado de datos para la tabla `hol_uni_tel_pla`
+-- Volcado de datos para la tabla `hol-uni_tel_pla`
 --
 
-INSERT INTO `hol_uni_tel_pla` (`ide`, `nom`, `des`, `lad`) VALUES
+INSERT INTO `hol-uni_tel_pla` (`ide`, `nom`, `des`, `lad`) VALUES
 (1, 'Pre-consciente', '', 'Izquierda'),
 (2, 'Consciente Subliminal', '', 'Derecha');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_uni_tel_sub`
+-- Estructura de tabla para la tabla `hol-uni_tel_sub`
 --
 
-CREATE TABLE `hol_uni_tel_sub` (
+CREATE TABLE `hol-uni_tel_sub` (
   `ide` smallint(1) NOT NULL COMMENT 'Campo',
   `nom` varchar(30) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `des` varchar(150) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Descripción',
@@ -6308,10 +6308,10 @@ CREATE TABLE `hol_uni_tel_sub` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Sub-campo de Tiempo';
 
 --
--- Volcado de datos para la tabla `hol_uni_tel_sub`
+-- Volcado de datos para la tabla `hol-uni_tel_sub`
 --
 
-INSERT INTO `hol_uni_tel_sub` (`ide`, `nom`, `des`, `lad`) VALUES
+INSERT INTO `hol-uni_tel_sub` (`ide`, `nom`, `des`, `lad`) VALUES
 (1, 'Telepático preconsciente', 'Memoria se involucra', 'superior izquierda'),
 (2, 'Atómico preconsciente', 'Cuerpo se encarna', 'inferior izquierda'),
 (3, 'Atómico subliminal', 'Consciente-instinto se involucra', 'inferior derecha'),
@@ -6320,10 +6320,10 @@ INSERT INTO `hol_uni_tel_sub` (`ide`, `nom`, `des`, `lad`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hol_uni_tie`
+-- Estructura de tabla para la tabla `hol-uni_tie`
 --
 
-CREATE TABLE `hol_uni_tie` (
+CREATE TABLE `hol-uni_tie` (
   `ide` smallint(1) UNSIGNED ZEROFILL NOT NULL COMMENT 'Ciclo',
   `nom` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre',
   `des` tinytext COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Descripción',
@@ -6331,20 +6331,20 @@ CREATE TABLE `hol_uni_tie` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Ciclo del Tiempo';
 
 --
--- Volcado de datos para la tabla `hol_uni_tie`
+-- Volcado de datos para la tabla `hol-uni_tie`
 --
 
-INSERT INTO `hol_uni_tie` (`ide`, `nom`, `des`, `cue`) VALUES
+INSERT INTO `hol-uni_tie` (`ide`, `nom`, `des`, `cue`) VALUES
 (1, 'tiempo biotelepático tridimensional', 'El calendario de 13 lunas de 28 días es la medida del ciclo de 365 días del tiempo biotelepático. Es la medida regular de 28 días que ha sido encubierta por el falso tiempo del calendario Gregoriano de 12 meses.', 365),
 (2, 'tiempo interplanetario cuatridimensional', 'El ciclo de 260 días es la medida puramente cuatridimensional la cual correlaciona el tiempo de acuerdo a 20 frecuencias solares que se mueven en ciclos de 13 días.', 260);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `num_int`
+-- Estructura de tabla para la tabla `api_num_int`
 --
 
-CREATE TABLE `num_int` (
+CREATE TABLE `api_num_int` (
   `ide` int(11) NOT NULL COMMENT 'Número',
   `nom` varchar(50) NOT NULL COMMENT 'Nombre',
   `pos` varchar(50) NOT NULL COMMENT 'Posicion',
@@ -6352,10 +6352,10 @@ CREATE TABLE `num_int` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Número';
 
 --
--- Volcado de datos para la tabla `num_int`
+-- Volcado de datos para la tabla `api_num_int`
 --
 
-INSERT INTO `num_int` (`ide`, `nom`, `pos`, `pas`) VALUES
+INSERT INTO `api_num_int` (`ide`, `nom`, `pos`, `pas`) VALUES
 (0, 'cero', '', ''),
 (1, 'uno', 'primero', 'primera'),
 (2, 'dos', 'segundo', 'segunda'),
@@ -6390,10 +6390,10 @@ INSERT INTO `num_int` (`ide`, `nom`, `pos`, `pas`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tex_let`
+-- Estructura de tabla para la tabla `api_tex_let`
 --
 
-CREATE TABLE `tex_let` (
+CREATE TABLE `api_tex_let` (
   `pos` int(11) NOT NULL COMMENT 'Posición',
   `ide` char(1) NOT NULL COMMENT 'Caracter',
   `tip` varchar(7) DEFAULT NULL COMMENT 'Tipo',
@@ -6401,10 +6401,10 @@ CREATE TABLE `tex_let` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Caracter';
 
 --
--- Volcado de datos para la tabla `tex_let`
+-- Volcado de datos para la tabla `api_tex_let`
 --
 
-INSERT INTO `tex_let` (`pos`, `ide`, `tip`, `var`) VALUES
+INSERT INTO `api_tex_let` (`pos`, `ide`, `tip`, `var`) VALUES
 (165, '.', 'ope', 'cod'),
 (166, ',', 'ope', 'cod'),
 (167, ':', 'ope', 'cod'),
@@ -7369,45 +7369,45 @@ ALTER TABLE `app_var`
   ADD PRIMARY KEY (`esq`,`dat`,`val`,`pos`);
 
 --
--- Indices de la tabla `fec_año`
+-- Indices de la tabla `api_fec_año`
 --
-ALTER TABLE `fec_año`
+ALTER TABLE `api_fec_año`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `fec_dia`
+-- Indices de la tabla `api_fec_dia`
 --
-ALTER TABLE `fec_dia`
+ALTER TABLE `api_fec_dia`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `fec_hor`
+-- Indices de la tabla `api_fec_hor`
 --
-ALTER TABLE `fec_hor`
+ALTER TABLE `api_fec_hor`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `fec_mes`
+-- Indices de la tabla `api_fec_mes`
 --
-ALTER TABLE `fec_mes`
+ALTER TABLE `api_fec_mes`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `fec_min`
+-- Indices de la tabla `api_fec_min`
 --
-ALTER TABLE `fec_min`
+ALTER TABLE `api_fec_min`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `fec_seg`
+-- Indices de la tabla `api_fec_seg`
 --
-ALTER TABLE `fec_seg`
+ALTER TABLE `api_fec_seg`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `fec_sem`
+-- Indices de la tabla `api_fec_sem`
 --
-ALTER TABLE `fec_sem`
+ALTER TABLE `api_fec_sem`
   ADD PRIMARY KEY (`ide`);
 
 --
@@ -7417,349 +7417,349 @@ ALTER TABLE `fig_ico`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_arm`
+-- Indices de la tabla `hol-arm`
 --
-ALTER TABLE `hol_arm`
+ALTER TABLE `hol-arm`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_cas`
+-- Indices de la tabla `hol-cas`
 --
-ALTER TABLE `hol_cas`
+ALTER TABLE `hol-cas`
   ADD PRIMARY KEY (`ide`),
   ADD KEY `ton` (`ton`),
   ADD KEY `arm` (`arm`);
 
 --
--- Indices de la tabla `hol_cas_arm`
+-- Indices de la tabla `hol-cas_arm`
 --
-ALTER TABLE `hol_cas_arm`
+ALTER TABLE `hol-cas_arm`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_cas_dim`
+-- Indices de la tabla `hol-cas_dim`
 --
-ALTER TABLE `hol_cas_dim`
+ALTER TABLE `hol-cas_dim`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_cas_mat`
+-- Indices de la tabla `hol-cas_mat`
 --
-ALTER TABLE `hol_cas_mat`
+ALTER TABLE `hol-cas_mat`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_cas_ond`
+-- Indices de la tabla `hol-cas_ond`
 --
-ALTER TABLE `hol_cas_ond`
+ALTER TABLE `hol-cas_ond`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_cas_sim`
+-- Indices de la tabla `hol-cas_sim`
 --
-ALTER TABLE `hol_cas_sim`
+ALTER TABLE `hol-cas_sim`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_chi`
+-- Indices de la tabla `hol-chi`
 --
-ALTER TABLE `hol_chi`
+ALTER TABLE `hol-chi`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_chi_bin`
+-- Indices de la tabla `hol-chi_bin`
 --
-ALTER TABLE `hol_chi_bin`
+ALTER TABLE `hol-chi_bin`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_chi_mon`
+-- Indices de la tabla `hol-chi_mon`
 --
-ALTER TABLE `hol_chi_mon`
+ALTER TABLE `hol-chi_mon`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_chi_tri`
+-- Indices de la tabla `hol-chi_tri`
 --
-ALTER TABLE `hol_chi_tri`
+ALTER TABLE `hol-chi_tri`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_cro`
+-- Indices de la tabla `hol-cro`
 --
-ALTER TABLE `hol_cro`
+ALTER TABLE `hol-cro`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_kin`
+-- Indices de la tabla `hol-kin`
 --
-ALTER TABLE `hol_kin`
+ALTER TABLE `hol-kin`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_kin_arm_cel`
+-- Indices de la tabla `hol-kin_arm_cel`
 --
-ALTER TABLE `hol_kin_arm_cel`
+ALTER TABLE `hol-kin_arm_cel`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_kin_arm_tra`
+-- Indices de la tabla `hol-kin_arm_tra`
 --
-ALTER TABLE `hol_kin_arm_tra`
+ALTER TABLE `hol-kin_arm_tra`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_kin_cro_ele`
+-- Indices de la tabla `hol-kin_cro_ele`
 --
-ALTER TABLE `hol_kin_cro_ele`
+ALTER TABLE `hol-kin_cro_ele`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_kin_cro_est`
+-- Indices de la tabla `hol-kin_cro_est`
 --
-ALTER TABLE `hol_kin_cro_est`
+ALTER TABLE `hol-kin_cro_est`
   ADD PRIMARY KEY (`ide`),
   ADD KEY `sel` (`sel`);
 
 --
--- Indices de la tabla `hol_kin_cro_est_dia`
+-- Indices de la tabla `hol-kin_cro_est_dia`
 --
-ALTER TABLE `hol_kin_cro_est_dia`
+ALTER TABLE `hol-kin_cro_est_dia`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_kin_cro_ond`
+-- Indices de la tabla `hol-kin_cro_ond`
 --
-ALTER TABLE `hol_kin_cro_ond`
+ALTER TABLE `hol-kin_cro_ond`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_kin_ene`
+-- Indices de la tabla `hol-kin_ene`
 --
-ALTER TABLE `hol_kin_ene`
+ALTER TABLE `hol-kin_ene`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_kin_ene_cam`
+-- Indices de la tabla `hol-kin_ene_cam`
 --
-ALTER TABLE `hol_kin_ene_cam`
+ALTER TABLE `hol-kin_ene_cam`
   ADD PRIMARY KEY (`ide`),
   ADD KEY `gru` (`gru`);
 
 --
--- Indices de la tabla `hol_kin_gen_cel`
+-- Indices de la tabla `hol-kin_gen_cel`
 --
-ALTER TABLE `hol_kin_gen_cel`
+ALTER TABLE `hol-kin_gen_cel`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_kin_gen_enc`
+-- Indices de la tabla `hol-kin_gen_enc`
 --
-ALTER TABLE `hol_kin_gen_enc`
+ALTER TABLE `hol-kin_gen_enc`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_kin_nav_cas`
+-- Indices de la tabla `hol-kin_nav_cas`
 --
-ALTER TABLE `hol_kin_nav_cas`
+ALTER TABLE `hol-kin_nav_cas`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_kin_nav_ond`
+-- Indices de la tabla `hol-kin_nav_ond`
 --
-ALTER TABLE `hol_kin_nav_ond`
+ALTER TABLE `hol-kin_nav_ond`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_lun`
+-- Indices de la tabla `hol-lun`
 --
-ALTER TABLE `hol_lun`
+ALTER TABLE `hol-lun`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_lun_arm`
+-- Indices de la tabla `hol-lun_arm`
 --
-ALTER TABLE `hol_lun_arm`
+ALTER TABLE `hol-lun_arm`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_lun_cub`
+-- Indices de la tabla `hol-lun_cub`
 --
-ALTER TABLE `hol_lun_cub`
+ALTER TABLE `hol-lun_cub`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_lun_fas`
+-- Indices de la tabla `hol-lun_fas`
 --
-ALTER TABLE `hol_lun_fas`
+ALTER TABLE `hol-lun_fas`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_lun_fue`
+-- Indices de la tabla `hol-lun_fue`
 --
-ALTER TABLE `hol_lun_fue`
+ALTER TABLE `hol-lun_fue`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_lun_pla`
+-- Indices de la tabla `hol-lun_pla`
 --
-ALTER TABLE `hol_lun_pla`
+ALTER TABLE `hol-lun_pla`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_lun_pla_ato`
+-- Indices de la tabla `hol-lun_pla_ato`
 --
-ALTER TABLE `hol_lun_pla_ato`
+ALTER TABLE `hol-lun_pla_ato`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_lun_pla_eje`
+-- Indices de la tabla `hol-lun_pla_eje`
 --
-ALTER TABLE `hol_lun_pla_eje`
+ALTER TABLE `hol-lun_pla_eje`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_lun_pla_tet`
+-- Indices de la tabla `hol-lun_pla_tet`
 --
-ALTER TABLE `hol_lun_pla_tet`
+ALTER TABLE `hol-lun_pla_tet`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_lun_pla_tie`
+-- Indices de la tabla `hol-lun_pla_tie`
 --
-ALTER TABLE `hol_lun_pla_tie`
+ALTER TABLE `hol-lun_pla_tie`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_psi`
+-- Indices de la tabla `hol-psi`
 --
-ALTER TABLE `hol_psi`
+ALTER TABLE `hol-psi`
   ADD PRIMARY KEY (`ide`),
   ADD KEY `tzo` (`kin`),
-  ADD KEY `fec_dia` (`fec_dia`),
-  ADD KEY `fec_mes` (`fec_mes`),
+  ADD KEY `api_fec_dia` (`api_fec_dia`),
+  ADD KEY `api_fec_mes` (`api_fec_mes`),
   ADD KEY `fec` (`fec`);
 
 --
--- Indices de la tabla `hol_psi_ani`
+-- Indices de la tabla `hol-psi_ani`
 --
-ALTER TABLE `hol_psi_ani`
+ALTER TABLE `hol-psi_ani`
   ADD PRIMARY KEY (`ide`),
   ADD KEY `fam_4` (`fam_4`);
 
 --
--- Indices de la tabla `hol_psi_ani_cro`
+-- Indices de la tabla `hol-psi_ani_cro`
 --
-ALTER TABLE `hol_psi_ani_cro`
+ALTER TABLE `hol-psi_ani_cro`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_psi_ani_cro_arm`
+-- Indices de la tabla `hol-psi_ani_cro_arm`
 --
-ALTER TABLE `hol_psi_ani_cro_arm`
+ALTER TABLE `hol-psi_ani_cro_arm`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_psi_ani_lun`
+-- Indices de la tabla `hol-psi_ani_lun`
 --
-ALTER TABLE `hol_psi_ani_lun`
+ALTER TABLE `hol-psi_ani_lun`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_psi_ani_vin`
+-- Indices de la tabla `hol-psi_ani_vin`
 --
-ALTER TABLE `hol_psi_ani_vin`
+ALTER TABLE `hol-psi_ani_vin`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_psi_ban`
+-- Indices de la tabla `hol-psi_ban`
 --
-ALTER TABLE `hol_psi_ban`
+ALTER TABLE `hol-psi_ban`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_psi_ban_cor`
+-- Indices de la tabla `hol-psi_ban_cor`
 --
-ALTER TABLE `hol_psi_ban_cor`
+ALTER TABLE `hol-psi_ban_cor`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_psi_ban_his`
+-- Indices de la tabla `hol-psi_ban_his`
 --
-ALTER TABLE `hol_psi_ban_his`
+ALTER TABLE `hol-psi_ban_his`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_psi_ban_pla`
+-- Indices de la tabla `hol-psi_ban_pla`
 --
-ALTER TABLE `hol_psi_ban_pla`
+ALTER TABLE `hol-psi_ban_pla`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_psi_hep_est`
+-- Indices de la tabla `hol-psi_hep_est`
 --
-ALTER TABLE `hol_psi_hep_est`
+ALTER TABLE `hol-psi_hep_est`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_psi_hep_est_dia`
+-- Indices de la tabla `hol-psi_hep_est_dia`
 --
-ALTER TABLE `hol_psi_hep_est_dia`
+ALTER TABLE `hol-psi_hep_est_dia`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_psi_hep_pla`
+-- Indices de la tabla `hol-psi_hep_pla`
 --
-ALTER TABLE `hol_psi_hep_pla`
+ALTER TABLE `hol-psi_hep_pla`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_rad`
+-- Indices de la tabla `hol-rad`
 --
-ALTER TABLE `hol_rad`
+ALTER TABLE `hol-rad`
   ADD PRIMARY KEY (`ide`),
   ADD KEY `hum_cha` (`hum_cha`);
 
 --
--- Indices de la tabla `hol_rad_pla_car`
+-- Indices de la tabla `hol-rad_pla_car`
 --
-ALTER TABLE `hol_rad_pla_car`
+ALTER TABLE `hol-rad_pla_car`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_rad_pla_cub`
+-- Indices de la tabla `hol-rad_pla_cub`
 --
-ALTER TABLE `hol_rad_pla_cub`
+ALTER TABLE `hol-rad_pla_cub`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_rad_pla_ele`
+-- Indices de la tabla `hol-rad_pla_ele`
 --
-ALTER TABLE `hol_rad_pla_ele`
+ALTER TABLE `hol-rad_pla_ele`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_rad_pla_fue`
+-- Indices de la tabla `hol-rad_pla_fue`
 --
-ALTER TABLE `hol_rad_pla_fue`
+ALTER TABLE `hol-rad_pla_fue`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_rad_pla_pol`
+-- Indices de la tabla `hol-rad_pla_pol`
 --
-ALTER TABLE `hol_rad_pla_pol`
+ALTER TABLE `hol-rad_pla_pol`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_rad_pla_qua`
+-- Indices de la tabla `hol-rad_pla_qua`
 --
-ALTER TABLE `hol_rad_pla_qua`
+ALTER TABLE `hol-rad_pla_qua`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_sel`
+-- Indices de la tabla `hol-sel`
 --
-ALTER TABLE `hol_sel`
+ALTER TABLE `hol-sel`
   ADD PRIMARY KEY (`ide`),
   ADD KEY `arm_raz` (`arm_raz`),
   ADD KEY `arm_cel` (`arm_cel`),
@@ -7770,306 +7770,306 @@ ALTER TABLE `hol_sel`
   ADD KEY `ord` (`ord`);
 
 --
--- Indices de la tabla `hol_sel_arm_cel`
+-- Indices de la tabla `hol-sel_arm_cel`
 --
-ALTER TABLE `hol_sel_arm_cel`
+ALTER TABLE `hol-sel_arm_cel`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_sel_arm_raz`
+-- Indices de la tabla `hol-sel_arm_raz`
 --
-ALTER TABLE `hol_sel_arm_raz`
+ALTER TABLE `hol-sel_arm_raz`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_sel_cic_dir`
+-- Indices de la tabla `hol-sel_cic_dir`
 --
-ALTER TABLE `hol_sel_cic_dir`
+ALTER TABLE `hol-sel_cic_dir`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_sel_cic_luz`
+-- Indices de la tabla `hol-sel_cic_luz`
 --
-ALTER TABLE `hol_sel_cic_luz`
+ALTER TABLE `hol-sel_cic_luz`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_sel_cic_ser`
+-- Indices de la tabla `hol-sel_cic_ser`
 --
-ALTER TABLE `hol_sel_cic_ser`
+ALTER TABLE `hol-sel_cic_ser`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_sel_cod`
+-- Indices de la tabla `hol-sel_cod`
 --
-ALTER TABLE `hol_sel_cod`
+ALTER TABLE `hol-sel_cod`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_sel_cro_ele`
+-- Indices de la tabla `hol-sel_cro_ele`
 --
-ALTER TABLE `hol_sel_cro_ele`
+ALTER TABLE `hol-sel_cro_ele`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_sel_cro_fam`
+-- Indices de la tabla `hol-sel_cro_fam`
 --
-ALTER TABLE `hol_sel_cro_fam`
+ALTER TABLE `hol-sel_cro_fam`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_sel_par`
+-- Indices de la tabla `hol-sel_par`
 --
-ALTER TABLE `hol_sel_par`
+ALTER TABLE `hol-sel_par`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_sel_par_ana`
+-- Indices de la tabla `hol-sel_par_ana`
 --
-ALTER TABLE `hol_sel_par_ana`
+ALTER TABLE `hol-sel_par_ana`
   ADD PRIMARY KEY (`ide`),
   ADD KEY `ini` (`ini`),
   ADD KEY `fin` (`fin`);
 
 --
--- Indices de la tabla `hol_sel_par_ant`
+-- Indices de la tabla `hol-sel_par_ant`
 --
-ALTER TABLE `hol_sel_par_ant`
+ALTER TABLE `hol-sel_par_ant`
   ADD PRIMARY KEY (`ide`),
   ADD KEY `ini` (`ini`),
   ADD KEY `fin` (`fin`);
 
 --
--- Indices de la tabla `hol_sel_par_ocu`
+-- Indices de la tabla `hol-sel_par_ocu`
 --
-ALTER TABLE `hol_sel_par_ocu`
+ALTER TABLE `hol-sel_par_ocu`
   ADD PRIMARY KEY (`ide`),
   ADD KEY `ini` (`ini`),
   ADD KEY `fin` (`fin`);
 
 --
--- Indices de la tabla `hol_ton`
+-- Indices de la tabla `hol-ton`
 --
-ALTER TABLE `hol_ton`
+ALTER TABLE `hol-ton`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_ton_dim`
+-- Indices de la tabla `hol-ton_dim`
 --
-ALTER TABLE `hol_ton_dim`
+ALTER TABLE `hol-ton_dim`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_ton_mat`
+-- Indices de la tabla `hol-ton_mat`
 --
-ALTER TABLE `hol_ton_mat`
+ALTER TABLE `hol-ton_mat`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_ton_ond`
+-- Indices de la tabla `hol-ton_ond`
 --
-ALTER TABLE `hol_ton_ond`
+ALTER TABLE `hol-ton_ond`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_ton_sim`
+-- Indices de la tabla `hol-ton_sim`
 --
-ALTER TABLE `hol_ton_sim`
+ALTER TABLE `hol-ton_sim`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_uni_adn_ami`
+-- Indices de la tabla `hol-uni_adn_ami`
 --
-ALTER TABLE `hol_uni_adn_ami`
+ALTER TABLE `hol-uni_adn_ami`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_uni_flu`
+-- Indices de la tabla `hol-uni_flu`
 --
-ALTER TABLE `hol_uni_flu`
+ALTER TABLE `hol-uni_flu`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_uni_flu_pod`
+-- Indices de la tabla `hol-uni_flu_pod`
 --
-ALTER TABLE `hol_uni_flu_pod`
+ALTER TABLE `hol-uni_flu_pod`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_uni_flu_res`
+-- Indices de la tabla `hol-uni_flu_res`
 --
-ALTER TABLE `hol_uni_flu_res`
+ALTER TABLE `hol-uni_flu_res`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_uni_hum_art`
+-- Indices de la tabla `hol-uni_hum_art`
 --
-ALTER TABLE `hol_uni_hum_art`
+ALTER TABLE `hol-uni_hum_art`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_uni_hum_cen`
+-- Indices de la tabla `hol-uni_hum_cen`
 --
-ALTER TABLE `hol_uni_hum_cen`
+ALTER TABLE `hol-uni_hum_cen`
   ADD PRIMARY KEY (`ide`),
   ADD KEY `fam` (`fam`);
 
 --
--- Indices de la tabla `hol_uni_hum_cha`
+-- Indices de la tabla `hol-uni_hum_cha`
 --
-ALTER TABLE `hol_uni_hum_cha`
+ALTER TABLE `hol-uni_hum_cha`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_uni_hum_ded`
+-- Indices de la tabla `hol-uni_hum_ded`
 --
-ALTER TABLE `hol_uni_hum_ded`
+ALTER TABLE `hol-uni_hum_ded`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_uni_hum_ext`
+-- Indices de la tabla `hol-uni_hum_ext`
 --
-ALTER TABLE `hol_uni_hum_ext`
+ALTER TABLE `hol-uni_hum_ext`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_uni_hum_lad`
+-- Indices de la tabla `hol-uni_hum_lad`
 --
-ALTER TABLE `hol_uni_hum_lad`
+ALTER TABLE `hol-uni_hum_lad`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_uni_hum_mer`
+-- Indices de la tabla `hol-uni_hum_mer`
 --
-ALTER TABLE `hol_uni_hum_mer`
+ALTER TABLE `hol-uni_hum_mer`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_uni_hum_mud`
+-- Indices de la tabla `hol-uni_hum_mud`
 --
-ALTER TABLE `hol_uni_hum_mud`
+ALTER TABLE `hol-uni_hum_mud`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_uni_hum_res`
+-- Indices de la tabla `hol-uni_hum_res`
 --
-ALTER TABLE `hol_uni_hum_res`
+ALTER TABLE `hol-uni_hum_res`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_uni_hum_sen`
+-- Indices de la tabla `hol-uni_hum_sen`
 --
-ALTER TABLE `hol_uni_hum_sen`
+ALTER TABLE `hol-uni_hum_sen`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_uni_pla_cen`
+-- Indices de la tabla `hol-uni_pla_cen`
 --
-ALTER TABLE `hol_uni_pla_cen`
+ALTER TABLE `hol-uni_pla_cen`
   ADD PRIMARY KEY (`ide`),
   ADD KEY `fam` (`fam`);
 
 --
--- Indices de la tabla `hol_uni_pla_hem`
+-- Indices de la tabla `hol-uni_pla_hem`
 --
-ALTER TABLE `hol_uni_pla_hem`
+ALTER TABLE `hol-uni_pla_hem`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_uni_pla_mer`
+-- Indices de la tabla `hol-uni_pla_mer`
 --
-ALTER TABLE `hol_uni_pla_mer`
+ALTER TABLE `hol-uni_pla_mer`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_uni_pla_res`
+-- Indices de la tabla `hol-uni_pla_res`
 --
-ALTER TABLE `hol_uni_pla_res`
+ALTER TABLE `hol-uni_pla_res`
   ADD PRIMARY KEY (`ide`),
   ADD KEY `fam` (`fam`);
 
 --
--- Indices de la tabla `hol_uni_pla_tie`
+-- Indices de la tabla `hol-uni_pla_tie`
 --
-ALTER TABLE `hol_uni_pla_tie`
+ALTER TABLE `hol-uni_pla_tie`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_uni_sol_cel`
+-- Indices de la tabla `hol-uni_sol_cel`
 --
-ALTER TABLE `hol_uni_sol_cel`
+ALTER TABLE `hol-uni_sol_cel`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_uni_sol_cir`
+-- Indices de la tabla `hol-uni_sol_cir`
 --
-ALTER TABLE `hol_uni_sol_cir`
+ALTER TABLE `hol-uni_sol_cir`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_uni_sol_orb`
+-- Indices de la tabla `hol-uni_sol_orb`
 --
-ALTER TABLE `hol_uni_sol_orb`
+ALTER TABLE `hol-uni_sol_orb`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_uni_sol_pla`
+-- Indices de la tabla `hol-uni_sol_pla`
 --
-ALTER TABLE `hol_uni_sol_pla`
+ALTER TABLE `hol-uni_sol_pla`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_uni_sol_res`
+-- Indices de la tabla `hol-uni_sol_res`
 --
-ALTER TABLE `hol_uni_sol_res`
+ALTER TABLE `hol-uni_sol_res`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_uni_tel`
+-- Indices de la tabla `hol-uni_tel`
 --
-ALTER TABLE `hol_uni_tel`
+ALTER TABLE `hol-uni_tel`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_uni_tel_cam`
+-- Indices de la tabla `hol-uni_tel_cam`
 --
-ALTER TABLE `hol_uni_tel_cam`
+ALTER TABLE `hol-uni_tel_cam`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_uni_tel_mov`
+-- Indices de la tabla `hol-uni_tel_mov`
 --
-ALTER TABLE `hol_uni_tel_mov`
+ALTER TABLE `hol-uni_tel_mov`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_uni_tel_pla`
+-- Indices de la tabla `hol-uni_tel_pla`
 --
-ALTER TABLE `hol_uni_tel_pla`
+ALTER TABLE `hol-uni_tel_pla`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_uni_tel_sub`
+-- Indices de la tabla `hol-uni_tel_sub`
 --
-ALTER TABLE `hol_uni_tel_sub`
+ALTER TABLE `hol-uni_tel_sub`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `hol_uni_tie`
+-- Indices de la tabla `hol-uni_tie`
 --
-ALTER TABLE `hol_uni_tie`
+ALTER TABLE `hol-uni_tie`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `num_int`
+-- Indices de la tabla `api_num_int`
 --
-ALTER TABLE `num_int`
+ALTER TABLE `api_num_int`
   ADD PRIMARY KEY (`ide`);
 
 --
--- Indices de la tabla `tex_let`
+-- Indices de la tabla `api_tex_let`
 --
-ALTER TABLE `tex_let`
+ALTER TABLE `api_tex_let`
   ADD PRIMARY KEY (`pos`);
 
 --

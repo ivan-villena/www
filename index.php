@@ -3,6 +3,8 @@
   error_reporting(E_ALL);
   ini_set('display_errors', '1');
 
+  $sis_ini = time();
+
   // Sesion
     session_start();
 
@@ -13,7 +15,6 @@
     }
 
     date_default_timezone_set( $_SESSION['ubi'] );
-    $sis_ini = time();
 
   //
   // Constantes
@@ -33,26 +34,32 @@
     define('FON_SEL', "fon-sel");
   //
   // Modulos
-    require_once("./api/Arc.php");
-    require_once("./api/Eje.php");
-    require_once("./api/Ele.php");
-    require_once("./api/Obj.php");
-    require_once("./api/Lis.php");
-    require_once("./api/Num.php");
-    require_once("./api/Tex.php");
-    require_once("./api/Fig.php");
-    require_once("./api/Fec.php");
-    require_once("./api/Hol.php");    
 
-    require_once("./sis/sql.php");
-    require_once("./sis/Dat.php");
-    require_once("./sis/Doc.php");
-    require_once("./sis/App.php");
-    require_once("./sis/Usu.php");    
+    // Interfaces
+    require_once("./Api/sql.php");  
 
-    $App = new App();
-    $Usu = new Usu( $_SESSION['usu'] );
+    // Sistema
+    require_once("./Sis/Num.php");
+    require_once("./Sis/Tex.php");
+    require_once("./Sis/Fec.php");
+    require_once("./Sis/Obj.php");
+    require_once("./Sis/Eje.php");
+    require_once("./Sis/Ele.php");
+    require_once("./Sis/Arc.php");
+
+    require_once("./Sis/Dat.php");
+    require_once("./Sis/Doc.php");
+    require_once("./Sis/Usu.php");
+    require_once("./Sis/App.php");
+
+    // Documento
+    require_once("./Doc/Val.php");
+    require_once("./Doc/Var.php");
+    require_once("./Doc/Ope.php");
+    require_once("./Doc/Dat.php");    
   //
+
+  $Usu = new Usu( $_SESSION['usu'] );  
 
   ////////////////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////////
@@ -60,28 +67,68 @@
   // peticion AJAX
   if( isset($_REQUEST['_']) ){
 
+    // Ejecucion desde consola
+    function adm_log() : string {
+      
+      $_ = "<h2>hola desde php<c>!</c></h2>";
+
+      foreach( sql::est('nom','tip_','tab') as $est ){
+
+        $_ .= "RENAME TABLE `$est` TO `".str_replace('tip_','sis-tip_',$est)."`;<br>";
+
+      } 
+
+    
+      /* Recorrer tablas de un esquema:
+
+      foreach( sql::est('nom','hol-uni','tab') as $est ){
+
+        $_ .= "ALTER TABLE `api`.`$est` DROP PRIMARY KEY;<br>";
+
+      } 
+      */
+      
+      /*  Invocando funciones 
+        include("./_sql/hol/sel.php");
+        $_ = hol-sel_par_gui();
+      */
+      
+      return $_;
+    }
+
     // ver cabeceras para api's: tema no-cors
-    echo Obj::val_cod( !Obj::val_tip( $eje = Eje::val($_REQUEST['_']) ) ? [ '_' => $eje ] : $eje );
+    echo Obj::val_cod( !Obj::tip( $eje = Eje::val($_REQUEST['_']) ) ? [ '_' => $eje ] : $eje );
 
     exit;
   }
 
   ////////////////////////////////////////////////////////////////////////////////////////////
-  ////////////////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////  
+
+  $App = new App();
+
+  $Doc = new Doc();
 
   // cargo rutas
-  $Uri = $App->uri( isset($_REQUEST['uri']) ? $_REQUEST['uri'] : "sincronario" );
+  $_SESSION['Uri'] = $Uri = $App->uri( isset($_REQUEST['uri']) ? $_REQUEST['uri'] : "sincronario" );  
   
-  if( file_exists($rec = "./_app/{$Uri->esq}/index.php") ){ 
+  if( file_exists($rec = "./App/{$Uri->esq}/index.php") ){
 
-    // inicializo página
-    $App->doc_ini();
+    // cargo modulo principal de la aplicacion
+    if( file_exists($rec_cla = "./App/".Tex::let_pal($Uri->esq).".php") ){
+      
+      require_once( $rec_cla );
+    }
+
+    // cargo datos de la aplicacion
+    $App->uri_dat();
     
     // cargo secciones por aplicacion
     require_once( $rec );
     
     // cargo contenido de página + aplicación
-    $App->doc( $Usu );
+    $Doc->htm( $App, $Usu );
+
   }
   else{
     ?>
@@ -93,7 +140,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- hojas de estilo -->
         <link rel='stylesheet' href='<?=SYS_NAV?>index.css'>
-        <?=$App->ses_cla('css')?>
+        <?=$Doc->cla('css')?>
         <link rel='stylesheet' href='<?=SYS_NAV?>sis/css.css'>
         <!--  -->
         <title>Error</title>
@@ -101,7 +148,10 @@
 
       <body>
 
-        <?=Doc::tex([ 'tip'=>"err", 'tex'=>"No existe la Página solicitada..." ],[ 'sec'=>[ 'class'=>"mar-aut" ] ])?>
+        <?=Doc_Ope::tex([ 
+          'tip'=>"err", 
+          'tex'=>"No existe la Página solicitada: {$_REQUEST['uri']}..."
+        ])?>
         
       </body>
     </html>

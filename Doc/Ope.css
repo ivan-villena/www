@@ -1,0 +1,498 @@
+
+:root { 
+  /* tamaños */
+  --tam_cab_max: 6vh;
+  --tam_sec_max: 94vh;
+  --tam_cab_min: 9vh;
+  --tam_sec_min: 91vh;
+}
+
+/* ////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* 
+  Seccion Principal 
+*/
+.ope_sec {
+  height: var(--tam_sec_max);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: auto;  
+  background-color: var(--fon_art);/* por barra de desplazamiento */
+  text-align: center;
+}
+
+/* Titulo */
+.ope_sec > header {
+  width: 100%;
+  background-color: var(--fon_sec);  
+}
+
+/* Articulos */
+.ope_sec article {
+  width: 100%;
+  max-width: 700px;
+  height: max-content;
+  margin: auto;
+  padding: .5rem 1rem;
+  border-radius: .5rem;
+  /* border: 1px solid var(--bor_sel); */
+  background-color: var(--fon_sec);
+}
+
+/* ////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* 
+  Cabecera : botones de acceso a inicio + paneles + modales 
+*/
+.ope_cab {
+  display: flex;
+  height: var(--tam_cab_max);
+  justify-content: space-between;
+  background-color: var(--fon_win);
+}
+
+.ope_cab > nav {
+  margin: auto 0;
+}
+
+.ope_cab > nav > a {
+  padding: .25rem;
+}
+
+/* ////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* 
+  Laterales 
+*/
+:is( .ope_pan, .ope_bar ) {  
+  z-index: 9999;
+  position: fixed;
+  top: var(--tam_cab_max);
+  display: flex;
+  height: var(--tam_sec_max);
+  width: 450px;
+  background-color: var(--fon_sec);
+}
+
+/* 
+  izquierda: panel movil 
+*/
+@keyframes doc_pan-ver {
+  from { transform: translate(-5rem); } to { transform: translate(0rem); }
+}
+@keyframes doc_pan-ocu {
+  from { transform: translate(0rem); } to { transform: translate(-5rem); }
+}
+.ope_pan {
+  max-width: 100%;
+  overflow: hidden;
+  border: 1px solid var(--col_azu);
+  border-left: 0;
+  border-radius: 0 1rem 1rem 0;    
+  transition: all 1s;
+  animation: doc_pan-ver 1s, dis-ver 1s;
+}
+.ope_pan.dis-ocu {  
+  animation: doc_pan-ocu 1s;
+  display: flex !important;
+  width: 0 !important;
+  height: 0 !important;   
+  border: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+.ope_pan > [class*="ide-"] {
+  width: 100%;
+  animation: dis-ver 1s;
+}
+.ope_pan > [class*="ide-"] > header {
+  display: flex;
+  justify-content: space-between;  
+  padding: .25rem;
+  text-align: center;
+}
+.ope_pan > [class*="ide-"] > header + * {
+  max-height: 91vh;
+  overflow: auto;
+}
+
+/* 
+  derecha: sidebar 
+*/
+.ope_bar {
+  max-width: 100%;
+}
+
+/* ////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* 
+  pie de página 
+*/
+.ope_pie {
+  padding: .5rem;
+  text-align: center;
+}
+
+/* ////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* 
+  Ajustes de Pantalla
+*/
+
+@media only screen and ( orientation: landscape ) and ( max-height: 500px ){
+
+  .ope_cab {
+    height: var(--tam_cab_min);
+  }
+
+  :is(.ope_pan, .ope_bar) {
+    top: var(--tam_cab_min);
+    height: var(--tam_sec_min);
+  }
+  
+  .ope_sec {
+    height: var(--tam_sec_min);
+  }
+}
+
+/* ////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////////////////////////////////// */
+/*
+  Modales
+*/
+.ope_win {  
+  z-index: 99999;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  background-color: rgba(0,0,0,.8);  
+  text-align: center;
+  animation: dis-ver .5s;
+}
+.ope_win > article {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  height: 90vh;
+  width: 95%;
+  max-width: 50rem;
+  overflow: hidden;  
+  background-color: var(--fon_sec);
+  border: 1px solid var(--col_azu);
+  border-radius: .5rem;
+  line-height: 1.5;
+  animation: dis-ver 1s, dis-ver-tam .5s;
+}
+.ope_win > article > header {    
+  display: flex;
+  flex-wrap: nowrap;  
+  justify-content: space-between;
+  padding: .25rem;
+  height: 3rem;
+}
+.ope_win > article > header + * {
+  flex-grow: 2;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+.ope_win > article > header + * > section {
+  margin: .5rem;  
+}
+
+/* Operador */
+.ope_win > .ide-app_ope {
+  z-index: 9999;
+  height: 95vh;
+  background-color: var(--fon_win);
+}
+.ope_win > .ide-app_ope > header + * {
+  align-items: center;
+}
+.ope_win > .ide-app_ope > header + * > section {
+  margin: .5rem;
+  padding: 0 .5rem;
+}
+
+/* ////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* 
+  Navegadores por Contenido
+*/
+.ope_nav:is(.pes,.tex,.bar) {
+  display: flex;
+  align-items: center;
+  flex-flow: row nowrap;
+  margin: 0;
+  padding: 0;
+}
+
+.ope_nav:is(.pes,.tex) > a:not(.val_ico) {  
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 2;
+  text-align: center;
+  font-size: medium;
+  color: var(--let_tex);
+  margin: auto;
+  text-decoration: none;
+}
+
+.ope_nav:is(.pes,.tex) > a:hover{
+  background-color: var(--fon_foc);
+}
+
+/* Contenedor */
+.ope_nav:is(.pes,.tex,.bar) + :is(div,section) {
+  overflow: auto;
+  margin: 0 .5rem;
+}
+.ope_nav:is(.pes,.tex,.bar) + :is(div,section) > [class*="ide-"] {
+  animation: dis-ver 1s;
+}
+
+
+/* - Pestañas: icono + texto */
+.ope_nav.pes {
+  margin: 0 .5rem;
+}
+.ope_nav.pes > a:not(.val_ico) {    
+  min-height: 3rem;
+  border-radius: 1rem 1rem 0 0;
+  text-decoration: none;  
+  font-style: normal;
+}
+.ope_nav.pes > a,
+.ope_nav.pes + * {
+  background-color: var(--fon_art);
+  border: 1px solid var(--bor_art);
+}
+.ope_nav.pes + * {  
+  border-radius: 0 0 .5rem .5rem;
+  border-top: 0;
+}
+
+/* - Solo Texto */
+.ope_nav.tex {
+  justify-content: space-around;
+}
+.ope_nav.tex > a:not(.val_ico) {
+  padding: .5rem 1rem;
+  border-radius: .25rem;
+  font-style: italic;
+}
+
+
+/* - Solo iconos */
+.ope_nav.bar + :is(div,section) {
+  z-index: 900;
+  position: absolute;
+  width: 100%;
+  max-height: 60vh; 
+  background-color: var(--fon_win);
+  padding: .5rem;
+  margin: 0;
+  border-top: 1px solid var(--bor_art);
+  border-bottom: 1px solid var(--bor_art);
+}
+
+/* - Solo Botones: accesos por contenido o enlaces... a/button/span */
+.ope_nav.bot {  
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: stretch;
+  margin: 0;
+  padding: .5rem;
+}
+.ope_nav.bot > * {
+  margin-bottom: .5rem;
+  padding: .5rem;
+}
+.ope_nav.bot > button:hover {
+  background-color: var(--fon_foc);
+}
+
+/* ////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* 
+  Contenedor
+*/
+.ope_val {
+  width: -moz-fit-content;
+  width: fit-content;  
+  display: flex;
+  flex-direction: row !important;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+.ope_val > .val_ico.ide-val_tog {
+  text-shadow: 0 0 5px;
+}
+.ope_val > .val_ico.ide-val_tog.ocu {
+  transform: rotate(270deg);
+}
+
+/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* 
+  Tipos de lista por items
+*/
+ul.ope_lis:not(.pos) {
+  padding: 0;
+  list-style: none;
+}
+
+/* 
+  Contenido vertical con sublistas
+*/
+ul.ope_lis.dep {  
+  overflow: auto;
+  padding-bottom: 1rem;
+}
+ul.ope_lis.dep ul.ope_lis {    
+  padding-left: 1rem;
+  padding-bottom: .25rem;
+  margin: 0;
+}
+ul.ope_lis.dep li > .ope_val {
+  width: initial;
+  border-radius: .2rem;
+  margin: .25rem 0;
+}
+ul.ope_lis.dep:not(.val) li.sep  {
+  margin-left: 1.5rem;
+}
+
+/* 
+  Indice por subniveles 
+*/
+ul.ope_lis.nav a {
+  display: inline-block;
+  overflow: auto;
+  width: 100%;
+  text-decoration: none;
+  color: var(--let_tex);
+}
+ul.ope_lis.nav li.pos.sep,
+ul.ope_lis.nav li.pos:not(.sep) > .ope_val {  
+  margin-top: .1rem;
+  margin-bottom: .1rem;
+  padding: .25rem;
+}
+ul.ope_lis.nav li.pos.sep:hover,  
+ul.ope_lis.nav li.pos:not(.sep) > .ope_val:hover {
+  background-color: var(--fon_foc);
+  border-radius: .25rem;
+}
+ul.ope_lis.nav a {
+  display: inline-block;
+  overflow: auto;
+  width: 100%;
+  text-decoration: none;
+  color: var(--let_tex);
+}
+ul.ope_lis.nav li.pos.sep,
+ul.ope_lis.nav li.pos:not(.sep) > .ope_val {  
+  margin-top: .1rem;
+  margin-bottom: .1rem;
+  padding: .25rem;
+}
+ul.ope_lis.nav li.pos.sep:hover,  
+ul.ope_lis.nav li.pos:not(.sep) > .ope_val:hover {
+  background-color: var(--fon_foc);
+  border-radius: .25rem;
+}
+
+/* 
+  Barra Horizontal con desplazamiento por item
+*/
+ul.ope_lis.bar {
+  display: flex;
+  flex-flow: row nowrap;
+  padding: 0;
+  margin: 0;
+}
+ul.ope_lis.bar > li {
+  width: 100%;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* 
+  Botonera Horizontal por iconos/imagenes
+*/
+.ope_bot {
+  display: flex;
+  flex-flow: row nowrap;
+  padding: .25rem;
+}
+.ope_bot > *:not(:last-child) {
+  margin-right: .25rem;
+}
+
+/* items en Vertical */
+.ope_bot.dir-ver > *:not(:last-child) {
+  margin-bottom: .25rem;
+}
+
+/* ////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* 
+variable : div > label + input
+*/
+.ope_var {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  margin: .25rem;
+}
+
+
+/* ////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* 
+  Informe : recuadro de contenido vertical con separaciones
+*/
+.ope_inf {
+  display: flex;
+  flex-direction: column;
+  padding: .25rem;
+  border: 1px solid var(--bor_dat);
+  border-radius: .5rem;
+  margin: .5rem;
+}
+
+/* ////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* 
+  Cartel
+*/
+.ope_tex {
+  max-width: max-content;
+  background-color: var(--fon_sec);
+  padding: .5rem;
+  border: 2px dashed var(--let_ico);
+  border-radius: .5rem;
+  box-shadow: 0 0 5px;
+  margin: 1rem auto;
+}
+.ope_tex > header {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+}

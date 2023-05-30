@@ -1,0 +1,259 @@
+
+/* 
+campos
+*/
+form {
+  max-height: 100%;
+}
+fieldset {
+  border-radius: .5rem;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+legend {
+  display: flex;  
+  flex-flow: row nowrap;
+  align-items: center;
+  overflow: hidden;
+  padding: .3rem 1rem;
+  border-radius: .8rem;
+  border: 1px solid var(--bor_dat);
+  font-size: medium;
+  text-align: left;
+}
+
+/* Contenedor */
+fieldset.ope_inf {
+  margin: .25rem .5rem .75rem;
+}
+:is(form,fieldset) > :is(.-ren,.-ite) {
+  justify-content: space-evenly;  
+}
+:is(form,fieldset) > div:is(.-ren,.-ite) {
+  margin: .25rem;
+}
+
+
+/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* 
+  ABM de la base
+*/
+form.dat {
+  width: 100%;
+  max-width: 500px;
+  background-color: var(--fon_dat);
+  border-radius: 5%;
+  padding: .5rem;   
+  margin: auto;
+}
+
+form.dat .ope_var {
+  flex-grow: 2;
+  flex-direction: column;
+  align-items: start;
+  margin: .5rem;
+}
+
+form.dat > *:not(:last-child) {
+  margin-bottom: 1.5rem;
+}
+
+form.dat :is(fieldset,div).ope_var label[for] {
+  color: var(--let_ide);
+  padding: .5rem;
+  margin: 0;
+}
+
+form.dat :is(fieldset,div).ope_var select,
+form.dat :is(fieldset,div).ope_var textarea,
+form.dat :is(fieldset,div).ope_var input:not([type='checkbox']):not([type='radio']) {
+  width: 100%;
+  border: 0;
+  border-radius: 0;
+  border-bottom: 1px solid;
+}
+
+/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+
+/* 
+  Estructura
+*/
+div.dat_lis {
+  width: 100%;
+  overflow: auto;
+  padding: 0 .5rem;
+  margin: 1rem auto;
+}
+/* por revalsamiento en articulos */
+main article div.dat_lis {
+  max-width: 90vw;
+}
+
+div.dat_lis > table {
+  /* width: max-content; */
+  margin: 0 auto;
+  line-height: 1.25;
+  text-align: center;  
+}
+
+/* Cabecera */
+div.dat_lis > table > thead {
+  position: sticky;
+  top: 0;
+  background-color: var(--fon_win);
+}
+div.dat_lis > table > thead > tr > th > p.ide {
+  padding: .5rem;
+  max-width: min-content;
+}
+div.dat_lis > table > thead > tr:not(.gru) > th,
+div.dat_lis > table > tbody > tr:not([data-ope],[data-opc]) > td {
+  border-right: 1px dotted var(--bor_sec);
+}
+
+/* titulo + detalle */
+div.dat_lis > table > tbody > tr:is([data-opc="tit"],[data-opc="det"]) {
+  text-align: left;
+  line-height: 1.5;
+}
+div.dat_lis > table > tbody > tr[data-opc="tit"] > td {
+  padding: 0 .5rem;
+}
+div.dat_lis > table > tbody > tr[data-ope="lec"][data-opc="det"] > td {
+  padding-top: .25rem;
+}
+
+/* datos */
+div.dat_lis > table > tbody > tr > td > :is(n,time,p) {
+  font-size: .9rem;  
+}
+div.dat_lis > table > tbody > tr > td > p {
+  text-align: left;
+}
+div.dat_lis > table > tbody > tr > td > :is(n,time) {
+  font-size: .9rem;
+  text-align: right;
+}
+
+/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* 
+  Tablero
+*/
+ul.dat_tab {
+  list-style: none;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 0;
+  margin: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+table.dat_tab {
+  border-collapse: collapse;
+  padding: 0;
+}
+
+:is(ul,table).dat_tab {
+  min-width: max-content;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;  
+  text-align: center;
+  font-size: .7rem;
+  transition: background 1s, border 1s;  
+}
+:is(ul,table).dat_tab.bor-1 {
+  border-color: var(--bor_sec);
+  box-shadow: 0 0 .5rem var(--bor_sec);
+}
+
+/* posiciones y secciones */
+.dat_tab > :is(.sec,.pos) {
+  width: 100%;
+  height: 100%;
+}
+:is(ul,table).dat_tab .pos,
+:is(ul,table).dat_tab .sec {  
+  justify-self: center;
+  align-self: center;
+  margin: 0;
+  transition: background 1s, border 1s;
+}
+:is(ul,table).dat_tab .pos[class*="fon_col-"] {
+  box-shadow: 0 0 .5rem black;
+}
+
+/* secciones */
+
+/* fondos: imagen + color */
+.dat_tab > .sec.fon { 
+  z-index: 0;
+  grid-column: 1/sp; 
+  grid-row: 1/sp;  
+}
+/* bordes y lineas*/
+.dat_tab > .sec.bor {
+  z-index: 1;
+  border-width: 2px;
+  border-style: double;
+  border-color: var(--col_ver);
+  border-radius: 10%;
+  box-shadow: 0 0 .5rem var(--let_ico);
+}
+/* fichas e imagenes */
+.dat_tab > .sec.ima {
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;  
+}
+
+/* posiciones */
+ul.dat_tab > li.pos {
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  align-content: center; 
+  justify-content: center;
+}
+
+/* Bordes */
+:is(ul,table).dat_tab .pos.bor-1 {
+  border-color: #008000;
+  box-shadow: 0 0 .3rem var(--let_ico);
+}
+/* - Operador */
+:is(ul,table).dat_tab .pos:is(._pos-bor,._ver-bor,._mar-bor) {
+  border: 1px double #991d99;
+}
+
+/* Efectos */
+:is(ul,table).dat_tab .pos.ope[onclick]:hover {
+  background-color: var(--tra_ros);
+  box-shadow: 0 0 .35rem var(--tra_vio);
+  color: black;
+}
+
+/* Fichas de Imágenes */
+:is(ul,table).dat_tab :is(.sec,.pos) > .val_ima {
+  min-width: 100%;
+  height: 100%;
+}
+:is(ul,table).dat_tab td:is(.sec,.pos) > .val_ima {
+  min-height: 100%;
+}
+
+/* Textos */
+:is(ul,table).dat_tab :is(.sec,.pos) > p {
+  text-align: center;
+}

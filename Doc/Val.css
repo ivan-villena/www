@@ -1,0 +1,318 @@
+
+/* 
+  Enlaces
+*/
+a:not( .val_ico, .tex ) {
+  text-decoration: underline;
+  font-style: italic; 
+  color: var(--let_ide);
+}
+
+a.tex {
+  text-decoration: none;
+  color: var(--let_tex);
+}
+
+
+/* 
+  Etiquetas
+*/
+label[for] {
+  min-width: -moz-fit-content;
+  min-width: fit-content;
+  margin: 0 .25rem;
+  cursor: pointer;
+}
+
+/* 
+  Control 
+*/
+input, 
+textarea,
+select,
+datalist,
+button {
+  background-color: var(--fon_ope);
+  padding: .2rem;
+  border: 1px solid var(--bor_ope);
+  border-radius: .5rem;
+  font-family: var(--tex);
+  color: var(--let_tex);
+}
+
+/* Focos */
+:is( input, select, button:not( .val_ico ) ):focus {
+  background-color: var(--tra_azu);
+}
+:is(input,select,textarea):focus {
+  outline: none;
+}
+
+/* Tamaños */
+input:is([type="text"]) {
+  width: 100%;
+  max-width: 70vw;
+}
+input[maxlength='1'] { width: 2.5rem; }
+input[maxlength='2'] { width: 3rem; }
+input[maxlength='3'] { width: 3.5rem; }
+input[maxlength='4'] { width: 4rem; }
+input[maxlength='5'] { width: 4.5rem; }
+input[maxlength='6'] { width: 5rem; }
+input[maxlength='7'] { width: 5.5rem; }
+input[maxlength='8'] { width: 6rem; }
+input[maxlength='9'] { width: 6.5rem; }
+input[maxlength='10']{ width: 7rem; }
+input[maxlength='11']{ width: 7.5rem; }
+input[maxlength='12']{ width: 8rem; }
+input[maxlength='13']{ width: 8.5rem; }
+input[maxlength='14']{ width: 9rem; }
+input[maxlength='15']{ width: 9.5rem; }
+input[maxlength='16']{ width: 10rem; }
+input[maxlength='17']{ width: 10.5rem; }
+input[maxlength='18']{ width: 11rem; }
+input[maxlength='19']{ width: 11.5rem; }
+input[maxlength='20']{ width: 12rem; }
+input[maxlength='25']{ width: 15rem; }
+
+/* 
+  Imágenes 
+*/
+img {  
+  max-width: 100%;
+  height: auto;
+}
+
+.val_ima {
+  display: inline-block;
+  min-width: 2.5rem;
+  height: 2.5rem;  
+  padding: 0;
+  border: 0;
+  margin: 0;
+}
+.val_ima.tam-1  { min-width: 1.25rem;   height: 1.25rem; }
+.val_ima.tam-2  { min-width: 1.5rem;    height: 1.5rem; }
+.val_ima.tam-3  { min-width: 1.75rem;   height: 1.75rem; }
+.val_ima.tam-4  { min-width: 2rem;      height: 2rem; }
+.val_ima.tam-5  { min-width: 2.25rem;   height: 2.25rem; }
+.val_ima.tam-6  { min-width: 2.5rem;    height: 2.5rem; }
+.val_ima.tam-7  { min-width: 3rem;      height: 3rem; }
+.val_ima.tam-8  { min-width: 3.5rem;    height: 3.5rem; }
+.val_ima.tam-9  { min-width: 4rem;      height: 4rem; }
+.val_ima.tam-10 { min-width: 4.5rem;    height: 4.5rem; }
+.val_ima.tam-11 { min-width: 5rem;      height: 5rem; }
+.val_ima.tam-12 { min-width: 5.5rem;    height: 5.5rem; }
+.val_ima.tam-13 { min-width: 6rem;      height: 6rem; }
+.val_ima.tam-14 { min-width: 6.5rem;    height: 6.5rem; }
+.val_ima.tam-15 { min-width: 7rem;      height: 7rem; }
+.val_ima.tam-16 { min-width: 7.5rem;    height: 7.5rem; }
+
+
+/* 
+  Iconos
+*/
+@font-face {
+  font-family: 'Material Icons Outlined';
+  font-style: normal;
+  font-weight: 400;
+  src: url("../_img/app/ico.woff2") format('woff2');
+}
+
+/* estilo principal */
+.val_ico {
+  font-family: 'Material Icons Outlined';
+  font-weight: normal;
+  font-style: normal;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  /* -webkit-font-feature-settings: 'liga'; */
+  -webkit-font-smoothing: antialiased;
+  /* propios */
+  padding: 0;
+  border: 0;
+  margin: 0;
+  font-size: 1.4rem;
+  background-color: var(--col_tra);
+  color: var(--let_ico);
+  text-decoration: none;  
+}
+
+.val_ico:is([href],[onclick]):hover {
+  text-shadow: 0 0 5px;
+}
+
+/* 
+  Numero
+*/
+n {
+  display: inline;
+}
+
+n, sup, sub {
+  text-shadow: 0 0 5px;
+  color: var(--let_num);
+}
+
+/* 
+  letra 
+*/
+c {
+  display: inline;  
+  font-weight: bold; 
+  color: var(--let_ope);
+  text-shadow: 0 0 5px;  
+}
+c.sep { 
+  margin: .3rem;
+}
+
+/* cita */
+cite {
+  font-style: italic;
+}
+q, blockquote { 
+  quotes: "\"" "\"" "'" "'";
+}
+:is(q,blockquote)::after, 
+:is(q,blockquote)::before {
+  color: var(--let_ope);
+  text-shadow: 0 0 5px;
+}
+
+dfn, /* Definiciones */
+abbr, /* Abreviaturas */
+dt /* Términos */
+{ 
+  color: var(--let_ide); 
+}
+
+/* separador */
+hr{   
+  margin: 2rem;
+}
+
+/* titulo */
+h1, h2, h3, h4, h5, h6 {
+  margin: .5rem 0;
+  text-decoration: underline;
+  font-style: italic;
+  font-weight: bold;
+}
+h1 { font-size: 1.50rem; }
+h2 { font-size: 1.25rem; }
+h3 { font-size: 1.20rem; }
+h4 { font-size: 1.15rem; }
+h5 { font-size: 1.10rem; }
+h6 { font-size: 1.05rem; }
+
+/* párrafos */
+p {
+  margin: 0;
+}
+/* Contenido */
+p.tit {
+  margin-top: .5rem;
+  text-decoration: underline; 
+  font-weight: bold; 
+  font-style: italic;
+}
+p.cit {
+  margin: .75rem auto;
+  font-style: italic;
+}
+:is(p,b,i).des {
+  font-style: italic;
+}
+:is(p,b,i).err { 
+  color: var(--let_err); 
+}
+/* Palabras */
+:is(p,b,i).ide { 
+  color: var(--let_ide); 
+}
+:is(p,b,i).val { 
+  color: var(--let_val); 
+}
+
+/* 
+  Listas
+*/
+dl, ul, ol {  
+  text-align: left;
+  margin: .5rem 0;
+}
+
+/* 
+  Posiciones
+*/
+ul, ol {
+  padding-left: 1rem;
+}
+
+/* términos */
+dl dt {
+  margin-top: .5rem;
+}
+dl dd { 
+  margin-left: 1rem;  
+}
+
+ul.lis,
+ul.ite {
+  padding: 0;
+  list-style: none;
+}
+
+/* 
+  flujo de lista horizontal
+*/
+ul.val {
+  display: flex;
+  flex-wrap: nowrap;
+  max-width: fit-content;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+}
+
+/* 
+  flujo de item horizontal
+*/
+ul.ite > li {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  margin: .2rem 0;
+}
+
+/* Tabla */
+table {
+  /* width: 100%; */
+  border-collapse: separate; /* espaciado aplica cuando el collapse es separate // not:: collapse: collapse */  
+  border-spacing: .2rem .1rem; /* => horizontal-izquierda vertical-superior */
+  padding-bottom: 1rem;
+}
+table th {
+  color: var(--let_ide);
+  max-width: fit-content;
+}
+table th > p {
+  margin: auto;
+}
+
+/* listado vertical/horizontal */
+nav.lis {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+nav.lis > :is(p,a) {
+  padding-left: .5rem;
+  margin: .5rem;
+}

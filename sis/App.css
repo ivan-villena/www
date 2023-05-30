@@ -3,8 +3,36 @@
 /*
   Contenido:
 */
-.doc_sec > article > header {
+.ope_sec > article > header {
   margin: 1rem;
+}
+
+/* 
+  Artículos de la Seccion Principal 
+*/
+main article > h2 {
+  margin-bottom: 1rem;
+}
+main article section > :is(h3,h4,h5,h6) {
+  margin: 1rem 0;
+  margin-top: 1.5rem;
+}
+
+main article > p,
+main article section > p {
+  margin-bottom: .5rem;
+  line-height: 1.5;
+}
+
+main article > ul.lis,
+main article section > ul.lis {
+  margin: .5rem auto;
+  max-width: fit-content;
+}
+
+main article > figure,
+main article section > figure {
+  margin: 1rem auto;
 }
 
 /*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
@@ -14,45 +42,24 @@
 */
 
 /* Menú */
-.doc_pan > .ide-app_cab ul.lis.nav {
+.ope_pan > .ide-app_cab ul.ope_lis.nav {
   height: 84vh;
 }
 
-
 /* Indice */
-.doc_pan > .ide-app_nav ul.lis.nav {
+.ope_pan > .ide-app_nav ul.ope_lis.nav {
   height: 80vh;
 }
-
 
 /*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 /*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 /*
-  Modal:
+  Modales:
 */
 
-/* Operador */
-.doc_win > .ide-app_ope {
-  z-index: 9999;
-  height: 95vh;
-  background-color: var(--fon_win);
-}
-.doc_win > .ide-app_ope > header + * {
-  align-items: center;
-}
-.doc_win > .ide-app_ope > header + * > section {
-  margin: .5rem;
-  padding: 0 .5rem;
-}
 
-/* Estructuras */
-.doc_win > .ide-est {
-  max-width: 60rem;
-  height: 90vh;
-}
-.doc_win > .ide-est > div {
-  padding: 0;
-}
-.doc_win > .ide-est > div > .doc_est {
-  height: 77vh;
+/* Consola del Sistema */
+.ope_win .ide-app_adm .ide-ico ul.lis.ite {
+  height: 58vh;
+  overflow: scroll;
 }
