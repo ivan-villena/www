@@ -3,7 +3,7 @@
   Enlaces
 */
 a:not( .val_ico, .tex ) {
-  text-decoration: underline;
+  text-decoration: none;
   font-style: italic; 
   color: var(--let_ide);
 }
@@ -41,7 +41,7 @@ button {
 }
 
 /* Focos */
-:is( input, select, button:not( .val_ico ) ):focus {
+:is( input, select ):focus {
   background-color: var(--tra_azu);
 }
 :is(input,select,textarea):focus {
@@ -229,9 +229,7 @@ p.cit {
 :is(p,b,i).des {
   font-style: italic;
 }
-:is(p,b,i).err { 
-  color: var(--let_err); 
-}
+
 /* Palabras */
 :is(p,b,i).ide { 
   color: var(--let_ide); 
@@ -239,6 +237,10 @@ p.cit {
 :is(p,b,i).val { 
   color: var(--let_val); 
 }
+:is(p,b,i).err { 
+  color: var(--let_err); 
+}
+
 
 /* 
   Listas

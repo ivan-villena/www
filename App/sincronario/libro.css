@@ -1,0 +1,23 @@
+
+/* 
+  Tablas 
+*/
+body > main article div.dat_lis > table {
+  width: initial;
+}
+
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+/*
+  Glosarios 
+*/
+body[data-art="glosario"] main article li.pos > .ope_val > p {
+  
+  color: var(--let_ide);
+}
+body[data-art="glosario"] main article section ul.ope_lis.dep {
+
+  height: 55vh;
+}
+

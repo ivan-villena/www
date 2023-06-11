@@ -3,7 +3,7 @@
 ----------------------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------------
 
--- 1- Sincronario: Índices
+-- 1- Sincronario 
   --
   -- 1- Bibliografía
     DELETE FROM `sis-app_nav` WHERE `esq`=1 AND `cab`=1
@@ -851,28 +851,28 @@
         (1,1,14,'04-11','Las 48 Runas Ur Armónicas de La Segunda Creación y otros elementos del Arbol De La Vida Telepático Parlan')              
     ;
   --
-  -- 2- Cuentas
+  -- 2- Codigos
     DELETE FROM `sis-app_nav` WHERE `esq`=1 AND `cab`=2
     ;
     -- x7 : plasma radial
     DELETE FROM `sis-app_nav` WHERE `esq`=1 AND `cab`=2 AND `art`=1; INSERT INTO `sis-app_nav` VALUES
       (1,2,1,'01','Días del Giro Lunar'),
+        (1,2,1,'01-01','Autodelcaraciones Diarias'),
       (1,2,1,'02','Sellos de la profecía'),
+        (1,2,1,'02-01','El heptágono de la Mente'),      
       (1,2,1,'03','Componentes Electrónicos'),
         (1,2,1,'03-01','Las 12 Líneas Electrónicas de Fuerza'),
         (1,2,1,'03-02','Los 6 Tipos de Electricidad'),
-        (1,2,1,'03-03','Los 3 Quántums'),
-      (1,2,1,'04','Autodelcaraciones Diarias'),      
-      (1,2,1,'05','El heptágono de la Mente')
+        (1,2,1,'03-03','Los 3 Quántums')
     ;
     -- x13 : tono galáctico
     DELETE FROM `sis-app_nav` WHERE `esq`=1 AND `cab`=2 AND `art`=2; INSERT INTO `sis-app_nav` VALUES
       (1,2,2,'01','Los Rayos de Pulsación'),
-      (1,2,2,'02','Los 7 pares especulares'),
-      (1,2,2,'03','Los Principios de la Creación'),
-      (1,2,2,'04','La Onda Encantada de la Aventura'),
-      (1,2,2,'05','Los 4 púlsares dimensionales'),
-      (1,2,2,'06','Los 5 púlsares matices')
+        (1,2,2,'01-01','Los 7 pares especulares'),
+      (1,2,2,'02','Los 13 Principios de la Creación'),
+        (1,2,2,'02-01','Los 4 púlsares dimensionales'),
+        (1,2,2,'02-02','Los 5 púlsares matices'),
+      (1,2,2,'03','La Onda Encantada de la Aventura')
     ; 
     -- x20 : Sello solar
     DELETE FROM `sis-app_nav` WHERE `esq`=1 AND `cab`=2 AND `art`=3; INSERT INTO `sis-app_nav` VALUES
@@ -881,7 +881,6 @@
         (1,2,3,'02-01','La Matriz Direccional'),
         (1,2,3,'02-02','Las 3 etapas en el Desarrollo del Ser'),
         (1,2,3,'02-03','Las 5 Familias Cíclicas de la Luz'),
-        (1,2,3,'02-04','Las 4 etapas evolutivas de la mente'),
       (1,2,3,'03','Los Códigos del Encantamiento del Sueño'),
         (1,2,3,'03-01','El Código Encantado'),
         (1,2,3,'03-02','El Código 0-19'),
@@ -900,80 +899,105 @@
         (1,2,3,'06-02','Los Patrones del Destino'),
         (1,2,3,'06-03','La Sincronometría del Oráculo'),
         (1,2,3,'06-04','El Tiempo N.E.T.')
+
     ;
+  --
+  -- 3- Ciclos
+    DELETE FROM `sis-app_nav` WHERE `esq`=1 AND `cab`=3
+    ;    
     -- x260 : kines
-    DELETE FROM `sis-app_nav` WHERE `esq`=1 AND `cab`=2 AND `art`=11; INSERT INTO `sis-app_nav` VALUES
-      (1,2,11,'01','Los 52 portales de Activación Galáctica'),
-      (1,2,11,'02','Los 64 Hexagramas del I-Ching'),
-      (1,2,11,'03','Los 13 + 1 campos de Energía'),
-      (1,2,11,'04','El Giro Espectral'),
-        (1,2,11,'04-01','Estación Galáctica'),
-        (1,2,11,'04-02','Elemento Cromático'),
-      (1,2,11,'05','El Giro Galáctico'),
-        (1,2,11,'05-01','Trayectoria Armónica'),
-        (1,2,11,'05-02','Célula del Tiempo'),
-      (1,2,11,'06','La Nave del Tiempo'),
-        (1,2,11,'06-01','Castillo Direccional'),
-        (1,2,11,'06-02','Aventura de la Onda Encantada')
+    DELETE FROM `sis-app_nav` WHERE `esq`=1 AND `cab`=3 AND `art`=1; INSERT INTO `sis-app_nav` VALUES
+
+      (1,3,1,'00','Introducción'),
+      (1,3,1,'01','El Calendario Sagrado Maya: Tzolkin'),
+        (1,3,1,'01-01','Los 20 Sellos Solares'),
+        (1,3,1,'01-02','Los 13 Tonos Galácticos'),        
+
+      (1,3,1,'02','El Módulo Armónico'),
+        (1,3,1,'02-01','Los 52 portales de Activación Galáctica'),
+        (1,3,1,'02-02','Los 64 Hexagramas del I-Ching'),        
+        (1,3,1,'02-03','Los 13 Campos de Energía'),
+
+      (1,3,1,'03','El Giro Espectral'),
+        (1,3,1,'03-01','Las 4 Estaciones Galácticas'),
+        (1,3,1,'03-02','Los 52 Elementos Cromáticos'),
+
+      (1,3,1,'04','El Giro Galáctico'),
+        (1,3,1,'04-01','Las 13 Trayectorias Armónicas'),
+        (1,3,1,'04-02','Las 65 Células del Tiempo'),
+
+      (1,3,1,'05','La Nave del Tiempo'),
+        (1,3,1,'05-01','Los 5 Castillos Direccionales'),
+        (1,3,1,'05-02','Las 20 Ondas Encantadas de la Aventura')
     ;
-    -- x365 : psi-cronos
-    DELETE FROM `sis-app_nav` WHERE `esq`=1 AND `cab`=2 AND `art`=12; INSERT INTO `sis-app_nav` VALUES
-      (1,2,12,'01','Las 13 lunas del servicio planetario'),
-      (1,2,12,'02','Las 4 estaciones solares'),
-      (1,2,12,'03','Las 52 heptadas semanales'),
-      (1,2,12,'04','Las 73 cromáticas entonadas'),
-      (1,2,12,'05','Los 19 vinales del Haab')
+    -- x365 : psi-cronos 
+    DELETE FROM `sis-app_nav` WHERE `esq`=1 AND `cab`=3 AND `art`=2; INSERT INTO `sis-app_nav` VALUES
+      (1,3,2,'00','Introducción'),
+      (1,3,2,'01','El Banco-Psi'),
+        (1,3,2,'01-01','La Matriz Base'),
+        (1,3,2,'01-02','Los Cinturones de Radiación'),
+        (1,3,2,'01-03','Como Bancos de Memoria'),
+        (1,3,2,'01-04','El Psi-crono'),        
+        (1,3,2,'01-05','La constante de la Biomasa'),
+      (1,3,2,'02','El Giro Solar Anual'),
+        (1,3,2,'02-01','Las 52 heptadas semanales'),      
+        (1,3,2,'02-02','Las 4 estaciones solares'),
+        (1,3,2,'02-03','Las 13 Lunas del Servicio Planetario'),
+      (1,3,2,'03','El Calendario Maya'),
+        (1,3,2,'03-01','Los 19 vinales del Haab')
     ;
   --
   -- 4- Holones
-    -- Holon Solar
+    DELETE FROM `sis-app_nav` WHERE `esq`=1 AND `cab`=4
+    ;
+    -- Galáctico
     DELETE FROM `sis-app_nav` WHERE `esq`=1 AND `cab`=4 AND `art`=1; INSERT INTO `sis-app_nav` VALUES
-      (1,4,1,'01','Las 10 Órbitas planetarias'),
-      (1,4,1,'02','Las 5 Células Solares'),
-      (1,4,1,'03','Los 5 Circuitos de telepatía')
+
+      (1,4,2,'01','Introducción'),
+      (1,4,2,'02','La forma de Onda'),
+      (1,4,2,'03','El Fractal')
     ;
-    -- Holon Planetario
+    -- Solar
     DELETE FROM `sis-app_nav` WHERE `esq`=1 AND `cab`=4 AND `art`=2; INSERT INTO `sis-app_nav` VALUES
-      (1,4,2,'01','Los 5 Centros de la Fuerza-G'),
-      (1,4,2,'02','Los 2 Flujos Polares'),
-      (1,4,2,'03','Los 3 Campos Dimensionales')
-    ;    
-    -- Holon Humano
+      (1,4,2,'01','Las 10 Órbitas planetarias'),
+      (1,4,2,'02','Las 5 Células Solares'),
+      (1,4,2,'03','Los 5 Circuitos de telepatía')
+    ;
+    -- Planetario
     DELETE FROM `sis-app_nav` WHERE `esq`=1 AND `cab`=4 AND `art`=3; INSERT INTO `sis-app_nav` VALUES
-      (1,4,3,'01','Los 5 Centros Galácticos'),
-      (1,4,3,'02','Las 4 Extremidades Cromáticas'),
-      (1,4,3,'03','Las 5 Dedos de las manos y pies'),
-      (1,4,3,'04','Los 2 Lados de la Respiración S-G')
+      (1,4,3,'01','Los 3 Campos Dimensionales'),
+      (1,4,3,'02','Los 2 Flujos Polares'),
+      (1,4,3,'03','Los 5 Centros de la Fuerza-G')
+    ;
+    -- Humano
+    DELETE FROM `sis-app_nav` WHERE `esq`=1 AND `cab`=4 AND `art`=4; INSERT INTO `sis-app_nav` VALUES
+      (1,4,4,'01','Los 2 Lados de la Respiración S-G'),
+      (1,4,4,'02','Las 4 Extremidades Cromáticas'),
+      (1,4,4,'03','Las 5 Dedos de las manos y pies'),
+      (1,4,4,'04','Los 5 Centros Galácticos'),
+      (1,4,4,'05','Los 10 Meridianos'),
+      (1,4,4,'06','Las 13 Articulaciones'),
+      (1,4,4,'07','Los 7 Sentidos'),
+      (1,4,4,'08','Los 7 Chakras')
+    ;
+  --  
+  -- 5- Kin Planetario
+    --
+    -- Firma Galáctica
+    DELETE FROM `sis-app_nav` WHERE `esq`=1 AND `cab`=5 AND `art`=1; INSERT INTO `sis-app_nav` VALUES
+      (1,5,1,'01','El kin del Destino'),
+      (1,5,1,'02','Las parejas del Oráculo'),
+      (1,5,1,'03','La Onda Encantada'),
+      (1,5,1,'04','La Célula del Tiempo'),
+      (1,5,1,'05','La Familia Terrestre')
     ;
   --
-  -- 5- Tableros
-    DELETE FROM `sis-app_nav` WHERE `esq`=1 AND `cab`=5
-    ;
-  --
-  -- 6- Kin Planetario
+  -- 6- Tableros
     DELETE FROM `sis-app_nav` WHERE `esq`=1 AND `cab`=6
     ;
-    -- Ficha Personal
-    DELETE FROM `sis-app_nav` WHERE `esq`=1 AND `cab`=6 AND `art`=1; INSERT INTO `sis-app_nav` VALUES
-      (1,6,1,'01','El kin del Destino'),
-      (1,6,1,'02','Las parejas del Oráculo'),
-      (1,6,1,'03','La Onda Encantada'),
-      (1,6,1,'04','La Célula del Tiempo'),
-      (1,6,1,'05','La Familia Terrestre'),
-      (1,6,1,'06','Las posiciones del Holon')
+  --
+  -- 7- Usuario
+    DELETE FROM `sis-app_nav` WHERE `esq`=1 AND `cab`=7
     ;
-    -- Sendero del Destino
-    DELETE FROM `sis-app_nav` WHERE `esq`=1 AND `cab`=6 AND `art`=2; INSERT INTO `sis-app_nav` VALUES
-      (1,6,2,'01','Composición'),
-      (1,6,2,'02','Familia Terrestre'),
-      (1,6,2,'03','Primer Cuadrante'),
-      (1,6,2,'04','Segundo Cuadrante'),
-      (1,6,2,'05','Tercer Cuadrante'),
-      (1,6,2,'06','Cuarto Cuadrante')
-    ;
-    -- Relaciones entre kines
-    DELETE FROM `sis-app_nav` WHERE `esq`=1 AND `cab`=6 AND `art`=3; INSERT INTO `sis-app_nav` VALUES
-      (1,6,3,'01','Sumas'),
-      (1,6,3,'02','Sincronicidades')
-    ;
+  --  
 --

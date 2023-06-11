@@ -1,36 +1,11 @@
 
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 /* 
-  Paneles 
+  Contenido
 */
 
-/* Datos > totales por estructuras */
-.ope_pan > .ide-val .ide-cue > ul {
-  height: 60vh;
-}
-
-/* 
-  Listado
-*/
-.ope_win > .ide-lis .doc_nav.bot + div {
-  height: 80vh;
-  max-height: initial;
-}
-
-/* Estructuras */
-.ope_win > .ide-est {
-  max-width: 60rem;
-  height: 90vh;
-}
-.ope_win > .ide-est > div {
-  padding: 0;
-}
-.ope_win > .ide-est > div > .doc_est {
-  height: 77vh;
-}
-
-/* 
-  Tableros 
-*/
+/* Tableros */
 .ope_sec article {
   max-width: -moz-fit-content;
   max-width: fit-content;
@@ -42,4 +17,38 @@
 
 .ope_sec article > .dat_tab {
   margin: .5rem;
+}
+
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/* 
+  Paneles 
+*/
+
+/* Datos > totales por estructuras */
+.ope_pan > .ide-ope .ide-cue > ul {
+  height: 60vh;
+}
+
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/* 
+  Modales
+*/
+
+/* Listado */
+.ope_win > .ide-lis {
+  max-width: 60rem;
+  height: 90vh;
+}
+.ope_win > .ide-lis > div {
+  padding: 0;
+}
+.ope_win > .ide-lis > div > .dat_lis {
+  height: 77vh;
+}
+
+.ope_win > .ide-lis .ope_nav.ico + div {
+  height: 80vh;
+  max-height: initial;
 }

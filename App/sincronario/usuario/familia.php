@@ -1,5 +1,0 @@
-<?php
-
-  $Usuario = new Usuario();
-
-?>

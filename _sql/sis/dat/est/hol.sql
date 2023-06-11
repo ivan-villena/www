@@ -6,467 +6,467 @@
   -- Sistema Solar
   DELETE FROM `sis-dat_est` WHERE `esq`='hol' AND `ide` LIKE 'sol%'; INSERT INTO `sis-dat_est` VALUES
     ('hol','sol_res', '{
-        "atr": { 
-          "ide": { "min":1, "max":2, "dat":"hol-sol_res" }
-        },
-        "val": { 
-          "nom": "Respiración del Holon Solar #()($)ide() de 2: ()($)nom()",
-          "des": "()($)des()",
-          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/sol/res/()($)ide().png);",
-          "col": 2
-        },
-        "opc": { 
-          "ima": [ "ide" ]
-        }
+      "atr": { 
+        "ide": { "min":1, "max":2, "dat":"hol-sol_res" }
+      },
+      "val": { 
+        "nom": "Respiración del Holon Solar #()($)ide() de 2: ()($)nom()",
+        "des": "()($)des()",
+        "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/sol/res/()($)ide().png);",
+        "col": 2
+      },
+      "opc": { 
+        "ima": [ "ide" ]
+      }
     }' ),  
     ('hol','sol_pla', '{
-        "atr": { 
-          "ide": { "min":1, "max":10, "dat":"hol-sol_pla" },
-          "orb": { "min":1, "max": 2, "dat":"hol-sol_orb" },
-          "cel": { "min":1, "max": 5, "dat":"hol-sol_cel" },
-          "cir": { "min":1, "max": 5, "dat":"hol-sol_cir" },
-          "sel": { "dat":"hol-sel" },
-          "ele": { "dat":"hol-sel_cro_ele" },
-          "fam": { "dat":"hol-sel_cro_fam" }
-        },
-        "val": { 
-          "nom": "Órbita Planetaria #()($)ide() de 10: ()($)nom().",
-          "des": "Código ()($)nom_cod()",
-          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/sol/pla/()($)ide().png);",
-          "col": 10,
-          "num": 10
-        },
-        "opc": { 
-          "ima": [ "ide","sel","ele","fam","orb","cel","cir" ]
-        },
-        "inf": { 
-          "det": [ "nom_cod" ],
-          
-          "fic": [ "orb", "cel", "cir" ],
-          "tab": [ "hol.uni.sol", { "sec": { "pla":"()($)ide()" } }],
+      "atr": { 
+        "ide": { "min":1, "max":10, "dat":"hol-sol_pla" },
+        "orb": { "min":1, "max": 2, "dat":"hol-sol_orb" },
+        "cel": { "min":1, "max": 5, "dat":"hol-sol_cel" },
+        "cir": { "min":1, "max": 5, "dat":"hol-sol_cir" },
+        "sel": { "dat":"hol-sel" },
+        "ele": { "dat":"hol-sel_cro_ele" },
+        "fam": { "dat":"hol-sel_cro_fam" }
+      },
+      "val": { 
+        "nom": "Órbita Planetaria #()($)ide() de 10: ()($)nom().",
+        "des": "Código ()($)nom_cod()",
+        "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/sol/pla/()($)ide().png);",
+        "col": 10,
+        "num": 10
+      },
+      "opc": { 
+        "ima": [ "ide","sel","ele","fam","orb","cel","cir" ]
+      },
+      "inf": { 
+        "det": [ "nom_cod" ],
+        
+        "fic": [ "orb", "cel", "cir" ],
+        "tab": [ "hol.uni.sol", { "sec": { "pla":"()($)ide()" } }],
 
-          "htm-1": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/encantamiento_del_sueño#_03-03-\'>Sellos Solares</a> en <cite>el Encantamiento del Sueño</cite>" },
-          "fic-1": [ "sel" ],
-          
-          "htm-2": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/encantamiento_del_sueño#_03-02-\'>Clanes Cromáticos</a> en <cite>el Encantamiento del Sueño</cite>" },
-          "fic-2": [ "ele" ],
+        "htm-1": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/sincronario/libro/encantamiento_del_sueño#_03-03-\'>Sellos Solares</a> en <cite>el Encantamiento del Sueño</cite>" },
+        "fic-1": [ "sel" ],
+        
+        "htm-2": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/sincronario/libro/encantamiento_del_sueño#_03-02-\'>Clanes Cromáticos</a> en <cite>el Encantamiento del Sueño</cite>" },
+        "fic-2": [ "ele" ],
 
-          "htm-3": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/encantamiento_del_sueño#_03-14-\'>Familias Terrestres</a> en <cite>el Encantamiento del Sueño</cite>" },
-          "fic-3": [ "fam" ]
-        }
+        "htm-3": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/sincronario/libro/encantamiento_del_sueño#_03-14-\'>Familias Terrestres</a> en <cite>el Encantamiento del Sueño</cite>" },
+        "fic-3": [ "fam" ]
+      }
     }' ),
     ('hol','sol_orb', '{
-        "atr": { 
-          "ide": { "min":1, "max":2, "dat":"hol-sol_orb" },
-          "ele": { "dat":"hol-sel_cro_ele" },
-          "pla": { "dat":"hol-sol_pla" }                        
-        },
-        "val": { 
-          "nom": "Grupo Orbital #()($)ide() de 2: ()($)nom().",
-          "des": "()($)des()",
-          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/sol/orb/()($)ide().png);",
-          "col": 2,
-          "num": 2
-        },
-        "opc": { 
-          "ima": [ "ide", "ele" ]
-        },
-        "inf": { 
-          "opc": [ "des" ],
+      "atr": { 
+        "ide": { "min":1, "max":2, "dat":"hol-sol_orb" },
+        "ele": { "dat":"hol-sel_cro_ele" },
+        "pla": { "dat":"hol-sol_pla" }                        
+      },
+      "val": { 
+        "nom": "Grupo Orbital #()($)ide() de 2: ()($)nom().",
+        "des": "()($)des()",
+        "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/sol/orb/()($)ide().png);",
+        "col": 2,
+        "num": 2
+      },
+      "opc": { 
+        "ima": [ "ide", "ele" ]
+      },
+      "inf": { 
+        "opc": [ "des" ],
 
-          "tab": [ "hol.uni.sol", { "sec": { "orb":"()($)ide()" } }],
+        "tab": [ "hol.uni.sol", { "sec": { "orb":"()($)ide()" } }],
 
-          "htm-1": { "eti":"p", "class":"tit", "htm":"Las <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/encantamiento_del_sueño#_03-03-\'>Órbitas Planetarias</a> en <cite>el Encantamiento del Sueño</cite>" },
-          "fic-1": [ "pla" ],
+        "htm-1": { "eti":"p", "class":"tit", "htm":"Las <a target=\'_blank\' href=\'http://localhost/sincronario/libro/encantamiento_del_sueño#_03-03-\'>Órbitas Planetarias</a> en <cite>el Encantamiento del Sueño</cite>" },
+        "fic-1": [ "pla" ],
 
-          "htm-2": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/encantamiento_del_sueño#_03-02-\'>Clanes Cromáticos</a> en <cite>el Encantamiento del Sueño</cite>" },
-          "fic-2": [ "ele" ]
-        }
+        "htm-2": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/sincronario/libro/encantamiento_del_sueño#_03-02-\'>Clanes Cromáticos</a> en <cite>el Encantamiento del Sueño</cite>" },
+        "fic-2": [ "ele" ]
+      }
     }' ),
     ('hol','sol_cel', '{
-        "atr": { 
-          "ide": { "min":1, "max":5, "dat":"hol-sol_cel" },
-          "pla": { "dat":"hol-sol_pla" },
-          "sel": { "dat":"hol-sel" },
-          "ele": { "dat":"hol-sel_cro_ele" },
-          "fam": { "dat":"hol-sel_cro_fam" }            
-        },
-        "val": { 
-          "nom": "Célula Solar #()($)ide() de 5: ()($)nom().",
-          "des": "()($)des()",
-          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/sol/cel/()($)ide().png);",
-          "col": 5, 
-          "num": 5
-        },
-        "opc": { 
-          "ima": [ "ide", "sel", "ele", "fam", "pla" ]
-        },
-        "inf": { 
-          "opc": [ "des" ],
+      "atr": { 
+        "ide": { "min":1, "max":5, "dat":"hol-sol_cel" },
+        "pla": { "dat":"hol-sol_pla" },
+        "sel": { "dat":"hol-sel" },
+        "ele": { "dat":"hol-sel_cro_ele" },
+        "fam": { "dat":"hol-sel_cro_fam" }            
+      },
+      "val": { 
+        "nom": "Célula Solar #()($)ide() de 5: ()($)nom().",
+        "des": "()($)des()",
+        "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/sol/cel/()($)ide().png);",
+        "col": 5, 
+        "num": 5
+      },
+      "opc": { 
+        "ima": [ "ide", "sel", "ele", "fam", "pla" ]
+      },
+      "inf": { 
+        "opc": [ "des" ],
 
-          "tab": [ "hol.uni.sol", { "sec": { "cel":"()($)ide()" } }],
+        "tab": [ "hol.uni.sol", { "sec": { "cel":"()($)ide()" } }],
 
-          "htm-1": { "eti":"p", "class":"tit", "htm":"Las <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/encantamiento_del_sueño#_03-03-\'>Órbitas Planetarias</a> en <cite>el Encantamiento del Sueño</cite>" },
-          "fic-1": [ "pla" ],
+        "htm-1": { "eti":"p", "class":"tit", "htm":"Las <a target=\'_blank\' href=\'http://localhost/sincronario/libro/encantamiento_del_sueño#_03-03-\'>Órbitas Planetarias</a> en <cite>el Encantamiento del Sueño</cite>" },
+        "fic-1": [ "pla" ],
 
-          "htm-2": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/encantamiento_del_sueño#_02-03-05-\'>Sellos Solares</a> en <cite>el Encantamiento del Sueño</cite>" },
-          "fic-2": [ "sel" ],
+        "htm-2": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/sincronario/libro/encantamiento_del_sueño#_02-03-05-\'>Sellos Solares</a> en <cite>el Encantamiento del Sueño</cite>" },
+        "fic-2": [ "sel" ],
 
-          "htm-3": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/encantamiento_del_sueño#_03-02-\'>Clanes Cromáticos</a> en <cite>el Encantamiento del Sueño</cite>" },
-          "fic-3": [ "ele" ],
+        "htm-3": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/sincronario/libro/encantamiento_del_sueño#_03-02-\'>Clanes Cromáticos</a> en <cite>el Encantamiento del Sueño</cite>" },
+        "fic-3": [ "ele" ],
 
-          "htm-4": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/encantamiento_del_sueño#_03-14-\'>Familias Terrestres</a> en <cite>el Encantamiento del Sueño</cite>" },
-          "fic-4": [ "fam" ]
-        }
+        "htm-4": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/sincronario/libro/encantamiento_del_sueño#_03-14-\'>Familias Terrestres</a> en <cite>el Encantamiento del Sueño</cite>" },
+        "fic-4": [ "fam" ]
+      }
     }' ),
     ('hol','sol_cir', '{
-        "atr": { 
-          "ide": { "min":1, "max":5, "dat":"hol-sol_cir" },
-          "pla": { "dat":"hol-sol_pla" },
-          "sel": { "dat":"hol-sel" },
-          "fam": { "dat":"hol-sel_cro_fam" }
-        },
-        "val": { 
-          "nom": "Circuito de Telepatía #()($)ide() de 5: ()($)nom().",
-          "des": "()($)des()",
-          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/sol/cir/()($)ide().png);",
-          "col": 5,
-          "num": 5
-        },
-        "opc": { 
-          "ima": [ "ide", "sel", "fam", "pla" ]
-        },
-        "inf": { 
-          "det-lis": [ "cod", "des" ],
+      "atr": { 
+        "ide": { "min":1, "max":5, "dat":"hol-sol_cir" },
+        "pla": { "dat":"hol-sol_pla" },
+        "sel": { "dat":"hol-sel" },
+        "fam": { "dat":"hol-sel_cro_fam" }
+      },
+      "val": { 
+        "nom": "Circuito de Telepatía #()($)ide() de 5: ()($)nom().",
+        "des": "()($)des()",
+        "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/sol/cir/()($)ide().png);",
+        "col": 5,
+        "num": 5
+      },
+      "opc": { 
+        "ima": [ "ide", "sel", "fam", "pla" ]
+      },
+      "inf": { 
+        "det-lis": [ "cod", "des" ],
 
-          "tab": [ "hol.uni.sol", { "sec": { "cir":"()($)ide()" } }],
+        "tab": [ "hol.uni.sol", { "sec": { "cir":"()($)ide()" } }],
 
-          "htm-1": { "eti":"p", "class":"tit", "htm":"Las <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/encantamiento_del_sueño#_03-03-\'>Órbitas Planetarias</a> en <cite>el Encantamiento del Sueño</cite>" },
-          "fic-1": [ "pla" ],
+        "htm-1": { "eti":"p", "class":"tit", "htm":"Las <a target=\'_blank\' href=\'http://localhost/sincronario/libro/encantamiento_del_sueño#_03-03-\'>Órbitas Planetarias</a> en <cite>el Encantamiento del Sueño</cite>" },
+        "fic-1": [ "pla" ],
 
-          "htm-2": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/encantamiento_del_sueño#_02-03-05-\'>Sellos Solares</a> en <cite>el Encantamiento del Sueño</cite>" },
-          "fic-2": [ "sel" ],
+        "htm-2": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/sincronario/libro/encantamiento_del_sueño#_02-03-05-\'>Sellos Solares</a> en <cite>el Encantamiento del Sueño</cite>" },
+        "fic-2": [ "sel" ],
 
-          "htm-3": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/encantamiento_del_sueño#_03-14-\'>Familias Terrestres</a> en <cite>el Encantamiento del Sueño</cite>" },
-          "fic-3": [ "fam" ]
-        }
+        "htm-3": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/sincronario/libro/encantamiento_del_sueño#_03-14-\'>Familias Terrestres</a> en <cite>el Encantamiento del Sueño</cite>" },
+        "fic-3": [ "fam" ]
+      }
     }' )  
   ;
   -- Planetario
   DELETE FROM `sis-dat_est` WHERE `esq`='hol' AND `ide` LIKE 'pla%'; INSERT INTO `sis-dat_est` VALUES
     ('hol','pla_res', '{
-        "atr": { 
-          "ide": { "min":1, "max":2, "dat":"hol-pla_res" },
-          "fam": { "min":1, "max":5, "dat":"hol-sel_cro_fam" },            
-          "sel": { "dat":"hol-sel" }        
-        },
-        "val": { 
-          "nom": "Respiración del Holon Planetario #()($)ide() de 2: ()($)nom()",
-          "des": "()($)des()",
-          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/pla/res/()($)ide().png);",
-          "col": 2
-        },
-        "opc": { 
-          "ima": [ "ide", "fam", "sel" ]
-        }
+      "atr": { 
+        "ide": { "min":1, "max":2, "dat":"hol-pla_res" },
+        "fam": { "min":1, "max":5, "dat":"hol-sel_cro_fam" },            
+        "sel": { "dat":"hol-sel" }        
+      },
+      "val": { 
+        "nom": "Respiración del Holon Planetario #()($)ide() de 2: ()($)nom()",
+        "des": "()($)des()",
+        "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/pla/res/()($)ide().png);",
+        "col": 2
+      },
+      "opc": { 
+        "ima": [ "ide", "fam", "sel" ]
+      }
     }' ),
     ('hol','pla_cen', '{
-        "atr": { 
-          "ide": { "min":1, "max":5, "dat":"hol-pla_cen" },
-          "fam": { "min":1, "max":5, "dat":"hol-sel_cro_fam" },            
-          "sel": { "dat":"hol-sel" }
-        },
-        "val": { 
-          "nom": "Centro Planetario #()($)ide() de 5: ()($)nom().",
-          "des": "()($)des()",
-          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/pla/cen/()($)ide().png);",
-          "col": 5,
-          "num": 5
-        },
-        "opc": { 
-          "ima": [ "ide", "fam", "sel" ]            
-        },
-        "inf": {
-          
-          "tab": [ "hol.uni.pla", { "sec": { "cen":"()($)ide()" } } ],
-          "fic": [ "fam" ],
+      "atr": { 
+        "ide": { "min":1, "max":5, "dat":"hol-pla_cen" },
+        "fam": { "min":1, "max":5, "dat":"hol-sel_cro_fam" },            
+        "sel": { "dat":"hol-sel" }
+      },
+      "val": { 
+        "nom": "Centro Planetario #()($)ide() de 5: ()($)nom().",
+        "des": "()($)des()",
+        "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/pla/cen/()($)ide().png);",
+        "col": 5,
+        "num": 5
+      },
+      "opc": { 
+        "ima": [ "ide", "fam", "sel" ]            
+      },
+      "inf": {
+        
+        "tab": [ "hol.uni.pla", { "sec": { "cen":"()($)ide()" } } ],
+        "fic": [ "fam" ],
 
-          "htm-1": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/encantamiento_del_sueño#_02-03-05-\'>Sellos Solares</a> en <cite>el Encantamiento del Sueño</cite>" },
-          "fic-1": [ "sel" ]
-        }
+        "htm-1": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/sincronario/libro/encantamiento_del_sueño#_02-03-05-\'>Sellos Solares</a> en <cite>el Encantamiento del Sueño</cite>" },
+        "fic-1": [ "sel" ]
+      }
     }' ),
     ('hol','pla_hem', '{
-        "atr": { 
-          "ide": { "min":1, "max":3, "dat":"hol-pla_hem" },
-          "sel": { "dat":"hol-sel" }
-        },
-        "val": { 
-          "nom": "Hemisferio #()($)ide() de 3: ()($)nom().",
-          "des": "()($)des()",
-          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/pla/hem/()($)ide().png);",
-          "col": 3,
-          "num": 3
-        },
-        "opc": { 
-          "ima": [ "ide" ]            
-        },
-        "inf": { 
-          "tab": [ "hol.uni.pla", { "sec": { "cen":[], "hem":"()($)ide()" } } ],
-          "fic": [ "sel" ]
-        }
+      "atr": { 
+        "ide": { "min":1, "max":3, "dat":"hol-pla_hem" },
+        "sel": { "dat":"hol-sel" }
+      },
+      "val": { 
+        "nom": "Hemisferio #()($)ide() de 3: ()($)nom().",
+        "des": "()($)des()",
+        "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/pla/hem/()($)ide().png);",
+        "col": 3,
+        "num": 3
+      },
+      "opc": { 
+        "ima": [ "ide" ]            
+      },
+      "inf": { 
+        "tab": [ "hol.uni.pla", { "sec": { "cen":[], "hem":"()($)ide()" } } ],
+        "fic": [ "sel" ]
+      }
     }' ),
     ('hol','pla_mer', '{
-        "atr": { 
-          "ide": { "min":1, "max":2, "dat":"hol-pla_mer" },
-          "sel": { "dat":"hol-sel" }
-        },
-        "val": { 
-          "nom": "Meridiano #()($)ide() de 2: ()($)nom().",
-          "des": "()($)des()",
-          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/pla/mer/()($)ide().png);",
-          "col": 2,
-          "num": 2
-        },
-        "opc": { 
-          "ima": [ "ide" ]            
-        },
-        "inf": { 
-          "tab": [ "hol.uni.pla", { "sec": { "cen":[], "mer":"()($)ide()" } } ],
-          "fic": [ "sel" ]
-        }
+      "atr": { 
+        "ide": { "min":1, "max":2, "dat":"hol-pla_mer" },
+        "sel": { "dat":"hol-sel" }
+      },
+      "val": { 
+        "nom": "Meridiano #()($)ide() de 2: ()($)nom().",
+        "des": "()($)des()",
+        "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/pla/mer/()($)ide().png);",
+        "col": 2,
+        "num": 2
+      },
+      "opc": { 
+        "ima": [ "ide" ]            
+      },
+      "inf": { 
+        "tab": [ "hol.uni.pla", { "sec": { "cen":[], "mer":"()($)ide()" } } ],
+        "fic": [ "sel" ]
+      }
     }' ),
     ('hol','pla_tie', '{
-        "atr": { 
-          "ide": { "min":1, "max":3, "dat":"hol-pla_tie" }
-        },
-        "val": { 
-          "nom": "Campo #()($)ide() de 3: ()($)nom()",
-          "des": "()($)tra(): ()($)des()",
-          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/pla/tie/()($)ide().png);",
-          "col": 3
-        },
-        "opc": { 
-          "ima": [ "ide" ]
-        }
+      "atr": { 
+        "ide": { "min":1, "max":3, "dat":"hol-pla_tie" }
+      },
+      "val": { 
+        "nom": "Campo #()($)ide() de 3: ()($)nom()",
+        "des": "()($)tra(): ()($)des()",
+        "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/pla/tie/()($)ide().png);",
+        "col": 3
+      },
+      "opc": { 
+        "ima": [ "ide" ]
+      }
     }' )  
   ;
   -- Humano
   DELETE FROM `sis-dat_est` WHERE `esq`='hol' AND `ide` LIKE 'hum%'; INSERT INTO `sis-dat_est` VALUES
     ('hol','hum_res', '{
-        "atr": { 
-          "ide": { "min":1, "max":2, "dat":"hol-hum_res" },
-          "sel": { "dat":"hol-sel" },
-          "ele": { "dat":"hol-sel_cro_ele" }
-        },
-        "val": { 
-          "nom": "Respiración del Holon Humano #()($)ide() de 2: ()($)nom()",
-          "des": "()($)des()",
-          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/flu/res/()($)ide().png);",
-          "col": 2
-        },
-        "opc": { 
-          "ima": [ "ide", "sel", "ele" ]
-        },
-        "inf": { 
-          "tab": [ "hol.uni.hum", { "sec": { "ded":[], "cen":[], "res":"()($)ide()" } } ],
-          "fic-1-tit": [ "ele", "sel" ]
-        }
+      "atr": { 
+        "ide": { "min":1, "max":2, "dat":"hol-hum_res" },
+        "sel": { "dat":"hol-sel" },
+        "ele": { "dat":"hol-sel_cro_ele" }
+      },
+      "val": { 
+        "nom": "Respiración del Holon Humano #()($)ide() de 2: ()($)nom()",
+        "des": "()($)des()",
+        "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/flu/res/()($)ide().png);",
+        "col": 2
+      },
+      "opc": { 
+        "ima": [ "ide", "sel", "ele" ]
+      },
+      "inf": { 
+        "tab": [ "hol.uni.hum", { "sec": { "ded":[], "cen":[], "res":"()($)ide()" } } ],
+        "fic-1-tit": [ "ele", "sel" ]
+      }
     }' ),
     ('hol','hum_lad', '{
-        "atr": { 
-          "ide": { "min":1, "max":3, "dat":"hum_lad" },
-          "ton": { "dat":"hol-ton" }
-        },
-        "val": { 
-          "nom": "Lado del Holon Humano #()($)ide() de 3: ()($)nom()",
-          "des": "()($)des()",
-          "col": 3
-        },
-        "opc": {
-          "ima": [ "ton" ]
-        },
-        "inf": { 
-          "tab": [ "hol.uni.hum", { "sec": { "ton":[], "res":"()($)ide()" } } ],
-          "fic-tit": [ "ton" ]
-        }
+      "atr": { 
+        "ide": { "min":1, "max":3, "dat":"hum_lad" },
+        "ton": { "dat":"hol-ton" }
+      },
+      "val": { 
+        "nom": "Lado del Holon Humano #()($)ide() de 3: ()($)nom()",
+        "des": "()($)des()",
+        "col": 3
+      },
+      "opc": {
+        "ima": [ "ton" ]
+      },
+      "inf": { 
+        "tab": [ "hol.uni.hum", { "sec": { "ton":[], "res":"()($)ide()" } } ],
+        "fic-tit": [ "ton" ]
+      }
     }' ),  
     ('hol','hum_cen', '{
-        "atr": { 
-          "ide": { "min":1, "max":5, "dat":"hol-hum_cen" },
-          "fam": { "min":1, "max":5, "dat":"hol-sel_cro_fam" },
-          "sel": { "dat":"hol-sel" }
-        },
-        "val": { 
-          "nom": "Centro Galáctico #()($)ide() de 5: ()($)nom().",
-          "des": "()($)des()",
-          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/hum/cen/()($)ide().png);",
-          "col": 5,
-          "num": 5
-        },
-        "opc": { 
-          "ima": [ "ide", "fam", "sel" ]
-        },
-        "inf": { 
-          "tab": [ "hol.uni.hum", { "sec": { "ded":[], "cen":"()($)ide()" } } ],
-          "fic": [ "fam" ],
+      "atr": { 
+        "ide": { "min":1, "max":5, "dat":"hol-hum_cen" },
+        "fam": { "min":1, "max":5, "dat":"hol-sel_cro_fam" },
+        "sel": { "dat":"hol-sel" }
+      },
+      "val": { 
+        "nom": "Centro Galáctico #()($)ide() de 5: ()($)nom().",
+        "des": "()($)des()",
+        "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/hum/cen/()($)ide().png);",
+        "col": 5,
+        "num": 5
+      },
+      "opc": { 
+        "ima": [ "ide", "fam", "sel" ]
+      },
+      "inf": { 
+        "tab": [ "hol.uni.hum", { "sec": { "ded":[], "cen":"()($)ide()" } } ],
+        "fic": [ "fam" ],
 
-          "htm-1": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/encantamiento_del_sueño#_02-03-05-\'>Sellos Solares</a> en <cite>el Encantamiento del Sueño</cite>" },
-          "fic-1": [ "sel" ]
-        }
+        "htm-1": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/sincronario/libro/encantamiento_del_sueño#_02-03-05-\'>Sellos Solares</a> en <cite>el Encantamiento del Sueño</cite>" },
+        "fic-1": [ "sel" ]
+      }
     }' ),
     ('hol','hum_ded', '{
-        "atr": { 
-          "ide": { "min":1, "max":5, "dat":"hol-hum_ded" },
-          "fam": { "min":1, "max":5, "dat":"hol-sel_cro_fam" },
-          "sel": { "dat":"hol-sel" }
-        },
-        "val": { 
-          "nom": "Dedo #()($)ide() de 5: ()($)nom().",
-          "des": "()($)des()",
-          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/hum/ded/()($)ide().png);",
-          "col": 5,
-          "num": 5
-        },
-        "opc": { 
-          "ima": [ "ide", "fam", "sel" ] 
-        },
-        "inf": { 
-          "tab": [ "hol.uni.hum", { "sec": { "ded":"()($)ide()", "cen":[] } } ],
-          "fic": [ "fam" ],
+      "atr": { 
+        "ide": { "min":1, "max":5, "dat":"hol-hum_ded" },
+        "fam": { "min":1, "max":5, "dat":"hol-sel_cro_fam" },
+        "sel": { "dat":"hol-sel" }
+      },
+      "val": { 
+        "nom": "Dedo #()($)ide() de 5: ()($)nom().",
+        "des": "()($)des()",
+        "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/hum/ded/()($)ide().png);",
+        "col": 5,
+        "num": 5
+      },
+      "opc": { 
+        "ima": [ "ide", "fam", "sel" ] 
+      },
+      "inf": { 
+        "tab": [ "hol.uni.hum", { "sec": { "ded":"()($)ide()", "cen":[] } } ],
+        "fic": [ "fam" ],
 
-          "htm-1": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/encantamiento_del_sueño#_02-03-05-\'>Sellos Solares</a> en <cite>el Encantamiento del Sueño</cite>" },
-          "fic-1": [ "sel" ]
-        }
+        "htm-1": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/sincronario/libro/encantamiento_del_sueño#_02-03-05-\'>Sellos Solares</a> en <cite>el Encantamiento del Sueño</cite>" },
+        "fic-1": [ "sel" ]
+      }
     }' ),
     ('hol','hum_ext', '{
-        "atr": { 
-          "ide": { "min":1, "max":4, "dat":"hol-hum_ext" },
-          "ele": { "min":1, "max":4, "dat":"hol-sel_cro_ele" },
-          "sel": { "dat":"hol-sel" }
-        },
-        "val": { 
-          "nom": "Extremidad #()($)ide() de 4: ()($)nom().",
-          "des": "()($)des()",
-          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/hum/ext/()($)ide().png);",
-          "col": 4,
-          "num": 4
-        },
-        "opc": { 
-          "ima": [ "ide", "ele", "sel" ] 
-        },
-        "inf": { 
-          "tab": [ "hol.uni.hum", { "sec": { "ext":"()($)ide()", "ded":[], "cen":[] } } ],
-          "fic": [ "ele" ],
+      "atr": { 
+        "ide": { "min":1, "max":4, "dat":"hol-hum_ext" },
+        "ele": { "min":1, "max":4, "dat":"hol-sel_cro_ele" },
+        "sel": { "dat":"hol-sel" }
+      },
+      "val": { 
+        "nom": "Extremidad #()($)ide() de 4: ()($)nom().",
+        "des": "()($)des()",
+        "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/hum/ext/()($)ide().png);",
+        "col": 4,
+        "num": 4
+      },
+      "opc": { 
+        "ima": [ "ide", "ele", "sel" ] 
+      },
+      "inf": { 
+        "tab": [ "hol.uni.hum", { "sec": { "ext":"()($)ide()", "ded":[], "cen":[] } } ],
+        "fic": [ "ele" ],
 
-          "htm-1": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/encantamiento_del_sueño#_02-03-05-\'>Sellos Solares</a> en <cite>el Encantamiento del Sueño</cite>" },
-          "fic-1": [ "sel" ]
-        }
+        "htm-1": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/sincronario/libro/encantamiento_del_sueño#_02-03-05-\'>Sellos Solares</a> en <cite>el Encantamiento del Sueño</cite>" },
+        "fic-1": [ "sel" ]
+      }
     }' ),
     ('hol','hum_mer', '{
-        "atr": { 
-          "ide": { "min":1, "max":10, "dat":"hol-hum_mer" },
-          "fam": { "min":1, "max":5, "dat":"hol-sel_cro_fam" },
-          "ele": { "dat":"hol-sel_cro_ele" },
-          "sel": { "dat":"hol-sel" }
-        },
-        "val": { 
-          "nom": "Meridiano Orgánico #()($)ide() de 10: ()($)nom().",
-          "des": "()($)des()",
-          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/hum/mer/()($)ide().png);",
-          "col": 10,
-          "num": 10
-        },
-        "opc": { 
-          "ima": [ "ide" ] 
-        },
-        "inf": { 
-          "opc": [ "des" ],
-          "tab": [ "hol.uni.hum", { "sec": { "res":[], "cen":[], "art":[], "ded":[] } } ],
-          "fic": [ "fam" ],
+      "atr": { 
+        "ide": { "min":1, "max":10, "dat":"hol-hum_mer" },
+        "fam": { "min":1, "max":5, "dat":"hol-sel_cro_fam" },
+        "ele": { "dat":"hol-sel_cro_ele" },
+        "sel": { "dat":"hol-sel" }
+      },
+      "val": { 
+        "nom": "Meridiano Orgánico #()($)ide() de 10: ()($)nom().",
+        "des": "()($)des()",
+        "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/hum/mer/()($)ide().png);",
+        "col": 10,
+        "num": 10
+      },
+      "opc": { 
+        "ima": [ "ide" ] 
+      },
+      "inf": { 
+        "opc": [ "des" ],
+        "tab": [ "hol.uni.hum", { "sec": { "res":[], "cen":[], "art":[], "ded":[] } } ],
+        "fic": [ "fam" ],
 
-          "htm-1": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/encantamiento_del_sueño#_03-02-\'>Clanes Cromáticos</a> en <cite>el Encantamiento del Sueño</cite>" },
-          "fic-1": [ "ele" ],
+        "htm-1": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/sincronario/libro/encantamiento_del_sueño#_03-02-\'>Clanes Cromáticos</a> en <cite>el Encantamiento del Sueño</cite>" },
+        "fic-1": [ "ele" ],
 
-          "htm-2": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/encantamiento_del_sueño#_02-03-05-\'>Sellos Solares</a> en <cite>el Encantamiento del Sueño</cite>" },
-          "fic-2": [ "sel" ]
-        }
+        "htm-2": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/sincronario/libro/encantamiento_del_sueño#_02-03-05-\'>Sellos Solares</a> en <cite>el Encantamiento del Sueño</cite>" },
+        "fic-2": [ "sel" ]
+      }
     }' ),
     ('hol','hum_art', '{
-        "atr": { 
-          "ide": { "min":1, "max":7, "dat":"hol-hum_art" },
-          "ton": { "dat":"hol-ton" }
-        },
-        "val": { 
-          "nom": "Articulación #()($)ide() de 7: ()($)nom().",
-          "des": "()($)des()",
-          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/hum/art/()($)ide().png);",
-          "col": 7,
-          "num": 7
-        },
-        "inf": { 
-          "tab": [ "hol.uni.hum", { "sec": { "art":"()($)ide()", "ded":[] } } ],
+      "atr": { 
+        "ide": { "min":1, "max":7, "dat":"hol-hum_art" },
+        "ton": { "dat":"hol-ton" }
+      },
+      "val": { 
+        "nom": "Articulación #()($)ide() de 7: ()($)nom().",
+        "des": "()($)des()",
+        "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/hum/art/()($)ide().png);",
+        "col": 7,
+        "num": 7
+      },
+      "inf": { 
+        "tab": [ "hol.uni.hum", { "sec": { "art":"()($)ide()", "ded":[] } } ],
 
-          "htm": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/factor_maya#_08-03-01-\'>Tonos Galácticos</a> en<cite>el Factor Maya</cite>" },
-          "fic": [ "ton" ]
-        }
+        "htm": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/sincronario/libro/factor_maya#_08-03-01-\'>Tonos Galácticos</a> en<cite>el Factor Maya</cite>" },
+        "fic": [ "ton" ]
+      }
     }' ),
     ('hol','hum_cha', '{
-        "atr": { 
-          "ide": { "min":1, "max":7, "dat":"hol-hum_cha" },
-          "rad": { "dat":"hol-rad" }
-        },
-        "val": { 
-          "nom": "Chakra #()($)ide() de 7: ()($)nom().",
-          "des": "()($)des()",
-          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/hum/cha/()($)ide().png);",
-          "col": 7,
-          "num": 7
-        },
-        "inf": { 
-          "tab": [ "hol.uni.hum", { "sec": { "art":[], "ded":[], "cha":"()($)ide()" } } ],
-          "fic": [ "rad" ]
-        }
+      "atr": { 
+        "ide": { "min":1, "max":7, "dat":"hol-hum_cha" },
+        "rad": { "dat":"hol-rad" }
+      },
+      "val": { 
+        "nom": "Chakra #()($)ide() de 7: ()($)nom().",
+        "des": "()($)des()",
+        "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/hum/cha/()($)ide().png);",
+        "col": 7,
+        "num": 7
+      },
+      "inf": { 
+        "tab": [ "hol.uni.hum", { "sec": { "art":[], "ded":[], "cha":"()($)ide()" } } ],
+        "fic": [ "rad" ]
+      }
     }' ),
     ('hol','hum_mud', '{ 
-        "atr": { 
-          "ide": { "min":1, "max":7, "dat":"hol-hum_cha" },
-          "rad": { "dat":"hol-rad" }
-        },
-        "val": { 
-          "nom": "Mudra #()($)ide() de 7: ()($)nom().",
-          "des": "()($)des()",
-          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/hum/mud/()($)ide().png);",
-          "num": 7
-        }
+      "atr": { 
+        "ide": { "min":1, "max":7, "dat":"hol-hum_cha" },
+        "rad": { "dat":"hol-rad" }
+      },
+      "val": { 
+        "nom": "Mudra #()($)ide() de 7: ()($)nom().",
+        "des": "()($)des()",
+        "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/hum/mud/()($)ide().png);",
+        "num": 7
+      }
     }' )  
   ;
   -- x2 : Flujos: respiraciones y poderes
   DELETE FROM `sis-dat_est` WHERE `esq`='hol' AND `ide` LIKE 'flu%'; INSERT INTO `sis-dat_est` VALUES
     ('hol','flu_res', '{
-        "atr": { 
-          "ide": { "min":1, "max":2, "dat":"flu_res" }
-        },        
-        "val": { 
-          "nom": "Respiración de flujo polar #()($)ide() de 2: ()($)nom()",
-          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/flu/res/()($)ide().png);",
-          "col": 2
-        },
-        "opc": { 
-          "ima": [ "ide" ]
-        }
+      "atr": { 
+        "ide": { "min":1, "max":2, "dat":"flu_res" }
+      },        
+      "val": { 
+        "nom": "Respiración de flujo polar #()($)ide() de 2: ()($)nom()",
+        "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/flu/res/()($)ide().png);",
+        "col": 2
+      },
+      "opc": { 
+        "ima": [ "ide" ]
+      }
     }' ),
     ('hol','flu_pod', '{
-        "atr": { 
-          "ide": { "min":1, "max":2, "dat":"flu_pod" }
-        },
-        "val": { 
-          "nom": "Poder de flujo polar #()($)ide() de 2: ()($)nom()",
-          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/flu/pod/()($)ide().png);",
-          "col": 2
-        },
-        "opc": { 
-          "ima": [ "ide" ]
-        }
+      "atr": { 
+        "ide": { "min":1, "max":2, "dat":"flu_pod" }
+      },
+      "val": { 
+        "nom": "Poder de flujo polar #()($)ide() de 2: ()($)nom()",
+        "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/flu/pod/()($)ide().png);",
+        "col": 2
+      },
+      "opc": { 
+        "ima": [ "ide" ]
+      }
     }' ) 
   ;  
   -- x4 : Ciclo Armonico
@@ -505,329 +505,329 @@
   DELETE FROM `sis-dat_est` WHERE `esq`='hol' AND `ide` LIKE 'rad%'; INSERT INTO `sis-dat_est` VALUES
 
     ('hol','rad', '{
-        "atr": { 
-          "ide":         { "min":1, "max":7, "dat":"hol-rad" },            
-          "tel_año":     { "min":1997, "max":1999, "dat":"fec_año" },
-          "tel_ora_año": { "min":1, "max":260, "dat":"hol-kin_par" },
-          "tel_ora_ani": { "min":1, "max":260, "dat":"hol-kin_par" },
-          "tel_ora_gen": { "min":1, "max":260, "dat":"hol-kin_par" },
-          "pla_fue":     { "dat":"hol-rad_pla_fue" },
-          "pla_qua":     { "min":1, "max":3, "dat":"hol-rad_pla_qua" },
-          "pla_cub":     { "min":1, "max":7, "dat":"hol-rad_pla_cub" },
-          "hum_cha":     { "min":1, "max":7, "dat":"hol-hum_cha" }
-        },
-        "val": { 
-          "nom": "Plasma #()($)ide() de 7: ()($)nom().",
-          "des": "\'()($)pla_lec()\'",
-          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/rad/()($)ide().png);",
-          "col": 7,
-          "num": 7
-        },
-        "opc": { 
-          "ver": [ 
-            "ide", 
-            "pla_fue", "pla_cub", "pla_qua",
-            "hum_cha"
-          ],
-          "ima": [
-            "ide",
-            "pla_fue", "pla_cub", "pla_qua",
-            "tel_ora_año", "tel_ora_ani", "tel_ora_gen",
-            "hum_cha"
-          ],
-          "col": [
-            "ide", "pla_qua"
-          ],
-          "num": [
-            "ide", "pla_qua" 
-          ]
-        },
-        "lis": { 
+      "atr": { 
+        "ide":         { "min":1, "max":7, "dat":"hol-rad" },            
+        "tel_año":     { "min":1997, "max":1999, "dat":"fec_año" },
+        "tel_ora_año": { "min":1, "max":260, "dat":"hol-kin_par" },
+        "tel_ora_ani": { "min":1, "max":260, "dat":"hol-kin_par" },
+        "tel_ora_gen": { "min":1, "max":260, "dat":"hol-kin_par" },
+        "pla_fue":     { "dat":"hol-rad_pla_fue" },
+        "pla_qua":     { "min":1, "max":3, "dat":"hol-rad_pla_qua" },
+        "pla_cub":     { "min":1, "max":7, "dat":"hol-rad_pla_cub" },
+        "hum_cha":     { "min":1, "max":7, "dat":"hol-hum_cha" }
+      },
+      "val": { 
+        "nom": "Plasma #()($)ide() de 7: ()($)nom().",
+        "des": "\'()($)pla_lec()\'",
+        "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/rad/()($)ide().png);",
+        "col": 7,
+        "num": 7
+      },
+      "opc": { 
+        "ver": [ 
+          "ide", 
+          "pla_fue", "pla_cub", "pla_qua",
+          "hum_cha"
+        ],
+        "ima": [
+          "ide",
+          "pla_fue", "pla_cub", "pla_qua",
+          "tel_ora_año", "tel_ora_ani", "tel_ora_gen",
+          "hum_cha"
+        ],
+        "col": [
+          "ide", "pla_qua"
+        ],
+        "num": [
+          "ide", "pla_qua" 
+        ]
+      },
+      "lis": { 
 
-          "atr": [ "ide", "nom", "des_pod", "des_fue", "pla_qua" ]
-        },
-        "inf": {
-          "det": [ "des_col", "des_pod", "des_fue" ],
+        "atr": [ "ide", "nom", "des_pod", "des_fue", "pla_qua" ]
+      },
+      "inf": {
+        "det": [ "des_col", "des_pod", "des_fue" ],
 
-          "tab": [ "hol.rad.pla", {
-            "val":{ "pos":"()($)ide()" },
-            "pos":{ "ima":"hol.rad.ide", "col":"hol.rad.ide" }
-          }],
+        "tab": [ "hol.rad.pla", {
+          "val":{ "pos":"()($)ide()" },
+          "pos":{ "ima":"hol.rad.ide", "col":"hol.rad.ide" }
+        }],
 
-          "htm-1": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/telektonon#_02-06-\'>Oráculos y las Profecías</a> en <cite>el Telektonon</cite>" },
-          "tex-1": "()($)tel() ( ()($)tel_año() ): ()($)tel_des().",
-          "fic-1-tit": [ "tel_ora_año", "tel_ora_ani", "tel_ora_gen" ],
-          
-          "htm-2": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/proyecto_rinri#_02-05-01-\'>Funciones Anuales</a> en <cite>el Proyecto Rinri</cite>" },
-          "atr-2": "rin_des",
+        "htm-1": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/sincronario/libro/telektonon#_02-06-\'>Oráculos y las Profecías</a> en <cite>el Telektonon</cite>" },
+        "tex-1": "()($)tel() ( ()($)tel_año() ): ()($)tel_des().",
+        "fic-1-tit": [ "tel_ora_año", "tel_ora_ani", "tel_ora_gen" ],
+        
+        "htm-2": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/sincronario/libro/proyecto_rinri#_02-05-01-\'>Funciones Anuales</a> en <cite>el Proyecto Rinri</cite>" },
+        "atr-2": "rin_des",
 
-          "htm-3": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/atomo_del_tiempo#_03-01-\'>Componentes Electrónicos</a> en <cite>el Átomo del Tiempo</cite>" },
-          "atr-3": "pla_des",
-          "fic-3": [ "pla_fue" ],
+        "htm-3": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/sincronario/libro/atomo_del_tiempo#_03-01-\'>Componentes Electrónicos</a> en <cite>el Átomo del Tiempo</cite>" },
+        "atr-3": "pla_des",
+        "fic-3": [ "pla_fue" ],
 
-          "htm-4": { "eti":"p", "class":"tit", "htm":"Las <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/atomo_del_tiempo#_03-06-\'>Autodeclaraciones Diarias de Padmasambhava</a> en <cite>el Átomo del Tiempo</cite>" },
-          "atr-4": "pla_lec",
-          "fic-4": [ "pla_qua" ],
+        "htm-4": { "eti":"p", "class":"tit", "htm":"Las <a target=\'_blank\' href=\'http://localhost/sincronario/libro/atomo_del_tiempo#_03-06-\'>Autodeclaraciones Diarias de Padmasambhava</a> en <cite>el Átomo del Tiempo</cite>" },
+        "atr-4": "pla_lec",
+        "fic-4": [ "pla_qua" ],
 
-          "htm-5": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/atomo_del_tiempo#_03-06-\'>Chakras y el Cubo del Radión</a> en <cite>el Átomo del Tiempo</cite>" },
-          "fic-5": [ "hum_cha", "pla_cub" ],
+        "htm-5": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/sincronario/libro/atomo_del_tiempo#_03-06-\'>Chakras y el Cubo del Radión</a> en <cite>el Átomo del Tiempo</cite>" },
+        "fic-5": [ "hum_cha", "pla_cub" ],
 
-          "htm-6": { "eti":"p", "class":"tit", "htm":"El <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/sincronotron\'>Mapa Estelar</a> en <cite>el Sincronotrón</cite>" },
-          "atr-6": [ "umb_map" ], 
+        "htm-6": { "eti":"p", "class":"tit", "htm":"El <a target=\'_blank\' href=\'http://localhost/sincronario/libro/sincronotron\'>Mapa Estelar</a> en <cite>el Sincronotrón</cite>" },
+        "atr-6": [ "umb_map" ], 
 
-          "htm-7": { "eti":"p", "class":"tit", "htm":"Las <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/sincronotron\'>Esferas Mentales</a> en <cite>el Sincronotrón</cite>" },
-          "tex-7": "()($)umb_esf(): ()($)umb_est_fun()"
-        }
+        "htm-7": { "eti":"p", "class":"tit", "htm":"Las <a target=\'_blank\' href=\'http://localhost/sincronario/libro/sincronotron\'>Esferas Mentales</a> en <cite>el Sincronotrón</cite>" },
+        "tex-7": "()($)umb_esf(): ()($)umb_est_fun()"
+      }
     }' ),
     -- cubo
     ('hol','rad_pla_cub', '{
-        "atr": { 
-          "ide": { "min":1, "max":7, "dat":"hol-rad_pla_cub" }
-        },
-        "val": { 
-          "nom": "Posicion #()($)ide() de 7: ()($)nom()",
-          "des": "Correspondiente al plasma ()($)pla()",
-          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/rad/pla_cub/()($)ide().png);",
-          "col": 4,
-          "num": 7
-        }
+      "atr": { 
+        "ide": { "min":1, "max":7, "dat":"hol-rad_pla_cub" }
+      },
+      "val": { 
+        "nom": "Posicion #()($)ide() de 7: ()($)nom()",
+        "des": "Correspondiente al plasma ()($)pla()",
+        "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/rad/pla_cub/()($)ide().png);",
+        "col": 4,
+        "num": 7
+      }
     }' ),
     -- plasma: energía cósmica
     ('hol','rad_pla_pol', '{ 
-        "atr": { 
-          "ide": { "min":1, "max":2, "dat":"hol-rad_pla_pol" }
-        },      
-        "val": { 
-          "nom": "Carga #()($)ide() de 2: ()($)nom().",
-          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/rad/pla_car/()($)ide().png);"
-        }
+      "atr": { 
+        "ide": { "min":1, "max":2, "dat":"hol-rad_pla_pol" }
+      },      
+      "val": { 
+        "nom": "Carga #()($)ide() de 2: ()($)nom().",
+        "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/rad/pla_car/()($)ide().png);"
+      }
     }' ),-- tipo de electricidad
     ('hol','rad_pla_ele', '{
-        "atr": { 
-          "ide": { "min":1, "max":6, "dat":"hol-rad_pla_ele" }
-        },      
-        "val": { 
-          "nom": "Tipo de Electricidad Cósmica #()($)ide() de 6: ()($)nom() ( ()($)des_cod() ).",
-          "des": "()($)des().",
-          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/rad/pla_ele/()($)ide().png);"                      
-        },
-        "opc": { 
-          "ima": [ "ide" ]
-        }
+      "atr": { 
+        "ide": { "min":1, "max":6, "dat":"hol-rad_pla_ele" }
+      },      
+      "val": { 
+        "nom": "Tipo de Electricidad Cósmica #()($)ide() de 6: ()($)nom() ( ()($)des_cod() ).",
+        "des": "()($)des().",
+        "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/rad/pla_ele/()($)ide().png);"                      
+      },
+      "opc": { 
+        "ima": [ "ide" ]
+      }
     }' ),-- lineas de fuerza
     ('hol','rad_pla_fue', '{
-        "atr": { 
-          "ide": { "min":1, "max":12, "dat":"hol-rad_pla_fue" },
-          "ele_pre": { "min":1, "max":6, "dat":"hol-rad_pla_ele" },
-          "ele_pos": { "min":1, "max":6, "dat":"hol-rad_pla_ele" }
-        },
-        "val": { 
-          "nom": "Línea de Fuerza #()($)ide() de 12: ()($)nom().",
-          "des": "()($)des().",
-          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/rad/pla_fue/()($)ide().png);"
-        },
-        "opc": { 
-          "ima": [ "ide", "ele_pre", "ele_pos" ]            
-        },
-        "inf": {
+      "atr": { 
+        "ide": { "min":1, "max":12, "dat":"hol-rad_pla_fue" },
+        "ele_pre": { "min":1, "max":6, "dat":"hol-rad_pla_ele" },
+        "ele_pos": { "min":1, "max":6, "dat":"hol-rad_pla_ele" }
+      },
+      "val": { 
+        "nom": "Línea de Fuerza #()($)ide() de 12: ()($)nom().",
+        "des": "()($)des().",
+        "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/rad/pla_fue/()($)ide().png);"
+      },
+      "opc": { 
+        "ima": [ "ide", "ele_pre", "ele_pos" ]            
+      },
+      "inf": {
 
-          "htm-1": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/atomo_del_tiempo#_03-01-\'>Componentes Electrónicos</a> en <cite>el Átomo del Tiempo</cite>" },
-          "fic-1": [ "ele_pre", "ele_pos" ]
-        }
+        "htm-1": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/sincronario/libro/atomo_del_tiempo#_03-01-\'>Componentes Electrónicos</a> en <cite>el Átomo del Tiempo</cite>" },
+        "fic-1": [ "ele_pre", "ele_pos" ]
+      }
     }' ),
     ('hol','rad_pla_qua', '{
-        "atr": { 
-          "ide": { "min":1, "max":3, "dat":"hol-rad_pla_qua" },
-          "pla": { "dat":"hol-rad" }
-        },      
-        "val": {
-          "nom": "Quantum #()($)ide() de 3: ()($)nom().",
-          "des": "()($)des()",
-          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/rad/pla_qua/()($)ide().png);",
-          "col": 3,
-          "num": 3
-        },
-        "opc": {
-          "ima": [ "ide", "pla" ]
-        },
-        "inf": {
-          "opc": [ "des" ],
-          "fic": [ "pla" ]
-        }
+      "atr": { 
+        "ide": { "min":1, "max":3, "dat":"hol-rad_pla_qua" },
+        "pla": { "dat":"hol-rad" }
+      },      
+      "val": {
+        "nom": "Quantum #()($)ide() de 3: ()($)nom().",
+        "des": "()($)des()",
+        "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/rad/pla_qua/()($)ide().png);",
+        "col": 3,
+        "num": 3
+      },
+      "opc": {
+        "ima": [ "ide", "pla" ]
+      },
+      "inf": {
+        "opc": [ "des" ],
+        "fic": [ "pla" ]
+      }
     }' )  
   ;
   -- x13 : Tono Galactico
   DELETE FROM `sis-dat_est` WHERE `esq`='hol' AND `ide` LIKE 'ton%'; INSERT INTO `sis-dat_est` VALUES
 
     ('hol','ton', '{
-        "atr": {
-          "ide": { "min":1, "max":13, "dat":"hol-ton" },
+      "atr": {
+        "ide": { "min":1, "max":13, "dat":"hol-ton" },
 
-          "ond": { "min":1, "max":4, "dat":"hol-ton_ond" },
-          "ond_enc": { "min":0, "max":4, "dat":"hol-ton_ond" },
+        "ond": { "min":1, "max":4, "dat":"hol-ton_ond" },
+        "ond_enc": { "min":0, "max":4, "dat":"hol-ton_ond" },
 
-          "dim": { "min":1, "max":4, "dat":"hol-ton_dim" },
-          "mat": { "min":1, "max":5, "dat":"hol-ton_mat" },
-          "sim": { "min":1, "max":7, "dat":"hol-ton_sim" },
-          
-          "hum_lad": { "min":1, "max":3, "dat":"hol-hum_lad" },
-          "hum_art": { "min":1, "max":7, "dat":"hol-hum_art" },
-          "hum_sen": { "min":1, "max":7, "dat":"hol-hum_sen" }
-        },
-        "val": { 
-          "nom": "Tono Galáctico #()($)ide() de 13: ()($)nom().",
-          "des": "()($)des() ()($)des_acc_lec().",
-          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/ton/()($)ide().png);",
-          "col": 7,
-          "num": 13
-        },
-        "opc": { 
-          "ver": [ 
-            "ide", "ond", "dim", "mat", "sim", "hum_art", "hum_lad" 
-          ],
-          "ima": [ 
-            "ide", "ond", "dim", "mat", "sim" 
-          ],
-          "col": [ 
-            "ide", "ond", "dim", "mat", "sim", "hum_art", "hum_lad" 
-          ],
-          "num": [ 
-            "ide", "ond", "dim", "mat", "sim", "hum_art", "hum_lad" 
-          ]
-        },
-        "lis": { 
-          "atr": [ 
-            "ide", "nom", "des_car", "des_pod", "des_acc", "dim", "mat", "sim" 
-          ],
-          "atr_ocu": [ 
-            "dim", "mat", "sim" 
-          ],
-          "tit_cic": [ 
-            "ond" 
-          ],
-          "tit_gru": [ 
-            "dim", "mat", "sim" 
-          ],
-          "det_des": [ 
-            "ond_man", "cit_med", "cit_pre", "cit_por" 
-          ]
-        },
-        "inf": {
-          "det": [ "des_car", "des_acc", "des_pod" ],
+        "dim": { "min":1, "max":4, "dat":"hol-ton_dim" },
+        "mat": { "min":1, "max":5, "dat":"hol-ton_mat" },
+        "sim": { "min":1, "max":7, "dat":"hol-ton_sim" },
+        
+        "hum_lad": { "min":1, "max":3, "dat":"hol-hum_lad" },
+        "hum_art": { "min":1, "max":7, "dat":"hol-hum_art" },
+        "hum_sen": { "min":1, "max":7, "dat":"hol-hum_sen" }
+      },
+      "val": { 
+        "nom": "Tono Galáctico #()($)ide() de 13: ()($)nom().",
+        "des": "()($)des() ()($)des_acc_lec().",
+        "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/ton/()($)ide().png);",
+        "col": 7,
+        "num": 13
+      },
+      "opc": { 
+        "ver": [ 
+          "ide", "ond", "dim", "mat", "sim", "hum_art", "hum_lad" 
+        ],
+        "ima": [ 
+          "ide", "ond", "dim", "mat", "sim" 
+        ],
+        "col": [ 
+          "ide", "ond", "dim", "mat", "sim", "hum_art", "hum_lad" 
+        ],
+        "num": [ 
+          "ide", "ond", "dim", "mat", "sim", "hum_art", "hum_lad" 
+        ]
+      },
+      "lis": { 
+        "atr": [ 
+          "ide", "nom", "des_car", "des_pod", "des_acc", "dim", "mat", "sim" 
+        ],
+        "atr_ocu": [ 
+          "dim", "mat", "sim" 
+        ],
+        "tit_cic": [ 
+          "ond" 
+        ],
+        "tit_gru": [ 
+          "dim", "mat", "sim" 
+        ],
+        "det_des": [ 
+          "ond_man", "cit_med", "cit_pre", "cit_por" 
+        ]
+      },
+      "inf": {
+        "det": [ "des_car", "des_acc", "des_pod" ],
 
-          "tab": [ "hol.ton.ond", { 
-              "val": { "pos":"()($)ide()" }, 
-              "pos": { "bor":1, "ima":"hol.ton.ide", "tex":"hol.ton.des", "pul":["dim","mat","sim"] }
-            }, { 
-              "pos": { "class":"pad-1" } 
-            }
-          ],
-          "fic": [ "ond", "dim", "mat", "sim" ],
+        "tab": [ "hol.ton.ond", { 
+            "val": { "pos":"()($)ide()" }, 
+            "pos": { "bor":1, "ima":"hol.ton.ide", "tex":"hol.ton.des", "pul":["dim","mat","sim"] }
+          }, { 
+            "pos": { "class":"pad-1" } 
+          }
+        ],
+        "fic": [ "ond", "dim", "mat", "sim" ],
 
-          "htm-1": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost//sincronario/bibliografia/factor_maya#_04-04-01-01-\'>Rayos de Pulsación</a> en el Factor Maya" },
-          "atr-1": "gal",
+        "htm-1": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost//sincronario/libro/factor_maya#_04-04-01-01-\'>Rayos de Pulsación</a> en el Factor Maya" },
+        "atr-1": "gal",
 
-          "htm-2": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost//sincronario/bibliografia/encantamiento_del_sueño#_03-11-\'>Tonos Galácticos de la Creación</a> en el Encantamiento del Sueño" },
-          "tex-2": "()($)des(), ()($)des_acc_lec().",
+        "htm-2": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost//sincronario/libro/encantamiento_del_sueño#_03-11-\'>Tonos Galácticos de la Creación</a> en el Encantamiento del Sueño" },
+        "tex-2": "()($)des(), ()($)des_acc_lec().",
 
-          "htm-3": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost//sincronario/bibliografia/encantamiento_del_sueño#_03-12-\'>Onda Encantada de la Aventura</a> en el Encantamiento del Sueño" },
-          "tex-3": "()($)ond_nom(): ()($)ond_pos(). ()($)ond_man().",
+        "htm-3": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost//sincronario/libro/encantamiento_del_sueño#_03-12-\'>Onda Encantada de la Aventura</a> en el Encantamiento del Sueño" },
+        "tex-3": "()($)ond_nom(): ()($)ond_pos(). ()($)ond_man().",
 
-          "htm-4": { "eti":"p", "class":"tit", "htm":"Referencias del Orden Sincrónico en la <a target=\'_blank\' href=\'https://13lunas.net/\'>Ley del Tiempo</a>" },
-          "atr-4": "cit_med",
+        "htm-4": { "eti":"p", "class":"tit", "htm":"Referencias del Orden Sincrónico en la <a target=\'_blank\' href=\'https://13lunas.net/\'>Ley del Tiempo</a>" },
+        "atr-4": "cit_med",
 
-          "htm-5": { "eti":"p", "class":"tit", "htm":"Extractos del libro <cite><q>El kin<c>,</c> tu signo maya</q></cite> " },
-          "atr-5": [ "cit_pre", "cit_por" ]
-        }
+        "htm-5": { "eti":"p", "class":"tit", "htm":"Extractos del libro <cite><q>El kin<c>,</c> tu signo maya</q></cite> " },
+        "atr-5": [ "cit_pre", "cit_por" ]
+      }
     }' ),
     -- aventura de la onda encantada
     ('hol','ton_ond', '{
-        "atr": { 
-          "ide": { "min":1, "max":4, "dat":"hol-ton_ond" },
-          "ton": { "dat":"hol-ton" }
-        },
-        "val": { 
-          "nom": "Aventura de la Onda Encantada #()($)ide() de 4.",
-          "des": "()($)des().",
-          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/ton/ond/()($)ide().png);",
-          "col": 4,
-          "num": 4
-        },
-        "opc": { 
-          "ima": [ "ide", "ton" ] 
-        },
-        "inf": { 
-          "opc": [ "des" ],
-          "htm": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost//sincronario/bibliografia/encantamiento_del_sueño#_03-12-\'>Onda Encantada de la Aventura</a> en el Encantamiento del Sueño" },
-          "fic": [ "ton" ]
-        }
+      "atr": { 
+        "ide": { "min":1, "max":4, "dat":"hol-ton_ond" },
+        "ton": { "dat":"hol-ton" }
+      },
+      "val": { 
+        "nom": "Aventura de la Onda Encantada #()($)ide() de 4.",
+        "des": "()($)des().",
+        "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/ton/ond/()($)ide().png);",
+        "col": 4,
+        "num": 4
+      },
+      "opc": { 
+        "ima": [ "ide", "ton" ] 
+      },
+      "inf": { 
+        "opc": [ "des" ],
+        "htm": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost//sincronario/libro/encantamiento_del_sueño#_03-12-\'>Onda Encantada de la Aventura</a> en el Encantamiento del Sueño" },
+        "fic": [ "ton" ]
+      }
     }' ),
     -- pulsares
     ('hol','ton_dim', '{
-        "atr": {
-          "ide": { "min":1, "max":4, "dat":"hol-ton_dim" },
-          "ton": { "dat":"hol-ton" }
-        },
-        "val": { 
-          "nom": "Pulsar Dimensional #()($)ide() de 4: ()($)nom().",
-          "des": "()($)des_ond(). ()($)des_dim() dimensión, Campo de aplicación ()($)des_cam().", 
-          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/ton/dim/()($)ide().png);",
-          "col": 4
-        },
-        "opc": { 
-          "ima": [ "ide", "ton" ] 
-        },
-        "inf": { 
-          "det": [ "des_dim", "des_cam" ],
+      "atr": {
+        "ide": { "min":1, "max":4, "dat":"hol-ton_dim" },
+        "ton": { "dat":"hol-ton" }
+      },
+      "val": { 
+        "nom": "Pulsar Dimensional #()($)ide() de 4: ()($)nom().",
+        "des": "()($)des_ond(). ()($)des_dim() dimensión, Campo de aplicación ()($)des_cam().", 
+        "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/ton/dim/()($)ide().png);",
+        "col": 4
+      },
+      "opc": { 
+        "ima": [ "ide", "ton" ] 
+      },
+      "inf": { 
+        "det": [ "des_dim", "des_cam" ],
 
-          "htm": { "eti":"p", "class":"tit", "htm":"El <a target=\'_blank\' href=\'http://localhost//sincronario/bibliografia/encantamiento_del_sueño#_03-13-\'>Código pulsar</a> en el Encantamiento del Sueño" },
-          "atr": [ "des_ond" ],
-          "fic": [ "ton" ]
-        }
+        "htm": { "eti":"p", "class":"tit", "htm":"El <a target=\'_blank\' href=\'http://localhost//sincronario/libro/encantamiento_del_sueño#_03-13-\'>Código pulsar</a> en el Encantamiento del Sueño" },
+        "atr": [ "des_ond" ],
+        "fic": [ "ton" ]
+      }
     }' ),
     ('hol','ton_mat', '{
-        "atr": { 
-          "ide": { "min":1, "max":5, "dat":"hol-ton_mat" },
-          "ton": { "dat":"hol-ton" }
-        },      
-        "val": { 
-          "nom": "Pulsar Matiz #()($)ide() de 5: ()($)nom().",
-          "des": "Código: ()($)des_cod(). Pulsares Dimensionales: ()($)des_dim().", 
-          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/ton/mat/()($)ide().png);",
-          "col": 5
-        },
-        "opc": { 
-          "ima": [ "ide", "ton" ]
-        },
-        "inf": { 
-          "det": [ "des_cod", "des_dim" ],
+      "atr": { 
+        "ide": { "min":1, "max":5, "dat":"hol-ton_mat" },
+        "ton": { "dat":"hol-ton" }
+      },      
+      "val": { 
+        "nom": "Pulsar Matiz #()($)ide() de 5: ()($)nom().",
+        "des": "Código: ()($)des_cod(). Pulsares Dimensionales: ()($)des_dim().", 
+        "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/ton/mat/()($)ide().png);",
+        "col": 5
+      },
+      "opc": { 
+        "ima": [ "ide", "ton" ]
+      },
+      "inf": { 
+        "det": [ "des_cod", "des_dim" ],
 
-          "htm": { "eti":"p", "class":"tit", "htm":"El <a target=\'_blank\' href=\'http://localhost//sincronario/bibliografia/encantamiento_del_sueño#_03-13-\'> Código pulsar</a> en el Encantamiento del Sueño" },
-          "atr": [ "des_ond" ],
-          "fic": [ "ton" ]
-        }
+        "htm": { "eti":"p", "class":"tit", "htm":"El <a target=\'_blank\' href=\'http://localhost//sincronario/libro/encantamiento_del_sueño#_03-13-\'> Código pulsar</a> en el Encantamiento del Sueño" },
+        "atr": [ "des_ond" ],
+        "fic": [ "ton" ]
+      }
     }' ),
     ('hol','ton_sim', '{
-        "atr": {
-          "ide": { "min":1, "max":7, "dat":"hol-ton_sim" },
-          "ton": { "dat":"hol-ton" }
-        },
-        "val": { 
-          "nom": "Simetría Especular #()($)ide() de 7: ()($)nom().",
-          "des": "()($)des()",
-          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/ton/sim/()($)ide().png);",
-          "col": 7
-        },
-        "opc": { 
-          "ima": [ "ide", "ton" ]
-        },
-        "inf": { 
-          "opc": [ "des" ],
-          
-          "htm": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost//sincronario/bibliografia/factor_maya#_04-04-01-02-\'>Simetría Especular</a> en el Factor Maya" },
-          "atr": [ "fac_des" ],
-          "fic": [ "ton" ]
-        }
+      "atr": {
+        "ide": { "min":1, "max":7, "dat":"hol-ton_sim" },
+        "ton": { "dat":"hol-ton" }
+      },
+      "val": { 
+        "nom": "Simetría Especular #()($)ide() de 7: ()($)nom().",
+        "des": "()($)des()",
+        "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/ton/sim/()($)ide().png);",
+        "col": 7
+      },
+      "opc": { 
+        "ima": [ "ide", "ton" ]
+      },
+      "inf": { 
+        "opc": [ "des" ],
+        
+        "htm": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost//sincronario/libro/factor_maya#_04-04-01-02-\'>Simetría Especular</a> en el Factor Maya" },
+        "atr": [ "fac_des" ],
+        "fic": [ "ton" ]
+      }
     }' )
   ;
   -- x20 : Sello Solar
@@ -932,14 +932,14 @@
         "htm-1-3": { "eti":"p", "class":"tit", "htm":"El <a target=\'_blank\' href=\'hol/bib/fac#_05-06-03-\'>Modelo Morfogenético</a> en <cite>el Factor Maya</cite>" },
         "atr-1-3": [ "arm_tra_des" ],
         
-        "htm-2": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/encantamiento_del_sueño#_03-04-\'>Colocación Armónica</a> en <cite>el Encantamiento del Sueño</cite>" },
+        "htm-2": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost/sincronario/libro/encantamiento_del_sueño#_03-04-\'>Colocación Armónica</a> en <cite>el Encantamiento del Sueño</cite>" },
         "tab-2": [ "hol.sel.arm", { "val": { "pos":"()($)ide()" }, "pos": { "ima":"hol.sel.ide" } } ],
         "fic-2-1": [ "arm_cel" ],
         "atr-2-1": [ "arm_cel_des" ],
         "fic-2-2": [ "arm_raz" ],
         "atr-2-2": [ "arm_raz_des" ],
 
-        "htm-3": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/encantamiento_del_sueño#_03-02-\'>Colocación Cromática</a> en <cite>el Encantamiento del Sueño</cite>" },
+        "htm-3": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost/sincronario/libro/encantamiento_del_sueño#_03-02-\'>Colocación Cromática</a> en <cite>el Encantamiento del Sueño</cite>" },
         "tab-3": [ "hol.sel.cro", { "val": { "pos":"()($)ide()" }, "pos": { "ima":"hol.sel.ide" } } ],
         "fic-3-1": [ "cro_ele" ],
         "atr-3-1": [ "cro_ele_des" ],
@@ -1022,7 +1022,7 @@
       "inf": { 
         "det": [ "des_car", "des_acc", "des_pod" ],
 
-        "htm-3": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/encantamiento_del_sueño#_03-02-\'>Colocación Cromática</a> en <cite>el Encantamiento del Sueño</cite>" },
+        "htm-3": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost/sincronario/libro/encantamiento_del_sueño#_03-02-\'>Colocación Cromática</a> en <cite>el Encantamiento del Sueño</cite>" },
         "tab-3": [ "hol.sel.cro", { "val": { "pos":"()($)sel()" }, "pos": { "ima":"hol.sel.ide" } } ],
         "fic-3-1": [ "cro_ele" ],
         "atr-3-1": [ "cro_ele_des" ],
@@ -1139,7 +1139,7 @@
 
         "det": [ "des_dir", "des_pod", "des_dia" ],
 
-        "htm": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/encantamiento_del_sueño#_03-04-\'>Colocación Armónica</a> d<cite>el Encantamiento del Sueño</cite>" },
+        "htm": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost/sincronario/libro/encantamiento_del_sueño#_03-04-\'>Colocación Armónica</a> d<cite>el Encantamiento del Sueño</cite>" },
         "fic": [ "sel" ]
       }
     }' ),
@@ -1163,7 +1163,7 @@
 
         "det": [ "des_fun", "des_pod" ],
 
-        "htm": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/encantamiento_del_sueño#_03-05-\'>Colocación Armónica</a> d<cite>el Encantamiento del Sueño</cite>" },
+        "htm": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost/sincronario/libro/encantamiento_del_sueño#_03-05-\'>Colocación Armónica</a> d<cite>el Encantamiento del Sueño</cite>" },
         "fic": [ "sel" ]
       }
     }' ),
@@ -1201,13 +1201,13 @@
       "inf": { 
         "det": [ "des_fun", "des_mis", "des_rol", "des_acc" ],
 
-        "htm": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/encantamiento_del_sueño#_03-14-\'>Cuenta atrás</a> d<cite>el Encantamiento del Sueño</cite>" },
+        "htm": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost/sincronario/libro/encantamiento_del_sueño#_03-14-\'>Cuenta atrás</a> d<cite>el Encantamiento del Sueño</cite>" },
         "fic": [ "sel" ],
 
-        "htm-1": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/encantamiento_del_sueño#_03-07-\'>Holon Planetario</a> d<cite>el Encantamiento del Sueño</cite>" },
+        "htm-1": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost/sincronario/libro/encantamiento_del_sueño#_03-07-\'>Holon Planetario</a> d<cite>el Encantamiento del Sueño</cite>" },
         "fic-1": [ "pla_cen" ], 
 
-        "htm-2": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/encantamiento_del_sueño#_03-08-\'>Holon Humano</a> d<cite>el Encantamiento del Sueño</cite>" },
+        "htm-2": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost/sincronario/libro/encantamiento_del_sueño#_03-08-\'>Holon Humano</a> d<cite>el Encantamiento del Sueño</cite>" },
         "fic-2": [ "hum_cen", "hum_ded" ]
       }
     }' ),
@@ -1233,10 +1233,10 @@
         "det": [ "des_col", "des_men" ],
         "atr": [ "des" ],
 
-        "htm-1": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/encantamiento_del_sueño#_03-02-\'>Colocación Cromática</a> d<cite>el Encantamiento del Sueño</cite>" },
+        "htm-1": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost/sincronario/libro/encantamiento_del_sueño#_03-02-\'>Colocación Cromática</a> d<cite>el Encantamiento del Sueño</cite>" },
         "fic-1": [ "sel" ],
         
-        "htm-1": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/encantamiento_del_sueño#_03-02-\'>Células del Tiempo</a> en el Íncide Armónico d<cite>el Encantamiento del Sueño</cite>" },
+        "htm-1": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost/sincronario/libro/encantamiento_del_sueño#_03-02-\'>Células del Tiempo</a> en el Íncide Armónico d<cite>el Encantamiento del Sueño</cite>" },
         "fic-2": [ "arm_cel" ]
       }
     }' )
@@ -1246,85 +1246,85 @@
 
     -- dias
     ('hol','lun', '{  
-        "atr": { 
-          "ide": { "min":1, "max":28, "dat":"hol-lun" },
-          "sel": { "min":1, "max":20, "dat":"hol-sel" },        
-          "fas": { "min":1, "max":3, "dat":"hol-lun_fas" },
-          "cub": { "min":0, "max":16, "dat":"hol-lun_cub" },
-          "arm": { "min":1, "max":4, "dat":"hol-lun_arm" },        
-          "rad": { "min":1, "max":7, "dat":"hol-rad" }        
-        },
-        "val": { 
-          "nom": "Día Lunar #()($)ide() de 28",
-          "des": "()($)ato_des()",
-          "ima": "background: center/60% no-repeat url(http://localhost/_img/hol/fic/rad/()($)rad().png), center/contain no-repeat url(http://localhost/_img/hol/fic/rad.png), center/contain no-repeat url(http://localhost/_img/hol/fic/arm/()($)arm().png);",
-          "col": 4,
-          "num": 28
-        },
-        "opc": { 
-          "ver": [ 
-            "ide", "arm", "rad"
-          ],
-          "ima": [
-            "ide", "arm", "rad"
-          ],
-          "col": [
-            "ide", "arm"
-          ],
-          "num": [ 
-            "ide", "arm", "rad"
-          ]
-        },
-        "lis": {
+      "atr": { 
+        "ide": { "min":1, "max":28, "dat":"hol-lun" },
+        "sel": { "min":1, "max":20, "dat":"hol-sel" },        
+        "fas": { "min":1, "max":3, "dat":"hol-lun_fas" },
+        "cub": { "min":0, "max":16, "dat":"hol-lun_cub" },
+        "arm": { "min":1, "max":4, "dat":"hol-lun_arm" },        
+        "rad": { "min":1, "max":7, "dat":"hol-rad" }        
+      },
+      "val": { 
+        "nom": "Día Lunar #()($)ide() de 28",
+        "des": "()($)ato_des()",
+        "ima": "background: center/60% no-repeat url(http://localhost/_img/hol/fic/rad/()($)rad().png), center/contain no-repeat url(http://localhost/_img/hol/fic/rad.png), center/contain no-repeat url(http://localhost/_img/hol/fic/arm/()($)arm().png);",
+        "col": 4,
+        "num": 28
+      },
+      "opc": { 
+        "ver": [ 
+          "ide", "arm", "rad"
+        ],
+        "ima": [
+          "ide", "arm", "rad"
+        ],
+        "col": [
+          "ide", "arm"
+        ],
+        "num": [ 
+          "ide", "arm", "rad"
+        ]
+      },
+      "lis": {
 
-          "atr": [ "ide", "arm", "rad" ],
+        "atr": [ "ide", "arm", "rad" ],
 
-          "tit_cic": [ "arm" ]
-        },
-        "inf": {
-          "fic": [ "arm", "rad" ],
-          "tab": [ "hol.lun.pla", { "val":{ "pos":"()($)ide()" } } ]
-        }
+        "tit_cic": [ "arm" ]
+      },
+      "inf": {
+        "fic": [ "arm", "rad" ],
+        "tab": [ "hol.lun.pla", { "val":{ "pos":"()($)ide()" } } ]
+      }
     }' ),
     -- ciclo armonico
     ('hol','lun_arm', '{  
-        "atr": { 
-          "ide": { "min":1, "max":4, "dat":"hol-lun_arm" },
-          "dia": { "min":1, "max":4, "dat":"hol-lun" }
-        },
-        "val": { 
-          "nom": "Armonía lunar #()($)ide() de 4: Héptada ()($)des_col().",
-          "des": "()($)des(). ()($)nom(). Días ()($)dia()",
-          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/rad.png), center/contain no-repeat url(http://localhost/_img/hol/fic/arm/()($)ide().png);",
-          "col": 4,
-          "num": 4
-        },
-        "opc": { 
-          "ima": [
-            "ide"
-          ]            
-        },
-        "inf": {
-          "opc": [ "des" ],
-          "det": [ "des_col", "des_pod", "des_pol" ],
-          "fic": [ "dia" ]
-        }
+      "atr": { 
+        "ide": { "min":1, "max":4, "dat":"hol-lun_arm" },
+        "dia": { "min":1, "max":4, "dat":"hol-lun" }
+      },
+      "val": { 
+        "nom": "Armonía lunar #()($)ide() de 4: Héptada ()($)des_col().",
+        "des": "()($)des(). ()($)nom(). Días ()($)dia()",
+        "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/rad.png), center/contain no-repeat url(http://localhost/_img/hol/fic/arm/()($)ide().png);",
+        "col": 4,
+        "num": 4
+      },
+      "opc": { 
+        "ima": [
+          "ide"
+        ]            
+      },
+      "inf": {
+        "opc": [ "des" ],
+        "det": [ "des_col", "des_pod", "des_pol" ],
+        "fic": [ "dia" ]
+      }
     }' ),
     -- telektonon
     ('hol','lun_tel_tor', '{  
-        "atr": { 
-          "ide": { "min":1, "max":4, "dat":"hol-lun_tel_tor" }
-        }
+      "atr": { 
+        "ide": { "min":1, "max":4, "dat":"hol-lun_tel_tor" }
+      }
     }' ),
     ('hol','lun_tel_cam', '{  
-        "atr": { 
-          "ide": { "min":1, "max":8, "dat":"hol-lun_tel_cam" }
-        }
+      "atr": { 
+        "ide": { "min":1, "max":8, "dat":"hol-lun_tel_cam" }
+      }
     }' ),
     ('hol','lun_tel_cub', '{  
-        "atr": { 
-          "ide": { "min":1, "max":16, "dat":"hol-lun_tel_cub" }
-        }
+      "atr": { 
+        "ide": { "min":1, "max":16, "dat":"hol-lun_tel_cub" }
+      }
     }' ),
     -- Atomo del Tiempo    
     ('hol','lun_pla_ato', '{
@@ -1356,200 +1356,200 @@
   DELETE FROM `sis-dat_est` WHERE `esq`='hol' AND `ide` LIKE 'cas%'; INSERT INTO `sis-dat_est` VALUES
 
     ('hol','cas', '{
-        "atr": { 
-          "ide": { "min":1, "max":52, "dat":"hol-cas" },
-          "arm": { "min":1, "max":4, "dat":"hol-cas_arm" },
-          "pos_arm": { "min":1, "max":4, "dat":"hol-arm" },
-          "ton_arm": { "min":1, "max":13, "dat":"hol-ton" },        
-          "ton": { "min":1, "max":13, "dat":"hol-ton" },
-          "ond": { "min":1, "max":4, "dat":"hol-cas_ond" },
-          "dim": { "min":1, "max":4, "dat":"hol-cas_dim" },
-          "mat": { "min":1, "max":5, "dat":"hol-cas_mat" },
-          "sim": { "min":1, "max":7, "dat":"hol-cas_sim" }        
-        },
-        "val": { 
-          "nom": "Posicion #()($)ide() de 52: ()($)nom().",
-          "des": "()($)des()",
-          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/ton/()($)ton().png), center/contain no-repeat url(http://localhost/_img/hol/fic/ton/arm/()($)arm().png), center/70% no-repeat url(http://localhost/_img/hol/fic/arm/()($)pos_arm().png);",
-          "col": 4,
-          "num": 52
-        },
-        "opc": { 
-          "ver": [ "ide", "arm", "ond", "pos_arm", "ton_arm" ],    
-          "ima": [ "ide", "arm", "ond", "pos_arm", "ton_arm" ],
-          "col": [ "arm", "ond", "pos_arm", "ton_arm" ],
-          "num": [ "ide", "arm", "ond", "pos_arm", "ton_arm" ]
-        },
-        "inf": {
-          "fic": [ "arm", "ton", "pos_arm" ],
-          "tab": [ "hol.cas.ond", { 
-            "val": { "pos":"()($)ide()" }, 
-            "pos": { "bor":1, "ima":"hol.cas.ton", "num":"hol.cas.ide", "col":"hol.cas.pos_arm", "pul":["dim","mat","sim"] }
-          }],
+      "atr": { 
+        "ide": { "min":1, "max":52, "dat":"hol-cas" },
+        "arm": { "min":1, "max":4, "dat":"hol-cas_arm" },
+        "pos_arm": { "min":1, "max":4, "dat":"hol-arm" },
+        "ton_arm": { "min":1, "max":13, "dat":"hol-ton" },        
+        "ton": { "min":1, "max":13, "dat":"hol-ton" },
+        "ond": { "min":1, "max":4, "dat":"hol-cas_ond" },
+        "dim": { "min":1, "max":4, "dat":"hol-cas_dim" },
+        "mat": { "min":1, "max":5, "dat":"hol-cas_mat" },
+        "sim": { "min":1, "max":7, "dat":"hol-cas_sim" }        
+      },
+      "val": { 
+        "nom": "Posicion #()($)ide() de 52: ()($)nom().",
+        "des": "()($)des()",
+        "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/ton/()($)ton().png), center/contain no-repeat url(http://localhost/_img/hol/fic/ton/arm/()($)arm().png), center/70% no-repeat url(http://localhost/_img/hol/fic/arm/()($)pos_arm().png);",
+        "col": 4,
+        "num": 52
+      },
+      "opc": { 
+        "ver": [ "ide", "arm", "ond", "pos_arm", "ton_arm" ],    
+        "ima": [ "ide", "arm", "ond", "pos_arm", "ton_arm" ],
+        "col": [ "arm", "ond", "pos_arm", "ton_arm" ],
+        "num": [ "ide", "arm", "ond", "pos_arm", "ton_arm" ]
+      },
+      "inf": {
+        "fic": [ "arm", "ton", "pos_arm" ],
+        "tab": [ "hol.cas.ond", { 
+          "val": { "pos":"()($)ide()" }, 
+          "pos": { "bor":1, "ima":"hol.cas.ton", "num":"hol.cas.ide", "col":"hol.cas.pos_arm", "pul":["dim","mat","sim"] }
+        }],
 
-          "fic-1": [ "ond", "dim", "mat", "sim" ],
-          "htm-2": { "eti":"p", "class":"tit", "htm":"Los Preceptos del Recorrido por el Castillo" },
-          "atr-2": [ "lec" ]
-        }
+        "fic-1": [ "ond", "dim", "mat", "sim" ],
+        "htm-2": { "eti":"p", "class":"tit", "htm":"Los Preceptos del Recorrido por el Castillo" },
+        "atr-2": [ "lec" ]
+      }
     }' ),
     -- cuadrante
     ('hol','cas_arm', '{
-        "atr": { 
-          "ide": { "min":1, "max":4, "dat":"hol-cas_arm" },
-          "cas": { "dat":"hol-cas" }
-        },
-        "val": { 
-          "nom": "Cuadrante #()($)ide() de 4: ()($)nom().",
-          "des": "()($)des().",
-          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/cas/arm/()($)ide().png);",
-          "col": 4,
-          "num": 4
-        },
-        "inf": {
-          "htm": { "eti":"p", "class":"tit", "htm":"El <a target=\'_blank\' href=\'http://localhost//sincronario/bibliografia/encantamiento_del_sueño#_02-03-08-\'>Castillo del Destino</a> en el Encantamiento del Sueño" },        
-          "fic": [ "cas" ]
-        }
+      "atr": { 
+        "ide": { "min":1, "max":4, "dat":"hol-cas_arm" },
+        "cas": { "dat":"hol-cas" }
+      },
+      "val": { 
+        "nom": "Cuadrante #()($)ide() de 4: ()($)nom().",
+        "des": "()($)des().",
+        "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/cas/arm/()($)ide().png);",
+        "col": 4,
+        "num": 4
+      },
+      "inf": {
+        "htm": { "eti":"p", "class":"tit", "htm":"El <a target=\'_blank\' href=\'http://localhost//sincronario/libro/encantamiento_del_sueño#_02-03-08-\'>Castillo del Destino</a> en el Encantamiento del Sueño" },        
+        "fic": [ "cas" ]
+      }
     }'),
     -- aventura
     ('hol','cas_ond', '{
-        "atr": { 
-          "ide": { "min":1, "max":4, "dat":"hol-cas_ond" },
-          "ton": { "dat":"hol-ton" }
-        },
-        "val": { 
-          "nom": "Aventura de la Onda Encantada #()($)ide() de 4: ()($)nom().",
-          "des": "()($)des().",
-          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/cas/ond/()($)ide().png);",
-          "col": 4,
-          "num": 4
-        },
-        "inf": {
-          "opc": [ "des" ],
-          "htm": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost//sincronario/bibliografia/encantamiento_del_sueño#_03-12-\'>Onda Encantada de la Aventura</a> en el Encantamiento del Sueño" },        
-          "fic": [ "ton" ]
-        }
+      "atr": { 
+        "ide": { "min":1, "max":4, "dat":"hol-cas_ond" },
+        "ton": { "dat":"hol-ton" }
+      },
+      "val": { 
+        "nom": "Aventura de la Onda Encantada #()($)ide() de 4: ()($)nom().",
+        "des": "()($)des().",
+        "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/cas/ond/()($)ide().png);",
+        "col": 4,
+        "num": 4
+      },
+      "inf": {
+        "opc": [ "des" ],
+        "htm": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost//sincronario/libro/encantamiento_del_sueño#_03-12-\'>Onda Encantada de la Aventura</a> en el Encantamiento del Sueño" },        
+        "fic": [ "ton" ]
+      }
     }'),
     -- Pulsares
     ('hol','cas_dim', '{
-        "atr": {
-          "ide": { "min":1, "max":4, "dat":"hol-cas_dim" },
-          "ton": { "dat":"hol-ton" }
-        },
-        "val": { 
-          "nom": "Pulsar Dimensional #()($)ide() de 4: ()($)nom().",
-          "des": "()($)des_ond(). ()($)des_dim() dimensión, Campo de aplicación ()($)des_cam().", 
-          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/cas/dim/()($)ide().png);",
-          "col": 4
-        },
-        "opc": { 
-          "ima": [ "ide" ] 
-        },
-        "inf": { 
-          "det": [ "des_dim", "des_cam" ],
-          "tab": [ "hol.cas.ond", {
-            "pos": { "bor":1, "ima":"hol.cas.ton", "num":"hol.cas.ide", "col":"hol.cas.pos_arm" },
-            "pul": { "dim":[] }
-          }],
-          "htm": { "eti":"p", "class":"tit", "htm":"El <a target=\'_blank\' href=\'http://localhost//sincronario/bibliografia/encantamiento_del_sueño#_03-13-\'>Código pulsar</a> en el Encantamiento del Sueño" },
-          "atr": [ "des_ond" ],
-          "fic": [ "ton" ]
-        }
+      "atr": {
+        "ide": { "min":1, "max":4, "dat":"hol-cas_dim" },
+        "ton": { "dat":"hol-ton" }
+      },
+      "val": { 
+        "nom": "Pulsar Dimensional #()($)ide() de 4: ()($)nom().",
+        "des": "()($)des_ond(). ()($)des_dim() dimensión, Campo de aplicación ()($)des_cam().", 
+        "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/cas/dim/()($)ide().png);",
+        "col": 4
+      },
+      "opc": { 
+        "ima": [ "ide" ] 
+      },
+      "inf": { 
+        "det": [ "des_dim", "des_cam" ],
+        "tab": [ "hol.cas.ond", {
+          "pos": { "bor":1, "ima":"hol.cas.ton", "num":"hol.cas.ide", "col":"hol.cas.pos_arm" },
+          "pul": { "dim":[] }
+        }],
+        "htm": { "eti":"p", "class":"tit", "htm":"El <a target=\'_blank\' href=\'http://localhost//sincronario/libro/encantamiento_del_sueño#_03-13-\'>Código pulsar</a> en el Encantamiento del Sueño" },
+        "atr": [ "des_ond" ],
+        "fic": [ "ton" ]
+      }
     }' ),
     ('hol','cas_mat', '{
-        "atr": { 
-          "ide": { "min":1, "max":5, "dat":"hol-cas_mat" },
-          "ton": { "dat":"hol-ton" }
-        },      
-        "val": { 
-          "nom": "Pulsar Matiz #()($)ide() de 5: ()($)nom().",
-          "des": "Código: ()($)des_cod(). Pulsares Dimensionales: ()($)des_dim().", 
-          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/cas/mat/()($)ide().png);",
-          "col": 5
-        },
-        "opc": { 
-          "ima": [ "ide" ]
-        },
-        "inf": { 
-          "det": [ "des_cod", "des_dim" ],
+      "atr": { 
+        "ide": { "min":1, "max":5, "dat":"hol-cas_mat" },
+        "ton": { "dat":"hol-ton" }
+      },      
+      "val": { 
+        "nom": "Pulsar Matiz #()($)ide() de 5: ()($)nom().",
+        "des": "Código: ()($)des_cod(). Pulsares Dimensionales: ()($)des_dim().", 
+        "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/cas/mat/()($)ide().png);",
+        "col": 5
+      },
+      "opc": { 
+        "ima": [ "ide" ]
+      },
+      "inf": { 
+        "det": [ "des_cod", "des_dim" ],
 
-          "htm": { "eti":"p", "class":"tit", "htm":"El <a target=\'_blank\' href=\'http://localhost//sincronario/bibliografia/encantamiento_del_sueño#_03-13-\'> Código pulsar</a> en el Encantamiento del Sueño" },
-          "atr": [ "des_ond" ],
-          "fic": [ "ton" ]
-        }
+        "htm": { "eti":"p", "class":"tit", "htm":"El <a target=\'_blank\' href=\'http://localhost//sincronario/libro/encantamiento_del_sueño#_03-13-\'> Código pulsar</a> en el Encantamiento del Sueño" },
+        "atr": [ "des_ond" ],
+        "fic": [ "ton" ]
+      }
     }' ),
     ('hol','cas_sim', '{
-        "atr": {
-          "ide": { "min":1, "max":7, "dat":"hol-cas_sim" },
-          "ton": { "dat":"hol-ton" }
-        },
-        "val": { 
-          "nom": "Simetría Especular #()($)ide() de 7: ()($)nom().",
-          "des": "()($)des()",
-          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/cas/sim/()($)ide().png);",
-          "col": 7
-        },
-        "opc": { 
-          "ima": [ "ide" ]
-        },
-        "inf": { 
-          "opc": [ "des" ],
-          "htm": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost//sincronario/bibliografia/factor_maya#_04-04-01-02-\'>Simetría Especular</a> en el Factor Maya" },
-          "atr": [ "fac_des" ],
-          "fic": [ "ton" ]
-        }
+      "atr": {
+        "ide": { "min":1, "max":7, "dat":"hol-cas_sim" },
+        "ton": { "dat":"hol-ton" }
+      },
+      "val": { 
+        "nom": "Simetría Especular #()($)ide() de 7: ()($)nom().",
+        "des": "()($)des()",
+        "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/cas/sim/()($)ide().png);",
+        "col": 7
+      },
+      "opc": { 
+        "ima": [ "ide" ]
+      },
+      "inf": { 
+        "opc": [ "des" ],
+        "htm": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost//sincronario/libro/factor_maya#_04-04-01-02-\'>Simetría Especular</a> en el Factor Maya" },
+        "atr": [ "fac_des" ],
+        "fic": [ "ton" ]
+      }
     }' )
   ;
   -- x64 : codigos del I-ching
   DELETE FROM `sis-dat_est` WHERE `esq`='hol' AND `ide` LIKE 'chi%'; INSERT INTO `sis-dat_est` VALUES
 
     ('hol','chi', '{
-        "atr": {
-          "ide": { "min":1, "max":64, "dat":"hol-chi" },
-          "sup": { "min":1, "max":"8", "dat":"hol-chi_tri" },
-          "inf": { "min":1, "max":"8", "dat":"hol-chi_tri" }
-        },      
-        "val": { 
-          "nom": "Hexagrama #()($)ide() de 64: ()($)nom().",
-          "des": "()($)des().",
-          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/chi/()($)ide().png);",
-          "num": 64
-        },
-        "inf": { 
-          "opc": [ "des" ],
+      "atr": {
+        "ide": { "min":1, "max":64, "dat":"hol-chi" },
+        "sup": { "min":1, "max":"8", "dat":"hol-chi_tri" },
+        "inf": { "min":1, "max":"8", "dat":"hol-chi_tri" }
+      },      
+      "val": { 
+        "nom": "Hexagrama #()($)ide() de 64: ()($)nom().",
+        "des": "()($)des().",
+        "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/chi/()($)ide().png);",
+        "num": 64
+      },
+      "inf": { 
+        "opc": [ "des" ],
 
-          "atr-1": "tit",
-          
-          "atr-2": "lec",
-          
-          "fic": [ "sup", "inf" ]
-        }
+        "atr-1": "tit",
+        
+        "atr-2": "lec",
+        
+        "fic": [ "sup", "inf" ]
+      }
     }' ),
     ('hol','chi_mon', '{
-        "atr": { 
-          "ide": { "min":1, "max":2, "dat":"hol-chi_mon" }
-        },
-        "val": { 
-          "nom": "Monograma #()($)ide() de 2",
-          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/chi/mon/()($)ide().png);"
-        }
+      "atr": { 
+        "ide": { "min":1, "max":2, "dat":"hol-chi_mon" }
+      },
+      "val": { 
+        "nom": "Monograma #()($)ide() de 2",
+        "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/chi/mon/()($)ide().png);"
+      }
     }' ),
     ('hol','chi_bin', '{ 
-        "atr": { 
-          "ide": { "min":1, "max":4, "dat":"hol-chi_bin" }
-        },
-        "val": { 
-          "nom": "Bigrama #()($)ide() de 4",
-          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/chi/bin/()($)ide().png);"
-        }
+      "atr": { 
+        "ide": { "min":1, "max":4, "dat":"hol-chi_bin" }
+      },
+      "val": { 
+        "nom": "Bigrama #()($)ide() de 4",
+        "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/chi/bin/()($)ide().png);"
+      }
     }' ),
     ('hol','chi_tri', '{ 
-        "atr": { 
-          "ide": { "min":1, "max":8, "dat":"hol-chi_tri" }
-        },
-        "val": { 
-          "nom": "Trigrama #()($)ide() de 8",
-          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/chi/tri/()($)ide().png);"
-        }
+      "atr": { 
+        "ide": { "min":1, "max":8, "dat":"hol-chi_tri" }
+      },
+      "val": { 
+        "nom": "Trigrama #()($)ide() de 8",
+        "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/chi/tri/()($)ide().png);"
+      }
     }' )     
   ;
   -- x260 : Kines
@@ -1677,23 +1677,23 @@
           "ide": "hol.sel", "atr": [ "hum_cen", "hum_ext", "hum_ded", "hum_mer" ] 
         }
       },
-      "fic": [
+      "ima": [
         "ide", [ "nav_cas", "nav_ond", "arm_tra", "arm_cel", "cro_est", "cro_ele" ]
       ],
       "inf": { 
         "atr": "des",
 
-        "htm-1": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost//sincronario/bibliografia/factor_maya#_05-07-\'>Ciclos Ahau</a> en <cite>el Factor Maya</cite> y la <a target=\'_blank\' href=\'http://localhost//sincronario/bibliografia/encantamiento_del_sueño#_02-03-10-\'>Nave del Tiempo</a> en <cite>el Encantamiento del Sueño</cite>" },
+        "htm-1": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost//sincronario/libro/factor_maya#_05-07-\'>Ciclos Ahau</a> en <cite>el Factor Maya</cite> y la <a target=\'_blank\' href=\'http://localhost//sincronario/libro/encantamiento_del_sueño#_02-03-10-\'>Nave del Tiempo</a> en <cite>el Encantamiento del Sueño</cite>" },
         "fic-1": [ "nav_cas", "nav_ond", "nav_ond_dia" ],
 
-        "htm-2": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost//sincronario/bibliografia/factor_maya#_04-04-02-06-\'>Ciclos evolutivos</a> en <cite>el Factor Maya</cite> y el <a target=\'_blank\' href=\'http://localhost//sincronario/bibliografia/encantamiento_del_sueño#_03-16-\'>Giro Espectral</a> en <cite>el Encantamiento del Sueño</cite>" },
+        "htm-2": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost//sincronario/libro/factor_maya#_04-04-02-06-\'>Ciclos evolutivos</a> en <cite>el Factor Maya</cite> y el <a target=\'_blank\' href=\'http://localhost//sincronario/libro/encantamiento_del_sueño#_03-16-\'>Giro Espectral</a> en <cite>el Encantamiento del Sueño</cite>" },
         "fic-2": [ "cro_est", "cro_ele" ],
 
-        "htm-3": { "eti":"p", "class":"tit", "htm":"El <a target=\'_blank\' href=\'http://localhost//sincronario/bibliografia/factor_maya#_05-04-\'>Rayo de Sincronización Galáctica</a> en <cite>el Factor Maya</cite>, y las <a target=\'_blank\' href=\'http://localhost//sincronario/bibliografia/encantamiento_del_sueño#_04-\'>Trayectorias del Giro Galáctico</a> en <cite>el Encantamiento del Sueño</cite>" },
+        "htm-3": { "eti":"p", "class":"tit", "htm":"El <a target=\'_blank\' href=\'http://localhost//sincronario/libro/factor_maya#_05-04-\'>Rayo de Sincronización Galáctica</a> en <cite>el Factor Maya</cite>, y las <a target=\'_blank\' href=\'http://localhost//sincronario/libro/encantamiento_del_sueño#_04-\'>Trayectorias del Giro Galáctico</a> en <cite>el Encantamiento del Sueño</cite>" },
         "fic-3": [ "arm_tra", "arm_cel", "arm_tra_dia" ],
 
-        "htm-4": { "eti":"p", "class":"tit", "htm":"El <a target=\'_blank\' href=\'http://localhost//sincronario/bibliografia/encantamiento_del_sueño#_02-03-06-\'>Oráculo del Destino</a> en <cite>el Encantamiento del Sueño</cite>" },
-        "eje-4": { "ide": "App/Sincronario::inf", "par": [ "kin-par", "()($)ide()" ] }
+        "htm-4": { "eti":"p", "class":"tit", "htm":"El <a target=\'_blank\' href=\'http://localhost//sincronario/libro/encantamiento_del_sueño#_02-03-06-\'>Oráculo del Destino</a> en <cite>el Encantamiento del Sueño</cite>" },
+        "eje-4": { "ide": "App/Sincronario::dat_inf", "par": [ "kin-par", "()($)ide()" ] }
         
       }
     }'),
@@ -1754,7 +1754,8 @@
     ('hol','kin_arm_tra', '{
       "atr": {
         "ide": { "min":1, "max":13, "dat":"hol-kin_arm_tra" },
-        "cel": { "dat":"hol-kin_arm_cel" }
+        "cel": { "dat":"hol-kin_arm_cel" },
+        "kin": { "dat":"hol-kin" }
       },
       "val": { 
         "nom": "Trayectoria Armónica #()($)ide() de 13: ()($)nom().",
@@ -1763,6 +1764,9 @@
         "num": 13,
         "col": 7
       },
+      "opc": {
+        "ima":[ "ide", "cel", "kin" ]
+      },      
       "tab": {
         "sec": { "par":1 },
         "pos": { "ima":"hol.kin.ide", "col": "", "num": "" },
@@ -1800,6 +1804,9 @@
         "num": 65,
         "col": 5
       },
+      "opc": {
+        "ima":[ "ide", "tra", "cel", "ton", "inv", "chi", "kin" ]
+      },        
       "tab": { 
         "sec": { "par":1 },
         "pos": { "ima":"hol.kin.ide", "col": "", "num": "" },
@@ -1846,17 +1853,18 @@
         "ide": { "min":1, "max":4, "dat":"hol-kin_cro_est" },
         "sel": { "min":1, "max":20, "dat":"hol-sel" },
         "cas": { "min":1, "max":52, "dat":"hol-cas" },
-        "ele": { "dat":"hol-kin_cro_ele" }
+        "ele": { "dat":"hol-kin_cro_ele" },
+        "kin": { "dat":"hol-kin" }
       },
       "val": { 
-        "nom": "Espectro Galáctico #()($)ide() de 4: ()($)des_col() ()($)des_dir().",
-        "des": "Guardían ()($)nom(): ()($)des(), ()($)det()",
+        "nom": "Espectro Galáctico #()($)ide() de 4: ()($)des_col().",
+        "des": "Guardían ()($)nom()  ( ()($)des_dir() ): ()($)des(), ()($)des_det()",
         "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/cas/arm/()($)ide().png);",
         "num": 4,
         "col": 4            
       },
       "opc": { 
-        "ima": [ "ide", "sel", "cas" ]            
+        "ima": [ "ide", "sel", "cas", "kin" ]            
       },
       "tab": { 
         "pos": { "ima":"hol.kin.ide", "col": "", "num": "" },
@@ -1868,10 +1876,10 @@
         "tab": [ "hol.kin.cro_est", { 
           "pos": { "ima":"hol.kin.ide" } 
         }],
-        "htm-1": { "eti":"p", "class":"tit", "htm":"Las <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/factor_maya#_04-04-02-06-\'>Etapas Evolutivas del Ser Galáctico</a> en <cite>el Factor Maya</cite>" },
+        "htm-1": { "eti":"p", "class":"tit", "htm":"Las <a target=\'_blank\' href=\'http://localhost/sincronario/libro/factor_maya#_04-04-02-06-\'>Etapas Evolutivas del Ser Galáctico</a> en <cite>el Factor Maya</cite>" },
         "atr-1": [ "fac_des" ],
 
-        "htm-2": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/encantamiento_del_sueño#_03-16-\'>Elementos Galácticos del Giro Espectral</a> en <cite>el Encantamiento del Sueño</cite>" },
+        "htm-2": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/sincronario/libro/encantamiento_del_sueño#_03-16-\'>Elementos Galácticos del Giro Espectral</a> en <cite>el Encantamiento del Sueño</cite>" },
         "fic-2": [ "ele" ]
       }
     }' ),
@@ -1893,13 +1901,13 @@
       "inf": {
         "fic": [ "ton", "ond", "dim", "mat", "sim" ],
         
-        "htm-1": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/factor_maya#_04-04-02-06-\'>Ciclos del Quemador</a> en <cite>el Factor Maya</cite>" },
+        "htm-1": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/sincronario/libro/factor_maya#_04-04-02-06-\'>Ciclos del Quemador</a> en <cite>el Factor Maya</cite>" },
         "atr-1": "fac",
 
-        "htm-2": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/encantamiento_del_sueño#_03-16-\'>Función del Kin Polar</a> en <cite>el Encantamiento del Sueño</cite>" },
+        "htm-2": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost/sincronario/libro/encantamiento_del_sueño#_03-16-\'>Función del Kin Polar</a> en <cite>el Encantamiento del Sueño</cite>" },
         "atr-2": "enc",
 
-        "htm-3": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/encantamiento_del_sueño#_03-11-\'>Aventura de la Onda Encantada</a> en <cite>el Encantamiento del Sueño</cite>" },
+        "htm-3": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost/sincronario/libro/encantamiento_del_sueño#_03-11-\'>Aventura de la Onda Encantada</a> en <cite>el Encantamiento del Sueño</cite>" },
         "tex-3": "()($)ond_nom(): ()($)ond_pos().\\n()($)ond_pod(): ()($)ond_man()."      
       }
     }' ),    
@@ -1907,7 +1915,7 @@
       "atr": { 
         "ide": { "min":1, "max":52, "dat":"hol-kin_cro_ele" },
         "ele": { "min":1, "max":4, "dat":"hol-sel_cro_ele" },
-        "est": { "min":1, "max":4, "dat":"hol-sel_cro_est" },
+        "est": { "min":1, "max":4, "dat":"hol-kin_cro_est" },
         "pos_arm": { "min":1, "max":4, "dat":"hol-arm" },
         "ton": { "min":1, "max":13, "dat":"hol-ton" },
         "arm": { "min":1, "max":4, "dat":"hol-cas_arm" },
@@ -1924,6 +1932,9 @@
         "num": 52,
         "col": 4            
       },
+      "opc": {
+        "ima":[ "ide", "est", "kin" ]
+      },
       "tab": { 
         "sec": { "par":1 },
         "pos": { "ima":"hol.kin.ide", "col": "", "num": "" },
@@ -1937,7 +1948,7 @@
         
         "fic-1": [ "arm", "ond", "dim", "mat" ],
 
-        "htm-2": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/encantamiento_del_sueño#_03-16-\'>Kines del Giro Espectral</a> d<cite>el Encantamiento del Sueño</cite>" },
+        "htm-2": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/sincronario/libro/encantamiento_del_sueño#_03-16-\'>Kines del Giro Espectral</a> d<cite>el Encantamiento del Sueño</cite>" },
         "fic-2": [ "kin" ]
       }
     }' ),
@@ -1951,8 +1962,9 @@
     }' ),    
     ('hol','kin_nav_cas', '{ 
       "atr": { 
-        "ide": { "min":1, "max":5, "dat":"hol-kin_nav_cas" },
-        "nav_ond": { "dat":"hol-kin_nav_ond" }
+        "ide": { "min":1, "max":5, "dat":"hol-kin_nav_cas" },        
+        "nav_ond": { "dat":"hol-kin_nav_ond" },
+        "kin": { "dat":"hol-kin" }
       },
       "val": { 
         "nom": "Castillo #()($)ide() de 5: ()($)nom().",
@@ -1961,6 +1973,9 @@
         "num": 5,
         "col": 5            
       },
+      "opc": {
+        "ima":[ "ide", "kin", "nav_ond" ]
+      },        
       "tab": {
         "sec": { "par":1, "cas-pos":1, "cas-col": 1, "cas-orb": 0, "ton-col":0 },
         "pos": { "ima":"hol.kin.ide", "col": "", "num": "" },
@@ -1974,7 +1989,7 @@
           "pos": { "ima":"hol.kin.ide" } 
         }],
 
-        "htm": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost//sincronario/bibliografia/encantamiento_del_sueño#_03-06-\'>Castillos de la Nave del Tiempo</a> en <cite>el Encantamiento del Sueño</cite>" },
+        "htm": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost//sincronario/libro/encantamiento_del_sueño#_03-06-\'>Castillos de la Nave del Tiempo</a> en <cite>el Encantamiento del Sueño</cite>" },
         "atr": [ "des" ],
         "fic": [ "nav_ond" ]
       }
@@ -1982,15 +1997,22 @@
     ('hol','kin_nav_ond', '{
       "atr": {
         "ide": { "min":1, "max":20, "dat":"hol-kin_nav_ond" },
-        "kin_lis": { "dat":"hol-kin" }
+        "kin": { "dat":"hol-kin" },
+        "kin_lis": { "dat":"hol-kin" },
+        "sel": { "dat":"hol-sel" },
+        "nav_cas": { "dat":"hol-kin_nav_cas" },
+        "cas_arm": { "dat":"hol-cas_arm" }
       },
-      "val": { 
+      "val": {
         "nom": "Onda Encantada #()($)ide() de 20: ()($)nom().",
         "des": "()($)enc_des()", 
         "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/ton/arm/()($)cas_arm().png), center/contain no-repeat url(http://localhost/_img/hol/fic/sel/()($)sel().png);",
         "num": 20,
         "col": 4
       },
+      "opc": {
+        "ima":[ "ide", "kin", "kin_lis", "sel", "nav_cas", "cas_arm" ]
+      },        
       "tab": { 
         "sec": { "par":1 },
         "pos": { "ima":"hol.kin.ide", "col": "", "num": "" },
@@ -2002,10 +2024,10 @@
           "pos": { "ima":"hol.kin.ide", "pul":[ "dim","mat","sim"] }
         }],
 
-        "htm-1": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost//sincronario/bibliografia/factor_maya#_05-07-01-\'>Ciclos Ahau</a> en el Factor Maya" },
+        "htm-1": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost//sincronario/libro/factor_maya#_05-07-01-\'>Ciclos Ahau</a> en el Factor Maya" },
         "atr-1": [ "fac_des" ],
 
-        "htm-2": { "eti":"p", "class":"tit", "htm":"Las <a target=\'_blank\' href=\'http://localhost//sincronario/bibliografia/encantamiento_del_sueño#_03-06-\'>Ondas Encantadas de la Nave del Tiempo</a> en <cite>el Encantamiento del Sueño</cite>" },
+        "htm-2": { "eti":"p", "class":"tit", "htm":"Las <a target=\'_blank\' href=\'http://localhost//sincronario/libro/encantamiento_del_sueño#_03-06-\'>Ondas Encantadas de la Nave del Tiempo</a> en <cite>el Encantamiento del Sueño</cite>" },
         "atr-2": [ "enc_des" ],
         "fic-2": [ "kin_lis" ]
       }
@@ -2064,7 +2086,6 @@
       },
       "opc": { 
         "ver": [
-          "kin",
           "ani_lun", "ani_vin",
           "hep_est", "hep_pla"
         ],
@@ -2110,11 +2131,10 @@
           "ide": "hol.psi", "atr": [ "hep_pla", "hep_pla_dia" ] 
         }
       },
-      "fic": [ 
+      "ima": [ 
         "kin", [ "hep_est", "ani_lun", "hep_pla" ] 
       ],
       "inf": {
-        
       }
     }' ),
     -- Banco-Psi
@@ -2163,7 +2183,7 @@
           "pos": { "pul":["dim","mat","sim"] }
         }],
 
-        "htm-1": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/encantamiento_del_sueño#_03-11-\'>Aventura de la Onda Encantada</a> en el <cite>Encantamiento del Sueño</cite>" },
+        "htm-1": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost/sincronario/libro/encantamiento_del_sueño#_03-11-\'>Aventura de la Onda Encantada</a> en el <cite>Encantamiento del Sueño</cite>" },
         "tex-1": "()($)ond_nom(): ()($)ond_pos().\\n()($)ond_pod(): ()($)ond_man().",
 
         "htm-2": { "eti":"p", "class":"tit", "htm":"El <a target=\'_blank\' href=\'http://localhost/hol/bib/lun#_02-07-01-\'>Totem Animal</a> en <cite>Las <n>13</n> Lunas en Movimiento</cite>" },      
@@ -2253,7 +2273,7 @@
           "ide":"()($)ide()", 
           "pos": { "ima":"hol.psi.ide" }
         }],
-        "htm": { "eti":"p", "class":"tit", "htm":"Las <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/encantamiento_del_sueño#_02-03-09-\'>Estaciones Solares</a> en el <cite>Encantamiento del Sueño</cite>" },
+        "htm": { "eti":"p", "class":"tit", "htm":"Las <a target=\'_blank\' href=\'http://localhost/sincronario/libro/encantamiento_del_sueño#_02-03-09-\'>Estaciones Solares</a> en el <cite>Encantamiento del Sueño</cite>" },
         "atr": "des",
         "dat": [ "pol_nor", "pol_sur" ]
       }
@@ -2277,7 +2297,7 @@
 
         "fic": [ "ton", "ond", "dim", "mat", "sim" ],
 
-        "htm-1": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost/sincronario/bibliografia/encantamiento_del_sueño#_03-11-\'>Aventura de la Onda Encantada</a> en el <cite>Encantamiento del Sueño</cite>" },
+        "htm-1": { "eti":"p", "class":"tit", "htm":"La <a target=\'_blank\' href=\'http://localhost/sincronario/libro/encantamiento_del_sueño#_03-11-\'>Aventura de la Onda Encantada</a> en el <cite>Encantamiento del Sueño</cite>" },
         "tex-1": "()($)ond_nom(): ()($)ond_pos().\\n()($)ond_pod(): ()($)ond_man()."
       }
     }' )

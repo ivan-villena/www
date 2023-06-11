@@ -3,53 +3,55 @@
 ---------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------
 
--- Sistema
+--
+-- Documento
   DELETE FROM `sis-dat_var` WHERE `app`='doc'
   ;
 
   -- Datos
-    -- Operador : ABM + Acumulados + Filtros
-    DELETE FROM `sis-dat_var` WHERE `app`='doc' AND `esq`='dat_ope'; INSERT INTO `sis-dat_var` VALUES 
+    --
+    -- Valores : ABM + Acumulados + Filtros + Cuentas
+    DELETE FROM `sis-dat_var` WHERE `app`='doc' AND `esq`='dat_val'; INSERT INTO `sis-dat_var` VALUES 
       -- 
       -- abm : contar, ver, agregar, modificar, eliminar
-        ('doc','dat_ope','abm', 1, 'act', '{
+        ('doc','dat_val','abm', 1, 'act', '{
           "ico":"val-act",
           "tit":"Actualizar..."        
         }'),
-        ('doc','dat_ope','abm', 2, 'ver', '{
+        ('doc','dat_val','abm', 2, 'ver', '{
           "ico":"val-ver",
           "tit":"Buscar..."
         }'),    
-        ('doc','dat_ope','abm', 3, 'agr', '{
+        ('doc','dat_val','abm', 3, 'agr', '{
           "ico":"val-agr",
           "tit":"Agregar..."
         }'),
-        ('doc','dat_ope','abm', 4, 'mod', '{
+        ('doc','dat_val','abm', 4, 'mod', '{
           "ico":"val-mod",
           "tit":"Modificar..."
         }'),
-        ('doc','dat_ope','abm', 5, 'eli', '{
+        ('doc','dat_val','abm', 5, 'eli', '{
           "ico":"val-eli",
           "tit":"Eliminar..."
-        }'),    
+        }'),
       --
       -- Acumulados : posicion, marcas, seleccion
-        ('doc','dat_ope','acu', 1, 'pos', '{
+        ('doc','dat_val','acu', 1, 'pos', '{
           "nom":"¿Posición?",
           "tit":"Activar la Posición Principal...",
           "ope":{ "tip":"opc_bin" }
         }'),    
-        ('doc','dat_ope','acu', 2, 'mar', '{
+        ('doc','dat_val','acu', 2, 'mar', '{
           "nom":"¿Marcas?",
           "tit":"Activar las Posiciones Marcadas...",
           "ope":{ "tip":"opc_bin" }
         }'),
-        ('doc','dat_ope','acu', 3, 'ver', '{
+        ('doc','dat_val','acu', 3, 'ver', '{
           "nom":"¿Selección?",
           "tit":"Activar las Posiciones Seleccionadas...",
           "ope":{ "tip":"opc_bin" }
         }'),
-        ('doc','dat_ope','acu', 4, 'opc', '{
+        ('doc','dat_val','acu', 4, 'opc', '{
           "nom":"¿Opciones?",
           "tit":"Contar las posiciones marcadas por opciones del tablero...",
           "ope":{ "tip":"opc_bin" }
@@ -57,96 +59,96 @@
       --
       -- Filtro: valores ( todos ) + datos ( estructura > valor ) + listados ( posicion + fecha )
         -- por Valores
-          ('doc','dat_ope','ver', 1, 'tot', '{
+          ('doc','dat_val','ver', 1, 'tot', '{
             "nom":"Cantidad",
             "tit":"",
             "ope":{ "tip":"num", "val":"0" }
           }'),         
-          ('doc','dat_ope','ver', 2, 'tod', '{
+          ('doc','dat_val','ver', 2, 'tod', '{
             "nom":"¿Todos?",
             "tit":"Mostrar todos...",
             "ope":{ "tip":"opc_bin" }
           }'),
-          ('doc','dat_ope','ver', 3, 'nad', '{
+          ('doc','dat_val','ver', 3, 'nad', '{
             "nom":"¿Nada?",
             "tit":"Ocultar todos...",
             "ope":{ "tip":"opc_bin" }
           }'),
-          ('doc','dat_ope','ver', 4, 'uni', '{
+          ('doc','dat_val','ver', 4, 'uni', '{
             "nom":"¿Único?",
             "tit":"Mostrar un único valor...",
             "ope":{ "tip":"opc_bin" }
           }'),
-          ('doc','dat_ope','ver', 5, 'inc', '{
+          ('doc','dat_val','ver', 5, 'inc', '{
             "nom":"¿Cada?",
             "tit":"Indica un valor de salto o incremento entre las posiciones...",
             "ope":{ "tip":"num_int", "val":1, "min":1, "max":999 }
           }'),
-          ('doc','dat_ope','ver', 6, 'lim', '{
+          ('doc','dat_val','ver', 6, 'lim', '{
             "nom":"¿Cuántos?",
             "tit":"Indicar la cantidad máxima de resultados...",
             "ope":{ "tip":"num_int", "min":1, "max":999 }
           }'),
         -- por tipo de datos
-          ('doc','dat_ope','ver', 11, 'opc', '{
+          ('doc','dat_val','ver', 11, 'opc', '{
             "nom":"¿Opciones?",
             "tit":"Mostrar valores por opción...",
             "ope":{ "tip":"opc_bin", "val":1 }
           }'),
-          ('doc','dat_ope','ver', 12, 'num', '{
+          ('doc','dat_val','ver', 12, 'num', '{
             "nom":"¿Números?",
             "tit":"Mostrar valores numéricos...",
             "ope":{ "tip":"opc_bin", "val":1 }
           }'),
-          ('doc','dat_ope','ver', 13, 'tex', '{
+          ('doc','dat_val','ver', 13, 'tex', '{
             "nom":"¿Textos?",
             "tit":"Mostrar valores textuales...",
             "ope":{ "tip":"opc_bin", "val":1 }
           }'),
-          ('doc','dat_ope','ver', 14, 'fec', '{
+          ('doc','dat_val','ver', 14, 'fec', '{
             "nom":"¿Fechas?",
             "tit":"Mostrar valores de fechas...",
             "ope":{ "tip":"opc_bin", "val":1 }
           }'),
-          ('doc','dat_ope','ver', 15, 'obj', '{
+          ('doc','dat_val','ver', 15, 'obj', '{
             "nom":"¿Objetos?",
             "tit":"Mostrar objetos...",
             "ope":{ "tip":"opc_bin", "val":1 }
           }'),
-          ('doc','dat_ope','ver', 16, 'arc', '{
+          ('doc','dat_val','ver', 16, 'arc', '{
             "nom":"¿Archivos?",
             "tit":"Mostrar archivos...",        
             "ope":{ "tip":"opc_bin", "val":1 }
           }'),
         -- por Estructuras de Datos
-          ('doc','dat_ope','ver', 21, 'dat', '{
+          ('doc','dat_val','ver', 21, 'dat', '{
             "ico":"val-ver",
             "tit":"Seleccionar la Estructura e indicar el Valor Buscado..."
           }'),
-          ('doc','dat_ope','ver', 22, 'esq', '{
+          ('doc','dat_val','ver', 22, 'esq', '{
             "nom":"Esquema",
             "tit":"Indicar el Esquema de datos..."
           }'),
-          ('doc','dat_ope','ver', 23, 'dat', '{
+          ('doc','dat_val','ver', 23, 'dat', '{
             "nom":"Estructura",
             "tit":"Indicar la Estructura de datos..."
           }'),
-          ('doc','dat_ope','ver', 24, 'atr', '{
+          ('doc','dat_val','ver', 24, 'atr', '{
             "nom":"Atributo",
             "tit":"Indicar el Atributo de la Estructura..."
           }'),
         -- por rango de valores : posicion / fecha
-          ('doc','dat_ope','ver', 31, 'pos', '{
+          ('doc','dat_val','ver', 31, 'pos', '{
             "nom":"Posición",
             "tit":"Indicar el valor de la posición buscada...",
             "ope":{ "tip":"num_int", "min":1, "max":999 }
           }'),
-          ('doc','dat_ope','ver', 32, 'ini', '{
+          ('doc','dat_val','ver', 32, 'ini', '{
             "nom":"Desde",
             "tit":"Indicar el Valor inicial...",
             "ope":{ "tip":"" }
           }'),
-          ('doc','dat_ope','ver', 33, 'fin', '{
+          ('doc','dat_val','ver', 33, 'fin', '{
             "nom":"Hasta",
             "tit":"Indicar el Valor final...",
             "ope":{ "tip":"" }
@@ -264,7 +266,7 @@
         }'),
         ('doc','dat_tab', 'pos', 30, 'ima', '{
           "ide":"ima",
-          "ico":"fig_ima",
+          "ico":"arc_ima",
           "nom":"Ficha",
           "tit":"Seleccionar un tipo de Ficha para las Posiciones..."
         }'),
@@ -376,22 +378,22 @@
 
   -- datos
     -- Operadores : Sumatoria
-    DELETE FROM `sis-dat_var` WHERE `app`='hol' AND `esq`='dat_ope'; INSERT INTO `sis-dat_var` VALUES
+    DELETE FROM `sis-dat_var` WHERE `app`='hol' AND `esq`='dat_val'; INSERT INTO `sis-dat_var` VALUES
       -- 
       -- Sumatoria
-        ('hol','dat_ope','sum', 1, 'kin', '{ 
+        ('hol','dat_val','sum', 1, 'kin', '{ 
           "atr":"ide",
           "nom":"KIN",
           "ope":{ "tip":"num", "val":0, "max":260 },
-          "var_fic":"hol.kin"
+          "dat_ima":"hol.kin"
         }'),
-        ('hol','dat_ope','sum', 2, 'psi', '{ 
+        ('hol','dat_val','sum', 2, 'psi', '{ 
           "atr":"tzo",
           "nom":"PSI",    
           "ope":{ "tip":"num", "val":0, "max":365 },
-          "var_fic":"hol.psi"
+          "dat_ima":"hol.psi"
         }'),  
-        ('hol','dat_ope','sum', 3, 'umb', '{ 
+        ('hol','dat_val','sum', 3, 'umb', '{ 
           "atr":"ide",
           "nom":"UMB",    
           "ope":{ "tip":"num", "val":0, "max":441 }
@@ -400,7 +402,7 @@
     ;
     -- Tablero
     DELETE FROM `sis-dat_var` WHERE `app`='hol' AND `esq`='dat_tab'
-    ; -- > Secciones : dat_var
+    ; -- Secciones 
     DELETE FROM `sis-dat_var` WHERE `app`='hol' AND `esq`='dat_tab' AND `est` LIKE 'sec%'; INSERT INTO `sis-dat_var` VALUES
       --
       -- Oráculo
@@ -587,7 +589,7 @@
           "ope":{ "tip":"opc_bin" }
         }')
       --
-    ; -- > Opciones : form > fieldset > dat_var
+    ; -- Opciones 
     DELETE FROM `sis-dat_var` WHERE `app`='hol' AND `esq`='dat_tab' AND `est` LIKE 'opc%'; INSERT INTO `sis-dat_var` VALUES
       --
       -- Portales de Activación

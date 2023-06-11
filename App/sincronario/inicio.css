@@ -1,0 +1,26 @@
+/*  
+  Inicio
+*/
+
+main {
+  
+  background: center/contain no-repeat url(../../_img/sincronario/_fondo/sis.png);
+}
+
+main.ope_sec > article {
+  background-color: initial;
+}
+
+main section.inicio {
+  height: 78vh;  
+  display: grid;
+  grid: repeat( 10, 1fr) / repeat( 10, 1fr);
+  padding: 1rem;
+}
+
+/* Cartel */
+main section.inicio > .-adv {
+  margin: initial;  
+  grid-column: 4/sp;
+  grid-row: 1/2;
+}

@@ -6,19 +6,28 @@ class Doc_Val {
   static string $EJE = "Doc_Val.";
   static string $DAT = "doc_val";
 
-  // enlace
-  static function url( string $htm = "", string $uri = "", array $opc = [ 'bla' ] ){
+  // icono : .val_ico.$ide
+  static function ico( string $ide, array $ele=[] ) : string {
     
-    $ele = [ 'eti'=>"a", 'href'=>$uri, 'htm'=>$htm ];
-
-    if( in_array('bla',$opc) ){ 
-
-      $ele['target'] = '_blank';
-      $ele['rel']    = 'noreferer';
+    $_ = "<span class='val_ico'></span>";    
+    
+    $ico = Dat::_("var.tex_ico");
+    
+    if( isset($ico[$ide]) ){
+      $eti = 'span';      
+      if( isset($ele['eti']) ){
+        $eti = $ele['eti'];
+        unset($ele['eti']);
+      }
+      if( $eti == 'button' && empty($ele['type']) ) $ele['type'] = "button"; 
+      
+      $_ = "
+      <{$eti}".Ele::atr(Ele::cla($ele,"val_ico ide-$ide",'ini')).">
+        {$ico[$ide]->val}
+      </{$eti}>";
     }
-
-    return Ele::eti($ele);
-  }
+    return $_;
+  }  
 
   // imagen : .val_ima.$ide
   static function ima( ...$dat ) : string {
@@ -70,53 +79,39 @@ class Doc_Val {
       $_ = "<{$eti}".Ele::atr($ele).">{$htm}</{$eti}>";
     }
     return $_;
-  }  
-
-  // icono : .val_ico.$ide
-  static function ico( string $ide, array $ele=[] ) : string {
-    
-    $_ = "<span class='val_ico'></span>";    
-    
-    $ico = Dat::_("sis.tex_ico");
-    
-    if( isset($ico[$ide]) ){
-      $eti = 'span';      
-      if( isset($ele['eti']) ){
-        $eti = $ele['eti'];
-        unset($ele['eti']);
-      }
-      if( $eti == 'button' && empty($ele['type']) ) $ele['type'] = "button"; 
-      
-      $_ = "
-      <{$eti}".Ele::atr(Ele::cla($ele,"val_ico ide-$ide",'ini')).">
-        {$ico[$ide]->val}
-      </{$eti}>";
-    }
-    return $_;
   }
   
   // Letra : ( n, c )
   static function let( string $dat, array $ele=[] ) : string {
     $_ = [];
     $pal = [];
-    $tex_let = Dat::_("sis.tex_let");
+    $tex_let = Dat::_("var.tex_let");
     
     // saltos de linea
     foreach( explode('\n',$dat) as $tex_pal ){
+
+      $pal = [];
+
       // espacios
       foreach( explode(' ',$tex_pal) as $pal_val ){
+
         // numero completo
         if( is_numeric($pal_val) ){
+
           $pal []= "<n>{$pal_val}</n>";
-        }// caracteres
+        }
+        // caracteres
         else{
           $let = [];
           foreach( Tex::let($pal_val) as $car ){
+
             if( is_numeric($car) ){
               $let []= "<n>{$car}</n>";
-            }elseif( isset($tex_let[$car]) ){
+            }
+            elseif( isset($tex_let[$car]) ){
               $let []= "<c>{$car}</c>";        
-            }else{
+            }
+            else{
               $let []= $car;
             }
           }
@@ -149,7 +144,7 @@ class Doc_Val {
     return $_;
   }
 
-  // texto
+  // parrafo
   static function tex( mixed $dat, array $ele = [] ) : string {
     $_ = "";
 
@@ -170,8 +165,10 @@ class Doc_Val {
     $_ = Ele::eti($ele);
 
     return $_;
-  }// cita textual
-  static function tex_cit( mixed $dat, array $ele = [] ) : string {
+  }
+  
+  // cita textual
+  static function cit( mixed $dat, array $ele = [] ) : string {
 
     $ele['eti'] = "q";
 
@@ -194,7 +191,21 @@ class Doc_Val {
     return Ele::eti($ele);
   }
 
-  /* Selector de Opciones */
+  // enlace
+  static function url( string $htm = "", string $uri = "", array $opc = [ 'bla' ] ){
+    
+    $ele = [ 'eti'=>"a", 'href'=>$uri, 'htm'=>$htm ];
+
+    if( in_array('bla',$opc) ){ 
+
+      $ele['target'] = '_blank';
+      $ele['rel']    = 'noreferer';
+    }
+
+    return Ele::eti($ele);
+  }
+
+  // Selector de Opciones
   static function opc( mixed $dat = NULL, array $ope = [], ...$opc ) : string {
     $_ = "";
 

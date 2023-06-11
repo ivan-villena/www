@@ -1,0 +1,23 @@
+
+/* 
+  Sesion
+*/
+.ope_win .ide-app_usu .ficha {
+  padding: 0 1rem;
+}
+
+.ope_win .ide-app_usu .ficha > div {
+  text-align: left;
+}
+
+/* 
+  Transitos
+*/
+Table.transitos {
+  width: 100%;
+  padding: 0;
+}
+
+Table.transitos th:first-child {
+  max-width: min-content;
+}

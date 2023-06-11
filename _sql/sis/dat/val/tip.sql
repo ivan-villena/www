@@ -1,8 +1,8 @@
 
 -- tipo
-DELETE FROM `sis-dat_tip`; 
+DELETE FROM `var-tip`; 
 
-INSERT INTO `sis-dat_tip` ( `ide`,`dat`,`val`,`nom`,`len`,`des`,`ope` ) VALUES
+INSERT INTO `var-tip` ( `ide`,`dat`,`val`,`nom`,`len`,`des`,`ope` ) VALUES
 
   -- opciones
     ( 'null',             'vac', 'nul', 'Nulo',             'php,jso',  'Valor no Definido','{ 

@@ -3,6 +3,31 @@
 
 class Doc_Val {
 
+  /* Icono : .val_ico.ide-$ide */
+  static ico( $ide, $ele = {} ){
+
+    let $_="<span class='val_ico'></span>", $ = {};
+
+    $.ico = Dat._("var.tex_ico");
+
+    if( !!($.ico[$ide]) ){
+
+      $.eti = 'span';
+      if( $ele['eti'] ){
+        $.eti = $ele['eti'];
+        delete($ele['eti']);
+      }
+
+      if( $.eti == 'button' && !($ele['type']) ) $ele['type'] = "button"; 
+
+      $_ = `
+      <${$.eti}${Ele.atr(Ele.cla($ele,`val_ico ide-${$ide}`,'ini'))}>
+        ${$.ico[$ide].val}
+      </${$.eti}>`;
+    }
+    return $_;
+  }  
+
   /* imagen : .app_ima.$ide */
   static ima( ...$dat ){  
 
@@ -48,75 +73,57 @@ class Doc_Val {
     return $_;
   }
   static ima_lis( $arc, $pad ){
+    
     let $={
       'lis':[]
     };  
-    Obj.pos_ite($arc).forEach( $_arc => {
-      if( typeof($_arc)=='object' ){
+    
+    Obj.pos_ite($arc).forEach( $Arc => {
+
+      if( typeof($Arc) == 'object' ){
         $.ima = document.createElement('img');
-        $.ima.src = URL.createObjectURL($_arc);
+        $.ima.src = URL.createObjectURL($Arc);
         $.lis.push($.ima);
       }
     });
+
     if( !!$pad && $pad.nodeName ){
-      dom.eli($pad);
-      dom.agr($.lis,$pad);
+      Doc.eli($pad);
+      Doc.agr($.lis,$pad);
     }
+
     return $;
   }
-
-  /* Icono : .val_ico.ide-$ide */
-  static ico( $ide, $ele = {} ){
-
-    let $_="<span class='val_ico'></span>", $ = {};
-
-    $.ico = Dat._("sis.tex_ico");
-
-    if( !!($.ico[$ide]) ){
-
-      $.eti = 'span';
-      if( $ele['eti'] ){
-        $.eti = $ele['eti'];
-        delete($ele['eti']);
-      }
-
-      if( $.eti == 'button' && !($ele['type']) ) $ele['type'] = "button"; 
-
-      $_ = `
-      <${$.eti}${Ele.atr(Ele.cla($ele,`val_ico ide-${$ide}`,'ini'))}>
-        ${$.ico[$ide].val}
-      </${$.eti}>`;
-    }
-    return $_;
-  }  
 
   // letras : c - n
   static let( $dat, $ele={} ){
 
-    let $_ = [], 
-      $pal = [], 
-      $let = [], 
-      $num = 0, 
-      $tex_let = Dat._("sis.tex_let")
-    ;
+    let $_ = [], $pal = [], $let = [], $num = 0, $tex_let = Dat._("var.tex_let");
 
     if( $dat !== null && $dat !== undefined && $dat !== NaN ){
 
       if( typeof($dat) != 'string' ) $dat = $dat.toString();
 
-      $dat.split("\n").forEach( $pal_lis => {
+      // saltos de linea
+      $dat.split('\n').forEach( $tex_pal => {
 
-        $pal_lis.split(' ').forEach( $pal_val => {
+
+        $pal = [];
+
+        // espacios
+        $tex_pal.split(' ').forEach( $pal_val => {
           
-          $num = Num.val($pal_val);
-          if( !!$num || $num == 0 ){
+          // numero completo
+          if( ( $num = Num.val($pal_val) ) || $num == 0 ){
+            
             $pal.push( `<n>${$pal_val}</n>` );
           }
+          // caracteres
           else{
             $let = [];
-            $pal_val.split('').forEach( $car =>{
-              $num = Num.val($car);
-              if( !!$num || $num == 0 ){
+            $pal_val.split('').forEach( $car => {
+              
+              if( ( $num = Num.val($car) ) || $num == 0 ){
                 $let.push( `<n>${$car}</n>` );
               }
               else if( !!$tex_let[$car] ){
@@ -126,16 +133,20 @@ class Doc_Val {
                 $let.push( $car );
               }
             });
+
             $pal.push( $let.join('') );
           }
         });
-        $_.push($pal.join(' '));
+
+
+        $_.push( $pal.join(' ') );
       });
+
     }
     return $_.join('<br>');
   }
 
-  /* Selector de Opciones */
+  // Selector 
   static opc( $dat, $ope, ...$opc ){
     let $_, $={};
 
@@ -158,7 +169,7 @@ class Doc_Val {
     );
 
     return $_;      
-  }// ...<options>
+  }// ...Opciones
   static opc_ite( $dat, $val, ...$opc ){
     let $_=[], $={};    
 

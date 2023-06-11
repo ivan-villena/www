@@ -1,6 +1,6 @@
 -- Operaciones
-  DELETE FROM `sis-dat_ope`;
-  INSERT INTO `sis-dat_ope` (`tip`,`dat`,`ide`,`pos`,`nom`,`des`) VALUES
+  DELETE FROM `var-ope`;
+  INSERT INTO `var-ope` (`tip`,`dat`,`ide`,`pos`,`nom`,`des`) VALUES
 
     ( 'ver', 'opc', '==', 1, '==', 'Tiene que ser igual que...' ),
     ( 'ver', 'opc', '!=', 2, '!=', 'Tiene que ser distinto que...' ),  

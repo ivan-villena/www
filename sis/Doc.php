@@ -3,58 +3,73 @@
 // Pagina-Documento
 class Doc {
 
+  /* Peticion : esq/cab/art/val=$ */
+  public object $Uri;
+  
   // Clases : js / php / css
   public array $Cla = [];  
+  
   // Solo Registros
   public array $Dat = [];  
-  // Estructuras
+  
+  // Estructuras de Datos
   public array $Est = []; 
-  // Ejecuciones
+  
+  // Ejecuciones por Aplicacion
   public string $Eje = "";
-  // Elementos
+  
+  // Elementos del Documento
   public array $Ele = [];
+  
   // Accesos de cabecera
   public array $Cab = [];
-  // Contenido del Usuario
+  
+  // Sesion del Usuario
   public string $Usu = "";
-  // codigo HTML por secciones
-  public array $Htm = [];  
+  
+  // HTML por secciones
+  public array $Htm = []; 
+  
+  // Errores de carga y ejecucion
+  public array $Err = [];
 
-  public function __construct(){
+  // id-secuencial por clave unica
+  static array $Ide = [];
+
+  public function __construct( string $uri = "" ){
 
     $this->Cla = [
+      'Var'=>[
+        'Num', 'Tex', 'Fec', 'Obj', 'Eje', 'Ele', 'Arc'
+      ],      
       'Sis'=>[
-        'Num', 'Tex', 'Fec', 'Obj', 'Eje', 'Ele', 'Arc', 'Dat', 'Doc', 'Usu', 'App'
-      ],
-      'Api'=>[
-        'sql', 'dom'
+        'Dat', 'Doc', 'Usu', 'App'
       ],
       'Doc'=>[
-        'Dat', 'Ope', 'Val', 'Var', 'Hol'
+        'Dat', 'Ope', 'Val', 'Var'
       ]
     ];
 
     $this->Dat = [
 
-      'sis'=>[ 
-        'dat_tip', 'tex_let', 'tex_ico'
+      'var'=>[ 
+        'tip', 'tex_let', 'tex_ico'
       ]
-      
     ];
 
     $this->Cab = [
       'ini'=>[
-        'app_ini'=>[ 'ico'=>"app",     'url'=>SYS_NAV,  'nom'=>"Página de Inicio" ],
-        'app_cab'=>[ 'ico'=>"app_cab", 'tip'=>"pan",    'nom'=>"Menú Principal"   ],
-        'app_nav'=>[ 'ico'=>"app_nav", 'tip'=>"pan",    'nom'=>"Índice"           ]
+        'app_ini'=>[ 'ico'=>"app",          'url'=>SYS_NAV,  'nom'=>"Página de Inicio"     ],
+        'usu_ses'=>[ 'ico'=>"ope_nav-ini",  'tip'=>"win",    'nom'=>"Iniciar Sesión..."    ],
+        'app_usu'=>[ 'ico'=>"usu",          'tip'=>"win",    'nom'=>"Cuenta de Usuario..." ],        
+        'app_cab'=>[ 'ico'=>"app_cab",      'tip'=>"pan",    'nom'=>"Menú Principal"       ],
+        'app_nav'=>[ 'ico'=>"app_nav",      'tip'=>"pan",    'nom'=>"Índice"               ]
       ],
       'med'=>[
         'app_dat'=>[ 'ico'=>"dat_des", 'tip'=>"win",    'nom'=>"Ayuda" ]
       ],
       'fin'=>[
-        'ses_ini'=>[ 'ico'=>"app_ini", 'tip'=>"win",    'nom'=>"Iniciar Sesión..."    ],
-        'ses_usu'=>[ 'ico'=>"usu",     'tip'=>"win",    'nom'=>"Cuenta de Usuario..."   ],
-        'app_adm'=>[ 'ico'=>"eje",     'tip'=>"win",    'nom'=>"Consola del Sistema..." ]
+        'app_adm'=>[ 'ico'=>"eje", 'tip'=>"win",    'nom'=>"Consola del Sistema..." ]
       ]
     ];
 
@@ -73,9 +88,126 @@ class Doc {
       'bar'=>"",
       // barra inferior
       'pie'=>""    
-    ];    
+    ];
+    
+    $this->Uri = $this->Uri( $uri );
+    
+  } 
+
+  // cargo peticion
+  public function uri( string $ide ) : object {
+
+    // armo peticion
+    $dir = explode('/',$ide);
+
+    $Uri = new stdClass;
+
+    $Uri->esq = $dir[0];
+    $Uri->cab = !empty($dir[1]) ? $dir[1] : FALSE;
+    $Uri->nav = FALSE;
+    $Uri->val = FALSE;
+
+    // proceso articulo
+    if( $Uri->art = !empty($dir[2]) ? $dir[2] : FALSE ){
+
+      // proceso indice
+      $nav = explode('#',$Uri->art);
+
+      if( isset($nav[1]) ){
+        $Uri->art = $nav[0];
+        $Uri->nav = $nav[1];
+      }
+      
+      // proceso parametros
+      if( !empty($dir[3]) ){
+
+        $Uri->val = $dir[3];
+      }
+      else{
+
+        $val = explode('?',$Uri->art);
+
+        if( isset($val[1]) ){
+          $Uri->art = $val[0];
+          $Uri->val = explode('&',$val[1]);
+        }
+      }
+    }
+    // proceso parametros
+    else{
+
+      $val = explode('?',$Uri->cab);
+
+      if( isset($val[1]) ){
+        $Uri->cab = $val[0];
+        $Uri->val = explode('&',$val[1]);
+      }
+    }
+
+    return $Uri;
+
+  }
+
+  // cargo directorios por aplicacion
+  public function dir( App $App = NULL ) : object {
+
+    $Uri = $this->Uri;
+
+    $Dir = new stdClass();
+    
+    $Dir->esq = SYS_NAV."{$Uri->esq}";            
+
+    $Dir->esq_ima = SYS_NAV."_img/{$Uri->esq}/";
+
+    if( !empty($Uri->cab) ){
+
+      $Dir->cab = SYS_NAV."{$Uri->esq}/{$Uri->cab}";
+
+      $Dir->cab_ima = SYS_NAV."_img/{$Uri->esq}/{$Uri->cab}/";
+
+      if( !empty($Uri->art) ){
+  
+        $Dir->art = SYS_NAV."{$Uri->esq}/{$Uri->cab}/{$Uri->art}";
+      
+        $Dir->art_ima = "{$Dir->cab_ima}{$Uri->art}/";
+      }          
+    }
+
+    // listado de enlaces por menu
+    if( isset($App) ){
+
+      foreach( $App->cab_ver() as $_cab ){
+
+        // para enlaces
+        $Dir->{$_cab->ide} = SYS_NAV."{$Uri->esq}/{$_cab->ide}/";
+
+        // para imagenes
+        $Dir->{"{$_cab->ide}_ima"} = "{$Dir->esq_ima}{$_cab->ide}/";
+      }      
+    }
+
+    return $Dir;
   }
   
+  // Pido Contenido html con ejecucion por Aplicacion
+  static function eje( string $ide ){
+
+    $esq = Tex::let_pal( explode('/',$ide)[0] );
+
+    return Eje::htm("./App/{$ide}", "./App/{$esq}");
+  }
+
+  // pido clave secuencial por clave unica
+  static function ide( string $key ) : string {
+
+    if( !isset(self::$Ide[$key]) ) self::$Ide[$key] = 0;
+
+    self::$Ide[$key]++;
+
+    return self::$Ide[$key];
+  }
+  
+  // cargo modulos del documento: javascript + css
   public function cla( string $tip = "", array $dat = [] ) : string {
     $_ = "";
     
@@ -85,12 +217,9 @@ class Doc {
     if( $tip == 'css' ){
 
       foreach( $dat as $mod_ide => $mod_lis ){
+        
         // por aplicacion
         if( file_exists( "./".($rec = "{$mod_ide}.css") ) ) $_ .= "
-          <link rel='stylesheet' href='".SYS_NAV."$rec' >";        
-
-        // por página
-        if( file_exists( "./".($rec = "{$mod_ide}/index.css") ) ) $_ .= "
           <link rel='stylesheet' href='".SYS_NAV."$rec' >";
 
         // por módulos
@@ -98,25 +227,25 @@ class Doc {
 
           if( file_exists( "./".($rec = "{$mod_ide}/{$cla_ide}.css") ) ) $_ .= "
           <link rel='stylesheet' href='".SYS_NAV."$rec' >";
-        }          
+        }
       }
     }
-    // prorama : clases 
+    // programa
     elseif( $tip == 'jso' ){
     
       foreach( $dat as $mod_ide => $mod_lis ){
         // por raiz
         if( is_string($mod_lis) ){
+
           if( file_exists( "./".($rec = "{$mod_lis}.js") ) ) $_ .= "
           <script src='".SYS_NAV."$rec'></script>";   
         }
         else{
+          
           // por aplicacion
           if( file_exists( "./".($rec = "{$mod_ide}.js") ) ) $_ .= "
             <script src='".SYS_NAV."$rec'></script>";
-          // por página
-          if( file_exists( "./".($rec = "{$mod_ide}/index.js") ) ) $_ .= "
-            <script src='".SYS_NAV."$rec'></script>";
+
           // por modulos        
           foreach( $mod_lis as $cla_ide ){ 
             
@@ -130,6 +259,7 @@ class Doc {
     return $_;
   }
 
+  // cargo estructuras de datos
   public function est() : array {
 
     $_ = [];
@@ -157,126 +287,46 @@ class Doc {
 
     return $_;
   }
-    
-  public function htm( App $App, Usu $Usu ){
 
-    // cargo rutas
-    $Uri = $App->Uri;
+  // imprimo pagina por Aplicacion
+  public function htm( App $App ){
 
-    // Cargo clases : por aplicacion
-    $this->Cla["App/{$Uri->esq}"] = [];
+    // Proceso Documento
+    $htm = $this->Htm;    
 
-    if( !empty($Uri->cab) ){ 
-      
-      // de contenido
-      $this->Cla["App/{$Uri->esq}"] []= $Uri->cab;
-      
-      // de articulo
-      if( !empty($Uri->art) ){
-        $this->Cla["App/{$Uri->esq}"][] = "{$Uri->cab}/{$Uri->art}";
-      }
-    }
-
-    // cargo elemento principal
-    $this->Ele['body'] = [ 
-      'data-doc'=>$Uri->esq, 
-      'data-cab'=>!!$Uri->cab ? $Uri->cab : NULL, 
-      'data-art'=>!!$Uri->art ? $Uri->art : NULL 
-    ];    
-
-    // imprimo sesion del usuario
-    if( empty($Usu->ide) ){
-
-      $this->Htm['win'] .= Doc_Ope::win('app-ses_ini', [
-        'ico'=>"app_ini",
-        'nom'=>"Iniciar Sesión...",
-        'htm'=>$App->usu_ses()
-      ]);
-
-    }// imprimo menu de usuario por aplicacion
-    else{
-
-      $this->Cab['fin']['ses_usu']['htm'] = $this->Usu.Doc_Ope::nav('bot', $App->usu() );
-
-      // imprimo consola del sistema
-      if( $Usu->ide == 1 ){
-
-        $this->Cab['fin']['app_adm']['htm'] = $App->adm();
-      }      
-    }
-
-    // ajusto enlace de inicio
-    $this->Cab['ini']['app_ini']['url'] .= "/{$Uri->esq}";    
-
-    // imprimo menú principal
-    $this->Cab['ini']['app_cab']['htm'] = $App->cab();
-
-    // imprimo indice
-    if( !empty( $App->Nav ) ){
-
-      $this->Cab['ini']['app_nav']['htm'] = $App->Nav();
-    }
-
-    // cargo operadores del documento: botones y html de enlaces paneles y modales
+    // cargo botones y html para enlaces a paneles y modales
     foreach( $this->Cab as $tip => $tip_lis ){
 
       foreach( $tip_lis as $ide => $ope ){
+        
         // enlaces
         if( isset($ope['url']) ){
           // boton
-          $this->Htm['cab'][$tip] .= Doc_Val::ico($ope['ico'],[ 'eti'=>"a", 'title'=>$ope['nom'], 'href'=>$ope['url'] ]);
+          $htm['cab'][$tip] .= Doc_Val::ico($ope['ico'],[ 'eti'=>"a", 'title'=>$ope['nom'], 'href'=>$ope['url'] ]);
         }
         // paneles y modales
         elseif( isset($ope['tip']) && !empty($ope['htm']) ){
           // boton
-          $this->Htm['cab'][$tip] .= Doc_Ope::cab([ $ide => $ope ]);
+          $htm['cab'][$tip] .= Doc_Ope::cab([ $ide => $ope ]);
           // html: pan / win
-          $this->Htm[$ope['tip']] .= Doc_Ope::{"{$ope['tip']}"}($ide,$ope);
+          $htm[$ope['tip']] .= Doc_Ope::{"{$ope['tip']}"}($ide,$ope);
         }
       }  
     }
 
-    // modal de operadores
-    $this->Htm['win'] .= Doc_Ope::win('app_ope',[ 
-      'ico'=>"app_ope", 
-      'nom'=>"Operador" 
-    ]);
-
-    // cargo articulos por aplicacione
-    if( !empty($Uri->art) && empty($this->Htm['sec']) ){
+    // proceso Errores
+    if( !empty($this->Err) ){
       
-      // imprimo articulo : html-php
-      if( !empty( $rec = Arc::val_rec($val = "./App/$Uri->esq/$Uri->cab/$Uri->art") ) ){
+      $htm['tit'] = "Error";
 
-        include( $rec );
-      }
-      else{
-        
-        echo Doc_Ope::tex([ 'tip'=>"err", 'tex'=>"No existe el archivo '$val'" ]);
-      }
+      $htm['sec'] = Doc_Ope::tex([ 'tip'=>"err", 'tex'=>$this->Err ]);
+
+    }// agrego Modal de operaciones
+    else{
+      
+      $htm['win'] .= Doc_Ope::win('ope',[ 'ico'=>"", 'nom'=>"Operador" ]);
     }
     
-    // ajusto diseño
-    $_ver = [];
-    foreach( ['bar','pie'] as $ide ){ 
-      if( !empty($this->Htm[$ide]) ) $_ver []= $ide; 
-    }
-    if( !empty($_ver) ) $this->Ele['body']['data-ver'] = implode(',',$_ver);
-
-    // titulo
-    if( !empty($App->Art->nom) ){
-      $this->Htm['tit'] = $App->Art->nom;
-    }
-    elseif( !empty($App->Cab->nom) ){
-      $this->Htm['tit'] = $App->Cab->nom;
-    }
-    elseif( !empty($App->Esq->nom) ){
-      $this->Htm['tit'] = $App->Esq->nom; 
-    }
-    
-    global $sis_ini;
-    $Doc = $this->Htm;
-
     ?>
     <!DOCTYPE html>
     <html lang="es">
@@ -288,32 +338,36 @@ class Doc {
         <!-- hojas de estilo -->
         <link rel='stylesheet' href='<?=SYS_NAV?>index.css'>
         <?=$this->cla('css')?>
-        <link rel='stylesheet' href='<?=SYS_NAV?>Api/css.css'>
+        <link rel='stylesheet' href='<?=SYS_NAV?>Sis/Api/css.css'>
         <!-- aplicacion -->
-        <title><?=$Doc['tit']?></title>
+        <title><?=$htm['tit']?></title>
       </head>
   
-      <body <?=Ele::atr($this->Ele['body'])?>>
+      <body <?=Ele::atr([
+        'data-esq'=>isset($App->Esq->ide) ? $App->Esq->ide : NULL, 
+        'data-cab'=>isset($App->Cab->ide) ? $App->Cab->ide : NULL, 
+        'data-art'=>isset($App->Art->ide) ? $App->Art->ide : NULL
+      ])?>>
         
         <?php // Cabecera con Operador : botones de accesos a enlaces, paneles y modales
-        if( !empty($Doc['cab']['ini']) || !empty($Doc['cab']['fin']) || !empty($Doc['cab']['tod']) ){
+        if( !empty($htm['cab']['ini']) || !empty($htm['cab']['fin']) || !empty($htm['cab']['tod']) ){
           ?>
           <!-- Operador -->
           <header class='ope_cab'>
             <?php
-            if( !empty($Doc['cab']['tod']) ){
+            if( !empty($htm['cab']['tod']) ){
 
-              echo $Doc['cab']['tod'];
+              echo $htm['cab']['tod'];
             }
             else{
               ?>
               <nav class='ini'>
-                <?= !empty($Doc['cab']['ini']) ? $Doc['cab']['ini'] : "" ?>
-                <?= !empty($Doc['cab']['med']) ? $Doc['cab']['med'] : "" ?>
+                <?= !empty($htm['cab']['ini']) ? $htm['cab']['ini'] : "" ?>
+                <?= !empty($htm['cab']['med']) ? $htm['cab']['med'] : "" ?>
               </nav>
     
               <nav class='fin'>
-                <?= !empty($Doc['cab']['fin']) ? $Doc['cab']['fin'] : "" ?>
+                <?= !empty($htm['cab']['fin']) ? $htm['cab']['fin'] : "" ?>
               </nav>
             <?php
             }
@@ -323,45 +377,45 @@ class Doc {
         } ?>
   
         <?php // Paneles Ocultos
-        if( !empty($Doc['pan']) ){ ?>
+        if( !empty($htm['pan']) ){ ?>
           <!-- Panel -->
           <aside class='ope_pan dis-ocu'>
-            <?= $Doc['pan'] ?>
+            <?= $htm['pan'] ?>
           </aside>
           <?php 
         } ?>
         
         <?php // Contenido Principal
-        if( !empty($Doc['sec']) ){
+        if( !empty($htm['sec']) ){
           ?>
           <!-- Contenido -->
           <main class='ope_sec'>
-            <?= Doc_Ope::sec( $Doc['sec'] ) ?>
+            <?= Doc_Ope::sec( $htm['sec'] ) ?>
           </main>          
           <?php
         } ?>
               
         <?php // Lateral: siempre visible
-        if( !empty($Doc['bar']) ){ ?>
+        if( !empty($htm['bar']) ){ ?>
           <!-- Sidebar -->
           <aside class='ope_bar'>
-            <?= $Doc['bar'] ?>
+            <?= $htm['bar'] ?>
           </aside>
           <?php 
         } ?>
   
         <?php // pié de página
-        if( !empty($Doc['pie']) ){  ?>
+        if( !empty($htm['pie']) ){  ?>
           <!-- pie de página -->
           <footer class='ope_pie'>
-            <?= $Doc['pie'] ?>
+            <?= $htm['pie'] ?>
           </footer>
           <?php 
         } ?>
         
         <!-- Modales -->
         <div class='ope_win dis-ocu'>
-          <?= $Doc['win'] ?>
+          <?= $htm['win'] ?>
         </div>
         
         <!-- Cargo Sistema -->
@@ -380,20 +434,36 @@ class Doc {
         <!-- Inicio Aplicación -->
         <script>
           // Cargo Documento
-          const $Doc = new Doc();          
+          var $Doc = new Doc();
   
-          const $App = new App(<?= Obj::val_cod([ 'Uri'=>$Uri ]) ?>);
+          var $App = new App(<?= Obj::val_cod([
+            'Esq'=>isset($App->Esq->ide) ? $App->Esq->ide : NULL,
+            'Cab'=>isset($App->Cab->ide) ? $App->Cab->ide : NULL,
+            'Art'=>isset($App->Art->ide) ? $App->Art->ide : NULL
+          ])?>);
 
-          const $Dat = new Dat(<?= Obj::val_cod([ 'Est'=>$this->est() ]) ?>);
+          var $Dat = new Dat(<?= Obj::val_cod([ 'Est'=>$this->est() ]) ?>);
 
-          // Inicializo Aplicacion
+          // Cargo Aplicacion
+          if( <?=$app=Tex::let_pal($App->Esq->ide)?> ){
+
+            var <?="\${$app} = new $app();"?>
+          }          
+
+          // Inicializo Aplicacion: Menú e Índices
           $App.ini();
 
-          // ejecuto codigo por aplicacion
+          // ejecuto codigo
           <?= $this->Eje ?>
+
+          // inicializo pagina
+          if( !!<?="\${$app}"?>.inicio ){
+
+            <?="\${$app}"?>.inicio();
+          }
           
           // calculo tiempo de carga
-          console.log(`{-_-}.ini: en ${( ( Date.now() - (  <?= $sis_ini ?> * 1000 ) ) / 1000 ).toFixed(2)} segundos...`);
+          console.log(`{-_-}.ini: en ${( ( Date.now() - (  <?= $_SESSION['ini'] ?> * 1000 ) ) / 1000 ).toFixed(2)} segundos...`);
   
         </script>
   

@@ -3,119 +3,76 @@
 // Página-app
 class App {
 
-  static string $IDE = "App-";
+  static string $IDE = "App-";  
   static string $EJE = "\$App.";
 
-  /* Pido Contenido */
-  static function htm( string $arc ){
+  public object $Esq;
 
-    return Eje::htm( "./App/".$arc, "./App/".Tex::let_pal( explode('/',$arc)[0] ) );
-  }
+  public object $Cab;
 
-  /* Ejecuto método */
-  static function eje( string $esq, string $ide, ...$par ){
-  }
+  public object $Art;  
 
-  /* peticion */
-  public object $Uri;
-  // - Armo objeto
-  public function uri( string $ide ) : object {
+  public array $Nav = [];
 
-    // armo peticion
-    $dir = explode('/',$ide);
+  public array $Ide = [];
 
-    $Uri = new stdClass;
-
-    $Uri->esq = $dir[0];
-    $Uri->cab = !empty($dir[1]) ? $dir[1] : FALSE;
-    $Uri->val = FALSE;
-
-    if( $Uri->art = !empty($dir[2]) ? $dir[2] : FALSE ){
-
-      $val = explode('#',$Uri->art);
-
-      if( isset($val[1]) ){
-        $Uri->art = $val[0];
-        $Uri->val = $val[1];
-      }
-      elseif( !empty($dir[3]) ){
-        $Uri->val = $dir[3];
-      }
-    }
-
-    return $this->Uri = $Uri;
-
-  }// - Cargo Datos de la Aplicacion por Peticion url
-  public function uri_dat() : void {
-
-    // cargp rutas
-    $Uri = $this->Uri;
+  public array $Usu = [];
+  
+  public function __construct(){
 
     // cargo datos : esquema - cabecera - articulo - valor
-    $this->Esq = Dat::get('sis-app_esq',[ 'ver'=>"`ide`='{$Uri->esq}'", 'opc'=>'uni' ]);
+    $Uri = isset($_SESSION['Uri']) ? $_SESSION['Uri'] : new stdClass;
 
-    if( !empty($this->Esq->key) ){
+    if( isset($Uri->esq) && is_object( $dat = Dat::get('sis-app_esq',[ 
+      'ver'=>"`ide`='{$Uri->esq}'", 
+      'opc'=>'uni' 
+    ]) ) ){
 
-      $esq_key = $this->Esq->key;
-    
-      if( !empty($Uri->cab) ){
-        
-        // cargo datos del menu
-        $this->Cab = Dat::get('sis-app_cab',[ 
-          'ver'=>"`esq`='{$esq_key}' AND `ide`='{$Uri->cab}'", 
-          'ele'=>'ope', 
-          'opc'=>'uni'
-        ]);
+      $this->Esq = $dat;
 
-        $cab_key = $this->Cab->key;
+      // cargo datos del menu
+      if( !empty($Uri->cab) && is_object( $dat = Dat::get('sis-app_cab',[ 
+        'ver'=>"`esq`='{$this->Esq->key}' AND `ide`='{$Uri->cab}'", 
+        'ele'=>'ope', 
+        'opc'=>'uni'
+      ])) ){
+
+        $this->Cab = $dat;
+          
         // cargo datos del artículo
-        if( !empty($Uri->art) ){
-          $this->Art = Dat::get('sis-app_art',[ 
-            'ver'=>"`esq`='{$esq_key}' AND `cab`='{$cab_key}' AND `ide`='{$Uri->art}'", 
-            'ele'=>'ope', 
-            'opc'=>'uni' 
-          ]);
+        if( !empty($Uri->art) && is_object( $dat = Dat::get('sis-app_art',[ 
+          'ver'=>"`esq`='{$this->Esq->key}' AND `cab`='{$this->Cab->key}' AND `ide`='{$Uri->art}'", 
+          'ele'=>'ope', 
+          'opc'=>'uni' 
+        ])) ){
 
-          $art_key = $this->Art->key;
-
+          $this->Art = $dat;
+          
           // busco índice de contenidos
           $this->Nav = Dat::get('sis-app_nav',[ 
-            'ver'=>"`esq`='{$esq_key}' AND `cab`='{$cab_key}' AND `art`='{$art_key}'", 
+            'ver'=>"`esq`='{$this->Esq->key}' AND `cab`='{$this->Cab->key}' AND `art`='{$this->Art->key}'", 
             'ord'=>"`key` ASC",
             'nav'=>'key'
           ]);
         }
+        elseif( !empty($Uri->art) ){
+
+          $_SESSION['Err'] []= "No existe el artículo '$Uri->art' en la opción '$Uri->cab' de la aplicación '$Uri->esq'";
+        }
+      }
+      elseif( !empty($Uri->cab) ){
+
+        $_SESSION['Err'] []= "No existe la opción del menú '$Uri->cab' en la aplicacion '$Uri->esq'";
       }
     }
-  }// - Cargo Directorios
-  public function uri_dir() : object {
+    else{
 
-    $Uri = $this->Uri;
+      $_SESSION['Err'] []= "No existe la aplicacion '$Uri->esq'";
+    }    
 
-    $Dir = new stdClass();
-    
-    $Dir->esq = SYS_NAV."{$Uri->esq}";
-      
-    $Dir->cab = "{$Uri->esq}/{$Uri->cab}";
-
-    $Dir->ima = SYS_NAV."_img/{$Dir->cab}/";
-
-    if( !empty($Uri->art) ){
-
-      $Dir->art = $Dir->cab."/{$Uri->art}";
-    
-      $Dir->ima .= "{$Uri->art}/";
-    }
-
-    return $Dir;
   }
 
-  /* Esquema : nombre de la aplicacion */
-  public object $Esq;
-
-  /* Menu : secciones de la aplicacion */
-  public object $Cab;
-  // Imprimo listado de accesos
+  // Imprimo menú
   public function cab( array $ele = [] ) : string {
     
     global $Usu;
@@ -127,9 +84,9 @@ class App {
 
     // armo listado de enlaces
     $lis = [];
-    foreach( Dat::get('sis-app_cab',[ 'ver'=>"`esq`='$esq_key'", 'ord'=>"`key` ASC" ]) as $_cab ){
+    foreach( $this->cab_ver() as $_cab ){
 
-      if( !empty($_cab->opc_ocu) || ( !empty($_cab->opc_usu) && empty($Usu->ide) ) ){
+      if( !empty($_cab->opc_ocu) || ( !empty($_cab->opc_usu) && empty($Usu->key) ) ){
         continue;
       }
 
@@ -183,147 +140,60 @@ class App {
     $ele['opc'] = [ 'tog' ]; // dlt- 'ver', 'cue'
 
     return empty($lis) ? "" : Doc_Ope::lis('dep',$lis,$ele);
-  }
-  
-  /* Articulo : contenidos principales de cada seccion */
-  public object $Art;
-  // - valido articulo o seccion principal
-  public function art() : string | array {
 
-    $Uri = $this->Uri;
+  }// devuelvo listado del menu por esquema
+  public function cab_ver( string $ide = "" ) : array {
+
+    $ver = "`esq`='{$this->Esq->key}'";
+
+    if( !empty($ide) ) $ver .= " AND `ide`='{$ide}'";
+
+    return Dat::get('sis-app_cab',[ 'ver'=>$ver, 'ord'=>"`key` ASC" ]);
+  }
+
+  // Valido articulo de la Aplicacion por Peticion url
+  public function art() : string | array {
 
     $_ = [];
 
-    if( !empty($Uri->cab) ){
+    if( !empty($this->Cab->ide) ){
 
 
       // cargo seccion principal ( puede ser el generador del articulo )
-      if( !empty( $rec = Arc::val_rec("./App/$Uri->esq/$Uri->cab") ) ){
+      if( !empty( $rec = Arc::val_rec("./App/{$this->Esq->ide}/{$this->Cab->ide}") ) ){
 
-        $_['eje'] = $rec; 
+        $_['cab'] = $rec; 
       }
 
       // imprimo articulo : html-php
-      if( is_dir("./App/$Uri->esq/$Uri->cab") && !empty($Uri->art) ){
+      if( !empty($this->Art->ide) && is_dir("./App/{$this->Esq->ide}/{$this->Cab->ide}") ){
         
-        if( !empty( $rec = Arc::val_rec($val = "./App/$Uri->esq/$Uri->cab/$Uri->art") ) ){
+        if( !empty( $rec = Arc::val_rec($val = "./App/{$this->Esq->ide}/{$this->Cab->ide}/{$this->Art->ide}") ) ){
 
           $_['art'] = $rec;
 
         }// si no hay seccion principal...
-        elseif( empty($_['eje']) ){   
+        elseif( empty($_['cab']) ){   
 
-          $_ = Doc_Ope::tex([ 'tip'=>"err", 'tex'=>"No existe el Artículo '$val'" ]);
+          $_ = "No existe el Artículo '$val'";
         }
       }
 
     }
-    
-    return $_;
-
-  }// - genero desde objeto de la base
-  public function art_htm( object $nav, string $esq, string $cab ) : string {
-    $_ = "";      
-
-    $agr = Ele::htm($nav->ope);
-
-    $_art = Dat::get('sis-app_art',[ 'ver'=>"`esq`='{$esq}' AND `cab`='{$cab}'", 'ord'=>"`pos` ASC", 'ele'=>"ope" ]);
-
-    $_ = "
-    <article class='app_art'>";
-      // introduccion
-      if( !empty($agr['htm_ini']) ){
-        $_ .= $agr['htm_ini'];
-      }
-      else{ $_ .= "
-        <h2>{$nav->nom}</h2>";
-      }
-      // listado de contenidos
-      if( !empty($_art) ){ $_ .= "
-
-        <nav class='lis'>";
-          foreach( $_art as $art ){
-            $art_url = "<a href='".SYS_NAV."/{$art->esq}/{$art->cab}/{$art->ide}'>".Doc_Val::let($art->nom)."</a>";
-            if( !empty($art->ope['tex']) ){
-              $_ .= "            
-              <div class='ope_val nav'>
-                ".Doc_Ope::val_ico()."
-                {$art_url}
-              </div>
-              <div class='dat'>
-                ".Ele::val($art->ope['tex'])."
-              </div>
-              ";
-            }else{
-              $_ .= $art_url;
-            }
-            
-          }$_.="
-        </nav>";
-      }
-      // pie de pagina
-      if( !empty($agr['htm_fin']) ){
-        $_ .= $agr['htm_fin'];
-      }
-      $_ .= "
-    </article>";          
 
     return $_;
-  }// - genero secciones por Indice de la base : article > h2 + ...section > h3 + ...section > ...
-  public function art_sec( string $ide ) : string {
-    $_ = "";
+
+  }// devuelvo listado de articulos por menu
+  public function art_ver( string $ide = "" ) : array {
     
-    $_ide = explode('.',$ide);
-    
-    $app_nav = Dat::get('sis-app_nav',[ 'ver'=>"`esq`='{$_ide[0]}' AND `cab`='{$_ide[1]}' AND `ide`='{$_ide[2]}'", 'nav'=>'pos' ]);
+    $ver = "`esq`='{$this->Esq->key}' AND `cab`='{$this->Cab->key}'";
 
-    if( isset($app_nav[1]) ){
+    if( !empty($ide) ) $ver .= " AND `ide`='{$ide}'";
 
-      foreach( $app_nav[1] as $nv1 => $_nv1 ){ $_ .= "
-        <h2 id='_{$nv1}-'>".Doc_Val::let($_nv1->nom)."</h2>
-        <article>";
-          if( isset($app_nav[2][$nv1]) ){
-            foreach( $app_nav[2][$nv1] as $nv2 => $_nv2 ){$_ .= "
+    return Dat::get('sis-app_art',[ 'ver'=>$ver, 'ord'=>"`key` ASC" ]);
 
-          <h3 id='_{$nv1}-{$nv2}-'>".Doc_Val::let($_nv2->nom)."</h3>
-          <section>";
-            if( isset($app_nav[3][$nv1][$nv2]) ){
-              foreach( $app_nav[3][$nv1][$nv2] as $nv3 => $_nv3 ){$_ .= "
-
-            <h4 id='_{$nv1}-{$nv2}-{$nv3}-'>".Doc_Val::let($_nv3->nom)."</h4>
-            <section>";
-              if( isset($app_nav[4][$nv1][$nv2][$nv3]) ){
-                foreach( $app_nav[4][$nv1][$nv2][$nv3] as $nv4 => $_nv4 ){ $_ .= "
-
-              <h5 id='_{$nv1}-{$nv2}-{$nv3}-{$nv4}-'>".Doc_Val::let($_nv4->nom)."</h5>
-              <section>";
-                if( isset($app_nav[5][$nv1][$nv2][$nv3][$nv4]) ){
-                  foreach( $app_nav[5][$nv1][$nv2][$nv3][$nv4] as $nv5 => $_nv5 ){ $_ .= "
-
-                <h6 id='_{$nv1}-{$nv2}-{$nv3}-{$nv4}-{$nv5}-'>".Doc_Val::let($_nv5->nom)."</h6>
-                <section>                      
-
-                </section>";
-                  }
-                }$_ .= "                  
-              </section>";
-                }
-              }$_ .= "                
-            </section>";
-              }
-            }$_ .= "              
-          </section>";
-            }
-          }$_ .= "              
-        </article>";
-      }
-    }
-
-    return $_;
   }
-  
-  /* Indice por aplicacion */
-  public array $Nav = [];
+
   /* Indice por atributo con enlaces => a[href] > ...a[href] */
   public function nav( array $ele = [], ...$opc ) : string {
     $_ = "";    
@@ -334,12 +204,13 @@ class App {
     Ele::cla( $ele['ope'], "-ren", 'ini' );    
     $_ .= Doc_Ope::lis_ope(self::$EJE."nav",['tog','ver'],$ele);
     
-    // armo listado de enlaces
-    $_lis = [];
+    // armo listado de enlaces    
     $opc_ide = in_array('ide',$opc);
     Ele::cla($ele['lis'], "nav");
+
     // proceso nivelacion de indices
     $dat = $this->Nav;
+    $_lis = [];
     foreach( $dat[1] as $nv1 => $_nv1 ){
       $ide = $opc_ide ? $_nv1->ide : $nv1;
       $eti_1 = ['eti'=>"a", 'href'=>"#_{$ide}-", 'onclick'=>"{$_eje}('val',this);", 'htm'=> Doc_Val::let("{$_nv1->nom}") ];
@@ -415,9 +286,7 @@ class App {
     return $_ .= Doc_Ope::lis('dep',$_lis,$ele);
   }
 
-  /* Glosario : palabras por esquema */
-  public array $Ide = [];
-  // genero listado de palabras clave
+  // Listado de palabras clave
   public function ide( int $esq, string $art, array $ele = [] ) : string {
 
     $_ = [];
@@ -436,7 +305,7 @@ class App {
     return Doc_Ope::lis('pos',$_,$ele);
   }
 
-  /* Consola del Sistema */
+  /* imprimo Consola del Sistema */
   public function adm(){
 
     $_eje = self::$EJE."adm";
@@ -471,6 +340,7 @@ class App {
         ]])?>
 
       </fieldset>
+      
     </form>
 
     <ul class='lis ite mar-2'>
@@ -510,15 +380,12 @@ class App {
     return Doc_Ope::nav('tex', $_ope, [ 'sel'=>"php" ]);
 
   }
-  
-  /* Menu del usuario */
-  public array $Usu;
+
   // devuelvo accesos del Usuario
   public function usu() : array {
     
     $_ = [];
-    $_eje = self::$EJE."usu";
-
+    
     // busco opciones del menu para el usuario por aplicacion    
     foreach( Dat::get('sis-app_usu',[ 'ver'=>"`esq`='{$this->Esq->key}'" ]) as $usu ){
       
@@ -536,80 +403,16 @@ class App {
         $_ []= [ "url:{$this->Esq->ide}/usuario/{$usu->ide}", $ite_fig.Doc_Val::let($usu->nom) ];
       }// por funcion en index.js
       else{
-        $_ []= [ "usuario('{$usu->ide}',this)", $ite_fig.Doc_Val::let($usu->nom) ];
+        $_ []= [ "\$App.usu('{$usu->ide}',this)", $ite_fig.Doc_Val::let($usu->nom) ];
       }
     }
     // Accesos Globales del Usuario: perfil + sesión
     array_push( $_,
-      [ "{$_eje}_dat('ver',this)", Doc_Val::ico( 'app_ses',     $ele_ico )."Administrar Perfil" ],
-      [ "{$_eje}_ses('fin')",      Doc_Val::ico( 'app_ses-fin', $ele_ico )."Cerrar Sesión" ]
+      [ "Usu.ses('dat',this)", Doc_Val::ico('app_usu',     $ele_ico )."Administrar Perfil" ],
+      [ "Usu.ses('fin',this)", Doc_Val::ico('ope_nav-fin', $ele_ico )."Cerrar Sesión" ]
     );
 
     return $_;
 
-  }// - Imprimo Inicio de Sesión
-  public function usu_ses() : string {
-
-    $_eje = self::$EJE."usu_ses";
-
-    $_ = "
-    <form class='app_dat' onsubmit='{$_eje}_ini'>
-
-      <fieldset class='ope_var'>
-        <input id='app-usu_ses-mai' name='mai' type='email' placeholder='Ingresa tu Email...'>
-      </fieldset>
-
-      <fieldset class='ope_var'>
-        <input id='app-usu_ses-pas' name='pas' type='password' placeholder='Ingresa tu Password...'>
-      </fieldset>
-
-      <fieldset class='ope_var'>
-        <label>Mantener Sesión Activa en este Equipo:</label>
-        <input id='app-usu_ses-val' name='val' type='checkbox'>
-      </fieldset>
-
-      <a href=''>¿Olvidaste la contraseña?</a>
-
-      <fieldset class='ope_bot tex'>
-        <button type='submit'>Ingresar</button>
-      </fieldset>
-
-    </form>";
-
-    return $_;
-  }// - proceso inicio de sesion 
-  public function usu_ses_ini( string $mai, string $pas ) : string {
-
-    $_ = "";
-
-    if( isset($_REQUEST['ema']) && isset($_REQUEST['pas']) ){
-        
-      $Usu = new Usu( $_REQUEST['ema'] );
-
-      if( isset($Usu->pas) ){
-        if( $Usu->pas == $_REQUEST['pas'] ){
-          $_SESSION['usu'] = $_REQUEST['ide'];
-        }
-        else{
-          $_ = "Password Incorrecto";
-        }
-      }
-      else{
-        $_ = "Usuario Inexistente";
-      }
-    }
-
-    return $_;
-  }// - finaliza la sesion
-  public function usu_ses_fin() : void {
-
-    // elimino datos de la sesion
-    session_destroy();
-
-    // reinicio 
-    session_start();
-
-  }// - reiniciar contraseña
-  public function usu_ses_pas() : void {
   }
 }

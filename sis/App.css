@@ -1,46 +1,8 @@
-/*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-/*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+
 /*
-  Contenido:
+  Paneles:
 */
-.ope_sec > article > header {
-  margin: 1rem;
-}
-
-/* 
-  Artículos de la Seccion Principal 
-*/
-main article > h2 {
-  margin-bottom: 1rem;
-}
-main article section > :is(h3,h4,h5,h6) {
-  margin: 1rem 0;
-  margin-top: 1.5rem;
-}
-
-main article > p,
-main article section > p {
-  margin-bottom: .5rem;
-  line-height: 1.5;
-}
-
-main article > ul.lis,
-main article section > ul.lis {
-  margin: .5rem auto;
-  max-width: fit-content;
-}
-
-main article > figure,
-main article section > figure {
-  margin: 1rem auto;
-}
-
-/*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-/*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-/*
-  Panel:
-*/
-
 /* Menú */
 .ope_pan > .ide-app_cab ul.ope_lis.nav {
   height: 84vh;
@@ -51,15 +13,18 @@ main article section > figure {
   height: 80vh;
 }
 
-/*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-/*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-/*
+
+/* 
   Modales:
 */
-
 
 /* Consola del Sistema */
 .ope_win .ide-app_adm .ide-ico ul.lis.ite {
   height: 58vh;
   overflow: scroll;
+}
+
+/* Sesion del usuario */
+.ope_win .ide-app_usu .ope_nav.bot {
+  height: 100%;
 }

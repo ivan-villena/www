@@ -48,7 +48,7 @@ class Doc_Var {
         $_ .= "
         <div class='Opc mul'>";
         $ope_dat = Obj::pos_ite($dat);
-        $ope_ide = isset($ope['id']) ? $ope['id'] : "_opc_mul-".Doc_Ope::var_ide('opc_mul');
+        $ope_ide = isset($ope['id']) ? $ope['id'] : "_opc_mul-".Doc::ide('opc_mul');
         $ope_nom = isset($ope['name']) ? $ope['name'] : FALSE;
         foreach( $_dat as $ide => $dat ){
           $ide = isset($dat->ide) ? $dat->ide : $ide;
@@ -180,7 +180,7 @@ class Doc_Var {
           unset($ope['class']); 
         }
         if( !isset($ope['id']) ){ 
-          $ope['id'] = "num_ran-".Doc_Ope::var_ide('num_ran');
+          $ope['id'] = "num_ran-".Doc::ide('num_ran');
         }
         $htm_out = "";
         if( !in_array('val-ocu',$opc) ){ $htm_out = "
@@ -228,7 +228,7 @@ class Doc_Var {
       if( empty($ope['rows']) ) $ope['rows']="2";      
 
     }
-    else{
+    elseif( !isset($ope['type']) ){
 
       $ope['type'] = 'text';
     }
@@ -249,7 +249,7 @@ class Doc_Var {
         }
 
         if( empty($ope['id']) ){ 
-          $ope['id']="_tex-{$tip}-".Doc_Ope::var_ide("_tex-{$tip}-");
+          $ope['id']="_tex-{$tip}-".Doc::ide("_tex-{$tip}-");
         }
 
         $ope['list'] = "{$ope['id']}-lis";
@@ -328,17 +328,17 @@ class Doc_Var {
     $_eje = self::$EJE."fig";
     
     switch( $tip ){
+    // color
+    case 'col':
+      $ope['type'] = 'color';
+      $ope['value'] = empty($dat) ? $dat : '#000000';
+      break;
     // dibujos
     case 'pun':
       break;
     case 'lin':
       break;
     case 'pol':
-      break;
-    // color
-    case 'col':
-      $ope['type'] = 'color';
-      $ope['value'] = empty($dat) ? $dat : '#000000';
       break;
     }
     if( empty($_) && !empty($ope['type']) ){

@@ -66,7 +66,7 @@ class Dat {
     // de la documento 
     else if( typeof($dat) == 'string' ){
       
-      $_ = ( $.ver = dom.ope($dat) ) ? $.ver : [];
+      $_ = ( $.ver = Doc.ope($dat) ) ? $.ver : [];
     }
     // por estructura : [ {}, [] ]
     else{
@@ -170,7 +170,7 @@ class Dat {
     }
 
     // busco
-    $dat_tip = Dat._("sis.dat_tip");
+    $dat_tip = Dat._("var.tip");
     return !!$dat_tip[$ide] ? $dat_tip[$ide] : false;
   }
   

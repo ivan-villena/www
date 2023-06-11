@@ -3,7 +3,7 @@
 
 class Doc_Var {
 
-  /* Numero */
+  // Numero
   static num( $tip, $dat, $ope, ...$opc ){
 
     let $_ = ""; $={};
@@ -73,7 +73,7 @@ class Doc_Var {
     }
 
     return $_;      
-  }  
+  }
 
   // Elemento html
   static ele( $tip, $dat, $ope, ...$opc ){
@@ -148,6 +148,7 @@ class Doc_Var {
       $_ = $.her.reverse().join(`<c class='sep'>></c>`);
       break;
     }
+    
     return $_;      
   }// ejecuto selector
   static ele_act( $dat ){
@@ -162,7 +163,7 @@ class Doc_Var {
     // resultado: div.ele
     $.res = $dat.parentElement.parentElement.parentElement.previousElementSibling;
 
-    dom.eli($.res);
+    Doc.eli($.res);
 
     $.res.innerHTML = Ele.var('eti',document.querySelector($.ver));
 
@@ -182,6 +183,6 @@ class Doc_Var {
       $.lis.appendChild($.ite);
     });
     return [ $.ope, $.lis ];     
-  }  
+  }
 
 }
