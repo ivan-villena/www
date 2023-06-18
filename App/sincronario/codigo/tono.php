@@ -8,7 +8,7 @@
 
   <!--Rayos de pulsación-->
   <?php $nv1=Num::val($nv1+1,2);$nv2=0;$nv3=0;$nv4=0;?>  
-  <section id="<?="_{$Nav[1][$nv1]->key}-"?>">
+  <section id="<?="_{$Nav[1][$nv1]->pos}-"?>">
     <h2><?=Doc_Val::let($Nav[1][$nv1]->nom);?></h2>
 
     <p>En <cite>el Factor Maya</cite> se introduce el concepto de <a href="<?=$Dir->libro?>factor_maya#_03-03-" target="_blank">secuencias radiales</a> donde se aplican los números del <n>1</n> al <n>13</n><c>,</c> en dos series de ciclos constantes con sentido inverso<c>,</c> para describir <b>comentes de energía</b> provenientes del centro de la galaxia <b class="ide" title="Dador de Movimiento y Medida">Hunab Ku</b><c>.</c></p>
@@ -19,7 +19,7 @@
 
     <!--Simetría especular-->
     <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
-    <section id="<?="_{$Nav[2][$nv1][$nv2]->key}-"?>">      
+    <section id="<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>">      
       <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>  
 
       <p>En el <cite>Factor Maya</cite> se establecen los <a href="<?=$Dir->libro?>factor_maya#_04-04-01-" target="_blank">números de simetría especular</a> a partir de la posición de la columna <n>7</n> en el Módulo Armónico o Tzolkin<c>.</c> Luego<c>,</c> se describen sus relaciones recíprocas aplicando el concepto de los <a href="<?=$Dir->libro?>factor_maya#_04-04-01-02-" target="_blank">rayos de pulsación</a><c>.</c></p>
@@ -33,18 +33,25 @@
   
   <!--Principios de la creacion-->
   <?php $nv1=Num::val($nv1+1,2);$nv2=0;$nv3=0;$nv4=0;?>  
-  <section id="<?="_{$Nav[1][$nv1]->key}-"?>">
+  <section id="<?="_{$Nav[1][$nv1]->pos}-"?>">
     <h2><?=Doc_Val::let($Nav[1][$nv1]->nom);?></h2>
 
     <p>En <cite>el Encantamiento del sueño</cite> se introduce el concepto de <a href="<?=$Dir->libro?>encantamiento_del_sueño#_03-10-" target="_blank">onda encantdada</a> como <q>el módulo del tiempo galáctico a través del cual se mueven las <n>20</n> tribus</q><c>,</c> y se definenen los <n>13</n> números como la <q>cosmología de movimiento</q> representada por los <a href="<?=$Dir->libro?>encantamiento_del_sueño#_03-11-" target="_blank">tonos galácticos de la creación</a><c>.</c></p>
 
     <p>De esta manera se crea el <a href="<?=$Dir->libro?>encantamiento_del_sueño#_03-09-" target="_blank">Módulo de Sincronización Galáctica</a> que sincroniza tanto las <a href="<?=$Dir->libro?>encantamiento_del_sueño#_02-03-09-" target="_blank">lunaciones del ciclo anual</a><c>,</c> como el movimiento a través de <a href="<?=$Dir->libro?>encantamiento_del_sueño#_02-03-10-" target="_blank">los castillos de la nave</a><c>,</c> las <a href="<?=$Dir->libro?>encantamiento_del_sueño#_02-03-07-" target="_blank">trayectorias armónicas</a> y las <a href="<?=$Dir->libro?>encantamiento_del_sueño#_03-16-" target="_blank">estaciones galácticas</a><c>.</c></p>
 
-    <?=Doc_Dat::lis('hol.ton',['atr'=>['ide','nom','des','des_acc']])?>
+    <!--Principios de la Creación -->
+    <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
+    <section id="<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>">      
+      <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>      
+
+      <?=Doc_Dat::lis('hol.ton',['atr'=>['ide','nom','des','des_acc']])?>
+
+    </section>
 
     <!--Pulsar Dimensional-->
     <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
-    <section id="<?="_{$Nav[2][$nv1][$nv2]->key}-"?>">      
+    <section id="<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>">      
       <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>  
 
       <p>En <cite>el Encantamiento del sueño</cite> se define el <a href="<?=$Dir->libro?>encantamiento_del_sueño#_03-13-" target="_blank">Código Púlsar</a> como una función para <q>la integración del campo del tiempo de la Onda Encantada</q><c>.</c></p>
@@ -61,7 +68,7 @@
 
     <!--Pulsar Matiz-->
     <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
-    <section id="<?="_{$Nav[2][$nv1][$nv2]->key}-"?>">      
+    <section id="<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>">      
       <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>  
 
       <p>En <cite>el Encantamiento del sueño</cite> se define el <a href="<?=$Dir->libro?>encantamiento_del_sueño#_03-13-" target="_blank">Púlsar Entonado</a> como una función del <b>Quinto Matiz</b> representado por el código <b>Punto<c>-</c>Raya</b><c>.</c> Este código está asociado a la aparición de las <b>Familias Terrestres</b> en la <b>Onda Encantada</b><c>.</c></p>
@@ -78,18 +85,46 @@
   
   <!--Onda Encantada de la Aventura-->
   <?php $nv1=Num::val($nv1+1,2);$nv2=0;$nv3=0;$nv4=0;?>  
-  <section id="<?="_{$Nav[1][$nv1]->key}-"?>">
+  <section id="<?="_{$Nav[1][$nv1]->pos}-"?>">
     <h2><?=Doc_Val::let($Nav[1][$nv1]->nom);?></h2>
 
     <p>En el <cite>Encantamiento del sueño</cite> se define la estructura de un <a href="<?=$Dir->libro?>encantamiento_del_sueño#_02-03-08-" target="_blank">Castillo del Destino</a> como una serie de <n>4</n> ondas encantadas<c>,</c> de <n>13</n> tonos galácticos cada una<c>.</c></p>
 
-    <p>Cada posición de la Onda Encantada está cargada con un determinado <a href="<?=$Dir->libro?>encantamiento_del_sueño#_03-12-" target="_blank">mandato de acción</a> definido por la naturaleza de su tono correspondiente<c>.</c> Estos mandatos otorgan un <n>código de aventura</n> para el Kin Planetario y <q>toman la forma del movimiento a través de pórticos<c>,</c> torres y cámaras</q><c>.</c></p>
+    <p>Cada posición de la Onda Encantada está cargada con un determinado <a href="<?=$Dir->libro?>encantamiento_del_sueño#_03-12-" target="_blank">mandato de acción</a> definido por la naturaleza de su tono correspondiente<c>.</c> Estos mandatos otorgan un <b>código de aventura</b> para el Kin Planetario y <q>toman la forma del movimiento a través de pórticos<c>,</c> torres y cámaras</q><c>.</c></p>
 
-    <p>Puede ser utilizada para <q>planear acciones durante cualquier ciclo de tiempo operando por medio de la Onda Encantada<c>:</c> <n>13</n> días<c>,</c> <n>13</n> Lunas<c>,</c> <n>13</n> años<c>,</c> etc<c>...</c></q><c>.</c></p>
+    <p>Puede ser utilizada para <q><u>planear acciones durante cualquier ciclo de tiempo</u> operando por medio de la Onda Encantada<c>:</c> <n>13</n> días<c>,</c> <n>13</n> Lunas<c>,</c> <n>13</n> años<c>,</c> etc<c>...</c></q><c>.</c></p>
 
     <p>En el siguiente listado se agrupan los tonos según su posición en la onda encantada de la aventura<c>,</c> y se definene sus características principales<c>.</c></p>
 
     <?=Doc_Dat::lis('hol.ton',['atr'=>['ide','ond_nom','ond_pos','ond_pod','ond_man'],'tit_cic'=>['ond_enc'],'opc'=>['cab_ocu']])?>
+
+    <!-- Posiciones del Castillo -->
+    <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
+    <section id="<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>">    
+      <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>  
+
+    </section>
+
+  </section>
+
+  <!--El Holon Galactico -->
+  <?php $nv1=Num::val($nv1+1,2);$nv2=0;$nv3=0;$nv4=0;?>  
+  <section id="<?="_{$Nav[1][$nv1]->pos}-"?>">
+    <h2><?=Doc_Val::let($Nav[1][$nv1]->nom);?></h2>  
+
+    <!-- Forma de onda -->
+    <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
+    <section id="<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>">    
+      <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>  
+
+    </section>
+
+    <!-- Fractal G -->
+    <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
+    <section id="<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>">    
+      <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>  
+
+    </section>
 
   </section>
 

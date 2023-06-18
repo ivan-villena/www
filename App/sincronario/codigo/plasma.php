@@ -8,7 +8,7 @@
 
   <!--Días de la Semana-->
   <?php $nv1=Num::val($nv1+1,2);$nv2=0;$nv3=0;$nv4=0;?>  
-  <section id="<?="_{$Nav[1][$nv1]->key}-"?>">
+  <section id="<?="_{$Nav[1][$nv1]->pos}-"?>">
     <h2><?=Doc_Val::let($Nav[1][$nv1]->nom);?></h2>
 
     <p>En <cite>El encantamiento del Sueño</cite> se divide al año en <a href="<?=$Dir->libro?>enc#_02-03-09-" target="_blank"><n>13</n> lunas de <n>28</n> días</a> cada una<c>.</c> A su vez<c>,</c> cada luna está conformada por <n>4</n> semanas<c>-</c>héptadas de <n>7</n> días<c>.</c></p>
@@ -19,7 +19,7 @@
 
     <!--Autodeclaraciones Diarias-->
     <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
-    <section id="<?="_{$Nav[2][$nv1][$nv2]->key}-"?>">      
+    <section id="<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>">      
       <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>  
 
       <p>En <cite>Átomo del Tiempo</cite> se relaciona cada plasma con una <a href="<?=$Dir->libro?>atomo_del_tiempo#_03-06-" target="_blank">Autodeclaración de Padmasambhava</a> para <q>integrar la mente en el proceso electromagnético continuo plásmicamente autocreativo del universo</q><c>.</c> En esa misma sección se describen los relaciones simbólicas para cada término correspondiente a su afirmación<c>.</c></p>
@@ -32,7 +32,7 @@
   
   <!--Sellos de la Profecia-->
   <?php $nv1=Num::val($nv1+1,2);$nv2=0;$nv3=0;$nv4=0;?>  
-  <section id="<?="_{$Nav[1][$nv1]->key}-"?>">
+  <section id="<?="_{$Nav[1][$nv1]->pos}-"?>">
     <h2><?=Doc_Val::let($Nav[1][$nv1]->nom);?></h2>
 
     <p>En <cite>El telektonon</cite> se presentan los plasmas como <a href="<?=$Dir->libro?>telektonon#_02-06-" target="_blank">sellos de la profecía</a><c>.</c> Estas profecías describen el desarrollo de los acontecimientos para el final de ciclo y la transición al nuevo <q>paradigma resonante</q><c>.</c></p>
@@ -49,16 +49,14 @@
 
     <!--Heptágono de la Mente-->
     <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
-    <section id="<?="_{$Nav[2][$nv1][$nv2]->key}-"?>">      
+    <section id="<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>">      
       <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>  
 
       <p>En el <cite>telektonon</cite> se crea un <a href="<?=$Dir->libro?>telektonon#_02-06-03-" target="_blank">arreglo en forma de heptágono</a> con los plasmas para recrear los <n>7</n> años de la profecía durante los días <n>14</n> a <n>22</n> de cada Luna<c>.</c> Este ejercicio sirve para <q>la restauración de la mente<c>,</c> la voluntad y el espíritu colectivos<c>,</c> unificados como el triunfo del Cubo de la Ley de la divina unidad<c>,</c> el advenimiento de la Noosfera planetaria</q><c>.</c></p>
 
       <p>En el <cite>Proyecto Rinri</cite> la <a href="<?=$Dir->libro?>proyecto_rinri#_02-06-01-" target="_blank"><n>1</n><c>°</c> fase del sexto paso<c>:</c> Lanzamiento de la Liberación del Plasma Radial</a><c>,</c> se realiza un procedimiento de meditación óptica sobre los plasmas para liberar su energía hacia la biósfera en la transición Biósfera<c>-</c>Noosfera<c>.</c></p>
 
-      <p>Luego<c>,</c> en <cite>El Átomo del Tiempo</cite> se diferencian los <n>5</n> Centros psico<c>-</c>físicos del Holon Humano de <a href="<?=$Dir->libro?>atomo_del_tiempo#_03-07-" target="_blank">los <n>7</n> chakras</a> de la filosofía tradicional esotérica<c>.</c> En este caso se asocia cada plasma a un chakra y se arma una secuencia para meditar sobre cada uno en la construcción del <b>Cubo del Radión</b> que sigue el mismo patrón que el <b>Heptágono de la Mente</b><c>.</c></p>
-
-      <?=Doc_Dat::lis('hol.rad',['atr'=>['ide','pla_cub_pos','pla_cub','hum_cha'],'opc'=>["cab_ocu"]]);?>
+      <?=Doc_Dat::lis('hol.rad',['atr'=>['ide','pla_cub_pos','pla_cub'],'opc'=>["cab_ocu"]]);?>
 
     </section>      
 
@@ -66,7 +64,7 @@
   
   <!--Componenetes Electrónicos-->
   <?php $nv1=Num::val($nv1+1,2);$nv2=0;$nv3=0;$nv4=0;?>  
-  <section id="<?="_{$Nav[1][$nv1]->key}-"?>">
+  <section id="<?="_{$Nav[1][$nv1]->pos}-"?>">
     <h2><?=Doc_Val::let($Nav[1][$nv1]->nom);?></h2>
 
     <p>En <cite>el Átomo del tiempo</cite> se establecen los principios de los plasmas en el marco de la <a href="<?=$Dir->libro?>atomo_del_tiempo#_03-01-" target="_blank">energía o electricidad cósmica</a><c>.</c> En este caso<c>,</c> cada plasma está compuesto por dos <b>Líneas Electrónicas de Fuerza</b> con cierta combinación de cargas<c>.</c></p>
@@ -75,7 +73,7 @@
 
     <!--12 líneas de Fuerza-->        
     <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
-    <section id="<?="_{$Nav[2][$nv1][$nv2]->key}-"?>">      
+    <section id="<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>">      
       <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>  
 
       <p>Cada <b>Línea Electrónica de Fuerza</b> está compuesta por dos tipos de <b>Electricidad Cósmica Primigenia</b><c>:</c></p>
@@ -86,7 +84,7 @@
 
     <!--6 Tipos de Electricidad-->        
     <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
-    <section id="<?="_{$Nav[2][$nv1][$nv2]->key}-"?>">      
+    <section id="<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>">      
       <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>  
 
       <p>Estos tipos de <b>Electricidad Cósmica</b> están compuestos por distintas <b>Cargas Electricas</b> y constituyen el <b>Patrón Cúbico Primario</b> cuyo diagrama tiene la misma forma que los electrones rodeando su nucleo atómico<c>.</c></p>
@@ -97,7 +95,7 @@
 
     <!--3 Quántum-->        
     <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
-    <section id="<?="_{$Nav[2][$nv1][$nv2]->key}-"?>">      
+    <section id="<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>">      
       <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>  
 
       <p>Surgen por la combinación de distintos <a href="<?=$Dir->libro?>atomo_del_tiempo#_03-01-" target="_blank">Plasmas Radiales</a> cumpliendo funciones estructurales en la composición del <a href="<?=$Dir->libro?>atomo_del_tiempo#_03-02-" target="_blank">Átomo Telepático del Tiempo</a> por la <a href="<?=$Dir->libro?>atomo_del_tiempo#_03-03-" target="_blank">Combinación de Colores y Cargas</a><c>.</c></p>
@@ -108,6 +106,19 @@
       
     </section>
 
-  </section>  
+  </section>
+  
+  <!--El Holon Humano -->
+  <?php $nv1=Num::val($nv1+1,2);$nv2=0;$nv3=0;$nv4=0;?>  
+  <section id="<?="_{$Nav[1][$nv1]->pos}-"?>">
+    <h2><?=Doc_Val::let($Nav[1][$nv1]->nom);?></h2>
+
+    <p>En <cite>El Átomo del Tiempo</cite> se diferencian los <n>5</n> Centros psico<c>-</c>físicos del Holon Humano de <a href="<?=$Dir->libro?>atomo_del_tiempo#_03-07-" target="_blank">los <n>7</n> chakras</a> de la filosofía tradicional esotérica<c>.</c></p>
+
+    <p>En este caso se asocia cada plasma a un chakra y se arma una secuencia para meditar sobre cada uno en la construcción del <b>Cubo del Radión</b> que sigue el mismo patrón que el <b>Heptágono de la Mente</b><c>.</c></p>
+
+    <?=Doc_Dat::lis('hol.rad',['atr'=>[ 'ide','nom','hum_cha','cha_nom','pla_cub'],'opc'=>["cab_ocu"]]);?>
+
+  </section>
 
 </article>  

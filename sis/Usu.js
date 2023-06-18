@@ -74,6 +74,8 @@ class Usu {
 
     // llamar al procedimiento de php
     Eje.val(`$Usu.ses_ini`, [ $.mai.value, $.pas.value ], $dat => {
+
+      console.log( $dat );
       
       if( $dat ){
         // mostrar mensajes de error
@@ -81,7 +83,7 @@ class Usu {
       }
       else{
         // actualizar pagina
-        window.location.href = window.location.href;        
+        Doc.htm_act();
       }      
     });
 
@@ -92,7 +94,7 @@ class Usu {
     Eje.val(`$Usu.ses_fin`, [], $dat => {      
       
       // actualizar pagina
-      window.location.href = window.location.href;
+      Doc.htm_act();
 
     });    
 

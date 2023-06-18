@@ -28,7 +28,7 @@
   </section>
 
   <?php $nv1=Num::val(intval($nv1),2);$nv2=0;$nv3=0;$nv4=0;?>
-  <section id='<?="_{$Nav[1][$nv1]->key}-"?>'>
+  <section id='<?="_{$Nav[1][$nv1]->pos}-"?>'>
     <h2><?=Doc_Val::let($Nav[1][$nv1]->nom)?></h2>
 
     <h3>LA DINÁMICA DEL TIEMPO</h3>
@@ -86,11 +86,11 @@
   </section>
 
   <?php $nv1=Num::val($nv1+1,2);$nv2=0;$nv3=0;$nv4=0;?>
-  <section id='<?="_{$Nav[1][$nv1]->key}-"?>'>
+  <section id='<?="_{$Nav[1][$nv1]->pos}-"?>'>
     <h2><?=Doc_Val::let($Nav[1][$nv1]->nom)?></h2>
 
     <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
-    <section id='<?="_{$Nav[2][$nv1][$nv2]->key}-"?>'>      
+    <section id='<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>'>      
       <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>
 
       <ul class='lis'>
@@ -112,7 +112,7 @@
     </section>
 
     <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
-    <section id='<?="_{$Nav[2][$nv1][$nv2]->key}-"?>'>      
+    <section id='<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>'>      
       <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>
 
       <ul class='lis'>
@@ -134,7 +134,7 @@
     </section>
 
     <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
-    <section id='<?="_{$Nav[2][$nv1][$nv2]->key}-"?>'>      
+    <section id='<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>'>      
       <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>
 
       <ul class='lis'>
@@ -156,7 +156,7 @@
     </section>
 
     <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
-    <section id='<?="_{$Nav[2][$nv1][$nv2]->key}-"?>'>      
+    <section id='<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>'>      
       <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>
 
       <ul class='lis'>
@@ -178,7 +178,7 @@
     </section>
 
     <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
-    <section id='<?="_{$Nav[2][$nv1][$nv2]->key}-"?>'>      
+    <section id='<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>'>      
       <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>
 
       <ul class='lis'>
@@ -200,7 +200,7 @@
     </section>
 
     <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
-    <section id='<?="_{$Nav[2][$nv1][$nv2]->key}-"?>'>      
+    <section id='<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>'>      
       <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>
 
       <ul class='lis'>
@@ -222,7 +222,7 @@
     </section>
 
     <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
-    <section id='<?="_{$Nav[2][$nv1][$nv2]->key}-"?>'>      
+    <section id='<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>'>      
       <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>
 
       <ul class='lis'>
@@ -246,11 +246,11 @@
   </section>
 
   <?php $nv1=Num::val($nv1+1,2);$nv2=0;$nv3=0;$nv4=0;?>
-  <section id='<?="_{$Nav[1][$nv1]->key}-"?>'>
+  <section id='<?="_{$Nav[1][$nv1]->pos}-"?>'>
     <h2><?=Doc_Val::let($Nav[1][$nv1]->nom)?></h2>
 
     <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
-    <section id='<?="_{$Nav[2][$nv1][$nv2]->key}-"?>'>      
+    <section id='<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>'>      
       <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>
 
       <ul class='lis'>
@@ -272,7 +272,7 @@
     </section>
 
     <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
-    <section id='<?="_{$Nav[2][$nv1][$nv2]->key}-"?>'>      
+    <section id='<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>'>      
       <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>
 
       <ul class='lis'>
@@ -294,7 +294,7 @@
     </section>
 
     <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
-    <section id='<?="_{$Nav[2][$nv1][$nv2]->key}-"?>'>      
+    <section id='<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>'>      
       <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>
 
       <ul class='lis'>
@@ -316,7 +316,7 @@
     </section>
 
     <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
-    <section id='<?="_{$Nav[2][$nv1][$nv2]->key}-"?>'>      
+    <section id='<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>'>      
       <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>
 
       <ul class='lis'>
@@ -338,7 +338,7 @@
     </section>
 
     <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
-    <section id='<?="_{$Nav[2][$nv1][$nv2]->key}-"?>'>      
+    <section id='<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>'>      
       <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>
 
       <ul class='lis'>
@@ -360,7 +360,7 @@
     </section>
 
     <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
-    <section id='<?="_{$Nav[2][$nv1][$nv2]->key}-"?>'>      
+    <section id='<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>'>      
       <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>
 
       <ul class='lis'>
@@ -382,7 +382,7 @@
     </section>
 
     <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
-    <section id='<?="_{$Nav[2][$nv1][$nv2]->key}-"?>'>      
+    <section id='<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>'>      
       <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>
 
       <ul class='lis'>
@@ -406,11 +406,11 @@
   </section>
 
   <?php $nv1=Num::val($nv1+1,2);$nv2=0;$nv3=0;$nv4=0;?>
-  <section id='<?="_{$Nav[1][$nv1]->key}-"?>'>
+  <section id='<?="_{$Nav[1][$nv1]->pos}-"?>'>
     <h2><?=Doc_Val::let($Nav[1][$nv1]->nom)?></h2>
 
     <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
-    <section id='<?="_{$Nav[2][$nv1][$nv2]->key}-"?>'>      
+    <section id='<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>'>      
       <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>
 
       <ul class='lis'>
@@ -432,7 +432,7 @@
     </section>
 
     <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
-    <section id='<?="_{$Nav[2][$nv1][$nv2]->key}-"?>'>      
+    <section id='<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>'>      
       <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>
 
       <ul class='lis'>
@@ -454,7 +454,7 @@
     </section>
 
     <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
-    <section id='<?="_{$Nav[2][$nv1][$nv2]->key}-"?>'>      
+    <section id='<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>'>      
       <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>
 
       <ul class='lis'>
@@ -476,7 +476,7 @@
     </section>
 
     <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
-    <section id='<?="_{$Nav[2][$nv1][$nv2]->key}-"?>'>      
+    <section id='<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>'>      
       <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>
 
       <ul class='lis'>
@@ -498,7 +498,7 @@
     </section>
 
     <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
-    <section id='<?="_{$Nav[2][$nv1][$nv2]->key}-"?>'>      
+    <section id='<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>'>      
       <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>
 
       <ul class='lis'>
@@ -520,7 +520,7 @@
     </section>
 
     <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
-    <section id='<?="_{$Nav[2][$nv1][$nv2]->key}-"?>'>      
+    <section id='<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>'>      
       <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>
 
       <ul class='lis'>
@@ -548,11 +548,11 @@
   </section>
 
   <?php $nv1=Num::val($nv1+1,2);$nv2=0;$nv3=0;$nv4=0;?>
-  <section id='<?="_{$Nav[1][$nv1]->key}-"?>'>
+  <section id='<?="_{$Nav[1][$nv1]->pos}-"?>'>
     <h2><?=Doc_Val::let($Nav[1][$nv1]->nom)?></h2>
 
     <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
-    <section id='<?="_{$Nav[2][$nv1][$nv2]->key}-"?>'>      
+    <section id='<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>'>      
       <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>
 
       <figure>
@@ -578,7 +578,7 @@
     </section>
 
     <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
-    <section id='<?="_{$Nav[2][$nv1][$nv2]->key}-"?>'>      
+    <section id='<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>'>      
       <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>
 
       <p>CEREBRO GALÁCTICO<c>,</c> o espectro evolucionario<c>,</c> mostrando el índice de progresión energía-mente<c>,</c> desde la condición del ser atómica-celular biológica<c>,</c> hasta la condición puramente mental<c>,</c> T(E<c>)</c> <c>=</c> Arte.</p>

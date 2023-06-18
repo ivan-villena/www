@@ -1,10 +1,3 @@
-/*  
-  Pagina
-*/
-body {
-  background: center/cover no-repeat url(../../_img/sincronario/01.jpg);
-}
-
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
@@ -253,50 +246,13 @@ ul.dat_tab.hol-lun {
 /*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 /* 
-  Patrones del Oráculo : kines + sellos
+  Heptágono de Plasmas Radiales
 */
-.dat_tab:is(.kin_par,.sel_par) {
-  border-radius: 50%;
-  border: 1px solid var(--col_ver);
-}
-.dat_tab:is(.kin_par,.sel_par) > .pos {
-  width: 3rem;
-  height: 3rem;
-}
-/* en posiciones del tablero */
-.dat_tab .pos.dep {
-  border-radius: 50%;
-}
-.dat_tab .dat_tab:is(.kin_par,.sel_par) {
-  width: 100%;
-  height: 100%;
-}
-.dat_tab .dat_tab:is(.kin_par,.sel_par) > .pos {
-  width: 100%; 
-  height: 100%;
+.dat_tab.rad_pla > :is(.pos,.sec) {
+  width: 5rem;
+  height: 5rem;
 }
 
-/* fichas */
-.dat_tab:is(.kin_par,.sel_par).ima {
-  min-width: 3rem;
-  height: 3rem;
-}
-.dat_tab:is(.kin_par,.sel_par).ima > .pos {
-  width: 100%;
-  height: 100%;
-}
-
-/* Extensiones */
-.dat_tab .par_ana-ext { border: 1px solid var(--col_roj) !important; }
-.dat_tab .par_gui-ext { border: 1px solid var(--col_bla) !important; }
-.dat_tab .par_ant-ext { border: 1px solid var(--col_azu) !important; }
-.dat_tab .par_ocu-ext { border: 1px solid var(--col_ama) !important; }
-
-/* Parejas */
-.dat_tab .par_ana { border: 1px solid var(--col_roj) !important; }
-.dat_tab .par_gui { border: 1px solid var(--col_bla) !important; }
-.dat_tab .par_ant { border: 1px solid var(--col_azu) !important; }
-.dat_tab .par_ocu { border: 1px solid var(--col_ama) !important; }
 
 /*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 /*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
@@ -390,15 +346,54 @@ ul.dat_tab.hol-lun {
     height: 4rem;
   }
 }
+
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 /* 
-  Heptágono de Plasmas Radiales
+  Patrones del Oráculo : kines + sellos
 */
-.dat_tab.hol.rad.pla > :is(.pos,.sec) {
-  width: 5rem;
-  height: 5rem;
+.dat_tab:is(.kin_par,.sel_par) {
+  border-radius: 50%;
+  border: 1px solid var(--col_ver);
 }
+.dat_tab:is(.kin_par,.sel_par) > .pos {
+  width: 3rem;
+  height: 3rem;
+}
+/* en posiciones del tablero */
+.dat_tab .pos.dep {
+  border-radius: 50%;
+}
+.dat_tab .dat_tab:is(.kin_par,.sel_par) {
+  width: 100%;
+  height: 100%;
+}
+.dat_tab .dat_tab:is(.kin_par,.sel_par) > .pos {
+  width: 100%; 
+  height: 100%;
+}
+
+/* fichas */
+.dat_tab:is(.kin_par,.sel_par).ima {
+  min-width: 3rem;
+  height: 3rem;
+}
+.dat_tab:is(.kin_par,.sel_par).ima > .pos {
+  width: 100%;
+  height: 100%;
+}
+
+/* Extensiones */
+.dat_tab .par-ana-ext { border: 1px solid var(--col_roj) !important; }
+.dat_tab .par-gui-ext { border: 1px solid var(--col_bla) !important; }
+.dat_tab .par-ant-ext { border: 1px solid var(--col_azu) !important; }
+.dat_tab .par-ocu-ext { border: 1px solid var(--col_ama) !important; }
+
+/* Parejas */
+.dat_tab .par-ana { border: 1px solid var(--col_roj) !important; }
+.dat_tab .par-gui { border: 1px solid var(--col_bla) !important; }
+.dat_tab .par-ant { border: 1px solid var(--col_azu) !important; }
+.dat_tab .par-ocu { border: 1px solid var(--col_ama) !important; }
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
@@ -408,18 +403,18 @@ ul.dat_tab.hol-lun {
 /* 
   Posicion P.A.G. : kines + psi-cronos 
 */
-.dat_tab.kin_tzo li.pos:is(.pag_kin, .pag_psi) {
+.dat_tab.kin_tzo .pos:is(.pag-kin, .pag-psi) {
   background-color: rgba(24, 170, 24, 0.92) !important;
 }
-.dat_tab:not(.kin_tzo) li.pos:is(.pag_kin, .pag_psi) {
+.dat_tab:not(.kin_tzo) .pos:is(.pag-kin, .pag-psi) {
   border: 1px solid var(--col_ver) !important;
 }
 
 /* 
   Tzolkin 
 */
-.dat_tab.kin_tzo {
-  grid: repeat(20,1fr) / repeat(13,1fr); 
+.dat_tab.kin_tzo {  
+  grid-template-rows: repeat(20,1fr);
   grid-auto-flow: column;
 }
 .dat_tab.kin_tzo > :is(.pos,.sec) {
@@ -641,41 +636,41 @@ ul.dat_tab.hol-lun {
 /* 
   Banco-Psi
 */
-.dat_tab.psi_kin {
+.dat_tab.psi_ban {
   grid-template-columns: repeat(4,1fr);
 }
-.dat_tab.psi_kin > .pos:is(.ide-5,.ide-6,.ide-7,.ide-8) {
+.dat_tab.psi_ban > .pos:is(.ide-5,.ide-6,.ide-7,.ide-8) {
   transform: rotate(180deg); 
 }
-.dat_tab.psi_kin .dat_tab.kin_tzo > :is(.pos,.sec) {
+.dat_tab.psi_ban .dat_tab.kin_tzo > :is(.pos,.sec) {
   width: 1rem; 
   height: 1rem;
 }
 
 @media ( max-width: 800px ){
 
-  .dat_tab.psi_kin .dat_tab.kin_tzo > :is(.pos,.sec) {
+  .dat_tab.psi_ban .dat_tab.kin_tzo > :is(.pos,.sec) {
     width: .8rem; 
     height: .8rem;
   }
 }
 @media ( max-width: 650px ){
 
-  .dat_tab.psi_kin .dat_tab.kin_tzo > :is(.pos,.sec) {
+  .dat_tab.psi_ban .dat_tab.kin_tzo > :is(.pos,.sec) {
     width: .7rem; 
     height: .7rem;
   }
 }
 @media ( max-width: 550px ){
 
-  .dat_tab.psi_kin .dat_tab.kin_tzo > :is(.pos,.sec) {
+  .dat_tab.psi_ban .dat_tab.kin_tzo > :is(.pos,.sec) {
     width: .6rem; 
     height: .6rem;
   }
 }
 @media ( max-width: 400px ){
 
-  .dat_tab.psi_kin .dat_tab.kin_tzo > :is(.pos,.sec) {
+  .dat_tab.psi_ban .dat_tab.kin_tzo > :is(.pos,.sec) {
     width: .5rem; 
     height: .5rem;
   }
@@ -698,14 +693,14 @@ ul.dat_tab.hol-lun {
   max-width: 4rem; 
   max-height: 4rem;
 }
-.dat_tab.psi_ani .psi_ani_lun :is(.pos:not(.dep), .sec) {
+.dat_tab.psi_ani .psi_lun :is(.pos:not(.dep), .sec) {
   width: 1.2rem;
   height: 1.2rem;
 }
 /* 
   Luna de 4 Hétadas en 28 días  
 */
-.dat_tab.psi_ani_lun :is(.pos:not(.dep), .sec) {
+.dat_tab.psi_lun :is(.pos:not(.dep), .sec) {
   width: 2rem;
   height: 2rem;
 }
@@ -713,7 +708,7 @@ ul.dat_tab.hol-lun {
 /* 
   Totems Lunares 
 */
-.dat_tab.psi_ani_lun_tot > .pos {
+.dat_tab.psi_lun_tot > .pos {
   width: 7rem;
   height: 7rem;
 }
@@ -721,42 +716,42 @@ ul.dat_tab.hol-lun {
 
 @media ( max-width: 700px ){
   
-  .dat_tab.psi_ani .psi_ani_lun :is(.pos:not(.dep), .sec) {
+  .dat_tab.psi_ani .psi_lun :is(.pos:not(.dep), .sec) {
     width: .8rem; 
     height: .8rem;
   }
 }
 @media ( max-width: 550px ){
 
-  .dat_tab.psi_ani .psi_ani_lun :is(.pos:not(.dep), .sec) {
+  .dat_tab.psi_ani .psi_lun :is(.pos:not(.dep), .sec) {
     width: .7rem; 
     height: .7rem;
   }
-  .dat_tab.psi_ani_lun :is(.pos:not(.dep), .sec) {
+  .dat_tab.psi_lun :is(.pos:not(.dep), .sec) {
     width: 3.8rem; 
     height: 3.8rem;
   }
-  .dat_tab.psi_ani_lun_tot > .pos {
+  .dat_tab.psi_lun_tot > .pos {
     width: 6rem;
     height: 6rem;
   }
 }
 @media ( max-width: 400px ){
 
-  .dat_tab.psi_ani .psi_ani_lun :is(.pos:not(.dep), .sec) {
+  .dat_tab.psi_ani .psi_lun :is(.pos:not(.dep), .sec) {
     width: .5rem; 
     height: .5rem;
     font-size: .7rem;
   }
-  .dat_tab.psi_ani_lun :is(.pos:not(.dep), .sec) {
+  .dat_tab.psi_lun :is(.pos:not(.dep), .sec) {
     width: 2.6rem; 
     height: 2.6rem;
   }  
-  .dat_tab.psi_ani_lun_tot > .pos {
+  .dat_tab.psi_lun_tot > .pos {
     width: 4rem;
     height: 4rem;
   }
-  .dat_tab.psi_ani_lun_tot > .pos > .tog {
+  .dat_tab.psi_lun_tot > .pos > .tog {
     display: none;
   }
 }
@@ -764,72 +759,72 @@ ul.dat_tab.hol-lun {
 /* 
   52 Héptadas: Castillo de Estaciones Solares
 */
-.dat_tab.psi_hep .psi_hep_pla > .pos {
+.dat_tab.psi_est .psi_hep > .pos {
   width: .9rem; 
   height: .9rem;
 }
 /* Estacion de 13 heptadas en 91 días */
-.dat_tab.psi_hep_est .psi_hep_pla > .pos {
+.dat_tab.psi_est .psi_hep > .pos {
   width: 1.9rem;
   height: 1.9rem;
 }
 /* Heptágono de 7 plasmas radiales */
-.dat_tab.psi_hep_pla > .pos {
+.dat_tab.psi_hep > .pos {
   width: 4rem;
   height: 4rem;
 }
-.dat_tab.psi_hep_pla > .pos.dep {
+.dat_tab.psi_hep > .pos.dep {
   width: 6rem;
   height: 6rem;
 }
 @media ( max-width: 650px ){
 
-  .dat_tab.psi_hep .psi_hep_pla > .pos {
+  .dat_tab.psi_est .psi_hep > .pos {
     width: .8rem;
     height: .8rem;
   }
-  .dat_tab.psi_hep_est .psi_hep_pla > .pos {
+  .dat_tab.psi_est .psi_hep > .pos {
     width: 1.6rem;
     height: 1.6rem;
   }
 }
 @media ( max-width: 550px ){
 
-  .dat_tab.psi_hep .psi_hep_pla > .pos {
+  .dat_tab.psi_est .psi_hep > .pos {
     width: .7rem; 
     height: .7rem;
   }
-  .dat_tab.psi_hep_est .psi_hep_pla > .pos {
+  .dat_tab.psi_est .psi_hep > .pos {
     width: 1.5rem;
     height: 1.5rem;
   }
-  .dat_tab.psi_hep_pla > .pos {
+  .dat_tab.psi_hep > .pos {
     width: 3rem;
     height: 3rem;
   }
 }
 @media ( max-width: 450px ){
 
-  .dat_tab.psi_hep .psi_hep_pla > .pos {
+  .dat_tab.psi_est .psi_hep > .pos {
     width: .6rem; 
     height: .6rem;
   }
-  .dat_tab.psi_hep_est .psi_hep_pla > .pos {
+  .dat_tab.psi_est .psi_hep > .pos {
     width: 1rem;
     height: 1rem;
   }
-  .dat_tab.psi_hep_pla > .pos {
+  .dat_tab.psi_hep > .pos {
     width: 2rem;
     height: 2rem;
   }
 }
 @media ( max-width: 350px ){
 
-  .dat_tab.psi_hep .psi_hep_pla > .pos {
+  .dat_tab.psi_est .psi_hep > .pos {
     width: .5rem; 
     height: .5rem;
   }
-  .dat_tab.psi_hep_pla > .pos.dep {
+  .dat_tab.psi_hep > .pos.dep {
     width: 4rem;
     height: 4rem;
   }
@@ -840,296 +835,296 @@ ul.dat_tab.hol-lun {
 /* 
   Holon Solar vertical 
 */
-.dat_tab.uni.sol { 
+.dat_tab.sol { 
   grid-template-columns: 1fr 1fr 2fr 1fr 1fr; 
   grid-template-rows: repeat(12, 1fr);
   grid-auto-flow: column;
 }
 
-.dat_tab.uni.sol > :is(.pos,.sec:not(.bor)) {
+.dat_tab.sol > :is(.pos,.sec:not(.bor)) {
   width: 3rem;
   height: 3rem;
 }
 
-.dat_tab.uni.sol > .sec.ima.gal { grid-column:3/4; grid-row:1/2; }
-.dat_tab.uni.sol > .sec.ima.sol { grid-column:3/4; grid-row:12/13; }
+.dat_tab.sol > .sec.ima.gal { grid-column:3/4; grid-row:1/2; }
+.dat_tab.sol > .sec.ima.sol { grid-column:3/4; grid-row:12/13; }
 
-.dat_tab.uni.sol > .sec.res-1 { grid-column:1; } 
-.dat_tab.uni.sol > .sec.res-2 { grid-column:5; }
+.dat_tab.sol > .sec.res-1 { grid-column:1; } 
+.dat_tab.sol > .sec.res-2 { grid-column:5; }
 
-.dat_tab.uni.sol > .sec[class*="flu-"] {
+.dat_tab.sol > .sec[class*="flu-"] {
   width: 75%;
   height: 75%;
 }
-.dat_tab.uni.sol > .sec.flu-1 { grid-column:1/3; grid-row: 1/ 2; } 
-.dat_tab.uni.sol > .sec.flu-2 { grid-column:1/3; grid-row:12/13; }
-.dat_tab.uni.sol > .sec.flu-3 { grid-column:4/6; grid-row:12/13; } 
-.dat_tab.uni.sol > .sec.flu-4 { grid-column:4/6; grid-row: 1/ 2; }
+.dat_tab.sol > .sec.flu-1 { grid-column:1/3; grid-row: 1/ 2; } 
+.dat_tab.sol > .sec.flu-2 { grid-column:1/3; grid-row:12/13; }
+.dat_tab.sol > .sec.flu-3 { grid-column:4/6; grid-row:12/13; } 
+.dat_tab.sol > .sec.flu-4 { grid-column:4/6; grid-row: 1/ 2; }
 
 /* Grupos Orbitales */
-.dat_tab.uni.sol > .sec.bor[class*="orb-"] {
+.dat_tab.sol > .sec.bor[class*="orb-"] {
   z-index: 1;
   width: 50%; 
 }
-.dat_tab.uni.sol > .sec.orb-1 { grid-column:3/4; grid-row:02/07; border-color: var(--col_ver); } 
-.dat_tab.uni.sol > .sec.orb-2 { grid-column:3/4; grid-row:07/12; border-color: var(--col_vio); } 
+.dat_tab.sol > .sec.orb-1 { grid-column:3/4; grid-row:02/07; border-color: var(--col_ver); } 
+.dat_tab.sol > .sec.orb-2 { grid-column:3/4; grid-row:07/12; border-color: var(--col_vio); } 
 
 /* Clanes Galácticos */
-.dat_tab.uni.sol > .sec.bor[class*="ele-"] {
+.dat_tab.sol > .sec.bor[class*="ele-"] {
   z-index: 2;
   width: 80%; 
   height: 95%;
 }
-.dat_tab.uni.sol > .sec.bor.ele-1 { grid-column:2/3; grid-row:02/07; border-color: var(--col_ama); }
-.dat_tab.uni.sol > .sec.bor.ele-2 { grid-column:2/3; grid-row:07/12; border-color: var(--col_roj); } 
-.dat_tab.uni.sol > .sec.bor.ele-3 { grid-column:4/5; grid-row:07/12; border-color: var(--col_bla); } 
-.dat_tab.uni.sol > .sec.bor.ele-4 { grid-column:4/5; grid-row:02/07; border-color: var(--col_azu); }
+.dat_tab.sol > .sec.bor.ele-1 { grid-column:2/3; grid-row:02/07; border-color: var(--col_ama); }
+.dat_tab.sol > .sec.bor.ele-2 { grid-column:2/3; grid-row:07/12; border-color: var(--col_roj); } 
+.dat_tab.sol > .sec.bor.ele-3 { grid-column:4/5; grid-row:07/12; border-color: var(--col_bla); } 
+.dat_tab.sol > .sec.bor.ele-4 { grid-column:4/5; grid-row:02/07; border-color: var(--col_azu); }
 
 /* Circuitos de telepatía */
-.dat_tab.uni.sol > .sec.bor[class*="cir-"] {
+.dat_tab.sol > .sec.bor[class*="cir-"] {
   z-index: 3;
 }
-.dat_tab.uni.sol > .sec.bor.cir-1 { grid-column:2/5; grid-row:02/12; width:105%; height: 90%; border-color: var(--col_roj); } 
-.dat_tab.uni.sol > .sec.bor.cir-2 { grid-column:2/5; grid-row:03/11; width: 90%; height: 87%; border-color: var(--col_bla); } 
-.dat_tab.uni.sol > .sec.bor.cir-3 { grid-column:2/5; grid-row:04/10; width: 75%; height: 83%; border-color: var(--col_azu); } 
-.dat_tab.uni.sol > .sec.bor.cir-4 { grid-column:2/5; grid-row:05/09; width: 60%; height: 76%; border-color: var(--col_ama); } 
-.dat_tab.uni.sol > .sec.bor.cir-5 { grid-column:2/5; grid-row:06/08; width: 45%; height: 51%; border-color: var(--col_ver); }
+.dat_tab.sol > .sec.bor.cir-1 { grid-column:2/5; grid-row:02/12; width:105%; height: 90%; border-color: var(--col_roj); } 
+.dat_tab.sol > .sec.bor.cir-2 { grid-column:2/5; grid-row:03/11; width: 90%; height: 87%; border-color: var(--col_bla); } 
+.dat_tab.sol > .sec.bor.cir-3 { grid-column:2/5; grid-row:04/10; width: 75%; height: 83%; border-color: var(--col_azu); } 
+.dat_tab.sol > .sec.bor.cir-4 { grid-column:2/5; grid-row:05/09; width: 60%; height: 76%; border-color: var(--col_ama); } 
+.dat_tab.sol > .sec.bor.cir-5 { grid-column:2/5; grid-row:06/08; width: 45%; height: 51%; border-color: var(--col_ver); }
 
 /* Células Solares */
-.dat_tab.uni.sol > .sec.bor[class*="cel-"] {
+.dat_tab.sol > .sec.bor[class*="cel-"] {
   z-index: 4;
   width: 75%; 
   height: 50%;
 }
-.dat_tab.uni.sol > .sec.bor.cel-1 { grid-column:2/5; grid-row:02/04; border-color: var(--col_roj); } 
-.dat_tab.uni.sol > .sec.bor.cel-2 { grid-column:2/5; grid-row:04/06; border-color: var(--col_bla); }  
-.dat_tab.uni.sol > .sec.bor.cel-3 { grid-column:2/5; grid-row:06/08; border-color: var(--col_azu); }  
-.dat_tab.uni.sol > .sec.bor.cel-4 { grid-column:2/5; grid-row:08/10; border-color: var(--col_ama); }  
-.dat_tab.uni.sol > .sec.bor.cel-5 { grid-column:2/5; grid-row:10/12; border-color: var(--col_ver); }
+.dat_tab.sol > .sec.bor.cel-1 { grid-column:2/5; grid-row:02/04; border-color: var(--col_roj); } 
+.dat_tab.sol > .sec.bor.cel-2 { grid-column:2/5; grid-row:04/06; border-color: var(--col_bla); }  
+.dat_tab.sol > .sec.bor.cel-3 { grid-column:2/5; grid-row:06/08; border-color: var(--col_azu); }  
+.dat_tab.sol > .sec.bor.cel-4 { grid-column:2/5; grid-row:08/10; border-color: var(--col_ama); }  
+.dat_tab.sol > .sec.bor.cel-5 { grid-column:2/5; grid-row:10/12; border-color: var(--col_ver); }
 
 /* Orbitales Planetarios */
-.dat_tab.uni.sol > .sec.bor[class*="pla-"] { 
+.dat_tab.sol > .sec.bor[class*="pla-"] { 
   z-index: 5;
   transform: rotate(180deg);
   border-color: var(--col_tra);
   width: 150%;
   height: 0;
 }
-.dat_tab.uni.sol > .sec.ima[class*="pla-"] { 
+.dat_tab.sol > .sec.ima[class*="pla-"] { 
   width: 60%; 
   height: 60%;
   z-index: 10;
 }
-.dat_tab.uni.sol > .sec.pla-10 { grid-column:3; grid-row:2; } .dat_tab.uni.sol > .sec.pla-09 { grid-column:3; grid-row:3; } .dat_tab.uni.sol > .sec.pla-08 { grid-column:3; grid-row:4; } .dat_tab.uni.sol > .sec.pla-07 { grid-column:3; grid-row:5; } .dat_tab.uni.sol > .sec.pla-06 { grid-column:3; grid-row:6; } 
-.dat_tab.uni.sol > .sec.pla-05 { grid-column:3; grid-row:7; } .dat_tab.uni.sol > .sec.pla-04 { grid-column:3; grid-row:8; } .dat_tab.uni.sol > .sec.pla-03 { grid-column:3; grid-row:9; } .dat_tab.uni.sol > .sec.pla-02 { grid-column:3; grid-row:10; } .dat_tab.uni.sol > .sec.pla-01 { grid-column:3; grid-row:11; }
+.dat_tab.sol > .sec.pla-10 { grid-column:3; grid-row:2; } .dat_tab.sol > .sec.pla-09 { grid-column:3; grid-row:3; } .dat_tab.sol > .sec.pla-08 { grid-column:3; grid-row:4; } .dat_tab.sol > .sec.pla-07 { grid-column:3; grid-row:5; } .dat_tab.sol > .sec.pla-06 { grid-column:3; grid-row:6; } 
+.dat_tab.sol > .sec.pla-05 { grid-column:3; grid-row:7; } .dat_tab.sol > .sec.pla-04 { grid-column:3; grid-row:8; } .dat_tab.sol > .sec.pla-03 { grid-column:3; grid-row:9; } .dat_tab.sol > .sec.pla-02 { grid-column:3; grid-row:10; } .dat_tab.sol > .sec.pla-01 { grid-column:3; grid-row:11; }
 
 /* Sellos */
-.dat_tab.uni.sol > .pos.sel { 
+.dat_tab.sol > .pos.sel { 
   width: 80%; height: 80%;  
 }
-.dat_tab.uni.sol > .sel.pos.ide-20 { grid-column:2; grid-row:02; } .dat_tab.uni.sol > .sel.pos.ide-01 { grid-column:2; grid-row:03; } .dat_tab.uni.sol > .sel.pos.ide-02 { grid-column:2; grid-row:04; } .dat_tab.uni.sol > .sel.pos.ide-03 { grid-column:2; grid-row:05; } .dat_tab.uni.sol > .sel.pos.ide-04 { grid-column:2; grid-row:06; } 
-.dat_tab.uni.sol > .sel.pos.ide-05 { grid-column:2; grid-row:07; } .dat_tab.uni.sol > .sel.pos.ide-06 { grid-column:2; grid-row:08; } .dat_tab.uni.sol > .sel.pos.ide-07 { grid-column:2; grid-row:09; } .dat_tab.uni.sol > .sel.pos.ide-08 { grid-column:2; grid-row:10; } .dat_tab.uni.sol > .sel.pos.ide-09 { grid-column:2; grid-row:11; }
-.dat_tab.uni.sol > .sel.pos.ide-10 { grid-column:4; grid-row:11; } .dat_tab.uni.sol > .sel.pos.ide-11 { grid-column:4; grid-row:10; } .dat_tab.uni.sol > .sel.pos.ide-12 { grid-column:4; grid-row:09; } .dat_tab.uni.sol > .sel.pos.ide-13 { grid-column:4; grid-row:08; } .dat_tab.uni.sol > .sel.pos.ide-14 { grid-column:4; grid-row:07; } 
-.dat_tab.uni.sol > .sel.pos.ide-15 { grid-column:4; grid-row:06; } .dat_tab.uni.sol > .sel.pos.ide-16 { grid-column:4; grid-row:05; } .dat_tab.uni.sol > .sel.pos.ide-17 { grid-column:4; grid-row:04; } .dat_tab.uni.sol > .sel.pos.ide-18 { grid-column:4; grid-row:03; } .dat_tab.uni.sol > .sel.pos.ide-19 { grid-column:4; grid-row:02; }
+.dat_tab.sol > .sel.pos.ide-20 { grid-column:2; grid-row:02; } .dat_tab.sol > .sel.pos.ide-01 { grid-column:2; grid-row:03; } .dat_tab.sol > .sel.pos.ide-02 { grid-column:2; grid-row:04; } .dat_tab.sol > .sel.pos.ide-03 { grid-column:2; grid-row:05; } .dat_tab.sol > .sel.pos.ide-04 { grid-column:2; grid-row:06; } 
+.dat_tab.sol > .sel.pos.ide-05 { grid-column:2; grid-row:07; } .dat_tab.sol > .sel.pos.ide-06 { grid-column:2; grid-row:08; } .dat_tab.sol > .sel.pos.ide-07 { grid-column:2; grid-row:09; } .dat_tab.sol > .sel.pos.ide-08 { grid-column:2; grid-row:10; } .dat_tab.sol > .sel.pos.ide-09 { grid-column:2; grid-row:11; }
+.dat_tab.sol > .sel.pos.ide-10 { grid-column:4; grid-row:11; } .dat_tab.sol > .sel.pos.ide-11 { grid-column:4; grid-row:10; } .dat_tab.sol > .sel.pos.ide-12 { grid-column:4; grid-row:09; } .dat_tab.sol > .sel.pos.ide-13 { grid-column:4; grid-row:08; } .dat_tab.sol > .sel.pos.ide-14 { grid-column:4; grid-row:07; } 
+.dat_tab.sol > .sel.pos.ide-15 { grid-column:4; grid-row:06; } .dat_tab.sol > .sel.pos.ide-16 { grid-column:4; grid-row:05; } .dat_tab.sol > .sel.pos.ide-17 { grid-column:4; grid-row:04; } .dat_tab.sol > .sel.pos.ide-18 { grid-column:4; grid-row:03; } .dat_tab.sol > .sel.pos.ide-19 { grid-column:4; grid-row:02; }
 
 /* ///////////////////////////////////////
   Solar circular /////////////////////////
 */
-.dat_tab.uni.sol-enc { 
+.dat_tab.sol-enc { 
   grid: repeat(9,1fr) / repeat(9,1fr);
 }
 
-.dat_tab.uni.sol-enc > .sec.fon.map { background: center/contain no-repeat url('../../_img/hol/tab/sol/map.png'); }
-.dat_tab.uni.sol-enc > .sec.fon.ato { background: center/contain no-repeat url('../../_img/hol/tab/sol/ato.png'); }
-.dat_tab.uni.sol-enc > .sec.fon.res { background: center/contain no-repeat url('../../_img/hol/tab/sol/res.png'); }
-.dat_tab.uni.sol-enc > .sec.fon.cel { background: center/contain no-repeat url('../../_img/hol/tab/sol/cel.png'); }
-.dat_tab.uni.sol-enc > .sec.fon.cir { background: center/contain no-repeat url('../../_img/hol/tab/sol/cir.png'); }
+.dat_tab.sol-enc > .sec.fon.map { background: center/contain no-repeat url('../../_img/hol/tab/sol/map.png'); }
+.dat_tab.sol-enc > .sec.fon.ato { background: center/contain no-repeat url('../../_img/hol/tab/sol/ato.png'); }
+.dat_tab.sol-enc > .sec.fon.res { background: center/contain no-repeat url('../../_img/hol/tab/sol/res.png'); }
+.dat_tab.sol-enc > .sec.fon.cel { background: center/contain no-repeat url('../../_img/hol/tab/sol/cel.png'); }
+.dat_tab.sol-enc > .sec.fon.cir { background: center/contain no-repeat url('../../_img/hol/tab/sol/cir.png'); }
 
-.dat_tab.uni.sol-enc > .sec[class*="pla"] { 
+.dat_tab.sol-enc > .sec[class*="pla"] { 
   position: relative; width: 110%; height: 100%;
 }
-.dat_tab.uni.sol-enc > .sec.pla-10 { grid-column:3/5; grid-row:2; transform: rotate( 053deg); top: 25%; left: 15%; } .dat_tab.uni.sol-enc > .sec.pla-09 { grid-column:2/4; grid-row:3; transform: rotate( 053deg); left: 17%; } .dat_tab.uni.sol-enc > .sec.pla-08 { grid-column:2/4; grid-row:5; transform: rotate( 340deg); top: 25%; right: 20%; } .dat_tab.uni.sol-enc > .sec.pla-07 { grid-column:2/4; grid-row:6; transform: rotate( 340deg); top: 45%; } .dat_tab.uni.sol-enc > .sec.pla-06 { grid-column:4/6; grid-row:8; transform: rotate( 270deg); bottom: 20%; right: 5%; } 
-.dat_tab.uni.sol-enc > .sec.pla-05 { grid-column:5/7; grid-row:8; transform: rotate( 270deg); bottom: 20%; left: 7%; } .dat_tab.uni.sol-enc > .sec.pla-04 { grid-column:7/9; grid-row:6; transform: rotate( 018deg); top: 35%; left: 3%; } .dat_tab.uni.sol-enc > .sec.pla-03 { grid-column:7/9; grid-row:5; transform: rotate( 018deg); top: 15%; left: 20%; } .dat_tab.uni.sol-enc > .sec.pla-02 { grid-column:6/8; grid-row:3; transform: rotate( 305deg); bottom: 5%; left: 32%; } .dat_tab.uni.sol-enc > .sec.pla-01 { grid-column:6/8; grid-row:2; transform: rotate( 305deg); top: 30%; right: 18%; }
+.dat_tab.sol-enc > .sec.pla-10 { grid-column:3/5; grid-row:2; transform: rotate( 053deg); top: 25%; left: 15%; } .dat_tab.sol-enc > .sec.pla-09 { grid-column:2/4; grid-row:3; transform: rotate( 053deg); left: 17%; } .dat_tab.sol-enc > .sec.pla-08 { grid-column:2/4; grid-row:5; transform: rotate( 340deg); top: 25%; right: 20%; } .dat_tab.sol-enc > .sec.pla-07 { grid-column:2/4; grid-row:6; transform: rotate( 340deg); top: 45%; } .dat_tab.sol-enc > .sec.pla-06 { grid-column:4/6; grid-row:8; transform: rotate( 270deg); bottom: 20%; right: 5%; } 
+.dat_tab.sol-enc > .sec.pla-05 { grid-column:5/7; grid-row:8; transform: rotate( 270deg); bottom: 20%; left: 7%; } .dat_tab.sol-enc > .sec.pla-04 { grid-column:7/9; grid-row:6; transform: rotate( 018deg); top: 35%; left: 3%; } .dat_tab.sol-enc > .sec.pla-03 { grid-column:7/9; grid-row:5; transform: rotate( 018deg); top: 15%; left: 20%; } .dat_tab.sol-enc > .sec.pla-02 { grid-column:6/8; grid-row:3; transform: rotate( 305deg); bottom: 5%; left: 32%; } .dat_tab.sol-enc > .sec.pla-01 { grid-column:6/8; grid-row:2; transform: rotate( 305deg); top: 30%; right: 18%; }
 
-.dat_tab.uni.sol-enc > .pos { 
+.dat_tab.sol-enc > .pos { 
   position: relative; width: 110%; height: 110%; border-radius: 5%;
 }
-.dat_tab.uni.sol-enc > .sel.pos.ide-20 { grid-column:3; grid-row:2; transform: rotate( 053deg); bottom: 22%; left: 45%; } .dat_tab.uni.sol-enc > .sel.pos.ide-01 { grid-column:2; grid-row:3; transform: rotate( 054deg); bottom: 49%; left: 47%; } .dat_tab.uni.sol-enc > .sel.pos.ide-02 { grid-column:1; grid-row:6; transform: rotate( 340deg); bottom: 54%; left: 55%; } .dat_tab.uni.sol-enc > .sel.pos.ide-03 { grid-column:2; grid-row:7; transform: rotate( 340deg); bottom: 39%; right: 5%; } .dat_tab.uni.sol-enc > .sel.pos.ide-04 { grid-column:4; grid-row:8; transform: rotate( 270deg); top: 35%; left: 41%; } 
-.dat_tab.uni.sol-enc > .sel.pos.ide-05 { grid-column:6; grid-row:8; transform: rotate( 270deg); top: 35%; right: 37%; } .dat_tab.uni.sol-enc > .sel.pos.ide-06 { grid-column:8; grid-row:6; transform: rotate( 196deg); top: 50%; left: 13%; } .dat_tab.uni.sol-enc > .sel.pos.ide-07 { grid-column:8; grid-row:5; transform: rotate( 196deg); top: 32%; left: 47%; } .dat_tab.uni.sol-enc > .sel.pos.ide-08 { grid-column:7; grid-row:2; transform: rotate( 125deg); top: 44%; left: 48%; } .dat_tab.uni.sol-enc > .sel.pos.ide-09 { grid-column:6; grid-row:2; transform: rotate( 125deg); bottom: 26%; left: 50%; } 
-.dat_tab.uni.sol-enc > .sel.pos.ide-10 { grid-column:6; grid-row:3; transform: rotate( 306deg); bottom: 28%; right: 20%; } .dat_tab.uni.sol-enc > .sel.pos.ide-11 { grid-column:7; grid-row:3; transform: rotate( 306deg); top: 40%; right: 20%; } .dat_tab.uni.sol-enc > .sel.pos.ide-12 { grid-column:7; grid-row:5; transform: rotate( 017deg); bottom: 2%; left: 32%; } .dat_tab.uni.sol-enc > .sel.pos.ide-13 { grid-column:7; grid-row:6; transform: rotate( 017deg); top: 14%; right: 3%; } .dat_tab.uni.sol-enc > .sel.pos.ide-14 { grid-column:6; grid-row:7; transform: rotate( 090deg); top: 15%; right: 35%; } 
-.dat_tab.uni.sol-enc > .sel.pos.ide-15 { grid-column:4; grid-row:7; transform: rotate( 090deg); top: 15%; left: 40%; } .dat_tab.uni.sol-enc > .sel.pos.ide-16 { grid-column:3; grid-row:6; transform: rotate( 160deg); top: 20%; left: 10%; } .dat_tab.uni.sol-enc > .sel.pos.ide-17 { grid-column:3; grid-row:5; transform: rotate( 160deg); top: 5%; right: 30%; } .dat_tab.uni.sol-enc > .sel.pos.ide-18 { grid-column:3; grid-row:4; transform: rotate( 234deg); bottom: 52%; left: 18%; } .dat_tab.uni.sol-enc > .sel.pos.ide-19 { grid-column:4; grid-row:3; transform: rotate( 234deg); bottom: 25%; left: 15%; }
+.dat_tab.sol-enc > .sel.pos.ide-20 { grid-column:3; grid-row:2; transform: rotate( 053deg); bottom: 22%; left: 45%; } .dat_tab.sol-enc > .sel.pos.ide-01 { grid-column:2; grid-row:3; transform: rotate( 054deg); bottom: 49%; left: 47%; } .dat_tab.sol-enc > .sel.pos.ide-02 { grid-column:1; grid-row:6; transform: rotate( 340deg); bottom: 54%; left: 55%; } .dat_tab.sol-enc > .sel.pos.ide-03 { grid-column:2; grid-row:7; transform: rotate( 340deg); bottom: 39%; right: 5%; } .dat_tab.sol-enc > .sel.pos.ide-04 { grid-column:4; grid-row:8; transform: rotate( 270deg); top: 35%; left: 41%; } 
+.dat_tab.sol-enc > .sel.pos.ide-05 { grid-column:6; grid-row:8; transform: rotate( 270deg); top: 35%; right: 37%; } .dat_tab.sol-enc > .sel.pos.ide-06 { grid-column:8; grid-row:6; transform: rotate( 196deg); top: 50%; left: 13%; } .dat_tab.sol-enc > .sel.pos.ide-07 { grid-column:8; grid-row:5; transform: rotate( 196deg); top: 32%; left: 47%; } .dat_tab.sol-enc > .sel.pos.ide-08 { grid-column:7; grid-row:2; transform: rotate( 125deg); top: 44%; left: 48%; } .dat_tab.sol-enc > .sel.pos.ide-09 { grid-column:6; grid-row:2; transform: rotate( 125deg); bottom: 26%; left: 50%; } 
+.dat_tab.sol-enc > .sel.pos.ide-10 { grid-column:6; grid-row:3; transform: rotate( 306deg); bottom: 28%; right: 20%; } .dat_tab.sol-enc > .sel.pos.ide-11 { grid-column:7; grid-row:3; transform: rotate( 306deg); top: 40%; right: 20%; } .dat_tab.sol-enc > .sel.pos.ide-12 { grid-column:7; grid-row:5; transform: rotate( 017deg); bottom: 2%; left: 32%; } .dat_tab.sol-enc > .sel.pos.ide-13 { grid-column:7; grid-row:6; transform: rotate( 017deg); top: 14%; right: 3%; } .dat_tab.sol-enc > .sel.pos.ide-14 { grid-column:6; grid-row:7; transform: rotate( 090deg); top: 15%; right: 35%; } 
+.dat_tab.sol-enc > .sel.pos.ide-15 { grid-column:4; grid-row:7; transform: rotate( 090deg); top: 15%; left: 40%; } .dat_tab.sol-enc > .sel.pos.ide-16 { grid-column:3; grid-row:6; transform: rotate( 160deg); top: 20%; left: 10%; } .dat_tab.sol-enc > .sel.pos.ide-17 { grid-column:3; grid-row:5; transform: rotate( 160deg); top: 5%; right: 30%; } .dat_tab.sol-enc > .sel.pos.ide-18 { grid-column:3; grid-row:4; transform: rotate( 234deg); bottom: 52%; left: 18%; } .dat_tab.sol-enc > .sel.pos.ide-19 { grid-column:4; grid-row:3; transform: rotate( 234deg); bottom: 25%; left: 15%; }
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 /* 
   Planetario
 */
-.dat_tab.uni.pla { 
+.dat_tab.pla { 
   grid: repeat(5,1fr) / repeat(9,1fr);
 }
-.dat_tab.uni.pla > :is(.pos,.sec.ima) {
+.dat_tab.pla > :is(.pos,.sec.ima) {
   width: 4rem;
   height: 4rem;
 }
 @media ( max-width: 600px ) {
-  .dat_tab.uni.pla > :is(.pos,.sec.ima) {
+  .dat_tab.pla > :is(.pos,.sec.ima) {
     width: 3rem;
     height: 3rem;
   }
 }
 @media ( max-width: 400px ) {
-  .dat_tab.uni.pla > :is(.pos,.sec.ima) {
+  .dat_tab.pla > :is(.pos,.sec.ima) {
     width: 2.5rem;
     height: 2.5rem;
   }
 }
 
 /* Fondos */
-.dat_tab.uni.pla > .sec.fon { 
+.dat_tab.pla > .sec.fon { 
   grid-column:2/sp;
 }
-.dat_tab.uni.pla > .sec.fon.map { background: center/cover no-repeat url('../../_img/hol/tab/pla/map.png'); }
-.dat_tab.uni.pla > .sec.fon.sel { background: center/cover no-repeat url('../../_img/hol/tab/pla/sel.png'); }
-.dat_tab.uni.pla > .sec.fon.res { background: center/contain no-repeat url('../../_img/hol/tab/pla/res.png'); }
-.dat_tab.uni.pla > .sec.fon.flu { background: center/contain no-repeat url('../../_img/hol/tab/pla/flu.png'); }
+.dat_tab.pla > .sec.fon.map { background: center/cover no-repeat url('../../_img/hol/tab/pla/map.png'); }
+.dat_tab.pla > .sec.fon.sel { background: center/cover no-repeat url('../../_img/hol/tab/pla/sel.png'); }
+.dat_tab.pla > .sec.fon.res { background: center/contain no-repeat url('../../_img/hol/tab/pla/res.png'); }
+.dat_tab.pla > .sec.fon.flu { background: center/contain no-repeat url('../../_img/hol/tab/pla/flu.png'); }
 
 /* Bordes */
-.dat_tab.uni.pla > .sec.bor {
+.dat_tab.pla > .sec.bor {
   border-radius: 30%;
 }
 /* - Hemisferios */
-.dat_tab.uni.pla > .sec.bor.hem-1 { grid-column:2/sp; grid-row:1/3; }
-.dat_tab.uni.pla > .sec.bor.hem-2 { grid-column:2/sp; grid-row:4/6; }
-.dat_tab.uni.pla > .sec.bor.hem-3 { grid-column:2/sp; grid-row:3/4; }
+.dat_tab.pla > .sec.bor.hem-1 { grid-column:2/sp; grid-row:1/3; }
+.dat_tab.pla > .sec.bor.hem-2 { grid-column:2/sp; grid-row:4/6; }
+.dat_tab.pla > .sec.bor.hem-3 { grid-column:2/sp; grid-row:3/4; }
 
 /* - Meridianos */
-.dat_tab.uni.pla > .sec.bor[class*="mer-"] {
+.dat_tab.pla > .sec.bor[class*="mer-"] {
   background-color: var(--fon_sel);
 }
-.dat_tab.uni.pla > .sec.bor.mer-1-0 { grid-column:2/3; grid-row:1/sp; }
-.dat_tab.uni.pla > .sec.bor.mer-1 { grid-column:6/sp; grid-row:1/sp; }
-.dat_tab.uni.pla > .sec.bor.mer-2 { grid-column:3/7; grid-row:1/sp; }
+.dat_tab.pla > .sec.bor.mer-1-0 { grid-column:2/3; grid-row:1/sp; }
+.dat_tab.pla > .sec.bor.mer-1 { grid-column:6/sp; grid-row:1/sp; }
+.dat_tab.pla > .sec.bor.mer-2 { grid-column:3/7; grid-row:1/sp; }
 
 /* Imagenes */
 /* - Centros Planetarios */
-.dat_tab.uni.pla > .sec.ima[class*="cen-"] {
+.dat_tab.pla > .sec.ima[class*="cen-"] {
   border-radius: 50%;
 }
-.dat_tab.uni.pla > .sec.ima[class*="cen-"].fon-sel {
+.dat_tab.pla > .sec.ima[class*="cen-"].fon-sel {
   background-color: var(--col_tra) !important;
   box-shadow: 0 0 5px var(--tra_ver);
 }
-.dat_tab.uni.pla > .sec.ima.cen-1 { grid-column:1/2; grid-row:1; }
-.dat_tab.uni.pla > .sec.ima.cen-2 { grid-column:1/2; grid-row:2; }
-.dat_tab.uni.pla > .sec.ima.cen-3 { grid-column:1/2; grid-row:3; }
-.dat_tab.uni.pla > .sec.ima.cen-4 { grid-column:1/2; grid-row:4; }
-.dat_tab.uni.pla > .sec.ima.cen-5 { grid-column:1/2; grid-row:5; }
+.dat_tab.pla > .sec.ima.cen-1 { grid-column:1/2; grid-row:1; }
+.dat_tab.pla > .sec.ima.cen-2 { grid-column:1/2; grid-row:2; }
+.dat_tab.pla > .sec.ima.cen-3 { grid-column:1/2; grid-row:3; }
+.dat_tab.pla > .sec.ima.cen-4 { grid-column:1/2; grid-row:4; }
+.dat_tab.pla > .sec.ima.cen-5 { grid-column:1/2; grid-row:5; }
 
-.dat_tab.uni.pla > .sec.ima[class*="cen-"] > .ima {
+.dat_tab.pla > .sec.ima[class*="cen-"] > .ima {
   height: 80%; 
   width: 80%;
 }
 
 /* Posiciones */
 /* - Sellos Solares */
-.dat_tab.uni.pla > .pos {
+.dat_tab.pla > .pos {
   position: relative;
   border-radius: 50%;
 }
-.dat_tab.uni.pla > .sel.pos > .ima {
+.dat_tab.pla > .sel.pos > .ima {
   width: 60%; 
   height: 60%;
 }
-.dat_tab.uni.pla > .sel.pos.ide-20 { grid-column:6; grid-row:1; top: 25%; } .dat_tab.uni.pla > .sel.pos.ide-05 { grid-column:8; grid-row:1; top: 25%; } .dat_tab.uni.pla > .sel.pos.ide-10 { grid-column:2; grid-row:1; top: 25%; left: 20%; } .dat_tab.uni.pla > .sel.pos.ide-15 { grid-column:4; grid-row:1; top: 25%; }
-.dat_tab.uni.pla > .sel.pos.ide-01 { grid-column:7; grid-row:2; top: 20%; } .dat_tab.uni.pla > .sel.pos.ide-06 { grid-column:9; grid-row:2; top: 20%; } .dat_tab.uni.pla > .sel.pos.ide-11 { grid-column:3; grid-row:2; top: 20%; left: 15%; } .dat_tab.uni.pla > .sel.pos.ide-16 { grid-column:5; grid-row:2; top: 20%; left: 10%; }
-.dat_tab.uni.pla > .sel.pos.ide-02 { grid-column:8; grid-row:3; bottom: 10%; } .dat_tab.uni.pla > .sel.pos.ide-07 { grid-column:2; grid-row:3; bottom: 10%; left: 25%; } .dat_tab.uni.pla > .sel.pos.ide-12 { grid-column:4; grid-row:3; bottom: 10%; left: 15%; } .dat_tab.uni.pla > .sel.pos.ide-17 { grid-column:6; grid-row:3; bottom: 10%; }
-.dat_tab.uni.pla > .sel.pos.ide-03 { grid-column:9; grid-row:4; bottom: 20%; } .dat_tab.uni.pla > .sel.pos.ide-08 { grid-column:3; grid-row:4; bottom: 20%; left: 15%; } .dat_tab.uni.pla > .sel.pos.ide-13 { grid-column:5; grid-row:4; bottom: 20%; left: 15%; } .dat_tab.uni.pla > .sel.pos.ide-18 { grid-column:7; grid-row:4; bottom: 20%; }
-.dat_tab.uni.pla > .sel.pos.ide-04 { grid-column:2; grid-row:5; bottom: 45%; left: 30%; } .dat_tab.uni.pla > .sel.pos.ide-09 { grid-column:4; grid-row:5; bottom: 45%; left: 20%; } .dat_tab.uni.pla > .sel.pos.ide-14 { grid-column:6; grid-row:5; bottom: 45%; left: 8%; } .dat_tab.uni.pla > .sel.pos.ide-19 { grid-column:8; grid-row:5; bottom: 45%; left: 5%; }
+.dat_tab.pla > .sel.pos.ide-20 { grid-column:6; grid-row:1; top: 25%; } .dat_tab.pla > .sel.pos.ide-05 { grid-column:8; grid-row:1; top: 25%; } .dat_tab.pla > .sel.pos.ide-10 { grid-column:2; grid-row:1; top: 25%; left: 20%; } .dat_tab.pla > .sel.pos.ide-15 { grid-column:4; grid-row:1; top: 25%; }
+.dat_tab.pla > .sel.pos.ide-01 { grid-column:7; grid-row:2; top: 20%; } .dat_tab.pla > .sel.pos.ide-06 { grid-column:9; grid-row:2; top: 20%; } .dat_tab.pla > .sel.pos.ide-11 { grid-column:3; grid-row:2; top: 20%; left: 15%; } .dat_tab.pla > .sel.pos.ide-16 { grid-column:5; grid-row:2; top: 20%; left: 10%; }
+.dat_tab.pla > .sel.pos.ide-02 { grid-column:8; grid-row:3; bottom: 10%; } .dat_tab.pla > .sel.pos.ide-07 { grid-column:2; grid-row:3; bottom: 10%; left: 25%; } .dat_tab.pla > .sel.pos.ide-12 { grid-column:4; grid-row:3; bottom: 10%; left: 15%; } .dat_tab.pla > .sel.pos.ide-17 { grid-column:6; grid-row:3; bottom: 10%; }
+.dat_tab.pla > .sel.pos.ide-03 { grid-column:9; grid-row:4; bottom: 20%; } .dat_tab.pla > .sel.pos.ide-08 { grid-column:3; grid-row:4; bottom: 20%; left: 15%; } .dat_tab.pla > .sel.pos.ide-13 { grid-column:5; grid-row:4; bottom: 20%; left: 15%; } .dat_tab.pla > .sel.pos.ide-18 { grid-column:7; grid-row:4; bottom: 20%; }
+.dat_tab.pla > .sel.pos.ide-04 { grid-column:2; grid-row:5; bottom: 45%; left: 30%; } .dat_tab.pla > .sel.pos.ide-09 { grid-column:4; grid-row:5; bottom: 45%; left: 20%; } .dat_tab.pla > .sel.pos.ide-14 { grid-column:6; grid-row:5; bottom: 45%; left: 8%; } .dat_tab.pla > .sel.pos.ide-19 { grid-column:8; grid-row:5; bottom: 45%; left: 5%; }
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 /* 
   Humano
 */
-.dat_tab.uni.hum { 
+.dat_tab.hum { 
   grid: repeat(20,1fr) / repeat(13,1fr);
   height: 25rem;
 }
 
-.dat_tab.uni.hum > .sec.ima {
+.dat_tab.hum > .sec.ima {
   width: 2.5rem;
   height: 2.5rem;
 }
-.dat_tab.uni.hum > .sec.ima > .ima {
+.dat_tab.hum > .sec.ima > .ima {
   min-width: 70%;
   height: 70%;
 }
 
-.dat_tab.uni.hum > .sec.fon.map { background: center/contain no-repeat url('../../_img/hol/tab/hum/map.png'); }
-.dat_tab.uni.hum > .sec.fon.res { background: center/contain no-repeat url('../../_img/hol/tab/hum/res.png'); }
-.dat_tab.uni.hum > .sec.fon.cen { background: center/contain no-repeat url('../../_img/hol/tab/hum/cen.png'); }
-.dat_tab.uni.hum > .sec.fon.ded { background: center/contain no-repeat url('../../_img/hol/tab/hum/ded.png'); }
+.dat_tab.hum > .sec.fon.map { background: center/contain no-repeat url('../../_img/hol/tab/hum/map.png'); }
+.dat_tab.hum > .sec.fon.res { background: center/contain no-repeat url('../../_img/hol/tab/hum/res.png'); }
+.dat_tab.hum > .sec.fon.cen { background: center/contain no-repeat url('../../_img/hol/tab/hum/cen.png'); }
+.dat_tab.hum > .sec.fon.ded { background: center/contain no-repeat url('../../_img/hol/tab/hum/ded.png'); }
 
 /* 2 Lados */
-.dat_tab.uni.hum > .sec.bor[class*="res-"] {
+.dat_tab.hum > .sec.bor[class*="res-"] {
   z-index: -2;
   width: 90%; 
   border-radius: 50%;
 }
-.dat_tab.uni.hum > .sec.bor.res-1 { grid-column:01/08; grid-row:1/sp; border-color: var(--col_ver); }
-.dat_tab.uni.hum > .sec.bor.res-2 { grid-column:07/20; grid-row:1/sp; border-color: var(--col_ama); }
+.dat_tab.hum > .sec.bor.res-1 { grid-column:01/08; grid-row:1/sp; border-color: var(--col_ver); }
+.dat_tab.hum > .sec.bor.res-2 { grid-column:07/20; grid-row:1/sp; border-color: var(--col_ama); }
 
 /* 4 Extremidades */
-.dat_tab.uni.hum > .sec.bor[class*="ext-"] {
+.dat_tab.hum > .sec.bor[class*="ext-"] {
   border-radius: 50%;
 }
-.dat_tab.uni.hum > .sec.bor.ext-4 { grid-column:02/04; grid-row:10/12; border-color: var(--col_ama); }
-.dat_tab.uni.hum > .sec.bor.ext-1 { grid-column:05/07; grid-row:18/20; border-color: var(--col_roj); z-index:-1; }
-.dat_tab.uni.hum > .sec.bor.ext-2 { grid-column:11/13; grid-row:10/12; border-color: var(--col_bla); }
-.dat_tab.uni.hum > .sec.bor.ext-3 { grid-column:08/10; grid-row:18/20; border-color: var(--col_azu); z-index:-1; }
+.dat_tab.hum > .sec.bor.ext-4 { grid-column:02/04; grid-row:10/12; border-color: var(--col_ama); }
+.dat_tab.hum > .sec.bor.ext-1 { grid-column:05/07; grid-row:18/20; border-color: var(--col_roj); z-index:-1; }
+.dat_tab.hum > .sec.bor.ext-2 { grid-column:11/13; grid-row:10/12; border-color: var(--col_bla); }
+.dat_tab.hum > .sec.bor.ext-3 { grid-column:08/10; grid-row:18/20; border-color: var(--col_azu); z-index:-1; }
 
 /* 5 Centros */
-.dat_tab.uni.hum > .sec.ima[class*="cen-"] {
+.dat_tab.hum > .sec.ima[class*="cen-"] {
   border-radius: 50%;
 }
-.dat_tab.uni.hum > .sec.ima[class*="cen-"].fon-sel {
+.dat_tab.hum > .sec.ima[class*="cen-"].fon-sel {
   background-color: var(--col_tra) !important;
   box-shadow: 0 0 1rem var(--col_vio);
 }
-.dat_tab.uni.hum > .sec.ima.cen-1 { grid-column:6/9; grid-row:01/03; }
-.dat_tab.uni.hum > .sec.ima.cen-2 { grid-column:6/9; grid-row:03/06; z-index:1; }
-.dat_tab.uni.hum > .sec.ima.cen-3 { grid-column:6/9; grid-row:05/08; }
-.dat_tab.uni.hum > .sec.ima.cen-4 { grid-column:6/9; grid-row:07/10; }
-.dat_tab.uni.hum > .sec.ima.cen-5 { grid-column:6/9; grid-row:10/12; }
+.dat_tab.hum > .sec.ima.cen-1 { grid-column:6/9; grid-row:01/03; }
+.dat_tab.hum > .sec.ima.cen-2 { grid-column:6/9; grid-row:03/06; z-index:1; }
+.dat_tab.hum > .sec.ima.cen-3 { grid-column:6/9; grid-row:05/08; }
+.dat_tab.hum > .sec.ima.cen-4 { grid-column:6/9; grid-row:07/10; }
+.dat_tab.hum > .sec.ima.cen-5 { grid-column:6/9; grid-row:10/12; }
 
 /* 7 Chakras */
-.dat_tab.uni.hum > .sec.ima[class*="cha-"] {
+.dat_tab.hum > .sec.ima[class*="cha-"] {
   border-radius: 50%;
 }
-.dat_tab.uni.hum > .sec.ima.cha-1 { grid-column:6/9; grid-row:10/12; }
-.dat_tab.uni.hum > .sec.ima.cha-2 { grid-column:6/9; grid-row:05/08; }
-.dat_tab.uni.hum > .sec.ima.cha-3 { grid-column:6/9; grid-row:07/10; }
-.dat_tab.uni.hum > .sec.ima.cha-4 { grid-column:6/9; grid-row:10/12; }
-.dat_tab.uni.hum > .sec.ima.cha-5 { grid-column:6/9; grid-row:01/03; }
-.dat_tab.uni.hum > .sec.ima.cha-6 { grid-column:6/9; grid-row:01/03; }
-.dat_tab.uni.hum > .sec.ima.cha-7 { grid-column:6/9; grid-row:01/03; }
+.dat_tab.hum > .sec.ima.cha-1 { grid-column:6/9; grid-row:10/12; }
+.dat_tab.hum > .sec.ima.cha-2 { grid-column:6/9; grid-row:05/08; }
+.dat_tab.hum > .sec.ima.cha-3 { grid-column:6/9; grid-row:07/10; }
+.dat_tab.hum > .sec.ima.cha-4 { grid-column:6/9; grid-row:10/12; }
+.dat_tab.hum > .sec.ima.cha-5 { grid-column:6/9; grid-row:01/03; }
+.dat_tab.hum > .sec.ima.cha-6 { grid-column:6/9; grid-row:01/03; }
+.dat_tab.hum > .sec.ima.cha-7 { grid-column:6/9; grid-row:01/03; }
 
 /* 13 Articulaciones */
-.dat_tab.uni.hum > .ton.pos { 
+.dat_tab.hum > .ton.pos { 
   position: relative; 
   width: 1.2rem; 
   height: 1.2rem; 
   border-radius: 20%;
 }
-.dat_tab.uni.hum > .ton.pos.ide-01 { grid-column:05; grid-row:18; bottom: 30%; } .dat_tab.uni.hum > .ton.pos.ide-02 { grid-column:05; grid-row:15; right: 15%; } .dat_tab.uni.hum > .ton.pos.ide-03 { grid-column:05; grid-row:11; right: 20%; } .dat_tab.uni.hum > .ton.pos.ide-04 { grid-column:03; grid-row:10; bottom: 40%; } .dat_tab.uni.hum > .ton.pos.ide-05 { grid-column:04; grid-row:08; bottom: 35%; right: 40%; } .dat_tab.uni.hum > .ton.pos.ide-06 { grid-column:04; grid-row:05; }
-.dat_tab.uni.hum > .ton.pos.ide-07 { grid-column:07; grid-row:04; bottom: 35%; }
-.dat_tab.uni.hum > .ton.pos.ide-08 { grid-column:10; grid-row:05; } .dat_tab.uni.hum > .ton.pos.ide-09 { grid-column:10; grid-row:08; bottom: 35%; left: 40%; } .dat_tab.uni.hum > .ton.pos.ide-10 { grid-column:11; grid-row:10; bottom: 40%; } .dat_tab.uni.hum > .ton.pos.ide-11 { grid-column:09; grid-row:11; left: 20%; } .dat_tab.uni.hum > .ton.pos.ide-12 { grid-column:09; grid-row:15; left: 35%; } .dat_tab.uni.hum > .ton.pos.ide-13 { grid-column:09; grid-row:18; bottom: 30%; left: 30%; }
+.dat_tab.hum > .ton.pos.ide-01 { grid-column:05; grid-row:18; bottom: 30%; } .dat_tab.hum > .ton.pos.ide-02 { grid-column:05; grid-row:15; right: 15%; } .dat_tab.hum > .ton.pos.ide-03 { grid-column:05; grid-row:11; right: 20%; } .dat_tab.hum > .ton.pos.ide-04 { grid-column:03; grid-row:10; bottom: 40%; } .dat_tab.hum > .ton.pos.ide-05 { grid-column:04; grid-row:08; bottom: 35%; right: 40%; } .dat_tab.hum > .ton.pos.ide-06 { grid-column:04; grid-row:05; }
+.dat_tab.hum > .ton.pos.ide-07 { grid-column:07; grid-row:04; bottom: 35%; }
+.dat_tab.hum > .ton.pos.ide-08 { grid-column:10; grid-row:05; } .dat_tab.hum > .ton.pos.ide-09 { grid-column:10; grid-row:08; bottom: 35%; left: 40%; } .dat_tab.hum > .ton.pos.ide-10 { grid-column:11; grid-row:10; bottom: 40%; } .dat_tab.hum > .ton.pos.ide-11 { grid-column:09; grid-row:11; left: 20%; } .dat_tab.hum > .ton.pos.ide-12 { grid-column:09; grid-row:15; left: 35%; } .dat_tab.hum > .ton.pos.ide-13 { grid-column:09; grid-row:18; bottom: 30%; left: 30%; }
 
 /* 20 Dedos */
-.dat_tab.uni.hum > .sel.pos { 
+.dat_tab.hum > .sel.pos { 
   position: relative;
   width: 1.1rem;
   height: 1.1rem; 
 }
-.dat_tab.uni.hum > .sel.pos.ide-20 { grid-column:1;  grid-row:10; top:40%; right:25%; } .dat_tab.uni.hum > .sel.pos.ide-01 { grid-column:1;  grid-row:11; top:30%; right:17%; } .dat_tab.uni.hum > .sel.pos.ide-02 { grid-column:1;  grid-row:12; top:20%; left: 25%; } .dat_tab.uni.hum > .sel.pos.ide-03 { grid-column:2;  grid-row:12; top:40%; left: 28%; } .dat_tab.uni.hum > .sel.pos.ide-04 { grid-column:3;  grid-row:12; top:25%; left: 30%; } .dat_tab.uni.hum > .sel.pos.ide-10 { grid-column:13; grid-row:10; top:35%; left:20%; } .dat_tab.uni.hum > .sel.pos.ide-11 { grid-column:13; grid-row:11; top:30%; left:15%; } .dat_tab.uni.hum > .sel.pos.ide-12 { grid-column:13; grid-row:12; top:20%; right:25%; } .dat_tab.uni.hum > .sel.pos.ide-13 { grid-column:12; grid-row:12; top:43%; right:25%; } .dat_tab.uni.hum > .sel.pos.ide-14 { grid-column:11; grid-row:12; top:30%; right:25%; }
-.dat_tab.uni.hum > .sel.pos.ide-05 { grid-column:6;  grid-row:20; top:15%; left:25%; } .dat_tab.uni.hum > .sel.pos.ide-06 { grid-column:5;  grid-row:20; top:35%; left:20%; } .dat_tab.uni.hum > .sel.pos.ide-07 { grid-column:4;  grid-row:20; top:25%; left:20%; } .dat_tab.uni.hum > .sel.pos.ide-08 { grid-column:4;  grid-row:19; top:35%; left:5%; } .dat_tab.uni.hum > .sel.pos.ide-09 { grid-column:4;  grid-row:19; bottom:50%; left:20%; } .dat_tab.uni.hum > .sel.pos.ide-15 { grid-column:8;  grid-row:20; top:20%; } .dat_tab.uni.hum > .sel.pos.ide-16 { grid-column:9;  grid-row:20; top:35%; } .dat_tab.uni.hum > .sel.pos.ide-17 { grid-column:10; grid-row:20; top:25%; } .dat_tab.uni.hum > .sel.pos.ide-18 { grid-column:10; grid-row:19; top:35%; left:15%; } .dat_tab.uni.hum > .sel.pos.ide-19 { grid-column:10; grid-row:19; bottom:50%; }
+.dat_tab.hum > .sel.pos.ide-20 { grid-column:1;  grid-row:10; top:40%; right:25%; } .dat_tab.hum > .sel.pos.ide-01 { grid-column:1;  grid-row:11; top:30%; right:17%; } .dat_tab.hum > .sel.pos.ide-02 { grid-column:1;  grid-row:12; top:20%; left: 25%; } .dat_tab.hum > .sel.pos.ide-03 { grid-column:2;  grid-row:12; top:40%; left: 28%; } .dat_tab.hum > .sel.pos.ide-04 { grid-column:3;  grid-row:12; top:25%; left: 30%; } .dat_tab.hum > .sel.pos.ide-10 { grid-column:13; grid-row:10; top:35%; left:20%; } .dat_tab.hum > .sel.pos.ide-11 { grid-column:13; grid-row:11; top:30%; left:15%; } .dat_tab.hum > .sel.pos.ide-12 { grid-column:13; grid-row:12; top:20%; right:25%; } .dat_tab.hum > .sel.pos.ide-13 { grid-column:12; grid-row:12; top:43%; right:25%; } .dat_tab.hum > .sel.pos.ide-14 { grid-column:11; grid-row:12; top:30%; right:25%; }
+.dat_tab.hum > .sel.pos.ide-05 { grid-column:6;  grid-row:20; top:15%; left:25%; } .dat_tab.hum > .sel.pos.ide-06 { grid-column:5;  grid-row:20; top:35%; left:20%; } .dat_tab.hum > .sel.pos.ide-07 { grid-column:4;  grid-row:20; top:25%; left:20%; } .dat_tab.hum > .sel.pos.ide-08 { grid-column:4;  grid-row:19; top:35%; left:5%; } .dat_tab.hum > .sel.pos.ide-09 { grid-column:4;  grid-row:19; bottom:50%; left:20%; } .dat_tab.hum > .sel.pos.ide-15 { grid-column:8;  grid-row:20; top:20%; } .dat_tab.hum > .sel.pos.ide-16 { grid-column:9;  grid-row:20; top:35%; } .dat_tab.hum > .sel.pos.ide-17 { grid-column:10; grid-row:20; top:25%; } .dat_tab.hum > .sel.pos.ide-18 { grid-column:10; grid-row:19; top:35%; left:15%; } .dat_tab.hum > .sel.pos.ide-19 { grid-column:10; grid-row:19; bottom:50%; }

@@ -71,7 +71,7 @@ class Usuario extends Usu {
           <tr>
             <th></th>
             <th>Personal</th>
-            <th>Hoy</th>
+            <th>Diario</th>
             <th>Combinado</th>
           </tr>
         </thead>
@@ -104,11 +104,113 @@ class Usuario extends Usu {
     return $_;
   }
 
-  /* Firma Galáctica */
-  public function ver_firma(){
+  /* Transitos */
+  public function ver_transito( string $fec = "", array $ele = [] ) : string {
+
+    // cargo transitos para el dia
+    $Transito = $this->buscar_transito( !empty($fec) ? $fec : $_SESSION['Fec']->val );
+
+    $_ = "
+    <section>
+
+      <table class='transitos'>
+
+        <thead>
+          <tr>
+            <th></th>
+            <th>Anual</th>
+            <th>Lunar</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <th>Kin Planetario</th>
+            <td>".Doc_Val::ima('hol',"kin",$Transito->Anual->Kin)."</td>
+            <td>".Doc_Val::ima('hol',"kin",$Transito->Lunar->Ond_kin->ide)."</td>
+          </tr>
+          <tr>
+            <th>Psi-Cronos</th>
+            <td>".Doc_Val::ima('hol',"psi",$Transito->Anual->Psi)."</td>
+            <td>".Doc_Val::ima('hol',"psi",$Transito->Lunar->psi)."</td>
+          </tr>
+          <tr>
+            <th>Combinado</th>
+            <td>".Doc_Val::ima('hol',"kin", Num::ran($Transito->Anual->Kin->ide + $Transito->Anual->Psi->ide, 260))."</td>
+            <td>".Doc_Val::ima('hol',"kin", Num::ran($Transito->Lunar->Ond_kin->ide + $Transito->Lunar->psi, 260))."</td>
+          </tr>
+        </tbody>        
+
+      </table>
+
+    </section>";
+
+    return $_;
+  }  
+  public function ver_transito_anual( string | object $fec, array $dat = [], array $ele = [] ) : string {
+    
+    $_ani = $dat['ani'];
+    $_cas_arm = Dat::_('hol.cas_arm',$dat['ani']->arm);
+    $_ani_arm = Dat::get("hol-hum_cas_arm",[ 'ver'=>"`ide`=$_ani->arm", 'opc'=>"uni"] );
+    $_ani_fec = Fec::dat($_ani->fecha);      
+    $_ani_ton = Dat::_('hol.ton',$dat['ani']->ton);
+    $_kin = Dat::_('hol.kin',$_ani->kin);
+    $_ = "
+    <h3>Tránsito Anual</h3>
+
+    <p>".Doc_Val::let("#$_ani->eda de 51: desde el $_ani_fec->val")."</p>
+
+    ".Doc_Var::num('ran',$_ani->eda,[ 'min'=>0, 'max'=>51, 'class'=>"anc-100", 'disabled'=>1 ],'ver')."
+
+    <div class='-ite mar_ver-1'>
+      ".Doc_Val::ima('hol',"cas_arm",$_cas_arm,[ 'class'=>"tam-7 mar_der-2" ])."
+      <div class='tex-3'>
+        <p class='tex-tit'>".Doc_Val::let($_ani_arm->nom)."</p>
+        <p>$_cas_arm->nom<c>:</c> $_cas_arm->col<c>,</c> $_cas_arm->pod<c>.</c></p>
+        <p>$_ani_ton->ond_nom<c>:</c> $_ani_ton->ond_pod</p>
+        <p>".Doc_Var::num('ran',$_ani->ton,[ 'min'=>1, 'max'=>13, 'class'=>"anc-100", 'disabled'=>1 ],'ver')."</p>
+      </div>
+    </div>
+
+    ".Doc_Dat::inf('hol.kin',$_kin,['cit'=>"des",'ima'=>[]])."
+
+    ";
+    return $_;
+  }
+  public function ver_transito_lunar( string | object $fec, array $dat = [], array $ele = [] ) : string {
+    $_lun = $dat['lun'];
+    $_lun_fec = Fec::dat($_lun->fecha);
+    $_lun_ton = Dat::_('hol.ton',$_lun->ide);
+    $_kin = Dat::_('hol.kin',$_lun->kin);
+    $_ = "
+    <h3>Tránsito Lunar</h3>
+
+    <p>".Doc_Val::let("#$_lun->ide de 13: desde el $_lun_fec->val")."</p>
+
+    ".Doc_Var::num('ran',$_lun->ide,[ 'min'=>1, 'max'=>13, 'class'=>"anc-100", 'disabled'=>1 ],'ver')."
+
+    <div class='-ite mar_ver-1'>
+      ".Doc_Val::ima('hol',"ton",$_lun_ton,[ 'class'=>"tam-7 mar_der-2" ])."
+      <div class='tex-3'>
+        <p>$_lun_ton->ond_nom<c>:</c> $_lun_ton->ond_pod</p>          
+      </div>
+    </div>
+
+
+    ".Doc_Dat::inf('hol.kin',$_kin,['cit'=>"des"])."
+
+    ";
+    return $_;
+  }
+  public function ver_transito_diario( string | object $fec, object $dat = NULL ) : string {
+
+    $_ = "
+    <h3>Tránsito Diario</h3>
+
+    ";
+    return $_;
   }
 
-  /* Transitos */
   public function crear_transito( string $fec = '' ) : object {
     $_ = new stdClass;
 
@@ -284,112 +386,6 @@ class Usuario extends Usu {
     return $Transito_diario;
   }
 
-  public function ver_transito( string $fec = "", array $ele = [] ) : string {
-
-    // cargo transitos para el dia
-    $Transito = $this->buscar_transito( !empty($fec) ? $fec : $_SESSION['Fec']->val );
-
-    $_ = "
-    <section>
-
-      <table class='transitos'>
-
-        <thead>
-          <tr>
-            <th></th>
-            <th>Anual</th>
-            <th>Lunar</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <tr>
-            <th>Kin Planetario</th>
-            <td>".Doc_Val::ima('hol',"kin",$Transito->Anual->Kin)."</td>
-            <td>".Doc_Val::ima('hol',"kin",$Transito->Lunar->Ond_kin->ide)."</td>
-          </tr>
-          <tr>
-            <th>Psi-Cronos</th>
-            <td>".Doc_Val::ima('hol',"psi",$Transito->Anual->Psi)."</td>
-            <td>".Doc_Val::ima('hol',"psi",$Transito->Lunar->psi)."</td>
-          </tr>
-          <tr>
-            <th>Combinado</th>
-            <td>".Doc_Val::ima('hol',"kin", Num::ran($Transito->Anual->Kin->ide + $Transito->Anual->Psi->ide, 260))."</td>
-            <td>".Doc_Val::ima('hol',"kin", Num::ran($Transito->Lunar->Ond_kin->ide + $Transito->Lunar->psi, 260))."</td>
-          </tr>
-        </tbody>        
-
-      </table>
-
-    </section>";
-
-    return $_;
-  }  
-  public function ver_transito_anual( string | object $fec, array $dat = [], array $ele = [] ) : string {
-    
-    $_ani = $dat['ani'];
-    $_cas_arm = Dat::_('hol.cas_arm',$dat['ani']->arm);
-    $_ani_arm = Dat::get("hol-hum_cas_arm",[ 'ver'=>"`ide`=$_ani->arm", 'opc'=>"uni"] );
-    $_ani_fec = Fec::dat($_ani->fecha);      
-    $_ani_ton = Dat::_('hol.ton',$dat['ani']->ton);
-    $_kin = Dat::_('hol.kin',$_ani->kin);
-    $_ = "
-    <h3>Tránsito Anual</h3>
-
-    <p>".Doc_Val::let("#$_ani->eda de 51: desde el $_ani_fec->val")."</p>
-
-    ".Doc_Var::num('ran',$_ani->eda,[ 'min'=>0, 'max'=>51, 'class'=>"anc-100", 'disabled'=>1 ],'ver')."
-
-    <div class='-ite mar_ver-1'>
-      ".Doc_Val::ima('hol',"cas_arm",$_cas_arm,[ 'class'=>"tam-7 mar_der-2" ])."
-      <div class='tex-3'>
-        <p class='tex-tit'>".Doc_Val::let($_ani_arm->nom)."</p>
-        <p>$_cas_arm->nom<c>:</c> $_cas_arm->col<c>,</c> $_cas_arm->pod<c>.</c></p>
-        <p>$_ani_ton->ond_nom<c>:</c> $_ani_ton->ond_pod</p>
-        <p>".Doc_Var::num('ran',$_ani->ton,[ 'min'=>1, 'max'=>13, 'class'=>"anc-100", 'disabled'=>1 ],'ver')."</p>
-      </div>
-    </div>
-
-    ".Doc_Dat::inf('hol.kin',$_kin,['cit'=>"des",'ima'=>[]])."
-
-    ";
-    return $_;
-  }
-  public function ver_transito_lunar( string | object $fec, array $dat = [], array $ele = [] ) : string {
-    $_lun = $dat['lun'];
-    $_lun_fec = Fec::dat($_lun->fecha);
-    $_lun_ton = Dat::_('hol.ton',$_lun->ide);
-    $_kin = Dat::_('hol.kin',$_lun->kin);
-    $_ = "
-    <h3>Tránsito Lunar</h3>
-
-    <p>".Doc_Val::let("#$_lun->ide de 13: desde el $_lun_fec->val")."</p>
-
-    ".Doc_Var::num('ran',$_lun->ide,[ 'min'=>1, 'max'=>13, 'class'=>"anc-100", 'disabled'=>1 ],'ver')."
-
-    <div class='-ite mar_ver-1'>
-      ".Doc_Val::ima('hol',"ton",$_lun_ton,[ 'class'=>"tam-7 mar_der-2" ])."
-      <div class='tex-3'>
-        <p>$_lun_ton->ond_nom<c>:</c> $_lun_ton->ond_pod</p>          
-      </div>
-    </div>
-
-
-    ".Doc_Dat::inf('hol.kin',$_kin,['cit'=>"des"])."
-
-    ";
-    return $_;
-  }
-  public function ver_transito_diario( string | object $fec, object $dat = NULL ) : string {
-
-    $_ = "
-    <h3>Tránsito Diario</h3>
-
-    ";
-    return $_;
-  }
-
   public function listar_transito( array $ope = [], ...$opc ) : string {
 
     foreach(['nav','lis','dep','opc'] as $eti ){ if( !isset($ope["$eti"]) ) $ope["$eti"] = []; }
@@ -400,11 +396,11 @@ class Usuario extends Usu {
       
       $_lis_cic = [];
       
-      foreach( Dat::get('sis-usu_cic_ani',[ 'ver'=>"`usu`='{$this->key}' AND `arm`=$_arm->ide", 'ord'=>"`ide` ASC" ]) as $_cic ){
+      foreach( Dat::get('sis-usu_cic_ani',[ 'ver'=>"`usu` = '{$this->key}' AND `arm`=$_arm->ide", 'ord'=>"`ide` ASC" ]) as $_cic ){
 
         // ciclos lunares
         $_lis_lun = [];
-        foreach( Dat::get('sis-usu_cic_lun',[ 'ver'=>"`usu`='{$this->key}' AND `ani`=$_cic->ide", 'ord'=>"`ide` ASC" ]) as $_lun ){                            
+        foreach( Dat::get('sis-usu_cic_lun',[ 'ver'=>"`usu` = '{$this->key}' AND `ani`=$_cic->ide", 'ord'=>"`ide` ASC" ]) as $_lun ){                            
           $_fec = Fec::dat($_lun->fecha);
           $_lun_ton = Dat::_('hol.ton',$_lun->ide);
           $_kin = Dat::_('hol.kin',$_lun->kin);

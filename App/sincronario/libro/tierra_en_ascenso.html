@@ -18,11 +18,11 @@
   </section>
 
   <?php $nv1=Num::val($nv1+1,2);$nv2=0;$nv3=0;$nv4=0;?>
-  <section id='<?="_{$Nav[1][$nv1]->key}-"?>'>
+  <section id='<?="_{$Nav[1][$nv1]->pos}-"?>'>
     <h2><?=Doc_Val::let($Nav[1][$nv1]->nom)?></h2>
 
     <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
-    <section id='<?="_{$Nav[2][$nv1][$nv2]->key}-"?>'>      
+    <section id='<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>'>      
       <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>
 
       <section data-tit='origen'> 
@@ -121,7 +121,7 @@
     </section>
 
     <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
-    <section id='<?="_{$Nav[2][$nv1][$nv2]->key}-"?>'>      
+    <section id='<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>'>      
       <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>
 
       <section data-tit='definicion'>
@@ -357,14 +357,15 @@
   </section>
 
   <?php $nv1=Num::val($nv1+1,2);$nv2=0;$nv3=0;$nv4=0;?>
-  <section id='<?="_{$Nav[1][$nv1]->key}-"?>'>
+  <section id='<?="_{$Nav[1][$nv1]->pos}-"?>'>
     <h2><?=Doc_Val::let($Nav[1]['02']->nom)?></h2>
 
     <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
-    <section id='<?="_{$Nav[2][$nv1][$nv2]->key}-"?>'>      
+    <section id='<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>'>      
       <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>
 
-      <section id="_02-01-00-">
+      <?php $nv3=Num::val($nv3,2);$nv4=0;?>
+      <section id='<?="_{$Nav[3][$nv1][$nv2][$nv3]->pos}-"?>'>
         
         <p>Preludio<c>:</c> El Código<c>,</c> La Clave<c>,</c> El Modelo<c>.</c></p>
 
@@ -390,7 +391,8 @@
                 
       </section>
 
-      <section id="_02-01-01-">
+      <?php $nv3=Num::val($nv3+1,2);$nv4=0;?>
+      <section id='<?="_{$Nav[3][$nv1][$nv2][$nv3]->pos}-"?>'>
         
         <figure>
           <img src='<?=$Dir->art_ima?>01-01.GIF'>
@@ -412,7 +414,8 @@
         
       </section>
 
-      <section id="_02-01-02-">
+      <?php $nv3=Num::val($nv3+1,2);$nv4=0;?>
+      <section id='<?="_{$Nav[3][$nv1][$nv2][$nv3]->pos}-"?>'>
         
         <figure>
           <img src='<?=$Dir->art_ima?>01-02.GIF'>
@@ -467,7 +470,8 @@
                 
       </section>
 
-      <section id="_02-01-03-">
+      <?php $nv3=Num::val($nv3+1,2);$nv4=0;?>
+      <section id='<?="_{$Nav[3][$nv1][$nv2][$nv3]->pos}-"?>'>
         
         <figure><img src='<?=$Dir->art_ima?>01-03.GIF'></figure>
 
@@ -506,7 +510,8 @@
                 
       </section>
 
-      <section id="_02-01-04-">
+      <?php $nv3=Num::val($nv3+1,2);$nv4=0;?>
+      <section id='<?="_{$Nav[3][$nv1][$nv2][$nv3]->pos}-"?>'>
         
         <figure><img src='<?=$Dir->art_ima?>01-04.GIF'></figure>
         
@@ -523,7 +528,8 @@
                                 
       </section>
 
-      <section id="_02-01-05-">
+      <?php $nv3=Num::val($nv3+1,2);$nv4=0;?>
+      <section id='<?="_{$Nav[3][$nv1][$nv2][$nv3]->pos}-"?>'>
         
         <figure><img src='<?=$Dir->art_ima?>01-05.GIF'></figure>
 
@@ -537,7 +543,8 @@
                                     
       </section>
 
-      <section id="_02-01-06-">
+      <?php $nv3=Num::val($nv3+1,2);$nv4=0;?>
+      <section id='<?="_{$Nav[3][$nv1][$nv2][$nv3]->pos}-"?>'>
         
         <figure><img src='<?=$Dir->art_ima?>01-06.GIF'></figure>
 
@@ -578,7 +585,8 @@
                                 
       </section>
 
-      <section id="_02-01-07-">
+      <?php $nv3=Num::val($nv3+1,2);$nv4=0;?>
+      <section id='<?="_{$Nav[3][$nv1][$nv2][$nv3]->pos}-"?>'>
         
         <figure><img src='<?=$Dir->art_ima?>01-07.GIF'></figure>
 
@@ -607,7 +615,8 @@
       
       </section>
 
-      <section id="_02-01-08-">
+      <?php $nv3=Num::val($nv3+1,2);$nv4=0;?>
+      <section id='<?="_{$Nav[3][$nv1][$nv2][$nv3]->pos}-"?>'>
         
         <figure><img src='<?=$Dir->art_ima?>01-08.GIF'></figure>
 
@@ -625,7 +634,8 @@
                                     
       </section>
 
-      <section id="_02-01-09-">
+      <?php $nv3=Num::val($nv3+1,2);$nv4=0;?>
+      <section id='<?="_{$Nav[3][$nv1][$nv2][$nv3]->pos}-"?>'>
         
         <figure><img src='<?=$Dir->art_ima?>01-09.GIF'></figure>
 
@@ -644,10 +654,11 @@
     </section>
 
     <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
-    <section id='<?="_{$Nav[2][$nv1][$nv2]->key}-"?>'>      
+    <section id='<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>'>      
       <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>
       
-      <section id="_02-02-00-">
+      <?php $nv3=Num::val($nv3,2);$nv4=0;?>
+      <section id='<?="_{$Nav[3][$nv1][$nv2][$nv3]->pos}-"?>'>
 
         <p>Preludio<c>:</c> Del Afinamiento Primario a la elaboración Psicosensorial<c>.</c></p>
         
@@ -663,7 +674,8 @@
         
       </section>
 
-      <section id="_02-02-01-">
+      <?php $nv3=Num::val($nv3+1,2);$nv4=0;?>
+      <section id='<?="_{$Nav[3][$nv1][$nv2][$nv3]->pos}-"?>'>
         
         
         <figure><img src='<?=$Dir->art_ima?>02-01.GIF'></figure>
@@ -680,7 +692,8 @@
               
       </section>    
 
-      <section id="_02-02-02-">
+      <?php $nv3=Num::val($nv3+1,2);$nv4=0;?>
+      <section id='<?="_{$Nav[3][$nv1][$nv2][$nv3]->pos}-"?>'>
         
         
         <figure><img src='<?=$Dir->art_ima?>02-02.GIF'></figure>
@@ -696,7 +709,8 @@
               
       </section>    
 
-      <section id="_02-02-03-">
+      <?php $nv3=Num::val($nv3+1,2);$nv4=0;?>
+      <section id='<?="_{$Nav[3][$nv1][$nv2][$nv3]->pos}-"?>'>
         
         <figure><img src='<?=$Dir->art_ima?>02-03.GIF'></figure>
 
@@ -721,7 +735,8 @@
 
       </section>    
 
-      <section id="_02-02-04-">
+      <?php $nv3=Num::val($nv3+1,2);$nv4=0;?>
+      <section id='<?="_{$Nav[3][$nv1][$nv2][$nv3]->pos}-"?>'>
         
         <figure><img src='<?=$Dir->art_ima?>02-04.GIF'></figure>
 
@@ -759,7 +774,8 @@
     
       </section>    
 
-      <section id="_02-02-05-">
+      <?php $nv3=Num::val($nv3+1,2);$nv4=0;?>
+      <section id='<?="_{$Nav[3][$nv1][$nv2][$nv3]->pos}-"?>'>
         
         <figure><img src='<?=$Dir->art_ima?>02-05.GIF'></figure>
 
@@ -786,7 +802,8 @@
     
       </section>    
 
-      <section id="_02-02-06-">
+      <?php $nv3=Num::val($nv3+1,2);$nv4=0;?>
+      <section id='<?="_{$Nav[3][$nv1][$nv2][$nv3]->pos}-"?>'>
         
         <figure><img src='<?=$Dir->art_ima?>02-06.GIF'></figure>
 
@@ -811,7 +828,8 @@
     
       </section>    
 
-      <section id="_02-02-07-">
+      <?php $nv3=Num::val($nv3+1,2);$nv4=0;?>
+      <section id='<?="_{$Nav[3][$nv1][$nv2][$nv3]->pos}-"?>'>
         
         <figure><img src='<?=$Dir->art_ima?>02-07.GIF'></figure>
 
@@ -852,10 +870,11 @@
     </section>
 
     <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
-    <section id='<?="_{$Nav[2][$nv1][$nv2]->key}-"?>'>      
+    <section id='<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>'>      
       <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>
 
-      <section id="_02-03-00-">
+      <?php $nv3=Num::val($nv3,2);$nv4=0;?>
+      <section id='<?="_{$Nav[3][$nv1][$nv2][$nv3]->pos}-"?>'>
 
         <p>Preludio<c>:</c> De la Historia<c>,</c> la Armonía y la Recolección Holonómica<c>.</c></p>
 
@@ -863,7 +882,8 @@
                                       
       </section>
 
-      <section id="_02-03-01-">
+      <?php $nv3=Num::val($nv3+1,2);$nv4=0;?>
+      <section id='<?="_{$Nav[3][$nv1][$nv2][$nv3]->pos}-"?>'>
         
         <figure><img src='<?=$Dir->art_ima?>03-01.GIF'></figure>
 
@@ -886,7 +906,8 @@
       
       </section>
 
-      <section id="_02-03-02-">
+      <?php $nv3=Num::val($nv3+1,2);$nv4=0;?>
+      <section id='<?="_{$Nav[3][$nv1][$nv2][$nv3]->pos}-"?>'>
         
         <figure><img src='<?=$Dir->art_ima?>03-02.GIF'></figure>
 
@@ -903,7 +924,8 @@
       
       </section>
 
-      <section id="_02-03-03-">
+      <?php $nv3=Num::val($nv3+1,2);$nv4=0;?>
+      <section id='<?="_{$Nav[3][$nv1][$nv2][$nv3]->pos}-"?>'>
         
         <figure><img src='<?=$Dir->art_ima?>03-03.GIF'></figure>
 
@@ -928,7 +950,8 @@
       
       </section>
 
-      <section id="_02-03-04-">
+      <?php $nv3=Num::val($nv3+1,2);$nv4=0;?>
+      <section id='<?="_{$Nav[3][$nv1][$nv2][$nv3]->pos}-"?>'>
         
         <figure><img src='<?=$Dir->art_ima?>03-04.GIF'></figure>
 
@@ -950,7 +973,8 @@
                                         
       </section>
 
-      <section id="_02-03-05-">
+      <?php $nv3=Num::val($nv3+1,2);$nv4=0;?>
+      <section id='<?="_{$Nav[3][$nv1][$nv2][$nv3]->pos}-"?>'>
         
         <figure><img src='<?=$Dir->art_ima?>03-05.GIF'></figure>
 
@@ -972,7 +996,8 @@
                                         
       </section>
 
-      <section id="_02-03-06-">
+      <?php $nv3=Num::val($nv3+1,2);$nv4=0;?>
+      <section id='<?="_{$Nav[3][$nv1][$nv2][$nv3]->pos}-"?>'>
         
         <figure><img src='<?=$Dir->art_ima?>03-05.GIF'></figure>
 
@@ -991,7 +1016,8 @@
       
       </section>
 
-      <section id="_02-03-07-">
+      <?php $nv3=Num::val($nv3+1,2);$nv4=0;?>
+      <section id='<?="_{$Nav[3][$nv1][$nv2][$nv3]->pos}-"?>'>
         
         <figure><img src='<?=$Dir->art_ima?>03-07.GIF'></figure>
 
@@ -1024,7 +1050,8 @@
                                   
       </section>
 
-      <section id="_02-03-08-">
+      <?php $nv3=Num::val($nv3+1,2);$nv4=0;?>
+      <section id='<?="_{$Nav[3][$nv1][$nv2][$nv3]->pos}-"?>'>
         
         <figure><img src='<?=$Dir->art_ima?>03-08.GIF'></figure>
 
@@ -1037,7 +1064,8 @@
                                         
       </section>
 
-      <section id="_02-03-09-">
+      <?php $nv3=Num::val($nv3+1,2);$nv4=0;?>
+      <section id='<?="_{$Nav[3][$nv1][$nv2][$nv3]->pos}-"?>'>
         
         <figure><img src='<?=$Dir->art_ima?>03-09.GIF'></figure>
 
@@ -1062,7 +1090,8 @@
                                         
       </section>
 
-      <section id="_02-03-10-">
+      <?php $nv3=Num::val($nv3+1,2);$nv4=0;?>
+      <section id='<?="_{$Nav[3][$nv1][$nv2][$nv3]->pos}-"?>'>
         
         <figure><img src='<?=$Dir->art_ima?>03-10.GIF'></figure>
 
@@ -1118,7 +1147,8 @@
 
       </section>
 
-      <section id="_02-03-11-">
+      <?php $nv3=Num::val($nv3+1,2);$nv4=0;?>
+      <section id='<?="_{$Nav[3][$nv1][$nv2][$nv3]->pos}-"?>'>
         
         <figure><img src='<?=$Dir->art_ima?>03-11.GIF'></figure>
 
@@ -1139,7 +1169,8 @@
                             
       </section>
 
-      <section id="_02-03-12-">
+      <?php $nv3=Num::val($nv3+1,2);$nv4=0;?>
+      <section id='<?="_{$Nav[3][$nv1][$nv2][$nv3]->pos}-"?>'>
         
         <figure><img src='<?=$Dir->art_ima?>03-12.GIF'></figure>
 
@@ -1161,10 +1192,11 @@
     </section>
 
     <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
-    <section id='<?="_{$Nav[2][$nv1][$nv2]->key}-"?>'>      
+    <section id='<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>'>      
       <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>
 
-      <section id="_02-04-00-">
+      <?php $nv3=Num::val($nv3,2);$nv4=0;?>
+      <section id='<?="_{$Nav[3][$nv1][$nv2][$nv3]->pos}-"?>'>
         <p>Preludio<c>:</c> Psi y el Código de la Historia<c>.</c></p>
 
         <p>Habiendo visto que la transformación de la naturaleza por el hombre es nada menos que el proceso de avance civilizacional<c>,</c> la historia<c>,</c> nosotros alcanzamos ese momento <c>–</c> unas cuatro décadas después del comienzo de la era atómica<c>–</c> cuando podemos declarar que el propósito de la historia ha sido culminado<c>:</c> la irradiación del hombre<c>,</c> la hominización del planeta<c>,</c> el establecimiento de un real sistema electro-nervioso global <c>–</c> y los medios para la total destrucción <c>–</c> todo ha sido logrado<c>.</c> Debemos entonces preguntar<c>:</c> <c>¿</c>qué sigue<c>?</c><c>.</c> <c>¿</c>A dónde vamos de aquí<c>?</c><c>.</c></p>
@@ -1179,7 +1211,8 @@
     
       </section>
 
-      <section id="_02-04-01-">
+      <?php $nv3=Num::val($nv3+1,2);$nv4=0;?>
+      <section id='<?="_{$Nav[3][$nv1][$nv2][$nv3]->pos}-"?>'>
         
         <figure><img src='<?=$Dir->art_ima?>04-01.GIF'></figure>
 
@@ -1221,7 +1254,8 @@
 
       </section>    
 
-      <section id="_02-04-02-">
+      <?php $nv3=Num::val($nv3+1,2);$nv4=0;?>
+      <section id='<?="_{$Nav[3][$nv1][$nv2][$nv3]->pos}-"?>'>
         
         <figure><img src='<?=$Dir->art_ima?>04-02.GIF'></figure>
 
@@ -1245,7 +1279,8 @@
       
       </section>    
 
-      <section id="_02-04-03-">
+      <?php $nv3=Num::val($nv3+1,2);$nv4=0;?>
+      <section id='<?="_{$Nav[3][$nv1][$nv2][$nv3]->pos}-"?>'>
         
         <figure><img src='<?=$Dir->art_ima?>04-03.GIF'></figure>
 
@@ -1270,7 +1305,8 @@
 
       </section>    
 
-      <section id="_02-04-04-">
+      <?php $nv3=Num::val($nv3+1,2);$nv4=0;?>
+      <section id='<?="_{$Nav[3][$nv1][$nv2][$nv3]->pos}-"?>'>
         
         <figure><img src='<?=$Dir->art_ima?>04-04.GIF'></figure>
 
@@ -1308,7 +1344,8 @@
 
       </section>    
 
-      <section id="_02-04-05-">
+      <?php $nv3=Num::val($nv3+1,2);$nv4=0;?>
+      <section id='<?="_{$Nav[3][$nv1][$nv2][$nv3]->pos}-"?>'>
         
         <figure><img src='<?=$Dir->art_ima?>04-05.GIF'></figure>
 
@@ -1343,7 +1380,8 @@
 
       </section>    
 
-      <section id="_02-04-06-">
+      <?php $nv3=Num::val($nv3+1,2);$nv4=0;?>
+      <section id='<?="_{$Nav[3][$nv1][$nv2][$nv3]->pos}-"?>'>
         
         <figure><img src='<?=$Dir->art_ima?>04-06.GIF'></figure>
 
@@ -1372,7 +1410,8 @@
 
       </section>    
 
-      <section id="_02-04-07-">
+      <?php $nv3=Num::val($nv3+1,2);$nv4=0;?>
+      <section id='<?="_{$Nav[3][$nv1][$nv2][$nv3]->pos}-"?>'>
         
         <figure><img src='<?=$Dir->art_ima?>04-07.GIF'></figure>
 
@@ -1397,7 +1436,8 @@
 
       </section>    
 
-      <section id="_02-04-08-">
+      <?php $nv3=Num::val($nv3+1,2);$nv4=0;?>
+      <section id='<?="_{$Nav[3][$nv1][$nv2][$nv3]->pos}-"?>'>
         
         <figure><img src='<?=$Dir->art_ima?>04-08.GIF'></figure>
 
@@ -1414,7 +1454,8 @@
 
       </section>    
 
-      <section id="_02-04-09-">
+      <?php $nv3=Num::val($nv3+1,2);$nv4=0;?>
+      <section id='<?="_{$Nav[3][$nv1][$nv2][$nv3]->pos}-"?>'>
         
         <figure><img src='<?=$Dir->art_ima?>04-09.GIF'></figure>
 
@@ -1453,7 +1494,8 @@
     
       </section>
 
-      <section id="_02-04-10-">
+      <?php $nv3=Num::val($nv3+1,2);$nv4=0;?>
+      <section id='<?="_{$Nav[3][$nv1][$nv2][$nv3]->pos}-"?>'>
         
         <figure><img src='<?=$Dir->art_ima?>04-10.GIF'></figure>
 
@@ -1482,10 +1524,11 @@
     </section>
 
     <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
-    <section id='<?="_{$Nav[2][$nv1][$nv2]->key}-"?>'>      
+    <section id='<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>'>      
       <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>
 
-      <section id="_02-05-00-">
+      <?php $nv3=Num::val($nv3,2);$nv4=0;?>
+      <section id='<?="_{$Nav[3][$nv1][$nv2][$nv3]->pos}-"?>'>
         <p>Preludio<c>:</c> Ciencia Antigua<c>,</c> Magia Futura<c>.</c></p>
 
         <p>"La Naturaleza Evalúa la Transformación del Hombre<c>"</c> es tradicionalmente el último estadio de la descripción geomántica<c>.</c> Sin embargo<c>,</c> en vista del hecho de que la naturaleza está sobreviviendo<c>,</c> y que lo que se ha presentado hasta ahora como historia ha sido en realidad la hominización del planeta<c>,</c> tenemos aún un término final con el cual tratar<c>:</c> el futuro<c>,</c> la posthistoria<c>.</c></p>
@@ -1500,7 +1543,8 @@
                       
       </section>
 
-      <section id="_02-05-01-">
+      <?php $nv3=Num::val($nv3+1,2);$nv4=0;?>
+      <section id='<?="_{$Nav[3][$nv1][$nv2][$nv3]->pos}-"?>'>
         
         <figure><img src='<?=$Dir->art_ima?>05-01.GIF'></figure>
 
@@ -1522,7 +1566,8 @@
                     
       </section>
 
-      <section id="_02-05-02-">
+      <?php $nv3=Num::val($nv3+1,2);$nv4=0;?>
+      <section id='<?="_{$Nav[3][$nv1][$nv2][$nv3]->pos}-"?>'>
         
         <figure><img src='<?=$Dir->art_ima?>05-02.GIF'></figure>
 
@@ -1540,7 +1585,8 @@
 
       </section>
 
-      <section id="_02-05-03-">
+      <?php $nv3=Num::val($nv3+1,2);$nv4=0;?>
+      <section id='<?="_{$Nav[3][$nv1][$nv2][$nv3]->pos}-"?>'>
         
         <figure><img src='<?=$Dir->art_ima?>05-03.GIF'></figure>
 
@@ -1552,7 +1598,8 @@
       
       </section>
 
-      <section id="_02-05-04-">
+      <?php $nv3=Num::val($nv3+1,2);$nv4=0;?>
+      <section id='<?="_{$Nav[3][$nv1][$nv2][$nv3]->pos}-"?>'>
         
         <figure><img src='<?=$Dir->art_ima?>05-04.GIF'></figure>
 
@@ -1571,7 +1618,8 @@
                           
       </section>
 
-      <section id="_02-05-05-">
+      <?php $nv3=Num::val($nv3+1,2);$nv4=0;?>
+      <section id='<?="_{$Nav[3][$nv1][$nv2][$nv3]->pos}-"?>'>
         
         <figure><img src='<?=$Dir->art_ima?>05-05.GIF'></figure>
 
@@ -1601,7 +1649,8 @@
                               
       </section>
 
-      <section id="_02-05-06-">
+      <?php $nv3=Num::val($nv3+1,2);$nv4=0;?>
+      <section id='<?="_{$Nav[3][$nv1][$nv2][$nv3]->pos}-"?>'>
         
         <figure><img src='<?=$Dir->art_ima?>05-06.GIF'></figure>
 
@@ -1643,7 +1692,8 @@
                   
       </section>
 
-      <section id="_02-05-07-">
+      <?php $nv3=Num::val($nv3+1,2);$nv4=0;?>
+      <section id='<?="_{$Nav[3][$nv1][$nv2][$nv3]->pos}-"?>'>
         
         <figure><img src='<?=$Dir->art_ima?>05-07.GIF'></figure>
 
@@ -1670,7 +1720,8 @@
                           
       </section>
 
-      <section id="_02-05-08-">
+      <?php $nv3=Num::val($nv3+1,2);$nv4=0;?>
+      <section id='<?="_{$Nav[3][$nv1][$nv2][$nv3]->pos}-"?>'>
         
         <figure><img src='<?=$Dir->art_ima?>05-08.GIF'></figure>
 
@@ -1707,7 +1758,8 @@
                               
       </section>
 
-      <section id="_02-05-09-">
+      <?php $nv3=Num::val($nv3+1,2);$nv4=0;?>
+      <section id='<?="_{$Nav[3][$nv1][$nv2][$nv3]->pos}-"?>'>
         
         <figure><img src='<?=$Dir->art_ima?>05-09.GIF'></figure>
 
@@ -1717,7 +1769,8 @@
                           
       </section>
 
-      <section id="_02-05-10-">
+      <?php $nv3=Num::val($nv3+1,2);$nv4=0;?>
+      <section id='<?="_{$Nav[3][$nv1][$nv2][$nv3]->pos}-"?>'>
         
         <figure><img src='<?=$Dir->art_ima?>05-10.GIF'></figure>
 
@@ -1746,10 +1799,11 @@
     </section>
 
     <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
-    <section id='<?="_{$Nav[2][$nv1][$nv2]->key}-"?>'>      
+    <section id='<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>'>      
       <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>
 
-      <section id="_02-06-00-">
+      <?php $nv3=Num::val($nv3+1,2);$nv4=0;?>
+      <section id='<?="_{$Nav[3][$nv1][$nv2][$nv3]->pos}-"?>'>
         <p>Un Preludio al Mapa <n>49</n></p>
 
         <p>El número de mapas que comprende ésta versión de la Tierra en Ascenso es de 48<c>.</c> 
@@ -1780,7 +1834,8 @@
                             
       </section>        
 
-      <section id="_02-06-01-">
+      <?php $nv3=Num::val($nv3+1,2);$nv4=0;?>
+      <section id='<?="_{$Nav[3][$nv1][$nv2][$nv3]->pos}-"?>'>
         
         <figure><img src='<?=$Dir->art_ima?>06-01.GIF'></figure>
 
@@ -1800,7 +1855,8 @@
 
       </section>
 
-      <section id="_02-06-02-">
+      <?php $nv3=Num::val($nv3+1,2);$nv4=0;?>
+      <section id='<?="_{$Nav[3][$nv1][$nv2][$nv3]->pos}-"?>'>
         
         <figure><img src='<?=$Dir->art_ima?>06-02.GIF'></figure>
 
@@ -1821,11 +1877,11 @@
   </section>
 
   <?php $nv1=Num::val($nv1+1,2);$nv2=0;$nv3=0;$nv4=0;?>
-  <section id='<?="_{$Nav[1][$nv1]->key}-"?>'>
+  <section id='<?="_{$Nav[1][$nv1]->pos}-"?>'>
     <h2><?=Doc_Val::let($Nav[1]['03']->nom)?></h2>
 
     <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
-    <section id='<?="_{$Nav[2][$nv1][$nv2]->key}-"?>'>      
+    <section id='<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>'>      
       <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>
 
       <figure>
@@ -1839,7 +1895,7 @@
     </section>
 
     <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
-    <section id='<?="_{$Nav[2][$nv1][$nv2]->key}-"?>'>      
+    <section id='<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>'>      
       <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>
 
       <p>
@@ -1881,7 +1937,7 @@
     </section>
 
     <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
-    <section id='<?="_{$Nav[2][$nv1][$nv2]->key}-"?>'>      
+    <section id='<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>'>      
       <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>
 
       <p>Apéndice III<c>.</c> El Libro Fórmula Holonómica<c>:</c> La Matriz Psi vacía<c>.</c></p>

@@ -95,7 +95,7 @@
   if( empty( $Doc->Err = $_SESSION['Err'] ) ){
 
     // cargo clases principales
-    $Doc->Cla["App/{$Uri->esq}"] = [ "index", "Usuario" ];
+    $Doc->Cla["App/{$Uri->esq}"] = [ "Usuario" ];
           
     if( !empty($Uri->cab) ){
       // de contenido

@@ -1,3 +1,17 @@
+/*  
+  Pagina
+*/
+body {
+  background: center/cover no-repeat url(../../_img/sincronario/01.jpg);
+}
+
+/* 
+  Tablas 
+*/
+body > main article div.dat_lis > table {
+  width: initial;
+}
+
 
 /* 
   Sesion

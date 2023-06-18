@@ -307,6 +307,10 @@ table th {
 table th > p {
   margin: auto;
 }
+table th p.tex:not(.tit) {
+  color: var(--let_tex);
+  margin: .5rem;
+}
 
 /* listado vertical/horizontal */
 nav.lis {

@@ -8,7 +8,7 @@
 
   <!-- Introducción -->
   <?php $nv1=Num::val($nv1,2);$nv2=0;$nv3=0;$nv4=0;?>  
-  <section id="<?="_{$Nav[1][$nv1]->key}-"?>">
+  <section id="<?="_{$Nav[1][$nv1]->pos}-"?>">
     <h2><?=Doc_Val::let($Nav[1][$nv1]->nom);?></h2>
 
     <p>El kin es la uniadad básica utilizada en el tzolkin para medir distintos ciclos de tiempo. En el Sincronario al ciclo de 260 días se lo llama <q>Orden Sincrónico</q>.</p>    
@@ -37,7 +37,7 @@
 
   <!-- El Calendario Sagrado Tzolkin -->
   <?php $nv1=Num::val($nv1+1,2);$nv2=0;$nv3=0;$nv4=0;?>
-  <section id="<?="_{$Nav[1][$nv1]->key}-"?>">
+  <section id="<?="_{$Nav[1][$nv1]->pos}-"?>">
     <h2><?=Doc_Val::let($Nav[1][$nv1]->nom);?></h2>
     
     <p>En <cite>la Tierra en Ascenso</cite> se presenta al <b>Tzolkin</b> como <a href="<?=$Dir->libro?>tierra_en_ascenso#_02-01-02-" target="_blank">la Matriz Primaria</a><c>:</c> un modelo numérico compuesto por la combinación de dos series<c>,</c> <n>13 <c>x</c> 20</n><c>,</c> dando como resultado <n>260</n> permutaciones<c>.</c> Entre los Mayas este patrón de permutaciones era conocido como el <q>Calendario Sagrado</q> puesto que las <n>20</n> filas representadas en los <n>20</n> Signos simbolizaban <q>los más primarios aspectos del proceso vida<c>/</c>muerte</q><c>.</c></p>
@@ -54,7 +54,7 @@
 
     <!-- Los 20 sellos -->
     <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
-    <section id="<?="_{$Nav[2][$nv1][$nv2]->key}-"?>">      
+    <section id="<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>">      
       <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>    
 
       <p>Esta serie de 20 se describe como los Signos Sagrados, Glifos o Sellos Solares.</p>
@@ -73,7 +73,7 @@
 
     <!-- Los 13 tonos -->
     <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
-    <section id="<?="_{$Nav[2][$nv1][$nv2]->key}-"?>">      
+    <section id="<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>">      
       <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>    
 
       <p>Esta serie de 13 se describe como Números, Rayos de Pulsación o Tonos Galácticos.</p>
@@ -94,7 +94,7 @@
 
   <!-- El Módulo Armónico -->
   <?php $nv1=Num::val($nv1+1,2);$nv2=0;$nv3=0;$nv4=0;?>  
-  <section id="<?="_{$Nav[1][$nv1]->key}-"?>">
+  <section id="<?="_{$Nav[1][$nv1]->pos}-"?>">
     <h2><?=Doc_Val::let($Nav[1][$nv1]->nom);?></h2>
     
     <p>En la <a href="<?=$Dir->libro?>factor_maya#_00-" target="_blank">Introducción</a> del <cite>Factor Maya</cite> se presenta el Módulo Armónico como un <b>Calendario Galáctico</b> basado en el Código Maya o Código Armónico.</p>
@@ -133,7 +133,7 @@
 
     <!-- Los 52 portales de Activación Galáctica -->
     <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
-    <section id="<?="_{$Nav[2][$nv1][$nv2]->key}-"?>">      
+    <section id="<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>">      
       <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>
 
       <p>Se presenta por primera vez en <cite>La Tierra en Ascenso</cite> como <a href="<?=$Dir->libro?>tierra_en_ascenso#_02-01-02-" target="_blank">La Triple Configuración Binaria</a>, una configuración inherente al Calendario Sagrado, definiéndola como una <q>Estructura Resonante Primaria</q> común a todos los procesos y sistemas. Su triple aspecto es determinado por las 20 filas horizontales o latitudinales, y es doble dada su simetría bilateral.</p>
@@ -206,7 +206,7 @@
 
     <!-- Los 64 Hexagramas del I-Ching -->
     <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
-    <section id="<?="_{$Nav[2][$nv1][$nv2]->key}-"?>">      
+    <section id="<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>">      
       <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>
 
       <p>En <cite>El Factor Maya</cite> se habla sobre <a href="<?=$Dir->libro?>factor_maya#_04-01-01-" target="_blank">las relaciones entre el Tzolkin y el I-ching</a>:</p>
@@ -243,7 +243,7 @@
 
     <!-- Los 13 Campos de Energía -->
     <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
-    <section id="<?="_{$Nav[2][$nv1][$nv2]->key}-"?>">      
+    <section id="<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>">      
       <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>
 
       <p>En <cite>El Factor Maya</cite> se definen <a href="<?=$Dir->libro?>factor_maya#_07-03-01-" target="_blank">los <n>13</n> campos de Energía</a>. Doce de ellos contienen el código de información sobre el resplandor pre- y post- genético del desarrollo galáctico, y el decimotercero representa el código ADN.</p>
@@ -295,7 +295,7 @@
   
   <!-- El Giro Espectral -->
   <?php $nv1=Num::val($nv1+1,2);$nv2=0;$nv3=0;$nv4=0;?>  
-  <section id="<?="_{$Nav[1][$nv1]->key}-"?>">
+  <section id="<?="_{$Nav[1][$nv1]->pos}-"?>">
     <h2><?=Doc_Val::let($Nav[1][$nv1]->nom);?></h2>
 
     <p>El giro espectral es un ciclo de tiempo que surge por la Colocación Cromática de los Sellos Solares, es decir, comenzando a contar desde el Sol Amarillo.</p>
@@ -310,7 +310,7 @@
     
     <!-- Estación Galáctica -->
     <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
-    <section id="<?="_{$Nav[2][$nv1][$nv2]->key}-"?>">      
+    <section id="<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>">      
       <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>
 
       <p>Una Estación Galáctica está compuesta por 13 cromáticas de 5 días codificadas en una onda encantada ( módulo de sincronización ), por lo que las 4 estaciones en su conjunto están codificadas por un Castillo Fractal de 52 posiciones que representa el tzolkin en su totalidad.</p>
@@ -370,7 +370,7 @@
 
     <!-- Elemento Cromático -->
     <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
-    <section id="<?="_{$Nav[2][$nv1][$nv2]->key}-"?>">      
+    <section id="<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>">      
       <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>
 
       <p>Una cromática es una secuencia de 5 kines siguiendo la colocación cromática de los sellos solares. Hay 13 Cromáticas en cada Estación Galáctica y 52 Cromáticas en total denro del Tzolkin.</p>
@@ -395,7 +395,7 @@
   
   <!-- El Giro Galáctico -->
   <?php $nv1=Num::val($nv1+1,2);$nv2=0;$nv3=0;$nv4=0;?>  
-  <section id="<?="_{$Nav[1][$nv1]->key}-"?>">
+  <section id="<?="_{$Nav[1][$nv1]->pos}-"?>">
     <h2><?=Doc_Val::let($Nav[1][$nv1]->nom);?></h2>    
 
     <p>El Giro Galáctico es un ciclo de tiempo que surge por la Colocación Armónica de los Sellos Solares, es decir, comenzando a contar desde el Dragón Rojo.</p>
@@ -410,7 +410,7 @@
 
     <!-- Trayectoria Armónica -->
     <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
-    <section id="<?="_{$Nav[2][$nv1][$nv2]->key}-"?>">      
+    <section id="<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>">      
       <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>
 
       <p>Una Trayectoria Armónica está compuesta por 5 armónicas ( células del tiempo ) de 4 días. Las 13 trayectorias armónicas están codificadas por el módulo de sincronización de 13 tonos galácticos: La Onda Encantada, en donde cada posición equivale a una trayectoria de 20 kines.</p>
@@ -441,7 +441,7 @@
 
     <!-- Célula del Tiempo -->
     <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
-    <section id="<?="_{$Nav[2][$nv1][$nv2]->key}-"?>">      
+    <section id="<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>">      
       <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>
 
       <p>Una Armónica ( o Célula del Tiempo ) es una secuencia de 4 kines siguiendo la colocación armónica de los sellos solares. Hay 5 Células del Tiempo en cada Trayectoria Armónica y 65 Células en total denro del Tzolkin.</p>
@@ -466,7 +466,7 @@
   
   <!-- La Nave del Tiempo -->
   <?php $nv1=Num::val($nv1+1,2);$nv2=0;$nv3=0;$nv4=0;?>  
-  <section id="<?="_{$Nav[1][$nv1]->key}-"?>">
+  <section id="<?="_{$Nav[1][$nv1]->pos}-"?>">
     <h2><?=Doc_Val::let($Nav[1][$nv1]->nom);?></h2>
 
     <p>La Nave del Tiempo es un ciclo de tiempo que surge por la Colocación de Tonos, es decir, comenzando a contar desde el tono 1 al 13, donde empieza el próximo ciclo de 13.</p>
@@ -483,7 +483,7 @@
 
     <!-- Castillo Direccional/Fractal -->
     <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
-    <section id="<?="_{$Nav[2][$nv1][$nv2]->key}-"?>">      
+    <section id="<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>">      
       <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>
 
       <p>Un Castillo está compuesta por 4 ondas Encantadas de 13 kines. Los 5 castillos en su totalidad se corresponden a los 260 kines del giro galáctico.</p>
@@ -506,7 +506,7 @@
 
     <!-- Onda Encantada -->
     <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
-    <section id="<?="_{$Nav[2][$nv1][$nv2]->key}-"?>">      
+    <section id="<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>">      
       <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>
 
       <p>Una Onda Encantada ( o <a href="<?=$Dir->libro?>encantamiento_del_sueño#_05-02-" target="_blank">Forma de Onda</a> del Holon ) es una secuencia de 13 kines siguiendo la colocación de los 13 Tonos Galácticos. Hay 4 Ondas por cada Castillo y 20 Ondas en total denro del Tzolkin.</p>
@@ -540,5 +540,151 @@
     </section>      
 
   </section>  
+
+  <!-- El oráculo del Destino -->
+  <?php $nv1=Num::val($nv1+1,2);$nv2=0;$nv3=0;$nv4=0;?>  
+  <section id="<?="_{$Nav[1][$nv1]->pos}-"?>">
+    <h2><?=Doc_Val::let($Nav[1][$nv1]->nom);?></h2>
+
+    <!--Las Relaciones de Color-->
+    <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
+    <section id="<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>">      
+      <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>  
+
+      <p>En el <a href="<?=$Dir->libro?>encantamiento_del_sueño#_02-03-06-" target="_blank">Átomo del Tiempo Cromático</a> del <cite>Encantamiento del Sueño</cite> se presentan las relaciones de color en las que se basan las Parejas del Oráculo<c>:</c></p>
+
+      <ul>
+        <li>
+          <p><b class="ide">Análogos</b><c>:</c></p>
+          <ul class="lis">
+            <li><b class="col-roj">Rojo</b> y <b class="col-bla">Blanco</b></li>
+            <li><b class="col-azu">Azul</b> y <b class="col-ama">Amarillo</b></li>
+          </ul>
+        </li>
+        <li>
+          <p><b class="ide">Antípodas</b><c>:</c></p>
+          <ul class="lis">
+            <li><b class="col-roj">Rojo</b> y <b class="col-azu">Azul</b></li>
+            <li><b class="col-bla">Blanco</b> y <b class="col-ama">Amarillo</b></li>
+          </ul>
+        </li>
+        <li>
+          <p><b class="ide">Ocultos</b><c>:</c></p>
+          <ul class="lis">
+            <li><b class="col-roj">Rojo</b> y <b class="col-ama">Amarillo</b></li>
+            <li><b class="col-bla">Blanco</b> y <b class="col-azu">Azul</b></li>
+          </ul>
+        </li>      
+      </ul>
+
+      <!--Pareja Análoga -->       
+      <section>
+        <?php $nv3=Num::val(intval($nv3)+1,2);$nv4=0;?>
+        <h3 id="<?="_{$Nav[3][$nv1][$nv2][$nv3]->pos}-"?>"><?=Doc_Val::let($Nav[3][$nv1][$nv2][$nv3]->nom);?></h3>
+
+        <p>En <cite>El Encantamiento del Sueño</cite> se define como <a href="<?=$Dir->libro?>encantamiento_del_sueño#_02-03-06-01-" target="_blank">Pareja Análoga</a> a dos <b>Sellos Solares</b> <q>cuyos números código sumen <n>19</n></q><c>,</c> los cuales <q>Van juntos y dan refuerzo</q><c>.</c></p>
+
+        <p>Dentro del Oráculo<c>,</c> la pareja Análoga expresa <q>El poder de Mentes Gemelas de la Pareja Planetaria solar<c>-</c>galáctica</q><c>.</c> Esta relación se vé gráficamente en el <a href="<?=$Dir->libro?>encantamiento_del_sueño#_02-03-06-06-" target="_blank">Tablero del Viaje</a> donde ambos <b>Sellos Solares</b> de cada pareja análoga codifican una de las <b><n>10</n> Órbitas Planetarias</b><c>,</c> formando las <a href="<?=$Dir->libro?>encantamiento_del_sueño#_03-03-" target="_blank"><n>5</n> Células Solares Análogas</a><c>:</c> <q>La creación de equipos de células solares con el propósito de explorar los túneles del tiempo es una forma avanzada de jugar el Encantamiento del Sueño</q><c>.</c></p>
+
+        <?=Doc_Dat::lis('hol.sel_par_ana',['atr'=>['ini','ini_car','ini_des','fin','fin_car','fin_des']]);?>
+
+      </section>
+
+      <!--Pareja Antípoda -->       
+      <section>
+        <?php $nv3=Num::val(intval($nv3)+1,2);$nv4=0;?>
+        <h3 id="<?="_{$Nav[3][$nv1][$nv2][$nv3]->pos}-"?>"><?=Doc_Val::let($Nav[3][$nv1][$nv2][$nv3]->nom);?></h3>
+
+        <p>En <cite>El Encantamiento del Sueño</cite> se define como <a href="<?=$Dir->libro?>encantamiento_del_sueño#_02-03-06-01-" target="_blank">Pareja Antípoda</a> a dos <b>Sellos Solares</b> <q>cuyos números código entén separados entre sí por <n>10</n></q><c>.</c> Representan <q>El poder del Desafío que fortalece la Reconstrucción de Memoria</q><c>,</c> los cuales <q>Se oponen y desafían para fortalecer la memoria del génesis</q><c>.</c></p>
+
+        <p>Dentro del Oráculo<c>,</c> la pareja Antípoda expresa <q>El poder del Desafío fortalece la Reconstrucción de Memoria</q><c>.</c> Esta relación se vé gráficamente en el <a href="<?=$Dir->libro?>encantamiento_del_sueño#_02-03-06-04-" target="_blank">Tablero del Génesis</a> donde los <b>Sellos Solares</b><c>,</c> correspondientes a las Ondas Encantadas<c>,</c> se agrupan con sus parejas antípodas formando las <a href="<?=$Dir->libro?>encantamiento_del_sueño#_03-06-" target="_blank"><n>5</n> Células de la Memoria del Génesis</a><c>:</c> <q>La creación de los equipos de memoria celular para viajar en el tiempo es un nivel avanzado del Oráculo del Encantamiento del Sueño</q><c>.</c></p>
+
+        <?=Doc_Dat::lis('hol.sel_par_ant',['atr'=>['ini','ini_car','ini_des','fin','fin_car','fin_des']]);?>
+
+      </section>
+
+      <!--Pareja Oculta-->
+      <section>
+        <?php $nv3=Num::val(intval($nv3)+1,2);$nv4=0;?>
+        <h3 id="<?="_{$Nav[3][$nv1][$nv2][$nv3]->pos}-"?>"><?=Doc_Val::let($Nav[3][$nv1][$nv2][$nv3]->nom);?></h3>
+
+        <p>En <cite>El Encantamiento del Sueño</cite> se define como <a href="<?=$Dir->libro?>encantamiento_del_sueño#_02-03-06-01-" target="_blank">Pareja Oculta</a> a dos <b>Sellos Solares</b> <q>cuyos números código sumen <n>21</n></q><c>,</c> los cuales <q>Representan factores inesperados y escondidos</q><c>.</c></p>
+
+        <p>A diferencia de las otras parejas<c>,</c> en el caso de dos <b>Kines</b><c>,</c> sus tonos deben sumar <n>14</n><c>.</c> Así surgen los cuartetos ocultos<c>,</c> como la combinación de dos parejas de Kines Ocultos cuyos <b>Tonos</b> sumen <n>28</n><c>.</c></p>
+
+        <p>Dentro del Oráculo<c>,</c> la pareja Oculta expresa <q>El poder Escondido del <n>7</n><c>,</c> lo inesperado</q><c>.</c> Esta relación se vé gráficamente en el <a href="<?=$Dir->libro?>encantamiento_del_sueño#_02-03-06-05-" target="_blank">Índice Armónico</a> donde ambos <b>Sellos Solares</b> se encuentran en <a href="<?=$Dir->libro?>encantamiento_del_sueño#_02-03-07-" target="_blank">Armónicas Inversas</a><c>,</c> representando el principio de <b class="ide">matriz radial.</b><c>:</c> <q>El encontrar las parejas ocultas y los cuartetos aumenta el poder de tu holón y amplifica las posibilidades de jugar</q><c>.</c></p>
+
+        <?=Doc_Dat::lis('hol.sel_par_ocu',['atr'=>['ini','ini_car','ini_des','fin','fin_car','fin_des']]);?>
+
+      </section>
+
+      <!--Parejas Guía-->
+      <section>
+        <?php $nv3=Num::val(intval($nv3)+1,2);$nv4=0;?>
+        <h3 id="<?="_{$Nav[3][$nv1][$nv2][$nv3]->pos}-"?>"><?=Doc_Val::let($Nav[3][$nv1][$nv2][$nv3]->nom);?></h3>
+
+        <p>En <cite>El Encantamiento del Sueño</cite> se define la <a href="<?=$Dir->libro?>encantamiento_del_sueño#_02-03-06-01-" target="_blank">Pareja Guía</a> como dos <b>Sellos Solares</b> del mismo Color<c>,</c> los cuales <q>Representan el resultado favorecido por la dominación cromática de un color</q><c>.</c></p>
+
+        <p>A diferencia de las demás parejas<c>,</c> para determinar el guía es necesario conocer el <b>Tono Galáctico</b> del <b>Kin</b><c>.</c> Dado que hay <n>5</n> <b>Sellos Solares</b> por Color<c>,</c> el Sello Guía puede variar<c>,</c> lo que crea la expansión de los <b><n>20</n> Patrones Base</b> en los <b><n>100</n> Patrones del Destino</b><c>.</c></p>
+
+        <p>Dentro del Oráculo<c>,</c> la pareja Guía expresa <q>El poder del Resultado de la Quinta Fuerza</q><c>.</c> La secuencia en que aparecen los guías de cada sello sigue la misma que las <b>Ondas Encatandas</b> del mismo Color en los distintos <b>Castillos</b> de la <b>Nave del Tiempo</b><c>.</c></p>
+
+        <?=Doc_Dat::lis('hol.sel_par_gui');?>
+
+      </section>      
+
+    </section>
+
+    <!--Los Patrones del Destino-->
+    <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
+    <section id="<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>">      
+      <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>      
+
+      <p>El <a href="<?=$Dir->libro?>encantamiento_del_sueño#_02-03-06-" target="_blank">Tablero del Oráculo</a> esta compuesto por los <q><n>20</n> patrones básicos del destino</q> que se expanden en su posición guía por el poder del <n>5</n> para crear los <q><n>100</n> Patrones del Destino</q><c>.</c></p>    
+
+      <?= Sincronario::dat_tab('sel','arm_tra',[ 
+        'sec'=>[ 'par'=>1 ],
+        'pos'=>[ 'bor'=>1, 'col'=>"hol.sel.ide", 'ima'=>"hol.sel.ord" ] 
+      ],[ 
+        'sec'=>['class'=>"mar_arr-3 mar_aba-3 bor-1 bor_col-5-0-" ] 
+      ]);?>
+
+      <p>Estos patrones<c>,</c> que se definen por las relaciones de colores y combinación de númeos código entre dos sellos<c>,</c> son utilizados para las tres <a href="<?=$Dir->libro?>encantamiento_del_sueño#_02-03-06-01-" target="_blank">Claves de Lectura del Oráculo</a><c>:</c> <b>del Destino</b><c>,</c> <b>Diaria</b> o <b>del Azar</b><c>.</c></p>
+
+      <figure>
+        <img src='<?=$Dir->art_ima?>4-1.png' alt='Patrón del Destino' title='Guía del Oráculo del Encantamiento del Sueño'>
+      </figure>    
+
+    </section>
+
+    <!--La Sincronometría del Oráculo-->
+    <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
+    <section id="<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>">      
+      <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>  
+
+      <p>En <cite>El Telektonon</cite><c>,</c> el <a href="<?=$Dir->libro?>telektonon#_02-03-04-" target="_blank"><n>4</n><c>°</c> nivel<c>,</c> Juego del Oráculo</a> establece las relaciones del oráculo en diagramas que miden la <a href="<?=$Dir->libro?>telektonon#_02-03-04-" target="_blank">Sincronometría</a> de los <q>Flujos del Oráculo</q><c>.</c></p>
+
+      <figure>
+        <img src='<?=$Dir->art_ima?>4-2.png' alt='Sincronometría del Oráculo' title='Sincronometría de los Flujos del Oráculo'>
+      </figure>
+
+    </section>
+
+    <!--El Tiempo N.E.T. -->
+    <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
+    <section id="<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>">      
+      <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>  
+
+      <p>En <cite>El Tutorial del Sincronario de <n>13</n> Lunas</cite> se presenta un aplicación especial del Oráculo llamada <a href="<?=$Dir->libro?>tut#_04-04-" target="_blank">el Tiempo Net</a> que se basa en dividir el día en <n>4</n> subciclos llamados <q>Miradas</q><c>,</c> uno por cada pareja del oráculo<c>:</c> <q>Siguiendo el patrón de tiempo net cada día llega a ser un mandala de sincronicidad<c>.</c> Sigue las miradas cambiantes del Oráculo de Quinta Fuerza del Tiempo NET <c>¡</c>para obtener una visión más profunda con el flujo de la realidad diaria<c>!</c></q><c>.</c></p>
+
+      <figure>
+        <img src='<?=$Dir->art_ima?>4-3.png' alt='Oráculo del Tiempo NET' title='Oráculo del Tiempo NET'>
+      </figure>    
+
+    </section>    
+
+  </section>
+
+  <!-- la firma galáctica -->  
 
 </article>  

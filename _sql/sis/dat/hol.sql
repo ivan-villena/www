@@ -443,20 +443,20 @@
         _ani.ide
     ;    
     -- 4 estaciones
-    DROP VIEW IF EXISTS `_hol-psi_hep_est`; CREATE VIEW `_hol-psi_hep_est` AS
+    DROP VIEW IF EXISTS `_hol-psi_est`; CREATE VIEW `_hol-psi_est` AS
       SELECT 
         _est.*,
         _cas.cas,
         _cas.des_col,
         _cas.des_dir
       FROM 
-        `hol-psi_hep_est` _est
+        `hol-psi_est` _est
       INNER JOIN 
         `_hol-cas_arm` _cas ON _est.ide = _cas.ide
       ORDER BY
         _est.ide        
     ;-- días estacionales
-    DROP VIEW IF EXISTS `_hol-psi_hep_est_dia`; CREATE VIEW `_hol-psi_hep_est_dia` AS
+    DROP VIEW IF EXISTS `_hol-psi_est_dia`; CREATE VIEW `_hol-psi_est_dia` AS
       SELECT 
         _dia.*,
         _ton.dim,
@@ -468,14 +468,14 @@
         _ton.ond_pod,
         _ton.ond_man
       FROM 
-        `hol-psi_hep_est_dia` _dia
+        `hol-psi_est_dia` _dia
       INNER JOIN 
         `hol-ton` _ton ON _ton.ide = _dia.ton
       ORDER BY
         _dia.ide
     ;
     -- 13 lunas del giro solar
-    DROP VIEW IF EXISTS `_hol-psi_ani_lun`; CREATE VIEW `_hol-psi_ani_lun` AS 
+    DROP VIEW IF EXISTS `_hol-psi_lun`; CREATE VIEW `_hol-psi_lun` AS 
       SELECT 
         _lun.*,         
         _ton.ide AS `ton`,
@@ -495,14 +495,14 @@
         _ton.ond_pod AS `ond_pod`,
         _ton.ond_man AS `ond_man`
       FROM 
-        `hol-psi_ani_lun` _lun      
+        `hol-psi_lun` _lun      
       INNER JOIN 
         `hol-ton` _ton ON _lun.ide = _ton.ide
       ORDER BY
         _lun.ide        
     ;
     -- 52 heptadas del giro solar
-    DROP VIEW IF EXISTS `_hol-psi_hep_pla`; CREATE VIEW `_hol-psi_hep_pla` AS
+    DROP VIEW IF EXISTS `_hol-psi_hep`; CREATE VIEW `_hol-psi_hep` AS
       SELECT 
         _hep.*,
         _cas.arm,
@@ -523,7 +523,7 @@
         _cas.des AS `cas_des`,
         _cas.lec AS `cas_lec`
       FROM 
-        `hol-psi_hep_pla` _hep
+        `hol-psi_hep` _hep
       INNER JOIN 
         `hol-cas` _cas ON _hep.ide = _cas.ide
       INNER JOIN 

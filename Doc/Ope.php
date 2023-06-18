@@ -10,7 +10,8 @@ class Doc_Ope {
   static function sec( string | array $dat, array $ele = [] ) : string {
     $_ = "";
     // contenido directo
-    if( is_string($dat) ){ 
+    if( is_string($dat) ){
+      
       $_ .= $dat;
     }
     // listado de articulos
@@ -238,11 +239,12 @@ class Doc_Ope {
 
       $_.="
     </div>";
+
     return $_;
   }
 
   // Imprimo Artpiculo desde objeto
-  public function art( object $nav, array $_art ) : string {
+  static function art( object $nav, array $_art ) : string {
     $_ = "";      
 
     $agr = Ele::htm($nav->ope);
@@ -295,57 +297,133 @@ class Doc_Ope {
     </article>";          
 
     return $_;
-  }// Imprimo Secciones del Articulo por Indice : article > h2 + ...section > h3 + ...section > ...
-  public function art_nav( string $ide ) : string {
-    $_ = "";
+  }// Secciones del articulo
+  static function art_sec() : void {
+    $Nav = [];
+    ?>
     
-    $_ide = explode('.',$ide);
+    <?php $nv1=0;$nv2=0;$nv3=0;$nv4=0;?>
+
+    <?php $nv1=Num::val($nv1+1,2);$nv2=0;$nv3=0;$nv4=0;?>
+    <section id='<?="_{$Nav[1][$nv1]->pos}-"?>'>
+      <h2><?=Doc_Val::let($Nav[1][$nv1]->nom)?></h2>
+
+      <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
+      <section id='<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>'>      
+        <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>
+
+        <?php $nv3=Num::val($nv3+1,2);$nv4=0;?>
+        <section id='<?="_{$Nav[3][$nv1][$nv2][$nv3]->pos}-"?>'>
+          <h4><?=Doc_Val::let($Nav[3][$nv1][$nv2][$nv3]->nom)?></h4>
+
+          <?php $nv4=Num::val($nv4+1,2);$nv5=0;?>
+          <section id='<?="_{$Nav[4][$nv1][$nv2][$nv3][$nv4]->pos}-"?>'>
+            <h5><?=Doc_Val::let($Nav[4][$nv1][$nv2][$nv3][$nv4]->nom)?></h5>
+
+            <?php $nv5=Num::val($nv5+1,2);?>
+            <section id='<?="_{$Nav[5][$nv1][$nv2][$nv3][$nv4][$nv5]->pos}-"?>'>
+              <h6><?=Doc_Val::let($Nav[5][$nv1][$nv2][$nv3][$nv4][$nv5]->nom)?></h6>
+
+            </section>
+
+          </section>
+
+        </section>
+
+      </section>
     
-    $app_nav = Dat::get('sis-app_nav',[ 'ver'=>"`esq`='{$_ide[0]}' AND `cab`='{$_ide[1]}' AND `ide`='{$_ide[2]}'", 'nav'=>'pos' ]);
+    </section>
 
-    if( isset($app_nav[1]) ){
+    <?php
+  }// Indice con enlaces => a[href] > ...a[href]
+  static function art_nav( array $dat, array $ele = [], ...$opc ) : string {
+    $_ = "";    
+    $_eje = self::$EJE."art_nav";
+    foreach( ['ope','ope_dep','lis','dep'] as $i ){ if( !isset($ele[$i]) ) $ele[$i] = []; }
 
-      foreach( $app_nav[1] as $nv1 => $_nv1 ){ $_ .= "
-        <h2 id='_{$nv1}-'>".Doc_Val::let($_nv1->nom)."</h2>
-        <article>";
-          if( isset($app_nav[2][$nv1]) ){
-            foreach( $app_nav[2][$nv1] as $nv2 => $_nv2 ){$_ .= "
+    // operadores
+    Ele::cla( $ele['ope'], "-ren", 'ini' );    
+    $_ .= Doc_Ope::lis_ope(self::$EJE."art_nav",['tog','ver'],$ele);
+    
+    // armo listado de enlaces    
+    $opc_ide = in_array('ide',$opc);
+    Ele::cla($ele['lis'], "nav");
 
-          <h3 id='_{$nv1}-{$nv2}-'>".Doc_Val::let($_nv2->nom)."</h3>
-          <section>";
-            if( isset($app_nav[3][$nv1][$nv2]) ){
-              foreach( $app_nav[3][$nv1][$nv2] as $nv3 => $_nv3 ){$_ .= "
-
-            <h4 id='_{$nv1}-{$nv2}-{$nv3}-'>".Doc_Val::let($_nv3->nom)."</h4>
-            <section>";
-              if( isset($app_nav[4][$nv1][$nv2][$nv3]) ){
-                foreach( $app_nav[4][$nv1][$nv2][$nv3] as $nv4 => $_nv4 ){ $_ .= "
-
-              <h5 id='_{$nv1}-{$nv2}-{$nv3}-{$nv4}-'>".Doc_Val::let($_nv4->nom)."</h5>
-              <section>";
-                if( isset($app_nav[5][$nv1][$nv2][$nv3][$nv4]) ){
-                  foreach( $app_nav[5][$nv1][$nv2][$nv3][$nv4] as $nv5 => $_nv5 ){ $_ .= "
-
-                <h6 id='_{$nv1}-{$nv2}-{$nv3}-{$nv4}-{$nv5}-'>".Doc_Val::let($_nv5->nom)."</h6>
-                <section>                      
-
-                </section>";
-                  }
-                }$_ .= "                  
-              </section>";
-                }
-              }$_ .= "                
-            </section>";
+    // proceso con nivelacion de indices
+    $_lis = [];
+    foreach( $dat[1] as $nv1 => $_nv1 ){
+      $ide = $opc_ide ? $_nv1->ide : $nv1;
+      $eti_1 = ['eti'=>"a", 'href'=>"#_{$ide}-", 'onclick'=>"{$_eje}('val',this);", 'htm'=> Doc_Val::let("{$_nv1->nom}") ];
+      if( !isset($dat[2][$nv1]) ){
+        $_lis []= Ele::val($eti_1);
+      }
+      else{
+        $_lis_2 = [];
+        foreach( $dat[2][$nv1] as $nv2 => $_nv2 ){
+          $ide = $opc_ide ? $_nv2->ide : "{$nv1}-{$nv2}"; 
+          $eti_2 = [ 'eti'=>"a", 'href'=>"#_{$ide}-", 'onclick'=>"{$_eje}('val',this);", 'htm'=> Doc_Val::let("{$_nv2->nom}") ];
+          if( !isset($dat[3][$nv1][$nv2])  ){
+            $_lis_2 []= Ele::val($eti_2);
+          }
+          else{
+            $_lis_3 = [];              
+            foreach( $dat[3][$nv1][$nv2] as $nv3 => $_nv3 ){
+              $ide = $opc_ide ? $_nv3->ide : "{$nv1}-{$nv2}-{$nv3}";
+              $eti_3 = [ 'eti'=>"a", 'href'=>"#_{$ide}-", 'onclick'=>"{$_eje}('val',this);", 'htm'=> Doc_Val::let("{$_nv3->nom}") ];
+              if( !isset($dat[4][$nv1][$nv2][$nv3]) ){
+                $_lis_3 []= Ele::val($eti_3);
               }
-            }$_ .= "              
-          </section>";
+              else{
+                $_lis_4 = [];                  
+                foreach( $dat[4][$nv1][$nv2][$nv3] as $nv4 => $_nv4 ){
+                  $ide = $opc_ide ? $_nv4->ide : "{$nv1}-{$nv2}-{$nv3}-{$nv4}"; 
+                  $eti_4 = [ 'eti'=>"a", 'href'=>"#_{$ide}-", 'onclick'=>"{$_eje}('val',this);", 'htm'=> Doc_Val::let("{$_nv4->nom}") ];
+                  if( !isset($dat[5][$nv1][$nv2][$nv3][$nv4]) ){
+                    $_lis_4 []= Ele::val($eti_4);
+                  }
+                  else{
+                    $_lis_5 = [];                      
+                    foreach( $dat[5][$nv1][$nv2][$nv3][$nv4] as $nv5 => $_nv5 ){
+                      $ide = $opc_ide ? $_nv5->ide : "{$nv1}-{$nv2}-{$nv3}-{$nv4}-{$nv5}"; 
+                      $eti_5 = [ 'eti'=>"a", 'href'=>"#_{$ide}-", 'onclick'=>"{$_eje}('val',this);", 'htm'=> Doc_Val::let("{$_nv5->nom}") ];
+                      if( !isset($dat[6][$nv1][$nv2][$nv3][$nv4][$nv5]) ){
+                        $_lis_5 []= Ele::val($eti_5);
+                      }
+                      else{
+                        $_lis_6 = [];
+                        foreach( $dat[6][$nv1][$nv2][$nv3][$nv4][$nv5] as $nv6 => $_nv6 ){
+                          $ide = $opc_ide ? $_nv6->ide : "{$nv1}-{$nv2}-{$nv3}-{$nv4}-{$nv5}-{$nv6}"; 
+                          $eti_6 = [ 'eti'=>"a", 'href'=>"#_{$ide}-", 'onclick'=>"{$_eje}('val',this);", 'htm'=> Doc_Val::let("{$_nv6->nom}") ];
+                          if( !isset($dat[7][$nv1][$nv2][$nv3][$nv4][$nv5][$nv6]) ){
+                            $_lis_6 []= Ele::val($eti_6);
+                          }
+                          else{
+                            $_lis_7 = [];
+                            // ... continuar ciclo
+                            $_lis_6 []= [ 'ite'=>$eti_6, 'lis'=>$_lis_7 ];                              
+                          }
+                        }
+                        $_lis_5 []= [ 'ite'=>$eti_5, 'lis'=>$_lis_6 ];
+                      }
+                    }
+                    $_lis_4 []= [ 'ite'=>$eti_4, 'lis'=>$_lis_5 ];
+                  }
+                }
+                $_lis_3 []= [ 'ite'=>$eti_3, 'lis'=>$_lis_4 ];
+              }
             }
-          }$_ .= "              
-        </article>";
+            $_lis_2 []= [ 'ite'=>$eti_2, 'lis'=>$_lis_3 ];  
+          }
+        }
+        $_lis []= [ 'ite'=>$eti_1, 'lis'=>$_lis_2 ];
       }
     }
 
-    return $_;
+    // pido listado
+    $ele['opc'] = [];
+    Ele::cla($ele['dep'],DIS_OCU);
+    
+    return $_ .= Doc_Ope::lis('dep',$_lis,$ele);
   }
 
   /* Contenedores : nav(pes,tex,bar,bot) + * > ...[nav="ide"] */
@@ -626,7 +704,7 @@ class Doc_Ope {
       ".( !empty($agr['htm_fin']) ? $agr['htm_fin'] : '' )."      
     </div>
     ";   
-  }  
+  }
 
   /* Bloque de Contenido : visible/oculto */
   static function val( string | array $dat = NULL, array $ele = [] ) : string {

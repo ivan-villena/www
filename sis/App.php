@@ -24,7 +24,7 @@ class App {
     $Uri = isset($_SESSION['Uri']) ? $_SESSION['Uri'] : new stdClass;
 
     if( isset($Uri->esq) && is_object( $dat = Dat::get('sis-app_esq',[ 
-      'ver'=>"`ide`='{$Uri->esq}'", 
+      'ver'=>"`ide` = '{$Uri->esq}'", 
       'opc'=>'uni' 
     ]) ) ){
 
@@ -32,7 +32,7 @@ class App {
 
       // cargo datos del menu
       if( !empty($Uri->cab) && is_object( $dat = Dat::get('sis-app_cab',[ 
-        'ver'=>"`esq`='{$this->Esq->key}' AND `ide`='{$Uri->cab}'", 
+        'ver'=>"`esq` = '{$this->Esq->ide}' AND `ide` = '{$Uri->cab}'",
         'ele'=>'ope', 
         'opc'=>'uni'
       ])) ){
@@ -41,8 +41,8 @@ class App {
           
         // cargo datos del artículo
         if( !empty($Uri->art) && is_object( $dat = Dat::get('sis-app_art',[ 
-          'ver'=>"`esq`='{$this->Esq->key}' AND `cab`='{$this->Cab->key}' AND `ide`='{$Uri->art}'", 
-          'ele'=>'ope', 
+          'ver'=>"`esq` = '{$this->Esq->ide}' AND `cab` = '{$this->Cab->ide}' AND `ide` = '{$Uri->art}'", 
+          'ele'=>'ope',
           'opc'=>'uni' 
         ])) ){
 
@@ -50,9 +50,9 @@ class App {
           
           // busco índice de contenidos
           $this->Nav = Dat::get('sis-app_nav',[ 
-            'ver'=>"`esq`='{$this->Esq->key}' AND `cab`='{$this->Cab->key}' AND `art`='{$this->Art->key}'", 
-            'ord'=>"`key` ASC",
-            'nav'=>'key'
+            'ver'=>"`esq` = '{$this->Esq->ide}' AND `cab` = '{$this->Cab->ide}' AND `art` = '{$this->Art->ide}'", 
+            'ord'=>"`pos` ASC",
+            'nav'=>'pos'
           ]);
         }
         elseif( !empty($Uri->art) ){
@@ -77,7 +77,6 @@ class App {
     
     global $Usu;
     
-    $esq_key = $this->Esq->key;
     $esq_ide = $this->Esq->ide;
 
     foreach( ['ope','lis','dep'] as $i ){ if( !isset($ele[$i]) ) $ele[$i] = []; }
@@ -93,7 +92,7 @@ class App {
       $ite_ico = !empty($_cab->ico) ? Doc_Val::ico( $_cab->ico, [ 'class'=>"mar_der-1" ] ) : "";
 
       $lis_ite = [];
-      foreach( Dat::get('sis-app_art',[ 'ver'=>"`esq`='$esq_key' AND `cab`='$_cab->key'", 'ord'=>"`key` ASC" ]) as $_art ){
+      foreach( Dat::get('sis-app_art',[ 'ver'=>"`esq` = '{$this->Esq->ide}' AND `cab` = '$_cab->ide'", 'ord'=>"`pos` ASC" ]) as $_art ){
 
         $ele_val = !empty($_art->ele) ? $_art->ele : [ 'class'=>"dis-fle ali-cen" ];
 
@@ -106,7 +105,7 @@ class App {
         }
         // por enlace
         else{
-          $ele_val['href'] = SYS_NAV."/$esq_ide/$_cab->ide/$_art->ide";
+          $ele_val['href'] = SYS_NAV."/{$this->Esq->ide}/$_cab->ide/$_art->ide";
           $ite_val = "
           <p>"
           .( !empty($_art->ico) ? Doc_Val::ico( $_art->ico, [ 'class'=>"mar_der-1" ] ) : $ite_ico )
@@ -144,11 +143,11 @@ class App {
   }// devuelvo listado del menu por esquema
   public function cab_ver( string $ide = "" ) : array {
 
-    $ver = "`esq`='{$this->Esq->key}'";
+    $ver = "`esq` = '{$this->Esq->ide}'";
 
-    if( !empty($ide) ) $ver .= " AND `ide`='{$ide}'";
+    if( !empty($ide) ) $ver .= " AND `ide` = '{$ide}'";
 
-    return Dat::get('sis-app_cab',[ 'ver'=>$ver, 'ord'=>"`key` ASC" ]);
+    return Dat::get('sis-app_cab',[ 'ver'=>$ver, 'ord'=>"`pos` ASC" ]);
   }
 
   // Valido articulo de la Aplicacion por Peticion url
@@ -186,112 +185,26 @@ class App {
   }// devuelvo listado de articulos por menu
   public function art_ver( string $ide = "" ) : array {
     
-    $ver = "`esq`='{$this->Esq->key}' AND `cab`='{$this->Cab->key}'";
+    $ver = "`esq` = '{$this->Esq->ide}' AND `cab` = '{$this->Cab->ide}'";
 
-    if( !empty($ide) ) $ver .= " AND `ide`='{$ide}'";
+    if( !empty($ide) ) $ver .= " AND `ide` = '{$ide}'";
 
-    return Dat::get('sis-app_art',[ 'ver'=>$ver, 'ord'=>"`key` ASC" ]);
+    return Dat::get('sis-app_art',[ 'ver'=>$ver, 'ord'=>"`pos` ASC" ]);
 
   }
 
-  /* Indice por atributo con enlaces => a[href] > ...a[href] */
+  // imprimo indice
   public function nav( array $ele = [], ...$opc ) : string {
-    $_ = "";    
-    $_eje = self::$EJE."nav";
-    foreach( ['ope','ope_dep','lis','dep'] as $i ){ if( !isset($ele[$i]) ) $ele[$i] = []; }
 
-    // operadores
-    Ele::cla( $ele['ope'], "-ren", 'ini' );    
-    $_ .= Doc_Ope::lis_ope(self::$EJE."nav",['tog','ver'],$ele);
-    
-    // armo listado de enlaces    
-    $opc_ide = in_array('ide',$opc);
-    Ele::cla($ele['lis'], "nav");
-
-    // proceso nivelacion de indices
-    $dat = $this->Nav;
-    $_lis = [];
-    foreach( $dat[1] as $nv1 => $_nv1 ){
-      $ide = $opc_ide ? $_nv1->ide : $nv1;
-      $eti_1 = ['eti'=>"a", 'href'=>"#_{$ide}-", 'onclick'=>"{$_eje}('val',this);", 'htm'=> Doc_Val::let("{$_nv1->nom}") ];
-      if( !isset($dat[2][$nv1]) ){
-        $_lis []= Ele::val($eti_1);
-      }
-      else{
-        $_lis_2 = [];
-        foreach( $dat[2][$nv1] as $nv2 => $_nv2 ){
-          $ide = $opc_ide ? $_nv2->ide : "{$nv1}-{$nv2}"; 
-          $eti_2 = [ 'eti'=>"a", 'href'=>"#_{$ide}-", 'onclick'=>"{$_eje}('val',this);", 'htm'=> Doc_Val::let("{$_nv2->nom}") ];
-          if( !isset($dat[3][$nv1][$nv2])  ){
-            $_lis_2 []= Ele::val($eti_2);
-          }
-          else{
-            $_lis_3 = [];              
-            foreach( $dat[3][$nv1][$nv2] as $nv3 => $_nv3 ){
-              $ide = $opc_ide ? $_nv3->ide : "{$nv1}-{$nv2}-{$nv3}";
-              $eti_3 = [ 'eti'=>"a", 'href'=>"#_{$ide}-", 'onclick'=>"{$_eje}('val',this);", 'htm'=> Doc_Val::let("{$_nv3->nom}") ];
-              if( !isset($dat[4][$nv1][$nv2][$nv3]) ){
-                $_lis_3 []= Ele::val($eti_3);
-              }
-              else{
-                $_lis_4 = [];                  
-                foreach( $dat[4][$nv1][$nv2][$nv3] as $nv4 => $_nv4 ){
-                  $ide = $opc_ide ? $_nv4->ide : "{$nv1}-{$nv2}-{$nv3}-{$nv4}"; 
-                  $eti_4 = [ 'eti'=>"a", 'href'=>"#_{$ide}-", 'onclick'=>"{$_eje}('val',this);", 'htm'=> Doc_Val::let("{$_nv4->nom}") ];
-                  if( !isset($dat[5][$nv1][$nv2][$nv3][$nv4]) ){
-                    $_lis_4 []= Ele::val($eti_4);
-                  }
-                  else{
-                    $_lis_5 = [];                      
-                    foreach( $dat[5][$nv1][$nv2][$nv3][$nv4] as $nv5 => $_nv5 ){
-                      $ide = $opc_ide ? $_nv5->ide : "{$nv1}-{$nv2}-{$nv3}-{$nv4}-{$nv5}"; 
-                      $eti_5 = [ 'eti'=>"a", 'href'=>"#_{$ide}-", 'onclick'=>"{$_eje}('val',this);", 'htm'=> Doc_Val::let("{$_nv5->nom}") ];
-                      if( !isset($dat[6][$nv1][$nv2][$nv3][$nv4][$nv5]) ){
-                        $_lis_5 []= Ele::val($eti_5);
-                      }
-                      else{
-                        $_lis_6 = [];
-                        foreach( $dat[6][$nv1][$nv2][$nv3][$nv4][$nv5] as $nv6 => $_nv6 ){
-                          $ide = $opc_ide ? $_nv6->ide : "{$nv1}-{$nv2}-{$nv3}-{$nv4}-{$nv5}-{$nv6}"; 
-                          $eti_6 = [ 'eti'=>"a", 'href'=>"#_{$ide}-", 'onclick'=>"{$_eje}('val',this);", 'htm'=> Doc_Val::let("{$_nv6->nom}") ];
-                          if( !isset($dat[7][$nv1][$nv2][$nv3][$nv4][$nv5][$nv6]) ){
-                            $_lis_6 []= Ele::val($eti_6);
-                          }
-                          else{
-                            $_lis_7 = [];
-                            // ... continuar ciclo
-                            $_lis_6 []= [ 'ite'=>$eti_6, 'lis'=>$_lis_7 ];                              
-                          }
-                        }
-                        $_lis_5 []= [ 'ite'=>$eti_5, 'lis'=>$_lis_6 ];
-                      }
-                    }
-                    $_lis_4 []= [ 'ite'=>$eti_4, 'lis'=>$_lis_5 ];
-                  }
-                }
-                $_lis_3 []= [ 'ite'=>$eti_3, 'lis'=>$_lis_4 ];
-              }
-            }
-            $_lis_2 []= [ 'ite'=>$eti_2, 'lis'=>$_lis_3 ];  
-          }
-        }
-        $_lis []= [ 'ite'=>$eti_1, 'lis'=>$_lis_2 ];
-      }
-    }
-
-    // pido listado
-    $ele['opc'] = [];
-    Ele::cla($ele['dep'],DIS_OCU);
-    
-    return $_ .= Doc_Ope::lis('dep',$_lis,$ele);
+    return Doc_Ope::art_nav($this->Nav, $ele, ...$opc );
   }
 
-  // Listado de palabras clave
-  public function ide( int $esq, string $art, array $ele = [] ) : string {
+  // imprimo palabras clave por articulo
+  static function ide( string $esq, string $art, array $ele = [] ) : string {
 
     $_ = [];
     
-    if( is_array( $tex = Dat::get('sis-app_ide',['ver'=>"`esq`=$esq AND `art`='$art'"]) ) ){
+    if( is_array( $tex = Dat::get('sis-app_ide',['ver'=>"`esq` = '$esq' AND `art` = '$art'"]) ) ){
 
       foreach( $tex as $pal ){
 
@@ -303,6 +216,43 @@ class App {
     if( !isset($ele['opc']) ) $ele['opc'] = [];
 
     return Doc_Ope::lis('pos',$_,$ele);
+    
+  }// imprimo listado por conjuntos
+  static function ide_lis( string $esq, string $cab, array $var = [] ) : string {
+
+    if( empty($var['opc']) ) $var['opc'] = [ 'tog', 'ver', 'tog-dep' ];
+
+    if( empty($var['ope']) ) $var['ope'] = [ 'class'=>"ope_inf pad-2" ];
+    
+    $_ = [];    
+    // recorro articulos
+    foreach( Dat::get("sis-app_art",[ 'ver'=>"`esq` = '{$esq}' AND `cab` = '{$cab}'" ]) as $_art ){
+          
+      // busco terminos
+      if( !empty($_art->ide) && !empty( $_pal_lis = Dat::get("sis-app_ide",[
+
+        'ver'=>"`esq` = '{$esq}' AND `art` LIKE '$_art->ide%'",
+
+        'ord'=>"`art` ASC, `nom` ASC"
+        ]) ) 
+      ){
+        $_pal_ite = [];
+
+        foreach( $_pal_lis as $_pal ){
+          $_pal_ite[] = [ 
+            'ite'=>$_pal->nom,
+            'lis'=>[ Doc_Val::let($_pal->des) ]
+          ];
+        }
+        $_ []= [
+          'ite'=>$_art->nom, 
+          'lis'=>$_pal_ite
+        ];
+      }
+    }
+
+    // devuelvo lista
+    return Doc_Ope::lis( "dep", $_, $var );    
   }
 
   /* imprimo Consola del Sistema */
@@ -387,7 +337,7 @@ class App {
     $_ = [];
     
     // busco opciones del menu para el usuario por aplicacion    
-    foreach( Dat::get('sis-app_usu',[ 'ver'=>"`esq`='{$this->Esq->key}'" ]) as $usu ){
+    foreach( Dat::get('sis-app_usu',[ 'ver'=>"`esq` = '{$this->Esq->ide}'" ]) as $usu ){
       
       $ele_ico = [ 'class'=>"mar_der-1" ];
       $ite_fig = "";

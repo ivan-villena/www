@@ -4,19 +4,19 @@
 
   <header>
     <h1>Tutorial del Sincronario</h1>
+    <p>Fuente<c>:</c> <a href="https://www.13lunas.net/tutorial/tutorial.html" target="_blank">página de <n>13</n> lunas</a></p>
   </header>  
   
   <section>
-    <p>Fuente<c>:</c> <a href="https://www.13lunas.net/tutorial/tutorial.html">página de <n>13</n> lunas</a></p>
-
     <h2>Introducción</h2>
     
     <p>La nueva era que se avecina en nuestro planeta tiene mucho que ver con un cambio de la frecuencia del tiempo<c>.</c> El Sincronario de <n>13</n> Lunas<c>-</c><n>28</n> días es una herramienta simple que nos ayuda a elevar nuestra frecuencia y nos ofrece una nueva lente para ver tanto nuestro día a día como los acontecimientos planetarios<c>.</c> Debido a que tanto el Sincronario gregoriano como las <n>13</n> Lunas operan con <n>52</n> semanas de siete días al año <c>(</c><n>364</n> días<c>)</c><c>,</c> <c>¡</c>el Sincronario de <n>13</n> Lunas es una herramienta perfecta de transición diaria para conectar de nuevo con el orden dimensional superior<c>!</c> Es fácil seguir el día a día<c>,</c> ya que está marcado con las fechas del Sincronario gregoriano<c>.</c></p>
 
   </section>  
 
+  <!-- ciclos simples -->
   <?php $nv1=Num::val($nv1+1,2);$nv2=0;$nv3=0;$nv4=0;?>
-  <section id='<?="_{$Nav[1][$nv1]->key}-"?>'>
+  <section id='<?="_{$Nav[1][$nv1]->pos}-"?>'>
     <h2><?=Doc_Val::let($Nav[1][$nv1]->nom)?></h2>
 
     <p>El Sincronario de <n>13</n> Lunas se compone de ciclos elegantemente simples<c>.</c> Específicamente<c>:</c> La semana de siete días y la Luna de <n>28</n> días<c>.</c> A diferencia del Sincronario gregoriano<c>,</c> los días de la Luna <c>(</c>mes<c>)</c> y los días de la semana van alineados perfectamente<c>,</c> semana a semana y Luna a Luna<c>.</c> Esto hace del Sincronario de <n>13</n> Lunas de <n>28</n> días un Sincronario perpetuo<c>.</c> Vamos a entrar en detalle y verás lo que queremos decir<c>.</c></p>
@@ -32,7 +32,7 @@
 
     <p>Cada una de las cuatro semanas tiene un poder único<c>:</c></p>
 
-    <?=listado('tut','lun_arm')?>
+    <?=Listado('tut','lun_arm')?>
 
     <figure>
       <img src='<?=$Dir->art_ima?>01-02.jpg' class='mar-1'>
@@ -62,8 +62,9 @@
 
   </section>
 
+  <!-- Cada dia es un portal galáctico -->
   <?php $nv1=Num::val($nv1+1,2);$nv2=0;$nv3=0;$nv4=0;?>
-  <section id='<?="_{$Nav[1][$nv1]->key}-"?>'>
+  <section id='<?="_{$Nav[1][$nv1]->pos}-"?>'>
     <h2><?=Doc_Val::let($Nav[1][$nv1]->nom)?></h2>
 
     <p>Así que ahora has visto la punta del iceberg<c>.</c> El ciclo de <n>28</n> días<c>,</c> hace el cálculo del año extremadamente fácil<c>.</c> Siempre sabes que<c>,</c> por ejemplo<c>,</c> cinco Lunas desde ahora<c>,</c> será el mismo día de la Luna<c>,</c> y el mismo día de la semana<c>.</c> Puedes ver que si fueras a calcular algo en el futuro todavía sería el mismo año del Sincronario<c>.</c> Lo que es más<c>,</c> este Sincronario<c>,</c> como una matriz armónica<c>,</c> es un reflejo perfecto del tiempo dimensional superior<c>.</c></p>
@@ -83,7 +84,7 @@
 
     <p>Por ejemplo<c>,</c> aquí están las primeras cinco unidades en el Tzolkin<c>:</c></p>
 
-    <?=listado('tut','kin_ima',[1,2,3,4,5])?>
+    <?=Listado('tut','kin_ima',[1,2,3,4,5])?>
 
     <p><i>Aprenderás más acerca de los <n>13</n> Tonos Galácticos y los <n>20</n> Sellos Solares en la siguiente sección<c>.</c></i></p>
     
@@ -95,8 +96,9 @@
     
   </section>
 
+  <!-- Incorporandolo todo -->
   <?php $nv1=Num::val($nv1+1,2);$nv2=0;$nv3=0;$nv4=0;?>
-  <section id='<?="_{$Nav[1][$nv1]->key}-"?>'>
+  <section id='<?="_{$Nav[1][$nv1]->pos}-"?>'>
     <h2><?=Doc_Val::let($Nav[1][$nv1]->nom)?></h2>
 
     <p class="des">Lo que vemos aquí es una Luna <c>/</c> mes del Sincronario de <n>13</n> Lunas<c>:</c></p>
@@ -111,7 +113,7 @@
     <p>Vamos paso a paso<c>...</c></p>
 
     <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
-    <section id='<?="_{$Nav[2][$nv1][$nv2]->key}-"?>'>      
+    <section id='<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>'>      
       <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>
 
       <figure>
@@ -124,7 +126,7 @@
 
       <div class="ite">
 
-        <?=listado('tut','rad')?>
+        <?=Listado('tut','rad')?>
 
         <img src='<?=$Dir->art_ima?>03-01-02.png' class='mar-1' style="max-width:20rem;">
 
@@ -134,7 +136,7 @@
 
       <div class="ite">
 
-        <?=listado('tut','rad-lec')?>
+        <?=Listado('tut','rad-lec')?>
 
         <img src='<?=$Dir->art_ima?>03-01-03.png' class='mar-aut' style="max-width:10rem;">        
 
@@ -145,7 +147,7 @@
     </section>
 
     <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
-    <section id='<?="_{$Nav[2][$nv1][$nv2]->key}-"?>'>      
+    <section id='<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>'>      
       <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>
 
       <figure>
@@ -161,7 +163,7 @@
     </section>
     
     <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
-    <section id='<?="_{$Nav[2][$nv1][$nv2]->key}-"?>'>      
+    <section id='<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>'>      
       <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>
 
       <figure>
@@ -185,7 +187,7 @@
     </section>
     
     <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
-    <section id='<?="_{$Nav[2][$nv1][$nv2]->key}-"?>'>      
+    <section id='<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>'>      
       <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>
 
       <figure>
@@ -200,11 +202,11 @@
 
       <h4>Los <n>13</n> Tonos Galácticos</h4>
 
-      <?=listado('tut','ton')?>
+      <?=Listado('tut','ton')?>
 
       <h4>Los <n>20</n> Sellos Solares</h4>
 
-      <?=listado('tut','sel')?>
+      <?=Listado('tut','sel')?>
 
       <p>El portal galáctico siempre se lee <c>"</c>Sello<c>,</c> Tono<c>,</c> Color<c>"</c><c>.</c> Por ejemplo<c>,</c> un día dragón rojo<c>,</c> con el tono magnético se lee<c>:</c> <c>"</c> Dragón Magnético Rojo<c>"</c><c>.</c> Las palabras clave del Dragón Rojo son<c>:</c> nutrir<c>,</c> nacimiento<c>,</c> ser <c>-</c>Las palabras claves para el tono magnético son<c>:</c> unificar<c>,</c> atraer propósito<c>.</c></p>
 
@@ -217,7 +219,7 @@
     </section>
     
     <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
-    <section id='<?="_{$Nav[2][$nv1][$nv2]->key}-"?>'>      
+    <section id='<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>'>      
       <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>
 
       <figure>
@@ -243,8 +245,9 @@
 
   </section>
 
+  <!-- El oráculo de la quinta fuerza -->
   <?php $nv1=Num::val($nv1+1,2);$nv2=0;$nv3=0;$nv4=0;?>
-  <section id='<?="_{$Nav[1][$nv1]->key}-"?>'>
+  <section id='<?="_{$Nav[1][$nv1]->pos}-"?>'>
     <h2><?=Doc_Val::let($Nav[1][$nv1]->nom)?></h2>
 
     <p>Así que ahora que has aprendido a seguir el Sincronario de <n>13</n> Lunas día a día<c>,</c> vamos a ir un poco más adentro de este <c>¡</c>agujero del conejo galáctico<c>!</c></p>
@@ -252,7 +255,7 @@
     <p>Dentro de la firma galáctica diaria <c>(</c>también llamado mandato galáctico<c>)</c> está también el Oráculo de Quinta Fuerza<c>.</c> Una metáfora para describir el oráculo de Quinta Fuerza es que si la firma galáctica es el brote de la flor cuatridimensional<c>,</c> entonces el Oráculo de Quinta Fuerza es el florecer de la flor brillante<c>.</c></p>
     
     <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
-    <section id='<?="_{$Nav[2][$nv1][$nv2]->key}-"?>'>      
+    <section id='<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>'>      
       <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>
 
       <p>La ciencia contemporánea describe cuatro grandes fuerzas del universo<c>:</c> fuerte<c>,</c> débil<c>,</c> electromagnética y gravitacional<c>.</c> La Quinta Fuerza<c>,</c> entonces<c>,</c> es la que las aglutina a todas<c>,</c> es la Fuerza<c>-</c>G sincrónica<c>,</c> a veces llamada éter o akasha<c>.</c> <c>¡</c>Es la fuerza que sincroniza el universo<c>!</c></p>
@@ -262,7 +265,7 @@
     </section>
     
     <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
-    <section id='<?="_{$Nav[2][$nv1][$nv2]->key}-"?>'>      
+    <section id='<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>'>      
       <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>
 
       <figure>
@@ -284,7 +287,7 @@
     </section>    
     
     <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
-    <section id='<?="_{$Nav[2][$nv1][$nv2]->key}-"?>'>      
+    <section id='<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>'>      
       <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>
       
       <p>El gráfico siguiente es la clave para la comprensión de los oráculos como se ven en el gráfico del Tablero del Oráculo anterior<c>.</c></p>
@@ -305,7 +308,7 @@
       
       <p>El gráfico clave del Oráculo del Destino anterior muestra cómo calcular el Guía para cualquier firma galáctica dada <c>(</c>portal galáctico<c>)</c><c>.</c> Resumiendo<c>:</c></p>
 
-      <?=listado('tut','par_gui')?>
+      <?=Listado('tut','par_gui')?>
 
       <p>Por ejemplo<c>:</c></p>
 
@@ -322,7 +325,7 @@
     </section>   
         
     <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
-    <section id='<?="_{$Nav[2][$nv1][$nv2]->key}-"?>'>      
+    <section id='<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>'>      
       <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>
 
       <p>Otra aplicación del Oráculo de Quinta Fuerza es que divide el ciclo diario en cuatro sub-ciclos<c>,</c> llamadas miradas<c>.</c> Esto se llama <dfn>Tiempo NET</dfn> <c>-</c>Tiempo Noosférico de la Tierra<c>.</c></p>
@@ -333,16 +336,17 @@
       
       <p>En el Tiempo NET<c>,</c> para cada kin diario<c>,</c> utilizas el oráculo de quinta fuerza para encontrar las cuatro miradas del día que son<c>:</c></p>
 
-      <?=listado('tut','par-dia')?>
+      <?=Listado('tut','par-dia')?>
                   
       <p>Siguiendo el patrón de tiempo net cada día llega a ser un mandala de sincronicidad<c>.</c> Sigue las miradas cambiantes del Oráculo de Quinta Fuerza del Tiempo NET <c>¡</c>para obtener una visión más profunda con el flujo de la realidad diaria<c>!</c></p>
 
     </section>
 
   </section>
-    
+   
+  <!-- La Firma Galáctica -->
   <?php $nv1=Num::val($nv1+1,2);$nv2=0;$nv3=0;$nv4=0;?>
-  <section id='<?="_{$Nav[1][$nv1]->key}-"?>'>
+  <section id='<?="_{$Nav[1][$nv1]->pos}-"?>'>
     <h2><?=Doc_Val::let($Nav[1][$nv1]->nom)?></h2>
 
     <p><c>¡</c>Esperamos que este tutorial te haya ayudado para comenzar a utilizar el Sincronario de <n>13</n> Lunas a diario y así entrar en una nueva experiencia del tiempo<c>!</c> En la parte de <c>"</c><a href="http://www.13lunas.net/inical.htm" target="_blank">Sincronarios</a><c>"</c> puedes descargar el Sincronario de bolsillo de <n>13</n> Lunas del año en curso<c>.</c> </p>
@@ -356,6 +360,55 @@
     <figure>
       <a href="http://www.13lunas.net/fechafirmaGalacticaBasica.html" target="_blank"><img src='<?=$Dir->art_ima?>05.png' class='mar-1'></a>        
     </figure>            
+
+  </section>
+
+  <!-- El Banco-Psi -->
+  <?php $nv1=Num::val($nv1+1,2);$nv2=0;$nv3=0;$nv4=0;?>
+  <section id='<?="_{$Nav[1][$nv1]->pos}-"?>'>
+    <h2><?=Doc_Val::let($Nav[1][$nv1]->nom)?></h2>  
+
+    <p>Fuente: <a href="https://13lunas.net/tutorial/bancopsi/" target="_blank">13lunas.net</a></p>
+
+    <p>El banco psi es la frecuencia 13:20, el programa cuatridimensional que informa al ADN de sus ciclos de tiempo. Hasta el descubrimiento de la Ley del Tiempo (1989), el banco psi funcionaba inconscientemente.</p>
+  
+    <p>El banco psi es una estructura resonante, que opera en paralelo con los campos de resonancia electromagnéticos, o los Cinturones de Radiación de Van Allen, que circundan el globo en unos 17.700 kilómetros y a unos 3.200 kilómetros por encima de la Tierra. Para nosotros, como especie, los cambios en la evolución son, inevitablemente, cambios en la consciencia.</p>
+  
+    <p>De acuerdo con la teoría de la noosfera, los cambios en la evolución de la biosfera (vida sobre la Tierra) están programados en el ADN y registrados como estructuras de frecuencia almacenadas por el banco psi, el campo de memoria planetaria cuatridimensional.</p>
+  
+    <p>El banco psi también refleja el magnetismo bipolar de la Tierra y el cuádruple desplazamiento de la Tierra en una rotación alrededor del Sol.</p>
+  
+    <figure>
+      <img src='<?=$Dir->art_ima?>06-01.jpg' alt=''>
+    </figure>
+  
+    <p>Es el reflejo del magnetismo bipolar el que crea una placa doble del tzolkin, que se extiende desde el Polo Norte al Sur. El cuádruple desplazamiento (dos equinoccios y dos solsticios) de la Tierra en su rotación alrededor del Sol crea cuatro placas diferentes. Las cuatro placas psi grandes son divididas a su vez en una placa psi norte y otra sur, cada una es un espejo que refleja una cualidad estacional. Esto significa que los cuatro desplazamientos en el eje de la Tierra que se producen durante una órbita, son las cuentas para el invierno, primavera, verano y otoño en las zonas norte y sur de las zonas tropicales a 23,5 grados Norte y Sur del ecuador.</p>
+  
+    <p>La atribución del banco psi, facilita la conceptualización de la noosfera. Considera que la totalidad de los sistemas de pensamiento y conocimiento están contenidos dentro del banco psi regulador de la noosfera. Este banco psi regulador, situado entre estos dos campos electromagnéticos, no es sólo una unidad de almacenamiento para todo el pensamiento, sino que también contiene todo el conocimiento de los programas evolutivos en el tiempo.</p>
+  
+    <h3>Activación del Banco Psi en el Calendario de 13 Lunas como Unidades Psi Crono diarias (PSI / UPC)</h3>
+  
+    <figure>
+      <img src='<?=$Dir->art_ima?>06-02.jpg' alt=''>
+    </figure>
+  
+    <p>Cada día el calendario de 13 Lunas incluye una Unidad Psi Crono, que día a día es activada a través de los 364 (+1) días del año. Consulta tu <i>Almanaque de 13 Lunas Sincrónico del Viajero Estelar</i> para ver la Unidad Psi Crono diaria. </p>
+  
+    <ul>
+      <li>260 Unidades Tzolkin = 1/2 de una Placa Psi (como se muestra arriba)</li>
+      <li>1 Placa Psi = 520 unidades (un Tzolkin arriba de 260 unidades, con otro Tzolkin invertido de 260 unidades abajo - como se muestra arriba)</li>
+      <li>4 Placas Psi = Completan 2080 unidades del Banco Psi</li>
+    </ul>
+  
+    <p>Visualiza el banco psi, con la Unidad Psi Crono del día pulsando en las ocho placas del banco psi. Puedes visualizarlo brillando y pulsando en su color correspondiente. (Ejemplo, Rojo, las unidades del Dragón rojo, Blanco para las unidades de Viento Blanco, etc.)</p>
+  
+    <p>La descripción de cómo las 260 unidades Psi Crono encajan en el ciclo de 13 Lunas se encuentra en la <a href="http://www.13lunas.net/boletines/Rinri/introduccion.htm">Guía completa del Proyecto Rinri</a>.</p>
+  
+    <p class="tex_ali-cen">A continuación está el Tzolkin mostrando las fechas de 13 Lunas de todas las Unidades Psi Crono (por ejemplo, 1.1 = Luna Magnética 1, 2.10 = Luna Lunar 10, 13.13 = Luna Cósmica 13, etc.):</p>
+    
+    <figure>
+      <img src='<?=$Dir->art_ima?>06-03.png' alt=''>
+    </figure>      
 
   </section>
 

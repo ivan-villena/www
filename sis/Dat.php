@@ -38,6 +38,7 @@ class Dat {
 
     return $_;
   }
+  
   /* getter: objeto ( "esq", "est" ) | consulta con operadores ( "esquema.tabla" / [ ...] ) */
   static function get( mixed $dat, mixed $ope = NULL, mixed $val = NULL ) : mixed {
 
@@ -250,7 +251,7 @@ class Dat {
 
         // ...Propiedades extendidas
         $_est = Dat::get('sis-dat_est',[ 
-          'ver'=>"`esq`='{$esq}' AND `ide`='{$ide}'", 
+          'ver'=>"`esq` = '{$esq}' AND `ide` = '{$ide}'", 
           'ele'=>["ope"], 
           'opc'=>"uni" 
         ]);
@@ -516,21 +517,33 @@ class Dat {
     if( empty($esq) ){
       if( !isset(self::$Var[$app]) ){
         self::$Var[$app] = Dat::get('sis-dat_var',[
-          'ver'=>"`app`='{$app}'", 'niv'=>['dat','val','ide'], 'ele'=>["atr"], 'red'=>"atr"
+          'ver'=>"`app` = '{$app}'",
+          'ord'=>"pos ASC",
+          'niv'=>['dat','val','ide'], 
+          'ele'=>["atr"], 
+          'red'=>"atr"
         ]);
       }
     }// cargo por agrupacion
     elseif( empty($est) ){
       if( !isset(self::$Var[$app][$esq]) ){
         self::$Var[$app][$esq] = Dat::get('sis-dat_var',[
-          'ver'=>"`app`='{$app}' AND `esq`='{$esq}'", 'niv'=>['val','ide'], 'ele'=>["atr"], 'red'=>"atr"
+          'ver'=>"`app` = '{$app}' AND `esq` = '{$esq}'", 
+          'ord'=>"pos ASC",
+          'niv'=>['val','ide'], 
+          'ele'=>["atr"], 
+          'red'=>"atr"
         ]);
       }
     }// cargo uno
     else{
       if( !isset(self::$Var[$app][$esq][$est]) ){
         self::$Var[$app][$esq][$est] = Dat::get('sis-dat_var',[
-          'ver'=>"`app`='{$app}' AND `esq`='{$esq}' AND `est`='{$est}'", 'niv'=>['ide'], 'ele'=>["atr"], 'red'=>"atr"
+          'ver'=>"`app` = '{$app}' AND `esq` = '{$esq}' AND `est` = '{$est}'",
+          'ord'=>"pos ASC",
+          'niv'=>['ide'], 
+          'ele'=>["atr"], 
+          'red'=>"atr"
         ]);
       }
     }

@@ -30,14 +30,14 @@ class App {
     let $ ={};
     
     // desde Articulo
-    if( $.cab = this.Cab ){
+    if( $.cab = $Doc.Uri.cab ){
       
       // Menu: expando seleccionado
       if( $.app_cab = $Doc.Ope.pan.querySelector(`.ide-app_cab p.ide-${$.cab}`) ){ 
 
         $.app_cab.click();
         
-        if( $.art = this.Art ){
+        if( $.art = $Doc.Uri.art ){
           
           // Pinto fondo si hay opcion seleccionada
           if( $.app_art = $.app_cab.parentElement.nextElementSibling.querySelector(`a[href$="/${$.art}"]`) ){
@@ -49,7 +49,7 @@ class App {
           if( $.art && ( $.art_nav = $Doc.Ope.pan.querySelector('.ide-app_nav ul.ope_lis.nav') ) ){
             
             // inicializo enlace local
-            $App.nav('tog',$.art_nav);
+            Doc_Ope.art_nav('tog',$.art_nav);
             
             // muestro panel
             Doc_Ope.pan('app_nav');
@@ -61,94 +61,6 @@ class App {
     else{
 
       // if( $.bot_ini = $Doc.Ope.bot.querySelector('.val_ico.ide-app_cab') ) $.bot_ini.click();
-    }
-  } 
-
-  /* Indice del Artículo */
-  nav( $tip, $ele, $ope ){
-
-    let $ = {};
-
-    switch( $tip ){
-    // - Toggles por item
-    case 'tog':
-      
-      if( $ope ){
-
-        return Doc_Ope.val($ele,$ope);
-
-      }
-      else if( $.nav = $ele ? this.nav('mar',$ele) : false ){
-        
-        // hago toogles ascendentes
-        while(
-          ( $.lis = Doc.ver($.nav,{'eti':'ul'}) ) 
-          && 
-          ( $.val = $.lis.previousElementSibling ) &&  $.val.classList.contains('ope_val')
-          && 
-          ( $.nav = $.val.querySelector('a[href^="#"]') )
-        ){
-          if( $.lis.classList.contains(DIS_OCU) && ( $.ico = $.nav.previousElementSibling ) && $.ico.classList.contains('val_ico') ){
-            
-            Doc_Ope.val($.ico);
-          }
-        }
-      }
-
-      break;
-    // - Filtros de lista
-    case 'ver':
-      
-      if( !$ope ) $ope = 'a[href]';
-
-      // ejecuto filtros
-      Doc_Ope.lis_dep('ver', $ele, $ope);
-
-      // volver a marcar el fondo del elemento seleccionado
-      this.nav('tog',$Doc.Ope.var.nextElementSibling);
-
-      break;
-    // - seleccion
-    case 'val': 
-
-      if( !$ope ) $ope = FON_SEL;
-
-      $.lis = Doc.ver($ele,{'eti':'nav'});
-
-      if( $.lis ){
-        // elimino marcas previas
-        $.lis.querySelectorAll(`ul.ope_lis.nav :is( li.pos.sep, li.pos:not(.sep) > .ope_val ).${$ope}`).forEach( 
-          $e => $e.classList.remove($ope) 
-        );
-
-        // controlo el toggle automatico por dependencias
-        if( 
-          ( $.dep = $ele.parentElement.parentElement.querySelector('ul.ope_lis') ) 
-          &&
-          ( $ele.classList.contains('val_ico') || $.dep.classList.contains(DIS_OCU) ) 
-        ){
-          Doc_Ope.val($ele);
-        }
-
-        // pinto fondo
-        if( !( $.bot = $ele.parentElement.querySelector('.val_ico') ) || !$.bot.classList.contains('ocu') ){
-
-          $ele.parentElement.classList.add($ope);
-        }
-      }      
-      break;
-    // - Marcas
-    case 'mar': 
-      $.val = location.href.split('#')[1];
-
-      // hago toogle por item
-      if( $.val && ( $.nav = $ele.querySelector(`a[href="#${$.val}"]`) ) ){
-          
-        this.nav('val',$.nav);
-      }
-
-      return $.nav;
-      break;
     }
   }  
 
@@ -257,8 +169,8 @@ class App {
   }
 
   // menú de usuario
-  usu( $ide, $ope ){
+  usu( $ide, $var ){
 
-    Doc_Ope.nav_bot( $ope, `App/${this.Esq}/Usuario.ver_${$ide}` );
+    Doc_Ope.nav_bot( $var, `App/${$Doc.Uri.esq}/Usuario.ver_${$ide}` );
   }
 }

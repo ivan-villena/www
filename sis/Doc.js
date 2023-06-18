@@ -4,11 +4,15 @@
 // Documento
 class Doc {
 
+  Uri = {};
+
   Ope = {};
 
   Dat = {};
 
-  constructor(){
+  constructor( $Uri ){
+
+    if( $Uri ) this.Uri = $Uri;
 
     // Operadores globales del Documento
     this.Ope = {
@@ -21,30 +25,32 @@ class Doc {
       var: null
     }
 
-    // Datos de Estructura: Operador + Listado + tablero
+    // Operadores de datos
     this.Dat = {
       // operadores de valor
       val: {
         // acumulados
-        acu : [ "pos", "mar", "ver", "opc" ],
+        acu : [ "pos", "mar", "ver", "atr" ],
         // filtros
         ver : {
           dat : `form.ide-dat select[name="val"]`,
           fec : `form.ide-fec input[name="ini"]`,
           pos : `form.ide-pos input[name="ini"]`
-        }    
+        }
       },
       // listado por tabla
       lis: {
         // Valores
-        val : `.ide-lis .dat_lis`,
-        val_acu : `.ide-lis .ide-ver .ide-acu`,      
-        val_sum : `.ide-lis .ide-ver .ide-sum`,
-        val_cue : `.ide-lis .ide-ver .ide-cue`,    
+        val : `.dat_lis`,
+        val_acu : `.dat_lis .ide-ver .ide-acu`,
+        val_sum : `.dat_lis .ide-ver .ide-sum`,
+        val_cue : `.dat_lis .ide-ver .ide-cue`,
         // filtros
-        ver : `.ide-lis .ide-ver`,
+        ver : `.dat_lis .ide-ver`,
+        // columnas
+        atr : `.dat_lis .ide-atr`,
         // Descripciones
-        des : `.ide-lis .ide-des`    
+        des : `.dat_lis .ide-des`
       },
       // tablero
       tab: {
@@ -52,19 +58,23 @@ class Doc {
         dep : null,
         cla : null,
         // Valores
-        val : `main > article > .dat_tab`,
-        val_acu : `.ope_pan > .ide-val .ide-acu`,
-        val_sum : `.ope_pan > .ide-val .ide-sum`,
-        val_cue : `.ope_pan > .ide-val .ide-cue`,
+        val : `.dat_tab`,
+        val_acu : `.ide-val .ide-acu`,
+        val_sum : `.ide-val .ide-sum`,
+        val_cue : `.ide-val .ide-cue`,
         // Seleccion
-        ver : `.ope_pan > .ide-ver`,
-        // seccion + posicion
-        sec : `.ope_pan > .ide-opc .ide-sec`,    
-        pos : `.ope_pan > .ide-opc .ide-pos`,
-        // ...opciones
-        opc : `.ope_pan > .ide-opc .ide-opc`
-      }
-    }      
+        ver : `.ide-ver`,
+        ver_dat : `.ide-ver form.ide-dat`,
+        ver_pos : `.ide-ver form.ide-pos`,
+        ver_fec : `.ide-ver form.ide-fec`,
+        // atributos
+        atr : `.ide-ver section.ide-atr`,
+        // opciones:
+        sec : `.ide-opc form.ide-sec`,    
+        pos : `.ide-opc form.ide-pos`,
+        est : `.ide-opc section.ide-est`
+      }      
+    }
 
     /* Cargo Eventos */
     
@@ -74,29 +84,11 @@ class Doc {
     // - 2: anulo formularios
     Doc.htm_dat();
 
-    /* Cargo Elementos */
-
-    // Cargo Operadores del Documento
-    for( const $atr in this.Ope ){
-
-      this.Ope[$atr] = document.querySelector(this.Ope[$atr]);
+    // 3- Cargo Operadores del Documento
+    for( const $atr in this.Ope ){ 
+      
+      this.Ope[$atr] = document.querySelector(this.Ope[$atr]); 
     }
-    
-    // Cargo Formularios de Datos
-    ['lis','tab'].forEach( $atr => {
-
-      for( const $ide in this.Dat[$atr] ){ 
-
-        if( typeof( this.Dat[$atr][$ide] ) == 'string' && !!this.Dat[$atr][$ide] ){
-
-          this.Dat[$atr][$ide] = document.querySelector( this.Dat[$atr][$ide] ); 
-        }
-      }
-    });
-
-    // - Actualizo clase principal
-    this.Dat.tab.cla = ".pos.ope";
-
   }
 
   /* DOM */
@@ -180,6 +172,10 @@ class Doc {
       
       $eve.preventDefault();
     }
+  }// actualizo pagina
+  static htm_act(){
+
+    window.location.href = window.location.href.split('#')[0];
   }
   
   // operaciones
@@ -213,6 +209,7 @@ class Doc {
     }
     return $_;
   }
+
   // actualizo propiedades
   static act( $tip, $ele, $val, $ope ){
 
@@ -445,7 +442,7 @@ class Doc {
 
     }
     return ( $.val_uni && $_[0] ) ? $_[0] : $_;
-  }
+  }  
   // modifico nodo : si no encuentro anterior, puedo agregar
   static mod( $ele, $mod = {}, ...$opc ){
     let $_={},$={};

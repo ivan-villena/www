@@ -16,7 +16,7 @@ class Doc {
   public array $Est = []; 
   
   // Ejecuciones por Aplicacion
-  public string $Eje = "";
+  public array $Eje = [];
   
   // Elementos del Documento
   public array $Ele = [];
@@ -55,6 +55,11 @@ class Doc {
       'var'=>[ 
         'tip', 'tex_let', 'tex_ico'
       ]
+    ];
+
+    $this->Eje = [
+      'app' => "",
+      'ini' => ""
     ];
 
     $this->Cab = [
@@ -208,7 +213,7 @@ class Doc {
   }
   
   // cargo modulos del documento: javascript + css
-  public function cla( string $tip = "", array $dat = [] ) : string {
+  public function cla( string $tip = "", mixed $dat = [] ) : string {
     $_ = "";
     
     if( empty($dat) ) $dat = $this->Cla;
@@ -228,12 +233,17 @@ class Doc {
           if( file_exists( "./".($rec = "{$mod_ide}/{$cla_ide}.css") ) ) $_ .= "
           <link rel='stylesheet' href='".SYS_NAV."$rec' >";
         }
+
+        // por pagina
+        if( file_exists( "./".($rec = "{$mod_ide}/index.css") ) ) $_ .= "
+          <link rel='stylesheet' href='".SYS_NAV."$rec' >";
       }
     }
     // programa
     elseif( $tip == 'jso' ){
     
       foreach( $dat as $mod_ide => $mod_lis ){
+        
         // por raiz
         if( is_string($mod_lis) ){
 
@@ -254,6 +264,12 @@ class Doc {
           }
         }
       }
+    }
+    // programa - index
+    elseif( $tip == 'jso-ini' ){
+
+      if( file_exists( "./".($rec = "App/{$this->Uri->esq}/index.js") ) ) $_ .= "
+      <script src='".SYS_NAV."$rec'></script>";   
     }
 
     return $_;
@@ -289,10 +305,16 @@ class Doc {
   }
 
   // imprimo pagina por Aplicacion
-  public function htm( App $App ){
+  public function htm(){
 
     // Proceso Documento
-    $htm = $this->Htm;    
+    $htm = $this->Htm;
+    
+    $ele_doc = [
+      'data-esq'=>$this->Uri->esq, 
+      'data-cab'=>!empty($this->Uri->cab) ? $this->Uri->cab : NULL, 
+      'data-art'=>!empty($this->Uri->art) ? $this->Uri->art : NULL
+     ];
 
     // cargo botones y html para enlaces a paneles y modales
     foreach( $this->Cab as $tip => $tip_lis ){
@@ -336,18 +358,14 @@ class Doc {
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- hojas de estilo -->
-        <link rel='stylesheet' href='<?=SYS_NAV?>index.css'>
+        <link rel='stylesheet' href='<?=SYS_NAV?>index.css'>        
         <?=$this->cla('css')?>
         <link rel='stylesheet' href='<?=SYS_NAV?>Sis/Api/css.css'>
         <!-- aplicacion -->
         <title><?=$htm['tit']?></title>
       </head>
   
-      <body <?=Ele::atr([
-        'data-esq'=>isset($App->Esq->ide) ? $App->Esq->ide : NULL, 
-        'data-cab'=>isset($App->Cab->ide) ? $App->Cab->ide : NULL, 
-        'data-art'=>isset($App->Art->ide) ? $App->Art->ide : NULL
-      ])?>>
+      <body <?=Ele::atr($ele_doc)?>>
         
         <?php // Cabecera con Operador : botones de accesos a enlaces, paneles y modales
         if( !empty($htm['cab']['ini']) || !empty($htm['cab']['fin']) || !empty($htm['cab']['tod']) ){
@@ -416,57 +434,48 @@ class Doc {
         <!-- Modales -->
         <div class='ope_win dis-ocu'>
           <?= $htm['win'] ?>
-        </div>
-        
-        <!-- Cargo Sistema -->
-        <script>
-          // Rutas
-          const SYS_NAV = "<?=SYS_NAV?>";        
-          // Clases
-          const DIS_OCU = "<?=DIS_OCU?>";
-          const FON_SEL = "<?=FON_SEL?>";
-          const BOR_SEL = "<?=BOR_SEL?>";
-        </script>
+        </div>      
   
-        <!-- Módulos -->
+        <!-- Cargo Módulos -->
         <?=$this->cla('jso')?>
         
         <!-- Inicio Aplicación -->
         <script>
-          // Cargo Documento
-          var $Doc = new Doc();
-  
-          var $App = new App(<?= Obj::val_cod([
-            'Esq'=>isset($App->Esq->ide) ? $App->Esq->ide : NULL,
-            'Cab'=>isset($App->Cab->ide) ? $App->Cab->ide : NULL,
-            'Art'=>isset($App->Art->ide) ? $App->Art->ide : NULL
-          ])?>);
+          
+          // Rutas
+          const SYS_NAV = "<?=SYS_NAV?>";
+          
+          // Clases
+          const DIS_OCU = "<?=DIS_OCU?>";
+          const FON_SEL = "<?=FON_SEL?>";
+          const BOR_SEL = "<?=BOR_SEL?>";
+
+          // Objetos          
+          var $Doc = new Doc(<?= Obj::val_cod( $this->Uri ) ?>);
 
           var $Dat = new Dat(<?= Obj::val_cod([ 'Est'=>$this->est() ]) ?>);
+  
+          var $App = new App();
 
           // Cargo Aplicacion
-          if( <?=$app=Tex::let_pal($App->Esq->ide)?> ){
+          if( <?=$app = Tex::let_pal($this->Uri->esq)?> ){
 
-            var <?="\${$app} = new $app();"?>
-          }          
-
-          // Inicializo Aplicacion: Menú e Índices
-          $App.ini();
-
-          // ejecuto codigo
-          <?= $this->Eje ?>
-
-          // inicializo pagina
-          if( !!<?="\${$app}"?>.inicio ){
-
-            <?="\${$app}"?>.inicio();
+            var <?="\${$app} = new {$app}({$this->Eje['app']});"?>
           }
-          
-          // calculo tiempo de carga
-          console.log(`{-_-}.ini: en ${( ( Date.now() - (  <?= $_SESSION['ini'] ?> * 1000 ) ) / 1000 ).toFixed(2)} segundos...`);
+
+          // Inicializo Menú e Índices
+          $App.ini();
   
         </script>
-  
+        
+        <?=$this->cla('jso-ini')?>
+
+        <!-- finalizo carga -->
+        <script>
+          // calculo tiempo
+          console.log(`{-_-}.ini: en ${( ( Date.now() - (  <?= $_SESSION['ini'] ?> * 1000 ) ) / 1000 ).toFixed(2)} segundos...`);
+        </script>
+
       </body>
   
     </html>

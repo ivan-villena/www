@@ -3,14 +3,14 @@
 
 class Doc_Ope {  
 
-  // Sección Principal
+  /* Sección Principal */
   static sec( $ide ){
     $Doc.Ope.sec.querySelectorAll(`article[class*="ide-"]:not(.${DIS_OCU})`).forEach( $e => $e.classList.add(DIS_OCU) );
     $Doc.Ope.sec.querySelectorAll(`article.ide-${$ide}.${DIS_OCU}`).forEach( $e => $e.classList.remove(DIS_OCU) );
     $Doc.Ope.sec.scroll(0, 0);
   }
 
-  // Panel
+  /* Panel */
   static pan( $ide ){
 
     let $ = { 'ide':"", 'cla': ['bor-sel','fon-sel'] };
@@ -43,7 +43,7 @@ class Doc_Ope {
     }    
   }
 
-  // Modal
+  /* Modal */
   static win( $ide, $ope ){
 
     let $ = {};    
@@ -190,17 +190,107 @@ class Doc_Ope {
     Doc_Ope.win('ope', $ope);
   }
 
-  // Navegacion de Contenido : pestaña-barra-iconos-botones-indice
-  static nav( $dat, $ope, ...$opc ){
+  /* Articulo */
+  static art(){    
+  }// Índice
+  static art_nav( $tip, $ele, $ope ){
+
+    let $ = {};
+
+    switch( $tip ){
+    // - Toggles por item
+    case 'tog':
+      
+      if( $ope ){
+
+        return Doc_Ope.val($ele,$ope);
+
+      }
+      else if( $.nav = $ele ? Doc_Ope.art_nav('mar',$ele) : false ){
+        
+        // hago toogles ascendentes
+        while(
+          ( $.lis = Doc.ver($.nav,{'eti':'ul'}) ) 
+          && 
+          ( $.val = $.lis.previousElementSibling ) &&  $.val.classList.contains('ope_val')
+          && 
+          ( $.nav = $.val.querySelector('a[href^="#"]') )
+        ){
+          if( $.lis.classList.contains(DIS_OCU) && ( $.ico = $.nav.previousElementSibling ) && $.ico.classList.contains('val_ico') ){
+            
+            Doc_Ope.val($.ico);
+          }
+        }
+      }
+
+      break;
+    // - Filtros de lista
+    case 'ver':
+      
+      if( !$ope ) $ope = 'a[href]';
+
+      // ejecuto filtros
+      Doc_Ope.lis_dep('ver', $ele, $ope);
+
+      // volver a marcar el fondo del elemento seleccionado
+      Doc_Ope.art_nav('tog',$Doc.Ope.var.nextElementSibling);
+
+      break;
+    // - seleccion
+    case 'val': 
+
+      if( !$ope ) $ope = FON_SEL;
+
+      $.lis = Doc.ver($ele,{'eti':'nav'});
+
+      if( $.lis ){
+        // elimino marcas previas
+        $.lis.querySelectorAll(`ul.ope_lis.nav :is( li.pos.sep, li.pos:not(.sep) > .ope_val ).${$ope}`).forEach( 
+          $e => $e.classList.remove($ope) 
+        );
+
+        // controlo el toggle automatico por dependencias
+        if( 
+          ( $.dep = $ele.parentElement.parentElement.querySelector('ul.ope_lis') ) 
+          &&
+          ( $ele.classList.contains('val_ico') || $.dep.classList.contains(DIS_OCU) ) 
+        ){
+          Doc_Ope.val($ele);
+        }
+
+        // pinto fondo
+        if( !( $.bot = $ele.parentElement.querySelector('.val_ico') ) || !$.bot.classList.contains('ocu') ){
+
+          $ele.parentElement.classList.add($ope);
+        }
+      }      
+      break;
+    // - Marcas
+    case 'mar': 
+      $.val = location.href.split('#')[1];
+
+      // hago toogle por item
+      if( $.val && ( $.nav = $ele.querySelector(`a[href="#${$.val}"]`) ) ){
+          
+        Doc_Ope.art_nav('val',$.nav);
+      }
+
+      return $.nav;
+      break;
+    }
+  }
+
+  /* Navegacion de Contenido : pestaña, barra, iconos, botones */
+  static nav( $ele, $ope, ...$opc ){
     let $ = {};
 
     // capturo contenedor
-    $.nav = $dat.parentElement;
+    $.nav = $ele.parentElement;
     $.tip = $.nav.classList[1];
 
     if( $.tip == 'bot' ){
       // creo o elimino la seccion adicional
-      $.her = $dat.nextElementSibling;
+      $.her = $ele.nextElementSibling;
       if( !$.her || $.her.nodeName == 'BUTTON' ){
         // creo una seccion a continuacion para el contenido a generar
         Doc.agr(document.createElement('section'),$.nav,$.her);
@@ -219,7 +309,7 @@ class Doc_Ope {
       // elimino fondo por seleccion anterior
       if( $.sel_ant = $.nav.querySelector(`a.${FON_SEL}`) ){
   
-        if( !$.val_tog || $.sel_ant != $dat ) $.sel_ant.classList.remove(FON_SEL);
+        if( !$.val_tog || $.sel_ant != $ele ) $.sel_ant.classList.remove(FON_SEL);
       }
       // contenido
       if( $ope ){
@@ -230,12 +320,12 @@ class Doc_Ope {
             // hago toogles
             if( $.val_tog ){
               $e.classList.toggle(DIS_OCU);
-              $dat.classList.toggle(FON_SEL);
+              $ele.classList.toggle(FON_SEL);
             }
             // muestro y selecciono
             else if( $e.classList.contains(DIS_OCU) ){
               $e.classList.remove(DIS_OCU);
-              $dat.classList.add(FON_SEL);
+              $ele.classList.add(FON_SEL);
             }
             $.tip_ver = !$e.classList.contains(DIS_OCU);
   
@@ -254,45 +344,51 @@ class Doc_Ope {
         }
       }  
     }  
-  }/* Contenedor por botones */
-  static nav_bot( $dat, $ope, $val ){
+  }// Contenedor por botones
+  static nav_bot( $ele, $ope, $val ){
 
-    if( $dat.nodeName && typeof($ope) == 'string' ){
+    if( $ele.nodeName && typeof($ope) == 'string' ){
 
       // cargo cotenido por seccion visible
-      if( $dat.nextElementSibling && $dat.nextElementSibling.nodeName == 'SECTION' ){
+      if( $ele.nextElementSibling && $ele.nextElementSibling.nodeName == 'SECTION' ){
         
         // pido contenido
         Eje.val($ope, $val ? $val : [], $htm => {
           
           // cargo html
-          if( $htm ) Doc.htm( $dat.nextElementSibling, $htm );
+          if( $htm ) Doc.htm( $ele.nextElementSibling, $htm );
         });
       }
     }
   }
 
   /* Variable : form > .ope_var > label + (select,input,textarea,button)[name] */
-  static var( $tip, $dat, $ope, ...$opc ){
+  static var( $tip, $ele, $ope, ...$opc ){
     let $={};
 
     if( $tip && $tip.nodeName ){
-      $dat = $tip;
-      $Doc.Ope.var = Doc.ver($dat,{'eti':'form'});
-      $.var_ide = $dat.getAttribute('name');
+      
+      // cargo formulario
+      $Doc.Ope.var = Doc.ver($tip,{'eti':'form'});
+      
+      // devuelvo identificador
+      if( $ele && typeof($ele) == 'object' ) $ = $ele;
+      $.var_ide = $tip.getAttribute('name');
     }
-    else{
+    // operaciones
+    else if( $tip && typeof($tip) == 'string' ){
+
       switch( $tip ){
       case 'mar':
         if( $ope ){
-          $dat.parentElement.parentElement.querySelectorAll(`.${$ope}`).forEach( $e => $e.classList.remove($ope) );
-          $dat.classList.add($ope);
+          $ele.parentElement.parentElement.querySelectorAll(`.${$ope}`).forEach( $e => $e.classList.remove($ope) );
+          $ele.classList.add($ope);
         }
         break;
       case 'tog':
         if( $ope ){
-          $dat.parentElement.querySelectorAll(`.${$ope}`).forEach( $e => $e != $dat && $e.classList.remove($ope) );
-          $dat.classList.toggle($ope);
+          $ele.parentElement.querySelectorAll(`.${$ope}`).forEach( $e => $e != $ele && $e.classList.remove($ope) );
+          $ele.classList.toggle($ope);
         }
         break;
       }
@@ -301,11 +397,11 @@ class Doc_Ope {
   }
 
   /* Contenedor : bloque + visible/oculto */
-  static val( $dat, $ope ){
+  static val( $ele, $ope ){
     let $ = {};
     // elementos del documento
     if( !$ope ){
-      $.ite = $dat.parentElement;
+      $.ite = $ele.parentElement;
       if( 
         ( $.bot = $.ite.querySelector('.val_ico.ide-ope_tog') ) 
         && ( $.sec = $.ite.nextElementSibling )
@@ -324,7 +420,7 @@ class Doc_Ope {
     // por opciones
     else if( ['tod','nad'].includes($ope) ){
 
-      if( $Doc.Ope.var = Doc.ver($dat,{'eti':"form"}) ){
+      if( $Doc.Ope.var = Doc.ver($ele,{'eti':"form"}) ){
 
         $.lis = !!$Doc.Ope.var.nextElementSibling ? $Doc.Ope.var.nextElementSibling : $Doc.Ope.var.parentElement.parentElement;
 
@@ -336,17 +432,17 @@ class Doc_Ope {
   }
 
   /* Listados : contenido, posicion, desplazamiento */
-  static lis( $tip, $dat, $ope, $val ){
+  static lis( $tip, $ele, $ope, $val ){
     let $ = {};
 
     switch( $tip ){
     // punteos
     case 'pos': 
-      $ = Doc_Ope.var($dat);
+      $ = Doc_Ope.var($ele);
       // toggles
-      if( $dat.nodeName == 'DT' ){
+      if( $ele.nodeName == 'DT' ){
 
-        $.dd = $dat.nextElementSibling;
+        $.dd = $ele.nextElementSibling;
 
         while( $.dd && $.dd.nodeName == 'DD' ){
           $.dd.classList.toggle(DIS_OCU);
@@ -356,7 +452,7 @@ class Doc_Ope {
       break;
     // desplazamiento horizontal
     case 'bar': 
-      $ = Doc_Ope.var($dat);
+      $ = Doc_Ope.var($ele);
 
       if( $ope == 'val' ){
 
@@ -365,7 +461,7 @@ class Doc_Ope {
         $.val = $Doc.Ope.var.querySelector('[name="val"]');
         $.pos = Num.val($.val.value);
 
-        switch( $dat.getAttribute('name') ){
+        switch( $ele.getAttribute('name') ){
         case 'ini': $.pos = Num.val($.val.min);
           break;
         case 'pre': $.pos = $.pos > Num.val($.val.min) ? $.pos-1 : $.pos;
@@ -387,14 +483,14 @@ class Doc_Ope {
 
     return $;
   }// contenido
-  static lis_dep( $tip, $dat, $ope, $val ){
+  static lis_dep( $tip, $ele, $ope, $val ){
 
     let $ = {};
 
     // - Toggles
     if( $tip == 'tog' ){
 
-      Doc_Ope.val($dat,$ope);
+      Doc_Ope.val($ele,$ope);
     }
     // Filtros
     else if( $tip == 'ver' ){
@@ -402,7 +498,7 @@ class Doc_Ope {
       if( !$ope ) $ope = 'p:first-of-type';
       if( !$val ) $val = 'tex-luz';
 
-      $ = Doc_Ope.var($dat);
+      $ = Doc_Ope.var($ele);
 
       // busco listado
       if( $Doc.Ope.var ){
@@ -479,16 +575,16 @@ class Doc_Ope {
     }
 
   }// posicion: punteos y terminos
-  static lis_pos( $tip, $dat, $ope, $val ){
+  static lis_pos( $tip, $ele, $ope, $val ){
 
     let $ = {};
 
     // - Toggles
     if( $tip == 'tog' ){
 
-      $ = Doc_Ope.var($dat);
+      $ = Doc_Ope.var($ele);
 
-      if( !$dat || !$ope ){
+      if( !$ele || !$ope ){
         Doc.act('cla_tog',$.lis.children,DIS_OCU); 
       }
       else{
@@ -513,7 +609,7 @@ class Doc_Ope {
     // - Filtro
     else if( $tip == 'ver' ){
 
-      $ = Doc_Ope.var($dat);
+      $ = Doc_Ope.var($ele);
     
       // filtro por valor textual        
       if( !$ope ){

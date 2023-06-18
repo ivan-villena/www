@@ -30,7 +30,7 @@ class Usu {
 
       // cargo datos
       foreach( Dat::get('sis-usu', [
-        'ver'=>is_numeric($ide) ? "`key`='{$ide}'" : "`mai`='{$ide}'", 
+        'ver'=>is_numeric($ide) ? "`key` = '{$ide}'" : "`mai` = '{$ide}'", 
         'opc'=>'uni'
       ]) as $atr => $val ){
 

@@ -2,5 +2,13 @@
 
 DELETE FROM `sis-app_esq`;
 
-INSERT INTO `sis-app_esq` VALUES 
-  ( null, 'sincronario', 'Sincronario', '' );
+INSERT INTO `sis-app_esq` ( `ide`, `nom`, `des`, `ico`, `ima` ) VALUES 
+
+  ( 'sincronario', 'Sincronario', 
+    '',
+    '', '' 
+  ),
+  ( 'proyecto', 'Proyecto', 
+    '',
+    '', '' 
+  );

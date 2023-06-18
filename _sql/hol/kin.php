@@ -62,7 +62,7 @@
       $_ .= "
       UPDATE `hol-kin` SET 
         `fac` = '".Fec::año_ran($ini,$fin)."'
-      WHERE `ide`='$_kin->ide'; 
+      WHERE `ide` = '$_kin->ide'; 
       <br>";
 
       $ini = $fin;
@@ -80,7 +80,7 @@
       $_ .= "
       UPDATE `hol-kin` 
         SET `enc_ini` = $enc_ini, `enc_fin` = $enc_fin, `enc_ran` = '".Fec::año_ran($enc_ini,$enc_fin)."' 
-        WHERE `ide`='$_kin->ide'; 
+        WHERE `ide` = '$_kin->ide'; 
       <br>";
 
       $enc_ini = $enc_fin;
