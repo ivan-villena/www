@@ -279,6 +279,33 @@ class Fec {
     $_ = is_string($dat) ? Fec::dat($dat) : $dat;
 
     return cal_days_in_month( CAL_GREGORIAN, $_->mes, $_->año );
+  }// - nombre del mes
+  static function mes_nom( mixed $val ){
+
+    $mes = $val;
+
+    if( is_object($val) || ( is_string($val) && !is_numeric($val) ) ){
+      
+      $Fec = is_string($val) ? Fec::dat($val) : $val;
+      $mes = $Fec->mes;
+    }
+
+    switch( intval($mes) ){
+      case 1:  $mes = "Enero";      break;
+      case 2:  $mes = "Febrero";    break;
+      case 3:  $mes = "Marzo";      break;
+      case 4:  $mes = "Abril";      break;
+      case 5:  $mes = "Marzo";      break;
+      case 6:  $mes = "Junio";      break;
+      case 7:  $mes = "Julio";      break;
+      case 8:  $mes = "Agosto";     break;
+      case 9:  $mes = "Septiembre"; break;
+      case 10: $mes = "Octubre";    break;
+      case 11: $mes = "Noviembre";  break;
+      case 12: $mes = "Diciembre";  break;
+    }
+
+    return $mes;
   }
 
   // año

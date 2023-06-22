@@ -1,5 +1,73 @@
 
 /* 
+  valores
+*/
+
+/* 
+  colores de fondo
+*/
+.fon-win { background-color: var(--fon_win) !important; }
+.fon-sec { background-color: var(--fon_sec) !important; }
+.fon-art { background-color: var(--fon_art) !important; }
+.fon-dat { background-color: var(--fon_dat) !important; }
+.fon-ope { background-color: var(--fon_ope) !important; }
+.fon-sel { background-color: var(--fon_sel) !important; }
+.fon-foc { background-color: var(--fon_foc) !important; }
+
+/*  
+  colores de bordes
+*/
+.bor-win { border: 1px solid var(--bor_win) !important; }
+.bor-sec { border: 1px solid var(--bor_sec) !important; }
+.bor-art { border: 1px solid var(--bor_art) !important; }
+.bor-dat { border: 1px solid var(--bor_dat) !important; }
+.bor-ope { border: 1px solid var(--bor_ope) !important; }
+.bor-sel { border: 1px solid var(--bor_sel) !important; }
+
+/*  
+  colores de letras
+*/
+.let-ico { color: var(--let_ico) !important; }
+.let-err { color: var(--let_err) !important; }
+.let-ide { color: var(--let_ide) !important; }
+.let-val { color: var(--let_val) !important; }
+.let-ope { color: var(--let_ope) !important; }
+.let-tex { color: var(--let_tex) !important; }
+.let-num { color: var(--let_num) !important; }
+
+/* 
+  Contenido: Listado, Renglón / Línea y Bloque
+*/
+.-lis,
+.-ren,
+.-ite,
+.-val {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: center;
+}
+
+.-lis {
+  flex-direction: column !important;
+  align-items: stretch;
+}
+
+.-ren {
+  flex-wrap: wrap !important;
+}
+
+:is( .-ren, .-ite ) {
+  flex-grow: 2;
+  align-self: stretch;
+}
+
+.-val {
+  max-width: fit-content;
+}
+
+
+/* 
   Enlaces
 */
 a:not( .val_ico, .tex ) {
@@ -116,7 +184,7 @@ img {
   font-family: 'Material Icons Outlined';
   font-style: normal;
   font-weight: 400;
-  src: url("../_img/app/ico.woff2") format('woff2');
+  src: url("../../_img/app/ico.woff2") format('woff2');
 }
 
 /* estilo principal */

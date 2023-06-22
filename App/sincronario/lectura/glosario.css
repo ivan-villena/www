@@ -1,0 +1,11 @@
+
+
+body main article li.pos > .ope_val > p {
+  
+  color: var(--let_ide);
+}
+
+body main article section ul.ope_lis.dep {
+
+  height: 75vh;
+}

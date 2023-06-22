@@ -26,9 +26,9 @@ class Doc_Dat {
       $.val = $dat.value.split('.');
       if( $.ope = $dat.nextElementSibling.nextElementSibling ){
         $.ope.value = "";
-        Doc.act('cla_agr', $.ope.querySelectorAll(`[data-esq][data-est]:not(.${DIS_OCU})`), DIS_OCU );
+        Doc.act('cla_agr', $.ope.querySelectorAll(`[data-esq][data-est]:not(.dis-ocu)`),"dis-ocu");
         if( $.val[1] ){
-          Doc.act('cla_eli', $.ope.querySelectorAll(`[data-esq="${$.val[0]}"][data-est="${$.val[1]}"]`), DIS_OCU );
+          Doc.act('cla_eli', $.ope.querySelectorAll(`[data-esq="${$.val[0]}"][data-est="${$.val[1]}"]`),"dis-ocu");
         }
       }
       break; 
@@ -51,7 +51,7 @@ class Doc_Dat {
           $.opc.dataset.esq = $.esq;
           $.opc.dataset.est = $.est;
 
-          Eje.val('Dat::get', [`${$.esq}-${$.est}`], $dat => {
+          Eje.val('Api/Sis/Dat::get', [`${$.esq}-${$.est}`], $dat => {
             $.opc = Doc_Val.opc( $dat, $.opc, 'ide');
           });
         }
@@ -121,7 +121,7 @@ class Doc_Dat {
   static inf( $ide, $val ){
     
     // pido ficha
-    Eje.val(`Doc_Dat::inf`, [ $ide, $val ], $htm => {
+    Eje.val(`Api/Doc_Dat::inf`, [ $ide, $val ], $htm => {
       
       // muestro en ventana
       if( $htm ) Doc_Ope.win('ope',{ 
@@ -216,10 +216,12 @@ class Doc_Dat {
 
       // proceso generico o especificado
       if( !$.eje ){
+        
         // agrego identificador
         $.par.push( `${$.esq}-${$.est}` );
+        
         // funcion generica
-        $.eje = "Doc_Dat::abm_val";
+        $.eje = "Api/Doc_Dat::abm_val";
       }
 
       Eje.val($.eje, $.par, $res => {
@@ -255,9 +257,9 @@ class Doc_Dat {
     let $ = $ope ? Doc_Ope.var($ope) : {};
     
     // despinto fondos
-    $Doc.Ope.var.querySelectorAll(`.ope_var :is(select,input,textarea).fon-roj`).forEach( 
+    $Doc.Ope.var.querySelectorAll(`.ope_var :is(select,input,textarea).fon_col-roj`).forEach( 
 
-      $e => $e.classList.remove('fon-roj') 
+      $e => $e.classList.remove('fon_col-roj') 
     );
     
     // limpio listado de errores
@@ -448,9 +450,9 @@ class Doc_Dat {
           }); $_ += `
           </ul>`;
           // pinto fondo
-          if( !$.atr.classList.contains('fon-roj') ){
+          if( !$.atr.classList.contains('fon_col-roj') ){
 
-            $.atr.classList.add('fon-roj');
+            $.atr.classList.add('fon_col-roj');
           }
         }
       }
@@ -473,26 +475,34 @@ class Doc_Dat {
   }  
 
   /* Valores: nombre, descripcion, tablero, imagen, color, cantidad, texto, numero */
-  static val( $tip, $ide, $dat, ...$opc ){
+  static val( $tip, $ide, $dat, $ele ){
 
     let $_ = "", $ = {};
     // proceso estructura
     $ = Dat.ide($ide,$);
-    // cargo datos
-    $._dat = Dat.get($.esq,$.est,$dat);
+
     // cargo valores
-    $._val = Dat.est($.esq,$.est,'val');
+    $._val = Dat.est($.esq,$.est,'val');    
+    
+    // cargo datos
+    if( $tip != 'ima' ) $._dat = Dat.get($.esq,$.est,$dat);  
     
     // armo titulo : nombre <br> detalle
     if( $tip == 'tit' ){
+
       $_ = Obj.val($._dat,$._val.nom) + ( $._val.des ? "\n"+Obj.val($._dat,$._val.des) : '' );
     }
+    // proceso atributos con texto : nom + des + ima
     else if( !!($._val[$tip]) ){
+
       $.tip_val = typeof($._val[$tip]);
+
       if( $tip == 'ima' ){
+
         if( $.tip_val != 'string' ) $tip = 'tab';
       }
       else if( $.tip_val == 'string' ){
+
         $_ = Obj.val($._dat,$._val[$tip]);  
       }
     }
@@ -501,14 +511,16 @@ class Doc_Dat {
     if( $tip == 'ima' ){
       
       // identificador
-      $.ele = !!$opc[0] ? $opc[0] : {};      
-      $.ele['data-esq'] = $.esq;
-      $.ele['data-est'] = $.est;
+      if( !$ele ) $ele = {};
+      
+      $ele['data-esq'] = $.esq;
+      $ele['data-est'] = $.est;
       
       // 1 o muchos...
       $_ = "";
-      $.ima_ele = $.ele;
+      $.ima_ele = $ele;
       $.ima_lis = ( typeof($dat) == 'string' ? ( $dat.split( /, /.test($dat) ? ", " : " - " )  ) : [ $dat ] );
+
       $.ima_lis.forEach( $dat_val => {
 
         $._dat = Dat.get($.esq,$.est,$dat_val);
@@ -521,16 +533,18 @@ class Doc_Dat {
           $.ima_ele.title = Doc_Dat.val('tit',`${$.esq}.${$.est}`,$._dat);
         }
         else if( $.ima_ele.title === false ){
+
           delete($.ima_ele.title);
         }
-        // acceso informe
-        if( $.ima_ele.onclick === undefined ){
-
-          if( Dat.est($.esq,$.est,'inf') ) $.ima_ele.onclick = `Doc_Dat.inf('${$.esq}.${$.est}', ${parseInt($._dat.ide)} )`;
-        }
-        else if( $.ima_ele.onclick === false ){
+        
+        if( $.ima_ele.onclick === false ){
 
           delete($.ima_ele.onclick);
+          
+        }// acceso informe
+        else if( !$.ima_ele.onclick ){
+          
+          if( Dat.est($.esq,$.est,'inf') ) $.ima_ele.onclick = `Doc_Dat.inf('${$.esq}.${$.est}', ${parseInt($._dat.ide)} )`;
         }
         
         $_ += Doc_Val.ima( { 'style': Obj.val($._dat,$._val[$tip]) }, $.ima_ele );
@@ -538,14 +552,32 @@ class Doc_Dat {
     }
     // pido tablero por identificador
     else if( $tip == 'tab' ){
-      $.par = $_val['ima'];
-      $.ele_ima = $.ele;
+
+      $._dat = Dat.get($.esq,$.est,$dat);
+      
+      $.par = $._val['ima'];
+      
+      $.ele_ima = $ele;
+      
+      // $cla_ide = $.par[0];
+      $.tab_ide = $.par[0];
+      $.tab_var = !!($.par[1]) ? $.par[1] : [];
+      
+      $.tab_ele['sec'] = Ele.val_jun($.ele_ima, !!($.tab_ele['sec']) ? $.tab_ele['sec'] : [] );
+      
+      Ele.cla($.tab_ele['sec'],"ima");
+
+      $_ = Doc_Dat.tab($.tab_ide, $._dat, $.tab_var, $.tab_ele);
+
     }
     // por contenido
-    else if( !!$opc[0] ){
-      if( !($opc[0]['eti']) ) $opc[0]['eti'] = 'p'; 
-      $opc[0]['htm'] = Doc_Val.let($_);
-      $_ = Ele.val($opc[0]);
+    else if( !!$ele ){
+
+      if( !($ele['eti']) ) $ele['eti'] = 'p'; 
+
+      $ele['htm'] = Doc_Val.let($_);
+
+      $_ = Ele.val($ele);
     }
 
     return $_;
@@ -732,17 +764,17 @@ class Doc_Dat {
       $.lis = $Doc.Ope.var.nextElementSibling.querySelector('tbody');
       if( !$.val ){
 
-        $.lis.querySelectorAll(`tr.${DIS_OCU}`).forEach( $e => $e.classList.remove(DIS_OCU) );
+        $.lis.querySelectorAll(`tr.dis-ocu`).forEach( $e => $e.classList.remove("dis-ocu") );
       }
       else{
         
         $.lis.querySelectorAll('tr').forEach( $e => {
 
           if( Dat.ver( $e.querySelector('td[data-atr="nom"]').innerHTML, $.ope, $.val ) ){
-            $e.classList.contains(DIS_OCU) && $e.classList.remove(DIS_OCU);
+            $e.classList.contains("dis-ocu") && $e.classList.remove("dis-ocu");
           }
-          else if( !$e.classList.contains(DIS_OCU) ){
-            $e.classList.add(DIS_OCU);
+          else if( !$e.classList.contains("dis-ocu") ){
+            $e.classList.add("dis-ocu");
           }
         });
       }
@@ -751,7 +783,27 @@ class Doc_Dat {
   }
 
   /* Tablero */
-  static tab(){ 
+  static tab( $ide, $dat, $var, $ele, $ope ){ 
+
+    if( typeof($ide) == 'string' ){
+
+      // ...
+      Eje.val(`Api/Doc_Dat::tab`, [ $ide, $dat, $var, $ele ], $htm => {
+
+        if( $ope ){
+
+          if( typeof($ope) == 'function' ){
+
+            $ope($htm);
+          }
+          else{
+
+            Doc.htm($ope,$htm);
+          }
+        }
+      });
+    }
+
   }// inicializo : opciones, posicion, filtros
   static tab_ini(){
     
@@ -792,7 +844,7 @@ class Doc_Dat {
 
             $.var = ( $.eje == 'dat_tab' ) ? Doc.ver($inp,{'eti':"form"}).classList[0].split('-')[1]+"-" : "";
 
-            if( $.eje_cla = window[$.eje] ) $.eje_cla[$ide]( $.var + $inp.name );
+            if( ( $.eje_cla = eval($.eje) ) && typeof($.eje_cla) == 'function' ) $.eje_cla[$ide]( $.var + $inp.name );
           }
         );
       }
@@ -898,14 +950,16 @@ class Doc_Dat {
       // Actualizo Acumulados
       Doc_Dat.tab_act( $ope ? $ope : "atr" );      
       break;
+    // acumulados: click en mostrar/ocultar
     case 'acu':
+
       if( !$.var_ide && $ope ) $ = Doc_Ope.var( $var = $Doc.Dat.tab.val_acu.querySelector(`[name="${$ope}"]`) );
     
       // busco marcas 
       $.cla_ide = `_${$.var_ide}`;    
       
-      // marcas por opciones
-      if( $.var_ide == 'opc' ){
+      // marcas por seleccion de valores en atributos
+      if( $.var_ide == 'atr' ){
         
         $Doc.Dat.tab.val.querySelectorAll(`[class*="${$.cla_ide}-"]`).forEach( $ite => {
           
@@ -933,7 +987,7 @@ class Doc_Dat {
           });
         });
       }
-      // aplico bordes
+      // actualizo bordes en posiciones de marcas, seleccion y principal
       else{
         Doc.act('cla_eli',$Doc.Dat.tab.val.querySelectorAll(`.${$.cla_ide}-bor`),`${$.cla_ide}-bor`);
   
@@ -941,7 +995,8 @@ class Doc_Dat {
       }    
   
       // actualizo calculos + vistas( fichas + items )
-      Doc_Dat.tab_act( $.var_ide );      
+      Doc_Dat.tab_act( $.var_ide );
+      
       break;
     // por tipo
     case 'pos':
@@ -1175,7 +1230,7 @@ class Doc_Dat {
           // capturar posicion .dep
           $.htm = '';
           $.ele = { title : false, onclick : false  };
-          if( $.ima && ( $.ima.pos || $.ima.mar || $.ima.ver || $.ima.opc ) ){
+          if( $.ima && ( $.ima.pos || $.ima.mar || $.ima.ver || $.ima.atr ) ){
 
             if( $.ima.pos && $e.classList.contains('_pos-') ){ 
               $.htm = Doc_Dat.ima($e,$);
@@ -1186,9 +1241,9 @@ class Doc_Dat {
             else if( $.ima.ver && $e.classList.contains('_ver-') ){ 
               $.htm = Doc_Dat.ima($e,$);
             }
-            else if( $.ima.opc ){
+            else if( $.ima.atr ){
               $e.classList.forEach( $cla_nom => {
-                if( /_opc-/.test($cla_nom) ) return $.htm = Doc_Dat.ima($e,$);
+                if( /_atr-/.test($cla_nom) ) return $.htm = Doc_Dat.ima($e,$);
               });
             }
           }// todos
@@ -1302,7 +1357,7 @@ class Doc_Dat {
     // actualizo cuentas
     if( $Doc.Dat.lis.val_cue ){
 
-      Doc_Dat.val_cue('act', $Doc.Dat.lis.val.querySelectorAll(`tr.pos:not(.${DIS_OCU})`), $Doc.Dat.lis.val_cue);
+      Doc_Dat.val_cue('act', $Doc.Dat.lis.val.querySelectorAll(`tr.pos:not(.dis-ocu)`), $Doc.Dat.lis.val_cue);
     }
 
     // actualizo descripciones
@@ -1322,7 +1377,7 @@ class Doc_Dat {
       $_ = 0;
       if( $Doc.Dat.lis.val ){
 
-        $_ = $Doc.Dat.lis.val.querySelectorAll(`tr.pos:not(.${DIS_OCU})`).length;
+        $_ = $Doc.Dat.lis.val.querySelectorAll(`tr.pos:not(.dis-ocu)`).length;
       }
       else{
 
@@ -1352,7 +1407,7 @@ class Doc_Dat {
       if( ( $.esq = $Doc.Dat.lis.val.dataset.esq ) && ( $.est = $Doc.Dat.lis.val.dataset.est ) ){
         
         // oculto todos los items de la tabla
-        Doc.act('cla_agr',$Doc.Dat.lis.val.querySelectorAll(`tr.pos:not(.${DIS_OCU})`),DIS_OCU);
+        Doc.act('cla_agr',$Doc.Dat.lis.val.querySelectorAll(`tr.pos:not(.dis-ocu)`),"dis-ocu");
 
         // actualizo por acumulado
         $Doc.Dat.val.acu.forEach( $ide => {
@@ -1364,9 +1419,9 @@ class Doc_Dat {
               // recorro seleccionados
               $Doc.Dat.tab.val.querySelectorAll(`.pos[class*="_${$ide}-"]`).forEach( $e =>{
                 
-                if( $.ele = $Doc.Dat.lis.val.querySelector(`tr.pos[${$.esq}-${$.est}="${$e.getAttribute(`${$.esq}-${$.est}`)}"].${DIS_OCU}`) ){
+                if( $.ele = $Doc.Dat.lis.val.querySelector(`tr.pos[${$.esq}-${$.est}="${$e.getAttribute(`${$.esq}-${$.est}`)}"].dis-ocu`) ){
                   $.tot++;
-                  $.ele.classList.remove(DIS_OCU);
+                  $.ele.classList.remove("dis-ocu");
                 }
               });            
             }
@@ -1393,7 +1448,7 @@ class Doc_Dat {
       // 1- muestro todos
       if( !$Doc.Dat.lis.val_acu || $Doc.Dat.lis.val_acu.querySelector(`[name="tod"]:checked`) ){
 
-        Doc.act('cla_eli',$Doc.Dat.lis.val.querySelectorAll(`tr.pos.${DIS_OCU}`),DIS_OCU);
+        Doc.act('cla_eli',$Doc.Dat.lis.val.querySelectorAll(`tr.pos.dis-ocu`),"dis-ocu");
       }
       // o muestro solo acumulados
       else{
@@ -1419,10 +1474,10 @@ class Doc_Dat {
 
         $.eje.forEach( $ope_ide => {
 
-          Doc_Dat.val_ver($ope_ide, Obj.pos( $Doc.Dat.lis.val.querySelectorAll(`tr.pos:not(.${DIS_OCU})`) ), $Doc.Dat.lis.ver);
+          Doc_Dat.val_ver($ope_ide, Obj.pos( $Doc.Dat.lis.val.querySelectorAll(`tr.pos:not(.dis-ocu)`) ), $Doc.Dat.lis.ver);
           
           // oculto valores no seleccionados
-          Doc.act('cla_agr',$Doc.Dat.lis.val.querySelectorAll(`tr.pos:not(._ver-, .${DIS_OCU})`),DIS_OCU);
+          Doc.act('cla_agr',$Doc.Dat.lis.val.querySelectorAll(`tr.pos:not(._ver-, .dis-ocu)`),"dis-ocu");
         });
       }
     }
@@ -1430,7 +1485,7 @@ class Doc_Dat {
     else if( ['cic','gru'].includes($tip) ){
       
       // muestro todos los items
-      Doc.act('cla_eli',$Doc.Dat.lis.val.querySelectorAll(`tbody tr:not(.pos).${DIS_OCU}`),DIS_OCU);        
+      Doc.act('cla_eli',$Doc.Dat.lis.val.querySelectorAll(`tbody tr:not(.pos).dis-ocu`),"dis-ocu");        
       
       // aplico filtro
       // ... 
@@ -1457,10 +1512,10 @@ class Doc_Dat {
         ).forEach( $ite => {
           // muetro columna
           if( $dat.checked ){
-            $ite.classList.contains(DIS_OCU) && $ite.classList.remove(DIS_OCU);
+            $ite.classList.contains("dis-ocu") && $ite.classList.remove("dis-ocu");
           }// oculto columna
-          else if( !$ite.classList.contains(DIS_OCU) ){
-            $ite.classList.add(DIS_OCU);
+          else if( !$ite.classList.contains("dis-ocu") ){
+            $ite.classList.add("dis-ocu");
           }
         });
       }
@@ -1490,21 +1545,21 @@ class Doc_Dat {
       
       // oculto todos
       Doc.act('cla_agr',$Doc.Dat.lis.val.querySelectorAll(
-        `tbody tr[data-ope="${$.ope}"][data-esq="${$.esq}"][data-est="${$.est}"][data-atr="${$.atr}"]:not(.${DIS_OCU})`
-      ),DIS_OCU);
+        `tbody tr[data-ope="${$.ope}"][data-esq="${$.esq}"][data-est="${$.est}"][data-atr="${$.atr}"]:not(.dis-ocu)`
+      ),"dis-ocu");
       
       // muestro titulos y lecturas para los que no están ocultos
       if( $dat.checked ){
   
-        $Doc.Dat.lis.val.querySelectorAll(`tr.pos:not(.${DIS_OCU})`).forEach( $ite => {
+        $Doc.Dat.lis.val.querySelectorAll(`tr.pos:not(.dis-ocu)`).forEach( $ite => {
   
           if( ( $.val = Dat.get($.esq,$.est,$ite.getAttribute(`${$.esq}-${$.est}`)) ) && $.val[$.atr] ){
   
             $.ide=( $.ope == 'des' ) ? $ite.getAttribute(`${$.esq}-${$.est}`) : $.val[$.atr];
   
             Doc.act('cla_eli',$Doc.Dat.lis.val.querySelectorAll(
-              `tbody tr[data-ope="${$.ope}"][data-esq="${$.esq}"][data-est="${$.est}"][data-atr="${$.atr}"][data-ide="${$.ide}"].${DIS_OCU}`
-            ),DIS_OCU)          
+              `tbody tr[data-ope="${$.ope}"][data-esq="${$.esq}"][data-est="${$.est}"][data-atr="${$.atr}"][data-ide="${$.ide}"].dis-ocu`
+            ),"dis-ocu")          
           }
         });
       }        
@@ -1514,14 +1569,14 @@ class Doc_Dat {
       if( ['tit','det'].includes($.var_ide) ){
     
         // oculto por cilcos y agrupaciones
-        $Doc.Dat.lis.val.querySelectorAll(`tbody tr[opc="${$.ite}"]:not([data-ope="des"],.${DIS_OCU})`).forEach( $e => $e.classList.add(DIS_OCU) );
+        $Doc.Dat.lis.val.querySelectorAll(`tbody tr[opc="${$.ite}"]:not([data-ope="des"],.dis-ocu)`).forEach( $e => $e.classList.add("dis-ocu") );
 
         // estructura
-        if( $.est = $Doc.Dat.lis.ver.querySelector(`form.ide-dat select[name] + .dep:not(.${DIS_OCU})`) ){
+        if( $.est = $Doc.Dat.lis.ver.querySelector(`form.ide-dat select[name] + .dep:not(.dis-ocu)`) ){
           $.est = $.est.previousElementSibling.querySelector('select');
           $.opc = $.est.parentElement.parentElement.dataset.atr;
           // valor de dependencia
-          $.ide=$Doc.Dat.lis.ver.querySelector(`form.ide-dat select[name="${$.opc}"] + div.dep > select:not(.${DIS_OCU})`);
+          $.ide=$Doc.Dat.lis.ver.querySelector(`form.ide-dat select[name="${$.opc}"] + div.dep > select:not(.dis-ocu)`);
         }
         // muestro        
         if( $dat.checked && ( $.est || $.ide ) ){
@@ -1533,14 +1588,14 @@ class Doc_Dat {
 
               $.agr = !!$.ide && $.ide.value ? `.ide-${$.ide.value}` : '';
 
-              Doc.act('cla_eli',$Doc.Dat.lis.val.querySelectorAll(`tbody tr[data-atr="${$.atr}"]${$.agr}.${DIS_OCU}`),DIS_OCU);            
+              Doc.act('cla_eli',$Doc.Dat.lis.val.querySelectorAll(`tbody tr[data-atr="${$.atr}"]${$.agr}.dis-ocu`),"dis-ocu");            
             }
           }// descripciones por item no oculto
           else{
-            $Doc.Dat.lis.val.querySelectorAll(`tbody tr:not(.pos,.${DIS_OCU})`).forEach( $e =>{
+            $Doc.Dat.lis.val.querySelectorAll(`tbody tr:not(.pos,.dis-ocu)`).forEach( $e =>{
 
-              if( $.lis_ite = $Doc.Dat.lis.val.querySelector(`table tr[data-atr="${$.atr}_des"][data-ide="${$e.dataset.ide}"].${DIS_OCU}`) ){ 
-                $.lis_ite.classList.remove(DIS_OCU);
+              if( $.lis_ite = $Doc.Dat.lis.val.querySelector(`table tr[data-atr="${$.atr}_des"][data-ide="${$e.dataset.ide}"].dis-ocu`) ){ 
+                $.lis_ite.classList.remove("dis-ocu");
               }
             });
           }
@@ -1553,17 +1608,17 @@ class Doc_Dat {
         Doc.act('atr_act',$Doc.Dat.lis.lec.querySelectorAll(`input[name]:not([name="${$.ite}"]):checked`),'checked',false);
 
         // oculto todas las leyendas
-        Doc.act('cla_agr',$Doc.Dat.lis.val.querySelectorAll(`tr[data-ope="${$tip}"]:not(.${DIS_OCU})`),DIS_OCU);
+        Doc.act('cla_agr',$Doc.Dat.lis.val.querySelectorAll(`tr[data-ope="${$tip}"]:not(.dis-ocu)`),"dis-ocu");
 
         // muestro por atributo seleccionado      
         if( $dat.checked ){
 
-          $Doc.Dat.lis.val.querySelectorAll(`tbody tr:not(.pos,.${DIS_OCU})`).forEach( $e => {
+          $Doc.Dat.lis.val.querySelectorAll(`tbody tr:not(.pos,.dis-ocu)`).forEach( $e => {
 
             if( $.lec = $Doc.Dat.lis.val.querySelector(
-              `table tr[data-ope="${$tip}"][data-atr="${$dat.value}"].ide-${$e.dataset.ide}.${DIS_OCU}`
+              `table tr[data-ope="${$tip}"][data-atr="${$dat.value}"].ide-${$e.dataset.ide}.dis-ocu`
             ) ){
-              $.lec.classList.remove(DIS_OCU);
+              $.lec.classList.remove("dis-ocu");
             }
           });
         }

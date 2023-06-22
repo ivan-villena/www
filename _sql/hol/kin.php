@@ -30,8 +30,8 @@
       if( in_array($kin+1, $_kin->val_est) ){
         $_est = Dat::_('hol.kin_cro_est',$_kin->cro_est);
         $_ele = Dat::_('hol.kin_cro_ele',$_kin->cro_ele);
-        $_arm = Dat::_('hol.kin_cro_ond',Dat::_('hol.ton',$_ele['ton'])->ond_arm);
-        $enc .= "\nSoy un Kin Polar, {$_arm->enc} {$_est->des_col}. ";
+        $Arm = Dat::_('hol.kin_cro_ond',Dat::_('hol.ton',$_ele['ton'])->ond_arm);
+        $enc .= "\nSoy un Kin Polar, {$Arm->enc} {$_est->des_col}. ";
       }
       if( in_array($kin+1, $_kin->val_pag) ){
         $enc .= "\nSoy un Portal de Activación Galáctica, entra en mí.";
@@ -94,12 +94,12 @@
     $kin = 185;
     $kin_lis = "{$kin} - 189";
     foreach( Dat::_('hol.kin_cro_ele') as $_ele ){
-      $_cas = Dat::_('hol.cas',$_ele->ide);
-      $_ton = Dat::_('hol.ton',$_ele->ton);
-      $_est = Dat::_('hol.kin_cro_est',$_cas->arm);
+      $Cas = Dat::_('hol.cas',$_ele->ide);
+      $Ton = Dat::_('hol.ton',$_ele->ton);
+      $_est = Dat::_('hol.kin_cro_est',$Cas->arm);
       $_ .= "
       UPDATE `hol-kin_cro_ele` SET
-        `des` = '$_ton->des del Espectro Galáctico ".Tex::let_pal($_est->des_col)."',
+        `des` = '$Ton->des del Espectro Galáctico ".Tex::let_pal($_est->des_col)."',
         `est` = $_est->ide,
         `kin` = '$kin_lis'
       WHERE 
@@ -133,11 +133,11 @@
   function nav_ond(){
     $_ = "";
     foreach( Dat::_('hol.kin_nav_ond') as $_ond ){
-      $_sel = Dat::_('hol.sel',$_ond->sel);
+      $Sel = Dat::_('hol.sel',$_ond->sel);
       $_cas_arm = Dat::_('hol.cas_arm',$_ond->cas_arm);
       $_ .= "
       UPDATE `hol-kin_nav_ond` SET
-        `des` = 'Se ".substr($_cas_arm->des_pod,0,-1)." el cuadrante $_cas_arm->des_col ".Tex::art_del($_cas_arm->dir)." $_sel->acc_pal $_sel->des_car con el poder ".Tex::art_del($_sel->des_pod)." '
+        `des` = 'Se ".substr($_cas_arm->des_pod,0,-1)." el cuadrante $_cas_arm->des_col ".Tex::art_del($_cas_arm->dir)." $Sel->acc_pal $Sel->des_car con el poder ".Tex::art_del($Sel->des_pod)." '
       WHERE 
         `ide` = $_ond->ide;<br>";
     }

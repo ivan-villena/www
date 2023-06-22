@@ -307,6 +307,8 @@
     <p>Hay 52 cromáticas y 4 Estaciones Galácticas comprendidas en el Tzolkin de 260 kines.</p>
 
     <p>En el <a href="<?=$Dir->libro?>encantamiento_del_sueño#_02-05-" target="_blank">Glosario</a> del <cite>Encantamiento del Sueño</cite> se define al Giro espectral como: <q>Castillo del tiempo de 52 cromáticas en donde cada Onda encantada es una estación galáctica de 65 Kin (trece cromáticas); las estaciones están codificadas por el color de la familia Terrestre Polar: estación de la Serpiente roja del Este, estación del Perro blanco del Norte, estación del Águila azul del Oeste y la estación del Sol amarillo del Sur; el propósito de los giros espectrales es entrelazar los giros galácticos con armónicas superiores de la quinta fuerza.</q></p>
+
+    <p>Esta colocación es una aplicación de los <a href="<?=$Dir->libro?>tratado_del_tiempo#_04-03-07-" target="_blank">fractales espectrales</a> como pruebas y demostraciones matemáticas sobre <cite>Un Tratado del Tiempo</cite>: <q>El uso más especial del castillo del destino es como descripción del fractal espectral. El fractal espectral describe el giro de 52 cromáticas, 260 kines que es sincopadamente concurrente con el giro galáctico. Así como las cromáticas de cinco kines dan a las armónicas de cuatro kines su poder de movimiento a través del poder de circulación de la fuerza-g, el fractal espectral "arrastra" el giro galáctico a través del vórtice temporal, rotación tras rotación.</q>.</p>
     
     <!-- Estación Galáctica -->
     <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
@@ -546,6 +548,27 @@
   <section id="<?="_{$Nav[1][$nv1]->pos}-"?>">
     <h2><?=Doc_Val::let($Nav[1][$nv1]->nom);?></h2>
 
+    <!--Los Patrones del Destino-->
+    <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
+    <section id="<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>">      
+      <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>      
+
+      <p>El <a href="<?=$Dir->libro?>encantamiento_del_sueño#_02-03-06-" target="_blank">Tablero del Oráculo</a> esta compuesto por los <q><n>20</n> patrones básicos del destino</q> que se expanden en su posición guía por el poder del <n>5</n> para crear los <q><n>100</n> Patrones del Destino</q><c>.</c></p>    
+
+      <?= Sincronario::dat_tab('sel_arm_tra',[ 
+        'sec'=>[ 'bor'=>1 ],
+        'pos'=>[ 'bor'=>1, 'col'=>"hol.sel.ide", 'ima'=>"hol.sel.ord" ],
+        'dep-par'=>1
+      ]);?>
+
+      <p>Estos patrones<c>,</c> que se definen por las relaciones de colores y combinación de númeos código entre dos sellos<c>,</c> son utilizados para las tres <a href="<?=$Dir->libro?>encantamiento_del_sueño#_02-03-06-01-" target="_blank">Claves de Lectura del Oráculo</a><c>:</c> <b>del Destino</b><c>,</c> <b>Diaria</b> o <b>del Azar</b><c>.</c></p>
+
+      <figure>
+        <img src='<?=$Dir->art_ima?>06-01.png' alt='Patrón del Destino' title='Guía del Oráculo del Encantamiento del Sueño'>
+      </figure>    
+
+    </section>    
+
     <!--Las Relaciones de Color-->
     <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
     <section id="<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>">      
@@ -635,28 +658,6 @@
 
     </section>
 
-    <!--Los Patrones del Destino-->
-    <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
-    <section id="<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>">      
-      <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>      
-
-      <p>El <a href="<?=$Dir->libro?>encantamiento_del_sueño#_02-03-06-" target="_blank">Tablero del Oráculo</a> esta compuesto por los <q><n>20</n> patrones básicos del destino</q> que se expanden en su posición guía por el poder del <n>5</n> para crear los <q><n>100</n> Patrones del Destino</q><c>.</c></p>    
-
-      <?= Sincronario::dat_tab('sel','arm_tra',[ 
-        'sec'=>[ 'par'=>1 ],
-        'pos'=>[ 'bor'=>1, 'col'=>"hol.sel.ide", 'ima'=>"hol.sel.ord" ] 
-      ],[ 
-        'sec'=>['class'=>"mar_arr-3 mar_aba-3 bor-1 bor_col-5-0-" ] 
-      ]);?>
-
-      <p>Estos patrones<c>,</c> que se definen por las relaciones de colores y combinación de númeos código entre dos sellos<c>,</c> son utilizados para las tres <a href="<?=$Dir->libro?>encantamiento_del_sueño#_02-03-06-01-" target="_blank">Claves de Lectura del Oráculo</a><c>:</c> <b>del Destino</b><c>,</c> <b>Diaria</b> o <b>del Azar</b><c>.</c></p>
-
-      <figure>
-        <img src='<?=$Dir->art_ima?>4-1.png' alt='Patrón del Destino' title='Guía del Oráculo del Encantamiento del Sueño'>
-      </figure>    
-
-    </section>
-
     <!--La Sincronometría del Oráculo-->
     <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
     <section id="<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>">      
@@ -665,7 +666,7 @@
       <p>En <cite>El Telektonon</cite><c>,</c> el <a href="<?=$Dir->libro?>telektonon#_02-03-04-" target="_blank"><n>4</n><c>°</c> nivel<c>,</c> Juego del Oráculo</a> establece las relaciones del oráculo en diagramas que miden la <a href="<?=$Dir->libro?>telektonon#_02-03-04-" target="_blank">Sincronometría</a> de los <q>Flujos del Oráculo</q><c>.</c></p>
 
       <figure>
-        <img src='<?=$Dir->art_ima?>4-2.png' alt='Sincronometría del Oráculo' title='Sincronometría de los Flujos del Oráculo'>
+        <img src='<?=$Dir->art_ima?>06-02.png' alt='Sincronometría del Oráculo' title='Sincronometría de los Flujos del Oráculo'>
       </figure>
 
     </section>
@@ -678,13 +679,11 @@
       <p>En <cite>El Tutorial del Sincronario de <n>13</n> Lunas</cite> se presenta un aplicación especial del Oráculo llamada <a href="<?=$Dir->libro?>tut#_04-04-" target="_blank">el Tiempo Net</a> que se basa en dividir el día en <n>4</n> subciclos llamados <q>Miradas</q><c>,</c> uno por cada pareja del oráculo<c>:</c> <q>Siguiendo el patrón de tiempo net cada día llega a ser un mandala de sincronicidad<c>.</c> Sigue las miradas cambiantes del Oráculo de Quinta Fuerza del Tiempo NET <c>¡</c>para obtener una visión más profunda con el flujo de la realidad diaria<c>!</c></q><c>.</c></p>
 
       <figure>
-        <img src='<?=$Dir->art_ima?>4-3.png' alt='Oráculo del Tiempo NET' title='Oráculo del Tiempo NET'>
+        <img src='<?=$Dir->art_ima?>06-03.png' alt='Oráculo del Tiempo NET' title='Oráculo del Tiempo NET'>
       </figure>    
 
     </section>    
 
   </section>
-
-  <!-- la firma galáctica -->  
 
 </article>  

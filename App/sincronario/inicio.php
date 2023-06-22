@@ -1,10 +1,27 @@
 
+<?php
+  $Dia = Sincronario::val( date('Y/m/d') );
+  $Kin = Dat::_('hol.kin',$Dia['kin']);
+  $Psi = Dat::_('hol.psi',$Dia['psi']);
+  $Fec = Fec::dat($Dia['fec']);
+  $Sin = explode('.',$Dia['sin']);
+  /* 
+    <?= ?>
+  */
+?>
+
+<header>
+  <h1>Inicio</h1>
+</header>
 
 <article>
-  
+
+  <!--    
   <section class="inicio">
 
-    <?=Doc_Ope::tex([ 'tip'=>"adv", 'tit'=>"¡Atención!", 
+    <?=Doc_Ope::tex([ 
+      'tip'=>"adv", 
+      'tit'=>"¡Atención!", 
       'tex'=>[
         "Este sitio aún está en construcción...",
         "Puede haber contenido incompleto, errores o faltas."
@@ -27,5 +44,42 @@
     ])?>
 
   </section>
+  -->
+
+  <section class="ope_tex">
+
+    <p class="tex-4 tex-cur"><?=Doc_Val::let("N.S. {$Dia['sin']} - Kin {$Dia['kin']}")?></p>
+    
+  </section>
+
+  <section class="ope_tex anc-75">
+
+    <?= Doc_Dat::fic('hol.psi_lun',$Psi->lun) ?>
+
+  </section>
+
+  <section class="ope_tex anc-75">
+
+    <?= Doc_Dat::fic('hol.lun',$Psi->lun_dia) ?>
+
+  </section>  
+
+  <section class="ope_tex anc-75">
+
+    <?= Doc_Dat::fic('hol.kin',$Kin) ?>    
+
+  </section>
+
+  <section class="ope_tex anc-75">
+
+    <?= Doc_Dat::fic('hol.kin_nav_cas',$Kin->nav_cas) ?>    
+
+  </section>
+  
+  <section class="ope_tex anc-75">
+
+    <?= Doc_Dat::fic('hol.kin_nav_ond',$Kin->nav_ond) ?>    
+
+  </section>  
 
 </article>

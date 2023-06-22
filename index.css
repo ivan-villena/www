@@ -9,20 +9,21 @@
 :root { 
 
   /* fondos */
-  --fon_win:rgba(015, 015, 015,  1);/* pantalla */
-  --fon_sec:rgba(015, 015, 015, .9);/* seccion */
-  --fon_art:rgba(015, 015, 015, .6);/* articulo */
-  --fon_dat:rgba(020, 005, 005, .3);/* campos */
-  --fon_ope:rgba(  0,   0,   0, .5);/* controlador */  
-  --fon_sel:rgba(130, 167, 216, .6);/* al seleccionar */
-  --fon_foc:rgba(049, 134, 245, .3);/* al hacer foco */  
+  --fon_win:rgba(015, 015, 015,  1);
+  --fon_sec:rgba(015, 015, 015, .95);
+  --fon_art:rgba(015, 015, 015, .75);
+  --fon_dat:rgba(020, 005, 005, .35);/* formulario */
+  --fon_ope:rgba(  0,   0,   0, .55);/* controlador */  
+  --fon_sel:rgba(130, 167, 216, .65);/* al seleccionar */  
+  --fon_foc:rgba(049, 134, 245, .35);/* al hacer foco */  
 
   /* Bordes */
-  --bor_sec:rgb(116, 066, 200);/* seccion */
-  --bor_art:rgb(080, 125, 188);/* contenido */  
-  --bor_dat:rgb(054, 016, 117);/* campos */
-  --bor_ope:rgb(204, 192, 176);/* controlador */
-  --bor_sel:rgb(005, 031, 068);/* al seleccionar */
+  --bor_win:rgb(116, 066, 200);
+  --bor_sec:rgb(116, 066, 200);
+  --bor_art:rgb(080, 125, 188);
+  --bor_dat:rgb(054, 016, 117);
+  --bor_ope:rgb(204, 192, 176);
+  --bor_sel:rgb(005, 031, 068);
 
   /* letras */
   --let_ico:#ccc0b0;
@@ -105,38 +106,4 @@ body {
   html { 
     font-size: 13px;
   }
-}
-
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-
-/* 
-  Contenido: Listado, Renglón / Línea y Bloque
-*/
-.-lis,
-.-ren,
-.-ite,
-.-val {
-  display: flex !important;
-  flex-direction: row !important;
-  flex-wrap: nowrap !important;
-  align-items: center;
-}
-
-.-lis {
-  flex-direction: column !important;
-  align-items: stretch;
-}
-
-.-ren {
-  flex-wrap: wrap !important;
-}
-
-:is( .-ren, .-ite ) {
-  flex-grow: 2;
-  align-self: stretch;
-}
-
-.-val {
-  max-width: fit-content;
 }

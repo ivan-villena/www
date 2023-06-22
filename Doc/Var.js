@@ -154,9 +154,9 @@ class Doc_Var {
   static ele_act( $dat ){
     let $={};
 
-    $dat.parentElement.parentElement.querySelectorAll(`.${FON_SEL}`).forEach( $e => $e.classList.remove(FON_SEL) )
+    $dat.parentElement.parentElement.querySelectorAll(`.fon-sel`).forEach( $e => $e.classList.remove("fon-sel") )
 
-    $dat.nextElementSibling.classList.add(FON_SEL);
+    $dat.nextElementSibling.classList.add("fon-sel");
 
     $.ver = $dat.nextElementSibling.innerText.replaceAll('\n','');
     

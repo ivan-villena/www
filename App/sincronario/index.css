@@ -2,19 +2,56 @@
   Pagina
 */
 body {
+
   background: center/cover no-repeat url(../../_img/sincronario/01.jpg);
 }
 
 /* 
-  Tablas 
+  Paneles
 */
+
+/* Menu */
+body > .ope_pan > .ide-app_cab {
+  background: center/contain no-repeat url(../../_img/sincronario/menu.png);  
+}
+body > .ope_pan > .ide-app_cab > * {
+  background-color: var(--fon_art);
+}
+
+/* Indice */
+body > .ope_pan > .ide-app_nav {
+  background: center/contain no-repeat url(../../_img/sincronario/indice.png);  
+}
+body > .ope_pan > .ide-app_nav > * {
+  background-color: var(--fon_art);
+}
+
+
+/* 
+  Modales
+*/
+
+/* Cuenta de Usuario */
+body > .ope_win > .ide-app_usu {
+  background: top/contain no-repeat url(../../_img/sincronario/usuario.png);
+}
+body > .ope_win > .ide-app_usu > * {
+  background-color: var(--fon_art);
+}
+
+
+/* 
+  Contenido
+*/
+
+/* Tablas */
 body > main article div.dat_lis > table {
   width: initial;
 }
 
 
 /* 
-  Sesion
+  Sesion de usuario
 */
 .ope_win .ide-app_usu .ficha {
   padding: 0 1rem;

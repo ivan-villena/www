@@ -35,9 +35,7 @@ class Doc_Val {
     // por aplicacion
     if( isset($dat[2]) ){
 
-      $ele = isset($dat[3]) ? $dat[3] : [];
-
-      $_ = Doc_Dat::val('ima', "{$dat[0]}.{$dat[1]}", $dat[2], $ele );
+      $_ = Doc_Dat::val('ima', "{$dat[0]}.{$dat[1]}", $dat[2], isset($dat[3]) ? $dat[3] : [] );
     }
     // por directorio
     else{

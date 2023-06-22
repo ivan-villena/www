@@ -55,10 +55,6 @@ form.dat > .ope_err {
   text-align: left;
 }
 
-form.dat .ope_var > .fon-roj {
-  color: var(--col_neg);
-}
-
 form.dat .ope_var {
   flex-grow: 2;
   flex-direction: column;
@@ -164,9 +160,7 @@ ul.dat_tab {
   width: -moz-fit-content;
   width: fit-content;
   padding: 0;
-  margin: 0;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 1rem auto;
 }
 
 table.dat_tab {
@@ -188,6 +182,11 @@ table.dat_tab {
   box-shadow: 0 0 .5rem var(--bor_sec);
 }
 
+/* subtableros */
+.dat_tab .dat_tab {
+  margin: 0;
+}
+
 /* posiciones y secciones */
 .dat_tab > :is(.sec,.pos) {
   width: 100%;
@@ -204,7 +203,9 @@ table.dat_tab {
   box-shadow: 0 0 .5rem black;
 }
 
-/* secciones */
+/* 
+  secciones 
+*/
 
 /* fondos: imagen + color */
 .dat_tab > .sec.fon { 
@@ -230,7 +231,10 @@ table.dat_tab {
   justify-content: center;  
 }
 
-/* posiciones */
+/* 
+  posiciones 
+*/
+
 ul.dat_tab > li.pos {
   z-index: 50;
   display: flex;

@@ -121,18 +121,18 @@ class Doc {
       // Escape => ocultar modales
       case 27: 
         // 1- opciones
-        if( $.men = document.querySelector(`ul.ope_opc:not(.${DIS_OCU})`) ){
+        if( $.men = document.querySelector(`ul.ope_opc:not(.dis-ocu)`) ){
   
-          $.men.classList.add(DIS_OCU);
+          $.men.classList.add("dis-ocu");
         }
         // 2- operador
-        else if( $.ope = document.querySelector(`nav.ope ~ * > [class*="ide-"]:not(.${DIS_OCU})`) ){
+        else if( $.ope = document.querySelector(`nav.ope ~ * > [class*="ide-"]:not(.dis-ocu)`) ){
   
           $.nav = $.ope.parentElement.previousElementSibling;
           if( $.ico = $.nav.querySelector(`.val_ico.fon-sel`) ) $.ico.click();
         }
         // 3- pantalla
-        else if( document.querySelector(`body > .ope_win > :not(.${DIS_OCU})`) ){
+        else if( document.querySelector(`body > .ope_win > :not(.dis-ocu)`) ){
           
           // oculto la ultima pantalla
           $.art = document.querySelector('body > .ope_win').children;
@@ -141,14 +141,14 @@ class Doc {
   
             const $art = $.art[$ide];
   
-            if( !$art.classList.contains(DIS_OCU) ){
+            if( !$art.classList.contains("dis-ocu") ){
               Doc_Ope.win( $art.querySelector(`header:first-child .val_ico[data-ope="fin"]`) );
               break;
             }
           }
         }
         // 4- paneles
-        else if( document.querySelector(`.ope_pan > [class*="ide-"]:not(.${DIS_OCU})`) ){ 
+        else if( document.querySelector(`.ope_pan > [class*="ide-"]:not(.dis-ocu)`) ){ 
   
           Doc_Ope.pan();
         }

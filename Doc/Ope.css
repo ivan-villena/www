@@ -18,31 +18,39 @@
   flex-direction: column;
   align-items: center;
   overflow: auto;  
-  background-color: var(--fon_art);/* por barra de desplazamiento */
+  background-color: var(--fon_sec);
   text-align: center;
 }
 
-/* Titulo */
-.ope_sec > header {
+/* Cabecera y Pie */
+.ope_sec > :is(header,footer) {
   width: 100%;
-  background-color: var(--fon_sec);  
 }
 
-/* Articulos */
+/* 
+  Articulos 
+*/
 .ope_sec article {
   width: 100%;
   max-width: 700px;
   height: max-content;
-  margin: auto;
+  margin: .5rem;
   padding: .5rem 1rem;
   border-radius: .5rem;
-  /* border: 1px solid var(--bor_sel); */
-  background-color: var(--fon_sec);
 }
 
 /* cabecera y pie */
-.ope_sec article > :is(header,footer) {
-  margin: 1rem;
+.ope_sec article :is(header,footer) {
+  width: 100%;
+  padding: 1rem;
+}
+
+/* 
+  contenido 
+*/
+.ope_sec article > section {
+
+  margin-bottom: 1rem;
 }
 
 /* titulos */
@@ -205,10 +213,11 @@
   justify-content: center;
   align-items: center;
   padding: 1rem;
-  background-color: rgba(0,0,0,.8);  
+  background-color: rgba(0,0,0,.9);  
   text-align: center;
   animation: dis-ver .5s;
 }
+
 .ope_win > article {
   display: flex;
   flex-direction: column;
@@ -223,6 +232,7 @@
   line-height: 1.5;
   animation: dis-ver 1s, dis-ver-tam .5s;
 }
+
 .ope_win > article > header {    
   display: flex;
   flex-wrap: nowrap;  
@@ -230,6 +240,7 @@
   padding: .25rem;
   height: 3rem;
 }
+
 .ope_win > article > header + * {
   flex-grow: 2;
   overflow-y: auto;
@@ -238,6 +249,7 @@
   flex-direction: column;
   padding: 0;
 }
+
 .ope_win > article > header + * > section {
   margin: .5rem;  
 }
@@ -294,7 +306,6 @@
 .ope_nav:is(.pes,.tex,.bar) + :is(div,section) > [class*="ide-"] {
   animation: dis-ver 1s;
 }
-
 
 /* - Pestañas: icono + texto */
 .ope_nav.pes {
@@ -519,9 +530,9 @@ variable : div > label + input
   Cartel
 */
 .ope_tex {
-  max-width: max-content;
+  width: max-content;
   background-color: var(--fon_sec);
-  padding: .5rem;
+  padding: .5rem 1rem;
   border: 2px dashed var(--let_ico);
   border-radius: .5rem;
   box-shadow: 0 0 5px;

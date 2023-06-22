@@ -2,21 +2,21 @@
 
   function dat(){
     $_ = "";
-    foreach( Dat::_('hol.cas') as $_cas ){
+    foreach( Dat::_('hol.cas') as $Cas ){
       // armo nombre
-      $_arm = Dat::_('hol.arm',$_cas->pos_arm);
-      $_ton = Dat::_('hol.ton',$_cas->ton);
-      $nom = Tex::let_pal($_arm->des_col)." $_ton->nom";
+      $Arm = Dat::_('hol.arm',$Cas->pos_arm);
+      $Ton = Dat::_('hol.ton',$Cas->ton);
+      $nom = Tex::let_pal($Arm->des_col)." $Ton->nom";
       // armo descripcion
-      $_ond = Dat::_('hol.cas_ond',$_cas->ond);
-      $_dim = Dat::_('hol.ton_dim',$_ton->dim);
-      $des = "$_arm->des_pod $_dim->nom $_ton->des_acc_lec $_ton->des_car para $_ond->des.";
+      $_ond = Dat::_('hol.cas_ond',$Cas->ond);
+      $_dim = Dat::_('hol.ton_dim',$Ton->dim);
+      $des = "$Arm->des_pod $_dim->nom $Ton->des_acc_lec $Ton->des_car para $_ond->des.";
       $_ .= "
       UPDATE `hol-cas` SET 
         `nom` = '$nom',
         `des` = '$des'
       WHERE 
-        `ide` = $_cas->ide;<br>";
+        `ide` = $Cas->ide;<br>";
     }
     return $_;
   }

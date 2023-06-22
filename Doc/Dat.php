@@ -47,7 +47,7 @@ class Doc_Dat {
       
       if( $col = Dat::est_ide('col',$esq,$est,$atr) ){ $_ = "
 
-        <div".Ele::atr(Ele::cla($ele,"fon-{$col}-{$val} alt-100 anc-100",'ini'))."></div>";
+        <div".Ele::atr(Ele::cla($ele,"fon_col-{$col}-{$val} alt-100 anc-100",'ini'))."></div>";
       }
       else{
         $_ = "<div class='err' title='No existe el color para el atributo : _{$esq}-{$est}-{$atr}'>{$val}</div>";
@@ -149,7 +149,7 @@ class Doc_Dat {
       $ope['ope'] = Ele::eje($ope['ope'],'cam',$_eje."'atr',this);",'ini');
       if( !empty($opc_ope_tam) ) $ope['ope'] = Ele::css($ope['ope'],$opc_ope_tam);
       // oculto items
-      $cla = DIS_OCU;
+      $cla = "dis-ocu";
       // copio eventos
       if( $ele_eje ) $ele_est['eti'] = Ele::eje($ele_est['eti'],'cam',$ele_eje);
       // aseguro valores seleccionado
@@ -296,65 +296,8 @@ class Doc_Dat {
     return $_;
   }
 
-  /* Atributos : item => Atributo: "valor" */
-  static function atr( string $esq, string $est, array $atr, mixed $dat, array $ope = [] ) : string {
-    $_ = "";
-    $_opc = isset($ope['opc']) ? $ope['opc'] : [];
-    $_opc_des = in_array('des',$_opc);
-    
-    // cargo dato
-    if( !is_object($dat) ) $dat = Dat::get($esq,$est,$dat);
-    
-    // cargo atributos
-    $dat_atr = Dat::est($esq,$est,'atr');      
-    $ite = [];
-    
-    foreach( ( !empty($atr) ? $atr : array_keys($dat_atr) ) as $atr ){
-
-      if( isset($dat_atr[$atr]) && ( isset($dat->$atr) || $dat->$atr === NULL ) ){ 
-
-        $_atr = $dat_atr[$atr];
-
-        $val = $dat->$atr;
-
-        if( is_numeric($val) && isset($_atr->var['dat']) ){
-
-          // busco nombres /o/ iconos
-          $atr_ide = explode('-',$_atr->var['dat']);
-          $atr_esq = $atr_ide[0];
-          $atr_est = $atr_ide[1];
-
-          $atr_dat = Dat::est($atr_esq,$atr_est,'val');
-
-          $atr_obj = Dat::_("{$atr_esq}.{$atr_est}", $val);
-
-          if( isset($atr_dat['nom']) ){
-
-            $val = Doc_Val::let( Obj::val($atr_obj,$atr_dat['nom']) );
-
-            if( isset($atr_dat['des']) && !$_opc_des ){
-
-              $val .= "<br>".Doc_Val::let(Obj::val($atr_obj,$atr_dat['des']));
-            }
-          }
-
-          $val = str_replace($dat_atr[$atr]->nom,"<b class='ide'>{$dat_atr[$atr]->nom}</b>",$val);
-        }
-        else{
-          
-          $val = "<b class='ide'>{$dat_atr[$atr]->nom}</b><c>:</c> ".Doc_Val::let($val);
-        }
-        $ite []= $val;
-      }
-    }
-
-    $_ = Doc_Ope::lis('pos',$ite,$ope);          
-
-    return $_;
-  }
-
   /* Imagen principal y por relaciones : .val_ima => { ...atributos }  */
-  static function ima( string $ide, mixed $val = NULL, array $ope = [] ) : string {
+  static function ima( string $ide, mixed $val = NULL ) : string {
     $_ = "";
 
     extract( Dat::ide($ide) );
@@ -397,95 +340,10 @@ class Doc_Dat {
     }
 
     return $_;
-  }  
-
-  /* Definiciones : imagen + nombre > ...atributos */
-  static function des( string $esq, string $est, string | array $atr, array $ele = [], ...$opc ) : string {
-    $_ = [];
-
-    // tipos de lista
-    $tip = !empty($ele['tip']) ? $ele['tip'] : 'dep';
-
-    // atributos de la estructura
-    $atr = Obj::pos_ite($atr);
-
-    // descripciones : cadena con " ()($)atr() "
-    $des = !empty($ele['des']) ? $ele['des'] : FALSE;
-
-    // elemento de lista
-    if( !isset($ele['lis']) ) $ele['lis'] = [];
-    Ele::cla($ele['lis'],"ite",'ini');
-    $ele['lis']['data-ide'] = "{$esq}.{$est}";
-
-    foreach( Dat::_($ele['lis']['data-ide']) as $pos => $_dat ){ 
-      $htm = 
-      Doc_Val::ima($esq,$est,$_dat,[ 'class' => "mar_der-2" ])."
-      <dl>
-        <dt>".( isset($_dat->nom) ? $_dat->nom : ( isset($_dat->ide) ? $_dat->ide : $pos ) )."<c>:</c>".( $des ? " ".Obj::val($_dat,$des) : "" )."</dt>";
-        foreach( $atr as $ide ){ 
-          if( isset($_dat->$ide) ){ $htm .= "
-            <dd>".Doc_Val::let($_dat->$ide)."</dd>";
-          }
-        }$htm .= "
-      </dl>";
-      $_ []= $htm;
-    }
-    
-    return Doc_Ope::lis( $tip, $_, $ele, ...$opc );
-
   }
-
-  /* Posiciones : ficha + nombre ~ descripcion ~ posicion */
-  static function pos( string $esq, string $est, array $dat, array $ele = [] ) : string {
-    $_ = [];
-
-    foreach( Dat::est($esq,$est,'pos') as $ite ){
-
-      $var = [ 'ite'=>$ite['nom'], 'lis'=>[] ];
-      extract( Dat::ide($ite['ide']) );
-
-      $est_atr = Dat::est($esq,$est,'atr');
-
-      foreach( $ite['atr'] as $atr ){
-
-        $val = isset($dat[$est]->$atr) ? $dat[$est]->$atr : NULL;
-
-        $_atr = isset($est_atr[$atr]->var) ? $est_atr[$atr]->var : [];
-        
-        // identificadores
-        $_ide = explode('-', isset($_atr['dat']) ? $_atr['dat'] : "{$esq}-{$est}_{$atr}");
-        $esq_ide = $_ide[0];
-        $est_ide = $_ide[1];
-        $dat_ide = "{$esq_ide}.{$est_ide}";
-        
-        // datos
-        $_dat = Dat::get($esq_ide,$est_ide,$val);
-        $_val = Dat::est($esq_ide,$est_ide,'val');
-        
-        $htm = isset($_val['ima']) ? Doc_Val::ima($esq_ide ,$est_ide, $_dat, [ 'class'=>"tam-3 mar_der-1" ]) : "";
-        $htm .= "
-        <div class='tam-cre'>";
-          if( isset($_val['nom']) ) $htm .= "
-            <p class='tit'>".Doc_Val::let( Doc_Dat::val('nom',$dat_ide,$_dat) )."</p>";
-          if( isset($_val['des']) ) $htm .= "
-            <p class='des'>".Doc_Val::let( Doc_Dat::val('des',$dat_ide,$_dat) )."</p>";
-          if( isset($_val['num']) ) $htm .= 
-            Doc_Var::num('ran',$val,[ 'min'=>1, 'max'=>$_val['num'], 'disabled'=>"", 'class'=>"anc-100"],'ver');
-          $htm .= "
-        </div>";
-        $var['lis'] []= $htm;
-      }
-      $_ []= $var;
-    }
-    $ele['lis-1'] = [ 'class'=>"ite" ];
-    $ele['opc'] = [ "tog","ver","not-sep" ];
-    $ele['ope'] = [ 'class'=>"mar_arr-1" ];
-
-    return Doc_Ope::lis('dep',$_,$ele);
-  }  
-
+  
   /* Ficha: imagen + { nombre + descripcion } */
-  static function fic( string $ide, mixed $val = NULL, array $ope = [] ) : string {
+  static function fic( string $ide, mixed $val = NULL ) : string {
     $_ = "";
     
     // proceso estructura
@@ -496,10 +354,10 @@ class Doc_Dat {
     
     // proceso valores
     $val_lis = [];
-    if( is_numeric($val) ){
+    if( is_numeric($val) || is_object($val) ){
       
       $val_lis = [ $val ];
-    }
+    }// proceso rangos por ", " o " - "
     elseif( is_string($val) ){
       
       $sep = ( preg_match("/, /",$val) ) ? ", " : (  preg_match("/\s-\s/",$val) ? " - " : FALSE );
@@ -544,7 +402,9 @@ class Doc_Dat {
             }
             $_ .= "
           </div>";
-        }$_ .= "
+        }
+        $_ .= "
+        
       </div>";
     }
 
@@ -731,6 +591,148 @@ class Doc_Dat {
     }
 
     return $_;
+  }  
+
+  /* Atributos : item => Atributo: "valor" */
+  static function atr( string $esq, string $est, array $atr, mixed $dat, array $ope = [] ) : string {
+    $_ = "";
+    $_opc = isset($ope['opc']) ? $ope['opc'] : [];
+    $_opc_des = in_array('des',$_opc);
+    
+    // cargo dato
+    if( !is_object($dat) ) $dat = Dat::get($esq,$est,$dat);
+    
+    // cargo atributos
+    $dat_atr = Dat::est($esq,$est,'atr');      
+    $ite = [];
+    
+    foreach( ( !empty($atr) ? $atr : array_keys($dat_atr) ) as $atr ){
+
+      if( isset($dat_atr[$atr]) && ( isset($dat->$atr) || $dat->$atr === NULL ) ){ 
+
+        $_atr = $dat_atr[$atr];
+
+        $val = $dat->$atr;
+
+        if( is_numeric($val) && isset($_atr->var['dat']) ){
+
+          // busco nombres /o/ iconos
+          $atr_ide = explode('-',$_atr->var['dat']);
+          $atr_esq = $atr_ide[0];
+          $atr_est = $atr_ide[1];
+
+          $atr_dat = Dat::est($atr_esq,$atr_est,'val');
+
+          $atr_obj = Dat::_("{$atr_esq}.{$atr_est}", $val);
+
+          if( isset($atr_dat['nom']) ){
+
+            $val = Doc_Val::let( Obj::val($atr_obj,$atr_dat['nom']) );
+
+            if( isset($atr_dat['des']) && !$_opc_des ){
+
+              $val .= "<br>".Doc_Val::let(Obj::val($atr_obj,$atr_dat['des']));
+            }
+          }
+
+          $val = str_replace($dat_atr[$atr]->nom,"<b class='ide'>{$dat_atr[$atr]->nom}</b>",$val);
+        }
+        else{
+          
+          $val = "<b class='ide'>{$dat_atr[$atr]->nom}</b><c>:</c> ".Doc_Val::let($val);
+        }
+        $ite []= $val;
+      }
+    }
+
+    $_ = Doc_Ope::lis('pos',$ite,$ope);          
+
+    return $_;
+  }
+
+  /* Definiciones : imagen + nombre > ...atributos */
+  static function des( string $esq, string $est, string | array $atr, array $ele = [], ...$opc ) : string {
+    $_ = [];
+
+    // tipos de lista
+    $tip = !empty($ele['tip']) ? $ele['tip'] : 'dep';
+
+    // atributos de la estructura
+    $atr = Obj::pos_ite($atr);
+
+    // descripciones : cadena con " ()($)atr() "
+    $des = !empty($ele['des']) ? $ele['des'] : FALSE;
+
+    // elemento de lista
+    if( !isset($ele['lis']) ) $ele['lis'] = [];
+    Ele::cla($ele['lis'],"ite",'ini');
+    $ele['lis']['data-ide'] = "{$esq}.{$est}";
+
+    foreach( Dat::_($ele['lis']['data-ide']) as $pos => $_dat ){ 
+      $htm = 
+      Doc_Val::ima($esq,$est,$_dat,[ 'class' => "mar_der-2" ])."
+      <dl>
+        <dt>".( isset($_dat->nom) ? $_dat->nom : ( isset($_dat->ide) ? $_dat->ide : $pos ) )."<c>:</c>".( $des ? " ".Obj::val($_dat,$des) : "" )."</dt>";
+        foreach( $atr as $ide ){ 
+          if( isset($_dat->$ide) ){ $htm .= "
+            <dd>".Doc_Val::let($_dat->$ide)."</dd>";
+          }
+        }$htm .= "
+      </dl>";
+      $_ []= $htm;
+    }
+    
+    return Doc_Ope::lis( $tip, $_, $ele, ...$opc );
+
+  }
+
+  /* Posiciones : ficha + nombre ~ descripcion ~ posicion */
+  static function pos( string $esq, string $est, array $dat, array $ele = [] ) : string {
+    $_ = [];
+
+    foreach( Dat::est($esq,$est,'pos') as $ite ){
+
+      $var = [ 'ite'=>$ite['nom'], 'lis'=>[] ];
+      extract( Dat::ide($ite['ide']) );
+
+      $est_atr = Dat::est($esq,$est,'atr');
+
+      foreach( $ite['atr'] as $atr ){
+
+        $val = isset($dat[$est]->$atr) ? $dat[$est]->$atr : NULL;
+
+        $_atr = isset($est_atr[$atr]->var) ? $est_atr[$atr]->var : [];
+        
+        // identificadores
+        $_ide = explode('-', isset($_atr['dat']) ? $_atr['dat'] : "{$esq}-{$est}_{$atr}");
+        $esq_ide = $_ide[0];
+        $est_ide = $_ide[1];
+        $dat_ide = "{$esq_ide}.{$est_ide}";
+        
+        // datos
+        $_dat = Dat::get($esq_ide,$est_ide,$val);
+        $_val = Dat::est($esq_ide,$est_ide,'val');
+        
+        $htm = isset($_val['ima']) ? Doc_Val::ima($esq_ide ,$est_ide, $_dat, [ 'class'=>"tam-3 mar_der-1" ]) : "";
+        $htm .= "
+        <div class='tam-cre'>";
+          if( isset($_val['nom']) ) $htm .= "
+            <p class='tit'>".Doc_Val::let( Doc_Dat::val('nom',$dat_ide,$_dat) )."</p>";
+          if( isset($_val['des']) ) $htm .= "
+            <p class='des'>".Doc_Val::let( Doc_Dat::val('des',$dat_ide,$_dat) )."</p>";
+          if( isset($_val['num']) ) $htm .= 
+            Doc_Var::num('ran',$val,[ 'min'=>1, 'max'=>$_val['num'], 'disabled'=>"", 'class'=>"anc-100"],'ver');
+          $htm .= "
+        </div>";
+        $var['lis'] []= $htm;
+      }
+      $_ []= $var;
+    }
+    $ele['lis-1'] = [ 'class'=>"ite" ];
+    $ele['opc'] = [ "tog","ver","not-sep" ];
+    $ele['ope'] = [ 'class'=>"mar_arr-1" ];
+
+    return Doc_Ope::lis('dep',$_,$ele);
   }
 
   /*-- Administrador --*/
@@ -910,7 +912,7 @@ class Doc_Dat {
       
       $_ = ( isset($_val['nom']) ? Obj::val($_dat,$_val['nom']) : "" ).( isset($_val['des']) ? "\n".Obj::val($_dat,$_val['des']) : "");
     }
-    // por atributos con texto : nom + des + ima 
+    // proceso atributos con texto : nom + des + ima
     elseif( isset($_val[$tip]) ){
 
       if( $tip == 'ima' ){
@@ -948,6 +950,7 @@ class Doc_Dat {
             $ele_ima['title'] = Doc_Dat::val('tit',"$esq.$est",$_dat);
           }
           elseif( $ele_ima['title'] === FALSE  ){
+
             unset($ele_ima['title']);
           }
           
@@ -957,6 +960,7 @@ class Doc_Dat {
             if( Dat::est($esq,$est,'inf') ) Ele::eje($ele_ima,'cli',"Doc_Dat.inf('{$esq}.{$est}', ".intval($_dat->ide)." )");
           }
           elseif( $ele_ima['onclick'] === FALSE ){
+
             unset($ele_ima['onclick']);
           }
           
@@ -1351,7 +1355,7 @@ class Doc_Dat {
     ],
     'val' => []
   ];
-  static function tab( string | array $ide, object $dat = NULL, array $var = NULL, array $ele = NULL ) : string {
+  static function tab( mixed $ide, object $dat = NULL, array $var = NULL, array $ele = NULL ) : string {
     $_ = "";
 
     if( is_string($ide) ){
@@ -1367,22 +1371,21 @@ class Doc_Dat {
 
       // - omito esquema por nombre de aplicacion guardado en session
       // ...
-      if( $atr && ( $cla = Eje::cla_val("App/{$_SESSION['Uri']->esq}")['ide'] ) && method_exists($cla,"dat_tab") ){
+      if( ( $cla = Eje::cla_val("App/{$_SESSION['Uri']->esq}")['ide'] ) && method_exists($cla,"dat_tab") ){
         
-        $_ = $cla::dat_tab( $est, $atr, $var, $ele );
+        $_ = $cla::dat_tab( $est, $var, $ele );
       }
     }
 
     return $_;
   }// inicializo variables del proceso
-  static function tab_var( string $esq, string $est, string $atr, array &$var = [], array &$ele = [] ) : array {
+  static function tab_var( string $esq, string $est, array &$var = [], array &$ele = [] ) : array {
 
     foreach( ['sec','pos'] as $v ){ if( !isset($ele[$v]) ) $ele[$v] = []; }
 
     $_ = [ 
       'esq' => $esq,
-      'tab' => $est,
-      'est' => $est = $est.( !empty($atr) ? "_$atr" : $atr ) 
+      'est' => $est
     ];
 
     // aseguro etiqueta de lista
@@ -1391,7 +1394,7 @@ class Doc_Dat {
     // agrego clase por identificadores: .est_atr
     if( empty($ele['sec']['class']) || !preg_match("/^tab/",$ele['sec']['class']) ){
 
-      Ele::cla($ele['sec'], "dat_tab {$_['tab']}_{$atr}",'ini' );    
+      Ele::cla($ele['sec'], "dat_tab {$esq} {$est}",'ini' );    
     }
 
     // inicializo opciones
@@ -1416,7 +1419,7 @@ class Doc_Dat {
 
       if( method_exists($cla_ide, $cla_eje = "dat_tab_var") ){
 
-        $cla_ide::$cla_eje( $esq, $est, $atr, $var, $ele );
+        $cla_ide::$cla_eje( $esq, $est, $var, $ele );
       }
 
       // metodo por posicion
@@ -1437,11 +1440,21 @@ class Doc_Dat {
 
       if( is_object($val) ){
 
-        if( isset($val->ide) ) $val = intval($val->ide);       
-      }
+        if( isset($val->ide) ){
+
+          $val = intval($val->ide);
+        }
+        elseif( isset($val->pos) ){ 
+
+          $val = intval($val->pos);
+        }
+        else{
+          $val = 0;
+        }
+      }// array, indice o valor numerico
       else{
         
-        $val = is_numeric($val) ? intval($val) : $val;
+        $val = is_string($val) && is_numeric($val) ? intval($val) : $val;
       }
     }
     
@@ -1467,6 +1480,7 @@ class Doc_Dat {
         ) : FALSE;
       }
     }
+
     return $_;
   }// operadores por aplicacion
   static function tab_ope( string $tip, string $dat, array $var = [], array $ele = [] ){
@@ -1521,7 +1535,7 @@ class Doc_Dat {
         <h3>Totales por Estructura</h3>
 
         ".Doc_Ope::lis('dep', Doc_Dat::val_cue('dat', $var['est'], [ 'ide'=>$_ide ]), [ 
-          'dep'=>[ 'class'=>DIS_OCU ], 
+          'dep'=>[ 'class'=>"dis-ocu" ], 
           'opc'=>[ 'tog', 'ver', 'cue', 'tog-dep' ] 
         ])."
         
@@ -1754,7 +1768,8 @@ class Doc_Dat {
     if( is_object( $val_ide = $val ) ){
       $_dat = $val;
       $val_ide = intval($_dat->ide);
-    }// o identificador
+    }
+    // o identificador
     elseif( !empty($val) ){
 
       $_dat = Dat::_("{$esq}.{$est}",$val);
@@ -1831,7 +1846,7 @@ class Doc_Dat {
     // Contenido html ///////////////////////////
     
     /* -- ejecuto metodo por aplicacion -- */
-    $htm = !!$var['eje'] ? $var['eje']['cla']::{$var['eje']['met']}( $est, $val, $var, $Ele ) : "";        
+    $htm = !!$var['eje'] ? $var['eje']['cla']::{$var['eje']['met']}( $est, $val, $var, $ele, $Ele ) : "";
 
     // contenido automático
     if( $_dat && empty($htm) && !isset($Ele['htm']) ){
@@ -2506,7 +2521,7 @@ class Doc_Dat {
           $ele_ite['data-est'] = $est;
         } 
         $ele_ite['data-atr'] = $atr;
-        if( in_array($atr,$atr_ocu) ) Ele::cla($ele_ite,DIS_OCU);
+        if( in_array($atr,$atr_ocu) ) Ele::cla($ele_ite,"dis-ocu");
         
         // poner enlaces
         $htm = Doc_Val::let( isset($dat_atr[$atr]->nom) ? $dat_atr[$atr]->nom : $atr );
@@ -2672,7 +2687,7 @@ class Doc_Dat {
         if( $tip == "ima" ) $htm = "<div class='-val'>$htm</div>";
         $ele_dat['data-val'] = $tip;
         $_ .= "
-        <td".Ele::atr( ( $atr_ocu && in_array($atr,$atr_ocu) ) ? Ele::cla($ele_dat,DIS_OCU) : $ele_dat ).">      
+        <td".Ele::atr( ( $atr_ocu && in_array($atr,$atr_ocu) ) ? Ele::cla($ele_dat,"dis-ocu") : $ele_dat ).">      
           {$htm}
         </td>";
       }

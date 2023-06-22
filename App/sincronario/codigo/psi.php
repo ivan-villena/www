@@ -15,17 +15,113 @@
 
     <p>Esta unidad forma parte de una matriz de orden mayor llamada <b class="ide">Banco-psi</b>, la cual representa el contenido de la mente planetaria o noosfera contenidos por los cinturones de radiación.</p>
 
-    <p>De esta manera, cada psi expresa una porcion de la información solar reciba y almacenada en los bancos electromagnéticos de los cinturones de radiación de la tierra, la cual será procesada en el desarrollo histórico global.</p>
-
-    <p>El giro solar anual consiste en el ciclo de tiempo de 365 días. Este puede ser dividido en distintos sub-ciclos que llevan distintas cuentas:</p>
-
-    <ul>
-      <li>La Héptada: ciclo de 7 días. Hay 52 héptadas por giro Solar que se codifica en las posiciones de un Castillo del Destino. Está compuesta de 7 plasmas radiales, uno para cada día.</li>
-      <li>La Estación: ciclo de 91 días. Hay 4 estaciones por giro Solar. Está compuesto por 13 héptadas creando una onda encantada y representa un Cuadrante del Castillo del Destino.</li>
-      <li>La Luna: ciclo de 28 días. Hay 13 lunas en un giro Solar. Está compuesto por 4 héptadas creando una armonía lunar ( rojo a amarillo ).</li>
-    </ul>
+    <p>De esta manera, cada psi expresa una porcion de la información solar reciba y almacenada en los bancos electromagnéticos de los cinturones de radiación de la tierra, la cual será procesada en el desarrollo histórico global.</p>    
 
   </section>
+
+  <!-- El Anillo Solar -->
+  <?php $nv1=Num::val($nv1+1,2);$nv2=0;$nv3=0;$nv4=0;?>  
+  <section id="<?="_{$Nav[1][$nv1]->pos}-"?>">
+    <h2><?=Doc_Val::let($Nav[1][$nv1]->nom);?></h2>
+
+    <p>El Anillo Solar es el ciclo de tiempo que corresponde a los 365 días que tarda la tierra en dar una vuelta alrededor del sol.</p>
+
+    <p>En el <a href="<?=$Dir->libro?>encantamiento_del_sueño#_02-05-" target="_blank">Glosario</a> del <cite>Encantamiento del Sueño</cite> se define al Año Solar-Galáctico como: <q>Ciclo de sincronización de 13 Lunas que va del 26 de julio del calendario gregoriano al 25 de julio del año siguiente</q>.</p>
+
+    <p>Cada año solar comienza el día 26 de julio y termina el 24. El día 25 de julio es llamado <b>día verde</b> o <b>fuera del tiempo</b>:</p>    
+
+    <p>Hay 52 Héptadas en el ciclo solar anual de 364 + 1 días ( 52 x 7 = 364 ).</p>
+
+    <p>Cada <b class="ide">Héptada</b> es un ciclo de 7 días asociados a los 7 Plasmas Radiales que codifican la Electricidad Cósmica.</p>
+
+    <p>Esta coficación permite dos formas de medir el ciclo de tiempo anual:</p>
+
+    <ul>
+      <li>Una Onda Encantada de 13 <b class="ide">Lunas</b> de 28 días cada una ( 4 Héptadas en total siguiendo el oden armónico: rojo, blanco, azul y amarillo ).</li>
+      <li>Un Castillo de 4 <b class="ide">Estaciones Solares</b> de 91 días cada una ( 13 Héptadas en total siguiendo los 13 tonos galácticos ).</li>
+    </ul>
+
+    <figure style='max-width:35rem;'>
+      <img src='<?="{$Dir->art_ima}{$nv1}"?>.png'>
+    </figure>
+
+    <!-- Las 13 lunas de 4 héptadas -->
+    <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
+    <section id="<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>">
+      <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>
+
+      <p>En el <a href="<?=$Dir->libro?>encantamiento_del_sueño#_02-05-" target="_blank">Glosario</a> del <cite>Encantamiento del Sueño</cite> se define al Calendario de 13 Lunas como: <q>Ciclo perpetuo de cuatro semanas y 28 días llamado una Luna; trece Lunas para un año solar, menos un día verde (25 de Julio); expresión completa de un módulo de sincronización de trece unidades para estabilizar las 13 lunaciones del planeta Tierra.</q>.</p>
+
+      <figure style='max-width:35rem;'>
+        <img src='<?="{$Dir->art_ima}{$nv1}-{$nv2}"?>.png'>
+      </figure>      
+
+      <p><q>La sincronización del tiempo Solar-Galáctico ocurre el 26 de Julio. Las 13 Lunas de 28 días cada una igualan 364 días, un día menos que el giro solar de 365 días. El día verde, el 25 de julio es el 365 día del giro solar. El día verde opera de acuerdo con la ley del quinto matiz, trayendo el poder del movimiento galáctico al tiempo tri-dimensional.</q></p>      
+
+      <p>Siguiendo esta línea, se establece que el propósito del <a href="<?=$Dir->libro?>encantamiento_del_sueño#_02-03-09-" target="_blank">Calendario Perpetuo de 13 Lunas</a> es <q>ayudar a la conversión del materialismo tri-dimensional en la nación del Arco Iris, cuatri-dimensional</q>.</p>
+
+      <p>Este ciclo está codificado por el <a href="<?=$Dir->libro?>encantamiento_del_sueño#_03-11-" target="_blank">los 13 tonos galácticos</a> y forma parte de la <a href="<?=$Dir->libro?>encantamiento_del_sueño#_02-02-01-01-" target="_blank">Brújula Galáctica</a>.</p>
+
+      <p><q>Utiliza la Onda Encantada de la Aventura para trazar el Ciclo Anual del Servicio Planetario: En la primera Luna identificar el propósito para ese año Solar-Galáctico; en la segunda Luna identificar el desafío; en la tercera Luna identificar el servicio y así sigues para las 13 Lunas.</q></p>
+
+      <?=Doc_Dat::lis('hol.psi_lun',['atr'=>['ton','nom','fec_ran','ton_des','ond_man'],'opc'=>['cab_ocu']]);?>
+      
+      <p>Como un módulo de sincronización de 13 tonos que representa la cosmología del movimiento, el sincronario de 13 lunas permite <q>establecer los Kin planetarios como un organismo en contacto consigo mismo y cualquier lugar del planeta</q>; y permite a las 20 tribus y 4 Razas viajar a través del tiempo y el espacio.</p>
+
+      <p>En <a href="<?=$Dir->libro?>lunas_en_movimiento#_02-07-01-" target="_blank">la Naturaleza del tiempo</a> de <cite>Las 13 lunas en movimiento</cite> se establece que: <q>El calendario de 13 Lunas es también una onda encantada, donde un kin equivale a una luna de 28 días</q>. Esto quiere decir que se puede asignar un kin a cada luna, para lo cual hay dos métodos:</p>
+
+      <ul>
+        <li>Se puede tomar como referencia la onda encantada del kin portal que codifique ese año solar. Por ejempo, para el anillo solar de la luna entonada se puede asignar la onda encantada de la Serpiente: la luna magnética correspondera al kin 105, la segunda luna al kin 106, y así para los demás kines de esta onda.</li>
+        <li>Así como en el primer día del año, en el cual el kin portal codifica el anillo solar anual, cada luna puede ser asociada al kin de su primer día.</li>
+      </ul>
+
+      <p>Posteriormente, cada ciclo lunar se asocia con un <a href="<?=$Dir->libro?>lunas_en_movimiento#_02-07-01-" target="_blank">Totem Animal</a> basado en la Astrología tradicional Maya:</p>
+
+      <?=Sincronario::dat_tab('psi_lun_tot')?>
+
+      <p><q>El nuevo calendario de Trece Lunas ha sido hoy adoptado por todos los hijos de la Tierra. Así como en la cuenta de las trece lunas Mayas un poder de espíritu animal está asociado con cada una de las lunas. Mira en el listado de las trece lunas. ¿En qué luna es tu nacimiento, y cuál es tu poder de espíritu animal?.</q></p>
+
+      <p><i>La <a href="<?=$Dir->libro?>lunas_en_movimiento#_02-07-01-" target="_blank">Tortuga de 13 Lunas en Movimiento</a>...</i></p>
+
+    </section>
+    
+    <!-- Las 4 Estaciones de 13 heptadas -->
+    <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
+    <section id="<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>">
+      <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>
+
+      <p>En el <a href="<?=$Dir->libro?>encantamiento_del_sueño#_02-03-09-" target="_blank">Calendario Perpetuo</a> del <cite>Encantamiento del Sueño</cite> se establecen las condiciones para correlacionar el giro solar de 13 lunas con las 52 semanas del año, dando lugar a las 4 estaciones solares.</p>
+
+      <figure style='max-width:35rem;'>
+        <img src='<?="{$Dir->art_ima}{$nv1}-{$nv2}"?>.png'>
+      </figure>      
+
+      <p>Siguiendo el código de color armónico, cada cuadrante del castillos se asocia con una estación de 13 heptadas. Los equinoccios y solsticios ocurren siempre en las torres solares del castillo.</p>
+
+      <?=Doc_Dat::lis('hol.psi_est',['atr'=>['ide','nom','des','fec_ran','pol_sur','pol_nor']]);?>
+
+      <p>En <cite>Un Tratado del Tiempo</cite>, este castillo puede ser una aplicación de los <a href="<?=$Dir->libro?>tratado_del_tiempo#_04-03-07-" target="_blank">fractales espectrales</a> donde cada kin equivale a 7 días, es decir una semana, codificando las 52 posiciones del castillo anual.</p>
+
+    </section>
+
+    <!-- Las 52 heptadas -->
+    <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
+    <section id="<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>">
+      <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>
+
+      <p>Resumiendo hasta el momento: Un año solar tiene 364 días más 1 día fuera del tiempo.</p>
+
+      <p>La colocación utilizada para codificar los ciclos anuales es la héptada de 7 días, o una semana.</p>
+
+      <p>Hay 52 semanas en un año, 13 semanas en una Estación Solar de 91 días, y 4 semanas en 1 Giro Lunar de 28 días.</p>
+
+      <p>Las héptadas se pueden codificar con el código de color y los tonos de la onda encantada dentro del Castillo de 52 posiciones.</p>
+
+      <?=Doc_Dat::lis('hol.psi_hep',['atr'=>['ide','nom','fec_ran','des'],'tit_cic'=>['est','lun'],'opc'=>['cab_ocu']]);?>
+
+    </section>
+
+  </section>    
 
   <!-- El Banco-Psi -->
   <?php $nv1=Num::val($nv1+1,2);$nv2=0;$nv3=0;$nv4=0;?>  
@@ -112,6 +208,7 @@
   <!-- Codigos y Cuentas del Tzolkin -->
   <?php $nv1=Num::val($nv1+1,2);$nv2=0;$nv3=0;$nv4=0;?>  
   <section id="<?="_{$Nav[1][$nv1]->pos}-"?>">  
+    <h2><?=Doc_Val::let($Nav[1][$nv1]->nom);?></h2>
 
     <!-- El psi-crono -->
     <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
@@ -142,7 +239,7 @@
       
       <p>Por ejemplo, para el kin 2, viento lunar blanco el códgio es 1.7: corresponde al día 7 de la 1° luna. Pero para el kin 20, sol resonante amarillo, los dias correspondientes son el 4°, 5° y 6° de la primer luna del servicio planetario.</p>
 
-      <p>Si quieres saber más sobre este tema, puedes leer el <a href="<?=$Dir->tutorial?>sincronario#_06-" target="_blank">tutorial de 13 lunas</a>...</p>
+      <p>Si quieres saber más sobre este tema, puedes leer el <a href="<?=$Dir->lectura?>tutorial#_06-" target="_blank">tutorial de 13 lunas</a>...</p>
 
     </section>
     
@@ -177,107 +274,36 @@
       
     </section>
 
-  </section>
-
-  <!-- El Anillo Solar -->
-  <?php $nv1=Num::val($nv1+1,2);$nv2=0;$nv3=0;$nv4=0;?>  
-  <section id="<?="_{$Nav[1][$nv1]->pos}-"?>">
-    <h2><?=Doc_Val::let($Nav[1][$nv1]->nom);?></h2>
-
-    <p>El Anillo Solar es el ciclo de tiempo que corresponde a los 365 días que tarda la tierra en dar una vuelta alrededor del sol.</p>
-
-    <p>Cada <b class="ide">Héptada</b> es un ciclo de 7 días asociados a los 7 Plasmas Radiales que codifican la Electricidad Cósmica.</p>
-
-    <p>Hay 52 Héptadas en el ciclo solar anual de 364 + 1 días ( 52 x 7 = 364 ). Adicionalmente, hay un <b class="ide">día Fuera del Tiempo</b> que no corresponde a ninguna luna, sino que funciona como un <q>factor de corrección</q>, también llamado <b class="ide">Día Verde</b>.</p>
-
-    <p>Esta coficación permite dos formas de medir el tiempo anual:</p>
-
-    <ul>
-      <li>La <b class="ide">Estación Solar</b> tiene un total de 91 días y está compuesta por 13 Héptadas. Hay 4 Estaciones por Anillo Solar.</li>
-      <li>La <b class="ide">Luna</b> tiene un total de 28 días y esta divida en 4 Héptadas siguiendo el oden armónico ( rojo, blanco, azul y amarillo ). Hay 13 Lunas por Anillo Solar.</li>
-    </ul>
-
-    <!-- Las 13 lunas de 4 héptadas -->
+    <!-- Los 19 vinales del haab -->
     <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
     <section id="<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>">
-      <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>
+      <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>      
 
-      <p>En el <a href="<?=$Dir->libro?>encantamiento_del_sueño#_02-05-" target="_blank">Glosario</a> del <cite>Encantamiento del Sueño</cite> se define al Año Solar-Galáctico como: <q>Ciclo de sincronización de 13 Lunas que va del 26 de julio del calendario gregoriano al 25 de julio del año siguiente</q>.</p>
+      <p>Así como el Calendario Sagrado Tzolkin mide los ciclos galácticos de 260 días, el Haab ( Calendario Civil Maya ) mide los ciclos solares de 365 días dividido en 18 vinales de 20 días y un Uayeb de 5 días.</p>
 
-      <p>Cada año solar comienza el día 26 de julio y termina el 24. El día 25 de julio es llamado <b>día verde</b> o <b>fuera del tiempo</b>:</p>
+      <p>Ambos ciclos, el galáctico y el solar, se sincronizan cada 52 años. Es decir, que cada 18.980 días se repite el mismo par de signos tanto en el Haab como en el Tzolkin.</p>
 
-      <figure style='max-width:35rem;'>
-        <img src="<?=$Dir->libro_ima?>lunas_en_movimiento/02-01-03.jpg" alt="Sincronario de 13 Lunas">
-      </figure>      
+      <p>Esta información se encuentra en el <a href="<?=$Dir->libro?>factor_maya#_11-05-" target="_blank">Ciclo de 52 años y el calendario circular diario</a> del <cite>Factor Maya</cite>, donde también se propone: <q>De esta información, junto con las concordancias del signo para el día planetario dadas, es fácil construir un calendario o libro diario, y dada la información del Capítulo 4, empezar a trabajar todos los días con la “astrología” cotidiana de los mayas</q>.</p>
 
-      <p><q>La sincronización del tiempo Solar-Galáctico ocurre el 26 de Julio. Las 13 Lunas de 28 días cada una igualan 364 días, un día menos que el giro solar de 365 días. El día verde, el 25 de julio es el 365 día del giro solar. El día verde opera de acuerdo con la ley del quinto matiz, trayendo el poder del movimiento galáctico al tiempo tri-dimensional.</q></p>      
+      <p>Por otro lado, en <a href="<?=$Dir->libro?>tratado_del_tiempo#_08-03-" target="_blank">Los 18 Vinales del ciclo de frecuencia solar del Haab</a> de <cite>Un Tratado del Tiempo</cite> se presentas estos signos en una lista con las fechas correspondientes al calendario y las correlaciones con las cromáticas entonadas. También se menciona que estas fechas son las que figuran en el disco verde exterior de la <a href="<?=$Dir->libro?>encantamiento_del_sueño#_02-02-01-01-03-" target="_blank">brujula galáctica</a>, instrumento que se utiliza para decodificar las fechas del calendario gregoriano al sincronario.</p>
 
-      <p>Siguiendo esta línea, se establece que el propósito del <a href="<?=$Dir->libro?>encantamiento_del_sueño#_02-03-09-" target="_blank">Calendario Perpetuo de 13 Lunas</a> es <q>ayudar a la conversión del materialismo tri-dimensional en la nación del Arco Iris, cuatri-dimensional</q>.</p>
+      <?=Doc_Dat::lis('hol.psi_vin',['atr'=>['ide','nom','des','fec_ran','sin','cro']]);?>
 
-      <p>Este ciclo está codificado por el <a href="<?=$Dir->libro?>encantamiento_del_sueño#_03-11-" target="_blank">los 13 tonos galácticos</a> y forma parte de la <a href="<?=$Dir->libro?>encantamiento_del_sueño#_02-02-01-01-" target="_blank">Brújula Galáctica</a>.</p>
+      <p>Esta información se amplía, en <a href="<?=$Dir->libro?>telektonon#_04-01-" target="_blank">Los Dieciocho Vinales y el Vayeb</a> del <cite>Telektonon</cite> donde se menciona la relación de estos ciclos con el calendario sagrado tzokin:</p>      
 
-      <p><q>Utiliza la Onda Encantada de la Aventura para trazar el Ciclo Anual del Servicio Planetario: En la primera Luna identificar el propósito para ese año Solar-Galáctico; en la segunda Luna identificar el desafío; en la tercera Luna identificar el servicio y así sigues para las 13 Lunas.</q></p>
+      <p><q>Mientras el cielo de 13 lunas regula el ciclo biológico humano, el ciclo de 20 días coordina el mensajero anual. Este mensajero o portador anual es uno de los 4 sellos solares que gobierna cada uno de los 4 años que aparece en la cara anterior de cada una de las cuatro cartas del 'Libro de Forma Cósmica'.</q></p>
 
-      <?=Doc_Dat::lis('hol.psi_lun',['atr'=>['ton','nom','fec_ran','ton_des','ond_man'],'opc'=>['cab_ocu']]);?>
+      <p>De esta asignación surge la definición de los vinales como ciclos de 20 días codificados por el Kin Portal que abre el Anillo Solar:</p>
+
+      <p><q>El sello del portador anual para cualquiera de los cuatro años codifica los 18 Vinales y el Vayeb: por ejemplo, en el año de la Luna Lunar Roja, todas las fechas de Vinal se codifican con el sello solar luna: en el año del Mago Eléctrico Blanco, todas las fechas de Vinal se codifican con el sello solar Mago, etc.</q></p>
+
+      <p>Y finaliza con una expresión simbólica:</p>
+
+      <p><q>Todo esto es necesario para obtener la piedra preciosa</q></p>
+
+      <p>Donde se aclara que: <q>La <b class="ide">piedra preciosa</b> es el Tun, la cual es el ciclo de 360 días. El Uayeb de 5 días es la sabiduría que completa el ciclo solar anual</q>.</p>
       
-      <p>Como un módulo de sincronización de 13 tonos que representa la cosmología del movimiento, el sincronario de 13 lunas permite <q>establecer los Kin planetarios como un organismo en contacto consigo mismo y cualquier lugar del planeta</q>; y permite a las 20 tribus y 4 Razas viajar a través del tiempo y el espacio.</p>
-
-      <p>En <cite>Las 13 lunas en movimiento</cite> se profundiza sobre la aplicación del módulo de sincronización a las 13 lunaciones anuales, y se asocia a cada ciclo con un <a href="<?=$Dir->libro?>lunas_en_movimiento#_02-07-01-" target="_blank">Totem Animal</a> basado en la Astrología tradicional Maya:</p>
-
-      <?=Doc_Dat::lis('hol.psi_lun',['atr'=>['ide','tot','nom','fec_ran'],'opc'=>['cab_ocu']]);?>
-
-      <p><q>El nuevo calendario de Trece Lunas ha sido hoy adoptado por todos los hijos de la Tierra. Así como en la cuenta de las trece lunas Mayas un poder de espíritu animal está asociado con cada una de las lunas. Mira en el listado de las trece lunas. ¿En qué luna es tu nacimiento, y cuál es tu poder de espíritu animal?.</q></p>
-
-      <p><i>La <a href="<?=$Dir->libro?>lunas_en_movimiento#_02-07-01-" target="_blank">Tortuga de 13 Lunas en Movimiento</a>...</i></p>
-
-      <p>En <a href="<?=$Dir->libro?>lunas_en_movimiento#_02-07-01-" target="_blank">la Naturaleza del tiempo</a> se establece que: <q>El calendario de 13 Lunas es también una onda encantada, donde un kin equivale a una luna de 28 días</q>.</p>
-
-      <p>Esto quiere decir que se puede asignar un kin a cada luna, para lo cual hay dos métodos:</p>
-
-      <ul>
-        <li>Se puede tomar como referencia la onda encantada del kin portal que codifique ese año solar. Por ejempo, para el anillo solar de la luna entonada se puede asignar la onda encantada de la Serpiente: la luna magnética correspondera al kin 105, la segunda luna al kin 106, y así para los demás kines de esta onda.</li>
-        <li>Así como en el primer día del año, en el cual el kin portal codifica el anillo solar anual, cada luna puede ser asociada al kin de su primer día.</li>
-      </ul>
-
-    </section>
-    
-    <!-- Las 4 Estaciones de 13 heptadas -->
-    <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
-    <section id="<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>">
-      <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>    
-
-      <?=Doc_Dat::lis('hol.psi_lun',['atr'=>['ide','tot','nom','fec_ran'],'opc'=>['cab_ocu']]);?>
-
-    </section>
-
-    <!-- Las 52 heptadas -->
-    <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
-    <section id="<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>">
-        <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>    
-          
-
-    </section>        
-
-  </section>  
-
-  <!-- Ciclos Calendáricos -->
-  <?php $nv1=Num::val($nv1+1,2);$nv2=0;$nv3=0;$nv4=0;?>  
-  <section id="<?="_{$Nav[1][$nv1]->pos}-"?>">
-    <h2><?=Doc_Val::let($Nav[1][$nv1]->nom);?></h2>
-
-    <!-- 19 vinales del haab -->
-    <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
-    <section id="<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>">
-      <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>
-      
-    </section>
-    
-    <!-- 52 anillos solares -->
-    <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
-    <section id="<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>">
-      <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>
-      
-    </section>     
+    </section>    
 
   </section>
 

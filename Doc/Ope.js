@@ -5,8 +5,8 @@ class Doc_Ope {
 
   /* Sección Principal */
   static sec( $ide ){
-    $Doc.Ope.sec.querySelectorAll(`article[class*="ide-"]:not(.${DIS_OCU})`).forEach( $e => $e.classList.add(DIS_OCU) );
-    $Doc.Ope.sec.querySelectorAll(`article.ide-${$ide}.${DIS_OCU}`).forEach( $e => $e.classList.remove(DIS_OCU) );
+    $Doc.Ope.sec.querySelectorAll(`article[class*="ide-"]:not(.dis-ocu)`).forEach( $e => $e.classList.add("dis-ocu") );
+    $Doc.Ope.sec.querySelectorAll(`article.ide-${$ide}.dis-ocu`).forEach( $e => $e.classList.remove("dis-ocu") );
     $Doc.Ope.sec.scroll(0, 0);
   }
 
@@ -18,7 +18,7 @@ class Doc_Ope {
     // oculto todo
     if( !$ide ){
 
-      Doc.act('cla_agr',$Doc.Ope.pan.querySelectorAll(`:is(nav,article)[class*="ide-"]`),DIS_OCU);
+      Doc.act('cla_agr',$Doc.Ope.pan.querySelectorAll(`:is(nav,article)[class*="ide-"]`),"dis-ocu");
     }
     // muestro uno articulo/navegador
     else{
@@ -29,17 +29,17 @@ class Doc_Ope {
       
       // Contenedor
       $.ide = $ide.dataset.ide;
-      Doc.act('cla_agr',$Doc.Ope.pan.querySelectorAll(`:is(nav,article)[class*="ide-"]:not( .ide-${$.ide}, .${DIS_OCU} )`),DIS_OCU);
-      Doc.act('cla_tog',$Doc.Ope.pan.querySelectorAll(`:is(nav,article).ide-${$.ide}`),DIS_OCU);
+      Doc.act('cla_agr',$Doc.Ope.pan.querySelectorAll(`:is(nav,article)[class*="ide-"]:not( .ide-${$.ide}, .dis-ocu )`),"dis-ocu");
+      Doc.act('cla_tog',$Doc.Ope.pan.querySelectorAll(`:is(nav,article).ide-${$.ide}`),"dis-ocu");
     }
 
     // Panel
-    if( $Doc.Ope.pan.querySelector(`:is(nav,article)[class*="ide-"]:not(.${DIS_OCU})`) ){      
-      Doc.act('cla_eli',$Doc.Ope.pan,DIS_OCU);
+    if( $Doc.Ope.pan.querySelector(`:is(nav,article)[class*="ide-"]:not(.dis-ocu)`) ){      
+      Doc.act('cla_eli',$Doc.Ope.pan,"dis-ocu");
     }
     else{
       Doc.act('cla_eli',$Doc.Ope.bot.querySelectorAll(`a.bor-sel.fon-sel`),$.cla);
-      Doc.act('cla_agr',$Doc.Ope.pan,DIS_OCU);
+      Doc.act('cla_agr',$Doc.Ope.pan,"dis-ocu");
     }    
   }
 
@@ -55,7 +55,7 @@ class Doc_Ope {
       $.art = Doc.ver($ide,{'eti':"article"});
       
       // oculto el articulo
-      $.art.classList.add(DIS_OCU);      
+      $.art.classList.add("dis-ocu");      
       
       // si es una pantalla por posicion, elimino el articulo
       if( $.art.dataset.pos ){
@@ -137,20 +137,20 @@ class Doc_Ope {
       }
 
       // muestro por valor
-      $.art.classList.contains(DIS_OCU) && $.art.classList.remove(DIS_OCU);
+      $.art.classList.contains("dis-ocu") && $.art.classList.remove("dis-ocu");
       
       // scroll
       $.htm.scroll(0,0);
     }
 
     // oculto/muestro pantalla de fondo
-    if( $Doc.Ope.win.querySelector(`article[class*="ide-"]:not(.${DIS_OCU})`) ){
+    if( $Doc.Ope.win.querySelector(`article[class*="ide-"]:not(.dis-ocu)`) ){
 
-      $Doc.Ope.win.classList.contains(DIS_OCU) && $Doc.Ope.win.classList.remove(DIS_OCU);
+      $Doc.Ope.win.classList.contains("dis-ocu") && $Doc.Ope.win.classList.remove("dis-ocu");
     }
-    else if( !$Doc.Ope.win.classList.contains(DIS_OCU) ){
+    else if( !$Doc.Ope.win.classList.contains("dis-ocu") ){
 
-      $Doc.Ope.win.classList.add(DIS_OCU);
+      $Doc.Ope.win.classList.add("dis-ocu");
     }    
   }// opciones: texto + botones( si / no )
   static win_opc( $tex, $eje, $bot, $ope = {} ){
@@ -216,7 +216,7 @@ class Doc_Ope {
           && 
           ( $.nav = $.val.querySelector('a[href^="#"]') )
         ){
-          if( $.lis.classList.contains(DIS_OCU) && ( $.ico = $.nav.previousElementSibling ) && $.ico.classList.contains('val_ico') ){
+          if( $.lis.classList.contains("dis-ocu") && ( $.ico = $.nav.previousElementSibling ) && $.ico.classList.contains('val_ico') ){
             
             Doc_Ope.val($.ico);
           }
@@ -239,7 +239,7 @@ class Doc_Ope {
     // - seleccion
     case 'val': 
 
-      if( !$ope ) $ope = FON_SEL;
+      if( !$ope ) $ope = "fon-sel";
 
       $.lis = Doc.ver($ele,{'eti':'nav'});
 
@@ -253,7 +253,7 @@ class Doc_Ope {
         if( 
           ( $.dep = $ele.parentElement.parentElement.querySelector('ul.ope_lis') ) 
           &&
-          ( $ele.classList.contains('val_ico') || $.dep.classList.contains(DIS_OCU) ) 
+          ( $ele.classList.contains('val_ico') || $.dep.classList.contains("dis-ocu") ) 
         ){
           Doc_Ope.val($ele);
         }
@@ -307,9 +307,9 @@ class Doc_Ope {
       // con toggles
       $.val_tog = $opc.includes('tog');
       // elimino fondo por seleccion anterior
-      if( $.sel_ant = $.nav.querySelector(`a.${FON_SEL}`) ){
+      if( $.sel_ant = $.nav.querySelector(`a.fon-sel`) ){
   
-        if( !$.val_tog || $.sel_ant != $ele ) $.sel_ant.classList.remove(FON_SEL);
+        if( !$.val_tog || $.sel_ant != $ele ) $.sel_ant.classList.remove("fon-sel");
       }
       // contenido
       if( $ope ){
@@ -319,28 +319,28 @@ class Doc_Ope {
           if( $e.classList.contains(`ide-${$ope}`) ){          
             // hago toogles
             if( $.val_tog ){
-              $e.classList.toggle(DIS_OCU);
-              $ele.classList.toggle(FON_SEL);
+              $e.classList.toggle("dis-ocu");
+              $ele.classList.toggle("fon-sel");
             }
             // muestro y selecciono
-            else if( $e.classList.contains(DIS_OCU) ){
-              $e.classList.remove(DIS_OCU);
-              $ele.classList.add(FON_SEL);
+            else if( $e.classList.contains("dis-ocu") ){
+              $e.classList.remove("dis-ocu");
+              $ele.classList.add("fon-sel");
             }
-            $.tip_ver = !$e.classList.contains(DIS_OCU);
+            $.tip_ver = !$e.classList.contains("dis-ocu");
   
           }// oculto los no coincidentes
-          else if( !$e.classList.contains(DIS_OCU) ){ 
-            $e.classList.add(DIS_OCU); 
+          else if( !$e.classList.contains("dis-ocu") ){ 
+            $e.classList.add("dis-ocu"); 
           }
         });
       }
       // oculto o muestro contenedor
       if( $.tip != 'pes' ){
         if( $.tip_ver ){
-          $.lis.classList.contains(DIS_OCU) && $.lis.classList.remove(DIS_OCU);
+          $.lis.classList.contains("dis-ocu") && $.lis.classList.remove("dis-ocu");
         }else{
-          !$.lis.classList.contains(DIS_OCU) && $.lis.classList.add(DIS_OCU);
+          !$.lis.classList.contains("dis-ocu") && $.lis.classList.add("dis-ocu");
         }
       }  
     }  
@@ -409,11 +409,11 @@ class Doc_Ope {
       
         if( $.bot.classList.contains('ocu') ){
           $.bot.classList.remove('ocu');
-          $.sec.classList.remove(DIS_OCU);
+          $.sec.classList.remove("dis-ocu");
         }
         else{
           $.bot.classList.add('ocu');
-          $.sec.classList.add(DIS_OCU);
+          $.sec.classList.add("dis-ocu");
         }
       }
     }
@@ -445,7 +445,7 @@ class Doc_Ope {
         $.dd = $ele.nextElementSibling;
 
         while( $.dd && $.dd.nodeName == 'DD' ){
-          $.dd.classList.toggle(DIS_OCU);
+          $.dd.classList.toggle("dis-ocu");
           $.dd = $.dd.nextElementSibling;
         }
       }
@@ -474,9 +474,9 @@ class Doc_Ope {
         // valido y muestro item
         $.val.value = $.pos;
 
-        Doc.act('cla_agr',$.lis.querySelectorAll(`li.pos:not(.${DIS_OCU})`),DIS_OCU);
+        Doc.act('cla_agr',$.lis.querySelectorAll(`li.pos:not(.dis-ocu)`),"dis-ocu");
 
-        if( $.ite = $.lis.querySelector(`li.ide-${$.pos}`) ) $.ite.classList.remove(DIS_OCU);
+        if( $.ite = $.lis.querySelector(`li.ide-${$.pos}`) ) $.ite.classList.remove("dis-ocu");
       }
       break;
     }
@@ -531,14 +531,14 @@ class Doc_Ope {
           if( !($.tex = $.val.value.trim()) || Dat.ver($ite.innerText.trim(), $.ope, $.tex) ){
             
             // oculto/mustro item
-            $.ite.classList.contains(DIS_OCU) && $.ite.classList.remove(DIS_OCU);
+            $.ite.classList.contains("dis-ocu") && $.ite.classList.remove("dis-ocu");
             
             // agrego brillo
             if( !!$val && !!$.tex ) $ite.classList.add($val);
           }
           else{
             
-            $.ite.classList.add(DIS_OCU);
+            $.ite.classList.add("dis-ocu");
           }
         });
         
@@ -546,7 +546,7 @@ class Doc_Ope {
         $.tot = 0;
         if( $.val.value ){
           
-          $.lis.querySelectorAll(`li.pos:not(.${DIS_OCU}) ${$ope}`).forEach( $ite => {
+          $.lis.querySelectorAll(`li.pos:not(.dis-ocu) ${$ope}`).forEach( $ite => {
             
             $.tot ++;
             
@@ -555,7 +555,7 @@ class Doc_Ope {
             
             while( ( $.ite = $.val.parentElement.parentElement ) && $.ite.nodeName == 'LI' && $.ite.classList.contains('pos') ){
 
-              $.ite.classList.contains(DIS_OCU) && $.ite.classList.remove(DIS_OCU);
+              $.ite.classList.contains("dis-ocu") && $.ite.classList.remove("dis-ocu");
 
               $.val = $.ite;
             }
@@ -585,18 +585,18 @@ class Doc_Ope {
       $ = Doc_Ope.var($ele);
 
       if( !$ele || !$ope ){
-        Doc.act('cla_tog',$.lis.children,DIS_OCU); 
+        Doc.act('cla_tog',$.lis.children,"dis-ocu"); 
       }
       else{
         Obj.pos($.lis.children).forEach( $ite => {
   
-          if( $ite.nodeName == 'DT' && !$ite.classList.contains(DIS_OCU) ){
+          if( $ite.nodeName == 'DT' && !$ite.classList.contains("dis-ocu") ){
   
             if( $ite.nextElementSibling ){
               if( 
-                ( $ope == 'tod' &&  $ite.nextElementSibling.classList.contains(DIS_OCU) )
+                ( $ope == 'tod' &&  $ite.nextElementSibling.classList.contains("dis-ocu") )
                 ||
-                ( $ope == 'nad' &&  !$ite.nextElementSibling.classList.contains(DIS_OCU) )
+                ( $ope == 'nad' &&  !$ite.nextElementSibling.classList.contains("dis-ocu") )
               ){
                 Doc_Ope.lis('pos',$ite);
               }
@@ -617,45 +617,45 @@ class Doc_Ope {
         // muestro por coincidencias
         if( $.val = $Doc.Ope.var.querySelector('[name="val"]').value ){
           // oculto todos
-          Doc.act('cla_agr',$.lis.children,DIS_OCU); 
+          Doc.act('cla_agr',$.lis.children,"dis-ocu"); 
   
           $.ope = $Doc.Ope.var.querySelector('[name="ope"]').value;
           
           if( $.lis.nodeName == 'DL' ){
             $.lis.querySelectorAll(`dt`).forEach( $e => {
               // valido coincidencia
-              $.ope_val = Dat.ver($e.innerHTML,$.ope,$.val) ? $e.classList.remove(DIS_OCU) : $e.classList.add(DIS_OCU);
+              $.ope_val = Dat.ver($e.innerHTML,$.ope,$.val) ? $e.classList.remove("dis-ocu") : $e.classList.add("dis-ocu");
               $.dd = $e.nextElementSibling;
               while( $.dd && $.dd.nodeName == 'DD' ){
-                $.ope_val ? $.dd.classList.remove(DIS_OCU) : $.dd.classList.add(DIS_OCU);
+                $.ope_val ? $.dd.classList.remove("dis-ocu") : $.dd.classList.add("dis-ocu");
                 $.dd = $.dd.nextElementSibling;
               }
             });
           }
           else{
             Obj.pos($.lis.children).forEach( $e => 
-              Dat.ver($e.innerHTML,$.ope,$.val) && $e.classList.remove(DIS_OCU) 
+              Dat.ver($e.innerHTML,$.ope,$.val) && $e.classList.remove("dis-ocu") 
             );
           }
         }
         else{
-          Doc.act('cla_eli',$.lis.children,DIS_OCU);
+          Doc.act('cla_eli',$.lis.children,"dis-ocu");
         }
       }
       // operadores
       else{
         switch( $ope ){
-        case 'tod': Doc.act('cla_eli',$.lis.children,DIS_OCU); break;
-        case 'nad': Doc.act('cla_agr',$.lis.children,DIS_OCU); break;
+        case 'tod': Doc.act('cla_eli',$.lis.children,"dis-ocu"); break;
+        case 'nad': Doc.act('cla_agr',$.lis.children,"dis-ocu"); break;
         }
       }
   
       // actualizo cuenta
       if( $.tot = $Doc.Ope.var.querySelector('[name="tot"]') ){
         if( $.lis.nodeName == 'DL' ){
-          $.tot.innerHTML = Obj.pos($.lis.children).filter( $ite => $ite.nodeName=='DT' && !$ite.classList.contains(DIS_OCU) ).length;
+          $.tot.innerHTML = Obj.pos($.lis.children).filter( $ite => $ite.nodeName=='DT' && !$ite.classList.contains("dis-ocu") ).length;
         }else{
-          $.tot.innerHTML = Obj.pos($.lis.children).filter( $ite => !$ite.classList.contains(DIS_OCU) ).length;
+          $.tot.innerHTML = Obj.pos($.lis.children).filter( $ite => !$ite.classList.contains("dis-ocu") ).length;
         }
       }  
     }

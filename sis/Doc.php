@@ -41,12 +41,12 @@ class Doc {
     $this->Cla = [
       'Var'=>[
         'Num', 'Tex', 'Fec', 'Obj', 'Eje', 'Ele', 'Arc'
-      ],      
-      'Sis'=>[
-        'Dat', 'Doc', 'Usu', 'App'
       ],
       'Doc'=>[
         'Dat', 'Ope', 'Val', 'Var'
+      ],
+      'Sis'=>[
+        'Dat', 'Doc', 'Usu', 'App'
       ]
     ];
 
@@ -55,6 +55,7 @@ class Doc {
       'var'=>[ 
         'tip', 'tex_let', 'tex_ico'
       ]
+
     ];
 
     $this->Eje = [
@@ -96,6 +97,8 @@ class Doc {
     ];
     
     $this->Uri = $this->Uri( $uri );
+
+    $_SESSION['Uri'] = $this->Uri;
     
   } 
 
@@ -305,16 +308,28 @@ class Doc {
   }
 
   // imprimo pagina por Aplicacion
-  public function htm(){
+  public function htm( App $App ){
 
-    // Proceso Documento
-    $htm = $this->Htm;
-    
     $ele_doc = [
       'data-esq'=>$this->Uri->esq, 
       'data-cab'=>!empty($this->Uri->cab) ? $this->Uri->cab : NULL, 
       'data-art'=>!empty($this->Uri->art) ? $this->Uri->art : NULL
-     ];
+    ];    
+
+    // ajusto enlace de inicio
+    $this->Cab['ini']['app_ini']['url'] .= "/{$App->Esq->ide}";
+    
+    // imprimo menú principal
+    $this->Cab['ini']['app_cab']['htm'] = $App->cab();
+
+    // imprimo indice
+    if( !empty( $App->Nav ) ){
+
+      $this->Cab['ini']['app_nav']['htm'] = $App->nav();
+    }
+
+    // Proceso Documento
+    $htm = $this->Htm;
 
     // cargo botones y html para enlaces a paneles y modales
     foreach( $this->Cab as $tip => $tip_lis ){
@@ -343,12 +358,26 @@ class Doc {
 
       $htm['sec'] = Doc_Ope::tex([ 'tip'=>"err", 'tex'=>$this->Err ]);
 
-    }// agrego Modal de operaciones
-    else{
-      
-      $htm['win'] .= Doc_Ope::win('ope',[ 'ico'=>"", 'nom'=>"Operador" ]);
     }
-    
+    else{
+
+      // agrego Modal de operaciones 
+      $htm['win'] .= Doc_Ope::win('ope',[ 'ico'=>"", 'nom'=>"Operador" ]);
+
+      // titulo: por articulo
+      if( !empty($App->Art->nom) ){
+
+        $htm['tit'] = $App->Art->nom;
+      }// por menu
+      elseif( !empty($App->Cab->nom) ){
+
+        $htm['tit'] = $App->Cab->nom;
+      }// por aplicacion
+      elseif( !empty($App->Esq->nom) ){
+
+        $htm['tit'] = $App->Esq->nom; 
+      }       
+    }
     ?>
     <!DOCTYPE html>
     <html lang="es">
@@ -360,7 +389,7 @@ class Doc {
         <!-- hojas de estilo -->
         <link rel='stylesheet' href='<?=SYS_NAV?>index.css'>        
         <?=$this->cla('css')?>
-        <link rel='stylesheet' href='<?=SYS_NAV?>Sis/Api/css.css'>
+        <link rel='stylesheet' href='<?=SYS_NAV?>Api/css.css'>
         <!-- aplicacion -->
         <title><?=$htm['tit']?></title>
       </head>
@@ -444,11 +473,6 @@ class Doc {
           
           // Rutas
           const SYS_NAV = "<?=SYS_NAV?>";
-          
-          // Clases
-          const DIS_OCU = "<?=DIS_OCU?>";
-          const FON_SEL = "<?=FON_SEL?>";
-          const BOR_SEL = "<?=BOR_SEL?>";
 
           // Objetos          
           var $Doc = new Doc(<?= Obj::val_cod( $this->Uri ) ?>);

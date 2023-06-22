@@ -98,7 +98,7 @@ class Doc_Ope {
 
     // imprimo con identificador
     Ele::cla($ope['nav'],"ide-$ide",'ini');
-    Ele::cla($ope['nav'],DIS_OCU);
+    Ele::cla($ope['nav'],"dis-ocu");
     $_ = "
     <$eti_nav".Ele::atr($ope['nav']).">
 
@@ -156,7 +156,7 @@ class Doc_Ope {
     }      
     // imprimo con identificador
     Ele::cla($ope['art'],"ide-$ide",'ini');
-    Ele::cla($ope['art'],DIS_OCU);
+    Ele::cla($ope['art'],"dis-ocu");
     $_ = "
     <article".Ele::atr($ope['art']).">
 
@@ -421,7 +421,7 @@ class Doc_Ope {
 
     // pido listado
     $ele['opc'] = [];
-    Ele::cla($ele['dep'],DIS_OCU);
+    Ele::cla($ele['dep'],"dis-ocu");
     
     return $_ .= Doc_Ope::lis('dep',$_lis,$ele);
   }
@@ -489,7 +489,7 @@ class Doc_Ope {
         $ele_nav['eti'] = 'a';
         Ele::eje($ele_nav,'cli',"{$_eje}(this,'$ide'".( !empty($opc) ? ", '".implode("', '",$opc)."'" : '' ).");",'ini');
   
-        if( $val_sel && $val_sel == $ide ) Ele::cla($ele_nav,FON_SEL);
+        if( $val_sel && $val_sel == $ide ) Ele::cla($ele_nav,"fon-sel");
   
         if( $opc_ico && isset($val['ico']) ){
           $ele_nav['title'] = $val['nom'];
@@ -516,7 +516,7 @@ class Doc_Ope {
         unset($ele['ite']['eti']);
       }
   
-      if( $tip != 'pes' && !$val_sel ) Ele::cla($ele['sec'],DIS_OCU);
+      if( $tip != 'pes' && !$val_sel ) Ele::cla($ele['sec'],"dis-ocu");
   
       $_ .= "
       <$eti_sec".Ele::atr($ele['sec']).">";
@@ -527,7 +527,7 @@ class Doc_Ope {
           
           Ele::cla($ele_ite,"ide-$ide",'ini');
           
-          if( !$val_sel || $val_sel != $ide ) Ele::cla($ele_ite,DIS_OCU);
+          if( !$val_sel || $val_sel != $ide ) Ele::cla($ele_ite,"dis-ocu");
           
           $_ .= "
           <$eti_ite".Ele::atr($ele_ite).">
@@ -692,7 +692,7 @@ class Doc_Ope {
     // oculto
     if( !empty($ele['ope']['val_ocu']) ){
 
-      Ele::cla($ele['ite'],DIS_OCU);
+      Ele::cla($ele['ite'],"dis-ocu");
     }
 
     return "
@@ -842,7 +842,7 @@ class Doc_Ope {
           $var_ite = $var['ite'];
           $var_ite['data-pos'] = $pos;
           Ele::cla($var_ite,"pos ide-$pos",'ini');
-          if( $pos != $pos_ver ) Ele::cla($var_ite,DIS_OCU);
+          if( $pos != $pos_ver ) Ele::cla($var_ite,"dis-ocu");
           $_.="
           <li".Ele::atr($var_ite).">";
             // contenido html
@@ -897,7 +897,7 @@ class Doc_Ope {
         
         $ele_dep = isset($var["lis-$niv"]) ? Ele::val_jun($var['dep'],$var["lis-$niv"]) : $var['dep'];
         
-        if( isset($ele_dep['class']) && preg_match("/".DIS_OCU."/",$ele_dep['class']) ) Ele::cla($var_ico,"ocu");
+        if( isset($ele_dep['class']) && preg_match("/dis-ocu"."/",$ele_dep['class']) ) Ele::cla($var_ico,"ocu");
         
         if( !isset($val['ite_ope']) ) $val['ite_ope'] = [];
         

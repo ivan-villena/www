@@ -33,34 +33,51 @@ class Doc_Val {
 
     let $_="", $={}, $ele={};
     
-    if( $dat[2] !== undefined ){
-      $.ele = !!($dat[3]) ? $dat[3] : {};      
-      $_ = Doc_Dat.val('ima', `${$dat[0]}.${$dat[1]}`, $dat[2], $.ele);
+    // por dato de la base
+    if( !!$dat[2] ){
+
+      $_ = Doc_Dat.val('ima', `${$dat[0]}.${$dat[1]}`, $dat[2], !!($dat[3]) ? $dat[3] : {});
+
     }
+    // por objeto o directorio
     else{
+      
       $ele = !!$dat[1] ? $dat[1] : {};
+      
       $.tip = typeof($dat = $dat[0]);
+      
       // por estilos : bkg
       if( $.tip == 'object' ){
+
         $ele = Ele.val_jun( $dat, $ele );
       }
       // por directorio : localhost/_/esq/ima/...
       else if( $.tip == 'string' ){    
+        
         $.ima = $dat.split('.');
+        
         $dat = $.ima[0];
+        
         $.tip = !!$.ima[1] ? $.ima[1] : 'png';
+        
         $.dir = `_img/${$dat}`;
+        
         Ele.css( $ele, Ele.css_fon($.dir,{'tip':$.tip}) );
       }
+
       // etiqueta
       $.eti = 'span';
       if( !!$ele['eti'] ){
         $.eti = $ele['eti'];
         delete($ele['eti']);
-      }// codifico botones
+      }
+      
+      // codifico botones
       if( $.eti == 'button' && !$ele['type'] ) $ele['type'] = "button";
+      
       // aseguro identificador
       Ele.cla($ele,`val_ima`,'ini');
+      
       // contenido 
       $.htm = '';
       if( !!($ele['htm']) ){
@@ -68,6 +85,7 @@ class Doc_Val {
         $.htm = $ele['htm'];
         delete($ele['htm']);
       }
+      
       $_ = `<${$.eti}${Ele.atr($ele)}>${$.htm}</${$.eti}>`;
     }
     return $_;

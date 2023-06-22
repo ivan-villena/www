@@ -156,7 +156,7 @@
     <section id='<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>'>      
       <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>
 
-      <p>Telektonon<c>,</c> el Juego de Profecía<c>,</c> es una aplicación especial del <a href="enc" target="_blank">Encantamiento del Sueño<c>,</c> el Viaje de la Nave del Tiempo Tierra <n>2.013</n></a><c>.</c></p>
+      <p>Telektonon<c>,</c> el Juego de Profecía<c>,</c> es una aplicación especial del <a href="encantamiento_del_sueño" target="_blank">Encantamiento del Sueño<c>,</c> el Viaje de la Nave del Tiempo Tierra <n>2.013</n></a><c>.</c></p>
 
       <p>El Encantamiento del Sueño es la completa demostración de los códigos de la matriz radial del tiempo cuatridimensional<c>.</c></p>
 
@@ -432,7 +432,7 @@
     <section id='<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>'>      
       <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>
 
-      <?php $nv3=Num::val($nv3+1,2);$nv4=0;?>
+      <?php $nv3=Num::val($nv3,2);$nv4=0;?>
       <section id='<?="_{$Nav[3][$nv1][$nv2][$nv3]->pos}-"?>'>
         <h4><?=Doc_Val::let($Nav[3][$nv1][$nv2][$nv3]->nom)?></h4>
 
@@ -701,7 +701,7 @@
 
           <p>Posiciones Diarias del Telektonon y Líneas de Fuerza Verticales Correspondientes<c>:</c></p>
 
-          <?=Listado('tel','lun_fue')?>
+          <?=Listado::telektonon('lun_fue')?>
 
         </section>
 
@@ -717,7 +717,7 @@
             <img src='<?=$Dir->art_ima?>02-03-05-02.png' alt='Líneas de Fuerza Verticales'>
           </figure>                
 
-          <?=Listado('tel','sol_cir')?>
+          <?=Listado::telektonon('sol_cir')?>
           
           <p>Ver también la mitad superior del reverso de las cartas del <c>"</c><a href="#_02-05-02-03-" target="_blank">Libro de la Forma Cósmica</a><c>"</c><c>,</c></p>
 
@@ -933,7 +933,7 @@
             </dd>
           </dl>
 
-          <?=Listado('tel','fic-lib',[ 'ide'=>7 ])?>
+          <?=Listado::telektonon('fic-lib',[ 'ide'=>7 ])?>
 
         </section>
           
@@ -950,7 +950,7 @@
             <dd>La Onda Encantada del Tiempo cuatridimensional<c>,</c> indicando cada uno de los <n>13</n> tonos galácticos<c>.</c></dd>
           </dl>
 
-          <?=Listado('tel','fic-lib',[ 'ide'=>13 ])?>
+          <?=Listado::telektonon('fic-lib',[ 'ide'=>13 ])?>
 
         </section>
           
@@ -973,7 +973,7 @@
             <dd>Descripción de los <n>5</n> sellos del mismo color de la familia y un vistazo a la información de la semana según el poder del color<c>.</c></dd>
           </ul>
 
-          <?=Listado('tel','fic-lib',[ 'ide'=>4 ])?>
+          <?=Listado::telektonon('fic-lib',[ 'ide'=>4 ])?>
 
         </section>
           
@@ -1000,7 +1000,7 @@
             <dd>Lado Posterior<c>:</c> Descripción narrativa para el día que corresponda<c>.</c></dd>
           </dl>
 
-          <?=Listado('tel','fic-lib',[ 'ide'=>28 ])?>
+          <?=Listado::telektonon('fic-lib',[ 'ide'=>28 ])?>
 
         </section>
 
@@ -1220,7 +1220,7 @@
 
           <p>Cada semana está codificada por uno de los cuatro colores<c>:</c> <b class="col-roj">rojo</b><c>,</c> <b class="col-bla">blanco</b><c>,</c> <b class="col-azu">azul</b> o <b class="col-ama">amarillo</b><c>.</c> Estos colores le dan a la semana su mandato cósmico particular<c>:</c></p> 
 
-          <?=Listado('tel','lun_arm_pod')?>
+          <?=Listado::telektonon('lun_arm_pod')?>
 
           <figure>
             <img src='<?=$Dir->art_ima?>02-05-03-06.png' alt="Ejemplo del esquema de cartas en la posición del ala solar semanal">
@@ -1653,19 +1653,19 @@
 
       <p>El Calendario de <n>13</n> Lunas de <n>28</n> Días es una medida biológicamente precisa de nuestra órbita planetaria alrededor de su estrella<c>,</c> el sol<c>.</c> Es un estándar perfecto de medida que coordina y sincroniza las fases de la luna así como los ciclos del tiempo galáctico<c>.</c> El antiguo Maya sabía respecto a todos estos ciclos<c>.</c> Un ejemplo de la coordinación del Calendario de Trece Lunas con estos cielos galácticos es el Haab<c>.</c></p>
 
-      <p>La más común medida de tiempo usada por los Maya en la época de la Conquista fue el Haab<c>,</c> el cual ordena el año solar en 18 ciclos de <n>20</n> días<c>,</c> más un ciclo de <n>5</n> días conocido como el Vayeb<c>.</c> El 'Día Fuera del Tiempo' o el día 365<c>,</c> aparte del ciclo de trece lunas de <n>28</n> días<c>,</c> es el último día del Vayeb<c>.</c></p>
+      <p>La más común medida de tiempo usada por los Maya en la época de la Conquista fue el Haab<c>,</c> el cual ordena el año solar en <n>18</n> ciclos de <n>20</n> días<c>,</c> más un ciclo de <n>5</n> días conocido como el Vayeb<c>.</c> El <c>'</c>Día Fuera del Tiempo<c>'</c> o el día 365<c>,</c> aparte del ciclo de trece lunas de <n>28</n> días<c>,</c> es el último día del Vayeb<c>.</c></p>
 
-      <p>El ciclo de <n>20</n> días fue llamado por los Maya como un Uinal<c>.</c> Mientras el cielo de <n>13</n> lunas regula el ciclo biológico humano<c>,</c> el ciclo de <n>20</n> días coordina el mensajero anual<c>.</c> Este mensajero o portador anual es uno de los <n>4</n> sellos solares que gobierna cada uno de los <n>4</n> años que aparece en la cara anterior de cada una de las cuatro cartas del 'Libro de Forma Cósmica'<c>.</c></p>
+      <p>El ciclo de <n>20</n> días fue llamado por los Maya como un Uinal<c>.</c> Mientras el cielo de <n>13</n> lunas regula el ciclo biológico humano<c>,</c> el ciclo de <n>20</n> días coordina el mensajero anual<c>.</c> Este mensajero o portador anual es uno de los <n>4</n> sellos solares que gobierna cada uno de los <n>4</n> años que aparece en la cara anterior de cada una de las cuatro cartas del <c>'</c>Libro de Forma Cósmica<c>'</c><c>.</c></p>
 
-      <p>El sello del portador anual para cualquiera de los cuatro años codifica los 18 Vinales y el Vayeb<c>:</c> por ejemplo<c>,</c> en el año de la Luna Lunar Roja<c>,</c> todas las fechas de Vinal se codifican con el sello solar luna<c>:</c> en el año del Mago Eléctrico Blanco<c>,</c> todas las fechas de Vinal se codifican con el sello solar Mago<c>,</c> etc<c>.</c></p>
+      <p>El sello del portador anual para cualquiera de los cuatro años codifica los <n>18</n> Vinales y el Vayeb<c>:</c> por ejemplo<c>,</c> en el año de la Luna Lunar Roja<c>,</c> todas las fechas de Vinal se codifican con el sello solar luna<c>:</c> en el año del Mago Eléctrico Blanco<c>,</c> todas las fechas de Vinal se codifican con el sello solar Mago<c>,</c> etc<c>.</c></p>
 
       <p>Los nombres de los ciclos de frecuencia solar de Uinal vienen de los originales Maya<c>,</c> y el texto de cada uno recuenta la secuencia del ciclo de sabiduría solar<c>.</c></p>
 
-      <p>La <c>"</c>piedra preciosa<c>"</c> es el Tun<c>,</c> la cual es el ciclo de 360 días<c>.</c> El Uayeb de <n>5</n> días es la sabiduría que completa el ciclo solar anual<c>.</c></p>
+      <p>La <c>"</c>piedra preciosa<c>"</c> es el Tun<c>,</c> la cual es el ciclo de <n>360</n> días<c>.</c> El Uayeb de <n>5</n> días es la sabiduría que completa el ciclo solar anual<c>.</c></p>
 
       <p>Estas <n>19</n> fechas correlacionadas del ciclo Vinal corresponden al anillo verde exterior de la Brújula Galáctica del Encantamiento del Sueño<c>.</c></p>
 
-      <?=Listado('tel','psi_vin')?>
+      <?=Listado::telektonon('psi_vin')?>
     
       <p><c>"</c>Todo esto es necesario para obtener la piedra preciosa <c>"</c></p>
 

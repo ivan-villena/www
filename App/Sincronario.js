@@ -11,14 +11,15 @@ class Sincronario {
   }
 
   /* proceso de datos */
-  static dat( $ide, $ele ){
+  static dat( $ide, $ele, $var ){
 
     let $ = Doc_Ope.var($ele);
 
     switch( $ide ){
     case 'val':
+
       // peticion: el articulo debe estar definido
-      $.uri = `${$Doc.Uri.esq}/${$Doc.Uri.cab}/${$Doc.Uri.art}`;
+      $.uri = ( $var && $var.uri ) ? $var.uri : `${$Doc.Uri.esq}/${$Doc.Uri.cab}/${$Doc.Uri.art}`;
       
       // calendario gregoriano
       if( $Doc.Ope.var.dataset.est == 'fec' ){
@@ -60,6 +61,7 @@ class Sincronario {
           alert('La fecha del sincronario es inválida...');
         }
       }
+
       break;
     }
   }

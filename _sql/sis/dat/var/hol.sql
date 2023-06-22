@@ -49,32 +49,27 @@ DELETE FROM `sis-dat_var` WHERE `app` = 'hol' AND `esq` LIKE 'dat_';
       -- x7: Heptágono
       ('hol','dat_tab','est', 2, 'rad', '{
         "nom":"Plasma Radial"
-      }'),    
-        ('hol','dat_tab','est-rad', 1, 'pla', '{
-          "nom":"¿Posiciones?",
-          "tit":"Mostrar Plasmas de las agrupaciones...",
+      }'),
+        ('hol','dat_tab','est-rad', 1, 'bor', '{
+          "nom":"¿Bordes?",
+          "tit":"Mostrar los bordes del Heptágono...",
           "ope":{ "tip":"opc_bin" }
         }'),
-        ('hol','dat_tab','est-rad', 2, 'hep', '{
-          "nom":"¿Fondo del Heptágono?",
-          "tit":"Mostrar Heptágono...",
+        ('hol','dat_tab','est-rad', 2, 'ima', '{
+          "nom":"¿Imagen de Fondo?",
+          "tit":"Mostrar la forma del Heptágono como agrupador de plasmas...",
           "ope":{ "tip":"opc_bin" }
         }'),      
       -- x13: Onda Encantada
       ('hol','dat_tab','est', 3, 'ton', '{
         "nom":"Onda Encantada"
       }'),
-        ('hol','dat_tab','est-ton', 1, 'pos', '{
-          "nom":"¿Posiciones?",
-          "tit":"Mostrar las posiciones de la Onda Encantada...",
-          "ope":{ "tip":"opc_bin" }
-        }'),
-        ('hol','dat_tab','est-ton', 2, 'bor', '{
+        ('hol','dat_tab','est-ton', 1, 'bor', '{
           "nom":"¿Borde?",
           "tit":"Mostrar los bordes de la Onda Encantada...",
           "ope":{ "tip":"opc_bin" }
         }'),
-        ('hol','dat_tab','est-ton', 3, 'col', '{
+        ('hol','dat_tab','est-ton', 2, 'col', '{
           "nom":"¿Color de Fondo?",
           "tit":"Colorear el Fondo de las Ondas Encantadas...",
           "ope":{ "tip":"opc_bin" }
@@ -167,23 +162,18 @@ DELETE FROM `sis-dat_var` WHERE `app` = 'hol' AND `esq` LIKE 'dat_';
       -- x28: Giro Lunar
       ('hol','dat_tab','est', 5, 'lun', '{
         "nom":"Giro Lunar"
-      }'),    
-        ('hol','dat_tab','est-lun', 1, 'ima', '{
-          "nom":"¿Luna?",
-          "tit":"Mostrar Posiciones de la Luna...",
-          "ope":{ "tip":"opc_bin" }
-        }'),
-        ('hol','dat_tab','est-lun', 2, 'cab', '{
-          "nom":"¿Giro Lunar?",
-          "tit":"Mostrar los datos de cabecera para el Giro Luna...",
+      }'),
+        ('hol','dat_tab','est-lun', 1, 'ton', '{
+          "nom":"¿Totem?",
+          "tit":"Mostrar la cabecera con el Tono y el Totem del Giro Lunar...",
           "ope":{ "tip":"opc_bin" }
         }'),      
-        ('hol','dat_tab','est-lun', 3, 'hep', '{
+        ('hol','dat_tab','est-lun', 2, 'hep', '{
           "nom":"¿Héptada?",
-          "tit":"Mostrar las posiciones de las Héptadas Lunares...",
+          "tit":"Mostrar las filas de las Héptadas Anuales...",
           "ope":{ "tip":"opc_bin" }
         }'),
-        ('hol','dat_tab','est-lun', 4, 'rad', '{
+        ('hol','dat_tab','est-lun', 3, 'rad', '{
           "nom":"¿Plasma?",
           "tit":"Mostrar las columnas de los Plasmas Radiales...",
           "ope":{ "tip":"opc_bin" }
@@ -193,23 +183,23 @@ DELETE FROM `sis-dat_var` WHERE `app` = 'hol' AND `esq` LIKE 'dat_';
         "nom":"Castillo del Destino"
       }'),
         ('hol','dat_tab','est-cas', 1, 'pos', '{
-          "nom":"¿Posición?",
-          "tit":"Mostrar las posiciones del Castillo del Destino...",
+          "nom":"¿Centro?",
+          "tit":"Mostrar la posición Central del Castillo...",
           "ope":{ "tip":"opc_bin" }
         }'),      
         ('hol','dat_tab','est-cas', 2, 'bor', '{
           "nom":"¿Borde?",
-          "tit":"Remarcar el Borde del Castillo del Destino...",
+          "tit":"Remarcar el Borde del Castillo...",
           "ope":{ "tip":"opc_bin" }
         }'),
         ('hol','dat_tab','est-cas', 3, 'col', '{
           "nom":"¿Color de fondo?",
-          "tit":"Colorear el Fondo del Castillo del Destino...",
+          "tit":"Colorear el Fondo del Castillo...",
           "ope":{ "tip":"opc_bin" }
         }'),
         ('hol','dat_tab','est-cas', 4, 'orb', '{
           "nom":"¿Orbitales?",
-          "tit":"Activar los Orbitales del Castillo del Destino...",
+          "tit":"Mostrar los Orbitales del Castillo...",
           "ope":{ "tip":"opc_bin" }
         }'),
       -- x260: Kines del Tzolkin
@@ -222,7 +212,7 @@ DELETE FROM `sis-dat_var` WHERE `app` = 'hol' AND `esq` LIKE 'dat_';
           "ope":{ "tip":"opc_bin" }
         }'),
         ('hol','dat_tab','est-kin', 2, 'ton', '{
-          "nom":"¿Trayectorias?",
+          "nom":"¿Trayectorias Armónicas?",
           "tit":"Mostrar las 13 Trayectorias Armónicas - Baktunes...",
           "ope":{ "tip":"opc_bin" }
         }'),

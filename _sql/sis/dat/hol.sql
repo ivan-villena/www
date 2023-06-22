@@ -213,6 +213,7 @@
     DROP VIEW IF EXISTS `_hol-cas`; CREATE VIEW `_hol-cas` AS
       SELECT 
         _cas.*,
+        _cas.ide AS `pos`,
         _ton.dim,
         _ton.mat,
         _ton.sim
@@ -423,30 +424,10 @@
       ORDER BY
         _psi.ide        
     ;
-    -- x250x365 : anillos del encantamiento
-    DROP VIEW IF EXISTS `_hol-psi_ani`; CREATE VIEW `_hol-psi_ani` AS 
-      SELECT 
-        _ani.ide, 
-        _kin.nom, 
-        _cas.ide AS `cas`, 
-        _cas.ton, 
-        _ani.fam_2,
-        _ani.fam_3,
-        _ani.fam_4
-      FROM 
-        `hol-psi_ani` _ani
-      INNER JOIN 
-        `hol-kin` _kin ON _kin.ide = _ani.fam_4 
-      INNER JOIN 
-        `hol-cas` _cas ON _ani.ide+1 = _cas.ide
-      ORDER BY
-        _ani.ide
-    ;    
     -- 4 estaciones
     DROP VIEW IF EXISTS `_hol-psi_est`; CREATE VIEW `_hol-psi_est` AS
       SELECT 
         _est.*,
-        _cas.cas,
         _cas.des_col,
         _cas.des_dir
       FROM 
@@ -572,4 +553,26 @@
       ORDER BY 
         _ded.ide ASC
     ;
+  --
+  -- Ciclos de tiempo siriano
+    -- x250x365 : anillos del encantamiento
+    DROP VIEW IF EXISTS `_hol-sir_ani`; CREATE VIEW `_hol-sir_ani` AS 
+      SELECT 
+        _ani.ide, 
+        _kin.nom, 
+        _cas.ide AS `cas`, 
+        _cas.ton, 
+        _ani.fam_2,
+        _ani.fam_3,
+        _ani.fam_4
+      FROM 
+        `hol-sir_ani` _ani
+      INNER JOIN 
+        `hol-kin` _kin ON _kin.ide = _ani.fam_4 
+      INNER JOIN 
+        `hol-cas` _cas ON _ani.ide+1 = _cas.ide
+      ORDER BY
+        _ani.ide
+    ;    
+  --
 --

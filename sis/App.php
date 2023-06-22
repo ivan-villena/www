@@ -18,11 +18,10 @@ class App {
 
   public array $Usu = [];
   
-  public function __construct(){
+  public function __construct( object $Uri ){
 
     // cargo datos : esquema - cabecera - articulo - valor
-    $Uri = isset($_SESSION['Uri']) ? $_SESSION['Uri'] : new stdClass;
-
+    
     if( isset($Uri->esq) && is_object( $dat = Dat::get('sis-app_esq',[ 
       'ver'=>"`ide` = '{$Uri->esq}'", 
       'opc'=>'uni' 
@@ -134,7 +133,7 @@ class App {
     
     // reinicio opciones
     Ele::cla($ele['lis'],"nav");
-    Ele::cla($ele['dep'],DIS_OCU);
+    Ele::cla($ele['dep'],"dis-ocu");
 
     $ele['opc'] = [ 'tog' ]; // dlt- 'ver', 'cue'
 
@@ -157,7 +156,6 @@ class App {
 
     if( !empty($this->Cab->ide) ){
 
-
       // cargo seccion principal ( puede ser el generador del articulo )
       if( !empty( $rec = Arc::val_rec("./App/{$this->Esq->ide}/{$this->Cab->ide}") ) ){
 
@@ -170,8 +168,8 @@ class App {
         if( !empty( $rec = Arc::val_rec($val = "./App/{$this->Esq->ide}/{$this->Cab->ide}/{$this->Art->ide}") ) ){
 
           $_['art'] = $rec;
-
-        }// si no hay seccion principal...
+        }
+        // si no hay seccion principal...
         elseif( empty($_['cab']) ){   
 
           $_ = "No existe el Artículo '$val'";
@@ -312,7 +310,7 @@ class App {
           'ope'=>[ 'tip'=>"opc_bin", 'val'=>1, 'id'=>"app_adm-php-htm" ]
         ])?>
         
-        <?=Doc_Val::ico('dat_ope',[
+        <?=Doc_Val::ico('eje_val',[
           'eti'=>"button", 'type'=>"submit", 'onclick'=>"$_eje('php',this)"
         ])?>            
 

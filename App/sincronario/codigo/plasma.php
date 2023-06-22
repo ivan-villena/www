@@ -113,11 +113,18 @@
   <section id="<?="_{$Nav[1][$nv1]->pos}-"?>">
     <h2><?=Doc_Val::let($Nav[1][$nv1]->nom);?></h2>
 
-    <p>En <cite>El Átomo del Tiempo</cite> se diferencian los <n>5</n> Centros psico<c>-</c>físicos del Holon Humano de <a href="<?=$Dir->libro?>atomo_del_tiempo#_03-07-" target="_blank">los <n>7</n> chakras</a> de la filosofía tradicional esotérica<c>.</c></p>
+    <!-- Los 7 Chakras -->        
+    <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>    
+    <section id="<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>">      
+      <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>      
 
-    <p>En este caso se asocia cada plasma a un chakra y se arma una secuencia para meditar sobre cada uno en la construcción del <b>Cubo del Radión</b> que sigue el mismo patrón que el <b>Heptágono de la Mente</b><c>.</c></p>
+      <p>En <cite>El Átomo del Tiempo</cite> se diferencian los <n>5</n> Centros psico<c>-</c>físicos del Holon Humano de <a href="<?=$Dir->libro?>atomo_del_tiempo#_03-07-" target="_blank">los <n>7</n> chakras</a> de la filosofía tradicional esotérica<c>.</c></p>
 
-    <?=Doc_Dat::lis('hol.rad',['atr'=>[ 'ide','nom','hum_cha','cha_nom','pla_cub'],'opc'=>["cab_ocu"]]);?>
+      <p>En este caso se asocia cada plasma a un chakra y se arma una secuencia para meditar sobre cada uno en la construcción del <b>Cubo del Radión</b> que sigue el mismo patrón que el <b>Heptágono de la Mente</b><c>.</c></p>
+
+      <?=Doc_Dat::lis('hol.rad',['atr'=>[ 'ide','nom','hum_cha','cha_nom','pla_cub'],'opc'=>["cab_ocu"]]);?>
+
+    </section>
 
   </section>
 

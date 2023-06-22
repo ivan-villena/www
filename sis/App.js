@@ -127,17 +127,17 @@ class App {
       else{
         if( !$ele.value ){
           Obj.pos($.lis.children).forEach( $e => 
-            $e.classList.contains(DIS_OCU) && $e.classList.remove(DIS_OCU) 
+            $e.classList.contains("dis-ocu") && $e.classList.remove("dis-ocu") 
           );
         }
         else{
           Obj.pos($.lis.children).forEach( $e => {
 
             if( Dat.ver( $e.querySelector('.ide').innerHTML, '^^', $ele.value ) ){
-              $e.classList.contains(DIS_OCU) && $e.classList.remove(DIS_OCU);
+              $e.classList.contains("dis-ocu") && $e.classList.remove("dis-ocu");
             }
-            else if( !$e.classList.contains(DIS_OCU) ){
-              $e.classList.add(DIS_OCU);
+            else if( !$e.classList.contains("dis-ocu") ){
+              $e.classList.add("dis-ocu");
             }
           });
         }
@@ -145,21 +145,21 @@ class App {
       break;
     // ejecucion desde servidor
     case 'php':
-      $.res.classList.add(DIS_OCU);
+      $.res.classList.add("dis-ocu");
       $.res.innerHTML = '';
 
       $.val = $Doc.Ope.var.parentElement.querySelector('pre.res-htm');      
-      $.val.classList.add(DIS_OCU);
+      $.val.classList.add("dis-ocu");
       $.val.innerText = '';
 
       Eje.val("adm_log", [], $res => {
 
         if( $Doc.Ope.var.querySelector('[name="htm"]').checked ){
           $.res.innerHTML = $res;
-          $.res.classList.remove(DIS_OCU);
+          $.res.classList.remove("dis-ocu");
         }else{
           $.val.innerText = $res;
-          $.val.classList.remove(DIS_OCU);
+          $.val.classList.remove("dis-ocu");
         }
       });
       break;
@@ -171,6 +171,6 @@ class App {
   // menú de usuario
   usu( $ide, $var ){
 
-    Doc_Ope.nav_bot( $var, `App/${$Doc.Uri.esq}/Usuario.ver_${$ide}` );
+    Doc_Ope.nav_bot( $var, `Api/${$Doc.Uri.esq}/Usuario.ver_${$ide}` );
   }
 }
