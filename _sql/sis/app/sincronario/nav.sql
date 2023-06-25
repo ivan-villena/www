@@ -836,36 +836,36 @@
     ;
     --
   --
-  -- 2- Lecturas
-    DELETE FROM `sis-app_nav` WHERE `esq` = 'sincronario' AND `cab` = 'lectura';
+  -- 2- Tutoriales
+    DELETE FROM `sis-app_nav` WHERE `esq` = 'sincronario' AND `cab` = 'tutorial';
 
     -- Tutorial del Sincronario de 13 lunas
-    DELETE FROM `sis-app_nav` WHERE `esq` = 'sincronario' AND `cab` = 'lectura' AND `art` = 'tutorial'; INSERT INTO `sis-app_nav` VALUES 
-      ('sincronario','lectura','tutorial','01','Ciclos Simples'),
-      ('sincronario','lectura','tutorial','02','Cada día es un Portal Galáctico'),
-      ('sincronario','lectura','tutorial','03','Incorporándolo todo'),
-        ('sincronario','lectura','tutorial','03-01','Los días de la semana'),
-        ('sincronario','lectura','tutorial','03-02','La Fecha en 13 Lunas'),
-        ('sincronario','lectura','tutorial','03-03','La fecha gregoriana'),
-        ('sincronario','lectura','tutorial','03-04','La Firma Galáctica diaria'),
-        ('sincronario','lectura','tutorial','03-05','Las Fases Lunares'),
-      ('sincronario','lectura','tutorial','04','El Oráculo de Quinta Fuerza'),
-        ('sincronario','lectura','tutorial','04-01','¿Qué es la Quinta Fuerza?'),
-        ('sincronario','lectura','tutorial','04-02','El tablero del Oráculo'),
-        ('sincronario','lectura','tutorial','04-03','Los Oráculos'),
-        ('sincronario','lectura','tutorial','04-04','El Oráculo de Quinta Fuerza y ​​el Tiempo Net '),
-      ('sincronario','lectura','tutorial','05','La Firma Galáctica'),
-      ('sincronario','lectura','tutorial','06','El Banco-Psi'),
-      ('sincronario','lectura','tutorial','07','El Nuevo Ciclo de Sirio: Sistema de Fechación Cronológica')      
-    ;    
-  --
-  -- 3- Códigos
-
-    -- Introduccion
-    DELETE FROM `sis-app_nav` WHERE `esq` = 'sincronario' AND `cab` = 'codigo' AND `art` = 'introduccion'; INSERT INTO `sis-app_nav` VALUES
-
-      ('sincronario','codigo','introduccion','01','Sistema de Cuentas')      
+    DELETE FROM `sis-app_nav` WHERE `esq` = 'sincronario' AND `cab` = 'tutorial' AND `art` = 'sincronario'; INSERT INTO `sis-app_nav` VALUES 
+      ('sincronario','tutorial','sincronario','01','Ciclos Simples'),
+      ('sincronario','tutorial','sincronario','02','Cada día es un Portal Galáctico'),
+      ('sincronario','tutorial','sincronario','03','Incorporándolo todo'),
+        ('sincronario','tutorial','sincronario','03-01','Los días de la semana'),
+        ('sincronario','tutorial','sincronario','03-02','La Fecha en 13 Lunas'),
+        ('sincronario','tutorial','sincronario','03-03','La fecha gregoriana'),
+        ('sincronario','tutorial','sincronario','03-04','La Firma Galáctica diaria'),
+        ('sincronario','tutorial','sincronario','03-05','Las Fases Lunares'),
+      ('sincronario','tutorial','sincronario','04','El Oráculo de Quinta Fuerza'),
+        ('sincronario','tutorial','sincronario','04-01','¿Qué es la Quinta Fuerza?'),
+        ('sincronario','tutorial','sincronario','04-02','El tablero del Oráculo'),
+        ('sincronario','tutorial','sincronario','04-03','Los Oráculos'),
+        ('sincronario','tutorial','sincronario','04-04','El Oráculo de Quinta Fuerza y ​​el Tiempo Net '),
+      ('sincronario','tutorial','sincronario','05','La Firma Galáctica'),
+      ('sincronario','tutorial','sincronario','06','El Banco-Psi'),
+      ('sincronario','tutorial','sincronario','07','El Nuevo Ciclo de Sirio: Sistema de Fechación Cronológica')      
     ;
+    -- Códigos y Cuentas
+    DELETE FROM `sis-app_nav` WHERE `esq` = 'sincronario' AND `cab` = 'tutorial' AND `art` = 'introduccion'; INSERT INTO `sis-app_nav` VALUES
+
+      ('sincronario','tutorial','introduccion','01','Sistema de Cuentas')
+    ;
+  --
+  -- 3- Códigos y Cuentas
+    --
     -- x7 : plasma radial
     DELETE FROM `sis-app_nav` WHERE `esq` = 'sincronario' AND `cab` = 'codigo' AND `art` = 'plasma'; INSERT INTO `sis-app_nav` VALUES
 
@@ -909,28 +909,24 @@
         ('sincronario','codigo','sello','04-01','Los 4 Clanes Galácticos'),
         ('sincronario','codigo','sello','04-02','Las 5 Familias Terrestres'),        
       ('sincronario','codigo','sello','05','Colocación Armónica'),
-        ('sincronario','codigo','sello','05-01','Las 4 Razas Raíz Cósmicas'),        
-        ('sincronario','codigo','sello','05-02','Las 5 Células del Tiempo'),
+        ('sincronario','codigo','sello','05-01','Las 5 Células del Tiempo'),
+        ('sincronario','codigo','sello','05-02','Las 4 Razas Raíz Cósmicas'),        
       ('sincronario','codigo','sello','06','El Holon Solar'),
-        ('sincronario','codigo','sello','06-01','Los 2 Flujos Polares'),
-        ('sincronario','codigo','sello','06-02','Las 10 Órbitas planetarias'),
+        ('sincronario','codigo','sello','06-01','Las 10 Órbitas planetarias'),
+        ('sincronario','codigo','sello','06-02','Los 2 Flujos G-S'),
         ('sincronario','codigo','sello','06-03','Las 5 Células Solares'),
         ('sincronario','codigo','sello','06-04','Los 5 Circuitos de telepatía'),
       ('sincronario','codigo','sello','07','El Holon Planetario'),
-        ('sincronario','codigo','sello','07-01','Los 2 Flujos Polares'),
+        ('sincronario','codigo','sello','07-01','Los 2 Flujos G-S'),
         ('sincronario','codigo','sello','07-02','Los 5 Centros de la Fuerza-G'),
+        ('sincronario','codigo','sello','07-03','Los 3 Campos de la Cronósfera'),
       ('sincronario','codigo','sello','08','El Holon Humano'),
-        ('sincronario','codigo','sello','08-01','Los 2 Lados de la Respiración S-G'),
-        ('sincronario','codigo','sello','08-02','Los 5 Centros Galácticos'),
+        ('sincronario','codigo','sello','08-01','Los 2 Flujos S-G'),
+        ('sincronario','codigo','sello','08-02','Las 5 Dedos de las manos y los pies'),
         ('sincronario','codigo','sello','08-03','Las 4 Extremidades Cromáticas'),
-        ('sincronario','codigo','sello','08-04','Las 5 Dedos de las manos y los pies'),
-        ('sincronario','codigo','sello','08-05','Los 10 Meridianos')
+        ('sincronario','codigo','sello','08-04','Los 5 Centros Psicofísicos'),
+        ('sincronario','codigo','sello','08-05','Los 10 Meridianos Orgánicos')
     ;
-    -- x28 : Giro Lunar
-    DELETE FROM `sis-app_nav` WHERE `esq` = 'sincronario' AND `cab` = 'codigo' AND `art` = 'luna'; INSERT INTO `sis-app_nav` VALUES
-
-      ('sincronario','codigo','luna','00','Introducción')
-    ;   
     -- x260 : kines
     DELETE FROM `sis-app_nav` WHERE `esq` = 'sincronario' AND `cab` = 'codigo' AND `art` = 'kin'; INSERT INTO `sis-app_nav` VALUES
 
@@ -976,7 +972,23 @@
         ('sincronario','codigo','psi','03-01','El Psi-crono'),
         ('sincronario','codigo','psi','03-02','Las 73 Cromáticas Entonadas'),
         ('sincronario','codigo','psi','03-03','Los 19 Vinales del Haab'),
-        ('sincronario','codigo','psi','03-04','Los 52 años de Nuevo Sirio')
-    ;  
+      ('sincronario','codigo','psi','04','El Giro Lunar'),
+        ('sincronario','codigo','psi','04-01','Las 4 Héptadas'),
+        ('sincronario','codigo','psi','04-02','Tubo por el que Habla el Espíritu de la Tierra'),
+        ('sincronario','codigo','psi','04-03','El Laberinto del Guerrero por el Cubo de la Ley'),
+        ('sincronario','codigo','psi','04-04','El Átomo del Tiempo')      
+    ;
+  --
+  -- 4- Informes de Posicionamiento Diario
+
+    DELETE FROM `sis-app_nav` WHERE `esq` = 'sincronario' AND `cab` = 'informe' AND `art` = 'ciclos'; INSERT INTO `sis-app_nav` VALUES
+
+      ('sincronario','informe','ciclos','01','')
+    ;
+
+    DELETE FROM `sis-app_nav` WHERE `esq` = 'sincronario' AND `cab` = 'informe' AND `art` = 'firma'; INSERT INTO `sis-app_nav` VALUES
+
+      ('sincronario','informe','firma','01','')
+    ;    
   --
 --

@@ -558,19 +558,23 @@
     -- x250x365 : anillos del encantamiento
     DROP VIEW IF EXISTS `_hol-sir_ani`; CREATE VIEW `_hol-sir_ani` AS 
       SELECT 
-        _ani.ide, 
-        _kin.nom, 
-        _cas.ide AS `cas`, 
-        _cas.ton, 
+        _ani.ide,
+        _ani.cod,
         _ani.fam_2,
         _ani.fam_3,
-        _ani.fam_4
+        _ani.fam_4,
+        _kin.nom AS `kin_nom`,
+        _kin.des AS `kin_des`,
+        _kin.arm_tra_dia AS `kin_sel`,
+        _kin.nav_ond_dia AS `kin_ton`,        
+        _cas.ide AS `cas`,
+        _cas.ton AS `cas_ton`
       FROM 
         `hol-sir_ani` _ani
       INNER JOIN 
         `hol-kin` _kin ON _kin.ide = _ani.fam_4 
       INNER JOIN 
-        `hol-cas` _cas ON _ani.ide+1 = _cas.ide
+        `hol-cas` _cas ON _ani.cod = _cas.ide
       ORDER BY
         _ani.ide
     ;    

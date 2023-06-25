@@ -1464,24 +1464,6 @@ class Doc_Dat {
     $_['ele'] = $ele;
 
     return $_;    
-  }// - valido parametros pedidos
-  static function tab_var_val( array $var, array $ide, string $ope = "sec" ) : array {
-    $_ = [];
-    
-    // valido parametros pedidas por lista de identificadores
-    if( isset($var[$ope]) ){
-
-      foreach( $ide as $i ){
-
-        $_[$i] = isset($var[$ope][$i]) ? ( 
-
-          is_string($var[$ope][$i]) ? explode(', ',$var[$ope][$i]) : $var[$ope][$i] 
-
-        ) : FALSE;
-      }
-    }
-
-    return $_;
   }// operadores por aplicacion
   static function tab_ope( string $tip, string $dat, array $var = [], array $ele = [] ){
     $_ = "";

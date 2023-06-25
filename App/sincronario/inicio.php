@@ -54,6 +54,12 @@
 
   <section class="ope_tex anc-75">
 
+    <?= Doc_Dat::fic('hol.sir_ani',$Sin[1]) ?>
+
+  </section>  
+
+  <section class="ope_tex anc-75">
+
     <?= Doc_Dat::fic('hol.psi_lun',$Psi->lun) ?>
 
   </section>
@@ -69,17 +75,3 @@
     <?= Doc_Dat::fic('hol.kin',$Kin) ?>    
 
   </section>
-
-  <section class="ope_tex anc-75">
-
-    <?= Doc_Dat::fic('hol.kin_nav_cas',$Kin->nav_cas) ?>    
-
-  </section>
-  
-  <section class="ope_tex anc-75">
-
-    <?= Doc_Dat::fic('hol.kin_nav_ond',$Kin->nav_ond) ?>    
-
-  </section>  
-
-</article>

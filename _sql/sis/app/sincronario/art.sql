@@ -44,15 +44,35 @@
 		'', '' )
 	;
 
-	-- Lecturas
-	DELETE FROM `sis-app_art` WHERE `esq` = 'sincronario' AND `cab` = 'lectura'; INSERT INTO `sis-app_art` VALUES
+	-- Tutoriales
+	DELETE FROM `sis-app_art` WHERE `esq` = 'sincronario' AND `cab` = 'tutorial'; INSERT INTO `sis-app_art` VALUES
 	
-		('sincronario', 'lectura', 1, 'glosario', 'Glosarios de Términos',
+		('sincronario', 'tutorial', 1, 'glosario', 'Glosarios de Términos',
 		'', 
 		'tex_ord', '' ),
-		('sincronario', 'lectura', 2, 'sincronario', 'Tutorial del Sincronario de 13 Lunas',
+		('sincronario', 'tutorial', 2, 'sincronario', 'Tutorial del Sincronario de 13 Lunas',
 		'', 
 		'fec_tie', '' )
+	;
+
+	-- Códigos y Cuentas
+	DELETE FROM `sis-app_art` WHERE `esq` = 'sincronario' AND `cab` = 'codigo'; INSERT INTO `sis-app_art` VALUES		
+
+		('sincronario', 'codigo', 1, 'plasma', 'Los 7 Plasmas Radiales',
+		'', 
+		'', '' ),
+		('sincronario', 'codigo', 2, 'tono',  'Los 13 Tonos Galácticos',
+		'', 
+		'', '' ),
+		('sincronario', 'codigo', 3, 'sello',  'Los 20 Sellos Solares',
+		'', 
+		'', '' ),
+		('sincronario', 'codigo', 4, 'kin', 'Los 260 Kines del Giro Galáctico',
+		'',
+		'', '' ),
+		('sincronario', 'codigo', 5, 'psi', 'Los 365 Psi-Cronos del Giro Solar',
+		'', 
+		'', '' )
 	;
 
 	-- Informes
@@ -64,29 +84,6 @@
 		('sincronario', 'informe', 2, 'firma', 'Firma Galáctica',
 		'', 
 		'usu_gru', '' )
-	;
-
-	-- Codigos y Cuentas
-	DELETE FROM `sis-app_art` WHERE `esq` = 'sincronario' AND `cab` = 'codigo'; INSERT INTO `sis-app_art` VALUES
-		
-		('sincronario', 'codigo', 1, 'plasma', 'Los 7 Plasmas Radiales',
-		'', 
-		'', '' ),
-		('sincronario', 'codigo', 2, 'tono',  'Los 13 Tonos Galácticos',
-		'', 
-		'', '' ),
-		('sincronario', 'codigo', 3, 'sello',  'Los 20 Sellos Solares',
-		'', 
-		'', '' ),
-		('sincronario', 'codigo', 4, 'luna',  'Los 28 días del Giro Lunar',
-		'', 
-		'', '' ),
-		('sincronario', 'codigo', 5, 'kin', 'Los 260 Kines del Giro Galáctico',
-		'',
-		'', '' ),
-		('sincronario', 'codigo', 6, 'psi', 'Los 365 Psi-Cronos del Giro Solar',
-		'', 
-		'', '' )
 	;
 
 	-- Orden Sincrónico
@@ -142,11 +139,11 @@
 		('sincronario', 'orden_ciclico', 5, 'heptada', 'El Heptágono Semanal de 7 días',
 		'', 
 		'', '' )
-	;	
+	;
 	
 	-- Holones
 	DELETE FROM `sis-app_art` WHERE `esq` = 'sincronario' AND `cab` = 'holon'; INSERT INTO `sis-app_art` VALUES
-
+		
 		('sincronario', 'holon', 1, 'solar', 'Solar',
 		'', 
 		'', '' ),	
@@ -155,8 +152,8 @@
 		'', '' ),	
 		('sincronario', 'holon', 3, 'humano', 'Humano',
 		'', 
-		'', '' )				
-	;	
+		'', '' )
+	;
 -- 
 
 -- Proyecto

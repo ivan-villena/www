@@ -14,15 +14,15 @@
 				'Aquí podrás encontrar los Libros de José Arguelles con teoría sobre la Ley del Tiempo', 
 				'tex_lib', '', 0, 0, 0 
 			),
-			('sincronario', 2, 'lectura', 'Lecturas',
+			('sincronario', 2, 'tutorial', 'Tutoriales',
 				'', 
 				'app_art', '', 0, 0, 0 
 			),
-			('sincronario', 3, 'codigo', 'Listados de Códigos y Cuentas',
+			('sincronario', 3, 'codigo', 'Códigos y Cuentas',
 				'', 
 				'num', '', 0, 0, 0 
-			),
-			('sincronario', 4, 'informe', 'Informes de Posicionamiento Diario',
+			),			
+			('sincronario', 4, 'informe', 'Posicionamiento Diario',
 				'',
 				'fec_dia', '', 0, 0, 0
 			),			
@@ -34,7 +34,7 @@
 				'',
 				'fig_pun', '', 0, 0, 0
 			),
-			('sincronario', 7, 'holon', 'Tableros del Holon',
+			('sincronario', 6, 'holon', 'Los Holones',
 				'',
 				'arc_url', '', 0, 0, 0
 			)

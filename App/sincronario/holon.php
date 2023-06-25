@@ -1,3 +1,3 @@
 <?php
 
-  include("./Api/Sincronario/Tablero.php");
+  include("./Api/Sincronario/Operador.php");

@@ -911,6 +911,18 @@ class Listado {
         <p>$_kin->nom<c>:</c><br><n>26</n> de Julio <n>1.999</n> <c>-</c> <n>25</n> Julio <n>2.000</n><c>.</c></p>
       </div>";
       break;
+    // psi : por tonos galácticos
+    case 'psi_lun':
+      $var['lis'] = ['class'=>"ite"];
+
+      foreach( Dat::_("hol.$ide") as $_lun ){
+        $_ []= Doc_Val::ima($dat_esq,"ton",$_lun->ton,['class'=>"mar_der-2"])."
+        <p>
+          <b class='ide'>".Tex::let_pal(Num::int_dat($_lun->ide,'pas'))." Luna</b>
+          <br>Luna ".Tex::art_del($_lun->ton_car)."<c>:</c> ".Doc_Val::let($_lun->ond_man)."
+        </p>";
+      }    
+      break;        
     // psi : fechas desde - hasta
     case 'psi_lun_fec':
       $var['lis'] = ['class'=>"ite"];
@@ -929,6 +941,12 @@ class Listado {
       </p>";        
       break;
           
+    // psi : por funciones y totmes
+    case 'psi_lun_ton':
+      $est_ope['atr'] = [ 'ide','nom','ton_car','tot','ton_des' ];
+      $est_ope['opc'] []= 'cab_ocu';
+      $_ = Doc_Dat::lis("hol.psi_lun", $est_ope, $var );
+      break;
     // psi : totems lunares
     case 'psi_lun_tot':
       $var['lis'] = ['class'=>"ite"];
@@ -961,18 +979,6 @@ class Listado {
         <br><n>25</n> de Julio
       </p>";        
       break;
-    // psi : por tonos galácticos
-    case 'psi_lun':
-      $var['lis'] = ['class'=>"ite"];
-
-      foreach( Dat::_("hol.$ide") as $_lun ){
-        $_ []= Doc_Val::ima($dat_esq,"ton",$_lun->ton,['class'=>"mar_der-2"])."
-        <p>
-          <b class='ide'>".Tex::let_pal(Num::int_dat($_lun->ide,'pas'))." Luna</b>
-          <br>Luna ".Tex::art_del($_lun->ton_car)."<c>:</c> ".Doc_Val::let($_lun->ond_man)."
-        </p>";
-      }    
-      break;        
     // luna : heptadas - cuarto armónica
     case 'lun_arm':
       if( isset($_atr[1]) ){
@@ -1121,31 +1127,6 @@ class Listado {
     $est_ope = [ 'opc'=>[ 'htm', 'cab_ocu' ] ];
     $opc = isset($var['opc']) ? $var['opc'] : [];    
     switch( $ide ){
-    // libros-cartas
-    case 'fic-lib':
-      $_dat = [
-        4  => ['ide'=> 4, 'nom'=>"Libro de la Forma Cósmica" ],
-        7  => ['ide'=> 7, 'nom'=>"Libro de las Siete Generaciones Perdidas" ],
-        13 => ['ide'=>13, 'nom'=>"Libro del Tiempo Galáctico" ],
-        28 => ['ide'=>28, 'nom'=>"Libro Telepático para la Redención de los Planetas Perdidos" ]
-      ];
-      $ide = isset($var['ide']) ? $var['ide'] : 4;
-      $opc_ini = empty($opc) || in_array('ini',$opc);
-      $opc_fin = empty($opc) || in_array('fin',$opc);
-      if( !$opc_ini && !$opc_fin ) $opc_ini = $opc_fin = TRUE;
-      foreach( ( isset($var['lis']) && is_array($var['lis']) ? $var['lis'] : range(1,$ide) ) as $pos ){ 
-        $htm = "
-        <div class='-ite jus-cen'>";
-          if( $opc_ini ) $htm .= "
-          <img src='".SYS_NAV."img/hol/bib/tel/{$ide}/{$pos}-1.jpg' alt='Carta {$pos}-1' class='mar_der-1' style='width:24rem;'>";
-          if( $opc_fin ) $htm .= "
-          <img src='".SYS_NAV."img/hol/bib/tel/{$ide}/{$pos}-2.jpg' alt='Carta {$pos}-2' class='mar_izq-1' style='width:24rem;'>";
-          $htm .= "
-        </div>";
-        $_ []= $htm;
-      }
-      $_ = Doc_Ope::lis('bar', $_, $var);          
-      break;
     // sello : holon solar => circuitos de telepatía
     case 'sol_cir':
       $var['lis'] = ['class'=>"ite"];
@@ -1182,7 +1163,7 @@ class Listado {
       }        
       break;              
     // luna : lines de fuerza
-    case 'lun_fue': 
+    case 'lun_tel_fue': 
       foreach( Dat::_("hol.$ide") as $_lin ){
         $_ []= Doc_Val::let("{$_lin->nom}: {$_lin->des}");
       }
@@ -1221,7 +1202,7 @@ class Listado {
       $_ = Doc_Ope::lis('dep',$_,$var);
       break;                    
     // luna : días del cubo
-    case 'lun_cub':
+    case 'tel_cub':
       foreach( Dat::_("hol.$ide") as $_cub ){
         $_ []= 
         "<div class='-ite'>
@@ -1312,7 +1293,7 @@ class Listado {
       
         $cro_arm = Dat::_('hol.psi_cro_arm',$arm);
 
-        $_ []= "Cromática <c class='col-4-$arm'>$cro_arm->nom</c><br>".Doc_Val::let("$cro_arm->sel: $cro_arm->des");
+        $_ []= "Cromática <c class='col-4-$arm'>$cro_arm->nom</c><br>".Doc_Val::let("$cro_arm->sel_nom: $cro_arm->des");
       }        
       break;
     }
@@ -1329,7 +1310,7 @@ class Listado {
     $est_ope = [ 'opc'=>[ 'htm', 'cab_ocu' ] ];
     foreach( ['lis'] as $ele ){ if( !isset($var[$ele]) ) $var[$ele] = []; }
     $_ide = explode('-',$ide);    
-    switch( $_ide[0] ){
+    switch( $ide = $_ide[0] ){
     // cartas del plasma
     case 'fic':
       switch( $_ide[1] ){
@@ -1513,7 +1494,7 @@ class Listado {
         $_ = "
         <p class='tit tex_ali-izq'>".Doc_Val::let("Semana $ato->ide, Heptágono de la Mente ".Tex::art_del($ato->hep))."</p>
         <div class='-ite'>
-          ".Doc_Val::ima($dat_esq,$ide, $ato, ['class'=>'mar_der-2'])."
+          ".Doc_Val::ima($dat_esq,"lun_pla_ato", $ato, ['class'=>'mar_der-2'])."
           <ul class='mar_arr-0'>
             <li>".Doc_Val::let("Un día = $ato->val.")."</li>
             <li>".Doc_Val::let("Valor lunar = $ato->val_lun.")."</li>

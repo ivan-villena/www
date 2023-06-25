@@ -22,6 +22,11 @@ if( !empty($Uri->val) ){
   }
 }
 
+// Cargo Programa
+$Doc->Eje['app'] = "{ Val : ".Obj::val_cod( $Sincronario->Val )." }";
+
+$Doc->Eje['ini'] = "";
+
 // cargo modulos
 if( in_array($Uri->cab,['libro']) ){
 

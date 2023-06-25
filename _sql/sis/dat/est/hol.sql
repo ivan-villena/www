@@ -6,9 +6,18 @@
   -- Sistema Solar
   DELETE FROM `sis-dat_est` WHERE `esq` = 'hol' AND `ide` LIKE 'sol%'; INSERT INTO `sis-dat_est` VALUES
 
+    ('hol','sol', '{
+      "lis": { 
+      },
+      "tab": { 
+        "pos": { "ima":"hol.sel.ide", "col":"", "num":"" },
+        "est-sol": { "res":1, "pla":1 }
+      }
+    }' ),
     ('hol','sol_res', '{
       "atr": { 
-        "ide": { "min":1, "max":2, "dat":"hol-sol_res" }
+        "ide": { "min":1, "max":2, "dat":"hol-sol_res" },
+        "sel": { "dat":"hol-sel" }
       },
       "val": { 
         "nom": "Respiración del Holon Solar #()($)ide() de 2: ()($)nom()",
@@ -17,7 +26,7 @@
         "col": 2
       },
       "opc": { 
-        "ima": [ "ide" ]
+        "ima": [ "ide", "sel" ]
       }
     }' ),  
     ('hol','sol_pla', '{
@@ -41,12 +50,14 @@
         "ima": [ "ide","sel","ele","fam","orb","cel","cir" ]
       },
       "inf": { 
+
         "det": [ "nom_cod" ],
-        
-        "fic": [ "orb", "cel", "cir" ],
+                
         "tab": [ "hol.sol", { 
           "est-sol": { "pla":"()($)ide()" } 
         } ],
+
+        "fic": [ "orb", "cel", "cir" ],
 
         "htm-1": { "eti":"p", "class":"tit", "htm":"Los <a target=\'_blank\' href=\'http://localhost/sincronario/libro/encantamiento_del_sueño#_03-03-\'>Sellos Solares</a> en <cite>el Encantamiento del Sueño</cite>" },
         "fic-1": [ "sel" ],
@@ -163,7 +174,14 @@
   ;
   -- Planetario
   DELETE FROM `sis-dat_est` WHERE `esq` = 'hol' AND `ide` LIKE 'pla%'; INSERT INTO `sis-dat_est` VALUES
-
+    
+    ('hol','pla', '{
+      "lis": { 
+      },      
+      "tab": { 
+        "pos": { "ima":"hol.sel.ide", "col":"", "num":"" }
+      }
+    }' ),
     ('hol','pla_res', '{
       "atr": { 
         "ide": { "min":1, "max":2, "dat":"hol-pla_res" },
@@ -274,6 +292,13 @@
   -- Humano
   DELETE FROM `sis-dat_est` WHERE `esq` = 'hol' AND `ide` LIKE 'hum%'; INSERT INTO `sis-dat_est` VALUES
 
+    ('hol','hum', '{
+      "lis": { 
+      },      
+      "tab": {
+        "pos": { "ima":"hol.sel.ide", "col":"", "num":"" }
+      }
+    }' ),
     ('hol','hum_res', '{
       "atr": { 
         "ide": { "min":1, "max":2, "dat":"hol-hum_res" },
@@ -513,6 +538,37 @@
       }
     }' )  
   ;
+  -- Telepatia
+  DELETE FROM `sis-dat_est` WHERE `esq` = 'hol' AND `ide` LIKE 'tel%'; INSERT INTO `sis-dat_est` VALUES
+  
+    ('hol','tel_cub', '{  
+      "atr": { 
+        "ide": { "min":1, "max":16, "dat":"hol-tel_cub" }
+      }
+    }' )
+  ;
+  -- Ciclo Solar-Galáctico
+  DELETE FROM `sis-dat_est` WHERE `esq` = 'hol' AND `ide` LIKE 'sir%'; INSERT INTO `sis-dat_est` VALUES
+
+    ('hol','sir_ani', '{
+      "atr": { 
+        "ide": { "min":1, "max":52, "dat":"hol-sir_ani" },
+        "fam_2": { "min":1, "max":260, "dat":"hol-kin" },
+        "fam_3": { "min":1, "max":260, "dat":"hol-kin" },
+        "fam_4": { "min":1, "max":260, "dat":"hol-kin" }
+      },
+      "val": {
+        "nom": "Anillo Solar #()($)ide() de 52",
+        "des": "Año ()($)cod() del Ciclo Siriano, codificado por el kin ()($)kin_nom().",
+        "ima": "background: top/50% no-repeat url(http://localhost/_img/hol/fic/ton/()($)kin_ton().png), bottom/60% no-repeat url(http://localhost/_img/hol/fic/sel/()($)kin_sel().png);",
+        "col": 4        
+      },
+      "opc": {
+        "ima": [ "fam_2", "fam_3", "fam_4" ]
+      }
+    }' )
+  ;
+
   -- x2 : Flujos: respiraciones y poderes
   DELETE FROM `sis-dat_est` WHERE `esq` = 'hol' AND `ide` LIKE 'flu%'; INSERT INTO `sis-dat_est` VALUES
 
@@ -697,7 +753,7 @@
       },
       "val": { 
         "nom": "Línea de Fuerza #()($)ide() de 12: ()($)nom().",
-        "des": "()($)des().",
+        "des": "",
         "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/rad/pla_fue/()($)ide().png);"
       },
       "opc": { 
@@ -1331,14 +1387,14 @@
       "atr": { 
         "ide": { "min":1, "max":28, "dat":"hol-lun" },
         "sel": { "min":1, "max":20, "dat":"hol-sel" },        
-        "fas": { "min":1, "max":3, "dat":"hol-lun_fas" },
-        "cub": { "min":0, "max":16, "dat":"hol-lun_cub" },
+        "fas": { "min":1, "max":3, "dat":"hol-lun_tel_fas" },
+        "cub": { "min":0, "max":16, "dat":"hol-tel_cub" },
         "arm": { "min":1, "max":4, "dat":"hol-lun_arm" },        
         "rad": { "min":1, "max":7, "dat":"hol-rad" }        
       },
       "val": { 
-        "nom": "Día Lunar #()($)ide() de 28",
-        "des": "()($)ato_des()",
+        "nom": "Día Lunar #()($)ide() de 28.",
+        "des": "()($)ato_des().",
         "ima": "background: center/60% no-repeat url(http://localhost/_img/hol/fic/rad/()($)rad().png), center/contain no-repeat url(http://localhost/_img/hol/fic/rad.png), center/contain no-repeat url(http://localhost/_img/hol/fic/arm/()($)arm().png);",
         "col": 4,
         "num": 28
@@ -1403,15 +1459,11 @@
         "ide": { "min":1, "max":8, "dat":"hol-lun_tel_cam" }
       }
     }' ),
-    ('hol','lun_tel_cub', '{  
-      "atr": { 
-        "ide": { "min":1, "max":16, "dat":"hol-lun_tel_cub" }
-      }
-    }' ),
     -- Atomo del Tiempo    
     ('hol','lun_pla_ato', '{
       "atr": { 
-        "ide": { "min":1, "max":4, "dat":"hol-lun_pla_ato" }
+        "ide": { "min":1, "max":4, "dat":"hol-lun_pla_ato" },
+        "val_kin": { "dat":"hol-kin" }
       },
       "val": { 
         "nom": "Atomo del Tiempo #()($)ide() de 4. ()($)nom()",
@@ -1419,6 +1471,9 @@
         "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/lun/pla_ato/()($)ide().png);",
         "col": 4,
         "num": 4
+      },
+      "opc": {
+        "ima": [ "ide", "val_kin" ]
       }
     }' ),
     ('hol','lun_pla_tet', '{
@@ -1686,7 +1741,7 @@
         "nav_cas_dia": "hol-cas"
       },
       "val": { 
-        "nom": "Kin #()($)ide() de 260: ()($)nom().",
+        "nom": "Kin ()($)des()",
         "des": "()($)des()",
         "ima": "background: top/50% no-repeat url(http://localhost/_img/hol/fic/ton/()($)nav_ond_dia().png), bottom/60% no-repeat url(http://localhost/_img/hol/fic/sel/()($)arm_tra_dia().png);",
         "num": 260
@@ -2299,7 +2354,7 @@
       },
       "val": { 
         "nom": "Luna #()($)ide() de 13: ()($)nom().",
-        "des": "()($)fec_ran(): ()($)ton_des() del Giro Solar Anual; Totem ()($)tot(): ()($)tot_pro().",
+        "des": "()($)fec_ran(): ()($)ton_des() del Giro Solar Anual; Totem ()($)tot(): ()($)tot_pro()",
         "ima": "background: url(http://localhost/_img/hol/fic/psi/lun/()($)ide().png) center/contain no-repeat;",
         "num": 13,
         "col": 7
@@ -2501,22 +2556,4 @@
     }' )
     --
   ;
-  -- Ciclo Solar-Galáctico
-  DELETE FROM `sis-dat_est` WHERE `esq` = 'hol' AND `ide` LIKE 'sir%'; INSERT INTO `sis-dat_est` VALUES
-
-    ('hol','sir_ani', '{
-      "atr": { 
-        "ide": { "min":0, "max":51, "dat":"hol-sir_ani" }
-      },
-      "val": {
-        "nom": "Anillo Solar ",
-        "des": "",
-        "col": 4
-      },
-      "opc": { 
-      },
-      "inf": {
-      }
-    }' ),  
-  ;  
 --

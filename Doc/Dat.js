@@ -805,7 +805,7 @@ class Doc_Dat {
     }
 
   }// inicializo : opciones, posicion, filtros
-  static tab_ini(){
+  static tab_ini( $ope ){
     
     let $ = {};
 
@@ -825,7 +825,7 @@ class Doc_Dat {
     $Doc.Dat.tab.cla = ".pos.ope";
 
     // identificador de clase principal: .dat_tab.$esq.$est.$atr
-    $Doc.Dat.tab.ide = $Doc.Dat.tab.val.classList[1].split('_')[0];    
+    $Doc.Dat.tab.ide = $ope?.ide ?? $Doc.Dat.tab.val.classList[2].split('_')[0];
     
     // evaluo si la posicion es por dependencia : por oraculos
     $Doc.Dat.tab.dep = $Doc.Dat.tab.val.querySelector(`.pos.dep`) ? true : false;
@@ -1465,6 +1465,7 @@ class Doc_Dat {
         
         // tomo solo los que tienen valor
         if( ( $.val = $Doc.Dat.lis.ver.querySelector(`${$Doc.Dat.val.ver[$ope_ide]}`) ) && !!$.val.value ){
+          
           $.eje.push($ope_ide);
         }
         

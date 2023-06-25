@@ -1,11 +1,13 @@
 
-  
-if( ['orden_sincronico','orden_ciclico','holon'].includes($Doc.Uri.cab) ){
+
+// inicializo tableros
+if( ['orden_sincronico','orden_ciclico'].includes($Doc.Uri.cab) ){
 
   dat_tab.ini();
 
 }
-else if( ['lectura','codigo'].includes($Doc.Uri.cab) ){
+// expando indice del articulo
+else if( ['codigo','tutorial','informe'].includes($Doc.Uri.cab) ){
 
   let $bot;
   
