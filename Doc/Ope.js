@@ -459,6 +459,7 @@ class Doc_Ope {
         $.lis = $Doc.Ope.var.previousElementSibling;
 
         $.val = $Doc.Ope.var.querySelector('[name="val"]');
+
         $.pos = Num.val($.val.value);
 
         switch( $ele.getAttribute('name') ){
@@ -471,6 +472,7 @@ class Doc_Ope {
         case 'fin': $.pos = Num.val($.val.max);
           break;
         }
+        
         // valido y muestro item
         $.val.value = $.pos;
 

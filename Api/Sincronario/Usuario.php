@@ -9,13 +9,7 @@ class Usuario extends Usu {
 
   public int $edad;
 
-  public object $Fec;
-
-  public object $Kin;
-
-  public object $Psi;
-
-  public array $Sin;
+  public array $firma;
 
   public function __construct(){
 
@@ -25,35 +19,17 @@ class Usuario extends Usu {
     $this->edad = Fec::año_cue( $this->fecha );    
 
     // cargo valores del sincronario por fecha de nacimiento
-    $_hol = Sincronario::val($this->fecha);
+    $this->firma = Sincronario::val( $this->fecha );
 
-    $this->Fec = Fec::dat( $this->fecha );
-
-    $this->Kin = Dat::_('hol.kin', $_hol['kin'] );
-
-    $this->Psi = Dat::_('hol.psi', $_hol['psi'] );
-
-    $this->Sin = explode('.',$_hol['sin']);
+    // cargo objetos
+    $this->firma['Kin'] = Dat::_('hol.kin',$this->firma['kin']);
+    $this->firma['Psi'] = Dat::_('hol.psi',$this->firma['psi']);
 
   }
 
   /* Sesion */
   public function ver_sesion() : string {
     
-    $_ = "";
-
-    // personales
-    $Fec = $this->Fec;
-    $Kin = $this->Kin;
-    $Psi = $this->Psi;
-
-    // transitos
-    $Diario = Sincronario::val( Fec::dia() );
-
-    // cargo transitos para el dia
-    $Transito = $this->buscar_transito( $_SESSION['Fec']->val );    
-
-    // nombre + fecha : kin + psi
     $_ = "
     <section class='ficha'>
 
@@ -61,43 +37,9 @@ class Usuario extends Usu {
 
         <p class='tex-tit tex-3 mar_aba-1'>".Doc_Val::let("{$this->nombre} {$this->apellido}")."</p>
 
-        <p>".Doc_Val::let($Fec->val." ( {$this->edad} años )")."</p>
+        <p>".Doc_Val::let("{$this->fecha} ( {$this->edad} años )")."</p>
 
       </div>
-      
-      <table class='transitos'>
-
-        <thead>
-          <tr>
-            <th></th>
-            <th>Personal</th>
-            <th>Diario</th>
-            <th>Combinado</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <tr>
-            <th>Kin Planetario</th>
-            <td>".Doc_Val::ima('hol',"kin",$Kin)."</td>
-            <td>".Doc_Val::ima('hol',"kin",$Diario['kin'])."</td>
-            <td>".Doc_Val::ima('hol',"kin",Num::ran($kin_sum = $Diario['kin']+$Kin->ide,260))."</td>
-          </tr>
-          <tr>
-            <th>Psi-Cronos</th>
-            <td>".Doc_Val::ima('hol',"psi",$Psi)."</td>
-            <td>".Doc_Val::ima('hol',"psi",$Diario['psi'])."</td>
-            <td>".Doc_Val::ima('hol',"kin",Num::ran($psi_sum = $Diario['psi']+$Psi->ide,260))."</td>
-          </tr>
-          <tr>
-            <th>Combinado</th>
-            <td>".Doc_Val::ima('hol',"kin", Num::ran($Kin->ide + $Psi->kin, 260))."</td>
-            <td>".Doc_Val::ima('hol',"kin", Num::ran($Diario['kin'] + $Diario['psi'], 260))."</td>
-            <td>".Doc_Val::ima('hol',"kin", Num::ran($kin_sum + $psi_sum, 260))."</td>
-          </tr>
-        </tbody>        
-
-      </table>
 
     </section>";
 
@@ -106,6 +48,13 @@ class Usuario extends Usu {
 
   /* Transitos */
   public function ver_transito( string $fec = "", array $ele = [] ) : string {
+
+    // personales
+    $Kin = $this->firma['Kin'];
+    $Psi = $this->firma['Psi'];    
+
+    // diario
+    $Diario = Sincronario::val( Fec::dia() );    
 
     // cargo transitos para el dia
     $Transito = $this->buscar_transito( !empty($fec) ? $fec : $_SESSION['Fec']->val );
@@ -118,26 +67,38 @@ class Usuario extends Usu {
         <thead>
           <tr>
             <th></th>
-            <th>Anual</th>
+            <th>Personal</th>
+            <th>Sincronario</th>
+            <th>Diario</th>
             <th>Lunar</th>
+            <th>Anual</th>            
           </tr>
         </thead>
 
         <tbody>
           <tr>
             <th>Kin Planetario</th>
-            <td>".Doc_Val::ima('hol',"kin",$Transito->Anual->Kin)."</td>
+            <td>".Doc_Val::ima('hol',"kin",$Kin)."</td>
+            <td>".Doc_Val::ima('hol',"kin",$Diario['kin'])."</td>
+            <td>".Doc_Val::ima('hol',"kin",Num::ran($kin_sum = $Diario['kin']+$Kin->ide,260))."</td>            
             <td>".Doc_Val::ima('hol',"kin",$Transito->Lunar->Ond_kin->ide)."</td>
+            <td>".Doc_Val::ima('hol',"kin",$Transito->Anual->Kin)."</td>
           </tr>
           <tr>
             <th>Psi-Cronos</th>
-            <td>".Doc_Val::ima('hol',"psi",$Transito->Anual->Psi)."</td>
+            <td>".Doc_Val::ima('hol',"psi",$Psi)."</td>
+            <td>".Doc_Val::ima('hol',"psi",$Diario['psi'])."</td>
+            <td>".Doc_Val::ima('hol',"kin",Num::ran($psi_sum = $Diario['psi']+$Psi->ide,260))."</td>            
             <td>".Doc_Val::ima('hol',"psi",$Transito->Lunar->psi)."</td>
+            <td>".Doc_Val::ima('hol',"psi",$Transito->Anual->Psi)."</td>
           </tr>
           <tr>
             <th>Combinado</th>
+            <td>".Doc_Val::ima('hol',"kin", Num::ran($Kin->ide + $Psi->kin, 260))."</td>
+            <td>".Doc_Val::ima('hol',"kin", Num::ran($Diario['kin'] + $Diario['psi'], 260))."</td>
+            <td>".Doc_Val::ima('hol',"kin", Num::ran($kin_sum + $psi_sum, 260))."</td>            
+            <td>".Doc_Val::ima('hol',"kin", Num::ran($Transito->Lunar->Ond_kin->ide + $Transito->Lunar->psi, 260))."</td>            
             <td>".Doc_Val::ima('hol',"kin", Num::ran($Transito->Anual->Kin->ide + $Transito->Anual->Psi->ide, 260))."</td>
-            <td>".Doc_Val::ima('hol',"kin", Num::ran($Transito->Lunar->Ond_kin->ide + $Transito->Lunar->psi, 260))."</td>
           </tr>
         </tbody>        
 
@@ -211,49 +172,49 @@ class Usuario extends Usu {
     return $_;
   }
 
-  public function crear_transito( string $fec = '' ) : object {
+  public function crear_transito() : object {
     $_ = new stdClass;
 
     
 
     return $_;
   }
-  public function crear_transito_anual( string $cas, int $año, string $fec, array $Hol ) : object {
+  public function crear_transito_anual( string $cas, int $año, string $fec, array $sincronario ) : object {
 
     $Transito_anual = new stdClass;
 
     $Transito_anual->ide = $cas;
     $Transito_anual->año = $año;
-    $Transito_anual->fec = $Hol['fec'];
-    $Transito_anual->sin = $Hol['sin'];    
-    $Transito_anual->Kin = Dat::_('hol.kin',$Hol['kin']);
-    $Transito_anual->Psi = Dat::_('hol.psi',$Hol['psi']);
+    $Transito_anual->fec = $sincronario['fec'];
+    $Transito_anual->val = $sincronario['val'];    
+    $Transito_anual->Kin = Dat::_('hol.kin',$sincronario['kin']);
+    $Transito_anual->Psi = Dat::_('hol.psi',$sincronario['psi']);
     $Transito_anual->Cas = Dat::_('hol.cas',$cas);    
     $Transito_anual->Ond = Dat::_('hol.kin_nav_ond',$Transito_anual->Kin->nav_ond);    
 
     return $Transito_anual;
   }
-  public function crear_transito_lunar( object $Ton, array $Hol, string $ond ) : object {
+  public function crear_transito_lunar( object $Ton, array $sincronario, string $ond ) : object {
 
     $Transito_lunar = new stdClass;
 
     $Transito_lunar->ide = $Ton->ide; 
-    $Transito_lunar->fec = $Hol['fec'];
-    $Transito_lunar->sin = $Hol['sin'];
-    $Transito_lunar->kin = $Hol['kin'];
-    $Transito_lunar->psi = $Hol['psi'];
+    $Transito_lunar->fec = $sincronario['fec'];
+    $Transito_lunar->val = $sincronario['val'];
+    $Transito_lunar->kin = $sincronario['kin'];
+    $Transito_lunar->psi = $sincronario['psi'];
     $Transito_lunar->Ton = $Ton;
     $Transito_lunar->Ond_kin = Dat::_('hol.kin',$ond);
 
     return $Transito_lunar;
   }
-  public function crear_transito_diario( string $fec = '' ) : object {
+  public function crear_transito_diario() : object {
     $_ = new stdClass;
 
     
 
     return $_;
-  }      
+  }
 
   public function buscar_transito( string $fec = '' ) : object {
 
@@ -274,14 +235,17 @@ class Usuario extends Usu {
     // fecha buscada
     $Fec = Fec::dat($fec);
 
+    // fecha del usuaro
+    $Fec_usu = $this->firma['Fec'];
+
     // cantidad de años entre la fecha de nacimiento y la fecha buscada ( los años del usuario )
-    $año_cue = Fec::año_cue( $this->Fec, $Fec );    
+    $año_cue = Fec::año_cue( $Fec_usu, $Fec );    
 
     // ultimo cumpleaños para esa fecha buscada
-    $fec_val = "{$this->Fec->dia}/{$this->Fec->mes}/".( $this->Fec->año + $año_cue );
+    $fec_val = "{$Fec_usu->dia}/{$Fec_usu->mes}/".( $Fec_usu->año + $año_cue );
 
     // cargo el holon para ese dia de cumpleaños $año_cue
-    $Hol = Sincronario::val($fec_val);
+    $sincronario = Sincronario::val($fec_val);
 
     // posicion del castillo para ese periodo
     $cas_pos = $año_cue + 1;
@@ -290,10 +254,10 @@ class Usuario extends Usu {
     $Transito_anual->val = $fec;
     $Transito_anual->año = $año_cue;
     $Transito_anual->fec = $fec_val;
-    $Transito_anual->sin = $Hol['sin'];
+    $Transito_anual->val = $sincronario['val'];
     $Transito_anual->Cas = Dat::_('hol.cas',$cas_pos);
-    $Transito_anual->Kin = Dat::_('hol.kin',$Hol['kin']);
-    $Transito_anual->Psi = Dat::_('hol.psi',$Hol['psi']);
+    $Transito_anual->Kin = Dat::_('hol.kin',$sincronario['kin']);
+    $Transito_anual->Psi = Dat::_('hol.psi',$sincronario['psi']);
     $Transito_anual->Ond = Dat::_('hol.kin_nav_ond',$Transito_anual->Kin->nav_ond);
     
     // cargo los 13 ciclos lunares
@@ -314,7 +278,7 @@ class Usuario extends Usu {
         $Transito_lunar = new stdClass;
         $Transito_lunar->ide = intval($Ton->ide); 
         $Transito_lunar->fec = $Hol_lun['fec'];
-        $Transito_lunar->sin = $Hol_lun['sin'];
+        $Transito_lunar->val = $Hol_lun['sin'];
         $Transito_lunar->kin = $Hol_lun['kin'];
         $Transito_lunar->psi = $Hol_lun['psi'];
         $Transito_lunar->Ton = $Ton;
@@ -358,7 +322,7 @@ class Usuario extends Usu {
 
     $Transito_lunar->ide = $lun_cue;
     $Transito_lunar->fec = $Hol_lun['fec'];
-    $Transito_lunar->sin = $Hol_lun['sin'];
+    $Transito_lunar->val = $Hol_lun['val'];
     $Transito_lunar->kin = $Hol_lun['kin'];
     $Transito_lunar->psi = $Hol_lun['psi'];
     $Transito_lunar->Ton = Dat::_('hol.ton',$lun_cue);
@@ -404,7 +368,7 @@ class Usuario extends Usu {
           $_fec = Fec::dat($_lun->fecha);
           $_lun_ton = Dat::_('hol.ton',$_lun->ide);
           $_kin = Dat::_('hol.kin',$_lun->kin);
-          $_nav = "<a href='http://localhost/sincronario/tablero/tzolkin/sin=$_lun->sin' target='_blank' title='Ver en Tableros...'>".Doc_Val::let($_lun->sin)."</a>";
+          $_nav = "<a href='http://localhost/sincronario/tablero/tzolkin/sin=$_lun->val' target='_blank' title='Ver en Tableros...'>".Doc_Val::let($_lun->val)."</a>";
           $_lis_lun []= 
           "<div class='-ite'>
             ".Doc_Val::ima('hol',"kin",$_kin,['class'=>"tam-6 mar_der-1"])."
@@ -427,7 +391,7 @@ class Usuario extends Usu {
             "<div class='-ite'>
               ".Doc_Val::ima('hol',"kin",$_kin,['class'=>"tam-6 mar_der-1"])."
               <p title = '$Cas->des'>
-                ".Doc_Val::let("$_cic->eda año".( $_cic->eda != 1 ? 's' : '' ).", $_cic->sin ( $_fec->val ):")."
+                ".Doc_Val::let("$_cic->eda año".( $_cic->eda != 1 ? 's' : '' ).", $_cic->val ( $_fec->val ):")."
                 <br>".Doc_Val::let("Cuadrante $_cas_arm->col d{$_cas_arm->dir}: $_cas_arm->pod")."
                 <br>".Doc_Val::let("$_cas_ton->ond_nom: $_cas_ton->ond_man")."                
               </p>

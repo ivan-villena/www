@@ -30,55 +30,9 @@
 /* 
   Articulos 
 */
-.ope_sec article {
-  width: 100%;
+.ope_sec article {  
   max-width: 700px;
   height: max-content;
-  margin: .5rem;
-  padding: .5rem 1rem;
-  border-radius: .5rem;
-}
-
-/* cabecera y pie */
-.ope_sec article :is(header,footer) {
-  width: 100%;
-  padding: 1rem;
-}
-
-/* 
-  contenido 
-*/
-.ope_sec article > section {
-
-  margin-bottom: 1rem;
-}
-
-/* titulos */
-.ope_sec article section > :is(h2,h3,h4) {
-  margin-top: 2rem;
-}
-.ope_sec article section > :is(h5,h6) {
-  margin-top: 1.5rem;
-}
-
-/* parrafos */
-.ope_sec article > p:not(:last-child),
-.ope_sec article section > p:not(:last-child) {
-  margin-bottom: .5rem;
-  line-height: 1.5;
-}
-
-/* imagenes */
-.ope_sec article > figure,
-.ope_sec article section > figure {
-  margin: 1rem auto;
-}
-
-/* listados */
-.ope_sec article > ul.lis,
-.ope_sec article section > ul.lis {
-  margin: .5rem auto;
-  max-width: fit-content;
 }
 
 /* ////////////////////////////////////////////////////////////////////////////////////////////////// */
@@ -125,6 +79,7 @@
 @keyframes doc_pan-ocu {
   from { transform: translate(0rem); } to { transform: translate(-5rem); }
 }
+
 .ope_pan {
   max-width: 100%;
   overflow: hidden;
@@ -158,7 +113,6 @@
   overflow: auto;
 }
 
-
 /* 
   derecha: sidebar 
 */
@@ -172,12 +126,14 @@
   pie de página 
 */
 .ope_pie {
+  width: 100%;
   padding: .5rem;
-  text-align: center;
+  background-color: var(--fon_win);
 }
 
 /* ////////////////////////////////////////////////////////////////////////////////////////////////// */
 /* ////////////////////////////////////////////////////////////////////////////////////////////////// */
+
 /* 
   Ajustes de Pantalla
 */
@@ -267,6 +223,7 @@
   margin: .5rem;
   padding: 0 .5rem;
 }
+
 
 /* ////////////////////////////////////////////////////////////////////////////////////////////////// */
 /* ////////////////////////////////////////////////////////////////////////////////////////////////// */
@@ -367,6 +324,84 @@
 }
 .ope_nav.bot > button:hover {
   background-color: var(--fon_foc);
+}
+
+/* ////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* 
+  Botonera Horizontal por iconos/imagenes
+*/
+.ope_bot {
+  display: flex;
+  flex-flow: row nowrap;
+  padding: .25rem;
+}
+.ope_bot:not(.dir-ver) > *:not(:last-child) {
+  margin-right: .25rem;
+}
+
+/* items en Vertical */
+.ope_bot.dir-ver > *:not(:last-child) {
+  margin-bottom: .5rem;
+}
+
+/* efectos de botones */
+.ope_bot > button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ope_bot > button:hover {
+  background-color: var(--fon_foc);
+}
+
+/* ////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* 
+variable : div > label + input
+*/
+.ope_var {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  margin: .25rem;
+}
+
+/* ////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* 
+  Informe : recuadro de contenido vertical con separaciones
+*/
+.ope_inf {
+  display: flex;
+  flex-direction: column;
+  padding: .25rem;
+  border: 1px solid var(--bor_dat);
+  border-radius: .5rem;
+  margin: .5rem;
+}
+
+/* ////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* 
+  Cartel
+*/
+.ope_tex {
+  display: flex;
+  flex-direction: column;
+  width: max-content;
+  background-color: var(--fon_sec);
+  padding: .5rem 1rem;
+  border: 2px dashed var(--let_ico);
+  border-radius: .5rem;
+  box-shadow: 0 0 5px;
+  margin: auto;
+}
+.ope_tex > header {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
 }
 
 /* ////////////////////////////////////////////////////////////////////////////////////////////////// */
@@ -477,74 +512,54 @@ ul.ope_lis.bar > li {
   justify-content: center;
   align-items: center;
 }
+/* Botonera */
+ul.ope_lis.bar + .ope_bot > button {
+  width: 2rem;
+}
 
 /* ////////////////////////////////////////////////////////////////////////////////////////////////// */
 /* ////////////////////////////////////////////////////////////////////////////////////////////////// */
+
 /* 
-  Botonera Horizontal por iconos/imagenes
+  Articulo 
 */
-.ope_bot {
-  display: flex;
-  flex-flow: row nowrap;
-  padding: .25rem;
-}
-.ope_bot:not(.dir-ver) > *:not(:last-child) {
-  margin-right: .25rem;
-}
-
-/* items en Vertical */
-.ope_bot.dir-ver > *:not(:last-child) {
-  margin-bottom: .5rem;
-}
-
-/* ////////////////////////////////////////////////////////////////////////////////////////////////// */
-/* ////////////////////////////////////////////////////////////////////////////////////////////////// */
-/* 
-variable : div > label + input
-*/
-.ope_var {
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-  margin: .25rem;
-}
-
-
-/* ////////////////////////////////////////////////////////////////////////////////////////////////// */
-/* ////////////////////////////////////////////////////////////////////////////////////////////////// */
-/* 
-  Informe : recuadro de contenido vertical con separaciones
-*/
-.ope_inf {
-  display: flex;
-  flex-direction: column;
-  padding: .25rem;
-  border: 1px solid var(--bor_dat);
-  border-radius: .5rem;
+article {
+  width: 100%;
   margin: .5rem;
-}
-
-/* ////////////////////////////////////////////////////////////////////////////////////////////////// */
-/* ////////////////////////////////////////////////////////////////////////////////////////////////// */
-/* 
-  Cartel
-*/
-.ope_tex {
-  width: max-content;
-  background-color: var(--fon_sec);
   padding: .5rem 1rem;
-  border: 2px dashed var(--let_ico);
   border-radius: .5rem;
-  box-shadow: 0 0 5px;
-  margin: auto;
-}
-.ope_tex > header {
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: center;
 }
 
-/* Libros */
-.tex_bib {
-  max-width: 100%;
+/* cabecera y pie */
+article :is(header,footer) {
+  width: 100%;
+  padding: 1rem;
 }
+
+/* contenido */
+article section {
+  margin-bottom: 1rem !important;
+}
+
+/* titulos */
+article :is(h2,h3,h4) {
+  margin-top: 2rem;
+}
+article :is(h5,h6) {
+  margin-top: 1.5rem;
+}
+
+/* parrafos */
+article > p,
+article section > p {
+  margin-bottom: .5rem;
+  line-height: 1.5;
+}
+
+/* listados */
+article > ul.lis,
+article section > ul.lis {
+  margin: .5rem auto;
+  max-width: fit-content;
+}
+

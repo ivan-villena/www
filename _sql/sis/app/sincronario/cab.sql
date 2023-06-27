@@ -22,7 +22,7 @@
 				'', 
 				'num', '', 0, 0, 0 
 			),			
-			('sincronario', 4, 'informe', 'Posicionamiento Diario',
+			('sincronario', 4, 'informe', 'Informes de Posicionamiento',
 				'',
 				'fec_dia', '', 0, 0, 0
 			),			
@@ -34,7 +34,7 @@
 				'',
 				'fig_pun', '', 0, 0, 0
 			),
-			('sincronario', 6, 'holon', 'Los Holones',
+			('sincronario', 7, 'holon', 'Tableros de los Holones',
 				'',
 				'arc_url', '', 0, 0, 0
 			)

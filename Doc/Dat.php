@@ -1761,7 +1761,7 @@ class Doc_Dat {
     // cargo datos ///////////////////////////////
     $Ele = $ele['pos'];
     
-    // por acumulados
+    // por joins
     if( isset($var['dat']) ){
 
       foreach( $var['dat'] as $pos => $_ref ){
@@ -1807,6 +1807,7 @@ class Doc_Dat {
 
       $cla_agr []= "ope";
 
+      // marco seleccion de posicion por estructura
       if( isset($var['val']['pos']) ){
 
         $dat_ide = $var['val']['pos'];
@@ -1819,6 +1820,7 @@ class Doc_Dat {
         // agrego seleccion
         if( $_dat->ide == $dat_ide ) $cla_agr []= '_pos- _pos-bor';
       }
+
     }
 
     // clases adicionales

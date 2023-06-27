@@ -34,7 +34,8 @@ class Sincronario {
         }
       }
       // sincronario
-      else if( $Doc.Ope.var.dataset.est == 'sin' ){
+      else if( $Doc.Ope.var.dataset.est == 'val' ){
+        
         $.atr = {};
         $.hol = [];
         $.val = true;

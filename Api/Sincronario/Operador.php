@@ -1,6 +1,8 @@
 
 <?php
 
+  $Cic = $Sincronario->Val;
+
   $Operadores = Doc_Dat::$Tab['ope'];
   
   $Tableros = [
@@ -52,11 +54,11 @@
 
     <section class='mar_aba-1'>
 
-      ".Sincronario::dat('val',$Sincronario->Val)."
+      ".Sincronario::dat_var('val',$Cic)."
 
       <div class='mar-2 tex_ali-cen'>
 
-        ".Doc_Dat::inf('hol.kin',$Sincronario->Val['kin'],[ 'opc'=>["nom"], 'det'=>"des" ])."
+        ".Doc_Dat::inf('hol.kin',$Cic['kin'],[ 'opc'=>["nom"], 'det'=>"des" ])."
 
       </div>
 
@@ -67,7 +69,7 @@
         'ico'=>"fig", 
         'nom'=>"Sincrónico",
         'htm'=>Doc_Dat::pos($esq,"kin",[ 
-          'kin'=>$_kin = Dat::_('hol.kin',$Sincronario->Val['kin']),
+          'kin'=>$_kin = Dat::_('hol.kin',$Cic['kin']),
           'sel'=>Dat::_('hol.sel',$_kin->arm_tra_dia),
           'ton'=>Dat::_('hol.ton',$_kin->nav_ond_dia)
         ])
@@ -76,7 +78,7 @@
         'ico'=>"fig_pun", 
         'nom'=>"Cíclico",
         'htm'=>Doc_Dat::pos($esq,"psi",[ 
-          'psi'=>$_psi = Dat::_('hol.psi',$Sincronario->Val['psi']),
+          'psi'=>$_psi = Dat::_('hol.psi',$Cic['psi']),
           'est'=>Dat::_('hol.psi_est',$_psi->est),
           'lun'=>Dat::_('hol.psi_lun',$_psi->lun),
           'hep'=>Dat::_('hol.psi_hep',$_psi->hep)
@@ -110,18 +112,21 @@
 
     $est = explode('_',$tab_ide)[0];
   }
-  
-  // cargo datos del tablero por estructura principal
-  $tab_var['dat'] = Sincronario::dat_tab_val( $est, $Sincronario->Val );
+
+  // cargo valores principales del ciclo diario
+  $tab_val = [ 'fec'=>$Cic['fec'], 'kin'=>$Cic['kin'], 'psi'=>$Cic['psi'] ];
 
   // cargo joins por estructuras de datos
-  $tab_var['est'] = [ 'var'=>[ "fec" ], 'hol'=>[ "kin", "psi" ] ];
+  $tab_var['est'] = [ 'var'=>[ "fec" ], 'hol'=>[ "kin", "psi" ] ];  
+  
+  // cargo datos del tablero por estructura principal
+  $tab_var['dat'] = Sincronario::dat_tab_val( $est, $tab_val );
 
   // activo acumulados
   $tab_var['val']['acu'] = [ 'pos'=>1, 'mar'=>1, 'ver'=>1, 'atr'=>1 ];
 
   // valor seleccionado
-  $tab_var['val']['pos'] = $Sincronario->Val;
+  $tab_var['val']['pos'] = $tab_val;
 
   // 1- imprimo operadores del tablero  
   foreach( ( $ope = Obj::nom( $Operadores,'ver',[ 'ver', 'opc', 'val' ]) ) as $ope_ide => $ope_tab ){ 

@@ -19,8 +19,7 @@ function adm_log() : string {
     $_ = hol_sel_par_gui();
   */
 
-  include("./_sql/hol/psi.php");
-  $_ = cro_fec();
+  $_ = "";
   
   return $_;
 }

@@ -23,9 +23,9 @@ class Doc_Var {
     if( $dat.type != 'text' ){
 
       // valido minimos y máximos
-      if( ( $.min = Num.val($dat.min) ) && $dat.value && $.val < $.min ) $dat.value = $.val = $.min;    
+      if( ( $.min = Num.val($dat.min) ) && $.val < $.min ) $dat.value = $.val = $.min;    
 
-      if( ( $.max = Num.val($dat.max) ) && $dat.value && $.val > $.max ) $dat.value = $.val = $.max;
+      if( ( $.max = Num.val($dat.max) ) && $.val > $.max ) $dat.value = $.val = $.max;
 
       // relleno con ceros
       if( $dat.getAttribute('num_pad') && ( $.num_cue = $dat.maxlength ) ) $.num_pad = Num.val($.val,$.num_cue);

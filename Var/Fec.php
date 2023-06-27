@@ -3,66 +3,90 @@
 class Fec {
 
   // objeto fecha: { val, año, mes, dia, sem, hor, min, seg, ubi }
-  static function dat( string $val = "", ...$opc ) : object {
+  static function dat( string | object $val = "", ...$opc ) : object {
 
-    $_ = new stdClass();
-    $_->val = "";// fecha
-    $_->dia = 0;
-    $_->mes = 0;
-    $_->año = 0;
-    $_->tie = "";// horario
-    $_->hor = 0;
-    $_->min = 0;
-    $_->seg = 0;
-    $_->ubi = "";// ubicacion
-    // extension: sincronario
-    $_->kin = "";
-    $_->psi = "";
-    $_->ani = "";
-    $_->sir = "";
+    if( is_object($val) ){
 
-    if( empty($val) ) $val = date('Y/m/d');
+      $_ = $val;
 
-    // separo valores
-    $val = explode( preg_match("/T/i",$val) ? 'T' : ' ', $val );
-    
-    // proceso fecha
-    if( isset($val[0]) ){
+    }
+    else{
 
-      $fec = explode( preg_match("/-/",$val[0]) ? '-' : '/', $val[0] );      
-
-      if( isset($fec[2]) ){
-        // mes
-        $_->mes = intval($fec[1]);
-        // año
-        if( strlen($fec[0]) > 2 ){
-          $_->año = intval($fec[0]);    
-          $_->dia = intval($fec[2]);    
-        }else{
-          $_->año = intval($fec[2]);    
-          $_->dia = intval($fec[0]);
-        }  
-        // valido fecha resultante
-        if( $_->val = Fec::val($_,...$opc) ){
-          // busco valor semanal
-          $_->sem = Fec::sem($_);
-          // proceso horario
-          if( isset($val[1]) ){
-            $hor = explode(':', $_->tie = $val[1]);
-            // segundos
-            if( isset($hor[2]) ) $_->seg = intval($hor[2]);
-            // minutos
-            if( isset($hor[1]) ) $_->min = intval($hor[1]);
-            // horas
-            $_->hor = intval($hor[0]);
-          }        
+      $_ = new stdClass();
+      $_->val = "";// fecha
+      $_->dia = 0;
+      $_->mes = 0;
+      $_->año = 0;
+      $_->tie = "";// horario
+      $_->hor = 0;
+      $_->min = 0;
+      $_->seg = 0;
+      $_->ubi = "";// ubicacion
+  
+      if( empty($val) ) $val = date('Y/m/d');
+  
+      // separo valores
+      $val = explode( preg_match("/T/i",$val) ? 'T' : ' ', $val );
+      
+      // proceso fecha
+      if( isset($val[0]) ){
+  
+        $fec = explode( preg_match("/-/",$val[0]) ? '-' : '/', $val[0] );      
+  
+        if( isset($fec[2]) ){
+          // mes
+          $_->mes = intval($fec[1]);
+          // año
+          if( strlen($fec[0]) > 2 ){
+            $_->año = intval($fec[0]);    
+            $_->dia = intval($fec[2]);    
+          }else{
+            $_->año = intval($fec[2]);    
+            $_->dia = intval($fec[0]);
+          }  
+          // valido fecha resultante
+          if( $_->val = Fec::val($_,...$opc) ){
+            // busco valor semanal
+            $_->sem = Fec::sem($_);
+            // proceso horario
+            if( isset($val[1]) ){
+              $hor = explode(':', $_->tie = $val[1]);
+              // segundos
+              if( isset($hor[2]) ) $_->seg = intval($hor[2]);
+              // minutos
+              if( isset($hor[1]) ) $_->min = intval($hor[1]);
+              // horas
+              $_->hor = intval($hor[0]);
+            }        
+          }
+          // cargo sincronario
+          // ...
         }
-        // cargo sincronario
-        // ...
-      }
-    }    
+      } 
+    }
+    
     return $_;
-  }  
+  }// cargo datos de un ciclo
+  static function dat_cic( string | object $pos, int $tot, array $ope = [] ) : object {
+
+    $_ = new stdClass;
+
+    if( !is_object($pos) ) $pos = Fec::dat($pos);
+    
+    // cantidad total del ciclo
+    $_->tot = $tot;
+    
+    // posicion actual
+    $_->pos = $pos->val;
+    
+    // fecha inicial
+    $_->ini = 0;
+    
+    // fecha final
+    $_->fin = 0;
+
+    return $_;
+  }
   
   // valido de fecha : "año/mes/dia" | "dia/mes/año"
   static function val( object $dat, ...$opc ) : bool | string {

@@ -14,17 +14,13 @@ class Doc_Val {
     $ico = Dat::_("var.tex_ico");
     
     if( isset($ico[$ide]) ){
-      $eti = 'span';      
-      if( isset($ele['eti']) ){
-        $eti = $ele['eti'];
-        unset($ele['eti']);
-      }
-      if( $eti == 'button' && empty($ele['type']) ) $ele['type'] = "button"; 
+
+      // identificador del boton
+      Ele::cla($ele,"val_ico ide-$ide",'ini');
+
+      $ele['htm'] = $ico[$ide]->val;
       
-      $_ = "
-      <{$eti}".Ele::atr(Ele::cla($ele,"val_ico ide-$ide",'ini')).">
-        {$ico[$ide]->val}
-      </{$eti}>";
+      $_ = Ele::val($ele);
     }
     return $_;
   }  
@@ -54,27 +50,15 @@ class Doc_Val {
         $dir = SYS_NAV."_img/{$dat}";
         Ele::css( $ele, Ele::css_fon($dir,['tip'=>$tip]) );
       }
-
-      // etiqueta
-      $eti = 'span';
-      if( isset($ele['eti']) ){
-        $eti = $ele['eti'];
-        unset($ele['eti']);
-      }
-      // codifico boton
-      if( $eti == 'button' && empty($ele['type']) ) $ele['type'] = "button";
-      
-      // ide de imagen
-      Ele::cla($ele,"val_ima",'ini');
       
       // contenido
-      $htm = "";
-      if( !empty($ele['htm']) ){
-        Ele::cla($ele,'dis-fle dir-ver jus-cen ali-cen');
-        $htm = $ele['htm'];
-        unset($ele['htm']);
-      }
-      $_ = "<{$eti}".Ele::atr($ele).">{$htm}</{$eti}>";
+      if( !empty($ele['htm']) ) Ele::cla($ele,'dis-fle dir-ver jus-cen ali-cen');
+
+      // ide de imagen
+      Ele::cla($ele,"val_ima",'ini');
+
+      // Etiqueta
+      $_ = Ele::val($ele);
     }
     return $_;
   }

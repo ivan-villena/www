@@ -1,18 +1,8 @@
 
 <?php
-  $Dia = Sincronario::val( date('Y/m/d') );
-  $Kin = Dat::_('hol.kin',$Dia['kin']);
-  $Psi = Dat::_('hol.psi',$Dia['psi']);
-  $Fec = Fec::dat($Dia['fec']);
-  $Sin = explode('.',$Dia['sin']);
-  /* 
-    <?= ?>
-  */
+  // proceso valores del ciclo
+  $Cic = Sincronario::val( date('Y/m/d') );    
 ?>
-
-<header>
-  <h1>Inicio</h1>
-</header>
 
 <article>
 
@@ -48,30 +38,30 @@
 
   <section class="ope_tex">
 
-    <p class="tex-4 tex-cur"><?=Doc_Val::let("N.S. {$Dia['sin']} - Kin {$Dia['kin']}")?></p>
+    <p class="tex-4 tex-cur"><?=Doc_Val::let("N.S. {$Cic['val']} - Kin {$Cic['kin']}")?></p>
     
   </section>
 
   <section class="ope_tex anc-75">
 
-    <?= Doc_Dat::fic('hol.sir_ani',$Sin[1]) ?>
+    <?= Doc_Dat::fic('hol.sir_ani',$Cic['ani']) ?>
 
   </section>  
 
   <section class="ope_tex anc-75">
 
-    <?= Doc_Dat::fic('hol.psi_lun',$Psi->lun) ?>
+    <?= Doc_Dat::fic('hol.psi_lun',$Cic['lun']) ?>
 
   </section>
 
   <section class="ope_tex anc-75">
 
-    <?= Doc_Dat::fic('hol.lun',$Psi->lun_dia) ?>
+    <?= Doc_Dat::fic('hol.lun',$Cic['dia']) ?>
 
   </section>  
 
   <section class="ope_tex anc-75">
 
-    <?= Doc_Dat::fic('hol.kin',$Kin) ?>    
+    <?= Doc_Dat::fic('hol.kin',$Cic['kin']) ?>    
 
   </section>

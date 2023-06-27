@@ -17,6 +17,15 @@
 
     <p>En el <a href="<?=$Dir->libro?>tierra_en_ascenso#_02-04-04-" target="_blank">mapa <n>32</n></a> se retoma la relación entre los <n>64</n> hexagramas<c>,</c> esta vez con el arreglo del Cuadrado Mágico de Franklin<c>,</c> y el Calendario Sagrado de los Mayas<c>,</c> en los cuales están presentes tanto los <n>20</n> aminoácidos como los <n>20</n> signos sagrados<c>.</c></p>
 
+    <!--Rangos de Frecuencia para Símbolos ideográficos-->
+    <?php $nv1=Num::val($nv1+1,2);$nv2=0;$nv3=0;$nv4=0;?>  
+    <section id="<?="_{$Nav[1][$nv1]->pos}-"?>">
+      <h2><?=Doc_Val::let($Nav[1][$nv1]->nom);?></h2>
+
+      
+
+    </section>
+
   </section>
   
   <!--Rangos de Frecuencia para Símbolos ideográficos-->

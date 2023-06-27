@@ -7,34 +7,19 @@ if( !class_exists("Usuario") ){
 
 class Sincronario {
     
-  // Valores
-  public array $Val = [
-    'kin' => 0,
-    'psi' => 0,
-    'sin' => ""
-  ];  
-
-  public function __construct( mixed $fec = "" ){
-
-    if( !empty($fec) ){
-
-      $this->Val = $this->val( $fec );
-    }
-  }
-
-  /* Proceso de Valores */
-    
-  // busco valores : fecha - sir - kin - psi
+  // Ciclos: fec - sir - ani - lun - dia - kin - psi
+  public array $Val = [];  
+  // busco valores por ciclo
   static function val( mixed $val ) : array | object | string {
     $_=[];
     
     // del sincronario
     if( is_string($val) && preg_match("/\./",$val) ){
         // busco año          
-        if( $fec = Self::val_cod($val) ){
+        if( $fec = Sincronario::val_cod($val) ){
 
           // convierto fecha
-          $_ = Self::val($fec);
+          $_ = Sincronario::val($fec);
 
           if( is_string($_) ){ 
 
@@ -46,44 +31,51 @@ class Sincronario {
         }
     }
     // del calendario
-    elseif( $fec = Fec::dat($val) ){
-      
-      // giro solar => año
-      $_['fec'] = $fec->val;
-
-      $Fec = Self::val_dec( $fec );
-
-      $Psi = Dat::get( Dat::_('hol.psi'), [ 
-        'ver'=>[ ['fec_dia','==',$fec->dia], ['fec_mes','==',$fec->mes] ], 
-        'opc'=>[ 'uni' ]
-      ]);
+    elseif( $fec = Fec::dat($val) ){      
 
       // giro lunar => mes + día
-      if( !empty($Psi) ){
+      if( !empty($Psi = Dat::get( Dat::_('hol.psi'), [ 
+
+          'ver'=>[ ['fec_dia','==',$fec->dia], ['fec_mes','==',$fec->mes] ], 
+          'opc'=>[ 'uni' ]
+        ])) 
+      ){
+
+        // cargo fecha con anillo solar y codigo ns
+        $_ = Sincronario::val_dec( $fec );                
+
+        // codifico clave
+        $_['ani'] = Num::val($_['ani'],2);
+
+        $_['lun'] = $Psi->lun;
+
+        $_['dia'] = $Psi->lun_dia;
 
         $_['psi'] = $Psi->ide;
-
-        $_['sin'] = "{$Fec->sir}.".Num::val($Fec->ani,2).".{$Psi->lun}.{$Psi->lun_dia}";
         
         // giro galáctico => kin
-        $Kin = Dat::_('hol.kin', Num::ran( $Fec->fam_2 + $Psi->fec_cod + $Fec->dia, 260 ) );
-
-        if( is_object($Kin) ){
+        if( is_object($Kin = Dat::_('hol.kin', Num::ran( $_['ani_fam_2'] + $Psi->fec_cod + $_['Fec']->dia, 260 ) )) ){
 
           $_['kin'] = $Kin->ide;
+
+          $_['val'] = implode('.',[ $_['sir'], $_['ani'], $_['lun'], $_['dia'] ]);
+
+          unset($_['ani_fam_2']);
+          unset($_['ani_fam_3']);
+          unset($_['ani_fam_4']);
         }
         else{
-          $_ = '{-_-} Error de Cálculo con la fecha galáctica...'; 
+          $_ = '{-_-} Error de Cálculo con el Kin...'; 
         }
       }
       else{ 
-        $_ = '{-_-} Error de Cálculo con la fecha solar...'; 
+        $_ = '{-_-} Error de Cálculo con el Psi-cronos...'; 
       }
-    }
-    // error
+    }// error
     else{
       $_ = "{-_-} la Fecha {$val} no es Válida"; 
     }
+
     return $_;
   }// convierto NS => d/m/a
   static function val_cod( array | string $val ) : bool | string {
@@ -109,6 +101,7 @@ class Sincronario {
         $ini_sir = 1;
         $ini_ani = 0;
         $año = 1987;
+
         // ns.
         if( $sir != $ini_sir ){
 
@@ -129,76 +122,160 @@ class Sincronario {
     }
     return $_;
   }// convierto d/m/a => NS
-  static function val_dec( mixed $val ) : object | string {
+  static function val_dec( mixed $val ) : array | string {  
 
-    $_ = !is_object($val) ? Fec::dat($val) : $val ;
+    $_ = [];
 
-    if( !!$_ ){
-      // SE TOMA COMO PUNTO DE REFERENCIA EL AÑO 26/07/1987
-      $año      = 1987; 
-      $_->sir   = 1;
-      $_->ani   = 0; 
-      $_->fam_2 = 87;
-      $_->fam_3 = 38;
-      $_->fam_4 = 34;
+    if( !empty( $Fec = !is_object($val) ? Fec::dat($val) : $val ) ){
+      
+      $_['Fec'] = $Fec;
+      $_['fec'] = $Fec->val;
 
-      if ($año < $_->año ){
+      // Datos iniciales de la base: SE TOMA COMO PUNTO DE REFERENCIA EL AÑO 26/07/1987
+      $_['sir']   = 1;
+      $_['ani']   = 0; 
+      $_['ani_fam_2'] = 87;
+      $_['ani_fam_3'] = 38;
+      $_['ani_fam_4'] = 34;
+      $año      = 1987;
 
-        while( $año < $_->año ){ 
+      // anterior a 1987
+      if ( $año < $Fec->año ){
+
+        while( $año < $Fec->año ){ 
+          
+          // sumo un año
           $año++;
-          $_->ani++;
-          foreach( ['fam_2','fam_3','fam_4'] as $atr ){ 
-            $_->$atr = Num::ran($_->$atr+105, 260); 
-          }
-          if ($_->ani > 51){ 
-            $_->ani = 0; 
-            $_->sir++; 
+          $_['ani']++;
+          $_['ani_fam_2'] = Num::ran($_['ani_fam_2']+105, 260);
+          $_['ani_fam_3'] = Num::ran($_['ani_fam_3']+105, 260);
+          $_['ani_fam_4'] = Num::ran($_['ani_fam_4']+105, 260);          
+          
+          // ajusto ciclo
+          if ( $_['ani'] > 51 ){ 
+            $_['ani'] = 0;
+            $_['sir']++;
           }
         }
       }
-      elseif( $año > $_->año ){
+      // posterior a 1987
+      elseif( $año > $Fec->año ){
         
-        $_->sir = 0;
-        while( $_->año < $año ){ 
+        $_['sir'] = 0;
+
+        while( $Fec->año < $año ){ 
+          // resto un año
           $año--;           
-          $_->ani--;
-          foreach( ['fam_2','fam_3','fam_4'] as $atr ){             
-            $_->$atr = Num::ran($_->$atr-105, 260); 
+          $_['ani']--;
+          $_['ani_fam_2'] = Num::ran($_['ani_fam_2']-105, 260);
+          $_['ani_fam_3'] = Num::ran($_['ani_fam_3']-105, 260);
+          $_['ani_fam_4'] = Num::ran($_['ani_fam_4']-105, 260);   
+
+          // ajusto ciclo
+          if ( $_['ani'] < 0 ){ 
+            $_['ani'] = 51; 
+            $_['sir']--; 
           }
-          if ($_->ani < 0){ 
-            $_->ani = 51; 
-            $_->sir--; 
-          }
-        } 
-        // sin considerar 0, directo a -1 : https://www.lawoftime.org/esp/IIG/esp-rinri/esp-rinriIII3.1.html
-        if( $_->sir == 0 ) $_->sir = -1;
-      }      
-      if( $_->dia <= 25 && $_->mes <= 7 ){
-        $_->ani--;        
-        foreach( ['fam_3','fam_4'] as $atr ){ 
-          $_->$atr = Num::ran($_->$atr-105, 260); 
         }
+        
+        // sin considerar 0, directo a -1 : https://www.lawoftime.org/esp/IIG/esp-rinri/esp-rinriIII3.1.html
+        if( $_['sir'] == 0 ) $_['sir'] = -1;
       }
+
+      // ajusto año por dia fuera del tiempo
+      if( $Fec->dia <= 25 && $Fec->mes <= 7 ){
+        
+        $_['ani']--;
+        $_['ani_fam_2'] = Num::ran($_['ani_fam_2']-105, 260);
+        $_['ani_fam_3'] = Num::ran($_['ani_fam_3']-105, 260);
+        $_['ani_fam_4'] = Num::ran($_['ani_fam_4']-105, 260);
+      }
+      
     }
     else{
       $_ = "{-_-} la Fecha {$val} no es Válida"; 
-    }
+    }    
+
     return $_;
   }// sumo o resto dias de un fecha dada
-  static function val_fec( string $tip, string $sin, int $cue = 1, string $opc = 'dia' ) : string {
+  static function val_ope( mixed $val, int $cue = 1, string $tip = "dia" ) : mixed {
+    $_ = "";
 
-    $_ = $sin;
+    // proceso fecha del sincronario
+    $Cic = is_array($val) ? $val : Sincronario::val( $val );
+    
+    // calculo valores
+    if( isset($Cic['val']) ){
+    
+      $sir = intval($Cic['sir']);
+      $ani = intval($Cic['ani']);
+      $lun = intval($Cic['lun']);
+      $dia = intval($Cic['dia']);
 
-    $val = explode('.',$sin);
+      switch( $tip ){
+      case 'sir':
+        if( $tip == '+' ){
 
-    if( isset($val[3]) ){
-      
-      $sir = intval($val[0]);
-      $ani = intval($val[1]);
-      $lun = intval($val[2]);
-      $dia = intval($val[3]);
+          $sir += $cue;
+        }
+        elseif( $tip == '-' ){
 
-      switch( $opc ){
+          $sir -= $cue;
+        }
+        if( $sir == 0 ) $sir = -1;
+
+        break;
+      case 'ani': 
+        if( $tip == '+' ){
+
+          $ani += $cue;
+
+          if( $ani > 51 ){
+            $sir += Num::val_red($ani / 51);
+            $ani = Num::ran($ani, 51, 0);
+          }
+        }
+        elseif( $tip == '-' ){
+
+          $ani -= $cue;
+
+          if( $ani < 0 ){
+            $sir -= Num::val_red($ani / 51);
+            $ani = Num::ran($ani, 51, 0);
+          }
+        }
+        break;
+      case 'lun': 
+          if( $tip == '+' ){
+  
+            $lun += $cue;
+              
+            if( $lun > 13 ){
+              $ani += Num::val_red($lun / 13);
+              $lun = Num::ran($lun, 13);
+  
+              if( $ani > 51 ){  
+                $sir += Num::val_red($ani / 51);
+                $ani = Num::ran($ani, 51, 0);                
+              }
+            }
+          }
+          elseif( $tip == '-' ){
+  
+            $lun -= $cue;
+              
+            if( $lun < 1 ){  
+              $ani -= Num::val_red($lun / 13);
+              $lun = Num::ran($lun, 13);
+  
+              if( $ani < 0 ){
+                $sir -= Num::val_red($ani / 51);
+                $ani = Num::ran($ani, 51, 0);
+              }
+            }
+          }        
+          break;
+        
       case 'dia':
         if( $tip == '+' ){
 
@@ -239,174 +316,246 @@ class Sincronario {
           }
         }        
         break;
-      case 'lun': 
-        if( $tip == '+' ){
-
-          $lun += $cue;
-            
-          if( $lun > 13 ){
-            $ani += Num::val_red($lun / 13);
-            $lun = Num::ran($lun, 13);
-
-            if( $ani > 51 ){  
-              $sir += Num::val_red($ani / 51);
-              $ani = Num::ran($ani, 51, 0);                
-            }
-          }
-        }
-        elseif( $tip == '-' ){
-
-          $lun -= $cue;
-            
-          if( $lun < 1 ){  
-            $ani -= Num::val_red($lun / 13);
-            $lun = Num::ran($lun, 13);
-
-            if( $ani < 0 ){
-              $sir -= Num::val_red($ani / 51);
-              $ani = Num::ran($ani, 51, 0);
-            }
-          }
-        }        
-        break;
-      case 'ani': 
-        if( $tip == '+' ){
-
-          $ani += $cue;
-
-          if( $ani > 51 ){
-            $sir += Num::val_red($ani / 51);
-            $ani = Num::ran($ani, 51, 0);
-          }
-        }
-        elseif( $tip == '-' ){
-
-          $ani -= $cue;
-
-          if( $ani < 0 ){
-            $sir -= Num::val_red($ani / 51);
-            $ani = Num::ran($ani, 51, 0);
-          }
-        }
-        break;
-      case 'sir':
-        if( $tip == '+' ){
-
-          $sir += $cue;
-        }
-        elseif( $tip == '-' ){
-
-          $sir -= $cue;
-        }
-        if( $sir == 0 ) $sir = -1;
-
-        break;
       }
 
       $_ = "$sir.".Num::val($ani,2).".".Num::val($lun,2).".".Num::val($dia,2);
     }
 
     return $_;
-  }// cargo Valores de un proceso por ciclos de Fecha para Tableros
+  }// busco valores por fecha del calendario
+  static function val_ver( string $ide, mixed $val, mixed $ope = NULL ) : mixed {
+    $_ = FALSE;
+    
+    // proceso fecha del sincronario
+    $Cic = $val;
+    if( !is_array($Cic) || !isset($Cic['sir']) ) $Cic = Sincronario::val($val);
+
+    switch( $ide ){
+    //
+    // Solar-Galáctico
+    //      
+    // Ciclo Nuevo Sirio
+    case 'sir':
+      
+      // calculo valores: codigo del ciclo, año inicial, año final, anillos, orbitas
+      if( !is_object($_ = Dat::get('hol-sir',[ 'ver'=>"`ide` = {$Cic['sir']}", 'opc'=>[ 'uni' ] ])) ){
+
+        // valores iniciales
+        $ani = $Cic['sir'] * 52;
+        $año_fin = 1987 + $ani;
+        
+        $_ = new stdClass;
+        $_->ide = $Cic['sir'];
+        $_->año_ini = $año_fin - 52;
+        $_->año_fin = $año_fin;
+        $_->ani = $ani;
+        $_->orb = intval($Cic['sir']);
+      }
+
+      break;
+    // Anillo Solar
+    case 'ani':
+
+      // cargo 1 anillo
+      if( empty($ope) ){
+
+        $_ = Dat::get('hol-sir_ani',[ 'ver'=>"`ide` = {$Cic['ani']}", 'opc'=>[ 'uni' ] ]);
+
+        // ajusto y reemplazo el año
+        $_->año = $Cic['Fec']->año;
+        if( $Cic['Fec']->mes <= 7 && $Cic['Fec']->dia <= 25 ){
+          $_->año--;
+        }
+
+        // calculo fechas
+        $_->fec_ini = "27/07/{$_->año}";
+        $_->fec_fin = "26/07/".( $_->año + 1 );
+
+      }
+      // todos los anillos del ciclo
+      elseif( $ope == 'lis' ){
+
+        // calculo año incial del ciclo
+        $año = $Cic['Fec']->año - ( $Cic['ani'] + 1 );
+        
+        // ajusto año inicial por fecha específica
+        if( $Cic['Fec']->mes <= 7 && $Cic['Fec']->dia <= 25 ){
+          $año--;
+        }
+
+        // recorro y cargo anillos del ciclo siriano
+        $_ = [];
+        foreach( Dat::get('hol-sir_ani') as $Ani ){
+          
+          // ajusto y reemplazo el año
+          $Ani->año = $año;
+
+          // calculo fechas
+          $Ani->fec_ini = "27/07/{$Ani->año}";
+          $Ani->fec_fin = "26/07/".( $Ani->año + 1 );
+
+          $año++;
+          $_ []= $Ani;
+        }
+      }
+      break;
+    //
+    // Orden Ciclico de 365 días
+    //
+    // Estacion Solar
+    case 'psi_est': break;
+    // Giro Lunar
+    case 'psi_lun': break;
+    // Heptada Semanal
+    case 'psi_hep': break;
+    // cromatica entonada
+    case 'psi_vin': break;    
+    // Vinal del Haab
+    case 'psi_vin': break;
+    //
+    // Orden Sincrónico de 365 días
+    // 
+    // Castillo de la Nave
+    case 'kin_nav_cas': break;
+    // Onda Encantada 
+    case 'kin_nav_cas': break;
+    // Trayectoria Armónica 
+    case 'kin_arm_tra': break;
+    // Célula del Tiempo
+    case 'kin_arm_cel': break;
+    // Estación Espectral
+    case 'kin_cro_est': break;
+    // Elemento Galáctico
+    case 'kin_cro_ele': break;    
+    }
+
+    return $_;
+  }
 
   /* Proceso de Datos */
 
-  // formularios
-  static function dat( string $tip, mixed $dat = NULL, array $var = [] ) : string {
+  static function dat( string $est, array $ope ){
+    $_ = "";
+
+    switch($est){
+
+    }
+
+    return $_;
+  }
+  // Formularios
+  static function dat_var( string $tip, mixed $dat = NULL, array $var = [] ) : string {
     
     $_ = "";
     $_eje =  !empty($var['eje']) ? $var['eje'] : "Sincronario.dat('{$tip}',this);";
 
     switch( $tip ){
+    // valor diario por fecha del calendario ( "aaa/mm/dd" ) o del sincronario ( sir.ani.lun.dia )
     case 'val':
-      $Kin = isset($dat['kin']) ? ( is_object($dat['kin']) ? $dat['kin'] : Dat::_('hol.kin',$dat['kin']) ) : [];
-      $Psi = isset($dat['psi']) ? ( is_object($dat['psi']) ? $dat['psi'] : Dat::_('hol.psi',$dat['psi']) ) : [];
-      $Sin = isset($dat['sin']) ? explode('.',$dat['sin']) : [];
-      $Fec = isset($dat['fec']) ? $dat['fec'] : [];      
+
+      // proceso valores
+      if( !isset($dat) ){
+
+        $dat = Sincronario::val( date('Y/m/a') );
+      }
+      elseif( !is_array($dat) ){
+
+        $dat = Sincronario::val( $dat );
+      }
+
+      // proceso errores
+      if( is_string($dat) ){
+
+        $_ = $dat;
+
+      }
+      // imprimo formularios
+      else{
+
+        if( empty($var['opc']) || in_array('fec',$var['opc']) ){
+          $_ .= "
+          <!-- Fecha del Calendario -->
+          <form class='-val mar-1' data-est='fec'>
+      
+            ".Doc_Val::ico('fec_dia',[ 'eti'=>"label", 'for'=>"hol-val-fec", 'class'=>"mar_hor-1", 
+              'title'=>"Desde aquí puedes cambiar la fecha..." 
+            ])."
+            ".Doc_Var::fec('dia', $dat['fec'], [ 'id'=>"hol-val-fec", 'name'=>"fec", 
+              'title'=>"Selecciona o escribe una fecha del Calendario Gregoriano para buscarla..."
+            ])."
   
-      if( empty($var['opc']) || in_array('fec',$var['opc']) ){
-        $_ .= "
-        <!-- Fecha del Calendario -->
-        <form class='-val mar-1' data-est='fec'>
-    
-          ".Doc_Val::ico('fec_dia',[ 'eti'=>"label", 'for'=>"hol-val-fec", 'class'=>"mar_hor-1", 
-            'title'=>"Desde aquí puedes cambiar la fecha..." 
-          ])."
-          ".Doc_Var::fec('dia', $Fec, [ 'id'=>"hol-val-fec", 'name'=>"fec", 
-            'title'=>"Selecciona o escribe una fecha del Calendario Gregoriano para buscarla..."
-          ])."
-
-          ".Doc_Val::ico('ope_val-ini',[ 
-            'eti'=>"button", 'type'=>"submit", 
-            'class'=>"mar_hor-1", 
-            'onclick'=>"{$_eje}", 
-            'title'=>'Haz click para buscar esta fecha del Calendario Gregoriano...'
-          ])."
-    
-        </form>";
+            ".Doc_Val::ico('ope_val-ini',[ 
+              'eti'=>"button", 'type'=>"submit", 
+              'class'=>"mar_hor-1", 
+              'onclick'=>"{$_eje}", 
+              'title'=>'Haz click para buscar esta fecha del Calendario Gregoriano...'
+            ])."
+      
+          </form>";
+        }
+  
+        if( empty($var['opc']) || in_array('val',$var['opc']) ){
+          $_ .= "
+          <!-- Fecha del Sincronario -->
+          <form class='-val mar-1' data-est='val'>
+            
+            <label>N<c>.</c>S<c>.</c></label>
+      
+            ".Doc_Var::num('int', $dat['sir'], [ 
+              'maxlength'=>2, 
+              'name'=>"gal", 
+              'title'=>"Portales Galácticos, Ciclos NS de 52 años..."
+            ])."
+            <c>.</c>
+            ".Doc_Val::opc( Dat::_('hol.sir_ani'), [
+              'eti'=>[ 
+                'name'=>"ani", 
+                'class'=>"num", 
+                'title'=>"Anillo Solar (año): los 52 ciclos anuales de 364+1 días...", 
+                'val'=>$dat['ani']-1
+              ], 
+              'ite'=>[ 'title'=>'($)nom','htm'=>'($)cod' ]
+            ])."
+            <c>.</c>
+            ".Doc_Val::opc( Dat::_('hol.psi_lun'), [
+              'eti'=>[ 
+                'name'=>"lun", 
+                'class'=>"num", 
+                'title'=>"Giro Lunar (mes): los 13 ciclos mensuales de 28 días...", 
+                'val'=>$dat['lun'] 
+              ],
+              'ite'=>[ 'title'=>'()($)nom(): ()($)des()','htm'=>'($)ide' ]
+            ])."
+            <c>.</c>
+            ".Doc_Val::opc( Dat::_('hol.lun'), [ 
+              'eti'=>[ 
+                'name'=>"dia", 
+                'class'=>"num", 
+                'title'=>"Día Lunar : los 28 días del Giro Lunar...", 
+                'val'=>$dat['dia'] 
+              ], 
+              'ite'=>[ 'title'=>'($)des','htm'=>'($)ide' ]
+            ])."          
+            <c class='sep'>:</c>
+        
+            <n name='kin'>{$dat['kin']}</n>
+      
+            ".Doc_Val::ico('ope_val-ini',[ 
+              'eti'=>"button", 'type'=>"submit",
+              'class'=>"mar_hor-1", 
+              'onclick'=>"{$_eje}",
+              'title'=>"Haz Click para buscar esta fecha en el Sincronario de 13 Lunas..."
+            ])."
+      
+          </form>";
+        }
       }
 
-      if( empty($var['opc']) || in_array('sin',$var['opc']) ){
-        $_ .= "
-        <!-- Fecha del Sincronario -->
-        <form class='-val mar-1' data-est='sin'>
-          
-          <label>N<c>.</c>S<c>.</c></label>
-    
-          ".Doc_Var::num('int', $Sin[0], [ 
-            'maxlength'=>2, 
-            'name'=>"gal", 
-            'title'=>"Portales Galácticos, Ciclos NS de 52 años..."
-          ])."
-          <c>.</c>
-          ".Doc_Val::opc( Dat::_('hol.sir_ani'), [
-            'eti'=>[ 
-              'name'=>"ani", 
-              'class'=>"num", 
-              'title'=>"Anillo Solar (año): los 52 ciclos anuales de 364+1 días...", 
-              'val'=>$Sin[1]-1
-            ], 
-            'ite'=>[ 'title'=>'($)nom','htm'=>'($)cod' ]
-          ])."
-          <c>.</c>
-          ".Doc_Val::opc( Dat::_('hol.psi_lun'), [
-            'eti'=>[ 
-              'name'=>"lun", 
-              'class'=>"num", 
-              'title'=>"Giro Lunar (mes): los 13 ciclos mensuales de 28 días...", 
-              'val'=>$Sin[2] 
-            ],
-            'ite'=>[ 'title'=>'()($)nom(): ()($)des()','htm'=>'($)ide' ]
-          ])."
-          <c>.</c>
-          ".Doc_Val::opc( Dat::_('hol.lun'), [ 
-            'eti'=>[ 
-              'name'=>"dia", 
-              'class'=>"num", 
-              'title'=>"Día Lunar : los 28 días del Giro Lunar...", 
-              'val'=>$Sin[3] 
-            ], 
-            'ite'=>[ 'title'=>'($)des','htm'=>'($)ide' ]
-          ])."          
-          <c class='sep'>:</c>
-      
-          <n name='kin'>$Kin->ide</n>
-    
-          ".Doc_Val::ico('ope_val-ini',[ 
-            'eti'=>"button", 'type'=>"submit",
-            'class'=>"mar_hor-1", 
-            'onclick'=>"{$_eje}",
-            'title'=>"Haz Click para buscar esta fecha en el Sincronario de 13 Lunas..."
-          ])."
-    
-        </form>";
-      }
-      
       break;
     }
     return $_;
   }
-  // Descripciones
+  // Descripciones por Atributos
   static function dat_des( string $ide, mixed $val ) : string {
 
     $_ = "";
@@ -432,7 +581,7 @@ class Sincronario {
 
     return $_;    
   }
-  // Informe
+  // Informe por Estructura
   static function dat_inf( string $ide, mixed $dat = NULL, array $var = [], ...$opc ) : string {
     $_ = "";
     
@@ -460,7 +609,7 @@ class Sincronario {
         case 'par':
           $_ = "
             
-          ".Self::dat_tab("kin_par",[ 
+          ".Sincronario::dat_tab("kin_par",[ 
             'ide'=>$Kin, 
             'pos'=>[ 'ima'=>"hol.kin.ide"  ] 
           ], [ 
@@ -601,7 +750,7 @@ class Sincronario {
     }
     return $_;
   }
-  // Fichas y cartas
+  // Fichas y Cartas por Imágenes
   static function dat_fic( string $ide, array $var = [], array $ele = [] ){
     
     $_ = "";
@@ -633,7 +782,9 @@ class Sincronario {
     
           $_ = [];
           foreach( ( isset($var['lis']) && is_array($var['lis']) ? $var['lis'] : range(1,$ide) ) as $pos ){ 
-            $pos = Num::val($pos,2);
+
+            if( $ide > 9 ) $pos = Num::val($pos,2);
+            
             $htm = "
             <div class='-ite jus-cen'>";
               if( $opc_ini ) $htm .= "
@@ -686,7 +837,9 @@ class Sincronario {
     
     return $_;
   }
-  // - sumatorias por valores
+  // Valores de un proceso
+  static function dat_val(){
+  }// - sumatorias por valores
   static function dat_val_sum(  string $dat, mixed $val = [], array $ope = [] ) : string {
       
     $_ = "";
@@ -785,7 +938,7 @@ class Sincronario {
           }
 
           // posicion: 20 sellos solares
-          $_ .= self::dat_tab_sec('hol_sel',$var,$ele,$val);
+          $_ .= Sincronario::dat_tab_sec('hol_sel',$var,$ele,$val);
 
           $_ .= " 
         </ul>";   
@@ -816,7 +969,7 @@ class Sincronario {
             }
             
             // posicion: 20 sellos solares
-            $_ .= self::dat_tab_sec('hol_sel',$var,$ele,$val);
+            $_ .= Sincronario::dat_tab_sec('hol_sel',$var,$ele,$val);
 
             $_ .= " 
           </ul>";            
@@ -866,7 +1019,7 @@ class Sincronario {
           }
           
           // Posicion: 20 sellos solares
-          $_ .= self::dat_tab_sec('hol_sel',$var,$ele,$val);
+          $_ .= Sincronario::dat_tab_sec('hol_sel',$var,$ele,$val);
 
           $_ .= "
         </ul>"; 
@@ -911,13 +1064,13 @@ class Sincronario {
           }          
           
           // Posicion: 20 sellos solares
-          $_ .= self::dat_tab_sec('hol_sel',$var,$ele,$val);
+          $_ .= Sincronario::dat_tab_sec('hol_sel',$var,$ele,$val);
 
           // 13 Articulaciones : Tonos Galácticos
-          $_ .= self::dat_tab_sec('hol_ton',$var,$ele,$val);
+          $_ .= Sincronario::dat_tab_sec('hol_ton',$var,$ele,$val);
           
           // 7 Chakras : Plasmas Radiales
-          $_ .= self::dat_tab_sec('hol_rad',$var,$ele,$val);          
+          $_ .= Sincronario::dat_tab_sec('hol_rad',$var,$ele,$val);          
           
           // 7 Chakras : Plasmas Radiales
           foreach( Dat::_('hol.rad') as $v ){ 
@@ -1006,7 +1159,7 @@ class Sincronario {
         Ele::cla($ele['sec'],"hol-ton");
         $_ .= "
         <ul".Ele::atr($ele['sec']).">
-          ".Self::dat_tab_sec('ton',$var,$ele)
+          ".Sincronario::dat_tab_sec('ton',$var,$ele)
           ;
           foreach( Dat::_('hol.ton') as $Ton ){
             // cargo datos de la posicion
@@ -1126,7 +1279,7 @@ class Sincronario {
                   $var['ide'] = $i;            
                   $_ .= "
                   <li class='pos ide-{$i}'>
-                    ".Self::dat_tab('sel_arm_cel',$var,$ele)."
+                    ".Sincronario::dat_tab('sel_arm_cel',$var,$ele)."
                   </li>";
                 } $_ .= "
               </ul>";        
@@ -1187,7 +1340,7 @@ class Sincronario {
         $_ = "
         <ul".Ele::atr($ele['sec']).">
           <li class='sec fon-ima'></li>          
-          ".Self::dat_tab_sec('cas',$var,$ele)."
+          ".Sincronario::dat_tab_sec('cas',$var,$ele)."
           <li class='pos ide-0'></li>";
 
           foreach( Dat::_('hol.cas') as $Cas ){
@@ -1282,7 +1435,7 @@ class Sincronario {
           $_fam = Dat::_('hol.sel_cro_fam',$ide);
           $_ = "
           <ul".Ele::atr($ele['sec']).">
-            ".Self::dat_tab_sec('cas',$var,$ele)."
+            ".Sincronario::dat_tab_sec('cas',$var,$ele)."
             <li class='pos ide-0'>
               ".Doc_Val::ima('hol','sel_cro_fam',$_fam)."
             </li>";
@@ -1304,7 +1457,7 @@ class Sincronario {
               foreach( Dat::_('hol.kin_nav_cas') as $cas => $Cas ){
                 $var['ide'] = $Cas->ide; $_ .= "
                 <li class='pos ide-".intval($Cas->ide)."'>
-                  ".Self::dat_tab('kin_nav_cas',$var,$ele)."
+                  ".Sincronario::dat_tab('kin_nav_cas',$var,$ele)."
                 </li>";
               } $_ .= "
             </ul>";            
@@ -1333,7 +1486,7 @@ class Sincronario {
 
               $_ = "
               <ul".Ele::atr($ele['cas']).">
-                ".Self::dat_tab_sec('cas',$var,$ele)."
+                ".Sincronario::dat_tab_sec('cas',$var,$ele)."
                 <li class='pos ide-0'>
                   ".Doc_Val::ima('hol','kin_nav_cas',$ide,[ 'title'=>$ele['cas']['title'] ])."
                 </li>";
@@ -1360,7 +1513,7 @@ class Sincronario {
               
               $_ = "
               <ul".Ele::atr($ele['ond']).">
-                ".Self::dat_tab_sec('ton',$var,$ele);
+                ".Sincronario::dat_tab_sec('ton',$var,$ele);
       
                 $kin = ( ( $ide - 1 ) * 13 ) + 1;
                 foreach( Dat::_('hol.ton') as $Ton ){
@@ -1383,12 +1536,12 @@ class Sincronario {
 
             $_ = "
             <ul".Ele::atr($ele['sec']).">
-              ".Self::dat_tab_sec('ton',$var,$ele);
+              ".Sincronario::dat_tab_sec('ton',$var,$ele);
     
               foreach( Dat::_('hol.kin_arm_tra') as $Tra ){ 
                 $var['ide'] = $Tra->ide; $_ .= "
                 <li class='pos ide-".intval($Tra->ide)."'>
-                  ".Self::dat_tab('kin_arm_tra',$var,$ele)."
+                  ".Sincronario::dat_tab('kin_arm_tra',$var,$ele)."
                 </li>";
               } $_ .= "
             </ul>";              
@@ -1412,7 +1565,7 @@ class Sincronario {
                 for( $cel = $cel_ini; $cel < $cel_fin; $cel++ ){
                   $var['ide'] = $cel; $_ .= "
                   <li class='pos ide-".Num::ran($cel,5)."'>
-                    ".Self::dat_tab('kin_arm_cel',$var,$ele)."
+                    ".Sincronario::dat_tab('kin_arm_cel',$var,$ele)."
                   </li>";            
                 } $_ .= "
               </ul>";
@@ -1452,7 +1605,7 @@ class Sincronario {
             Ele::cla($ele['sec'],"hol-cas");
             $_ = "
             <ul".Ele::atr($ele['sec']).">
-              ".Self::dat_tab_sec('cas',$var,$ele)."
+              ".Sincronario::dat_tab_sec('cas',$var,$ele)."
     
               <li class='pos ide-0'>
                 ".Doc_Val::ima('hol/tab/gal')."
@@ -1460,7 +1613,7 @@ class Sincronario {
               foreach( Dat::_('hol.kin_cro_ele') as $_ele ){
                 $var['ide'] = $_ele->ide; $_ .= "
                 <li class='pos ide-".intval($_ele->ide)."'>
-                  ".Self::dat_tab('kin_cro_ele',$var,$ele)."
+                  ".Sincronario::dat_tab('kin_cro_ele',$var,$ele)."
                 </li>";
               } $_ .= "
             </ul>";            
@@ -1480,12 +1633,12 @@ class Sincronario {
               
               $_ = "
               <ul".Ele::atr($ele['est']).">
-                ".Self::dat_tab_sec('ton',$var,$ele);
+                ".Sincronario::dat_tab_sec('ton',$var,$ele);
                 
                 foreach( Dat::_('hol.ton') as $Ton ){
                   $var['ide'] = $cas; $_ .= "
                   <li class='pos ide-".intval($Ton->ide)."'>
-                    ".Self::dat_tab('kin_cro_ele',$var,$ele)."
+                    ".Sincronario::dat_tab('kin_cro_ele',$var,$ele)."
                   </li>";
                   $cas = Num::ran($cas + 1, 52);
                 } $_ .= "
@@ -1549,31 +1702,10 @@ class Sincronario {
             $ele['sec'] = isset($ele['tzo']) ? $ele['tzo'] : [];
             for( $i=1 ; $i<=8 ; $i++ ){ $_ .= "
               <li class='pos ide-$i'>
-                ".Self::dat_tab('kin',$var,$ele)."
+                ".Sincronario::dat_tab('kin',$var,$ele)."
               </li>";
             } $_ .= "
           </ul>";        
-          break;
-        // Ciclo de Sirio
-        case 'ani':
-          $kin = 34;
-          $var['est-cas']['cir'] = '1';
-          Ele::cla($ele['sec'],'hol-cas-cir');
-          $_ = "
-          <ul".Ele::atr($ele['sec']).">
-            ".Self::dat_tab_sec('cas_cir',$var,$ele)."
-            <li class='pos ide-0'>
-            </li>";
-  
-            foreach( Dat::_('hol.cas') as $Cas ){
-              $Kin = Dat::_('hol.kin',$kin); $_ .= "
-              <li class='pos ide-".intval($Cas->ide)."'>
-                ".Doc_Val::ima('hol',"kin",$Kin)."
-              </li>";
-              $kin += 105; if( $kin >260 ) $kin -= 260;
-            } $_ .= "
-          </ul>";
-                  
           break;
         // Anillo Solar de 13 Lunas
         case 'lun':
@@ -1584,7 +1716,7 @@ class Sincronario {
             <ul".Ele::atr($ele['sec']).">
               ".Doc_Val::ima('hol/tab/sol',['eti'=>"li", 'class'=>"sec sol"])."
               ".Doc_Val::ima('hol/tab/pla',['eti'=>"li", 'class'=>"sec lun"])."
-              ".Self::dat_tab_sec('ton',$var,$ele)
+              ".Sincronario::dat_tab_sec('ton',$var,$ele)
               ;
     
               if( !in_array("cab-nom",$var['opc']) ) $var['opc'] []= 'cab-nom';
@@ -1595,7 +1727,7 @@ class Sincronario {
                 
                 $_ .= "
                 <li class='pos ide-{$lun}'>
-                  ".Self::dat_tab('psi_lun_dia',$var,$ele)."
+                  ".Sincronario::dat_tab('psi_lun_dia',$var,$ele)."
                 </li>";
               } $_ .= "
             </ul>";            
@@ -1726,7 +1858,7 @@ class Sincronario {
               Ele::cla($ele['sec'],'hol-ton');
               $_ = "
               <ul".Ele::atr($ele['sec']).">
-                ".Self::dat_tab_sec('ton',$var,$ele)
+                ".Sincronario::dat_tab_sec('ton',$var,$ele)
                 ;
                 $ele_pos = $ele['pos'];
                 foreach( Dat::_('hol.psi_lun') as $_lun ){
@@ -1758,7 +1890,7 @@ class Sincronario {
 
             $_ = "
             <ul".Ele::atr($ele['sec']).">
-              ".Self::dat_tab_sec('cas',$var,$ele)."
+              ".Sincronario::dat_tab_sec('cas',$var,$ele)."
     
               <li class='pos ide-0'>
                 ".Doc_Val::ima('hol/tab/sol')."
@@ -1767,7 +1899,7 @@ class Sincronario {
               foreach( Dat::_('hol.cas') as $Cas ){
                 $var['ide'] = $Cas->ide; $_ .= "
                 <li class='pos ide-".intval($Cas->ide)."'>
-                  ".Self::dat_tab('psi_hep',$var,$ele)."
+                  ".Sincronario::dat_tab('psi_hep',$var,$ele)."
                 </li>";            
               } $_ .= "
             </ul>";
@@ -1785,12 +1917,12 @@ class Sincronario {
               Ele::cla($ele['sec'],'hol-ton');
               $_ = "
               <ul".Ele::atr($ele['sec']).">
-                ".Self::dat_tab_sec('ton',$var,$ele);
+                ".Sincronario::dat_tab_sec('ton',$var,$ele);
       
                 foreach( Dat::_('hol.ton') as $Ton ){
                   $var['ide'] = $cas; $_ .= "
                   <li class='pos ide-".intval($Ton->ide)."'>
-                    ".Self::dat_tab('psi_hep',$var,$ele)."
+                    ".Sincronario::dat_tab('psi_hep',$var,$ele)."
                   </li>";
                   $cas++; 
                 } $_ .= "
@@ -1802,7 +1934,7 @@ class Sincronario {
         // Heptada por heptágono de 7 Plasmas Radiales
         case 'hep':
   
-          if( empty($ide) && is_array($val) && isset($val['psi'])) $ide = Dat::_('hol.psi',$val['psi'])->hep;        
+          if( empty($ide) && is_array($val) && isset($val['psi'])) $ide = Dat::_('hol.psi',$val['psi'])->hep;
   
           $Hep = Dat::_("hol.{$est}",$ide);
           
@@ -1821,6 +1953,52 @@ class Sincronario {
         }        
       }      
       break;
+    // Ciclo de Sirio
+    case 'sir':
+      
+      $ani_lis = [];
+
+      // seleccion de posicion
+      $val_pos = FALSE;
+      
+      // recibo listado de anillos
+      if( isset($var['lis']) ){
+
+        $ani_lis = $var['lis'];
+      }
+      // recibo anillo y cargo ciclos del sincronario
+      else{
+
+        if( !is_array($val) ) $val = Sincronario::val( !empty($val) ? $val : Fec::dat() );
+
+        $ani_lis = Sincronario::val_ver('ani',$val,'lis');
+
+        $val_pos = $val['ani'];
+      }      
+
+      Ele::cla($ele['sec'],'hol-cas');
+      $_ = "
+      <ul".Ele::atr($ele['sec']).">
+      
+        ".Sincronario::dat_tab_sec('cas',$var,$ele)."
+
+        <li class='pos ide-0'>
+          ".Doc_Val::ima('hol/tab/pla')."
+        </li>";
+
+        foreach( $ani_lis as $Ani ){
+          
+          $_ .= "
+          <li class='pos ide-".intval($Ani->ide).( $val_pos && $val_pos == $Ani->cod ? ' _pos- _pos-bor' : '' )."'>
+
+            ".Doc_Val::ima('hol',"kin",Dat::_('hol.kin',$Ani->fam_4))."
+
+            <time value='{$Ani->fec_año}-07-26'>{$Ani->fec_año}</time>
+
+          </li>";
+        } $_ .= "
+      </ul>";
+      break;    
     }
 
     return $_;
@@ -1857,7 +2035,7 @@ class Sincronario {
         else{
 
           // pido datos por fecha
-          $_dat = Self::val($fec);
+          $_dat = Sincronario::val($fec);
 
           // cargo item en el operador de datos
           $_ []= Doc_Dat::val_var([
@@ -2244,7 +2422,7 @@ class Sincronario {
       // agrego clase por dependencia/anidacion
       Ele::cla($Ele,'dep');
       
-      $_ = Self::dat_tab("{$par_est}_par",[
+      $_ = Sincronario::dat_tab("{$par_est}_par",[
         'ide'     => $val,
         'dep'     => 1,
         'dep-par' => $var['dep-par'] - 1,
@@ -2258,5 +2436,4 @@ class Sincronario {
     return $_;
   }
 }
-
 

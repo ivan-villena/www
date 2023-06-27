@@ -253,7 +253,8 @@ class Doc_Ope {
 
     $_ = "
     <article class='app_art'>";
-      // introduccion
+      
+    // introduccion
       if( !empty($agr['htm_ini']) ){
 
         $_ .= $agr['htm_ini'];
@@ -261,6 +262,7 @@ class Doc_Ope {
       else{ $_ .= "
         <h2>{$nav->nom}</h2>";
       }
+      
       // listado de contenidos
       if( !empty($_art) ){ $_ .= "
 
@@ -862,18 +864,38 @@ class Doc_Ope {
       // operadores
       $min = $pos == 0 ? 0 : 1;
       $max = $pos;
+
       $_ .= "
       <form class='ope_bot anc-100 jus-cen mar_ver-2'>
+
+        ".Ele::val([
+          'eti'=>"button", 'name'=>"ini", 'title'=>"Ir al primero...", 'class'=>"let-num", 
+          'onclick'=>"$_eje('$tip',this,'val');",
+          'htm'=>$min
+        ])."
+
+        ".Ele::val([
+          'eti'=>"button", 'name'=>"pre", 'title'=>"Ver el anterior...", 
+          'onclick'=>"$_eje('$tip',this,'val');",
+          'htm'=>Doc_Val::ico('ope_lis-pre')
+        ])."
   
-        ".Doc_Val::num($min,['name'=>"ini", 'title'=>"Ir al primero...", 'class'=>"mar_hor-1", 'onclick'=>"$_eje('$tip',this,'val');" ])."
-                
-        ".Doc_Val::ico('ope_lis-pre',['eti'=>"button", 'name'=>"pre", 'title'=>"Ver el anterior...",  'onclick'=>"$_eje('$tip',this,'val');"])."
-  
-        ".Doc_Var::num('int',$pos_ver,[ 'name'=>"val", 'min'=>$min, 'max'=>$max, 'title'=>"Buscar posición...", 'oninput'=>"$_eje('$tip',this,'val');" ])."
-  
-        ".Doc_Val::ico('ope_lis-pos',['eti'=>"button", 'name'=>"pos", 'title'=>"Ver el siguiente...", 'onclick'=>"$_eje('$tip',this,'val');"])."            
-  
-        ".Doc_Val::num($max,['name'=>"fin", 'title'=>"Ir al último...", 'class'=>"mar_hor-1", 'onclick'=>"$_eje('$tip',this,'val');" ])."          
+        ".Doc_Var::num('int',$pos_ver,[ 
+          'name'=>"val", 'min'=>$min, 'max'=>$max, 'title'=>"Buscar posición...", 
+          'oninput'=>"$_eje('$tip',this,'val');" 
+        ])."
+
+        ".Ele::val([
+          'eti'=>"button", 'name'=>"pos", 'title'=>"Ver el siguiente...", 
+          'onclick'=>"$_eje('$tip',this,'val');",
+          'htm'=>Doc_Val::ico('ope_lis-pos')
+        ])."
+        
+        ".Ele::val([
+          'eti'=>"button", 'name'=>"fin", 'title'=>"Ir al último...", 'class'=>"let-num", 
+          'onclick'=>"$_eje('$tip',this,'val');",
+          'htm'=>$max
+        ])."        
   
       </form>";      
       break;

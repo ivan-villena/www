@@ -137,7 +137,7 @@
       require_once( $rec_app );
     }
 
-    // imprimo inicio
+    // imprimo Inicio
     if( empty($Uri->cab) || empty($Uri->art) ){
 
       if( file_exists($rec_ini = "./App/{$Uri->esq}/inicio.php")  ){
@@ -170,7 +170,7 @@
       else{
         
         // cargo indice
-        $Nav = $App->Nav;
+        $Nav = $App->Nav;        
         
         // imprimo e importo modulo
         if( isset($doc_rec['cab']) ){

@@ -72,3 +72,8 @@ Table.transitos {
 Table.transitos th:first-child {
   max-width: min-content;
 }
+
+/* Libros */
+.tex_bib {
+  max-width: 100%;
+}

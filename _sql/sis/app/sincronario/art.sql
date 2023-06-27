@@ -67,10 +67,13 @@
 		('sincronario', 'codigo', 3, 'sello',  'Los 20 Sellos Solares',
 		'', 
 		'', '' ),
-		('sincronario', 'codigo', 4, 'kin', 'Los 260 Kines del Giro Galáctico',
+		('sincronario', 'codigo', 4, 'luna',  'Los 28 días del Giro Lunar',
+		'', 
+		'', '' ),		
+		('sincronario', 'codigo', 5, 'kin', 'Los 260 Kines del Giro Galáctico',
 		'',
 		'', '' ),
-		('sincronario', 'codigo', 5, 'psi', 'Los 365 Psi-Cronos del Giro Solar',
+		('sincronario', 'codigo', 6, 'psi', 'Los 365 Psi-Cronos del Giro Solar',
 		'', 
 		'', '' )
 	;
@@ -78,10 +81,10 @@
 	-- Informes
 	DELETE FROM `sis-app_art` WHERE `esq` = 'sincronario' AND `cab` = 'informe'; INSERT INTO `sis-app_art` VALUES
 
-		('sincronario', 'informe', 1, 'ciclo', 'Ciclos de Tiempo',
+		('sincronario', 'informe', 1, 'diario', 'Ciclos de Tiempo Diario',
 		'', 
 		'fec_tie', '' ),	
-		('sincronario', 'informe', 2, 'firma', 'Firma Galáctica',
+		('sincronario', 'informe', 2, 'firma', 'Firma Galáctica Personal',
 		'', 
 		'usu_gru', '' )
 	;

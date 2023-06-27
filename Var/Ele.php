@@ -3,11 +3,11 @@
 class Ele {
 
   // paso lista de objetos a html : {} => "<>"
-  static function val( ...$ele ) : string {
+  static function val( mixed $ele ) : string {
     
     $_ = "";
     
-    foreach( $ele as $ele ){
+    foreach( Obj::pos_ite($ele) as $ele ){
         
       if( is_string($ele) ){
   
@@ -71,7 +71,9 @@ class Ele {
         $_ .= Ele::eti($ele);
       }
     }
+
     return $_;
+
   }// conversiones por tipo : "<>" <=> {}
   static function val_dec( string | array $ele, array | object $dat = NULL ) : array {
     $_ = $ele;
@@ -150,8 +152,9 @@ class Ele {
     
     $_ = "";
     
-    $eti = 'span';    
+    $eti = 'span';
     if( isset($ele['eti']) ){
+      if( $ele['eti'] == 'button' && !isset($ele['type']) ) $ele['type'] = 'button';
       $eti = $ele['eti'];
       unset($ele['eti']);
     }
@@ -167,11 +170,13 @@ class Ele {
       unset($ele['val']);
     }
 
-    if( !is_string($htm) ){
+    if( is_iterable($htm) ){
       $htm_lis = "";
-      foreach( Obj::pos_ite($htm) as $e ){ $htm_lis .= is_string($e) ? $e : Ele::val($e); }
+      foreach( Obj::pos_ite($htm) as $e ){ 
+        $htm_lis .= is_string($e) ? $e : Ele::val($e); 
+      }
       $htm = $htm_lis;
-    }
+    }    
 
     $_ = "
     <{$eti}".Ele::atr($ele).">

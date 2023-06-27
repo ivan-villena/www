@@ -1,9 +1,9 @@
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-/* Tableros */
+/* 
+  Tableros 
+*/
 
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 /* 
   x4: Armónica
 */
@@ -62,6 +62,10 @@
   grid: repeat(4,1fr) / repeat(4,1fr);
   background: center/contain no-repeat url('../../_img/hol/fic/rad.png');
 }
+.dat_tab.hol-hep > .pos:not(.dep) {
+  width: 5rem;
+  height: 5rem;
+}
 .dat_tab.hol-hep > .pos {
   position: relative;
   border-radius: 50%;
@@ -82,6 +86,28 @@
 .dat_tab.hol-ton { 
   grid: repeat(5,1fr) / repeat(5,1fr);
 }
+
+.dat_tab.hol-ton > .pos:not(.dep) {
+  width: 6rem;
+  height: 6rem;
+}
+@media ( max-width: 500px ){
+
+  .dat_tab.hol-ton > .pos:not(.dep) {
+    width: 5rem; 
+    height: 5rem;
+    font-size: .6rem;
+  }
+}
+@media ( max-width: 400px ){
+
+  .dat_tab.hol-ton > .pos:not(.dep) {
+    width: 4rem; 
+    height: 4rem;
+    font-size: .5rem;
+  }
+}
+
 .dat_tab.hol-ton > .pos.ide-1 { grid-column:1/2; grid-row:1/2; } 
 .dat_tab.hol-ton > .pos.ide-2 { grid-column:1/2; grid-row:2/3; } 
 .dat_tab.hol-ton > .pos.ide-3 { grid-column:1/2; grid-row:3/4; } 
@@ -146,6 +172,18 @@ ul.dat_tab.hol-lun {
   grid: repeat(4,1fr) / repeat(7,1fr);
 }
 
+.dat_tab.hol-lun > :is(.pos,.sec) {
+  width: 5rem;
+  height: 5rem;
+}
+@media ( max-width: 500px ){
+
+  .dat_tab.hol-lun > :is(.pos,.sec) {
+    width: 4rem;
+    height: 4rem;
+  }
+}
+
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 /* 
@@ -156,11 +194,13 @@ ul.dat_tab.hol-lun {
   border-radius: 10%;
 }
 
+/* colores de fondo */
 .dat_tab.hol-cas > .sec.fon.col { 
   width:95%;
   height:91%; 
   border-radius:50%;
 }
+
 /* orbitales */
 .dat_tab.hol-cas > .sec[class*="orb-"] {
   border-radius: 50%;
@@ -178,8 +218,37 @@ ul.dat_tab.hol-lun {
 .dat_tab.hol-cas > .sec.ond-3 { grid-column:1/6 ; grid-row:6/11; transform: rotate(090deg); } 
 .dat_tab.hol-cas > .sec.ond-4 { grid-column:6/11; grid-row:7/12; }
 
+/* posiciones */
+.dat_tab.hol-cas > .pos {
+  width: 3.25rem;
+  height: 3.25rem;
+}
+
+@media ( max-width: 550px ){
+
+  .dat_tab.hol-cas > .pos {
+    width: 3rem;
+    height: 3rem;
+  }
+}
+@media ( max-width: 450px ){
+
+  .dat_tab.hol-cas > .pos {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+}
+@media ( max-width: 350px ){
+
+  .dat_tab.hol-cas > .pos {
+    width: 2rem;
+    height: 2rem;
+  }
+}
+
 .dat_tab.hol-cas > li.pos.ide-0 { 
-  grid-column:06; grid-row:06; 
+  grid-column:06; 
+  grid-row:06; 
   width: 80%; 
   height: 80%; 
   border-radius:50%;
@@ -237,114 +306,21 @@ ul.dat_tab.hol-lun {
 /*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 /*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 /*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-
-/* Aplicaciones */
-
 /*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 /*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 /*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 /*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-
-/* 
-  Heptágono de Plasmas Radiales
-*/
-.dat_tab.rad_pla > :is(.pos,.sec) {
-  width: 5rem;
-  height: 5rem;
-}
-
-
-/*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-/*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-/* 
-  Aventura de la Onda encantada :
-*/
-.dat_tab.ton > .pos {
-  width: 6rem;
-  height: 6rem;
-}
-@media ( max-width: 500px ){
-
-  .dat_tab.ton > .pos {
-    width: 5rem; 
-    height: 5rem;
-    font-size: .6rem;
-  }
-}
-@media ( max-width: 400px ){
-
-  .dat_tab.ton > .pos {
-    width: 4rem; 
-    height: 4rem;
-    font-size: .5rem;
-  }
-}
-
-/*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-/*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-/* 
-  Castillo del Destino :
-*/
-.dat_tab.cas > .pos {
-  width: 3rem;
-  height: 3rem;
-}
-
-@media ( max-width: 550px ){
-
-  .dat_tab.cas > .pos {
-    width: 2.6rem;
-    height: 2.6rem;
-  }
-}
-@media ( max-width: 450px ){
-
-  .dat_tab.cas > .pos {
-    width: 2.1rem;
-    height: 2.1rem;
-  }
-}
-@media ( max-width: 350px ){
-
-  .dat_tab.cas > .pos {
-    width: 1.9rem;
-    height: 1.9rem;
-  }
-}
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 /* 
-  Tablero del Oráculo 
+  Posicion P.A.G. : kines + psi-cronos 
 */
-.dat_tab.sel_arm_tra .dat_tab.sel_arm_cel > .pos {
-  width: 5rem;
-  height: 5rem;
+.dat_tab.kin .pos:is(.pag-kin, .pag-psi) {
+  background-color: rgba(24, 170, 24, 0.92) !important;
 }
-
-@media ( max-width: 450px ){
-
-  .dat_tab.hol-lun > :is(.pos,.sec) {
-    width: 3.5rem;
-    height: 3.5rem;
-  }
-}
-
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-/* 
-  Giro lunar de 28 días 
-*/
-.dat_tab.hol-lun > :is(.pos,.sec) {
-  width: 5rem;
-  height: 5rem;
-}
-@media ( max-width: 500px ){
-
-  .dat_tab.hol-lun > :is(.pos,.sec) {
-    width: 4rem;
-    height: 4rem;
-  }
+.dat_tab:not(.kin) .pos:is(.pag-kin, .pag-psi) {
+  border: 1px solid var(--col_ver) !important;
 }
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
@@ -395,20 +371,30 @@ ul.dat_tab.hol-lun {
 .dat_tab .par-ant { border: 1px solid var(--col_azu) !important; }
 .dat_tab .par-ocu { border: 1px solid var(--col_ama) !important; }
 
+
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/* 
+  Tablero del Oráculo 
+*/
+.dat_tab.sel_arm_tra .dat_tab.sel_arm_cel > .pos {
+  width: 5rem;
+  height: 5rem;
+}
+
+@media ( max-width: 450px ){
+
+  .dat_tab.hol-lun > :is(.pos,.sec) {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+}
+
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 /* 
   x260 - kines
 */
-/* 
-  Posicion P.A.G. : kines + psi-cronos 
-*/
-.dat_tab.kin .pos:is(.pag-kin, .pag-psi) {
-  background-color: rgba(24, 170, 24, 0.92) !important;
-}
-.dat_tab:not(.kin) .pos:is(.pag-kin, .pag-psi) {
-  border: 1px solid var(--col_ver) !important;
-}
 
 /* 
   Tzolkin 
@@ -716,7 +702,6 @@ ul.dat_tab.hol-lun {
   width: 7rem;
   height: 7rem;
 }
-
 
 @media ( max-width: 700px ){
   

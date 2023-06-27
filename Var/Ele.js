@@ -128,25 +128,45 @@ class Ele {
 
   // etiqueta : <eti atr="">...htm</eti>
   static eti( $ele ){
+
     let $_="",$={};
+
     $.eti = 'span'; 
     if( $ele['eti'] !== undefined ){
+
+      if( $ele['eti'] == 'button' && !($ele['type']) ) $ele['type'] = 'button';
+      
       $.eti = $ele['eti'];
       delete($ele['eti']);
     }
+
+    if( $ele['val'] !== undefined ){
+
+      if( $ele['value'] === undefined ) $ele['value'] = $ele['val'];
+      delete($ele['val']);
+    }    
+
     $.htm = ''; 
     if( $ele['htm'] !== undefined ){
+      
       $.htm = $ele['htm'];
       delete($ele['htm']);
-      if( typeof($.htm) != 'string' ){
+
+      if( Obj.tip($.htm) ){
+        
         $._htm_val = '';
-        Obj.pos_ite($.htm).forEach( $e => $._htm_val =+ ( typeof($e) == 'string' ) ? $e : Ele.val($e) );
+        Obj.pos_ite($.htm).forEach( $e => 
+          $._htm_val =+ ( typeof($e) == 'string' ) ? $e : Ele.val($e) 
+        );
+        $.htm = $._htm_val;
       }
     }
+
     $_ = `
     <${$.eti}${Ele.atr($ele)}>
       ${!['input','img','br','hr'].includes($.eti) ? `${$.htm}
     </${$.eti}>` : ''}`;
+
     return $_;
   }
   

@@ -264,7 +264,7 @@
       <p><q>Moldeando la fórmula pre<c>-</c> y post<c>-</c>tecnológico que define a la historia<c>,</c> el ADN es la matriz transformadora que mantiene unidas las fases primordial y sintética de la activación energética radiante y cristalina<c>.</c> Por su posición central en la matriz<c>,</c> la función del ADN es vitalizar todo el modelo de activación galáctica<c>.</c> Como fractal del conjunto galáctico y de la geometría del mismo ADN<c>,</c> la función de la tecnología/historia<c>,</c> es la de vitalizar igualmente los campos de energía radiante que definen la pre<c>-</c> y la post<c>-</c>historia<c>.</c></q></p>
 
     </section>
-    
+      
     <!--el ciclo galáctico-->
     <?php $nv2=Num::val($nv2+1,2);$nv3=0;$nv4=0;?>
     <section>

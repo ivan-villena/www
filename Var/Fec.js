@@ -219,6 +219,7 @@ class Fec {
     }  
     return $_;
   }
+  
 
   // dia y hora
   static dyh( $dat ){

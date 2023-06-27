@@ -12,18 +12,12 @@ class Doc_Val {
 
     if( !!($.ico[$ide]) ){
 
-      $.eti = 'span';
-      if( $ele['eti'] ){
-        $.eti = $ele['eti'];
-        delete($ele['eti']);
-      }
+      // identificador del boton
+      Ele.cla($ele,`val_ico ide-${$ide}`,'ini');
 
-      if( $.eti == 'button' && !($ele['type']) ) $ele['type'] = "button"; 
+      $ele['htm'] = $.ico[$ide].val;
 
-      $_ = `
-      <${$.eti}${Ele.atr(Ele.cla($ele,`val_ico ide-${$ide}`,'ini'))}>
-        ${$.ico[$ide].val}
-      </${$.eti}>`;
+      $_ = Ele.val($ele);
     }
     return $_;
   }  
@@ -63,30 +57,15 @@ class Doc_Val {
         $.dir = `_img/${$dat}`;
         
         Ele.css( $ele, Ele.css_fon($.dir,{'tip':$.tip}) );
-      }
-
-      // etiqueta
-      $.eti = 'span';
-      if( !!$ele['eti'] ){
-        $.eti = $ele['eti'];
-        delete($ele['eti']);
-      }
-      
-      // codifico botones
-      if( $.eti == 'button' && !$ele['type'] ) $ele['type'] = "button";
-      
-      // aseguro identificador
-      Ele.cla($ele,`val_ima`,'ini');
+      }    
       
       // contenido 
-      $.htm = '';
-      if( !!($ele['htm']) ){
-        Ele.cla($ele,'dis-fle dir-ver jus-cen ali-cen');
-        $.htm = $ele['htm'];
-        delete($ele['htm']);
-      }
+      if( !!($ele['htm']) ) Ele.cla($ele,'dis-fle dir-ver jus-cen ali-cen');
+
+      // aseguro identificador
+      Ele.cla($ele,`val_ima`,'ini');      
       
-      $_ = `<${$.eti}${Ele.atr($ele)}>${$.htm}</${$.eti}>`;
+      $_ = Ele.val($ele);
     }
     return $_;
   }

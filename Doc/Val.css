@@ -66,21 +66,8 @@
   max-width: fit-content;
 }
 
-
-/* 
-  Enlaces
-*/
-a:not( .val_ico, .tex ) {
-  text-decoration: none;
-  font-style: italic; 
-  color: var(--let_ide);
-}
-
-a.tex {
-  text-decoration: none;
-  color: var(--let_tex);
-}
-
+/* ////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////////////////////////////////// */
 
 /* 
   Etiquetas
@@ -143,9 +130,44 @@ input[maxlength='19']{ width: 11.5rem; }
 input[maxlength='20']{ width: 12rem; }
 input[maxlength='25']{ width: 15rem; }
 
+/* ////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////////////////////////////////// */
+
+/* 
+  Enlaces
+*/
+a:not( .val_ico, .tex ) {
+  text-decoration: none;
+  font-style: italic; 
+  color: var(--let_ide);
+}
+
+a.tex {
+  text-decoration: none;
+  color: var(--let_tex);
+}
+
+/* listado vertical/horizontal */
+nav.lis {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+nav.lis > :is(p,a) {
+  padding-left: .5rem;
+  margin: .5rem;
+}
+
+/* ////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////////////////////////////////// */
+
 /* 
   Imágenes 
 */
+figure {
+  margin: 1rem auto;
+}
+
 img {  
   max-width: 100%;
   height: auto;
@@ -176,6 +198,8 @@ img {
 .val_ima.tam-15 { min-width: 7rem;      height: 7rem; }
 .val_ima.tam-16 { min-width: 7.5rem;    height: 7.5rem; }
 
+/* ////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////////////////////////////////// */
 
 /* 
   Iconos
@@ -215,6 +239,9 @@ img {
   text-shadow: 0 0 5px;
 }
 
+/* ////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////////////////////////////////// */
+
 /* 
   Numero
 */
@@ -226,6 +253,9 @@ n, sup, sub {
   text-shadow: 0 0 5px;
   color: var(--let_num);
 }
+
+/* ////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////////////////////////////////// */
 
 /* 
   letra 
@@ -240,25 +270,23 @@ c.sep {
   margin: .3rem;
 }
 
-/* cita */
-cite {
+/* 
+  Palabras 
+*/
+:is(p,b,i).des {
   font-style: italic;
 }
-q, blockquote { 
-  quotes: "\"" "\"" "'" "'";
-}
-:is(q,blockquote)::after, 
-:is(q,blockquote)::before {
-  color: var(--let_ope);
-  text-shadow: 0 0 5px;
-}
-
-dfn, /* Definiciones */
-abbr, /* Abreviaturas */
-dt /* Términos */
-{ 
+:is(p,b,i).ide { 
   color: var(--let_ide); 
 }
+:is(p,b,i).val { 
+  color: var(--let_val); 
+}
+:is(p,b,i).err { 
+  color: var(--let_err); 
+}
+/* ////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////////////////////////////////// */
 
 /* separador */
 hr{   
@@ -283,32 +311,45 @@ h6 { font-size: 1.05rem; }
 p {
   margin: 0;
 }
-/* Contenido */
-p.tit {
-  margin-top: .5rem;
+
+p.tit {  
   text-decoration: underline; 
   font-weight: bold; 
   font-style: italic;
 }
+p.tit:not(:first-child) {
+  margin-top: .5rem;
+}
+
 p.cit {
   margin: .75rem auto;
   font-style: italic;
 }
-:is(p,b,i).des {
+
+/* citas */
+cite {
   font-style: italic;
 }
 
-/* Palabras */
-:is(p,b,i).ide { 
-  color: var(--let_ide); 
-}
-:is(p,b,i).val { 
-  color: var(--let_val); 
-}
-:is(p,b,i).err { 
-  color: var(--let_err); 
+q, blockquote { 
+  quotes: "\"" "\"" "'" "'";
 }
 
+:is(q,blockquote)::after, 
+:is(q,blockquote)::before {
+  color: var(--let_ope);
+  text-shadow: 0 0 5px;
+}
+
+dfn, /* Definiciones */
+abbr, /* Abreviaturas */
+dt /* Términos */
+{ 
+  color: var(--let_ide); 
+}
+
+/* ////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////////////////////////////////// */
 
 /* 
   Listas
@@ -361,6 +402,9 @@ ul.ite > li {
   margin: .2rem 0;
 }
 
+/* ////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////////////////////////////////// */
+
 /* Tabla */
 table {
   /* width: 100%; */
@@ -377,16 +421,5 @@ table th > p {
 }
 table th p.tex:not(.tit) {
   color: var(--let_tex);
-  margin: .5rem;
-}
-
-/* listado vertical/horizontal */
-nav.lis {
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-}
-nav.lis > :is(p,a) {
-  padding-left: .5rem;
   margin: .5rem;
 }
