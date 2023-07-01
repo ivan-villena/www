@@ -243,6 +243,18 @@ img {
 /* ////////////////////////////////////////////////////////////////////////////////////////////////// */
 
 /* 
+  Fecha
+*/
+time {  
+  display: flex;
+  max-width: -moz-fit-content;
+  max-width: fit-content;
+}
+
+/* ////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////////////////////////////////// */
+
+/* 
   Numero
 */
 n {
@@ -258,7 +270,7 @@ n, sup, sub {
 /* ////////////////////////////////////////////////////////////////////////////////////////////////// */
 
 /* 
-  letra 
+  Texto 
 */
 c {
   display: inline;  
@@ -271,43 +283,8 @@ c.sep {
 }
 
 /* 
-  Palabras 
+  párrafos 
 */
-:is(p,b,i).des {
-  font-style: italic;
-}
-:is(p,b,i).ide { 
-  color: var(--let_ide); 
-}
-:is(p,b,i).val { 
-  color: var(--let_val); 
-}
-:is(p,b,i).err { 
-  color: var(--let_err); 
-}
-/* ////////////////////////////////////////////////////////////////////////////////////////////////// */
-/* ////////////////////////////////////////////////////////////////////////////////////////////////// */
-
-/* separador */
-hr{   
-  margin: 2rem;
-}
-
-/* titulo */
-h1, h2, h3, h4, h5, h6 {
-  margin: .5rem 0;
-  text-decoration: underline;
-  font-style: italic;
-  font-weight: bold;
-}
-h1 { font-size: 1.50rem; }
-h2 { font-size: 1.25rem; }
-h3 { font-size: 1.20rem; }
-h4 { font-size: 1.15rem; }
-h5 { font-size: 1.10rem; }
-h6 { font-size: 1.05rem; }
-
-/* párrafos */
 p {
   margin: 0;
 }
@@ -316,14 +293,47 @@ p.tit {
   text-decoration: underline; 
   font-weight: bold; 
   font-style: italic;
-}
-p.tit:not(:first-child) {
   margin-top: .5rem;
+  margin-bottom: .25rem;
+}
+
+p.nom {
+  font-weight: bold;
+  font-style: italic;
+}
+
+p.des {
+  font-style: italic;
 }
 
 p.cit {
   margin: .75rem auto;
   font-style: italic;
+}
+
+/* 
+  Palabras 
+*/
+:is(p,b,i).enf { 
+  font-weight: bold;
+}
+:is(p,b,i).cur { 
+  font-style: italic;
+}
+:is(p,b,i).sub { 
+  text-decoration: underline;
+}
+:is(p,b,i).luz {
+  text-shadow: 0 0 5px;
+}
+:is(p,b,i).err { 
+  color: var(--let_err);
+}
+:is(b,i).ide { 
+  color: var(--let_ide); 
+}
+:is(b,i).val { 
+  color: var(--let_val); 
 }
 
 /* citas */
@@ -348,9 +358,50 @@ dt /* Términos */
   color: var(--let_ide); 
 }
 
+/* separador */
+hr{   
+  margin: 2rem;
+}
+
+/* titulo */
+h1, h2, h3, h4, h5, h6 {
+  margin: .5rem 0;
+  text-decoration: underline;
+  font-style: italic;
+  font-weight: bold;
+}
+h1 { font-size: 1.50rem; }
+h2 { font-size: 1.25rem; }
+h3 { font-size: 1.20rem; }
+h4 { font-size: 1.15rem; }
+h5 { font-size: 1.10rem; }
+h6 { font-size: 1.05rem; }
+
 /* ////////////////////////////////////////////////////////////////////////////////////////////////// */
 /* ////////////////////////////////////////////////////////////////////////////////////////////////// */
 
+/* Tabla */
+table {
+  /* width: 100%; */
+  border-collapse: separate; /* espaciado aplica cuando el collapse es separate // not:: collapse: collapse */  
+  border-spacing: .2rem .1rem; /* => horizontal-izquierda vertical-superior */
+  padding-bottom: 1rem;
+}
+table th {
+  color: var(--let_ide);
+  max-width: fit-content;
+}
+table th > p {
+  margin: auto;
+}
+table th p.tex:not(.tit) {
+  color: var(--let_tex);
+  margin: .5rem;
+}
+
+
+/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 /* 
   Listas
 */
@@ -374,7 +425,7 @@ dl dd {
   margin-left: 1rem;  
 }
 
-ul.lis,
+ul.lis:not(.pos),
 ul.ite {
   padding: 0;
   list-style: none;
@@ -389,7 +440,7 @@ ul.val {
   max-width: fit-content;
   align-items: center;
   padding: 0;
-  margin: 0;
+  /* margin: 0; por tema de tableros y otras listas con margenes */
 }
 
 /* 
@@ -402,24 +453,86 @@ ul.ite > li {
   margin: .2rem 0;
 }
 
-/* ////////////////////////////////////////////////////////////////////////////////////////////////// */
-/* ////////////////////////////////////////////////////////////////////////////////////////////////// */
-
-/* Tabla */
-table {
-  /* width: 100%; */
-  border-collapse: separate; /* espaciado aplica cuando el collapse es separate // not:: collapse: collapse */  
-  border-spacing: .2rem .1rem; /* => horizontal-izquierda vertical-superior */
+/* 
+  Contenido vertical con sublistas
+*/
+ul.lis.dep {  
+  overflow: auto;
   padding-bottom: 1rem;
 }
-table th {
-  color: var(--let_ide);
-  max-width: fit-content;
+ul.lis.dep ul.lis {    
+  padding-left: 1rem;
+  padding-bottom: .25rem;
+  margin: 0;
 }
-table th > p {
-  margin: auto;
+ul.lis.dep li > .ope_val {
+  width: initial;
+  border-radius: .2rem;
+  margin: .25rem 0;
 }
-table th p.tex:not(.tit) {
+ul.lis.dep:not(.val) li.sep  {
+  margin-left: 1.5rem;
+}
+
+/* 
+  Indice por subniveles 
+*/
+ul.lis.nav a {
+  display: inline-block;
+  overflow: auto;
+  width: 100%;
+  text-decoration: none;
   color: var(--let_tex);
-  margin: .5rem;
 }
+ul.lis.nav li.pos.sep,
+ul.lis.nav li.pos:not(.sep) > .ope_val {  
+  margin-top: .1rem;
+  margin-bottom: .1rem;
+  padding: .25rem;
+}
+ul.lis.nav li.pos.sep:hover,  
+ul.lis.nav li.pos:not(.sep) > .ope_val:hover {
+  background-color: var(--fon_foc);
+  border-radius: .25rem;
+}
+ul.lis.nav a {
+  display: inline-block;
+  overflow: auto;
+  width: 100%;
+  text-decoration: none;
+  color: var(--let_tex);
+}
+ul.lis.nav li.pos.sep,
+ul.lis.nav li.pos:not(.sep) > .ope_val {  
+  margin-top: .1rem;
+  margin-bottom: .1rem;
+  padding: .25rem;
+}
+ul.lis.nav li.pos.sep:hover,  
+ul.lis.nav li.pos:not(.sep) > .ope_val:hover {
+  background-color: var(--fon_foc);
+  border-radius: .25rem;
+}
+
+/* 
+  Barra Horizontal con desplazamiento por item
+*/
+ul.lis.bar {
+  display: flex;
+  flex-flow: row nowrap;
+  padding: 0;
+  margin: 0;
+}
+ul.lis.bar > li {
+  width: 100%;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+/* Botonera */
+ul.lis.bar + .ope_bot > button {
+  width: 2rem;
+}
+

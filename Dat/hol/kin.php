@@ -2,10 +2,10 @@
 
   function dat(){
     $_ = "";
-    foreach( Dat::_('hol.kin') as $kin => $_kin ){
-      $sel = Dat::_('hol.sel',$_kin->arm_tra_dia);
+    foreach( Dat::_('hol.kin') as $kin => $Kin ){
+      $sel = Dat::_('hol.sel',$Kin->arm_tra_dia);
       $cel = Dat::_('hol.sel_arm_cel',$sel->arm_cel);
-      $ton = Dat::_('hol.ton',$_kin->nav_ond_dia);      
+      $ton = Dat::_('hol.ton',$Kin->nav_ond_dia);      
       // poder del sello x poder del tono
       if( preg_match("/(o|a)$/i",$ton->nom) ){
         $pod = explode(' ',$sel->des_pod);
@@ -24,16 +24,16 @@
       if( $ton->pul_mat == 1 ){
         $enc .= "mi propio Poder duplicado. ";
       }else{
-        $gui = Dat::_('hol.sel', Dat::_('hol.kin',$_kin->par_gui)->arm_tra_dia );
+        $gui = Dat::_('hol.sel', Dat::_('hol.kin',$Kin->par_gui)->arm_tra_dia );
         $enc .= " el poder ".Tex::art_del($gui->des_pod).".";
       }
-      if( in_array($kin+1, $_kin->val_est) ){
-        $_est = Dat::_('hol.kin_cro_est',$_kin->cro_est);
-        $_ele = Dat::_('hol.kin_cro_ele',$_kin->cro_ele);
+      if( in_array($kin+1, $Kin->val_est) ){
+        $_est = Dat::_('hol.kin_cro_est',$Kin->cro_est);
+        $_ele = Dat::_('hol.kin_cro_ele',$Kin->cro_ele);
         $Arm = Dat::_('hol.kin_cro_ond',Dat::_('hol.ton',$_ele['ton'])->ond_arm);
         $enc .= "\nSoy un Kin Polar, {$Arm->enc} {$_est->des_col}. ";
       }
-      if( in_array($kin+1, $_kin->val_pag) ){
+      if( in_array($kin+1, $Kin->val_pag) ){
         $enc .= "\nSoy un Portal de Activación Galáctica, entra en mí.";
       }
       $_ .= "
@@ -42,7 +42,7 @@
           `pod` = '{$pod}', 
           `des` = '{$enc}'
         WHERE 
-          `ide` = '{$_kin->ide}';
+          `ide` = '{$Kin->ide}';
       </p>";
     }
     return $_;
@@ -53,16 +53,16 @@
     $_lim = [ 20, 20, 19, 20, 20, 19, 20, 20, 20, 19, 20, 20, 19, 20, 20, 19, 20, 20, 19, 20 ];
     $_add = [ '052','130','208' ];
     $ini = -3113;
-    foreach( Dat::_('hol.kin') as $_kin ){    
+    foreach( Dat::_('hol.kin') as $Kin ){    
 
-      $fin = $ini + $_lim[intval($_kin->arm_tra_dia)-1];
+      $fin = $ini + $_lim[intval($Kin->arm_tra_dia)-1];
 
-      if( in_array($_kin->ide,$_add) ){ $fin ++; }
+      if( in_array($Kin->ide,$_add) ){ $fin ++; }
 
       $_ .= "
       UPDATE `hol-kin` SET 
         `fac` = '".Fec::año_ran($ini,$fin)."'
-      WHERE `ide` = '$_kin->ide'; 
+      WHERE `ide` = '$Kin->ide'; 
       <br>";
 
       $ini = $fin;
@@ -73,14 +73,14 @@
   function enc(){
     $_ = "";
     $enc_ini = -26000;    
-    foreach( Dat::_('hol.kin') as $_kin ){    
+    foreach( Dat::_('hol.kin') as $Kin ){    
 
       $enc_fin = $enc_ini + 100;
 
       $_ .= "
       UPDATE `hol-kin` 
         SET `enc_ini` = $enc_ini, `enc_fin` = $enc_fin, `enc_ran` = '".Fec::año_ran($enc_ini,$enc_fin)."' 
-        WHERE `ide` = '$_kin->ide'; 
+        WHERE `ide` = '$Kin->ide'; 
       <br>";
 
       $enc_ini = $enc_fin;
@@ -116,11 +116,14 @@
     $ton = 1;
     $pos = 0;
     foreach( Dat::_('hol.kin_cro_est_dia') as $_dia ){
-      $pos++;
-      if( $pos > 5 ){
+      
+      if( $pos >= 5 ){
         $pos = 0;
         $ton++;
       }
+
+      $pos++;
+
       $_ .= "
       UPDATE `hol-kin_cro_est_dia` SET
         `ton` = $ton
@@ -132,14 +135,14 @@
 
   function nav_ond(){
     $_ = "";
-    foreach( Dat::_('hol.kin_nav_ond') as $_ond ){
-      $Sel = Dat::_('hol.sel',$_ond->sel);
-      $_cas_arm = Dat::_('hol.cas_arm',$_ond->cas_arm);
+    foreach( Dat::_('hol.kin_nav_ond') as $Ond ){
+      $Sel = Dat::_('hol.sel',$Ond->sel);
+      $_cas_arm = Dat::_('hol.cas_arm',$Ond->cas_arm);
       $_ .= "
       UPDATE `hol-kin_nav_ond` SET
         `des` = 'Se ".substr($_cas_arm->des_pod,0,-1)." el cuadrante $_cas_arm->des_col ".Tex::art_del($_cas_arm->dir)." $Sel->acc_pal $Sel->des_car con el poder ".Tex::art_del($Sel->des_pod)." '
       WHERE 
-        `ide` = $_ond->ide;<br>";
+        `ide` = $Ond->ide;<br>";
     }
     return $_;
   }

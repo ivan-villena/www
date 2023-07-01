@@ -7,42 +7,35 @@
   
   $Tableros = [
     // Orden Cíclico
-    'orden_sincronico'=>[
-      'tzolkin'             =>'kin',
-      'nave'                =>'kin_nav',
-      'castillo'            =>'kin_nav_cas',
-      'onda'                =>'kin_nav_ond',
-      'giro_galactico'      =>'kin_arm',
-      'trayectoria'         =>'kin_arm_tra',
-      'celula'              =>'kin_arm_cel',
-      'giro_espectral'      =>'kin_cro',
-      'estacion'            =>'kin_cro_est',
-      'elemento'            =>'kin_cro_ele',
-      'holon_solar'         =>'sol',
-      'holon_planetario'    =>'pla',
-      'holon_humano'        =>'hum'
-    ],    
-    // Orden Sincrónico
-    'orden_ciclico'=>[
-      'banco_psi'         =>'psi_ban',
-      'luna'              =>'psi_lun',
-      'luna_diario'       =>'psi_lun_dia',
-      'estacion'          =>'psi_est',
-      'estacion_diario'   =>'psi_est_dia',
-      'heptada'           =>'psi_hep',
-      'holon_humano'      =>'hum'
-    ],
-    // Holones
-    'holon'=>[
-      'solar'         =>'sol',
-      'planetario'    =>'pla',
-      'humano'        =>'hum'
-    ]
+    'banco_psi'             =>'psi',
+    'luna'                  =>'psi_lun',
+    'luna_diario'           =>'psi_lun_dia',
+    'estacion_solar'        =>'psi_est',
+    'estacion_solar_diario' =>'psi_est_dia',
+    'heptada'               =>'psi_hep',
+    // Orden Sincronico    
+    'tzolkin'               =>'kin',
+    'nave'                  =>'kin_nav',
+    'castillo'              =>'kin_nav_cas',
+    'onda_encantada'        =>'kin_nav_ond',
+    'giro_galactico'        =>'kin_arm',
+    'trayectoria_armonica'  =>'kin_arm_tra',
+    'celula_armonica'       =>'kin_arm_cel',
+    'giro_espectral'        =>'kin_cro',
+    'estacion_galactica'    =>'kin_cro_est',
+    'elemento_galactico'    =>'kin_cro_ele',
+    // holones
+    'holon_solar'           =>'sol',
+    'holon_planetario'      =>'pla',
+    'holon_humano'          =>'hum'
   ];
 
   // identificador del tablero
   $esq = "hol";
-  $tab_ide = $Tableros[$Uri->cab][$Uri->art];  
+  $tab_ide = $Tableros[$Uri->art];
+
+  // identificadores del ciclo: 365 - 260 - ...
+  if( in_array($est = substr($tab_ide,0,3),['sol','pla','hum']) ) $est = "kin"; 
 
   // imrpimo Diario
   $Doc->Cab['ini']['dia'] = [
@@ -69,9 +62,9 @@
         'ico'=>"fig", 
         'nom'=>"Sincrónico",
         'htm'=>Doc_Dat::pos($esq,"kin",[ 
-          'kin'=>$_kin = Dat::_('hol.kin',$Cic['kin']),
-          'sel'=>Dat::_('hol.sel',$_kin->arm_tra_dia),
-          'ton'=>Dat::_('hol.ton',$_kin->nav_ond_dia)
+          'kin'=>$Kin = Dat::_('hol.kin',$Cic['kin']),
+          'sel'=>Dat::_('hol.sel',$Kin->arm_tra_dia),
+          'ton'=>Dat::_('hol.ton',$Kin->nav_ond_dia)
         ])
       ],
       'psi' => [
@@ -90,49 +83,26 @@
   ];
 
   // cargo operadores de la base
-  if( !( $tab_var =  Dat::est($esq,$tab_ide,'tab') ) ) $tab_var = [];  
-  
-  // inicializo operadores
-  $tab_var['val'] = [];            
+  if( !( $tab_var =  Dat::est($esq,$tab_ide,'tab') ) ) $tab_var = [];
 
-  // identificadores del ciclo: 365 - 260 - ...
-  if( $Uri->cab == 'orden_sincronico' ){
+  // cargo estructuras de datos por esquemas
+  $tab_var['est'] = [ 'var'=>[ "fec" ], 'hol'=>[ "kin", "psi" ] ];
 
-    $est = "kin";
-  }
-  elseif( $Uri->cab == 'orden_ciclico' ){
-    
-    $est = "psi";
-  }
-  elseif( $Uri->cab == 'holon' ){
+  // cargo datos para tablero y operadores
+  $tab_var['dat'] = Sincronario::dat_val( $Cic['fec'], $est == 'kin' ? 260 : 365, $Cic[$est] );
 
-    $est = "kin";
-  }
-  else{
-
-    $est = explode('_',$tab_ide)[0];
-  }
-
-  // cargo valores principales del ciclo diario
-  $tab_val = [ 'fec'=>$Cic['fec'], 'kin'=>$Cic['kin'], 'psi'=>$Cic['psi'] ];
-
-  // cargo joins por estructuras de datos
-  $tab_var['est'] = [ 'var'=>[ "fec" ], 'hol'=>[ "kin", "psi" ] ];  
-  
-  // cargo datos del tablero por estructura principal
-  $tab_var['dat'] = Sincronario::dat_tab_val( $est, $tab_val );
-
-  // activo acumulados
-  $tab_var['val']['acu'] = [ 'pos'=>1, 'mar'=>1, 'ver'=>1, 'atr'=>1 ];
-
-  // valor seleccionado
-  $tab_var['val']['pos'] = $tab_val;
+  // inicializo valores
+  $tab_var['val'] = [
+    // cargo valores principales del ciclo diario
+    'pos'=>[ 'fec'=>$Cic['fec'], 'kin'=>$Cic['kin'], 'psi'=>$Cic['psi'] ],
+    // activo acumulados
+    'acu'=>[ 'pos'=>1, 'mar'=>1, 'ver'=>1, 'atr'=>1 ]
+  ];
 
   // 1- imprimo operadores del tablero  
   foreach( ( $ope = Obj::nom( $Operadores,'ver',[ 'ver', 'opc', 'val' ]) ) as $ope_ide => $ope_tab ){ 
 
     $ope_ele = [];
-    
     // sumatorias del kin
     if( $ope_ide == 'val' ){
       
@@ -161,34 +131,31 @@
     }
 
   }
-  unset($tab_var['htm-ope']);
   
   // 2-imprimo operador de lista
   $lis_ide = $est;
 
+  // Cargo operadores de la base
   $lis_var = Dat::est($esq,$lis_ide,'lis');
 
+  // Copio valores por posicion
   $lis_var['val'] = $tab_var['val'];
   
-  // - cargo estructuras y datos
-  if( isset($tab_var['est']) ){
+  // Copio datos del tablero
+  $lis_var['dat'] = $tab_var['dat'];
 
-    // Copio datos del tablero
-    $lis_var['dat'] = $tab_var['dat'];
+  // Cargo operadores de lista por esquema-estructura
+  $lis_var['est'] = [];
+  foreach( $tab_var['est'] as $esq_ide => $esq_lis ){
 
-    // busco operadores de lista por : esquema_estructura
-    $lis_var['est'] = [];
-    foreach( $tab_var['est'] as $esq_ide => $esq_lis ){
+    $lis_var['est'][$esq_ide] = [];
+    foreach( $esq_lis as $est_ide ){
 
-      $lis_var['est'][$esq_ide] = [];
-      foreach( $esq_lis as $est_ide ){
+      $lis_var['est'][$esq_ide][$est_ide] = [];
+      
+      if( $est_ope = Dat::est($esq_ide,$est_ide,'lis') ){
 
-        $lis_var['est'][$esq_ide][$est_ide] = [];
-        
-        if( $est_ope = Dat::est($esq_ide,$est_ide,'lis') ){
-
-          $lis_var['est'][$esq_ide][$est_ide] = $est_ope;
-        }
+        $lis_var['est'][$esq_ide][$est_ide] = $est_ope;
       }
     }
   }
@@ -210,15 +177,14 @@
 
     // cargo evento de click por posicion para marcas
     'pos'=>[ 'onclick'=>"Doc_Dat.tab_val('mar',this);" ],
+    
     // anulo evento de ver informe
     'ima'=>[ 'onclick'=>FALSE ]
+
   ]);?>
 </article>
 
 <?php
-
-  // cargo clases css y programa
-  $Doc->Cla["Api/{$Uri->esq}"] []= "Operador";
 
   // cargo todos los datos utilizados por esquema
   $est_fec = [];
@@ -226,5 +192,6 @@
 
     if( preg_match("/^fec_/",$ide) ) $est_fec[] = $ide;
   }
-  $Doc->Est['hol'] = array_keys( Dat::$Est['hol'] );
+
+  $Doc->Est['hol'] = array_keys( Dat::$Est['hol'] );  
   $Doc->Est['var'] = $est_fec;  

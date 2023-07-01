@@ -60,7 +60,7 @@ class dat_tab {
     if( $Sincronario && $Sincronario.Val && ( $.val = $Sincronario.Val[$.ide] ) ){        
 
       // tomo solo posicion diaria
-      $.cla_dep = $Doc.Dat.tab.dep ? `.dep[var-fec="${$Sincronario.Val.fec}"] ` : '';
+      $.cla_dep = $Doc.Dat.tab.dep ? `[var-fec="${$Sincronario.Val.fec}"] ` : '';
 
       $_ = $Doc.Dat.tab.val.querySelectorAll(`${$.cla_dep}${$Doc.Dat.tab.cla}[hol-${$.ide}="${$.val}"]`);
     }
@@ -267,7 +267,7 @@ class dat_tab {
       $.pul_val = $var.value;
       
       // inicializo acumulados      
-      $.cla_ver = $Doc.Dat.tab.val.querySelector(`.pos.dep`) ? `.pos.dep` : $Doc.Dat.tab.cla;
+      $.cla_ver = $Doc.Dat.tab.cla;
 
       // desmarco pulsares anteriores
       Doc.act('cla_eli',$Doc.Dat.tab.val.querySelectorAll(`${$.cla_ver}.${$.cla[0]}`),$.cla);

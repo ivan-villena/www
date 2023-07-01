@@ -192,6 +192,25 @@
         _ocu.ini
     ;
   --
+  -- x13 : tonos galácticos
+      DROP VIEW IF EXISTS `_hol-ton_ond_ave`; CREATE VIEW `_hol-ton_ond_ave` AS
+      SELECT 
+        _ton.ide,
+        _ton.ond_nom AS `nom`,
+        _ton.ond_man AS `des`,
+        _ton.ond_pos AS `pos`,
+        _ton.ond_pod AS `pod`,
+        _ton.cit_pre,
+        _ton.ond,
+        _ton.dim,
+        _ton.mat,
+        _ton.sim        
+      FROM 
+        `hol-ton` _ton
+      ORDER BY 
+        _ton.ide ASC
+    ;
+  --
   -- x28: giro lunar
     -- heptadas
     DROP VIEW IF EXISTS `_hol-lun_arm`; CREATE VIEW `_hol-lun_arm` AS
@@ -410,11 +429,14 @@
     ;
   --
   -- x365 : Banco-psi
+
     -- psi-cronos
     DROP VIEW IF EXISTS `_hol-psi`; CREATE VIEW `_hol-psi` AS 
       SELECT 
         _psi.*,
         _kin.pag AS `pag`,
+        _kin.nom AS `kin_nom`,
+        _kin.des AS `kin_des`,
         _kin.arm_tra_dia AS `kin_sel`,
         _kin.nav_ond_dia AS `kin_ton`
       FROM 
@@ -424,6 +446,27 @@
       ORDER BY
         _psi.ide        
     ;
+
+    -- Anillo solares del
+    DROP VIEW IF EXISTS `_hol-psi_ani`; CREATE VIEW `_hol-psi_ani` AS 
+      SELECT 
+        _ani.*,
+        _kin.nom AS `kin_nom`,
+        _kin.des AS `kin_des`,
+        _kin.arm_tra_dia AS `kin_sel`,
+        _kin.nav_ond_dia AS `kin_ton`,        
+        _cas.ide AS `cas`,
+        _cas.ton AS `cas_ton`
+      FROM 
+        `hol-psi_ani` _ani
+      INNER JOIN 
+        `hol-kin` _kin ON _kin.ide = _ani.fam_4 
+      INNER JOIN 
+        `hol-cas` _cas ON _ani.ide = _cas.ide
+      ORDER BY
+        _ani.ide
+    ;
+
     -- 4 estaciones
     DROP VIEW IF EXISTS `_hol-psi_est`; CREATE VIEW `_hol-psi_est` AS
       SELECT 
@@ -455,6 +498,7 @@
       ORDER BY
         _dia.ide
     ;
+
     -- 13 lunas del giro solar
     DROP VIEW IF EXISTS `_hol-psi_lun`; CREATE VIEW `_hol-psi_lun` AS 
       SELECT 
@@ -482,6 +526,7 @@
       ORDER BY
         _lun.ide        
     ;
+
     -- 52 heptadas del giro solar
     DROP VIEW IF EXISTS `_hol-psi_hep`; CREATE VIEW `_hol-psi_hep` AS
       SELECT 
@@ -493,6 +538,7 @@
         _ton.mat,
         _ton.sim,
         _cas.ton,
+        _ton.nom AS `ton_nom`,        
         _ton.des AS `ton_des`,
         _ton.des_car AS `ton_des_car`,
         _ton.des_pod AS `ton_des_pod`,
@@ -553,30 +599,5 @@
       ORDER BY 
         _ded.ide ASC
     ;
-  --
-  -- Ciclos de tiempo siriano
-    -- x250x365 : anillos del encantamiento
-    DROP VIEW IF EXISTS `_hol-sir_ani`; CREATE VIEW `_hol-sir_ani` AS 
-      SELECT 
-        _ani.ide,
-        _ani.cod,
-        _ani.fam_2,
-        _ani.fam_3,
-        _ani.fam_4,
-        _kin.nom AS `kin_nom`,
-        _kin.des AS `kin_des`,
-        _kin.arm_tra_dia AS `kin_sel`,
-        _kin.nav_ond_dia AS `kin_ton`,        
-        _cas.ide AS `cas`,
-        _cas.ton AS `cas_ton`
-      FROM 
-        `hol-sir_ani` _ani
-      INNER JOIN 
-        `hol-kin` _kin ON _kin.ide = _ani.fam_4 
-      INNER JOIN 
-        `hol-cas` _cas ON _ani.cod = _cas.ide
-      ORDER BY
-        _ani.ide
-    ;    
   --
 --

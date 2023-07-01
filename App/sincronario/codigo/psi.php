@@ -215,7 +215,7 @@
     <section id="<?="_{$Nav[2][$nv1][$nv2]->pos}-"?>">
       <h3><?=Doc_Val::let($Nav[2][$nv1][$nv2]->nom);?></h3>
 
-      <p>En <cite>La Tierra en Ascenso</cite> se establece la <a href="<?=$Dir->libro?>" target="_blank">unidad psi<c>-</c>crono</a> como la designación para cada una de las <n>2</n>.080 unidades que surgen de la matriz base compuesta por <n>8</n> tzolkins y expresan la pulsación solar<c>.</c></p>
+      <p>En <cite>La Tierra en Ascenso</cite> se establece la <a href="<?=$Dir->libro?>" target="_blank">unidad psi<c>-</c>crono</a> como la designación para cada una de las <n>2.080</n> unidades que surgen de la matriz base compuesta por <n>8</n> tzolkins y expresan la pulsación solar<c>.</c></p>
 
       <p><q>Podemos observar una unidad psi<c>-</c>crono o psi<c>-</c>tiempo en la siguiente manera<c>:</c> así como hay <n>4</n> estaciones por año<c>,</c> cada una con su cualidad singular siguiendo a la otra<c>,</c> así hay un ciclo de <n>260</n> días<c>,</c> cada uno de los cuales contiene su cualidad particular<c>,</c> la cual<c>,</c> sincronizada con el patrón de flujo de los días en sucesión estacional<c>,</c> da cuenta de los cambios ricamente diversos<c>,</c> aparentemente impredecibles que acompañan cada día<c>,</c> tanto atmosférica como psíquicamente<c>.</c></q></p>
 
@@ -281,9 +281,9 @@
 
       <p>Así como el Calendario Sagrado Tzolkin mide los ciclos galácticos de <n>260</n> días<c>,</c> el Haab <c>(</c> Calendario Civil Maya <c>)</c> mide los ciclos solares de <n>365</n> días dividido en <n>18</n> vinales de <n>20</n> días y un Uayeb de <n>5</n> días<c>.</c></p>
 
-      <p>Ambos ciclos<c>,</c> el galáctico y el solar<c>,</c> se sincronizan cada <n>52</n> años<c>.</c> Es decir<c>,</c> que cada <n>18</n>.980 días se repite el mismo par de signos tanto en el Haab como en el Tzolkin<c>.</c></p>
+      <p>Ambos ciclos<c>,</c> el galáctico y el solar<c>,</c> se sincronizan cada <n>52</n> años<c>.</c> Es decir<c>,</c> que cada <n>18.980</n> días se repite el mismo par de signos tanto en el Haab como en el Tzolkin<c>.</c></p>
 
-      <p>Esta información se encuentra en el <a href="<?=$Dir->libro?>factor_maya#_11-05-" target="_blank">Ciclo de <n>52</n> años y el calendario circular diario</a> del <cite>Factor Maya</cite><c>,</c> donde también se propone<c>:</c> <q>De esta información<c>,</c> junto con las concordancias del signo para el día planetario dadas<c>,</c> es fácil construir un calendario o libro diario<c>,</c> y dada la información del Capítulo <n>4</n><c>,</c> empezar a trabajar todos los días con la “astrología” cotidiana de los mayas</q><c>.</c></p>
+      <p>Esta información se encuentra en el <a href="<?=$Dir->libro?>factor_maya#_11-05-" target="_blank">Ciclo de <n>52</n> años y el calendario circular diario</a> del <cite>Factor Maya</cite><c>,</c> donde también se propone<c>:</c> <q>De esta información<c>,</c> junto con las concordancias del signo para el día planetario dadas<c>,</c> es fácil construir un calendario o libro diario<c>,</c> y dada la información del Capítulo <n>4</n><c>,</c> empezar a trabajar todos los días con la <c>“</c>astrología<c>”</c> cotidiana de los mayas</q><c>.</c></p>
 
       <p>Por otro lado<c>,</c> en <a href="<?=$Dir->libro?>tratado_del_tiempo#_08-03-" target="_blank">Los <n>18</n> Vinales del ciclo de frecuencia solar del Haab</a> de <cite>Un Tratado del Tiempo</cite> se presentas estos signos en una lista con las fechas correspondientes al calendario y las correlaciones con las cromáticas entonadas<c>.</c> También se menciona que estas fechas son las que figuran en el disco verde exterior de la <a href="<?=$Dir->libro?>encantamiento_del_sueño#_02-02-01-01-03-" target="_blank">brujula galáctica</a><c>,</c> instrumento que se utiliza para decodificar las fechas del calendario gregoriano al sincronario<c>.</c></p>
 

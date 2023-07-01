@@ -46,7 +46,7 @@ class App {
           }
           
           // Índice: hago click y muestro panel
-          if( $.art && ( $.art_nav = $Doc.Ope.pan.querySelector('.ide-app_nav ul.ope_lis.nav') ) ){
+          if( $.art && ( $.art_nav = $Doc.Ope.pan.querySelector('.ide-app_nav ul.lis.nav') ) ){
             
             // inicializo enlace local
             Doc_Ope.art_nav('tog',$.art_nav);

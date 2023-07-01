@@ -24,3 +24,8 @@ main section.inicio > .-adv {
   grid-column: 4/sp;
   grid-row: 1/2;
 }
+
+/* Ficgas */
+main article > .ope_tex > .dat_fic {
+  margin: 0;
+} 

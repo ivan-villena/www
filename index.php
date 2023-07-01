@@ -17,6 +17,7 @@
   require_once("./Var/Num.php");
   require_once("./Var/Tex.php");
   require_once("./Var/Fec.php");
+  require_once("./Var/Hol.php");
   require_once("./Var/Obj.php");
   require_once("./Var/Eje.php");
   require_once("./Var/Ele.php");
@@ -65,7 +66,7 @@
 
     if( $Usu->key == 1 ){ 
 
-      include("./_/log.php");
+      include("./Api/log.php");
     }    
 
     // ver cabeceras para api's: tema no-cors

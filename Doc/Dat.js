@@ -828,7 +828,7 @@ class Doc_Dat {
     $Doc.Dat.tab.ide = $ope?.ide ?? $Doc.Dat.tab.val.classList[2].split('_')[0];
     
     // evaluo si la posicion es por dependencia : por oraculos
-    $Doc.Dat.tab.dep = $Doc.Dat.tab.val.querySelector(`.pos.dep`) ? true : false;
+    $Doc.Dat.tab.dep = /dep_/.test($Doc.Dat.tab.val.className);
     
     // inicializo variables: opciones y selectores
     ['sec','pos','est','atr'].forEach( $ide => {      

@@ -19,7 +19,7 @@ class Usuario extends Usu {
     $this->edad = Fec::año_cue( $this->fecha );    
 
     // cargo valores del sincronario por fecha de nacimiento
-    $this->firma = Sincronario::val( $this->fecha );
+    $this->firma = Hol::val( $this->fecha );
 
     // cargo objetos
     $this->firma['Kin'] = Dat::_('hol.kin',$this->firma['kin']);
@@ -54,7 +54,7 @@ class Usuario extends Usu {
     $Psi = $this->firma['Psi'];    
 
     // diario
-    $Diario = Sincronario::val( Fec::dia() );    
+    $Diario = Hol::val( Fec::dia() );    
 
     // cargo transitos para el dia
     $Transito = $this->buscar_transito( !empty($fec) ? $fec : $_SESSION['Fec']->val );
@@ -115,7 +115,7 @@ class Usuario extends Usu {
     $_ani_arm = Dat::get("hol-hum_cas_arm",[ 'ver'=>"`ide`=$_ani->arm", 'opc'=>"uni"] );
     $_ani_fec = Fec::dat($_ani->fecha);      
     $_ani_ton = Dat::_('hol.ton',$dat['ani']->ton);
-    $_kin = Dat::_('hol.kin',$_ani->kin);
+    $Kin = Dat::_('hol.kin',$_ani->kin);
     $_ = "
     <h3>Tránsito Anual</h3>
 
@@ -133,7 +133,7 @@ class Usuario extends Usu {
       </div>
     </div>
 
-    ".Doc_Dat::inf('hol.kin',$_kin,['cit'=>"des",'ima'=>[]])."
+    ".Doc_Dat::inf('hol.kin',$Kin,['cit'=>"des",'ima'=>[]])."
 
     ";
     return $_;
@@ -142,7 +142,7 @@ class Usuario extends Usu {
     $_lun = $dat['lun'];
     $_lun_fec = Fec::dat($_lun->fecha);
     $_lun_ton = Dat::_('hol.ton',$_lun->ide);
-    $_kin = Dat::_('hol.kin',$_lun->kin);
+    $Kin = Dat::_('hol.kin',$_lun->kin);
     $_ = "
     <h3>Tránsito Lunar</h3>
 
@@ -158,7 +158,7 @@ class Usuario extends Usu {
     </div>
 
 
-    ".Doc_Dat::inf('hol.kin',$_kin,['cit'=>"des"])."
+    ".Doc_Dat::inf('hol.kin',$Kin,['cit'=>"des"])."
 
     ";
     return $_;
@@ -245,7 +245,7 @@ class Usuario extends Usu {
     $fec_val = "{$Fec_usu->dia}/{$Fec_usu->mes}/".( $Fec_usu->año + $año_cue );
 
     // cargo el holon para ese dia de cumpleaños $año_cue
-    $sincronario = Sincronario::val($fec_val);
+    $sincronario = Hol::val($fec_val);
 
     // posicion del castillo para ese periodo
     $cas_pos = $año_cue + 1;
@@ -273,7 +273,7 @@ class Usuario extends Usu {
 
       foreach( Dat::_('hol.ton') as $Ton ){
 
-        $Hol_lun = Sincronario::val($sin_lun);
+        $Hol_lun = Hol::val($sin_lun);
 
         $Transito_lunar = new stdClass;
         $Transito_lunar->ide = intval($Ton->ide); 
@@ -287,7 +287,7 @@ class Usuario extends Usu {
         $Transito_anual->Luna[$Transito_lunar->ide] = $Transito_lunar;
         
         // incremento 28 dias
-        $sin_lun = Fec::ope($sin_lun,28,'+','dia');
+        $sin_lun = Fec::val_ope($sin_lun,28,'+','dia');
 
         // incremento 1 posicion de la onda encantada anual
         $kin_ond++;
@@ -315,10 +315,10 @@ class Usuario extends Usu {
     $lun_cue = intval($dia_cue / 28);
 
     // fecha inicial del ciclo lunar
-    $lun_fec = Fec::ope($sin_lun, $lun_cue * 28, '+', 'dia');
+    $lun_fec = Fec::val_ope($sin_lun, $lun_cue * 28, '+', 'dia');
 
     // Datos del dia
-    $Hol_lun = Sincronario::val($lun_fec);
+    $Hol_lun = Hol::val($lun_fec);
 
     $Transito_lunar->ide = $lun_cue;
     $Transito_lunar->fec = $Hol_lun['fec'];
@@ -367,17 +367,17 @@ class Usuario extends Usu {
         foreach( Dat::get('sis-usu_cic_lun',[ 'ver'=>"`usu` = '{$this->key}' AND `ani`=$_cic->ide", 'ord'=>"`ide` ASC" ]) as $_lun ){                            
           $_fec = Fec::dat($_lun->fecha);
           $_lun_ton = Dat::_('hol.ton',$_lun->ide);
-          $_kin = Dat::_('hol.kin',$_lun->kin);
+          $Kin = Dat::_('hol.kin',$_lun->kin);
           $_nav = "<a href='http://localhost/sincronario/tablero/tzolkin/sin=$_lun->val' target='_blank' title='Ver en Tableros...'>".Doc_Val::let($_lun->val)."</a>";
           $_lis_lun []= 
           "<div class='-ite'>
-            ".Doc_Val::ima('hol',"kin",$_kin,['class'=>"tam-6 mar_der-1"])."
+            ".Doc_Val::ima('hol',"kin",$Kin,['class'=>"tam-6 mar_der-1"])."
             <p>
               ".Doc_Val::let(intval($_lun_ton->ide)."° ciclo, ").$_nav.Doc_Val::let(" ( $_fec->val ).")."
               <br>".Doc_Val::let("$_lun_ton->ond_nom: $_lun_ton->ond_man")."
             </p>              
           </div>
-          <p class='mar-1 tex_ali-cen'>".Sincronario::dat_des('kin',$_kin)."</p>";
+          <p class='mar-1 tex_ali-cen'>".Sincronario::dat_des('kin',$Kin)."</p>";
         }
 
         // ciclo anual
@@ -385,18 +385,18 @@ class Usuario extends Usu {
         $Cas = Dat::_('hol.cas',$_cic->ide);
         $_cas_ton = Dat::_('hol.ton',$_cic->ton);
         $_cas_arm = Dat::_('hol.cas_arm',$_cic->arm);            
-        $_kin = Dat::_('hol.kin',$_cic->kin);            
+        $Kin = Dat::_('hol.kin',$_cic->kin);            
         $_lis_cic []= [
           'ite'=>[ 'eti'=>"div", 'class'=>"lis", 'htm'=> 
             "<div class='-ite'>
-              ".Doc_Val::ima('hol',"kin",$_kin,['class'=>"tam-6 mar_der-1"])."
+              ".Doc_Val::ima('hol',"kin",$Kin,['class'=>"tam-6 mar_der-1"])."
               <p title = '$Cas->des'>
                 ".Doc_Val::let("$_cic->eda año".( $_cic->eda != 1 ? 's' : '' ).", $_cic->val ( $_fec->val ):")."
                 <br>".Doc_Val::let("Cuadrante $_cas_arm->col d{$_cas_arm->dir}: $_cas_arm->pod")."
                 <br>".Doc_Val::let("$_cas_ton->ond_nom: $_cas_ton->ond_man")."                
               </p>
             </div>
-            <p class='mar-1 tex_ali-cen'>".Sincronario::dat_des('kin',$_kin)."</p>"
+            <p class='mar-1 tex_ali-cen'>".Sincronario::dat_des('kin',$Kin)."</p>"
           ],
           'lis'=>$_lis_lun
         ];
@@ -409,7 +409,7 @@ class Usuario extends Usu {
 
     $ope['opc'] = [ 'tog', 'ver', 'cue', 'tog-dep' ];
 
-    return Doc_Ope::lis('dep',$_lis,$ope);
+    return Doc_Val::lis('dep',$_lis,$ope);
   }
   public function listar_transito_anual() : string {
     $_ = "";

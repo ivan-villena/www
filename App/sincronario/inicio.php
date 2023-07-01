@@ -1,7 +1,7 @@
 
 <?php
   // proceso valores del ciclo
-  $Cic = Sincronario::val( date('Y/m/d') );    
+  $Cic = Hol::val( date('Y/m/d') );    
 ?>
 
 <article>
@@ -44,7 +44,7 @@
 
   <section class="ope_tex anc-75">
 
-    <?= Doc_Dat::fic('hol.sir_ani',$Cic['ani']) ?>
+    <?= Doc_Dat::fic('hol.psi_ani',$Cic['ani']) ?>
 
   </section>  
 

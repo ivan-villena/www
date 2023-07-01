@@ -81,8 +81,33 @@ form.dat .ope_var > input:not([type='checkbox']):not([type='radio']) {
   border-bottom: 1px solid;  
 }
 
+/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+/*  
+  Ficha
+*/
+div.dat_fic {
+  margin: 1rem auto;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+div.dat_fic.dir-ver {
+  flex-direction: column;
+}
 
+/* Imagen */
+div.dat_fic > .val_ima {
+  margin-right: .75rem;
+}
 
+/* Nombre y Descripcion */
+div.dat_fic > .tex {
+  text-align: left;
+}
+div.dat_fic > .tex > p:not(:last-child) {
+  margin-bottom: .25rem;
+}
 
 /* ///////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 /* ///////////////////////////////////////////////////////////////////////////////////////////////////////////// */
@@ -152,23 +177,25 @@ div.dat_lis > table > tbody > tr > td > :is(n,time) {
 /* 
   Tablero
 */
+
+.dat_tab {
+  padding: 0;
+  width: -moz-fit-content;
+  width: fit-content;  
+}
+
 ul.dat_tab {
   list-style: none;
   display: grid;
   align-items: center;
   justify-items: center;
-  width: -moz-fit-content;
-  width: fit-content;
-  padding: 0;
-  margin: 1rem auto;
 }
 
 table.dat_tab {
-  border-collapse: collapse;
-  padding: 0;
+  border-collapse: collapse;  
 }
 
-:is(ul,table).dat_tab {
+.dat_tab {
   min-width: max-content;
   background-size: 100%;
   background-repeat: no-repeat;
@@ -176,30 +203,38 @@ table.dat_tab {
   text-align: center;
   font-size: .7rem;
   transition: background 1s, border 1s;  
+  margin: 1rem auto;
 }
-:is(ul,table).dat_tab.bor-1 {
+.dat_tab.bor-1 {
   border-color: var(--bor_sec);
   box-shadow: 0 0 .5rem var(--bor_sec);
 }
 
-/* subtableros */
 .dat_tab .dat_tab {
   margin: 0;
 }
 
-/* posiciones y secciones */
-.dat_tab > :is(.sec,.pos) {
+/* 
+  posiciones y secciones 
+*/
+.dat_tab > li:is(.sec,.pos) {
   width: 100%;
   height: 100%;
 }
-:is(ul,table).dat_tab .pos,
-:is(ul,table).dat_tab .sec {  
+.dat_tab .pos,
+.dat_tab .sec {  
   justify-self: center;
   align-self: center;
   margin: 0;
   transition: background 1s, border 1s;
 }
-:is(ul,table).dat_tab .pos[class*="fon_col-"] {
+
+/* Contenido */
+.dat_tab td:is(.pos,.sec) * {
+
+  margin: auto;
+}
+.dat_tab .pos[class*="fon_col-"] {
   box-shadow: 0 0 .5rem black;
 }
 
@@ -208,13 +243,13 @@ table.dat_tab {
 */
 
 /* fondos: imagen + color */
-.dat_tab > .sec.fon { 
+.dat_tab .sec.fon { 
   z-index: 0;
   grid-column: 1/sp; 
   grid-row: 1/sp;  
 }
 /* bordes y lineas*/
-.dat_tab > .sec.bor {
+.dat_tab .sec.bor {
   z-index: 1;
   border-width: 2px;
   border-style: double;
@@ -223,7 +258,7 @@ table.dat_tab {
   box-shadow: 0 0 .5rem var(--let_ico);
 }
 /* fichas e imagenes */
-.dat_tab > .sec.ima {
+.dat_tab .sec.ima {
   z-index: 10;
   display: flex;
   flex-direction: column;
@@ -235,7 +270,7 @@ table.dat_tab {
   posiciones 
 */
 
-ul.dat_tab > li.pos {
+.dat_tab > li.pos {
   z-index: 50;
   display: flex;
   flex-direction: column;
@@ -245,32 +280,33 @@ ul.dat_tab > li.pos {
 }
 
 /* Bordes */
-:is(ul,table).dat_tab .pos.bor-1 {
+.dat_tab .pos.bor-1 {
   border-color: #008000;
   box-shadow: 0 0 .3rem var(--let_ico);
 }
 /* - Operador */
-:is(ul,table).dat_tab .pos:is(._pos-bor,._ver-bor,._mar-bor) {
+.dat_tab .pos:is(._pos-bor,._ver-bor,._mar-bor) {
   border: 1px double #991d99;
 }
 
 /* Efectos */
-:is(ul,table).dat_tab .pos.ope[onclick]:hover {
+.dat_tab .pos.ope[onclick]:hover {
   background-color: var(--tra_ros);
   box-shadow: 0 0 .35rem var(--tra_vio);
   color: black;
 }
 
 /* Fichas de Imágenes */
-:is(ul,table).dat_tab :is(.sec,.pos) > .val_ima {
+.dat_tab :is(.sec,.pos) > .val_ima {
   min-width: 100%;
   height: 100%;
 }
-:is(ul,table).dat_tab td:is(.sec,.pos) > .val_ima {
+.dat_tab td:is(.sec,.pos) > .val_ima {
   min-height: 100%;
 }
 
 /* Textos */
-:is(ul,table).dat_tab :is(.sec,.pos) > p {
+.dat_tab :is(.sec,.pos) > p {
   text-align: center;
+  margin: 0;
 }

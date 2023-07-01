@@ -86,27 +86,27 @@ class Listado {
       break;
     // kin : katun del kin
     case 'kin':
-      $_kin = Dat::_('hol.kin',$var['ide']);
-      $Sel = Dat::_('hol.sel',$_kin->arm_tra_dia);
-      $_pol = Dat::_('hol.flu_res',$Sel->flu_res);
-      $_pla = Dat::_('hol.sol_pla',$Sel->sol_pla);
-      $_ond = Dat::_('hol.kin_nav_ond',$_kin->nav_ond);
-      $_arq = Dat::_('hol.sel',$_ond->sel);
-      $ton = intval($_kin->nav_ond_dia);
+      $Kin = Dat::_('hol.kin',$var['ide']);
+      $Sel = Dat::_('hol.sel',$Kin->arm_tra_dia);
+      $Pol = Dat::_('hol.flu_res',$Sel->flu_res);
+      $Pla = Dat::_('hol.sol_pla',$Sel->sol_pla);
+      $Ond = Dat::_('hol.kin_nav_ond',$Kin->nav_ond);
+      $Arq = Dat::_('hol.sel',$Ond->sel);
+      $ton = intval($Kin->nav_ond_dia);
       $_ = "
       <div class='-val'>
 
-        ".Doc_Val::ima($dat_esq,"kin",$_kin)."
+        ".Doc_Val::ima($dat_esq,"kin",$Kin)."
 
         <p class='tit tex_ali-izq'>
-          Katún <n>".intval($Sel->ide-1)."</n><c>:</c> Kin <n>$ton</n> <b class='ide'>$Sel->nom_may</b>".( !empty($_kin->pag) ? "<c>(</c> Activación Galáctica <c>)</c>" : '' )."<c>.</c>
+          Katún <n>".intval($Sel->ide-1)."</n><c>:</c> Kin <n>$ton</n> <b class='ide'>$Sel->nom_may</b>".( !empty($Kin->pag) ? "<c>(</c> Activación Galáctica <c>)</c>" : '' )."<c>.</c>
         </p>
       
       </div>
       <ul>
-        <li>Regente Planetario<c>:</c> $_pla->nom $_pol->des_flu<c>.</c></li>
-        <li>Etapa <n>$ton</n><c>,</c> Ciclo $_arq->nom_may<c>.</c></li>
-        <li>Índice Armónico <n>".Num::int($_kin->fac)."</n><c>:</c> período ".Doc_Val::let($_kin->fac)."</li>
+        <li>Regente Planetario<c>:</c> $Pla->nom $Pol->des_flu<c>.</c></li>
+        <li>Etapa <n>$ton</n><c>,</c> Ciclo $Arq->nom_may<c>.</c></li>
+        <li>Índice Armónico <n>".Num::int($Kin->fac)."</n><c>:</c> período ".Doc_Val::let($Kin->fac)."</li>
         <li>".Doc_Val::let($Sel->arm_tra_des)."</li>
       </ul>";
       break;
@@ -114,11 +114,11 @@ class Listado {
     case 'kin_pag':
       $arm_tra = 0;
       $var['lis'] = ['class'=>"ite"];
-      foreach( array_filter(Dat::_('hol.kin'), function( $ite ){ return !empty($ite->pag); }) as $_kin ){ 
+      foreach( array_filter(Dat::_('hol.kin'), function( $ite ){ return !empty($ite->pag); }) as $Kin ){ 
         $lis_pos++; 
-        $Sel = Dat::_('hol.sel',$_kin->arm_tra_dia);
-        if( $arm_tra != $_kin->arm_tra ){
-          $arm_tra = $_kin->arm_tra;
+        $Sel = Dat::_('hol.sel',$Kin->arm_tra_dia);
+        if( $arm_tra != $Kin->arm_tra ){
+          $arm_tra = $Kin->arm_tra;
           $_tra = Dat::_('hol.kin_arm_tra',$arm_tra); $_ []= "
 
           ".Doc_Val::ima($dat_esq,"ton",$arm_tra,['class'=>"mar_der-1"])."
@@ -127,11 +127,11 @@ class Listado {
         }
         $_ []= "
 
-        ".Doc_Val::ima($dat_esq,"kin",$_kin,['class'=>"mar_der-1"])."
+        ".Doc_Val::ima($dat_esq,"kin",$Kin,['class'=>"mar_der-1"])."
 
         <p>
-          <n>{$lis_pos}</n><c>.</c> <b class='ide'>{$Sel->nom_may}</b> <n>".intval($_kin->nav_ond_dia)."</n>
-          <br>".Doc_Val::let(Num::int($_kin->fac))."
+          <n>{$lis_pos}</n><c>.</c> <b class='ide'>{$Sel->nom_may}</b> <n>".intval($Kin->nav_ond_dia)."</n>
+          <br>".Doc_Val::let(Num::int($Kin->fac))."
         </p>";
       }          
       break;
@@ -154,29 +154,29 @@ class Listado {
         </thead>
 
         <tbody>";
-        foreach( ( !empty($dat) ? $dat : Dat::_('hol.kin') ) as $_kin ){
+        foreach( ( !empty($dat) ? $dat : Dat::_('hol.kin') ) as $Kin ){
 
-          if( $ond != $_kin->nav_ond ){
-            $_ond = Dat::_('hol.kin_nav_ond', $ond = $_kin->nav_ond); 
-            $Sel = Dat::_('hol.sel', $_ond->sel);
+          if( $ond != $Kin->nav_ond ){
+            $Ond = Dat::_('hol.kin_nav_ond', $ond = $Kin->nav_ond); 
+            $Sel = Dat::_('hol.sel', $Ond->sel);
             $_ .= "
             <tr class='tex_ali-izq'>
               <td>
-                ".Doc_Val::ima($dat_esq,"kin_nav_ond",$_ond,['class'=>"mar_der-1"])."
+                ".Doc_Val::ima($dat_esq,"kin_nav_ond",$Ond,['class'=>"mar_der-1"])."
               </td>
-              <td colspan='3'>{$Sel->nom_may}<c>:</c> ".Doc_Val::let($_ond->fac)." ".Doc_Val::let($_ond->fac_des)."</td>
+              <td colspan='3'>{$Sel->nom_may}<c>:</c> ".Doc_Val::let($Ond->fac)." ".Doc_Val::let($Ond->fac_des)."</td>
             </tr>";
           }
-          $Sel = Dat::_('hol.sel',$sel = intval($_kin->arm_tra_dia));
+          $Sel = Dat::_('hol.sel',$sel = intval($Kin->arm_tra_dia));
           $_ .= "
-          <tr data-kin='{$_kin->ide}'>
+          <tr data-kin='{$Kin->ide}'>
             <td>
-              Etapa <n>".($ton = intval($_kin->nav_ond_dia))."</n>
+              Etapa <n>".($ton = intval($Kin->nav_ond_dia))."</n>
             </td>
             <td></td>
             <td>
               <n>$sel</n><c>.</c><n>$ton</n> <b class='ide'>$Sel->nom_may</b><c>:</c>
-              <br><n>".Num::int($_kin->fac)."</n><c>,</c> año <n>".Num::int($_kin->fac_ini)."</n>
+              <br><n>".Num::int($Kin->fac)."</n><c>,</c> año <n>".Num::int($Kin->fac_ini)."</n>
             </td>
             <td>
               ".Doc_Val::let($Sel->arm_tra_des)."
@@ -203,7 +203,7 @@ class Listado {
         foreach( explode('; ',$_tra->lec) as $ite ){
           $lis []= "<c>-></c> ".Doc_Val::let($ite);
         }
-        $_[] = $htm.Doc_Ope::lis('dep',$lis,[ 'lis'=>['class'=>"pun"] ]);
+        $_[] = $htm.Doc_Val::lis('dep',$lis,[ 'lis'=>['class'=>"pun"] ]);
       }          
       break;
     // kin : 20 katunes
@@ -246,36 +246,36 @@ class Listado {
           </p>
         </div>";
         $lis = [];
-        foreach( Dat::_('hol.kin_cro_ond') as $_ond ){ $lis []= "
+        foreach( Dat::_('hol.kin_cro_ond') as $Ond ){ $lis []= "
 
-          ".Doc_Val::ima($dat_esq,"ton",$_ond->ton,['class'=>"mar_der-2"])."
+          ".Doc_Val::ima($dat_esq,"ton",$Ond->ton,['class'=>"mar_der-2"])."
 
-          <p>{$_ond->fac}<c>.</c>
-            <br><n>".intval($_ond->ton)."</n> {$Sel->nom_may}
+          <p>{$Ond->fac}<c>.</c>
+            <br><n>".intval($Ond->ton)."</n> {$Sel->nom_may}
           </p>";
         }                
-        $_[] = $htm.Doc_Ope::lis('dep',$lis,[ 'lis'=>['class'=>'ite'] ]);
+        $_[] = $htm.Doc_Val::lis('dep',$lis,[ 'lis'=>['class'=>'ite'] ]);
       }
       break;
     // kin : ciclo ahau / onda encantada
     case 'kin_nav_sel':
       $var['lis'] = ['class'=>"ite"];
 
-      foreach( Dat::_('hol.kin_nav_ond') as $_ond ){ 
-        $Sel = Dat::_('hol.sel',$_ond->sel); $_ [] = "
+      foreach( Dat::_('hol.kin_nav_ond') as $Ond ){ 
+        $Sel = Dat::_('hol.sel',$Ond->sel); $_ [] = "
 
-        ".Doc_Val::ima($dat_esq,"kin_nav_ond",$_ond,['class'=>"mar_der-2"])."
+        ".Doc_Val::ima($dat_esq,"kin_nav_ond",$Ond,['class'=>"mar_der-2"])."
 
         <p>
-          <n>{$_ond->ide}</n><c>.</c> <b class='ide'>{$Sel->nom_may}</b><c>:</c> ".Doc_Val::let($_ond->fac)."
-          <br>".Doc_Val::let($_ond->fac_des)."
+          <n>{$Ond->ide}</n><c>.</c> <b class='ide'>{$Sel->nom_may}</b><c>:</c> ".Doc_Val::let($Ond->fac)."
+          <br>".Doc_Val::let($Ond->fac_des)."
         </p>";
       }            
       break;
     
     }
     // devuelvo listado o contenido generado
-    return is_array($_) ? Doc_Ope::lis( $lis_tip, $_, $var ) : $_;
+    return is_array($_) ? Doc_Val::lis( $lis_tip, $_, $var ) : $_;
   }
   
   static function encantamiento_del_sueño( string $ide, array $var = [], array $ele = [] ) : string {                    
@@ -308,8 +308,8 @@ class Listado {
       $_tit = [];
       foreach( $_dat as $lis_pos => $Ton ){
         if( $Ton->ond_enc != 0 && $ond != $Ton->ond_enc ){              
-          $_ond = Dat::_('hol.ton_ond',$ond = $Ton->ond_enc);
-          $_tit[$lis_pos] = $_ond->des;
+          $Ond = Dat::_('hol.ton_ond',$ond = $Ton->ond_enc);
+          $_tit[$lis_pos] = $Ond->des;
         }
       }
       $_ = Doc_Dat::lis($_dat,[ 'atr_dat'=>$_atr, 'tit'=>$_tit, 'opc'=>['cab_ocu'] ], $var);              
@@ -438,11 +438,11 @@ class Listado {
     case 'sel_cro_fam':
       $var['lis'] = ['class'=>"ite"];
 
-      foreach( Dat::_('hol.pla_cen') as $_pla ){
-        $_hum = Dat::_('hol.hum_cen',$_pla->ide);
-        $_fam = Dat::_("hol.$ide",$_pla->fam);
+      foreach( Dat::_('hol.pla_cen') as $Pla ){
+        $_hum = Dat::_('hol.hum_cen',$Pla->ide);
+        $_fam = Dat::_("hol.$ide",$Pla->fam);
         $htm = 
-        Doc_Val::ima($dat_esq,"pla_cen",$_pla,['class'=>"mar_der-2",'style'=>"min-width: 9rem; height:7rem;"])."
+        Doc_Val::ima($dat_esq,"pla_cen",$Pla,['class'=>"mar_der-2",'style'=>"min-width: 9rem; height:7rem;"])."
         <div>
           <p><b class='ide'>Kin {$_fam->nom}</b><c>:</c> {$_fam->des_rol}</p>
           <div class='-val fic mar-2'>
@@ -472,19 +472,19 @@ class Listado {
           <p class='tit'><b class='ide'>{$_dat->nom}</b><c>:</c> Célula Solar ".Num::int_dat($_dat->ide,'nom')."<c>.</c></p>                  
           <ul est='sol_pla'>";
           for( $sol_pla=1; $sol_pla<=2; $sol_pla++ ){
-            $_pla = Dat::_('hol.sol_pla',$pla);
+            $Pla = Dat::_('hol.sol_pla',$pla);
             $Sel = Dat::_('hol.sel',$sel);
             $_par = Dat::_('hol.sel',$Sel->par_ana); 
-            if( $orb != $_pla->orb ){
-              $_orb = Dat::_('hol.sol_orb',$orb = $_pla->orb); $htm .= "
+            if( $orb != $Pla->orb ){
+              $_orb = Dat::_('hol.sol_orb',$orb = $Pla->orb); $htm .= "
               <li>Los <n>5</n> <b class='ide'>planetas {$_orb->nom}es</b><c>:</c> ".Doc_Val::let($_orb->des)."</li>";                        
             }
             $htm .= "
             <li>
-              <p><b class='ide'>{$_pla->nom}</b><c>,</c> <n>{$pla}</n><c>°</c> órbita<c>:</c></p>
+              <p><b class='ide'>{$Pla->nom}</b><c>,</c> <n>{$pla}</n><c>°</c> órbita<c>:</c></p>
               <div class='-ite'>
 
-                ".Doc_Val::ima($dat_esq,"sol_pla",$_pla,['class'=>"mar_der-1"])."
+                ".Doc_Val::ima($dat_esq,"sol_pla",$Pla,['class'=>"mar_der-1"])."
 
                 <ul class='ite' est='sel'>
                   <li>
@@ -654,7 +654,7 @@ class Listado {
 
           <fieldset class='-val'>
 
-            ".Doc_Ope::lis_tog()."
+            ".Doc_Val::lis_tog()."
 
             ".Doc_Ope::var('dat.atr',"hol.kin.ide",[ 'nom'=>"ver el kin", 'ope'=>[ 
               'title'=>"Introduce un número de kin...", 'oninput'=>"{$_eje}('val',this);" 
@@ -677,12 +677,12 @@ class Listado {
         $arm_tra = 0; $arm_cel = 0;
         $cro_est = 0; $cro_ele = 0;
         $gen_enc = 0; $gen_cel = 0;
-        foreach( Dat::_('hol.kin') as $_kin ){
+        foreach( Dat::_('hol.kin') as $Kin ){
 
           // castillo
-          if( $_kin->nav_cas != $_nav_cas ){
-            $_nav_cas = $_kin->nav_cas;
-            $Cas = Dat::_('hol.kin_nav_cas',$_kin->nav_cas); 
+          if( $Kin->nav_cas != $_nav_cas ){
+            $_nav_cas = $Kin->nav_cas;
+            $Cas = Dat::_('hol.kin_nav_cas',$Kin->nav_cas); 
             if( $_nav_cas != 1 ){ $_ .= "
                 </section>
 
@@ -695,33 +695,33 @@ class Listado {
             ";
           }
           // génesis
-          if( $_kin->gen_enc != $gen_enc ){
-            $gen_enc = $_kin->gen_enc;
-            $_gen = Dat::_('hol.kin_gen_enc',$_kin->gen_enc); $_ .= "
+          if( $Kin->gen_enc != $gen_enc ){
+            $gen_enc = $Kin->gen_enc;
+            $_gen = Dat::_('hol.kin_gen_enc',$Kin->gen_enc); $_ .= "
             <p class='tit' data-gen='{$_gen->ide}'>GÉNESIS ".Tex::let_may($_gen->nom)."</p>";
           }
           // onda encantada
-          if( $_kin->nav_ond != $_nav_ond ){
-            $_nav_ond = $_kin->nav_ond;
-            $_ond = Dat::_('hol.kin_nav_ond',$_kin->nav_ond);
-            $Sel = Dat::_('hol.sel',$_ond->sel); 
-            $ond = Num::ran($_ond->ide,4);
+          if( $Kin->nav_ond != $_nav_ond ){
+            $_nav_ond = $Kin->nav_ond;
+            $Ond = Dat::_('hol.kin_nav_ond',$Kin->nav_ond);
+            $Sel = Dat::_('hol.sel',$Ond->sel); 
+            $ond = Num::ran($Ond->ide,4);
 
             if( $_nav_ond != 1 && $ond != 1 ){ $_ .= "
               </section>";
             }
             $_ .= "
             ".Doc_Ope::val([
-              'eti'=>'h4', 'id'=>"_04-0{$Cas->ide}-0{$ond}-", 'data-ond'=>$_ond->ide, 
-              'htm'=> Doc_Val::let("Onda Encantada {$_ond->ide} {$_ond->nom}")
+              'eti'=>'h4', 'id'=>"_04-0{$Cas->ide}-0{$ond}-", 'data-ond'=>$Ond->ide, 
+              'htm'=> Doc_Val::let("Onda Encantada {$Ond->ide} {$Ond->nom}")
             ])."
-            <section data-kin_nav_ond='{$_ond->ide}'>
-              <p class='tex-enf' ond='{$_ond->ide}'>Poder ".Tex::art_del($Sel->des_pod)."</p>";
+            <section data-kin_nav_ond='{$Ond->ide}'>
+              <p class='tex-enf' ond='{$Ond->ide}'>Poder ".Tex::art_del($Sel->des_pod)."</p>";
           }
           // célula armónica : titulo + lectura
-          if( $_kin->arm_cel != $arm_cel ){
-            $arm_cel = $_kin->arm_cel;
-            $_cel = Dat::_('hol.kin_arm_cel',$_kin->arm_cel); $_ .= "
+          if( $Kin->arm_cel != $arm_cel ){
+            $arm_cel = $Kin->arm_cel;
+            $_cel = Dat::_('hol.kin_arm_cel',$Kin->arm_cel); $_ .= "
             </section>
 
             ".Doc_Ope::val([
@@ -733,12 +733,12 @@ class Listado {
           }
           // kin : ficha + nombre + encantamiento
           $_ .= "
-          <div data-kin='{$_kin->ide}' id='kin-{$_kin->ide}'>
+          <div data-kin='{$Kin->ide}' id='kin-{$Kin->ide}'>
             <div class='hol-kin'>
-              ".Doc_Val::ima($dat_esq,"kin",$_kin->ide,['class'=>'mar-aut'])."
+              ".Doc_Val::ima($dat_esq,"kin",$Kin->ide,['class'=>'mar-aut'])."
               <p>
-                <b>KIN</b> <n>{$_kin->ide}</n><c>:</c> <c class='col-4-{$_kin->arm_cel_dia}'>".Doc_Val::let(Tex::let_may($_kin->nom))."</c>
-                <br>".Doc_Val::let($_kin->des)."
+                <b>KIN</b> <n>{$Kin->ide}</n><c>:</c> <c class='col-4-{$Kin->arm_cel_dia}'>".Doc_Val::let(Tex::let_may($Kin->nom))."</c>
+                <br>".Doc_Val::let($Kin->des)."
               </p>
             </div>
           </div>";
@@ -777,7 +777,7 @@ class Listado {
       )."
       <nav".Ele::atr($var['nav']).">
 
-        ".Doc_Ope::lis('dep',$_lis,$var)."
+        ".Doc_Val::lis('dep',$_lis,$var)."
 
       </nav>";    
       break;        
@@ -796,22 +796,22 @@ class Listado {
     // kin : aventura por guardián
     case 'kin_cro_sel':
       $var['lis'] = [ 'class'=>"ite" ];
-      foreach( Dat::_('hol.kin_cro_ond') as $_ond ){ $_ []= "
-        ".Doc_Val::ima($dat_esq,"ton",$_ond->ton,['class'=>"mar_der-2"])."
+      foreach( Dat::_('hol.kin_cro_ond') as $Ond ){ $_ []= "
+        ".Doc_Val::ima($dat_esq,"ton",$Ond->ton,['class'=>"mar_der-2"])."
         <p>
-          Tono <n>".intval($_ond->ton)."</n> de la familia terrestre polar<c>:</c> 
-          {$_ond->nom} <n>1</n> de los <n>4</n> Espectros Galácticos<c>.</c>
+          Tono <n>".intval($Ond->ton)."</n> de la familia terrestre polar<c>:</c> 
+          {$Ond->nom} <n>1</n> de los <n>4</n> Espectros Galácticos<c>.</c>
         </p>";
       }
       break;
     // kin : aventura por estaciones
     case 'kin_cro_ton':
       $var['lis'] = ['class'=>"ite"];
-      foreach( Dat::_('hol.kin_cro_ond') as $_ond ){ $_ []= "
-        ".Doc_Val::ima($dat_esq,"ton",$_ond->ton,['class'=>"mar_der-2"])."
+      foreach( Dat::_('hol.kin_cro_ond') as $Ond ){ $_ []= "
+        ".Doc_Val::ima($dat_esq,"ton",$Ond->ton,['class'=>"mar_der-2"])."
         <p>
-          Tono <n>".intval($_ond->ton)."</n><c>:</c> 
-          {$_ond->nom} <n>".($_ond->cue*5)."</n> Kines <c>(</c> <n>{$_ond->cue}</n> cromática".( $_ond->cue > 1 ? "s" : "")." <c>)</c>
+          Tono <n>".intval($Ond->ton)."</n><c>:</c> 
+          {$Ond->nom} <n>".($Ond->cue*5)."</n> Kines <c>(</c> <n>{$Ond->cue}</n> cromática".( $Ond->cue > 1 ? "s" : "")." <c>)</c>
         </p>";
       }            
       break;
@@ -830,32 +830,32 @@ class Listado {
       $cas = 0;
       $var['lis'] = ['class'=>"ite"];
 
-      foreach( Dat::_('hol.kin_nav_ond') as $_ond ){
+      foreach( Dat::_('hol.kin_nav_ond') as $Ond ){
         // génesis
-        if( $gen != $_ond->gen_enc ){ 
-          $_gen = Dat::_('hol.kin_gen_enc',$gen = $_ond->gen_enc); $_[]="
+        if( $gen != $Ond->gen_enc ){ 
+          $_gen = Dat::_('hol.kin_gen_enc',$gen = $Ond->gen_enc); $_[]="
           <p class='tit'>{$_gen->lec}<c>:</c> <b class='ide'>Génesis {$_gen->nom}</b><c>.</c></p>";
         }
-        if( $cel != $_ond->gen_cel ){ 
-          $_cel = Dat::_('hol.kin_gen_cel',$cel = $_ond->gen_cel); $_[]="
+        if( $cel != $Ond->gen_cel ){ 
+          $_cel = Dat::_('hol.kin_gen_cel',$cel = $Ond->gen_cel); $_[]="
           <p class='tit'>Célula <n>{$_cel->ide}</n> de la memoria del Génesis<c>:</c> <b class='val'>{$_cel->nom}</b></p>";
         }
-        if( $cas != $_ond->nav_cas ){ 
-          $Cas = Dat::_('hol.kin_nav_cas',$cas = $_ond->nav_cas); $_[]="
+        if( $cas != $Ond->nav_cas ){ 
+          $Cas = Dat::_('hol.kin_nav_cas',$cas = $Ond->nav_cas); $_[]="
           <p class='tit'>
             El Castillo <b class='col-5-{$Cas->ide}'>".str_replace('del ','',$Cas->nom)."</b> ".Tex::art_del($Cas->des_acc)."<c>:</c> La corte ".Tex::art_del($Cas->des_cor)."<c>,</c> poder {$Cas->des_pod}
           </p>";
         }              
-        $_ []= Doc_Val::ima($dat_esq,"kin_nav_ond",$_ond,['class'=>"mar_der-1"])."              
+        $_ []= Doc_Val::ima($dat_esq,"kin_nav_ond",$Ond,['class'=>"mar_der-1"])."              
         <p>
-          <n>".intval($_ond->ide)."</n><c>°</c> Onda encantada<c>:</c>
-          <br>".Doc_Val::let($_ond->enc_des)."
+          <n>".intval($Ond->ide)."</n><c>°</c> Onda encantada<c>:</c>
+          <br>".Doc_Val::let($Ond->enc_des)."
         </p>";
       }          
       break;
     }
     // devuelvo listado o contenido generado
-    return is_array($_) ? Doc_Ope::lis( $lis_tip, $_, $var ) : $_;
+    return is_array($_) ? Doc_Val::lis( $lis_tip, $_, $var ) : $_;
   }
   
   static function lunas_en_movimiento( string $ide, array $var = [], array $ele = [] ) : string {                    
@@ -872,43 +872,43 @@ class Listado {
       $_[] = "
       <b class='ide'>Año Uno</b>
       <div class='-ite'>
-        ".Doc_Val::ima($dat_esq,"kin",$_kin = Dat::_('hol.kin',39),['class'=>"mar_der-1"])."
-        <p>$_kin->nom<c>:</c><br><n>26</n> de Julio  <n>1.992</n> <c>-</c> <n>25</n> Julio <n>1.993</n><c>.</c></p>
+        ".Doc_Val::ima($dat_esq,"kin",$Kin = Dat::_('hol.kin',39),['class'=>"mar_der-1"])."
+        <p>$Kin->nom<c>:</c><br><n>26</n> de Julio  <n>1.992</n> <c>-</c> <n>25</n> Julio <n>1.993</n><c>.</c></p>
       </div>"; $_[] = "
       <b class='ide'>Año Dos</b>
       <div class='-ite'>
-        ".Doc_Val::ima($dat_esq,"kin",$_kin = Dat::_('hol.kin',144),['class'=>"mar_der-1"])."
-        <p>$_kin->nom<c>:</c><br><n>26</n> de Julio <n>1.993</n> <c>-</c> <n>25</n> Julio <n>1.994</n><c>.</c></p>
+        ".Doc_Val::ima($dat_esq,"kin",$Kin = Dat::_('hol.kin',144),['class'=>"mar_der-1"])."
+        <p>$Kin->nom<c>:</c><br><n>26</n> de Julio <n>1.993</n> <c>-</c> <n>25</n> Julio <n>1.994</n><c>.</c></p>
       </div>"; $_[] = "
       <b class='ide'>Año Tres</b>
       <div class='-ite'>
-        ".Doc_Val::ima($dat_esq,"kin",$_kin = Dat::_('hol.kin',249),['class'=>"mar_der-1"])."
-        <p>$_kin->nom<c>:</c><br><n>26</n> de Julio <n>1.994</n> <c>-</c> <n>25</n> Julio <n>1.995</n><c>.</c></p>
+        ".Doc_Val::ima($dat_esq,"kin",$Kin = Dat::_('hol.kin',249),['class'=>"mar_der-1"])."
+        <p>$Kin->nom<c>:</c><br><n>26</n> de Julio <n>1.994</n> <c>-</c> <n>25</n> Julio <n>1.995</n><c>.</c></p>
       </div>"; $_[] = "
       <b class='ide'>Año Cuatro</b>
       <div class='-ite'>
-        ".Doc_Val::ima($dat_esq,"kin",$_kin = Dat::_('hol.kin',94),['class'=>"mar_der-1"])."
-        <p>$_kin->nom<c>:</c><br><n>26</n> de Julio <n>1.995</n> <c>-</c> <n>25</n> Julio <n>1.996</n><c>.</c></p>
+        ".Doc_Val::ima($dat_esq,"kin",$Kin = Dat::_('hol.kin',94),['class'=>"mar_der-1"])."
+        <p>$Kin->nom<c>:</c><br><n>26</n> de Julio <n>1.995</n> <c>-</c> <n>25</n> Julio <n>1.996</n><c>.</c></p>
       </div>"; $_[] = "
       <b class='ide'>Año Cinco</b>
       <div class='-ite'>
-        ".Doc_Val::ima($dat_esq,"kin",$_kin = Dat::_('hol.kin',199),['class'=>"mar_der-1"])."
-        <p>$_kin->nom<c>:</c><br><n>26</n> de Julio <n>1.996</n> <c>-</c> <n>25</n> Julio <n>1.997</n><c>.</c></p>
+        ".Doc_Val::ima($dat_esq,"kin",$Kin = Dat::_('hol.kin',199),['class'=>"mar_der-1"])."
+        <p>$Kin->nom<c>:</c><br><n>26</n> de Julio <n>1.996</n> <c>-</c> <n>25</n> Julio <n>1.997</n><c>.</c></p>
       </div>"; $_[] = "
       <b class='ide'>Año Seis</b>
       <div class='-ite'>
-        ".Doc_Val::ima($dat_esq,"kin",$_kin = Dat::_('hol.kin',44),['class'=>"mar_der-1"])."
-        <p>$_kin->nom<c>:</c><br><n>26</n> de Julio <n>1.997</n> <c>-</c> <n>25</n> Julio <n>1.998</n><c>.</c></p>
+        ".Doc_Val::ima($dat_esq,"kin",$Kin = Dat::_('hol.kin',44),['class'=>"mar_der-1"])."
+        <p>$Kin->nom<c>:</c><br><n>26</n> de Julio <n>1.997</n> <c>-</c> <n>25</n> Julio <n>1.998</n><c>.</c></p>
       </div>"; $_[] = "
       <b class='ide'>Año Siete</b>
       <div class='-ite'>
-        ".Doc_Val::ima($dat_esq,"kin",$_kin = Dat::_('hol.kin',149),['class'=>"mar_der-1"])."
-        <p>$_kin->nom<c>:</c><br><n>26</n> de Julio <n>1.998</n> <c>-</c> <n>25</n> Julio <n>1.999</n><c>.</c></p>
+        ".Doc_Val::ima($dat_esq,"kin",$Kin = Dat::_('hol.kin',149),['class'=>"mar_der-1"])."
+        <p>$Kin->nom<c>:</c><br><n>26</n> de Julio <n>1.998</n> <c>-</c> <n>25</n> Julio <n>1.999</n><c>.</c></p>
       </div>"; $_[] = "
       <b class='ide'>Año Ocho</b>
       <div class='-ite'>
-        ".Doc_Val::ima($dat_esq,"kin",$_kin = Dat::_('hol.kin',254),['class'=>"mar_der-1"])."
-        <p>$_kin->nom<c>:</c><br><n>26</n> de Julio <n>1.999</n> <c>-</c> <n>25</n> Julio <n>2.000</n><c>.</c></p>
+        ".Doc_Val::ima($dat_esq,"kin",$Kin = Dat::_('hol.kin',254),['class'=>"mar_der-1"])."
+        <p>$Kin->nom<c>:</c><br><n>26</n> de Julio <n>1.999</n> <c>-</c> <n>25</n> Julio <n>2.000</n><c>.</c></p>
       </div>";
       break;
     // psi : por tonos galácticos
@@ -1050,7 +1050,7 @@ class Listado {
       break;
     }
     // devuelvo listado o contenido generado
-    return is_array($_) ? Doc_Ope::lis( $lis_tip, $_, $var ) : $_;
+    return is_array($_) ? Doc_Val::lis( $lis_tip, $_, $var ) : $_;
   }
   
   static function tratado_del_tiempo( string $ide, array $var = [], array $ele = [] ) : string {                    
@@ -1116,7 +1116,7 @@ class Listado {
       break;
     }
     // devuelvo listado o contenido generado
-    return is_array($_) ? Doc_Ope::lis( $lis_tip, $_, $var ) : $_;
+    return is_array($_) ? Doc_Val::lis( $lis_tip, $_, $var ) : $_;
   }
   
   static function telektonon( string $ide, array $var = [], array $ele = [] ) : string {                    
@@ -1177,7 +1177,7 @@ class Listado {
       break;
     }
     // devuelvo listado o contenido generado
-    return is_array($_) ? Doc_Ope::lis( $lis_tip, $_, $var ) : $_;
+    return is_array($_) ? Doc_Val::lis( $lis_tip, $_, $var ) : $_;
   }
   
   static function proyecto_rinri( string $ide, array $var = [], array $ele = [] ) : string {                    
@@ -1199,7 +1199,7 @@ class Listado {
           <br>".Doc_Val::let($_rad->rin_des)."
         </p>";
       }
-      $_ = Doc_Ope::lis('dep',$_,$var);
+      $_ = Doc_Val::lis('dep',$_,$var);
       break;                    
     // luna : días del cubo
     case 'tel_cub':
@@ -1299,7 +1299,7 @@ class Listado {
     }
 
     // devuelvo listado o contenido generado
-    return is_array($_) ? Doc_Ope::lis( $lis_tip, $_, $var ) : $_;
+    return is_array($_) ? Doc_Val::lis( $lis_tip, $_, $var ) : $_;
   }
   
   static function atomo_del_tiempo( string $ide, array $var = [], array $ele = [] ) : string {                    
@@ -1328,7 +1328,7 @@ class Listado {
           <img src='".SYS_NAV."img/hol/bib/ato/fic/{$cod}-2.gif' alt='Carta {$cod}-2' style='width:20rem;'>";
           $_ []= $htm;
         }
-        $_ = Doc_Ope::lis('bar', $_, $var);                 
+        $_ = Doc_Val::lis('bar', $_, $var);                 
         break;
       }        
       break;        
@@ -1556,7 +1556,7 @@ class Listado {
       break;
     }
     // devuelvo listado o contenido generado
-    return is_array($_) ? Doc_Ope::lis( $lis_tip, $_, $var ) : $_;
+    return is_array($_) ? Doc_Val::lis( $lis_tip, $_, $var ) : $_;
   }  
 
   static function tutorial_del_sincronario( string $ide, array $var = [], array $ele = [] ){    
@@ -1646,7 +1646,7 @@ class Listado {
     }
 
     // devuelvo listado o contenido generado
-    return is_array($_) ? Doc_Ope::lis( $lis_tip, $_, $var ) : $_;
+    return is_array($_) ? Doc_Val::lis( $lis_tip, $_, $var ) : $_;
   }
 
 }

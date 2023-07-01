@@ -3,7 +3,7 @@
 -- Sincronario
 	DELETE FROM `sis-app_art` WHERE `esq` = 'sincronario';
 	
-	-- Libros
+	-- 1-Libros
 	DELETE FROM `sis-app_art` WHERE `esq` = 'sincronario' AND `cab` = 'libro'; INSERT INTO `sis-app_art` VALUES
 
 		('sincronario', 'libro', 2, 'tierra_en_ascenso','1984 - La Tierra en Ascenso',
@@ -44,7 +44,7 @@
 		'', '' )
 	;
 
-	-- Tutoriales
+	-- 2-Tutoriales
 	DELETE FROM `sis-app_art` WHERE `esq` = 'sincronario' AND `cab` = 'tutorial'; INSERT INTO `sis-app_art` VALUES
 	
 		('sincronario', 'tutorial', 1, 'glosario', 'Glosarios de Términos',
@@ -55,7 +55,7 @@
 		'fec_tie', '' )
 	;
 
-	-- Códigos y Cuentas
+	-- 3-Códigos y Cuentas
 	DELETE FROM `sis-app_art` WHERE `esq` = 'sincronario' AND `cab` = 'codigo'; INSERT INTO `sis-app_art` VALUES		
 
 		('sincronario', 'codigo', 1, 'plasma', 'Los 7 Plasmas Radiales',
@@ -78,85 +78,85 @@
 		'', '' )
 	;
 
-	-- Informes
+	-- 4-Informes
 	DELETE FROM `sis-app_art` WHERE `esq` = 'sincronario' AND `cab` = 'informe'; INSERT INTO `sis-app_art` VALUES
 
-		('sincronario', 'informe', 1, 'diario', 'Ciclos de Tiempo Diario',
+		('sincronario', 'informe', 1, 'ciclico', 'Órden Cíclico del Giro Solar',
 		'', 
-		'fec_tie', '' ),	
-		('sincronario', 'informe', 2, 'firma', 'Firma Galáctica Personal',
+		'fig_pun', '' ),	
+		('sincronario', 'informe', 2, 'sincronico', 'Orden Sincrónico del Giro Galáctico',
+		'', 
+		'fig', '' ),
+		('sincronario', 'informe', 3, 'firma', 'Firma Galáctica Personal',
 		'', 
 		'usu_gru', '' )
 	;
 
-	-- Orden Sincrónico
-	DELETE FROM `sis-app_art` WHERE `esq` = 'sincronario' AND `cab` = 'orden_sincronico'; INSERT INTO `sis-app_art` VALUES
-		
-		('sincronario', 'orden_sincronico', 1, 'tzolkin', 'El Tzolkin',
-		'', 
-		'', '' ),
-		('sincronario', 'orden_sincronico', 2, 'nave', 'La Nave del Tiempo',
-		'', 
-		'', '' ),
-		('sincronario', 'orden_sincronico', 3, 'castillo', 'Los 52 días del Castillo',
-		'', 
-		'', '' ),
-		('sincronario', 'orden_sincronico', 4, 'onda', 'Los 13 días de la Onda Ecantada',
-		'', 
-		'', '' ),
-		('sincronario', 'orden_sincronico', 5, 'giro_galactico', 'El Giro Galáctico ( Colocación Armónica )',
-		'', 
-		'', '' ),
-		('sincronario', 'orden_sincronico', 6, 'trayectoria', 'Los 20 días de la Trayectoria Armónica',
-		'', 
-		'', '' ),
-		('sincronario', 'orden_sincronico', 7, 'celula', 'Los 4 días de la Célula del Tiempo',
-		'', 
-		'', '' ),
-		('sincronario', 'orden_sincronico', 8, 'giro_espectral', 'El Giro Espectral ( Colocación Cromática )',
-		'', 
-		'', '' ),
-		('sincronario', 'orden_sincronico', 9, 'estacion', 'Los 65 días de la Estación Galáctica',
-		'', 
-		'', '' ),
-		('sincronario', 'orden_sincronico', 10, 'elemento', 'Los 5 días de la Cromática Elemental',
-		'', 
-		'', '' )
-	;
+	-- 5-Tableros
+	DELETE FROM `sis-app_art` WHERE `esq` = 'sincronario' AND `cab` = 'tablero'; INSERT INTO `sis-app_art` VALUES
 
-	-- Orden Cíclico
-	DELETE FROM `sis-app_art` WHERE `esq` = 'sincronario' AND `cab` = 'orden_ciclico'; INSERT INTO `sis-app_art` VALUES
-
-		('sincronario', 'orden_ciclico', 1, 'luna', 'Las 13 Lunas del Anillo Solar',
+		('sincronario', 'tablero', 1, '', 'Orden Cíclico',
 		'', 
-		'', '' ),
-		('sincronario', 'orden_ciclico', 2, 'luna_diario', 'Los 28 días del Giro Lunar',
+		'', '' ),				
+		('sincronario', 'tablero', 11, 'luna', 'Las 13 Lunas del Anillo Solar',
 		'', 
-		'', '' ),
-		('sincronario', 'orden_ciclico', 3, 'estacion', 'Las 4 Estaciones del Giro Solar',
+		'fig_pun', '' ),
+		('sincronario', 'tablero', 12, 'luna_diario', 'Los 28 días del Giro Lunar',
 		'', 
-		'', '' ),
-		('sincronario', 'orden_ciclico', 4, 'estacion_diario', 'Los 91 días de la Estación Solar',
+		'fig_pun', '' ),
+		('sincronario', 'tablero', 13, 'estacion_solar', 'Las 4 Estaciones del Giro Solar',
 		'', 
-		'', '' ),
-		('sincronario', 'orden_ciclico', 5, 'heptada', 'El Heptágono Semanal de 7 días',
+		'fig_pun', '' ),
+		('sincronario', 'tablero', 14, 'estacion_solar_diario', 'Los 91 días de la Estación Solar',
 		'', 
-		'', '' )
+		'fig_pun', '' ),
+		('sincronario', 'tablero', 15, 'heptada', 'El Heptágono Semanal de 7 días',
+		'', 
+		'fig_pun', '' ),
+		('sincronario', 'tablero', 20, '', 'Orden Sincrónico',
+		'', 
+		'fig_pun', '' ),		
+		('sincronario', 'tablero', 21, 'tzolkin', 'El Tzolkin',
+		'', 
+		'fig', '' ),
+		('sincronario', 'tablero', 22, 'nave', 'La Nave del Tiempo',
+		'', 
+		'fig', '' ),
+		('sincronario', 'tablero', 23, 'castillo', 'Los 52 días del Castillo',
+		'', 
+		'fig', '' ),
+		('sincronario', 'tablero', 24, 'onda_encantada', 'Los 13 días de la Onda Ecantada',
+		'', 
+		'fig', '' ),
+		('sincronario', 'tablero', 25, 'giro_galactico', 'El Giro Galáctico ( Colocación Armónica )',
+		'', 
+		'fig', '' ),
+		('sincronario', 'tablero', 26, 'trayectoria_armonica', 'Los 20 días de la Trayectoria Armónica',
+		'', 
+		'fig', '' ),
+		('sincronario', 'tablero', 27, 'celula_armonica', 'Los 4 días de la Célula del Tiempo',
+		'', 
+		'fig', '' ),
+		('sincronario', 'tablero', 28, 'giro_espectral', 'El Giro Espectral ( Colocación Cromática )',
+		'', 
+		'fig', '' ),
+		('sincronario', 'tablero', 29, 'estacion_galactica', 'Los 65 días de la Estación Galáctica',
+		'', 
+		'fig', '' ),
+		('sincronario', 'tablero', 30, 'elemento_galactico', 'Los 5 días de la Cromática Elemental',
+		'', 
+		'fig', '' ),
+		('sincronario', 'tablero', 31, '', 'Holones',
+		'', 
+		'arc_url', '' ),			
+		('sincronario', 'tablero', 32, 'holon_solar', 'Solar',
+		'', 
+		'arc_url', '' ),	
+		('sincronario', 'tablero', 33, 'holon_planetario', 'Planetario',
+		'', 
+		'arc_url', '' ),	
+		('sincronario', 'tablero', 34, 'holon_humano', 'Humano',
+		'', 
+		'arc_url', '' )
 	;
-	
-	-- Holones
-	DELETE FROM `sis-app_art` WHERE `esq` = 'sincronario' AND `cab` = 'holon'; INSERT INTO `sis-app_art` VALUES
-		
-		('sincronario', 'holon', 1, 'solar', 'Solar',
-		'', 
-		'', '' ),	
-		('sincronario', 'holon', 2, 'planetario', 'Planetario',
-		'', 
-		'', '' ),	
-		('sincronario', 'holon', 3, 'humano', 'Humano',
-		'', 
-		'', '' )
-	;
--- 
-
--- Proyecto
+--

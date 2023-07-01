@@ -137,7 +137,7 @@ class App {
 
     $ele['opc'] = [ 'tog' ]; // dlt- 'ver', 'cue'
 
-    return empty($lis) ? "" : Doc_Ope::lis('dep',$lis,$ele);
+    return empty($lis) ? "" : Doc_Val::lis('dep',$lis,$ele);
 
   }// devuelvo listado del menu por esquema
   public function cab_ver( string $ide = "" ) : array {
@@ -213,7 +213,7 @@ class App {
     // operadores : toggle + filtro
     if( !isset($ele['opc']) ) $ele['opc'] = [];
 
-    return Doc_Ope::lis('pos',$_,$ele);
+    return Doc_Val::lis('pos',$_,$ele);
     
   }// imprimo listado por conjuntos
   static function ide_lis( string $esq, string $cab, array $var = [] ) : string {
@@ -250,7 +250,7 @@ class App {
     }
 
     // devuelvo lista
-    return Doc_Ope::lis( "dep", $_, $var );    
+    return Doc_Val::lis( "dep", $_, $var );    
   }
 
   /* imprimo Consola del Sistema */

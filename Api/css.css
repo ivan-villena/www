@@ -860,7 +860,7 @@ Fondos : imagen + color + icono ////////////////////////////////////////////////
   correcciones 
 */
 [class*='fon_col-']:not(.fon-0),
-[class*='fon_col-']:not(.fon-0,[class*='fon_col-1-']) > n {
+[class*='fon_col-']:not(.fon-0,[class*='fon_col-1-']) :is(n,c) {
   color:black !important;
 }
 
@@ -937,7 +937,6 @@ Letra
   text-decoration: underline !important;
 }
 .tex-tit {
-  /* font-weight: bold !important; */
   font-style: italic !important;
   text-decoration: underline !important;
 }

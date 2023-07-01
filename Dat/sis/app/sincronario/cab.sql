@@ -22,21 +22,13 @@
 				'', 
 				'num', '', 0, 0, 0 
 			),			
-			('sincronario', 4, 'informe', 'Informes de Posicionamiento',
+			('sincronario', 4, 'informe', 'Informes de Posicionamiento Diario',
 				'',
 				'fec_dia', '', 0, 0, 0
 			),			
-			('sincronario', 5, 'orden_sincronico', 'Tableros del Orden Sincrónico',
+			('sincronario', 5, 'tablero', 'Tableros de Posicionamiento Diario',
 				'',
-				'fig', '', 0, 0, 0
-			),
-			('sincronario', 6, 'orden_ciclico', 'Tableros del Orden Cíclico',
-				'',
-				'fig_pun', '', 0, 0, 0
-			),
-			('sincronario', 7, 'holon', 'Tableros de los Holones',
-				'',
-				'arc_url', '', 0, 0, 0
+				'eje_cla', '', 0, 0, 0
 			)
 		;
 	--

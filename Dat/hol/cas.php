@@ -8,9 +8,9 @@
       $Ton = Dat::_('hol.ton',$Cas->ton);
       $nom = Tex::let_pal($Arm->des_col)." $Ton->nom";
       // armo descripcion
-      $_ond = Dat::_('hol.cas_ond',$Cas->ond);
+      $Ond = Dat::_('hol.cas_ond',$Cas->ond);
       $_dim = Dat::_('hol.ton_dim',$Ton->dim);
-      $des = "$Arm->des_pod $_dim->nom $Ton->des_acc_lec $Ton->des_car para $_ond->des.";
+      $des = "$Arm->des_pod $_dim->nom $Ton->des_acc_lec $Ton->des_car para $Ond->des.";
       $_ .= "
       UPDATE `hol-cas` SET 
         `nom` = '$nom',

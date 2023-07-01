@@ -18,8 +18,7 @@ function adm_log() : string {
     include("./_sql/hol/sel.php");
     $_ = hol_sel_par_gui();
   */
-
-  $_ = "";
+  
   
   return $_;
 }

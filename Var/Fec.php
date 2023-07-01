@@ -102,6 +102,10 @@ class Fec {
     }
 
     return $_;
+  }// valido datos
+  static function val_dat( $año, $mes, $dia ) : bool | string {
+
+    return checkdate($mes, $dia, $año);
   }// objeto: DateTime
   static function val_dec( int | string | object | array $dat = NULL ) : DateTime | string {
     $_ = $dat;
@@ -158,6 +162,37 @@ class Fec {
       $_ = [ $dat[2], $dat[1], $dat[0] ];
     }
     return $_;
+  }// operaciones numericas por tipos
+  static function val_ope( string | object $dat, int $val = 0, string $ope = '+', string $tip = 'dia' ){
+    
+    $_ = $dat;
+    
+    if( is_object($dat) ){
+
+      $_ = "{$dat->año}-{$dat->mes}-{$dat->dia}";
+    }
+    elseif( is_string($dat) ){
+
+      $_ = str_replace('/','-',$dat);
+    }
+
+    $tie = '';
+    switch( $tip ){
+    case 'seg': $tie = 'second'; break;
+    case 'min': $tie = 'minute'; break;
+    case 'hor': $tie = 'hour';   break;
+    case 'dia': $tie = 'day';    break;
+    case 'sem': $tie = 'week';   break;
+    case 'mes': $tie = 'month';  break;
+    case 'año': $tie = 'year';   break;
+    } 
+    
+    if( $val > 1 ) $tie .= "s";
+
+    // strtotime devuelve un timestamp        
+    $_ = date( 'd-m-Y', strtotime( $ope.strval($val)." $tie", strtotime($_) ) );
+    
+    return $_;
   }// formateo para input : "aaa-mm-ddThh:mm:ss"
   static function val_var( string $val = NULL, string $tip = 'dia' ) : string {
     $_ = "";
@@ -174,44 +209,6 @@ class Fec {
       $_ = str_replace(' ','T',str_replace('/','-',$val));
     }
     
-    return $_;
-  }// valido datos
-  static function val_dat( $año, $mes, $dia ) : bool | string {
-
-    return checkdate($mes, $dia, $año);
-  }
-  
-  // operaciones numericas por tipos
-  static function ope( string | object $dat, int $val = 0, string $ope = '+', string $tip = 'dia' ){
-    
-    $_ = $dat;
-    
-    if( is_object($dat) ){
-
-      $_ = "{$dat->año}-{$dat->mes}-{$dat->dia}";
-    }
-    elseif( is_string($dat) ){
-
-      $_ = str_replace('/','-',$dat);
-    }
-
-    if( !!$_ ){
-      $tie = '';
-      switch( $tip ){
-      case 'seg': $tie = 'second'; break;
-      case 'min': $tie = 'minute'; break;
-      case 'hor': $tie = 'hour';   break;
-      case 'dia': $tie = 'day';    break;
-      case 'sem': $tie = 'week';   break;
-      case 'mes': $tie = 'month';  break;
-      case 'año': $tie = 'year';   break;
-      } 
-      
-      if( $val > 1 ) $tie .= "s";
-
-      // strtotime devuelve un timestamp        
-      $_ = date( 'd-m-Y', strtotime( $ope.strval($val)." $tie", strtotime($_) ) );
-    }
     return $_;
   }
 

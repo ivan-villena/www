@@ -40,7 +40,7 @@ class Doc {
 
     $this->Cla = [
       'Var'=>[
-        'Num', 'Tex', 'Fec', 'Obj', 'Eje', 'Ele', 'Arc'
+        'Num', 'Tex', 'Fec', 'Hol', 'Obj', 'Eje', 'Ele', 'Arc'
       ],
       'Doc'=>[
         'Dat', 'Ope', 'Val', 'Var'

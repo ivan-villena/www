@@ -5,11 +5,13 @@
     $ton = 1;
     $pos = 0;
     foreach( Dat::_('hol.psi_est_dia') as $_dia ){
-      $pos++;
-      if( $pos > 7 ){
+      
+      if( $pos >= 7 ){
         $pos = 0;
         $ton ++;
       }
+      $pos++;
+      
       $_ .= "
       UPDATE `hol-psi_est_dia` SET
         `ton` = $ton

@@ -220,7 +220,6 @@ class Fec {
     return $_;
   }
   
-
   // dia y hora
   static dyh( $dat ){
     let $ = typeof($dat) == 'object' ? $dat : Fec.val_dec($dat);

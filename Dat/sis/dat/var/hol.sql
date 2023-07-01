@@ -224,7 +224,7 @@ DELETE FROM `sis-dat_var` WHERE `app` = 'hol' AND `esq` LIKE 'dat_';
           "nom":"¿Respiración S-G?",
           "tit":"Mostrar los 2 flujos de la Respiración galáctico-solar del holon Solar...",
           "ope":{ "tip":"opc_bin" }
-        }'),       
+        }'),
         ('hol','dat_tab','est-sol', 2, 'pla', '{
           "nom":"¿Planetas?",
           "tit":"Mostrar los 10 planetas del Sistema Solar...",
@@ -258,23 +258,28 @@ DELETE FROM `sis-dat_var` WHERE `app` = 'hol' AND `esq` LIKE 'dat_';
           "nom":"¿Respiración S-G?",
           "tit":"Mostrar los 2 flujos de la Respiración galáctico-solar del Holon Planetairo...",
           "ope":{ "tip":"opc_bin" }
-        }'), 
+        }'),
         ('hol','dat_tab','est-pla', 2, 'ele', '{
           "nom":"¿Elementos Galácticos?",
           "tit":"Mostrar los 4 Elementos Galácticos del Holon Planetario...",
           "ope":{ "tip":"opc_bin" }
-        }'), 
-        ('hol','dat_tab','est-pla', 3, 'hem', '{
+        }'),
+        ('hol','dat_tab','est-pla', 3, 'raz', '{
+          "nom":"¿Razas Cósmicas?",
+          "tit":"Mostrar las 4 Razas Raíz Cósmicas del Holon Planetario...",
+          "ope":{ "tip":"opc_bin" }
+        }'),        
+        ('hol','dat_tab','est-pla', 4, 'hem', '{
           "nom":"¿Hemisferios?",
           "tit":"Mostrar los Sellos correspondientes a los Hemisferios Planetarios...",
           "ope":{ "tip":"opc_bin" }
         }'), 
-        ('hol','dat_tab','est-pla', 4, 'mer', '{
+        ('hol','dat_tab','est-pla', 5, 'mer', '{
           "nom":"¿Meridianos?",
           "tit":"Mostrar los Sellos correspondientes a los Meridianos Planetarios...",
           "ope":{ "tip":"opc_bin" }
         }'), 
-        ('hol','dat_tab','est-pla', 5, 'cen', '{
+        ('hol','dat_tab','est-pla', 6, 'cen', '{
           "nom":"¿Centros Galácticos?",
           "tit":"Mostrar los 5 Centros Galácticos del Holon Planetario...",
           "ope":{ "tip":"opc_bin" }
@@ -528,7 +533,33 @@ DELETE FROM `sis-dat_var` WHERE `app` = 'hol' AND `esq` LIKE 'dat_';
           "ope":{ "tip":"opc_bin", "value":"7" },
           "htm_fin":{ "eti":"span", "htm":[ { "let":"(" }, { "tip":"num", "val":"0" }, { "let":")" } ] }
         }')
-      --
+      -- Holon Solar
+      ('hol','dat_tab','atr', 7, 'sol', '{
+        "nom":"Holon Solar"
+      }'),
+        ('hol','dat_tab','atr-sol', 1, 'res', '{
+          "nom":"Respiración de Flujo S-G"
+        }'),
+          ('hol','dat_tab','atr-sol_res', 1, '1', '{
+            "nom":"¿Galáctico-Kármica?",
+            "tit":"Activa la Respiración de Flujo Galáctico-Kármico",
+            "ope":{ "tip":"opc_bin", "value":"1" },
+            "htm_fin":{ "eti":"span", "htm":[ { "let":"(" }, { "tip":"num", "val":"0" }, { "let":")" } ] }
+          }'),
+          ('hol','dat_tab','atr-sol_res', 2, '2', '{
+            "nom":"¿Solar?",
+            "tit":"Activa la Respiración de Flujo Solar-Profética",
+            "ope":{ "tip":"opc_bin", "value":"2" },
+            "htm_fin":{ "eti":"span", "htm":[ { "let":"(" }, { "tip":"num", "val":"0" }, { "let":")" } ] }
+          }'),          
+      -- Holon Planetario
+      ('hol','dat_tab','atr', 8, 'pla', '{
+        "nom":"Holon Planetario"
+      }'),
+      -- Holon Humano
+      ('hol','dat_tab','atr', 9, 'hum', '{
+        "nom":"Holon Humano"
+      }')
     ;
   -- 
 --

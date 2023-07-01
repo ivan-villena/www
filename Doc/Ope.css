@@ -31,7 +31,7 @@
   Articulos 
 */
 .ope_sec article {  
-  max-width: 700px;
+  max-width: 750px;
   height: max-content;
 }
 
@@ -185,7 +185,8 @@
   background-color: var(--fon_sec);
   border: 1px solid var(--col_azu);
   border-radius: .5rem;
-  line-height: 1.5;
+  padding: 0;
+  /* line-height: 1.5; */
   animation: dis-ver 1s, dis-ver-tam .5s;
 }
 
@@ -203,11 +204,7 @@
   overflow-x: hidden;
   display: flex;
   flex-direction: column;
-  padding: 0;
-}
-
-.ope_win > article > header + * > section {
-  margin: .5rem;  
+  padding: 0 1rem;
 }
 
 /* Operador */
@@ -218,10 +215,6 @@
 }
 .ope_win > .ide-ope > header + * {
   align-items: center;
-}
-.ope_win > .ide-ope > header + * > section {
-  margin: .5rem;
-  padding: 0 .5rem;
 }
 
 
@@ -359,32 +352,6 @@
 /* ////////////////////////////////////////////////////////////////////////////////////////////////// */
 /* ////////////////////////////////////////////////////////////////////////////////////////////////// */
 /* 
-variable : div > label + input
-*/
-.ope_var {
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-  margin: .25rem;
-}
-
-/* ////////////////////////////////////////////////////////////////////////////////////////////////// */
-/* ////////////////////////////////////////////////////////////////////////////////////////////////// */
-/* 
-  Informe : recuadro de contenido vertical con separaciones
-*/
-.ope_inf {
-  display: flex;
-  flex-direction: column;
-  padding: .25rem;
-  border: 1px solid var(--bor_dat);
-  border-radius: .5rem;
-  margin: .5rem;
-}
-
-/* ////////////////////////////////////////////////////////////////////////////////////////////////// */
-/* ////////////////////////////////////////////////////////////////////////////////////////////////// */
-/* 
   Cartel
 */
 .ope_tex {
@@ -407,6 +374,32 @@ variable : div > label + input
 /* ////////////////////////////////////////////////////////////////////////////////////////////////// */
 /* ////////////////////////////////////////////////////////////////////////////////////////////////// */
 /* 
+  Informe : recuadro de contenido vertical con separaciones
+*/
+.ope_inf {
+  display: flex;
+  flex-direction: column;
+  padding: .25rem;
+  border: 1px solid var(--bor_dat);
+  border-radius: .5rem;
+  margin: .5rem;
+}
+
+/* ////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* 
+variable : div > label + input
+*/
+.ope_var {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  margin: .25rem;
+}
+
+/* ////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* 
   Contenedor
 */
 .ope_val {
@@ -424,99 +417,6 @@ variable : div > label + input
   transform: rotate(270deg);
 }
 
-/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////// */
-/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////// */
-/* 
-  Tipos de lista por items
-*/
-ul.ope_lis:not(.pos) {
-  padding: 0;
-  list-style: none;
-}
-
-/* 
-  Contenido vertical con sublistas
-*/
-ul.ope_lis.dep {  
-  overflow: auto;
-  padding-bottom: 1rem;
-}
-ul.ope_lis.dep ul.ope_lis {    
-  padding-left: 1rem;
-  padding-bottom: .25rem;
-  margin: 0;
-}
-ul.ope_lis.dep li > .ope_val {
-  width: initial;
-  border-radius: .2rem;
-  margin: .25rem 0;
-}
-ul.ope_lis.dep:not(.val) li.sep  {
-  margin-left: 1.5rem;
-}
-
-/* 
-  Indice por subniveles 
-*/
-ul.ope_lis.nav a {
-  display: inline-block;
-  overflow: auto;
-  width: 100%;
-  text-decoration: none;
-  color: var(--let_tex);
-}
-ul.ope_lis.nav li.pos.sep,
-ul.ope_lis.nav li.pos:not(.sep) > .ope_val {  
-  margin-top: .1rem;
-  margin-bottom: .1rem;
-  padding: .25rem;
-}
-ul.ope_lis.nav li.pos.sep:hover,  
-ul.ope_lis.nav li.pos:not(.sep) > .ope_val:hover {
-  background-color: var(--fon_foc);
-  border-radius: .25rem;
-}
-ul.ope_lis.nav a {
-  display: inline-block;
-  overflow: auto;
-  width: 100%;
-  text-decoration: none;
-  color: var(--let_tex);
-}
-ul.ope_lis.nav li.pos.sep,
-ul.ope_lis.nav li.pos:not(.sep) > .ope_val {  
-  margin-top: .1rem;
-  margin-bottom: .1rem;
-  padding: .25rem;
-}
-ul.ope_lis.nav li.pos.sep:hover,  
-ul.ope_lis.nav li.pos:not(.sep) > .ope_val:hover {
-  background-color: var(--fon_foc);
-  border-radius: .25rem;
-}
-
-/* 
-  Barra Horizontal con desplazamiento por item
-*/
-ul.ope_lis.bar {
-  display: flex;
-  flex-flow: row nowrap;
-  padding: 0;
-  margin: 0;
-}
-ul.ope_lis.bar > li {
-  width: 100%;
-  overflow: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-/* Botonera */
-ul.ope_lis.bar + .ope_bot > button {
-  width: 2rem;
-}
-
 /* ////////////////////////////////////////////////////////////////////////////////////////////////// */
 /* ////////////////////////////////////////////////////////////////////////////////////////////////// */
 
@@ -531,14 +431,16 @@ article {
 }
 
 /* cabecera y pie */
-article :is(header,footer) {
+article > :is(header,footer) {
   width: 100%;
   padding: 1rem;
 }
 
 /* contenido */
-article section {
+article > section,
+article > div > section {
   margin-bottom: 1rem !important;
+  width: 100%;
 }
 
 /* titulos */
@@ -552,7 +454,7 @@ article :is(h5,h6) {
 /* parrafos */
 article > p,
 article section > p {
-  margin-bottom: .5rem;
+  margin-bottom: .25rem;
   line-height: 1.5;
 }
 
@@ -562,4 +464,5 @@ article section > ul.lis {
   margin: .5rem auto;
   max-width: fit-content;
 }
+
 

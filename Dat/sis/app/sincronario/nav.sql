@@ -992,32 +992,42 @@
     -- Ciclos del tiempo Diario
     DELETE FROM `sis-app_nav` WHERE `esq` = 'sincronario' AND `cab` = 'informe'
     ;
-    DELETE FROM `sis-app_nav` WHERE `esq` = 'sincronario' AND `cab` = 'informe' AND `art` = 'diario'; INSERT INTO `sis-app_nav` VALUES
+    -- orden cíclico
+    DELETE FROM `sis-app_nav` WHERE `esq` = 'sincronario' AND `cab` = 'informe' AND `art` = 'ciclico'; INSERT INTO `sis-app_nav` VALUES
 
-      ('sincronario','informe','diario','01','Solar-Galáctico'),
-        ('sincronario','informe','diario','01-01','Cilo N.S.'),
-        ('sincronario','informe','diario','01-02','Anillo solar'),
-      ('sincronario','informe','diario','02','Orden Cíclico'),
-        ('sincronario','informe','diario','02-01','Psi-Cronos'),
-        ('sincronario','informe','diario','02-02','Luna del Servicio Planetario'),
-        ('sincronario','informe','diario','02-03','Estación Solar'),
-        ('sincronario','informe','diario','02-04','Vinal del Haab'),
-        ('sincronario','informe','diario','02-05','Cromática Entonada'),
-      ('sincronario','informe','diario','03','Orden Sincrónico'),
-        ('sincronario','informe','diario','03-01','Kin del Módulo Armónico'),
-        ('sincronario','informe','diario','03-02','Oráculo del Destino'),
-        ('sincronario','informe','diario','03-03','Onda Encantada'),
-        ('sincronario','informe','diario','03-04','Castillo de la Nave'),
-        ('sincronario','informe','diario','03-05','Trayectoria Armónica'),
-        ('sincronario','informe','diario','03-06','Célula del tiempo'),
-        ('sincronario','informe','diario','03-07','Estación Galáctica'),
-        ('sincronario','informe','diario','03-08','Elemento Cromático'),
-      ('sincronario','informe','diario','04','Flujo G-S de los Holones'),
-        ('sincronario','informe','diario','04-01','Solar-Interplanetario'),
-        ('sincronario','informe','diario','04-02','Planetario'),
-        ('sincronario','informe','diario','04-03','Humano')
+      ('sincronario','informe','ciclico','01','Cilo N.S.'),
+      ('sincronario','informe','ciclico','02','Anillo solar'),
+        ('sincronario','informe','ciclico','02-01','Luna del Servicio Planetario'),
+        ('sincronario','informe','ciclico','02-02','Estación Solar'),
+        ('sincronario','informe','ciclico','02-03','Héptada Semanal'),
+      ('sincronario','informe','ciclico','03','Psi-Cronos'),
+        ('sincronario','informe','ciclico','03-01','Cromática Entonada'),
+        ('sincronario','informe','ciclico','03-02','Vinal del Haab')
     ;
+    -- orden sincrónico
+    DELETE FROM `sis-app_nav` WHERE `esq` = 'sincronario' AND `cab` = 'informe' AND `art` = 'sincronico'; INSERT INTO `sis-app_nav` VALUES
 
+      ('sincronario','informe','sincronico','01','El Módulo Armónico'),
+      ('sincronario','informe','sincronico','02','El Oráculo del Destino'),
+        ('sincronario','informe','sincronico','02-01','Propiedades por Palabras Clave'),
+        ('sincronario','informe','sincronico','02-02','Lecturas por Palabras Clave'),
+        ('sincronario','informe','sincronico','02-03','Posiciones en los Ciclos del kin'),
+        ('sincronario','informe','sincronico','02-04','Sincronometría del Holon'),
+      ('sincronario','informe','sincronico','03','La Nave del Tiempo'),
+        ('sincronario','informe','sincronico','03-01','Castillo de la Nave'),
+        ('sincronario','informe','sincronico','03-02','Onda Encantada'),        
+      ('sincronario','informe','sincronico','04','El Giro Galáctico'),        
+        ('sincronario','informe','sincronico','04-01','Trayectoria Armónica'),
+        ('sincronario','informe','sincronico','04-02','Célula del tiempo'),
+      ('sincronario','informe','sincronico','05','El Giro Espectral'),
+        ('sincronario','informe','sincronico','05-01','Estación Galáctica'),
+        ('sincronario','informe','sincronico','05-02','Elemento Cromático'),
+      ('sincronario','informe','sincronico','06','El Flujo G-S de los Holones'),
+        ('sincronario','informe','sincronico','06-01','Holon Solar-Interplanetario'),
+        ('sincronario','informe','sincronico','06-02','Holon Planetario'),
+        ('sincronario','informe','sincronico','06-03','Holon Humano'),
+      ('sincronario','informe','sincronico','07','Castillo del Destino')
+    ;    
     -- Firma galáctica
     DELETE FROM `sis-app_nav` WHERE `esq` = 'sincronario' AND `cab` = 'informe' AND `art` = 'firma'; INSERT INTO `sis-app_nav` VALUES
 

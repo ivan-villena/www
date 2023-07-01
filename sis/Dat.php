@@ -228,7 +228,7 @@ class Dat {
   /* Estructura */  
   static array $Est = [    
   ];// Cargo Estructura : dat_est
-  static function est( string $esq, string $ide, mixed $ope = NULL, mixed $dat = NULL ) : mixed {
+  static function est( string $esq, string $ide, mixed $ope = NULL, mixed $val = NULL ) : mixed {
 
     $_ = [];
 
@@ -296,33 +296,33 @@ class Dat {
     // cargo operadores
     elseif( is_string($ope) ){
 
-      // propiedad
-      $ope_atr = explode('.',$ope);
-      
-      $_ = Obj::val_dat( Dat::est($esq,$ide), $ope_atr );
+      // pido estructura con propiedad
+      $_ = Obj::val_dat( Dat::est($esq,$ide), $ope_atr = explode('.',$ope) );
 
       // proceso datos
-      if( !!$_ && isset($dat) ){
+      if( !!$_ && isset($val) ){
 
         switch( $ope_atr[0] ){
         // devuelvo atributo/s
         case 'atr':
           $atr_lis = $_;
           // devuelvo 1
-          if( is_string($dat) ){
+          if( is_string($val) ){
             $_ = new stdClass;
-            if( isset($atr_lis[$dat]) ) $_ = $atr_lis[$dat];
+            if( isset($atr_lis[$val]) ) $_ = $atr_lis[$val];
           }// o muchos
           else{
             $_ = [];
-            foreach( $dat as $atr ){
+            foreach( $val as $atr ){
               if( isset($atr_lis[$atr]) ) $_[$atr] = $atr_lis[$atr];
             }
           }
           break;
         // devuelvo valores
         case 'val':
-          $_ = Obj::val( Dat::get($esq,$ide,$dat), $_ );
+          if( isset($val) ){
+            $_ = Obj::val( Dat::get($esq,$ide,$val), $_ );
+          }
           break;
         }        
       }
@@ -403,18 +403,18 @@ class Dat {
 
     return $_;
   }// Atributos 
-  static function est_atr( string | array $dat, string $ope = "" ) : array {
+  static function est_atr( string | array $dat, string $ope = "", mixed $ide = NULL ) : array | object {
     $_ = [];
 
     // armo listado de atributos
-    if( empty($ope) ){
+    if( empty($ope) || $ope == 'ver' ){
 
       // de la base
       if( is_string($dat) ){
 
-        $ide = Dat::ide($dat);
+        $dat_ide = Dat::ide($dat);
 
-        $_ = Dat::est($ide['esq'],$ide['est'],'atr');
+        $_ = Dat::est($dat_ide['esq'],$dat_ide['est'],'atr',$ide);
 
       }
       // listado variable por objeto

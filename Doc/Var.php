@@ -176,7 +176,7 @@ class Doc_Var {
       if( !in_array('ver',$opc) ){
         $cla = "";
         if( isset($ope['class']) ){ 
-          $cla = "{$ope['class']}"; 
+          $cla = " {$ope['class']}"; 
           unset($ope['class']); 
         }
         if( !isset($ope['id']) ){ 
@@ -189,7 +189,7 @@ class Doc_Var {
           </output>";
         }
         $_ = "
-        <div class='Num ran {$cla}'>
+        <div class='var_num ran{$cla}'>
         
           <div class='-val'>
             <n class='_min'>{$ope['min']}</n>

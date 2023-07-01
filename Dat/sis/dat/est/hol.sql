@@ -563,27 +563,6 @@
         }
       }' )
     ;
-    -- Ciclo Solar-Galáctico
-    DELETE FROM `sis-dat_est` WHERE `esq` = 'hol' AND `ide` LIKE 'sir%'; INSERT INTO `sis-dat_est` VALUES
-
-      ('hol','sir_ani', '{
-        "atr": { 
-          "ide": { "min":1, "max":52, "dat":"hol-sir_ani" },
-          "fam_2": { "min":1, "max":260, "dat":"hol-kin" },
-          "fam_3": { "min":1, "max":260, "dat":"hol-kin" },
-          "fam_4": { "min":1, "max":260, "dat":"hol-kin" }
-        },
-        "val": {
-          "nom": "Anillo Solar #()($)ide() de 52",
-          "des": "Año ()($)cod() del Ciclo Siriano, codificado por el kin ()($)kin_nom().",
-          "ima": "background: top/50% no-repeat url(http://localhost/_img/hol/fic/ton/()($)kin_ton().png), bottom/60% no-repeat url(http://localhost/_img/hol/fic/sel/()($)kin_sel().png);",
-          "col": 4        
-        },
-        "opc": {
-          "ima": [ "fam_2", "fam_3", "fam_4" ]
-        }
-      }' )
-    ;
   --
   -- Códigos
     -- x2 : Flujos: respiraciones y poderes
@@ -891,6 +870,27 @@
         }
       }' ),
       -- aventura de la onda encantada
+      ('hol','ton_ond_ave', '{
+        "atr": {
+          "ide": { "min":1, "max":13, "dat":"hol-ton" },
+          "ond": { "min":1, "max":4, "dat":"hol-ton_ond" },
+          "dim": { "min":1, "max":4, "dat":"hol-ton_dim" },
+          "mat": { "min":1, "max":5, "dat":"hol-ton_mat" },
+          "sim": { "min":1, "max":7, "dat":"hol-ton_sim" }
+        },
+        "val": { 
+          "nom": "Posición #()($)ide() de 13: ()($)nom().",
+          "des": "()($)pos(): ()($)pod(). ()($)des().",
+          "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/ton/()($)ide().png);",
+          "col": 7,
+          "num": 13
+        },
+        "opc": { 
+          "ima": [ 
+            "ide", "ond", "dim", "mat", "sim" 
+          ]
+        }
+      }' ),      
       ('hol','ton_ond', '{
         "atr": { 
           "ide": { "min":1, "max":4, "dat":"hol-ton_ond" },
@@ -1557,7 +1557,7 @@
           "tab": [ "hol.cas", { 
             "val": { "pos":"()($)ide()" }, 
             "pos": { "bor":1, "ima":"hol.cas.ide", "num":"hol.cas.ide", "col":"hol.cas.pos_arm" },
-            "atr-pul":{ "dim":1, "mat":1, "sim":1 }
+            "atr-pul": { "dim":1, "mat":1, "sim":1 }
           }],
 
           "fic": [ "arm", "ton", "pos_arm" ],
@@ -1897,7 +1897,7 @@
           "fic-2": [ "cro_est", "cro_ele" ],        
 
           "htm-4": { "eti":"p", "class":"tit", "htm":"El <a target=\'_blank\' href=\'http://localhost//sincronario/codigo/kin#_06-\'>Oráculo del Destino</a>" },
-          "eje-4": { "ide": "App/Sincronario::dat_inf", "par": [ "kin-par", "()($)ide()" ] }        
+          "eje-4": { "ide": "App/Sincronario::dat_inf", "par": [ "kin_par", "()($)ide()" ] }        
         }
       }'),
       -- parejas del oraculo
@@ -1975,7 +1975,7 @@
         },      
         "tab": {
           "pos": { "ima":"hol.kin.ide", "col": "", "num": "" },
-          "dep-par": 1,
+          "val-par": 1,
           "atr-pag": { },
           "atr-par": { }
         },              
@@ -1985,7 +1985,7 @@
 
           "tab": [ "hol.kin_arm_tra", { 
             "pos": { "ima":"hol.kin.ide" },
-            "dep-par": 1
+            "val-par": 1
           }],
 
           "htm-1": { "eti":"p", "class":"tit", "htm":"El <a target=\'_blank\' href=\'http://localhost//sincronario/libro/factor_maya#_05-04-\'>Rayo de Sincronización Galáctica</a> en el Factor Maya" },
@@ -2018,7 +2018,7 @@
         },        
         "tab": {
           "pos": { "ima":"hol.kin.ide", "col": "", "num": "" },
-          "dep-par": 1,
+          "val-par": 1,
           "atr-pag": { },
           "atr-par": { }
         },        
@@ -2028,7 +2028,7 @@
 
           "tab": [ "hol.kin_arm_cel", { 
             "pos": { "ima":"hol.kin.ide" }, 
-            "dep-par": 1 
+            "val-par": 1 
           } ],
 
           "htm-1": { "eti":"p", "class":"tit", "htm":"El <a target=\'_blank\' href=\'http://localhost//sincronario/libro/tablas_del_tiempo#_06-04-\'>I-Ching Galáctico</a> en Las 20 Tablas del Tiempo" },
@@ -2163,7 +2163,7 @@
         },
         "tab": {
           "pos": { "ima":"hol.kin.ide", "col": "", "num": "" },
-          "dep-par": 1,
+          "val-par": 1,
           "atr-pag": { },
           "atr-par": { }
         },        
@@ -2212,7 +2212,7 @@
         },        
         "tab": {
           "pos": { "ima":"hol.kin.ide", "col": "", "num": "" },
-          "dep-par": 1,
+          "val-par": 1,
           "est-ton": { },
           "est-cas": { "pos":1, "col":1 },        
           "atr-pag": { },
@@ -2237,7 +2237,6 @@
         "atr": {
           "ide": { "min":1, "max":20, "dat":"hol-kin_nav_ond" },
           "kin": { "dat":"hol-kin" },
-          "kin_lis": { "dat":"hol-kin" },
           "sel": { "dat":"hol-sel" },
           "nav_cas": { "dat":"hol-kin_nav_cas" },
           "cas_arm": { "dat":"hol-cas_arm" }
@@ -2250,11 +2249,11 @@
           "col": 4
         },
         "opc": {
-          "ima":[ "ide", "kin", "kin_lis", "sel", "nav_cas", "cas_arm" ]
+          "ima":[ "ide", "kin", "sel", "nav_cas", "cas_arm" ]
         },        
         "tab": {
           "pos": { "ima":"hol.kin.ide", "col": "", "num": "" },
-          "dep-par": 1,
+          "val-par": 1,
           "atr-pag": { },
           "atr-par": { },
           "atr-dim": { },
@@ -2265,7 +2264,7 @@
 
           "det": [ "fac", "enc" ],
 
-          "tab": [ "hol.kin_nav_ond", { 
+          "tab": [ "hol.kin_nav_ond", {
             "pos": { "ima":"hol.kin.ide" }
           }],
 
@@ -2274,7 +2273,7 @@
 
           "htm-2": { "eti":"p", "class":"tit", "htm":"Las <a target=\'_blank\' href=\'http://localhost//sincronario/libro/encantamiento_del_sueño#_03-06-\'>Ondas Encantadas de la Nave del Tiempo</a> en <cite>el Encantamiento del Sueño</cite>" },
           "atr-2": [ "enc_des" ],
-          "fic-2": [ "kin_lis" ]
+          "fic-2": [ "kin" ]
         }
       }' ),
       ('hol','kin_gen_enc', '{ 
@@ -2324,8 +2323,8 @@
           "hep_dia": "hol-rad"
         },
         "val": { 
-          "nom": "Psi-Crono #()($)ide() de 365, correspondiente al ()($)fec().",
-          "des": "- Kin: ()($)kin().\\n- Estación Solar #()($)est() de 4, día ()($)est_dia().\\n- Giro Lunar #()($)lun() de 13, día ()($)lun_dia() de 28.\\n- Héptada #()($)hep() de 52, día ()($)hep_dia() de 7.",
+          "nom": "Psi-Crono #()($)ide() de 364, día del Calendario ()($)fec().",
+          "des": "Codificado por el Kin ()($)kin(), ()($)kin_nom(): ()($)kin_des().",
           "ima": "background: top/50% no-repeat url(http://localhost/_img/hol/fic/ton/()($)kin_ton().png), bottom/60% no-repeat url(http://localhost/_img/hol/fic/sel/()($)kin_sel().png);",
           "num": 365
         },
@@ -2390,6 +2389,24 @@
           "atr-par": { }
         }
       }' ),
+      -- Anillos Solares
+      ('hol','psi_ani', '{
+        "atr": { 
+          "ide": { "min":1, "max":52, "dat":"hol-sir_ani" },
+          "fam_2": { "min":1, "max":260, "dat":"hol-kin" },
+          "fam_3": { "min":1, "max":260, "dat":"hol-kin" },
+          "fam_4": { "min":1, "max":260, "dat":"hol-kin" }
+        },
+        "val": {
+          "nom": "Anillo Solar #()($)ide() de 52, año ()($)cod() del Ciclo Siriano.",
+          "des": "Codificado por el kin ()($)fam_4(), ()($)kin_nom(): ()($)kin_des().",
+          "ima": "background: top/50% no-repeat url(http://localhost/_img/hol/fic/ton/()($)kin_ton().png), bottom/60% no-repeat url(http://localhost/_img/hol/fic/sel/()($)kin_sel().png);",
+          "col": 4        
+        },
+        "opc": {
+          "ima": [ "fam_2", "fam_3", "fam_4" ]
+        }
+      }' ),
       -- Onda Encantada de 13 lunas
       ('hol','psi_lun', '{
         "atr": { 
@@ -2401,8 +2418,8 @@
           "ond": { "min":1, "max":4, "dat":"hol-ton_ond" }
         },
         "val": { 
-          "nom": "Luna #()($)ide() de 13: ()($)nom().",
-          "des": "()($)fec_ran(): ()($)ton_des() del Giro Solar Anual; Totem ()($)tot(): ()($)tot_pro()",
+          "nom": "Luna #()($)ide() de 13, ()($)nom(): ()($)fec_ran().",
+          "des": "Codificada por el Tono ()($)ton_nom(): ()($)ton_des() del Giro Solar Anual; \\nTotem ()($)tot(): ()($)tot_pro()",
           "ima": "background: url(http://localhost/_img/hol/fic/psi/lun/()($)ide().png) center/contain no-repeat;",
           "num": 13,
           "col": 7
@@ -2425,8 +2442,9 @@
           
           "det":[ "ton_nom", "ton_des", "fec_ran" ],
 
-          "tab": [ "hol.psi_lun_tot", { 
+          "tab": [ "hol.psi_lun", { 
             "val": { "pos":"()($)ide()" },
+            "opc": [ "ton" ],
             "atr-pul": { "dim":1, "mat":1, "sim":1 }
           }],
 
@@ -2455,8 +2473,8 @@
           "hep": { "dat":"hol-psi_hep" }
         },
         "val": { 
-          "nom": "Estación Solar #()($)ide() de 4: ()($)nom().",
-          "des": "()($)fec_ran(): ()($)des() ( ()($)pol_sur() al sur, ()($)pol_nor() al norte )",
+          "nom": "Estación Solar #()($)ide() de 4, ()($)nom(): ()($)fec_ran().",
+          "des": "()($)des() ( ()($)pol_sur() al sur, ()($)pol_nor() al norte )",
           "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/cas/arm/()($)ide().png);",
           "num": 4,
           "col": 4          
@@ -2537,8 +2555,8 @@
           "psi": { "dat":"hol-psi" }
         },      
         "val": { 
-          "nom": "Heptada #()($)ide() de 52.",
-          "des": "()($)fec_ran(): ()($)ton_des() del cuadrante ()($)des_col() en el ()($)des_dir().",
+          "nom": "Heptada #()($)ide() de 52, ()($)nom(): ()($)fec_ran().",
+          "des": "Codificada por el tono ()($)ton_nom(): ()($)des().",
           "ima": "background: center/contain no-repeat url(http://localhost/_img/hol/fic/ton/()($)ton().png), center/contain no-repeat url(http://localhost/_img/hol/fic/rad.png), center/contain no-repeat url(http://localhost/_img/hol/fic/arm/()($)pos_arm().png);",
           "num": 52,
           "col": 4
@@ -2548,7 +2566,7 @@
         },      
         "tab": {
           "pos": { "ima": "hol.kin.ide", "col": "" },
-          "dep-par": 1,
+          "val-par": 1,
           "atr-pag": { }
         },        
         "inf": {
@@ -2572,7 +2590,7 @@
           "psi": { "dat":"hol-psi" }
         },
         "val": { 
-          "nom": "Cromática Entonada #()($)ide() de 75.",        
+          "nom": "Cromática Entonada #()($)ide() de 75: ()($)fec_ran().",        
           "num": 75
         },
         "opc": {
@@ -2601,8 +2619,8 @@
           "psi": { "dat":"hol-psi" }
         },      
         "val": { 
-          "nom": "Vinal #()($)ide() de 19: ()($)nom().",
-          "des": "()($)fec_ran(): ()($)des().",
+          "nom": "Vinal #()($)ide() de 19, ()($)nom(): ()($)fec_ran().",
+          "des": "()($)des().",
           "num": 19
         },
         "opc": {

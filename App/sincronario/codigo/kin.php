@@ -553,7 +553,7 @@
     <?= Sincronario::dat_tab('sel_arm_tra',[ 
       'sec'=>['bor'=>1],
       'pos'=>['bor'=>1,'col'=>"hol.sel.ide",'ima'=>"hol.sel.ord"],
-      'dep-par'=>1
+      'val-par'=>1
     ]);?>    
 
     <!--Los Patrones del Destino-->

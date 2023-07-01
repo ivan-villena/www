@@ -4,12 +4,12 @@
   Paneles:
 */
 /* Menú */
-.ope_pan > .ide-app_cab ul.ope_lis.nav {
+.ope_pan > .ide-app_cab ul.lis.nav {
   height: 84vh;
 }
 
 /* Indice */
-.ope_pan > .ide-app_nav ul.ope_lis.nav {
+.ope_pan > .ide-app_nav ul.lis.nav {
   height: 80vh;
 }
 
